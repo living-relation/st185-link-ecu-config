@@ -72,7 +72,8 @@ A('<h1>ST185 fuse boxes - rev 7 (selected for build)</h1>')
 A('<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new version so I can see it". Rev 7 is that version, and you picked it: '
   '<b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build. The LOGIC box is rebuilt here for your 3 mm rule '
   '(<a href="#clearance">3 mm fix</a>, R93); the battery relay block stays rev 6 (<a href="../ST185-fusebox-summary.html">rev 6 page</a>). '
-  '<a href="#views">Every wire simulated: sides, exploded, underneath, routing, the boxes cabled together</a>. Open questions: J1-J4.</p>')
+  '<a href="#views">Every wire simulated: sides, exploded, underneath, routing, the boxes cabled together</a>. '
+  'Your J1-J4 answers are built in (DECISIONS R94): <a href="#janswers">J answers</a>.</p>')
 A('<div class="note"><b>The idea in one line:</b> the glove-box bus bar and the POWER box become one thing. The bus bar\'s + bar runs right '
   'through the POWER box and the AMI fuses bolt straight onto it. No second copper bar, no separate bus bar box, no thick cable between them.</div>')
 A('<div class="kpi">')
@@ -157,16 +158,85 @@ A('<div class="wrap"><table><tr><th>Gap</th><th>Before</th><th>Now</th><th>Kind<
 for k, lbl, kind in (('logic_bolt_to_other_strip_min_mm', 'strip bolt tip to the OTHER strip', 'live to live (Bus 1 / Bus 2)'),
                      ('logic_bus1_to_bus2_min_mm', 'any Bus 1 part to any Bus 2 part', 'live to live'),
                      ('logic_strip_to_strip_mm', 'Bus 1 strip to Bus 2 strip', 'live to live'),
-                     ('logic_jumper_lug_to_lug_min_mm', 'jumper lug to the next lug, same strip', 'live to live, one circuit - question J1'),
-                     ('logic_strip_to_printed_min_mm', 'strip to its printed lips', 'live to plastic - question J2'),
-                     ('logic_jumper_parts_to_printed_min_mm', 'jumper parts to the deck', 'live to plastic - J2'),
-                     ('logic_jumper_parts_to_harness_min_mm', 'jumper parts to the CAD tail bundles', 'live to insulation - J2'),
-                     ('pan_to_nearest_live_power_mm', 'POWER belly pan to the nearest live part', 'live to plastic - J2')):
+                     ('logic_jumper_lug_to_lug_min_mm', 'jumper lug to the next lug, same strip', 'live to live, one circuit - not gated (J1 = A)'),
+                     ('logic_strip_to_printed_min_mm', 'strip to its printed lips', 'live to plastic - kept (J2 = B)'),
+                     ('logic_jumper_parts_to_printed_min_mm', 'jumper parts to the deck', 'live to plastic - kept (J2 = B)'),
+                     ('logic_jumper_parts_to_harness_min_mm', 'jumper parts to the CAD tail bundles', 'live to insulation - kept (J2 = B)'),
+                     ('logic_pan_rib_to_live_min_mm', 'new pan rib to the nearest live part', 'live to plastic - J2 = B rib'),
+                     ('logic_base_to_live_min_mm', 'base (channel floor, guide walls) to the nearest live part', 'live to plastic - J2 / J4'),
+                     ('pan_to_nearest_live_power_mm', 'POWER belly pan to the nearest live part', 'live to plastic - kept (J2 = B)')):
     b_, n_ = BEFORE.get(k), live.get(k)
     ok = n_ is not None and n_ >= 3.0
     A('<tr><td>%s</td><td>%s</td><td class="%s">%s</td><td>%s</td></tr>' % (E(lbl), ('%.2f mm' % b_) if b_ is not None else 'not measured',
       'ok' if ok else ('mut' if 'J' in kind else 'bad'), ('%.2f mm' % n_) if n_ is not None else '-', E(kind)))
 A('</table></div>')
+
+A('<h2 id="janswers">Your J1-J4 answers (DECISIONS R94)</h2>')
+TH = rep.get('terminal_holes', {})
+slots = rep.get('terminal_slots', {})
+gw = rep.get('guide_walls', {})
+nh = sum(len(v) for v in TH.values())
+walls = []
+for b_, L_ in TH.items():
+    for i_ in range(len(L_)):
+        for j_ in range(i_ + 1, len(L_)):
+            a_, c_ = L_[i_], L_[j_]
+            if a_['group'] != c_['group']:
+                walls.append(((a_['x'] - c_['x']) ** 2 + (a_['y'] - c_['y']) ** 2) ** 0.5 - (a_['d'] + c_['d']) / 2)
+CH = S.CHANNEL
+A('<div class="wrap"><table><tr><th>Question</th><th>Your answer</th><th>What changed</th></tr>')
+A('<tr><td>J1 jumper lugs 1.86 mm apart on one strip</td><td>A</td><td>Kept. The 3 mm rule is between different circuits: the lugs on one strip are one '
+  'circuit, so that gap is reported, not gated, from now on (<code>check_clearance.py</code> SAME_CIRCUIT). Bus 1 to Bus 2 stays gated: %.2f mm.</td></tr>'
+  % live['logic_bus1_to_bus2_min_mm'])
+A('<tr><td>J2 live parts against plastic / insulation</td><td>B + your markup</td><td>(1) A printed <b>rib on the LOGIC belly pan</b> (x %.0f-%.0f, %.1f high) '
+  'between the Bus 1 output wires and the Bus 1 strip bolt heads; the Bus 1 wires now stack between the pan\'s rounded corner and the rib. '
+  '(2) A <b>relief</b> in the pan wall at the outboard micro relay column (inner face cut back %.1f mm, to the 2.0 mm minimum - the base legs sit right outside it). '
+  '(3) <b>%d terminal holes</b> sized for their crimp barrel (table below), <b>%d pairs joined into one slot</b> where the wall would have been under %.1f mm, '
+  'thinnest wall left between separate holes %.2f mm. (4) <b>%d short guide walls</b> (%.1f x %.1f mm) under the decks between neighbouring holes. '
+  'New gate: <code>check_terminal_holes.py</code>.</td></tr>' % (S.PAN_RIB['x'][0], S.PAN_RIB['x'][1], S.PAN_RIB['z_top'] - 4.0, S.PAN_RELIEF['depth'],
+  nh, sum(len(v) for v in slots.values()), S.HOLE['min_wall'], min(walls) if walls else 0.0, sum(v['n'] for v in gw.values()), S.GUIDE['t'], S.GUIDE['h']))
+A('<tr><td>J3 two wires in one terminal</td><td>A, only if rated for the combined current</td><td>Done in <code>ST185-CabinPower</code>: HL and HR fuse outputs '
+  'carry ONE 14 AWG wire each (<code>w_hl_cp</code>, <code>w_hr_cp</code>) to a splice (<code>sp_hl</code>, <code>sp_hr</code>) in the LOGIC front channel that feeds '
+  'relay 30 and 86; the horn relay 86 now comes from the existing <code>sp_hz</code> splice (it was a jumper off its own terminal 30). Rating, combined current '
+  'through the single wire and terminal: the ATM-15 fuse caps it at 15 A; 14 AWG M22759/16 is about 22 A as a single wire in free air at 80 C '
+  '(<a href="https://www.hpacademy.com/assets/Course-Content/Wiring-Fundamentals/1dbddd6411/WireGauge-CurrentRating_CheatSheet.pdf">HP Academy M22759/16 sheet</a>), '
+  'x 0.7 in a bundle (R89) = 15.4 A, so it passes; TE 880398-2: typical 33 A, 1-2.5 mm2 (TE page). No terminal holds two wires now.</td></tr>')
+A('<tr><td>J4 wires that left the box and came back in</td><td>B</td><td>A printed <b>channel floor across the front</b> (z %.2f-%.2f, over the Bus 1 feed lug). '
+  'To make room in front of the spine the Bus 1 strip starts at y %.1f (was 8), Bus 2 at y %.1f (was 21) and the Bus 1 feed lug sits at y %.0f / z %.0f '
+  '(was 15 / 22). %d wires now cross there, each on its own level (%s), the two splices stacked in the channel past the spine; nothing leaves the box '
+  'and comes back.</td></tr>' % (CH['floor'][0], CH['floor'][1], S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][0], S.FEED['BUS1']['y'], S.FEED['BUS1']['z'],
+  len(plan.get('channel', {})), E(', '.join('%s z %.1f' % (k, v) for k, v in sorted(CH['z'].items(), key=lambda kv: kv[1])))))
+A('</table></div>')
+A('<h3>Terminal holes: crimp barrel sizes (TE product pages, read 2026-10-14)</h3>')
+A('<p class="mut">Hole = the crimped barrel + %.1f mm a side. Barrel = the larger of the wire insulation and the smallest insulation the terminal is made for '
+  '(an uninsulated terminal: the wire insulation still has to go in), plus the metal both sides. Round bore from under the deck up through the barrel zone '
+  '(the lower %d %% of the terminal, est), at least %.0f mm deep. A spare cavity gets the hole of the largest wire it takes. Metal thickness or length not on '
+  'the TE page: %.2f mm / %.0f mm, marked est.</p>' % (S.HOLE['clr'], int(S.BARREL_FRAC * 100), S.HOLE['lead_in'], S.T_EST, S.L_EST))
+A('<div class="wrap"><table><tr><th>Terminal</th><th>Insulation range</th><th>Metal</th><th>Length</th><th>Holes (box: count x diameter)</th></tr>')
+for pn, t_ in S.TERM.items():
+    use = {}
+    for b_, L_ in TH.items():
+        for h_ in L_:
+            if h_['part'] == pn:
+                use.setdefault((b_, h_['d']), 0)
+                use[(b_, h_['d'])] += 1
+    A('<tr><td>%s<br><span class="mut">%s</span></td><td>%.2f-%.2f mm</td><td>%s</td><td>%s</td><td>%s</td></tr>' % (pn, E(t_['what']), t_['ins'][0], t_['ins'][1],
+      ('%.2f' % t_['t']) if t_['t'] else '%.2f est' % S.T_EST, ('%.1f' % t_['L']) if t_['L'] else '%.0f est' % S.L_EST,
+      E('; '.join('%s %d x %.2f' % (b_, n_, d_) for (b_, d_), n_ in sorted(use.items()))) or '-'))
+A('</table></div>')
+A('<div class="grid">')
+fig('fusebox_logic_base_holes.png', 'LOGIC base from below: the crimp holes, the joined fuse in / out slots, the guide walls and the J4 channel floor.')
+fig('fusebox_power_base_holes.png', 'POWER base from below: the crimp holes and guide walls under the relays and the ACPS fuse.')
+A('</div>')
+A('<p>Joined slots (wall under %.1f mm): %s.</p>' % (S.HOLE['min_wall'], E('; '.join(' + '.join(g) for b_ in slots for g in slots[b_])) or 'none'))
+grip = [(w_['wire'], e_['part'], w_['od']) for w_ in plan['wires'] for e_ in w_['ends'] if e_.get('at') and e_.get('box') in ('LOGIC', 'POWER')
+        and e_.get('part') in S.TERM and w_['od'] < S.TERM[e_['part']]['ins'][0]]
+A('<div class="note"><b>Found while sizing the holes (OPEN-ITEMS row 121):</b> %d wire ends use wire thinner than their terminal\'s insulation range '
+  '(M22759/16 is thin-wall: 14 AWG is 2.41 mm, 18 AWG 1.85 mm), e.g. 18 AWG in a 42281-1 (made for 2.79-4.32 mm insulation). The insulation barrel cannot '
+  'grip it, so the wire is held by the conductor crimp alone. The holes are sized for the barrel as it closes, so they are right either way. Not changed here.</div>'
+  % len(grip))
+A('<p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm '
+  'of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>')
 
 A('<h2 id="views">Every wire in place (simulation)</h2>')
 pb = plan['per_box_wire_ends']
@@ -189,18 +259,20 @@ A('<tr><td>Does any wire block a fuse or relay from being pulled?</td><td class=
   'its own cables: a screw-terminal relay, its terminal nuts come off before it lifts out.)' if all('HCR150' in x[0] for x in wrep['pull']) else E(wrep['pull'])))
 A('<tr><td>Do the covers still close?</td><td class="%s">%s</td></tr>' % ('ok' if not wrep['cover'] else 'bad', 'yes - no wire touches a cover' if not wrep['cover'] else E(wrep['cover'])))
 A('<tr><td>Wire through printed plastic</td><td class="%s">%s</td></tr>' % ('ok' if not wrep['through_printed'] else 'bad',
-  'none' if not wrep['through_printed'] else '%d wires rub the LOGIC belly pan wall (the outboard relay column\'s 86 pins are 1 mm from it, as rev 6): %s - question J2'
+  'none (J2 = B: the pan wall relief at the outboard relay column)' if not wrep['through_printed'] else '%d wires touch printed plastic: %s'
   % (len(wrep['through_printed']), E(', '.join(sorted(set(x[0] for x in wrep['through_printed'])))))))
 A('<tr><td>Wire insulation against bare live metal</td><td class="%s">%s</td></tr>' % ('ok' if not wrep['bare_metal_touch'] else 'bad',
-  'none' if not wrep['bare_metal_touch'] else '%s pass %.2f mm from the Bus 1 strip bolt heads - question J2' % (E(', '.join(sorted(set(x[0] for x in wrep['bare_metal_touch'])))),
+  'none (J2 = B: the pan rib keeps the Bus 1 wires off the strip bolt heads)' if not wrep['bare_metal_touch'] else '%s pass %.2f mm from bare metal' % (E(', '.join(sorted(set(x[0] for x in wrep['bare_metal_touch'])))),
   min(x[2] for x in wrep['bare_metal_touch']))))
-A('<tr><td>Live to live (3 mm rule)</td><td class="ok">no new bare metal in the simulation; the gate result above stands (only J1 open)</td></tr>')
+A('<tr><td>Live to live (3 mm rule)</td><td class="ok">no new bare metal in the simulation; the gate result above stands (J1 = A: same-strip gaps reported, not gated)</td></tr>')
 A('<tr><td>Wire to wire</td><td>%d places where two modelled wires share space (they cross in the crowded LOGIC lanes and under the deck); '
   'insulated wires crossing is normal, so the 3 mm rule does not apply. Closest: %.2f mm</td></tr>' % (len(wrep['wire_wire']['overlaps']), wrep['wire_wire']['min_mm'] or 0.0))
-A('<tr><td>Two wires crimped in one terminal</td><td class="bad">%s - question J3</td></tr>' % E('; '.join(
-  '%s: %s mm2 in %s (max %s)' % (d['cavity'], d['mm2'], d['part'], d['range'][1]) for d in plan['doubles'] if d['over'])))
-A('<tr><td>LOGIC wires that leave and come back in</td><td>%d (%s): Bus 1 fuse to a relay in the same box, the strips are in the way under the deck - question J4</td></tr>'
-  % (len(plan['loops']), E(', '.join(plan['loops']))))
+over_ = [d for d in plan['doubles'] if d['over']]
+A('<tr><td>Two wires crimped in one terminal</td><td class="%s">%s</td></tr>' % ('bad' if over_ else 'ok', E('; '.join(
+  '%s: %s mm2 in %s (max %s)' % (d['cavity'], d['mm2'], d['part'], d['range'][1]) for d in over_)) if over_ else 'none (J3 = A: one wire per terminal, the HL / HR splices)'))
+A('<tr><td>LOGIC wires that leave and come back in</td><td class="%s">%s</td></tr>' % ('bad' if plan['loops'] else 'ok',
+  ('%d: %s' % (len(plan['loops']), E(', '.join(plan['loops'])))) if plan['loops'] else
+  'none (J4 = B: %d wires cross in the front channel - %s)' % (len(plan.get('channel', {})), E(', '.join(sorted(plan.get('channel', {})))))))
 A('</table></div>')
 A('<h3>Exits</h3><div class="wrap"><table><tr><th>Box</th><th>Exit (lane)</th><th>Wires (CAD drew)</th><th>Round bundle</th><th>Notch</th><th>Packed in the notch: top</th><th>Fits</th></tr>')
 for x in plan['exits']:

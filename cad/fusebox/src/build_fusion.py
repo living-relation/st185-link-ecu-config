@@ -239,7 +239,71 @@ def build(out_dir, save=True, renders=True, rev=6):
     root = design.rootComponent
     for i in range(root.occurrences.count - 1, -1, -1):
         root.occurrences.item(i).deleteMe()
-    report = {'bends': [], 'labels': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}}
+    report = {'bends': [], 'labels': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}, 'terminal_holes': {}, 'terminal_slots': {}, 'guide_walls': {}}
+    PLAN7 = None
+    if rev == 7:   # J2 = B (R94): the wire plan (wiring_sim.py) names the terminal and wire in every cavity
+        PLAN7 = json.load(open(os.path.join(os.path.dirname(SRC), 'rev7', 'wiring_plan.json'), encoding='utf-8'))
+
+    def crimp_holes(box_name, z_d, z_t):
+        """J2 = B (Dan 2026-10-14, R94): every terminal hole in the base takes its crimp barrel - the insulation barrel closed on the
+        wire insulation (never below the smallest insulation the terminal is made for) plus the metal both sides, + CLR per side
+        (S.hole_d, TE page data in S.TERM). Round bore from under the deck up to the top of the barrel zone (the lower BARREL_FRAC of the
+        terminal, receptacle top 1 mm under the deck top), at least lead_in deep. Two holes with less than min_wall between them join
+        into one slot (Dan: "join the two slots into one"). Short guide walls hang under the deck between neighbouring holes (Dan:
+        "short separators or walls ... to help guide wires straight out"); the bores are cut through them, so a wall never narrows a
+        hole. 87a cavities get a bore only when a harness wire lands there (none today: next to 85 / 86 it would leave 0.4 mm).
+        Returns (cuts, guide walls) and records every hole for check_terminal_holes.py."""
+        if not PLAN7:
+            return [], []
+        HO, G = S.HOLE, S.GUIDE
+        hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c['hole_d']
+              and not (c['kind'].endswith('87a') and c['source'] != 'harness')]
+        for h in hs:
+            T = S.TERM[h['part']]
+            L_ = T['L'] or S.L_EST
+            h['z1'] = round(min(max(z_d + HO['lead_in'], z_t - HO['top_gap'] - L_ + S.BARREL_FRAC * L_), z_t - 3.0), 2)
+            h['est'] = T['L'] is None or T['t'] is None
+        par = list(range(len(hs)))
+
+        def root_(i):
+            while par[i] != i:
+                par[i] = par[par[i]]
+                i = par[i]
+            return i
+        edges, near_ = [], []
+        for i in range(len(hs)):
+            for j in range(i + 1, len(hs)):
+                a, b = hs[i], hs[j]
+                d = math.hypot(a['x'] - b['x'], a['y'] - b['y'])
+                if d - (a['hole_d'] + b['hole_d']) / 2 < HO['min_wall']:
+                    edges.append((i, j, d))
+                    par[root_(i)] = root_(j)
+                elif d < G['reach']:
+                    near_.append((i, j, d))
+        z0 = z_d - G['h'] - 1.0
+        cuts = [cylz(h['x'], h['y'], z0, h['z1'], h['hole_d']) for h in hs]
+        for (i, j, d) in edges:
+            a, b = hs[i], hs[j]
+            cuts.append(rbox((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, z0, min(a['z1'], b['z1']), d, min(a['hole_d'], b['hole_d']),
+                             math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x']))))
+        gid = {}
+        for i, h in enumerate(hs):
+            h['group'] = gid.setdefault(root_(i), len(gid))
+        fins = []
+        for (i, j, d) in near_:
+            a, b = hs[i], hs[j]
+            if a['group'] == b['group']:
+                continue
+            ang = math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x'])) + 90.0
+            fins.append(rbox((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, z_d - G['h'], z_d + 0.01, max(a['hole_d'], b['hole_d']) + 2.0, G['t'], ang))
+        sh_ = S.PLACE[box_name]
+        report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], d=h['hole_d'], z0=round(z_d, 2), z1=h['z1'],
+                                                   group=h['group'], part=h['part'], wire_od=h['wire_od'], source=h['source'], est=h['est'])
+                                              for h in hs]
+        report['terminal_slots'][box_name] = [sorted(h['cav'] for h in hs if h['group'] == g) for g in range(len(gid))
+                                              if sum(1 for h in hs if h['group'] == g) > 1]
+        report['guide_walls'][box_name] = dict(n=len(fins), t=G['t'], h=G['h'], world_shift=sh_)
+        return cuts, fins
 
     alib = app.materialLibraries.itemByName('Fusion Appearance Library')
     mlib = app.materialLibraries.itemByName('Fusion Material Library')
@@ -445,9 +509,11 @@ def build(out_dir, save=True, renders=True, rev=6):
         """Belly-pan catch positions: faces 'y' -> two on the front and two on the rear wall (at x), 'x' -> on the end walls (at y)."""
         if faces == 'y':
             return [('y', x) for x in snap_xs(L)]
+        if REV[0] == 7:                       # J2 = B (R94): clear of the reliefs at the outboard micro relay column
+            return [('x', y_) for y_ in S.PAN_SNAPS_X]
         return [('x', DIM['D'] * 0.3), ('x', DIM['D'] * 0.7)]
 
-    def belly_pan(L, z_d, faces, exits, pre, sh):
+    def belly_pan(L, z_d, faces, exits, pre, sh, rib=None, reliefs=()):
         """Rev 5 (Dan: snap-on covers for every live point underneath): a shallow PA12 tray under the open bottom. Its wall
         slides PAN over mm up inside the skirt; 4 tongues catch in pockets in the skirt's inner face. exits = U-notches open
         at the top of the wall, where wires leave: (axis, u, z_bottom, width) - axis 'x' = an end wall (u = y), 'y' = front /
@@ -486,6 +552,10 @@ def build(out_dir, save=True, renders=True, rev=6):
                 n = box(u - wd / 2, yw - 4, zb_ + wd / 2, u + wd / 2, yw + 4, ztop + 1)
                 bo(n, cyl((u, yw - 4, zb_ + wd / 2), (u, yw + 4, zb_ + wd / 2), wd), 'u')
             bo(pan, n, 's')
+        if rib:      # J2 = B (R94): a rib standing on the pan floor (rib = (x0, x1, y0, y1, z_top))
+            bo(pan, box(rib[0], rib[2], PN['z0'] + t - 0.01, rib[1], rib[3], rib[4]), 'u')
+        for (ya, yb, depth) in reliefs:   # J2 = B: the +x wall's inner face cut back `depth` over y ya..yb (the 86 wires drop 1 mm from it)
+            bo(pan, box(x1 - t - 0.01, ya, PN['z0'] + t, x1 - t + depth, yb, ztop + 1.0), 's')
         return comp(pre + 'Pan_PA12_printed', pan, AP['pa12_pan'], MAT['pa'], sh)
 
     def cover(L, D, z_t, z_top, notches, label_list, pre, sh, vents=(), ribs=None, side_vents=(), x0=0.0, y0=0.0, R=None, r=None,
@@ -584,16 +654,29 @@ def build(out_dir, save=True, renders=True, rev=6):
                 bodies.append(w)
             joins.sort(key=lambda j: -j[0])
             acc = []
+            xr_ = S.LANE_X.get((box_name, round(key, 2))) if REV[0] == 7 else None
             for k, (pos, od) in enumerate(joins):
                 acc.append(od)
                 nxt = joins[k + 1][0] if k + 1 < len(joins) else exit_at - 30.0
                 if pos - nxt > 0.05:
                     dd = bundle_d(acc)
-                    if along == 'x':
+                    if xr_ is not None and along == 'y' and (key + dd / 2 > xr_[1] or key - dd / 2 < xr_[0]):   # J2: same area, inside S.LANE_X
+                        x_lo, xm_ = xr_
+                        W_ = xm_ - x_lo
+                        H_ = W_ + (dd * dd - W_ * W_) * math.pi / 4.0 / W_ if dd > W_ else W_
+                        xc_ = (x_lo + xm_) / 2
+                        za, zb2 = zl - dd / 2 + W_ / 2, zl - dd / 2 + H_ - W_ / 2
+                        bodies.append(cyl((xc_, pos + 0.5, za), (xc_, nxt, za), W_))
+                        if zb2 > za + 0.05:
+                            bodies.append(cyl((xc_, pos + 0.5, zb2), (xc_, nxt, zb2), W_))
+                            bodies.append(box(xc_ - W_ / 2, min(pos + 0.5, nxt), za, xc_ + W_ / 2, max(pos + 0.5, nxt), zb2))
+                    elif along == 'x':
                         bodies.append(cyl((pos + 0.5, key, zl), (nxt, key, zl), dd))
                     else:
                         bodies.append(cyl((key, pos + 0.5, zl), (key, nxt, zl), dd))
             exits.append((key, zl - d / 2 - 0.8, d + 1.6))
+            if xr_ is not None and along == 'y':     # J2: the lane's own slot through the pan wall as well (the wires stack inside S.LANE_X)
+                exits.append(((xr_[0] + xr_[1]) / 2, zl - d / 2 - 0.8, xr_[1] - xr_[0] + 1.6))
             report['lanes'].setdefault(box_name, []).append(dict(at=round(key, 1), wires=len(ts), d=round(d, 1), z=round(zl, 1),
                                                                  what=[t_['what'] for t_ in ts], room=round(worst, 1)))
             bend_row('%s harness bundle at %s %.0f (%d wires)' % (box_name, 'y' if along == 'x' else 'x', key, len(ts)),
@@ -687,8 +770,9 @@ def build(out_dir, save=True, renders=True, rev=6):
         # rev 7: no foot under the NEG cables - the rear inboard foot moves round to the inboard end, behind the harness exits
         leg_at = [('-y', 30.0), ('-y', L - 30.0), ('+y', L - 30.0), ('-x', D7 - 30.0)] if R7 else [(f, u) for f in ('-y', '+y') for u in (30.0, L - 30.0)]
         feet = [angular_leg(f, u, L, D7, z_leg, parts, lims) for (f, u) in leg_at]
-        deck = base_shell(L, z_d, z_t, parts)
-        cuts = base_snap_cuts(L, z_t, z_d, 'y')
+        holes_p, fins_p = crimp_holes('POWER', z_d, z_t)
+        deck = base_shell(L, z_d, z_t, parts + fins_p)
+        cuts = base_snap_cuts(L, z_t, z_d, 'y') + holes_p
         B_ = dict(S.BAR, y1=R7['bar_y1']) if R7 else S.BAR       # rev 7: the POS bar runs on into the bus zone
         cuts.append(box(xb - B_['w'] / 2 - S.CLR, B_['y0'] - S.CLR, bz0, xb + B_['w'] / 2 + S.CLR, B_['y1'] + S.CLR, z_t + 1))
         if R7:
@@ -970,10 +1054,15 @@ def build(out_dir, save=True, renders=True, rev=6):
             xb_ = v['x1'] if c_ == 'BUS1' else v['x1'] - 0.8
             bo(spine, box(min(xa, spx), v['y0'] - 0.5, lip_z0, max(xb_, spx), v['y1'] + 0.5, lip_z1), 'u')
         parts.append(spine)
+        if REV[0] == 7:   # J4 = B (R94): the printed channel floor across the front (over the Bus 1 feed lug), joined to the spine
+            CH = S.CHANNEL
+            parts.append(box(CH['floor_x'][0], CH['floor_y'][0], CH['floor'][0], spx + SP['t'] / 2 + 0.01, CH['floor_y'][1], CH['floor'][1]))
+            parts.append(box(spx + SP['t'] / 2 - 0.01, CH['floor_y'][0], CH['floor'][0], CH['floor_x'][1], CH['wide_y'], CH['floor'][1]))
         z_leg = z_t - CV['over'] - 1.0
         feet = [angular_leg(f, u, L, S.D, z_leg, parts, lims) for f in ('-x', '+x') for u in (30.0, S.D - 30.0)]
-        deck = base_shell(L, z_d, z_t, parts)
-        cuts = base_snap_cuts(L, z_t, z_d, 'x')
+        holes_l, fins_l = crimp_holes('LOGIC', z_d, z_t)
+        deck = base_shell(L, z_d, z_t, parts + fins_l)
+        cuts = base_snap_cuts(L, z_t, z_d, 'x') + holes_l
         for (col, nm, amps, cx, y, n_, i) in mini:              # 2 x 2.8 mm receptacles per mini fuse (input + output)
             for dx in (-3.0, 3.0):
                 cuts.append(cbox(cx + dx, y, z_d - 1, z_t + 1, 3.0, 4.6))
@@ -1075,8 +1164,9 @@ def build(out_dir, save=True, renders=True, rev=6):
 
         # ---- harness: one load wire per fuse (output blade), MRS / B30 inputs, 5 per micro relay; bundles to the front edge
         tails = []
+        skip = S.CHANNEL_CAD_SKIP if REV[0] == 7 else ()     # J4 = B: these run in the front channel (the wired views draw them)
         for (col, nm, amps, cx, y, n_, i) in mini:
-            if not amps:
+            if not amps or nm in skip:
                 continue
             sd = S.MINI_IN[col]
             lane = cx - sd * 3.0
@@ -1090,10 +1180,16 @@ def build(out_dir, save=True, renders=True, rev=6):
                                     (-4.5, 0, S.COIL_AWG, '85'), (4.5, 0, S.COIL_AWG, '86')):
                 if tn == '87a' and pn in ('5-1393292-8', '4-1904124-3', '4-1904124-2'):
                     continue                                     # NO relays: no 87a contact
+                if '%s %s' % (nm, tn) in skip or (tn == '87a' and REV[0] == 7):
+                    continue                                     # rev 7: no harness wire on any 87a (wiring_plan.json)
                 tails.append(dict(x=cx + u, y=cy + v, awg=awg, what='%s %s' % (nm, tn), lane=cx))
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'y', 0.0, pre, sh, 'LOGIC')
         pan_exits = [('y', u, zb_, wd, -1) for (u, zb_, wd) in exits] + pan_feed
-        belly_pan(L, z_d, 'x', pan_exits, pre, sh)
+        if REV[0] == 7:   # J2 = B (R94): rib between the Bus 1 output wires and the Bus 1 strip bolt heads; reliefs at the outboard relay column
+            belly_pan(L, z_d, 'x', pan_exits, pre, sh, rib=(S.PAN_RIB['x'][0], S.PAN_RIB['x'][1], S.PAN_RIB['y'][0], S.PAN_RIB['y'][1], S.PAN_RIB['z_top']),
+                      reliefs=[(cy - S.PAN_RELIEF['fwd'], cy + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y])
+        else:
+            belly_pan(L, z_d, 'x', pan_exits, pre, sh)
         bend_row('LOGIC fuse / micro relay receptacles, largest %d AWG' % S.LOGIC_MAX_AWG, S.LOGIC_MAX_AWG, 'straight down out of the cavity, one bend into its bundle (rows above)',
                  3.0 * S.OD[S.LOGIC_MAX_AWG], True, 'one bundle per fuse column / relay column, straight to the front edge')
 
@@ -1327,8 +1423,11 @@ def build(out_dir, save=True, renders=True, rev=6):
     jpart = jl_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_Klauke')
     jprinted = bodies('Logic_Base_') + bodies('Logic_Pan_')
     strip_bs = bodies('Logic_Strip_')
+    spx0_ = sizes['LOGIC']['spine_x'] + S.PLACE['LOGIC'][0]
+    side_ = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5 < spx0_
     report['live_clearance'].update({
-        'logic_jumper_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(jl_bs) for l2 in jl_bs[i_ + 1:]),
+        # J1 = A (R94): the lugs on one strip are one circuit - same-strip pairs only (Bus 1 to Bus 2 is logic_bus1_to_bus2_min_mm)
+        'logic_jumper_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(jl_bs) for l2 in jl_bs[i_ + 1:] if side_(l1) == side_(l2)),
         'logic_jumper_parts_to_printed_min_mm': min(dist(jp, pb) for jp in jpart for pb in jprinted),
         'logic_jumper_parts_to_harness_min_mm': min(dist(jp, hb) for jp in jpart + bodies('Logic_Wire_') for hb in bodies('Logic_Harness_')),
         'logic_strip_to_printed_min_mm': min(dist(sb, pb) for sb in strip_bs for pb in jprinted),
@@ -1340,6 +1439,10 @@ def build(out_dir, save=True, renders=True, rev=6):
     xc_ = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5
     b1_, b2_ = [b_ for b_ in lg_live if xc_(b_) < spx_], [b_ for b_ in lg_live if xc_(b_) >= spx_]
     report['live_clearance']['logic_bus1_to_bus2_min_mm'] = min(dist(a_, c_) for a_ in b1_ for c_ in b2_)
+    if REV[0] == 7:   # J2 / J4 (R94): the new printed parts against the live LOGIC parts (information: live to plastic)
+        pan_b = bodies('Logic_Pan_')
+        report['live_clearance']['logic_pan_rib_to_live_min_mm'] = min(dist(pb, lb) for pb in pan_b for lb in lg_live)
+        report['live_clearance']['logic_base_to_live_min_mm'] = min(dist(bb, lb) for bb in bodies('Logic_Base_') for lb in lg_live)
     # every cable (feed and harness) against every printed part (a wire through plastic = a bad route)
     wire_hits = []
     for wpre in ('Power_', 'Logic_', 'BattRelay_'):
@@ -1404,7 +1507,7 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)')
+            doc.save('rev 7: J answers (R94) - crimp-sized terminal holes, guide walls, LOGIC front channel + splices, pan rib / relief (Claude Code 2026-10-14)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7

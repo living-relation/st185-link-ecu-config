@@ -232,7 +232,7 @@
    "note": "no bend in the box; first bend in the harness: >= 11 supported or >= 36 free"
   },
   {
-   "where": "LOGIC harness bundle at x 10 (10 wires)",
+   "where": "LOGIC harness bundle at x 10 (7 wires)",
    "awg": "14",
    "od": 2.41,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -240,7 +240,7 @@
    "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 7.2 mm; 21.7 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+   "note": "bundle 5.9 mm; 22.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
   },
   {
    "where": "LOGIC harness bundle at x 40 (13 wires)",
@@ -254,7 +254,7 @@
    "note": "bundle 7.9 mm; 22.5 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
-   "where": "LOGIC harness bundle at x 52 (21 wires)",
+   "where": "LOGIC harness bundle at x 52 (15 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -262,10 +262,10 @@
    "need": 6.2,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 10.1 mm; 21.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
+   "note": "bundle 8.4 mm; 22.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
-   "where": "LOGIC harness bundle at x 70 (10 wires)",
+   "where": "LOGIC harness bundle at x 70 (8 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -273,7 +273,7 @@
    "need": 6.2,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 7.1 mm; 22.9 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
+   "note": "bundle 6.2 mm; 23.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
    "where": "LOGIC fuse / micro relay receptacles, largest 14 AWG",
@@ -784,22 +784,19 @@
   "LOGIC": [
    {
     "at": 10.5,
-    "wires": 10,
-    "d": 7.2,
-    "z": 8.4,
+    "wires": 7,
+    "d": 5.9,
+    "z": 7.7,
     "what": [
      "EFI86",
-     "HL",
-     "HR",
      "HZ",
      "DM",
      "WL",
      "ALM",
      "ALMS",
-     "ALTS",
-     "ETB"
+     "ALTS"
     ],
-    "room": 21.7
+    "room": 22.3
    },
    {
     "at": 40.5,
@@ -825,52 +822,44 @@
    },
    {
     "at": 51.5,
-    "wires": 21,
-    "d": 10.1,
-    "z": 9.9,
+    "wires": 15,
+    "d": 8.4,
+    "z": 9.0,
     "what": [
-     "HEAD LH 30",
      "HEAD LH 87",
      "HEAD LH 85",
-     "HEAD LH 86",
-     "HEAD RH 30",
      "HEAD RH 87",
      "HEAD RH 85",
-     "HEAD RH 86",
      "horn 30",
      "horn 87",
      "horn 85",
      "horn 86",
-     "k_etb 30",
      "k_etb 87",
      "k_etb 85",
      "k_etb 86",
      "k_acc 30",
      "k_acc 87",
-     "k_acc 87a",
      "k_acc 85",
      "k_acc 86"
     ],
-    "room": 21.4
+    "room": 22.3
    },
    {
     "at": 70.0,
-    "wires": 10,
-    "d": 7.1,
-    "z": 8.4,
+    "wires": 8,
+    "d": 6.2,
+    "z": 7.9,
     "what": [
      "k_eps_en 30",
      "k_eps_en 87",
-     "k_eps_en 87a",
      "k_eps_en 85",
      "k_eps_en 86",
      "k_rev 30",
      "k_rev 87",
-     "k_rev 87a",
      "k_rev 85",
      "k_rev 86"
     ],
-    "room": 22.9
+    "room": 23.4
    }
   ],
   "POWER": [
@@ -1018,132 +1007,132 @@
   "fusebox_render_routing_power.png": [
    [
     1,
-    806.4,
-    423.9,
+    785.1,
+    400.3,
     "harness bundles to the inboard edge"
    ],
    [
     2,
-    1080.0,
-    512.8,
+    1104.9,
+    511.6,
     "relay feed: lug on the 40 mm standoff"
    ],
    [
     3,
-    972.2,
-    446.4,
+    984.1,
+    433.4,
     "feed bends up R16 into terminal 30"
    ],
    [
     4,
-    1261.2,
-    640.7,
+    1269.5,
+    643.0,
     "OUT lug on the 40 mm standoff"
    ],
    [
     5,
-    1389.1,
-    669.1,
+    1385.5,
+    667.9,
     "OUT cables straight out the end"
    ],
    [
     6,
-    1213.8,
-    618.2,
+    1174.7,
+    607.5,
     "1/0 battery feed in"
    ],
    [
     7,
-    532.9,
-    579.1,
+    568.4,
+    574.3,
     "NEG bus: grounds straight out the rear"
    ]
   ],
   "fusebox_render_routing_logic.png": [
    [
     1,
-    852.6,
-    600.4,
+    846.7,
+    609.9,
     "Bus 1 fuse wires"
    ],
    [
     2,
-    984.1,
-    640.7,
+    992.4,
+    651.3,
     "Bus 2 fuse wires"
    ],
    [
     3,
-    1094.2,
-    607.5,
+    1114.3,
+    615.8,
     "micro relay wires, inboard column"
    ],
    [
     4,
-    1174.7,
-    632.4,
+    1198.4,
+    641.8,
     "micro relay wires, outboard column"
    ],
    [
     5,
-    1226.8,
-    484.3,
+    1308.6,
+    473.7,
     "all leave the front edge"
    ],
    [
     6,
     903.6,
-    497.4,
+    493.8,
     "fuse input jumpers drop straight into their lugs"
    ],
    [
     7,
-    888.2,
+    887.0,
     535.3,
     "bus strips on edge, printed spine between"
    ],
    [
     8,
-    1104.9,
-    394.3,
+    1158.2,
+    360.0,
     "Bus 1 feed in at the front"
    ],
    [
     9,
-    545.9,
-    876.3,
+    585.0,
+    838.4,
     "Bus 2 feed in at the rear"
    ]
   ],
   "fusebox_power_explode.png": [
    [
     1,
-    916.6,
-    127.9,
+    917.8,
+    106.6,
     "cover (snaps on, 4 tongues)"
    ],
    [
     2,
-    860.9,
-    302.0,
+    858.6,
+    287.8,
     "relays plug in from the top"
    ],
    [
     3,
-    1008.9,
-    387.2,
+    1011.3,
+    382.5,
     "AMI fuses on the studs"
    ],
    [
     4,
     903.6,
-    326.8,
+    323.3,
     "Keps nuts, 4 Nm max"
    ],
    [
     5,
-    986.4,
-    420.4,
+    987.6,
+    419.2,
     "M5 set screws (studs)"
    ],
    [
@@ -1166,40 +1155,40 @@
    ],
    [
     9,
-    883.4,
-    608.7,
+    884.6,
+    607.5,
     "bar bolts up from below"
    ],
    [
     10,
-    986.4,
-    710.5,
+    984.1,
+    705.8,
     "standoffs 40 mm (both rows, one part)"
    ],
    [
     11,
-    993.6,
-    836.1,
+    990.0,
+    823.0,
     "cable lugs"
    ],
    [
     12,
-    993.6,
-    836.1,
+    990.0,
+    823.0,
     "M5 x 10 lug bolts"
    ],
    [
     13,
     916.6,
-    895.3,
+    876.3,
     "belly pan (snaps on)"
    ]
   ],
   "fusebox_power_step1.png": [
    [
     1,
-    1116.7,
-    241.6,
+    1107.2,
+    253.4,
     "lay the bar in its pocket"
    ],
    [
@@ -1210,14 +1199,14 @@
    ],
    [
     3,
-    858.6,
+    859.7,
     540.0,
     "bar bolts up through the hex head pockets"
    ],
    [
     4,
-    1184.2,
-    734.2,
+    1177.1,
+    729.5,
     "40 mm standoffs up into the hex holes, both rows"
    ],
    [
@@ -1228,7 +1217,7 @@
    ],
    [
     6,
-    900.0,
+    898.8,
     502.1,
     "base, right way up"
    ]
@@ -1236,84 +1225,84 @@
   "fusebox_power_step2.png": [
    [
     1,
-    734.2,
-    499.7,
+    716.4,
+    496.2,
     "crimp, push each terminal up into its cavity (wire side)"
    ],
    [
     2,
-    980.5,
-    609.9,
+    986.4,
+    615.8,
     "relay feed lug on its long standoff (M5 x 10)"
    ],
    [
     3,
     896.4,
-    522.2,
+    521.1,
     "feed round its saddle into terminal 30"
    ],
    [
     4,
-    1119.1,
-    717.6,
+    1117.9,
+    716.4,
     "OUT lug on its standoff (M5 x 10)"
    ],
    [
     5,
-    654.9,
-    523.4,
+    621.7,
+    522.2,
     "tie the bundles; they leave the inboard end"
    ]
   ],
   "fusebox_power_step3.png": [
    [
     1,
-    1132.1,
-    418.0,
+    1143.9,
+    412.1,
     "AMI fuses on the studs"
    ],
    [
     2,
-    868.0,
-    356.4,
+    866.8,
+    355.3,
     "Keps nuts, 4 Nm max"
    ],
    [
     3,
-    761.4,
-    419.2,
+    746.1,
+    407.4,
     "relays plug in"
    ],
    [
     4,
-    842.0,
-    525.8,
+    828.9,
+    524.6,
     "ACPS mini fuse"
    ],
    [
     5,
-    1007.8,
-    421.6,
+    995.9,
+    432.2,
     "1/0 lug on the M8 stud"
    ]
   ],
   "fusebox_power_step4.png": [
    [
     1,
-    902.4,
-    776.8,
+    901.2,
+    768.6,
     "belly pan snaps up into the skirt"
    ],
    [
     2,
     902.4,
-    230.9,
+    219.1,
     "cover snaps down over the deck"
    ],
    [
     3,
-    975.8,
-    778.0,
+    988.8,
+    819.5,
     "M6 through each foot (4), steel limiter"
    ]
   ],
@@ -1321,19 +1310,19 @@
    [
     1,
     900.0,
-    129.1,
+    100.7,
     "cover (snaps on)"
    ],
    [
     2,
-    940.3,
-    294.9,
+    942.6,
+    286.6,
     "micro relays"
    ],
    [
     3,
-    921.3,
-    386.1,
+    922.5,
+    377.8,
     "mini fuses"
    ],
    [
@@ -1344,32 +1333,32 @@
    ],
    [
     5,
-    896.4,
-    740.1,
+    894.1,
+    734.2,
     "Bus 1 / Bus 2 strips on edge, slide in from the rear"
    ],
    [
     6,
     907.1,
-    742.5,
+    740.1,
     "input jumper lugs, TE PIDG 53941-1"
    ],
    [
     7,
     907.1,
-    754.3,
+    750.8,
     "M4 x 8 + spring washer into the tapped strip"
    ],
    [
     8,
-    896.4,
-    741.3,
+    894.1,
+    743.7,
     "feed lugs, M5 x 10 into the strip"
    ],
    [
     9,
     900.0,
-    890.5,
+    869.2,
     "belly pan (snaps on)"
    ]
   ]
@@ -1392,6 +1381,1779 @@
    "pad_bottom": 51.5
   }
  },
+ "terminal_holes": {
+  "LOGIC": [
+   {
+    "cav": "BUS1-1",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 28.0,
+    "d": 3.45,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 0,
+    "part": "1241388-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-1 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 28.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 1,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-10",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 100.9,
+    "d": 3.9,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 2,
+    "part": "880398-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-10 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 100.9,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 3,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-11",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 109.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 4,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS1-11 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 109.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 4,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS1-12",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 117.1,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 5,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS1-12 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 117.1,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 5,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS1-2",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 36.1,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 6,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-2 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 36.1,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 6,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-3",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 44.2,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 7,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-3 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 44.2,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 7,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-4",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 52.3,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 8,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-4 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 52.3,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 8,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-5",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 60.4,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 9,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-5 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 60.4,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 9,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-6",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 68.5,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 10,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-6 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 68.5,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 10,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-7",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 76.6,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 11,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-7 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 76.6,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 12,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-8",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 84.7,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 13,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-8 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 84.7,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 14,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS1-9",
+    "kind": "fuse out",
+    "x": 10.5,
+    "y": 92.8,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 15,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-9 IN",
+    "kind": "fuse in",
+    "x": 16.5,
+    "y": 92.8,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 16,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-1",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 28.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 17,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-1 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 28.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 17,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-10",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 100.9,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 18,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS2-10 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 100.9,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 18,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS2-11",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 109.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 19,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS2-11 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 109.0,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 19,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS2-12",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 117.1,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 20,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-12 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 117.1,
+    "d": 3.45,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 21,
+    "part": "1241388-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-13",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 125.2,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 22,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-13 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 125.2,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 23,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-2",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 36.1,
+    "d": 3.9,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 24,
+    "part": "880398-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-2 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 36.1,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 25,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-3",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 44.2,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 26,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-3 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 44.2,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 26,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-4",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 52.3,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 27,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-4 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 52.3,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 27,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-5",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 60.4,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 28,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-5 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 60.4,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 29,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-6",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 68.5,
+    "d": 3.9,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 30,
+    "part": "880398-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-6 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 68.5,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 31,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-7",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 76.6,
+    "d": 3.45,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 32,
+    "part": "1241388-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-7 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 76.6,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 33,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-8",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 84.7,
+    "d": 3.9,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 34,
+    "part": "880398-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-8 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 84.7,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 35,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "BUS2-9",
+    "kind": "fuse out",
+    "x": 40.5,
+    "y": 92.8,
+    "d": 3.17,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 36,
+    "part": "1241388-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-9 IN",
+    "kind": "fuse in",
+    "x": 34.5,
+    "y": 92.8,
+    "d": 4.01,
+    "z0": 38.5,
+    "z1": 44.92,
+    "group": 37,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "CAD jumper",
+    "est": true
+   },
+   {
+    "cav": "M1 30",
+    "kind": "micro 30",
+    "x": 51.5,
+    "y": 13.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 38,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M1 85",
+    "kind": "micro 85",
+    "x": 47.0,
+    "y": 21.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 39,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M1 86",
+    "kind": "micro 86",
+    "x": 56.0,
+    "y": 21.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 40,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M1 87",
+    "kind": "micro 87",
+    "x": 51.5,
+    "y": 29.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 41,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M10 30",
+    "kind": "micro 30",
+    "x": 70.0,
+    "y": 133.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 42,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "M10 85",
+    "kind": "micro 85",
+    "x": 65.5,
+    "y": 141.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 43,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M10 86",
+    "kind": "micro 86",
+    "x": 74.5,
+    "y": 141.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 44,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M10 87",
+    "kind": "micro 87",
+    "x": 70.0,
+    "y": 149.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 45,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "M2 30",
+    "kind": "micro 30",
+    "x": 51.5,
+    "y": 43.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 46,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M2 85",
+    "kind": "micro 85",
+    "x": 47.0,
+    "y": 51.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 47,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M2 86",
+    "kind": "micro 86",
+    "x": 56.0,
+    "y": 51.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 48,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M2 87",
+    "kind": "micro 87",
+    "x": 51.5,
+    "y": 59.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 49,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M3 30",
+    "kind": "micro 30",
+    "x": 51.5,
+    "y": 73.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 50,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M3 85",
+    "kind": "micro 85",
+    "x": 47.0,
+    "y": 81.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 51,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M3 86",
+    "kind": "micro 86",
+    "x": 56.0,
+    "y": 81.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 52,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M3 87",
+    "kind": "micro 87",
+    "x": 51.5,
+    "y": 89.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 53,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M4 30",
+    "kind": "micro 30",
+    "x": 51.5,
+    "y": 103.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 54,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M4 85",
+    "kind": "micro 85",
+    "x": 47.0,
+    "y": 111.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 55,
+    "part": "2293255-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M4 86",
+    "kind": "micro 86",
+    "x": 56.0,
+    "y": 111.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 56,
+    "part": "2293255-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M4 87",
+    "kind": "micro 87",
+    "x": 51.5,
+    "y": 119.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 57,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M5 30",
+    "kind": "micro 30",
+    "x": 51.5,
+    "y": 133.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 58,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M5 85",
+    "kind": "micro 85",
+    "x": 47.0,
+    "y": 141.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 59,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M5 86",
+    "kind": "micro 86",
+    "x": 56.0,
+    "y": 141.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 60,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M5 87",
+    "kind": "micro 87",
+    "x": 51.5,
+    "y": 149.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 61,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M6 30",
+    "kind": "micro 30",
+    "x": 70.0,
+    "y": 13.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 62,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M6 85",
+    "kind": "micro 85",
+    "x": 65.5,
+    "y": 21.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 63,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M6 86",
+    "kind": "micro 86",
+    "x": 74.5,
+    "y": 21.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 64,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M6 87",
+    "kind": "micro 87",
+    "x": 70.0,
+    "y": 29.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 65,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M7 30",
+    "kind": "micro 30",
+    "x": 70.0,
+    "y": 43.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 66,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M7 85",
+    "kind": "micro 85",
+    "x": 65.5,
+    "y": 51.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 67,
+    "part": "2293255-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M7 86",
+    "kind": "micro 86",
+    "x": 74.5,
+    "y": 51.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 68,
+    "part": "2293255-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M7 87",
+    "kind": "micro 87",
+    "x": 70.0,
+    "y": 59.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 69,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "M8 30",
+    "kind": "micro 30",
+    "x": 70.0,
+    "y": 73.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 70,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "M8 85",
+    "kind": "micro 85",
+    "x": 65.5,
+    "y": 81.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 71,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M8 86",
+    "kind": "micro 86",
+    "x": 74.5,
+    "y": 81.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 72,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M8 87",
+    "kind": "micro 87",
+    "x": 70.0,
+    "y": 89.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 73,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "M9 30",
+    "kind": "micro 30",
+    "x": 70.0,
+    "y": 103.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 74,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "M9 85",
+    "kind": "micro 85",
+    "x": 65.5,
+    "y": 111.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 75,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M9 86",
+    "kind": "micro 86",
+    "x": 74.5,
+    "y": 111.0,
+    "d": 3.76,
+    "z0": 38.5,
+    "z1": 48.5,
+    "group": 76,
+    "part": "2293255-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M9 87",
+    "kind": "micro 87",
+    "x": 70.0,
+    "y": 119.0,
+    "d": 4.41,
+    "z0": 38.5,
+    "z1": 49.02,
+    "group": 77,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   }
+  ],
+  "POWER": [
+   {
+    "cav": "ACPS",
+    "kind": "acps out",
+    "x": 19.5,
+    "y": 35.0,
+    "d": 3.45,
+    "z0": 32.0,
+    "z1": 40.5,
+    "group": 0,
+    "part": "1241388-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "ACPS IN",
+    "kind": "acps in",
+    "x": 13.5,
+    "y": 35.0,
+    "d": 4.01,
+    "z0": 32.0,
+    "z1": 36.92,
+    "group": 1,
+    "part": "880398-2",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R1 30",
+    "kind": "F7 30",
+    "x": 55.75,
+    "y": 43.0,
+    "d": 7.5,
+    "z0": 32.0,
+    "z1": 40.67,
+    "group": 2,
+    "part": "62998-2",
+    "wire_od": 5.13,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R1 85",
+    "kind": "F7 85",
+    "x": 45.75,
+    "y": 34.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 3,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R1 86",
+    "kind": "F7 86",
+    "x": 45.75,
+    "y": 51.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 4,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R1 87",
+    "kind": "F7 87",
+    "x": 37.85,
+    "y": 43.0,
+    "d": 7.5,
+    "z0": 32.0,
+    "z1": 40.67,
+    "group": 5,
+    "part": "62998-2",
+    "wire_od": 5.13,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R1 87a",
+    "kind": "F7 87a",
+    "x": 46.2,
+    "y": 43.0,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 6,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R2 30",
+    "kind": "F7 30",
+    "x": 26.75,
+    "y": 61.0,
+    "d": 5.22,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 7,
+    "part": "280756-4",
+    "wire_od": 2.97,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R2 85",
+    "kind": "F7 85",
+    "x": 16.75,
+    "y": 52.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 8,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R2 86",
+    "kind": "F7 86",
+    "x": 16.75,
+    "y": 69.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 9,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R2 87",
+    "kind": "F7 87",
+    "x": 8.85,
+    "y": 61.0,
+    "d": 5.43,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 10,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R3 30",
+    "kind": "F7 30",
+    "x": 55.75,
+    "y": 79.0,
+    "d": 5.22,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 11,
+    "part": "280756-4",
+    "wire_od": 2.97,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R3 85",
+    "kind": "F7 85",
+    "x": 45.75,
+    "y": 70.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 12,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R3 86",
+    "kind": "F7 86",
+    "x": 45.75,
+    "y": 87.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 13,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R3 87",
+    "kind": "F7 87",
+    "x": 37.85,
+    "y": 79.0,
+    "d": 5.43,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 14,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R4 30",
+    "kind": "F7 30",
+    "x": 26.75,
+    "y": 97.0,
+    "d": 6.95,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 15,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R4 85",
+    "kind": "F7 85",
+    "x": 16.75,
+    "y": 88.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 16,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R4 86",
+    "kind": "F7 86",
+    "x": 16.75,
+    "y": 105.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 17,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R4 87",
+    "kind": "F7 87",
+    "x": 8.85,
+    "y": 97.0,
+    "d": 6.95,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 18,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R5 30",
+    "kind": "F7 30",
+    "x": 55.75,
+    "y": 115.0,
+    "d": 6.95,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 19,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R5 85",
+    "kind": "F7 85",
+    "x": 45.75,
+    "y": 106.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 20,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R5 86",
+    "kind": "F7 86",
+    "x": 45.75,
+    "y": 123.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 21,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R5 87",
+    "kind": "F7 87",
+    "x": 37.85,
+    "y": 115.0,
+    "d": 6.95,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 22,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R6 30",
+    "kind": "F7 30",
+    "x": 26.75,
+    "y": 133.0,
+    "d": 5.43,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 23,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R6 85",
+    "kind": "F7 85",
+    "x": 16.75,
+    "y": 124.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 24,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R6 86",
+    "kind": "F7 86",
+    "x": 16.75,
+    "y": 141.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 25,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R6 87",
+    "kind": "F7 87",
+    "x": 8.85,
+    "y": 133.0,
+    "d": 5.43,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 26,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R7 30",
+    "kind": "F7 30",
+    "x": 55.75,
+    "y": 151.0,
+    "d": 6.95,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 27,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R7 85",
+    "kind": "F7 85",
+    "x": 45.75,
+    "y": 142.55,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 28,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R7 86",
+    "kind": "F7 86",
+    "x": 45.75,
+    "y": 159.45,
+    "d": 4.41,
+    "z0": 32.0,
+    "z1": 41.02,
+    "group": 29,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R7 87",
+    "kind": "F7 87",
+    "x": 37.85,
+    "y": 151.0,
+    "d": 6.95,
+    "z0": 32.0,
+    "z1": 35.55,
+    "group": 30,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   }
+  ]
+ },
+ "terminal_slots": {
+  "LOGIC": [
+   [
+    "BUS1-11",
+    "BUS1-11 IN"
+   ],
+   [
+    "BUS1-12",
+    "BUS1-12 IN"
+   ],
+   [
+    "BUS1-2",
+    "BUS1-2 IN"
+   ],
+   [
+    "BUS1-3",
+    "BUS1-3 IN"
+   ],
+   [
+    "BUS1-4",
+    "BUS1-4 IN"
+   ],
+   [
+    "BUS1-5",
+    "BUS1-5 IN"
+   ],
+   [
+    "BUS1-6",
+    "BUS1-6 IN"
+   ],
+   [
+    "BUS2-1",
+    "BUS2-1 IN"
+   ],
+   [
+    "BUS2-10",
+    "BUS2-10 IN"
+   ],
+   [
+    "BUS2-11",
+    "BUS2-11 IN"
+   ],
+   [
+    "BUS2-3",
+    "BUS2-3 IN"
+   ],
+   [
+    "BUS2-4",
+    "BUS2-4 IN"
+   ]
+  ],
+  "POWER": []
+ },
+ "guide_walls": {
+  "LOGIC": {
+   "n": 177,
+   "t": 2.0,
+   "h": 3.5,
+   "world_shift": [
+    0.0,
+    0.0
+   ]
+  },
+  "POWER": {
+   "n": 19,
+   "t": 2.0,
+   "h": 3.5,
+   "world_shift": [
+    160.0,
+    0.0
+   ]
+  }
+ },
  "logic_jumpers": {
   "strips": {
    "BUS1": {
@@ -1400,7 +3162,7 @@
      22.35
     ],
     "y": [
-     8.0,
+     11.5,
      123.0
     ]
    },
@@ -1410,7 +3172,7 @@
      31.85
     ],
     "y": [
-     21.0,
+     23.5,
      140.0
     ]
    }
@@ -1430,7 +3192,7 @@
   "under_deck_lug_to_lug_min_mm": 5.5,
   "standoff_to_standoff_min_mm": 10.0,
   "logic_strip_to_strip_mm": 6.3,
-  "logic_feed_lug_to_lug_mm": 107.1,
+  "logic_feed_lug_to_lug_mm": 103.78,
   "battrelay_bar_to_pad_mm": 17.0,
   "battrelay_relay_lug_to_lug_mm": 5.0,
   "pan_to_nearest_live_power_mm": 0.59,
@@ -1439,11 +3201,13 @@
   "bus_neg_to_pos_min_mm": 5.8,
   "bus_pos_lug_to_out_pad_min_mm": 13.72,
   "logic_jumper_lug_to_lug_min_mm": 1.86,
-  "logic_jumper_parts_to_printed_min_mm": 0.6,
+  "logic_jumper_parts_to_printed_min_mm": 0.4,
   "logic_jumper_parts_to_harness_min_mm": 0.56,
   "logic_strip_to_printed_min_mm": 0.4,
   "logic_bolt_to_other_strip_min_mm": 3.18,
-  "logic_bus1_to_bus2_min_mm": 3.18
+  "logic_bus1_to_bus2_min_mm": 3.18,
+  "logic_pan_rib_to_live_min_mm": 0.5,
+  "logic_base_to_live_min_mm": 0.4
  },
  "wire_to_printed_contact": [],
  "printed_parts": {
@@ -1453,8 +3217,8 @@
     181.0,
     60.5
    ],
-   "volume_cm3": 240.3,
-   "mass_g_pa12": 243.0,
+   "volume_cm3": 243.6,
+   "mass_g_pa12": 246.0,
    "bodies": 1
   },
   "Logic_Pan_PA12_printed": {
@@ -1463,8 +3227,8 @@
     174.1,
     41.0
    ],
-   "volume_cm3": 73.6,
-   "mass_g_pa12": 74.0,
+   "volume_cm3": 74.5,
+   "mass_g_pa12": 75.0,
    "bodies": 1
   },
   "Logic_Cover_PA12_printed": {
@@ -1483,7 +3247,7 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 446.8,
+   "volume_cm3": 446.4,
    "mass_g_pa12": 451.0,
    "bodies": 1
   },
@@ -1558,7 +3322,7 @@
  "bar_metal": "CuC110",
  "interference": [],
  "mass_g": {
-  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 161.0,
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 156.6,
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 297.3,
   "Power_BarNeg_CuC110_25x6p35_L105": 135.3,
   "Power_Pad_Out_CuC110_15x3": 89.6,

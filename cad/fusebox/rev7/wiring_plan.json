@@ -1,13 +1,13 @@
 {
  "per_box_wire_ends": {
   "POWER": 48,
-  "LOGIC": 56,
+  "LOGIC": 59,
   "BATT": 6
  },
  "kinds": {
   "cross-box": 4,
-  "internal": 18,
-  "external": 66
+  "internal": 19,
+  "external": 67
  },
  "wires": [
   {
@@ -47,6 +47,7 @@
    "kind": "cross-box",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -91,6 +92,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -129,6 +131,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -176,6 +179,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -256,6 +260,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -336,6 +341,7 @@
    "kind": "cross-box",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -413,6 +419,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -469,13 +476,14 @@
    "kind": "cross-box",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      3.25,
-      12.025
+      0.0,
+      11.725000000000001
      ],
      "pts": [
       [
@@ -486,17 +494,17 @@
       [
        10.5,
        28.0,
-       12.025
+       11.725000000000001
       ],
       [
-       13.75,
+       10.5,
        8.575,
-       12.025
+       11.725000000000001
       ],
       [
-       13.75,
+       10.5,
        -30.0,
-       12.025
+       11.725000000000001
       ]
      ],
      "R": 6.4750000000000005,
@@ -588,17 +596,13 @@
     }
    ],
    "kind": "internal",
-   "loop": true,
+   "loop": false,
    "direct": false,
+   "channel": true,
    "box_paths": [
     {
      "box": "LOGIC",
-     "lane": [
-      10.5,
-      51.5
-     ],
-     "R": 7.21,
-     "loop": true,
+     "lane": null,
      "pts": [
       [
        10.5,
@@ -608,49 +612,41 @@
       [
        10.5,
        100.89999999999999,
-       5.23
+       20.18
       ],
       [
-       10.5,
-       79.27,
-       5.23
+       7.4,
+       90.89999999999999,
+       20.18
       ],
       [
-       10.5,
-       -18.0,
-       5.23
+       7.4,
+       7.25,
+       20.18
       ],
       [
-       10.5,
-       -28.0,
-       30.0
+       44.0,
+       7.25,
+       20.18
       ],
       [
-       50.25,
-       -28.0,
-       30.0
-      ],
-      [
-       50.25,
-       -18.0,
-       7.630000000000001
-      ],
-      [
-       50.25,
-       81.37,
-       7.630000000000001
+       44.0,
+       95.5,
+       20.18
       ],
       [
        51.5,
        103.0,
-       7.630000000000001
+       20.18
       ],
       [
        51.5,
        103.0,
        38.3
       ]
-     ]
+     ],
+     "R": 7.21,
+     "channel": "ETB"
     }
    ]
   },
@@ -696,6 +692,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -740,6 +737,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -786,6 +784,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -866,6 +865,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -887,7 +887,7 @@
       ],
       [
        40.5,
-       2.6950000000000003,
+       7.45,
        10.305
       ],
       [
@@ -918,6 +918,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -943,6 +944,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -1023,13 +1025,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      0.55,
-      11.605
+      -0.35000000000000003,
+      11.805
      ],
      "pts": [
       [
@@ -1040,17 +1043,17 @@
       [
        51.5,
        29.0,
-       11.605
+       11.805
       ],
       [
-       52.05,
-       3.6950000000000003,
-       11.605
+       51.15,
+       7.45,
+       11.805
       ],
       [
-       52.05,
+       51.15,
        -30.0,
-       11.605
+       11.805
       ]
      ],
      "R": 8.435,
@@ -1103,13 +1106,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      -2.45,
-      9.705
+      3.5500000000000003,
+      10.405000000000001
      ],
      "pts": [
       [
@@ -1120,17 +1124,17 @@
       [
        51.5,
        59.0,
-       9.705
+       10.405000000000001
       ],
       [
-       49.05,
+       55.05,
        33.695,
-       9.705
+       10.405000000000001
       ],
       [
-       49.05,
+       55.05,
        -30.0,
-       9.705
+       10.405000000000001
       ]
      ],
      "R": 8.435,
@@ -1182,13 +1186,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      2.0500000000000003,
-      8.705
+      -1.4500000000000002,
+      8.005
      ],
      "pts": [
       [
@@ -1199,17 +1204,17 @@
       [
        51.5,
        89.0,
-       8.705
+       8.005
       ],
       [
-       53.55,
+       50.05,
        63.695,
-       8.705
+       8.005
       ],
       [
-       53.55,
+       50.05,
        -30.0,
-       8.705
+       8.005
       ]
      ],
      "R": 8.435,
@@ -1262,13 +1267,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      -2.7,
-      7.705
+      -0.25,
+      9.405000000000001
      ],
      "pts": [
       [
@@ -1279,17 +1285,17 @@
       [
        10.5,
        60.4,
-       7.705
+       9.405000000000001
       ],
       [
-       7.8,
+       10.25,
        35.095,
-       7.705
+       9.405000000000001
       ],
       [
-       7.8,
+       10.25,
        -30.0,
-       7.705
+       9.405000000000001
       ]
      ],
      "R": 8.435,
@@ -1333,6 +1339,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -1380,6 +1387,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -1451,6 +1459,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -1489,6 +1498,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -1523,6 +1533,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -1561,12 +1572,14 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     }
    ],
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -1646,6 +1659,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -1726,6 +1740,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -1815,6 +1830,7 @@
    "kind": "internal",
    "loop": false,
    "direct": true,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -1828,22 +1844,22 @@
       [
        40.5,
        84.69999999999999,
-       26.5
+       15.0
       ],
       [
        66.5,
        84.69999999999999,
-       26.5
+       15.0
       ],
       [
        66.5,
        133.0,
-       26.5
+       15.0
       ],
       [
        51.5,
        133.0,
-       26.5
+       15.0
       ],
       [
        51.5,
@@ -1892,12 +1908,14 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     }
    ],
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -1977,6 +1995,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2056,6 +2075,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2108,6 +2128,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -2133,6 +2154,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2212,6 +2234,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2291,13 +2314,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      -3.6500000000000004,
-      6.6850000000000005
+      3.45,
+      6.985
      ],
      "pts": [
       [
@@ -2308,17 +2332,17 @@
       [
        47.0,
        111.0,
-       6.6850000000000005
+       6.985
       ],
       [
-       47.85,
+       54.95,
        94.515,
-       6.6850000000000005
+       6.985
       ],
       [
-       47.85,
+       54.95,
        -30.0,
-       6.6850000000000005
+       6.985
       ]
      ],
      "R": 5.495,
@@ -2343,6 +2367,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -2368,13 +2393,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      0.65,
-      7.085000000000001
+      -3.45,
+      6.985
      ],
      "pts": [
       [
@@ -2385,17 +2411,17 @@
       [
        56.0,
        111.0,
-       7.085000000000001
+       6.985
       ],
       [
-       52.15,
+       48.05,
        94.515,
-       7.085000000000001
+       6.985
       ],
       [
-       52.15,
+       48.05,
        -30.0,
-       7.085000000000001
+       6.985
       ]
      ],
      "R": 5.495,
@@ -2447,13 +2473,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      3.6500000000000004,
-      6.925
+      0.7000000000000001,
+      7.225
      ],
      "pts": [
       [
@@ -2464,17 +2491,17 @@
       [
        51.5,
        119.0,
-       6.925
+       7.225
       ],
       [
-       55.15,
+       52.2,
        99.575,
-       6.925
+       7.225
       ],
       [
-       55.15,
+       52.2,
        -30.0,
-       6.925
+       7.225
       ]
      ],
      "R": 6.4750000000000005,
@@ -2526,6 +2553,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2578,6 +2606,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -2603,6 +2632,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2682,6 +2712,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2761,6 +2792,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2813,6 +2845,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -2838,6 +2871,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2917,6 +2951,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -2996,13 +3031,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 70.0,
      "slot": [
-      -3.0,
-      7.225
+      -2.75,
+      7.925000000000001
      ],
      "pts": [
       [
@@ -3013,17 +3049,17 @@
       [
        65.5,
        21.0,
-       7.225
+       7.925000000000001
       ],
       [
-       67.0,
-       1.5749999999999993,
-       7.225
+       67.25,
+       7.45,
+       7.925000000000001
       ],
       [
-       67.0,
+       67.25,
        -30.0,
-       7.225
+       7.925000000000001
       ]
      ],
      "R": 6.4750000000000005,
@@ -3075,13 +3111,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      2.1,
-      5.625
+      2.0500000000000003,
+      5.725
      ],
      "pts": [
       [
@@ -3092,17 +3129,17 @@
       [
        47.0,
        141.0,
-       5.625
+       5.725
       ],
       [
-       53.6,
+       53.55,
        121.575,
-       5.625
+       5.725
       ],
       [
-       53.6,
+       53.55,
        -30.0,
-       5.625
+       5.725
       ]
      ],
      "R": 6.4750000000000005,
@@ -3154,13 +3191,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      -2.1,
-      5.625
+      -2.0500000000000003,
+      5.725
      ],
      "pts": [
       [
@@ -3171,17 +3209,17 @@
       [
        56.0,
        141.0,
-       5.625
+       5.725
       ],
       [
-       49.4,
+       49.45,
        121.575,
-       5.625
+       5.725
       ],
       [
-       49.4,
+       49.45,
        -30.0,
-       5.625
+       5.725
       ]
      ],
      "R": 6.4750000000000005,
@@ -3233,6 +3271,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -3313,6 +3352,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -3393,6 +3433,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -3473,13 +3514,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      3.1,
-      6.985
+      -0.30000000000000004,
+      6.6850000000000005
      ],
      "pts": [
       [
@@ -3490,17 +3532,17 @@
       [
        10.5,
        76.6,
-       6.985
+       6.6850000000000005
       ],
       [
-       13.6,
+       10.2,
        60.114999999999995,
-       6.985
+       6.6850000000000005
       ],
       [
-       13.6,
+       10.2,
        -30.0,
-       6.985
+       6.6850000000000005
       ]
      ],
      "R": 5.495,
@@ -3553,13 +3595,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      -1.9500000000000002,
-      5.6850000000000005
+      -1.6500000000000001,
+      5.585000000000001
      ],
      "pts": [
       [
@@ -3570,17 +3613,17 @@
       [
        10.5,
        84.69999999999999,
-       5.6850000000000005
+       5.585000000000001
       ],
       [
-       8.55,
+       8.85,
        68.21499999999999,
-       5.6850000000000005
+       5.585000000000001
       ],
       [
-       8.55,
+       8.85,
        -30.0,
-       5.6850000000000005
+       5.585000000000001
       ]
      ],
      "R": 5.495,
@@ -3633,6 +3676,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -3713,6 +3757,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -3785,19 +3830,21 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     }
    ],
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      2.75,
-      9.105
+      -2.25,
+      11.005
      ],
      "pts": [
       [
@@ -3808,17 +3855,17 @@
       [
        10.5,
        52.3,
-       9.105
+       11.005
       ],
       [
-       13.25,
+       8.25,
        26.994999999999997,
-       9.105
+       11.005
       ],
       [
-       13.25,
+       8.25,
        -30.0,
-       9.105
+       11.005
       ]
      ],
      "R": 8.435,
@@ -3880,6 +3927,7 @@
    "kind": "internal",
    "loop": false,
    "direct": true,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -3893,12 +3941,12 @@
       [
        40.5,
        76.6,
-       26.5
+       15.0
       ],
       [
        70.0,
        13.0,
-       26.5
+       15.0
       ],
       [
        70.0,
@@ -3928,6 +3976,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -3953,13 +4002,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 70.0,
      "slot": [
-      3.1500000000000004,
-      7.925000000000001
+      1.25,
+      8.225
      ],
      "pts": [
       [
@@ -3970,17 +4020,17 @@
       [
        74.5,
        21.0,
-       7.925000000000001
+       8.225
       ],
       [
-       73.15,
-       1.5749999999999993,
-       7.925000000000001
+       71.25,
+       7.45,
+       8.225
       ],
       [
-       73.15,
+       71.25,
        -30.0,
-       7.925000000000001
+       8.225
       ]
      ],
      "R": 6.4750000000000005,
@@ -4042,6 +4092,7 @@
    "kind": "internal",
    "loop": false,
    "direct": true,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
@@ -4055,12 +4106,12 @@
       [
        70.0,
        29.0,
-       26.5
+       15.0
       ],
       [
        34.5,
        117.1,
-       26.5
+       15.0
       ],
       [
        34.5,
@@ -4118,13 +4169,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      0.75,
-      7.505000000000001
+      -2.2,
+      7.705
      ],
      "pts": [
       [
@@ -4135,17 +4187,17 @@
       [
        10.5,
        68.5,
-       7.505000000000001
+       7.705
       ],
       [
-       11.25,
+       8.3,
        43.195,
-       7.505000000000001
+       7.705
       ],
       [
-       11.25,
+       8.3,
        -30.0,
-       7.505000000000001
+       7.705
       ]
      ],
      "R": 8.435,
@@ -4170,6 +4222,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -4195,13 +4248,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 70.0,
      "slot": [
       -0.7000000000000001,
-      7.33
+      7.430000000000001
      ],
      "pts": [
       [
@@ -4212,17 +4266,17 @@
       [
        70.0,
        43.0,
-       7.33
+       7.430000000000001
       ],
       [
        69.3,
        21.37,
-       7.33
+       7.430000000000001
       ],
       [
        69.3,
        -30.0,
-       7.33
+       7.430000000000001
       ]
      ],
      "R": 7.21,
@@ -4273,13 +4327,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 70.0,
      "slot": [
       2.0500000000000003,
-      6.130000000000001
+      6.23
      ],
      "pts": [
       [
@@ -4290,17 +4345,17 @@
       [
        74.5,
        51.0,
-       6.130000000000001
+       6.23
       ],
       [
        72.05,
        29.37,
-       6.130000000000001
+       6.23
       ],
       [
        72.05,
        -30.0,
-       6.130000000000001
+       6.23
       ]
      ],
      "R": 7.21,
@@ -4352,13 +4407,14 @@
    "kind": "cross-box",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 70.0,
      "slot": [
       -1.9500000000000002,
-      5.6850000000000005
+      5.785
      ],
      "pts": [
       [
@@ -4369,17 +4425,17 @@
       [
        65.5,
        51.0,
-       5.6850000000000005
+       5.785
       ],
       [
        68.05,
        34.515,
-       5.6850000000000005
+       5.785
       ],
       [
        68.05,
        -30.0,
-       5.6850000000000005
+       5.785
       ]
      ],
      "R": 5.495,
@@ -4430,13 +4486,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 70.0,
      "slot": [
       0.0,
-      5.23
+      5.33
      ],
      "pts": [
       [
@@ -4447,17 +4504,17 @@
       [
        70.0,
        59.0,
-       5.23
+       5.33
       ],
       [
        70.0,
        37.370000000000005,
-       5.23
+       5.33
       ],
       [
        70.0,
        -30.0,
-       5.23
+       5.33
       ]
      ],
      "R": 7.21,
@@ -4510,13 +4567,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 10.5,
      "slot": [
-      1.9500000000000002,
-      5.6850000000000005
+      0.0,
+      4.985
      ],
      "pts": [
       [
@@ -4527,17 +4585,17 @@
       [
        10.5,
        92.8,
-       5.6850000000000005
+       4.985
       ],
       [
-       12.45,
+       10.5,
        76.315,
-       5.6850000000000005
+       4.985
       ],
       [
-       12.45,
+       10.5,
        -30.0,
-       5.6850000000000005
+       4.985
       ]
      ],
      "R": 5.495,
@@ -4546,7 +4604,7 @@
    ]
   },
   {
-   "wire": "w_hl_30_cp",
+   "wire": "w_hl_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -4564,7 +4622,7 @@
      "box": "LOGIC",
      "part": "880398-2",
      "des": "BUS1-2",
-     "sig": "Bus 1 ATM-15 HL - HEAD LH relay k_hl 30 + 86",
+     "sig": "Bus 1 ATM-15 HL - one wire to splice sp_hl (LOGIC box front channel), feeds HEAD LH relay ",
      "at": {
       "x": 10.5,
       "y": 36.1,
@@ -4574,6 +4632,102 @@
       ],
       "kind": "fuse out",
       "name": "HL"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "sp_hl",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 27.5,
+      "y": 8.5,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_hl"
+     },
+     "part_from": "parts list"
+    }
+   ],
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       10.5,
+       36.1,
+       38.3
+      ],
+      [
+       10.5,
+       36.1,
+       28.86
+      ],
+      [
+       7.4,
+       26.1,
+       28.86
+      ],
+      [
+       7.4,
+       7.25,
+       28.86
+      ],
+      [
+       18.0,
+       7.25,
+       28.86
+      ],
+      [
+       22.665063509461095,
+       8.5,
+       28.86
+      ],
+      [
+       27.5,
+       8.5,
+       28.86
+      ]
+     ],
+     "R": 8.435,
+     "channel": "HL"
+    }
+   ]
+  },
+  {
+   "wire": "w_hl_30_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [
+    "Blue",
+    "Blue",
+    "Yellow"
+   ],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "sp_hl",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 27.5,
+      "y": 8.5,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_hl"
      },
      "part_from": "parts list"
     },
@@ -4598,69 +4752,37 @@
     }
    ],
    "kind": "internal",
-   "loop": true,
+   "loop": false,
    "direct": false,
+   "channel": true,
    "box_paths": [
     {
      "box": "LOGIC",
-     "lane": [
-      10.5,
-      51.5
-     ],
-     "R": 8.435,
-     "loop": true,
+     "lane": null,
      "pts": [
       [
-       10.5,
-       36.1,
-       38.3
+       40.0,
+       8.5,
+       27.8
       ],
       [
-       10.5,
-       36.1,
-       11.105
-      ],
-      [
-       11.65,
-       10.795000000000002,
-       11.105
-      ],
-      [
-       11.65,
-       -18.0,
-       11.105
-      ],
-      [
-       11.65,
-       -28.0,
-       30.0
-      ],
-      [
-       55.85,
-       -28.0,
-       30.0
-      ],
-      [
-       55.85,
-       -18.0,
-       13.305
-      ],
-      [
-       55.85,
-       -10.0,
-       13.305
+       42.0,
+       8.5,
+       27.8
       ],
       [
        51.5,
        13.0,
-       13.305
+       27.8
       ],
       [
        51.5,
        13.0,
        38.3
       ]
-     ]
+     ],
+     "R": 8.435,
+     "channel": "HL30"
     }
    ]
   },
@@ -4678,21 +4800,18 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "fb_logic",
-     "cav": "hl",
+     "id": "sp_hl",
+     "cav": "Splice",
      "box": "LOGIC",
-     "part": "1241388-2",
-     "des": "BUS1-2",
-     "sig": "Bus 1 ATM-15 HL - HEAD LH relay k_hl 30 + 86",
+     "part": null,
+     "des": "",
+     "sig": "",
      "at": {
-      "x": 10.5,
-      "y": 36.1,
-      "lane": [
-       "L",
-       10.5
-      ],
-      "kind": "fuse out",
-      "name": "HL"
+      "x": 27.5,
+      "y": 8.5,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_hl"
      },
      "part_from": "parts list"
     },
@@ -4717,69 +4836,37 @@
     }
    ],
    "kind": "internal",
-   "loop": true,
+   "loop": false,
    "direct": false,
+   "channel": true,
    "box_paths": [
     {
      "box": "LOGIC",
-     "lane": [
-      10.5,
-      51.5
-     ],
-     "R": 6.4750000000000005,
-     "loop": true,
+     "lane": null,
      "pts": [
       [
-       10.5,
-       36.1,
-       38.3
+       40.0,
+       8.5,
+       29.95
       ],
       [
-       10.5,
-       36.1,
-       11.525
-      ],
-      [
-       8.55,
-       16.675,
-       11.525
-      ],
-      [
-       8.55,
-       -18.0,
-       11.525
-      ],
-      [
-       8.55,
-       -28.0,
-       30.0
-      ],
-      [
-       49.75,
-       -28.0,
-       30.0
-      ],
-      [
-       49.75,
-       -18.0,
-       11.925
-      ],
-      [
-       49.75,
-       1.5749999999999993,
-       11.925
+       56.0,
+       7.6,
+       29.95
       ],
       [
        56.0,
        21.0,
-       11.925
+       29.95
       ],
       [
        56.0,
        21.0,
        38.3
       ]
-     ]
+     ],
+     "R": 6.4750000000000005,
+     "channel": "HL86"
     }
    ]
   },
@@ -4821,19 +4908,21 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     }
    ],
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      -3.75,
-      12.225000000000001
+      -3.85,
+      11.025
      ],
      "pts": [
       [
@@ -4844,17 +4933,17 @@
       [
        47.0,
        21.0,
-       12.225000000000001
+       11.025
       ],
       [
-       47.75,
-       1.5749999999999993,
-       12.225000000000001
+       47.65,
+       7.45,
+       11.025
       ],
       [
-       47.75,
+       47.65,
        -30.0,
-       12.225000000000001
+       11.025
       ]
      ],
      "R": 6.4750000000000005,
@@ -4863,7 +4952,7 @@
    ]
   },
   {
-   "wire": "w_hr_30_cp",
+   "wire": "w_hr_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -4881,7 +4970,7 @@
      "box": "LOGIC",
      "part": "880398-2",
      "des": "BUS1-3",
-     "sig": "Bus 1 ATM-15 HR - HEAD RH relay k_hr 30 + 86",
+     "sig": "Bus 1 ATM-15 HR - one wire to splice sp_hr (LOGIC box front channel), feeds HEAD RH relay ",
      "at": {
       "x": 10.5,
       "y": 44.2,
@@ -4891,6 +4980,102 @@
       ],
       "kind": "fuse out",
       "name": "HR"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "sp_hr",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 27.5,
+      "y": 8.5,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_hr"
+     },
+     "part_from": "parts list"
+    }
+   ],
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       10.5,
+       44.2,
+       38.3
+      ],
+      [
+       10.5,
+       44.2,
+       24.16
+      ],
+      [
+       7.4,
+       34.2,
+       24.16
+      ],
+      [
+       7.4,
+       7.25,
+       24.16
+      ],
+      [
+       18.0,
+       7.25,
+       24.16
+      ],
+      [
+       22.665063509461095,
+       8.5,
+       24.16
+      ],
+      [
+       27.5,
+       8.5,
+       24.16
+      ]
+     ],
+     "R": 8.435,
+     "channel": "HR"
+    }
+   ]
+  },
+  {
+   "wire": "w_hr_30_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [
+    "Blue",
+    "Blue",
+    "White"
+   ],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "sp_hr",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 27.5,
+      "y": 8.5,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_hr"
      },
      "part_from": "parts list"
     },
@@ -4915,69 +5100,42 @@
     }
    ],
    "kind": "internal",
-   "loop": true,
+   "loop": false,
    "direct": false,
+   "channel": true,
    "box_paths": [
     {
      "box": "LOGIC",
-     "lane": [
-      10.5,
-      51.5
-     ],
-     "R": 8.435,
-     "loop": true,
+     "lane": null,
      "pts": [
       [
-       10.5,
-       44.2,
-       38.3
+       40.0,
+       8.5,
+       23.1
       ],
       [
-       10.5,
-       44.2,
-       9.505
+       60.8,
+       8.5,
+       23.1
       ],
       [
-       9.65,
-       18.895000000000003,
-       9.505
-      ],
-      [
-       9.65,
-       -18.0,
-       9.505
-      ],
-      [
-       9.65,
-       -28.0,
-       30.0
-      ],
-      [
-       54.7,
-       -28.0,
-       30.0
-      ],
-      [
-       54.7,
-       -18.0,
-       11.005
-      ],
-      [
-       54.7,
-       17.695,
-       11.005
+       60.8,
+       33.7,
+       23.1
       ],
       [
        51.5,
        43.0,
-       11.005
+       23.1
       ],
       [
        51.5,
        43.0,
        38.3
       ]
-     ]
+     ],
+     "R": 8.435,
+     "channel": "HR30"
     }
    ]
   },
@@ -4995,21 +5153,18 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "fb_logic",
-     "cav": "hr",
+     "id": "sp_hr",
+     "cav": "Splice",
      "box": "LOGIC",
-     "part": "1241388-2",
-     "des": "BUS1-3",
-     "sig": "Bus 1 ATM-15 HR - HEAD RH relay k_hr 30 + 86",
+     "part": null,
+     "des": "",
+     "sig": "",
      "at": {
-      "x": 10.5,
-      "y": 44.2,
-      "lane": [
-       "L",
-       10.5
-      ],
-      "kind": "fuse out",
-      "name": "HR"
+      "x": 27.5,
+      "y": 8.5,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_hr"
      },
      "part_from": "parts list"
     },
@@ -5034,69 +5189,42 @@
     }
    ],
    "kind": "internal",
-   "loop": true,
+   "loop": false,
    "direct": false,
+   "channel": true,
    "box_paths": [
     {
      "box": "LOGIC",
-     "lane": [
-      10.5,
-      51.5
-     ],
-     "R": 6.4750000000000005,
-     "loop": true,
+     "lane": null,
      "pts": [
       [
-       10.5,
-       44.2,
-       38.3
+       40.0,
+       8.5,
+       25.45
       ],
       [
-       10.5,
-       44.2,
-       9.925
+       60.8,
+       8.5,
+       25.45
       ],
       [
-       7.25,
-       24.775000000000002,
-       9.925
-      ],
-      [
-       7.25,
-       -18.0,
-       9.925
-      ],
-      [
-       7.25,
-       -28.0,
-       30.0
-      ],
-      [
-       51.35,
-       -28.0,
-       30.0
-      ],
-      [
-       51.35,
-       -18.0,
-       9.425
-      ],
-      [
-       51.35,
-       31.575,
-       9.425
+       60.8,
+       41.400000000000006,
+       25.45
       ],
       [
        56.0,
        51.0,
-       9.425
+       25.45
       ],
       [
        56.0,
        51.0,
        38.3
       ]
-     ]
+     ],
+     "R": 6.4750000000000005,
+     "channel": "HR86"
     }
    ]
   },
@@ -5138,19 +5266,21 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     }
    ],
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      -4.65,
-      10.425
+      -2.0,
+      10.225000000000001
      ],
      "pts": [
       [
@@ -5161,17 +5291,17 @@
       [
        47.0,
        51.0,
-       10.425
+       10.225000000000001
       ],
       [
-       46.85,
+       49.5,
        31.575,
-       10.425
+       10.225000000000001
       ],
       [
-       46.85,
+       49.5,
        -30.0,
-       10.425
+       10.225000000000001
       ]
      ],
      "R": 6.4750000000000005,
@@ -5197,6 +5327,7 @@
      "box": null,
      "part": null,
      "des": "",
+     "sig": "",
      "at": null
     },
     {
@@ -5222,13 +5353,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      4.45,
-      8.93
+      0.4,
+      9.530000000000001
      ],
      "pts": [
       [
@@ -5239,17 +5371,17 @@
       [
        51.5,
        73.0,
-       8.93
+       9.530000000000001
       ],
       [
-       55.95,
+       51.9,
        51.370000000000005,
-       8.93
+       9.530000000000001
       ],
       [
-       55.95,
+       51.9,
        -30.0,
-       8.93
+       9.530000000000001
       ]
      ],
      "R": 7.21,
@@ -5270,23 +5402,13 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "k_horn",
-     "cav": "c1",
-     "box": "LOGIC",
-     "part": "42281-1",
-     "des": "30",
-     "sig": "Fused +12V in (LOGIC HZ 15A)",
-     "at": {
-      "x": 51.5,
-      "y": 73.0,
-      "lane": [
-       "L",
-       51.5
-      ],
-      "kind": "micro 30",
-      "name": "k_horn"
-     },
-     "part_from": "harness"
+     "id": "sp_hz",
+     "cav": "Splice",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": null
     },
     {
      "id": "k_horn",
@@ -5308,52 +5430,42 @@
      "part_from": "harness"
     }
    ],
-   "kind": "internal",
+   "kind": "external",
    "loop": false,
-   "direct": true,
+   "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
-     "lane": null,
+     "lane": 51.5,
+     "slot": [
+      2.25,
+      8.525
+     ],
      "pts": [
       [
-       51.5,
-       73.0,
-       38.3
-      ],
-      [
-       51.5,
-       73.0,
-       26.5
-      ],
-      [
-       70.5,
-       73.0,
-       26.5
-      ],
-      [
-       70.5,
-       96.0,
-       26.5
-      ],
-      [
        56.0,
-       96.0,
-       26.5
+       81.0,
+       38.3
       ],
       [
        56.0,
        81.0,
-       26.5
+       8.525
       ],
       [
-       56.0,
-       81.0,
-       38.3
+       53.75,
+       61.575,
+       8.525
+      ],
+      [
+       53.75,
+       -30.0,
+       8.525
       ]
      ],
      "R": 6.4750000000000005,
-     "direct": true
+     "end": "k_horn c3"
     }
    ]
   },
@@ -5401,13 +5513,14 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "LOGIC",
      "lane": 51.5,
      "slot": [
-      -4.3500000000000005,
-      8.425
+      -3.75,
+      8.825
      ],
      "pts": [
       [
@@ -5418,17 +5531,17 @@
       [
        47.0,
        81.0,
-       8.425
+       8.825
       ],
       [
-       47.15,
+       47.75,
        61.575,
-       8.425
+       8.825
       ],
       [
-       47.15,
+       47.75,
        -30.0,
-       8.425
+       8.825
       ]
      ],
      "R": 6.4750000000000005,
@@ -5477,6 +5590,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -5522,6 +5636,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -5600,6 +5715,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -5679,6 +5795,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -5759,6 +5876,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -5838,6 +5956,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": [
     {
      "box": "POWER",
@@ -5915,6 +6034,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -5949,6 +6069,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -5983,6 +6104,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6017,6 +6139,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6051,6 +6174,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6085,6 +6209,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6119,6 +6244,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6157,6 +6283,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6196,6 +6323,7 @@
    "kind": "internal",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6234,6 +6362,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6270,6 +6399,7 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   },
   {
@@ -6308,55 +6438,11 @@
    "kind": "external",
    "loop": false,
    "direct": false,
+   "channel": false,
    "box_paths": []
   }
  ],
  "doubles": [
-  {
-   "box": "LOGIC",
-   "cavity": "fb_logic hl",
-   "wires": [
-    "w_hl_30_cp",
-    "w_hl_86_cp"
-   ],
-   "mm2": 2.9,
-   "part": "880398-2",
-   "range": [
-    1.0,
-    2.5
-   ],
-   "over": true
-  },
-  {
-   "box": "LOGIC",
-   "cavity": "fb_logic hr",
-   "wires": [
-    "w_hr_30_cp",
-    "w_hr_86_cp"
-   ],
-   "mm2": 2.9,
-   "part": "880398-2",
-   "range": [
-    1.0,
-    2.5
-   ],
-   "over": true
-  },
-  {
-   "box": "LOGIC",
-   "cavity": "k_horn c1",
-   "wires": [
-    "w_horn_30_cp",
-    "w_horn_86_cp"
-   ],
-   "mm2": 2.13,
-   "part": "42281-1",
-   "range": [
-    0.8,
-    2.0
-   ],
-   "over": true
-  },
   {
    "box": "POWER",
    "cavity": "pdb c8",
@@ -6372,45 +6458,33 @@
    "over": false
   }
  ],
- "loops": [
-  "w_fb_k_etb_30_cp",
-  "w_hl_30_cp",
-  "w_hl_86_cp",
-  "w_hr_30_cp",
-  "w_hr_86_cp"
- ],
+ "loops": [],
  "direct": {
   "w_fb_k_acc_30_cp": 0,
   "w_fb_k_eps_en_30_cp": 1,
-  "w_k_eps_en_87_cp": 2,
-  "w_horn_86_cp": 0
+  "w_k_eps_en_87_cp": 2
  },
  "exits": [
   {
    "box": "LOGIC",
    "lane": 10.5,
-   "wires": 12,
-   "d": 8.57,
-   "stack_top": 12.95,
+   "wires": 7,
+   "d": 6.38,
+   "stack_top": 12.65,
    "pan_wall_top": 42.5,
    "deck": 38.5,
-   "cad_wires": 10,
-   "cad_d": 7.2,
-   "opening": 8.8,
-   "margin": 0.23,
+   "cad_wires": 7,
+   "cad_d": 5.9,
+   "opening": 7.5,
+   "margin": 1.12,
    "fits": true,
    "what": [
-    "fb_logic etb",
     "fb_logic alts",
     "fb_logic alms",
     "fb_logic alm",
     "fb_logic wl",
     "fb_logic dm",
     "fb_logic hz",
-    "fb_logic hr",
-    "fb_logic hr",
-    "fb_logic hl",
-    "fb_logic hl",
     "fb_logic efi86"
    ]
   },
@@ -6443,15 +6517,15 @@
   {
    "box": "LOGIC",
    "lane": 51.5,
-   "wires": 18,
-   "d": 10.33,
-   "stack_top": 14.51,
+   "wires": 14,
+   "d": 8.88,
+   "stack_top": 13.01,
    "pan_wall_top": 42.5,
    "deck": 38.5,
-   "cad_wires": 21,
-   "cad_d": 10.1,
-   "opening": 11.7,
-   "margin": 1.37,
+   "cad_wires": 15,
+   "cad_d": 8.4,
+   "opening": 10.0,
+   "margin": 1.12,
    "fits": true,
    "what": [
     "k_acc c4",
@@ -6460,18 +6534,14 @@
     "k_etb c4",
     "k_etb c2",
     "k_etb c3",
-    "k_etb c1",
     "k_horn c4",
+    "k_horn c3",
     "k_horn c2",
     "k_horn c1",
     "k_hr c4",
-    "k_hr c3",
     "k_hr c2",
-    "k_hr c1",
     "k_hl c4",
-    "k_hl c3",
-    "k_hl c2",
-    "k_hl c1"
+    "k_hl c2"
    ]
   },
   {
@@ -6479,13 +6549,13 @@
    "lane": 70.0,
    "wires": 6,
    "d": 5.63,
-   "stack_top": 8.85,
+   "stack_top": 9.15,
    "pan_wall_top": 42.5,
    "deck": 38.5,
-   "cad_wires": 10,
-   "cad_d": 7.1,
-   "opening": 8.7,
-   "margin": 3.07,
+   "cad_wires": 8,
+   "cad_d": 6.2,
+   "opening": 7.8,
+   "margin": 2.17,
    "fits": true,
    "what": [
     "k_rev c4",
@@ -6726,11 +6796,1784 @@
    ]
   }
  ],
+ "channel": {
+  "w_fb_k_etb_30_cp": "ETB",
+  "w_hl_cp": "HL",
+  "w_hl_30_cp": "HL30",
+  "w_hl_86_cp": "HL86",
+  "w_hr_cp": "HR",
+  "w_hr_30_cp": "HR30",
+  "w_hr_86_cp": "HR86"
+ },
+ "splices": [
+  {
+   "id": "sp_hl",
+   "box": "LOGIC",
+   "p0": [
+    27.5,
+    8.5,
+    28.86
+   ],
+   "p1": [
+    40.0,
+    8.5,
+    28.86
+   ],
+   "od": 4.5,
+   "basis": "est (generic solder splice, adhesive heat shrink over)"
+  },
+  {
+   "id": "sp_hr",
+   "box": "LOGIC",
+   "p0": [
+    27.5,
+    8.5,
+    24.16
+   ],
+   "p1": [
+    40.0,
+    8.5,
+    24.16
+   ],
+   "od": 4.5,
+   "basis": "est (generic solder splice, adhesive heat shrink over)"
+  }
+ ],
+ "cavities": [
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-1",
+   "x": 10.5,
+   "y": 28.0,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_efi_86_cp"
+   ],
+   "hole_d": 3.45
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-1 IN",
+   "x": 16.5,
+   "y": 28.0,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-10",
+   "x": 10.5,
+   "y": 100.9,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_etb_30_cp"
+   ],
+   "hole_d": 3.9
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-10 IN",
+   "x": 16.5,
+   "y": 100.9,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-11",
+   "x": 10.5,
+   "y": 109.0,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-11 IN",
+   "x": 16.5,
+   "y": 109.0,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-12",
+   "x": 10.5,
+   "y": 117.1,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-12 IN",
+   "x": 16.5,
+   "y": 117.1,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-2",
+   "x": 10.5,
+   "y": 36.1,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hl_cp"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-2 IN",
+   "x": 16.5,
+   "y": 36.1,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-3",
+   "x": 10.5,
+   "y": 44.2,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hr_cp"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-3 IN",
+   "x": 16.5,
+   "y": 44.2,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-4",
+   "x": 10.5,
+   "y": 52.3,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hz_cp"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-4 IN",
+   "x": 16.5,
+   "y": 52.3,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-5",
+   "x": 10.5,
+   "y": 60.4,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_pmu_dome_cp"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-5 IN",
+   "x": 16.5,
+   "y": 60.4,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-6",
+   "x": 10.5,
+   "y": 68.5,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_rb2_wl_cp"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-6 IN",
+   "x": 16.5,
+   "y": 68.5,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-7",
+   "x": 10.5,
+   "y": 76.6,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_at_12v_tie_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-7 IN",
+   "x": 16.5,
+   "y": 76.6,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-8",
+   "x": 10.5,
+   "y": 84.7,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_at_12v_shk_tie_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-8 IN",
+   "x": 16.5,
+   "y": 84.7,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-9",
+   "x": 10.5,
+   "y": 92.8,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_alt_s_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-9 IN",
+   "x": 16.5,
+   "y": 92.8,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-1",
+   "x": 40.5,
+   "y": 28.0,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_lam12_cp"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-1 IN",
+   "x": 34.5,
+   "y": 28.0,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-10",
+   "x": 40.5,
+   "y": 100.9,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-10 IN",
+   "x": 34.5,
+   "y": 100.9,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-11",
+   "x": 40.5,
+   "y": 109.0,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-11 IN",
+   "x": 34.5,
+   "y": 109.0,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-12",
+   "x": 40.5,
+   "y": 117.1,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_fb_mrs_en_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-12 IN",
+   "x": 34.5,
+   "y": 117.1,
+   "kind": "fuse in",
+   "part": "1241388-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_eps_en_87_cp"
+   ],
+   "hole_d": 3.45
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-13",
+   "x": 40.5,
+   "y": 125.2,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_start_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-13 IN",
+   "x": 34.5,
+   "y": 125.2,
+   "kind": "fuse in",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_start_in_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-2",
+   "x": 40.5,
+   "y": 36.1,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_cp_sw12_in"
+   ],
+   "hole_d": 3.9
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-2 IN",
+   "x": 34.5,
+   "y": 36.1,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-3",
+   "x": 40.5,
+   "y": 44.2,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_cop_pwr_c_ac"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-3 IN",
+   "x": 34.5,
+   "y": 44.2,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-4",
+   "x": 40.5,
+   "y": 52.3,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_inj_pwr_c_ac"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-4 IN",
+   "x": 34.5,
+   "y": 52.3,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-5",
+   "x": 40.5,
+   "y": 60.4,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_csb12_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-5 IN",
+   "x": 34.5,
+   "y": 60.4,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-6",
+   "x": 40.5,
+   "y": 68.5,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_dev_cp"
+   ],
+   "hole_d": 3.9
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-6 IN",
+   "x": 34.5,
+   "y": 68.5,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-7",
+   "x": 40.5,
+   "y": 76.6,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_eps_en_30_cp"
+   ],
+   "hole_d": 3.45
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-7 IN",
+   "x": 34.5,
+   "y": 76.6,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-8",
+   "x": 40.5,
+   "y": 84.7,
+   "kind": "fuse out",
+   "part": "880398-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_acc_30_cp"
+   ],
+   "hole_d": 3.9
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-8 IN",
+   "x": 34.5,
+   "y": 84.7,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-9",
+   "x": 40.5,
+   "y": 92.8,
+   "kind": "fuse out",
+   "part": "1241388-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_at_ig_tie_cp"
+   ],
+   "hole_d": 3.17
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-9 IN",
+   "x": 34.5,
+   "y": 92.8,
+   "kind": "fuse in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "CAD jumper",
+   "wires": [],
+   "hole_d": 4.01
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 30",
+   "x": 51.5,
+   "y": 13.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hl_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 85",
+   "x": 47.0,
+   "y": 21.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_hl_85_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 86",
+   "x": 56.0,
+   "y": 21.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_hl_86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 87",
+   "x": 51.5,
+   "y": 29.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_pmu_hl_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 87a",
+   "x": 51.5,
+   "y": 21.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 30",
+   "x": 70.0,
+   "y": 133.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 85",
+   "x": 65.5,
+   "y": 141.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 86",
+   "x": 74.5,
+   "y": 141.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 87",
+   "x": 70.0,
+   "y": 149.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 87a",
+   "x": 70.0,
+   "y": 141.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 30",
+   "x": 51.5,
+   "y": 43.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hr_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 85",
+   "x": 47.0,
+   "y": 51.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_hr_85_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 86",
+   "x": 56.0,
+   "y": 51.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_hr_86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 87",
+   "x": 51.5,
+   "y": 59.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_pmu_hr_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 87a",
+   "x": 51.5,
+   "y": 51.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 30",
+   "x": 51.5,
+   "y": 73.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_horn_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 85",
+   "x": 47.0,
+   "y": 81.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_horn_85_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 86",
+   "x": 56.0,
+   "y": 81.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_horn_86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 87",
+   "x": 51.5,
+   "y": 89.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_pmu_horn_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 87a",
+   "x": 51.5,
+   "y": 81.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 30",
+   "x": 51.5,
+   "y": 103.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_etb_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 85",
+   "x": 47.0,
+   "y": 111.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w81_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 86",
+   "x": 56.0,
+   "y": 111.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_k_etb_86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 87",
+   "x": 51.5,
+   "y": 119.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w82_ac"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 87a",
+   "x": 51.5,
+   "y": 111.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 30",
+   "x": 51.5,
+   "y": 133.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_acc_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 85",
+   "x": 47.0,
+   "y": 141.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_acc_trig_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 86",
+   "x": 56.0,
+   "y": 141.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_acc86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 87",
+   "x": 51.5,
+   "y": 149.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_acc_clutch_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 87a",
+   "x": 51.5,
+   "y": 141.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 30",
+   "x": 70.0,
+   "y": 13.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_eps_en_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 85",
+   "x": 65.5,
+   "y": 21.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_eps_trig_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 86",
+   "x": 74.5,
+   "y": 21.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_eps_en_86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 87",
+   "x": 70.0,
+   "y": 29.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_eps_en_87_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 87a",
+   "x": 70.0,
+   "y": 21.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 30",
+   "x": 70.0,
+   "y": 43.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_rev_30_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 85",
+   "x": 65.5,
+   "y": 51.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_rev_85_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 86",
+   "x": 74.5,
+   "y": 51.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_rev_86_cp"
+   ],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 87",
+   "x": 70.0,
+   "y": 59.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_rev_87_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 87a",
+   "x": 70.0,
+   "y": 51.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 30",
+   "x": 70.0,
+   "y": 73.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 85",
+   "x": 65.5,
+   "y": 81.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 86",
+   "x": 74.5,
+   "y": 81.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 87",
+   "x": 70.0,
+   "y": 89.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 87a",
+   "x": 70.0,
+   "y": 81.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 30",
+   "x": 70.0,
+   "y": 103.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 85",
+   "x": 65.5,
+   "y": 111.0,
+   "kind": "micro 85",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 86",
+   "x": 74.5,
+   "y": 111.0,
+   "kind": "micro 86",
+   "part": "2293255-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 3.76
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 87",
+   "x": 70.0,
+   "y": 119.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 87a",
+   "x": 70.0,
+   "y": 111.0,
+   "kind": "micro 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "ACPS",
+   "x": 19.5,
+   "y": 35.0,
+   "kind": "acps out",
+   "part": "1241388-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_acp_1_cp"
+   ],
+   "hole_d": 3.45
+  },
+  {
+   "box": "POWER",
+   "cav": "ACPS IN",
+   "x": 13.5,
+   "y": 35.0,
+   "kind": "acps in",
+   "part": "880398-2",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_htr_acps"
+   ],
+   "hole_d": 4.01
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 30",
+   "x": 55.75,
+   "y": 43.0,
+   "kind": "F7 30",
+   "part": "62998-2",
+   "wire_od": 5.13,
+   "source": "harness",
+   "wires": [
+    "w_htr_30_cp"
+   ],
+   "hole_d": 7.5
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 85",
+   "x": 45.75,
+   "y": 34.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_htr_85_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 86",
+   "x": 45.75,
+   "y": 51.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_htr_86_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 87",
+   "x": 37.85,
+   "y": 43.0,
+   "kind": "F7 87",
+   "part": "62998-2",
+   "wire_od": 5.13,
+   "source": "harness",
+   "wires": [
+    "w_htr_87_cp"
+   ],
+   "hole_d": 7.5
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 87a",
+   "x": 46.2,
+   "y": 43.0,
+   "kind": "F7 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_htr_87a_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 30",
+   "x": 26.75,
+   "y": 61.0,
+   "kind": "F7 30",
+   "part": "280756-4",
+   "wire_od": 2.97,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_efi_30_cp"
+   ],
+   "hole_d": 5.22
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 85",
+   "x": 16.75,
+   "y": 52.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w76_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 86",
+   "x": 16.75,
+   "y": 69.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_efi_86_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 87",
+   "x": 8.85,
+   "y": 61.0,
+   "kind": "F7 87",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w77_cp"
+   ],
+   "hole_d": 5.43
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 30",
+   "x": 55.75,
+   "y": 79.0,
+   "kind": "F7 30",
+   "part": "280756-4",
+   "wire_od": 2.97,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_str_30_cp"
+   ],
+   "hole_d": 5.22
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 85",
+   "x": 45.75,
+   "y": 70.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_str85_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 86",
+   "x": 45.75,
+   "y": 87.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_str_86_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 87",
+   "x": 37.85,
+   "y": 79.0,
+   "kind": "F7 87",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_strl_ac"
+   ],
+   "hole_d": 5.43
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 30",
+   "x": 26.75,
+   "y": 97.0,
+   "kind": "F7 30",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_fan_30_cp"
+   ],
+   "hole_d": 6.95
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 85",
+   "x": 16.75,
+   "y": 88.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fan85_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 86",
+   "x": 16.75,
+   "y": 105.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_fan_86_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 87",
+   "x": 8.85,
+   "y": 97.0,
+   "kind": "F7 87",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "harness",
+   "wires": [
+    "w_fan_pwr_ac"
+   ],
+   "hole_d": 6.95
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 30",
+   "x": 55.75,
+   "y": 115.0,
+   "kind": "F7 30",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_fan2_30_ac"
+   ],
+   "hole_d": 6.95
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 85",
+   "x": 45.75,
+   "y": 106.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fan285_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 86",
+   "x": 45.75,
+   "y": 123.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_fan2_86_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 87",
+   "x": 37.85,
+   "y": 115.0,
+   "kind": "F7 87",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "harness",
+   "wires": [
+    "w_fan2_pwr_bc"
+   ],
+   "hole_d": 6.95
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 30",
+   "x": 26.75,
+   "y": 133.0,
+   "kind": "F7 30",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_pwr_30_cp"
+   ],
+   "hole_d": 5.43
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 85",
+   "x": 16.75,
+   "y": 124.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_pwr_85_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 86",
+   "x": 16.75,
+   "y": 141.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_pwr_86_cp"
+   ],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 87",
+   "x": 8.85,
+   "y": 133.0,
+   "kind": "F7 87",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_rb2_cp"
+   ],
+   "hole_d": 5.43
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 30",
+   "x": 55.75,
+   "y": 151.0,
+   "kind": "F7 30",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 6.95
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 85",
+   "x": 45.75,
+   "y": 142.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 86",
+   "x": 45.75,
+   "y": 159.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 4.41
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 87",
+   "x": 37.85,
+   "y": 151.0,
+   "kind": "F7 87",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole_d": 6.95
+  }
+ ],
  "constants": {
   "EXIT_S": -30.0,
   "BUNDLE_Z0": 4.8,
   "LOOP_Y": -28.0,
   "LOOP_Z": 30.0,
-  "JUMP_Z": 26.5
+  "JUMP_Z": 15.0
  }
 }

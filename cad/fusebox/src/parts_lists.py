@@ -215,10 +215,10 @@ def build(rev=6):
           'FASTON .375 receptacle, uninsulated, 10-7 AWG (6-10 mm2), tin', n95_8, spare(n95_8), unit=0.50, basis='est', url=TE('280755-4'),
           checked='TE page (tab 9.53 x 1.22, 10-7 AWG) + ' + DS_VCF + ' (load 5.3-13.3 mm2)', note='30 / 87 of k_fan, k_fan2 (8 AWG).')
     n_f7_coil = 2 * len(F7_USED)
-    L.add(P, 'Terminals', 'Relay coil receptacle 6.3 x 0.8, 20-18 AWG (F7 85/86 + heater 85/86)', '1-1393310-8', 'TE Connectivity',
-          'Crimp terminal QC .250 (26A1348A) for 0.5-0.8 mm2, brass tin', n_f7_coil + 2, spare(n_f7_coil + 2), unit=0.12, basis='est', url=TE('1-1393310-8'),
-          checked=DS_VCF + ' "Selection of fitting crimp terminals": 6.3 x 0.8, 0.5-0.8 mm2 (20-18), coil; TE page: Active',
-          note='Coil wires are 20 AWG in spec.py (COIL_AWG). On-hand 42281-1 (18-14 AWG) is too big for 20 AWG, so it goes to the micro relay loads instead.')
+    L.add(P, 'Terminals', 'Relay coil receptacle 6.3 x 0.8, 18-14 AWG (F7 85/86 + heater 85/86)', '42281-1', 'TE Connectivity',
+          'FASTON .250 receptacle, uninsulated, 18-14 AWG (0.82-2.08 mm2), brass', n_f7_coil + 2, spare(n_f7_coil + 2), unit=0.10, basis='est', url=TE('42281-1'),
+          checked='TE page 2026-10-14 (tab 6.35 x 0.81, 18-14 AWG = 0.82-2.08 mm2); F7 data sheet: 85/86 blades 6.3 x 0.8; ST185-CabinPower: every F7 coil wire is 18 AWG (0.82 mm2)',
+          note='OPEN-ITEMS row 119 (c), J answers 2026-10-14: was 1-1393310-8 (0.5-0.8 mm2, the VCF7 relay socket contact) - too small for the 18 AWG coil wires the harness has, and no VCF7 housing is used (the receptacles seat in the printed cavities). The harness part (42281-1) was right.')
     L.add(P, 'Terminals', 'Heater relay load receptacle 6.3 x 0.8, 10-8 AWG (30, 87)', '62998-2', 'TE Connectivity',
           'FASTON .250 receptacle, uninsulated, 10-8 AWG (5-8 mm2), brass tin', 2, spare(2), unit=0.30, basis='est', url=TE('62998-2'),
           checked='TE page (tab 6.35 x 0.81, 10-8 AWG); relay drawing V23234-A0001-X040: DIN 46244 A6.3-0.8 blades on all 5 terminals; F4 A sheet: Mini ISO pattern',

@@ -174,8 +174,10 @@ LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
 SPINE = dict(t=2.2, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
 # strip y extents and feeds: BUS1 feed at its front end (lug face, wire out the front), BUS2 feed at its rear end (wire out the rear)
-STRIP_Y = {'BUS1': (8.0, 123.0), 'BUS2': (21.0, 140.0)}
-FEED = {'BUS1': dict(y=15.0, z=22.0, dir=-1), 'BUS2': dict(y=133.0, z=13.0, dir=+1)}
+# J4 = B (Dan, 2026-10-14, DECISIONS R94): the Bus 1 strip starts 3.5 later (8 -> 11.5) and its feed lug sits lower and 3 mm rearward
+# (y 15 / z 22 -> y 18 / z 13), so a band opens in front of the spine where the HL / HR / ETB wires cross under the deck (CHANNEL below).
+STRIP_Y = {'BUS1': (11.5, 123.0), 'BUS2': (23.5, 140.0)}     # Bus 2 starts 2.5 later too: the Bus 1 feed bolt tip (y 18) keeps 3 mm to it
+FEED = {'BUS1': dict(y=18.0, z=13.0, dir=-1), 'BUS2': dict(y=133.0, z=13.0, dir=+1)}
 STUDS = {'BUS1': 12, 'BUS2': 10}                      # stud positions per strip (BUS2 11 / 12 = MRS / B30 have their own inputs; 10 = SP, no stud)
 FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 87', 10)}   # (from, AWG) - wires run box to box
 # harness gauge per LOGIC output (ST185-CabinPower fb_logic contacts: 1241388-2 = 20-18 AWG, 880398-2 = 16-14 AWG)
@@ -277,3 +279,59 @@ REV7 = dict(
     cover_snaps_rear=(124.0, 160.0),           # rear-face cover catches moved clear of the NEG cable notches
 )
 REV7_STOCK_BARS = 2    # POS bar 226 + battery block bar 36.5 from bar 1; NEG bar 105 from bar 2 (MECCANIXITY B0CGJBRNJX, 305 long)
+
+
+# ---------- J answers (Dan, 2026-10-14, DECISIONS R94). J1 = A: lugs on one strip are one circuit (the 3 mm rule is between circuits).
+# J2 = B: rub protection, guide walls under the decks, crimp-sized terminal holes. J3 = A: one wire per terminal (HL / HR fuse out ->
+# splice -> relay 30 + 86; k_horn 86 from sp_hz). J4 = B: a printed channel across the front of the strips, so no wire leaves the LOGIC box
+# to come back in.
+# Terminal data from the TE product pages, read 2026-10-14 (te.com/en/product-<pn>.html, "Features"): compatible insulation diameter
+# range (mm), terminal material thickness t (mm), product length L (mm). None = not on the TE page: T_EST / L_EST are used and marked est.
+TERM = {
+    '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
+    '1241388-2': dict(ins=(1.4, 2.1), t=None, L=None, what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
+    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, what='FASTON .250 receptacle 18-14 AWG'),
+    '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, what='FASTON .187 receptacle 20-15 AWG'),
+    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, what='FASTON .375 receptacle 10-7 AWG'),
+    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, what='FASTON .375 receptacle 12-10 AWG'),
+    '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, what='FASTON .250 receptacle 10-8 AWG'),
+}
+T_EST, L_EST = 0.40, 20.0        # est: metal thickness / length where the TE page gives none
+BARREL_FRAC = 0.45               # est: the wire + insulation barrels are the lower 45 % of a receptacle's length (the contact box the rest)
+HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)   # crimp hole: barrel + 0.4 per side; walls >= 2.0 (R73) or the two holes
+                                                                # join into one slot (Dan); >= 2 mm deep at the mouth; receptacle top 1 below the deck top
+# Default terminal of a cavity with no harness wire yet (a spare): the largest wire it takes, so a later wire still fits.
+TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps in': ('880398-2', 14), 'acps out': ('880398-2', 14),
+                'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('42281-1', 14), 'micro 85': ('2293255-1', 18),
+                'micro 86': ('2293255-1', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
+                'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
+GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
+
+
+def barrel_od(part, wire_od):
+    """Crimped barrel envelope (mm): the insulation barrel closes on the wire insulation, never below the smallest insulation
+    it is made for, plus the metal on both sides."""
+    t_ = TERM[part]
+    return max(wire_od, t_['ins'][0]) + 2 * (t_['t'] if t_['t'] is not None else T_EST)
+
+
+def hole_d(part, wire_od):
+    return barrel_od(part, wire_od) + 2 * HOLE['clr']
+
+
+# J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn
+# along the front in front of the spine (y 7.25), each on its own level, over a printed floor (the Bus 1 feed lug is under it); the
+# HL / HR splices lie stacked in the channel past the spine; every branch then runs to its relay on its own level. Levels: centre z.
+CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05,
+               splice=dict(x0=27.5, x1=40.0, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 18 AWG
+               z=dict(ETB=20.18, HR=24.16, HL=28.86, HR30=23.1, HR86=25.45, HL30=27.8, HL86=29.95),
+               x_etb=44.0, x_hr=60.8)
+CHANNEL_SPLICES = ('sp_hl', 'sp_hr')
+# J2 = B rub protection. LOGIC: a rib on the belly pan between the Bus 1 output wires (kept at x <= lane_x_max) and the Bus 1 strip bolt
+# heads (x 14.67 up) - PAN_RIB; a relief (the pan wall thinned) at the outboard micro relay column, where the 86 wires drop 1 mm from the wall
+# and ease forward (the relief runs 11 mm ahead of each relay centre, 5 behind).
+PAN_RIB = dict(x=(12.0, 14.0), y=(23.5, 125.0), z_top=15.5)   # starts behind the Bus 1 feed bolt head (y 13.4 - 22.6 at z 13)
+LANE_X = {('LOGIC', 10.5): (6.9, 11.5)}   # Bus 1 output lane: wire edges between the pan's rounded front corner and the rib
+PAN_RELIEF = dict(depth=0.5, fwd=11.0, back=5.0)   # inner face cut back 0.5 (wall 2.5 -> 2.0, the R73 minimum): the base legs sit right outside it at y 21 / 141
+PAN_SNAPS_X = (63.0, 123.0)       # LOGIC belly pan catches on the end walls, clear of the reliefs (rev 7: 0.3 / 0.7 of the depth)
+CHANNEL_CAD_SKIP = {'HL', 'HR', 'ETB', 'HEAD LH 30', 'HEAD LH 86', 'HEAD RH 30', 'HEAD RH 86', 'k_etb 30'}   # CAD tails that are channel wires now

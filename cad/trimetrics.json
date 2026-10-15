@@ -187,12 +187,12 @@
    89.9
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Base_PA12_printed.step": 1792029160,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Cover_PA12_printed.step": 1792029180,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Pan_PA12_printed.step": 1792029167,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step": 1792029165
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Base_PA12_printed.step": 1792036878,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Cover_PA12_printed.step": 1792036881,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Pan_PA12_printed.step": 1792036879,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step": 1792036879
   },
-  "rendered": "2026-10-14"
+  "rendered": "2026-10-15"
  },
  "fusebox-rev7-power": {
   "png": "cad/fusebox/rev7/trimetric-power.png",
@@ -204,14 +204,14 @@
    81.8
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792029200,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792029198,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792029193,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792029212,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pad_Out_CuC110_15x3.step": 1792029202,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792029205
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792036884,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792036884,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792036884,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792036887,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pad_Out_CuC110_15x3.step": 1792036884,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792036885
   },
-  "rendered": "2026-10-14"
+  "rendered": "2026-10-15"
  },
  "package-rev6": {
   "png": "cad/fusebox/package-rev6.png",
@@ -232,7 +232,7 @@
  },
  "package-rev7": {
   "png": "cad/fusebox/rev7/package-rev7.png",
-  "solids": 509,
+  "solids": 495,
   "part_types": 73,
   "extent_mm": [
    549.2,
@@ -242,8 +242,8 @@
   "sources": {
    "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1791906601,
    "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1791902030,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792029228
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792036893
   },
-  "rendered": "2026-10-14"
+  "rendered": "2026-10-15"
  }
 }

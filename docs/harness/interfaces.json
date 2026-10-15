@@ -3352,6 +3352,7 @@
           "Yellow"
         ],
         "wires": [
+          "w_hl_cp",
           "w_hl_30_cp",
           "w_hl_86_cp",
           "w_pmu_hl_cp"
@@ -3364,6 +3365,7 @@
           "White"
         ],
         "wires": [
+          "w_hr_cp",
           "w_hr_30_cp",
           "w_hr_86_cp",
           "w_pmu_hr_cp"
