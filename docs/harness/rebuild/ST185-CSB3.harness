@@ -240,8 +240,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2400,
-        "y": 150
+        "x": 0,
+        "y": 0
       },
       "schematicPosition": {
         "x": 1320,
@@ -367,8 +367,8 @@
         "y": 900
       },
       "layoutPosition": {
-        "x": 2280,
-        "y": 60
+        "x": 540,
+        "y": 540
       }
     }
   ],
@@ -383,8 +383,8 @@
         "y": 570
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": -270
+        "x": 1140,
+        "y": 660
       },
       "propagate": false
     },
@@ -398,8 +398,8 @@
         "y": 630
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": -210
+        "x": 1140,
+        "y": 750
       },
       "propagate": false
     },
@@ -413,8 +413,8 @@
         "y": 690
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": -150
+        "x": 1140,
+        "y": 840
       },
       "propagate": false
     },
@@ -428,8 +428,8 @@
         "y": 420
       },
       "layoutPosition": {
-        "x": 1200,
-        "y": -180
+        "x": 1800,
+        "y": 540
       },
       "propagate": false
     },
@@ -443,8 +443,8 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": -270
+        "x": 2040,
+        "y": 600
       },
       "propagate": false
     },
@@ -454,8 +454,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: +5V to the cruise ladder pull-up",
       "width": 390,
       "layoutPosition": {
-        "x": 60,
-        "y": 60
+        "x": 420,
+        "y": 420
       },
       "schematicPosition": {
         "x": 60,
@@ -469,8 +469,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: CSB3 +12V from LOGIC CSB 5A (switched k_efi rail)",
       "width": 390,
       "layoutPosition": {
-        "x": 60,
-        "y": 180
+        "x": 420,
+        "y": 330
       },
       "schematicPosition": {
         "x": 60,
@@ -484,8 +484,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: CSB3 ground to sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 60,
-        "y": 120
+        "x": 420,
+        "y": 240
       },
       "schematicPosition": {
         "x": 60,
@@ -499,8 +499,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
-        "y": 90
+        "x": 420,
+        "y": 150
       },
       "schematicPosition": {
         "x": 1380,
@@ -514,8 +514,8 @@
       "signal": "Broken off - continues on ST185-ClusterLED: oil pressure LED sink on CSB3 L4",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 210
+        "x": 420,
+        "y": 660
       },
       "schematicPosition": {
         "x": 1380,
@@ -529,8 +529,8 @@
       "signal": "Broken off - continues on ST185-CAN: CAN H into the CSB3 plug",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 330
+        "x": 420,
+        "y": 60
       },
       "schematicPosition": {
         "x": 1380,
@@ -544,8 +544,8 @@
       "signal": "Broken off - continues on ST185-CAN: CAN L into the CSB3 plug",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 390
+        "x": 420,
+        "y": -60
       },
       "schematicPosition": {
         "x": 1380,
@@ -559,8 +559,8 @@
       "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 270
+        "x": 420,
+        "y": 480
       },
       "schematicPosition": {
         "x": 1380,
@@ -573,8 +573,8 @@
     {
       "id": "sp_cruise_ladder",
       "layoutPosition": {
-        "x": 2220,
-        "y": 150
+        "x": 540,
+        "y": 720
       },
       "schematicPosition": {
         "x": 1170,
@@ -592,8 +592,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 2370,
-        "y": 210
+        "x": -60,
+        "y": 600
       }
     }
   ],
@@ -603,8 +603,8 @@
       "partId": "rp_1k",
       "locationId": "bp_1140",
       "layoutPosition": {
-        "x": 2100,
-        "y": 150
+        "x": 630,
+        "y": 720
       },
       "schematicPosition": {
         "x": 720,
@@ -1710,106 +1710,106 @@
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 1080,
-        "y": 240
+        "x": 1710,
+        "y": 600
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1200,
-        "y": 240
+        "x": 1470,
+        "y": 600
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 1320,
-        "y": 240
+        "x": 1380,
+        "y": 600
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1560,
-        "y": 240
+        "x": 1140,
+        "y": 600
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 1050,
+        "y": 600
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 810,
+        "y": 600
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1920,
-        "y": 240
+        "x": 720,
+        "y": 600
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 2040,
-        "y": 240
+        "x": 630,
+        "y": 600
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 2160,
-        "y": 240
+        "x": 540,
+        "y": 600
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 2280,
-        "y": 240
+        "x": 420,
+        "y": 600
       }
     },
     {
       "id": "bp_1230",
       "layoutPosition": {
-        "x": 2400,
-        "y": 240
+        "x": 0,
+        "y": 600
       }
     },
     {
       "id": "bp_fl_brake_sw",
       "layoutPosition": {
-        "x": 1080,
-        "y": -270
+        "x": 1950,
+        "y": 600
       }
     },
     {
       "id": "bp_fl_clutch_sw",
       "layoutPosition": {
-        "x": 1200,
-        "y": -180
+        "x": 1710,
+        "y": 540
       }
     },
     {
       "id": "bp_fl_cruise_stalk",
       "layoutPosition": {
-        "x": 1800,
-        "y": -270
+        "x": 1050,
+        "y": 750
       }
     },
     {
       "id": "bp_at_ecu_a",
       "layoutPosition": {
-        "x": 1440,
-        "y": 240
+        "x": 1230,
+        "y": 600
       }
     }
   ],

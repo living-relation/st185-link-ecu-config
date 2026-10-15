@@ -75,8 +75,8 @@
         "y": 1500
       },
       "layoutPosition": {
-        "x": 1080,
-        "y": -390
+        "x": 330,
+        "y": 60
       },
       "partId": "tp_ring_m6_22_16",
       "propagate": false
@@ -91,8 +91,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -150
+        "x": 90,
+        "y": -600
       },
       "propagate": false
     },
@@ -106,8 +106,8 @@
         "y": 60
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -90
+        "x": 90,
+        "y": -300
       },
       "propagate": false
     },
@@ -121,8 +121,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -30
+        "x": 90,
+        "y": 120
       },
       "propagate": false
     },
@@ -136,8 +136,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -330
+        "x": 300,
+        "y": -240
       },
       "propagate": false
     },
@@ -151,8 +151,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -270
+        "x": 300,
+        "y": -60
       },
       "propagate": false
     },
@@ -166,8 +166,8 @@
         "y": 300
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -210
+        "x": 300,
+        "y": -150
       },
       "propagate": false
     },
@@ -177,8 +177,8 @@
       "signal": "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4",
       "width": 390,
       "layoutPosition": {
-        "x": 1260,
-        "y": 240
+        "x": 570,
+        "y": 0
       },
       "schematicPosition": {
         "x": 1350,
@@ -195,8 +195,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": -330
+        "x": 180,
+        "y": 60
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_990"
@@ -208,8 +208,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": -390
+        "x": 120,
+        "y": -150
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_990"
@@ -225,8 +225,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1020,
-        "y": -390
+        "x": -30,
+        "y": 90
       },
       "locationId": "bp_960"
     },
@@ -239,8 +239,8 @@
         "y": -90
       },
       "layoutPosition": {
-        "x": 1020,
-        "y": -450
+        "x": -60,
+        "y": 0
       },
       "locationId": "bp_960"
     },
@@ -253,8 +253,8 @@
         "y": -90
       },
       "layoutPosition": {
-        "x": 1020,
-        "y": -510
+        "x": -60,
+        "y": -60
       },
       "locationId": "bp_960"
     },
@@ -267,8 +267,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 1020,
-        "y": -570
+        "x": 30,
+        "y": 150
       },
       "locationId": "bp_960"
     },
@@ -281,8 +281,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 1020,
-        "y": -630
+        "x": -60,
+        "y": -120
       },
       "locationId": "bp_960"
     },
@@ -295,8 +295,8 @@
         "y": 90
       },
       "layoutPosition": {
-        "x": 1260,
-        "y": -330
+        "x": 450,
+        "y": 120
       },
       "locationId": "bp_1020"
     }
@@ -981,36 +981,36 @@
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 960,
-        "y": -240
+        "x": 90,
+        "y": 0
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 1080,
-        "y": -240
+        "x": 210,
+        "y": 0
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1200,
-        "y": -240
+        "x": 330,
+        "y": 0
       }
     },
     {
       "id": "bp_fl_cl_c11",
       "layoutPosition": {
-        "x": 960,
-        "y": -150
+        "x": 0,
+        "y": 0
       }
     },
     {
       "id": "bp_fl_cl_c12",
       "layoutPosition": {
-        "x": 960,
-        "y": -330
+        "x": 210,
+        "y": -150
       }
     }
   ],

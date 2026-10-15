@@ -702,8 +702,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 960,
-        "y": 90
+        "x": 0,
+        "y": 0
       },
       "schematicPosition": {
         "x": 3660,
@@ -891,8 +891,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2280,
-        "y": 450
+        "x": 1320,
+        "y": 1080
       },
       "schematicPosition": {
         "x": 3120,
@@ -923,8 +923,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 3930,
-        "y": 90
+        "x": 2400,
+        "y": 900
       }
     },
     {
@@ -974,8 +974,8 @@
         "y": 1200
       },
       "layoutPosition": {
-        "x": 1560,
-        "y": 480
+        "x": 900,
+        "y": 120
       }
     }
   ],
@@ -990,8 +990,8 @@
         "y": 960
       },
       "layoutPosition": {
-        "x": 2280,
-        "y": -90
+        "x": 1710,
+        "y": 60
       },
       "propagate": false
     },
@@ -1005,8 +1005,8 @@
         "y": 810
       },
       "layoutPosition": {
-        "x": 1560,
-        "y": -120
+        "x": 990,
+        "y": 180
       },
       "propagate": false
     },
@@ -1019,8 +1019,8 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1560,
-        "y": -270
+        "x": 1320,
+        "y": 1140
       },
       "propagate": false
     },
@@ -1033,8 +1033,8 @@
         "y": 1260
       },
       "layoutPosition": {
-        "x": 1560,
-        "y": -360
+        "x": 1320,
+        "y": 1200
       },
       "propagate": false
     },
@@ -1044,8 +1044,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 390
+        "x": 1320,
+        "y": 570
       },
       "schematicPosition": {
         "x": 1770,
@@ -1059,8 +1059,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 2400,
-        "y": 330
+        "x": 1320,
+        "y": 480
       },
       "schematicPosition": {
         "x": 1770,
@@ -1074,8 +1074,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)",
       "width": 390,
       "layoutPosition": {
-        "x": 2640,
-        "y": 450
+        "x": 1320,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1770,
@@ -1089,8 +1089,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)",
       "width": 390,
       "layoutPosition": {
-        "x": 2040,
-        "y": 210
+        "x": 1320,
+        "y": 240
       },
       "schematicPosition": {
         "x": 1770,
@@ -1104,8 +1104,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: ETB relay 87 to ECU-B B5 (crossover b)",
       "width": 390,
       "layoutPosition": {
-        "x": 2220,
-        "y": 540
+        "x": 1560,
+        "y": 810
       },
       "schematicPosition": {
         "x": 1260,
@@ -1119,8 +1119,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4",
       "width": 390,
       "layoutPosition": {
-        "x": 1620,
-        "y": 540
+        "x": 900,
+        "y": -60
       },
       "schematicPosition": {
         "x": 4140,
@@ -1134,8 +1134,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6",
       "width": 390,
       "layoutPosition": {
-        "x": 1620,
-        "y": 600
+        "x": 900,
+        "y": 0
       },
       "schematicPosition": {
         "x": 4140,
@@ -1149,8 +1149,8 @@
       "signal": "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "width": 390,
       "layoutPosition": {
-        "x": 2460,
-        "y": 210
+        "x": 1320,
+        "y": 1020
       },
       "schematicPosition": {
         "x": 1380,
@@ -1164,8 +1164,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11",
       "width": 390,
       "layoutPosition": {
-        "x": 1380,
-        "y": -180
+        "x": 360,
+        "y": 0
       },
       "schematicPosition": {
         "x": 720,
@@ -1179,8 +1179,8 @@
       "signal": "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)",
       "width": 390,
       "layoutPosition": {
-        "x": 2220,
-        "y": 270
+        "x": 1320,
+        "y": 960
       },
       "schematicPosition": {
         "x": 3180,
@@ -1194,8 +1194,8 @@
       "signal": "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
-        "y": 180
+        "x": 360,
+        "y": -420
       },
       "schematicPosition": {
         "x": 3300,
@@ -1209,8 +1209,8 @@
       "signal": "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14",
       "width": 390,
       "layoutPosition": {
-        "x": 1020,
-        "y": 210
+        "x": 360,
+        "y": -510
       },
       "schematicPosition": {
         "x": 3300,
@@ -1224,8 +1224,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
       "width": 390,
       "layoutPosition": {
-        "x": 1020,
-        "y": 300
+        "x": 360,
+        "y": -180
       },
       "schematicPosition": {
         "x": 3300,
@@ -1239,8 +1239,8 @@
       "signal": "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis",
       "width": 390,
       "layoutPosition": {
-        "x": 1020,
-        "y": 270
+        "x": 360,
+        "y": -240
       },
       "schematicPosition": {
         "x": 3300,
@@ -1254,8 +1254,8 @@
       "signal": "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24",
       "width": 390,
       "layoutPosition": {
-        "x": 1020,
-        "y": 360
+        "x": 360,
+        "y": -120
       },
       "schematicPosition": {
         "x": 3300,
@@ -1269,8 +1269,8 @@
       "signal": "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)",
       "width": 390,
       "layoutPosition": {
-        "x": 1020,
-        "y": 240
+        "x": 360,
+        "y": -330
       },
       "schematicPosition": {
         "x": 3300,
@@ -1284,8 +1284,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
       "width": 390,
       "layoutPosition": {
-        "x": 3720,
-        "y": 570
+        "x": 2160,
+        "y": 780
       },
       "schematicPosition": {
         "x": 3120,
@@ -1299,8 +1299,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: EPS enable relay k_eps_en 85 <- ECU-B B12",
       "width": 390,
       "layoutPosition": {
-        "x": 3720,
-        "y": 510
+        "x": 2160,
+        "y": 840
       },
       "schematicPosition": {
         "x": 3120,
@@ -1314,8 +1314,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
       "width": 390,
       "layoutPosition": {
-        "x": 1560,
-        "y": 390
+        "x": 1320,
+        "y": 1260
       },
       "schematicPosition": {
         "x": 3120,
@@ -1329,8 +1329,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
-        "y": 30
+        "x": 1710,
+        "y": 0
       },
       "schematicPosition": {
         "x": 660,
@@ -1344,8 +1344,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)",
       "width": 390,
       "layoutPosition": {
-        "x": 2280,
-        "y": -30
+        "x": 1710,
+        "y": -90
       },
       "schematicPosition": {
         "x": 660,
@@ -1363,8 +1363,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 270
+        "x": 1320,
+        "y": 750
       },
       "propagate": false
     },
@@ -1378,8 +1378,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 2460,
-        "y": 330
+        "x": 1320,
+        "y": 660
       },
       "propagate": false
     },
@@ -1392,8 +1392,8 @@
         "y": 1320
       },
       "layoutPosition": {
-        "x": 1560,
-        "y": -420
+        "x": 1320,
+        "y": 1320
       },
       "propagate": false
     }
@@ -1408,8 +1408,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_1200",
       "layoutPosition": {
-        "x": 2340,
-        "y": 150
+        "x": 1350,
+        "y": 0
       }
     },
     {
@@ -1420,7 +1420,7 @@
       },
       "layoutPosition": {
         "x": 1260,
-        "y": 150
+        "y": 1140
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_b"
@@ -1430,8 +1430,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
       "layoutPosition": {
-        "x": 1020,
-        "y": 150
+        "x": 930,
+        "y": 960
       },
       "schematicPosition": {
         "x": 2400,
@@ -1443,8 +1443,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
       "layoutPosition": {
-        "x": 1980,
-        "y": 150
+        "x": 900,
+        "y": 840
       },
       "schematicPosition": {
         "x": 2400,
@@ -1456,8 +1456,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_870",
       "layoutPosition": {
-        "x": 1080,
-        "y": 150
+        "x": -60,
+        "y": 900
       },
       "schematicPosition": {
         "x": 3000,
@@ -1473,8 +1473,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 2400,
-        "y": 150
+        "x": 990,
+        "y": 990
       }
     },
     {
@@ -1486,8 +1486,8 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": -270
+        "x": 1200,
+        "y": 1110
       }
     },
     {
@@ -1499,8 +1499,8 @@
         "y": 1260
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": -360
+        "x": 1260,
+        "y": 1200
       }
     }
   ],
@@ -1510,8 +1510,8 @@
       "partId": "rp_470",
       "locationId": "bp_1230",
       "layoutPosition": {
-        "x": 2460,
-        "y": 150
+        "x": 1680,
+        "y": 960
       },
       "schematicPosition": {
         "x": 510,
@@ -1527,8 +1527,8 @@
         "y": 1170
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": -270
+        "x": 1200,
+        "y": 1170
       }
     },
     {
@@ -1540,8 +1540,8 @@
         "y": 1170
       },
       "layoutPosition": {
-        "x": 1920,
-        "y": -270
+        "x": 1200,
+        "y": 1230
       }
     },
     {
@@ -1553,8 +1553,8 @@
         "y": 1320
       },
       "layoutPosition": {
-        "x": 1920,
-        "y": -360
+        "x": 1140,
+        "y": 1080
       }
     }
   ],
@@ -5226,211 +5226,211 @@
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 960,
-        "y": 240
+        "x": 0,
+        "y": -60
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 1080,
-        "y": 240
+        "x": 360,
+        "y": -60
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1200,
-        "y": 240
+        "x": 450,
+        "y": -60
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1560,
-        "y": 240
+        "x": 660,
+        "y": 60
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 900,
+        "y": 60
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 990,
+        "y": 60
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1920,
-        "y": 240
+        "x": 1080,
+        "y": 60
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 2040,
-        "y": 240
+        "x": 1170,
+        "y": 60
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 2160,
-        "y": 240
+        "x": 1260,
+        "y": 60
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 2280,
-        "y": 240
+        "x": 1350,
+        "y": 60
       }
     },
     {
       "id": "bp_1230",
       "layoutPosition": {
-        "x": 2400,
-        "y": 240
+        "x": 1740,
+        "y": 960
       }
     },
     {
       "id": "bp_fl_ign_sw",
       "layoutPosition": {
-        "x": 1560,
-        "y": -180
+        "x": 900,
+        "y": 180
       }
     },
     {
       "id": "bp_fl_start_req",
       "layoutPosition": {
-        "x": 2280,
-        "y": -90
+        "x": 1560,
+        "y": 60
       }
     },
     {
       "id": "b_bp_870",
       "layoutPosition": {
-        "x": 960,
-        "y": 240
+        "x": 0,
+        "y": 900
       }
     },
     {
       "id": "b_bp_900",
       "layoutPosition": {
-        "x": 1080,
-        "y": 240
+        "x": 120,
+        "y": 900
       }
     },
     {
       "id": "b_bp_930",
       "layoutPosition": {
-        "x": 1200,
-        "y": 240
+        "x": 360,
+        "y": 900
       }
     },
     {
       "id": "b_bp_960",
       "layoutPosition": {
-        "x": 1320,
-        "y": 240
+        "x": 450,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1020",
       "layoutPosition": {
-        "x": 1560,
-        "y": 240
+        "x": 660,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1050",
       "layoutPosition": {
-        "x": 1680,
-        "y": 240
+        "x": 780,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1080",
       "layoutPosition": {
-        "x": 1920,
-        "y": 240
+        "x": 960,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1110",
       "layoutPosition": {
-        "x": 2040,
-        "y": 240
+        "x": 1320,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1140",
       "layoutPosition": {
-        "x": 2160,
-        "y": 240
+        "x": 1410,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1170",
       "layoutPosition": {
-        "x": 2280,
-        "y": 240
+        "x": 1560,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1200",
       "layoutPosition": {
-        "x": 2400,
-        "y": 240
+        "x": 1650,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1230",
       "layoutPosition": {
-        "x": 2520,
-        "y": 240
+        "x": 1740,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1260",
       "layoutPosition": {
-        "x": 2640,
-        "y": 240
+        "x": 1830,
+        "y": 900
       }
     },
     {
       "id": "b_bp_2100",
       "layoutPosition": {
-        "x": 3480,
-        "y": 240
+        "x": 2160,
+        "y": 900
       }
     },
     {
       "id": "b_bp_2130",
       "layoutPosition": {
-        "x": 3600,
-        "y": 240
+        "x": 2250,
+        "y": 900
       }
     },
     {
       "id": "b_bp_1065",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": 870,
+        "y": 900
       }
     },
     {
       "id": "bp_at_ecu_a",
       "layoutPosition": {
-        "x": 1440,
-        "y": 240
+        "x": 570,
+        "y": 900
       }
     }
   ],
