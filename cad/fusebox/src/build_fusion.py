@@ -239,12 +239,41 @@ def build(out_dir, save=True, renders=True, rev=6):
     root = design.rootComponent
     for i in range(root.occurrences.count - 1, -1, -1):
         root.occurrences.item(i).deleteMe()
-    report = {'bends': [], 'labels': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}, 'terminal_holes': {}, 'terminal_slots': {}, 'guide_walls': {}}
+    report = {'bends': [], 'labels': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}, 'terminal_holes': {}, 'terminal_slots': {}, 'guide_walls': {}, 'feature_support': {}}
     PLAN7 = None
     if rev == 7:   # J2 = B (R94): the wire plan (wiring_sim.py) names the terminal and wire in every cavity
         PLAN7 = json.load(open(os.path.join(os.path.dirname(SRC), 'rev7', 'wiring_plan.json'), encoding='utf-8'))
 
-    def crimp_holes(box_name, z_d, z_t):
+    def backing(foot, z, support):
+        """Share (0..1) of a feature's top face (footprint body foot, any z) that has solid printed material right above it (z .. z + 1)
+        in the union of the support bodies - R101: a rib or saddle is only supported where this is 1."""
+        slab = tb.copy(foot)
+        bb = slab.boundingBox
+        m = adsk.core.Matrix3D.create()
+        m.translation = V(0, 0, z / 10.0 - bb.minPoint.z)
+        tb.transform(slab, m)
+        bo(slab, box(bb.minPoint.x * 10 - 1, bb.minPoint.y * 10 - 1, z, bb.maxPoint.x * 10 + 1, bb.maxPoint.y * 10 + 1, z + 1.0), 'i')
+        v0 = slab.volume
+        if v0 <= 0:
+            return 1.0
+        hit = 0.0
+        for sp in support:
+            t_ = tb.copy(slab)
+            try:
+                bo(t_, tb.copy(sp), 'i')
+                hit += t_.volume
+            except RuntimeError:   # no overlap
+                pass
+        return min(1.0, hit / v0)
+
+    def support_union(parts):
+        """One body of copies of the given parts (the parts themselves stay as they are)."""
+        u = tb.copy(parts[0])
+        for p_ in parts[1:]:
+            bo(u, tb.copy(p_), 'u')
+        return u
+
+    def crimp_holes(box_name, z_d, z_t, support=None, plate_b=None):
         """J2 = B (Dan 2026-10-14, R94): every terminal hole in the base takes its crimp barrel - the insulation barrel closed on the
         wire insulation (never below the smallest insulation the terminal is made for) plus the metal both sides, + CLR per side
         (S.hole_d, TE page data in S.TERM). Round bore from under the deck up to the top of the barrel zone (the lower BARREL_FRAC of the
@@ -252,7 +281,10 @@ def build(out_dir, save=True, renders=True, rev=6):
         into one slot (Dan: "join the two slots into one"). Short guide walls hang under the deck between neighbouring holes (Dan:
         "short separators or walls ... to help guide wires straight out"); the bores are cut through them, so a wall never narrows a
         hole. 87a cavities get a bore only when a harness wire lands there (none today: next to 85 / 86 it would leave 0.4 mm).
-        Returns (cuts, guide walls) and records every hole for check_terminal_holes.py."""
+        R101 (Dan 2026-10-15: "the little ribs ... are just floating. fill in the gaps between relay positions under the ribs"): a guide
+        wall whose top is not fully backed by a cavity tower (it crosses the gap between two relay / fuse positions) gets a web of its
+        own footprint from its top up into the deck plate, so every wall stands on solid base material.
+        Returns (cuts, guide walls + webs) and records every hole for check_terminal_holes.py."""
         if not PLAN7:
             return [], []
         HO, G = S.HOLE, S.GUIDE
@@ -289,21 +321,35 @@ def build(out_dir, save=True, renders=True, rev=6):
         gid = {}
         for i, h in enumerate(hs):
             h['group'] = gid.setdefault(root_(i), len(gid))
-        fins = []
+        fins, fin_d = [], []
         for (i, j, d) in near_:
             a, b = hs[i], hs[j]
             if a['group'] == b['group']:
                 continue
             ang = math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x'])) + 90.0
-            fins.append(rbox((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, z_d - G['h'], z_d + 0.01, max(a['hole_d'], b['hole_d']) + 2.0, G['t'], ang))
+            fd = ((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, max(a['hole_d'], b['hole_d']) + 2.0, G['t'], ang)
+            fin_d.append(fd)
+            fins.append(rbox(fd[0], fd[1], z_d - G['h'], z_d + 0.01, fd[2], fd[3], fd[4]))
+        webs, sup = [], []
+        if support is not None and fins:
+            U = [support_union(support)]
+            for (f_, fd) in zip(fins, fin_d):
+                c0 = backing(f_, z_d + 0.01, U)
+                if c0 < 0.999:     # the wall bridges a gap between two towers: web of its own footprint up into the deck plate
+                    webs.append(rbox(fd[0], fd[1], z_d - 0.01, plate_b + 0.01, fd[2], fd[3], fd[4]))
+                sup.append(dict(kind='guide wall', at=[round(fd[0], 1), round(fd[1], 1)], before=round(c0, 3), web=c0 < 0.999))
+            U2 = [support_union(support + webs)] if webs else U
+            for s_, f_ in zip(sup, fins):
+                s_['after'] = round(backing(f_, z_d + 0.01, U2), 3)
+        report['feature_support'].setdefault(box_name, []).extend(sup)
         sh_ = S.PLACE[box_name]
         report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], d=h['hole_d'], z0=round(z_d, 2), z1=h['z1'],
                                                    group=h['group'], part=h['part'], wire_od=h['wire_od'], source=h['source'], est=h['est'])
                                               for h in hs]
         report['terminal_slots'][box_name] = [sorted(h['cav'] for h in hs if h['group'] == g) for g in range(len(gid))
                                               if sum(1 for h in hs if h['group'] == g) > 1]
-        report['guide_walls'][box_name] = dict(n=len(fins), t=G['t'], h=G['h'], world_shift=sh_)
-        return cuts, fins
+        report['guide_walls'][box_name] = dict(n=len(fins), t=G['t'], h=G['h'], world_shift=sh_, webs=len(webs))
+        return cuts, fins + webs
 
     alib = app.materialLibraries.itemByName('Fusion Appearance Library')
     mlib = app.materialLibraries.itemByName('Fusion Material Library')
@@ -750,6 +796,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         if R7:            # printed barrier wall between the NEG terminals and the POS bar, deck top to 20 above it (rev 7)
             parts.append(box(R7['barrier'][0], 168.0, z_t - 0.01, R7['barrier'][1], D7, z_t + R7['barrier_h']))
         saddles = []
+        U_sad = [support_union(parts)] if R7 else None
         for a in ami:            # saddles: one per relay feed, the inside of its bend (R_SADDLE), hanging under the deck
             if a['row'] != 'IN' or not a['amps']:
                 continue
@@ -763,14 +810,21 @@ def build(out_dir, save=True, renders=True, rev=6):
                 lip = bo(cyl((ccx, a['y'] + sy * (od / 2 + 0.5), ccz), (ccx, a['y'] + sy * (od / 2 + 2.0), ccz), 2 * (S.R_SADDLE + od * 0.6)),
                          box(ccx - S.R_SADDLE - od - 2, a['y'] - 10, ccz - S.R_SADDLE - od - 2, ccx, a['y'] + 10, ccz), 'i')
                 bo(core, lip, 'u')
-            bo(core, box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, z_d + 0.5), 'u')
+            top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, z_d + 0.5)
+            if R7:   # R101 (Dan 2026-10-15: "add material under the radius runners"): the saddle's back runs on up into the deck plate
+                c0 = backing(top_, z_d + 0.5, U_sad)
+                top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, plate_b + 0.01)
+                report['feature_support'].setdefault('POWER', []).append(dict(
+                    kind='saddle', at=[round(ccx - rs / 2, 1), round(a['y'], 1)], before=round(c0, 3), web=True,
+                    after=round(backing(top_, plate_b + 0.01, [box(0, 0, plate_b, L, D7, z_t)]), 3)))
+            bo(core, top_, 'u')
             saddles.append(core)
         parts += saddles
         z_leg = z_t - CV['over'] - 1.0
         # rev 7: no foot under the NEG cables - the rear inboard foot moves round to the inboard end, behind the harness exits
         leg_at = [('-y', 30.0), ('-y', L - 30.0), ('+y', L - 30.0), ('-x', D7 - 30.0)] if R7 else [(f, u) for f in ('-y', '+y') for u in (30.0, L - 30.0)]
         feet = [angular_leg(f, u, L, D7, z_leg, parts, lims) for (f, u) in leg_at]
-        holes_p, fins_p = crimp_holes('POWER', z_d, z_t)
+        holes_p, fins_p = crimp_holes('POWER', z_d, z_t, parts, plate_b)
         deck = base_shell(L, z_d, z_t, parts + fins_p)
         cuts = base_snap_cuts(L, z_t, z_d, 'y') + holes_p
         B_ = dict(S.BAR, y1=R7['bar_y1']) if R7 else S.BAR       # rev 7: the POS bar runs on into the bus zone
@@ -1060,7 +1114,7 @@ def build(out_dir, save=True, renders=True, rev=6):
             parts.append(box(spx + SP['t'] / 2 - 0.01, CH['floor_y'][0], CH['floor'][0], CH['floor_x'][1], CH['wide_y'], CH['floor'][1]))
         z_leg = z_t - CV['over'] - 1.0
         feet = [angular_leg(f, u, L, S.D, z_leg, parts, lims) for f in ('-x', '+x') for u in (30.0, S.D - 30.0)]
-        holes_l, fins_l = crimp_holes('LOGIC', z_d, z_t)
+        holes_l, fins_l = crimp_holes('LOGIC', z_d, z_t, parts, plate_b)
         deck = base_shell(L, z_d, z_t, parts + fins_l)
         cuts = base_snap_cuts(L, z_t, z_d, 'x') + holes_l
         for (col, nm, amps, cx, y, n_, i) in mini:              # 2 x 2.8 mm receptacles per mini fuse (input + output)
@@ -1459,7 +1513,9 @@ def build(out_dir, save=True, renders=True, rev=6):
             ob = mm.getOrientedBoundingBox(o.bRepBodies.item(0), V(1, 0, 0), V(0, 1, 0))
             vol = sum(b.volume for b in o.bRepBodies)
             printed[n] = dict(size_mm=[round(ob.length * 10, 1), round(ob.width * 10, 1), round(ob.height * 10, 1)], volume_cm3=round(vol, 1),
-                              mass_g_pa12=round(vol * 1.01, 0), bodies=o.bRepBodies.count)
+                              mass_g_pa12=round(vol * 1.01, 0), bodies=o.bRepBodies.count,
+                              lumps=sum(b.lumps.count for b in o.bRepBodies),          # R101: one lump = nothing floating (check_printed_solid.py)
+                              shells=sum(l_.shells.count for b in o.bRepBodies for l_ in b.lumps))
     report['printed_parts'] = printed
     report['boxes_mm'] = {k: {kk: round(vv, 1) for kk, vv in v.items() if isinstance(vv, (int, float))} for k, v in sizes.items()}
     report['bar_metal'] = S.BAR_METAL
@@ -1507,7 +1563,7 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: J answers (R94) - crimp-sized terminal holes, guide walls, LOGIC front channel + splices, pan rib / relief (Claude Code 2026-10-14)')
+            doc.save('rev 7: R101 - webs under the guide walls between relay positions, saddles carried up to the deck (Claude Code 2026-10-15)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7

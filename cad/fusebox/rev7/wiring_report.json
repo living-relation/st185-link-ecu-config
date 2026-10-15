@@ -691,5 +691,5 @@
    "end": "splice (est (generic solder splice, adhesive heat shrink over))"
   }
  },
- "source": "cad/fusebox/src/render_wired_rev7.py in Fusion (ST185_fusebox_rev7, not saved), 2026-10-15 (J answers, R94)"
+ "source": "cad/fusebox/src/render_wired_rev7.py in Fusion (ST185_fusebox_rev7, not saved), 2026-10-15 (ribs + saddles supported, R95)"
 }

@@ -1007,132 +1007,132 @@
   "fusebox_render_routing_power.png": [
    [
     1,
-    785.1,
-    400.3,
+    806.4,
+    423.9,
     "harness bundles to the inboard edge"
    ],
    [
     2,
-    1104.9,
-    511.6,
+    1080.0,
+    512.8,
     "relay feed: lug on the 40 mm standoff"
    ],
    [
     3,
-    984.1,
-    433.4,
+    972.2,
+    446.4,
     "feed bends up R16 into terminal 30"
    ],
    [
     4,
-    1269.5,
-    643.0,
+    1261.2,
+    640.7,
     "OUT lug on the 40 mm standoff"
    ],
    [
     5,
-    1385.5,
-    667.9,
+    1389.1,
+    669.1,
     "OUT cables straight out the end"
    ],
    [
     6,
-    1174.7,
-    607.5,
+    1213.8,
+    618.2,
     "1/0 battery feed in"
    ],
    [
     7,
-    568.4,
-    574.3,
+    532.9,
+    579.1,
     "NEG bus: grounds straight out the rear"
    ]
   ],
   "fusebox_render_routing_logic.png": [
    [
     1,
-    846.7,
-    609.9,
+    852.6,
+    600.4,
     "Bus 1 fuse wires"
    ],
    [
     2,
-    992.4,
-    651.3,
+    984.1,
+    640.7,
     "Bus 2 fuse wires"
    ],
    [
     3,
-    1114.3,
-    615.8,
+    1094.2,
+    607.5,
     "micro relay wires, inboard column"
    ],
    [
     4,
-    1198.4,
-    641.8,
+    1174.7,
+    632.4,
     "micro relay wires, outboard column"
    ],
    [
     5,
-    1308.6,
-    473.7,
+    1226.8,
+    484.3,
     "all leave the front edge"
    ],
    [
     6,
     903.6,
-    493.8,
+    497.4,
     "fuse input jumpers drop straight into their lugs"
    ],
    [
     7,
-    887.0,
+    888.2,
     535.3,
     "bus strips on edge, printed spine between"
    ],
    [
     8,
-    1158.2,
-    360.0,
+    1104.9,
+    394.3,
     "Bus 1 feed in at the front"
    ],
    [
     9,
-    585.0,
-    838.4,
+    545.9,
+    876.3,
     "Bus 2 feed in at the rear"
    ]
   ],
   "fusebox_power_explode.png": [
    [
     1,
-    917.8,
-    106.6,
+    916.6,
+    127.9,
     "cover (snaps on, 4 tongues)"
    ],
    [
     2,
-    858.6,
-    287.8,
+    860.9,
+    302.0,
     "relays plug in from the top"
    ],
    [
     3,
-    1011.3,
-    382.5,
+    1008.9,
+    387.2,
     "AMI fuses on the studs"
    ],
    [
     4,
     903.6,
-    323.3,
+    326.8,
     "Keps nuts, 4 Nm max"
    ],
    [
     5,
-    987.6,
-    419.2,
+    986.4,
+    420.4,
     "M5 set screws (studs)"
    ],
    [
@@ -1155,40 +1155,40 @@
    ],
    [
     9,
-    884.6,
-    607.5,
+    883.4,
+    608.7,
     "bar bolts up from below"
    ],
    [
     10,
-    984.1,
-    705.8,
+    986.4,
+    710.5,
     "standoffs 40 mm (both rows, one part)"
    ],
    [
     11,
-    990.0,
-    823.0,
+    993.6,
+    836.1,
     "cable lugs"
    ],
    [
     12,
-    990.0,
-    823.0,
+    993.6,
+    836.1,
     "M5 x 10 lug bolts"
    ],
    [
     13,
     916.6,
-    876.3,
+    895.3,
     "belly pan (snaps on)"
    ]
   ],
   "fusebox_power_step1.png": [
    [
     1,
-    1107.2,
-    253.4,
+    1116.7,
+    241.6,
     "lay the bar in its pocket"
    ],
    [
@@ -1199,14 +1199,14 @@
    ],
    [
     3,
-    859.7,
+    858.6,
     540.0,
     "bar bolts up through the hex head pockets"
    ],
    [
     4,
-    1177.1,
-    729.5,
+    1184.2,
+    734.2,
     "40 mm standoffs up into the hex holes, both rows"
    ],
    [
@@ -1217,7 +1217,7 @@
    ],
    [
     6,
-    898.8,
+    900.0,
     502.1,
     "base, right way up"
    ]
@@ -1225,84 +1225,84 @@
   "fusebox_power_step2.png": [
    [
     1,
-    716.4,
-    496.2,
+    734.2,
+    499.7,
     "crimp, push each terminal up into its cavity (wire side)"
    ],
    [
     2,
-    986.4,
-    615.8,
+    980.5,
+    609.9,
     "relay feed lug on its long standoff (M5 x 10)"
    ],
    [
     3,
     896.4,
-    521.1,
+    522.2,
     "feed round its saddle into terminal 30"
    ],
    [
     4,
-    1117.9,
-    716.4,
+    1119.1,
+    717.6,
     "OUT lug on its standoff (M5 x 10)"
    ],
    [
     5,
-    621.7,
-    522.2,
+    654.9,
+    523.4,
     "tie the bundles; they leave the inboard end"
    ]
   ],
   "fusebox_power_step3.png": [
    [
     1,
-    1143.9,
-    412.1,
+    1132.1,
+    418.0,
     "AMI fuses on the studs"
    ],
    [
     2,
-    866.8,
-    355.3,
+    868.0,
+    356.4,
     "Keps nuts, 4 Nm max"
    ],
    [
     3,
-    746.1,
-    407.4,
+    761.4,
+    419.2,
     "relays plug in"
    ],
    [
     4,
-    828.9,
-    524.6,
+    842.0,
+    525.8,
     "ACPS mini fuse"
    ],
    [
     5,
-    995.9,
-    432.2,
+    1007.8,
+    421.6,
     "1/0 lug on the M8 stud"
    ]
   ],
   "fusebox_power_step4.png": [
    [
     1,
-    901.2,
-    768.6,
+    902.4,
+    776.8,
     "belly pan snaps up into the skirt"
    ],
    [
     2,
     902.4,
-    219.1,
+    230.9,
     "cover snaps down over the deck"
    ],
    [
     3,
-    988.8,
-    819.5,
+    975.8,
+    778.0,
     "M6 through each foot (4), steel limiter"
    ]
   ],
@@ -1310,19 +1310,19 @@
    [
     1,
     900.0,
-    100.7,
+    129.1,
     "cover (snaps on)"
    ],
    [
     2,
-    942.6,
-    286.6,
+    940.3,
+    294.9,
     "micro relays"
    ],
    [
     3,
-    922.5,
-    377.8,
+    921.3,
+    386.1,
     "mini fuses"
    ],
    [
@@ -1334,31 +1334,31 @@
    [
     5,
     894.1,
-    734.2,
+    738.9,
     "Bus 1 / Bus 2 strips on edge, slide in from the rear"
    ],
    [
     6,
     907.1,
-    740.1,
+    742.5,
     "input jumper lugs, TE PIDG 53941-1"
    ],
    [
     7,
     907.1,
-    750.8,
+    754.3,
     "M4 x 8 + spring washer into the tapped strip"
    ],
    [
     8,
     894.1,
-    743.7,
+    748.4,
     "feed lugs, M5 x 10 into the strip"
    ],
    [
     9,
     900.0,
-    869.2,
+    890.5,
     "belly pan (snaps on)"
    ]
   ]
@@ -3142,7 +3142,8 @@
    "world_shift": [
     0.0,
     0.0
-   ]
+   ],
+   "webs": 9
   },
   "POWER": {
    "n": 19,
@@ -3151,8 +3152,2035 @@
    "world_shift": [
     160.0,
     0.0
-   ]
+   ],
+   "webs": 0
   }
+ },
+ "feature_support": {
+  "LOGIC": [
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     28.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     100.9
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     76.6
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     84.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     92.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     24.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     28.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     32.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     102.0
+    ],
+    "before": 0.937,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     105.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     96.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     110.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     113.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     117.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     121.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     121.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     114.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     118.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     121.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     121.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     125.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     36.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     40.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     43.6
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     47.6
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     48.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     51.6
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     56.3
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     60.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     55.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     59.7
+    ],
+    "before": 0.988,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     64.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     68.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     70.8
+    ],
+    "before": 0.761,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     72.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     76.6
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     74.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     78.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     80.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     84.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     40.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     43.8,
+     82.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     86.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     34.5,
+     88.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     37.5,
+     92.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     90.9
+    ],
+    "before": 0.814,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     17.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     17.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     51.5,
+     21.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     25.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     25.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     60.8,
+     21.0
+    ],
+    "before": 0.05,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     137.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     137.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     70.0,
+     141.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     145.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     60.8,
+     141.0
+    ],
+    "before": 0.05,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     145.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     47.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     47.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     51.5,
+     51.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     55.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     55.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     60.8,
+     51.0
+    ],
+    "before": 0.05,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     77.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     77.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     51.5,
+     81.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     85.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     85.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     60.8,
+     81.0
+    ],
+    "before": 0.05,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     107.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     107.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     51.5,
+     111.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     115.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     115.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     60.8,
+     111.0
+    ],
+    "before": 0.05,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     137.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     137.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     51.5,
+     141.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     49.2,
+     145.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     53.8,
+     145.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     17.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     17.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     70.0,
+     21.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     25.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     25.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     47.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     47.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     70.0,
+     51.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     55.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     55.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     77.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     77.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     70.0,
+     81.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     85.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     85.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     107.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     107.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     70.0,
+     111.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     67.8,
+     115.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     72.2,
+     115.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   }
+  ],
+  "POWER": [
+   {
+    "kind": "saddle",
+    "at": [
+     66.4,
+     43.0
+    ],
+    "before": 0.148,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     36.3,
+     61.0
+    ],
+    "before": 0.153,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     65.3,
+     79.0
+    ],
+    "before": 0.153,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     37.4,
+     97.0
+    ],
+    "before": 0.084,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     66.4,
+     115.0
+    ],
+    "before": 0.084,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     36.7,
+     133.0
+    ],
+    "before": 0.133,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     35.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     51.0,
+     43.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     38.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     38.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     47.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.0,
+     47.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.0,
+     43.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     12.8,
+     56.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     12.8,
+     65.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     74.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     83.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     12.8,
+     92.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     12.8,
+     101.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     110.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     119.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     12.8,
+     128.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     12.8,
+     137.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     146.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     41.8,
+     155.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   }
+  ]
  },
  "logic_jumpers": {
   "strips": {
@@ -3217,9 +5245,11 @@
     181.0,
     60.5
    ],
-   "volume_cm3": 243.6,
-   "mass_g_pa12": 246.0,
-   "bodies": 1
+   "volume_cm3": 244.6,
+   "mass_g_pa12": 247.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "Logic_Pan_PA12_printed": {
    "size_mm": [
@@ -3229,7 +5259,9 @@
    ],
    "volume_cm3": 74.5,
    "mass_g_pa12": 75.0,
-   "bodies": 1
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "Logic_Cover_PA12_printed": {
    "size_mm": [
@@ -3239,7 +5271,9 @@
    ],
    "volume_cm3": 95.1,
    "mass_g_pa12": 96.0,
-   "bodies": 1
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "Power_Base_PA12_printed": {
    "size_mm": [
@@ -3247,9 +5281,11 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 446.4,
-   "mass_g_pa12": 451.0,
-   "bodies": 1
+   "volume_cm3": 455.9,
+   "mass_g_pa12": 460.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "Power_Pan_PA12_printed": {
    "size_mm": [
@@ -3259,7 +5295,9 @@
    ],
    "volume_cm3": 157.2,
    "mass_g_pa12": 159.0,
-   "bodies": 1
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "Power_Cover_PA12_printed": {
    "size_mm": [
@@ -3269,7 +5307,9 @@
    ],
    "volume_cm3": 195.9,
    "mass_g_pa12": 198.0,
-   "bodies": 1
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "BattRelay_Base_PA12_printed": {
    "size_mm": [
@@ -3279,7 +5319,9 @@
    ],
    "volume_cm3": 124.5,
    "mass_g_pa12": 126.0,
-   "bodies": 1
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   },
   "BattRelay_Cover_PA12_printed": {
    "size_mm": [
@@ -3289,7 +5331,9 @@
    ],
    "volume_cm3": 107.0,
    "mass_g_pa12": 108.0,
-   "bodies": 1
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
   }
  },
  "boxes_mm": {

@@ -73,7 +73,8 @@ A('<p class="mut">Claude Code, 2026-10-14. Your E2 answer: "make a separate new 
   '<b>P7 = A, U1 = A (DECISIONS R91)</b>. The POWER box below is selected for build. The LOGIC box is rebuilt here for your 3 mm rule '
   '(<a href="#clearance">3 mm fix</a>, R93); the battery relay block stays rev 6 (<a href="../ST185-fusebox-summary.html">rev 6 page</a>). '
   '<a href="#views">Every wire simulated: sides, exploded, underneath, routing, the boxes cabled together</a>. '
-  'Your J1-J4 answers are built in (DECISIONS R94): <a href="#janswers">J answers</a>.</p>')
+  'Your J1-J4 answers are built in (DECISIONS R94): <a href="#janswers">J answers</a>. '
+  'The floating ribs and saddles you marked are joined to the base (R101): <a href="#r95">ribs + saddles supported</a>.</p>')
 A('<div class="note"><b>The idea in one line:</b> the glove-box bus bar and the POWER box become one thing. The bus bar\'s + bar runs right '
   'through the POWER box and the AMI fuses bolt straight onto it. No second copper bar, no separate bus bar box, no thick cable between them.</div>')
 A('<div class="kpi">')
@@ -238,6 +239,32 @@ A('<div class="note"><b>Found while sizing the holes (OPEN-ITEMS row 121):</b> %
 A('<p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm '
   'of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>')
 
+FS = rep.get('feature_support', {})
+A('<h2 id="r95">Ribs and saddles supported (DECISIONS R101)</h2>')
+A('<p>Your markup 2026-10-15: "the little ribs and the wire radius runners are just floating. fill in the gaps between relay positions '
+  'under the ribs and add material under the radius runners". They were joined to the base, but only by a sliver: a guide wall crossing the gap '
+  'between two relay positions had cavity tower over its ends only, and each POWER bend saddle met the deck only where the relay tower was. '
+  'Now:</p><ul>')
+for bx, kind, what in (('LOGIC', 'guide wall', 'a web the size of the wall fills the gap between the towers, from the wall up into the deck plate'),
+                       ('POWER', 'saddle', 'the back of the saddle runs on up into the deck plate (it used to stop at the tower bottom)')):
+    L_ = [f for f in FS.get(bx, []) if f['kind'] == kind and f['web']]
+    if L_:
+        A('<li><b>%s, %d %ss</b> (top face %.0f-%.0f %% backed before): %s.</li>' % (bx, len(L_), kind, 100 * min(f['before'] for f in L_),
+          100 * max(f['before'] for f in L_), E(what)))
+A('<li>Every other hanging feature was already fully backed (%s).</li>' % ', '.join(
+    '%s %d of %d' % (bx, sum(1 for f in L_ if not f['web']), len(L_)) for bx, L_ in sorted(FS.items())))
+A('<li>Every printed part of all three boxes (POWER, LOGIC, battery relay block: base, pan, cover) is one solid - one body, one lump, one shell '
+  'in Fusion and one connected mesh in its STL. New HARD gate <code>cad/fusebox/src/check_printed_solid.py</code> (in <code>check_all.py</code>) '
+  'checks all three things.</li>')
+A('<li>The LOGIC front channel floor is a shelf carried by the spine. It is connected, but nothing can go under it: the Bus 1 feed lug sits there.</li></ul>')
+A('<div class="grid">')
+for f, cap in (('r95_logic_section_before.png', 'LOGIC, cut through a guide wall between the micro relay columns - before: a deep slot, the wall hangs at its end'),
+               ('r95_logic_section_after.png', 'After: the slot under the wall is solid'),
+               ('r95_power_saddles_before.png', 'POWER from below, bend saddles - before: each saddle meets the deck only at the relay tower'),
+               ('r95_power_saddles_after.png', 'After: every saddle runs up into the deck plate')):
+    fig(f, cap, 'w')
+A('</div>')
+
 A('<h2 id="views">Every wire in place (simulation)</h2>')
 pb = plan['per_box_wire_ends']
 A('<div class="note">Your question: "aren\'t there going to be more wires in these? can you simulate that?" Every harness wire that lands in a box '
@@ -330,6 +357,10 @@ for k, lbl in (('logic_bus1_to_bus2_min_mm', 'LOGIC any Bus 1 part to any Bus 2 
 bad = [b for b in rep['bends'] if not b['ok']]
 A('<tr><td>Cable bends (3 x OD supported / 10 x OD free, FAA AC 43.13-1B)</td><td class="%s">%d checked, %d fail</td></tr>' % ('ok' if not bad else 'bad', len(rep['bends']), len(bad)))
 A('<tr><td>Interference between solid parts</td><td class="%s">%s</td></tr>' % ('ok' if not rep['interference'] else 'bad', 'none' if not rep['interference'] else E(rep['interference'])))
+pp_ = rep['printed_parts']
+one = all(v.get('lumps') == 1 and v.get('shells') == 1 and v['bodies'] == 1 for v in pp_.values())
+A('<tr><td>Every printed part one solid, every rib / saddle backed (R101)</td><td class="%s">%s</td></tr>' % (
+    'ok' if one else 'bad', ('%d parts, 1 lump each' % len(pp_)) if one else 'FLOATING PIECE'))
 A('<tr><td>Cable through printed plastic</td><td class="%s">%s</td></tr>' % ('ok' if not rep['wire_to_printed_contact'] else 'bad', 'none' if not rep['wire_to_printed_contact'] else E(rep['wire_to_printed_contact'])))
 A('</table></div>')
 
