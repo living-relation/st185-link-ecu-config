@@ -654,8 +654,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2490,
-        "y": 870
+        "x": 1950,
+        "y": 960
       },
       "schematicPosition": {
         "x": 0,
@@ -705,8 +705,8 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 1410,
-        "y": 990
+        "x": 1950,
+        "y": 1620
       },
       "signal": "TrackCluster ESP32-P4 - CAN drop *",
       "partId": "tp_flying_lead",
@@ -721,8 +721,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": 930
+        "x": 2100,
+        "y": 1230
       },
       "signal": "RealDash Pi 5 - CAN drop *",
       "partId": "tp_flying_lead",
@@ -734,8 +734,8 @@
       "signal": "Broken off - continues on ST185-CSB3: CAN H into the CSB3 plug",
       "width": 390,
       "layoutPosition": {
-        "x": 2040,
-        "y": 1170
+        "x": 2100,
+        "y": 1440
       },
       "schematicPosition": {
         "x": 720,
@@ -749,8 +749,8 @@
       "signal": "Broken off - continues on ST185-CSB3: CAN L into the CSB3 plug",
       "width": 390,
       "layoutPosition": {
-        "x": 2040,
-        "y": 1290
+        "x": 2100,
+        "y": 1560
       },
       "schematicPosition": {
         "x": 720,
@@ -764,8 +764,8 @@
       "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
       "width": 390,
       "layoutPosition": {
-        "x": 330,
-        "y": 330
+        "x": 780,
+        "y": 360
       },
       "schematicPosition": {
         "x": 2700,
@@ -779,8 +779,8 @@
       "signal": "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4",
       "width": 390,
       "layoutPosition": {
-        "x": 330,
-        "y": 450
+        "x": 780,
+        "y": 240
       },
       "schematicPosition": {
         "x": 2700,
@@ -794,8 +794,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
-        "y": 150
+        "x": 1680,
+        "y": 900
       },
       "schematicPosition": {
         "x": 1380,
@@ -809,8 +809,8 @@
       "signal": "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
-        "y": 210
+        "x": 1680,
+        "y": 390
       },
       "schematicPosition": {
         "x": 1380,
@@ -824,8 +824,8 @@
       "signal": "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda",
       "width": 390,
       "layoutPosition": {
-        "x": 1200,
-        "y": 450
+        "x": 1230,
+        "y": 240
       },
       "schematicPosition": {
         "x": 2040,
@@ -839,8 +839,8 @@
       "signal": "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda",
       "width": 390,
       "layoutPosition": {
-        "x": 1200,
-        "y": 570
+        "x": 1230,
+        "y": 30
       },
       "schematicPosition": {
         "x": 2040,
@@ -854,8 +854,8 @@
       "signal": "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24",
       "width": 390,
       "layoutPosition": {
-        "x": 1200,
-        "y": 510
+        "x": 1230,
+        "y": 360
       },
       "schematicPosition": {
         "x": 2040,
@@ -869,8 +869,8 @@
       "signal": "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
-        "y": 270
+        "x": 1680,
+        "y": 480
       },
       "schematicPosition": {
         "x": 1380,
@@ -884,8 +884,8 @@
       "signal": "Broken off - drain continues on ST185-B-cabin: sp_shield_can to sp_shield_b (B17)",
       "width": 390,
       "layoutPosition": {
-        "x": 1440,
-        "y": 330
+        "x": 1680,
+        "y": 630
       },
       "schematicPosition": {
         "x": 1380,
@@ -899,8 +899,8 @@
       "signal": "Broken off - screen continues on ST185-CSB3: CAN pair screen into the CSB3 plug run",
       "width": 390,
       "layoutPosition": {
-        "x": 2040,
-        "y": 1230
+        "x": 2100,
+        "y": 1350
       },
       "schematicPosition": {
         "x": 720,
@@ -917,8 +917,8 @@
         "y": 870
       },
       "layoutPosition": {
-        "x": 1410,
-        "y": 1110
+        "x": 1950,
+        "y": 1920
       },
       "signal": "TrackCluster ESP32-P4 - +12V switched (DEV)",
       "partId": "tp_flying_lead",
@@ -933,8 +933,8 @@
         "y": 960
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": 990
+        "x": 2100,
+        "y": 1290
       },
       "signal": "RealDash Pi 5 - +12V switched (DEV) into the Pi's 12 V to 5 V supply",
       "partId": "tp_flying_lead",
@@ -949,8 +949,8 @@
         "y": 1020
       },
       "layoutPosition": {
-        "x": 1410,
-        "y": 1170
+        "x": 1950,
+        "y": 2100
       },
       "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build",
       "partId": "tp_ring_m6_22_16",
@@ -965,8 +965,8 @@
         "y": 1050
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": 1050
+        "x": 2100,
+        "y": 1140
       },
       "signal": "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build",
       "partId": "tp_ring_m6_22_16",
@@ -978,8 +978,8 @@
       "signal": "Broken off - continues on ST185-CabinPower: LOGIC DEV 15A (Bus 2, switched) -> center cluster + RealDash Pi +12V (sp_dev)",
       "width": 390,
       "layoutPosition": {
-        "x": 1410,
-        "y": 1050
+        "x": 1950,
+        "y": 1770
       },
       "schematicPosition": {
         "x": 0,
@@ -996,8 +996,8 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1410,
-        "y": 1230
+        "x": 1950,
+        "y": 2310
       },
       "signal": "TrackCluster ESP32-P4 - ground",
       "partId": "tp_flying_lead",
@@ -1012,8 +1012,8 @@
         "y": 1140
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": 1110
+        "x": 2100,
+        "y": 1020
       },
       "signal": "RealDash Pi 5 - ground (Pi supply 0 V)",
       "partId": "tp_flying_lead",
@@ -2682,8 +2682,8 @@
         "y": -120
       },
       "layoutPosition": {
-        "x": 1710,
-        "y": 810
+        "x": 1530,
+        "y": 930
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_930"
@@ -2695,8 +2695,8 @@
         "y": -120
       },
       "layoutPosition": {
-        "x": 1740,
-        "y": 810
+        "x": 1530,
+        "y": 870
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_930"
@@ -2710,7 +2710,7 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_780",
       "layoutPosition": {
-        "x": 1380,
+        "x": 1140,
         "y": 450
       }
     },
@@ -2723,7 +2723,7 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_780",
       "layoutPosition": {
-        "x": 1410,
+        "x": 1080,
         "y": 450
       }
     },
@@ -2732,8 +2732,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_930",
       "layoutPosition": {
-        "x": 1770,
-        "y": 810
+        "x": 1530,
+        "y": 990
       },
       "schematicPosition": {
         "x": 510,
@@ -2747,8 +2747,8 @@
         "y": 900
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": 810
+        "x": 1470,
+        "y": 930
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_930"
@@ -2763,8 +2763,8 @@
         "y": -90
       },
       "layoutPosition": {
-        "x": 2430,
-        "y": 1110
+        "x": 1890,
+        "y": 1290
       },
       "locationId": "bp_1050"
     },
@@ -2776,8 +2776,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 540,
-        "y": 330
+        "x": 690,
+        "y": 450
       },
       "locationId": "bp_390"
     }
@@ -2921,14 +2921,14 @@
     {
       "id": "bp_390",
       "layoutPosition": {
-        "x": 510,
+        "x": 690,
         "y": 390
       }
     },
     {
       "id": "bp_780",
       "layoutPosition": {
-        "x": 1350,
+        "x": 1140,
         "y": 390
       }
     },
@@ -2942,15 +2942,15 @@
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1680,
-        "y": 870
+        "x": 1590,
+        "y": 930
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 2370,
-        "y": 1110
+        "x": 1950,
+        "y": 1290
       }
     }
   ],
