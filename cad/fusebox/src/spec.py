@@ -323,7 +323,7 @@ def hole_d(part, wire_od):
 # along the front in front of the spine (y 7.25), each on its own level, over a printed floor (the Bus 1 feed lug is under it); the
 # HL / HR splices lie stacked in the channel past the spine; every branch then runs to its relay on its own level. Levels: centre z.
 CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05,
-               splice=dict(x0=27.5, x1=40.0, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 18 AWG
+               splice=dict(x0=27.5, x1=40.0, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 16 AWG (L1; combined 10 AWG)
                z=dict(ETB=20.18, HR=24.16, HL=28.86, HR30=23.1, HR86=25.45, HL30=27.8, HL86=29.95),
                x_etb=44.0, x_hr=60.8)
 CHANNEL_SPLICES = ('sp_hl', 'sp_hr')
