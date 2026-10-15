@@ -1,65 +1,80 @@
 {
-  "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files.",
+  "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files. \"cloud\" = the harness.design cloud copy uploaded 2026-10-15 (K11 = A) so Dispatch can push updates later; the repo file stays the master.",
   "_scope": "The only center-cluster portion in this repo is the CAN node, plus power and ground to the cluster. Interior cluster wiring lives only in center-cluster-esp32-p4. Do not add interior cluster circuits here. ST185-CAN ends at its CAN-drop terminal t_cluster_can.",
   "harnesses": {
     "A-cabin": {
       "file": "ST185-A-cabin.harness",
+      "cloud": {"id": "K5L8", "title": "ST185-A-cabin 2026-10-15", "url": "https://app.harness.design/K5L8"},
       "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-pin relay coil (85) wires, broken off to the relays seated in the fuse box (ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
     },
     "B-cabin": {
       "file": "ST185-B-cabin.harness",
+      "cloud": {"id": "BRPo", "title": "ST185-B-cabin 2026-10-15", "url": "https://app.harness.design/BRPo"},
       "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, the B-pin relay coil (85) wires (k_fan2 / k_eps_en / k_acc in the fuse box, ST185-CabinPower), fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
+      "cloud": {"id": "N5Y8", "title": "ST185-CabinPower 2026-10-15", "url": "https://app.harness.design/N5Y8"},
       "physical": "Cabin power (non-ECU): the two glove-box fuse + relay boxes (DECISIONS R75, cad/fusebox rev 7) - POWER box (tinned copper + bar that is the AMI bar, no 1/0 link cable, AMI IN relay feeds, AMI OUT, Mini ISO relays k_htr / k_efi / k_str / k_fan / k_fan2 / k_pwr, ACPS fuse) and LOGIC box (Bus 1 / Bus 2 mini fuses, micro relays k_hl / k_hr / k_horn / k_etb / k_acc / k_eps_en / k_rev), k_eps HCR150 beside them, battery feed ring; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3, CAN, AntiTheft, RearLights, HeavyDC and EngineRoom-C ends arrive broken off"
     },
     "A-engine": {
       "file": "ST185-A-engine.harness",
+      "cloud": {"id": "GQM5", "title": "ST185-A-engine 2026-10-15", "url": "https://app.harness.design/GQM5"},
       "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
     },
     "B-engine": {
       "file": "ST185-B-engine.harness",
+      "cloud": {"id": "A96j", "title": "ST185-B-engine 2026-10-15", "url": "https://app.harness.design/A96j"},
       "physical": "Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor"
     },
     "CAN": {
       "file": "ST185-CAN.harness",
+      "cloud": {"id": "x76P", "title": "ST185-CAN 2026-10-15", "url": "https://app.harness.design/x76P"},
       "physical": "CAN backbone"
     },
     "EngineRoom-C": {
       "file": "ST185-EngineRoom-C.harness",
+      "cloud": {"id": "V07o", "title": "ST185-EngineRoom-C 2026-10-15", "url": "https://app.harness.design/V07o"},
       "physical": "Loom C - engine-room / high-current harness"
     },
     "HeavyDC": {
       "file": "ST185-HeavyDC.harness",
+      "cloud": {"id": "v9Qn", "title": "ST185-HeavyDC 2026-10-15", "url": "https://app.harness.design/v9Qn"},
       "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 160 A alternator B+, engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the POWER box bus zone (breaks H1/H2/H3/H6a) - the POWER box bus zone itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
     },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
+      "cloud": {"id": "mMq3", "title": "ST185-ClusterLED 2026-10-15", "url": "https://app.harness.design/mMq3"},
       "physical": "Cluster warning LEDs"
     },
     "WheelSpeed-Rear": {
       "file": "ST185-WheelSpeed-Rear.harness",
+      "cloud": {"id": "lMR1", "title": "ST185-WheelSpeed-Rear 2026-10-15", "url": "https://app.harness.design/lMR1"},
       "physical": "Rear wheel-speed Y harness - RL/RR ABS drops to the rear VRC endpoints, one screened 4-core output to IX_WS_REAR"
     },
     "WheelSpeed-Front": {
       "file": "ST185-WheelSpeed-Front.harness",
+      "cloud": {"id": "o6ZL", "title": "ST185-WheelSpeed-Front 2026-10-15", "url": "https://app.harness.design/o6ZL"},
       "physical": "Front wheel-speed Y harness - FL/FR ABS drops (loom C fender route) to the front VRC endpoints, output pair to IX_WS_FRONT"
     },
     "RearFuel": {
       "file": "ST185-RearFuel.harness",
+      "cloud": {"id": "kO2v", "title": "ST185-RearFuel 2026-10-15", "url": "https://app.harness.design/kO2v"},
       "physical": "Rear Fuel - fuel level sender behind IX_FUEL_LVL, and the fuel pump with its trunk ground; the pump feed arrives broken off from k_fp in the battery relay block (HeavyDC)"
     },
     "AntiTheft": {
       "file": "ST185-AntiTheft.harness",
+      "cloud": {"id": "qMQy", "title": "ST185-AntiTheft 2026-10-15", "url": "https://app.harness.design/qMQy"},
       "physical": "Anti-theft"
     },
     "CSB3": {
       "file": "ST185-CSB3.harness",
+      "cloud": {"id": "rM2L", "title": "ST185-CSB3 2026-10-15", "url": "https://app.harness.design/rM2L"},
       "physical": "ECUMaster CSB3 plug and switch inputs (cruise stalk, clutch, brake, cruise ladder) and the 8-channel brake / reverse optocoupler board inline at the plug; power, ground, reverse, LED and CAN wires arrive broken off"
     },
     "RearLights": {
       "file": "ST185-RearLights.harness",
+      "cloud": {"id": "pXZy", "title": "ST185-RearLights 2026-10-15", "url": "https://app.harness.design/pXZy"},
       "physical": "Rear lighting (Route 15): J/B No.1 1F tail / turn and S9 stop flying leads, the reverse feed broken off from k_rev (CabinPower), LH sill to R11 / R12 rear combination lamps, L1 license light, H6 high-mount stop light (hatch), one rear ground BL"
     }
   },
