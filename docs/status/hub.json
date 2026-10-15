@@ -1,0 +1,11 @@
+{
+  "updated": "2026-10-15",
+  "looms": {
+    "approved_on": "2026-10-14",
+    "approval_ref": "DECISIONS R90",
+    "needs_reapproval": []
+  },
+  "sessions": [
+    {"name": "hub-visual", "task": "Research hub: visual status board", "state": "running"}
+  ]
+}

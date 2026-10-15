@@ -1286,7 +1286,81 @@ def load_recent_prs() -> list[dict]:
     return prs
 
 
+GOAL_NAMES = {1: "Wiring sorted", 2: "ECU base maps", 3: "ECU CAN config", 4: "CSB3 config"}
+HUB_JSON = DOCS / "status" / "hub.json"
+THUMBS = DOCS / "harness" / "thumbs"
+REBUILD = DOCS / "harness" / "rebuild"
+
+
+def load_goals() -> list[dict]:
+    """Per goal (R102): tagged tracker rows, done = Closed / Merged, from OPEN-ITEMS tables."""
+    if not TRACKER.is_file():
+        return []
+    text = TRACKER.read_text(encoding="utf-8", errors="replace")
+    cnt = {g: {"done": 0, "open": 0, "dan": 0} for g in GOAL_NAMES}
+    for t in parse_md_tables(text):
+        if t["columns"][:2] != ["#", "Area"] or t["title"].lower().startswith("parked"):
+            continue
+        for r in t["rows"]:
+            rid, _area, item, owner, _src, st = r[:6]
+            m = re.search(r"\[G(\d)\]", item) or re.match(r"G(\d)-", rid)
+            if not m or int(m.group(1)) not in cnt:
+                continue
+            c = cnt[int(m.group(1))]
+            if st.startswith(("Closed", "Merged")):
+                c["done"] += 1
+            else:
+                c["open"] += 1
+                c["dan"] += owner.strip().lower() in ("daniel", "dan")
+    out = []
+    for g, c in cnt.items():
+        tot = c["done"] + c["open"]
+        out.append({"n": g, "name": GOAL_NAMES[g], **c, "pct": round(100 * c["done"] / tot) if tot else 100})
+    return out
+
+
+def load_hub_json() -> dict:
+    """Small hand/Dispatch-kept inputs: loom approval state and the running sessions strip."""
+    try:
+        d = json.loads(HUB_JSON.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        print(f"WARNING: {HUB_JSON.name} unreadable: {e}", file=sys.stderr)
+        d = {}
+    return {"updated": str(d.get("updated", "")), "looms": d.get("looms", {}) or {},
+            "sessions": [s for s in d.get("sessions", []) if isinstance(s, dict) and s.get("name")]}
+
+
+def load_looms(hub: dict) -> list[dict]:
+    """One tile per loom: state from hub.json (approved date / re-approval list), counts from the file."""
+    cfg = hub["looms"]
+    redo = set(cfg.get("needs_reapproval", []))
+    out = []
+    for p in sorted(REBUILD.glob("ST185-*.harness")):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            d = {}
+        name = p.stem
+        state = "redo" if name in redo or name.removeprefix("ST185-") in redo else (
+            "approved" if cfg.get("approved_on") else "drawn")
+        thumb = THUMBS / f"{name}.png"
+        out.append({"name": name.removeprefix("ST185-"), "state": state,
+                    "wires": len(d.get("wires", [])), "conns": len(d.get("connectors", [])),
+                    "thumb": f"harness/thumbs/{name}.png" if thumb.is_file() else ""})
+    return out
+
+
+def load_open_prs() -> list[dict]:
+    try:
+        out = subprocess.run(["gh", "pr", "list", "--state", "open", "--json", "number,title,headRefName"],
+                             cwd=REPO, capture_output=True, text=True, timeout=20, check=True).stdout
+        return json.loads(out)
+    except Exception:
+        return []  # no gh / no token (CI): the strip just shows sessions
+
+
 def load_project_status(status: dict | None) -> dict:
+    hub = load_hub_json()
     dan = []
     for b in (status or {}).get("buckets", []):
         rows = [r for r in b["rows"] if r["owner"].strip().lower() in ("daniel", "dan")]
@@ -1296,54 +1370,96 @@ def load_project_status(status: dict | None) -> dict:
         "built": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
         "questions": load_questions(), "dan_items": dan, "routes": load_routes(),
         "cad": load_cad(), "grok": load_grok_jobs(), "prs": load_recent_prs(),
+        "goals": load_goals(), "hub": hub, "looms": load_looms(hub), "open_prs": load_open_prs(),
     }
+
+
+def board_html(ps: dict) -> str:
+    """Top of the page: needs-Dan box, the four goals, loom tiles, live strip. Short on purpose."""
+    e = html.escape
+    qs = ps["questions"]["questions"]
+    if qs:
+        items = ""
+        for q in qs:
+            opts = "".join(
+                f'<li class="{"rec" if o["recommended"] else ""}"><b>{e(o["value"])}</b> {e(o["label"])}'
+                + (' <span class="tag">best</span>' if o["recommended"] else "") + '</li>'
+                for o in q["options"])
+            items += (f'<div class="q"><b>{e(q["id"])}</b> <span class="muted">{e(q["topic"])}</span>'
+                      f'<p>{e(q["text"])}</p><ul class="opts">{opts}</ul></div>')
+        need = (f'<div class="needdan hot"><h2>&#9888; Needs Dan &middot; {len(qs)}</h2>{items}'
+                '<p class="howto">Reply in Dispatch: ID + letter, e.g. <code>Z9: A</code>.</p></div>')
+    else:
+        n = sum(len(g["rows"]) for g in ps["dan_items"])
+        need = ('<div class="needdan"><h2>&#10003; Nothing waiting on Dan</h2>'
+                f'<p class="muted">{n} of his own build / bench items are open: '
+                '<a href="#dan-items">see list</a>.</p></div>')
+    goals = "".join(
+        f'<div class="goal g{g["n"]}"><div class="gh"><span class="gn">G{g["n"]}</span> {e(g["name"])}'
+        f'<span class="gpct">{g["pct"]}%</span></div>'
+        f'<div class="gbar"><i style="width:{g["pct"]}%"></i></div>'
+        f'<div class="gc"><span class="chip ok">{g["done"]} done</span>'
+        f'<span class="chip">{g["open"]} open</span>'
+        + (f'<span class="chip warn">{g["dan"]} yours</span>' if g["dan"] else "")
+        + '</div></div>' for g in ps["goals"])
+    legend = {"approved": "approved", "redo": "re-approve", "drawn": "drawn"}
+    tiles = "".join(
+        f'<a class="loom {l["state"]}" href="harness/rebuild/ST185-{e(l["name"])}.harness">'
+        + (f'<img loading="lazy" src="{e(l["thumb"])}" alt="" data-gh="docs/{e(l["thumb"])}">'
+           if l["thumb"] else "")
+        + f'<b>{e(l["name"])}</b><span>{l["wires"]} wires &middot; {legend[l["state"]]}</span></a>'
+        for l in ps["looms"])
+    hub = ps["hub"]
+    ok = hub["looms"].get("approved_on", "")
+    sess = "".join(
+        f'<li><span class="chip {"ok" if s.get("state") == "running" else ""}">'
+        f'{e(str(s.get("state", "")))}</span> <b>{e(s["name"])}</b> {e(str(s.get("task", "")))}</li>'
+        for s in hub["sessions"]
+    ) or '<li class="muted">No sessions listed.</li>'
+    pr_url = "https://github.com/living-relation/st185-link-ecu-config/pull/"
+    opr = "".join(f'<li><span class="chip warn">open</span> <a href="{pr_url}{p["number"]}">#{p["number"]}</a> '
+                  f'{e(p["title"][:70])}</li>' for p in ps["open_prs"])
+    merged = "".join(f'<li><span class="chip ok">merged</span> <a href="{pr_url}{p["num"]}">#{p["num"]}</a> '
+                     f'{e(p["title"][:70])}</li>' for p in ps["prs"][:4])
+    return (
+        '<section class="board" id="board">\n' + need +
+        '<h2>Goals <span class="muted sm">(rows done / tagged rows in OPEN-ITEMS)</span></h2>'
+        f'<div class="goals">{goals}</div>\n'
+        f'<h2>Looms <span class="muted sm">{len(ps["looms"])} drawings'
+        + (f' &middot; approved {e(ok)} (R90)' if ok else "") + '</span></h2>'
+        f'<div class="looms">{tiles}</div>\n'
+        '<h2>Now</h2><ul class="live">' + sess + opr + merged + '</ul>\n</section>\n')
 
 
 def project_status_html(ps: dict) -> str:
     e = html.escape
-    qs = ps["questions"]["questions"]
-    if qs:
-        qhtml = ""
-        for q in qs:
-            opts = ""
-            for o in q["options"]:
-                tag = ' <span class="tag">recommended</span>' if o["recommended"] else ""
-                opts += (f'<li class="{"rec" if o["recommended"] else ""}">'
-                         f'<b>{e(o["value"])}</b> {e(o["label"])}{tag}</li>')
-            qhtml += (f'<div class="q"><div class="qh"><b>{e(q["id"])}</b>'
-                      f'<span class="muted"> &middot; {e(q["topic"])}</span></div>'
-                      f'<p>{e(q["text"])}</p><ul class="opts">{opts}</ul></div>')
-        qhtml += ('<p class="howto"><b>How to answer:</b> reply in the Dispatch chat with the '
-                  'question ID and the letter, e.g. <code>Z9: A</code>. Write-ins are fine.</p>')
-    else:
-        qhtml = '<p class="muted">No open questions right now.</p>'
-    upd = ps["questions"]["updated"]
-    upd_txt = f", updated {e(upd)}" if upd else ""
+
+    def short(t: str, n: int = 110) -> str:
+        t = re.sub(r"^\[[^\]]+\]\s*", "", t)
+        return _inline(t[:n]) + ("&hellip;" if len(t) > n else "")
 
     dan = ""
     for g in ps["dan_items"]:
         rows = "".join(
-            f'<tr><td class="num">{e(r["id"])}</td><td>{_inline(r["item"][:240])}'
-            f'{"&hellip;" if len(r["item"]) > 240 else ""}</td><td>{e(r["status"])}</td></tr>'
-            for r in g["rows"])
-        dan += (f'<details class="items" open><summary>{e(g["name"])} &middot; {len(g["rows"])}'
+            f'<tr><td class="num">{e(r["id"])}</td><td>{short(r["item"])}</td>'
+            f'<td class="muted">{e(r["status"][:40])}</td></tr>' for r in g["rows"])
+        dan += (f'<details class="items"><summary>{e(g["name"])} <span class="chip">{len(g["rows"])}</span>'
                 '</summary><div class="twrap"><table class="data"><thead><tr><th>#</th>'
                 f'<th>Item</th><th>Status</th></tr></thead><tbody>{rows}</tbody></table></div>'
                 '</details>')
     dan = dan or '<p class="muted">Nothing open for Dan.</p>'
 
-    label = {"approved": "Approved", "waiting": "Decision box open", "note": "Note",
-             "unmarked": "No status"}
+    label = {"approved": "Approved", "waiting": "Decision open", "note": "Note", "unmarked": "-"}
     routes = "".join(
         f'<tr><td class="num">{r["num"]}</td>'
         f'<td><a href="harness/routes/{e(r["file"])}">{e(r["title"])}</a></td>'
-        f'<td><span class="pill {r["state"]}">{label[r["state"]]}</span></td>'
-        f'<td class="muted">{e(r["note"])}</td></tr>' for r in ps["routes"])
+        f'<td><span class="pill {r["state"]}">{label[r["state"]]}</span></td></tr>' for r in ps["routes"])
+    n_ok = sum(r["state"] == "approved" for r in ps["routes"])
     cadd = ps["cad"]
     warn = "".join(f"<li>{e(w)}</li>" for w in cadd["warnings"])
     cwarn = ('<div class="cadwarn"><b>CAD index is out of date:</b><ul>' + warn + "</ul>"
-             "Fix <code>cad/README.md</code> (and run the builder locally to refresh "
-             "<code>cad/model-files.json</code>).</div>") if warn else ""
+             "Fix <code>cad/README.md</code> and run the builder locally to refresh "
+             "<code>cad/model-files.json</code>.</div>") if warn else ""
     cad = cad_gallery_html(cadd)
     package = power_package_html(cadd)
     pr_url = "https://github.com/living-relation/st185-link-ecu-config/pull/"
@@ -1352,29 +1468,43 @@ def project_status_html(ps: dict) -> str:
         f'<a href="{pr_url}{p["num"]}">#{p["num"]}</a></li>' for p in ps["prs"]
     ) or '<li class="muted">Git history was not available when this page was built.</li>'
     return (
-        '<section class="board pstatus" id="project-status">\n<h2>Project status</h2>\n'
-        f'<p class="blurb">Built {e(ps["built"])} from the repo. Nothing here is typed by '
-        'hand except the questions. Route status is read from each drawing\'s own status box; '
-        'a route with an open decision box may have been approved later, so check the history '
-        'in <a href="OPEN-ITEMS.md">OPEN-ITEMS</a>.</p>\n'
-        '<h3>Open questions for Dan</h3>\n<p class="muted">From '
-        f'<code>docs/status/questions.json</code>{upd_txt}.</p>\n{qhtml}\n'
-        f'<h3>Dan&rsquo;s open items</h3>\n{dan}\n'
-        '<h3>Route drawings</h3>\n<div class="twrap"><table class="data"><thead><tr><th>#</th>'
-        '<th>Route</th><th>Status</th><th>From the drawing</th></tr></thead>'
-        f'<tbody>{routes}</tbody></table></div>\n'
-        '<h3 id="cad-models">CAD models</h3>\n<p class="muted">Every custom CAD model, one trimetric '
-        'each (same camera for all, rendered from the STEP by <code>cad/render_trimetric.py</code>; '
-        'DECISIONS R83), from <code>cad/README.md</code> (the one CAD index). The paths are the '
-        '<b>true location</b> of the STEP, STL and Fusion <code>.f3d</code> files: they are '
-        'gitignored and live on Dan&rsquo;s PC, not in GitHub. '
-        f'File list last refreshed {e(cadd["manifest"] or "never")}.</p>\n{cwarn}\n'
-        f'{package}\n{cad}'
+        '<section class="board pstatus" id="project-status">\n<h2>Details</h2>\n'
+        f'<p class="muted sm">Built {e(ps["built"])}. Only the questions and '
+        '<code>docs/status/hub.json</code> are typed by hand.</p>\n'
+        f'<h3 id="dan-items">Dan&rsquo;s open items</h3>\n{dan}\n'
+        f'<details class="items"><summary>Route drawings <span class="chip ok">{n_ok}/{len(ps["routes"])} approved'
+        '</span></summary><div class="twrap"><table class="data"><thead><tr><th>#</th>'
+        f'<th>Route</th><th>Status</th></tr></thead><tbody>{routes}</tbody></table></div></details>\n'
+        '<h3 id="cad-models">CAD models</h3>\n<p class="muted sm">One trimetric each, true local file '
+        f'paths (gitignored, on Dan&rsquo;s PC). File list refreshed {e(cadd["manifest"] or "never")}.</p>\n'
+        f'{cwarn}\n{package}\n<details class="items"><summary>All CAD models</summary>{cad}</details>'
         f'{grok_jobs_html(ps["grok"])}'
-        f'<h3>Recently merged</h3>\n<ul class="prs">{prs}</ul>\n</section>\n')
+        f'<details class="items"><summary>Recently merged</summary><ul class="prs">{prs}</ul></details>\n'
+        '</section>\n')
 
 
 PSTATUS_CSS = """
+
+  .board h2 { margin:18px 0 8px; } .sm { font-size:13px; font-weight:400; }
+  .needdan { border:2px solid var(--ok); background:var(--ok-soft); border-radius:12px; padding:4px 16px 12px; }
+  .needdan.hot { border-color:var(--warn); background:var(--warn-soft); }
+  .goals { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+  .goal { border:1px solid var(--line); background:var(--panel); border-radius:10px; padding:10px 12px; }
+  .gh { font-weight:700; display:flex; gap:6px; align-items:baseline; } .gn { color:var(--muted); font-size:12px; }
+  .gpct { margin-left:auto; font-size:22px; }
+  .gbar { height:10px; background:var(--chip); border-radius:99px; overflow:hidden; margin:8px 0; }
+  .gbar i { display:block; height:100%; background:var(--ok); }
+  .chip { display:inline-block; padding:1px 8px; border-radius:99px; background:var(--chip); font-size:12px; font-weight:700; margin-right:4px; }
+  .chip.ok { background:var(--ok-soft); color:var(--ok); } .chip.warn { background:var(--warn-soft); color:var(--warn); }
+  .looms { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:8px; }
+  .loom { display:flex; flex-direction:column; border:2px solid var(--line); border-radius:8px; overflow:hidden;
+    background:var(--panel); color:var(--ink); text-decoration:none; font-size:12px; }
+  .loom img { width:100%; height:90px; object-fit:contain; background:#fff; }
+  .loom b, .loom span { padding:2px 8px; } .loom span { color:var(--muted); padding-bottom:6px; }
+  .loom.approved { border-color:var(--ok); } .loom.redo { border-color:var(--warn); background:var(--warn-soft); }
+  .loom.drawn { border-style:dashed; }
+  .board a { color:var(--accent); } .board a.loom { color:var(--ink); }
+  .live { list-style:none; margin:0; padding:0; } .live li { padding:3px 0; font-size:14px; }
   .topnav { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 18px; }
   .topnav a { padding:8px 14px; border:1px solid var(--line); border-radius:999px;
     background:var(--panel); color:var(--ink); text-decoration:none; font-weight:600; }
@@ -2031,9 +2161,9 @@ def render(data: dict) -> str:
         f"{stats.get('onhand_skus', 0)} on-hand SKUs &middot; regenerate with "
         f"<code>python docs/build-research-hub.py</code></p>\n"
         "</header>\n\n"
-        "<nav class=\"topnav\"><a href=\"#project-status\">Project status</a>"
+        "<nav class=\"topnav\"><a href=\"#board\">Board</a><a href=\"#project-status\">Details</a>"
         "<a href=\"#status\">Open work by area</a><a href=\"#topic-nav\">Research docs</a></nav>\n"
-        + project_status_html(data["pstatus"]) + "\n"
+        + board_html(data["pstatus"]) + project_status_html(data["pstatus"]) + "\n"
         + status_html(data.get("status")) + "\n"
         "<div class=\"bar\">\n"
         "  <input id=\"q\" type=\"search\" placeholder=\"Filter titles, sections, tables, or filenames&hellip;\"\n"
