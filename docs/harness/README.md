@@ -6,7 +6,7 @@ opening any loom.
 **The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
 The looms below are the physical build and must agree with it; `check_all.py`
 enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R109)** - this file is the file map and the workflow, and restates no rule.
+from Daniel" (R1-R111)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
@@ -35,6 +35,7 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 - **Ident bands and wire labels (DECISIONS R87 - the scheme lives there):** every wire carries its circuit's band code in `identColors` (Blue / Yellow / White, 1-4 bands, same code both ends); the circuit list per harness is `interfaces.json` "identBands"; a bundle that ends at a connector carries an `endLabel` and a TMS-SCE marker. Gate `audit_ident_bands.py`.
 - **No PDF export step (DECISIONS R88, amended 2026-10-15, K5).** The `.harness` files in this folder are the deliverable: Dan opens them in the desktop app at the build. The files keep their ident bands, end labels, title block and notes; the `pdfExportSettings` saved in them stay but nothing checks or needs them. A note too long for the drawing: widen it, then split it into the gaps, then move the long text to `HARNESS-NOTES.md` (one section per drawing) and leave a short pointer note (DECISIONS R92).
 - **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
+- **File format (DECISIONS R111):** every file here is the app's current schema, v1.2; `lint_v09.py` fails any other version, so the app never rewrites a file on open. Read a part configuration through `model.cfg_accessories` / `cfg_default`, never its raw keys.
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
 

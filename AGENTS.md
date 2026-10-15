@@ -8,7 +8,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R109).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R111).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -182,7 +182,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 ## Working Rules
 - Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, `switchboard_frames.json`, the `.lcs`, the RealDash XML, the sender UI and `CAN-BUS-ID-ALLOCATION-TABLE.md` — `python bench/check_parity.py` must pass.
 - Open items live in one table: `docs/OPEN-ITEMS.md`.
-- harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v0.9 `.harness` / `.harnesslib`), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
+- harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v1.2 `.harness` / `.harnesslib` - the files follow the desktop app's current schema, DECISIONS R111), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
 - Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
 - Schematic wires never overlap and parallel runs keep a 3-line-width gap (DECISIONS R86, Daniel 2026-10-14; the drawings keep the real insulation colours). After moving nodes or adding wires, re-route: `python docs/harness/route_wires.py rebuild/<file>.harness` (writes each wire's `layoutPoints`; `--check` = dry run), gate `docs/harness/audit_wire_spacing.py` (in `check_all.py`). Path model of the app's routing: `docs/harness/wire_paths.py`. Snapshots: the app's Export > PDF; agents' fallback PNG `docs/harness/render_schematic.py`.
 - Every wire carries its circuit's ident bands (`identColors`, Blue / Yellow / White) and bundles ending at a connector carry a printed end label (DECISIONS R87; circuits in `docs/harness/interfaces.json` "identBands"; gate `docs/harness/audit_ident_bands.py`, in `check_all.py`). The band code goes at every end of the circuit.
