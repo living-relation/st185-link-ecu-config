@@ -274,7 +274,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 1170,
+        "x": 1200,
         "y": 60
       },
       "schematicPosition": {
@@ -958,8 +958,15 @@
         {
           "id": "lp_f_l",
           "layoutPosition": {
+            "x": 0,
+            "y": 270
+          }
+        },
+        {
+          "id": "lp_f_l2",
+          "layoutPosition": {
             "x": 720,
-            "y": 330
+            "y": 270
           }
         }
       ],
@@ -981,8 +988,15 @@
         {
           "id": "lp_f_r",
           "layoutPosition": {
+            "x": 0,
+            "y": -270
+          }
+        },
+        {
+          "id": "lp_f_r2",
+          "layoutPosition": {
             "x": 720,
-            "y": -330
+            "y": -270
           }
         }
       ],
