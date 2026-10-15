@@ -76,6 +76,202 @@
           "label": "Add a printed channel across the front of the strips so they stay inside the box"
         }
       ]
+    },
+    {
+      "id": "K1",
+      "topic": "Route drawings 1, 7 and 11 still show the old fuse box (row 111)",
+      "text": "The fuse box moved, so 3 approved route drawings are out of date: Route 1 has no battery relay block in the trunk, Route 7 shows the old one-piece fuse box, and Route 11 runs the fuel pump feed from the glove box instead of from the trunk. (12 routes also use old fuse box names in their labels; an agent fixes those either way, labels only.) The rules say agents do not change a route without your markup (R47). How do these 3 get fixed?",
+      "options": [
+        {
+          "value": "A",
+          "label": "An agent redraws them from the CAD and the approved harness drawings (relay block at the trunk battery corner, pump feed from it); you re-approve after",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "You mark up Routes 1, 7 and 11 first; then an agent redraws them"
+        },
+        {
+          "value": "C",
+          "label": "Leave the pictures; fix the labels and add a note that points to the fuse box CAD"
+        }
+      ]
+    },
+    {
+      "id": "K2",
+      "topic": "The ECU 'engine stop' input has no switch (row 50)",
+      "text": "Your rules say two things stop the engine: the trunk kill switch AND the ECU's Stop Switch input (R19, R64). The kill switch is drawn and works on its own (it cuts the battery and the alternator), so the CSB3 being on a switched feed is fine. But the ECU stop input is not connected to anything, and all 10 ECU digital inputs are already used. What should trigger it?",
+      "options": [
+        {
+          "value": "A",
+          "label": "A CSB3 button: a freed CSB3 input (S4 or S5) sends 'stop' to the ECU over CAN; no new ECU wire",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Drop the ECU stop input; the trunk kill switch is the only stop (changes R19 / R64)"
+        },
+        {
+          "value": "C",
+          "label": "A separate dash switch wired to the ECU (an ECU pin has to be moved to free a digital input)"
+        }
+      ]
+    },
+    {
+      "id": "K3",
+      "topic": "Knock warning: send it faster? (row 102)",
+      "text": "The cluster shows KNOCK and beeps the moment the ECU's 0x3EE message says knock. That message goes out every 50 ms, so the warning can lag up to 50 ms. The RPM and boost messages already go every 10 ms. The bus has plenty of room and the cluster needs no change.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Yes, every 10 ms: an agent changes the 4 CAN files now and runs the parity check (R80)",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "No, keep 50 ms"
+        },
+        {
+          "value": "C",
+          "label": "20 ms as a middle step"
+        }
+      ]
+    },
+    {
+      "id": "K4",
+      "topic": "When to build the circuit tracer (row 117)",
+      "text": "The circuit tracer (follows every circuit end to end, ECU on and off) was set to start once all drawings are final. All 15 are approved, but CabinPower will still change for the fuse box (row 113 and question J3).",
+      "options": [
+        {
+          "value": "A",
+          "label": "After the fuse box is approved and the CabinPower follow-ups land (rows 107, 113)",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Now, and run it again after CabinPower changes"
+        },
+        {
+          "value": "C",
+          "label": "Later; not needed before the build"
+        }
+      ]
+    },
+    {
+      "id": "K5",
+      "topic": "First PDF export: which drawing? (row 116)",
+      "text": "harness.design's Export > PDF only works by hand in the app. Our checker guesses the size of the title block and notes block in the corners until it sees one real export.",
+      "options": [
+        {
+          "value": "A",
+          "label": "WheelSpeed-Rear now (small, final, will not change): export it and tell us if a corner block covers a note or wire",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "CabinPower, after its fuse box follow-ups land (row 113)"
+        },
+        {
+          "value": "C",
+          "label": "Wait until no drawing is changing any more"
+        }
+      ]
+    },
+    {
+      "id": "K6",
+      "topic": "Route 8: ground stud for the cluster and RealDash Pi (row 70)",
+      "text": "The center cluster and the RealDash Pi each end in a ring for a cabin ground stud (M6), and their +12 V (DEV) comes from the glove box. Route 8 does not mark where that stud is.",
+      "options": [
+        {
+          "value": "A",
+          "label": "The agent picks the nearest factory ground bolt behind the dash from the 1993 wiring book and draws it; you check it at the build",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "You mark the spot on Route 8"
+        },
+        {
+          "value": "C",
+          "label": "Use the same cabin ground stud as the alarm (Route 14)"
+        }
+      ]
+    },
+    {
+      "id": "K7",
+      "topic": "VRC board holder: model it now? (row 97)",
+      "text": "The 3D-printed holder for the VRC board is not modelled yet. The board's size is known from the maker's published design files (about 24 x 24 mm), but your board is the DetonationEMS build and nobody has measured it.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Model it now from the published size with a little extra room; check the fit when the board is here (a reprint is cheap)",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Wait until you measure the board"
+        }
+      ]
+    },
+    {
+      "id": "K8",
+      "topic": "Right cluster rounding bug: fix the frozen firmware? (row 104)",
+      "text": "On the right cluster, lambda 0.9995-0.9999 shows '0.000' (right at the normal cruise value), and boost or timing with .95-.99 shows one number low (12.97 psi shows '12.0'). The fix is a small code change in the right-side cluster, which is frozen, so it needs your OK. The CAN audit found it only on the right cluster.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Yes: an agent fixes it in the right-side cluster repo; you reflash that cluster at the bench",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "No: keep the cluster frozen and live with it"
+        },
+        {
+          "value": "C",
+          "label": "Later, after the car runs"
+        }
+      ]
+    },
+    {
+      "id": "K9",
+      "topic": "RealDash coolant pressure: when does it turn red? (row 32)",
+      "text": "Two of our docs disagree: the layout doc says red above 200 kPa, the build notes say 250 kPa. (The layout doc calls 50-150 kPa normal.)",
+      "options": [
+        {
+          "value": "A",
+          "label": "200 kPa, as the layout doc says: an agent fixes the build notes; the tile is checked on the Pi",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "250 kPa"
+        },
+        {
+          "value": "C",
+          "label": "Decide at the bench with the real sensor"
+        }
+      ]
+    },
+    {
+      "id": "K10",
+      "topic": "Copilot reviews never arrive (row 36)",
+      "text": "GitHub has a rule that asks Copilot to review every PR, but no review ever comes (your Copilot plan's monthly quota does not cover it). Nothing waits for it: PRs merge without it.",
+      "options": [
+        {
+          "value": "A",
+          "label": "Leave it as is and close the item",
+          "recommended": true
+        },
+        {
+          "value": "B",
+          "label": "Turn the rule off (you do it in the GitHub settings)"
+        },
+        {
+          "value": "C",
+          "label": "Check or upgrade the Copilot plan so reviews arrive"
+        }
+      ]
     }
   ]
 }
