@@ -1213,22 +1213,6 @@
       "numberOfCavities": 10
     },
     {
-      "id": "cp_pdb",
-      "image": {
-        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/pdb-m8x8.png",
-        "source": "url"
-      },
-      "partNumber": "PDB-M8x8",
-      "description": "BLOCK, POWER DISTRIBUTION, 8 STUD M8, 150-250 A BUS",
-      "manufacturer": "TBD",
-      "configurations": [
-        {
-          "id": "cfg",
-          "contactPartId": "ct_lug_stud"
-        }
-      ]
-    },
-    {
       "partNumber": "RL00801-50BK",
       "manufacturer": "Amphenol",
       "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
@@ -1353,9 +1337,9 @@
     },
     {
       "id": "cp_fb_power",
-      "partNumber": "ST185-FB-POWER rev 5",
+      "partNumber": "ST185-FB-POWER rev 7",
       "manufacturer": "custom (PA12 print)",
-      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, COPPER BAR, 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
+      "description": "BOX, FUSE AND RELAY, POWER, PRINTED PA12, TINNED COPPER POS BAR AS AMI BAR + NEG BAR (BUS ZONE), 7 AMI IN, 7 AMI OUT, 7 MINI ISO RELAY, 1 MINI FUSE",
       "gender": "Female",
       "hasShell": false,
       "configurations": [
@@ -1390,6 +1374,20 @@
         {
           "id": "cfg",
           "contactPartId": "ct_ring_m6_8"
+        }
+      ]
+    },
+    {
+      "id": "cp_fb_bus",
+      "partNumber": "ST185-FB-POWER rev 7 BUS ZONE",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BUS ZONE OF POWER BOX, PRINTED PA12, TINNED COPPER POS BAR (3 M8 STUDS) + NEG BAR (5 M8 STUDS)",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "contactPartId": "ct_lug_stud"
         }
       ]
     }
@@ -1951,22 +1949,6 @@
       "maxGauge": {
         "unit": "AWG",
         "value": 6
-      }
-    },
-    {
-      "id": "ct_klauke_6r8",
-      "type": "Crimp",
-      "gender": "Socket",
-      "partNumber": "6R8",
-      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 50 MM2, M8 STUD",
-      "manufacturer": "Klauke",
-      "minGauge": {
-        "unit": "Metric",
-        "value": 50
-      },
-      "maxGauge": {
-        "unit": "Metric",
-        "value": 50
       }
     },
     {
@@ -2614,22 +2596,6 @@
       "partNumber": "GENERIC RING M8 22-16",
       "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG",
       "manufacturer": "generic"
-    },
-    {
-      "id": "tp_lug_m8_50",
-      "size": "M8",
-      "type": "Ring",
-      "maxGauge": {
-        "unit": "Metric",
-        "value": 50
-      },
-      "minGauge": {
-        "unit": "Metric",
-        "value": 50
-      },
-      "partNumber": "132066-2",
-      "description": "TERMINAL, RING TONGUE, SOLISTRAND, CLOSED BARREL, UNINSULATED, 1/0 AWG (41-60 MM2), 5/16 (M8) STUD, ADHESIVE HEATSHRINK OVER",
-      "manufacturer": "TE Connectivity"
     },
     {
       "id": "tp_ring_m8_16_14",

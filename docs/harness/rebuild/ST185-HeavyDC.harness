@@ -227,7 +227,7 @@
         {
           "id": "c2",
           "designation": "MAIN 2",
-          "signal": "LOAD -> H1 -> cabin PDB BAT+ (everything incl. alternator B+) and -> battery relay block BATT + (fuel pump)",
+          "signal": "LOAD -> H1 -> POWER box bus zone BAT+ (everything incl. alternator B+) and -> battery relay block BATT + (fuel pump)",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
@@ -335,7 +335,7 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "H1 - broken off, continues on ST185-EngineRoom-C: trunk battery + -> cabin PDB c1 (BAT+)",
+      "signal": "H1 - broken off, continues on ST185-EngineRoom-C: trunk battery + -> POWER box bus zone c1 (BAT+)",
       "schematicPosition": {
         "x": 0,
         "y": 150
@@ -349,7 +349,7 @@
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "H2 - broken off, continues on ST185-EngineRoom-C: trunk battery - -> cabin PDB c8 (GND bus)",
+      "signal": "H2 - broken off, continues on ST185-EngineRoom-C: trunk battery - -> POWER box bus zone c8 (NEG bar)",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -363,7 +363,7 @@
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "H3 - broken off, continues on ST185-EngineRoom-C: cabin PDB c2 (ALT/STR) -> RADLOK +",
+      "signal": "H3 - broken off, continues on ST185-EngineRoom-C: POWER box bus zone c2 (ALT/STR) -> RADLOK +",
       "schematicPosition": {
         "x": 330,
         "y": 0
@@ -377,7 +377,7 @@
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "H6a - broken off, continues on ST185-EngineRoom-C: cabin PDB c8 (GND bus) -> RADLOK -",
+      "signal": "H6a - broken off, continues on ST185-EngineRoom-C: POWER box bus zone c8 (NEG bar) -> RADLOK -",
       "schematicPosition": {
         "x": 330,
         "y": 240
@@ -1796,7 +1796,7 @@
         "x": 900,
         "y": 1020
       },
-      "text": "HEAVY DC: trunk battery -> cabin PDB (glove box, ST185-EngineRoom-C) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the cabin PDB (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved."
+      "text": "HEAVY DC: trunk battery -> POWER box bus zone (glove box, ST185-EngineRoom-C) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the POWER box bus zone (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved."
     },
     {
       "id": "shdr_1",
