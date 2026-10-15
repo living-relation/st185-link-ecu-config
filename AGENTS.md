@@ -8,7 +8,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R116).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R117).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -52,6 +52,7 @@
 - **Other docs/**: `docs/devices/`, `docs/enclosures/`, `docs/sourcing/`, `docs/procedures/`, `docs/intercooler-turbo-study/`, `docs/5sgte-project-data/` (research), `docs/research-hub.html` (generated, see below).
 - **CAD index**: `cad/README.md` - the ONE list of every CAD model (summary page, local STEP/STL/f3d paths, Fusion link, external fuel hanger); a new model gets a row in the same PR (DECISIONS R77). Its `Selected for build` column (yes on the one version of each item being built, no on the rest) is the ONLY place the build choice lives; the hub shows the selected set first and folds the rest into "Superseded / alternatives - not used"; flip the flags in the same PR that picks a new rev.
 - **CAD trimetrics + power package** (DECISIONS R83 / R84): every CAD model has a tracked trimetric PNG beside it (`cad/<model>/trimetric*.png`; fuel hanger in the reference-only `cad/fuel-hanger/`), rendered headless from its STEP by `cad/render_trimetric.py` (sources and dates in `cad/trimetrics.json`). A new or changed model re-renders its trimetric in the same PR. The power distribution package (POWER + LOGIC boxes, battery relay block, bus bar B rev3, VRC + CSB3 enclosures) is always shown as one package: `cad/README.md` "Power distribution package" table. Render (WSL, repo root): `~/projects/handbuilt-models/.venv/bin/python cad/render_trimetric.py --src /mnt/c/projects/active/st185-link-ecu-config [--only <id>]`.
+- **Repo hygiene**: `tools/hygiene.ps1` (`-WhatIf` = dry run) - fetch --prune, fast-forward main, remove merged worktrees + local branches nobody is in, delete empty leftover folders (DECISIONS R117); sessions never remove their own worktree, Dispatch runs it on every wake. Every PR body needs a `Rows: <n>, <n>` / `Rows: none` line.
 - **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions and every binding rule live in `docs/harness/redesign/DECISIONS.md` ("Binding rules from Daniel" is the rules home).
 - **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); lint `docs/harness/check_route_drawings.py`.
 - **Handoffs**: none kept. A finished handoff is deleted; open work goes into `docs/OPEN-ITEMS.md` (`output/` is for a handoff in flight only).

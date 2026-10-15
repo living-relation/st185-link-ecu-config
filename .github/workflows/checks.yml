@@ -18,6 +18,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, edited]   # edited: re-check when the body gains its Rows: line
   workflow_dispatch:
   schedule:
     - cron: '0 6 * * 1'   # weekly: catch drift in the frozen cluster repo (it can change without a PR here)
@@ -65,10 +66,19 @@ jobs:
         run: python3 .github/scripts/check_doc_duplicates.py
       - name: Doc hygiene - oversized or unlisted .md files (warn-only)
         run: python3 .github/scripts/check_doc_size.py
+      # Docs stay current (M3, DECISIONS R117): run on every change, not only wiring files.
+      - name: PR body has a Rows line (OPEN-ITEMS rows touched, or none)
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python3 .github/scripts/check_pr_rows.py
       - uses: actions/setup-python@v5
-        if: steps.scope.outputs.run == 'true'
         with:
           python-version: '3.14'
+      - name: Tracker counts match (build-research-hub.py --strict, writes nothing)
+        run: python docs/build-research-hub.py --strict
+      - name: Docs gate self-tests (Rows line + --strict)
+        run: python .github/scripts/test_docs_gates.py
       - name: Harness gates (check_all.py)
         if: steps.scope.outputs.run == 'true'
         run: python docs/harness/check_all.py

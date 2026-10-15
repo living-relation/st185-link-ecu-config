@@ -271,6 +271,14 @@ AREA_BUCKET = {
     "Tooling": "Housekeeping", "Docs": "Housekeeping", "Housekeeping": "Housekeeping",
 }
 SETUP_BUCKET = "Tune-ECU setup-time"
+# Count-mismatch warnings (tracker Status table vs. its rows) are collected here; with
+# --strict (CI, checks.yml) any of them fails the run so the tracker cannot drift (M3).
+COUNT_PROBLEMS: list[str] = []
+
+
+def count_warning(msg: str) -> None:
+    COUNT_PROBLEMS.append(msg)
+    print(f"WARNING: {msg}", file=sys.stderr)
 
 
 def _slug(s: str) -> str:
@@ -311,13 +319,11 @@ def load_status() -> dict | None:
     for name, n, words, zones in (r[:4] for r in status["rows"]):
         found = len(groups.get(name, []))
         if str(found) != n:
-            print(f"WARNING: OPEN-ITEMS Status says {name} = {n}, rows count {found}",
-                  file=sys.stderr)
+            count_warning(f"OPEN-ITEMS Status says {name} = {n}, rows count {found}")
         ids = [z.strip() for z in zones.split(",") if z.strip() not in ("", "-")]
         for z in ids:
             if z not in CAR_ZONES:
-                print(f"WARNING: OPEN-ITEMS Status zone '{z}' ({name}) is not a car zone",
-                      file=sys.stderr)
+                count_warning(f"OPEN-ITEMS Status zone '{z}' ({name}) is not a car zone")
         buckets.append({"name": name, "open": n, "words": words, "zones": ids,
                         "rows": groups.get(name, [])})
     return {"buckets": buckets, "blockers": blockers}
@@ -2194,7 +2200,14 @@ def render(data: dict) -> str:
 
 
 def main() -> None:
+    """`--strict` (CI): build in memory, write nothing, exit 1 on a tracker count mismatch."""
+    strict = "--strict" in sys.argv[1:]
     data = build()
+    if strict:
+        if COUNT_PROBLEMS:
+            sys.exit(f"strict: {len(COUNT_PROBLEMS)} tracker count problem(s) - fix docs/OPEN-ITEMS.md Status")
+        print("strict: tracker counts match, nothing written")
+        return
     require_parts_tables(data)
     for t in data["topics"]:
         for d in t["docs"]:
