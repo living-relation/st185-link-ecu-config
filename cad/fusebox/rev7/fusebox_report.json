@@ -1132,7 +1132,7 @@
    [
     5,
     967.5,
-    332.8,
+    334.7,
     "M5 set screws (studs)"
    ],
    [
@@ -1156,7 +1156,7 @@
    [
     9,
     886.9,
-    481.9,
+    480.0,
     "bar bolts up from below"
    ],
    [
@@ -1187,38 +1187,38 @@
   "fusebox_power_step1.png": [
    [
     1,
-    1083.8,
-    172.5,
+    1081.9,
+    178.1,
     "lay the bar in its pocket"
    ],
    [
     2,
-    1141.9,
-    177.2,
+    1140.0,
+    182.8,
     "lay the 14 pads in theirs"
    ],
    [
     3,
     862.5,
-    428.4,
+    426.6,
     "bar bolts up through the hex head pockets"
    ],
    [
     4,
-    1141.9,
-    596.2,
+    1140.0,
+    598.1,
     "40 mm standoffs up into the hex holes, both rows"
    ],
    [
     5,
-    1141.9,
-    176.2,
+    1140.0,
+    187.5,
     "set screw down through each pad into its standoff"
    ],
    [
     6,
-    900.0,
-    395.6,
+    899.1,
+    399.4,
     "base, right way up"
    ]
   ],
@@ -1232,25 +1232,25 @@
    [
     2,
     963.8,
-    482.8,
+    483.8,
     "relay feed lug on its long standoff (M5 x 10)"
    ],
    [
     3,
     897.2,
-    413.4,
+    414.4,
     "feed round its saddle into terminal 30"
    ],
    [
     4,
-    1073.4,
+    1072.5,
     568.1,
     "OUT lug on its standoff (M5 x 10)"
    ],
    [
     5,
-    705.9,
-    414.4,
+    706.9,
+    415.3,
     "tie the bundles; they leave the inboard end"
    ]
   ],
@@ -10969,6 +10969,38 @@
   84.7,
   100.9
  ],
+ "edge_break": {
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": {
+   "d": 0.3,
+   "bodies": 2,
+   "failed": 0
+  },
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  },
+  "Power_BarNeg_CuC110_25x6p35_L105": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  },
+  "Power_Pad_Out_CuC110_15x3": {
+   "d": 0.3,
+   "bodies": 14,
+   "failed": 0
+  },
+  "BattRelay_Bar_Power_CuC110_25x6p35": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  },
+  "BattRelay_Pad_Out_CuC110_15x3": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  }
+ },
  "pan_exits_joined": [
   "Logic_y 9.2-10.5",
   "Logic_y 10.5-15.6",
@@ -11093,13 +11125,23 @@
    }
   ]
  },
+ "pocket_reliefs": [
+  {
+   "x": [
+    84.0,
+    100.5
+   ],
+   "y": 205.0,
+   "gap": 0.57
+  }
+ ],
  "pan_floor_pads": [
   "Power_x 115.0"
  ],
  "live_clearance": {
   "pad_to_pad_min_mm": 3.0,
   "bar_to_pad_min_mm": 17.05,
-  "input_lug_to_pad_min_mm": 13.72,
+  "input_lug_to_pad_min_mm": 13.82,
   "under_deck_lug_to_lug_min_mm": 5.5,
   "standoff_to_standoff_min_mm": 10.0,
   "logic_strip_to_strip_mm": 6.3,
@@ -11108,9 +11150,9 @@
   "battrelay_relay_lug_to_lug_mm": 5.0,
   "pan_to_nearest_live_power_mm": 0.59,
   "bus_pos_lug_to_lug_min_mm": 4.0,
-  "bus_neg_lug_to_lug_min_mm": 3.0,
-  "bus_neg_to_pos_min_mm": 5.8,
-  "bus_pos_lug_to_out_pad_min_mm": 13.72,
+  "bus_neg_lug_to_lug_min_mm": 0.0,
+  "bus_neg_to_pos_min_mm": 6.8,
+  "bus_pos_lug_to_out_pad_min_mm": 13.82,
   "logic_jumper_lug_to_lug_min_mm": 1.86,
   "logic_jumper_parts_to_printed_min_mm": 0.4,
   "logic_jumper_parts_to_harness_min_mm": 0.56,
@@ -11176,7 +11218,7 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 840.8,
+   "volume_cm3": 840.7,
    "mass_g_pa12": 849.0,
    "bodies": 1,
    "lumps": 1,
@@ -11261,12 +11303,12 @@
  "bar_metal": "CuC110",
  "interference": [],
  "mass_g": {
-  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 156.6,
-  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 297.3,
-  "Power_BarNeg_CuC110_25x6p35_L105": 135.3,
-  "Power_Pad_Out_CuC110_15x3": 89.6,
-  "BattRelay_Bar_Power_CuC110_25x6p35": 49.4,
-  "BattRelay_Pad_Out_CuC110_15x3": 6.4
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 158.8,
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 295.5,
+  "Power_BarNeg_CuC110_25x6p35_L105": 133.0,
+  "Power_Pad_Out_CuC110_15x3": 88.7,
+  "BattRelay_Bar_Power_CuC110_25x6p35": 49.2,
+  "BattRelay_Pad_Out_CuC110_15x3": 6.3
  },
  "exported": [
   "Logic_Base_PA12_printed.step",

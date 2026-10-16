@@ -20,13 +20,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
+| `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 20 | 0 | **20** |
 | `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 20 | 0 | **20** |
-| `RS 137-809` | RS PRO | RS PRO A2/304 STAINLESS HEX SOCKET SET SCREW M5 X 12, DIN 916 | 18 | 0 | **18** |
-| `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
+| `bolts.co.uk SSPMCA205020` | Bolts.co.uk | SOCKET SET SCREW M5 X 20, PLAIN CUP POINT, DIN 916, A2 STAINLESS (PACK OF 25) | 16 | 0 | **16** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
 | `280919-2` | TE Connectivity | TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
-| `Essentra 301540040050` | Essentra Components | HEX STANDOFF, FEMALE-FEMALE M5, 8.0 AF, 40.0 MM, NICKEL-PLATED BRASS; SOLD IN 50S | 14 | 0 | **14** |
+| `Accu HHTPS-M5-8-40-BR-NI` | Accu | THREADED HEXAGON SPACER, FEMALE-FEMALE M5, 8 AF, 40 MM, NICKEL-PLATED BRASS, THREAD DEPTH 10 MM EACH END | 14 | 0 | **14** |
 | `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 14 | 0 | **14** |
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
@@ -344,10 +344,10 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `Klauke 2R5` | BATTRELAY, LOGIC, POWER | 16 | this section's CSVs |
 | `Klauke 3R5MS` | POWER | 2 | this section's CSVs |
 | `Klauke 6R8` | POWER | 1 | this section's CSVs |
-| `Essentra 301540040050` | POWER | 14 | this section's CSVs |
-| `RS 137-809` | BATTRELAY, POWER | 18 | this section's CSVs |
+| `Accu HHTPS-M5-8-40-BR-NI` | POWER | 14 | this section's CSVs |
+| `bolts.co.uk SSPMCA205020` | POWER | 16 | this section's CSVs |
 | `RS 287-3921` | LOGIC, POWER | 20 | this section's CSVs |
-| `RS 263-2205` | BATTRELAY, POWER | 18 | this section's CSVs |
+| `RS 263-2205` | BATTRELAY, POWER | 20 | this section's CSVs |
 | `RS 264-6432` | BATTRELAY, POWER | 34 | this section's CSVs |
 | `RS 190-276` | POWER | 2 | this section's CSVs |
 | `RS 530-769` | POWER | 2 | this section's CSVs |

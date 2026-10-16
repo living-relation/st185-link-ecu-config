@@ -121,7 +121,7 @@ A('<li><b>A bus zone at the back of the box</b> (+%d mm deep). On the + bar: BAT
   'Beside it a NEG bar (same stock, %d mm): BAT-, RADLOK-, GND ID, GND IG and one M8 for the small relay grounds - those leave straight out the back.</li>'
   % (R7['D'] - S.D, R7['neg_bar']['x1'] - R7['neg_bar']['x0']))
 A('<li><b>A printed wall between NEG and POS</b> (2.5 mm, 20 mm above the deck). Closest NEG part to a POS part: <b>%.1f mm</b>, with the wall in between.</li>' % live['bus_neg_to_pos_min_mm'])
-A('<li><b>B rev3 adapted to R76 (cut + drill only):</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 '
+A('<li><b>B rev3 adapted to R76:</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 '
   'bolts (head captured in the deck, like every other bolt) and Klauke 6R8 lugs. Its universal bar U and the link strap / AMG fuse option are dropped (question U1 below).</li>')
 A('<li><b>Feet:</b> still four with M6 limiters; the rear-inboard foot moved round to the inboard end so no cable runs over a mounting bolt.</li>')
 A('<li><b>Unchanged:</b> LOGIC box and battery relay block (their feeds do not move); bend radius rule, belly pan, PA12 print rules, M6 limiters, 40 mm standoffs.</li></ol>')
@@ -442,21 +442,26 @@ A('<tr><td>Every printed part one solid, every rib / saddle backed (R101)</td><t
 A('<tr><td>Cable through printed plastic</td><td class="%s">%s</td></tr>' % ('ok' if not rep['wire_to_printed_contact'] else 'bad', 'none' if not rep['wire_to_printed_contact'] else E(rep['wire_to_printed_contact'])))
 A('</table></div>')
 
-A('<h2>Cut + drill (R76: no milling)</h2><div class="wrap"><table><tr><th>Piece</th><th>Stock</th><th>Length</th><th>Holes (from the front / inboard end, on the bar)</th></tr>')
+A('<h2>Copper: machined parts (D6, R76 amended 2026-10-16)</h2><p class="mut">Every copper piece is a machined part to its drawing: '
+  'holes as below (clearance ISO 273 medium; LOGIC strip holes at the tap drill), <b>0.3 x 45 deg edge break on every edge, hole rims included</b> (F10). '
+  'SteveCAD audit v3 checks: NEG 14,878.1 / POS 33,050.9 mm3, the same as the checked reference files.</p>'
+  '<div class="wrap"><table><tr><th>Piece</th><th>Stock</th><th>Length</th><th>Holes (from the front / inboard end, on the bar)</th></tr>')
 y0 = S.BAR['y0']
 ami_y = [S.AMI_Y0 + i * S.AMI_PITCH - y0 for i in range(S.AMI_SLOTS['IN'])]
 A('<tr><td>POS bar (bus + AMI inputs)</td><td>1" x 1/4" tinned (MECCANIXITY B0CGJBRNJX), bar 1</td><td>%.0f mm</td><td>14 x 5.5 mm: pairs %.2f mm either side of the centre line at %s; '
-  '3 x 8.5 mm on the centre line at %s</td></tr>' % (R7['bar_y1'] - y0, S.AMI_IN_OFF, ', '.join('%.0f' % v for v in ami_y),
+  '3 x %.1f mm on the centre line at %s</td></tr>' % (R7['bar_y1'] - y0, S.AMI_IN_OFF, ', '.join('%.0f' % v for v in ami_y), S.CLEAR[8],
                                                      ', '.join('%.0f' % (p[0] - y0) for p in R7['pos_studs'])))
 nb = R7['neg_bar']
-A('<tr><td>NEG bar</td><td>same stock, bar 2</td><td>%.0f mm</td><td>5 x 8.5 mm on the centre line at %s</td></tr>' % (nb['x1'] - nb['x0'], ', '.join('%.1f' % (n[0] - nb['x0']) for n in R7['neg_studs'])))
-A('<tr><td>Battery block bar</td><td>bar 1 (after the POS bar)</td><td>36.5 mm</td><td>as rev 6</td></tr>')
-A('<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>as rev 6</td></tr>')
+A('<tr><td>NEG bar</td><td>same stock, bar 2</td><td>%.0f mm</td><td>5 x %.1f mm on the centre line at %s (the GND stud 8.5 from the end, F05)</td></tr>' % (nb['x1'] - nb['x0'], S.CLEAR[8], ', '.join('%.1f' % (n[0] - nb['x0']) for n in R7['neg_studs'])))
+A('<tr><td>Battery block bar</td><td>bar 1 (after the POS bar)</td><td>36.5 mm</td><td>M6 feed %.1f, AMI 40 input 5.5</td></tr>' % S.CLEAR[6])
+A('<tr><td>LOGIC strips (2)</td><td>1" x 1/8" tinned (MECCANIXITY B0CGJC2S1L)</td><td>%.0f / %.0f mm</td><td>tap drill %.1f + M4 at each stud, %.1f + M5 at the feed; '
+  'thread = strip thickness 3.2 (OPEN-3 for Dan)</td></tr>' % (S.STRIP_Y['BUS1'][1] - S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][1] - S.STRIP_Y['BUS2'][0], S.TAP_DRILL[4], S.TAP_DRILL[5]))
+A('<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>one 5.5; POWER pads: M5 x 20 stud, 9.5 into the 10 mm thread of the 40 mm standoff (OPEN-5)</td></tr>')
 A('</table></div>')
 
 A('<h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>')
 A('<p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. '
-  'LOGIC and battery block: the rev 6 lists, unchanged (<code>cad/fusebox/fusebox-parts-logic.csv</code>, <code>-battrelay.csv</code>).</p>')
+  'LOGIC and battery block: the lists in <code>cad/fusebox/fusebox-parts-logic.csv</code> / <code>-battrelay.csv</code>, printed parts priced from these rev 7 volumes.</p>')
 A('<div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part</th><th>Need</th><th>Own</th><th>Buy</th><th>$ line</th></tr>')
 for r in rows7['POWER']:
     pn = E(r['part_number'])

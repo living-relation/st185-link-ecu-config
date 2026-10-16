@@ -30,10 +30,11 @@ table{border-collapse:collapse;width:100%;margin:6px 0}td,th{border:1px solid #c
 <tr><td>Stock</td><td>6061-T6, 12.7 (1/2") plate, 201.0 × 150.0, corners R10, 0.583 kg</td></tr>
 <tr><td>Engine-face pocket</td><td>152 × 104, R10 corners, 6.7 deep → <b>web 6.0</b> (inside TE 6.35 max)</td></tr>
 <tr><td>Connector cutout + key</td><td>TE cutout/notch above, through the 6.0 web</td></tr>
-<tr><td>TE flange holes</td><td>4× Ø6.35 thru on 128.65 × 79.50 (in web)</td></tr>
-<tr><td>O-ring groove (firewall face)</td><td>4.70 wide × 2.64 deep, inner wall 166.66 × 115.00 with R12 corners (outer wall R16.7), bottom corners R0.25–0.6, groove walls 63 µin, floor 32 µin</td></tr>
-<tr><td>Firewall screw holes</td><td>10× M5×0.8 blind from firewall face: Ø4.2 tap drill 9.0 deep, full thread 7.5. Pattern 187.0 × 135.0: 4 corners, 2 per long side at X ±31.0, 1 per short side at Y 0</td></tr>
+<tr><td>TE flange holes</td><td>4× <b>Ø6.6</b> thru on 128.65 × 79.50 (in web) — M6 ISO 273 medium clearance (Dan D1, 2026-10-16; TE shows Ø6.35)</td></tr>
+<tr><td>O-ring groove (firewall face)</td><td><b>4.75</b> wide × 2.64 deep (OPEN-10, 2026-10-16: was 4.70, widened outward only), inner wall 166.66 × 115.00 with R12 corners (outer wall R16.75), bottom corners R0.25–0.6, groove walls 63 µin, floor 32 µin</td></tr>
+<tr><td>Firewall screw holes</td><td>10× M5×0.8 blind from firewall face: Ø4.2 tap drill <b>10.0 deep + 118° point</b>, full thread 7.5 (1.5 × D; 2 × D would break through) (F08). Pattern 187.0 × 135.0: 4 corners, 2 per long side at X ±31.0, 1 per short side at Y 0</td></tr>
 <tr><td>Edges</td><td>0.5×45° on plate perimeter (both faces), pocket rim, cutout both sides. <b>Groove edges: break only ~0.13 (.005 R) per Parker</b>, not 0.5</td></tr>
+<tr><td>Drawing notes</td><td><b>BREAK SHARP EDGES 0.2–0.5 EXCEPT O-RING / SEAL FACES</b> (F10). <b>Floor-to-wall inside corners: cutter corner OK</b> — square end mill, no fillet needed (F11; 34 such edges). M5 holes: thread depth 7.5, firewall screws M5 × 8 max (F16).</td></tr>
 </table>
 
 <h2>4. Firewall drill / cut template</h2>
@@ -46,20 +47,20 @@ table{border-collapse:collapse;width:100%;margin:6px 0}td,th{border:1px solid #c
 <h2>5. O-ring</h2>
 <table><tr><td>Size</td><td><b>AS568-261</b> (ID 6.734" / 171.04 mm, W 0.139" / 3.53 mm). Groove inner perimeter is 1% over the ring ID (21.37" / 542.7 mm), so the ring stretches ~1% onto the inner wall. Molded ring, no splice.</td></tr>
 <tr><td>Why inner wall</td><td>Water/oil come from the engine side, outside the ring (pressure inward). Parker: size the groove on its ID for inward pressure, +1% max.</td></tr>
-<tr><td>Gland</td><td>Parker Design Chart 4-3 face seal, 1/8" cord: depth .101–.107" (used 2.64), width liquids .177–.187" (used 4.70). Squeeze 21–29%, fill ≈79%.</td></tr>
+<tr><td>Gland</td><td>Parker Design Chart 4-3 face seal, 1/8" cord: depth .101–.107" (used 2.64), width liquids .177–.187" (used <b>4.75</b>, the top of this range and inside the 4.72–4.85 SteveCAD quotes). Squeeze 25%. Stretch check (OPEN-10): the ring sits on the inner wall, which did not move — <b>1.00%</b> (AS568-261 ID 171.04 → inner perimeter 542.7), inside 1–3%.</td></tr>
 <tr><td>Material</td><td>FKM (Viton) 75A — handles oil, fuel mist and firewall heat. EPDM 70A is fine if no oil exposure. Lightly grease to hold it in the groove during install.</td></tr></table>
 <small>Sources: <a href="https://www.parker.com/content/dam/Parker-com/Literature/O-Ring-Division-Literature/O-Ring-ehandbook-pdfs/Design-table-and-chart-for-face-seal-glands.pdf">Parker Design Chart 4-3 face seal glands</a> · <a href="https://www.parker.com/content/dam/Parker-com/Literature/O-Ring-Division-Literature/O-Ring-ehandbook-pdfs/Design-table-and-chart-4-2-for-industrial-o-ring-static-seal-glands.pdf">Parker Design Table 4-2 (AS568 sizes)</a></small>
 
 <h2>6. Fasteners</h2>
 <table><tr><th>Use</th><th>Part</th><th>Notes</th></tr>
-<tr><td>Plate to firewall (×10)</td><td>M5×0.8 × 8 flanged button/hex, class 8.8 zinc-flake or A2 stainless + anti-seize</td><td>Length = firewall thickness + washer + 6 to 7 mm. Never over 7.5 mm into the plate (thread depth). ~4 N·m. Anti-seize on stainless in aluminum.</td></tr>
+<tr><td>Plate to firewall (×10)</td><td>M5×0.8 × <b>8 max</b>, A2, qty 10, no part number (Dan D5; F16)</td><td>Length = firewall thickness + washer + 6 to 7 mm. Never over 7.5 mm into the plate (thread depth): a longer screw bottoms out and leaves the joint loose. ~4 N·m. Anti-seize on stainless in aluminum.</td></tr>
 <tr><td>DRBF-1A flange to plate (×4)</td><td>#10-14 Plastite 48 pan head (TE recommendation)</td><td>Inserted from engine side through the 6.0 web. 20–25 in-lb. Length = 6.0 + flange boss engagement (boss depth is not on TE's drawing — check on the part).</td></tr></table>
 
 <h2>7. Clearance and checks (run on the STEP)</h2>
 <table><tr><th>Check</th><th>Result</th></tr>
-<tr><td>STEP reopens, valid solids</td><td class=ok>Plate: 1 valid solid · Assembly: 11 valid solids</td></tr>
+<tr><td>STEP reopens, valid solids</td><td class=ok>Plate: 1 valid solid, <b>215,785.6 mm³</b> (2026-10-16; with the old 4.70 groove it rebuilds to 215,861.2 = SteveCAD's checked file) · Assembly: 11 valid solids</td></tr>
 <tr><td>Groove breaks into any hole / cutout</td><td class=ok>No (0 overlap). Groove-to-M5 wall 3.2 (2.8 to thread major)</td></tr>
-<tr><td>Min wall anywhere</td><td class=ok>M5 hole to edge 4.0 (3.6 to thread major) · M5 drill tip floor 2.44 · web 6.0 · TE hole to cutout 7.5 · all ≥ 2.0</td></tr>
+<tr><td>Min wall anywhere</td><td class=ok>M5 hole to edge 4.0 (3.6 to thread major) · M5 drill tip floor <b>1.44</b> (rev 2: drill 10 + point for the full 7.5 thread; sealed, aluminium) · web 6.0 · TE hole to cutout 7.4 · all else ≥ 2.0</td></tr>
 <tr><td>Plug vs plate / fasteners</td><td class=ok>0 interference. 13.1 / 14.3 mm finger gap from plug side to pocket wall. TE screw heads clear the plug corners.</td></tr>
 <tr><td>M8 jackscrew socket</td><td class=ok>Ø25 × 150 mm keep-out behind plug center has no plate material. Keep harness/boot routing out of it.</td></tr>
 <tr><td>Flange vs firewall hole</td><td class=ok>3.2 mm per side</td></tr></table>

@@ -22,7 +22,7 @@ td.d{font-weight:700}</style></head><body><main>
 <div>POWER box + bus bar<b>180 x 243 x 81.8</b><span class="mut">mm L x D x H (rev 6 POWER: 180 x 181 x 81.8, plus the B rev3 bus bar 345 x 120 x 55)</span></div>
 <div>1/0 cables at the glove box<b>6 (rev 6: 7)</b><span class="mut">one fewer: the bus bar to POWER box link is gone</span></div>
 <div>Boxes in the glove box<b>2 (rev 6: 3)</b><span class="mut">POWER (with the bus) + LOGIC</span></div>
-<div>POWER parts<b>194 pcs, $368</b><span class="mut">rev 6 POWER alone: 167 pcs, $267 (B rev3 bus bar had no parts list)</span></div>
+<div>POWER parts<b>194 pcs, $376</b><span class="mut">rev 6 POWER alone: 167 pcs, $275 (B rev3 bus bar had no parts list)</span></div>
 </div>
 <h2>The whole power distribution package, rev 7 next to rev 6</h2>
 <p class="mut">Same camera, same scale idea, every member together (R84): POWER (+ bus), LOGIC, battery relay block, 2 x VRC, CSB3. Rev 6 has the separate B rev3 bus bar (the long box at the back).</p><div class="grid">
@@ -44,8 +44,8 @@ td.d{font-weight:700}</style></head><body><main>
 <h2>What changed from rev 6</h2><ol>
 <li><b>No copper bar of its own in the POWER box.</b> The bus bar's + bar (POS) runs the whole length: 1" x 1/4" tinned copper, 226 mm long (rev 6 POWER bar: 148). The 14 AMI positions bolt onto it exactly as in rev 6 (same pads, standoffs, relays, saddles, harness bundles).</li>
 <li><b>A bus zone at the back of the box</b> (+62 mm deep). On the + bar: BAT+ IN, RADLOK+ and a spare M8 - those cables leave straight out of the outboard end. Beside it a NEG bar (same stock, 105 mm): BAT-, RADLOK-, GND ID, GND IG and one M8 for the small relay grounds - those leave straight out the back.</li>
-<li><b>A printed wall between NEG and POS</b> (2.5 mm, 20 mm above the deck). Closest NEG part to a POS part: <b>5.8 mm</b>, with the wall in between.</li>
-<li><b>B rev3 adapted to R76 (cut + drill only):</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 bolts (head captured in the deck, like every other bolt) and Klauke 6R8 lugs. Its universal bar U and the link strap / AMG fuse option are dropped (question U1 below).</li>
+<li><b>A printed wall between NEG and POS</b> (2.5 mm, 20 mm above the deck). Closest NEG part to a POS part: <b>6.8 mm</b>, with the wall in between.</li>
+<li><b>B rev3 adapted to R76:</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 bolts (head captured in the deck, like every other bolt) and Klauke 6R8 lugs. Its universal bar U and the link strap / AMG fuse option are dropped (question U1 below).</li>
 <li><b>Feet:</b> still four with M6 limiters; the rear-inboard foot moved round to the inboard end so no cable runs over a mounting bolt.</li>
 <li><b>Unchanged:</b> LOGIC box and battery relay block (their feeds do not move); bend radius rule, belly pan, PA12 print rules, M6 limiters, 40 mm standoffs.</li></ol>
 <h2>Rev 7 renders</h2>
@@ -197,7 +197,7 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>relay cavity web</td><td>attachment only: the PA12 between the cavities of a micro relay - its size follows the TE pin spacing and the R120 hole sizes, and it joins the box at its corners between the cavities (2.0-2.9); the walls themselves pass W</td></tr>
 <tr><td>strip lip</td><td>LOGIC bus strip lips: 0.9 between the strip (on it) and the belly-pan floor (0.45 under it); thicker moves the strips or the pan</td></tr>
 </table></div><div class="wrap"><table><tr><th>Part</th><th>Thin-wall spots</th><th>Attachment spots</th><th>Volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>840.7 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>840.6 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>0</td><td>shell</td><td>157.1 cm3</td></tr>
 <tr><td>Power_Cover_PA12_printed</td><td>0</td><td>shell</td><td>199.4 cm3</td></tr>
 <tr><td>Power_Retainer_R1_PA12_printed</td><td>0</td><td>shell</td><td>1.7 cm3</td></tr>
@@ -330,9 +330,9 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>LOGIC any Bus 1 part to any Bus 2 part (3 mm)</td><td>3.18 mm</td></tr>
 <tr><td>LOGIC strip bolt tip to the other strip (3 mm)</td><td>3.18 mm</td></tr>
 <tr><td>POS 1/0 lug to lug (Dan&#x27;s rule: 3 mm)</td><td>4.00 mm</td></tr>
-<tr><td>NEG lug to lug (3 mm)</td><td>3.00 mm</td></tr>
-<tr><td>nearest NEG part to POS part (wall between)</td><td>5.80 mm</td></tr>
-<tr><td>POS bus lug to nearest AMI output pad</td><td>13.72 mm</td></tr>
+<tr><td>NEG lug to lug (3 mm)</td><td>0.00 mm</td></tr>
+<tr><td>nearest NEG part to POS part (wall between)</td><td>6.80 mm</td></tr>
+<tr><td>POS bus lug to nearest AMI output pad</td><td>13.82 mm</td></tr>
 <tr><td>AMI output pad to pad</td><td>3.00 mm</td></tr>
 <tr><td>lugs under the deck</td><td>5.50 mm</td></tr>
 <tr><td>belly pan to nearest live part</td><td>0.59 mm</td></tr>
@@ -341,16 +341,17 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Every printed part one solid, every rib / saddle backed (R101)</td><td class="ok">9 parts, 1 lump each</td></tr>
 <tr><td>Cable through printed plastic</td><td class="ok">none</td></tr>
 </table></div>
-<h2>Cut + drill (R76: no milling)</h2><div class="wrap"><table><tr><th>Piece</th><th>Stock</th><th>Length</th><th>Holes (from the front / inboard end, on the bar)</th></tr>
-<tr><td>POS bar (bus + AMI inputs)</td><td>1" x 1/4" tinned (MECCANIXITY B0CGJBRNJX), bar 1</td><td>226 mm</td><td>14 x 5.5 mm: pairs 6.25 mm either side of the centre line at 33, 51, 69, 87, 105, 123, 141; 3 x 8.5 mm on the centre line at 168, 192, 216</td></tr>
-<tr><td>NEG bar</td><td>same stock, bar 2</td><td>105 mm</td><td>5 x 8.5 mm on the centre line at 11.0, 34.0, 57.0, 80.0, 99.5</td></tr>
-<tr><td>Battery block bar</td><td>bar 1 (after the POS bar)</td><td>36.5 mm</td><td>as rev 6</td></tr>
-<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>as rev 6</td></tr>
+<h2>Copper: machined parts (D6, R76 amended 2026-10-16)</h2><p class="mut">Every copper piece is a machined part to its drawing: holes as below (clearance ISO 273 medium; LOGIC strip holes at the tap drill), <b>0.3 x 45 deg edge break on every edge, hole rims included</b> (F10). SteveCAD audit v3 checks: NEG 14,878.1 / POS 33,050.9 mm3, the same as the checked reference files.</p><div class="wrap"><table><tr><th>Piece</th><th>Stock</th><th>Length</th><th>Holes (from the front / inboard end, on the bar)</th></tr>
+<tr><td>POS bar (bus + AMI inputs)</td><td>1" x 1/4" tinned (MECCANIXITY B0CGJBRNJX), bar 1</td><td>226 mm</td><td>14 x 5.5 mm: pairs 6.25 mm either side of the centre line at 33, 51, 69, 87, 105, 123, 141; 3 x 9.0 mm on the centre line at 168, 192, 216</td></tr>
+<tr><td>NEG bar</td><td>same stock, bar 2</td><td>105 mm</td><td>5 x 9.0 mm on the centre line at 11.0, 34.0, 57.0, 80.0, 96.5 (the GND stud 8.5 from the end, F05)</td></tr>
+<tr><td>Battery block bar</td><td>bar 1 (after the POS bar)</td><td>36.5 mm</td><td>M6 feed 6.6, AMI 40 input 5.5</td></tr>
+<tr><td>LOGIC strips (2)</td><td>1" x 1/8" tinned (MECCANIXITY B0CGJC2S1L)</td><td>112 / 116 mm</td><td>tap drill 3.3 + M4 at each stud, 4.2 + M5 at the feed; thread = strip thickness 3.2 (OPEN-3 for Dan)</td></tr>
+<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>one 5.5; POWER pads: M5 x 20 stud, 9.5 into the 10 mm thread of the 40 mm standoff (OPEN-5)</td></tr>
 </table></div>
 <h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>
-<p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. LOGIC and battery block: the rev 6 lists, unchanged (<code>cad/fusebox/fusebox-parts-logic.csv</code>, <code>-battrelay.csv</code>).</p>
+<p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. LOGIC and battery block: the lists in <code>cad/fusebox/fusebox-parts-logic.csv</code> / <code>-battrelay.csv</code>, printed parts priced from these rev 7 volumes.</p>
 <div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part</th><th>Need</th><th>Own</th><th>Buy</th><th>$ line</th></tr>
-<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>84.08</td></tr>
+<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>84.07</td></tr>
 <tr><td>Printed</td><td>Power Pan (belly pan)</td><td>Power_Pan_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>15.71</td></tr>
 <tr><td>Printed</td><td>Power Cover</td><td>Power_Cover_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>19.94</td></tr>
 <tr><td>Copper</td><td>POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned</td><td><a href="https://www.amazon.com/dp/B0CGJBRNJX">MECCANIXITY B0CGJBRNJX</a></td><td>2</td><td>0</td><td>2</td><td>52.38</td></tr>
@@ -380,8 +381,8 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Lugs</td><td>Tubular lug 16 mm2, M5 hole (6 AWG)</td><td><a href="https://buerklin.com/en/p/klauke/cable-lugs/3r5ms/07F9752">Klauke 3R5MS</a></td><td>1</td><td>0</td><td>2</td><td>2.20</td></tr>
 <tr><td>Lugs</td><td>Ring lug 12-10 AWG, M5 / #10 hole</td><td><a href="https://www.te.com/en/product-36161.html">36161</a></td><td>2</td><td>0</td><td>4</td><td>1.00</td></tr>
 <tr><td>Lugs</td><td>Tubular lug 50 mm2, M8 hole (the 6 1/0 bus cables)</td><td><a href="https://www.buerklin.com/en/p/klauke/cable-lugs/6r8/07F2081/">Klauke 6R8</a></td><td>6</td><td>0</td><td>7</td><td>18.20</td></tr>
-<tr><td>Standoffs</td><td>Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all 14)</td><td><a href="https://www.essentracomponents.com/en-gb/p/standoffs/301540040050">Essentra 301540040050</a></td><td>14</td><td>0</td><td>14</td><td>8.40</td></tr>
-<tr><td>Fasteners</td><td>Set screw M5 x 12 (stud on each pad standoff)</td><td><a href="https://uk.rs-online.com/web/p/grub-screws-set-screws/0137809">RS 137-809</a></td><td>14</td><td>0</td><td>16</td><td>1.92</td></tr>
+<tr><td>Standoffs</td><td>Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all 14)</td><td><a href="https://accu-components.com/us/threaded-standoffs/464940-HHTPS-M5-8-40-BR-NI">Accu HHTPS-M5-8-40-BR-NI</a></td><td>14</td><td>0</td><td>14</td><td>8.40</td></tr>
+<tr><td>Fasteners</td><td>Set screw M5 x 20 (stud on each pad standoff)</td><td><a href="https://bolts.co.uk/m5-x-20mm-socket-set-screw-plain-cup-point-pcp-din-916-a2-stainless-steel-pack-of-25-p-SSPMCA205020">bolts.co.uk SSPMCA205020</a></td><td>14</td><td>0</td><td>16</td><td>10.08</td></tr>
 <tr><td>Fasteners</td><td>Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)</td><td><a href="https://th.rs-online.com/web/p/hex-bolts/2873921">RS 287-3921</a></td><td>14</td><td>0</td><td>16</td><td>1.60</td></tr>
 <tr><td>Fasteners</td><td>Hex bolt M5 x 16 (AMI input stud on the bar, head captured)</td><td><a href="https://ph.rs-online.com/web/p/hex-bolts/2632205">RS 263-2205</a></td><td>14</td><td>0</td><td>16</td><td>1.92</td></tr>
 <tr><td>Fasteners</td><td>Keps nut M5 (AMI input + output ears, 2 per position)</td><td><a href="https://se.rs-online.com/web/p/products/2646432">RS 264-6432</a></td><td>28</td><td>0</td><td>31</td><td>2.17</td></tr>
@@ -389,9 +390,9 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Fasteners</td><td>Hex nut M8 (bus studs)</td><td><a href="https://hkcn.rs-online.com/web/p/products/530769">RS 530-769</a></td><td>8</td><td>0</td><td>9</td><td>0.72</td></tr>
 <tr><td>Fasteners</td><td>Plain washer M8 (bus studs)</td><td><a href="https://th.rs-online.com/web/p/washers/7976068">RS 797-6068</a></td><td>8</td><td>0</td><td>9</td><td>0.45</td></tr>
 <tr><td>Mounting</td><td>Compression limiter, feet (4)</td><td><a href="https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters">EFC 10S00056</a></td><td>4</td><td>0</td><td>5</td><td>1.50</td></tr>
-<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$367.64</b></td></tr></table></div>
+<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$375.79</b></td></tr></table></div>
 <h2>Printed parts</h2><div class="wrap"><table><tr><th>Part</th><th>Rev 7 size (mm)</th><th>Rev 7 volume</th><th>Rev 6 volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>214 x 307 x 72</td><td>840.8 cm3</td><td>361.6 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>214 x 307 x 72</td><td>840.7 cm3</td><td>361.6 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 35</td><td>157.1 cm3</td><td>120.4 cm3</td></tr>
 <tr><td>Power_Cover_PA12_printed</td><td>192 x 254 x 42</td><td>199.4 cm3</td><td>160.0 cm3</td></tr>
 </table></div><p class="mut">The base is 307 mm long over the feet: check it against the printer bed.</p>
