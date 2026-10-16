@@ -82,8 +82,12 @@ with tempfile.TemporaryDirectory() as d:
           len(q) == 1 and q[0]["id"] == "M6" and q[0]["text"] == "Do it; really?"
           and [o["value"] for o in q[0]["options"]] == ["A", "B"]
           and [o["recommended"] for o in q[0]["options"]] == [False, True])
-check("needs-dan: real tracker has the section and no open question",
-      "| ID | Topic | Question | Options | Recommended |" in real and open_questions() == [])
+# The real table may hold open questions (it is where they live, R119); each must parse
+# with an ID, at least two options and exactly one recommended.
+check("needs-dan: real tracker has the section and every open question parses",
+      "| ID | Topic | Question | Options | Recommended |" in real
+      and all(q["id"] and len(q["options"]) >= 2
+              and sum(o["recommended"] for o in q["options"]) == 1 for q in open_questions()))
 check("needs-dan: questions.json is gone", not (ROOT / "docs" / "status" / "questions.json").exists())
 
 print(f"\n{fails} failure(s).")
