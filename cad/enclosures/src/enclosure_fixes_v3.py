@@ -259,4 +259,67 @@ if WHICH == 'csb3':
                  '(Claude Code 2026-10-16)')
         REPORT['saved'] = True
 
+# ================================================================ CSB3 lid loft (Dan 2026-10-16)
+# Dan: "if the csb3 connector is too deep look for a similar one that is a shallow mount or low profile otherwise we can create a raised
+# area or loft for the connector on the lid to move it a little bit further away without modifying the entire enclosure". No shallow
+# HD30-family receptacle mates the HD36-24-33SE (TE lists the HD34-24-33PE jam-nut receptacle only), so: a round loft on the LID only,
+# LOFT_H high, the HD34 panel (4.0) at its top, the D54 flange seat run up to it, the HD34 envelope moved up with it. Body unchanged.
+LOFT_H, LOFT_D = 6.0, 62.0
+if WHICH == 'csb3_loft':
+    doc = open_doc('ST185-CSB3-Enclosure')
+    des = adsk.fusion.Design.cast(app.activeProduct)
+    lc = [c for c in des.allComponents if c.name == 'CSB3-Lid'][0]
+    hc = [c for c in des.allComponents if c.name.startswith('HD34-24-33PE')][0]
+    occ = {o.component.name: o for o in des.rootComponent.occurrences}
+    REPORT['before'] = vols(des)
+    mm_ = lambda a, b: round(app.measureManager.measureMinimumDistance(a, b).value * 10.0, 2)
+    brd = occ['ECUMaster CSB3 (manual v2.1 p.4)'].bRepBodies
+    REPORT['room_before'] = dict(parts_to_HD34=mm_(brd.item(1), occ[hc.name].bRepBodies.item(0)), board_to_HD34=mm_(brd.item(0), occ[hc.name].bRepBodies.item(0)))
+    ef = lc.features.extrudeFeatures
+    if ef.itemByName('CSB3 lid loft') is None:
+        for i in range(lc.features.filletFeatures.count - 1, -1, -1):        # the D-hole corner radii are re-made on the taller cut below
+            if lc.features.filletFeatures.item(i).name.startswith('F09'):
+                lc.features.filletFeatures.item(i).deleteMe()
+        e2, e3 = ef.itemByName('Extrude2'), ef.itemByName('Extrude3')         # D-hole cut, flange seat
+        e2.timelineObject.rollTo(True)
+        try:
+            pin = lc.constructionPlanes.createInput()
+            pin.setByOffset(lc.xYConstructionPlane, VI.createByReal(56.0 / 10.0))
+            pl = lc.constructionPlanes.add(pin); pl.name = 'loft base'; pl.isLightBulbOn = False
+            sk = lc.sketches.add(pl); sk.name = 'CSB3 lid loft'
+            sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(0, 0, 56.0)), LOFT_D / 20.0)
+            ei = ef.createInput(sk.profiles.item(0), adsk.fusion.FeatureOperations.JoinFeatureOperation)
+            ei.setDistanceExtent(False, VI.createByReal(LOFT_H / 10.0))
+            ei.participantBodies = [lc.bRepBodies.item(0)]
+            ef.add(ei).name = 'CSB3 lid loft'
+        finally:
+            des.timeline.moveToEnd()
+        set_mm(e2.extentOne.distance, 6.0 + LOFT_H)          # D-hole through lid + loft
+        set_mm(e3.extentOne.distance, 2.0 + LOFT_H)          # D54 seat up to the panel under the loft top (panel stays 4.0)
+        # the HD34 envelope up by LOFT_H: its profile sketch and the D-flat cut plane
+        skh = hc.sketches.itemByName('HD34_profile')
+        ents = adsk.core.ObjectCollection.create()
+        for c in skh.sketchCurves:
+            ents.add(c)
+        v = skh.modelToSketchSpace(P(0, 0, LOFT_H)); o = skh.modelToSketchSpace(P(0, 0, 0))
+        m = adsk.core.Matrix3D.create(); m.translation = adsk.core.Vector3D.create(v.x - o.x, v.y - o.y, v.z - o.z)
+        skh.move(ents, m)
+        fp = hc.constructionPlanes.itemByName('Plane1')
+        set_mm(fp.definition.offset, fp.definition.offset.value * 10.0 + LOFT_H)
+    l0 = lc.bRepBodies.item(0)
+    REPORT['F09'] = fillet(lc, 'F09 D-hole corners R3', [(edges_at(l0, [(-8.22, 19.91), (8.22, 19.91)], 50.0, 56.0 + LOFT_H, tol=0.1), 3.0)])
+    REPORT['after'] = vols(des)
+    REPORT['health'] = [(it.name, it.healthState) for it in des.timeline if it.healthState != adsk.fusion.FeatureHealthStates.HealthyFeatureHealthState]
+    occ = {o.component.name: o for o in des.rootComponent.occurrences}
+    brd = occ['ECUMaster CSB3 (manual v2.1 p.4)'].bRepBodies
+    hb = occ[hc.name].bRepBodies.item(0)
+    REPORT['room_after'] = dict(parts_to_HD34=mm_(brd.item(1), hb), board_to_HD34=mm_(brd.item(0), hb),
+                                HD34_to_lid_clash=round(sum(0 for _ in [0]), 1))
+    lb = l0.boundingBox
+    REPORT['lid_top_z'] = round(lb.maxPoint.z * 10.0, 2)
+    if globals().get('SAVE', True) and not REPORT['health']:
+        REPORT['files'] = export_all(des, 'CSB3', os.path.join(MAIN, 'cad', 'enclosures', 'csb3'), 'ST185-CSB3-Enclosure.f3d')
+        doc.save('Dan 2026-10-16: 6 mm loft on the lid for the HD34 (wire room over the CSB3 board), body unchanged (Claude Code 2026-10-16)')
+        REPORT['saved'] = True
+
 print(json.dumps(REPORT, indent=1))

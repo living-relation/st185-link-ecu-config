@@ -1705,17 +1705,26 @@ def build(out_dir, save=True, renders=True, rev=6):
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
 
-        # ---- copper strips (tapped M4 at every stud, M5 at the feed; modelled at the tap drill, thread = strip thickness 3.2 - OPEN-3)
-        sbodies = []
+        # ---- copper strips: N2 (Dan 2026-10-16, OPEN-3 = A) a PEM self-clinching nut at every stud (M4) and feed (M5), pressed into its
+        # mounting hole from the lug face so the head stands on the far face, in the gap between the strips (spec.PEM)
+        sbodies, pem = [], {4: [], 5: []}
         for col, v in strips.items():
             st = box(v['x0'], v['y0'], s_z0, v['x1'], v['y1'], s_z1)
-            for s_ in studs:
-                if s_['col'] == col:
-                    bo(st, cyl((v['x0'] - 1, s_['y'], s_['z']), (v['x1'] + 1, s_['y'], s_['z']), S.TAP_DRILL[JB['m']]), 's')   # F07: tap drill
-            f = S.FEED[col]
-            bo(st, cyl((v['x0'] - 1, f['y'], f['z']), (v['x1'] + 1, f['y'], f['z']), S.TAP_DRILL[5]), 's')
+            far = v['face'] + v['sd'] * ST['t']
+            holes_ = [(s_['y'], s_['z'], JB['m']) for s_ in studs if s_['col'] == col] + [(S.FEED[col]['y'], S.FEED[col]['z'], 5)]
+            for (y_, z_, m_) in holes_:
+                N_ = S.PEM[m_]
+                bo(st, cyl((v['x0'] - 1, y_, z_), (v['x1'] + 1, y_, z_), N_['hole']), 's')
+                assert min(z_ - s_z0, s_z1 - z_, y_ - v['y0'], v['y1'] - y_) >= N_['edge'] - 1e-6, 'PEM edge distance %s %.1f %.1f' % (col, y_, z_)
+                nut = union_all([cyl((far, y_, z_), (far + v['sd'] * N_['T'], y_, z_), N_['E']),
+                                 cyl((far - v['sd'] * N_['A'], y_, z_), (far, y_, z_), N_['hole'] - 0.03)])
+                bo(nut, cyl((far - v['sd'] * (N_['A'] + 1), y_, z_), (far + v['sd'] * (N_['T'] + 1), y_, z_), float(m_)), 's')
+                pem[m_].append(nut)
             sbodies.append(st)
         edge_break(comp(pre + 'Strip_Logic_%s_25p4x3p2_on_edge' % BM['name'], sbodies, AP['tin'], MAT['cu'], sh))
+        for m_, nl in pem.items():
+            comp(pre + 'Nut_PEM_%s' % S.PEM[m_]['pn'], nl, AP['al'], MAT['ss'], sh)
+        report['pem_nuts'] = {S.PEM[m_]['pn']: len(nl) for m_, nl in pem.items()}
 
         # ---- jumper lugs, bolts, washers, jumpers (straight down from the input cavity into the lug barrel)
         jl, jb, jw, jwire = [], [], [], []
@@ -2067,15 +2076,21 @@ def build(out_dir, save=True, renders=True, rev=6):
         pos_live = bodies('Power_Lug_BusPos') + bodies('Power_Bar_Power')
         neg_live = bodies('Power_Lug_BusNeg') + bodies('Power_BarNeg_')
         bp_, bn_ = bodies('Power_Lug_BusPos'), bodies('Power_Lug_BusNeg')
+        yc_neg = (S.REV7['neg_bar']['yc'] + S.PLACE['POWER'][1]) / 10.0
+        neg_nuts_ = [b_ for b_ in bodies('Power_Nut_') if abs((b_.boundingBox.minPoint.y + b_.boundingBox.maxPoint.y) / 2 - yc_neg) < 0.05
+                     and (b_.boundingBox.maxPoint.y - b_.boundingBox.minPoint.y) > 1.2]
         report['live_clearance'].update({
             'bus_pos_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bp_) for l2 in bp_[i_ + 1:]),
             'bus_neg_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bn_) for l2 in bn_[i_ + 1:]),
+            # N3 (Dan 2026-10-16): the NEG M8 nuts too - nut to nut on the NEG bar, and the end nut to the printed barrier wall
+            'bus_neg_nut_to_nut_min_mm': min(dist(n1, n2) for i_, n1 in enumerate(neg_nuts_) for n2 in neg_nuts_[i_ + 1:]),
+            'bus_neg_nut_to_barrier_mm': min(dist(n_, bodies('Power_Base_')[0]) for n_ in neg_nuts_),
             'bus_neg_to_pos_min_mm': min(dist(a_, b_) for a_ in neg_live for b_ in pos_live),
             'bus_pos_lug_to_out_pad_min_mm': min(dist(l1, pb) for l1 in bp_ for pb in pad_bs),
         })
     # rev 6 (C4): the jumper lugs - lug to lug on each strip (Dan's 3 mm), every jumper part to plastic and to the harness wires
     jl_bs = bodies('Logic_Lug_TE_PIDG')
-    jpart = jl_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_Klauke')
+    jpart = jl_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_Klauke') + bodies('Logic_Nut_PEM_')
     jprinted = bodies('Logic_Base_') + bodies('Logic_Pan_')
     strip_bs = bodies('Logic_Strip_')
     spx0_ = sizes['LOGIC']['spine_x'] + S.PLACE['LOGIC'][0]
@@ -2087,10 +2102,11 @@ def build(out_dir, save=True, renders=True, rev=6):
         'logic_jumper_parts_to_harness_min_mm': min(dist(jp, hb) for jp in jpart + bodies('Logic_Wire_') for hb in bodies('Logic_Harness_')),
         'logic_strip_to_printed_min_mm': min(dist(sb, pb) for sb in strip_bs for pb in jprinted),
         'logic_bolt_to_other_strip_min_mm': min(sorted(dist(bb, sb) for sb in strip_bs)[1] for bb in bodies('Logic_LugBolt_')),
+        'logic_pem_nut_to_other_strip_min_mm': min(sorted(dist(nb, sb) for sb in strip_bs)[1] for nb in bodies('Logic_Nut_PEM_')),
     })
     # rev 7 (3 mm gate): every Bus 1 live part against every Bus 2 live part (sides of the spine)
     spx_ = sizes['LOGIC']['spine_x'] + S.PLACE['LOGIC'][0]
-    lg_live = strip_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_TE') + bodies('Logic_Lug_Klauke')
+    lg_live = strip_bs + bodies('Logic_LugBolt_') + bodies('Logic_Washer_') + bodies('Logic_Lug_TE') + bodies('Logic_Lug_Klauke') + bodies('Logic_Nut_PEM_')   # N2: + the PEM nuts
     xc_ = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5
     b1_, b2_ = [b_ for b_ in lg_live if xc_(b_) < spx_], [b_ for b_ in lg_live if xc_(b_) >= spx_]
     report['live_clearance']['logic_bus1_to_bus2_min_mm'] = min(dist(a_, c_) for a_ in b1_ for c_ in b2_)
@@ -2162,8 +2178,8 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: SteveCAD v3 audit port - NEG GND stud 100.5 + pocket relief (F05), ISO 273 bar holes (F19), LOGIC strip tap drills (F07), '
-                     '0.3 copper edge break (F10 / D6), M5 x 20 pad studs + DIN 6923 nuts (OPEN-5) (Claude Code 2026-10-16)')
+            doc.save('rev 7: Dan N2 = A PEM self-clinching nuts in the LOGIC strips (S-M4-2ZI / SS-M5-2ZI; strips 8.2 apart, LOGIC +1.9 wide, rows z 12.8 / 17.8), '
+                     'N3 NEG GND stud 102.0 + bar 5 - 110 (1.5 mm between NEG lugs) (Claude Code 2026-10-16)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7

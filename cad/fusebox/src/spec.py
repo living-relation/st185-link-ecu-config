@@ -102,15 +102,20 @@ MINI = dict(l=10.92, w=3.81, h_above=9.0, pitch=8.1)
 # 2.5 mm further outboard and the box is 2.5 mm wider (79 -> 81.5), so the Bus 1 / Bus 2 strips are 6.3 apart (rev 6: 3.8) and an M4 x 8
 # jumper bolt tip (3.1 past its own strip) stays >= 3 mm from the other strip. Bus 1 cannot move inboard (its tail bundle meets the
 # belly pan wall) and Bus 2 cannot move alone (its fuses would hit the micro relays), so the box grows instead. Same parts.
+# N2 (PEM nuts): the M4 x 8 jumper bolt is the shortest that passes the nut (tip 3.12 past the strip, 1.12 past the nut head), and the
+# upper row is now only 5.0 over the lower, so the Bus 1 and Bus 2 bolt tips at one y are 1.0 apart in z: the gap between the strips grows
+# 6.3 -> 9.2 to keep Dan's 3 mm between Bus 1 and Bus 2 (tip to tip 3.1, tip to the other strip's nut head 4.1): again everything outboard
+# of the spine moves out, by PEM_GROW, and the box is that much wider
+PEM_GROW = 2.9
 MINI_COLS = {   # x centre, fuses forward -> rear: (label, amps or None for a spare position)
     'BUS1': (13.5, [('EFI86', 5), ('HL', 15), ('HR', 15), ('HZ', 15), ('DM', 20), ('WL', 15), ('ALM', 5),
                     ('ALMS', 2), ('ALTS', 2), ('ETB', 10), ('SP', None), ('SP', None)]),
-    'BUS2': (37.5, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
+    'BUS2': (37.5 + PEM_GROW, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
                     ('ACC', 10), ('ALMIG', 2), ('SP', None), ('SP', None), ('MRS', 7.5), ('B30', 2)]),
 }
 MINI_Y0 = 28.0       # first fuse centre
 MICRO = dict(x=15.5, y=23.0, h=24.1)
-MICRO_COLS = (53.5, 72.0)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
+MICRO_COLS = (53.5 + PEM_GROW, 72.0 + PEM_GROW)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
                              # R123: + 2.0 so the Bus 2 output terminals (880398-2) keep their lance ledges next to the micro relay 85 (R73 2.0 wall)
 MICRO_Y = (21.0, 51.0, 81.0, 111.0, 141.0)
 # R127 sweep (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of the parts"): the
@@ -205,22 +210,32 @@ LUG_6AWG = dict(b=13.0, l=26.0, tip=6.0, t=2.0, d4=8.5)   # Klauke 3R5 (JB1 HOT 
 # ---------- LOGIC box (local frame). Rev 6 (C4): bus strips on edge between the fuse columns, one jumper per fuse input.
 # BUS1 inputs on the +x blade (output -x), BUS2 inputs on the -x blade (output +x): both input lines face the strips.
 MINI_IN = {'BUS1': +1, 'BUS2': -1}                    # side of the input blade (blades at cx +- 3.0)
-STRIP = dict(h=25.4, t=3.2)                           # 1" x 1/8" tinned copper flat bar on edge (MECCANIXITY B0CGJC2S1L), drilled + tapped M4 / M5
+STRIP = dict(h=25.4, t=3.2)                           # 1" x 1/8" tinned copper flat bar on edge (MECCANIXITY B0CGJC2S1L), PEM self-clinching nuts (N2)
+# N2 (Dan 2026-10-16, OPEN-3 = A): the strip threads are PEM self-clinching nuts pressed into the copper, not tapped copper (3.2 mm gave M4
+# 0.8 x D). PEM bulletin CL (S / SS / CLS / CLSS metric table) + pemnet.com product pages; PEM "Performance data for PEM fasteners installed
+# into copper" tests type S in Cu-ETP (= C110): S-M4-1 in 1 mm 2.7 N.m torque-out, SS-M5-2 in 1.5 mm 5.3 N.m. Sheet: >= the shank code's
+# min thickness (code 2: 1.4; the strip is 3.2, so the nut sits flush on the shank side, sub-flush 1.82 inside the hole) and softer than
+# HRB 80 / HB 150 (copper C110 is far softer). The head (E x T) stands on the strip face AWAY from the lug, in the gap between the strips,
+# so the lug palm sits on bare copper round the hole. hole = mounting hole (+0.08), edge = least hole centre to strip edge.
+PEM = {4: dict(pn='S-M4-2ZI', hole=5.41, E=7.87, T=2.0, A=1.38, edge=6.9, url='https://www.pemnet.com/products/product-finder/s-m4-2zi/'),
+       5: dict(pn='SS-M5-2ZI', hole=6.35, E=8.64, T=2.0, A=1.38, edge=7.1, url='https://www.pemnet.com/products/product-finder/ss-m5-2zi/')}
 JLUG = dict(ring=8.0, t=0.78, L=20.65, neck=2.0, sleeve=5.3, hole=4.34, ax=2.26)
 # TE PIDG 53941-1 (TE page 2026-10-14: #8 / M4 stud, 16-14 AWG, overall 20.65, tongue 0.78; blue sleeve). Ring 8.0 and sleeve 5.3
 # are PIDG #8 family sizes, not on the TE page: read them off the first sample. ax = barrel axis off the palm mid-plane.
 JBOLT = dict(m=4, l=8.0, washer_t=0.9, washer_od=7.6)  # RS 287-3915 M4 x 8 A2 + RS 231-0691 DIN 127B spring washer, into the tapped strip
-JROW = dict(z_lo=10.0, dz=7.5)                        # palm centres: lower row, upper row = +7.5 (rings 11.0 apart diagonally = 3 mm gap)
+JROW = dict(z_lo=12.8, dz=5.0)                        # palm centres: N2: lower row 5.9 + 6.9 PEM edge (was 10.0); upper row +5.0 (was 7.5), so the upper
+                                                      # lug barrel still ends 4 under the deck (34.45 + 4 <= 38.5); one strip = one circuit (J1 = A)
 JUMPER_AWG = 14
-LOGIC = dict(L=83.5, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
+LOGIC = dict(L=83.5 + PEM_GROW, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
 LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
 SPINE = dict(t=2.2, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
 # strip y extents and feeds: BUS1 feed at its front end (lug face, wire out the front), BUS2 feed at its rear end (wire out the rear)
 # J4 = B (Dan, 2026-10-14, DECISIONS R94): the Bus 1 strip starts 3.5 later (8 -> 11.5) and its feed lug sits lower and 3 mm rearward
 # (y 15 / z 22 -> y 18 / z 13), so a band opens in front of the spine where the HL / HR / ETB wires cross under the deck (CHANNEL below).
-STRIP_Y = {'BUS1': (11.5, 123.0), 'BUS2': (23.5, 140.0)}     # Bus 2 starts 2.5 later too: the Bus 1 feed bolt tip (y 18) keeps 3 mm to it
-FEED = {'BUS1': dict(y=18.0, z=13.0, dir=-1), 'BUS2': dict(y=133.0, z=13.0, dir=+1)}
+STRIP_Y = {'BUS1': (11.5, 124.0), 'BUS2': (21.1, 140.1)}     # N2: PEM edge distance at both ends (6.9 M4 / 7.1 M5): Bus 1 + 1.0 at the rear,
+# Bus 2 starts 2.4 earlier (was 23.5: the Bus 1 feed bolt tip now keeps 3.4 in x from it across the wider gap) and ends 0.1 later
+FEED = {'BUS1': dict(y=18.6, z=13.0, dir=-1), 'BUS2': dict(y=133.0, z=13.0, dir=+1)}   # N2: Bus 1 feed 0.6 rearward (PEM M5 edge 7.1)
 STUDS = {'BUS1': 12, 'BUS2': 10}                      # stud positions per strip (BUS2 11 / 12 = MRS / B30 have their own inputs; 10 = SP, no stud)
 FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 87', 10)}   # (from, AWG) - wires run box to box
 # harness gauge per LOGIC output (ST185-CabinPower fb_logic contacts: 1241388-2 = 20-18 AWG, 880398-2 = 16-14 AWG)
@@ -314,11 +329,14 @@ REV7 = dict(
     D=243.0,                                   # POWER box depth: rev 6 181 + 62 bus zone at the rear (y > 181)
     bar_y1=236.0,                              # POS bar: y 10 -> 236 (226 long), cut from 1" x 1/4" tinned (R76)
     pos_studs=[(178.0, 'BAT+ IN', 'H1'), (202.0, 'RADLOK+', 'H3'), (226.0, 'SPARE', None)],   # M8 on the POS bar, 1/0 lugs out +x
-    neg_bar=dict(x0=4.0, x1=109.0, yc=205.0),  # NEG bar on flat along x (105 long, same stock), lugs out +y (rear end)
+    neg_bar=dict(x0=5.0, x1=110.0, yc=205.0),  # NEG bar on flat along x (105 long, same stock), lugs out +y (rear end); N3: 1 mm outboard (was 4 - 109)
     neg_studs=[(15.0, 'BAT-', 'H2', '1/0'), (38.0, 'RADLOK-', 'H6a', '1/0'), (61.0, 'GND ID', 'H7', '1/0'), (84.0, 'GND IG', 'H7', '1/0'),
-               (100.5, 'GND', 'relays', 'small')],   # 23 pitch = 20 lug + 3 gap (Dan's rule); GND: up to 3 small M8 rings
-    # F05 (SteveCAD v3, 2026-10-16): GND stud 103.5 -> 100.5, so its hole edge is 4.0 from the bar end (was 1.25) and its nut clears the
-    # barrier wall by 2.5 (was a 2.9 mm3 overlap); 16.5 to the x 84 stud (nut corners 1.5 apart - OPEN-2 for Dan: accept, or move the wall)
+               (102.0, 'GND', 'relays', 'small')],   # 23 pitch = 20 lug + 3 gap (Dan's rule); GND: up to 3 small M8 rings
+    # F05 (SteveCAD v3, 2026-10-16): GND stud off the bar end (103.5 -> 100.5). N3 (Dan 2026-10-16, OPEN-2: "I can get a tool in there", the
+    # pitch is accepted if the air gap between the two NEG lugs / nuts meets spec): both lugs are the one ground node, so the spec is practical -
+    # neg_lug_gap between ring edges (lugs turning under torque never touch) - and at 100.5 the 6R8 ring (b 20, Klauke) and the GND ring (b 13)
+    # touched; the stud nudged to 102.0 (18.0 pitch) and the bar 1 mm outboard: hole centre 8.0 from the bar end, nut corner 1.0 from the barrier
+    neg_lug_gap=1.5,                           # N3: least gap between NEG lug ring edges (one ground node: practical, not an electrical clearance)
     small_ring_b=13.0,                         # widest small M8 ring tongue (TE PIDG, 22-16 / 16-14 AWG M8 rings, ST185-CabinPower)
     small_awg=(14, 18, 20),                    # k_htr 87a 14, k_pwr 85 18, k_rev 85 20 (CabinPower t_pdb_gnd_*)
     barrier=(110.5, 113.5),                    # printed wall x between the NEG terminals and the POS bar pocket (115.4); 3.0 thick (R127 sweep, was 2.5)
@@ -573,10 +591,10 @@ def retainer_hole(part, wire_od):
 # J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn
 # along the front in front of the spine (y 7.25), each on its own level, over a printed floor (the Bus 1 feed lug is under it); the
 # HL / HR splices lie stacked in the channel past the spine; every branch then runs to its relay on its own level. Levels: centre z.
-CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05,
-               splice=dict(x0=27.5, x1=40.0, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 16 AWG (L1; combined 10 AWG)
+CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0 + PEM_GROW), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05 + PEM_GROW / 2,
+               splice=dict(x0=27.5 + PEM_GROW / 2, x1=40.0 + PEM_GROW / 2, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 16 AWG (L1; combined 10 AWG)
                z=dict(ETB=20.18, HR=24.16, HL=28.86, HR30=23.1, HR86=25.45, HL30=27.8, HL86=29.95),
-               x_etb=44.0, x_hr=62.8)    # x_hr between the micro relay columns (R123: + 2.0 with them)
+               x_etb=44.0 + PEM_GROW, x_hr=62.8 + PEM_GROW)    # x_hr between the micro relay columns (R123: + 2.0 with them)
 CHANNEL_SPLICES = ('sp_hl', 'sp_hr')
 # J2 = B rub protection. LOGIC: a rib on the belly pan between the Bus 1 output wires (kept at x <= lane_x_max) and the Bus 1 strip bolt
 # heads (x 14.67 up) - PAN_RIB; a relief (the pan wall thinned) at the outboard micro relay column, where the 86 wires drop 1 mm from the wall

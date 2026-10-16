@@ -32,6 +32,7 @@ LIVE_LIVE = {   # key -> what the two live parts are
     'bus_pos_lug_to_out_pad_min_mm': 'POWER: + bus lug to an AMI output pad',
     'logic_strip_to_strip_mm': 'LOGIC: Bus 1 strip to Bus 2 strip',
     'logic_bolt_to_other_strip_min_mm': 'LOGIC: a strip bolt tip to the OTHER strip',
+    'logic_pem_nut_to_other_strip_min_mm': 'LOGIC: a PEM nut head (N2) to the OTHER strip',
     'logic_bus1_to_bus2_min_mm': 'LOGIC: any Bus 1 part to any Bus 2 part',
     'logic_feed_lug_to_lug_mm': 'LOGIC: Bus 1 feed lug to Bus 2 feed lug',
     'battrelay_bar_to_pad_mm': 'battery block: bar to output pad',
@@ -43,7 +44,14 @@ LIVE_INSULATION = ('pan_to_nearest_live_power_mm', 'logic_jumper_parts_to_printe
 SAME_CIRCUIT = {'logic_jumper_lug_to_lug_min_mm': 'LOGIC: fuse input jumper lug to the next one on the SAME strip (one circuit, J1 = A)',
                 # SteveCAD v3 F05 (2026-10-16): the GND stud moved to x 100.5 puts its ring edge on the GND IG 6R8 lug at x 84 - every
                 # lug on the NEG bar is the one ground node, so J1 = A applies as on a LOGIC strip; spanner room there is OPEN-2 (Dan)
-                'bus_neg_lug_to_lug_min_mm': 'POWER bus zone: NEG bar lug to lug (one ground bar = one circuit, J1 = A; OPEN-2)'}
+                'bus_neg_lug_to_lug_min_mm': 'POWER bus zone: NEG bar lug to lug (one ground bar = one circuit, J1 = A)',
+                'bus_neg_nut_to_nut_min_mm': 'POWER bus zone: NEG bar M8 nut to nut (one ground node)'}
+# N3 (Dan 2026-10-16, OPEN-2): the NEG stud pitch is accepted if the gap between the NEG lugs / nuts meets a stated spec. They are one
+# ground node, so no electrical clearance applies; the practical spec is spec.REV7 neg_lug_gap (1.5 mm: lugs that turn under torque never
+# touch, the bus looks tidy). Same-circuit keys listed here fail under their own minimum.
+import importlib.util as _ilu
+_sp = _ilu.spec_from_file_location('spec', os.path.join(HERE, 'spec.py')); _S = _ilu.module_from_spec(_sp); _sp.loader.exec_module(_S)
+SAME_CIRCUIT_MIN = {'bus_neg_lug_to_lug_min_mm': _S.REV7['neg_lug_gap'], 'bus_neg_nut_to_nut_min_mm': _S.REV7['neg_lug_gap']}
 # key -> question id: the key may stay under 3 mm only while that question is open (Dan to decide)
 WAIVERS = {}
 
@@ -71,7 +79,10 @@ def main():
             print('  info (live to plastic / insulation, not gated): %s = %.2f mm' % (k, lc[k]))
     for k, what in SAME_CIRCUIT.items():
         if k in lc:
-            print('  same circuit (J1 = A, not gated): %s = %.2f mm (%s)' % (k, lc[k], what))
+            mn = SAME_CIRCUIT_MIN.get(k)
+            print('  same circuit (J1 = A%s): %s = %.2f mm (%s)' % (', practical min %.1f' % mn if mn else ', not gated', k, lc[k], what))
+            if mn and lc[k] < mn:
+                bad.append((k, lc[k], what + ' - under its practical minimum %.1f' % mn, None))
     for (k, v, what, q) in waived:
         print('  WAIVED while %s is open: %s = %.2f mm (%s)' % (q, k, v, what))
     for k in missing:

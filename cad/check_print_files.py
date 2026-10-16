@@ -19,8 +19,9 @@ PARTS = [
      [('leg barbs (0.6 x 1.5 snap hooks, spec.RETAINER barb / barb_h)', (-20.0, 20.0, -20.0, 20.0, 8.39 - 1.6, 8.5))]),
     # VRC board holder v2 (R126): the 4 snap tabs (1.0 arm + 0.6 lip with lead-in, vrc_holder_spec TAB_* / LIP_*) are flex hooks, not
     # walls; print frame = enclosure frame moved down by the floor (z 5) and centred
-    ('ST185_VRC_board_holder_PA12', 'cad/enclosures/vrc/print', (57.7, 35.2, 10.9),
-     [('snap tab %s' % n, (xa - 0.8, xb + 0.8, y0, y1, 2.9, 11.0)) for n, (xa, xb, y0, y1) in (
+    # N4 (Dan 2026-10-16): the block 2.5 higher (board top z 17.5), so 13.4 tall and the tab arms reach print z 13.4 (were 10.9 / 11.0)
+    ('ST185_VRC_board_holder_PA12', 'cad/enclosures/vrc/print', (57.7, 35.2, 13.4),
+     [('snap tab %s' % n, (xa - 0.8, xb + 0.8, y0, y1, 2.9, 13.5)) for n, (xa, xb, y0, y1) in (
          ('-y/-x', (-9.5, -4.5, -13.6, -11.7)), ('-y/+x', (4.5, 9.5, -13.6, -11.7)),
          ('+y/-x', (-9.5, -4.5, 11.7, 13.6)), ('+y/+x', (4.5, 9.5, 11.7, 13.6)))]),
 ]

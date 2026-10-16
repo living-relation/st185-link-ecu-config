@@ -37,13 +37,27 @@ SO8 = dict(x0=-1.13 - 0.0, x1=4.02, y0=6.14, y1=11.05, h=1.75)   # IC1 body (pad
 # (two shallow reliefs under the pin rows take the solder tips). PA12 powder bed (R73: walls >= 2.0 except the named snap tabs).
 FIT = 0.4             # board to pocket, per side
 WALL = 2.0            # R73 minimum wall
-Z_TOP = 15.0          # board top, flush with the block top: below the lowest LP-16 cup (z 17), 24 mm to the lid for soldering
+Z_TOP = 17.5          # board top, flush with the block top; N4 (Dan 2026-10-16, OPEN-6 = A): the holder 2.5 higher (was 15.0), 21.5 mm to the lid for soldering
 Z_BOARD = Z_TOP - PCB_T                         # pocket floor / board underside (13.4)
 POCKET = (PCB_X + 2 * FIT, PCB_Y + 2 * FIT, PCB_R + FIT)
 # block outline (x, y): +-28.85 x +-17.6, the x ends notched back to +-28.4 for |y| < 7.0, where the LP-16 rear envelope (x >= 28.9,
 # a D18 cylinder about z 21: |y| < 6.7 at z 15) and its cups sit; block corners stay inside the cavity's R7.7 corners
-BLOCK = dict(x=28.85, y=17.6, x_notch=28.4, y_notch=7.0, z0=FLOOR_Z, z1=Z_TOP)
+BLOCK = dict(x=28.85, y=17.6, x_notch=28.4, y_notch=8.8, z0=FLOOR_Z, z1=Z_TOP)   # N4: notch |y| 7.0 -> 8.8: at the new top (z 17.5) the D18 rear is 8.29 wide (+0.4 FIT + margin)
 RELIEF = dict(w=2.6, l=11.0, d=1.5)             # under each pin row: solder tips of the top-soldered wires (blind)
+# N4: with the block 2.5 higher its top (z 17.5) is level with the two lowest LP-16 solder cups (z 17.76) - the leads from cups 3 / 4 and the
+# drain leave the cup straight in toward the board, so each block end gets a lead relief back down to the old top: |x| >= x0, |y| <= y,
+# down to z (2.0 under those leads; outside the M6 head seat - the countersink rim reaches it only beyond the head's 5.67 radius)
+LEAD_RELIEF = dict(x0=18.5, y_lo=-6.5, y_cup=3.6, clr=0.45, z=15.0)
+
+
+def lead_relief():
+    """Outline (x, y) of the lead relief at the +x (IN) end; the -x end is its point mirror (x, y) -> (-x, -y), like the screws. From
+    the end face it is y_lo .. y_cup (round the cup 3 / 4 leads; wider on -y for the drain), then its countersink-side edge follows the
+    cup 4 lead in to x 21.7 (lead y + OD / 2 + clr), so >= 1.95 of PA12 stays between it and the M6 countersink."""
+    LR = LEAD_RELIEF
+    yt = max(TURN_Y[('IN', 4)], -TURN_Y[('OUT', 4)]) + OD / 2 + LR['clr']
+    xe = BLOCK['x'] + 1.0
+    return [(xe, LR['y_lo']), (xe, LR['y_cup']), (LP16_REAR_X - 0.3, LR['y_cup']), (21.7, yt), (LR['x0'], yt), (LR['x0'], LR['y_lo'])]
 # 4 snap tabs at the pocket's +-y edges (clear of IC1, which reaches y 11.05 at x -1.1..4.0): a 1.0 arm freed by a slot behind it
 # and two slits at its ends, a 0.6 lip with a lead-in over the board edge
 TABS_X = ((-9.5, -4.5), (4.5, 9.5))
@@ -52,17 +66,19 @@ LIP_IN, LIP_H, LIP_GAP = 0.6, 0.8, 0.1
 # 2 x M6 countersunk socket head cap screws, opposite corners: ISO 10642 A2 M6 x 12, RS PRO 266-8419
 # (https://int.rsdelivers.com/product/rs-pro/rs-pro-plain-stainless-steel-hex-socket-screw-hex/2668419); head dk <= 12.0, 90 deg
 SCREWS = ((20.7, 9.5), (-20.7, -9.5))
-SCREW_PN, SCREW_LEN = 'RS PRO 266-8419 (M6 x 12, ISO 10642, A2)', 12.0
+SCREW_PN, SCREW_LEN = 'Lemu 2990806014 (M6 x 14, ISO 10642 / DIN 7991, A2, TX30)', 14.0   # N4: M6 x 12 hex (RS 266-8419) -> M6 x 14 - no hex-socket A2 M6 x 14 listing found
 CLEAR, CSK_D = 6.6, 12.2                         # clearance hole, countersink diameter at the block top (90 deg)
 CSK_DEPTH = (CSK_D - CLEAR) / 2                  # 2.8
 # enclosure: 2 bosses on the floor under the screws (6061-T6), the block sits over them in recesses
-BOSS2_D, BOSS2_H = 11.0, 5.5                    # boss top z 10.5 (F02 / D2, Dan: +1 mm, SteveCAD v3 2026-10-16; was 4.5); M6 major 6.0 -> 2.5 wall
-PILOT_D, PILOT_DEPTH = 5.0, 9.5                 # M6 x 1.0 tap drill, from the boss top down to z 1.0 (1.0 of floor left, sealed)
-TAP = 'M6x1.0-6H, 8.5 full thread'
-# the holder's boss recesses follow (RECESS_H below): roof z 9.7 -> 10.7, 0.2 over the boss. The ring between the roof and the
-# countersink bottom (z 12.2) is now 1.5 (was 2.5) - under R73's 2.0: OPEN-6 for Dan (accept, +2.5 on boss and holder, or an insert)
+BOSS2_D, BOSS2_H = 11.0, 7.5                    # boss top z 12.5; M6 major 6.0 -> 2.5 wall. History: 4.5 (R126) -> 5.5 (F02, +1) -> 7.5 (N4)
+PILOT_D, PILOT_DEPTH = 5.0, 11.5                # M6 x 1.0 tap drill, from the boss top down to z 1.0 (1.0 of floor left, sealed)
+TAP = 'M6x1.0-6H, 10.0 full thread'
+# N4 (Dan 2026-10-16, OPEN-6 = A: "raise the VRC bosses and the holder 2.5 mm (full 1.5 x D thread, thicker ring)"): the holder goes up 2.5
+# (Z_TOP 17.5) and the boss top to z 12.5 (+2.0 on F02's 10.5) so BOTH asks hold with a stocked screw: an M6 x 14 flush at z 17.5 engages
+# 14 - (17.5 - 12.5) = 9.0 = 1.5 x D, its tip at z 3.5 inside the full thread; the ring between the recess roof (z 12.7) and the countersink
+# bottom (z 14.7) is 2.0 (R73; was 1.5). Raising both by 2.5 would have kept 7.5 of thread and the 1.5 ring.
 RECESS_D, RECESS_H = BOSS2_D + 2 * FIT, BOSS2_H + 0.2
-# a screw of SCREW_LEN with its head flush engages (Z_TOP - SCREW_LEN) .. boss top = 7.5 mm of thread (1.25 x D; 6.5 before F02)
+# a screw of SCREW_LEN with its head flush engages (Z_TOP - SCREW_LEN) .. boss top = 9.0 mm of thread (1.5 x D; 7.5 after F02, 6.5 before)
 
 # ---------- wires
 OD = 1.57
@@ -78,7 +94,11 @@ OUT_MAP = {1: 5, 2: 6, 3: 8, 4: 7}     # +5V -> VDD, Gnd -> GND, L out -> VR1OUT
 JOINT_Z = {}   # v1 (R108) only: wires met the pins under the board
 # v2: height above the board top where each lead turns down onto its pad. The OUT map crosses over, so OUT 1 / OUT 3 pass over the
 # other two: best of a 4-level search per side - 0.94 mm between wires, the 2.54 pad pitch allows 0.97
-APPROACH = {('OUT', 1): 14.0, ('OUT', 3): 14.0}
+# N4: the lead from cup 4 (IN +y, OUT -y: the side of that end's M6 countersink) runs its 6.6+ straight (cup + heat shrink) in toward the
+# middle, to y 0 at x 21.7, so its lead relief stays >= 1.95 from the countersink
+TURN_Y = {('IN', 4): 0.0, ('OUT', 4): 0.0}
+APPROACH = {('OUT', 1): 14.0, ('OUT', 3): 20.0,
+            ('IN', 4): 10.5, ('OUT', 4): 10.5}   # N4: cups 3 / 4 now drop longer onto their pads (a straight end >= 0.5 before the pad)   # N4: the board 2.5 higher, so the leads from the lowest cups (4) need a longer drop for their 3 x OD bends
 
 
 def cup(side, k):
@@ -96,7 +116,7 @@ def wires():
         for k, p in cmap.items():
             c = cup(side, k)
             h = APPROACH.get((tag, k), 8.5)
-            pts = [c, (side * 21.7, c[1], c[2]), (PIN_X[p], PIN_Y[p], Z_TOP + h), (PIN_X[p], PIN_Y[p], Z_TOP + 0.3)]
+            pts = [c, (side * 21.7, TURN_Y.get((tag, k), c[1]), c[2]), (PIN_X[p], PIN_Y[p], Z_TOP + h), (PIN_X[p], PIN_Y[p], Z_TOP + 0.3)]
             out['%s%d-pin%d' % (tag, k, p)] = pts
     a, b = cup(1, 3), cup(-1, 5)
     out['drain IN3-OUT5'] = [a, (22.0, a[1], a[2]), (17.0, DRAIN_Y, LP16_AXIS_Z), (-17.0, DRAIN_Y, LP16_AXIS_Z),

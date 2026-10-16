@@ -110,9 +110,9 @@ def finish(raw_png, out_png):
     d = ImageDraw.Draw(page)
     d.rectangle([0, 0, page.size[0] - 1, page.size[1] - 1], outline=(40, 44, 52), width=B)
     d.rectangle([B - 1, B + BAR - 1, B + W, B + BAR + H], outline=(20, 24, 30), width=2)
-    d.text((B + 18, B + 10), 'VRC board holder v2 in the box - section through one M6 screw (DECISIONS R126)', fill=(20, 24, 30), font=font(30, True))
-    d.text((B + 18, B + 50), 'M6 x 12 ISO 10642 A2 (RS PRO 266-8419) flush in a 90 deg countersink D%.1f; %.1f mm of PA12 clamped over the boss.' % (
-        S.CSK_D, S.Z_TOP - S.CSK_DEPTH - (S.FLOOR_Z + S.RECESS_H)), fill=(70, 74, 80), font=font(19))
+    d.text((B + 18, B + 10), 'VRC board holder v2 in the box - section through one M6 screw (DECISIONS R126, N4 heights R131)', fill=(20, 24, 30), font=font(30, True))
+    d.text((B + 18, B + 50), '%s flush in a 90 deg countersink D%.1f; %.1f mm of PA12 clamped over the boss; %.1f mm of thread engaged.' % (
+        S.SCREW_PN, S.CSK_D, S.Z_TOP - S.CSK_DEPTH - (S.FLOOR_Z + S.RECESS_H), S.SCREW_LEN - (S.Z_TOP - S.FLOOR_Z - S.BOSS2_H)), fill=(70, 74, 80), font=font(19))
     d.text((B + 18, B + 74), 'Enclosure boss D%.0f x %.1f high, drill D%.1f x %.1f deep - TAP M6x1.0 later (1.0 floor left, sealed).' % (
         S.BOSS2_D, S.BOSS2_H, S.PILOT_D, S.PILOT_DEPTH), fill=(70, 74, 80), font=font(19))
     d.text((B + 18, B + 98), 'Board flush in its pocket (+0.4 a side), held by 4 snap tabs; wires solder on the top. Screw shown simplified.',

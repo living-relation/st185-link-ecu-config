@@ -259,6 +259,12 @@ if MODE == 'build':
     sk = hc.sketches.add(plane_z(hc, S.Z_TOP)); sk.name = 'board pocket'
     rrect(sk, 0, 0, S.POCKET[0], S.POCKET[1], S.POCKET[2])
     ext(hc, sk, -S.PCB_T, CUT, body, 'board pocket')
+    # N4: lead reliefs at the block ends, under the leads from the lowest LP-16 cups
+    LR = S.LEAD_RELIEF
+    sk = hc.sketches.add(plane_z(hc, B['z1'])); sk.name = 'lead reliefs'
+    for sx in (-1, 1):
+        poly(sk, [(sx * x_, sx * y_, B['z1']) for (x_, y_) in S.lead_relief()])
+    ext(hc, sk, -(B['z1'] - LR['z']), CUT, body, 'lead reliefs', all_profiles(sk))
     # solder-tip reliefs under the two pin rows
     sk = hc.sketches.add(plane_z(hc, S.Z_BOARD)); sk.name = 'solder reliefs'
     for xr in (S.PIN_X[1], S.PIN_X[5]):
