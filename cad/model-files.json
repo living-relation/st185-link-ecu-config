@@ -1,34 +1,6 @@
 {
- "generated": "2026-10-15",
+ "generated": "2026-10-16",
  "files": {
-  "cad/fusebox/rev7": [
-   "BattRelay_Bar_Power_CuC110_25x6p35.step",
-   "BattRelay_Base_PA12_printed.step",
-   "BattRelay_Base_PA12_printed.stl",
-   "BattRelay_Cover_PA12_printed.step",
-   "BattRelay_Cover_PA12_printed.stl",
-   "BattRelay_Pad_Out_CuC110_15x3.step",
-   "Logic_Base_PA12_printed.step",
-   "Logic_Base_PA12_printed.stl",
-   "Logic_Cover_PA12_printed.step",
-   "Logic_Cover_PA12_printed.stl",
-   "Logic_Pan_PA12_printed.step",
-   "Logic_Pan_PA12_printed.stl",
-   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
-   "Power_BarNeg_CuC110_25x6p35_L105.step",
-   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
-   "Power_Base_PA12_printed.step",
-   "Power_Base_PA12_printed.stl",
-   "Power_Cover_PA12_printed.step",
-   "Power_Cover_PA12_printed.stl",
-   "Power_Pad_Out_CuC110_15x3.step",
-   "Power_Pan_PA12_printed.step",
-   "Power_Pan_PA12_printed.stl",
-   "Power_Retainer_R1_PA12_printed.step",
-   "Power_Retainer_R1_PA12_printed.stl",
-   "ST185_fusebox_rev7.f3d",
-   "ST185_fusebox_rev7_assembly.step"
-  ],
   "cad/drb102-plate": [
    "DRB102-firewall-plate-assembly.step",
    "DRB102-firewall-plate.step"
@@ -176,6 +148,42 @@
    "VRC_part_VRC-Board-Holder.stl",
    "VRC_part_VRC-Body.step",
    "VRC_part_VRC-Lid.step"
+  ],
+  "cad/fusebox/rev7": [
+   "BattRelay_Bar_Power_CuC110_25x6p35.step",
+   "BattRelay_Base_PA12_printed.step",
+   "BattRelay_Base_PA12_printed.stl",
+   "BattRelay_Cover_PA12_printed.step",
+   "BattRelay_Cover_PA12_printed.stl",
+   "BattRelay_Pad_Out_CuC110_15x3.step",
+   "Logic_Base_PA12_printed.step",
+   "Logic_Base_PA12_printed.stl",
+   "Logic_Cover_PA12_printed.step",
+   "Logic_Cover_PA12_printed.stl",
+   "Logic_Pan_PA12_printed.step",
+   "Logic_Pan_PA12_printed.stl",
+   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
+   "Power_BarNeg_CuC110_25x6p35_L105.step",
+   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
+   "Power_Base_PA12_printed.step",
+   "Power_Base_PA12_printed.stl",
+   "Power_Cover_PA12_printed.step",
+   "Power_Cover_PA12_printed.stl",
+   "Power_Pad_Out_CuC110_15x3.step",
+   "Power_Pan_PA12_printed.step",
+   "Power_Pan_PA12_printed.stl",
+   "Power_Retainer_R1_PA12_printed.step",
+   "Power_Retainer_R1_PA12_printed.stl",
+   "ST185_fusebox_rev7.f3d",
+   "ST185_fusebox_rev7_assembly.step"
+  ],
+  "cad/fusebox/rev7/print": [
+   "ST185_R1_retainer_clip_PA12.step",
+   "ST185_R1_retainer_clip_PA12.stl"
+  ],
+  "cad/enclosures/vrc/print": [
+   "ST185_VRC_board_holder_PA12.step",
+   "ST185_VRC_board_holder_PA12.stl"
   ]
  }
 }
