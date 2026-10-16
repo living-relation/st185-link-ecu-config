@@ -45,3 +45,5 @@ cad/busbar/**/*_drawing.pdf
 
 # close-up render scratch (render_closeups.py raw output; the finished PNGs beside it are tracked)
 cad/fusebox/rev7/renders/closeups/raw/
+# MJF print files (cad/export_print_files.py) - local only like the other model files
+*.3mf

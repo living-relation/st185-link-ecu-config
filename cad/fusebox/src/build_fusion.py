@@ -415,8 +415,15 @@ def build(out_dir, save=True, renders=True, rev=6):
                                    plate_b + 0.01))
                 cuts.append(box(lx - sx_ / 2 - c_, ly - sy_ / 2 - c_, z_d - 1, lx + sx_ / 2 + c_, ly + sy_ / 2 + c_, zt_ + 0.3))
                 cuts.append(box(min(bx_) - c_, min(by_) - c_, zt_ - RT['barb_h'] - 0.3, max(bx_) + c_, max(by_) + c_, zt_ + 0.3))
-            for sp in (support or []):          # notch round what hangs under the deck there (the feed-cable bend saddles)
-                bo(plate, tb.copy(sp), 's')
+            band = box(x0_ - 50, y0_ - 50, ztop - RT['t'] - 1.0, x1_ + 50, y1_ + 50, z_d - 0.01)
+            for sp in (support or []):          # notch the PLATE round what hangs under the deck there (the feed-cable bend saddles);
+                t_ = tb.copy(sp)                # only below the deck - the legs go up into their collar pockets and stay whole
+                try:
+                    bo(t_, tb.copy(band), 'i')
+                except RuntimeError:            # nothing of it below the deck
+                    continue
+                if t_.volume > 1e-9:
+                    bo(plate, t_, 's')
             comp('%s_Retainer_%s_PA12_printed' % (box_name.capitalize(), rel), plate, AP['pa12_pan'], MAT['pa'], S.PLACE[box_name])
             report.setdefault('retainers', {}).setdefault(box_name, []).append(dict(
                 relay=rel, cavities=[h['cav'] for h in rh], plate=[round(v, 2) for v in (x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)],
