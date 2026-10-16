@@ -29,38 +29,54 @@ PIN_NET = {1: 'VR1-', 2: 'VR1+', 3: 'VR2+', 4: 'VR2-', 5: 'VDD', 6: 'GND', 7: 'V
 PIN_SQ, HDR_PLASTIC, PIN_BELOW, PIN_TAIL = 0.64, 2.54, 8.5, 1.44
 SO8 = dict(x0=-1.13 - 0.0, x1=4.02, y0=6.14, y1=11.05, h=1.75)   # IC1 body (pad rows at X -1.13 / 4.02, Y 6.69-10.50)
 
-# ---------- holder (printed; PA12 powder bed like the fuse boxes, R73: walls >= 2.0, no closed cavity)
-FIT = 0.25            # board-to-pocket gap per side: the normal printed fit, no extra room (K7)
+# ---------- holder v2 (Dan M9, 2026-10-15, DECISIONS R126 - supersedes R108's tub / ledge / pin well / wire slots / M3 plate):
+# "Redesign to be simpler. wires soldered from top of pcb. extrude solid block. cut square recess for the pcb with little tabs to hold
+# it down. add a couple counter sink socket head cap screw holes in the corners of the block to attach it to the enclosure. edit
+# enclosure to have 2 corresponding screw bosses that can be drilled out and tapped for 6mm screws later"
+# One extruded PA12 block on the box floor. Wires solder on the TOP of the board, so no header is fitted and nothing hangs under it
+# (two shallow reliefs under the pin rows take the solder tips). PA12 powder bed (R73: walls >= 2.0 except the named snap tabs).
+FIT = 0.4             # board to pocket, per side
 WALL = 2.0            # R73 minimum wall
-LEDGE = 1.0           # board sits on a 1 mm ledge round its edge (bottom side is bare except the header)
-TIP_GAP = 0.5         # pin tip to the well floor
-PLATE_T = 2.0         # under the screw heads: M3 x 6 nylon -> 4.0 of thread in the 4.5 deep boss
-WELL_Z = 13.0         # well floor: puts the wire joints (Z_JOINT) under the LP-16 cups' height band
-Z_BOARD = WELL_Z + TIP_GAP + PIN_BELOW          # board underside (22.0)
-Z_TOP = Z_BOARD + PCB_T                         # board top = tub top (23.6)
-PLATE = dict(w=2 * (BOSS_XY[0] + BOSS_D / 2), h=2 * (BOSS_XY[1] + BOSS_D / 2), r=BOSS_D / 2)   # 35 x 31, covers the bosses
+Z_TOP = 15.0          # board top, flush with the block top: below the lowest LP-16 cup (z 17), 24 mm to the lid for soldering
+Z_BOARD = Z_TOP - PCB_T                         # pocket floor / board underside (13.4)
 POCKET = (PCB_X + 2 * FIT, PCB_Y + 2 * FIT, PCB_R + FIT)
-WELL = (POCKET[0] - 2 * LEDGE, POCKET[1] - 2 * LEDGE, 0.5)
-TUB = (POCKET[0] + 2 * WALL, POCKET[1] + 2 * WALL, POCKET[2] + WALL)
-SCREW_HOLE, HEAD_ACCESS = 3.4, 6.6              # Wurth 97790603111 M3 x 6 nylon pan head (DIN 7985 head about 5.6)
-Z_JOINT = WELL_Z + 2.0                          # wire centre line where it meets the pin (exposed pin is z 13.5-19.46)
-SLOT_Y = (min(PIN_Y.values()) - 1.6, max(PIN_Y.values()) + 1.6)   # wire exits in the +-x walls
-SLOT_Z = (WELL_Z, Z_BOARD - LEDGE)
-SNAP_X = (-9.5, -3.5)  # two snap arms on the +-y walls, clear of IC1 (+y edge) - no top parts within 1.2 mm of the edge here
-SNAP_SLIT, SNAP_Z0, LIP_IN, LIP_H, LIP_GAP = 0.6, 15.5, 0.7, 0.8, 0.1
+# block outline (x, y): +-28.85 x +-17.6, the x ends notched back to +-28.4 for |y| < 7.0, where the LP-16 rear envelope (x >= 28.9,
+# a D18 cylinder about z 21: |y| < 6.7 at z 15) and its cups sit; block corners stay inside the cavity's R7.7 corners
+BLOCK = dict(x=28.85, y=17.6, x_notch=28.4, y_notch=7.0, z0=FLOOR_Z, z1=Z_TOP)
+RELIEF = dict(w=2.6, l=11.0, d=1.5)             # under each pin row: solder tips of the top-soldered wires (blind)
+# 4 snap tabs at the pocket's +-y edges (clear of IC1, which reaches y 11.05 at x -1.1..4.0): a 1.0 arm freed by a slot behind it
+# and two slits at its ends, a 0.6 lip with a lead-in over the board edge
+TABS_X = ((-9.5, -4.5), (4.5, 9.5))
+TAB_T, TAB_GAP, TAB_SLIT, TAB_Z0 = 1.0, 1.0, 0.6, 8.0
+LIP_IN, LIP_H, LIP_GAP = 0.6, 0.8, 0.1
+# 2 x M6 countersunk socket head cap screws, opposite corners: ISO 10642 A2 M6 x 12, RS PRO 266-8419
+# (https://int.rsdelivers.com/product/rs-pro/rs-pro-plain-stainless-steel-hex-socket-screw-hex/2668419); head dk <= 12.0, 90 deg
+SCREWS = ((20.7, 9.5), (-20.7, -9.5))
+SCREW_PN, SCREW_LEN = 'RS PRO 266-8419 (M6 x 12, ISO 10642, A2)', 12.0
+CLEAR, CSK_D = 6.6, 12.2                         # clearance hole, countersink diameter at the block top (90 deg)
+CSK_DEPTH = (CSK_D - CLEAR) / 2                  # 2.8
+# enclosure: 2 bosses on the floor under the screws (6061-T6), the block sits over them in recesses
+BOSS2_D, BOSS2_H = 11.0, 4.5                    # boss top z 9.5; M6 major 6.0 -> 2.5 wall
+PILOT_D, PILOT_DEPTH = 5.0, 8.5                 # M6 x 1.0 tap drill, from the boss top down to z 1.0 (1.0 of floor left, sealed)
+TAP = 'M6x1.0-6H, 7.5 full thread'
+RECESS_D, RECESS_H = BOSS2_D + 2 * FIT, BOSS2_H + 0.2
+# a screw of SCREW_LEN with its head flush engages (Z_TOP - SCREW_LEN) .. boss top = 6.5 mm of thread
 
 # ---------- wires
 OD = 1.57
 R_BEND = 3 * OD + OD / 2          # 5.5 centre line
 CUP_R = 4.0   # assumed: the 5 solder cups on a 8 mm circle, cup 1 on top, numbered clockwise seen from inside the box
-DRAIN_Y = -(CAV_Y + TUB[1] / 2) / 2   # drain jumper (IN 3 -> OUT 5) runs beside the holder, halfway to the wall
+DRAIN_Y = -13.0   # drain jumper (IN 3 -> OUT 5) runs over the block (top z 15) at the LP-16 axis height, clear of the board pads
 
 # LP-16 cup -> module pin (S8 / S16 pin maps; NCV1124 nets: VR1 = left wheel, VR2 = right)
 IN_MAP = {1: 2, 2: 1, 4: 3, 5: 4}      # ABS+ L -> VR1+, ABS- L -> VR1-, ABS+ R -> VR2+, ABS- R -> VR2-
 OUT_MAP = {1: 5, 2: 6, 3: 8, 4: 7}     # +5V -> VDD, Gnd -> GND, L out -> VR1OUT, R out -> VR2OUT
 # The OUT map crosses over (cups 1 / 2 and 3 / 4 land on pins in the other order), so two OUT wires meet their pin
 # higher up (the exposed pin runs to z 19.46): the best of the 3-level search in the PR, 0.39 mm between wires.
-JOINT_Z = {('OUT', 1): 18.2, ('OUT', 4): 18.2}
+JOINT_Z = {}   # v1 (R108) only: wires met the pins under the board
+# v2: height above the board top where each lead turns down onto its pad. The OUT map crosses over, so OUT 1 / OUT 3 pass over the
+# other two: best of a 4-level search per side - 0.94 mm between wires, the 2.54 pad pitch allows 0.97
+APPROACH = {('OUT', 1): 14.0, ('OUT', 3): 14.0}
 
 
 def cup(side, k):
@@ -71,14 +87,14 @@ def cup(side, k):
 
 
 def wires():
-    """name -> (polyline, side). Cup -> 6.6 straight (cup + heat shrink) -> into the wall slot -> to the pin side."""
+    """name -> polyline. v2 (R126): cup -> 6.6 straight (cup + heat shrink) -> over the block top -> down onto the board's top pad at
+    its pin (soldered from the top, no header)."""
     out = {}
     for side, cmap, tag in ((1, IN_MAP, 'IN'), (-1, OUT_MAP, 'OUT')):
         for k, p in cmap.items():
             c = cup(side, k)
-            zj = JOINT_Z.get((tag, k), Z_JOINT - 0.4)
-            end = (PIN_X[p] + side * (PIN_SQ / 2 + OD / 2 + 0.05), PIN_Y[p], zj)
-            pts = [c, (side * 22.0, c[1], c[2]), (side * (TUB[0] / 2 + 2.2), PIN_Y[p], zj), end]
+            h = APPROACH.get((tag, k), 8.5)
+            pts = [c, (side * 21.7, c[1], c[2]), (PIN_X[p], PIN_Y[p], Z_TOP + h), (PIN_X[p], PIN_Y[p], Z_TOP + 0.3)]
             out['%s%d-pin%d' % (tag, k, p)] = pts
     a, b = cup(1, 3), cup(-1, 5)
     out['drain IN3-OUT5'] = [a, (22.0, a[1], a[2]), (17.0, DRAIN_Y, LP16_AXIS_Z), (-17.0, DRAIN_Y, LP16_AXIS_Z),
@@ -156,8 +172,8 @@ def wire_report():
 
 
 if __name__ == '__main__':
-    print('board underside z %.2f, top %.2f; tub %.2f x %.2f; pocket %.2f x %.2f; plate %.1f x %.1f'
-          % (Z_BOARD, Z_TOP, TUB[0], TUB[1], POCKET[0], POCKET[1], PLATE['w'], PLATE['h']))
+    print('board underside z %.2f, top %.2f; block +-%.2f x +-%.2f; pocket %.2f x %.2f; screws %s'
+          % (Z_BOARD, Z_TOP, BLOCK['x'], BLOCK['y'], POCKET[0], POCKET[1], SCREWS))
     rows, worst = wire_report()
     for r in rows:
         print(r)
