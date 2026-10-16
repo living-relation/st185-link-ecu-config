@@ -22,7 +22,7 @@ td.d{font-weight:700}</style></head><body><main>
 <div>POWER box + bus bar<b>180 x 243 x 81.8</b><span class="mut">mm L x D x H (rev 6 POWER: 180 x 181 x 81.8, plus the B rev3 bus bar 345 x 120 x 55)</span></div>
 <div>1/0 cables at the glove box<b>6 (rev 6: 7)</b><span class="mut">one fewer: the bus bar to POWER box link is gone</span></div>
 <div>Boxes in the glove box<b>2 (rev 6: 3)</b><span class="mut">POWER (with the bus) + LOGIC</span></div>
-<div>POWER parts<b>194 pcs, $365</b><span class="mut">rev 6 POWER alone: 167 pcs, $267 (B rev3 bus bar had no parts list)</span></div>
+<div>POWER parts<b>194 pcs, $368</b><span class="mut">rev 6 POWER alone: 167 pcs, $267 (B rev3 bus bar had no parts list)</span></div>
 </div>
 <h2>The whole power distribution package, rev 7 next to rev 6</h2>
 <p class="mut">Same camera, same scale idea, every member together (R84): POWER (+ bus), LOGIC, battery relay block, 2 x VRC, CSB3. Rev 6 has the separate B rev3 bus bar (the long box at the back).</p><div class="grid">
@@ -186,9 +186,9 @@ td.d{font-weight:700}</style></head><body><main>
 </ul><p>What has to stay thin is a <b>named exemption</b> - the build records a box round each one and the gate lists it by name (<code>spec.WALL_EXEMPT</code>):</p><div class="wrap"><table><tr><th>Exemption</th><th>Why it stays</th></tr>
 <tr><td>seat lip</td><td>R121: the deck top over each receptacle is the stop the terminal seats against; HOLE top_gap = 1.0 sets how far the relay / fuse blade goes into the receptacle (thicker = less blade engagement); webs between neighbouring blade slots follow the pin spacing</td></tr>
 <tr><td>87a slot</td><td>micro relay pin spacing (TE 1308028): the 87a blade slot sits 1.9 from the 85 / 86 cavities on the change-over and spare positions (the normally-open relays have no 87a slot any more)</td></tr>
-<tr><td>cover catch pocket</td><td>snap: the cover tongue bump sits in this pocket in the 3.0 skirt / rim; the skirt can neither grow (outline) nor move</td></tr>
+<tr><td>cover catch pocket</td><td>snap: the cover tongue bump sits in this pocket in the outer face of the 4.3 skirt / rim (3.0 left behind it); the bump size is the catch</td></tr>
 <tr><td>cover screw insert</td><td>R122: the M3 heat-set insert hole in its boss beside the catch</td></tr>
-<tr><td>pan catch pocket</td><td>snap: the belly-pan tongue bump sits in this pocket in the 3.0 skirt just above its bottom edge; the pan groove and the outline fix the skirt</td></tr>
+<tr><td>pan catch pocket</td><td>snap: the belly-pan tongue bump sits in this pocket just above the skirt bottom edge - the lip under it is the catch (the pocket height is set by the pan bump)</td></tr>
 <tr><td>pan snap tongue</td><td>snap: the pan tongue between its two slots has to flex; its bump is the catch</td></tr>
 <tr><td>cover snap tongue</td><td>snap: the cover tongue between its two slots has to flex; its bump is the catch</td></tr>
 <tr><td>cover screw hole</td><td>R122: the 3.4 screw hole lines up with the insert 9.5 under the deck top - the 2.5 cover band keeps 1.8 under it</td></tr>
@@ -197,16 +197,21 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>relay cavity web</td><td>attachment only: the PA12 between the cavities of a micro relay - its size follows the TE pin spacing and the R120 hole sizes, and it joins the box at its corners between the cavities (2.0-2.9); the walls themselves pass W</td></tr>
 <tr><td>strip lip</td><td>LOGIC bus strip lips: 0.9 between the strip (on it) and the belly-pan floor (0.45 under it); thicker moves the strips or the pan</td></tr>
 </table></div><div class="wrap"><table><tr><th>Part</th><th>Thin-wall spots</th><th>Attachment spots</th><th>Volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>818.9 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>840.7 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>0</td><td>shell</td><td>157.1 cm3</td></tr>
-<tr><td>Power_Cover_PA12_printed</td><td>0</td><td>shell</td><td>195.7 cm3</td></tr>
-<tr><td>Power_Retainer_R1_PA12_printed</td><td>0</td><td>shell</td><td>1.6 cm3</td></tr>
-<tr><td>Logic_Base_PA12_printed</td><td>0</td><td>0</td><td>323.5 cm3</td></tr>
+<tr><td>Power_Cover_PA12_printed</td><td>0</td><td>shell</td><td>199.4 cm3</td></tr>
+<tr><td>Power_Retainer_R1_PA12_printed</td><td>0</td><td>shell</td><td>1.7 cm3</td></tr>
+<tr><td>Logic_Base_PA12_printed</td><td>0</td><td>0</td><td>337.6 cm3</td></tr>
 <tr><td>Logic_Pan_PA12_printed</td><td>0</td><td>shell</td><td>75.8 cm3</td></tr>
-<tr><td>Logic_Cover_PA12_printed</td><td>0</td><td>shell</td><td>96.3 cm3</td></tr>
-<tr><td>BattRelay_Base_PA12_printed</td><td>0</td><td>0</td><td>170.2 cm3</td></tr>
-<tr><td>BattRelay_Cover_PA12_printed</td><td>0</td><td>shell</td><td>106.8 cm3</td></tr>
+<tr><td>Logic_Cover_PA12_printed</td><td>0</td><td>shell</td><td>98.9 cm3</td></tr>
+<tr><td>BattRelay_Base_PA12_printed</td><td>0</td><td>0</td><td>171.8 cm3</td></tr>
+<tr><td>BattRelay_Cover_PA12_printed</td><td>0</td><td>shell</td><td>107.4 cm3</td></tr>
 </table></div><div class="grid">
+<p><b>Amended 2026-10-16 (R127):</b> every outer wall of a base keeps 3.0 behind its deepest pocket, grown OUTWARD only (skirt 3.0 -> 4.3, battery rim 4.3; inner face, cavities, pans unchanged; covers grow with the outline, same clearances); the curved bend saddles are back, cut only near the top by a radial plane clear of the 30 cavity.</p>
+<figure><img class="w" src="renders/closeups/sweep_saddle.png" alt="Bend saddle, #270 / now."><figcaption>Bend saddle, #270 / now.</figcaption>
+</figure>
+<figure><img class="w" src="renders/closeups/sweep_outer_wall.png" alt="Outer wall beside a relay cavity, #270 / now."><figcaption>Outer wall beside a relay cavity, #270 / now.</figcaption>
+</figure>
 <figure><img class="w" src="renders/closeups/sweep_logic_under.png" alt="LOGIC base from below, before / after."><figcaption>LOGIC base from below, before / after.</figcaption>
 </figure>
 <figure><img class="w" src="renders/closeups/sweep_logic_cavities.png" alt="LOGIC cavities from below, before / after."><figcaption>LOGIC cavities from below, before / after.</figcaption>
@@ -345,9 +350,9 @@ td.d{font-weight:700}</style></head><body><main>
 <h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>
 <p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. LOGIC and battery block: the rev 6 lists, unchanged (<code>cad/fusebox/fusebox-parts-logic.csv</code>, <code>-battrelay.csv</code>).</p>
 <div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part</th><th>Need</th><th>Own</th><th>Buy</th><th>$ line</th></tr>
-<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>81.89</td></tr>
+<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>84.08</td></tr>
 <tr><td>Printed</td><td>Power Pan (belly pan)</td><td>Power_Pan_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>15.71</td></tr>
-<tr><td>Printed</td><td>Power Cover</td><td>Power_Cover_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>19.58</td></tr>
+<tr><td>Printed</td><td>Power Cover</td><td>Power_Cover_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>19.94</td></tr>
 <tr><td>Copper</td><td>POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned</td><td><a href="https://www.amazon.com/dp/B0CGJBRNJX">MECCANIXITY B0CGJBRNJX</a></td><td>2</td><td>0</td><td>2</td><td>52.38</td></tr>
 <tr><td>Copper</td><td>Output pads 15 x 3 x 17.5 mm, tinned (14 here + 1 in BATTRELAY)</td><td><a href="https://www.amazon.com/dp/B09Z7NBLDK">Bopaodao B09Z7NBLDK</a></td><td>1</td><td>0</td><td>1</td><td>51.99</td></tr>
 <tr><td>Fuses</td><td>AMI bolt-down fuse 30 A</td><td><a href="https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-30-bolt-down-fuse">AMI-30</a></td><td>6</td><td>0</td><td>6</td><td>31.80</td></tr>
@@ -384,11 +389,11 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Fasteners</td><td>Hex nut M8 (bus studs)</td><td><a href="https://hkcn.rs-online.com/web/p/products/530769">RS 530-769</a></td><td>8</td><td>0</td><td>9</td><td>0.72</td></tr>
 <tr><td>Fasteners</td><td>Plain washer M8 (bus studs)</td><td><a href="https://th.rs-online.com/web/p/washers/7976068">RS 797-6068</a></td><td>8</td><td>0</td><td>9</td><td>0.45</td></tr>
 <tr><td>Mounting</td><td>Compression limiter, feet (4)</td><td><a href="https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters">EFC 10S00056</a></td><td>4</td><td>0</td><td>5</td><td>1.50</td></tr>
-<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$365.09</b></td></tr></table></div>
+<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$367.64</b></td></tr></table></div>
 <h2>Printed parts</h2><div class="wrap"><table><tr><th>Part</th><th>Rev 7 size (mm)</th><th>Rev 7 volume</th><th>Rev 6 volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>212 x 307 x 72</td><td>818.9 cm3</td><td>361.6 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>214 x 307 x 72</td><td>840.8 cm3</td><td>361.6 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 35</td><td>157.1 cm3</td><td>120.4 cm3</td></tr>
-<tr><td>Power_Cover_PA12_printed</td><td>189 x 252 x 42</td><td>195.8 cm3</td><td>160.0 cm3</td></tr>
+<tr><td>Power_Cover_PA12_printed</td><td>192 x 254 x 42</td><td>199.4 cm3</td><td>160.0 cm3</td></tr>
 </table></div><p class="mut">The base is 307 mm long over the feet: check it against the printer bed.</p>
 <h2>Files</h2><ul>
 <li>Fusion: <code>ST185_fusebox_rev7</code> (Default Project) - its own document, saved-as from rev 6; <code>ST185_fusebox_rev6</code> is untouched.</li>

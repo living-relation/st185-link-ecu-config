@@ -63,6 +63,13 @@ D = 181.0            # base depth (y), both glove-box boxes
 BASE_R = 10.0        # base plan corner radius
 COVER = dict(t=2.5, R=BASE_R + 0.45 + 2.5, r=5.0, over=13.0, clear=1.5)   # wall, plan corner R, top edge round, skirt overlap below the deck top, over the tallest part
 SNAP = dict(w=12.0, slot=1.2, len=11.0, bump=2.4, z_from_top=10.0)         # cantilever tongue in the cover skirt, half-round bump into a pocket in the base skirt
+
+# R127 amendment (Dan 2026-10-16: "this outer wall is still too thin for my liking" ... "you can't thicken inward because of the terminals.
+# you have to just thicken out a tiny bit"): every outer wall of a base keeps >= OUTER_MIN behind its deepest pocket (the catch pockets,
+# (bump + 0.2) / 2 deep), so the skirt / rim grows OUTWARD only by what that needs; the cover grows with it, same clearances.
+OUTER_MIN = 3.0
+SKIRT_OUT = round(max(0.0, OUTER_MIN - (SKIRT - (SNAP['bump'] + 0.2) / 2)), 2)   # POWER / LOGIC skirt 3.0 -> 4.3
+RIM_OUT = round(max(0.0, OUTER_MIN - (4.0 - (SNAP['bump'] + 0.2) / 2)), 2)       # battery block rim 4.0 (R128) -> 4.3
 LABEL = dict(depth=0.6, depth7=0.5, h_relay=3.6, h_ami=3.0, h_mini=2.4, h_micro=2.8)  # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 4 names kept (Dan)
 VENT = dict(w=2.6, l=14.0, pitch=18.0)   # vent slot through the cover: 2.6 wide keeps fingers and tools out (IP2X finger probe is 12.5)
 RUG = dict(band_h=6.0, band_out=1.5, rib_w=3.0, rib_out=1.5, rib_pitch=30.0)   # cover bumper band + side ribs (rugged look)
@@ -109,9 +116,9 @@ WALL_EXEMPT = {
                 'relay / fuse blade goes into the receptacle (thicker = less blade engagement); webs between neighbouring blade slots follow the pin spacing',
     '87a slot': 'micro relay pin spacing (TE 1308028): the 87a blade slot sits 1.9 from the 85 / 86 cavities on the change-over and spare '
                 'positions (the normally-open relays have no 87a slot any more)',
-    'cover catch pocket': 'snap: the cover tongue bump sits in this pocket in the 3.0 skirt / rim; the skirt can neither grow (outline) nor move',
+    'cover catch pocket': 'snap: the cover tongue bump sits in this pocket in the outer face of the 4.3 skirt / rim (3.0 left behind it); the bump size is the catch',
     'cover screw insert': 'R122: the M3 heat-set insert hole in its boss beside the catch',
-    'pan catch pocket': 'snap: the belly-pan tongue bump sits in this pocket in the 3.0 skirt just above its bottom edge; the pan groove and the outline fix the skirt',
+    'pan catch pocket': 'snap: the belly-pan tongue bump sits in this pocket just above the skirt bottom edge - the lip under it is the catch (the pocket height is set by the pan bump)',
     'pan snap tongue': 'snap: the pan tongue between its two slots has to flex; its bump is the catch',
     'cover snap tongue': 'snap: the cover tongue between its two slots has to flex; its bump is the catch',
     'cover screw hole': 'R122: the 3.4 screw hole lines up with the insert 9.5 under the deck top - the 2.5 cover band keeps 1.8 under it',

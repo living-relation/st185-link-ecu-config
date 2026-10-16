@@ -4,10 +4,10 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 818.9,
+   "volume_cm3": 840.7,
    "exempt": {
     "seat lip": 1375,
-    "pan catch pocket": 128
+    "pan catch pocket": 116
    },
    "attach_skin": 59,
    "walls": [],
@@ -27,10 +27,10 @@
   "Power_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 195.7,
+   "volume_cm3": 199.4,
    "exempt": {
-    "label": 1857,
-    "cover screw hole": 44,
+    "label": 1894,
+    "cover screw hole": 50,
     "cover snap tongue": 4,
     "notch at corner": 3
    },
@@ -44,7 +44,7 @@
     "snap barb at leg (60.9, 53.5), 0.6 x 1.5 (R123)"
    ],
    "attach_checked": false,
-   "volume_cm3": 1.6,
+   "volume_cm3": 1.7,
    "exempt": {},
    "attach_skin": 0,
    "walls": [],
@@ -53,15 +53,15 @@
   "Logic_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 323.5,
+   "volume_cm3": 337.6,
    "exempt": {
-    "pan catch pocket": 128,
-    "seat lip": 2295,
-    "strip lip": 478,
+    "pan catch pocket": 116,
+    "seat lip": 2330,
+    "strip lip": 476,
     "87a slot": 480,
     "A relay cavity web": 10
    },
-   "attach_skin": 32,
+   "attach_skin": 29,
    "walls": [],
    "attach": []
   },
@@ -80,10 +80,10 @@
   "Logic_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 96.3,
+   "volume_cm3": 98.9,
    "exempt": {
-    "label": 1333,
-    "cover screw hole": 46,
+    "label": 1331,
+    "cover screw hole": 48,
     "cover snap tongue": 4
    },
    "attach_skin": 0,
@@ -93,9 +93,9 @@
   "BattRelay_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 170.2,
+   "volume_cm3": 171.8,
    "exempt": {
-    "cover catch pocket": 6,
+    "cover catch pocket": 4,
     "A cover screw insert": 3
    },
    "attach_skin": 10,
@@ -105,11 +105,11 @@
   "BattRelay_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 106.8,
+   "volume_cm3": 107.4,
    "exempt": {
-    "label": 300,
-    "cover screw hole": 9,
-    "notch at corner": 7,
+    "label": 302,
+    "cover screw hole": 12,
+    "notch at corner": 5,
     "cover snap tongue": 4
    },
    "attach_skin": 0,

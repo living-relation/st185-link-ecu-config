@@ -348,7 +348,8 @@ def open_doc():
 def build(out_dir, save=True, renders=True, rev=6):
     REV[0] = rev
     R7 = S.REV7 if rev == 7 else None
-    DIM = {'D': S.D, 'snaps_rear': None}   # rev 7: the POWER box is deeper; the shared shell / pan / cover helpers read DIM
+    DIM = {'D': S.D, 'snaps_rear': None,   # rev 7: the POWER box is deeper; the shared shell / pan / cover helpers read DIM
+           'so': S.SKIRT_OUT if rev == 7 else 0.0}   # R127 amendment: the skirt grows OUTWARD by so (inner face, cavities, pan fit unchanged)
     os.makedirs(out_dir, exist_ok=True)
     doc = open_doc()
     doc.activate()
@@ -900,14 +901,15 @@ def build(out_dir, save=True, renders=True, rev=6):
     def screw_inserts(L, D, zc, faces, outward=False):
         """R122: the heat-set insert holes, from the outer face inward (d_ins, ins_depth deep)."""
         SC = S.SCREW
-        return [cyl((xs, (0.0 if sg > 0 else D) - sg * 0.5, zc), (xs, (0.0 if sg > 0 else D) + sg * SC['ins_depth'], zc), SC['d_ins'])
+        so = DIM['so']            # R127 amendment: from the outer face, which moved out by so
+        return [cyl((xs, (-so if sg > 0 else D + so) - sg * 0.5, zc), (xs, (-so if sg > 0 else D + so) + sg * SC['ins_depth'], zc), SC['d_ins'])
                 for (xs, yf, sg) in screw_points(L, faces, outward)]
 
     def base_shell(L, z_d, z_t, extra_parts):
         """Deck: top plate + perimeter skirt (rounded plan), open underneath; the skirt carries the snap pockets."""
-        R = S.BASE_R
-        plate = rrect(0, 0, L, DIM['D'], z_t - S.PLATE, z_t, R)
-        skirt = rrect(0, 0, L, DIM['D'], z_d, z_t - S.PLATE + 0.01, R)
+        R, so = S.BASE_R, DIM['so']
+        plate = rrect(-so, -so, L + so, DIM['D'] + so, z_t - S.PLATE, z_t, R + so)
+        skirt = rrect(-so, -so, L + so, DIM['D'] + so, z_d, z_t - S.PLATE + 0.01, R + so)
         bo(skirt, rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, DIM['D'] - S.SKIRT, z_d - 1, z_t, R - S.SKIRT), 's')
         zsc = z_t - S.SCREW['z_from_top']           # R122: insert bosses beside the cover catches, hanging from the deck plate
         bosses = screw_bosses(L, DIM['D'], z_t, S.SKIRT, zsc - S.SCREW['boss_h'] / 2, z_t - S.PLATE + 0.01, cover_catches(L))
@@ -919,11 +921,11 @@ def build(out_dir, save=True, renders=True, rev=6):
         zc = z_t - S.SNAP['z_from_top']
         hw, D_ = S.SNAP['w'] / 2 + 0.5 + S.HOLE['min_wall'], DIM['D']
         for (x, y) in cover_catches(L):
-            exempt(part, 'cover catch pocket', x - hw, x + hw, (-0.1 if y == 0.0 else D_ - S.SKIRT - 0.1), (S.SKIRT + 0.1 if y == 0.0 else D_ + 0.1),
+            exempt(part, 'cover catch pocket', x - hw, x + hw, (-DIM['so'] - 0.1 if y == 0.0 else D_ - S.SKIRT - 0.1), (S.SKIRT + 0.1 if y == 0.0 else D_ + DIM['so'] + 0.1),
                    zc - S.SNAP['bump'] / 2 - 2.2, zc + S.SNAP['bump'] / 2 + 2.2, sh)
         zi_ = z_t - S.SCREW['z_from_top']
         for (xs_, yf_, sg_) in screw_points(L, cover_catches(L)):
-            ya_ = 0.0 if sg_ > 0 else D_
+            ya_ = -DIM['so'] if sg_ > 0 else D_ + DIM['so']       # the outer face
             exempt(part, 'cover screw insert', xs_ - S.SCREW['d_ins'] / 2 - 2.2, xs_ + S.SCREW['d_ins'] / 2 + 2.2, min(ya_ - 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)),
                    max(ya_ + 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)), zi_ - S.SCREW['d_ins'] / 2 - 2.2, zi_ + S.SCREW['d_ins'] / 2 + 2.2, sh)
         zq_ = z_d + PN['over'] / 2
@@ -937,8 +939,8 @@ def build(out_dir, save=True, renders=True, rev=6):
                            z_d - 1.1, zq_ + S.SNAP['bump'] / 2 + 2.2, sh)
         cuts = screw_inserts(L, DIM['D'], z_t - S.SCREW['z_from_top'], cover_catches(L))     # R122 heat-set insert holes
         for (x, y) in cover_catches(L):
-            if True:
-                cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, zc), (x + S.SNAP['w'] / 2 + 0.5, y, zc), S.SNAP['bump'] + 0.2))
+            yo_ = y - DIM['so'] if y == 0.0 else y + DIM['so']      # the outer face (R127 amendment: moved out by so)
+            cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, yo_, zc), (x + S.SNAP['w'] / 2 + 0.5, yo_, zc), S.SNAP['bump'] + 0.2))
         g, t = W_CL, PN['t']
         ring = rrect(S.SKIRT, S.SKIRT, L - S.SKIRT, DIM['D'] - S.SKIRT, z_d - 1, z_d + PN['over'] + g, S.BASE_R - S.SKIRT)
         bo(ring, rrect(S.SKIRT + 2 * g + t, S.SKIRT + 2 * g + t, L - S.SKIRT - 2 * g - t, DIM['D'] - S.SKIRT - 2 * g - t, z_d - 2,
@@ -1058,9 +1060,12 @@ def build(out_dir, save=True, renders=True, rev=6):
         a U-notch open at the bottom edge in the end (axis 'x') or side (axis 'y') wall. Rev 5: bumper band round the bottom,
         vertical ribs on the walls (ribs = {'y': [x...], 'x': [y...]}), vent slots through the top (vents = [(x, y, along)])
         and the walls (side_vents = [(face, u, z)]). Returns the occurrence."""
-        g, t = W_CL, CV['t']
-        R = CV['R'] if R is None else R
+        so = DIM['so']
+        g, t = W_CL + so, CV['t']        # R127 amendment: the base outline moved out by so - the cover follows, same clearances
+        R = (CV['R'] if R is None else R) + so
         r = CV['r'] if r is None else r
+        inner_R = inner_R + so if inner_R is not None else None
+        notches = [(ax, (pos + so if pos > (x0 + L / 2 if ax == 'x' else y0 + D / 2) else pos - so), u, zn, wd) for (ax, pos, u, zn, wd) in notches]
         zb = z_t - CV['over'] if zb is None else zb
         zc = z_t - S.SNAP['z_from_top'] if zc is None else zc
         out = rtop(x0 - g - t, y0 - g - t, x0 + L + g + t, y0 + D + g + t, zb, z_top, R, r)
@@ -1291,16 +1296,31 @@ def build(out_dir, save=True, renders=True, rev=6):
                     kind='saddle', at=[round(ccx - rs / 2, 1), round(a['y'], 1)], before=round(c0, 3), web=c0 < S.FLOAT_BACKING,
                     after=round(after, 3)))
             bo(core, top_, 'u')
-            # R127 (Dan 2026-10-15 markup: "thin sliver wall beside a terminal sleeve"): the saddle starts at the +x wall of its relay's
-            # 30 cavity, carried straight down - the cavity no longer shaves a thin curved sliver off the top of the bend. Under the R1
-            # retainer clip it starts min_wall + clr past the clip's wire hole, so the clip's saddle notch leaves a full wall round that hole.
+            # R127 amendment (Dan 2026-10-16: "i liked the curved saddles. you should've kept those, just supported them underneath and cut out the
+            # thin walls near the top"): the saddle keeps its whole curve and both lips (as before #268) and is carried by the block above it
+            # (R101 back up into the deck plate); only near the top, where the relay's 30 cavity comes down into it, the saddle is cut away
+            # across its full width from the cavity's lower end up and to min_wall past the cavity's +x wall - no thin wall or sliver left
+            # between the curve and the cavity. Under the R1 retainer clip the cut also clears the clip's wire hole by min_wall + clr.
             c30 = next((c for c in PLAN7['cavities'] if c['box'] == 'POWER' and c['cav'] == 'R%d 30' % (a['i'] + 1)), None) if PLAN7 else None
             if c30:
-                x_trim = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones'])
+                mw = S.HOLE['min_wall']
+                x_cut = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones']) + mw
                 if 'R%d' % (a['i'] + 1) in S.RETAIN.get('POWER', []):
-                    x_trim = max(x_trim, c30['x'] + S.retainer_hole(c30['part'], c30['wire_od'])[0] / 2 + S.HOLE['min_wall'] + S.RETAINER['clr'] + 0.05)
-                if x_trim > ccx - rs:
-                    bo(core, box(x_trim, a['y'] - 30, ccz - 40, ccx + 40, a['y'] + 30, plate_b + 1), 'i')
+                    x_cut = max(x_cut, c30['x'] + S.retainer_hole(c30['part'], c30['wire_od'])[0] / 2 + mw + S.RETAINER['clr'] + 0.05)
+                z_cut = z_d - S.GUIDE['h'] - 1.0          # the cavity's lower end under the deck (crimp_holes z0)
+                x_cav = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones'])
+                if x_cut > ccx - rs - od:
+                    # the cut's lower face is the radial plane through the saddle centre and the cavity's lower +x corner: it meets the
+                    # curve square (no knife edge) and passes under the cavity's lower end across its width (no sliver under the cavity)
+                    rm = box(ccx - rs - od - 5, a['y'] - 30, z_cut - 25, x_cut, a['y'] + 30, plate_b + 1)
+                    dx_, dz_ = ccx - x_cav, ccz - z_cut
+                    n_ = (dz_, 0.0, -dx_)
+                    if (ccx - x_cav) * n_[0] + (ccz - rs - z_cut) * n_[2] < 0:
+                        n_ = (-n_[0], 0.0, -n_[2])                # point at the lower (lug) end of the curve: that side stays
+                    half_cut(rm, (x_cav, a['y'], z_cut), n_)
+                    bo(core, rm, 's')
+                    report.setdefault('saddle_top_cut', []).append(dict(relay='R%d' % (a['i'] + 1), x_cut=round(x_cut, 2), z_cut=round(z_cut, 2),
+                                                                        through=[round(x_cav, 2), round(z_cut, 2)]))
             saddles.append(core)
         parts += saddles
         if R7:   # R127 (Dan 2026-10-15: "imagine you started with a solid block of material and machined away only the stuff necessary"):
@@ -1784,6 +1804,8 @@ def build(out_dir, save=True, renders=True, rev=6):
         sh = S.PLACE['BATTRELAY']
         Lr, Dr, fl = R['L'], R['D'], R['floor']
         DIM['D'], DIM['snaps_rear'] = Dr, None             # built after POWER: do not inherit its rear catch positions (cover_catches)
+        DIM['so'] = S.RIM_OUT if REV[0] == 7 else 0.0     # R127 amendment: the rim grows outward (3.0 left behind the cover catch pocket)
+        so_ = DIM['so']
         zf = 10.0                                          # relay flange face (raised 6 on bosses: captured nut + limiter under it)
         tz0, tz1 = zf + 10.0, zf + 30.0                    # terminal blocks (TE side view: 10 back from the flange face, 20 tall)
         x3 = R['x_t3']
@@ -1802,8 +1824,8 @@ def build(out_dir, save=True, renders=True, rev=6):
         LM = R['lim_m6']
         parts, lims = [], []
         # ---- base: rounded floor plate, low rim on the long sides only (ends open), relay platform, ONE fuse pedestal, 2 END tabs
-        base = rrect(0, 0, Lr, Dr, 0, fl, 10.0)
-        rim = rrect(0, 0, Lr, Dr, fl - 0.01, R['rim'], 10.0)
+        base = rrect(-so_, -so_, Lr + so_, Dr + so_, 0, fl, 10.0 + so_)
+        rim = rrect(-so_, -so_, Lr + so_, Dr + so_, fl - 0.01, R['rim'], 10.0 + so_)
         rw_ = 4.0 if REV[0] == 7 else 3.0     # R127 sweep: rim 4.0 (inward) - a 3.0 wall round the R10 corners was not >= 3 everywhere
         bo(rim, rrect(rw_, rw_, Lr - rw_, Dr - rw_, 0, R['rim'] + 1, 10.0 - rw_), 's')
         rb_faces = [(x, y) for y in (0.0, Dr) for x in snap_xs(Lr) if (x, y) not in S.SCREW_SKIP_RB(Lr, Dr)]
@@ -1868,11 +1890,12 @@ def build(out_dir, save=True, renders=True, rev=6):
             cuts.append(hexz(px, tsy, zu - HD[m]['k'] - 0.3, zu + 0.01, HD[m]['af'] + 2 * S.CLR))
         for x in snap_xs(Lr):
             for y in (0.0, Dr):
-                cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, y, R['rim'] - 3.0), (x + S.SNAP['w'] / 2 + 0.5, y, R['rim'] - 3.0), S.SNAP['bump'] + 0.2))
-                exempt(pre + 'Base_PA12_printed', 'cover catch pocket', x - S.SNAP['w'] / 2 - 2.5, x + S.SNAP['w'] / 2 + 2.5, (-0.1 if y == 0.0 else Dr - 4.6),
-                       (4.6 if y == 0.0 else Dr + 0.1), R['rim'] - 3.0 - S.SNAP['bump'] / 2 - 2.2, R['rim'] + 0.1, sh)
+                yo_ = y - so_ if y == 0.0 else y + so_
+                cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, yo_, R['rim'] - 3.0), (x + S.SNAP['w'] / 2 + 0.5, yo_, R['rim'] - 3.0), S.SNAP['bump'] + 0.2))
+                exempt(pre + 'Base_PA12_printed', 'cover catch pocket', x - S.SNAP['w'] / 2 - 2.5, x + S.SNAP['w'] / 2 + 2.5, (-so_ - 0.1 if y == 0.0 else Dr - 4.6),
+                       (4.6 if y == 0.0 else Dr + so_ + 0.1), R['rim'] - 3.0 - S.SNAP['bump'] / 2 - 2.2, R['rim'] + 0.1, sh)
         for (xs_, yf_, sg_) in screw_points(Lr, rb_faces, True):
-            ya_ = 0.0 if sg_ > 0 else Dr
+            ya_ = -so_ if sg_ > 0 else Dr + so_                 # the outer face
             exempt(pre + 'Base_PA12_printed', 'cover screw insert', xs_ - S.SCREW['d_ins'] / 2 - 2.2, xs_ + S.SCREW['d_ins'] / 2 + 2.2,
                    min(ya_ - 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)), max(ya_ + 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)),
                    rb_zs - S.SCREW['d_ins'] / 2 - 2.2, R['rim'] + 0.1, sh)
@@ -2104,8 +2127,8 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: R128 wall sweep - LOGIC solid block under the deck, solid legs / battery pedestal, blade slots above the seat only, '
-                     'strips under 2.0 between openings cut, rim 4.0, barrier 3.0, labels 0.5 deep (Claude Code 2026-10-16)')
+            doc.save('rev 7: R127 amendment - outer skirt walls grown outward to 4.3 (rim 4.3), covers follow; curved bend saddles back with a radial top cut '
+                     '(Claude Code 2026-10-16)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7
