@@ -56,11 +56,13 @@ SCREW_PN, SCREW_LEN = 'RS PRO 266-8419 (M6 x 12, ISO 10642, A2)', 12.0
 CLEAR, CSK_D = 6.6, 12.2                         # clearance hole, countersink diameter at the block top (90 deg)
 CSK_DEPTH = (CSK_D - CLEAR) / 2                  # 2.8
 # enclosure: 2 bosses on the floor under the screws (6061-T6), the block sits over them in recesses
-BOSS2_D, BOSS2_H = 11.0, 4.5                    # boss top z 9.5; M6 major 6.0 -> 2.5 wall
-PILOT_D, PILOT_DEPTH = 5.0, 8.5                 # M6 x 1.0 tap drill, from the boss top down to z 1.0 (1.0 of floor left, sealed)
-TAP = 'M6x1.0-6H, 7.5 full thread'
+BOSS2_D, BOSS2_H = 11.0, 5.5                    # boss top z 10.5 (F02 / D2, Dan: +1 mm, SteveCAD v3 2026-10-16; was 4.5); M6 major 6.0 -> 2.5 wall
+PILOT_D, PILOT_DEPTH = 5.0, 9.5                 # M6 x 1.0 tap drill, from the boss top down to z 1.0 (1.0 of floor left, sealed)
+TAP = 'M6x1.0-6H, 8.5 full thread'
+# the holder's boss recesses follow (RECESS_H below): roof z 9.7 -> 10.7, 0.2 over the boss. The ring between the roof and the
+# countersink bottom (z 12.2) is now 1.5 (was 2.5) - under R73's 2.0: OPEN-6 for Dan (accept, +2.5 on boss and holder, or an insert)
 RECESS_D, RECESS_H = BOSS2_D + 2 * FIT, BOSS2_H + 0.2
-# a screw of SCREW_LEN with its head flush engages (Z_TOP - SCREW_LEN) .. boss top = 6.5 mm of thread
+# a screw of SCREW_LEN with its head flush engages (Z_TOP - SCREW_LEN) .. boss top = 7.5 mm of thread (1.25 x D; 6.5 before F02)
 
 # ---------- wires
 OD = 1.57

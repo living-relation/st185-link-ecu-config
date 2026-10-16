@@ -88,7 +88,12 @@ INSERT_M3 = dict(hole=4.0, depth=6.0)
 LUG_Z = PAN['z0'] + PAN['t'] + PAN['gap'] + 3.5   # palm underside of every IN-row (relay feed) lug = 9.5
 LUG_C = LUG_Z + 3.5              # barrel centre (Klauke d4 7)
 R_SADDLE = 16.0                  # printed saddle radius = inside bend radius of every relay feed (8 AWG needs 3 x 5.13 = 15.4)
-STANDOFF = dict(af=8.0, long=40.0, thread=5)    # brass hex standoff M5 female-female (Essentra 301540040050, 40 mm): rev 6 = the ONE standoff, IN and OUT rows (B5)
+STANDOFF = dict(af=8.0, long=40.0, thread=5, depth=10.0)    # brass hex standoff M5 female-female, 40 mm: rev 6 = the ONE standoff, IN and OUT rows (B5);
+# OPEN-5 (SteveCAD v3 F06, Claude 2026-10-16): Accu HHTPS-M5-8-40-BR-NI - same 8 AF x 40 envelope as the Essentra 301540040050 it replaces,
+# but its listing states the thread depth (10 mm each end); Essentra's page could not be read, so its depth stayed unknown
+# Pad stud (OPEN-5): M5 x 20 DIN 916 A2 set screw, 9.5 into the standoff (1.9 x D, 0.5 short of its 10 mm thread), then pad 3.0 + AMI ear 0.8
+# + DIN 6923 nut 5.0, 1.7 past the nut (2 threads)
+SETSCREW = dict(l=20.0, in_so=9.5)
 TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck underside (terminal cavity length)
 
 # ---------- logic zone (inboard): mini fuses + micro relays
@@ -149,7 +154,12 @@ ACPS = ('ACPS', 10)
 # F4 A drawing (V23136-A0004-X059-CD) against it at the next Fusion rebuild.
 RELAY_B = dict(body=28.5, h=25.3, pos='heater', v87a=7.65 - 8.35)
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
-BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper, off-the-shelf flat bar, cut + drilled only
+BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper flat bar stock; machined parts since D6 (Dan 2026-10-16, R76 amended)
+# SteveCAD audit v3 (2026-10-16, Dan's D3 / D6): clearance holes ISO 273 medium, tapped holes modelled at the ISO coarse tap drill,
+# every copper part is a machined part with a 0.3 x 45 deg edge break on every edge (hole rims included, F10).
+CLEAR = {5: 5.5, 6: 6.6, 8: 9.0}     # ISO 273 medium clearance (F19: M8 8.5 -> 9.0, battery block M6 6.5 -> 6.6)
+TAP_DRILL = {3: 2.5, 4: 3.3, 5: 4.2, 6: 5.0}   # ISO coarse tap drill (F07: LOGIC strip M4 4.0 -> 3.3, M5 5.0 -> 4.2)
+CU_BREAK = 0.3                       # copper edge break, 0.3 x 45 deg on every edge (F10 / D6)
 METAL = {'Al6061': dict(name='Al6061', density=2.70, iacs=43), 'CuC110': dict(name='CuC110', density=8.89, iacs=100)}
 AMI = dict(L=41.0, c=30.0, body_l=16.0, body_w=12.0, body_h=6.0, ear_w=9.5, ear_t=0.8, hole=5.5)
 AMI_IN_OFF = 6.25    # input stud offset from the bar centre line (both rows on one 25 mm bar)
@@ -166,7 +176,8 @@ PAD = dict(inner=6.5, outer=11.0, w=15.0, t=3.0)   # output pad: 17.5 cut from 3
 LUG_M5 = dict(b=12.0, l=22.0, tip=6.0, t=2.0, d4=7.0)
 LUG_M8 = dict(b=20.0, l=47.0, tip=10.0, t=3.0, d4=14.0)
 IN_STUD_Y = 22.0     # 1/0 input stud on the POWER bar
-M5_NUT = dict(af=8.0, h=4.0)
+M5_NUT = dict(af=8.0, h=5.0)    # DIN 6923 M5 flange nut, m = 5.0 (F06: was drawn 4.0)
+BOLT_L = {5: 16.0, 8: 25.0}     # bar bolts up through the bar from their printed hex pocket: M5 x 16, M8 x 25 (parts lists)
 M8_NUT = dict(af=13.0, h=6.5)
 
 # ---------- POWER box (local frame). Relays on the inboard half, AMI bar outboard. Each relay sits where its feed lands:
@@ -258,7 +269,8 @@ REFERENCE_BRAND = ('Blue Sea Systems 7720 Safety Fuse Block (AMI / MIDI)',
                    'Mini ISO / mini-fuse module - no room for the HCR150 and an AMI); MTA / Littelfuse sealed power-distribution boxes (closed '
                    'tubs with cable seals, i.e. holes, the opposite of open); Blue Sea MRBF terminal blocks (they sit on the battery post).')
 
-# ---------- R76: off-the-shelf tinned copper stock (Dan: no machined bars; cut, drill and tap are OK). Picks first.
+# ---------- R76: tinned copper flat bar stock (picks first). Amended 2026-10-16 (D6): the bars, pads and strips are machined from it
+# (holes to the drawing, 0.3 x 45 edge break everywhere) - no longer cut + drill only.
 # Prices seen on amazon.com / the seller page 2026-10-14 (they move); none of these is a TE part - TE sells no bar stock (R38 step 4).
 STOCK = {
     'bar': ('Power bars (POWER box 148 mm + battery block 36.5 mm)', [
@@ -304,7 +316,9 @@ REV7 = dict(
     pos_studs=[(178.0, 'BAT+ IN', 'H1'), (202.0, 'RADLOK+', 'H3'), (226.0, 'SPARE', None)],   # M8 on the POS bar, 1/0 lugs out +x
     neg_bar=dict(x0=4.0, x1=109.0, yc=205.0),  # NEG bar on flat along x (105 long, same stock), lugs out +y (rear end)
     neg_studs=[(15.0, 'BAT-', 'H2', '1/0'), (38.0, 'RADLOK-', 'H6a', '1/0'), (61.0, 'GND ID', 'H7', '1/0'), (84.0, 'GND IG', 'H7', '1/0'),
-               (103.5, 'GND', 'relays', 'small')],   # 23 pitch = 20 lug + 3 gap (Dan's rule); GND: up to 3 small M8 rings
+               (100.5, 'GND', 'relays', 'small')],   # 23 pitch = 20 lug + 3 gap (Dan's rule); GND: up to 3 small M8 rings
+    # F05 (SteveCAD v3, 2026-10-16): GND stud 103.5 -> 100.5, so its hole edge is 4.0 from the bar end (was 1.25) and its nut clears the
+    # barrier wall by 2.5 (was a 2.9 mm3 overlap); 16.5 to the x 84 stud (nut corners 1.5 apart - OPEN-2 for Dan: accept, or move the wall)
     small_ring_b=13.0,                         # widest small M8 ring tongue (TE PIDG, 22-16 / 16-14 AWG M8 rings, ST185-CabinPower)
     small_awg=(14, 18, 20),                    # k_htr 87a 14, k_pwr 85 18, k_rev 85 20 (CabinPower t_pdb_gnd_*)
     barrier=(110.5, 113.5),                    # printed wall x between the NEG terminals and the POS bar pocket (115.4); 3.0 thick (R127 sweep, was 2.5)

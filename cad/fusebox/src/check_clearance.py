@@ -28,7 +28,6 @@ LIVE_LIVE = {   # key -> what the two live parts are
     'under_deck_lug_to_lug_min_mm': 'POWER: lugs under the deck',
     'standoff_to_standoff_min_mm': 'POWER: brass standoffs',
     'bus_pos_lug_to_lug_min_mm': 'POWER bus zone: + bar lug to lug',
-    'bus_neg_lug_to_lug_min_mm': 'POWER bus zone: NEG bar lug to lug',
     'bus_neg_to_pos_min_mm': 'POWER bus zone: any NEG part to any + part',
     'bus_pos_lug_to_out_pad_min_mm': 'POWER: + bus lug to an AMI output pad',
     'logic_strip_to_strip_mm': 'LOGIC: Bus 1 strip to Bus 2 strip',
@@ -41,7 +40,10 @@ LIVE_LIVE = {   # key -> what the two live parts are
 LIVE_INSULATION = ('pan_to_nearest_live_power_mm', 'logic_jumper_parts_to_printed_min_mm', 'logic_jumper_parts_to_harness_min_mm',
                    'logic_strip_to_printed_min_mm', 'logic_pan_rib_to_live_min_mm', 'logic_base_to_live_min_mm')
 # J1 = A (R94): live to live inside ONE circuit - reported, never gated (the key must still be there)
-SAME_CIRCUIT = {'logic_jumper_lug_to_lug_min_mm': 'LOGIC: fuse input jumper lug to the next one on the SAME strip (one circuit, J1 = A)'}
+SAME_CIRCUIT = {'logic_jumper_lug_to_lug_min_mm': 'LOGIC: fuse input jumper lug to the next one on the SAME strip (one circuit, J1 = A)',
+                # SteveCAD v3 F05 (2026-10-16): the GND stud moved to x 100.5 puts its ring edge on the GND IG 6R8 lug at x 84 - every
+                # lug on the NEG bar is the one ground node, so J1 = A applies as on a LOGIC strip; spanner room there is OPEN-2 (Dan)
+                'bus_neg_lug_to_lug_min_mm': 'POWER bus zone: NEG bar lug to lug (one ground bar = one circuit, J1 = A; OPEN-2)'}
 # key -> question id: the key may stay under 3 mm only while that question is open (Dan to decide)
 WAIVERS = {}
 

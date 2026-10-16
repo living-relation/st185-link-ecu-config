@@ -4,12 +4,12 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 840.7,
+   "volume_cm3": 840.6,
    "exempt": {
     "seat lip": 1375,
     "pan catch pocket": 116
    },
-   "attach_skin": 59,
+   "attach_skin": 61,
    "walls": [],
    "attach": []
   },

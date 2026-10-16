@@ -204,6 +204,10 @@ def lug(L, box, key, item, need, spare, unit, desc, note='', checked=''):
 def build(rev=6):
     global PRINT
     PRINT = load_print(rev)
+    # N4 / N5 (SteveCAD v3): the LOGIC box and the battery relay block are built in the rev 7 document too, and the R127 / R128 sweep
+    # changed them there (LOGIC base 229 -> 338 cm3, battery base 125 -> 172) - their lists (kept in the rev 6 folder) price the rev 7 parts
+    p7 = load_print(7)
+    PRINT = dict(PRINT, **{k: v for k, v in p7.items() if k.startswith(('Logic_', 'BattRelay_'))})
     R7 = rev == 7
     L = Lists()
     P, G, B = 'POWER', 'LOGIC', 'BATTRELAY'
@@ -230,11 +234,12 @@ def build(rev=6):
         L.add(P, 'Copper', 'POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)',
               '12 in x 1 in x 1/4 in tinned copper flat bar: bar 1 = POS bar (226 mm) + battery block bar (36.5 mm); bar 2 = NEG bar (105 mm), 195 mm spare',
               S.REV7_STOCK_BARS, unit=26.19, basis='seen', url='https://www.amazon.com/dp/B0CGJBRNJX', checked='summary "Copper" section; seller page 2026-10-14',
-              note='Cut + drill only (R76): POS bar 14 x 5.5 (AMI inputs) + 3 x 8.5 (BAT+ IN, RADLOK+, spare); NEG bar 5 x 8.5. 161 mm2 of copper each - '
-                   'three times the 1/0 cable (53 mm2). Replaces the B rev3 bus bar machined Al bars and set-screw port blocks (R76: no milling).')
+              note='Machined (D6, R76 amended 2026-10-16): POS bar 14 x 5.5 (AMI inputs) + 3 x 9.0 (BAT+ IN, RADLOK+, spare); NEG bar 5 x 9.0 (ISO 273 medium, F19); '
+                   '0.3 x 45 edge break on every edge, hole rims included. 161 mm2 of copper each - three times the 1/0 cable (53 mm2). '
+                   'Replaces the B rev3 bus bar machined Al bars and set-screw port blocks.')
     L.add(P, 'Copper', 'Output pads 15 x 3 x 17.5 mm, tinned (14 here + 1 in BATTRELAY)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)',
           'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all 15 pads (290 mm with kerf)', 1, unit=51.99, basis='seen',
-          url='https://www.amazon.com/dp/B09Z7NBLDK', checked='summary "Copper" section; seller page 2026-10-14', note='One drilled hole each (5.5 mm).')
+          url='https://www.amazon.com/dp/B09Z7NBLDK', checked='summary "Copper" section; seller page 2026-10-14', note='Machined (D6): one 5.5 hole each, 0.3 x 45 edge break on every edge.')
     n = {a: sum(1 for _, x in IN_USED + OUT_USED if x == a) for a in (30, 40, 50, 60)}
     for rating in (30, 40, 50, 60):
         L.add(P, 'Fuses', 'AMI bolt-down fuse %d A' % rating, 'AMI-%d' % rating, 'Eaton Bussmann', 'AMI series, 32 VDC, M5 stud ears 9.5 x 0.8 mm', n[rating],
@@ -313,13 +318,17 @@ def build(rev=6):
             note='BAT+ IN (H1), RADLOK+ (H3), BAT- (H2), RADLOK- (H6a), GND ID, GND IG (H7): the B rev3 set-screw ports become lugs. The small relay grounds keep their own M8 rings (harness parts).')
     # standoffs
     n_so = N_IN + N_OUT
-    L.add(P, 'Standoffs', 'Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all %d)' % n_so, 'Essentra 301540040050', 'Essentra Components',
-          'Hex standoff, female-female M5, 8.0 AF, 40.0 mm, nickel-plated brass; sold in 50s', N_IN + N_OUT, 0, unit=0.60, basis='est',
-          url='https://www.essentracomponents.com/en-gb/p/standoffs/301540040050',
-          checked='Essentra listing (female-female, M5, 8.0 AF, 40.0 mm, nickel-plated brass); no TE part and none of the R38 approved suppliers lists standoffs (step 4)',
+    L.add(P, 'Standoffs', 'Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all %d)' % n_so, 'Accu HHTPS-M5-8-40-BR-NI', 'Accu',
+          'Threaded hexagon spacer, female-female M5, 8 AF, 40 mm, nickel-plated brass, thread depth 10 mm each end', N_IN + N_OUT, 0, unit=0.60, basis='est',
+          url='https://accu-components.com/us/threaded-standoffs/464940-HHTPS-M5-8-40-BR-NI',
+          checked='Accu listing via web search 2026-10-16 (M5 x 40 x 8 AF, female both ends, brass nickel, hole depth 10 mm each end; the page itself refuses scripted reads - re-check on receipt); '
+                  'OPEN-5: replaces Essentra 301540040050, whose page would not open, so its thread depth could not be confirmed; no TE part and none of the R38 approved suppliers lists standoffs (step 4)',
           note='B5 (Dan): one 40 mm part number for every standoff: %d IN row + %d OUT row = %d, all drawn 40 mm in CAD rev 6; the LOGIC box has none any more (its feed lugs bolt onto the strips). Sold in 50s.' % (N_IN, N_OUT, n_so))
     # fasteners
-    hw(L, P, 'Fasteners', 'M5set', 'Set screw M5 x 12 (stud on each pad standoff)', N_POS, spare(N_POS), 0.12, note='Through the pad into the standoff (5 mm of thread); DIN 916 is a cup point - irrelevant for a stud.')
+    L.add(P, 'Fasteners', 'Set screw M5 x 20 (stud on each pad standoff)', 'bolts.co.uk SSPMCA205020', 'Bolts.co.uk', 'Socket set screw M5 x 20, plain cup point, DIN 916, A2 stainless (pack of 25)',
+          N_POS, spare(N_POS), unit=0.63, basis='seen', url='https://bolts.co.uk/m5-x-20mm-socket-set-screw-plain-cup-point-pcp-din-916-a2-stainless-steel-pack-of-25-p-SSPMCA205020',
+          checked='bolts.co.uk listing via web search 2026-10-16 (M5 x 20, DIN 916, A2, 2.5 hex, pack of 25 GBP 15.70); R38 step 4: no RS PRO M5 x 20 set screw checked this session',
+          note='OPEN-5 (F06): 9.5 into the 10 mm standoff thread (1.9 x D), then pad 3.0 + AMI ear 0.8 + DIN 6923 nut 5.0, 1.7 past the nut. Was M5 x 12 (5 in the standoff, nut not fully engaged).')
     hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10, note='One length for both rows now that every standoff is 40 mm.')
     hw(L, P, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar, head captured)', N_POS, spare(N_POS), 0.12)
     hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears, 2 per position)', 2 * N_POS, spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet).')
@@ -330,7 +339,7 @@ def build(rev=6):
     else:
         n8 = len(S.REV7['pos_studs']) + len(S.REV7['neg_studs'])
         hw(L, P, 'Fasteners', 'M8bolt', 'Hex bolt M8 x 25 (bus studs: 3 POS + 5 NEG, head captured)', n8, 1, 0.30,
-           note='Up through the deck into the bar, head in a printed hex pocket (R76: plain holes, no tapping). The spare POS stud gets its bolt now.')
+           note='Up through the deck and the bar (9.0 clearance holes, no tapping), head in a printed hex pocket. The spare POS stud gets its bolt now.')
         hw(L, P, 'Fasteners', 'M8nut', 'Hex nut M8 (bus studs)', n8, 1, 0.08)
         hw(L, P, 'Fasteners', 'M8wash', 'Plain washer M8 (bus studs)', n8, 1, 0.05)
     # limiters + mount
@@ -350,7 +359,8 @@ def build(rev=6):
     L.add(G, 'Copper', 'Logic strips 25.4 x 3.2 mm on edge, tinned: BUS1 %.0f mm + BUS2 %.0f mm' % (ls['BUS1'], ls['BUS2']), 'MECCANIXITY B0CGJC2S1L', 'MECCANIXITY (Amazon)',
           '2 pcs 12 in x 1 in x 1/8 in tinned copper flat bar: ONE bar makes both strips', 1, unit=27.19, basis='seen',
           url='https://www.amazon.com/dp/B0CGJC2S1L', checked='spec.py STOCK runner-up list 2026-10-14 (25.4 x 3.2 x 305, 2 pcs, $27.19)',
-          note='Rev 6 (C4): replaces the 10 x 3 Nassau bar. Cut, drill and tap (R76): M4 at each lug stud, M5 at the feed - drawing on the summary page.')
+          note='Rev 6 (C4): replaces the 10 x 3 Nassau bar. Machined (D6): tap drill 3.3 + M4 at each lug stud, 4.2 + M5 at the feed, 0.3 x 45 edge break; '
+               'thread length = strip thickness 3.2 (M4 0.8 x D, M5 0.64 x D - OPEN-3 for Dan: through-bolt, press-in nut or a 6 mm strip).')
     for rating in sorted(mini_by_rating):
         k = mini_by_rating[rating]
         L.add(G, 'Fuses', 'Mini blade fuse %s A (ATM)' % rating, 'ATM-%s' % ('7-1/2' if rating == 7.5 else '%g' % rating), 'Eaton Bussmann', 'ATM mini blade fuse, blade 2.8 x 0.8 mm', k, unit=0.55, basis='est', url=ATM_URL[rating],
@@ -393,7 +403,8 @@ def build(rev=6):
           5, 2, unit=1.00, basis='est', url=AWC_M22759_16_14, checked='ST185.harnesslib wire part m16_14_2; AWC M22759/16-14 listing (19 strands tinned copper, ETFE, 600 V, 150 C)',
           note='%d x ~60 mm = %.1f m (5 ft) + spare. R38 step 4: no ProWire USA listing for M22759/16-14 confirmed; AWC sells it by the foot. The same reel as the harness 14 AWG if one is bought.' % (len(jumpers), len(jumpers) * 0.06))
     hw(L, G, 'Jumpers', 'M4x8', 'Hex bolt M4 x 8, into the tapped strip (one per jumper lug)', len(jumpers), spare(len(jumpers)), 0.08,
-       note='Head on the lug side; 3.1 mm of thread past the strip, 0.68 mm short of the other strip (Fusion). Spare studs stay as tapped holes.')
+       note='Head on the lug side; 3.1 mm of thread past the strip, 0.68 mm short of the other strip (Fusion). Spare studs stay as tapped holes. '
+            'Thread in the strip = 3.2 (0.8 x D) - OPEN-3 for Dan.')
     hw(L, G, 'Jumpers', 'M4spring', 'Spring washer M4 under each jumper bolt head', len(jumpers), spare(len(jumpers)), 0.05)
     lug(L, G, '2R5', 'Tubular lug 10 mm2, M5 hole (BUS1 8 AWG, BUS2 10 AWG feeds)', 2, 1, 0.70, 'Tinned copper tubular ring lug, 10 mm2, M5, hole 5.3', checked='Buerklin listing 07F2065')
     hw(L, G, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10, feed lug into the tapped strip (2)', 2, spare(2), 0.10, note='Rev 6: no standoffs in the LOGIC box; the feed lug bolts straight onto the strip face.')
@@ -405,9 +416,9 @@ def build(rev=6):
     printed(B, 'BattRelay_Cover', 'BattRelay Cover', 'Snap-on cover, side vents; PA12')
     cover_screws(L, B, n=3)     # the rear catch by the relay flange has none (spec.SCREW_SKIP_RB)
     L.add(B, 'Copper', 'Bar 25.4 x 6.35 x 36.5 mm, tinned (cut from the POWER bar stock)', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)', 'Same 305 mm bar as the POWER bar: no extra stock to buy', 0,
-          url='https://www.amazon.com/dp/B0CGJBRNJX', checked='stock bought in the POWER list', note='Holes: M6 feed 6.5, AMI 40 input 5.5.')
+          url='https://www.amazon.com/dp/B0CGJBRNJX', checked='stock bought in the POWER list', note='Machined (D6): M6 feed 6.6 (ISO 273 medium, F19), AMI 40 input 5.5; 0.3 x 45 edge break.')
     L.add(B, 'Copper', 'Pad 15 x 3 x 17.5 mm, tinned (cut from the pad stock)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)', 'Same 1000 mm bar as the POWER pads: no extra stock to buy', 0,
-          url='https://www.amazon.com/dp/B09Z7NBLDK', checked='stock bought in the POWER list')
+          url='https://www.amazon.com/dp/B09Z7NBLDK', checked='stock bought in the POWER list', note='Machined (D6): one 5.5 hole, 0.3 x 45 edge break.')
     L.add(B, 'Relay', 'Fuel pump relay k_fp, HCR150, 12 V, 130 A, IP67', '1416010-1', 'TE Connectivity', 'High Current Relay 150 (V23132-A2001-B200), M6 screw load terminals, Superseal 1.5 coil plug', 1, url=TE('1416010-1'),
           checked='TE page + data sheet V23132-X0000-A001 (130 A contact, 150 A limiting, 3.9 W coil, M6 5 Nm, lug up to 25 mm2); te-on-hand-bom.csv qty_ordered 2',
           note='On the shelf. The second HCR150 is the k_eps relay (not in a box list).')
@@ -427,7 +438,8 @@ def build(rev=6):
     hw(L, B, 'Fasteners', 'M6wash', 'Plain washer M6 (feed stud, 2 flange bolts)', 3, 1, 0.05)
     hw(L, B, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar)', 1, 1, 0.12)
     hw(L, B, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears)', 2, 1, 0.07)
-    hw(L, B, 'Fasteners', 'M5set', 'Set screw M5 x 12 (AMI output stud on the pad)', 1, 1, 0.12, note='No standoff in this box: the pad sits on the printed pedestal.')
+    hw(L, B, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI output stud: up through the pad, head in a printed hex pocket)', 1, 1, 0.12,
+       note='No standoff in this box: the pad sits on the printed pedestal; the stud is a bolt from below (the CAD has always drawn it so - this row said set screw M5 x 12, F06).')
     L.add(B, 'Mounting', 'Compression limiter, end tabs (2)', 'EFC 10S00056', 'EFC International',
           'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 2, 1, unit=0.30, basis='est', url=EFC_URL,
           checked='EFC comparison table 2026-10-14; the end tab is 6 mm thick, so the L 6 part (rev 5 listed the L 4 one here)',

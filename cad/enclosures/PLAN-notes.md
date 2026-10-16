@@ -69,7 +69,7 @@ Source: CNLINKO drawing **LP-16-xxxSX-02-1xxx, Rev A1, 2024-03-14**, sheets 1-2 
 ### Lid screws: ISO 10642 M3, 90° countersunk socket head, A2 stainless
 - Head dk 6.72 max (5.54 min), k 1.86, 2 mm hex (Engineers Edge ISO 10642 table; Accu SSK-M3-x-A2 listings).
 - Countersink: 90°, Ø6.9 at the surface, so the head sits 0-0.1 mm below flush. Clearance hole Ø3.4.
-- Tapped holes in the body: M3 x 0.5, tap drill 2.5, 6 mm thread depth (2 x D in 6061), drill 7.5.
+- Tapped holes in the body: M3 x 0.5, tap drill 2.5 x 9.5 + 118 deg point, 8 mm thread; the M3 x 12 engages 6.0 (2 x D in 6061). (F08, 2026-10-16; Fusion exports the threaded hole at the 6H minor diameter, 2.529.)
 
 ### Standoffs and screws already in the BOMs
 - Keystone 25510: nylon hex standoff, M3 F-F, **10 mm** long, 5 mm hex (Future Electronics / IBS listings). Würth 97790603111: M3 x 6 nylon pan screw.
@@ -88,7 +88,7 @@ Source: CNLINKO drawing **LP-16-xxxSX-02-1xxx, Rev A1, 2024-03-14**, sheets 1-2 
 
 ## 3. Proposed design (pre-CAD; SUPERSEDED by the built design in ST185-enclosures.html: VRC 90 x 50 x 45, 7 mm walls; CSB3 70 x 70 x 56)
 
-All boxes: 6061-T6 billet body plus a flat lid. Sealing is metal to metal with the O-ring in a **body-rim** face groove. Lid screws are M3 ISO 10642 into tapped holes **outside** the O-ring, in the corners where the large groove radius leaves room. All internal corners are R ≥ 3 mm for the cutter.
+All boxes: 6061-T6 billet body plus a flat lid. Sealing is metal to metal with the O-ring in a **body-rim** face groove. Lid screws are M3 ISO 10642 into tapped holes **outside** the O-ring, in the corners where the large groove radius leaves room. All vertical internal corners are R ≥ 3 mm for the cutter (tab-to-body corners R3, F11), except the CSB3 tab corners at x ±30: R1.9 (only a 2.0 ledge to the body corner) - cutter r ≤ 1.5 there. Floor-to-wall corners stay sharp: cutter corner OK. Break sharp edges 0.2-0.5 except O-ring / seal faces (F10).
 
 ### VRC box (front and rear identical, engrave "IN" / "OUT" on the end faces; suggestion for OPEN-ITEMS row 71)
 Internal length stack along the connector axis:
@@ -97,7 +97,7 @@ connector back 12.6 + wire bend 8 + carrier 34 + wire bend 8 + connector back 12
 - Walls 6 mm, floor 5 mm. The **end walls are counterbored Ø30 from the inside down to 3.5 mm** at each connector, which is within the 4.5 mm max and leaves thread for the rear nut. D-cutout Ø18.5 / flat 16.5, flat up.
 - Body outside about **88 x 48 x 37 mm**, plus a 6 mm lid, about **88 x 48 x 43 mm** closed.
 - Mounting: two tabs on the long sides at floor level, 12 mm out, 6 mm thick, slot 6.6 x 10 mm (M6 nylon, S26 E5). Footprint about **88 x 72 mm**.
-- Board held by a 3D-printed holder fixed to the M3 tapped floor bosses with nylon M3 screws (S26 E1; was: carrier on 4 x Keystone 25510).
+- Board held by the printed holder v2 (R126): one PA12 block on 2 floor bosses D11, top z 10.5 (F02, +1 mm), drilled 5.0 x 9.5 and tapped M6 at the fit, 2 x M6 x 12 ISO 10642 countersunk (about 7.5 thread, 1.25 x D - OPEN-6).
 - O-ring: groove centreline about 82 x 42 mm, corner R 10.7 (6W), length ≈ 229.6 mm. **AS568-039** (mean circumference 224.1 mm) gives about 2.4 % stretch, which holds it in the groove for inward pressure. Final groove numbers come from the CAD so the stretch lands at 1-3 %.
 - Six to eight M3 lid screws (4 corners, plus mid-sides if the span is over 60 mm).
 - Compared with the 1590WYFL (92 x 92 x 42, 122 mm over the flange), this is about 45 % of the footprint.

@@ -211,12 +211,32 @@ if MODE == 'build':
                 f.timelineObject.isSuppressed = True
     REPORT['suppressed'] = [bc.features.item(i).name for i in range(bc.features.count) if bc.features.item(i).timelineObject.isSuppressed]
     body_b = bc.bRepBodies.item(0)
-    if ef.itemByName('M6_holder_bosses') is None:
+    # SteveCAD v3 (2026-10-16): Fusion names a second 'M6_holder_bosses' 'M6_holder_bosses (1)', so the old exact-name test let every
+    # rerun add another boss + drill set (three sets were in the timeline). Keep the first set, delete the copies, and set its
+    # height / drill depth from the spec every run (F02: boss top z 10.5, drill 9.5)
+    def named(coll, stem):
+        return [coll.item(i) for i in range(coll.count) if coll.item(i).name == stem or coll.item(i).name.startswith(stem + ' (')]
+    for stem in ('M6_holder_bosses', 'M6_tap_drill'):
+        fs = sorted(named(ef, stem), key=lambda f: f.timelineObject.index)
+        for f in fs[1:]:
+            sk_ = f.profile.item(0).parentSketch if isinstance(f.profile, adsk.core.ObjectCollection) else f.profile.parentSketch
+            pl_ = sk_.referencePlane
+            f.deleteMe(); sk_.deleteMe(); pl_.deleteMe()
+            REPORT.setdefault('deleted_copies', []).append(stem)
+    fb = named(ef, 'M6_holder_bosses')
+    fd = named(ef, 'M6_tap_drill')
+    if fb and fd:
+        fb[0].extentOne.distance.expression = '%g mm' % S.BOSS2_H
+        sk_ = fd[0].profile.item(0).parentSketch if isinstance(fd[0].profile, adsk.core.ObjectCollection) else fd[0].profile.parentSketch
+        sk_.referencePlane.definition.offset.expression = '%g mm' % (S.FLOOR_Z + S.BOSS2_H)
+        fd[0].extentOne.distance.expression = '%g mm' % -S.PILOT_DEPTH
+        REPORT['bosses'] = 'top z %.1f, drill %.1f deep' % (S.FLOOR_Z + S.BOSS2_H, S.PILOT_DEPTH)
+    if not fb:
         sk = bc.sketches.add(plane_z(bc, S.FLOOR_Z)); sk.name = 'M6_holder_bosses'
         for (x, y) in S.SCREWS:
             sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, S.FLOOR_Z)), S.BOSS2_D / 20.0)
         ext(bc, sk, S.BOSS2_H, JOIN, body_b, 'M6_holder_bosses', all_profiles(sk))
-    if ef.itemByName('M6_tap_drill') is None:
+    if not fd:
         sk = bc.sketches.add(plane_z(bc, S.FLOOR_Z + S.BOSS2_H)); sk.name = 'M6_tap_drill'
         for (x, y) in S.SCREWS:
             sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, S.FLOOR_Z + S.BOSS2_H)), S.PILOT_D / 20.0)
@@ -347,8 +367,8 @@ if MODE == 'build':
     REPORT['files'] = files
     if globals().get('SAVE', True) and not (clash or mclash) and hb.lumps.count == 1 and hc.bRepBodies.count == 1:
         try:
-            REPORT['saved'] = doc.save('VRC board holder v2 (Dan M9, R126): one extruded block, flush board, 4 snap tabs, 2 x M6 csk; '
-                                       'body: 2 M6 bosses with D5.0 tap drill, the 4 M3 bosses suppressed')
+            REPORT['saved'] = doc.save(globals().get('MSG', 'VRC board holder v2 (Dan M9, R126): one extruded block, flush board, 4 snap tabs, 2 x M6 csk; '
+                                                     'body: 2 M6 bosses with D5.0 tap drill, the 4 M3 bosses suppressed'))
         except Exception as e:
             REPORT['saved'] = 'FAILED: %s' % e
     else:

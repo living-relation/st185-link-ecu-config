@@ -724,6 +724,27 @@ def build(out_dir, save=True, renders=True, rev=6):
         occs[cname] = occ
         return occ
 
+    def edge_break(occ, d=None):
+        """F10 / D6 (SteveCAD v3, Dan 2026-10-16: copper is machined): a d x 45 deg chamfer on every edge of every body of a copper
+        part, hole rims included - one chamfer feature per body. A body Fusion cannot chamfer whole is counted in the report as failed."""
+        d = S.CU_BREAK if d is None else d
+        c = occ.component
+        done, failed = 0, 0
+        for bi in range(c.bRepBodies.count):
+            b = c.bRepBodies.item(bi)
+            edges = adsk.core.ObjectCollection.create()
+            for e in b.edges:
+                edges.add(e)
+            ci = c.features.chamferFeatures.createInput2()
+            ci.chamferEdgeSets.addEqualDistanceChamferEdgeSet(edges, adsk.core.ValueInput.createByReal(d / 10.0), False)
+            try:
+                c.features.chamferFeatures.add(ci)
+                done += 1
+            except Exception:
+                failed += 1
+        report.setdefault('edge_break', {})[c.name] = dict(d=d, bodies=done, failed=failed)
+        return occ
+
     def etch(occ, labels, z_top, shift):
         """Cut every label 0.6 deep into the cover top. labels = [(text, x, y, h)] in the box's local frame."""
         c = occ.component
@@ -1354,6 +1375,19 @@ def build(out_dir, save=True, renders=True, rev=6):
             cuts += groove_join(L, z_d, [(z_d - 1, bz0 - HD[m]['k'] - 1.0, bx_ - af_ / math.sqrt(3.0), bx_ + af_ / math.sqrt(3.0), by_ - af_ / 2, by_ + af_ / 2)],
                                 af_ / math.sqrt(3.0))
             cuts.append(cylz(bx_, by_, z_d - 1, bz0 + 1, m + 0.5))
+        # F05 (SteveCAD v3): two head pockets in one row closer than min_wall tip to tip (the moved NEG GND stud and the x 84 stud) are
+        # joined by a relief across the tips, so no PA12 sliver is left between them (it would be 0.56); the bar seat floor is unchanged
+        for i1, (x1_, y1_, m1) in enumerate(bar_bolts):
+            for (x2_, y2_, m2) in bar_bolts[i1 + 1:]:
+                if abs(y1_ - y2_) > 0.01 or m1 != m2:
+                    continue
+                tip = (HD[m1]['af'] + 2 * S.CLR) / math.sqrt(3.0)
+                gap = abs(x2_ - x1_) - 2 * tip
+                if 0 < gap < S.HOLE['min_wall']:
+                    hw = 2.3
+                    xa_, xb3 = sorted((x1_, x2_))
+                    cuts.append(box(xa_ + tip - hw / math.sqrt(3.0) - 0.05, y1_ - hw, z_d - 1, xb3 - tip + hw / math.sqrt(3.0) + 0.05, y1_ + hw, bz0 + 0.01))
+                    report.setdefault('pocket_reliefs', []).append(dict(x=[round(xa_, 2), round(xb3, 2)], y=round(y1_, 2), gap=round(gap, 2)))
         for r in relays:   # Mini ISO cavities, turned 90 deg: (u, v) of the F7 bottom view -> x = cx - v, y = cy + u
             pins = [(0, 7.65, 11.5, 3.2), (0, -10.25, 11.5, 3.2), (-8.45, -0.25, 2.8, 8.3), (8.45, -0.25, 2.8, 8.3)]
             if r['B']:
@@ -1372,26 +1406,27 @@ def build(out_dir, save=True, renders=True, rev=6):
         # ---- copper, standoffs, bolts
         bar = box(xb - B_['w'] / 2, B_['y0'], bz0, xb + B_['w'] / 2, B_['y1'], btop)
         for (bx_, by_, m) in (m8_pos if R7 else [(xb, S.IN_STUD_Y, 8)]):
-            bo(bar, cylz(bx_, by_, bz0 - 1, btop + 1, 8.5), 's')
+            bo(bar, cylz(bx_, by_, bz0 - 1, btop + 1, S.CLEAR[8]), 's')     # F19: ISO 273 medium (was 8.5)
         pads = []
         for a in ami:
-            bo(bar, cylz(a['x_in'], a['y'], bz0 - 1, btop + 1, 5.5), 's')
+            bo(bar, cylz(a['x_in'], a['y'], bz0 - 1, btop + 1, S.CLEAR[5]), 's')
             p = pad_box(a, pz0, btop)
-            bo(p, cylz(a['x_out'], a['y'], pz0 - 1, btop + 1, 5.5), 's')
+            bo(p, cylz(a['x_out'], a['y'], pz0 - 1, btop + 1, S.CLEAR[5]), 's')
             pads.append(p)
-        comp(pre + ('Bar_Power_%s_25x6p35%s' % (BM['name'], '_POS_bus_L226' if R7 else '')), bar, AP['tin'], MAT['cu'], sh)
+        edge_break(comp(pre + ('Bar_Power_%s_25x6p35%s' % (BM['name'], '_POS_bus_L226' if R7 else '')), bar, AP['tin'], MAT['cu'], sh))
         if R7:            # NEG bar: same 1" x 1/4" stock on flat, M8 holes
             nbar = box(NB['x0'], NB['yc'] - B_['w'] / 2, bz0, NB['x1'], NB['yc'] + B_['w'] / 2, btop)
             for (bx_, by_, m) in m8_neg:
-                bo(nbar, cylz(bx_, by_, bz0 - 1, btop + 1, 8.5), 's')
-            comp(pre + 'BarNeg_%s_25x6p35_L105' % BM['name'], nbar, AP['tin'], MAT['cu'], sh)
-        comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh)
+                bo(nbar, cylz(bx_, by_, bz0 - 1, btop + 1, S.CLEAR[8]), 's')
+            edge_break(comp(pre + 'BarNeg_%s_25x6p35_L105' % BM['name'], nbar, AP['tin'], MAT['cu'], sh))
+        edge_break(comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh))
         comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
                                                                  for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
         z_ear = btop + S.AMI['ear_t']
-        comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, btop + (12.0 if m == 5 else 16.0), float(m))])
+        comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, bz0 + S.BOLT_L[m], float(m))])
                                           for (bx_, by_, m) in bar_bolts], AP['al'], MAT['ss'], sh)
-        comp(pre + 'SetScrew_ISO4026_A2', [cylz(a['x_out'], a['y'], pz0 - 5.0, z_ear + 5.0, 5.0) for a in ami], AP['al'], MAT['ss'], sh)   # 5 into the standoff
+        # OPEN-5 (F06): M5 x 20 set screw, 9.5 into the standoff (1.9 x D), 1.7 past the DIN 6923 nut
+        comp(pre + 'SetScrew_ISO4026_A2', [cylz(a['x_out'], a['y'], pz0 - S.SETSCREW['in_so'], pz0 - S.SETSCREW['in_so'] + S.SETSCREW['l'], 5.0) for a in ami], AP['al'], MAT['ss'], sh)
         comp(pre + 'LugBolt_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], a['lz'] - HD[5]['k'], a['lz'], HD[5]['af']),
                                                      cylz(a['x_out'], a['y'], a['lz'], a['lz'] + 10.0, 5.0)])
                                           for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # M5 x 10 both rows (rev 6: 40 mm standoffs)
@@ -1670,17 +1705,17 @@ def build(out_dir, save=True, renders=True, rev=6):
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
 
-        # ---- copper strips (tapped M4 at every stud, M5 at the feed)
+        # ---- copper strips (tapped M4 at every stud, M5 at the feed; modelled at the tap drill, thread = strip thickness 3.2 - OPEN-3)
         sbodies = []
         for col, v in strips.items():
             st = box(v['x0'], v['y0'], s_z0, v['x1'], v['y1'], s_z1)
             for s_ in studs:
                 if s_['col'] == col:
-                    bo(st, cyl((v['x0'] - 1, s_['y'], s_['z']), (v['x1'] + 1, s_['y'], s_['z']), JB['m']), 's')
+                    bo(st, cyl((v['x0'] - 1, s_['y'], s_['z']), (v['x1'] + 1, s_['y'], s_['z']), S.TAP_DRILL[JB['m']]), 's')   # F07: tap drill
             f = S.FEED[col]
-            bo(st, cyl((v['x0'] - 1, f['y'], f['z']), (v['x1'] + 1, f['y'], f['z']), 5.0), 's')
+            bo(st, cyl((v['x0'] - 1, f['y'], f['z']), (v['x1'] + 1, f['y'], f['z']), S.TAP_DRILL[5]), 's')
             sbodies.append(st)
-        comp(pre + 'Strip_Logic_%s_25p4x3p2_on_edge' % BM['name'], sbodies, AP['tin'], MAT['cu'], sh)
+        edge_break(comp(pre + 'Strip_Logic_%s_25p4x3p2_on_edge' % BM['name'], sbodies, AP['tin'], MAT['cu'], sh))
 
         # ---- jumper lugs, bolts, washers, jumpers (straight down from the input cavity into the lug barrel)
         jl, jb, jw, jwire = [], [], [], []
@@ -1918,12 +1953,12 @@ def build(out_dir, save=True, renders=True, rev=6):
         comp(pre + 'CoilPlug_TE_Superseal_282080-1', box(gcx - 5.0, yb - H_['plug_to'], tz0, gcx + 5.0, yb - 0.05, tz0 + 9.0), AP['black'], MAT['abs'], sh)
         # ---- copper + fuse + hardware
         bar = box(Bb['x0'], tsy - Bb['w'] / 2, bz0, Bb['x1'], tsy + Bb['w'] / 2, btop)
-        bo(bar, cylz(xst, tsy, bz0 - 1, btop + 1, 6.5), 's')
-        bo(bar, cylz(a_in, tsy, bz0 - 1, btop + 1, 5.5), 's')
+        bo(bar, cylz(xst, tsy, bz0 - 1, btop + 1, S.CLEAR[6]), 's')     # F19: ISO 273 medium (was 6.5)
+        bo(bar, cylz(a_in, tsy, bz0 - 1, btop + 1, S.CLEAR[5]), 's')
         pad = box(a_out - S.PAD['inner'], tsy - S.PAD['w'] / 2, pz0, a_out + S.PAD['outer'], tsy + S.PAD['w'] / 2, btop)
-        bo(pad, cylz(a_out, tsy, pz0 - 1, btop + 1, 5.5), 's')
-        comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP['tin'], MAT['cu'], sh)
-        comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pad, AP['tin'], MAT['cu'], sh)
+        bo(pad, cylz(a_out, tsy, pz0 - 1, btop + 1, S.CLEAR[5]), 's')
+        edge_break(comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP['tin'], MAT['cu'], sh))
+        edge_break(comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pad, AP['tin'], MAT['cu'], sh))
         fe = slot_x(a_in, a_out, tsy, btop, btop + S.AMI['ear_t'], S.AMI['ear_w'])
         for x in (a_in, a_out):
             bo(fe, cylz(x, tsy, btop - 1, btop + 2, S.AMI['hole']), 's')
@@ -1932,7 +1967,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         bo(fb, fe, 'u')
         comp(pre + 'Fuse_AMI_ltgreen', fb, AP['ltgreen'], MAT['abs'], sh)
         lug_z = btop + S.AMI['ear_t']                    # = tz1
-        comp(pre + 'BarBolt_M5_M6_ISO4017_A2', [union_all([hexz(px, tsy, zu - HD[m]['k'], zu, HD[m]['af']), cylz(px, tsy, zu, btop + 12.0, float(m))]) for (px, m, zu) in rb_bolts],
+        comp(pre + 'BarBolt_M5_M6_ISO4017_A2', [union_all([hexz(px, tsy, zu - HD[m]['k'], zu, HD[m]['af']), cylz(px, tsy, zu, zu + (16.0 if m == 6 else S.BOLT_L[5]), float(m))]) for (px, m, zu) in rb_bolts],
              AP['al'], MAT['ss'], sh)
         comp(pre + 'FlangeBolt_M6_ISO4017_A2', [union_all([hexz(x, fy, zf + H_['flange_t'], zf + H_['flange_t'] + 4.0, 10.0), cylz(x, fy, 0.5, zf + H_['flange_t'], 6.0)]) for x in hxs],
              AP['al'], MAT['ss'], sh)
@@ -2127,8 +2162,8 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: R127 amendment - outer skirt walls grown outward to 4.3 (rim 4.3), covers follow; curved bend saddles back with a radial top cut '
-                     '(Claude Code 2026-10-16)')
+            doc.save('rev 7: SteveCAD v3 audit port - NEG GND stud 100.5 + pocket relief (F05), ISO 273 bar holes (F19), LOGIC strip tap drills (F07), '
+                     '0.3 copper edge break (F10 / D6), M5 x 20 pad studs + DIN 6923 nuts (OPEN-5) (Claude Code 2026-10-16)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7
