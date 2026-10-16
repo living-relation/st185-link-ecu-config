@@ -359,8 +359,20 @@ def build(rev=6):
     L.add(G, 'Copper', 'Logic strips 25.4 x 3.2 mm on edge, tinned: BUS1 %.0f mm + BUS2 %.0f mm' % (ls['BUS1'], ls['BUS2']), 'MECCANIXITY B0CGJC2S1L', 'MECCANIXITY (Amazon)',
           '2 pcs 12 in x 1 in x 1/8 in tinned copper flat bar: ONE bar makes both strips', 1, unit=27.19, basis='seen',
           url='https://www.amazon.com/dp/B0CGJC2S1L', checked='spec.py STOCK runner-up list 2026-10-14 (25.4 x 3.2 x 305, 2 pcs, $27.19)',
-          note='Rev 6 (C4): replaces the 10 x 3 Nassau bar. Machined (D6): tap drill 3.3 + M4 at each lug stud, 4.2 + M5 at the feed, 0.3 x 45 edge break; '
-               'thread length = strip thickness 3.2 (M4 0.8 x D, M5 0.64 x D - OPEN-3 for Dan: through-bolt, press-in nut or a 6 mm strip).')
+          note='Rev 6 (C4): replaces the 10 x 3 Nassau bar. Machined (D6): PEM mounting holes %.2f (+0.08) at each lug stud and %.2f at the feed, '
+               'punched or drilled, no deburr (PEM install step 1); 0.3 x 45 edge break; then the PEM nuts pressed in (rows below; N2 = A, DECISIONS R129).'
+               % (S.PEM[4]['hole'], S.PEM[5]['hole']))
+    n4 = sum(S.STUDS.values())
+    for m_, n_, what in ((4, n4, 'one per jumper stud, spares included'), (5, len(S.FEED), 'one per feed')):
+        N_ = S.PEM[m_]
+        L.add(G, 'Copper', 'Self-clinching nut M%d, pressed into the strip (%s)' % (m_, what), 'PEM %s' % N_['pn'], 'PennEngineering (PEM)',
+              'Self-clinching nut M%d, type %s, shank code 2, zinc-plated steel; mounting hole %.2f +0.08, head %.2f x %.1f, min sheet 1.4, '
+              'min hole centre to edge %.1f, for sheet HRB 80 / HB 150 or less' % (m_, N_['pn'].split('-')[0], N_['hole'], N_['E'], N_['T'], N_['edge']),
+              n_, spare(n_), unit=0.25, basis='est', url=N_['url'],
+              checked='pemnet.com product page + PEM bulletin CL (metric S / SS table) + PEM "Performance data for PEM fasteners installed into copper" '
+                      '(type S in Cu-ETP: M4 2.7 N.m / M5 5.3 N.m torque-out), read 2026-10-16; R38 step 4: no TE or approved-supplier clinch nut',
+              note='Press in from the lug face with a flat punch until the head is seated on the far face (HAEGER / PEMSERTER or a vise with parallel jaws); '
+                   'the head faces the other strip. Copper C110 is far softer than HRB 80. Tighten the M%d to the lug spec (no more than the torque-out above).' % m_)
     for rating in sorted(mini_by_rating):
         k = mini_by_rating[rating]
         L.add(G, 'Fuses', 'Mini blade fuse %s A (ATM)' % rating, 'ATM-%s' % ('7-1/2' if rating == 7.5 else '%g' % rating), 'Eaton Bussmann', 'ATM mini blade fuse, blade 2.8 x 0.8 mm', k, unit=0.55, basis='est', url=ATM_URL[rating],
@@ -402,12 +414,12 @@ def build(rev=6):
     L.add(G, 'Jumpers', 'Input jumper wire 14 AWG, ~60 mm each (%d), per foot' % len(jumpers), 'M22759/16-14-2', 'M22759 (Tefzel, red)', 'Wire, 14 AWG, ETFE, tin plated copper, 150 C, 600 V (the harness wire, ST185.harnesslib m16_14_2)',
           5, 2, unit=1.00, basis='est', url=AWC_M22759_16_14, checked='ST185.harnesslib wire part m16_14_2; AWC M22759/16-14 listing (19 strands tinned copper, ETFE, 600 V, 150 C)',
           note='%d x ~60 mm = %.1f m (5 ft) + spare. R38 step 4: no ProWire USA listing for M22759/16-14 confirmed; AWC sells it by the foot. The same reel as the harness 14 AWG if one is bought.' % (len(jumpers), len(jumpers) * 0.06))
-    hw(L, G, 'Jumpers', 'M4x8', 'Hex bolt M4 x 8, into the tapped strip (one per jumper lug)', len(jumpers), spare(len(jumpers)), 0.08,
-       note='Head on the lug side; 3.1 mm of thread past the strip, 0.68 mm short of the other strip (Fusion). Spare studs stay as tapped holes. '
-            'Thread in the strip = 3.2 (0.8 x D) - OPEN-3 for Dan.')
+    hw(L, G, 'Jumpers', 'M4x8', 'Hex bolt M4 x 8, into the PEM nut in the strip (one per jumper lug)', len(jumpers), spare(len(jumpers)), 0.08,
+       note='Head on the lug side, into the PEM S-M4-2ZI nut in the strip (N2): 1.1 past the nut head, 3.1 from the nearest Bus 2 part (Fusion). '
+            'The shortest stocked length that passes the nut.')
     hw(L, G, 'Jumpers', 'M4spring', 'Spring washer M4 under each jumper bolt head', len(jumpers), spare(len(jumpers)), 0.05)
     lug(L, G, '2R5', 'Tubular lug 10 mm2, M5 hole (BUS1 8 AWG, BUS2 10 AWG feeds)', 2, 1, 0.70, 'Tinned copper tubular ring lug, 10 mm2, M5, hole 5.3', checked='Buerklin listing 07F2065')
-    hw(L, G, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10, feed lug into the tapped strip (2)', 2, spare(2), 0.10, note='Rev 6: no standoffs in the LOGIC box; the feed lug bolts straight onto the strip face.')
+    hw(L, G, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10, feed lug into the PEM SS-M5-2ZI nut in the strip (2)', 2, spare(2), 0.10, note='Rev 6: no standoffs in the LOGIC box; the feed lug bolts straight onto the strip face.')
     L.add(G, 'Mounting', 'Compression limiter, feet (4)', 'EFC 10S00056', 'EFC International', 'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 4, 1, unit=0.30, basis='est',
           url=EFC_URL, checked='see POWER list', note='C1. Mount bolts / nuts are not part of the box (C3).')
 

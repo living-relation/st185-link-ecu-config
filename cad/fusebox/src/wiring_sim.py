@@ -13,6 +13,8 @@ import json, glob, os, re, math, sys, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import spec as S
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), '..', 'docs', 'harness'))
+from model import full_text    # noqa: E402
 
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 REB = os.path.join(REPO, 'docs', 'harness', 'rebuild')
@@ -110,6 +112,7 @@ def harness_wires():
     rows = {}
     for fn in sorted(glob.glob(os.path.join(REB, '*.harness'))):
         d = json.load(open(fn, encoding='utf-8'))
+        d = full_text(d, fn)     # R124: the drawings carry short names; the long ones this matcher reads come back from full_text.json
         name = os.path.basename(fn)[6:-8]
         wp = {p['id']: p for p in d.get('wireParts', [])}
         cp = {p['id']: p for p in d.get('contactParts', [])}
@@ -414,7 +417,7 @@ def channel_route(w):
         c = rel['at']
         p0 = (sp['x1'], C['y_sp'], z)
         if k == 'HL30':
-            mid = [(42.0, C['y_sp'], z)]
+            mid = [(42.0 + S.PEM_GROW / 2, C['y_sp'], z)]     # 2.0 past the splice end (it moves with the gap, N2)
         elif k == 'HL86':
             mid = [(c['x'], 7.6, z)]
         elif k == 'HR30':

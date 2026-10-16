@@ -4,12 +4,12 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 840.6,
+   "volume_cm3": 840.7,
    "exempt": {
     "seat lip": 1375,
     "pan catch pocket": 116
    },
-   "attach_skin": 61,
+   "attach_skin": 59,
    "walls": [],
    "attach": []
   },
@@ -53,22 +53,22 @@
   "Logic_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 337.6,
+   "volume_cm3": 350.0,
    "exempt": {
-    "pan catch pocket": 116,
-    "seat lip": 2330,
-    "strip lip": 476,
+    "pan catch pocket": 114,
+    "seat lip": 2382,
+    "strip lip": 489,
     "87a slot": 480,
     "A relay cavity web": 10
    },
-   "attach_skin": 29,
+   "attach_skin": 30,
    "walls": [],
    "attach": []
   },
   "Logic_Pan_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 75.8,
+   "volume_cm3": 77.6,
    "exempt": {
     "pan snap tongue": 4,
     "notch at corner": 22
@@ -80,9 +80,9 @@
   "Logic_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 98.9,
+   "volume_cm3": 100.9,
    "exempt": {
-    "label": 1331,
+    "label": 1328,
     "cover screw hole": 48,
     "cover snap tongue": 4
    },

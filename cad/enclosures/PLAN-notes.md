@@ -97,7 +97,7 @@ connector back 12.6 + wire bend 8 + carrier 34 + wire bend 8 + connector back 12
 - Walls 6 mm, floor 5 mm. The **end walls are counterbored Ø30 from the inside down to 3.5 mm** at each connector, which is within the 4.5 mm max and leaves thread for the rear nut. D-cutout Ø18.5 / flat 16.5, flat up.
 - Body outside about **88 x 48 x 37 mm**, plus a 6 mm lid, about **88 x 48 x 43 mm** closed.
 - Mounting: two tabs on the long sides at floor level, 12 mm out, 6 mm thick, slot 6.6 x 10 mm (M6 nylon, S26 E5). Footprint about **88 x 72 mm**.
-- Board held by the printed holder v2 (R126): one PA12 block on 2 floor bosses D11, top z 10.5 (F02, +1 mm), drilled 5.0 x 9.5 and tapped M6 at the fit, 2 x M6 x 12 ISO 10642 countersunk (about 7.5 thread, 1.25 x D - OPEN-6).
+- Board held by the printed holder v2 (R126): one PA12 block on 2 floor bosses D11, top z 12.5 (F02 + N4, R131), drilled 5.0 x 11.5 and tapped M6 at the fit, 2 x M6 x 14 ISO 10642 countersunk (9.0 thread, 1.5 x D); holder board top z 17.5. CSB3 lid: a D62 x 6 loft round the HD34 (R132).
 - O-ring: groove centreline about 82 x 42 mm, corner R 10.7 (6W), length ≈ 229.6 mm. **AS568-039** (mean circumference 224.1 mm) gives about 2.4 % stretch, which holds it in the groove for inward pressure. Final groove numbers come from the CAD so the stretch lands at 1-3 %.
 - Six to eight M3 lid screws (4 corners, plus mid-sides if the span is over 60 mm).
 - Compared with the 1590WYFL (92 x 92 x 42, 122 mm over the flange), this is about 45 % of the footprint.

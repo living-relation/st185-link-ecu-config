@@ -4,7 +4,7 @@
    "where": "LOGIC BUS1 EFI86 input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -15,7 +15,7 @@
    "where": "LOGIC BUS1 HL input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -26,7 +26,7 @@
    "where": "LOGIC BUS1 HR input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -37,7 +37,7 @@
    "where": "LOGIC BUS1 HZ input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -48,7 +48,7 @@
    "where": "LOGIC BUS1 DM input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -59,7 +59,7 @@
    "where": "LOGIC BUS1 WL input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -70,7 +70,7 @@
    "where": "LOGIC BUS1 ALM input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -81,7 +81,7 @@
    "where": "LOGIC BUS1 ALMS input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -92,7 +92,7 @@
    "where": "LOGIC BUS1 ALTS input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -103,7 +103,7 @@
    "where": "LOGIC BUS1 ETB input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -114,7 +114,7 @@
    "where": "LOGIC BUS2 LAM input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -125,7 +125,7 @@
    "where": "LOGIC BUS2 SW12 input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -136,7 +136,7 @@
    "where": "LOGIC BUS2 COP input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -147,7 +147,7 @@
    "where": "LOGIC BUS2 INJ input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -158,7 +158,7 @@
    "where": "LOGIC BUS2 CSB input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -169,7 +169,7 @@
    "where": "LOGIC BUS2 DEV input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -180,7 +180,7 @@
    "where": "LOGIC BUS2 EPSEN input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -191,7 +191,7 @@
    "where": "LOGIC BUS2 ACC input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (11.9 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -202,7 +202,7 @@
    "where": "LOGIC BUS2 ALMIG input jumper (14 AWG)",
    "awg": "14",
    "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.4 mm of wire between them)",
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -243,7 +243,7 @@
    "note": "bundle 5.9 mm; 22.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
   },
   {
-   "where": "LOGIC harness bundle at x 40 (13 wires)",
+   "where": "LOGIC harness bundle at x 43 (13 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -254,7 +254,7 @@
    "note": "bundle 7.9 mm; 22.5 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
-   "where": "LOGIC harness bundle at x 54 (15 wires)",
+   "where": "LOGIC harness bundle at x 56 (15 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -265,7 +265,7 @@
    "note": "bundle 8.4 mm; 22.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 21"
   },
   {
-   "where": "LOGIC harness bundle at x 72 (8 wires)",
+   "where": "LOGIC harness bundle at x 75 (8 wires)",
    "awg": "16",
    "od": 2.06,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
@@ -799,7 +799,7 @@
     "room": 22.3
    },
    {
-    "at": 40.5,
+    "at": 43.4,
     "wires": 13,
     "d": 7.9,
     "z": 8.7,
@@ -821,7 +821,7 @@
     "room": 22.5
    },
    {
-    "at": 53.5,
+    "at": 56.4,
     "wires": 15,
     "d": 8.4,
     "z": 9.0,
@@ -845,7 +845,7 @@
     "room": 22.3
    },
    {
-    "at": 72.0,
+    "at": 74.9,
     "wires": 8,
     "d": 6.2,
     "z": 7.9,
@@ -1051,38 +1051,38 @@
   "fusebox_render_routing_logic.png": [
    [
     1,
-    859.7,
-    474.4,
+    855.0,
+    472.5,
     "Bus 1 fuse wires"
    ],
    [
     2,
-    963.8,
-    506.2,
+    968.4,
+    507.2,
     "Bus 2 fuse wires"
    ],
    [
     3,
-    1056.6,
-    481.9,
+    1061.2,
+    482.8,
     "micro relay wires, inboard column"
    ],
    [
     4,
-    1120.3,
-    501.6,
+    1125.0,
+    503.4,
     "micro relay wires, outboard column"
    ],
    [
     5,
-    1155.0,
-    382.5,
+    1148.4,
+    380.6,
     "all leave the front edge"
    ],
    [
     6,
-    899.1,
-    392.8,
+    894.4,
+    390.9,
     "fuse input jumpers drop straight into their lugs"
    ],
    [
@@ -1093,13 +1093,13 @@
    ],
    [
     8,
-    1058.4,
-    311.2,
+    1052.8,
+    310.3,
     "Bus 1 feed in at the front"
    ],
    [
     9,
-    616.9,
+    623.4,
     691.9,
     "Bus 2 feed in at the rear"
    ]
@@ -1310,12 +1310,12 @@
    [
     1,
     900.0,
-    103.1,
+    104.1,
     "cover (snaps on)"
    ],
    [
     2,
-    932.8,
+    934.7,
     233.4,
     "micro relays"
    ],
@@ -1334,19 +1334,19 @@
    [
     5,
     894.4,
-    585.0,
+    584.1,
     "Bus 1 / Bus 2 strips on edge, slide in from the rear"
    ],
    [
     6,
     904.7,
-    587.8,
+    585.9,
     "input jumper lugs, TE PIDG 53941-1"
    ],
    [
     7,
     904.7,
-    597.2,
+    594.4,
     "M4 x 8 + spring washer into the tapped strip"
    ],
    [
@@ -1358,7 +1358,7 @@
    [
     9,
     900.0,
-    704.1,
+    703.1,
     "belly pan (snaps on)"
    ]
   ]
@@ -2370,7 +2370,7 @@
    {
     "cav": "BUS2-1",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 28.0,
     "sx": 9.6,
     "sy": 5.1,
@@ -2411,7 +2411,7 @@
    {
     "cav": "BUS2-1 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 28.0,
     "sx": 9.6,
     "sy": 5.1,
@@ -2452,7 +2452,7 @@
    {
     "cav": "BUS2-10",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 100.9,
     "sx": 9.6,
     "sy": 5.1,
@@ -2493,7 +2493,7 @@
    {
     "cav": "BUS2-10 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 100.9,
     "sx": 9.6,
     "sy": 5.1,
@@ -2534,7 +2534,7 @@
    {
     "cav": "BUS2-11",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 109.0,
     "sx": 9.6,
     "sy": 5.1,
@@ -2575,7 +2575,7 @@
    {
     "cav": "BUS2-11 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 109.0,
     "sx": 9.6,
     "sy": 5.1,
@@ -2616,7 +2616,7 @@
    {
     "cav": "BUS2-12",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 117.1,
     "sx": 5.2,
     "sy": 6.0,
@@ -2657,7 +2657,7 @@
    {
     "cav": "BUS2-12 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 117.1,
     "sx": 5.2,
     "sy": 6.0,
@@ -2698,7 +2698,7 @@
    {
     "cav": "BUS2-13",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 125.2,
     "sx": 5.2,
     "sy": 6.0,
@@ -2739,7 +2739,7 @@
    {
     "cav": "BUS2-13 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 125.2,
     "sx": 5.2,
     "sy": 6.0,
@@ -2780,7 +2780,7 @@
    {
     "cav": "BUS2-2",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 36.1,
     "sx": 9.6,
     "sy": 5.1,
@@ -2821,7 +2821,7 @@
    {
     "cav": "BUS2-2 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 36.1,
     "sx": 9.6,
     "sy": 5.1,
@@ -2862,7 +2862,7 @@
    {
     "cav": "BUS2-3",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 44.2,
     "sx": 9.6,
     "sy": 5.1,
@@ -2903,7 +2903,7 @@
    {
     "cav": "BUS2-3 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 44.2,
     "sx": 9.6,
     "sy": 5.1,
@@ -2944,7 +2944,7 @@
    {
     "cav": "BUS2-4",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 52.3,
     "sx": 9.6,
     "sy": 5.1,
@@ -2985,7 +2985,7 @@
    {
     "cav": "BUS2-4 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 52.3,
     "sx": 9.6,
     "sy": 5.1,
@@ -3026,7 +3026,7 @@
    {
     "cav": "BUS2-5",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 60.4,
     "sx": 5.2,
     "sy": 6.0,
@@ -3067,7 +3067,7 @@
    {
     "cav": "BUS2-5 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 60.4,
     "sx": 9.6,
     "sy": 5.1,
@@ -3108,7 +3108,7 @@
    {
     "cav": "BUS2-6",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 68.5,
     "sx": 9.6,
     "sy": 5.1,
@@ -3149,7 +3149,7 @@
    {
     "cav": "BUS2-6 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 68.5,
     "sx": 9.6,
     "sy": 5.1,
@@ -3190,7 +3190,7 @@
    {
     "cav": "BUS2-7",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 76.6,
     "sx": 5.2,
     "sy": 6.0,
@@ -3231,7 +3231,7 @@
    {
     "cav": "BUS2-7 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 76.6,
     "sx": 9.6,
     "sy": 5.1,
@@ -3272,7 +3272,7 @@
    {
     "cav": "BUS2-8",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 84.7,
     "sx": 9.6,
     "sy": 5.1,
@@ -3313,7 +3313,7 @@
    {
     "cav": "BUS2-8 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 84.7,
     "sx": 9.6,
     "sy": 5.1,
@@ -3354,7 +3354,7 @@
    {
     "cav": "BUS2-9",
     "kind": "fuse out",
-    "x": 40.5,
+    "x": 43.4,
     "y": 92.8,
     "sx": 5.2,
     "sy": 6.0,
@@ -3395,7 +3395,7 @@
    {
     "cav": "BUS2-9 IN",
     "kind": "fuse in",
-    "x": 34.5,
+    "x": 37.4,
     "y": 92.8,
     "sx": 9.6,
     "sy": 5.1,
@@ -3436,7 +3436,7 @@
    {
     "cav": "M1 30",
     "kind": "micro 30",
-    "x": 53.5,
+    "x": 56.4,
     "y": 13.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3477,7 +3477,7 @@
    {
     "cav": "M1 85",
     "kind": "micro 85",
-    "x": 49.0,
+    "x": 51.9,
     "y": 21.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -3518,7 +3518,7 @@
    {
     "cav": "M1 86",
     "kind": "micro 86",
-    "x": 58.0,
+    "x": 60.9,
     "y": 21.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -3559,7 +3559,7 @@
    {
     "cav": "M1 87",
     "kind": "micro 87",
-    "x": 53.5,
+    "x": 56.4,
     "y": 29.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3600,7 +3600,7 @@
    {
     "cav": "M10 30",
     "kind": "micro 30",
-    "x": 72.0,
+    "x": 74.9,
     "y": 133.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3641,7 +3641,7 @@
    {
     "cav": "M10 85",
     "kind": "micro 85",
-    "x": 67.5,
+    "x": 70.4,
     "y": 141.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -3682,7 +3682,7 @@
    {
     "cav": "M10 86",
     "kind": "micro 86",
-    "x": 76.5,
+    "x": 79.4,
     "y": 141.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -3723,7 +3723,7 @@
    {
     "cav": "M10 87",
     "kind": "micro 87",
-    "x": 72.0,
+    "x": 74.9,
     "y": 149.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3764,7 +3764,7 @@
    {
     "cav": "M2 30",
     "kind": "micro 30",
-    "x": 53.5,
+    "x": 56.4,
     "y": 43.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3805,7 +3805,7 @@
    {
     "cav": "M2 85",
     "kind": "micro 85",
-    "x": 49.0,
+    "x": 51.9,
     "y": 51.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -3846,7 +3846,7 @@
    {
     "cav": "M2 86",
     "kind": "micro 86",
-    "x": 58.0,
+    "x": 60.9,
     "y": 51.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -3887,7 +3887,7 @@
    {
     "cav": "M2 87",
     "kind": "micro 87",
-    "x": 53.5,
+    "x": 56.4,
     "y": 59.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3928,7 +3928,7 @@
    {
     "cav": "M3 30",
     "kind": "micro 30",
-    "x": 53.5,
+    "x": 56.4,
     "y": 73.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -3969,7 +3969,7 @@
    {
     "cav": "M3 85",
     "kind": "micro 85",
-    "x": 49.0,
+    "x": 51.9,
     "y": 81.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4010,7 +4010,7 @@
    {
     "cav": "M3 86",
     "kind": "micro 86",
-    "x": 58.0,
+    "x": 60.9,
     "y": 81.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4051,7 +4051,7 @@
    {
     "cav": "M3 87",
     "kind": "micro 87",
-    "x": 53.5,
+    "x": 56.4,
     "y": 89.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4092,7 +4092,7 @@
    {
     "cav": "M4 30",
     "kind": "micro 30",
-    "x": 53.5,
+    "x": 56.4,
     "y": 103.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4133,7 +4133,7 @@
    {
     "cav": "M4 85",
     "kind": "micro 85",
-    "x": 49.0,
+    "x": 51.9,
     "y": 111.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4174,7 +4174,7 @@
    {
     "cav": "M4 86",
     "kind": "micro 86",
-    "x": 58.0,
+    "x": 60.9,
     "y": 111.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4215,7 +4215,7 @@
    {
     "cav": "M4 87",
     "kind": "micro 87",
-    "x": 53.5,
+    "x": 56.4,
     "y": 119.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4256,7 +4256,7 @@
    {
     "cav": "M5 30",
     "kind": "micro 30",
-    "x": 53.5,
+    "x": 56.4,
     "y": 133.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4297,7 +4297,7 @@
    {
     "cav": "M5 85",
     "kind": "micro 85",
-    "x": 49.0,
+    "x": 51.9,
     "y": 141.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4338,7 +4338,7 @@
    {
     "cav": "M5 86",
     "kind": "micro 86",
-    "x": 58.0,
+    "x": 60.9,
     "y": 141.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4379,7 +4379,7 @@
    {
     "cav": "M5 87",
     "kind": "micro 87",
-    "x": 53.5,
+    "x": 56.4,
     "y": 149.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4420,7 +4420,7 @@
    {
     "cav": "M6 30",
     "kind": "micro 30",
-    "x": 72.0,
+    "x": 74.9,
     "y": 13.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4461,7 +4461,7 @@
    {
     "cav": "M6 85",
     "kind": "micro 85",
-    "x": 67.5,
+    "x": 70.4,
     "y": 21.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4502,7 +4502,7 @@
    {
     "cav": "M6 86",
     "kind": "micro 86",
-    "x": 76.5,
+    "x": 79.4,
     "y": 21.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4543,7 +4543,7 @@
    {
     "cav": "M6 87",
     "kind": "micro 87",
-    "x": 72.0,
+    "x": 74.9,
     "y": 29.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4584,7 +4584,7 @@
    {
     "cav": "M7 30",
     "kind": "micro 30",
-    "x": 72.0,
+    "x": 74.9,
     "y": 43.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4625,7 +4625,7 @@
    {
     "cav": "M7 85",
     "kind": "micro 85",
-    "x": 67.5,
+    "x": 70.4,
     "y": 51.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4666,7 +4666,7 @@
    {
     "cav": "M7 86",
     "kind": "micro 86",
-    "x": 76.5,
+    "x": 79.4,
     "y": 51.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4707,7 +4707,7 @@
    {
     "cav": "M7 87",
     "kind": "micro 87",
-    "x": 72.0,
+    "x": 74.9,
     "y": 59.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4748,7 +4748,7 @@
    {
     "cav": "M8 30",
     "kind": "micro 30",
-    "x": 72.0,
+    "x": 74.9,
     "y": 73.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4789,7 +4789,7 @@
    {
     "cav": "M8 85",
     "kind": "micro 85",
-    "x": 67.5,
+    "x": 70.4,
     "y": 81.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4830,7 +4830,7 @@
    {
     "cav": "M8 86",
     "kind": "micro 86",
-    "x": 76.5,
+    "x": 79.4,
     "y": 81.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4871,7 +4871,7 @@
    {
     "cav": "M8 87",
     "kind": "micro 87",
-    "x": 72.0,
+    "x": 74.9,
     "y": 89.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4912,7 +4912,7 @@
    {
     "cav": "M9 30",
     "kind": "micro 30",
-    "x": 72.0,
+    "x": 74.9,
     "y": 103.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -4953,7 +4953,7 @@
    {
     "cav": "M9 85",
     "kind": "micro 85",
-    "x": 67.5,
+    "x": 70.4,
     "y": 111.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -4994,7 +4994,7 @@
    {
     "cav": "M9 86",
     "kind": "micro 86",
-    "x": 76.5,
+    "x": 79.4,
     "y": 111.0,
     "sx": 5.05,
     "sy": 6.4,
@@ -5035,7 +5035,7 @@
    {
     "cav": "M9 87",
     "kind": "micro 87",
-    "x": 72.0,
+    "x": 74.9,
     "y": 119.0,
     "sx": 8.29,
     "sy": 6.345,
@@ -6779,7 +6779,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      32.0
     ],
     "before": 1.0,
@@ -6789,7 +6789,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      32.0
     ],
     "before": 1.0,
@@ -6799,7 +6799,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      105.0
     ],
     "before": 1.0,
@@ -6809,7 +6809,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      96.8
     ],
     "before": 1.0,
@@ -6819,7 +6819,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      105.0
     ],
     "before": 1.0,
@@ -6829,7 +6829,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      96.8
     ],
     "before": 1.0,
@@ -6839,7 +6839,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      113.0
     ],
     "before": 1.0,
@@ -6849,7 +6849,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      113.0
     ],
     "before": 1.0,
@@ -6859,7 +6859,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      121.2
     ],
     "before": 1.0,
@@ -6869,7 +6869,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      121.2
     ],
     "before": 1.0,
@@ -6879,7 +6879,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      40.2
     ],
     "before": 1.0,
@@ -6889,7 +6889,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      40.2
     ],
     "before": 1.0,
@@ -6899,7 +6899,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      56.3
     ],
     "before": 1.0,
@@ -6909,7 +6909,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      56.3
     ],
     "before": 1.0,
@@ -6919,7 +6919,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      64.5
     ],
     "before": 1.0,
@@ -6929,7 +6929,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      64.5
     ],
     "before": 1.0,
@@ -6939,7 +6939,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      72.5
     ],
     "before": 1.0,
@@ -6949,7 +6949,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      72.5
     ],
     "before": 1.0,
@@ -6959,7 +6959,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      80.7
     ],
     "before": 1.0,
@@ -6969,7 +6969,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      80.7
     ],
     "before": 1.0,
@@ -6979,7 +6979,7 @@
    {
     "kind": "guide wall",
     "at": [
-     40.5,
+     43.4,
      88.8
     ],
     "before": 1.0,
@@ -6989,7 +6989,7 @@
    {
     "kind": "guide wall",
     "at": [
-     34.5,
+     37.4,
      88.8
     ],
     "before": 1.0,
@@ -6999,7 +6999,7 @@
    {
     "kind": "guide wall",
     "at": [
-     62.8,
+     65.7,
      21.0
     ],
     "before": 1.0,
@@ -7009,7 +7009,7 @@
    {
     "kind": "guide wall",
     "at": [
-     62.8,
+     65.7,
      141.0
     ],
     "before": 1.0,
@@ -7019,7 +7019,7 @@
    {
     "kind": "guide wall",
     "at": [
-     62.8,
+     65.7,
      51.0
     ],
     "before": 1.0,
@@ -7029,7 +7029,7 @@
    {
     "kind": "guide wall",
     "at": [
-     62.8,
+     65.7,
      81.0
     ],
     "before": 1.0,
@@ -7039,7 +7039,7 @@
    {
     "kind": "guide wall",
     "at": [
-     62.8,
+     65.7,
      111.0
     ],
     "before": 1.0,
@@ -7119,26 +7119,26 @@
     ],
     "y": [
      11.5,
-     123.0
+     124.0
     ]
    },
    "BUS2": {
     "x": [
-     28.65,
-     31.85
+     31.55,
+     34.75
     ],
     "y": [
-     23.5,
-     140.0
+     21.1,
+     140.1
     ]
    }
   },
-  "spine_x": 25.5,
+  "spine_x": 26.95,
   "studs": 22,
   "jumpers": 19,
   "rows_z": [
-   10.0,
-   17.5
+   12.8,
+   17.8
   ]
  },
  "wall_exempt": [
@@ -7148,9 +7148,9 @@
    "only": null,
    "box": [
     19.85,
-    25.6,
+    27.05,
     10.9,
-    123.6,
+    124.6,
     4.5,
     5.6
    ]
@@ -7160,10 +7160,10 @@
    "key": "strip lip",
    "only": null,
    "box": [
-    25.4,
-    31.15,
-    22.9,
-    140.6,
+    26.85,
+    34.05,
+    20.5,
+    140.7,
     4.5,
     5.6
    ]
@@ -7329,8 +7329,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    62.75,
+    30.6,
+    65.65,
     7.62,
     34.38,
     59.2,
@@ -7342,8 +7342,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    47.3,
+    30.6,
+    50.2,
     96.35,
     105.45,
     59.2,
@@ -7355,8 +7355,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    62.75,
+    30.6,
+    65.65,
     97.62,
     124.38,
     59.2,
@@ -7368,8 +7368,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    29.9,
-    45.1,
+    32.8,
+    48.0,
     112.5,
     122.5,
     59.2,
@@ -7381,8 +7381,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    29.9,
-    45.1,
+    32.8,
+    48.0,
     120.6,
     130.6,
     59.2,
@@ -7394,8 +7394,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    47.3,
+    30.6,
+    50.2,
     31.55,
     40.65,
     59.2,
@@ -7407,8 +7407,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    62.75,
+    30.6,
+    65.65,
     37.62,
     64.38,
     59.2,
@@ -7420,8 +7420,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    45.1,
+    30.6,
+    48.0,
     55.8,
     65.8,
     59.2,
@@ -7433,8 +7433,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    47.3,
+    30.6,
+    50.2,
     63.95,
     73.05,
     59.2,
@@ -7446,8 +7446,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    45.1,
+    30.6,
+    48.0,
     72.0,
     82.0,
     59.2,
@@ -7459,8 +7459,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    62.75,
+    30.6,
+    65.65,
     67.62,
     94.38,
     59.2,
@@ -7472,8 +7472,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    45.1,
+    30.6,
+    48.0,
     88.2,
     98.2,
     59.2,
@@ -7485,8 +7485,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    81.25,
+    66.1,
+    84.15,
     127.62,
     154.38,
     59.2,
@@ -7498,8 +7498,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    44.7,
-    62.75,
+    47.6,
+    65.65,
     127.62,
     154.38,
     59.2,
@@ -7511,8 +7511,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    81.25,
+    66.1,
+    84.15,
     7.62,
     34.38,
     59.2,
@@ -7524,8 +7524,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    81.25,
+    66.1,
+    84.15,
     37.62,
     64.38,
     59.2,
@@ -7537,8 +7537,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    81.25,
+    66.1,
+    84.15,
     67.62,
     94.38,
     59.2,
@@ -7550,8 +7550,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    81.25,
+    66.1,
+    84.15,
     97.62,
     124.38,
     59.2,
@@ -7875,8 +7875,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     23.45,
     32.55,
     59.2,
@@ -7888,8 +7888,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     23.45,
     32.55,
     59.2,
@@ -7901,8 +7901,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     96.35,
     105.45,
     59.2,
@@ -7914,8 +7914,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     96.35,
     105.45,
     59.2,
@@ -7927,8 +7927,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     104.45,
     113.55,
     59.2,
@@ -7940,8 +7940,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     104.45,
     113.55,
     59.2,
@@ -7953,8 +7953,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    35.9,
-    45.1,
+    38.8,
+    48.0,
     112.5,
     122.5,
     59.2,
@@ -7966,8 +7966,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    29.9,
-    39.1,
+    32.8,
+    42.0,
     112.5,
     122.5,
     59.2,
@@ -7979,8 +7979,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    35.9,
-    45.1,
+    38.8,
+    48.0,
     120.6,
     130.6,
     59.2,
@@ -7992,8 +7992,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    29.9,
-    39.1,
+    32.8,
+    42.0,
     120.6,
     130.6,
     59.2,
@@ -8005,8 +8005,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     31.55,
     40.65,
     59.2,
@@ -8018,8 +8018,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     31.55,
     40.65,
     59.2,
@@ -8031,8 +8031,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     39.65,
     48.75,
     59.2,
@@ -8044,8 +8044,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     39.65,
     48.75,
     59.2,
@@ -8057,8 +8057,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     47.75,
     56.85,
     59.2,
@@ -8070,8 +8070,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     47.75,
     56.85,
     59.2,
@@ -8083,8 +8083,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    35.9,
-    45.1,
+    38.8,
+    48.0,
     55.8,
     65.8,
     59.2,
@@ -8096,8 +8096,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     55.85,
     64.95,
     59.2,
@@ -8109,8 +8109,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     63.95,
     73.05,
     59.2,
@@ -8122,8 +8122,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     63.95,
     73.05,
     59.2,
@@ -8135,8 +8135,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    35.9,
-    45.1,
+    38.8,
+    48.0,
     72.0,
     82.0,
     59.2,
@@ -8148,8 +8148,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     72.05,
     81.15,
     59.2,
@@ -8161,8 +8161,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    33.7,
-    47.3,
+    36.6,
+    50.2,
     80.15,
     89.25,
     59.2,
@@ -8174,8 +8174,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     80.15,
     89.25,
     59.2,
@@ -8187,8 +8187,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    35.9,
-    45.1,
+    38.8,
+    48.0,
     88.2,
     98.2,
     59.2,
@@ -8200,8 +8200,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    27.7,
-    41.3,
+    30.6,
+    44.2,
     88.25,
     97.35,
     59.2,
@@ -8213,8 +8213,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     7.62,
     17.97,
     59.2,
@@ -8226,8 +8226,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    44.7,
-    53.75,
+    47.6,
+    56.65,
     15.8,
     26.2,
     59.2,
@@ -8239,8 +8239,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    53.7,
-    62.75,
+    56.6,
+    65.65,
     15.8,
     26.2,
     59.2,
@@ -8252,8 +8252,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     24.03,
     34.38,
     59.2,
@@ -8265,8 +8265,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     127.62,
     137.97,
     59.2,
@@ -8278,8 +8278,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    72.25,
+    66.1,
+    75.15,
     135.8,
     146.2,
     59.2,
@@ -8291,8 +8291,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    72.2,
-    81.25,
+    75.1,
+    84.15,
     135.8,
     146.2,
     59.2,
@@ -8304,8 +8304,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     144.03,
     154.38,
     59.2,
@@ -8317,8 +8317,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     37.62,
     47.97,
     59.2,
@@ -8330,8 +8330,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    44.7,
-    53.75,
+    47.6,
+    56.65,
     45.8,
     56.2,
     59.2,
@@ -8343,8 +8343,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    53.7,
-    62.75,
+    56.6,
+    65.65,
     45.8,
     56.2,
     59.2,
@@ -8356,8 +8356,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     54.03,
     64.38,
     59.2,
@@ -8369,8 +8369,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     67.62,
     77.97,
     59.2,
@@ -8382,8 +8382,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    44.7,
-    53.75,
+    47.6,
+    56.65,
     75.8,
     86.2,
     59.2,
@@ -8395,8 +8395,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    53.7,
-    62.75,
+    56.6,
+    65.65,
     75.8,
     86.2,
     59.2,
@@ -8408,8 +8408,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     84.03,
     94.38,
     59.2,
@@ -8421,8 +8421,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     97.62,
     107.97,
     59.2,
@@ -8434,8 +8434,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    44.7,
-    53.75,
+    47.6,
+    56.65,
     105.8,
     116.2,
     59.2,
@@ -8447,8 +8447,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    53.7,
-    62.75,
+    56.6,
+    65.65,
     105.8,
     116.2,
     59.2,
@@ -8460,8 +8460,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     114.03,
     124.38,
     59.2,
@@ -8473,8 +8473,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     127.62,
     137.97,
     59.2,
@@ -8486,8 +8486,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    44.7,
-    53.75,
+    47.6,
+    56.65,
     135.8,
     146.2,
     59.2,
@@ -8499,8 +8499,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    53.7,
-    62.75,
+    56.6,
+    65.65,
     135.8,
     146.2,
     59.2,
@@ -8512,8 +8512,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    47.36,
-    59.64,
+    50.25,
+    62.55,
     144.03,
     154.38,
     59.2,
@@ -8525,8 +8525,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     7.62,
     17.97,
     59.2,
@@ -8538,8 +8538,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    72.25,
+    66.1,
+    75.15,
     15.8,
     26.2,
     59.2,
@@ -8551,8 +8551,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    72.2,
-    81.25,
+    75.1,
+    84.15,
     15.8,
     26.2,
     59.2,
@@ -8564,8 +8564,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     24.03,
     34.38,
     59.2,
@@ -8577,8 +8577,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     37.62,
     47.97,
     59.2,
@@ -8590,8 +8590,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    72.25,
+    66.1,
+    75.15,
     45.8,
     56.2,
     59.2,
@@ -8603,8 +8603,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    72.2,
-    81.25,
+    75.1,
+    84.15,
     45.8,
     56.2,
     59.2,
@@ -8616,8 +8616,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     54.03,
     64.38,
     59.2,
@@ -8629,8 +8629,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     67.62,
     77.97,
     59.2,
@@ -8642,8 +8642,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    72.25,
+    66.1,
+    75.15,
     75.8,
     86.2,
     59.2,
@@ -8655,8 +8655,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    72.2,
-    81.25,
+    75.1,
+    84.15,
     75.8,
     86.2,
     59.2,
@@ -8668,8 +8668,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     84.03,
     94.38,
     59.2,
@@ -8681,8 +8681,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     97.62,
     107.97,
     59.2,
@@ -8694,8 +8694,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    63.2,
-    72.25,
+    66.1,
+    75.15,
     105.8,
     116.2,
     59.2,
@@ -8707,8 +8707,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    72.2,
-    81.25,
+    75.1,
+    84.15,
     105.8,
     116.2,
     59.2,
@@ -8720,8 +8720,8 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    65.86,
-    78.14,
+    68.76,
+    81.05,
     114.03,
     124.38,
     59.2,
@@ -8733,8 +8733,8 @@
    "key": "cover catch pocket",
    "only": null,
    "box": [
-    12.38,
-    29.38,
+    13.1,
+    30.1,
     -1.4,
     3.1,
     47.1,
@@ -8746,8 +8746,8 @@
    "key": "cover catch pocket",
    "only": null,
    "box": [
-    54.12,
-    71.12,
+    56.3,
+    73.3,
     -1.4,
     3.1,
     47.1,
@@ -8759,8 +8759,8 @@
    "key": "cover catch pocket",
    "only": null,
    "box": [
-    12.38,
-    29.38,
+    13.1,
+    30.1,
     177.9,
     182.4,
     47.1,
@@ -8772,8 +8772,8 @@
    "key": "cover catch pocket",
    "only": null,
    "box": [
-    54.12,
-    71.12,
+    56.3,
+    73.3,
     177.9,
     182.4,
     47.1,
@@ -8785,8 +8785,8 @@
    "key": "cover screw insert",
    "only": null,
    "box": [
-    29.68,
-    38.08,
+    30.4,
+    38.8,
     -1.4,
     7.3,
     46.8,
@@ -8798,8 +8798,8 @@
    "key": "cover screw insert",
    "only": null,
    "box": [
-    45.42,
-    53.83,
+    47.6,
+    56.0,
     -1.4,
     7.3,
     46.8,
@@ -8811,8 +8811,8 @@
    "key": "cover screw insert",
    "only": null,
    "box": [
-    29.68,
-    38.08,
+    30.4,
+    38.8,
     173.7,
     182.4,
     46.8,
@@ -8824,8 +8824,8 @@
    "key": "cover screw insert",
    "only": null,
    "box": [
-    45.42,
-    53.83,
+    47.6,
+    56.0,
     173.7,
     182.4,
     46.8,
@@ -8850,8 +8850,8 @@
    "key": "pan catch pocket",
    "only": null,
    "box": [
-    79.0,
-    83.6,
+    81.9,
+    86.5,
     54.5,
     71.5,
     37.4,
@@ -8876,8 +8876,8 @@
    "key": "pan catch pocket",
    "only": null,
    "box": [
-    79.0,
-    83.6,
+    81.9,
+    86.5,
     114.5,
     131.5,
     37.4,
@@ -8889,8 +8889,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    47.5,
-    59.5,
+    50.4,
+    62.4,
     15.0,
     27.0,
     38.0,
@@ -8902,8 +8902,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    47.5,
-    59.5,
+    50.4,
+    62.4,
     45.0,
     57.0,
     38.0,
@@ -8915,8 +8915,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    47.5,
-    59.5,
+    50.4,
+    62.4,
     75.0,
     87.0,
     38.0,
@@ -8928,8 +8928,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    47.5,
-    59.5,
+    50.4,
+    62.4,
     105.0,
     117.0,
     38.0,
@@ -8941,8 +8941,8 @@
    "key": "87a slot",
    "only": null,
    "box": [
-    49.0,
-    58.0,
+    51.9,
+    60.9,
     137.6,
     144.4,
     43.4,
@@ -8954,8 +8954,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    47.5,
-    59.5,
+    50.4,
+    62.4,
     135.0,
     147.0,
     38.0,
@@ -8967,8 +8967,8 @@
    "key": "87a slot",
    "only": null,
    "box": [
-    67.5,
-    76.5,
+    70.4,
+    79.4,
     17.6,
     24.4,
     43.4,
@@ -8980,8 +8980,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    66.0,
-    78.0,
+    68.9,
+    80.9,
     15.0,
     27.0,
     38.0,
@@ -8993,8 +8993,8 @@
    "key": "87a slot",
    "only": null,
    "box": [
-    67.5,
-    76.5,
+    70.4,
+    79.4,
     47.6,
     54.4,
     43.4,
@@ -9006,8 +9006,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    66.0,
-    78.0,
+    68.9,
+    80.9,
     45.0,
     57.0,
     38.0,
@@ -9019,8 +9019,8 @@
    "key": "87a slot",
    "only": null,
    "box": [
-    67.5,
-    76.5,
+    70.4,
+    79.4,
     77.6,
     84.4,
     43.4,
@@ -9032,8 +9032,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    66.0,
-    78.0,
+    68.9,
+    80.9,
     75.0,
     87.0,
     38.0,
@@ -9045,8 +9045,8 @@
    "key": "87a slot",
    "only": null,
    "box": [
-    67.5,
-    76.5,
+    70.4,
+    79.4,
     107.6,
     114.4,
     43.4,
@@ -9058,8 +9058,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    66.0,
-    78.0,
+    68.9,
+    80.9,
     105.0,
     117.0,
     38.0,
@@ -9071,8 +9071,8 @@
    "key": "87a slot",
    "only": null,
    "box": [
-    67.5,
-    76.5,
+    70.4,
+    79.4,
     137.6,
     144.4,
     43.4,
@@ -9084,8 +9084,8 @@
    "key": "relay cavity web",
    "only": "A",
    "box": [
-    66.0,
-    78.0,
+    68.9,
+    80.9,
     135.0,
     147.0,
     38.0,
@@ -9110,8 +9110,8 @@
    "key": "pan snap tongue",
    "only": null,
    "box": [
-    76.05,
-    81.55,
+    78.95,
+    84.45,
     54.8,
     71.2,
     30.5,
@@ -9136,8 +9136,8 @@
    "key": "pan snap tongue",
    "only": null,
    "box": [
-    76.05,
-    81.55,
+    78.95,
+    84.45,
     114.8,
     131.2,
     30.5,
@@ -9175,8 +9175,8 @@
    "key": "notch at corner",
    "only": null,
    "box": [
-    65.09,
-    78.91,
+    67.99,
+    81.81,
     0.6,
     8.8,
     3.9,
@@ -9188,8 +9188,8 @@
    "key": "cover snap tongue",
    "only": null,
    "box": [
-    12.68,
-    29.07,
+    13.4,
+    29.8,
     -5.85,
     -0.25,
     47.4,
@@ -9201,8 +9201,8 @@
    "key": "cover snap tongue",
    "only": null,
    "box": [
-    54.42,
-    70.83,
+    56.6,
+    73.0,
     -5.85,
     -0.25,
     47.4,
@@ -9214,8 +9214,8 @@
    "key": "cover snap tongue",
    "only": null,
    "box": [
-    12.68,
-    29.07,
+    13.4,
+    29.8,
     181.25,
     186.85,
     47.4,
@@ -9227,8 +9227,8 @@
    "key": "cover snap tongue",
    "only": null,
    "box": [
-    54.42,
-    70.83,
+    56.6,
+    73.0,
     181.25,
     186.85,
     47.4,
@@ -9240,8 +9240,8 @@
    "key": "cover screw hole",
    "only": null,
    "box": [
-    29.97,
-    37.78,
+    30.7,
+    38.5,
     -5.85,
     -1.65,
     47.1,
@@ -9253,8 +9253,8 @@
    "key": "cover screw hole",
    "only": null,
    "box": [
-    45.72,
-    53.53,
+    47.9,
+    55.7,
     -5.85,
     -1.65,
     47.1,
@@ -9266,8 +9266,8 @@
    "key": "cover screw hole",
    "only": null,
    "box": [
-    29.97,
-    37.78,
+    30.7,
+    38.5,
     182.65,
     186.85,
     47.1,
@@ -9279,8 +9279,8 @@
    "key": "cover screw hole",
    "only": null,
    "box": [
-    45.72,
-    53.53,
+    47.9,
+    55.7,
     182.65,
     186.85,
     47.1,
@@ -9293,7 +9293,7 @@
    "only": null,
    "box": [
     -5.75,
-    89.25,
+    92.15,
     -5.75,
     186.75,
     88.8,
@@ -10484,170 +10484,170 @@
    [
     34.0,
     46.0,
-    45.2,
-    46.7,
+    48.1,
+    49.6,
     47.8,
     49.75
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
-    144.2,
-    146.03
-   ],
-   [
-    37.5,
-    42.95,
-    76.14,
-    77.1,
-    135.97,
-    137.8
-   ],
-   [
-    37.5,
-    42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     146.03,
     151.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
+    144.2,
+    146.03
+   ],
+   [
+    37.5,
+    42.95,
+    79.05,
+    80.0,
+    135.97,
+    137.8
+   ],
+   [
+    37.5,
+    42.95,
+    79.05,
+    80.0,
     130.03,
     135.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     26.03,
     31.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     24.2,
     26.03
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     15.97,
     17.8
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     10.03,
     15.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     45.97,
     47.8
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     54.2,
     56.03
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
-    40.03,
-    45.97
-   ],
-   [
-    37.5,
-    42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     56.03,
     61.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
+    40.03,
+    45.97
+   ],
+   [
+    37.5,
+    42.95,
+    79.05,
+    80.0,
     70.03,
     75.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
-    75.97,
-    77.8
-   ],
-   [
-    37.5,
-    42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     84.2,
     86.03
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
+    75.97,
+    77.8
+   ],
+   [
+    37.5,
+    42.95,
+    79.05,
+    80.0,
     86.03,
     91.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
+    114.2,
+    116.03
+   ],
+   [
+    37.5,
+    42.95,
+    79.05,
+    80.0,
     116.03,
     121.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     100.03,
     105.97
    ],
    [
     37.5,
     42.95,
-    76.14,
-    77.1,
+    79.05,
+    80.0,
     105.97,
     107.8
-   ],
-   [
-    37.5,
-    42.95,
-    76.14,
-    77.1,
-    114.2,
-    116.03
    ]
   ],
   "POWER": [
@@ -10827,8 +10827,8 @@
    1.5
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    130.03,
    135.97,
    37.5,
@@ -10836,8 +10836,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    146.03,
    151.97,
    37.5,
@@ -10845,8 +10845,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    10.03,
    15.97,
    37.5,
@@ -10854,8 +10854,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    26.03,
    31.97,
    37.5,
@@ -10863,8 +10863,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    40.03,
    45.97,
    37.5,
@@ -10872,8 +10872,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    56.03,
    61.97,
    37.5,
@@ -10881,8 +10881,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    70.03,
    75.97,
    37.5,
@@ -10890,8 +10890,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    86.03,
    91.97,
    37.5,
@@ -10899,8 +10899,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    100.03,
    105.97,
    37.5,
@@ -10908,8 +10908,8 @@
    0.95
   ],
   [
-   67.86,
-   76.14,
+   70.76,
+   79.05,
    116.03,
    121.97,
    37.5,
@@ -10957,18 +10957,6 @@
   "LOGIC": 46,
   "POWER": 0
  },
- "spine_pass_joins": [
-  28.0,
-  44.2,
-  60.4,
-  76.6,
-  92.8,
-  36.1,
-  52.3,
-  68.5,
-  84.7,
-  100.9
- ],
  "edge_break": {
   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": {
    "d": 0.3,
@@ -11000,6 +10988,10 @@
    "bodies": 1,
    "failed": 0
   }
+ },
+ "pem_nuts": {
+  "S-M4-2ZI": 22,
+  "SS-M5-2ZI": 2
  },
  "pan_exits_joined": [
   "Logic_y 9.2-10.5",
@@ -11125,16 +11117,6 @@
    }
   ]
  },
- "pocket_reliefs": [
-  {
-   "x": [
-    84.0,
-    100.5
-   ],
-   "y": 205.0,
-   "gap": 0.57
-  }
- ],
  "pan_floor_pads": [
   "Power_x 115.0"
  ],
@@ -11144,58 +11126,61 @@
   "input_lug_to_pad_min_mm": 13.82,
   "under_deck_lug_to_lug_min_mm": 5.5,
   "standoff_to_standoff_min_mm": 10.0,
-  "logic_strip_to_strip_mm": 6.3,
-  "logic_feed_lug_to_lug_mm": 103.78,
+  "logic_strip_to_strip_mm": 9.2,
+  "logic_feed_lug_to_lug_mm": 103.58,
   "battrelay_bar_to_pad_mm": 17.0,
   "battrelay_relay_lug_to_lug_mm": 5.0,
   "pan_to_nearest_live_power_mm": 0.59,
   "bus_pos_lug_to_lug_min_mm": 4.0,
-  "bus_neg_lug_to_lug_min_mm": 0.0,
-  "bus_neg_to_pos_min_mm": 6.8,
+  "bus_neg_lug_to_lug_min_mm": 1.5,
+  "bus_neg_nut_to_nut_min_mm": 2.99,
+  "bus_neg_nut_to_barrier_mm": 0.99,
+  "bus_neg_to_pos_min_mm": 5.8,
   "bus_pos_lug_to_out_pad_min_mm": 13.82,
-  "logic_jumper_lug_to_lug_min_mm": 1.86,
-  "logic_jumper_parts_to_printed_min_mm": 0.4,
-  "logic_jumper_parts_to_harness_min_mm": 0.56,
+  "logic_jumper_lug_to_lug_min_mm": 1.52,
+  "logic_jumper_parts_to_printed_min_mm": 0.28,
+  "logic_jumper_parts_to_harness_min_mm": 0.59,
   "logic_strip_to_printed_min_mm": 0.4,
-  "logic_bolt_to_other_strip_min_mm": 3.18,
-  "logic_bus1_to_bus2_min_mm": 3.18,
-  "logic_pan_rib_to_live_min_mm": 0.5,
+  "logic_bolt_to_other_strip_min_mm": 4.41,
+  "logic_pem_nut_to_other_strip_min_mm": 7.2,
+  "logic_bus1_to_bus2_min_mm": 3.12,
+  "logic_pan_rib_to_live_min_mm": 0.28,
   "logic_base_to_live_min_mm": 0.4
  },
  "wire_to_printed_contact": [],
  "printed_parts": {
   "Logic_Base_PA12_printed": {
    "size_mm": [
-    147.5,
+    150.4,
     183.6,
     60.5
    ],
-   "volume_cm3": 337.6,
-   "mass_g_pa12": 341.0,
+   "volume_cm3": 350.0,
+   "mass_g_pa12": 353.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
   },
   "Logic_Pan_PA12_printed": {
    "size_mm": [
-    79.0,
+    81.9,
     174.1,
     41.0
    ],
-   "volume_cm3": 75.8,
-   "mass_g_pa12": 77.0,
+   "volume_cm3": 77.6,
+   "mass_g_pa12": 78.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
   },
   "Logic_Cover_PA12_printed": {
    "size_mm": [
-    95.0,
+    97.9,
     192.5,
     42.4
    ],
-   "volume_cm3": 99.0,
-   "mass_g_pa12": 100.0,
+   "volume_cm3": 100.9,
+   "mass_g_pa12": 102.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -11218,7 +11203,7 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 840.7,
+   "volume_cm3": 840.8,
    "mass_g_pa12": 849.0,
    "bodies": 1,
    "lumps": 1,
@@ -11275,13 +11260,13 @@
  },
  "boxes_mm": {
   "LOGIC": {
-   "L": 83.5,
+   "L": 86.4,
    "D": 181.0,
    "H": 89.9,
    "z_d": 38.5,
    "z_t": 60.5,
    "cover_top": 89.9,
-   "spine_x": 25.5
+   "spine_x": 26.9
   },
   "POWER": {
    "L": 180.5,
@@ -11303,7 +11288,7 @@
  "bar_metal": "CuC110",
  "interference": [],
  "mass_g": {
-  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 158.8,
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 151.1,
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 295.5,
   "Power_BarNeg_CuC110_25x6p35_L105": 133.0,
   "Power_Pad_Out_CuC110_15x3": 88.7,

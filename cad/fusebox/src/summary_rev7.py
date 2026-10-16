@@ -452,10 +452,12 @@ A('<tr><td>POS bar (bus + AMI inputs)</td><td>1" x 1/4" tinned (MECCANIXITY B0CG
   '3 x %.1f mm on the centre line at %s</td></tr>' % (R7['bar_y1'] - y0, S.AMI_IN_OFF, ', '.join('%.0f' % v for v in ami_y), S.CLEAR[8],
                                                      ', '.join('%.0f' % (p[0] - y0) for p in R7['pos_studs'])))
 nb = R7['neg_bar']
-A('<tr><td>NEG bar</td><td>same stock, bar 2</td><td>%.0f mm</td><td>5 x %.1f mm on the centre line at %s (the GND stud 8.5 from the end, F05)</td></tr>' % (nb['x1'] - nb['x0'], S.CLEAR[8], ', '.join('%.1f' % (n[0] - nb['x0']) for n in R7['neg_studs'])))
+A('<tr><td>NEG bar</td><td>same stock, bar 2</td><td>%.0f mm</td><td>5 x %.1f mm on the centre line at %s (the GND stud 8.0 from the end; 1.5 between the GND ring and the GND IG 6R8, N3)</td></tr>' % (nb['x1'] - nb['x0'], S.CLEAR[8], ', '.join('%.1f' % (n[0] - nb['x0']) for n in R7['neg_studs'])))
 A('<tr><td>Battery block bar</td><td>bar 1 (after the POS bar)</td><td>36.5 mm</td><td>M6 feed %.1f, AMI 40 input 5.5</td></tr>' % S.CLEAR[6])
-A('<tr><td>LOGIC strips (2)</td><td>1" x 1/8" tinned (MECCANIXITY B0CGJC2S1L)</td><td>%.0f / %.0f mm</td><td>tap drill %.1f + M4 at each stud, %.1f + M5 at the feed; '
-  'thread = strip thickness 3.2 (OPEN-3 for Dan)</td></tr>' % (S.STRIP_Y['BUS1'][1] - S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][1] - S.STRIP_Y['BUS2'][0], S.TAP_DRILL[4], S.TAP_DRILL[5]))
+A('<tr><td>LOGIC strips (2)</td><td>1" x 1/8" tinned (MECCANIXITY B0CGJC2S1L)</td><td>%.1f / %.1f mm</td><td>PEM mounting holes %.2f +0.08 at each stud (rows z %.1f / %.1f) and %.2f '
+  'at the feed, then PEM %s / %s self-clinching nuts pressed in, heads on the gap side (N2, R129); strips %.1f apart</td></tr>' % (
+    S.STRIP_Y['BUS1'][1] - S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][1] - S.STRIP_Y['BUS2'][0], S.PEM[4]['hole'], S.JROW['z_lo'], S.JROW['z_lo'] + S.JROW['dz'],
+    S.PEM[5]['hole'], S.PEM[4]['pn'], S.PEM[5]['pn'], live.get('logic_strip_to_strip_mm', 0)))
 A('<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>one 5.5; POWER pads: M5 x 20 stud, 9.5 into the 10 mm thread of the 40 mm standoff (OPEN-5)</td></tr>')
 A('</table></div>')
 

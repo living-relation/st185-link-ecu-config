@@ -17,6 +17,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 25 | 0 | **25** |
+| `PEM S-M4-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M4, TYPE S, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 5.41 +0.08, HEAD 7.87 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 6.9, FOR SHEET HRB 80 / HB 150 OR LESS | 25 | 0 | **25** |
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
@@ -64,6 +65,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `DTHD06-1-8S` | TE DEUTSCH | CONNECTOR, PLUG, DTHD, 1 POS, SIZE 8 SOCKET CONTACT, 8-10 AWG, 60 A | 4 | 0 | **4** |
 | `Klauke 1R6` | Klauke | TINNED COPPER TUBULAR RING LUG, 6 MM2, M6 STUD, HOLE 6.5, 27.5 LONG | 4 | 0 | **4** |
 | `LP-16-J05PE-02-001` | CNLINKO | CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH | 4 | 0 | **4** |
+| `PEM SS-M5-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M5, TYPE SS, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 6.35 +0.08, HEAD 8.64 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 7.1, FOR SHEET HRB 80 / HB 150 OR LESS | 4 | 0 | **4** |
 | `RNF-100-3/32-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 4 | 0 | **4** |
 | `RNF-100-3/8-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 4 | 0 | **4** |
 | `RS 190-169` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 16, DIN 933 | 4 | 0 | **4** |
@@ -357,6 +359,8 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `Logic_Pan_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
 | `Logic_Cover_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
 | `MECCANIXITY B0CGJC2S1L` | LOGIC | 1 | this section's CSVs |
+| `PEM S-M4-2ZI` | LOGIC | 25 | this section's CSVs |
+| `PEM SS-M5-2ZI` | LOGIC | 4 | this section's CSVs |
 | `ATM-2` | LOGIC | 4 | this section's CSVs |
 | `ATM-5` | LOGIC | 3 | this section's CSVs |
 | `ATM-7-1/2` | LOGIC | 4 | this section's CSVs |
