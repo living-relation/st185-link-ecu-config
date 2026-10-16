@@ -11,7 +11,9 @@ Two checks, both must pass:
   S4  Walls > 1.95 mm and S5 features attached by >= 3 mm (R127, Dan 2026-10-15): read from cad/fusebox/rev7/wall_check.json, written
       by cad/check_printed_walls.py (WSL, needs the STLs; CI has none). Fails when the file is missing or stale (a part's volume differs
       from the build report), when anything is found in the spots Dan marked and R127 fixed (MARKED), or when a part has more spots than
-      its WALL_BASELINE. The baseline is what the gate found on 2026-10-15 and Dan has not marked yet: lower it when spots get fixed.
+      its WALL_BASELINE. R128 (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of
+      the parts"): the baseline is 0 everywhere - every spot that has to stay thin is a named exemption (spec.WALL_EXEMPT, boxes recorded
+      by the build), listed with its count, never a number to hide behind.
   S2  Mesh: when the exported STL files are on this PC (heavy CAD is gitignored; CI has none), each STL's triangles form one connected
       piece (triangles joined by shared vertices). Skipped, with a note, when a file is missing.
     python cad/fusebox/src/check_printed_solid.py [--stl-dir DIR ...]
@@ -24,21 +26,19 @@ sys.path.insert(0, HERE)
 import spec as S
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
-# selected parts (cad/README.md "Selected for build") -> folder of their STL: rev 7 POWER + LOGIC, battery block files from rev 6 (unchanged)
+# selected parts (cad/README.md "Selected for build") -> folder of their STL: rev 7 POWER, LOGIC and battery relay block
 PARTS = {
     'Power_Base_PA12_printed': 'rev7', 'Power_Pan_PA12_printed': 'rev7', 'Power_Cover_PA12_printed': 'rev7',
     'Logic_Base_PA12_printed': 'rev7', 'Logic_Pan_PA12_printed': 'rev7', 'Logic_Cover_PA12_printed': 'rev7',
-    'BattRelay_Base_PA12_printed': '.', 'BattRelay_Cover_PA12_printed': '.',
+    'BattRelay_Base_PA12_printed': 'rev7', 'BattRelay_Cover_PA12_printed': 'rev7',
 }
 MAIN = r'C:\projects\active\st185-link-ecu-config'   # heavy files live in the main checkout (AGENTS.md "Project files stay in this repo")
 WALLS = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wall_check.json')
-# R127 baseline: (thin-wall spots, attachment spots) per part found by check_printed_walls.py on 2026-10-15, not fixed (Dan: "don't go
-# looking for more yet i can probably find them for you faster") - may only go down
-WALL_BASELINE = {
-    'Power_Base_PA12_printed': (56, 28), 'Power_Pan_PA12_printed': (2, 19), 'Power_Cover_PA12_printed': (48, 8),
-    'Power_Retainer_R1_PA12_printed': (0, 0), 'Logic_Base_PA12_printed': (232, 27), 'Logic_Pan_PA12_printed': (2, 1),
-    'Logic_Cover_PA12_printed': (46, 9), 'BattRelay_Base_PA12_printed': (4, 5), 'BattRelay_Cover_PA12_printed': (16, 8),
-}
+# R127 / R128 baseline: (thin-wall spots, attachment spots) per part outside the named exemptions - 0 after the R128 sweep (2026-10-16);
+# it may only go down, so it stays 0
+WALL_BASELINE = {n: (0, 0) for n in (
+    'Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
+    'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed')}
 # the spots Dan marked on 2026-10-15 (closeup_c2), world mm boxes that must stay clear: the R1 cavity group under the deck (M1, M5),
 # the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2)
 MARKED = {'Power_Base_PA12_printed': [(191.0, 225.0, 30.0, 56.0, 26.0, 38.5), (218.0, 236.0, 36.0, 50.0, 10.0, 32.0), (188.0, 206.0, 54.0, 68.0, 10.0, 32.0)],
@@ -149,9 +149,12 @@ def main(argv):
             hits = [x for x in w['walls'] + w['attach'] if any(all(b[2 * d] <= x['at'][2 * d + 1] and x['at'][2 * d] <= b[2 * d + 1] for d in range(3)) for b in mk or [])]
             bad.extend('S4 %s: %s at %s - inside a spot Dan marked (R127)' % (name, x.get('kind', 'wall <= 1.95'), x['at']) for x in hits)
             nw, na = len(w['walls']), len(w['attach'])
-            (notes if nw <= bw else bad).append('S4 %s: %d spot(s) with a wall <= 1.95 mm (baseline %d, not marked yet)' % (name, nw, bw))
+            (notes if nw <= bw else bad).append('S4 %s: %d spot(s) with a wall <= 1.95 mm (baseline %d)%s' % (name, nw, bw, ''.join(
+                '; exempt %s x%d' % (k, v) for k, v in sorted((w.get('exempt') or {}).items()))))
+            unknown = [k for k in (w.get('exempt') or {}) if k.replace('A ', '', 1) not in S.WALL_EXEMPT]
+            bad.extend('S4 %s: exemption "%s" has no reason in spec.WALL_EXEMPT' % (name, k) for k in unknown)
             if w.get('attach_checked', True):
-                (notes if na <= ba else bad).append('S5 %s: %d feature(s) attached by < 3 mm (baseline %d, not marked yet)' % (name, na, ba))
+                (notes if na <= ba else bad).append('S5 %s: %d feature(s) attached by < 3 mm (baseline %d)' % (name, na, ba))
             else:
                 notes.append('S5 %s: all thin (no >= 3 mm body) - walls only' % name)
     roots = dirs or [os.path.join(REPO, 'cad', 'fusebox'), os.path.join(MAIN, 'cad', 'fusebox')]

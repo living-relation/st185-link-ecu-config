@@ -146,7 +146,7 @@ for f, cap in (('fusebox_render_iso_closed.png', 'Closed. The POWER box is 62 mm
 A('<div class="grid">')
 fig('trimetric-power.png', 'Trimetric, POWER box rev 7 (R83).', 'w')
 fig('trimetric-logic.png', 'Trimetric, LOGIC box rev 7 (3 mm fix: 81.5 wide).', 'w')
-fig('../trimetric-battrelay.png', 'Trimetric, battery relay block (rev 6, unchanged in rev 7).', 'w')
+fig('trimetric-battrelay.png', 'Trimetric, battery relay block rev 7 (R122 screws, R128 solid platform and pedestal).', 'w')
 A('</div>')
 
 A('<h2 id="clearance">LOGIC: the 3 mm fix (Dan\'s rule)</h2>')
@@ -226,8 +226,8 @@ for pn, t_ in S.TERM.items():
       E('; '.join('%s %d x %.2f' % (b_, n_, d_) for (b_, d_), n_ in sorted(use.items()))) or '-'))
 A('</table></div>')
 A('<div class="grid">')
-fig('fusebox_logic_base_holes.png', 'LOGIC base from below: the crimp holes, the joined fuse in / out slots, the guide walls and the J4 channel floor.')
-fig('fusebox_power_base_holes.png', 'POWER base from below: the crimp holes and guide walls under the relays and the ACPS fuse.')
+fig('fusebox_logic_base_holes.png', 'LOGIC base from below (R128): one solid block under the deck - the terminal cavities, joined slots, guide walls and the J4 channel floor.')
+fig('fusebox_power_base_holes.png', 'POWER base from below (R127 / R128): one solid block under the deck - the terminal cavities, hex pockets and bend saddles.')
 A('</div>')
 A('<p>Joined slots (wall under %.1f mm): %s.</p>' % (S.HOLE['min_wall'], E('; '.join(' + '.join(g) for b_ in slots for g in slots[b_])) or 'none'))
 grip = [(w_['wire'], e_['part'], w_['od']) for w_ in plan['wires'] for e_ in w_['ends'] if e_.get('at') and e_.get('box') in ('LOGIC', 'POWER')
@@ -305,6 +305,36 @@ for f, cap in (('r95_logic_section_before.png', 'LOGIC, cut through a guide wall
     fig(f, cap, 'w')
 A('</div>')
 
+WC = json.load(open(os.path.join(D7, 'wall_check.json')))['parts']
+A('<h2 id="sweep">Wall sweep: every printed part (DECISIONS R128)</h2>')
+A('<p>Your call 2026-10-16: "fix the ones you found as long as they don&#39;t alter the function and installability of the parts". The R127 gate '
+  '(walls over 1.95 mm, every feature attached by 3 mm or more) found 411 thin-wall and 32 attachment spots on the nine printed parts (counted with '
+  'the corrected checker). Fixed by rule in the build, nothing moved that a terminal, relay, fuse, cover, pan, screw, cable or mounting point uses:</p><ul>')
+for li in ('LOGIC base: one solid block under the deck plate, as the POWER base (R127) - the towers, collars and slivers between them are inside it.',
+           'Relay / fuse blade slots only above the receptacle seat (the R120 cavity is the hole below); an 87a with no terminal is as deep as the '
+           'blade reaches; the normally-open micro relays (HEAD L / R, HORN, ETB) have no 87a slot at all.',
+           'A strip under 2.0 mm left between two openings of a joined cavity group, or between a cavity / hex pocket and the belly-pan groove, is cut away '
+           '(the R120 join rule carried through); no lock ledge is touched (checked on all 119 lance cavities).',
+           'Slanted guide walls that crossed a straight one (left only triangular slivers) are left out; the straight walls stay.',
+           'All 8 mounting legs solid (outside, foot, M6 hole and socket unchanged); battery block relay platform and fuse pedestal solid, rim 4.0 '
+           '(was 3.0, grown inward); bus-zone barrier wall 3.0 (was 2.5, grown away from the NEG bar).',
+           'Fuse-body recesses level with the pad seat (0.4 under the fuse body, was 0.6); two LOGIC spine bolt passes 1.9 apart joined into one slot; '
+           'two pan exit notches closer than 2.0 joined; a pan floor under a notch thickened downward to 2.0; cover labels 0.5 deep (2.0 of top left).'):
+    A('<li>%s</li>' % E(li))
+A('</ul><p>What has to stay thin is a <b>named exemption</b> - the build records a box round each one and the gate lists it by name '
+  '(<code>spec.WALL_EXEMPT</code>):</p><div class="wrap"><table><tr><th>Exemption</th><th>Why it stays</th></tr>')
+for k, why in S.WALL_EXEMPT.items():
+    A('<tr><td>%s</td><td>%s</td></tr>' % (E(k), E(why)))
+A('</table></div><div class="wrap"><table><tr><th>Part</th><th>Thin-wall spots</th><th>Attachment spots</th><th>Volume</th></tr>')
+for n, w in WC.items():
+    A('<tr><td>%s</td><td>%d</td><td>%s</td><td>%.1f cm3</td></tr>' % (E(n), len(w['walls']), len(w['attach']) if w.get('attach_checked') else 'shell', w['volume_cm3']))
+A('</table></div><div class="grid">')
+for f, cap in (('renders/closeups/sweep_logic_under.png', 'LOGIC base from below, before / after.'),
+               ('renders/closeups/sweep_logic_cavities.png', 'LOGIC cavities from below, before / after.'),
+               ('renders/closeups/sweep_legs.png', 'Mounting leg, before / after.'),
+               ('renders/closeups/sweep_battrelay.png', 'Battery relay block base, before / after.')):
+    fig(f, cap, 'w')
+A('</div>')
 A('<h2 id="views">Every wire in place (simulation)</h2>')
 pb = plan['per_box_wire_ends']
 A('<div class="note">Your question: "aren\'t there going to be more wires in these? can you simulate that?" Every harness wire that lands in a box '

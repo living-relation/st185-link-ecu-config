@@ -63,7 +63,7 @@ D = 181.0            # base depth (y), both glove-box boxes
 BASE_R = 10.0        # base plan corner radius
 COVER = dict(t=2.5, R=BASE_R + 0.45 + 2.5, r=5.0, over=13.0, clear=1.5)   # wall, plan corner R, top edge round, skirt overlap below the deck top, over the tallest part
 SNAP = dict(w=12.0, slot=1.2, len=11.0, bump=2.4, z_from_top=10.0)         # cantilever tongue in the cover skirt, half-round bump into a pocket in the base skirt
-LABEL = dict(depth=0.6, h_relay=3.6, h_ami=3.0, h_mini=2.4, h_micro=2.8)  # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 4 names kept (Dan)
+LABEL = dict(depth=0.6, depth7=0.5, h_relay=3.6, h_ami=3.0, h_mini=2.4, h_micro=2.8)  # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 4 names kept (Dan)
 VENT = dict(w=2.6, l=14.0, pitch=18.0)   # vent slot through the cover: 2.6 wide keeps fingers and tools out (IP2X finger probe is 12.5)
 RUG = dict(band_h=6.0, band_out=1.5, rib_w=3.0, rib_out=1.5, rib_pitch=30.0)   # cover bumper band + side ribs (rugged look)
 LEG = dict(w_bot=24.0, w_top=16.0, out_top=4.0, out_slope=18.0, foot_out=22.0, foot_w=20.0, ear_t=6.0, hole=10.2, socket=17.0, wall=3.0,
@@ -101,6 +101,28 @@ MICRO = dict(x=15.5, y=23.0, h=24.1)
 MICRO_COLS = (53.5, 72.0)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
                              # R123: + 2.0 so the Bus 2 output terminals (880398-2) keep their lance ledges next to the micro relay 85 (R73 2.0 wall)
 MICRO_Y = (21.0, 51.0, 81.0, 111.0, 141.0)
+# R127 sweep (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of the parts"): the
+# spots that stay under 2.0 mm / 3 mm because the part needs them that way. build_fusion.py records a box round each one in
+# fusebox_report.json "wall_exempt"; cad/check_printed_walls.py leaves out what lies inside and lists it under these names.
+WALL_EXEMPT = {
+    'seat lip': 'R121: the deck top over each receptacle is the stop the terminal seats against; HOLE top_gap = 1.0 sets how far the '
+                'relay / fuse blade goes into the receptacle (thicker = less blade engagement); webs between neighbouring blade slots follow the pin spacing',
+    '87a slot': 'micro relay pin spacing (TE 1308028): the 87a blade slot sits 1.9 from the 85 / 86 cavities on the change-over and spare '
+                'positions (the normally-open relays have no 87a slot any more)',
+    'cover catch pocket': 'snap: the cover tongue bump sits in this pocket in the 3.0 skirt / rim; the skirt can neither grow (outline) nor move',
+    'cover screw insert': 'R122: the M3 heat-set insert hole in its boss beside the catch',
+    'pan catch pocket': 'snap: the belly-pan tongue bump sits in this pocket in the 3.0 skirt just above its bottom edge; the pan groove and the outline fix the skirt',
+    'pan snap tongue': 'snap: the pan tongue between its two slots has to flex; its bump is the catch',
+    'cover snap tongue': 'snap: the cover tongue between its two slots has to flex; its bump is the catch',
+    'cover screw hole': 'R122: the 3.4 screw hole lines up with the insert 9.5 under the deck top - the 2.5 cover band keeps 1.8 under it',
+    'label': 'rev 4 etched names (Dan: "the lid labels were fine as they were"): the PA12 between letter strokes, 0.5 deep; the cover top under the text is 2.0',
+    'notch at corner': 'a cable exit notch (its size and place set by its cable) runs into a rounded corner of the cover / pan: the notch side '
+                       'meets the curved wall at a slant; widening it opens the corner, moving it moves the cable',
+    'relay cavity web': 'attachment only: the PA12 between the cavities of a micro relay - its size follows the TE pin spacing and the R120 hole '
+                        'sizes, and it joins the box at its corners between the cavities (2.0-2.9); the walls themselves pass W',
+    'strip lip': 'LOGIC bus strip lips: 0.9 between the strip (on it) and the belly-pan floor (0.45 under it); thicker moves the strips or the pan',
+}
+MICRO_NO = ('5-1393292-8', '4-1904124-3', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)
 MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'), ('horn', '4-1904124-3', 'OWN'),
              ('k_etb', '4-1904124-2', 'OWN'), ('k_acc', '6-1419137-4', 'OWN'), ('k_eps_en', '6-1419137-4', 'OWN'),
              ('k_rev', '6-1419137-4', 'BUY'), ('SPARE', None, None), ('SPARE', None, None), ('SPARE', None, None)]
@@ -278,7 +300,7 @@ REV7 = dict(
                (103.5, 'GND', 'relays', 'small')],   # 23 pitch = 20 lug + 3 gap (Dan's rule); GND: up to 3 small M8 rings
     small_ring_b=13.0,                         # widest small M8 ring tongue (TE PIDG, 22-16 / 16-14 AWG M8 rings, ST185-CabinPower)
     small_awg=(14, 18, 20),                    # k_htr 87a 14, k_pwr 85 18, k_rev 85 20 (CabinPower t_pdb_gnd_*)
-    barrier=(110.5, 113.0),                    # printed wall x between the NEG terminals and the POS bar pocket (115.4)
+    barrier=(110.5, 113.5),                    # printed wall x between the NEG terminals and the POS bar pocket (115.4); 3.0 thick (R127 sweep, was 2.5)
     barrier_h=20.0,                            # wall above the deck top (lug barrels top out 13.9 above the bar)
     cover_snaps_rear=(124.0, 160.0),           # rear-face cover catches moved clear of the NEG cable notches
 )

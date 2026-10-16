@@ -22,7 +22,7 @@ td.d{font-weight:700}</style></head><body><main>
 <div>POWER box + bus bar<b>180 x 243 x 81.8</b><span class="mut">mm L x D x H (rev 6 POWER: 180 x 181 x 81.8, plus the B rev3 bus bar 345 x 120 x 55)</span></div>
 <div>1/0 cables at the glove box<b>6 (rev 6: 7)</b><span class="mut">one fewer: the bus bar to POWER box link is gone</span></div>
 <div>Boxes in the glove box<b>2 (rev 6: 3)</b><span class="mut">POWER (with the bus) + LOGIC</span></div>
-<div>POWER parts<b>194 pcs, $363</b><span class="mut">rev 6 POWER alone: 167 pcs, $267 (B rev3 bus bar had no parts list)</span></div>
+<div>POWER parts<b>194 pcs, $365</b><span class="mut">rev 6 POWER alone: 167 pcs, $267 (B rev3 bus bar had no parts list)</span></div>
 </div>
 <h2>The whole power distribution package, rev 7 next to rev 6</h2>
 <p class="mut">Same camera, same scale idea, every member together (R84): POWER (+ bus), LOGIC, battery relay block, 2 x VRC, CSB3. Rev 6 has the separate B rev3 bus bar (the long box at the back).</p><div class="grid">
@@ -90,7 +90,7 @@ td.d{font-weight:700}</style></head><body><main>
 </figure>
 <figure><img class="w" src="trimetric-logic.png" alt="Trimetric, LOGIC box rev 7 (3 mm fix: 81.5 wide)."><figcaption>Trimetric, LOGIC box rev 7 (3 mm fix: 81.5 wide).</figcaption>
 </figure>
-<figure><img class="w" src="../trimetric-battrelay.png" alt="Trimetric, battery relay block (rev 6, unchanged in rev 7)."><figcaption>Trimetric, battery relay block (rev 6, unchanged in rev 7).</figcaption>
+<figure><img class="w" src="trimetric-battrelay.png" alt="Trimetric, battery relay block rev 7 (R122 screws, R128 solid platform and pedestal)."><figcaption>Trimetric, battery relay block rev 7 (R122 screws, R128 solid platform and pedestal).</figcaption>
 </figure>
 </div>
 <h2 id="clearance">LOGIC: the 3 mm fix (Dan's rule)</h2>
@@ -110,7 +110,7 @@ td.d{font-weight:700}</style></head><body><main>
 <h2 id="janswers">Your J1-J4 answers (DECISIONS R94)</h2>
 <div class="wrap"><table><tr><th>Question</th><th>Your answer</th><th>What changed</th></tr>
 <tr><td>J1 jumper lugs 1.86 mm apart on one strip</td><td>A</td><td>Kept. The 3 mm rule is between different circuits: the lugs on one strip are one circuit, so that gap is reported, not gated, from now on (<code>check_clearance.py</code> SAME_CIRCUIT). Bus 1 to Bus 2 stays gated: 3.18 mm.</td></tr>
-<tr><td>J2 live parts against plastic / insulation</td><td>B + your markup</td><td>(1) A printed <b>rib on the LOGIC belly pan</b> (x 12-14, 11.5 high) between the Bus 1 output wires and the Bus 1 strip bolt heads; the Bus 1 wires now stack between the pan's rounded corner and the rib. (2) A <b>relief</b> in the pan wall at the outboard micro relay column (inner face cut back 0.5 mm, to the 2.0 mm minimum - the base legs sit right outside it). (3) <b>121 terminal holes</b> sized for their crimp barrel (table below), <b>38 pairs joined into one slot</b> where the wall would have been under 2.0 mm, thinnest wall left between separate holes 0.00 mm. (4) <b>95 short guide walls</b> (2.0 x 3.5 mm) under the decks between neighbouring holes. New gate: <code>check_terminal_holes.py</code>.</td></tr>
+<tr><td>J2 live parts against plastic / insulation</td><td>B + your markup</td><td>(1) A printed <b>rib on the LOGIC belly pan</b> (x 12-14, 11.5 high) between the Bus 1 output wires and the Bus 1 strip bolt heads; the Bus 1 wires now stack between the pan's rounded corner and the rib. (2) A <b>relief</b> in the pan wall at the outboard micro relay column (inner face cut back 0.5 mm, to the 2.0 mm minimum - the base legs sit right outside it). (3) <b>121 terminal holes</b> sized for their crimp barrel (table below), <b>38 pairs joined into one slot</b> where the wall would have been under 2.0 mm, thinnest wall left between separate holes 0.00 mm. (4) <b>49 short guide walls</b> (2.0 x 3.5 mm) under the decks between neighbouring holes. New gate: <code>check_terminal_holes.py</code>.</td></tr>
 <tr><td>J3 two wires in one terminal</td><td>A, only if rated for the combined current</td><td>Done in <code>ST185-CabinPower</code>: HL and HR fuse outputs carry ONE 14 AWG wire each (<code>w_hl_cp</code>, <code>w_hr_cp</code>) to a splice (<code>sp_hl</code>, <code>sp_hr</code>) in the LOGIC front channel that feeds relay 30 and 86; the horn relay 86 now comes from the existing <code>sp_hz</code> splice (it was a jumper off its own terminal 30). Rating, combined current through the single wire and terminal: the ATM-15 fuse caps it at 15 A; 14 AWG M22759/16 is about 22 A as a single wire in free air at 80 C (<a href="https://www.hpacademy.com/assets/Course-Content/Wiring-Fundamentals/1dbddd6411/WireGauge-CurrentRating_CheatSheet.pdf">HP Academy M22759/16 sheet</a>), x 0.7 in a bundle (R89) = 15.4 A, so it passes; TE 880398-2: typical 33 A, 1-2.5 mm2 (TE page). No terminal holds two wires now.</td></tr>
 <tr><td>J4 wires that left the box and came back in</td><td>B</td><td>A printed <b>channel floor across the front</b> (z 16.95-18.95, over the Bus 1 feed lug). To make room in front of the spine the Bus 1 strip starts at y 11.5 (was 8), Bus 2 at y 23.5 (was 21) and the Bus 1 feed lug sits at y 18 / z 13 (was 15 / 22). 7 wires now cross there, each on its own level (ETB z 20.2, HR30 z 23.1, HR z 24.2, HR86 z 25.4, HL30 z 27.8, HL z 28.9, HL86 z 29.9), the two splices stacked in the channel past the spine; nothing leaves the box and comes back.</td></tr>
 </table></div>
@@ -127,9 +127,9 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>62998-2<br><span class="mut">FASTON .250 receptacle 10-8 AWG</span></td><td>5.84-7.11 mm</td><td>0.43</td><td>19.7</td><td>-</td></tr>
 </table></div>
 <div class="grid">
-<figure><img src="fusebox_logic_base_holes.png" alt="LOGIC base from below: the crimp holes, the joined fuse in / out slots, the guide walls and the J4 channel floor."><figcaption>LOGIC base from below: the crimp holes, the joined fuse in / out slots, the guide walls and the J4 channel floor.</figcaption>
+<figure><img src="fusebox_logic_base_holes.png" alt="LOGIC base from below (R128): one solid block under the deck - the terminal cavities, joined slots, guide walls and the J4 channel floor."><figcaption>LOGIC base from below (R128): one solid block under the deck - the terminal cavities, joined slots, guide walls and the J4 channel floor.</figcaption>
 </figure>
-<figure><img src="fusebox_power_base_holes.png" alt="POWER base from below: the crimp holes and guide walls under the relays and the ACPS fuse."><figcaption>POWER base from below: the crimp holes and guide walls under the relays and the ACPS fuse.</figcaption>
+<figure><img src="fusebox_power_base_holes.png" alt="POWER base from below (R127 / R128): one solid block under the deck - the terminal cavities, hex pockets and bend saddles."><figcaption>POWER base from below (R127 / R128): one solid block under the deck - the terminal cavities, hex pockets and bend saddles.</figcaption>
 </figure>
 </div>
 <p>Joined slots (wall under 2.0 mm): BUS1-1 + BUS1-1 IN; BUS1-10 + BUS1-10 IN; BUS1-11 + BUS1-11 IN; BUS1-12 + BUS1-12 IN; BUS1-2 + BUS1-2 IN; BUS1-3 + BUS1-3 IN; BUS1-4 + BUS1-4 IN; BUS1-5 + BUS1-5 IN; BUS1-6 + BUS1-6 IN; BUS1-7 + BUS1-7 IN; BUS1-8 + BUS1-8 IN; BUS1-9 + BUS1-9 IN; BUS2-1 + BUS2-1 IN + M1 30 + M1 85 + M1 86 + M1 87; BUS2-10 + BUS2-10 IN; BUS2-11 + BUS2-11 IN + M4 30 + M4 85 + M4 86 + M4 87; BUS2-12 + BUS2-12 IN; BUS2-13 + BUS2-13 IN; BUS2-2 + BUS2-2 IN; BUS2-3 + BUS2-3 IN + BUS2-4 + BUS2-4 IN + M2 30 + M2 85 + M2 86 + M2 87; BUS2-5 + BUS2-5 IN; BUS2-6 + BUS2-6 IN; BUS2-7 + BUS2-7 IN; BUS2-8 + BUS2-8 IN + M3 30 + M3 85 + M3 86 + M3 87; BUS2-9 + BUS2-9 IN; M10 30 + M10 85 + M10 86 + M10 87; M5 30 + M5 85 + M5 86 + M5 87; M6 30 + M6 85 + M6 86 + M6 87; M7 30 + M7 85 + M7 86 + M7 87; M8 30 + M8 85 + M8 86 + M8 87; M9 30 + M9 85 + M9 86 + M9 87; ACPS + ACPS IN; R1 30 + R1 85 + R1 86 + R1 87 + R1 87a; R2 85 + R2 86 + R2 87; R3 85 + R3 86 + R3 87; R4 30 + R4 85 + R4 86 + R4 87; R5 30 + R5 85 + R5 86 + R5 87; R6 85 + R6 86 + R6 87; R7 30 + R7 85 + R7 86 + R7 87.</p>
@@ -161,9 +161,8 @@ td.d{font-weight:700}</style></head><body><main>
 <p class="mut">The 87a cavities have no harness wire today, so they keep their plain blade slot: an 87a terminal next to 85 / 86 would leave only 0.4 mm of wall (the micro relay pin pattern), so a future 87a wire needs its own look.</p>
 <h2 id="r95">Ribs and saddles supported (DECISIONS R101)</h2>
 <p>Your markup 2026-10-15: "the little ribs and the wire radius runners are just floating. fill in the gaps between relay positions under the ribs and add material under the radius runners". They were joined to the base, but only by a sliver: a guide wall crossing the gap between two relay positions had cavity tower over its ends only, and each POWER bend saddle met the deck only where the relay tower was. Now:</p><ul>
-<li><b>LOGIC, 5 guide walls</b> (top face 5-5 % backed before): a web the size of the wall fills the gap between the towers, from the wall up into the deck plate.</li>
 <li><b>POWER, 6 saddles</b> (top face 8-15 % backed before): the back of the saddle runs on up into the deck plate (it used to stop at the tower bottom).</li>
-<li>Nothing else changed (your call: "i like them as they are. just fix the floating pieces i mentioned"). Floating = under 50 % of the top face on solid material; every other hanging feature is above that and stays as it was (LOGIC: 90 of 95 left alone, POWER: 0 of 6 left alone).</li>
+<li>Nothing else changed (your call: "i like them as they are. just fix the floating pieces i mentioned"). Floating = under 50 % of the top face on solid material; every other hanging feature is above that and stays as it was (LOGIC: 49 of 49 left alone, POWER: 0 of 6 left alone).</li>
 <li>Every printed part of all three boxes (POWER, LOGIC, battery relay block: base, pan, cover) is one solid - one body, one lump, one shell in Fusion and one connected mesh in its STL. New HARD gate <code>cad/fusebox/src/check_printed_solid.py</code> (in <code>check_all.py</code>) checks all three things.</li>
 <li>The LOGIC front channel floor is a shelf carried by the spine. It is connected, but nothing can go under it: the Bus 1 feed lug sits there.</li></ul>
 <div class="grid">
@@ -174,6 +173,47 @@ td.d{font-weight:700}</style></head><body><main>
 <figure><img class="w" src="r95_power_saddles_before.png" alt="POWER from below, bend saddles - before: each saddle meets the deck only at the relay tower"><figcaption>POWER from below, bend saddles - before: each saddle meets the deck only at the relay tower</figcaption>
 </figure>
 <figure><img class="w" src="r95_power_saddles_after.png" alt="After: every saddle runs up into the deck plate"><figcaption>After: every saddle runs up into the deck plate</figcaption>
+</figure>
+</div>
+<h2 id="sweep">Wall sweep: every printed part (DECISIONS R128)</h2>
+<p>Your call 2026-10-16: "fix the ones you found as long as they don&#39;t alter the function and installability of the parts". The R127 gate (walls over 1.95 mm, every feature attached by 3 mm or more) found 411 thin-wall and 32 attachment spots on the nine printed parts (counted with the corrected checker). Fixed by rule in the build, nothing moved that a terminal, relay, fuse, cover, pan, screw, cable or mounting point uses:</p><ul>
+<li>LOGIC base: one solid block under the deck plate, as the POWER base (R127) - the towers, collars and slivers between them are inside it.</li>
+<li>Relay / fuse blade slots only above the receptacle seat (the R120 cavity is the hole below); an 87a with no terminal is as deep as the blade reaches; the normally-open micro relays (HEAD L / R, HORN, ETB) have no 87a slot at all.</li>
+<li>A strip under 2.0 mm left between two openings of a joined cavity group, or between a cavity / hex pocket and the belly-pan groove, is cut away (the R120 join rule carried through); no lock ledge is touched (checked on all 119 lance cavities).</li>
+<li>Slanted guide walls that crossed a straight one (left only triangular slivers) are left out; the straight walls stay.</li>
+<li>All 8 mounting legs solid (outside, foot, M6 hole and socket unchanged); battery block relay platform and fuse pedestal solid, rim 4.0 (was 3.0, grown inward); bus-zone barrier wall 3.0 (was 2.5, grown away from the NEG bar).</li>
+<li>Fuse-body recesses level with the pad seat (0.4 under the fuse body, was 0.6); two LOGIC spine bolt passes 1.9 apart joined into one slot; two pan exit notches closer than 2.0 joined; a pan floor under a notch thickened downward to 2.0; cover labels 0.5 deep (2.0 of top left).</li>
+</ul><p>What has to stay thin is a <b>named exemption</b> - the build records a box round each one and the gate lists it by name (<code>spec.WALL_EXEMPT</code>):</p><div class="wrap"><table><tr><th>Exemption</th><th>Why it stays</th></tr>
+<tr><td>seat lip</td><td>R121: the deck top over each receptacle is the stop the terminal seats against; HOLE top_gap = 1.0 sets how far the relay / fuse blade goes into the receptacle (thicker = less blade engagement); webs between neighbouring blade slots follow the pin spacing</td></tr>
+<tr><td>87a slot</td><td>micro relay pin spacing (TE 1308028): the 87a blade slot sits 1.9 from the 85 / 86 cavities on the change-over and spare positions (the normally-open relays have no 87a slot any more)</td></tr>
+<tr><td>cover catch pocket</td><td>snap: the cover tongue bump sits in this pocket in the 3.0 skirt / rim; the skirt can neither grow (outline) nor move</td></tr>
+<tr><td>cover screw insert</td><td>R122: the M3 heat-set insert hole in its boss beside the catch</td></tr>
+<tr><td>pan catch pocket</td><td>snap: the belly-pan tongue bump sits in this pocket in the 3.0 skirt just above its bottom edge; the pan groove and the outline fix the skirt</td></tr>
+<tr><td>pan snap tongue</td><td>snap: the pan tongue between its two slots has to flex; its bump is the catch</td></tr>
+<tr><td>cover snap tongue</td><td>snap: the cover tongue between its two slots has to flex; its bump is the catch</td></tr>
+<tr><td>cover screw hole</td><td>R122: the 3.4 screw hole lines up with the insert 9.5 under the deck top - the 2.5 cover band keeps 1.8 under it</td></tr>
+<tr><td>label</td><td>rev 4 etched names (Dan: &quot;the lid labels were fine as they were&quot;): the PA12 between letter strokes, 0.5 deep; the cover top under the text is 2.0</td></tr>
+<tr><td>notch at corner</td><td>a cable exit notch (its size and place set by its cable) runs into a rounded corner of the cover / pan: the notch side meets the curved wall at a slant; widening it opens the corner, moving it moves the cable</td></tr>
+<tr><td>relay cavity web</td><td>attachment only: the PA12 between the cavities of a micro relay - its size follows the TE pin spacing and the R120 hole sizes, and it joins the box at its corners between the cavities (2.0-2.9); the walls themselves pass W</td></tr>
+<tr><td>strip lip</td><td>LOGIC bus strip lips: 0.9 between the strip (on it) and the belly-pan floor (0.45 under it); thicker moves the strips or the pan</td></tr>
+</table></div><div class="wrap"><table><tr><th>Part</th><th>Thin-wall spots</th><th>Attachment spots</th><th>Volume</th></tr>
+<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>818.9 cm3</td></tr>
+<tr><td>Power_Pan_PA12_printed</td><td>0</td><td>shell</td><td>157.1 cm3</td></tr>
+<tr><td>Power_Cover_PA12_printed</td><td>0</td><td>shell</td><td>195.7 cm3</td></tr>
+<tr><td>Power_Retainer_R1_PA12_printed</td><td>0</td><td>shell</td><td>1.6 cm3</td></tr>
+<tr><td>Logic_Base_PA12_printed</td><td>0</td><td>0</td><td>323.5 cm3</td></tr>
+<tr><td>Logic_Pan_PA12_printed</td><td>0</td><td>shell</td><td>75.8 cm3</td></tr>
+<tr><td>Logic_Cover_PA12_printed</td><td>0</td><td>shell</td><td>96.3 cm3</td></tr>
+<tr><td>BattRelay_Base_PA12_printed</td><td>0</td><td>0</td><td>170.2 cm3</td></tr>
+<tr><td>BattRelay_Cover_PA12_printed</td><td>0</td><td>shell</td><td>106.8 cm3</td></tr>
+</table></div><div class="grid">
+<figure><img class="w" src="renders/closeups/sweep_logic_under.png" alt="LOGIC base from below, before / after."><figcaption>LOGIC base from below, before / after.</figcaption>
+</figure>
+<figure><img class="w" src="renders/closeups/sweep_logic_cavities.png" alt="LOGIC cavities from below, before / after."><figcaption>LOGIC cavities from below, before / after.</figcaption>
+</figure>
+<figure><img class="w" src="renders/closeups/sweep_legs.png" alt="Mounting leg, before / after."><figcaption>Mounting leg, before / after.</figcaption>
+</figure>
+<figure><img class="w" src="renders/closeups/sweep_battrelay.png" alt="Battery relay block base, before / after."><figcaption>Battery relay block base, before / after.</figcaption>
 </figure>
 </div>
 <h2 id="views">Every wire in place (simulation)</h2>
@@ -305,7 +345,7 @@ td.d{font-weight:700}</style></head><body><main>
 <h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>
 <p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. LOGIC and battery block: the rev 6 lists, unchanged (<code>cad/fusebox/fusebox-parts-logic.csv</code>, <code>-battrelay.csv</code>).</p>
 <div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part</th><th>Need</th><th>Own</th><th>Buy</th><th>$ line</th></tr>
-<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>79.82</td></tr>
+<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>81.89</td></tr>
 <tr><td>Printed</td><td>Power Pan (belly pan)</td><td>Power_Pan_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>15.71</td></tr>
 <tr><td>Printed</td><td>Power Cover</td><td>Power_Cover_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>19.58</td></tr>
 <tr><td>Copper</td><td>POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned</td><td><a href="https://www.amazon.com/dp/B0CGJBRNJX">MECCANIXITY B0CGJBRNJX</a></td><td>2</td><td>0</td><td>2</td><td>52.38</td></tr>
@@ -344,10 +384,10 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Fasteners</td><td>Hex nut M8 (bus studs)</td><td><a href="https://hkcn.rs-online.com/web/p/products/530769">RS 530-769</a></td><td>8</td><td>0</td><td>9</td><td>0.72</td></tr>
 <tr><td>Fasteners</td><td>Plain washer M8 (bus studs)</td><td><a href="https://th.rs-online.com/web/p/washers/7976068">RS 797-6068</a></td><td>8</td><td>0</td><td>9</td><td>0.45</td></tr>
 <tr><td>Mounting</td><td>Compression limiter, feet (4)</td><td><a href="https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters">EFC 10S00056</a></td><td>4</td><td>0</td><td>5</td><td>1.50</td></tr>
-<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$363.02</b></td></tr></table></div>
+<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$365.09</b></td></tr></table></div>
 <h2>Printed parts</h2><div class="wrap"><table><tr><th>Part</th><th>Rev 7 size (mm)</th><th>Rev 7 volume</th><th>Rev 6 volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>212 x 307 x 72</td><td>798.2 cm3</td><td>361.6 cm3</td></tr>
-<tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 34</td><td>157.1 cm3</td><td>120.4 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>212 x 307 x 72</td><td>818.9 cm3</td><td>361.6 cm3</td></tr>
+<tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 35</td><td>157.1 cm3</td><td>120.4 cm3</td></tr>
 <tr><td>Power_Cover_PA12_printed</td><td>189 x 252 x 42</td><td>195.8 cm3</td><td>160.0 cm3</td></tr>
 </table></div><p class="mut">The base is 307 mm long over the feet: check it against the printer bed.</p>
 <h2>Files</h2><ul>
