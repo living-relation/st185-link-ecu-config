@@ -209,6 +209,66 @@ def bundle_d(ods):
     return ods[0] if len(ods) == 1 else 1.2 * math.sqrt(sum(o * o for o in ods))
 
 
+def pillars(hs, bridges, root_, min_attach=3.0):
+    """R127 (Dan 2026-10-15 markup: "small floating square stub"): where three or more cavities join into one opening, the pairwise
+    bridge cuts leave small pillars of PA12 standing inside it, hanging from the material above. Per joined group and per height band,
+    every material island enclosed by the opening (2-D, on a grid of the zone edges) whose narrower side is under min_attach is
+    returned as a box (z_lo, z_hi, x0, x1, y0, y1) to cut. Bands with the same island merge into one box."""
+    groups = {}
+    for i, h in enumerate(hs):
+        groups.setdefault(root_(i), []).append(h)
+    out = []
+    for g, mem in groups.items():
+        if len(mem) < 2:
+            continue
+        rects = [z for h in mem for z in h['abs']] + bridges.get(g, [])
+        zb = sorted(set(round(v, 4) for r in rects for v in (r[0], r[1])))
+        open_ = {}
+        for za, zc in zip(zb, zb[1:]):
+            act = [r for r in rects if r[0] <= za + 1e-6 and r[1] >= zc - 1e-6]
+            if len(act) < 2:
+                continue
+            xs = sorted(set([r[2] for r in act] + [r[3] for r in act]))
+            ys = sorted(set([r[4] for r in act] + [r[5] for r in act]))
+            nx, ny = len(xs) - 1, len(ys) - 1
+            hole = [[any(r[2] <= (xs[a] + xs[a + 1]) / 2 <= r[3] and r[4] <= (ys[b] + ys[b + 1]) / 2 <= r[5] for r in act) for b in range(ny)] for a in range(nx)]
+            seen = [[False] * ny for _ in range(nx)]
+            found = set()
+            for a0 in range(nx):
+                for b0 in range(ny):
+                    if hole[a0][b0] or seen[a0][b0]:
+                        continue
+                    stack, comp, edge = [(a0, b0)], [], False
+                    seen[a0][b0] = True
+                    while stack:
+                        a, b = stack.pop()
+                        comp.append((a, b))
+                        if a in (0, nx - 1) or b in (0, ny - 1):
+                            edge = True            # reaches the outside of the opening: the body, not an island
+                        for (da, db) in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                            c, d = a + da, b + db
+                            if 0 <= c < nx and 0 <= d < ny and not hole[c][d] and not seen[c][d]:
+                                seen[c][d] = True
+                                stack.append((c, d))
+                    if edge:
+                        continue
+                    bx = (xs[min(a for a, _ in comp)], xs[max(a for a, _ in comp) + 1], ys[min(b for _, b in comp)], ys[max(b for _, b in comp) + 1])
+                    if min(bx[1] - bx[0], bx[3] - bx[2]) < min_attach:
+                        found.add(tuple(round(v, 4) for v in bx))
+            for bx in found:
+                if bx in open_ and abs(open_[bx][1] - za) < 1e-6:
+                    open_[bx][1] = zc
+                else:
+                    if bx in open_:
+                        out.append((open_[bx][0], open_[bx][1]) + bx)
+                    open_[bx] = [za, zc]
+            for bx in [k for k, v in open_.items() if abs(v[1] - zc) > 1e-6]:
+                out.append((open_[bx][0], open_[bx][1]) + bx)
+                del open_[bx]
+        out.extend((v[0], v[1]) + bx for bx, v in open_.items())
+    return out
+
+
 def doc_name():
     return DOC7 if REV[0] == 7 else DOC
 
@@ -371,6 +431,7 @@ def build(out_dir, save=True, renders=True, rev=6):
                 elif d < G['reach']:
                     near_.append((i, j, d))
         cuts = [box(z[2], z[4], z[0], z[3], z[5], z[1]) for h in hs for z in h['abs']]
+        bridges = {}
         for (i, j, under) in edges:
             for (lo, hi, p, q, g) in under:
                 if g <= 0:
@@ -378,6 +439,12 @@ def build(out_dir, save=True, renders=True, rev=6):
                 xs_ = sorted([max(p[0], q[0]), min(p[1], q[1])]) if min(p[1], q[1]) > max(p[0], q[0]) else sorted([min(p[1], q[1]), max(p[0], q[0])])
                 ys_ = sorted([max(p[2], q[2]), min(p[3], q[3])]) if min(p[3], q[3]) > max(p[2], q[2]) else sorted([min(p[3], q[3]), max(p[2], q[2])])
                 cuts.append(box(xs_[0], ys_[0], lo, xs_[1], ys_[1], hi))
+                bridges.setdefault(root_(i), []).append((lo, hi, xs_[0], xs_[1], ys_[0], ys_[1]))
+        islands = []
+        for (lo, hi, x0_, x1_, y0_, y1_) in pillars(hs, bridges, root_):
+            cuts.append(box(x0_, y0_, lo, x1_, y1_, hi))
+            islands.append([round(v, 2) for v in (x0_, y0_, lo, x1_, y1_, hi)])
+        report.setdefault('cavity_islands_cut', {})[box_name] = islands
         collars = []
         if plate_b is not None:
             for h in hs:      # R73: min_wall round every cavity, from the deck underside up into the deck plate
@@ -413,7 +480,23 @@ def build(out_dir, save=True, renders=True, rev=6):
                 collars.append(box(lx - sx_ / 2 - c_ - RT['boss'] - (RT['barb'] if long_x else 0), ly - sy_ / 2 - c_ - RT['boss'] - (0 if long_x else RT['barb']),
                                    z_d, lx + sx_ / 2 + c_ + RT['boss'] + (RT['barb'] if long_x else 0), ly + sy_ / 2 + c_ + RT['boss'] + (0 if long_x else RT['barb']),
                                    plate_b + 0.01))
-                cuts.append(box(lx - sx_ / 2 - c_, ly - sy_ / 2 - c_, z_d - 1, lx + sx_ / 2 + c_, ly + sy_ / 2 + c_, zt_ + 0.3))
+                pk = [lx - sx_ / 2 - c_, lx + sx_ / 2 + c_, ly - sy_ / 2 - c_, ly + sy_ / 2 + c_]
+                cuts.append(box(pk[0], pk[2], z_d - 1, pk[1], pk[3], zt_ + 0.3))
+                for h in rh:        # R127: a pocket closer than min_wall to a cavity runs on into it (no thin wall hanging between them)
+                    for z in h['abs']:
+                        lo_, hi_ = max(z[0], z_d - 1), min(z[1], zt_ + 0.3)
+                        if hi_ <= lo_:
+                            continue
+                        for (k0, k1, o0, o1) in ((0, 1, 2, 3), (2, 3, 0, 1)):
+                            if min(pk[o1], z[2 + o1]) - max(pk[o0], z[2 + o0]) <= 0:
+                                continue            # no overlap side by side
+                            for (e, f, sg) in ((pk[k1], z[2 + k0], 1), (pk[k0], z[2 + k1], -1)):
+                                g_ = (f - e) * sg
+                                if 0 < g_ < m:
+                                    q = list(pk)
+                                    q[k1 if sg > 0 else k0] = f + sg * 0.01
+                                    cuts.append(box(q[0], q[2], lo_, q[1], q[3], hi_))
+                                    report.setdefault('retainer_pocket_joins', []).append([h['cav'], round(g_, 2), round(lo_, 2), round(hi_, 2)])
                 cuts.append(box(min(bx_) - c_, min(by_) - c_, zt_ - RT['barb_h'] - 0.3, max(bx_) + c_, max(by_) + c_, zt_ + 0.3))
             band = box(x0_ - 50, y0_ - 50, ztop - RT['t'] - 1.0, x1_ + 50, y1_ + 50, z_d - 0.01)
             for sp in (support or []):          # notch the PLATE round what hangs under the deck there (the feed-cable bend saddles);
@@ -422,8 +505,10 @@ def build(out_dir, save=True, renders=True, rev=6):
                     bo(t_, tb.copy(band), 'i')
                 except RuntimeError:            # nothing of it below the deck
                     continue
-                if t_.volume > 1e-9:
-                    bo(plate, t_, 's')
+                if t_.volume > 1e-9:    # R127: notch = its bounding box + clr, a plain rectangle (no curved sliver or hooked tab)
+                    bb_ = t_.boundingBox
+                    bo(plate, box(bb_.minPoint.x * 10 - RT['clr'], bb_.minPoint.y * 10 - RT['clr'], ztop - RT['t'] - 1,
+                                  bb_.maxPoint.x * 10 + RT['clr'], bb_.maxPoint.y * 10 + RT['clr'], ztop + 0.5), 's')
             comp('%s_Retainer_%s_PA12_printed' % (box_name.capitalize(), rel), plate, AP['pa12_pan'], MAT['pa'], S.PLACE[box_name])
             report.setdefault('retainers', {}).setdefault(box_name, []).append(dict(
                 relay=rel, cavities=[h['cav'] for h in rh], plate=[round(v, 2) for v in (x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)],
@@ -951,17 +1036,18 @@ def build(out_dir, save=True, renders=True, rev=6):
             od = S.OD[S.AMI_AWG[a['name']]]
             ccx, ccz = r['x30'] + S.R_SADDLE + od / 2, S.LUG_C + S.R_SADDLE + od / 2
             rs = S.R_SADDLE - 0.2
+            lw_ = od / 2 + 0.5 + S.HOLE['min_wall']      # R127: lips (and the saddle back) 2.0 thick, not 1.5
             core = bo(cyl((ccx, a['y'] - od / 2 - 0.5, ccz), (ccx, a['y'] + od / 2 + 0.5, ccz), 2 * rs),
                       box(ccx - rs - 1, a['y'] - 10, ccz - rs - 1, ccx, a['y'] + 10, ccz), 'i')
             for sy in (-1, 1):
-                lip = bo(cyl((ccx, a['y'] + sy * (od / 2 + 0.5), ccz), (ccx, a['y'] + sy * (od / 2 + 2.0), ccz), 2 * (S.R_SADDLE + od * 0.6)),
+                lip = bo(cyl((ccx, a['y'] + sy * (od / 2 + 0.5), ccz), (ccx, a['y'] + sy * lw_, ccz), 2 * (S.R_SADDLE + od * 0.6)),
                          box(ccx - S.R_SADDLE - od - 2, a['y'] - 10, ccz - S.R_SADDLE - od - 2, ccx, a['y'] + 10, ccz), 'i')
                 bo(core, lip, 'u')
-            top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, z_d + 0.5)
+            top_ = box(ccx - rs, a['y'] - lw_, ccz - 0.01, ccx, a['y'] + lw_, z_d + 0.5)
             if R7:   # R101 (Dan 2026-10-15: "add material under the radius runners"): the saddle's back runs on up into the deck plate
                 c0 = backing(top_, z_d + 0.5, U_sad)
                 if c0 < S.FLOAT_BACKING:    # floating: carry it up into the deck plate
-                    top_ = box(ccx - rs, a['y'] - od / 2 - 2.0, ccz - 0.01, ccx, a['y'] + od / 2 + 2.0, plate_b + 0.01)
+                    top_ = box(ccx - rs, a['y'] - lw_, ccz - 0.01, ccx, a['y'] + lw_, plate_b + 0.01)
                     after = backing(top_, plate_b + 0.01, [box(0, 0, plate_b, L, D7, z_t)])
                 else:
                     after = c0
@@ -969,8 +1055,22 @@ def build(out_dir, save=True, renders=True, rev=6):
                     kind='saddle', at=[round(ccx - rs / 2, 1), round(a['y'], 1)], before=round(c0, 3), web=c0 < S.FLOAT_BACKING,
                     after=round(after, 3)))
             bo(core, top_, 'u')
+            # R127 (Dan 2026-10-15 markup: "thin sliver wall beside a terminal sleeve"): the saddle starts at the +x wall of its relay's
+            # 30 cavity, carried straight down - the cavity no longer shaves a thin curved sliver off the top of the bend. Under the R1
+            # retainer clip it starts min_wall + clr past the clip's wire hole, so the clip's saddle notch leaves a full wall round that hole.
+            c30 = next((c for c in PLAN7['cavities'] if c['box'] == 'POWER' and c['cav'] == 'R%d 30' % (a['i'] + 1)), None) if PLAN7 else None
+            if c30:
+                x_trim = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones'])
+                if 'R%d' % (a['i'] + 1) in S.RETAIN.get('POWER', []):
+                    x_trim = max(x_trim, c30['x'] + S.retainer_hole(c30['part'], c30['wire_od'])[0] / 2 + S.HOLE['min_wall'] + S.RETAINER['clr'] + 0.05)
+                if x_trim > ccx - rs:
+                    bo(core, box(x_trim, a['y'] - 30, ccz - 40, ccx + 40, a['y'] + 30, plate_b + 1), 'i')
             saddles.append(core)
         parts += saddles
+        if R7:   # R127 (Dan 2026-10-15: "imagine you started with a solid block of material and machined away only the stuff necessary"):
+            # under the deck plate the base is ONE solid block inside the skirt, from the deck underside up - the towers, collars, bosses
+            # and ribs it replaces are inside it; only the needed cuts (cavities, hex pockets, clip-leg pockets, pan groove) come out of it
+            parts.append(rrect(S.SKIRT - 0.01, S.SKIRT - 0.01, L - S.SKIRT + 0.01, D7 - S.SKIRT + 0.01, z_d, plate_b + 0.01, S.BASE_R - S.SKIRT + 0.01))
         z_leg = z_t - CV['over'] - 1.0
         # rev 7: no foot under the NEG cables - the rear inboard foot moves round to the inboard end, behind the harness exits
         leg_at = [('-y', 30.0), ('-y', L - 30.0), ('+y', L - 30.0), ('-x', D7 - 30.0)] if R7 else [(f, u) for f in ('-y', '+y') for u in (30.0, L - 30.0)]
