@@ -101,13 +101,17 @@ def walls(m, allow=(), seen=None):
                 bb = [0.0] * 6
                 bb[2 * k[0]], bb[2 * k[0] + 1], bb[2 * k[1]], bb[2 * k[1] + 1] = b[0], b[2], b[1], b[3]
                 bb[2 * axis], bb[2 * axis + 1] = c - STEP / 2, c + STEP / 2
+                bb.append(axis)
                 k_ = next((key for (key, b) in allow if inside(bb, b)), None)
                 if k_ is not None:
                     if seen is not None:
                         seen[k_] = seen.get(k_, 0) + 1
                     continue
                 pcs.append(bb)
-    return [g for g in cluster(pcs) if g[6] >= 2]     # a real wall shows in 2+ sections; 1 = a plane grazing a curved face
+    # a real wall shows in 2+ sections; 1 = a plane grazing a curved face. R127 amendment: a spot seen by ONE axis family only, in under
+    # 4 sections, is planes grazing a square edge whose other face is nearly parallel to them (the top of a bend saddle's curve where the
+    # radial cut meets it) - sections along the other axes see solid there
+    return [g[:7] for g in cluster(pcs) if g[6] >= 2 and not (len(g[7]) == 1 and g[6] < 4)]
 
 
 def cluster(boxes, tol=0.6):
@@ -125,11 +129,13 @@ def cluster(boxes, tol=0.6):
                 par[f(i)] = f(j)
     out = {}
     for i, b in enumerate(boxes):
-        g = out.setdefault(f(i), [1e9, -1e9, 1e9, -1e9, 1e9, -1e9, 0])
+        g = out.setdefault(f(i), [1e9, -1e9, 1e9, -1e9, 1e9, -1e9, 0, set()])
         for d in range(3):
             g[2 * d] = min(g[2 * d], b[2 * d])
             g[2 * d + 1] = max(g[2 * d + 1], b[2 * d + 1])
         g[6] += 1
+        if len(b) > 6:
+            g[7].add(b[6])
     return sorted(out.values(), key=lambda g: -g[6])
 
 

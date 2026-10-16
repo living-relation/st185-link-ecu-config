@@ -25,6 +25,15 @@ VIEWS = [
      'Battery relay block base: ribbed relay platform and fuse pedestal (2.5 ribs), 3.0 rim',
      'Solid platform and pedestal (same outline and heights), rim 4.0 inward. 125 -> 170 cm3.'),
 ]
+# R127 amendment (Dan 2026-10-16): the curved bend saddles back, and the outer walls grown outward
+AMEND = [
+    ('saddle', 'Power_Base_PA12_printed', (197.0, 97.0, 22.0), (-0.75, -1.0, -0.55), 42.0,
+     'Bend saddle (R4 feed): #268 cut the curve flat at the 30 cavity wall',
+     'Curve and lips back as before #268, carried by the block above; only near the top a radial cut clears the cavity mouth by 2.0 (no sliver).'),
+    ('outer_wall', 'Power_Base_PA12_printed', (163.5, 61.0, 34.0), (-1.0, -0.45, -0.7), 36.0,
+     'Outer wall beside a relay cavity (your markup): 3.0 skirt standing alone where the pan groove runs behind it',
+     'Skirt grown OUTWARD to 4.3 (3.0 left behind the deepest catch pocket); inside, the cavities, groove and pan fit are unchanged.'),
+]
 BASES = [   # after only: the summary page's "base from below" figures
     ('fusebox_logic_base_holes.png', 'Logic_Base_PA12_printed', (42.0, 90.0, 30.0), (-0.45, -0.75, -1.0), 230.0,
      'LOGIC base from below (R128): one solid block under the deck - the R120 cavities, joined slots, guide walls, J4 channel floor'),
@@ -34,7 +43,7 @@ BASES = [   # after only: the summary page's "base from below" figures
 W_IMG, H_IMG = 1300, 1100
 
 
-def render(step_dir, tag, out_dir=OUT, bases=False):
+def render(step_dir, tag, out_dir=OUT, bases=False, views=None):
     import adsk.core, adsk.fusion
     app = adsk.core.Application.get()
     raw = os.path.join(out_dir, 'renders', 'closeups', 'raw')
@@ -55,7 +64,7 @@ def render(step_dir, tag, out_dir=OUT, bases=False):
                 q.value = adsk.core.Color.create(170, 174, 178, 255)
                 break
         occ_of = {}
-        jobs = BASES if bases else VIEWS
+        jobs = BASES if bases else (views or VIEWS)
         for part in sorted(set(v[1] for v in jobs)):
             n0 = root.occurrences.count
             im.importToTarget(im.createSTEPImportOptions(os.path.join(step_dir, part + '.step')), root)
@@ -89,7 +98,7 @@ def render(step_dir, tag, out_dir=OUT, bases=False):
     return out
 
 
-def finish(out_dir=OUT):
+def finish(out_dir=OUT, views=None, bases=True):
     """Plain Python: framed before | after pairs (renders/closeups/sweep_<id>.png) and the two framed base views (rev7/)."""
     from PIL import Image, ImageDraw, ImageFont
 
@@ -102,7 +111,7 @@ def finish(out_dir=OUT):
         return ImageFont.load_default()
     d = os.path.join(out_dir, 'renders', 'closeups')
     res = []
-    for (k, _p, _t, _d, _e, title, note) in VIEWS:
+    for (k, _p, _t, _d, _e, title, note) in (views or VIEWS):
         a = Image.open(os.path.join(d, 'raw', 'sweep_%s_before.png' % k)).convert('RGB')
         b = Image.open(os.path.join(d, 'raw', 'sweep_%s_after.png' % k)).convert('RGB')
         B, BAR, G = 10, 110, 16
@@ -115,12 +124,12 @@ def finish(out_dir=OUT):
         dr.text((B + 18, B + 10), title, fill=(20, 24, 30), font=font(28, True))
         dr.text((B + 18, B + 52), note, fill=(70, 74, 80), font=font(19))
         dr.text((B + 18, B + 80), 'Printed part only. Wall sweep, DECISIONS R128 (R127 applied everywhere).', fill=(110, 114, 120), font=font(16))
-        for (x0, lab, col) in ((B, 'BEFORE (#268)', (190, 60, 50)), (B + a.size[0] + G, 'AFTER (R128)', (40, 140, 70))):
+        for (x0, lab, col) in ((B, 'BEFORE (#%s)' % ('270' if views else '268'), (190, 60, 50)), (B + a.size[0] + G, 'AFTER (%s)' % ('R127 amendment' if views else 'R128'), (40, 140, 70))):
             dr.text((x0 + 14, B + BAR + 6), lab, fill=col, font=font(26, True))
         fn = os.path.join(d, 'sweep_%s.png' % k)
         page.save(fn, optimize=True)
         res.append(fn)
-    for (k, _p, _t, _d, _e, title) in BASES:
+    for (k, _p, _t, _d, _e, title) in (BASES if bases else ()):
         a = Image.open(os.path.join(d, 'raw', k)).convert('RGB')
         page = Image.new('RGB', (a.size[0], a.size[1] + 48 + 40), (28, 30, 34))
         page.paste(a, (0, 48))

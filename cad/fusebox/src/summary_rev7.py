@@ -329,7 +329,11 @@ A('</table></div><div class="wrap"><table><tr><th>Part</th><th>Thin-wall spots</
 for n, w in WC.items():
     A('<tr><td>%s</td><td>%d</td><td>%s</td><td>%.1f cm3</td></tr>' % (E(n), len(w['walls']), len(w['attach']) if w.get('attach_checked') else 'shell', w['volume_cm3']))
 A('</table></div><div class="grid">')
-for f, cap in (('renders/closeups/sweep_logic_under.png', 'LOGIC base from below, before / after.'),
+A('<p><b>Amended 2026-10-16 (R127):</b> every outer wall of a base keeps 3.0 behind its deepest pocket, grown OUTWARD only (skirt 3.0 -> 4.3, battery '
+  'rim 4.3; inner face, cavities, pans unchanged; covers grow with the outline, same clearances); the curved bend saddles are back, cut only near the top '
+  'by a radial plane clear of the 30 cavity.</p>')
+for f, cap in (('renders/closeups/sweep_saddle.png', 'Bend saddle, #270 / now.'), ('renders/closeups/sweep_outer_wall.png', 'Outer wall beside a relay cavity, #270 / now.'),
+               ('renders/closeups/sweep_logic_under.png', 'LOGIC base from below, before / after.'),
                ('renders/closeups/sweep_logic_cavities.png', 'LOGIC cavities from below, before / after.'),
                ('renders/closeups/sweep_legs.png', 'Mounting leg, before / after.'),
                ('renders/closeups/sweep_battrelay.png', 'Battery relay block base, before / after.')):
