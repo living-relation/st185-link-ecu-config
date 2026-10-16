@@ -224,7 +224,7 @@ def build(rev=6):
               url='https://www.amazon.com/dp/B0CGJBRNJX', checked='summary "Copper" section; seller page 2026-10-14',
               note='Cut + drill only (R76): 15 holes, drawing on the summary page. Stock bought here covers BATTRELAY too.')
     else:            # rev 7 (E2 = A): the bus bar lives in this box - its POS bar is the AMI bar, its NEG bar sits beside it
-        printed(P, 'Power_Base', 'Power Base (with the bus zone)', 'Deck on four angular legs, open underneath, 62 mm bus zone at the rear, printed barrier wall NEG / POS; PA12')
+        printed(P, 'Power_Base', 'Power Base (with the bus zone)', 'Deck on four angular legs, solid block under the deck plate with only the needed cuts (R127), 62 mm bus zone at the rear, printed barrier wall NEG / POS; PA12')
         printed(P, 'Power_Pan', 'Power Pan (belly pan)', 'Snap-on belly pan, 4 integral tongues (no separate clips); PA12')
         printed(P, 'Power_Cover', 'Power Cover', 'Snap-on cover, etched labels (AMI, relays, bus terminals), vent slots; PA12')
         L.add(P, 'Copper', 'POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)',

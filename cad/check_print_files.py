@@ -14,11 +14,9 @@ import trimesh
 
 # name, print folder, expected size (mm, x y z, from the build), [(why, (x0, x1, y0, y1, z0, z1)) thin-feature exceptions, part frame]
 PARTS = [
-    # the clip plate itself (z 0-2) is the R123 design: a 2.0 plate whose wire holes and saddle notch leave narrower webs (Dan: walls >= 2.0
-    # except the clip plate per R123); the legs and barbs above it are checked
+    # R127: the clip plate is checked too (its saddle notch is a plain rectangle 2.0 past the R1 30 wire hole); only the snap barbs are exempt
     ('ST185_R1_retainer_clip_PA12', 'cad/fusebox/rev7/print', (31.87, 27.65, 8.39),
-     [('clip plate (R123)', (-20.0, 20.0, -20.0, 20.0, -0.1, 2.05)),
-      ('leg barbs (0.6 x 1.5 snap hooks, spec.RETAINER barb / barb_h)', (-20.0, 20.0, -20.0, 20.0, 8.39 - 1.6, 8.5))]),
+     [('leg barbs (0.6 x 1.5 snap hooks, spec.RETAINER barb / barb_h)', (-20.0, 20.0, -20.0, 20.0, 8.39 - 1.6, 8.5))]),
     # VRC board holder v2 (R126): the 4 snap tabs (1.0 arm + 0.6 lip with lead-in, vrc_holder_spec TAB_* / LIP_*) are flex hooks, not
     # walls; print frame = enclosure frame moved down by the floor (z 5) and centred
     ('ST185_VRC_board_holder_PA12', 'cad/enclosures/vrc/print', (57.7, 35.2, 10.9),
