@@ -19,9 +19,12 @@ PARTS = [
     ('ST185_R1_retainer_clip_PA12', 'cad/fusebox/rev7/print', (31.87, 27.65, 8.39),
      [('clip plate (R123)', (-20.0, 20.0, -20.0, 20.0, -0.1, 2.05)),
       ('leg barbs (0.6 x 1.5 snap hooks, spec.RETAINER barb / barb_h)', (-20.0, 20.0, -20.0, 20.0, 8.39 - 1.6, 8.5))]),
-    # snap lips: 0.7 x 0.8 hooks on the snap arms (vrc_holder_spec LIP_IN / LIP_H) - a hook, not a wall
-    ('ST185_VRC_board_holder_PA12', 'cad/enclosures/vrc/print', (35.0, 31.0, 16.5),
-     [('snap lips', (-9.6, -3.4, -12.3, 12.3, 15.6, 16.5))]),
+    # VRC board holder v2 (R126): the 4 snap tabs (1.0 arm + 0.6 lip with lead-in, vrc_holder_spec TAB_* / LIP_*) are flex hooks, not
+    # walls; print frame = enclosure frame moved down by the floor (z 5) and centred
+    ('ST185_VRC_board_holder_PA12', 'cad/enclosures/vrc/print', (57.7, 35.2, 10.9),
+     [('snap tab %s' % n, (xa - 0.8, xb + 0.8, y0, y1, 2.9, 11.0)) for n, (xa, xb, y0, y1) in (
+         ('-y/-x', (-9.5, -4.5, -13.6, -11.7)), ('-y/+x', (4.5, 9.5, -13.6, -11.7)),
+         ('+y/-x', (-9.5, -4.5, 11.7, 13.6)), ('+y/+x', (4.5, 9.5, 11.7, 13.6)))]),
 ]
 MIN_WALL, MIN_REGION = 2.0, 0.5   # mm, mm3 (smaller specks are tessellation noise on curved faces)
 
@@ -41,7 +44,7 @@ def thin_regions(m, pitch=0.1, wall=MIN_WALL):
     edges are not flagged); what the opening removes is material narrower than `wall` in some direction. Returns [(volume mm3, min
     corner, max corner)] per connected thin region, largest first."""
     from scipy import ndimage
-    vg = m.voxelized(pitch).fill()
+    vg = m.voxelized(pitch, max_iter=60).fill()     # long faces need many subdivisions at 0.1 mm
     solid = vg.matrix
     k = max(1, int(round(wall / pitch)) - 1)
     opened = ndimage.binary_opening(solid, structure=np.ones((k, k, k), bool))

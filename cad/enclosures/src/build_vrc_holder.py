@@ -1,14 +1,16 @@
-"""VRC board holder (OPEN-ITEMS row 97, Dan K7 = A) built into the existing Fusion document ST185-VRC-Enclosure (R74:
-no new document). Run inside Fusion (Fusion MCP `fusion_mcp_execute`, featureType script) with
+"""VRC board holder v2 (Dan M9, DECISIONS R126 - supersedes R108 / K7) built into the existing Fusion document ST185-VRC-Enclosure
+(R74: no new document). Run inside Fusion (Fusion MCP `fusion_mcp_execute`, featureType script) with
     exec(open(r'<repo>/cad/enclosures/src/build_vrc_holder.py').read(), {'__file__': r'<that path>', 'MODE': 'build'})
-MODE 'build': replaces the old placeholder carrier + Keystone standoffs and the imported board envelope with
-  - "OpenLogicEFI NCV1124 VR module RevB3": the board from the maker's KiCad file (PCB, IC1 body, DIP-8 header envelope)
-  - "VRC board holder (printed)": ONE printed solid, parametric sketches + extrudes (edit them in Fusion)
-  then checks it (one solid, no floating piece, no clash with anything in the box), exports the STEP / STL / f3d into
-  the main checkout's cad/enclosures/vrc/ and saves the document.
+MODE 'build': replaces the board and the holder with
+  - "OpenLogicEFI NCV1124 VR module RevB3": the board from the maker's KiCad file (PCB, IC1 body; no header - leads solder on its top)
+  - "VRC board holder (printed)": ONE extruded block, parametric sketches + extrudes (edit them in Fusion): flush board pocket, 4 snap
+    tabs, solder reliefs, 2 x M6 countersinks + boss recesses
+  and edits the enclosure body once: the 4 M3 floor bosses (Extrude8, M3_carrier_tapped, Thread2) suppressed, 2 M6 bosses + D5.0 tap
+  drill added (M6_holder_bosses, M6_tap_drill). Then it checks the holder (one solid, no clash with anything in the box), exports the
+  STEP / STL / f3d into the main checkout's cad/enclosures/vrc/ and saves the document (SAVE=False to review first).
 MODE 'wires': adds the internal leads as Tmp_ bodies (vrc_holder_spec.wires(), 3 x OD bends), checks them against every
   part and each other, renders the snapshots, removes the Tmp_ bodies again and closes the document WITHOUT saving.
-Numbers: vrc_holder_spec.py. Claude Code, 2026-10-15.
+Numbers: vrc_holder_spec.py. Claude Code, 2026-10-15; v2 2026-10-16.
 """
 import adsk.core, adsk.fusion, os, sys, json, math, importlib
 
@@ -178,7 +180,7 @@ if MODE == 'build':
         if o.component.name.startswith(OLD):
             o.deleteMe()
 
-    # ---------------- the board, from the KiCad file
+    # ---------------- the board, from the KiCad file (v2, R126: wires soldered on its top - no header fitted)
     mo = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
     mc = mo.component
     mc.name = MODULE
@@ -188,74 +190,98 @@ if MODE == 'build':
     ext(mc, sk, S.PCB_T, NEW, name='PCB')
     mc.bRepBodies.item(0).name = 'VR module PCB'
     so = S.SO8
-    hdr = None
-    for xr in (S.PIN_X[1], S.PIN_X[5]):
-        ys = [S.PIN_Y[n] for n in S.PIN_X if S.PIN_X[n] == xr]
-        strip = box(xr, sum(ys) / 4, S.Z_BOARD - S.HDR_PLASTIC / 2, 2.54, 10.16, S.HDR_PLASTIC)
-        hdr = strip if hdr is None else (tb.booleanOperation(hdr, strip, adsk.fusion.BooleanTypes.UnionBooleanType) and hdr)
-    for n in S.PIN_X:
-        z0, z1 = S.Z_BOARD - S.PIN_BELOW, S.Z_BOARD + S.PCB_T + S.PIN_TAIL
-        tb.booleanOperation(hdr, box(S.PIN_X[n], S.PIN_Y[n], (z0 + z1) / 2, S.PIN_SQ, S.PIN_SQ, z1 - z0), adsk.fusion.BooleanTypes.UnionBooleanType)
     base_bodies(mc, [(box((so['x0'] + so['x1']) / 2, (so['y0'] + so['y1']) / 2, S.Z_TOP + so['h'] / 2, so['x1'] - so['x0'], so['y1'] - so['y0'], so['h']),
-                      'NCV1124 SO-8 envelope'),
-                     (hdr, 'DIP-8 header (std 2.54 male, assumed)')])
+                      'NCV1124 SO-8 envelope')])
     green, black = col('VRC pcb green', (20, 110, 50)), col('VRC ic black', (30, 30, 32))
     for b in mc.bRepBodies:
         b.appearance = green if 'PCB' in b.name else black
 
-    # ---------------- the holder: one printed solid
+    # ---------------- enclosure (VRC-Body, same document): v2 bosses (R126). The 4 M3 floor bosses of the R108 holder, their tapped
+    # holes and thread are suppressed (kept in the timeline); 2 bosses under the holder screws with the M6 tap drill hole, added once.
+    bo_ = occ_named('VRC-Body')[0]
+    bc = bo_.component
+    ef = bc.features.extrudeFeatures
+    f8 = ef.itemByName('Extrude8')                              # 'bosses' sketch -> Extrude8 (4 x D7 x 3 M3 bosses)
+    if f8 is not None and not f8.timelineObject.isSuppressed:
+        f8.timelineObject.isSuppressed = True
+    for coll in (bc.features.holeFeatures, bc.features.threadFeatures, ef):
+        for i in range(coll.count):
+            f = coll.item(i)
+            if (f.name.startswith('M3_carrier_tapped') or f.name == 'Thread2') and not f.timelineObject.isSuppressed:
+                f.timelineObject.isSuppressed = True
+    REPORT['suppressed'] = [bc.features.item(i).name for i in range(bc.features.count) if bc.features.item(i).timelineObject.isSuppressed]
+    body_b = bc.bRepBodies.item(0)
+    if ef.itemByName('M6_holder_bosses') is None:
+        sk = bc.sketches.add(plane_z(bc, S.FLOOR_Z)); sk.name = 'M6_holder_bosses'
+        for (x, y) in S.SCREWS:
+            sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, S.FLOOR_Z)), S.BOSS2_D / 20.0)
+        ext(bc, sk, S.BOSS2_H, JOIN, body_b, 'M6_holder_bosses', all_profiles(sk))
+    if ef.itemByName('M6_tap_drill') is None:
+        sk = bc.sketches.add(plane_z(bc, S.FLOOR_Z + S.BOSS2_H)); sk.name = 'M6_tap_drill'
+        for (x, y) in S.SCREWS:
+            sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, S.FLOOR_Z + S.BOSS2_H)), S.PILOT_D / 20.0)
+        ext(bc, sk, -S.PILOT_DEPTH, CUT, body_b, 'M6_tap_drill', all_profiles(sk))
+
+    # ---------------- the holder v2: one extruded block
     ho = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
     hc = ho.component
     hc.name = HOLDER
-    # base plate on the 4 floor bosses
-    sk = hc.sketches.add(plane_z(hc, S.BOSS_TOP)); sk.name = 'plate'
-    rrect(sk, 0, 0, S.PLATE['w'], S.PLATE['h'], S.PLATE['r'])
-    ext(hc, sk, S.PLATE_T, NEW, name='plate')
+    B = S.BLOCK
+    z0 = B['z0']
+    sk = hc.sketches.add(plane_z(hc, z0)); sk.name = 'block'
+    X, Xn, Y, Yn = B['x'], B['x_notch'], B['y'], B['y_notch']
+    poly(sk, [(-X, -Y, z0), (X, -Y, z0), (X, -Yn, z0), (Xn, -Yn, z0), (Xn, Yn, z0), (X, Yn, z0),
+              (X, Y, z0), (-X, Y, z0), (-X, Yn, z0), (-Xn, Yn, z0), (-Xn, -Yn, z0), (-X, -Yn, z0)])
+    ext(hc, sk, B['z1'] - z0, NEW, name='block')
     body = hc.bRepBodies.item(0)
     body.name = 'VRC board holder'
-    # tub round the board
-    sk = hc.sketches.add(plane_z(hc, S.BOSS_TOP + S.PLATE_T)); sk.name = 'tub'
-    rrect(sk, 0, 0, S.TUB[0], S.TUB[1], S.TUB[2])
-    ext(hc, sk, S.Z_TOP - S.BOSS_TOP - S.PLATE_T, JOIN, body, 'tub')
-    # board seat (pocket = board + FIT each side) and the pin well under it (1 mm ledge)
+    # board pocket (board + FIT a side), flush: the board top is the block top
     sk = hc.sketches.add(plane_z(hc, S.Z_TOP)); sk.name = 'board pocket'
     rrect(sk, 0, 0, S.POCKET[0], S.POCKET[1], S.POCKET[2])
     ext(hc, sk, -S.PCB_T, CUT, body, 'board pocket')
-    sk = hc.sketches.add(plane_z(hc, S.Z_BOARD)); sk.name = 'pin well'
-    rrect(sk, 0, 0, S.WELL[0], S.WELL[1], S.WELL[2])
-    ext(hc, sk, -(S.Z_BOARD - S.WELL_Z), CUT, body, 'pin well')
-    # wire exits through the +-x walls (one slot each end, the 4 wires of that pin row)
-    sk = hc.sketches.add(hc.yZConstructionPlane); sk.name = 'wire slots'
-    poly(sk, [(0, S.SLOT_Y[0], S.SLOT_Z[0]), (0, S.SLOT_Y[1], S.SLOT_Z[0]), (0, S.SLOT_Y[1], S.SLOT_Z[1]), (0, S.SLOT_Y[0], S.SLOT_Z[1])])
-    ei = hc.features.extrudeFeatures.createInput(sk.profiles.item(0), CUT)
-    ei.setSymmetricExtent(mm(S.TUB[0] / 2 + 5.0), False)
+    # solder-tip reliefs under the two pin rows
+    sk = hc.sketches.add(plane_z(hc, S.Z_BOARD)); sk.name = 'solder reliefs'
+    for xr in (S.PIN_X[1], S.PIN_X[5]):
+        p0 = sk.modelToSketchSpace(P(xr - S.RELIEF['w'] / 2, -S.RELIEF['l'] / 2, S.Z_BOARD))
+        p1 = sk.modelToSketchSpace(P(xr + S.RELIEF['w'] / 2, S.RELIEF['l'] / 2, S.Z_BOARD))
+        sk.sketchCurves.sketchLines.addTwoPointRectangle(p0, p1)
+    ext(hc, sk, -S.RELIEF['d'], CUT, body, 'solder reliefs', all_profiles(sk))
+    # recesses over the enclosure's 2 bosses, clearance holes, 90 deg countersinks
+    sk = hc.sketches.add(plane_z(hc, z0)); sk.name = 'boss recesses'
+    for (x, y) in S.SCREWS:
+        sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, z0)), S.RECESS_D / 20.0)
+    ext(hc, sk, S.RECESS_H, CUT, body, 'boss recesses', all_profiles(sk))
+    sk = hc.sketches.add(plane_z(hc, B['z1'])); sk.name = 'M6 clearance'
+    for (x, y) in S.SCREWS:
+        sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, B['z1'])), S.CLEAR / 20.0)
+    ext(hc, sk, -(B['z1'] - z0), CUT, body, 'M6 clearance', all_profiles(sk))
+    sk = hc.sketches.add(plane_z(hc, B['z1'])); sk.name = 'M6 countersinks'
+    for (x, y) in S.SCREWS:
+        sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(x, y, B['z1'])), S.CSK_D / 20.0)
+    ei = hc.features.extrudeFeatures.createInput(all_profiles(sk), CUT)
+    ei.setOneSideExtent(adsk.fusion.DistanceExtentDefinition.create(mm(S.CSK_DEPTH)), adsk.fusion.ExtentDirections.NegativeExtentDirection,
+                        VI.createByString('-45 deg'))
     ei.participantBodies = [body]
-    hc.features.extrudeFeatures.add(ei).name = 'wire slots'
-    # screw holes (M3 x 6 nylon into the bosses) + head / driver access from above
-    sk = hc.sketches.add(plane_z(hc, S.BOSS_TOP + S.PLATE_T)); sk.name = 'screw holes'
-    for sx in (-1, 1):
-        for sy in (-1, 1):
-            sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(sx * S.BOSS_XY[0], sy * S.BOSS_XY[1], S.BOSS_TOP + S.PLATE_T)), S.SCREW_HOLE / 20.0)
-    ext(hc, sk, -S.PLATE_T, CUT, body, 'screw holes', all_profiles(sk))
-    sk = hc.sketches.add(plane_z(hc, S.BOSS_TOP + S.PLATE_T)); sk.name = 'head access'
-    for sx in (-1, 1):
-        for sy in (-1, 1):
-            sk.sketchCurves.sketchCircles.addByCenterRadius(sk.modelToSketchSpace(P(sx * S.BOSS_XY[0], sy * S.BOSS_XY[1], S.BOSS_TOP + S.PLATE_T)), S.HEAD_ACCESS / 20.0)
-    ext(hc, sk, S.Z_TOP - S.BOSS_TOP - S.PLATE_T + 2.0, CUT, body, 'head access', all_profiles(sk))
-    # snap arms: top block + lip with lead-in on the +-y walls, then the two slits that free each arm
-    sk = hc.sketches.add(plane_x(hc, S.SNAP_X[0])); sk.name = 'snap lips'
-    yi, yo = S.POCKET[1] / 2, S.TUB[1] / 2
+    hc.features.extrudeFeatures.add(ei).name = 'M6 countersinks'
+    # snap tabs: slot behind each arm + slits at its ends (cut), then the lip with its lead-in on the arm (join)
+    yi = S.POCKET[1] / 2
+    yo = yi + S.TAB_T + S.TAB_GAP
+    sk = hc.sketches.add(plane_z(hc, B['z1'])); sk.name = 'tab slots'
+    for s_ in (1, -1):
+        for (xa, xb) in S.TABS_X:
+            for (q0, q1) in (((xa, s_ * (yi + S.TAB_T)), (xb, s_ * yo)),
+                             ((xa - S.TAB_SLIT, s_ * yi), (xa, s_ * yo)),
+                             ((xb, s_ * yi), (xb + S.TAB_SLIT, s_ * yo))):
+                sk.sketchCurves.sketchLines.addTwoPointRectangle(sk.modelToSketchSpace(P(q0[0], q0[1], B['z1'])),
+                                                                 sk.modelToSketchSpace(P(q1[0], q1[1], B['z1'])))
+    ext(hc, sk, -(B['z1'] - S.TAB_Z0), CUT, body, 'tab slots', all_profiles(sk))
     zt, zl = S.Z_TOP, S.Z_TOP + S.LIP_GAP
-    for s in (1, -1):
-        poly(sk, [(S.SNAP_X[0], s * yo, zt), (S.SNAP_X[0], s * yo, zl + S.LIP_H), (S.SNAP_X[0], s * yi, zl + S.LIP_H),
-                  (S.SNAP_X[0], s * (yi - S.LIP_IN), zl), (S.SNAP_X[0], s * yi, zl), (S.SNAP_X[0], s * yi, zt)])
-    ext(hc, sk, S.SNAP_X[1] - S.SNAP_X[0], JOIN, body, 'snap lips', all_profiles(sk))
-    sk = hc.sketches.add(plane_z(hc, S.SNAP_Z0)); sk.name = 'snap slits'
-    for s in (1, -1):
-        for (xa, xb) in ((S.SNAP_X[0] - S.SNAP_SLIT, S.SNAP_X[0]), (S.SNAP_X[1], S.SNAP_X[1] + S.SNAP_SLIT)):
-            a, b = sk.modelToSketchSpace(P(xa, s * (S.WELL[1] / 2 - 0.3), S.SNAP_Z0)), sk.modelToSketchSpace(P(xb, s * (yo + 1.0), S.SNAP_Z0))
-            sk.sketchCurves.sketchLines.addTwoPointRectangle(a, b)
-    ext(hc, sk, S.Z_TOP + S.LIP_GAP + S.LIP_H - S.SNAP_Z0 + 1.0, CUT, body, 'snap slits', all_profiles(sk))
+    for (xa, xb) in S.TABS_X:
+        sk = hc.sketches.add(plane_x(hc, xa)); sk.name = 'tab lips x %.1f' % xa
+        for s_ in (1, -1):
+            poly(sk, [(xa, s_ * (yi + S.TAB_T), zt), (xa, s_ * (yi + S.TAB_T), zl + S.LIP_H), (xa, s_ * yi, zl + S.LIP_H),
+                      (xa, s_ * (yi - S.LIP_IN), zl), (xa, s_ * yi, zl), (xa, s_ * yi, zt)])
+        ext(hc, sk, xb - xa, JOIN, body, 'tab lips x %.1f' % xa, all_profiles(sk))
     body.appearance = col('VRC holder PA12 grey', (150, 150, 146), 'Plastic - Matte (Gray)')
     try:
         mat = app.materialLibraries.itemByName('Fusion Material Library').materials.itemByName('Nylon 12')
@@ -290,7 +316,8 @@ if MODE == 'build':
             if v > 1e-4:
                 mclash['%s / %s | %s' % (b.name, n2, b2.name)] = round(v, 4)
     REPORT['module_clash_mm3'] = mclash
-    REPORT['screw'] = 'M3 x 6 nylon: plate %.1f under the head -> %.1f mm of thread in the 4.5 mm tapped boss' % (S.PLATE_T, 6 - S.PLATE_T)
+    REPORT['screw'] = '%s: head flush at z %.1f, %.1f mm of thread from the boss top (z %.1f); tap drill D%.1f x %.1f deep (%s)' % (
+        S.SCREW_PN, S.Z_TOP, S.SCREW_LEN - (S.Z_TOP - S.FLOOR_Z - S.BOSS2_H), S.FLOOR_Z + S.BOSS2_H, S.PILOT_D, S.PILOT_DEPTH, S.TAP)
 
     # ---------------- exports
     if not globals().get('EXPORT', True):
@@ -308,6 +335,7 @@ if MODE == 'build':
         files[os.path.basename(path)] = os.path.getsize(path)
     step(os.path.join(OUT, 'VRC_part_VRC-Board-Holder.step'), hc)
     step(os.path.join(OUT, 'VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step'), mc)
+    step(os.path.join(OUT, 'VRC_part_VRC-Body.step'), bc)
     stl = em.createSTLExportOptions(ho, os.path.join(OUT, 'VRC_part_VRC-Board-Holder.stl'))
     stl.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementHigh
     stl.isBinaryFormat = True
@@ -319,7 +347,8 @@ if MODE == 'build':
     REPORT['files'] = files
     if globals().get('SAVE', True) and not (clash or mclash) and hb.lumps.count == 1 and hc.bRepBodies.count == 1:
         try:
-            REPORT['saved'] = doc.save('VRC board holder (Dan K7 = A, OPEN-ITEMS row 97)')
+            REPORT['saved'] = doc.save('VRC board holder v2 (Dan M9, R126): one extruded block, flush board, 4 snap tabs, 2 x M6 csk; '
+                                       'body: 2 M6 bosses with D5.0 tap drill, the 4 M3 bosses suppressed')
         except Exception as e:
             REPORT['saved'] = 'FAILED: %s' % e
     else:
