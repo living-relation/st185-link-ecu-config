@@ -37,6 +37,7 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 ## Repo hygiene + docs
 - Every wake: run `powershell -File tools\hygiene.ps1` in the main checkout (add `-WhatIf` to preview). It fetches --prune, fast-forwards main, removes merged worktrees and their local branches that no session is using, and deletes empty leftover folders (R118). Sessions never remove their own worktree. Never force-push. The script has no skip list: to protect a worktree, `git worktree lock` it before the run and `git worktree unlock` it after.
 - After answers and finished runs, make sure OPEN-ITEMS (incl. Needs Dan), DECISIONS and the research hub are updated.
+- Who updates the hub: GitHub rebuilds the page on every merge; each session updates OPEN-ITEMS / DECISIONS in its ship step; Dispatch refreshes the Needs-Dan rows and the sessions strip (`docs/status/hub.json`, via a code session) after every Dan answer and at least every few check-ins.
 - Every new Dan rule goes into DECISIONS "Binding rules from Daniel" the same day (Dispatch-only rules go in this file).
 
 ## Facts to remember
