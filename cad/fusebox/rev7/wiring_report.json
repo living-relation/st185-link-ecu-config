@@ -1,5 +1,4 @@
 {
- "source": "cad/fusebox/src/render_wired_rev7.py in Fusion (ST185_fusebox_rev7, not saved), 2026-10-15 (R101 tightened: only the floating pieces Dan marked)",
  "warn": [
   "w_hl_86_cp: segment 2 too short for its bends (13.4 < 14.8)"
  ],
@@ -73,10 +72,6 @@
    [
     "w_pmu_hl_cp",
     "w_horn_30_cp"
-   ],
-   [
-    "w_pmu_hr_cp",
-    "w_fb_k_eps_en_30_cp"
    ],
    [
     "w_pmu_hr_cp",
@@ -185,6 +180,10 @@
    [
     "w_k_eps_en_87_cp",
     "w_horn_30_cp"
+   ],
+   [
+    "w_k_eps_en_87_cp",
+    "w_horn_85_cp"
    ],
    [
     "w_hl_30_cp",

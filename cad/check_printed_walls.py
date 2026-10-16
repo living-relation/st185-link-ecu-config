@@ -8,6 +8,12 @@ less. check all boxes for floating or nearly floating features or cantilevers at
      piece (< 3 mm) that meets the body in ONE place only is a cantilever attached by less than 3 mm (a thin wall held at two or more
      places, or a part that is all thin like a cover or pan, is a wall and is left to W); a thick piece that meets the main body only
      through thin material is attached by less than 3 mm too.
+  Covers, belly pans and the R1 clip are shells of the R73 2.5 / 2.0 wall (no >= 3 mm body to hang anything from): A does not apply,
+  W checks them. A thin piece standing less than SKIN mm proud of the >= 3 mm body is the voxel skin of a sloped or tapered face (the
+  angular legs), not a cantilever, and is not listed (the count is kept as attach_skin).
+EXEMPT (R127 sweep, Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of the parts"): the
+build records a box round every spot that has to stay thin (fusebox_report.json "wall_exempt", reasons in spec.WALL_EXEMPT); a W piece
+or A spot inside one is not listed but counted under its name ("exempt").
 Writes cad/fusebox/rev7/wall_check.json (tracked; check_printed_solid.py S4 / S5 reads it, CI has no STL) and prints every spot.
 Run in WSL with the handbuilt-models venv (trimesh, shapely, scipy, PIL), from the repo root, --src = the checkout with the STLs:
     ~/projects/handbuilt-models/.venv/bin/python cad/check_printed_walls.py --src /mnt/c/projects/active/st185-link-ecu-config
@@ -23,6 +29,9 @@ WALL, ATTACH = 1.95, 3.0          # mm: fail at or under WALL; attachment under 
 STEP, PITCH = 0.5, 0.2            # mm: section spacing (W), voxel size (A)
 MIN_AREA = 0.3                    # mm2: smaller W pieces in a section are tessellation noise on curved faces
 MIN_VOL = 2.0                     # mm3: smaller A pieces are voxel noise
+SNAP = 1e-4                       # mm: section segment ends closer than this are one point
+SKIN = 1.5                        # mm: a thin piece must stand at least this far out of the >= 3 mm body to be a cantilever
+SHELLS = ('_Cover_', '_Pan_', '_Retainer_')
 FUSEBOX = 'cad/fusebox/rev7'
 PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
@@ -39,22 +48,46 @@ def section(m, axis, c):
     if len(segs) == 0:
         return None
     k = [i for i in range(3) if i != axis]
-    lines = [LineString(s[:, k].round(5)) for s in segs if np.linalg.norm(s[0] - s[1]) > 1e-7]
+    # R127 sweep: snap segment ends that are the same mesh point (within SNAP) to one point - rounding alone left a ring open now and
+    # then, and polygonize then dropped that whole outline from the section (whole layers of a solid leg went missing in A)
+    from scipy.spatial import cKDTree
+    pts = segs[:, :, k].reshape(-1, 2)
+    par = np.arange(len(pts))
+    for i, j in sorted(cKDTree(pts).query_pairs(SNAP)):
+        ri, rj = i, j
+        while par[ri] != ri:
+            ri = par[ri]
+        while par[rj] != rj:
+            rj = par[rj]
+        if ri != rj:
+            par[max(ri, rj)] = min(ri, rj)
+    for i in range(len(par)):
+        r = i
+        while par[r] != r:
+            r = par[r]
+        par[i] = r
+    pts = pts[par].reshape(-1, 2, 2)
+    lines = [LineString(q) for q in pts if np.linalg.norm(q[0] - q[1]) > 1e-9]
     region = None
     for p in polygonize(lines):
         p = Polygon(p.exterior)
         region = p if region is None else region.symmetric_difference(p)      # even-odd: holes come out
-    return None if region is None or region.is_empty else region.buffer(0)
+    if region is None or region.is_empty:
+        return None
+    # spikes / slits under 0.04 mm where two cut faces of the solid meet (tessellation, 0.01 cut overlaps) are below what MJF can
+    # print (~0.08): a 0.02 opening and closing removes them
+    return region.buffer(0).buffer(-0.02, join_style=2).buffer(0.04, join_style=2).buffer(-0.02, join_style=2)
 
 
 def thin_pieces(region, r=WALL / 2):
     opened = region.buffer(-r, join_style=2, mitre_limit=2.0).buffer(r, join_style=2, mitre_limit=2.0)
-    thin = region.difference(opened)
+    thin = region.difference(opened).buffer(-0.01, join_style=2).buffer(0.01, join_style=2)   # drop round-off slivers along shared edges
     return [g for g in getattr(thin, 'geoms', [thin]) if g.geom_type == 'Polygon' and g.area >= MIN_AREA]
 
 
-def walls(m):
-    """W: [(x0, x1, y0, y1, z0, z1, n sections, min width estimate)] 3-D spots thinner than WALL."""
+def walls(m, allow=(), seen=None):
+    """W: [(x0, x1, y0, y1, z0, z1, n sections, min width estimate)] 3-D spots thinner than WALL. A piece inside an `allow` box
+    (key, box) is left out and counted in seen[key]."""
     lo, hi = m.bounds
     pcs = []
     for axis in range(3):
@@ -68,6 +101,11 @@ def walls(m):
                 bb = [0.0] * 6
                 bb[2 * k[0]], bb[2 * k[0] + 1], bb[2 * k[1]], bb[2 * k[1] + 1] = b[0], b[2], b[1], b[3]
                 bb[2 * axis], bb[2 * axis + 1] = c - STEP / 2, c + STEP / 2
+                k_ = next((key for (key, b) in allow if inside(bb, b)), None)
+                if k_ is not None:
+                    if seen is not None:
+                        seen[k_] = seen.get(k_, 0) + 1
+                    continue
                 pcs.append(bb)
     return [g for g in cluster(pcs) if g[6] >= 2]     # a real wall shows in 2+ sections; 1 = a plane grazing a curved face
 
@@ -121,6 +159,9 @@ def voxels(m):
     return vol, org
 
 
+skin = [0]
+
+
 def attachments(m):
     """A: [(kind, x0, x1, y0, y1, z0, z1, volume mm3)] features attached by less than ATTACH."""
     from scipy import ndimage
@@ -163,12 +204,35 @@ def attachments(m):
             patches.setdefault(t, set()).add(p)
         tsz = np.bincount(tl.ravel())
         objs = ndimage.find_objects(tl)
+        skin[0] = 0
+        pad = int(SKIN / PITCH) + 2
+
+        def proud(t):           # the parts of thin piece t standing >= SKIN out of the >= 3 mm body: [(slices, volume mm3)]
+            sl = tuple(slice(max(0, q.start - pad), q.stop + pad) for q in objs[t - 1])
+            pm = (tl[sl] == t) & (ndimage.distance_transform_edt(~core[sl]) * PITCH >= SKIN)
+            lab, n = ndimage.label(pm)
+            szs = np.bincount(lab.ravel())
+            return [(tuple(slice(sl[d].start + o[d].start, sl[d].start + o[d].stop) for d in range(3)), szs[i] * PITCH ** 3)
+                    for i, o in enumerate(ndimage.find_objects(lab), 1) if szs[i] * PITCH ** 3 >= MIN_VOL]
         for t, ps in patches.items():
             v = tsz[t] * PITCH ** 3
-            if len(ps) == 1 and v >= MIN_VOL:
-                a, b = bbox(objs[t - 1])
-                out.append(('thin piece held at one place (cantilever)', a[0], b[0], a[1], b[1], a[2], b[2], round(v, 1)))
+            if len(ps) != 1 or v < MIN_VOL:
+                continue
+            pr = proud(t)
+            if not pr:
+                skin[0] += 1
+                continue
+            for (o, pv) in pr:       # each proud part on its own (a long skin piece is located by the bits that stand out)
+                a, b = bbox(o)
+                out.append(('thin piece held at one place (cantilever)', a[0], b[0], a[1], b[1], a[2], b[2], round(pv, 1)))
     return out
+
+
+def exempt(name, src):
+    """R127 sweep: (key, box) of every spot the build recorded as having to stay thin (fusebox_report.json "wall_exempt")."""
+    rp = os.path.join(src, FUSEBOX, 'fusebox_report.json')
+    ex = json.load(open(rp)).get('wall_exempt', []) if os.path.isfile(rp) else []
+    return [(e['key'], e['box'], e.get('only')) for e in ex if e['part'] == name]
 
 
 def allowed(name, src):
@@ -189,8 +253,8 @@ def allowed(name, src):
     return out
 
 
-def inside(g, b):
-    return all(b[2 * d] <= g[2 * d] and g[2 * d + 1] <= b[2 * d + 1] for d in range(3))
+def inside(g, b, tol=0.0):
+    return all(b[2 * d] - tol <= g[2 * d] and g[2 * d + 1] <= b[2 * d + 1] + tol for d in range(3))
 
 
 def main():
@@ -212,15 +276,27 @@ def main():
             continue
         t0 = time.time()
         m = trimesh.load(p, force='mesh')
-        w = walls(m)
-        at = attachments(m)
         allow = allowed(name, a.src)
+        ex = exempt(name, a.src)
+        seen = {}
+        w = walls(m, [(k_, b_) for (k_, b_, o_) in ex if o_ != 'A'], seen)
+        at = None if any(k in name for k in SHELLS) else attachments(m)
+        if at:
+            keep = []
+            for x in at:
+                k_ = next((key for (key, b, o_) in ex if inside(x[1:7], b, 2 * PITCH)), None)     # voxel boxes: 2 voxels of slack
+                if k_ is None:
+                    keep.append(x)
+                else:
+                    seen['A ' + k_] = seen.get('A ' + k_, 0) + 1
+            at = keep
         w = [g for g in w if not any(inside(g, b) for (_, b) in allow)]
-        res['parts'][name] = dict(allowed=[r for (r, _) in allow], attach_checked=at is not None,volume_cm3=round(m.volume / 1000, 1),
+        res['parts'][name] = dict(allowed=[r for (r, _) in allow], attach_checked=at is not None, volume_cm3=round(m.volume / 1000, 1),
+                                  exempt=seen, attach_skin=skin[0] if at is not None else 0,
                                   walls=[dict(at=[round(v, 1) for v in g[:6]], sections=g[6]) for g in w],
                                   attach=[dict(kind=x[0], at=[round(v, 1) for v in x[1:7]], vol_mm3=x[7]) for x in (at or [])])
-        print('%s  (%.1f cm3, %.0f s): %d thin-wall spot(s), %s attachment spot(s)%s' % (name, m.volume / 1000, time.time() - t0, len(w),
-              'n/a (all thin)' if at is None else len(at), ('; allowed: ' + ', '.join(r for (r, _) in allow)) if allow else ''))
+        print('%s  (%.1f cm3, %.0f s): %d thin-wall spot(s), %s attachment spot(s)%s; exempt %s' % (name, m.volume / 1000, time.time() - t0, len(w),
+              'n/a (shell / all thin)' if at is None else len(at), ('; allowed: ' + ', '.join(r for (r, _) in allow)) if allow else '', seen))
         for g in w[:40]:
             print('   W  x %.1f..%.1f  y %.1f..%.1f  z %.1f..%.1f  (%d sections)' % tuple(g))
         for x in (at or [])[:40]:
