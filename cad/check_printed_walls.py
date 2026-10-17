@@ -20,9 +20,9 @@ cad/fusebox/src/wall_classes.py - structural (check_printed_solid.py S4 / S5 fai
 for Dan, never failed, never dropped). Each part also records its x / y / z 'bounds' and, for a base, its deck 'outline' (the map needs
 them); the flag list for Dan goes to cad/fusebox/rev7/WALL-FLAGS.md.
 Writes cad/fusebox/rev7/wall_check.json (tracked; check_printed_solid.py S4 / S5 reads it, CI has no STL) and prints every spot.
-Run in WSL with the handbuilt-models venv (trimesh, shapely, scipy, PIL), from the repo root, --src = the checkout with the STLs,
+Run in WSL with the handbuilt-cad venv (trimesh, shapely, scipy, PIL), from the repo root, --src = the checkout with the STLs,
 --out = the checkout to write into (default --src):
-    ~/projects/handbuilt-models/.venv/bin/python cad/check_printed_walls.py --src /mnt/c/projects/active/st185-link-ecu-config
+    ~/projects/handbuilt-cad/.venv/bin/python cad/check_printed_walls.py --src /mnt/c/projects/active/st185-link-ecu-config
 --classify re-sorts the spots already in wall_check.json (after a FEATURES / map change) and records bounds / outline from the STLs,
 without re-running W / A.
 Claude Code, 2026-10-15.
