@@ -77,36 +77,6 @@
       },
       "color": "White",
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "w29_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3630
-          }
-        },
-        {
-          "id": "w29_e_lp2",
-          "schematicPosition": {
-            "x": -60,
-            "y": 3630
-          }
-        },
-        {
-          "id": "w29_e_lp3",
-          "schematicPosition": {
-            "x": -60,
-            "y": 750
-          }
-        },
-        {
-          "id": "w29_e_lp4",
-          "schematicPosition": {
-            "x": -30,
-            "y": 750
-          }
-        }
-      ],
       "identColors": [
         "White",
         "White"
@@ -124,36 +94,6 @@
       },
       "color": "White",
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "w32_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3660
-          }
-        },
-        {
-          "id": "w32_e_lp2",
-          "schematicPosition": {
-            "x": -120,
-            "y": 3660
-          }
-        },
-        {
-          "id": "w32_e_lp3",
-          "schematicPosition": {
-            "x": -120,
-            "y": 570
-          }
-        },
-        {
-          "id": "w32_e_lp4",
-          "schematicPosition": {
-            "x": -30,
-            "y": 570
-          }
-        }
-      ],
       "identColors": [
         "White",
         "Yellow"
@@ -171,36 +111,6 @@
       },
       "color": "White",
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "w35_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3690
-          }
-        },
-        {
-          "id": "w35_e_lp2",
-          "schematicPosition": {
-            "x": -180,
-            "y": 3690
-          }
-        },
-        {
-          "id": "w35_e_lp3",
-          "schematicPosition": {
-            "x": -180,
-            "y": 210
-          }
-        },
-        {
-          "id": "w35_e_lp4",
-          "schematicPosition": {
-            "x": -30,
-            "y": 210
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White"
@@ -218,36 +128,6 @@
       },
       "color": "Yellow",
       "partId": "m16_20_4",
-      "layoutPoints": [
-        {
-          "id": "w203_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3720
-          }
-        },
-        {
-          "id": "w203_e_lp2",
-          "schematicPosition": {
-            "x": -150,
-            "y": 3720
-          }
-        },
-        {
-          "id": "w203_e_lp3",
-          "schematicPosition": {
-            "x": -150,
-            "y": 360
-          }
-        },
-        {
-          "id": "w203_e_lp4",
-          "schematicPosition": {
-            "x": 30,
-            "y": 360
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue",
@@ -266,36 +146,6 @@
       },
       "color": "Yellow",
       "partId": "m16_20_4",
-      "layoutPoints": [
-        {
-          "id": "w204_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3750
-          }
-        },
-        {
-          "id": "w204_e_lp2",
-          "schematicPosition": {
-            "x": -210,
-            "y": 3750
-          }
-        },
-        {
-          "id": "w204_e_lp3",
-          "schematicPosition": {
-            "x": -210,
-            "y": 30
-          }
-        },
-        {
-          "id": "w204_e_lp4",
-          "schematicPosition": {
-            "x": -30,
-            "y": 30
-          }
-        }
-      ],
       "identColors": [
         "White",
         "Blue"
@@ -314,36 +164,6 @@
       "color": "Red",
       "partId": "m16_16_20",
       "stripeColor": "Black",
-      "layoutPoints": [
-        {
-          "id": "w_sw7_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3780
-          }
-        },
-        {
-          "id": "w_sw7_e_lp2",
-          "schematicPosition": {
-            "x": -90,
-            "y": 3780
-          }
-        },
-        {
-          "id": "w_sw7_e_lp3",
-          "schematicPosition": {
-            "x": -90,
-            "y": 870
-          }
-        },
-        {
-          "id": "w_sw7_e_lp4",
-          "schematicPosition": {
-            "x": 960,
-            "y": 870
-          }
-        }
-      ],
       "identColors": [
         "White"
       ]
@@ -360,29 +180,6 @@
         "handle": "c1"
       },
       "partId": "m16_20_3",
-      "layoutPoints": [
-        {
-          "id": "w207_lp1",
-          "schematicPosition": {
-            "x": 1500,
-            "y": 1530
-          }
-        },
-        {
-          "id": "w207_lp2",
-          "schematicPosition": {
-            "x": 1500,
-            "y": 720
-          }
-        },
-        {
-          "id": "w207_lp3",
-          "schematicPosition": {
-            "x": 210,
-            "y": 720
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue"
@@ -400,36 +197,6 @@
         "handle": "c1"
       },
       "partId": "m16_20_3",
-      "layoutPoints": [
-        {
-          "id": "w208_lp1",
-          "schematicPosition": {
-            "x": 1500,
-            "y": 1560
-          }
-        },
-        {
-          "id": "w208_lp2",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 1560
-          }
-        },
-        {
-          "id": "w208_lp3",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 540
-          }
-        },
-        {
-          "id": "w208_lp4",
-          "schematicPosition": {
-            "x": 210,
-            "y": 540
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue"
@@ -447,36 +214,6 @@
         "handle": "c1"
       },
       "partId": "m16_20_3",
-      "layoutPoints": [
-        {
-          "id": "w209_lp1",
-          "schematicPosition": {
-            "x": 1500,
-            "y": 1590
-          }
-        },
-        {
-          "id": "w209_lp2",
-          "schematicPosition": {
-            "x": 1260,
-            "y": 1590
-          }
-        },
-        {
-          "id": "w209_lp3",
-          "schematicPosition": {
-            "x": 1260,
-            "y": 180
-          }
-        },
-        {
-          "id": "w209_lp4",
-          "schematicPosition": {
-            "x": 210,
-            "y": 180
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue"
@@ -495,22 +232,6 @@
       },
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w8_lp1",
-          "schematicPosition": {
-            "x": 210,
-            "y": 390
-          }
-        },
-        {
-          "id": "w8_lp2",
-          "schematicPosition": {
-            "x": 2250,
-            "y": 390
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue",
@@ -530,43 +251,6 @@
       },
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w10_lp1",
-          "schematicPosition": {
-            "x": 210,
-            "y": 60
-          }
-        },
-        {
-          "id": "w10_lp2",
-          "schematicPosition": {
-            "x": 240,
-            "y": 60
-          }
-        },
-        {
-          "id": "w10_lp3",
-          "schematicPosition": {
-            "x": 240,
-            "y": 150
-          }
-        },
-        {
-          "id": "w10_lp4",
-          "schematicPosition": {
-            "x": 2220,
-            "y": 150
-          }
-        },
-        {
-          "id": "w10_lp5",
-          "schematicPosition": {
-            "x": 2220,
-            "y": 1740
-          }
-        }
-      ],
       "identColors": [
         "White",
         "Blue"
@@ -585,29 +269,6 @@
       },
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w30_lp1",
-          "schematicPosition": {
-            "x": 210,
-            "y": 780
-          }
-        },
-        {
-          "id": "w30_lp2",
-          "schematicPosition": {
-            "x": 2190,
-            "y": 780
-          }
-        },
-        {
-          "id": "w30_lp3",
-          "schematicPosition": {
-            "x": 2190,
-            "y": 2010
-          }
-        }
-      ],
       "identColors": [
         "White",
         "White"
@@ -626,29 +287,6 @@
       },
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w33_lp1",
-          "schematicPosition": {
-            "x": 210,
-            "y": 600
-          }
-        },
-        {
-          "id": "w33_lp2",
-          "schematicPosition": {
-            "x": 2160,
-            "y": 600
-          }
-        },
-        {
-          "id": "w33_lp3",
-          "schematicPosition": {
-            "x": 2160,
-            "y": 2280
-          }
-        }
-      ],
       "identColors": [
         "White",
         "Yellow"
@@ -667,29 +305,6 @@
       },
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w36_lp1",
-          "schematicPosition": {
-            "x": 210,
-            "y": 240
-          }
-        },
-        {
-          "id": "w36_lp2",
-          "schematicPosition": {
-            "x": 2280,
-            "y": 240
-          }
-        },
-        {
-          "id": "w36_lp3",
-          "schematicPosition": {
-            "x": 2280,
-            "y": 1980
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White"
@@ -727,29 +342,6 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w_gnd_b_e_c21_lp1",
-          "schematicPosition": {
-            "x": 720,
-            "y": 3840
-          }
-        },
-        {
-          "id": "w_gnd_b_e_c21_lp2",
-          "schematicPosition": {
-            "x": 720,
-            "y": 3870
-          }
-        },
-        {
-          "id": "w_gnd_b_e_c21_lp3",
-          "schematicPosition": {
-            "x": 2250,
-            "y": 3870
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue"
@@ -768,29 +360,6 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w_gnd_b_e_c19_lp1",
-          "schematicPosition": {
-            "x": 720,
-            "y": 3810
-          }
-        },
-        {
-          "id": "w_gnd_b_e_c19_lp2",
-          "schematicPosition": {
-            "x": 2220,
-            "y": 3810
-          }
-        },
-        {
-          "id": "w_gnd_b_e_c19_lp3",
-          "schematicPosition": {
-            "x": 2220,
-            "y": 2100
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue"
@@ -808,29 +377,6 @@
       },
       "color": "Red",
       "partId": "m16_14_2",
-      "layoutPoints": [
-        {
-          "id": "w_lam12_be14_lp1",
-          "schematicPosition": {
-            "x": 720,
-            "y": 4350
-          }
-        },
-        {
-          "id": "w_lam12_be14_lp2",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 4350
-          }
-        },
-        {
-          "id": "w_lam12_be14_lp3",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 2100
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White",
@@ -849,43 +395,6 @@
       },
       "color": "Red",
       "partId": "m16_20_2",
-      "layoutPoints": [
-        {
-          "id": "w_lam12_be_lp1",
-          "schematicPosition": {
-            "x": 960,
-            "y": 2130
-          }
-        },
-        {
-          "id": "w_lam12_be_lp2",
-          "schematicPosition": {
-            "x": 1260,
-            "y": 2130
-          }
-        },
-        {
-          "id": "w_lam12_be_lp3",
-          "schematicPosition": {
-            "x": 1260,
-            "y": 4710
-          }
-        },
-        {
-          "id": "w_lam12_be_lp4",
-          "schematicPosition": {
-            "x": 870,
-            "y": 4710
-          }
-        },
-        {
-          "id": "w_lam12_be_lp5",
-          "schematicPosition": {
-            "x": 870,
-            "y": 4740
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White",
@@ -904,29 +413,6 @@
       },
       "color": "Black",
       "partId": "m16_14_0",
-      "layoutPoints": [
-        {
-          "id": "w_lamg_be14_lp1",
-          "schematicPosition": {
-            "x": 1080,
-            "y": 2220
-          }
-        },
-        {
-          "id": "w_lamg_be14_lp2",
-          "schematicPosition": {
-            "x": 1080,
-            "y": 4380
-          }
-        },
-        {
-          "id": "w_lamg_be14_lp3",
-          "schematicPosition": {
-            "x": 720,
-            "y": 4380
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White",
@@ -945,43 +431,6 @@
       },
       "color": "Black",
       "partId": "m16_20_0",
-      "layoutPoints": [
-        {
-          "id": "w_lamg_be_lp1",
-          "schematicPosition": {
-            "x": 870,
-            "y": 4620
-          }
-        },
-        {
-          "id": "w_lamg_be_lp2",
-          "schematicPosition": {
-            "x": 990,
-            "y": 4620
-          }
-        },
-        {
-          "id": "w_lamg_be_lp3",
-          "schematicPosition": {
-            "x": 990,
-            "y": 3300
-          }
-        },
-        {
-          "id": "w_lamg_be_lp4",
-          "schematicPosition": {
-            "x": 960,
-            "y": 3300
-          }
-        },
-        {
-          "id": "w_lamg_be_lp5",
-          "schematicPosition": {
-            "x": 960,
-            "y": 2280
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White",
@@ -1001,36 +450,6 @@
       "color": "Red",
       "stripeColor": "Blue",
       "partId": "m16_16_26",
-      "layoutPoints": [
-        {
-          "id": "w_rev_feed_e_lp1",
-          "schematicPosition": {
-            "x": 300,
-            "y": 3360
-          }
-        },
-        {
-          "id": "w_rev_feed_e_lp2",
-          "schematicPosition": {
-            "x": -30,
-            "y": 3360
-          }
-        },
-        {
-          "id": "w_rev_feed_e_lp3",
-          "schematicPosition": {
-            "x": -30,
-            "y": 900
-          }
-        },
-        {
-          "id": "w_rev_feed_e_lp4",
-          "schematicPosition": {
-            "x": 960,
-            "y": 900
-          }
-        }
-      ],
       "identColors": [
         "White"
       ]
@@ -1668,7 +1087,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 2700,
+        "x": 2610,
         "y": 300
       },
       "schematicPosition": {
@@ -1696,8 +1115,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2190,
-        "y": 780
+        "x": 2670,
+        "y": 2430
       },
       "schematicPosition": {
         "x": 0,
@@ -1724,8 +1143,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2970,
-        "y": 150
+        "x": 1860,
+        "y": 210
       },
       "schematicPosition": {
         "x": 0,
@@ -1752,8 +1171,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2280,
-        "y": 690
+        "x": 2670,
+        "y": 1770
       },
       "schematicPosition": {
         "x": 0,
@@ -1777,8 +1196,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2220,
-        "y": 840
+        "x": 3030,
+        "y": 2700
       },
       "schematicPosition": {
         "x": 60,
@@ -1805,8 +1224,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2790,
-        "y": 450
+        "x": 2310,
+        "y": 150
       },
       "schematicPosition": {
         "x": 990,
@@ -1830,8 +1249,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2760,
-        "y": 900
+        "x": 2190,
+        "y": 2400
       },
       "schematicPosition": {
         "x": 0,
@@ -1849,8 +1268,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 3330,
-        "y": 240
+        "x": 1410,
+        "y": 210
       },
       "cavities": [
         {
@@ -1889,8 +1308,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 3060,
-        "y": 960
+        "x": 1920,
+        "y": 2550
       },
       "schematicPosition": {
         "x": 60,
@@ -1942,8 +1361,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2340,
-        "y": 60
+        "x": 2490,
+        "y": -1980
       },
       "schematicPosition": {
         "x": 1530,
@@ -1958,8 +1377,8 @@
       "signal": "ETB motor + -> ETB c4",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 210
+        "x": 2910,
+        "y": -1620
       },
       "schematicPosition": {
         "x": 480,
@@ -1973,8 +1392,8 @@
       "signal": "ETB motor - -> ETB c1",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 150
+        "x": 2850,
+        "y": -1680
       },
       "schematicPosition": {
         "x": 480,
@@ -1988,8 +1407,8 @@
       "signal": "CAN H Lambda -> splice CANH LAM",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 540
+        "x": 2640,
+        "y": -1860
       },
       "schematicPosition": {
         "x": 480,
@@ -2003,8 +1422,8 @@
       "signal": "CAN L Lambda -> splice CANL LAM",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 630
+        "x": 2580,
+        "y": -1920
       },
       "schematicPosition": {
         "x": 480,
@@ -2018,8 +1437,8 @@
       "signal": "Lambda 12V -> CAN-LAMBDA c1",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 390
+        "x": 2760,
+        "y": -1740
       },
       "schematicPosition": {
         "x": 480,
@@ -2033,8 +1452,8 @@
       "signal": "Lambda GND -> CAN-LAMBDA c2",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 450
+        "x": 2700,
+        "y": -1800
       },
       "schematicPosition": {
         "x": 480,
@@ -2048,8 +1467,8 @@
       "signal": "ETB screen -> A-engine open",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 270
+        "x": 3030,
+        "y": -1500
       },
       "schematicPosition": {
         "x": 480,
@@ -2063,8 +1482,8 @@
       "signal": "Lambda screen -> CAN open",
       "width": 390,
       "layoutPosition": {
-        "x": 2340,
-        "y": 330
+        "x": 2970,
+        "y": -1560
       },
       "schematicPosition": {
         "x": 480,
@@ -3621,8 +3040,8 @@
       "id": "sp_gndout_b_eng",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1980,
-        "y": 870
+        "x": 3090,
+        "y": 2610
       },
       "schematicPosition": {
         "x": 2250,
@@ -3635,8 +3054,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_570",
       "layoutPosition": {
-        "x": 1980,
-        "y": 660
+        "x": 3090,
+        "y": 1080
       },
       "schematicPosition": {
         "x": 2250,
@@ -3648,8 +3067,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_870",
       "layoutPosition": {
-        "x": 2820,
-        "y": 180
+        "x": 1860,
+        "y": 360
       },
       "schematicPosition": {
         "x": 2250,
@@ -3661,8 +3080,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_750",
       "layoutPosition": {
-        "x": 1980,
-        "y": 300
+        "x": 3090,
+        "y": 720
       },
       "schematicPosition": {
         "x": 930,
@@ -3674,8 +3093,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_750",
       "layoutPosition": {
-        "x": 2010,
-        "y": 240
+        "x": 2970,
+        "y": 780
       },
       "schematicPosition": {
         "x": 930,
@@ -3916,190 +3335,190 @@
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 2520,
-        "y": 960
+        "x": 2550,
+        "y": 2640
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
-        "x": 2610,
-        "y": 960
+        "x": 2460,
+        "y": 2640
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
-        "x": 2700,
-        "y": 960
+        "x": 2370,
+        "y": 2640
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
-        "x": 2790,
-        "y": 960
+        "x": 2280,
+        "y": 2640
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
-        "x": 2880,
-        "y": 960
+        "x": 1920,
+        "y": 2640
       }
     },
     {
       "id": "be_330",
       "layoutPosition": {
-        "x": 2640,
-        "y": 900
+        "x": 2190,
+        "y": 2490
       }
     },
     {
       "id": "be_360",
       "layoutPosition": {
-        "x": 2520,
-        "y": 900
+        "x": 2550,
+        "y": 2490
       }
     },
     {
       "id": "bp_390",
       "layoutPosition": {
-        "x": 2430,
-        "y": 900
+        "x": 2640,
+        "y": 2490
       }
     },
     {
       "id": "be_420",
       "layoutPosition": {
-        "x": 2310,
-        "y": 960
+        "x": 2760,
+        "y": 2640
       }
     },
     {
       "id": "be_450",
       "layoutPosition": {
-        "x": 2220,
-        "y": 960
+        "x": 2850,
+        "y": 2640
       }
     },
     {
       "id": "be_480",
       "layoutPosition": {
-        "x": 2040,
-        "y": 870
+        "x": 3030,
+        "y": 2610
       }
     },
     {
       "id": "be_510",
       "layoutPosition": {
-        "x": 2040,
-        "y": 780
+        "x": 3030,
+        "y": 1740
       }
     },
     {
       "id": "be_540",
       "layoutPosition": {
-        "x": 2040,
-        "y": 720
+        "x": 3030,
+        "y": 1170
       }
     },
     {
       "id": "be_570",
       "layoutPosition": {
-        "x": 2040,
-        "y": 660
+        "x": 3030,
+        "y": 1080
       }
     },
     {
       "id": "be_600",
       "layoutPosition": {
-        "x": 2040,
-        "y": 600
+        "x": 3030,
+        "y": 1020
       }
     },
     {
       "id": "be_630",
       "layoutPosition": {
-        "x": 2040,
-        "y": 540
+        "x": 3030,
+        "y": 960
       }
     },
     {
       "id": "be_660",
       "layoutPosition": {
-        "x": 2040,
-        "y": 480
+        "x": 3030,
+        "y": 900
       }
     },
     {
       "id": "be_690",
       "layoutPosition": {
-        "x": 2040,
-        "y": 420
+        "x": 3030,
+        "y": 840
       }
     },
     {
       "id": "be_720",
       "layoutPosition": {
-        "x": 2040,
-        "y": 360
+        "x": 3030,
+        "y": 780
       }
     },
     {
       "id": "be_750",
       "layoutPosition": {
-        "x": 2040,
-        "y": 300
+        "x": 3030,
+        "y": 720
       }
     },
     {
       "id": "be_810",
       "layoutPosition": {
-        "x": 2700,
-        "y": 240
+        "x": 2310,
+        "y": 300
       }
     },
     {
       "id": "be_840",
       "layoutPosition": {
-        "x": 2790,
-        "y": 240
+        "x": 2220,
+        "y": 300
       }
     },
     {
       "id": "be_870",
       "layoutPosition": {
-        "x": 2880,
-        "y": 240
+        "x": 1860,
+        "y": 300
       }
     },
     {
       "id": "be_900",
       "layoutPosition": {
-        "x": 2970,
-        "y": 240
+        "x": 1770,
+        "y": 300
       }
     },
     {
       "id": "be_930",
       "layoutPosition": {
-        "x": 3090,
-        "y": 240
+        "x": 1410,
+        "y": 300
       }
     },
     {
       "id": "bp_at_turbospd",
       "layoutPosition": {
-        "x": 2430,
-        "y": 960
+        "x": 2640,
+        "y": 2640
       }
     },
     {
       "id": "bp_rev_sw",
       "layoutPosition": {
-        "x": 2700,
-        "y": 450
+        "x": 2310,
+        "y": 240
       }
     }
   ],

@@ -77,22 +77,6 @@
         "id": "alarm",
         "handle": "c1"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_12v_lp1",
-          "schematicPosition": {
-            "x": 630,
-            "y": 0
-          }
-        },
-        {
-          "id": "w_at_12v_lp2",
-          "schematicPosition": {
-            "x": 630,
-            "y": 30
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -111,22 +95,6 @@
         "id": "alarm",
         "handle": "c3"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_ig_lp1",
-          "schematicPosition": {
-            "x": 570,
-            "y": 90
-          }
-        },
-        {
-          "id": "w_at_ig_lp2",
-          "schematicPosition": {
-            "x": 630,
-            "y": 90
-          }
-        }
-      ],
       "identColors": [
         "White",
         "Blue",
@@ -145,36 +113,6 @@
         "id": "siren",
         "handle": "c1"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_siren_lp1",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 120
-          }
-        },
-        {
-          "id": "w_at_siren_lp2",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 120
-          }
-        },
-        {
-          "id": "w_at_siren_lp3",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 30
-          }
-        },
-        {
-          "id": "w_at_siren_lp4",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 30
-          }
-        }
-      ],
       "identColors": [
         "Blue"
       ]
@@ -191,22 +129,6 @@
         "id": "sp_park",
         "handle": "Splice"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_park_lp1",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 150
-          }
-        },
-        {
-          "id": "w_at_park_lp2",
-          "schematicPosition": {
-            "x": 1170,
-            "y": 150
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue"
@@ -224,36 +146,6 @@
         "id": "alarm",
         "handle": "c6"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_door_lp1",
-          "schematicPosition": {
-            "x": 480,
-            "y": 150
-          }
-        },
-        {
-          "id": "w_at_door_lp2",
-          "schematicPosition": {
-            "x": 570,
-            "y": 150
-          }
-        },
-        {
-          "id": "w_at_door_lp3",
-          "schematicPosition": {
-            "x": 570,
-            "y": 180
-          }
-        },
-        {
-          "id": "w_at_door_lp4",
-          "schematicPosition": {
-            "x": 630,
-            "y": 180
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue"
@@ -271,29 +163,6 @@
         "id": "alarm",
         "handle": "c7"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_hood_lp1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 180
-          }
-        },
-        {
-          "id": "w_at_hood_lp2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 210
-          }
-        },
-        {
-          "id": "w_at_hood_lp3",
-          "schematicPosition": {
-            "x": 630,
-            "y": 210
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Yellow"
@@ -311,22 +180,6 @@
         "id": "alarm",
         "handle": "c8"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_trunk_lp1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 240
-          }
-        },
-        {
-          "id": "w_at_trunk_lp2",
-          "schematicPosition": {
-            "x": 630,
-            "y": 240
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White"
@@ -344,36 +197,6 @@
         "id": "led_sts",
         "handle": "c1"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_led_lp1",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 300
-          }
-        },
-        {
-          "id": "w_at_led_lp2",
-          "schematicPosition": {
-            "x": 1230,
-            "y": 300
-          }
-        },
-        {
-          "id": "w_at_led_lp3",
-          "schematicPosition": {
-            "x": 1230,
-            "y": 270
-          }
-        },
-        {
-          "id": "w_at_led_lp4",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 270
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -390,29 +213,6 @@
         "id": "valet",
         "handle": "c1"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_valet_lp1",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 330
-          }
-        },
-        {
-          "id": "w_at_valet_lp2",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 330
-          }
-        },
-        {
-          "id": "w_at_valet_lp3",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 420
-          }
-        }
-      ],
       "identColors": [
         "White"
       ]
@@ -429,29 +229,6 @@
         "id": "alarm",
         "handle": "c12"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_shk_sig_lp1",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 630
-          }
-        },
-        {
-          "id": "w_at_shk_sig_lp2",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 630
-          }
-        },
-        {
-          "id": "w_at_shk_sig_lp3",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 360
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -470,43 +247,6 @@
         "id": "t_at_gnd",
         "handle": "Terminal"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_gnd_a1_lp1",
-          "schematicPosition": {
-            "x": 1050,
-            "y": 60
-          }
-        },
-        {
-          "id": "w_at_gnd_a1_lp2",
-          "schematicPosition": {
-            "x": 1140,
-            "y": 60
-          }
-        },
-        {
-          "id": "w_at_gnd_a1_lp3",
-          "schematicPosition": {
-            "x": 1140,
-            "y": -60
-          }
-        },
-        {
-          "id": "w_at_gnd_a1_lp4",
-          "schematicPosition": {
-            "x": 1950,
-            "y": -60
-          }
-        },
-        {
-          "id": "w_at_gnd_a1_lp5",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 0
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -525,29 +265,6 @@
         "id": "t_at_gnd",
         "handle": "Terminal"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_gnd_a2_lp1",
-          "schematicPosition": {
-            "x": 1710,
-            "y": 60
-          }
-        },
-        {
-          "id": "w_at_gnd_a2_lp2",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 60
-          }
-        },
-        {
-          "id": "w_at_gnd_a2_lp3",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 0
-          }
-        }
-      ],
       "identColors": [
         "Blue"
       ]
@@ -564,36 +281,6 @@
         "id": "t_at_gnd_b",
         "handle": "Terminal"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_gnd_b1_lp1",
-          "schematicPosition": {
-            "x": 1710,
-            "y": 600
-          }
-        },
-        {
-          "id": "w_at_gnd_b1_lp2",
-          "schematicPosition": {
-            "x": 1770,
-            "y": 600
-          }
-        },
-        {
-          "id": "w_at_gnd_b1_lp3",
-          "schematicPosition": {
-            "x": 1770,
-            "y": 90
-          }
-        },
-        {
-          "id": "w_at_gnd_b1_lp4",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 90
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -612,43 +299,6 @@
         "id": "t_at_gnd_b",
         "handle": "Terminal"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_gnd_b2_lp1",
-          "schematicPosition": {
-            "x": 1710,
-            "y": 300
-          }
-        },
-        {
-          "id": "w_at_gnd_b2_lp2",
-          "schematicPosition": {
-            "x": 1800,
-            "y": 300
-          }
-        },
-        {
-          "id": "w_at_gnd_b2_lp3",
-          "schematicPosition": {
-            "x": 1800,
-            "y": 120
-          }
-        },
-        {
-          "id": "w_at_gnd_b2_lp4",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 120
-          }
-        },
-        {
-          "id": "w_at_gnd_b2_lp5",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 90
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -665,43 +315,6 @@
         "id": "t_at_gnd_c",
         "handle": "Terminal"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_gnd_c1_lp1",
-          "schematicPosition": {
-            "x": 1590,
-            "y": 450
-          }
-        },
-        {
-          "id": "w_at_gnd_c1_lp2",
-          "schematicPosition": {
-            "x": 1890,
-            "y": 450
-          }
-        },
-        {
-          "id": "w_at_gnd_c1_lp3",
-          "schematicPosition": {
-            "x": 1890,
-            "y": 210
-          }
-        },
-        {
-          "id": "w_at_gnd_c1_lp4",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 210
-          }
-        },
-        {
-          "id": "w_at_gnd_c1_lp5",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 180
-          }
-        }
-      ],
       "identColors": [
         "White"
       ]
@@ -718,22 +331,6 @@
         "id": "shock",
         "handle": "c1"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_12v_shk_lp1",
-          "schematicPosition": {
-            "x": 1710,
-            "y": 420
-          }
-        },
-        {
-          "id": "w_at_12v_shk_lp2",
-          "schematicPosition": {
-            "x": 1710,
-            "y": 570
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -752,43 +349,6 @@
         "id": "br_w_at_immob2",
         "handle": "Terminal"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_immob2_lp1",
-          "schematicPosition": {
-            "x": 630,
-            "y": 270
-          }
-        },
-        {
-          "id": "w_at_immob2_lp2",
-          "schematicPosition": {
-            "x": 540,
-            "y": 270
-          }
-        },
-        {
-          "id": "w_at_immob2_lp3",
-          "schematicPosition": {
-            "x": 540,
-            "y": 480
-          }
-        },
-        {
-          "id": "w_at_immob2_lp4",
-          "schematicPosition": {
-            "x": 450,
-            "y": 480
-          }
-        },
-        {
-          "id": "w_at_immob2_lp5",
-          "schematicPosition": {
-            "x": 450,
-            "y": 510
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue",
@@ -807,15 +367,6 @@
         "id": "sp_at_12v",
         "handle": "Splice"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_12v_tie_lp1",
-          "schematicPosition": {
-            "x": 390,
-            "y": 0
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -834,22 +385,6 @@
         "id": "sp_ig",
         "handle": "Splice"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_ig_tie_lp1",
-          "schematicPosition": {
-            "x": 390,
-            "y": 90
-          }
-        },
-        {
-          "id": "w_at_ig_tie_lp2",
-          "schematicPosition": {
-            "x": 390,
-            "y": 60
-          }
-        }
-      ],
       "identColors": [
         "White",
         "Blue",
@@ -869,22 +404,6 @@
         "handle": "Splice"
       },
       "identLabel": "TIE-IN",
-      "layoutPoints": [
-        {
-          "id": "w_at_door_tie_lp1",
-          "schematicPosition": {
-            "x": 390,
-            "y": 180
-          }
-        },
-        {
-          "id": "w_at_door_tie_lp2",
-          "schematicPosition": {
-            "x": 390,
-            "y": 120
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Blue"
@@ -903,29 +422,6 @@
         "handle": "Splice"
       },
       "identLabel": "TIE-IN",
-      "layoutPoints": [
-        {
-          "id": "w_at_hood_tie_lp1",
-          "schematicPosition": {
-            "x": 390,
-            "y": 270
-          }
-        },
-        {
-          "id": "w_at_hood_tie_lp2",
-          "schematicPosition": {
-            "x": 450,
-            "y": 270
-          }
-        },
-        {
-          "id": "w_at_hood_tie_lp3",
-          "schematicPosition": {
-            "x": 450,
-            "y": 150
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Yellow"
@@ -944,22 +440,6 @@
         "handle": "Splice"
       },
       "identLabel": "TIE-IN",
-      "layoutPoints": [
-        {
-          "id": "w_at_trunk_tie_lp1",
-          "schematicPosition": {
-            "x": 150,
-            "y": 360
-          }
-        },
-        {
-          "id": "w_at_trunk_tie_lp2",
-          "schematicPosition": {
-            "x": 510,
-            "y": 360
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White"
@@ -978,29 +458,6 @@
         "handle": "Terminal"
       },
       "identLabel": "TIE-IN",
-      "layoutPoints": [
-        {
-          "id": "w_at_park_tie_lp1",
-          "schematicPosition": {
-            "x": 1230,
-            "y": 90
-          }
-        },
-        {
-          "id": "w_at_park_tie_lp2",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 90
-          }
-        },
-        {
-          "id": "w_at_park_tie_lp3",
-          "schematicPosition": {
-            "x": 1290,
-            "y": 150
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue"
@@ -1018,22 +475,6 @@
         "id": "sp_12v_shk",
         "handle": "Splice"
       },
-      "layoutPoints": [
-        {
-          "id": "w_at_12v_shk_tie_lp1",
-          "schematicPosition": {
-            "x": 1950,
-            "y": 270
-          }
-        },
-        {
-          "id": "w_at_12v_shk_tie_lp2",
-          "schematicPosition": {
-            "x": 1830,
-            "y": 270
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "White",
@@ -1122,8 +563,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 960,
-        "y": 300
+        "x": -1290,
+        "y": 270
       },
       "schematicPosition": {
         "x": 660,
@@ -1158,8 +599,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
-        "y": 600
+        "x": -3450,
+        "y": 180
       },
       "schematicPosition": {
         "x": 1320,
@@ -1188,8 +629,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 480,
-        "y": 270
+        "x": -570,
+        "y": -90
       },
       "schematicPosition": {
         "x": 1320,
@@ -1217,8 +658,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1620,
-        "y": -300
+        "x": -2370,
+        "y": 180
       },
       "schematicPosition": {
         "x": 1320,
@@ -1246,8 +687,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1620,
-        "y": 780
+        "x": -2370,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1320,
@@ -1262,8 +703,8 @@
       "width": 390,
       "signal": "Alarm 12V -> FB-LOGIC ALM 5A",
       "layoutPosition": {
-        "x": 1380,
-        "y": -420
+        "x": -1650,
+        "y": 180
       },
       "schematicPosition": {
         "x": 0,
@@ -1277,8 +718,8 @@
       "width": 390,
       "signal": "Alarm IG -> FB-LOGIC ALMIG 2A",
       "layoutPosition": {
-        "x": 870,
-        "y": -480
+        "x": -930,
+        "y": -90
       },
       "schematicPosition": {
         "x": 0,
@@ -1293,8 +734,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Alarm GND -> stud M6 A",
       "layoutPosition": {
-        "x": 1380,
-        "y": 900
+        "x": -1650,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1980,
@@ -1308,8 +749,8 @@
       "width": 390,
       "signal": "Door trig -> door SWs",
       "layoutPosition": {
-        "x": 2100,
-        "y": 540
+        "x": -3810,
+        "y": 180
       },
       "schematicPosition": {
         "x": 0,
@@ -1325,7 +766,7 @@
       "signal": "Hood trig -> hood pin SW",
       "layoutPosition": {
         "x": 0,
-        "y": -120
+        "y": 0
       },
       "schematicPosition": {
         "x": 0,
@@ -1340,8 +781,8 @@
       "width": 150,
       "signal": "Trunk trig -> trunk pin SW",
       "layoutPosition": {
-        "x": 2940,
-        "y": 300
+        "x": -4170,
+        "y": 180
       },
       "schematicPosition": {
         "x": 0,
@@ -1356,8 +797,8 @@
       "width": 390,
       "signal": "Park flash -> park relay",
       "layoutPosition": {
-        "x": 1740,
-        "y": -240
+        "x": -2730,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1320,
@@ -1373,8 +814,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Shock/LED GND -> M6 B",
       "layoutPosition": {
-        "x": 1500,
-        "y": 840
+        "x": -2010,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1980,
@@ -1389,8 +830,8 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Valet GND -> stud M6 C",
       "layoutPosition": {
-        "x": 1740,
-        "y": 720
+        "x": -2730,
+        "y": 180
       },
       "schematicPosition": {
         "x": 1980,
@@ -1404,8 +845,8 @@
       "width": 390,
       "signal": "Shock 12V -> FB-LOGIC ALMS 2A",
       "layoutPosition": {
-        "x": 1500,
-        "y": -360
+        "x": -2010,
+        "y": 180
       },
       "schematicPosition": {
         "x": 1980,
@@ -1419,8 +860,8 @@
       "signal": "Immob out -> ECU-B B27",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
-        "y": -180
+        "x": -3090,
+        "y": 180
       },
       "schematicPosition": {
         "x": 60,
@@ -1700,8 +1141,8 @@
       "id": "sp_at_12v",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1320,
-        "y": 240
+        "x": -1650,
+        "y": 120
       },
       "schematicPosition": {
         "x": 510,
@@ -1713,8 +1154,8 @@
       "id": "sp_ig",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 870,
-        "y": 300
+        "x": -900,
+        "y": 60
       },
       "schematicPosition": {
         "x": 510,
@@ -1726,8 +1167,8 @@
       "id": "sp_door",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1860,
-        "y": 360
+        "x": -3090,
+        "y": 330
       },
       "schematicPosition": {
         "x": 450,
@@ -1739,8 +1180,8 @@
       "id": "sp_hood",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 480,
-        "y": -60
+        "x": -570,
+        "y": 60
       },
       "schematicPosition": {
         "x": 510,
@@ -1752,8 +1193,8 @@
       "id": "sp_trunk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 2100,
-        "y": 240
+        "x": -3810,
+        "y": 330
       },
       "schematicPosition": {
         "x": 510,
@@ -1765,8 +1206,8 @@
       "id": "sp_park",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1440,
-        "y": 240
+        "x": -2010,
+        "y": 120
       },
       "schematicPosition": {
         "x": 1170,
@@ -1778,8 +1219,8 @@
       "id": "sp_12v_shk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1800,
-        "y": 240
+        "x": -3150,
+        "y": 330
       },
       "schematicPosition": {
         "x": 1830,
@@ -1930,78 +1371,78 @@
     {
       "id": "bp_180",
       "layoutPosition": {
-        "x": 360,
+        "x": -210,
         "y": 0
       }
     },
     {
       "id": "bp_270",
       "layoutPosition": {
-        "x": 480,
+        "x": -570,
         "y": 0
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 870,
-        "y": 240
+        "x": -930,
+        "y": 0
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 1380,
-        "y": 300
+        "x": -1650,
+        "y": 270
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1500,
-        "y": 300
+        "x": -2010,
+        "y": 270
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1620,
-        "y": 300
+        "x": -2370,
+        "y": 270
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1740,
-        "y": 300
+        "x": -2730,
+        "y": 270
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1860,
-        "y": 300
+        "x": -3090,
+        "y": 270
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1980,
-        "y": 300
+        "x": -3450,
+        "y": 270
       }
     },
     {
       "id": "bp_1260",
       "layoutPosition": {
-        "x": 2100,
-        "y": 300
+        "x": -3810,
+        "y": 270
       }
     },
     {
       "id": "bp_2520",
       "layoutPosition": {
-        "x": 2640,
-        "y": 300
+        "x": -4170,
+        "y": 270
       }
     }
   ],

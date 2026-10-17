@@ -141,9 +141,11 @@
     "mode": "trunk",
     "fan_max": 10,
     "dir": {
-      "bp_750": "left",
-      "bp_810": "up"
-    }
+      "bp_750": "up-right",
+      "bp_810": "up",
+      "bp_720": "right"
+    },
+    "fan_grow": "right"
   },
   "B-engine": {
     "route": "routes/ROUTE-4-B-ENGINE.html",
@@ -152,7 +154,10 @@
       "A-engine": "up",
       "CAN": "down"
     },
-    "mode": "trunk"
+    "mode": "trunk",
+    "dir": {
+      "be_750": "down-right"
+    }
   },
   "CAN": {
     "route": "routes/ROUTE-8-CAN.html",
@@ -163,7 +168,8 @@
       "B-cabin": "down",
       "CabinPower": "up"
     },
-    "mode": "trunk"
+    "mode": "trunk",
+    "fan_grow": "right"
   },
   "EngineRoom-C": {
     "route": "routes/ROUTE-2-HARNESS-C.html",
@@ -176,7 +182,50 @@
     },
     "mode": "trunk",
     "dir": {
-      "bp_fl_oem_ie1": "down"
-    }
+      "bp_fl_oem_ie1": "down",
+      "bp_900": "down-right"
+    },
+    "fan_grow": "right"
+  },
+  "RearLights": {
+    "route": "routes/ROUTE-15-REARLIGHTS.html",
+    "root": "bp_rl_kick"
+  },
+  "AntiTheft": {
+    "route": "routes/ROUTE-14-ANTITHEFT.html",
+    "root": "t_at_hood"
+  },
+  "HeavyDC": {
+    "route": "routes/ROUTE-1-HEAVYDC.html",
+    "roots": [
+      {
+        "root": "bp_hdc_fw",
+        "at": [
+          1500,
+          60
+        ]
+      },
+      {
+        "root": "t_starter_b_3",
+        "at": [
+          2400,
+          660
+        ]
+      },
+      {
+        "root": "t_eng_block",
+        "at": [
+          2160,
+          -240
+        ]
+      },
+      {
+        "root": "alt_plug",
+        "at": [
+          2400,
+          360
+        ]
+      }
+    ]
   }
 }

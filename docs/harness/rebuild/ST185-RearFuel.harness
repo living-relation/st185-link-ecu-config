@@ -77,22 +77,6 @@
       },
       "color": "White",
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "w_fl_sig_r_lp1",
-          "schematicPosition": {
-            "x": 240,
-            "y": 30
-          }
-        },
-        {
-          "id": "w_fl_sig_r_lp2",
-          "schematicPosition": {
-            "x": -150,
-            "y": 30
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Yellow",
@@ -112,22 +96,6 @@
       "color": "Black",
       "stripeColor": "White",
       "partId": "m16_20_09",
-      "layoutPoints": [
-        {
-          "id": "w45_r_lp1",
-          "schematicPosition": {
-            "x": 240,
-            "y": 60
-          }
-        },
-        {
-          "id": "w45_r_lp2",
-          "schematicPosition": {
-            "x": -150,
-            "y": 60
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "Yellow",
@@ -146,29 +114,6 @@
         "handle": "c1"
       },
       "partId": "m16_10_2",
-      "layoutPoints": [
-        {
-          "id": "w_fpump_r_lp1",
-          "schematicPosition": {
-            "x": 90,
-            "y": 600
-          }
-        },
-        {
-          "id": "w_fpump_r_lp2",
-          "schematicPosition": {
-            "x": 240,
-            "y": 600
-          }
-        },
-        {
-          "id": "w_fpump_r_lp3",
-          "schematicPosition": {
-            "x": 240,
-            "y": 630
-          }
-        }
-      ],
       "identColors": [
         "White",
         "White",
@@ -187,29 +132,6 @@
         "handle": "Terminal"
       },
       "partId": "m16_12_0",
-      "layoutPoints": [
-        {
-          "id": "w_fpg_lp1",
-          "schematicPosition": {
-            "x": 240,
-            "y": 660
-          }
-        },
-        {
-          "id": "w_fpg_lp2",
-          "schematicPosition": {
-            "x": 90,
-            "y": 660
-          }
-        },
-        {
-          "id": "w_fpg_lp3",
-          "schematicPosition": {
-            "x": 90,
-            "y": 750
-          }
-        }
-      ],
       "identColors": [
         "White",
         "White",
@@ -242,7 +164,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 0,
+        "x": 900,
         "y": 600
       },
       "partImage": {
@@ -272,8 +194,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 390,
-        "y": 480
+        "x": 900,
+        "y": 450
       },
       "schematicPosition": {
         "x": -300,
@@ -304,7 +226,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 420,
+        "x": 480,
         "y": 780
       },
       "schematicPosition": {
@@ -322,7 +244,7 @@
       "signal": "Fuel pump 12V -> BATT K1 87",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 0,
         "y": 0
       },
       "schematicPosition": {
@@ -336,8 +258,8 @@
       "type": "Ring",
       "signal": "FP GND -> trunk stud M6",
       "layoutPosition": {
-        "x": 810,
-        "y": 780
+        "x": 480,
+        "y": 900
       },
       "schematicPosition": {
         "x": -300,
@@ -382,7 +304,7 @@
         {
           "id": "b_bn_br_fp_pump__fuelpump_lp1",
           "layoutPosition": {
-            "x": 900,
+            "x": 0,
             "y": 600
           }
         }

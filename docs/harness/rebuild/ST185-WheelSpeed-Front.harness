@@ -80,23 +80,7 @@
         "White"
       ],
       "stripeColor": "Blue",
-      "partId": "m16_20_06",
-      "layoutPoints": [
-        {
-          "id": "e7gavP_lp1",
-          "schematicPosition": {
-            "x": 810,
-            "y": 180
-          }
-        },
-        {
-          "id": "e7gavP_lp2",
-          "schematicPosition": {
-            "x": 1110,
-            "y": 180
-          }
-        }
-      ]
+      "partId": "m16_20_06"
     }
   ],
   "connectors": [
@@ -124,7 +108,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 0,
+        "x": 1530,
         "y": 330
       },
       "partImage": {
@@ -161,7 +145,7 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 0,
+        "x": 1530,
         "y": -330
       }
     },
@@ -213,8 +197,8 @@
         "y": 510
       },
       "layoutPosition": {
-        "x": 1530,
-        "y": 0
+        "x": 30,
+        "y": -120
       },
       "partImage": {
         "schematic": {
@@ -232,8 +216,8 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 810,
-        "y": 0
+        "x": 480,
+        "y": 330
       },
       "schematicPosition": {
         "x": 1140,
@@ -274,7 +258,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 1200,
+        "x": 330,
         "y": 60
       },
       "schematicPosition": {
@@ -958,14 +942,14 @@
         {
           "id": "lp_f_l",
           "layoutPosition": {
-            "x": 0,
+            "x": 1530,
             "y": 270
           }
         },
         {
           "id": "lp_f_l2",
           "layoutPosition": {
-            "x": 720,
+            "x": 810,
             "y": 270
           }
         }
@@ -988,14 +972,14 @@
         {
           "id": "lp_f_r",
           "layoutPosition": {
-            "x": 0,
+            "x": 1530,
             "y": -270
           }
         },
         {
           "id": "lp_f_r2",
           "layoutPosition": {
-            "x": 720,
+            "x": 810,
             "y": -270
           }
         }
@@ -1056,8 +1040,8 @@
         "y": 210
       },
       "layoutPosition": {
-        "x": 780,
-        "y": 60
+        "x": 420,
+        "y": 420
       }
     }
   ],
@@ -1189,21 +1173,21 @@
     {
       "id": "bp_f_y",
       "layoutPosition": {
-        "x": 720,
+        "x": 810,
         "y": 0
       }
     },
     {
       "id": "bp_f_out",
       "layoutPosition": {
-        "x": 1200,
+        "x": 330,
         "y": 0
       }
     },
     {
       "id": "bp_f_fwd",
       "layoutPosition": {
-        "x": 1500,
+        "x": 30,
         "y": 0
       }
     }
