@@ -24,11 +24,13 @@ Source: the STEP / STL header, the build scripts and the git history. "unconfirm
 | `Power_Base_PA12_printed.stl` | Fusion 360 | STL header: ATF (Autodesk Translation Framework); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `Power_Cover_PA12_printed.step` | Fusion 360 | STEP header: Autodesk Translation Framework (Fusion export); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `Power_Cover_PA12_printed.stl` | Fusion 360 | STL header: ATF (Autodesk Translation Framework); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
-| `Power_Pad_Out_CuC110_15x3.step` | Fusion 360 | STEP header: Autodesk Translation Framework (Fusion export); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
+| `Power_Pad_Out_CuC110_15x3.step` | Fusion 360 | STEP header: Autodesk Translation Framework (Fusion export); `cad/fusebox/src/build_fusion.py` (Fusion API) | no longer built since R155 (the POWER pads became the C-straps) |
 | `Power_Pan_PA12_printed.step` | Fusion 360 | STEP header: Autodesk Translation Framework (Fusion export); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `Power_Pan_PA12_printed.stl` | Fusion 360 | STL header: ATF (Autodesk Translation Framework); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `Power_Retainer_R1_PA12_printed.step` | Fusion 360 | STEP header: Autodesk Translation Framework (Fusion export); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `Power_Retainer_R1_PA12_printed.stl` | Fusion 360 | STL header: ATF (Autodesk Translation Framework); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
+| `Power_Strap_Out_CuC110_15x3_C.step` | Fusion 360 | `cad/fusebox/src/build_fusion.py` (Fusion API), R155 | 14 copper C-straps (ST185-FB-117) |
+| `ST185-FB-117_model.step` | build123d | `cad/drawings/run_fb117.py`: one Fusion strap + the flat blank from `spec.strap_blank()` | drawing model for ST185-FB-117 |
 | `ST185_fusebox_rev7.f3d` | Fusion 360 | native Fusion archive (.f3d); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `ST185_fusebox_rev7_assembly.step` | Fusion 360 | STEP header: Autodesk Translation Framework (Fusion export); `cad/fusebox/src/build_fusion.py` (Fusion API) |  |
 | `print/ST185_R1_retainer_clip_PA12.3mf` | Fusion 360 | 3MF has no tool metadata; written by `export_print_files.py` (Fusion C3MF export); `cad/export_print_files.py` (Fusion API STEP / STL / 3MF export, PR #266) |  |

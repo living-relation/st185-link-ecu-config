@@ -237,9 +237,33 @@ def build(rev=6):
               note='Machined (D6, R76 amended 2026-10-16): POS bar 14 x 5.5 (AMI inputs) + 3 x 9.0 (BAT+ IN, RADLOK+, spare); NEG bar 5 x 9.0 (ISO 273 medium, F19); '
                    '0.3 x 45 edge break on every edge, hole rims included. 161 mm2 of copper each - three times the 1/0 cable (53 mm2). '
                    'Replaces the B rev3 bus bar machined Al bars and set-screw port blocks.')
-    L.add(P, 'Copper', 'Output pads 15 x 3 x 17.5 mm, tinned (14 here + 1 in BATTRELAY)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)',
-          'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all 15 pads (290 mm with kerf)', 1, unit=51.99, basis='seen',
-          url='https://www.amazon.com/dp/B09Z7NBLDK', checked='summary "Copper" section; seller page 2026-10-14', note='Machined (D6): one 5.5 hole each, 0.3 x 45 edge break on every edge.')
+    if not R7:
+        L.add(P, 'Copper', 'Output pads 15 x 3 x 17.5 mm, tinned (14 here + 1 in BATTRELAY)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)',
+              'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all 15 pads (290 mm with kerf)', 1, unit=51.99, basis='seen',
+              url='https://www.amazon.com/dp/B09Z7NBLDK', checked='summary "Copper" section; seller page 2026-10-14', note='Machined (D6): one 5.5 hole each, 0.3 x 45 edge break on every edge.')
+    else:            # R155 (N14 = B): one copper C-strap per AMI position, cut from the same 3 x 15 stock
+        BL = S.strap_blank()
+        use = N_POS * (BL['cut_length'] + 2.0) + 17.5 + 2.0
+        L.add(P, 'Copper', 'Output C-straps 3 x 15, tinned: %d blanks %.1f mm (drawing ST185-FB-117) + the battery block pad 17.5' % (N_POS, BL['cut_length']),
+              'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)',
+              'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all %d straps and the battery block pad (%.0f mm with 2 mm saw kerf, %.0f spare)'
+              % (N_POS, use, 1000 - use), 1, unit=51.99, basis='seen', url='https://www.amazon.com/dp/B09Z7NBLDK',
+              checked='summary "Copper" section; seller page 2026-10-14; blank from spec.strap_blank() (K %.2f, ri %.1f)' % (BL['k'], BL['ri']),
+              note='R155: saw the blank, drill the two PEM holes 6.35 (+0.08), saw the two kerfs and notches beside the neck, press the two PEM nuts, '
+                   'trim the top end %.1f, bend 90 deg twice round R%.1f (anneal first if the bar is hard). Edge breaks: drawing note (R138).'
+                   % (S.STRAP['trim'], BL['ri']))
+        L.add(P, 'Copper', 'Self-clinching nut M5, stainless, pressed into each strap (2 per strap: AMI ear bolt + lug bolt)', 'PEM %s' % S.STRAP_PEM['pn'],
+              S.STRAP_PEM['maker'],
+              'Self-clinching nut M5, type CLSS (300-series stainless), shank code 2; mounting hole %.2f +0.08, head %.2f x %.1f, C max 6.33, '
+              'min hole centre to edge %.1f, for sheet HRB 70 / HB 125 or less' % (S.STRAP_PEM['hole'], S.STRAP_PEM['E'], S.STRAP_PEM['T'], S.STRAP_PEM['edge']),
+              2 * N_POS, spare(2 * N_POS), unit=0.45, basis='est', url=S.STRAP_PEM['url'],
+              checked='pemnet.com product page CLSS-M5-2 (stainless, hole 6.35, E 8.64, T 2, edge 7.1, HRB 70 / HB 125) read 2026-10-17; PEM "Performance data '
+                      'for PEM fasteners installed into copper" Rev. 5/22/20 (steel S M5 code 2 in 1.5 mm Cu-ETP: 5.3 N.m torque-out, 1080 N pushout - no CLSS '
+                      'copper figure published); R38 step 4: no TE or approved-supplier clinch nut',
+              note='Dan\'s card: stainless (the LOGIC strip SS-M5-2ZI is zinc steel, not stainless). Press from the head side with a flat punch until the head '
+                   'seats (HAEGER / PEMSERTER or a vise with parallel jaws), heads INSIDE the C. Top nut: the blank is %.1f long at that end while pressing '
+                   '(edge 7.1), then trimmed to 6.5 (the fuse body allows no more). At 4 N.m the nut reacts ~%.1f N.m (thread share): first-article check '
+                   'on the drawing.' % (S.STRAP['trim'], S.strap_numbers({})['bolt']['nut_reaction_Nm']))
     n = {a: sum(1 for _, x in IN_USED + OUT_USED if x == a) for a in (30, 40, 50, 60)}
     for rating in (30, 40, 50, 60):
         L.add(P, 'Fuses', 'AMI bolt-down fuse %d A' % rating, 'AMI-%d' % rating, 'Eaton Bussmann', 'AMI series, 32 VDC, M5 stud ears 9.5 x 0.8 mm', n[rating],
@@ -316,9 +340,10 @@ def build(rev=6):
         lug(L, P, '6R8', 'Tubular lug 50 mm2, M8 hole (the %d 1/0 bus cables)' % n10, n10, 1, 2.60, 'Tinned copper tubular ring lug, 50 mm2, M8, hole 8.4; b 20, l 47',
             checked='Buerklin listing 07F2081 (hole 8.4, M8)',
             note='BAT+ IN (H1), RADLOK+ (H3), BAT- (H2), RADLOK- (H6a), GND ID, GND IG (H7): the B rev3 set-screw ports become lugs. The small relay grounds keep their own M8 rings (harness parts).')
-    # standoffs
+    # standoffs (rev 6 only: R155 replaced them with the copper straps on rev 7)
     n_so = N_IN + N_OUT
-    L.add(P, 'Standoffs', 'Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all %d)' % n_so, 'Accu HHTPS-M5-8-40-BR-NI', 'Accu',
+    if not R7:
+      L.add(P, 'Standoffs', 'Brass hex standoff M5 female-female, 8 AF, 40 mm (ONE part number for all %d)' % n_so, 'Accu HHTPS-M5-8-40-BR-NI', 'Accu',
           'Threaded hexagon spacer, female-female M5, 8 AF, 40 mm, nickel-plated brass, thread depth 10 mm each end', N_IN + N_OUT, 0, unit=0.60, basis='est',
           url='https://accu-components.com/us/threaded-standoffs/464940-HHTPS-M5-8-40-BR-NI',
           checked='Accu listing via web search 2026-10-16 (M5 x 40 x 8 AF, female both ends, brass nickel, hole depth 10 mm each end; the page itself refuses scripted reads - re-check on receipt); '
@@ -327,21 +352,24 @@ def build(rev=6):
                + (' R146 (Dan N5 / N7): each standoff is pressed (vise / arbor press, about 340-510 N) into its 8.5 AF bore past 6 crush ribs, '
                   'from above before its pad, then 2-3 drops of LOCTITE 406 wicked in from the deck underside; it holds itself with the fuse out.' if R7 else ''))
     # fasteners
-    L.add(P, 'Fasteners', 'Set screw M5 x 20 (stud on each pad standoff)', 'bolts.co.uk SSPMCA205020', 'Bolts.co.uk', 'Socket set screw M5 x 20, plain cup point, DIN 916, A2 stainless (pack of 25)',
+    if not R7:
+      L.add(P, 'Fasteners', 'Set screw M5 x 20 (stud on each pad standoff)', 'bolts.co.uk SSPMCA205020', 'Bolts.co.uk', 'Socket set screw M5 x 20, plain cup point, DIN 916, A2 stainless (pack of 25)',
           N_POS, spare(N_POS), unit=0.63, basis='seen', url='https://bolts.co.uk/m5-x-20mm-socket-set-screw-plain-cup-point-pcp-din-916-a2-stainless-steel-pack-of-25-p-SSPMCA205020',
           checked='bolts.co.uk listing via web search 2026-10-16 (M5 x 20, DIN 916, A2, 2.5 hex, pack of 25 GBP 15.70); R38 step 4: no RS PRO M5 x 20 set screw checked this session',
           note='OPEN-5 (F06): 9.5 into the 10 mm standoff thread (1.9 x D), then pad 3.0 + AMI ear 0.8 + DIN 6923 nut 5.0, 1.7 past the nut. Was M5 x 12 (5 in the standoff, nut not fully engaged).')
-    hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10,
-       note='One length for both rows now that every standoff is 40 mm.' + (' Torque into the brass standoff: TBD (no maker figure found for the '
-            'brass thread; the AMI nut on top is 4 N.m max).' if R7 else ''))
-    if R7:
-        BK = S.BACKUP
-        L.add(P, 'Assembly', 'Standoff retaining adhesive (R146 backup to the crush ribs)', 'LOCTITE 406', 'Henkel', BK['what'], 1, 0, unit=31.70, basis='seen',
-              url=BK['url'], checked='Henkel TDS LOCTITE 406 Feb 2012 (RS copy, read 2026-10-17): plastics and rubbers, hot strength ~80 % at 80 C, ~50 % after '
-              '1000 h at 80 C; Henkel product page -40 .. +120 C, USD 31.70 listed; no TE part, none of the R38 approved suppliers sells adhesive (step 4)',
-              note=BK['how'])
+    if not R7:
+        hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10,
+           note='One length for both rows now that every standoff is 40 mm.')
+    else:
+        hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (R155: AMI output ear down into the top PEM nut + lug up into the bottom PEM nut, every strap)',
+           2 * N_POS, spare(2 * N_POS), 0.10,
+           note='4 N.m max (AMI sheet), both bolts. Ear bolt: 0.8 ear + 3.0 copper + 2.0 PEM head, 4.2 past it; lug bolt: 2.0 palm + 3.0 copper + 2.0 PEM head, 3 past it.')
     hw(L, P, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar, head captured)', N_POS, spare(N_POS), 0.12)
-    hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears, 2 per position)', 2 * N_POS, spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet).')
+    if not R7:
+        hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears, 2 per position)', 2 * N_POS, spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet).')
+    else:
+        hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input ear on the bar stud, 1 per position; the output ear is bolted into the strap, R155)', N_POS,
+           spare(N_POS), 0.07, note='4 Nm max (AMI sheet).')
     if not R7:
         hw(L, P, 'Fasteners', 'M8bolt', 'Hex bolt M8 x 25 (1/0 input stud)', 1, 1, 0.30, note='Rev 5 CAD draws M8 x 20; the nearest stocked stainless length is 25 (RS lists no M8 x 20).')
         hw(L, P, 'Fasteners', 'M8nut', 'Hex nut M8 (1/0 input stud)', 1, 1, 0.08)

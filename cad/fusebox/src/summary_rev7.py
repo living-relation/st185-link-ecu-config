@@ -116,7 +116,7 @@ A('</table></div>')
 
 A('<h2>What changed from rev 6</h2><ol>')
 A('<li><b>No copper bar of its own in the POWER box.</b> The bus bar\'s + bar (POS) runs the whole length: 1" x 1/4" tinned copper, %d mm long (rev 6 POWER bar: %d). '
-  'The 14 AMI positions bolt onto it exactly as in rev 6 (same pads, standoffs, relays, saddles, harness bundles).</li>' % (R7['bar_y1'] - S.BAR['y0'], S.BAR['y1'] - S.BAR['y0']))
+  'The 14 AMI positions bolt onto it as in rev 6 (relays, saddles, harness bundles); since R155 each output is a copper C-strap instead of a pad on a brass standoff.</li>' % (R7['bar_y1'] - S.BAR['y0'], S.BAR['y1'] - S.BAR['y0']))
 A('<li><b>A bus zone at the back of the box</b> (+%d mm deep). On the + bar: BAT+ IN, RADLOK+ and a spare M8 - those cables leave straight out of the outboard end. '
   'Beside it a NEG bar (same stock, %d mm): BAT-, RADLOK-, GND ID, GND IG and one M8 for the small relay grounds - those leave straight out the back.</li>'
   % (R7['D'] - S.D, R7['neg_bar']['x1'] - R7['neg_bar']['x0']))
@@ -124,21 +124,36 @@ A('<li><b>A printed wall between NEG and POS</b> (2.5 mm, 20 mm above the deck).
 A('<li><b>B rev3 adapted to R76:</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 '
   'bolts (head captured in the deck, like every other bolt) and Klauke 6R8 lugs. Its universal bar U and the link strap / AMG fuse option are dropped (question U1 below).</li>')
 A('<li><b>Feet:</b> still four with M6 limiters; the rear-inboard foot moved round to the inboard end so no cable runs over a mounting bolt.</li>')
-A('<li><b>Unchanged:</b> LOGIC box and battery relay block (their feeds do not move); bend radius rule, belly pan, PA12 print rules, M6 limiters, 40 mm standoffs.</li></ol>')
+A('<li><b>Unchanged:</b> LOGIC box and battery relay block (their feeds do not move); bend radius rule, belly pan, PA12 print rules, M6 limiters.</li>')
+SN = rep.get('straps', {}).get('numbers', {})
+FEA = json.load(open(os.path.join(D7, 'strap_fea.json'))) if os.path.exists(os.path.join(D7, 'strap_fea.json')) else {}
+if SN:
+    A('<li><b>R155 (N14 = B, 2026-10-17): every AMI position is one copper C-strap</b> (ST185-FB-117, 3 x 15 tinned C110, web / bottom leg 14.2): top leg under '
+      'the AMI ear, web down a well in the deck, bottom leg under the deck with the lug bolted palm-up to it; two PEM %s stainless nuts, M5 x 10 bolts at 4 N.m. '
+      'Current: ear -> copper -> lug, no brass and no thread in the path (%.1f uohm, the old pad + standoff %.1f). Held both ways: the lips rest on a printed ledge '
+      '(down), a snap hook reaches over them (up) - OUT row the freed skirt, IN row an arm in the deck; 100 N up on the hook: SF %.2f / %.2f (PA12). '
+      'The brass standoffs, set screws, crush ribs and LOCTITE 406 (R146) are gone.</li>'
+      % (S.STRAP_PEM['pn'], SN['R_strap_uohm_20C'], SN['R_old_conductor_uohm_20C'], FEA.get('OUT', {}).get('SF', 0), FEA.get('IN', {}).get('SF', 0)))
+A('</ol>')
+A('<h2>R155: the copper C-strap station</h2>')
+for f, cap in (('renders/closeups/r155_strap_half_section_OUT_JB1.png', 'OUT row (JB1 60 A), half-section at the fuse line: ear on copper, web down the well, lug palm-up under the bottom leg; lips on the ledge, snap hook over them.'),
+               ('renders/closeups/r155_strap_iso_OUT_JB1.png', 'The same station, printed base and pan see-through.'),
+               ('renders/closeups/r155_strap_half_section_IN_HTR.png', 'IN row (HTR 40 A): the same strap turned 180 deg, its lug runs inboard under the web to the relay saddle.')):
+    fig(f, cap)
 
 A('<h2>Rev 7 renders</h2>')
 for f, cap in (('fusebox_render_iso_closed.png', 'Closed. The POWER box is 62 mm deeper; the bus terminals are etched on the lid.'),
                ('fusebox_render_iso_closed_rear.png', 'From the back: the four NEG cables + the small ground bundle leave the rear, BAT+ IN and RADLOK+ the outboard end.'),
                ('fusebox_render_iso_open.png', 'Covers off: the + bar runs from the AMI fuses into the bus zone; NEG bar on the left of the barrier wall.'),
                ('fusebox_render_top_lid_power.png', 'POWER lid, top view: rev 6 names + the bus terminals.'),
-               ('fusebox_render_iso_empty.png', 'Empty: bars, pads, standoffs and the printed barrier.'),
+               ('fusebox_render_iso_empty.png', 'Empty: bars, the 14 copper C-straps and the printed barrier.'),
                ('fusebox_render_top_empty.png', 'Empty, top view.'),
                ('fusebox_render_under_pan.png', 'Underneath with the belly pans.'),
                ('fusebox_render_under_open.png', 'Underneath, pans off.'),
                ('fusebox_render_routing_power.png', 'POWER box cables (numbered).'),
                ('fusebox_render_power_bends.png', 'Relay feed bends round their saddles (unchanged).'),
                ('fusebox_power_explode.png', 'Exploded: how it goes together.'),
-               ('fusebox_power_step1.png', 'Step 1: bars, pads, bolts, standoffs.'),
+               ('fusebox_power_step1.png', 'Step 1: bars and bolts; the copper straps drop into their wells and snap under the hooks.'),
                ('fusebox_power_step2.png', 'Step 2: harness terminals and the lugs under the deck.'),
                ('fusebox_power_step3.png', 'Step 3: fuses, relays, the 1/0 bus lugs on top.'),
                ('fusebox_power_step4.png', 'Step 4: belly pan and cover.')):
@@ -428,8 +443,9 @@ A('</table></div>')
 A('<h2>Checks (Fusion, rev 7 build)</h2><div class="wrap"><table><tr><th>Check</th><th>Result</th></tr>')
 for k, lbl in (('logic_bus1_to_bus2_min_mm', 'LOGIC any Bus 1 part to any Bus 2 part (3 mm)'), ('logic_bolt_to_other_strip_min_mm', 'LOGIC strip bolt tip to the other strip (3 mm)'),
                ('bus_pos_lug_to_lug_min_mm', 'POS 1/0 lug to lug (Dan\'s rule: 3 mm)'), ('bus_neg_lug_to_lug_min_mm', 'NEG lug to lug (3 mm)'),
-               ('bus_neg_to_pos_min_mm', 'nearest NEG part to POS part (wall between)'), ('bus_pos_lug_to_out_pad_min_mm', 'POS bus lug to nearest AMI output pad'),
-               ('pad_to_pad_min_mm', 'AMI output pad to pad'), ('under_deck_lug_to_lug_min_mm', 'lugs under the deck'),
+               ('bus_neg_to_pos_min_mm', 'nearest NEG part to POS part (wall between)'), ('bus_pos_lug_to_out_strap_min_mm', 'POS bus lug to nearest AMI output strap'),
+               ('strap_to_strap_min_mm', 'AMI copper strap to strap'), ('strap_station_to_station_min_mm', 'strap station to the next (strap, PEM nuts, bolts, lug)'),
+               ('under_deck_lug_to_lug_min_mm', 'lugs under the deck'),
                ('pan_to_nearest_live_power_mm', 'belly pan to nearest live part')):
     A('<tr><td>%s</td><td>%.2f mm</td></tr>' % (E(lbl), live[k]))
 bad = [b for b in rep['bends'] if not b['ok']]
@@ -458,7 +474,11 @@ A('<tr><td>LOGIC strips (2)</td><td>1" x 1/8" tinned (MECCANIXITY B0CGJC2S1L)</t
   'at the feed, then PEM %s / %s self-clinching nuts pressed in, heads on the gap side (N2, R129); strips %.1f apart</td></tr>' % (
     S.STRIP_Y['BUS1'][1] - S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][1] - S.STRIP_Y['BUS2'][0], S.PEM[4]['hole'], S.JROW['z_lo'], S.JROW['z_lo'] + S.JROW['dz'],
     S.PEM[5]['hole'], S.PEM[4]['pn'], S.PEM[5]['pn'], live.get('logic_strip_to_strip_mm', 0)))
-A('<tr><td>Output pads (14 + 1)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>17.5 mm each</td><td>one 5.5; POWER pads: M5 x 20 stud, 9.5 into the 10 mm thread of the 40 mm standoff (OPEN-5)</td></tr>')
+BL = S.strap_blank()
+A('<tr><td>Output C-straps (14, ST185-FB-117)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>blank %.2f mm (%.2f after the trim)</td><td>2 x %.2f +0.08 (PEM %s) at %.1f and %.2f from the top end; '
+  'kerfs + notches beside the 7.0 tongue; edges milled to %.1f from %.2f; bends R%.1f at %.2f / %.2f (drawing)</td></tr>' % (
+    BL['cut_length'], BL['length'], BL['pem_hole'], S.STRAP_PEM['pn'], BL['pem_top'], BL['pem_bottom'], BL['w_low'], BL['low_from'], BL['ri'], BL['bend_centres'][0], BL['bend_centres'][1]))
+A('<tr><td>Battery block pad (1, ST185-FB-112)</td><td>same 3 x 15 bar</td><td>17.5 mm</td><td>one 5.5</td></tr>')
 A('</table></div>')
 
 A('<h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>')
