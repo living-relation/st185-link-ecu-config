@@ -17,7 +17,7 @@ GEN = ["6061-T6 BILLET. MODEL build123d fuel_hanger.py. REV = THIS PART'S RELEAS
 SRC = "st185-link-ecu-config\\cad\\fuel-hanger\\"
 def P(key, f, pn, title, threads, notes, **kw):
     return dict(job="fuel-hanger", file=J + f, process="machined", title=title, pn=pn, material="6061-T6 ALUMINUM",
-                source=SRC + f, hidden=True, threads=threads, rev=TODAY_REVS[key][-1][0], revs=TODAY_REVS[key], notes=GEN + notes, **kw)
+                source=SRC + f, hidden=False, threads=threads, rev=TODAY_REVS[key][-1][0], revs=TODAY_REVS[key], notes=GEN + notes, **kw)
 PARTS = {
  "flange": P("flange", "fuel-hanger-flange.step", "ST185-FH-101", "FUEL HANGER - FLANGE (INTEGRAL LUG)", {},
    ["ONE BILLET: FLANGE + LUG (REPLACES FH-101 REV F + FH-102 REV A). NO M5 SCREWS, NO DOWELS. 13 THRU-HOLES ONLY; NOTHING ELSE BREAKS THE SEALING FACE.",
