@@ -28,15 +28,14 @@ The ONE list of every custom-part CAD model (DECISIONS R77). **A new CAD model g
 
 ## Drawings (shop drawings, 2026-10-17)
 
-Made by SteveCAD's build123d drawing engine (`stevecad-tools`, DansPC WSL) from the STEP files on main 4744454 (PR #274 / #275). Drawings do NOT update themselves: after a model change, re-export the STEP and re-run the drawing. Each PDF has a `_sh1.png` preview beside it. Edge breaks per R138 (modelled where the CAD does it cleanly, else a note); tapped holes carry the tap drill + thread from the model.
+Made by SteveCAD's build123d drawing engine (`stevecad-tools`, DansPC WSL) from the STEP files in the main checkout (main 4744454, PR #274 / #275). Drawings do NOT update themselves: after a model change, re-export the STEP and re-run the drawing. Each PDF has a `_sh1.png` preview beside it. Edge breaks per R138; tapped holes carry the tap drill + thread from the model. **Rev letters** come from the model (R147) and live in the title block and in [`DRAWING-REVS.md`](DRAWING-REVS.md) (how each letter was found + what made every model file, R149), never in a file name (R148).
 
-| Model (tool) | Drawing | Status |
-|---|---|---|
-| CSB3 enclosure (Fusion) | `enclosures/csb3/ST185-CSB3-101_C.pdf` (body), `ST185-CSB3-102_C.pdf` (lid) | Rev C: R133 lock-in supports, M8 seal holes, thread-mill note (OPEN-ITEMS 125). The older `ST185-CSB3-enclosure-drawing.pdf` predates #274; its marked-up copy is `ST185-CSB3-enclosure-drawing_MARKUP-2026-10-17.png`. Which one stays is Dan's call. |
-| VRC enclosure (Fusion) | `enclosures/vrc/ST185-VRC-enclosure-drawing.pdf` (body + lid); `ST185-VRC-103_A.pdf` (board holder, new) | Geometry matches the drawing; layout markups in `ST185-VRC-enclosure-drawing_MARKUP-2026-10-17.png`. |
-| DRB102 firewall plate (CadQuery) | `drb102-plate/ST185-DRB-101_C.pdf` | Rev C: M5 tapped through (C4), groove 4.75, modelled 0.5 chamfers kept (R138). |
-| Fuse boxes rev 7 (Fusion) | `fusebox/rev7/drawings/ST185-FB-101_A.pdf` ... `-116_A.pdf` (15 parts) | New. Printed parts: overall size only (the model defines the rest); copper: full hole callouts (strips: PEM holes, R129). |
-| Billet fuel hanger rev 8 (build123d) | outside this repo (never copied here): `C:\projects\_scratch\drawings_1017\work\out\st185_hanger_1017\ST185-FH-101_8.pdf` ... `-105_8.pdf` | New; top plate carries the N6 sealing open item. |
+| Model (tool) | Drawing | Rev | Status |
+|---|---|---|---|
+| CSB3 enclosure (Fusion) | `enclosures/csb3/ST185-CSB3-101.pdf` (body), `ST185-CSB3-102.pdf` (lid) | C / C | Body: R133 lock-in supports, M8 seal holes, thread-mill note (OPEN-ITEMS 125). Dan 2026-10-17: these replace the older `ST185-CSB3-enclosure-drawing.pdf` (Fusion, predates #274); the old file and its marked-up copy `ST185-CSB3-enclosure-drawing_MARKUP-2026-10-17.png` are kept for reference. |
+| VRC enclosure (Fusion) | `enclosures/vrc/ST185-VRC-enclosure-drawing.pdf` (body + lid); `ST185-VRC-103.pdf` (board holder) | holder D | Geometry matches the drawing; layout markups in `ST185-VRC-enclosure-drawing_MARKUP-2026-10-17.png`. |
+| DRB102 firewall plate (CadQuery) | `drb102-plate/ST185-DRB-101.pdf` | C | M5 tapped through (C4), groove 4.75, modelled 0.5 chamfers kept (R138). |
+| Fuse boxes rev 7 (Fusion) | `fusebox/rev7/drawings/ST185-FB-101.pdf` ... `-116.pdf` (15 parts, no -110) | G (rev 7) | Printed parts: overall size only (the model defines the rest); copper: full hole callouts (strips: PEM holes, R129). |
 
 ## Power distribution package
 
