@@ -919,7 +919,7 @@ def scan_model_files() -> dict:
             if names:
                 rel = d.relative_to(root).as_posix()
                 found[rel] = sorted(set(found.get(rel, [])) | set(names))
-    # fuel hanger: in this repo (cad/fuel-hanger/) since model rev H (2026-10-17); the Fairsolid run folder is history only
+    # fuel hanger: in this repo (cad/fuel-hanger/) since 2026-10-17; the Fairsolid run folder is history only
     return found
 
 

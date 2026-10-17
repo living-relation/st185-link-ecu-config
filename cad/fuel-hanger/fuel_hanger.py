@@ -1,11 +1,12 @@
-"""Billet 6061-T6 fuel pump hanger for the ST185.  MODEL REV H (2026-10-17), from the fairsolid build123d source rev 7 (= G) / rev 8.
+"""Billet 6061-T6 fuel pump hanger for the ST185.  2026-10-17 release, from the fairsolid build123d source rev 7 / rev 8.
 
-Rev H (Dan 2026-10-17, N6 decision = option 2): the bolt-on lug block of rev G is MACHINED INTEGRAL with the top flange
+Flange rev G (Dan 2026-10-17, N6 decision = option 2): the bolt-on lug block of fairsolid rev 7 is MACHINED INTEGRAL with the top flange
 (one 6061 billet, part "flange"). Deleted: the 2 M5 block screws (rev G blind / rev 8 tapped through) and the 2 dowel holes.
 The flange keeps exactly its 13 original through-holes (2 AN bulkheads, 2 isolated electrical studs, 9 flange screws);
 no new hole opens on the outside (sealing) face. Strut, valve, pass-through positions and the 2 x dia 6.6 M6 strut
 cross-holes are unchanged. Fillets are applied LAST, after every cut. Edge breaks are a drawing note (not modelled).
-Rev letters: model drives the rev, skip I, L, O, Q. Fairsolid history: rev2..rev8 folders (rev 7 = G).
+Rev letters: each part model's letter = its count of releases (fairsolid rev folders where it changed), A first, skip I, L, O, Q:
+flange G, strut E, foot D, saddle C, lug block A (obsolete). Evidence: cad/DRAWING-REVS.md.
 
 Rev 3c (Dan): the JXSS035 fittings are fuel-cell BULKHEADS (male AN both ends, hex + sealing washer outside,
 sealing washer + nut inside), so the plate gets plain clearance holes, not tapped ports. Every pass-through
@@ -250,7 +251,7 @@ SKIPPED_FILLETS = []
 
 
 def flange():
-    """rev H: top plate + L block (upright + base) as ONE billet. Order: solids -> holes/pockets -> chamfer -> fillets."""
+    """flange rev G: top plate + L block (upright + base) as ONE billet. Order: solids -> holes/pockets -> chamfer -> fillets."""
     part = Pos(C[0], C[1], Z_OUT) * Cylinder(FLANGE_R, PLATE_T, align=(Align.CENTER, Align.CENTER, Align.MIN))
     part = part + block(-LUG_W / 2, LUG_W / 2, -STRUT_T - LUG_T, -STRUT_T, SEAL_Z, SEAL_Z + LUG_H)
     part = part + block(-BLOCK_BASE_HALF_W, BLOCK_BASE_HALF_W, BLOCK_BASE_N0, -STRUT_T, SEAL_Z, SEAL_Z + BLOCK_BASE_T)
