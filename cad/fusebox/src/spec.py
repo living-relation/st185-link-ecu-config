@@ -104,6 +104,11 @@ SETSCREW = dict(l=20.0, in_so=9.5)
 #         pad pocket floor, round ends (the top end is the rib's lead-in). See STUD_FIT_CALC for the numbers (shown in the PR).
 STUD_FIT = dict(clr=0.25, corner_d=1.2, chamfer=1.0, i=0.30, len=6.0, top=2.0, rot=90)
 STUD_FIT['r'] = STUD_FIT['clr'] + STUD_FIT['i']      # rib centred on the bore flat: its crest is i inside the brass flat (0.55)
+# Option C (Dan 2026-10-17: "try c also"), built only when FLANGE['on']: a FLANGED brass standoff whose flange sits in a counterbore at the
+# top of the bore (flange top = the pad seat, so the pad still sits on bare brass and its height is unchanged); the flange stops it dropping, the
+# crush ribs stop it rising. Overall 40 incl. the flange. No stocked flanged 40 mm M5 brass hex standoff found (Accu / spacer-express / RS /
+# Wurth searched 2026-10-17): it would be a turned part - PN TBD. Default off: ribs + LOCTITE 406 (R146) is the build.
+FLANGE = dict(on=False, d=12.0, t=2.0, clr=0.4)
 # HP 3D High Reusability PA 12 data sheet 4AA6-4895ENE (2017): E 1700 MPa XY, tensile 48 MPa, elongation 20 % XY / 15 % Z, HDT 95 C XY at
 # 1.82 MPa. CTE: HP publishes none - unfilled PA12 100 - 150e-6/K, 150 used (worst). Brass C36000 20.5e-6/K (Copper Development Assoc.).
 # Box range -40 .. +85 C (cabin, docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md), +105 checked as a margin; assembled at 20 C.
