@@ -62,39 +62,6 @@
     37.8
    ]
   },
-  "strut": {
-   "volume_cm3": 64.66,
-   "mass_g": 175.0,
-   "valid": true,
-   "solids": 1,
-   "bbox": [
-    51.5,
-    102.9,
-    291.7
-   ]
-  },
-  "saddle1": {
-   "volume_cm3": 15.95,
-   "mass_g": 43.0,
-   "valid": true,
-   "solids": 1,
-   "bbox": [
-    39.9,
-    54.4,
-    26.0
-   ]
-  },
-  "foot": {
-   "volume_cm3": 20.0,
-   "mass_g": 54.0,
-   "valid": true,
-   "solids": 1,
-   "bbox": [
-    64.9,
-    63.0,
-    16.0
-   ]
-  },
   "check_valve_radium_20-0598": {
    "volume_cm3": 19.62,
    "mass_g": 53.0,
@@ -141,43 +108,7 @@
   }
  },
  "clear": {
-  "flange|strut": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 0
-  },
   "flange|inside_keepouts": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 0
-  },
-  "strut|saddle1": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 0
-  },
-  "strut|foot": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 0
-  },
-  "strut|pump_f90000295": {
-   "min_gap_mm": 2.0,
-   "overlap_mm3": 0.0
-  },
-  "strut|inside_keepouts": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 62.75
-  },
-  "strut|band_clamp_worm_drive": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 0
-  },
-  "saddle1|pump_f90000295": {
-   "min_gap_mm": 1.25,
-   "overlap_mm3": 0.0
-  },
-  "saddle1|band_clamp_worm_drive": {
-   "min_gap_mm": 0.0,
-   "overlap_mm3": 0
-  },
-  "foot|pump_f90000295": {
    "min_gap_mm": 0.0,
    "overlap_mm3": 0
   },
@@ -191,5 +122,5 @@
   }
  },
  "skipped_fillets": [],
- "billet_mass_g": 515.0
+ "billet_mass_g": 243.0
 }

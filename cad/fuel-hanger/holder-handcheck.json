@@ -1,0 +1,58 @@
+{
+ "assumptions": {
+  "pump_mass_kg": 0.6,
+  "g": 2.0,
+  "load_N": 11.8,
+  "preload_N": 1500.0,
+  "mu": 0.15,
+  "material": "6061-T6 Sy 276 MPa"
+ },
+ "joints": {
+  "saddle FH-105 / strut": {
+   "screw_centroid_u": 66.75,
+   "arm_mm": 17.7,
+   "spin_torque_Nm": 0.208,
+   "friction_torque_Nm_lower_bound": 2.68,
+   "SF_friction": 12.9,
+   "key_force_if_slipped_N": 10.8,
+   "key_bearing_MPa": 0.36,
+   "key_shear_MPa": 0.17,
+   "SF_key_bearing": 767,
+   "thread_engage_mm": 5.65,
+   "thread_strip_N": 4262,
+   "SF_strip_vs_preload": 2.8,
+   "twist_moment_Nm": 0.318,
+   "screw_tension_N": 12.7
+  },
+  "foot FH-104 / strut": {
+   "screw_centroid_u": 69.85,
+   "arm_mm": 14.6,
+   "spin_torque_Nm": 0.172,
+   "friction_torque_Nm_lower_bound": 2.86,
+   "SF_friction": 16.7,
+   "key_force_if_slipped_N": 10.6,
+   "key_bearing_MPa": 1.24,
+   "key_shear_MPa": 0.59,
+   "SF_key_bearing": 223,
+   "thread_engage_mm": 7.65,
+   "thread_strip_N": 5771,
+   "SF_strip_vs_preload": 3.8,
+   "cantilever_moment_Nm": 0.318,
+   "screw_tension_total_N": 90.8,
+   "SF_tension_vs_preload": 33.0
+  }
+ },
+ "strut_F_at_key_slot": {
+  "M_Nmm": 2119,
+  "Z_mm3": 197,
+  "stress_MPa": 10.7,
+  "SF": 25.7,
+  "note": "same 2.5 mm pocket floors elsewhere in the strut are unchanged from E"
+ },
+ "pump_bottom_lateral": {
+  "carried_by": "2 side arms of the lip (strut side removed); toward the strut by the arms' wrap (wedge)",
+  "arm_root_bending_MPa": 2.4,
+  "SF": 115,
+  "note": "two side arms wrap 36 deg past the centreline toward the strut: play toward the strut 0.85 mm (was 0.5), sideways and outboard 0.5 mm as before"
+ }
+}

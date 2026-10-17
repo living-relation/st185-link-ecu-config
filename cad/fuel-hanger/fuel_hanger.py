@@ -5,8 +5,11 @@ Flange rev G (Dan 2026-10-17, N6 decision = option 2): the bolt-on lug block of 
 The flange keeps exactly its 13 original through-holes (2 AN bulkheads, 2 isolated electrical studs, 9 flange screws);
 no new hole opens on the outside (sealing) face. Strut, valve, pass-through positions and the 2 x dia 6.6 M6 strut
 cross-holes are unchanged. Fillets are applied LAST, after every cut. Edge breaks are a drawing note (not modelled).
-Rev letters: each part model's letter = its count of releases (fairsolid rev folders where it changed), A first, skip I, L, O, Q:
-flange G, strut E, foot D, saddle C, lug block A (obsolete). Evidence: cad/DRAWING-REVS.md.
+Rev letters: each part model's letter = its count of releases (fairsolid rev folders + st185 PRs where it changed), A first,
+skip I, L, O, Q: flange G, lug block A (obsolete). Evidence: cad/DRAWING-REVS.md.
+Since 2026-10-17 (option B, approved B9) the strut FH-103 F, foot FH-104 E and saddle FH-105 D are built by build_holder.py
+(pump_holder.py + pumpmount.py); strut(), saddle() and foot() below are the fairsolid rev 7 geometry the holder study
+started from (pumpmount.strut_variant reuses the strut base). This script writes the flange + the fit-check envelopes.
 
 Rev 3c (Dan): the JXSS035 fittings are fuel-cell BULKHEADS (male AN both ends, hex + sealing washer outside,
 sealing washer + nut inside), so the plate gets plain clearance holes, not tapped ports. Every pass-through
@@ -43,9 +46,9 @@ Changed:
   saddle clamps and a billet foot sized for the Walbro F90000295 (39 mm body / 50 mm lower body,
   131 mm long, maker listing).
 
-Run (WSL, handbuilt-cad venv):
-  ~/projects/handbuilt-cad/.venv/bin/python hanger_billet.py
-Writes hanger_*.step / .stl (each billet part, plus the assembly) and hanger_report.json.
+Run (WSL, handbuilt-cad venv), first this, then build_holder.py:
+  ~/projects/handbuilt-cad/.venv/bin/python cad/fuel-hanger/fuel_hanger.py
+Writes fuel-hanger-flange.step + the fit-check envelope STEPs and fuel-hanger-report.json.
 """
 import json, math, os
 from build123d import *
@@ -488,11 +491,7 @@ def pump():
 
 
 if __name__ == "__main__":
-    parts = {"flange": flange()}
-    parts["strut"] = strut()
-    for i, (z0, z1) in enumerate(CLAMP_Z):
-        parts[f"saddle{i+1}"] = saddle(z0, z1)
-    parts["foot"] = foot()
+    parts = {"flange": flange()}          # strut / foot / saddle + the assembly: build_holder.py (option B, 2026-10-17)
     bought = {"check_valve_radium_20-0598": check_valve_envelope(),
               "pump_f90000295": pump()}
     bought["inside_keepouts"] = keepouts()
@@ -521,9 +520,6 @@ if __name__ == "__main__":
             ov = (allp[a] & allp[b]).volume if d < 1e-6 else 0.0
             if d < 3.0:
                 rep["clear"][f"{a}|{b}"] = {"min_gap_mm": round(d, 2), "overlap_mm3": round(ov, 2)}
-    billet = Compound(children=list(parts.values()))
-    export_step(billet, os.path.join(HERE, "fuel-hanger-assembly.step"))
-    full = Compound(children=list(parts.values()) + list(bought.values()))
     rep["skipped_fillets"] = SKIPPED_FILLETS
     rep["billet_mass_g"] = round(sum(v["mass_g"] for k, v in rep["parts"].items() if k in parts), 0)
     json.dump(rep, open(os.path.join(HERE, "fuel-hanger-report.json"), "w"), indent=1)

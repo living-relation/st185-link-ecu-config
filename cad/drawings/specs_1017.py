@@ -1,5 +1,5 @@
 """2026-10-17 drawing set on st185-link-ecu-config main 4744454 (PR #274 CSB3 lock-in, #275 sweep fixes, #276 harness).
-Patches specs.PARTS for the current geometry and adds the fuel hanger rev 8 (build123d, Fairsolid run folder, never in the repo).
+Patches specs.PARTS for the current geometry and adds the fuel hanger FH-101..105 from cad/fuel-hanger (build123d; was fairsolid rev 8).
 Rules (Dan): STEP only; edge breaks modelled where the CAD does it cleanly, else a drawing note (R138); tapped holes = tap drill + thread
 from the model; one of several identical features dimensioned with (xN); no repeated dims."""
 import copy, specs
@@ -60,26 +60,52 @@ PARTS['fb_power_base']['notes']=PARTS['fb_power_base']['notes']+[
   "VERIFIED 2026-10-17: R145 SLITS FILLED (NO GAP < 0.5, S6).",
   "STANDOFF RETENTION (R146, #277): 6 CRUSH RIBS IN THE 8.5 AF BORE, CORNERS RELIEVED ⌀1.2, + LOCTITE 406 WICKED IN FROM BELOW. R144 COLLARS REMOVED.",
   "OPEN ITEM (OPEN-ITEMS 124): M5 x 10 LUG BOLT TORQUE INTO THE BRASS STANDOFF - TBD."]
-# ---------------- fuel hanger rev 8 (build123d) ----------------
-HS='C:\\\\projects\\\\active\\\\fairsolid\\\\runs\\\\fuel_hanger_billet_1014\\\\rev8\\\\'
-HJ='st185_hanger_1017'
-HN=["MATERIAL: 6061-T6 ALUMINUM BILLET. MODEL: build123d hanger_billet.py REV 8 (FAIRSOLID RUN FOLDER, NOT IN THE REPO).",
-    "EDGE BREAKS: MODELLED WHERE build123d DID THEM (16 EDGES); BREAK ALL OTHER SHARP EDGES 0.3 (8 FAILED IN CAD, R138 NOTE)."]
-def HP(key,f,pn,title,threads,notes,**kw):
-    PARTS[key]=dict(job=HJ,file=src(HJ,f+'.step'),process='machined',title=title,pn=pn,material='6061-T6 ALUMINUM',source=HS+f+'.step',
-                    hidden=True,threads=threads,rev='8',notes=HN+notes,**kw)
-HP('hg_plate','hanger_top_plate','ST185-FH-101','FUEL HANGER - TOP PLATE',{4.2:('M5x0.8',0.8)},
-   ["2X M5x0.8-6H THRU (LUG BLOCK): TAPPED THRU THE 7.8 PLATE (1.56xD, REV 8). SEAL EACH M5 SHCS WITH FUEL-RESISTANT THREAD SEALANT; SCREW TIP AT OR UNDER THE OUTSIDE FACE.",
-    "OPEN ITEM (Needs Dan N6): THROUGH-TAPPED HOLES OPEN A PATH FROM THE TANK TO THE OUTSIDE FACE INSIDE THE GASKET RING - KEEP REV 8 + SEALANT, OR BACK TO REV 7 BLIND / INSERT.",
-    "NEVER MACHINE THROUGH THE GASKET SEALING FACE."])
-HP('hg_lug','hanger_lug_block','ST185-FH-102','FUEL HANGER - LUG BLOCK',{},["2X M5 SHCS CLEARANCE + COUNTERBORE INTO THE TOP PLATE TAPS."])
-HP('hg_strut','hanger_strut','ST185-FH-103','FUEL HANGER - STRUT',{},
-   ["STRUT POCKETS: FLOOR-TO-WALL EDGES ARE END-MILL FLOOR EDGES - SQUARE CUTTER CORNER OK (SWEEP C13, REV 8 SUMMARY).","FIT THE NUTS BEFORE THE STRUT (-8 NUT SOCKET GRAZE AT THE STRUT ROOT)."])
-HP('hg_foot','hanger_foot','ST185-FH-104','FUEL HANGER - FOOT',{3.3:('M4x0.7',0.7)},[])
-HP('hg_saddle','hanger_saddle1','ST185-FH-105','FUEL HANGER - PUMP SADDLE',{4.2:('M5x0.8',0.8)},[])
+# ---------------- fuel hanger (build123d, cad/fuel-hanger; option B holder approved B9, Dan 2026-10-17) ----------------
+# Replaces the fairsolid rev 8 entries (Dan rejected rev 8). Models: fuel_hanger.py (FH-101 flange) and build_holder.py
+# (FH-103 strut, FH-104 foot, FH-105 saddle, assembly). Rev log rows come from cad/fuel-hanger/<PN>.REVLOG.md (R152).
+import os as _os, math as _m
+_FHDIR=_os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))),'fuel-hanger')
+HJ='st185_fuelhanger_1017'
+HS='st185-link-ecu-config\\cad\\fuel-hanger\\'
+HN="6061-T6 BILLET. MADE-WITH: build123d (cad/fuel-hanger/%s). REV = RELEASE COUNT (cad/DRAWING-REVS.md). SPOT TAPPED ENTRIES 90°."
+PUMP="PUMP MASS 0.6 kg ASSUMED (WALBRO F90000295, 2 G HAND CHECK)."
+def HP(key,f,pn,title,threads,notes,src_py='build_holder.py',**kw):
+    PARTS[key]=dict(job=HJ,file=src(HJ,f),process='machined',title=title,pn=pn,material='6061-T6 ALUMINUM',source=HS+f,
+                    hidden=False,threads=threads,revlog=_os.path.join(_FHDIR,pn+'.REVLOG.md'),dxf=True,
+                    notes=[HN%src_py]+notes,**kw)
+HP('fh101','fuel-hanger-flange.step','ST185-FH-101','FUEL HANGER - FLANGE (INTEGRAL LUG)',{},
+   ["ONE BILLET: FLANGE + LUG (REPLACES FH-101 REV F + FH-102 REV A). NO M5 SCREWS, NO DOWELS. 13 THRU-HOLES ONLY; NOTHING ELSE BREAKS THE SEALING FACE.",
+    "SPOT FACES Ra 1.6 FLAT. UPRIGHT-TO-BASE R3. OPS: TANK FACE, OUTSIDE FACE, SIDE (⌀6.6).",
+    "EDGES NOT MODELLED (R138): BREAK SHARP EDGES 0.2-0.4; SEAL FACE / SPOT RIMS 0.3 MAX."],
+   src_py='fuel_hanger.py', rev='G.01',
+   hole_text={("Z", 5.8): "2X ⌀5.79 THRU (STUD)\n⌴⌀16 ↧0.4 BOTH SIDES",
+              ("Z", 14.7): "⌀14.68 THRU (-6 AN)\n⌴⌀24 ↧0.4 BOTH SIDES",
+              ("Z", 19.4): "⌀19.45 THRU (-8 AN)\n⌴⌀30 ↧0.4 BOTH SIDES",
+              ("Z", 5.5): "9X ⌀5.5 THRU\n⌴⌀12 ↧2.8 OUTSIDE (RIM 5.0)"})
+HP('fh103','fuel-hanger-strut.step','ST185-FH-103','FUEL HANGER - STRUT',{4.2:('M5x0.8',0.8)},
+   ["ALL EDGES 0.5 x 45° CHAMFER, UNIFORM (MODELLED). POCKET FLOOR CORNERS: END-MILL OK.",
+    "+u SIDE FACE AT THE SADDLE (FH-105 TAB LOCATING FACE): 22.22 / 28.72 FROM THE 2X M4 CSK CENTRES 0/-0.05.",
+    "REV F: SADDLE KEY SLOT REMOVED, FOOT KEY SLOT KEPT. FIT THE BULKHEAD NUTS BEFORE THE STRUT.", PUMP],
+   # the engine reads only one cone per hole (the 0.5 chamfer), so the 2 saddle countersinks are called out by hand
+   hole_text={(_a,4.5):"4X ⌀4.5 THRU, ⌵⌀5.5 X 90° (0.5 CHAMFER)\n2X AT THE SADDLE (171.2 / 181.2): ⌵⌀8.4 X 90°\nBACK FACE, ISO 10642 M4 FLUSH" for _a in ('X','Y','Z')})
+_N=None
+try:
+    import sys as _sys; _sys.path.insert(0,_FHDIR); import fuel_hanger as _fh; _N=_fh.N
+except Exception as _e: print('fuel_hanger import for the foot view failed:',_e)
+_FOOT_ROT=[('Z',90.0-_m.degrees(_m.atan2(_N[1],_N[0])))] if _N else None   # back face (strut side, 2X M4 taps) toward the FRONT view
+HP('fh104','fuel-hanger-foot.step','ST185-FH-104','FUEL HANGER - FOOT',{3.3:('M4x0.7',0.7)},
+   ["FRONT VIEW = BACK FACE ON THE STRUT: 2X M4 TAP 10 FOR ISO 4762 M4 x 14; KEY TONGUE SITS IN THE STRUT FOOT SLOT.",
+    "R0.8 TOP-EDGE FILLETS MODELLED; 3 SKIPPED ON THE STRUT SIDE OF THE FLOOR TOP: BREAK THOSE 0.3-0.5. OTHER EDGES 0.2-0.4.", PUMP],
+   **({'rotate':_FOOT_ROT} if _FOOT_ROT else {}))
+HP('fh105','fuel-hanger-saddle.step','ST185-FH-105','FUEL HANGER - PUMP SADDLE',{3.3:('M4x0.7',0.7)},
+   ["BAND CHANNEL 13.2 x 1.0 DEEP FITS A 12.7 (1/2 IN) WORM-DRIVE BAND.",
+    "2X M4 TAP 8 MAX DEPTH. ISO 10642 M4 x 12: 2 N·m + LOCTITE 243.",
+    "TAB LOCATING FACE 22.22 / 28.72 FROM THE TAPPED HOLES +0.05/0: SLIP FIT 0-0.10 ON FH-103. PUSH SADDLE TOWARD STRUT, THEN TORQUE.",
+    "TAB ROOT R0.5 MAX. LIP ENDS R2 MAX. DEBURR 0.2 MAX.", PUMP])
+FH_ORDER=['fh101','fh103','fh104','fh105']
 ORDER=['csb3_body','csb3_lid','vrc_holder','drb_plate','fb_power_base','fb_power_pan','fb_power_cover','fb_retainer','fb_logic_base','fb_logic_pan',
        'fb_logic_cover','fb_br_base','fb_br_cover','fb_bar_br','fb_pad','fb_barneg','fb_barpos','fb_strip1','fb_strip2']
-# Fuel hanger rev 8 dropped 2026-10-17: Dan rejected the rev 8 model (N6 M5 through-hole), no FH sheets.
+# Fuel hanger rev 8 dropped 2026-10-17 (Dan rejected it); the fuel hanger sheets are FH_ORDER above, from cad/fuel-hanger.
 # ---------------- Rev letters (Dan 2026-10-17): the MODEL drives the rev letter; drawing = model letter.
 # Letters A B C D E F G H J K M N P R S T ... (skip I, L, O, Q). Rev A only for brand-new models. Existing models:
 # letter = count of the model's past releases in the repo history (first release = A); rev numbers are not converted.

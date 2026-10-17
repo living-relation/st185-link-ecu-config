@@ -129,14 +129,14 @@
  "fuel-hanger": {
   "png": "cad/fuel-hanger/trimetric.png",
   "solids": 4,
-  "part_types": 2,
+  "part_types": 1,
   "extent_mm": [
-   149.6,
-   157.1,
+   148.0,
+   154.6,
    303.0
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/.claude/worktrees/fuel-hanger-revH/cad/fuel-hanger/fuel-hanger-assembly.step": 1792251911
+   "C:/projects/active/st185-link-ecu-config/cad/fuel-hanger/fuel-hanger-assembly.step": 1792269980
   },
   "rendered": "2026-10-17"
  },
