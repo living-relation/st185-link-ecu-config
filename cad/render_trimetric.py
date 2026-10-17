@@ -6,9 +6,9 @@ small) and cad/trimetrics.json (source files + their mtimes, so the research hub
 when a STEP is newer than its picture).
 
 Two stages: OCP (build123d venv) tessellates, VTK (--vtk-python, default ~/simvenv) draws.
-On dansPC run it in WSL with the handbuilt-models venv, from the repo root (WSL paths):
+On dansPC run it in WSL with the handbuilt-cad venv, from the repo root (WSL paths):
 
-  ~/projects/handbuilt-models/.venv/bin/python cad/render_trimetric.py \
+  ~/projects/handbuilt-cad/.venv/bin/python cad/render_trimetric.py \
       --src /mnt/c/projects/active/st185-link-ecu-config [--only fusebox-power ...]
 
 --src is the checkout that holds the gitignored STEP files (the main checkout); the PNGs

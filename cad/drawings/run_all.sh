@@ -1,5 +1,5 @@
 #!/bin/bash
-# PY = the st185 CAD Python (frozen env, see AGENTS.md); HANDBUILT_CAD = handbuilt-cad checkout (default ~/projects/handbuilt-cad)
+# PY = the st185 CAD Python (handbuilt-cad .venv: ~/projects/handbuilt-cad/.venv/bin/python, same versions of every package st185 imports); HANDBUILT_CAD = handbuilt-cad checkout (default ~/projects/handbuilt-cad)
 # Usage: ST185_WORK=/path/to/workdir (containing src/<job>/*.step) ./run_all.sh
 set -e; HERE=$(cd "$(dirname "$0")" && pwd)
 : "${PY:=python}"; : "${ST185_WORK:?set ST185_WORK}"; export ST185_WORK

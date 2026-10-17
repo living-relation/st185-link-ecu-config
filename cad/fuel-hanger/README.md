@@ -4,7 +4,7 @@ In-tank pump hanger, billet 6061-T6, for the Walbro F90000295. build123d model, 
 
 | File | What |
 |---|---|
-| `fuel_hanger.py` | build source (run in WSL with the handbuilt-models `.venv`); writes the STEP files + `fuel-hanger-report.json` |
+| `fuel_hanger.py` | build source (run in WSL with the handbuilt-cad `.venv`); writes the STEP files + `fuel-hanger-report.json` |
 | `fuel-hanger-*.step` | flange (integral lug), strut, saddle, foot, assembly, and fit-check envelopes (gitignored, local in the main checkout, R67) |
 | `check_flange.py`, `check-results.json` | flange checks: valid solid, STEP round-trip, 13 through-holes, strut / valve fit |
 | `make_drawings.py`, `drawings/` | shop drawings (SteveCAD build123d drawing engine): ST185-FH-101 flange, -103 strut, -104 foot, -105 saddle (PDF, DXF, PNG preview) |

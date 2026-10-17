@@ -43,8 +43,8 @@ Changed:
   saddle clamps and a billet foot sized for the Walbro F90000295 (39 mm body / 50 mm lower body,
   131 mm long, maker listing).
 
-Run (WSL, handbuilt-models venv):
-  ~/projects/handbuilt-models/.venv/bin/python hanger_billet.py
+Run (WSL, handbuilt-cad venv):
+  ~/projects/handbuilt-cad/.venv/bin/python hanger_billet.py
 Writes hanger_*.step / .stl (each billet part, plus the assembly) and hanger_report.json.
 """
 import json, math, os

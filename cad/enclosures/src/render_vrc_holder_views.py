@@ -4,7 +4,7 @@ and O-ring off, adds the leads from vrc_holder_spec.wires() (M22759/16-20, OD 1.
 each view with render_trimetric.draw (its fixed style, a different camera per view).
 
 WSL, from the repo root:
-  ~/projects/handbuilt-models/.venv/bin/python cad/enclosures/src/render_vrc_holder_views.py \
+  ~/projects/handbuilt-cad/.venv/bin/python cad/enclosures/src/render_vrc_holder_views.py \
       --src /mnt/c/projects/active/st185-link-ecu-config --out <folder>
 Claude Code, 2026-10-15.
 """

@@ -4,8 +4,8 @@
   P3  walls >= 2.0 mm (R73): voxel morphology - every region narrower than 2.0 mm is listed; it fails unless the region is inside one
       of the part's named thin features (a snap barb, a deliberate flex arm is not a wall)
   P4  sits on the build plate: lowest point at z = 0
-Run in WSL with the handbuilt-models venv (trimesh), from the repo root, --src = the checkout that holds the CAD files:
-    ~/projects/handbuilt-models/.venv/bin/python cad/check_print_files.py --src /mnt/c/projects/active/st185-link-ecu-config
+Run in WSL with the handbuilt-cad venv (trimesh), from the repo root, --src = the checkout that holds the CAD files:
+    ~/projects/handbuilt-cad/.venv/bin/python cad/check_print_files.py --src /mnt/c/projects/active/st185-link-ecu-config
 Claude Code, 2026-10-15.
 """
 import argparse, os, sys, zipfile, re
