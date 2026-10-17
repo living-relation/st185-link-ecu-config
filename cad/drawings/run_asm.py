@@ -8,7 +8,7 @@ import sys,os
 pass
 import aspecs, asm
 k=sys.argv[1]; sp=aspecs.ASM[k]()
-job={'vrc':'st185_vrc_1015','csb3':'st185_csb3_1015','busbar':'st185_busbar_1015','drb':'st185_drb102_1015'}.get(k,'st185_fusebox_1015')
+job={'fuel_hanger':'st185_fuelhanger_1017','vrc':'st185_vrc_1015','csb3':'st185_csb3_1015','busbar':'st185_busbar_1015','drb':'st185_drb102_1015'}.get(k,'st185_fusebox_1015')
 os.makedirs('out/'+job,exist_ok=True)
 asm.make_assembly(sp,f"out/{job}/{sp['pn']}.pdf",f"previews/{sp['pn']}")
 print('OK',k)

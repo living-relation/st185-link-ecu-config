@@ -1,0 +1,193 @@
+{
+ "build": "build_holder.py (option B, approved B9 2026-10-17)",
+ "parts": {
+  "strut": {
+   "pn": "FH-103",
+   "rev": "F",
+   "file": "fuel-hanger-strut.step",
+   "mass_g": 173.8,
+   "volume_mm3": 64372.07,
+   "valid": true,
+   "solids": 1,
+   "bbox": [
+    51.1,
+    102.5,
+    291.7
+   ],
+   "step": {
+    "solids": 1,
+    "valid": true,
+    "vol_diff_pct": 0.0
+   }
+  },
+  "foot": {
+   "pn": "FH-104",
+   "rev": "E",
+   "file": "fuel-hanger-foot.step",
+   "mass_g": 27.4,
+   "volume_mm3": 10150.74,
+   "valid": true,
+   "solids": 1,
+   "bbox": [
+    63.2,
+    58.0,
+    12.0
+   ],
+   "step": {
+    "solids": 1,
+    "valid": true,
+    "vol_diff_pct": 0.0
+   }
+  },
+  "saddle": {
+   "pn": "FH-105",
+   "rev": "D",
+   "file": "fuel-hanger-saddle.step",
+   "mass_g": 24.8,
+   "volume_mm3": 9192.12,
+   "valid": true,
+   "solids": 1,
+   "bbox": [
+    45.5,
+    47.1,
+    17.0
+   ],
+   "step": {
+    "solids": 1,
+    "valid": true,
+    "vol_diff_pct": 0.0
+   }
+  }
+ },
+ "strut": {
+  "chamfer": "0.5 x 45 deg on every convex edge",
+  "convex_edges": 63,
+  "concave_edges_not_chamfered": 15,
+  "saddle_key_slot": "filled (unused since FH-105 D)",
+  "slot_volume_filled_mm3": 125.8,
+  "new_edges_in_filled_slot_zone": [],
+  "foot_key_slot_distance_to_fill_mm": 94.16
+ },
+ "tab": {
+  "z": [
+   175.0,
+   192.0
+  ],
+  "width_z_mm": 17.0,
+  "gap_to_strut_side_mm": 0.0,
+  "inner_face_u": 92.22,
+  "band_line_angle_from_u_deg": 58.7,
+  "bullnose_r": 1.0,
+  "tangent_on_inner_face_uv": [
+   92.22,
+   -2.29
+  ],
+  "tangent_on_band_line_uv": [
+   94.07,
+   -2.81
+  ],
+  "flat_bearing_mm2_approx": 26.8,
+  "tab_edges_filleted_R1": 6
+ },
+ "skipped_fillets_and_chamfers": {
+  "foot top edges R0.8": [
+   "skipped edge at (33.8, 19.2, 290.3) (len 12.1)",
+   "skipped edge at (27.2, 15.5, 290.3) (len 3.1)",
+   "skipped edge at (50.1, -23.3, 290.3) (len 19.4)"
+  ]
+ },
+ "contact_mm2": {
+  "saddle on strut front face": 471.8,
+  "foot on strut front face": 142.1,
+  "flange on strut back face": 822.3,
+  "tab gap to strut +u side face (mm)": 0.01
+ },
+ "saddle_install_slide_on_along_minus_n_overlap_mm3_at_lift_mm": {
+  "0.02": 0,
+  "0.5": 0,
+  "1.0": 0,
+  "2.0": 0,
+  "5.0": 0,
+  "10.0": 0
+ },
+ "band_on_tab": {
+  "band_leaves_strut_at_uv": [
+   92.22,
+   -5.85
+  ],
+  "first_tab_contact_uv": [
+   93.97,
+   -2.97
+  ],
+  "free_span_mm": 3.37,
+  "max_gap_band_to_surface_mm": 1.53
+ },
+ "clearance_under_3mm": {
+  "flange|strut": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0
+  },
+  "strut|saddle": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0
+  },
+  "strut|foot": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0
+  },
+  "strut|pump": {
+   "min_gap_mm": 2.0,
+   "overlap_mm3": 0.0
+  },
+  "strut|keepouts": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 58.501
+  },
+  "strut|band(taut)": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0.0
+  },
+  "strut|screws": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0
+  },
+  "saddle|pump": {
+   "min_gap_mm": 1.25,
+   "overlap_mm3": 0.0
+  },
+  "saddle|band(taut)": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0.002
+  },
+  "saddle|screws": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 38.34
+  },
+  "foot|pump": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0
+  },
+  "foot|screws": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 51.912
+  },
+  "pump|band(taut)": {
+   "min_gap_mm": 1.25,
+   "overlap_mm3": 0.0
+  },
+  "band(taut)|screws": {
+   "min_gap_mm": 0.0,
+   "overlap_mm3": 0
+  }
+ },
+ "saddle_location_2g": {
+  "pump_mass_kg": 0.6,
+  "load_N": 11.8,
+  "friction_capacity_N": 450.0,
+  "SF_slip_z": 38.1,
+  "SF_spin": 12.9,
+  "if_friction_lost_screw_shear_MPa": 0.76,
+  "note": "no key: u by the tab on the strut +u side face, z by 2 x M4 preload (torque + threadlocker on the drawing)"
+ },
+ "holder_mass_g": 52.2
+}

@@ -13,8 +13,11 @@
    "fuel-hanger-foot.step",
    "fuel-hanger-inside_keepouts.step",
    "fuel-hanger-pump_f90000295.step",
+   "fuel-hanger-saddle.step",
    "fuel-hanger-saddle1.step",
-   "fuel-hanger-strut.step"
+   "fuel-hanger-strut.step",
+   "ref_band_clamp_worm_drive.step",
+   "ref_screws_M4.step"
   ],
   "cad/fusebox": [
    "BattRelay_Bar_Power_CuC110_25x6p35.step",
@@ -161,6 +164,12 @@
    "VRC_part_VRC-Body.step",
    "VRC_part_VRC-Lid.step"
   ],
+  "cad/fuel-hanger/superseded": [
+   "hanger_billet_assembly.step",
+   "hanger_lug_block.step",
+   "hanger_top_plate.step",
+   "hanger_with_pump_fittings.stl"
+  ],
   "cad/fusebox/rev7": [
    "BattRelay_Bar_Power_CuC110_25x6p35.step",
    "BattRelay_Base_PA12_printed.step",
@@ -192,6 +201,9 @@
   "cad/fusebox/rev7/print": [
    "ST185_R1_retainer_clip_PA12.step",
    "ST185_R1_retainer_clip_PA12.stl"
+  ],
+  "cad/enclosures/csb3/superseded": [
+   "CSB3_part_Standoffs_Keystone_25510_x2.step"
   ],
   "cad/enclosures/vrc/print": [
    "ST185_VRC_board_holder_PA12.step",

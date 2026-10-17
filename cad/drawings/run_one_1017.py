@@ -8,5 +8,6 @@ import sys, specs_1017, part
 name=sys.argv[1]; sp=specs_1017.PARTS[name]
 _o.makedirs('out/'+sp['job'],exist_ok=True)
 pdf=f"out/{sp['job']}/{sp['pn']}.pdf"   # no rev in filenames (Dan 2026-10-17); rev is in the title block
-s=part.make_part(sp,pdf,None,f"previews/{sp['pn']}")
+dxf=f"out/{sp['job']}/{sp['pn']}.dxf" if sp.get('dxf') else None   # machined parts get a DXF too (cnc-part-check)
+s=part.make_part(sp,pdf,dxf,f"previews/{sp['pn']}")
 print('OK',name,s)

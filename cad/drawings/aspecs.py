@@ -236,6 +236,37 @@ def fb_br():
 FB='\\\\fusebox\\\\rev7\\\\'
 ASM.update(fb_power=fb_power,fb_logic=fb_logic,fb_br=fb_br)
 
+def fuel_hanger():
+    """ST185-FH-100 fuel hanger assembly (option B holder, approved B9, Dan 2026-10-17). Parts from cad/fuel-hanger
+    (fuel_hanger.py + build_holder.py), copied into src/st185_fuelhanger_1017 by run_1017.sh. Rev log: ST185-FH-100.REVLOG.md."""
+    J='src/st185_fuelhanger_1017/'
+    one=lambda f:list(import_step(J+f).solids())
+    sc=one('ref_screws_M4.step'); zc=sorted(s.center().Z for s in sc); zmid=(zc[0]+zc[-1])/2
+    sad_sc=[s for s in sc if s.center().Z<zmid]; foot_sc=[s for s in sc if s.center().Z>=zmid]
+    FHD=os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),'fuel-hanger')
+    items=[
+     dict(item=1,qty=1,pn='ST185-FH-101',desc='FUEL HANGER - FLANGE (INTEGRAL LUG)',mat='6061-T6 AL, MACHINED',shapes=one('fuel-hanger-flange.step')),
+     dict(item=2,qty=1,pn='ST185-FH-103',desc='FUEL HANGER - STRUT',mat='6061-T6 AL, MACHINED',shapes=one('fuel-hanger-strut.step')),
+     dict(item=3,qty=1,pn='ST185-FH-104',desc='FUEL HANGER - FOOT',mat='6061-T6 AL, MACHINED',shapes=one('fuel-hanger-foot.step')),
+     dict(item=4,qty=1,pn='ST185-FH-105',desc='FUEL HANGER - PUMP SADDLE',mat='6061-T6 AL, MACHINED',shapes=one('fuel-hanger-saddle.step')),
+     dict(item=5,qty=2,pn='ISO 10642 M4 x 12',desc='SADDLE SCREW, CSK SOCKET HEAD',mat='A2 STAINLESS',shapes=sad_sc),
+     dict(item=6,qty=2,pn='ISO 4762 M4 x 14',desc='FOOT SCREW, SOCKET HEAD CAP',mat='A2 STAINLESS',shapes=foot_sc),
+     dict(item=7,qty=1,pn='SAE #24 WORM-DRIVE',desc='BAND CLAMP, 12.7 (1/2 IN) BAND',mat='STAINLESS, PURCHASED',shapes=one('ref_band_clamp_worm_drive.step')),
+     dict(item=8,qty=1,pn='WALBRO F90000295',desc='FUEL PUMP (CUSTOMER SUPPLIED)',mat='PURCHASED',shapes=one('fuel-hanger-pump_f90000295.step')),
+     dict(item=9,qty=2,pn='M6 BOLT + NYLOC NUT',desc='STRUT TO LUG, LENGTH TO SUIT',mat='A2 STAINLESS'),
+    ]
+    for it in items: it['shapes']=[s.rotate(Axis.X,180) for s in it.get('shapes',[])] or None   # installed: flange on top
+    for it in items:
+        if it['shapes'] is None: it.pop('shapes')
+    return dict(title='FUEL HANGER - ASSEMBLY',pn='ST185-FH-100',items=items,revlog=os.path.join(FHD,'ST185-FH-100.REVLOG.md'),
+      file=J+'fuel-hanger-assembly.step',source='st185-link-ecu-config\\cad\\fuel-hanger\\fuel-hanger-assembly.step',
+      project='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION',drawn='SteveCAD',
+      notes=['MADE-WITH: build123d (cad/fuel-hanger). SHOWN AS INSTALLED. OVERALL DIMS ONLY (REF). FITTINGS PER FH-101, NOT SHOWN.',
+             'ORDER: BULKHEAD NUTS, THEN STRUT TO FLANGE LUG (ITEM 9); FOOT (ITEM 3) WITH 2X ITEM 6 + MEDIUM THREADLOCKER; PUMP INTO THE FOOT.',
+             'SADDLE (ITEM 4): PUSH TOWARD THE STRUT SO THE TAB BEARS ON THE STRUT SIDE FACE, THEN 2X ITEM 5 AT 2 N·m + LOCTITE 243. BAND CLAMP (ITEM 7) IN THE SADDLE CHANNEL.',
+             '2 G HAND CHECK, PUMP MASS 0.6 kg ASSUMED: SADDLE HELD BY M4 PRELOAD FRICTION, SF 38 ALONG THE STRUT (NO KEY).'])
+ASM.update(fuel_hanger=fuel_hanger)
+
 # Title block (the handbuilt-cad engine defaults to a neutral "PROJECT" / "-"; st185 sets its own)
 PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'; DRAWN_BY='SteveCAD'
 for _v in list(globals().values()):
