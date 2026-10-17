@@ -919,13 +919,7 @@ def scan_model_files() -> dict:
             if names:
                 rel = d.relative_to(root).as_posix()
                 found[rel] = sorted(set(found.get(rel, [])) | set(names))
-    if HANGER_RUN.is_dir():
-        revs = sorted((p for p in HANGER_RUN.glob("rev*") if re.fullmatch(r"rev\d+", p.name)),
-                      key=lambda p: int(p.name[3:]))
-        latest = revs[-1] if revs else HANGER_RUN
-        names = _model_names(latest)
-        if names:
-            found[latest.as_posix()] = names
+    # fuel hanger: in this repo (cad/fuel-hanger/) since 2026-10-17; the Fairsolid run folder is history only
     return found
 
 
