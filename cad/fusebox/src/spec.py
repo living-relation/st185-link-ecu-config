@@ -94,19 +94,48 @@ STANDOFF = dict(af=8.0, long=40.0, thread=5, depth=10.0)    # brass hex standoff
 # Pad stud (OPEN-5): M5 x 20 DIN 916 A2 set screw, 9.5 into the standoff (1.9 x D, 0.5 short of its 10 mm thread), then pad 3.0 + AMI ear 0.8
 # + DIN 6923 nut 5.0, 1.7 past the nut (2 threads)
 SETSCREW = dict(l=20.0, in_so=9.5)
-# Stud retention (Dan 2026-10-16: "nothing holding the long fusebox copper studs/standoffs into their holes ... they can be pulled up
-# through the holes as far as the studs are long, until the bottom terminals make contact with the under side of the base"): the POWER
-# base grows a printed COLLAR round every 40 mm standoff, from the deck underside down to `gap` over the standoff's bottom end. The lug
-# (or, at a spare position, the M5 x 10 bolt + RETAIN_WASHER) is bolted to that end, so the column can rise `gap` at most before the lug
-# meets the collar; the pad on the deck stops it going down; the hex bore (now from the collar bottom to the pad) stops it turning.
-# The collar carries no clamp load and is not in the current path (pad -> standoff -> lug stays metal to metal, R73). Hex bore turned
-# 90 deg (flats facing the lug barrel) so the notch round the barrel start leaves `notch_wall` of PA12; wall 3.2 = an R127 >= 3 mm body.
-COLLAR = dict(gap=0.3, wall=3.2, rot=90, notch_clr=0.4)
-COLLAR['od'] = round((STANDOFF['af'] + 2 * 0.4) / math.cos(math.radians(30)) + 2 * COLLAR['wall'], 2)   # 16.56 (hex bore corners + 2 walls)
-# spare AMI positions have no lug: an M5 x 10 bolt + this washer stands in for it (OD > the bore's 10.16 across corners). Accu HDTW-M5-A2,
-# DIN 7349 M5 x 15 heavy duty flat washer, A2, ID 5.3, OD 15, T 1.4 (accu-components.com/us/metric-flat-washers/63173-HDTW-M5-A2, 2026-10-17)
-RETAIN_WASHER = dict(pn='Accu HDTW-M5-A2 (DIN 7349 M5 x 15 x 1.4, A2)', id=5.3, od=15.0, t=1.4,
-                     url='https://accu-components.com/us/metric-flat-washers/63173-HDTW-M5-A2')
+# Stud self-retention (Dan 2026-10-17, N5 / N7; R146 supersedes R144's collars): "the brass stud needs to hold itself in place if a fuse is
+# removed" ... "if you turn it upside down it will slide out of the hole" ... "using friction fit for just the stud is probably smart. we just
+# have to calculate it right". Each 40 mm standoff presses into its hex bore past 6 crush ribs (one on each flat); a few drops of Loctite 406
+# wicked in from below along the ribs are the positive backup (BACKUP). Nothing comes between the pad and the brass top (current path, R73).
+#   bore: flats `clr` off the 8.0 AF hex (8.5 AF bore) so the flats never touch with MJF's +-0.2-0.3; corners relieved (`corner_d`), and
+#         a 45 deg lead-in `chamfer` at the top; the bore runs deck underside -> pad pocket (no collar).
+#   ribs: half-round, radius `r`, centred on each flat, crest `i` inside the brass flat (interference), `len` long from `top` under the
+#         pad pocket floor, round ends (the top end is the rib's lead-in). See STUD_FIT_CALC for the numbers (shown in the PR).
+STUD_FIT = dict(clr=0.25, corner_d=1.2, chamfer=1.0, i=0.30, len=6.0, top=2.0, rot=90)
+STUD_FIT['r'] = STUD_FIT['clr'] + STUD_FIT['i']      # rib centred on the bore flat: its crest is i inside the brass flat (0.55)
+# HP 3D High Reusability PA 12 data sheet 4AA6-4895ENE (2017): E 1700 MPa XY, tensile 48 MPa, elongation 20 % XY / 15 % Z, HDT 95 C XY at
+# 1.82 MPa. CTE: HP publishes none - unfilled PA12 100 - 150e-6/K, 150 used (worst). Brass C36000 20.5e-6/K (Copper Development Assoc.).
+# Box range -40 .. +85 C (cabin, docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md), +105 checked as a margin; assembled at 20 C.
+STUD_FIT_CALC = dict(E=1700.0, sy=48.0, cte_pa=150e-6, cte_brass=20.5e-6, t_hot=85.0, t_margin=105.0, t_cold=-40.0, t_asm=20.0, mu_lo=0.20, mu_hi=0.30,
+                     relax=0.25, mass_g=75.0, vib_g=5.0)
+
+
+def stud_fit_numbers():
+    """Crush-rib estimate per standoff (6 ribs). Contact chord after crush w = 2 sqrt(2 r i - i^2); the PA12 crest flows at about its
+    tensile strength, so N = sy * w * len per rib at assembly; long term at temperature it relaxes to `relax` of that. Elastic grip left
+    after the crush = sy / E * rib height; PA12 out-grows brass by (cte_pa - cte_brass) * dT * flat distance."""
+    F, C = STUD_FIT, STUD_FIT_CALC
+    w = 2 * math.sqrt(2 * F['r'] * F['i'] - F['i'] ** 2)
+    n0 = 6 * C['sy'] * w * F['len']
+    flat = STANDOFF['af'] / 2 + F['clr']
+    spring = C['sy'] / C['E'] * F['r']
+    grow = {T: (C['cte_pa'] - C['cte_brass']) * (T - C['t_asm']) * flat for T in (C['t_hot'], C['t_margin'], C['t_cold'])}
+    need = C['mass_g'] / 1000 * 9.81 * C['vib_g']
+    return dict(chord_mm=round(w, 2), press_N=(round(C['mu_lo'] * n0), round(C['mu_hi'] * n0)), hold_new_N=round(C['mu_lo'] * n0),
+                hold_aged_N=round(C['mu_lo'] * n0 * C['relax']), need_N=round(need, 1), springback_mm=round(spring, 3),
+                bore_growth_mm={k: round(v, 3) for k, v in grow.items()}, interference_tol=(round(F['i'] - 0.25, 2), round(F['i'] + 0.25, 2)))
+# Positive backup (Dan: friction "won't necessarily stop it from sliding through the hole due to temperature expansion or age"): the crushed
+# rib keeps only ~0.01 mm of spring, PA12 out-grows the brass by ~0.02-0.03 mm at +85 C, so hot and aged the ribs may go slack - the bond holds.
+BACKUP = dict(pn='LOCTITE 406', what='ethyl cyanoacrylate for plastics, low viscosity (12-22 mPa.s), -40 .. +120 C (Henkel TDS Feb 2012)',
+              url='https://next.henkel-adhesives.com/ca/en/products/industrial-adhesives/central-pdp.html/loctite-406/BP000000153530.html',
+              how='after pressing the standoff in: 2-3 drops at the bore bottom (deck underside), it wicks up the rib lines and corners; '
+                  'nothing on the top face (the pad sits on bare brass). Full strength 24 h.')
+# Bar hold-down tabs (Dan N5: "add printed tabs that hold the bars down"): a snap arm cut free of the deck by a slot all round (`slot`), `t` thick,
+# `w` wide, rooted `root` under the deck top; its hook reaches `over` past the bar edge (inside the 0.3 edge break) with a 45 deg lead-in, the
+# underside square. The bar pushes the arm out by over + CLR on the way in. Battery block: the bar sits on its pedestal, so the arm stands
+# on the floor beside the pedestal, `gap` off it. Arm strain 1.5 t d / L^2 and push force 3 E I d / L^3 are in the build report.
+BAR_TAB = dict(t=2.2, w=6.0, root=12.0, slot=1.0, over=1.0, hook_t=1.6, gap=0.7, t_stand=3.5)   # t_stand: the free arms on the battery block floor (35 long)
 TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck underside (terminal cavity length)
 
 # ---------- logic zone (inboard): mini fuses + micro relays
@@ -160,9 +189,10 @@ WALL_EXEMPT = {
     'strip lip': 'LOGIC spine lips the bus strips slide in on (from the rear): 0.9 thick (spec.SPINE lip_t, z 4.6 - 5.5), 0.4 under the strip '
                  'and 0.6 over the belly-pan floor (z 4.0); thicker raises the strips (every stud row and PEM edge distance moves) or closes '
                  'the pan gap. Re-measured 2026-10-17 (SteveCAD sweep C7): the lips are this feature - the solid PA12 over the strips is not it',
-    'collar notch': 'attachment only: the stud-retention collar round each POWER standoff is cut back over the lug barrel start (Klauke '
-                    'l - tip - 9 out from the stud, spec.LUG_M5) - 2.2 of PA12 (> 1.95, W passes) from the bore flat to the cut, joined to the full '
-                    'collar on both sides and above; the barrel position sets it',
+    'crush rib': 'R146 (Dan N7: friction fit for the standoff): the 6 half-round crush ribs (r 0.55) in each POWER standoff bore are meant to be thin - '
+                 'their crests crush 0.30 into the brass flats on pressing (STUD_FIT); the bore wall round them is the deck block',
+    'bar snap tab': 'R146 (Dan N5: printed tabs that hold the bars down): the snap arm (2.2 thick) has to flex to let the bar in, and its hook '
+                    '(1.6) carries no load but the bar\'s own lift; walls, slots and the arm are sized for MJF (slots 1.0 > 0.5 S6)',
 }
 GAP_OPEN = 0.65      # SteveCAD sweep C1 (S6): least opening of a cavity-join bridge - HP MJF needs >= 0.5 between faces (check_printed_solid S6)
 MICRO_NO = ('5-1393292-8', '4-1904124-3', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)
