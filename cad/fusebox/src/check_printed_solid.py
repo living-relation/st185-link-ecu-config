@@ -14,6 +14,13 @@ Two checks, both must pass:
       its WALL_BASELINE. R128 (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of
       the parts"): the baseline is 0 everywhere - every spot that has to stay thin is a named exemption (spec.WALL_EXEMPT, boxes recorded
       by the build), listed with its count, never a number to hide behind.
+      R151 (Dan 2026-10-17: "Minimum thickness for walls is for critical or structural features, and doesn't apply to everything. If
+      something is questionable or unclear, it should be flagged for change or approval."): each spot is classed by wall_classes.py.
+      S4 / S5 FAIL on structural spots (the marked spots, attachments, legs / block under the deck, mount ears, outer skins, walls at
+      the terminals, shell side walls) over the baseline, and on any marked-spot hit as before. Non-structural and questionable spots
+      are FLAGGED - printed as 'flag' lines and listed in cad/fusebox/rev7/WALL-FLAGS.md for Dan to change or approve - and never
+      fail or vanish. wall_check.json must carry the classes (its flagged counts match this gate's own classing) and WALL-FLAGS.md
+      must match, or the run fails as stale.
   S2  Mesh: when the exported STL files are on this PC (heavy CAD is gitignored; CI has none), each STL's triangles form one connected
       piece (triangles joined by shared vertices), and no edge is shared by more than two triangles (a zero-thickness joint: two pieces
       meeting only along a line, SteveCAD sweep C3). Skipped, with a note, when a file is missing.
@@ -29,6 +36,7 @@ import bisect, json, os, struct, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import spec as S
+import wall_classes as WCL
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
 # selected parts (cad/README.md "Selected for build") -> folder of their STL: rev 7 POWER, LOGIC and battery relay block
@@ -39,15 +47,15 @@ PARTS = {
 }
 MAIN = r'C:\projects\active\st185-link-ecu-config'   # heavy files live in the main checkout (AGENTS.md "Project files stay in this repo")
 WALLS = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wall_check.json')
+FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'WALL-FLAGS.md')
 # R127 / R128 baseline: (thin-wall spots, attachment spots) per part outside the named exemptions - 0 after the R128 sweep (2026-10-16);
-# it may only go down, so it stays 0
+# it may only go down, so it stays 0. R151: it counts STRUCTURAL spots; non-structural / questionable ones are flagged, not counted.
 WALL_BASELINE = {n: (0, 0) for n in (
     'Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
     'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed')}
 # the spots Dan marked on 2026-10-15 (closeup_c2), world mm boxes that must stay clear: the R1 cavity group under the deck (M1, M5),
-# the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2)
-MARKED = {'Power_Base_PA12_printed': [(191.0, 225.0, 30.0, 56.0, 26.0, 38.5), (218.0, 236.0, 36.0, 50.0, 10.0, 32.0), (188.0, 206.0, 54.0, 68.0, 10.0, 32.0)],
-          'Power_Retainer_R1_PA12_printed': [(-1e3, 1e3, -1e3, 1e3, -1e3, 1e3)]}
+# the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2) - kept in wall_classes.FEATURES (R151), structural
+MARKED = WCL.MARKED
 
 
 def stl_triangles(path):
@@ -213,9 +221,61 @@ def _split(items):
     return [(g, k, tuple(round(v, 2) for v in bb)) for (g, k, bb) in res]
 
 
+def wall_findings(wcj, pp, rep, flags_md=None):
+    """S4 / S5 from a wall_check.json dict (R127 / R128 / R151). Returns (bad, notes, flags): structural spots over the baseline and
+    marked-spot hits are bad; non-structural / questionable spots are flags (reported for Dan, never failed)."""
+    bad, notes, flags = [], [], []
+    wc = wcj['parts']
+    for name, (bw, ba) in WALL_BASELINE.items():
+        w = wc.get(name)
+        if w is None:
+            bad.append('S4 %s: not in wall_check.json - re-run cad/check_printed_walls.py' % name)
+            continue
+        v = (pp.get(name) or {}).get('volume_cm3')
+        if v is not None and abs(v - w['volume_cm3']) > max(0.3, 0.0005 * v):    # STL tessellation of round faces (the 14 standoff collars) loses ~0.3 cm3
+            bad.append('S4 %s: wall_check.json is stale (%.1f cm3, the build %.1f) - re-run cad/check_printed_walls.py' % (name, w['volume_cm3'], v))
+            continue
+        mk = MARKED.get(name)
+        hits = [x for x in w['walls'] + w['attach'] if any(all(b[2 * d] <= x['at'][2 * d + 1] and x['at'][2 * d] <= b[2 * d + 1] for d in range(3)) for b in mk or [])]
+        bad.extend('S4 %s: %s at %s - inside a spot Dan marked (R127)' % (name, x.get('kind', 'wall <= 1.95'), x['at']) for x in hits)
+        cls = WCL.classify_part(name, w, rep)
+        sw = [x for (k, x, c, _) in cls if k == 'W' and c == WCL.STRUCTURAL]
+        sa = [x for (k, x, c, _) in cls if k == 'A' and c == WCL.STRUCTURAL]
+        fl = [(k, x, c, why) for (k, x, c, why) in cls if c in WCL.FLAGGED]
+        flags.extend('%s %s: %s at %s - %s' % (c, name, 'wall <= 1.95' if k == 'W' else x.get('kind', 'attachment < 3'), x['at'], why)
+                     for (k, x, c, why) in fl)
+        if w.get('flagged') is None:
+            bad.append('S4 %s: wall_check.json has no R151 classes - re-run cad/check_printed_walls.py --classify' % name)
+        elif w['flagged'] != len(fl):
+            bad.append('S4 %s: wall_check.json flags %d spot(s), this gate classes %d - stale, re-run cad/check_printed_walls.py --classify' % (
+                name, w['flagged'], len(fl)))
+        nw, na = len(w['walls']), len(w['attach'])
+        (notes if len(sw) <= bw else bad).append('S4 %s: %d structural spot(s) with a wall <= 1.95 mm (baseline %d), %d flagged, %d in all%s' % (
+            name, len(sw), bw, sum(1 for f in fl if f[0] == 'W'), nw, ''.join(
+                '; exempt %s x%d' % (k, v) for k, v in sorted((w.get('exempt') or {}).items()))))
+        bad.extend('S4 %s: structural wall <= 1.95 at %s - %s' % (name, x['at'], why) for (k, x, c, why) in cls
+                   if k == 'W' and c == WCL.STRUCTURAL and len(sw) > bw)
+        unknown = [k for k in (w.get('exempt') or {}) if k.replace('A ', '', 1) not in S.WALL_EXEMPT]
+        bad.extend('S4 %s: exemption "%s" has no reason in spec.WALL_EXEMPT' % (name, k) for k in unknown)
+        if w.get('attach_checked', True):
+            (notes if len(sa) <= ba else bad).append('S5 %s: %d structural feature(s) attached by < 3 mm (baseline %d), %d flagged, %d in all' % (
+                name, len(sa), ba, sum(1 for f in fl if f[0] == 'A'), na))
+        else:
+            notes.append('S5 %s: all thin (no >= 3 mm body) - walls only' % name)
+    if flags_md is not None:
+        want = WCL.flag_lines(wc, rep)
+        got = [l[2:] for l in flags_md.splitlines() if l.startswith('- ') and l != '- none']
+        if got != want:
+            bad.append('S4 cad/fusebox/rev7/WALL-FLAGS.md is stale (%d listed, %d flagged) - re-run cad/check_printed_walls.py --classify' % (len(got), len(want)))
+    else:
+        bad.append('S4 no cad/fusebox/rev7/WALL-FLAGS.md - re-run cad/check_printed_walls.py --classify')
+    notes.append('S4 / S5 R151: %d spot(s) flagged for Dan (cad/fusebox/rev7/WALL-FLAGS.md) - change or approve' % len(flags))
+    return bad, notes, flags
+
+
 def main(argv):
     dirs = [a for i, a in enumerate(argv) if i and argv[i - 1] == '--stl-dir']
-    bad, notes = [], []
+    bad, notes, flags = [], [], []
     rep = json.load(open(REPORT, encoding='utf-8'))
     pp = rep.get('printed_parts') or {}
     for name in PARTS:
@@ -248,28 +308,10 @@ def main(argv):
     if not os.path.isfile(WALLS):
         bad.append('S4 no cad/fusebox/rev7/wall_check.json - run cad/check_printed_walls.py (WSL) after the build')
     else:
-        wc = json.load(open(WALLS, encoding='utf-8'))['parts']
-        for name, (bw, ba) in WALL_BASELINE.items():
-            w = wc.get(name)
-            if w is None:
-                bad.append('S4 %s: not in wall_check.json - re-run cad/check_printed_walls.py' % name)
-                continue
-            v = (pp.get(name) or {}).get('volume_cm3')
-            if v is not None and abs(v - w['volume_cm3']) > max(0.3, 0.0005 * v):    # STL tessellation of round faces (the 14 standoff collars) loses ~0.3 cm3
-                bad.append('S4 %s: wall_check.json is stale (%.1f cm3, the build %.1f) - re-run cad/check_printed_walls.py' % (name, w['volume_cm3'], v))
-                continue
-            mk = MARKED.get(name)
-            hits = [x for x in w['walls'] + w['attach'] if any(all(b[2 * d] <= x['at'][2 * d + 1] and x['at'][2 * d] <= b[2 * d + 1] for d in range(3)) for b in mk or [])]
-            bad.extend('S4 %s: %s at %s - inside a spot Dan marked (R127)' % (name, x.get('kind', 'wall <= 1.95'), x['at']) for x in hits)
-            nw, na = len(w['walls']), len(w['attach'])
-            (notes if nw <= bw else bad).append('S4 %s: %d spot(s) with a wall <= 1.95 mm (baseline %d)%s' % (name, nw, bw, ''.join(
-                '; exempt %s x%d' % (k, v) for k, v in sorted((w.get('exempt') or {}).items()))))
-            unknown = [k for k in (w.get('exempt') or {}) if k.replace('A ', '', 1) not in S.WALL_EXEMPT]
-            bad.extend('S4 %s: exemption "%s" has no reason in spec.WALL_EXEMPT' % (name, k) for k in unknown)
-            if w.get('attach_checked', True):
-                (notes if na <= ba else bad).append('S5 %s: %d feature(s) attached by < 3 mm (baseline %d)' % (name, na, ba))
-            else:
-                notes.append('S5 %s: all thin (no >= 3 mm body) - walls only' % name)
+        md = open(FLAGS_MD, encoding='utf-8').read() if os.path.isfile(FLAGS_MD) else None
+        b_, n_, flags = wall_findings(json.load(open(WALLS, encoding='utf-8')), pp, rep, md)
+        bad += b_
+        notes += n_
     roots = dirs or [os.path.join(REPO, 'cad', 'fusebox'), os.path.join(MAIN, 'cad', 'fusebox')]
     for name, sub in PARTS.items():
         path = next((os.path.join(r, sub, name + '.stl') for r in roots if os.path.isfile(os.path.join(r, sub, name + '.stl'))), None)
@@ -304,9 +346,11 @@ def main(argv):
                 + (' ...' if len(ps) > 9 else '')))
     for n in notes:
         print('  ok   ' + n)
+    for f in flags:
+        print('  flag ' + f)
     for b in bad:
         print('  FAIL ' + b)
-    print('check_printed_solid: %s (%d fail)' % ('FAIL' if bad else 'PASS', len(bad)))
+    print('check_printed_solid: %s (%d fail, %d flagged for Dan)' % ('FAIL' if bad else 'PASS', len(bad), len(flags)))
     return 1 if bad else 0
 
 
