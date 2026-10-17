@@ -1,5 +1,13 @@
 # AGENTS.md
 
+## Read first, before starting work or asking
+Before starting work or asking the maintainer anything, read in order: (1) this repo's agent guide
+(`AGENTS.md` / `CLAUDE.md`), (2) its binding rules / decisions file if it has one (`docs/harness/redesign/DECISIONS.md`, "Binding rules from Daniel", then `docs/RECONCILIATION-RULES.md`), (3) the shared
+working memory `%USERPROFILE%\.claude\working-memory\<project>\INDEX.md` (WSL:
+`/mnt/c/Users/<user>/.claude/working-memory/<project>/INDEX.md`), (4) the newest handoff note if one
+exists (`docs/OPEN-ITEMS.md` and any note under `docs/`). If a rule or note already answers a question, act on it and cite it - never ask the
+maintainer something the rules already answer.
+
 > **Project focus (DECISIONS R102, Dan 2026-10-15) - the ONLY scope, in order:** (1) wiring sorted
 > so Dan can build the harnesses; (2) ECU base maps; (3) ECU CAN config written and checked;
 > (4) CSB3 config finished. Do not add to-dos outside these four; open a new `docs/OPEN-ITEMS.md`
