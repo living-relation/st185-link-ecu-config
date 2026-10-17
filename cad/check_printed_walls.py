@@ -14,14 +14,24 @@ less. check all boxes for floating or nearly floating features or cantilevers at
 EXEMPT (R127 sweep, Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of the parts"): the
 build records a box round every spot that has to stay thin (fusebox_report.json "wall_exempt", reasons in spec.WALL_EXEMPT); a W piece
 or A spot inside one is not listed but counted under its name ("exempt").
+CLASSES (DECISIONS R150, Dan 2026-10-17: "Minimum thickness for walls is for critical or structural features, and doesn't apply to
+everything. If something is questionable or unclear, it should be flagged for change or approval."): every W / A spot gets a class from
+cad/fusebox/src/wall_classes.py - structural (check_printed_solid.py S4 / S5 fail on it), non-structural or questionable (FLAGGED: listed
+for Dan, never failed, never dropped). Each part also records its x / y / z 'bounds' and, for a base, its deck 'outline' (the map needs
+them); the flag list for Dan goes to cad/fusebox/rev7/WALL-FLAGS.md.
 Writes cad/fusebox/rev7/wall_check.json (tracked; check_printed_solid.py S4 / S5 reads it, CI has no STL) and prints every spot.
-Run in WSL with the handbuilt-models venv (trimesh, shapely, scipy, PIL), from the repo root, --src = the checkout with the STLs:
+Run in WSL with the handbuilt-models venv (trimesh, shapely, scipy, PIL), from the repo root, --src = the checkout with the STLs,
+--out = the checkout to write into (default --src):
     ~/projects/handbuilt-models/.venv/bin/python cad/check_printed_walls.py --src /mnt/c/projects/active/st185-link-ecu-config
+--classify re-sorts the spots already in wall_check.json (after a FEATURES / map change) and records bounds / outline from the STLs,
+without re-running W / A.
 Claude Code, 2026-10-15.
 """
 import argparse, json, os, sys, time
 import numpy as np
 import trimesh
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fusebox', 'src'))   # this checkout's spec / wall_classes
+import wall_classes as WCL  # noqa: E402
 from shapely.geometry import LineString, Polygon, box as sbox
 from shapely.ops import polygonize, unary_union
 
@@ -263,16 +273,68 @@ def inside(g, b, tol=0.0):
     return all(b[2 * d] - tol <= g[2 * d] and g[2 * d + 1] <= b[2 * d + 1] + tol for d in range(3))
 
 
+def extents(m, name, report):
+    """R150 map inputs: the part's bounds and, for a base, the plan bounds of its outline without the legs, ears and end tabs: the
+    section half way up the deck (POWER / LOGIC: deck block + skirt), or 2 mm above the 6 mm mount ears / end tabs (battery block rim;
+    spec.LIMITER_M6 l = ear thickness)."""
+    lo, hi = m.bounds
+    out = dict(bounds=[round(float(v), 2) for v in (lo[0], hi[0], lo[1], hi[1], lo[2], hi[2])])
+    if '_Base_' in name:
+        bx = (report.get('boxes_mm') or {}).get(WCL.box_of(name)) or {}
+        z = (bx['z_d'] + bx['z_t']) / 2 if 'z_d' in bx and 'z_t' in bx else lo[2] + WCL.S.LIMITER_M6['l'] + 2.0
+        reg = section(m, 2, z)
+        if reg is not None and not reg.is_empty:
+            b = reg.bounds
+            out['outline'] = [round(float(v), 2) for v in (b[0], b[2], b[1], b[3])]
+    return out
+
+
+def classify_all(res, report, flags_md):
+    """R150: class + why on every spot, the flagged count per part and in total, and WALL-FLAGS.md."""
+    total = 0
+    for name, info in res['parts'].items():
+        n = 0
+        for (k, x, c, why) in WCL.classify_part(name, info, report):
+            x['class'], x['why'] = c, why
+            n += c in WCL.FLAGGED
+        info['flagged'] = n
+        total += n
+    res['flagged'] = total
+    lines = WCL.write_flags_md(flags_md, res['parts'], report)
+    for l in lines:
+        print('   FLAG ' + l)
+    print('R150: %d spot(s) flagged for Dan (%s)' % (total, flags_md))
+    return total
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--src', default='.')
+    ap.add_argument('--out', default='')
     ap.add_argument('--only', default='')
+    ap.add_argument('--classify', action='store_true')
     a = ap.parse_args()
-    res = {'rule': 'R127: walls > %.2f mm (W, sections every %.1f mm), features attached by >= %.1f mm (A, voxels %.2f mm)' % (WALL, STEP, ATTACH, PITCH),
-           'parts': {}}
-    outp = os.path.join(a.src, FUSEBOX, 'wall_check.json')
-    if a.only and os.path.isfile(outp):
+    out = a.out or a.src
+    rule = ('R127: walls > %.2f mm (W, sections every %.1f mm), features attached by >= %.1f mm (A, voxels %.2f mm); R150: fail on '
+            'structural spots only, flag non-structural / questionable ones' % (WALL, STEP, ATTACH, PITCH))
+    res = {'rule': rule, 'parts': {}}
+    outp = os.path.join(out, FUSEBOX, 'wall_check.json')
+    rp = os.path.join(out, FUSEBOX, 'fusebox_report.json')
+    report = json.load(open(rp)) if os.path.isfile(rp) else {}
+    if (a.only or a.classify) and os.path.isfile(outp):
         res = json.load(open(outp))
+        res['rule'] = rule
+    if a.classify:
+        for name in res['parts']:
+            p = os.path.join(a.src, FUSEBOX, name + '.stl')
+            if os.path.isfile(p):
+                res['parts'][name].update(extents(trimesh.load(p, force='mesh'), name, report))
+            else:
+                print('%s: no STL - bounds / outline not recorded' % name)
+        classify_all(res, report, os.path.join(out, FUSEBOX, 'WALL-FLAGS.md'))
+        json.dump(res, open(outp, 'w'), indent=1)
+        print('wrote', outp)
+        return 0
     for name in PARTS:
         if a.only and name not in a.only.split(','):
             continue
@@ -282,8 +344,8 @@ def main():
             continue
         t0 = time.time()
         m = trimesh.load(p, force='mesh')
-        allow = allowed(name, a.src)
-        ex = exempt(name, a.src)
+        allow = allowed(name, out)        # the build report of the checkout being written (--out): the STLs in --src may sit in a
+        ex = exempt(name, out)            # main checkout whose own report lags behind (exemption boxes missing)
         seen = {}
         w = walls(m, [(k_, b_) for (k_, b_, o_) in ex if o_ != 'A'], seen)
         at = None if any(k in name for k in SHELLS) else attachments(m)
@@ -298,6 +360,7 @@ def main():
             at = keep
         w = [g for g in w if not any(inside(g, b) for (_, b) in allow)]
         res['parts'][name] = dict(allowed=[r for (r, _) in allow], attach_checked=at is not None, volume_cm3=round(m.volume / 1000, 1),
+                                  **extents(m, name, report),
                                   exempt=seen, attach_skin=skin[0] if at is not None else 0,
                                   walls=[dict(at=[round(v, 1) for v in g[:6]], sections=g[6]) for g in w],
                                   attach=[dict(kind=x[0], at=[round(v, 1) for v in x[1:7]], vol_mm3=x[7]) for x in (at or [])])
@@ -307,6 +370,7 @@ def main():
             print('   W  x %.1f..%.1f  y %.1f..%.1f  z %.1f..%.1f  (%d sections)' % tuple(g))
         for x in (at or [])[:40]:
             print('   A  %s: x %.1f..%.1f  y %.1f..%.1f  z %.1f..%.1f  %.1f mm3' % x)
+    classify_all(res, report, os.path.join(out, FUSEBOX, 'WALL-FLAGS.md'))
     json.dump(res, open(outp, 'w'), indent=1)
     print('wrote', outp)
 
