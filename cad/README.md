@@ -33,7 +33,7 @@ Made by SteveCAD's build123d drawing engine (handbuilt-cad `drawing/`, DansPC WS
 | Model (tool) | Drawing | Rev | Status |
 |---|---|---|---|
 | CSB3 enclosure (Fusion) | `enclosures/csb3/ST185-CSB3-101.pdf` (body), `ST185-CSB3-102.pdf` (lid) | C / C | Body: R133 lock-in supports, M8 seal holes, thread-mill note (OPEN-ITEMS 125). Dan 2026-10-17: these replace the older `ST185-CSB3-enclosure-drawing.pdf` (Fusion, predates #274); the old file and its marked-up copy `ST185-CSB3-enclosure-drawing_MARKUP-2026-10-17.png` are kept for reference. |
-| VRC enclosure (Fusion) | `enclosures/vrc/ST185-VRC-enclosure-drawing.pdf` (body + lid); `ST185-VRC-103.pdf` (board holder) | holder D | Geometry matches the drawing; layout markups in `ST185-VRC-enclosure-drawing_MARKUP-2026-10-17.png`. |
+| VRC enclosure (Fusion) | `enclosures/vrc/ST185-VRC-101.pdf` (body), `ST185-VRC-102.pdf` (lid), `ST185-VRC-103.pdf` (board holder) | D / A / D | Body / lid: first engine drawings 2026-10-17 (no hidden lines, R150; letters counted, R147). The older Fusion drawing `ST185-VRC-enclosure-drawing.pdf` (body + lid, hidden lines) and its markup `ST185-VRC-enclosure-drawing_MARKUP-2026-10-17.png` are kept for reference. |
 | DRB102 firewall plate (CadQuery) | `drb102-plate/ST185-DRB-101.pdf` | C | M5 tapped through (C4), groove 4.75, modelled 0.5 chamfers kept (R138). |
 | Fuse boxes rev 7 (Fusion) | `fusebox/rev7/drawings/ST185-FB-101.pdf` ... `-116.pdf` (15 parts, no -110) | 101 R, 102 E, 103 F, 104 C, 105 N, 106 F, 107 H, 108 G, 109 F, 111 C, 112 B, 113 C, 114 B, 115/116 D (counted releases) | Printed parts: overall size only (the model defines the rest); copper: full hole callouts (strips: PEM holes, R129). |
 
