@@ -30,7 +30,7 @@ from pathlib import Path
 import numpy as np
 
 REPO = Path(__file__).resolve().parent.parent
-HANGER_RUN = "/mnt/c/projects/active/fairsolid/runs/fuel_hanger_billet_1014"
+HANGER_RUN = "/mnt/c/projects/_archive/2026-10-17-fairsolid/fairsolid/runs/fuel_hanger_billet_1014"  # archived 2026-10-17 (Fairsolid now in handbuilt-cad)
 
 # id -> (output png relative to repo, STEP globs relative to --src; "HANGER/" = newest hanger rev)
 MODELS = {
