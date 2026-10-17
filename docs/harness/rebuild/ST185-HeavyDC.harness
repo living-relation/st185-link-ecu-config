@@ -398,7 +398,7 @@
       },
       "layoutPosition": {
         "x": 1500,
-        "y": -60
+        "y": 150
       },
       "cavities": [
         {
@@ -419,8 +419,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 1890,
-        "y": -60
+        "x": 2040,
+        "y": 570
       },
       "cavities": [
         {
@@ -441,7 +441,7 @@
       },
       "layoutPosition": {
         "x": 1500,
-        "y": 180
+        "y": -30
       },
       "cavities": [
         {
@@ -462,8 +462,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 1890,
-        "y": -180
+        "x": 2160,
+        "y": -330
       },
       "cavities": [
         {
@@ -484,7 +484,7 @@
       },
       "layoutPosition": {
         "x": 2400,
-        "y": 840
+        "y": 570
       },
       "cavities": [
         {
@@ -529,7 +529,7 @@
       },
       "layoutPosition": {
         "x": 2400,
-        "y": -120
+        "y": 360
       }
     },
     {
@@ -572,8 +572,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": -420,
-        "y": 180
+        "x": 420,
+        "y": -210
       }
     },
     {
@@ -595,8 +595,8 @@
         }
       ],
       "layoutPosition": {
-        "x": -540,
-        "y": 300
+        "x": 60,
+        "y": -480
       },
       "schematicPosition": {
         "x": 0,
@@ -641,8 +641,8 @@
         }
       ],
       "layoutPosition": {
-        "x": -660,
-        "y": 420
+        "x": -300,
+        "y": -750
       },
       "schematicPosition": {
         "x": 480,
@@ -662,8 +662,8 @@
         "y": 150
       },
       "layoutPosition": {
-        "x": 420,
-        "y": 180
+        "x": 1140,
+        "y": -660
       },
       "propagate": false
     },
@@ -676,8 +676,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 480,
-        "y": 240
+        "x": 1140,
+        "y": 780
       },
       "propagate": false
     },
@@ -690,8 +690,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 540,
-        "y": 300
+        "x": 1080,
+        "y": -720
       },
       "propagate": false
     },
@@ -704,8 +704,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 600,
-        "y": 360
+        "x": 1080,
+        "y": 840
       },
       "propagate": false
     },
@@ -719,8 +719,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": -390,
-        "y": -150
+        "x": 780,
+        "y": 150
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -735,8 +735,8 @@
         "y": 90
       },
       "layoutPosition": {
-        "x": -480,
-        "y": -60
+        "x": 780,
+        "y": -30
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -751,8 +751,8 @@
         "y": 480
       },
       "layoutPosition": {
-        "x": 2280,
-        "y": 540
+        "x": 2040,
+        "y": 750
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -767,8 +767,8 @@
         "y": 570
       },
       "layoutPosition": {
-        "x": 2400,
-        "y": 300
+        "x": 1680,
+        "y": 390
       },
       "partId": "tp_lug_m10_2",
       "propagate": false
@@ -799,8 +799,8 @@
         "y": 750
       },
       "layoutPosition": {
-        "x": 2400,
-        "y": 30
+        "x": 1680,
+        "y": 300
       },
       "partId": "tp_lug_m8_2",
       "propagate": false
@@ -831,8 +831,8 @@
         "y": 1080
       },
       "layoutPosition": {
-        "x": 2160,
-        "y": -300
+        "x": 2310,
+        "y": 180
       },
       "propagate": false
     },
@@ -846,8 +846,8 @@
         "y": 1140
       },
       "layoutPosition": {
-        "x": 2220,
-        "y": -360
+        "x": 2400,
+        "y": 450
       },
       "propagate": false
     },
@@ -861,8 +861,8 @@
         "y": 1200
       },
       "layoutPosition": {
-        "x": 2280,
-        "y": -420
+        "x": 2400,
+        "y": 240
       },
       "propagate": false
     },
@@ -876,8 +876,8 @@
         "y": 660
       },
       "layoutPosition": {
-        "x": 660,
-        "y": 420
+        "x": 1020,
+        "y": -780
       },
       "propagate": false
     },
@@ -891,8 +891,8 @@
         "y": 720
       },
       "layoutPosition": {
-        "x": 720,
-        "y": 480
+        "x": 1020,
+        "y": 900
       },
       "propagate": false
     },
@@ -902,8 +902,8 @@
       "signal": "FP coil- -> ECU-A A19",
       "width": 390,
       "layoutPosition": {
-        "x": -900,
-        "y": 540
+        "x": -450,
+        "y": -1110
       },
       "schematicPosition": {
         "x": 990,
@@ -917,8 +917,8 @@
       "signal": "FP coil+ -> splice CP SW12",
       "width": 390,
       "layoutPosition": {
-        "x": -840,
-        "y": 600
+        "x": -300,
+        "y": -990
       },
       "schematicPosition": {
         "x": 990,
@@ -932,8 +932,8 @@
       "signal": "Fuel pump 12V -> FUEL PUMP c1",
       "width": 390,
       "layoutPosition": {
-        "x": -780,
-        "y": 660
+        "x": -360,
+        "y": -1050
       },
       "schematicPosition": {
         "x": 990,
@@ -1385,14 +1385,14 @@
     {
       "id": "bp_hdc_batt",
       "layoutPosition": {
-        "x": -300,
+        "x": 780,
         "y": 60
       }
     },
     {
       "id": "bp_hdc_pdb_h",
       "layoutPosition": {
-        "x": 780,
+        "x": 1140,
         "y": 60
       }
     },
@@ -1406,8 +1406,8 @@
     {
       "id": "bp_hdc_str",
       "layoutPosition": {
-        "x": 1920,
-        "y": 540
+        "x": 2040,
+        "y": 660
       }
     }
   ],

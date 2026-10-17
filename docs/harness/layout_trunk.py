@@ -240,14 +240,6 @@ def layout(d, hint):
             if hit:
                 break
         else:
-            if os.environ.get("LT_DEBUG"):
-                x, y = px + ux * 20 * G, py + uy * 20 * G
-                edge = (centre((px, py)), centre((x, y)), parent[n], n)
-                for variant in VARIANTS:
-                    P, B, S = cluster(n, x, y, variant)
-                    print("  ", n, variant, "self:", self_clash(B, S),
-                          "own:", clashes(({m: b for m, b in B.items() if m != n}, S), ({}, stubs(n, x, y) + [edge]), kinds),
-                          "placed:", clashes(placed, (B, S + [edge]), kinds), file=sys.stderr)
             raise SystemExit("layout_trunk: no room for %s" % n)
         pos.update(P)
         placed[0].update(B)

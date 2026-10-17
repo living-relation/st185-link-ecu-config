@@ -1115,8 +1115,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2730,
-        "y": 1620
+        "x": 2670,
+        "y": 2430
       },
       "schematicPosition": {
         "x": 0,
@@ -1171,8 +1171,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2730,
-        "y": 780
+        "x": 2670,
+        "y": 1770
       },
       "schematicPosition": {
         "x": 0,
@@ -1196,8 +1196,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 3090,
-        "y": 1890
+        "x": 3030,
+        "y": 2700
       },
       "schematicPosition": {
         "x": 60,
@@ -1249,8 +1249,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2250,
-        "y": 1590
+        "x": 2190,
+        "y": 2400
       },
       "schematicPosition": {
         "x": 0,
@@ -1308,8 +1308,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
-        "y": 1740
+        "x": 1920,
+        "y": 2550
       },
       "schematicPosition": {
         "x": 60,
@@ -1361,8 +1361,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 2520,
-        "y": -1290
+        "x": 2490,
+        "y": -1980
       },
       "schematicPosition": {
         "x": 1530,
@@ -1377,8 +1377,8 @@
       "signal": "ETB motor + -> ETB c4",
       "width": 390,
       "layoutPosition": {
-        "x": 2970,
-        "y": -930
+        "x": 2910,
+        "y": -1620
       },
       "schematicPosition": {
         "x": 480,
@@ -1392,8 +1392,8 @@
       "signal": "ETB motor - -> ETB c1",
       "width": 390,
       "layoutPosition": {
-        "x": 2910,
-        "y": -990
+        "x": 2850,
+        "y": -1680
       },
       "schematicPosition": {
         "x": 480,
@@ -1407,8 +1407,8 @@
       "signal": "CAN H Lambda -> splice CANH LAM",
       "width": 390,
       "layoutPosition": {
-        "x": 2700,
-        "y": -1170
+        "x": 2640,
+        "y": -1860
       },
       "schematicPosition": {
         "x": 480,
@@ -1422,8 +1422,8 @@
       "signal": "CAN L Lambda -> splice CANL LAM",
       "width": 390,
       "layoutPosition": {
-        "x": 2610,
-        "y": -1230
+        "x": 2580,
+        "y": -1920
       },
       "schematicPosition": {
         "x": 480,
@@ -1437,8 +1437,8 @@
       "signal": "Lambda 12V -> CAN-LAMBDA c1",
       "width": 390,
       "layoutPosition": {
-        "x": 2820,
-        "y": -1050
+        "x": 2760,
+        "y": -1740
       },
       "schematicPosition": {
         "x": 480,
@@ -1452,8 +1452,8 @@
       "signal": "Lambda GND -> CAN-LAMBDA c2",
       "width": 390,
       "layoutPosition": {
-        "x": 2760,
-        "y": -1110
+        "x": 2700,
+        "y": -1800
       },
       "schematicPosition": {
         "x": 480,
@@ -1467,8 +1467,8 @@
       "signal": "ETB screen -> A-engine open",
       "width": 390,
       "layoutPosition": {
-        "x": 3090,
-        "y": -810
+        "x": 3030,
+        "y": -1500
       },
       "schematicPosition": {
         "x": 480,
@@ -1482,8 +1482,8 @@
       "signal": "Lambda screen -> CAN open",
       "width": 390,
       "layoutPosition": {
-        "x": 3030,
-        "y": -870
+        "x": 2970,
+        "y": -1560
       },
       "schematicPosition": {
         "x": 480,
@@ -3040,8 +3040,8 @@
       "id": "sp_gndout_b_eng",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 3150,
-        "y": 1800
+        "x": 3090,
+        "y": 2610
       },
       "schematicPosition": {
         "x": 2250,
@@ -3054,8 +3054,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_570",
       "layoutPosition": {
-        "x": 3150,
-        "y": 1140
+        "x": 3090,
+        "y": 1080
       },
       "schematicPosition": {
         "x": 2250,
@@ -3080,8 +3080,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_750",
       "layoutPosition": {
-        "x": 3150,
-        "y": 780
+        "x": 3090,
+        "y": 720
       },
       "schematicPosition": {
         "x": 930,
@@ -3093,8 +3093,8 @@
       "partId": "spp_solder_generic",
       "locationId": "be_750",
       "layoutPosition": {
-        "x": 3030,
-        "y": 840
+        "x": 2970,
+        "y": 780
       },
       "schematicPosition": {
         "x": 930,
@@ -3335,141 +3335,141 @@
     {
       "id": "bp_420",
       "layoutPosition": {
-        "x": 2610,
-        "y": 1830
+        "x": 2550,
+        "y": 2640
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
-        "x": 2520,
-        "y": 1830
+        "x": 2460,
+        "y": 2640
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
-        "x": 2430,
-        "y": 1830
+        "x": 2370,
+        "y": 2640
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
-        "x": 2340,
-        "y": 1830
+        "x": 2280,
+        "y": 2640
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
-        "x": 1980,
-        "y": 1830
+        "x": 1920,
+        "y": 2640
       }
     },
     {
       "id": "be_330",
       "layoutPosition": {
-        "x": 2250,
-        "y": 1680
+        "x": 2190,
+        "y": 2490
       }
     },
     {
       "id": "be_360",
       "layoutPosition": {
-        "x": 2610,
-        "y": 1680
+        "x": 2550,
+        "y": 2490
       }
     },
     {
       "id": "bp_390",
       "layoutPosition": {
-        "x": 2700,
-        "y": 1680
+        "x": 2640,
+        "y": 2490
       }
     },
     {
       "id": "be_420",
       "layoutPosition": {
-        "x": 2820,
-        "y": 1830
+        "x": 2760,
+        "y": 2640
       }
     },
     {
       "id": "be_450",
       "layoutPosition": {
-        "x": 2910,
-        "y": 1830
+        "x": 2850,
+        "y": 2640
       }
     },
     {
       "id": "be_480",
       "layoutPosition": {
-        "x": 3090,
-        "y": 1800
+        "x": 3030,
+        "y": 2610
       }
     },
     {
       "id": "be_510",
       "layoutPosition": {
-        "x": 3090,
-        "y": 1260
+        "x": 3030,
+        "y": 1740
       }
     },
     {
       "id": "be_540",
       "layoutPosition": {
-        "x": 3090,
-        "y": 1200
+        "x": 3030,
+        "y": 1170
       }
     },
     {
       "id": "be_570",
       "layoutPosition": {
-        "x": 3090,
-        "y": 1140
+        "x": 3030,
+        "y": 1080
       }
     },
     {
       "id": "be_600",
       "layoutPosition": {
-        "x": 3090,
-        "y": 1080
+        "x": 3030,
+        "y": 1020
       }
     },
     {
       "id": "be_630",
       "layoutPosition": {
-        "x": 3090,
-        "y": 1020
+        "x": 3030,
+        "y": 960
       }
     },
     {
       "id": "be_660",
       "layoutPosition": {
-        "x": 3090,
-        "y": 960
+        "x": 3030,
+        "y": 900
       }
     },
     {
       "id": "be_690",
       "layoutPosition": {
-        "x": 3090,
-        "y": 900
+        "x": 3030,
+        "y": 840
       }
     },
     {
       "id": "be_720",
       "layoutPosition": {
-        "x": 3090,
-        "y": 840
+        "x": 3030,
+        "y": 780
       }
     },
     {
       "id": "be_750",
       "layoutPosition": {
-        "x": 3090,
-        "y": 780
+        "x": 3030,
+        "y": 720
       }
     },
     {
@@ -3510,8 +3510,8 @@
     {
       "id": "bp_at_turbospd",
       "layoutPosition": {
-        "x": 2700,
-        "y": 1830
+        "x": 2640,
+        "y": 2640
       }
     },
     {

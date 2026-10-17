@@ -2,8 +2,9 @@
 
 A wire in a .harness file stores no path, only its two ends and optional `layoutPoints`
 (schematic waypoints, https://docs.harness.design/files/harness/wiring.md). The app computes the
-drawn path. This module repeats that computation so the spacing gate (`audit_wire_spacing.py`)
-and the router (`route_wires.py`) see the same lines Daniel sees. Source: the desktop app's own
+drawn path. This module repeats that computation so the fallback schematic PNG
+(`render_schematic.py`) draws the same lines Daniel sees (the spacing gate W1 and the router
+`route_wires.py` that also used it were retired 2026-10-16, R141). Source: the desktop app's own
 routing code (`getPointsForLayoutPointLine`, `getHandleCenter`, `getHandleLocation`,
 `getHandlePosition`, `getNonRotatedWidthForElement`; harness.design desktop, read 2026-10-14):
 

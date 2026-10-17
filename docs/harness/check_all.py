@@ -35,8 +35,8 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
   audit_wire_spacing.py    W2: layout bundles 30 apart unless they end at the same connector / device
-                           (R107); W1: schematic wires never overlap; parallel runs at least 3 line widths
-                           apart (DECISIONS R86; paths per wire_paths.py, re-route with route_wires.py)
+                           (R107); RP1: no wire routing points unless Dan allow-lists the wire (DECISIONS
+                           R141, which retired R86's W1 and route_wires.py; strip_routing_points.py)
   audit_ident_bands.py     ident bands (DECISIONS R87): palette, one code per circuit per drawing, one code
                            per circuit name everywhere, both sections of a break on one circuit
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
@@ -48,9 +48,9 @@ What it runs, in order - every one in HARD is a hard gate:
   check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
-  audit_layout.py          layout view (DECISIONS R107): no node or label on another, no bundle
-                           through a node or label, no bundle on top of another, no lone long
-                           diagonal. Re-place with layout_tree.py (one straight tree) or
+  audit_layout.py          layout view (DECISIONS R107, R140 front right): no node or label on another,
+                           no bundle through a node or label (Y5: nor along its own end's label), no
+                           bundle on top of another, no lone long diagonal. Re-place with layout_tree.py (one straight tree) or
                            layout_trunk.py (keeps a bent trunk); snapshot render_layout.py.
   audit_destinations.py    short names (DECISIONS R124, R125): labels <= 12, label + designation and
                            every signal <= 20, loose ends "<what> -> <where it lands>" <= 32 and unique,

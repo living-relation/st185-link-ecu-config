@@ -194,8 +194,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 510,
-        "y": 480
+        "x": 900,
+        "y": 450
       },
       "schematicPosition": {
         "x": -300,
@@ -258,8 +258,8 @@
       "type": "Ring",
       "signal": "FP GND -> trunk stud M6",
       "layoutPosition": {
-        "x": 90,
-        "y": 780
+        "x": 480,
+        "y": 900
       },
       "schematicPosition": {
         "x": -300,

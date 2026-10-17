@@ -197,8 +197,8 @@
         "y": 510
       },
       "layoutPosition": {
-        "x": 0,
-        "y": 0
+        "x": 30,
+        "y": -120
       },
       "partImage": {
         "schematic": {
@@ -216,8 +216,8 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 720,
-        "y": 0
+        "x": 480,
+        "y": 330
       },
       "schematicPosition": {
         "x": 1140,
@@ -1040,8 +1040,8 @@
         "y": 210
       },
       "layoutPosition": {
-        "x": 750,
-        "y": 60
+        "x": 420,
+        "y": 420
       }
     }
   ],

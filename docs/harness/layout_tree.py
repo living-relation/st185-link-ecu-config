@@ -46,7 +46,6 @@ HINTS = os.path.join(HERE, "layout_hints.json")
 G = 30
 PAD = 14       # free margin around every node and label: rows 60 apart pass, 30 apart do not
 SEG_PAD = 10   # and a bundle keeps this much more clear of any node or label it does not end at
-MAX_REACH = 1350  # staircase: no end further out than this (audit_layout.py Y4: no long diagonal)
 STEP_CLEAR = 60   # staircase: a later bundle passes this far left of a nearer labelled end's node
 MAX_INV = 1.3     # staircase: a bundle into a labelled end is steep enough to reach the node
                   # under its label (label_box: 17 right of the centre, +-9, plus 2: 15 / 11)
@@ -111,11 +110,34 @@ def toward(d, n, rules):
     return None
 
 
+def long_diagonal(dx, dy):
+    """audit_layout.py Y4: a bundle longer than MAX_RUN on the canvas that is neither near-level
+    nor near-upright (the fan exemption is left out here)."""
+    a, b = abs(dx), abs(dy)
+    return max(a, b) > 1500 and min(a, b) > 0.2 * max(a, b)
+
+
 def warn(msg):
     print("layout_tree: " + msg, file=sys.stderr)
 
 
 def layout(d, hint):
+    """node -> layout position. hint "roots": [{"root", "grow", "at": [x, y]}, ...] lays a drawing
+    made of separate pieces (HeavyDC), each from its own root, placed at "at" (default: the spot
+    the root has now)."""
+    if "roots" in hint:
+        now = {x["id"]: (x["layoutPosition"]["x"], x["layoutPosition"]["y"])
+               for k in lg.KINDS for x in d.get(k, []) if x.get("layoutPosition")}
+        pos = {}
+        for spec in hint["roots"]:
+            part = layout(d, {**{k: v for k, v in hint.items() if k != "roots"}, "piece": True, **spec})
+            ax, ay = spec.get("at") or now[spec["root"]]
+            ox, oy = ax - part[spec["root"]][0], ay - part[spec["root"]][1]
+            pos.update({n: (x + ox, y + oy) for n, (x, y) in part.items()})
+        missing = [n for n in tree(d) if n not in pos]
+        if missing:
+            raise SystemExit("roots do not cover the bundle graph: %s" % missing[:5])
+        return pos
     if hint.get("grow") == "right":
         return layout_right(d, hint)
     adj = tree(d)
@@ -161,35 +183,34 @@ def layout(d, hint):
         return (b[0] - e, b[1] - e, b[2] + e, b[3] + e)
 
     def clash(P, S, edge, guard=()):
-        """True if shape S (with the new edge joining it) collides with placed shape P; `guard`
-        segments (the way in from the parent) must stay clear of S's nodes and labels."""
+        """Why shape S (with the new edge joining it) collides with placed shape P, or False;
+        `guard` segments (the way in from the parent) must stay clear of S's nodes and labels."""
         pb, ps = P
         sb, ss = S
         for p, q in guard:
             if any(lg.seg_hits_box(p, q, grow(c)) for _, c in sb):
-                return "c1"
+                return "guard"
             if lg.segs_overlap(p, q, edge[0], edge[1]):
-                return "c1"     # a fan bundle along the way in from the parent
+                return "guard"  # a fan bundle along the way in from the parent
         for _, b in sb:
             if any(lg.boxes_overlap(b, c) for _, c in pb):
-                return "c2"
+                return "node"
         for p, q, a, z in ss + [edge]:
-            for n, c in pb:
-                if n not in (a, z) and lg.seg_hits_box(p, q, grow(c)):
-                    return "c3 %s-%s hits %s %s" % (a, z, n, tuple(int(v) for v in c))
+            if any(lg.seg_hits_box(p, q, grow(c)) for n, c in pb if n not in (a, z)):
+                return "bundle over node"
             if any(cross(p, q, r, s) for r, s, a2, z2 in ps if not {a, z} & {a2, z2}):
-                return "c4"
+                return "crossing"
         for p, q, a, z in ps:
             if any(lg.seg_hits_box(p, q, grow(c)) for n, c in sb if n not in (a, z)):
-                return "c5"
+                return "bundle over new node"
         p, q, a, z = edge
         if any(lg.segs_overlap(p, q, r, s) for r, s, a2, z2 in ps if {a, z} & {a2, z2}):
-            return "c6"         # two bundles out of one node on one line: one hides the other (Y3)
+            return "on one line"  # two bundles out of one node on one line: one hides the other (Y3)
         for n, c in pb + sb:
             if n in (a, z) and labelled(kinds, n) and lg.seg_hits_box(p, q, label_box(c), 2):
-                return "c7"     # the edge would run over its own end's label (Y5)
+                return "own label"  # the edge would run over its own end's label (Y5)
         if any(lg.seg_hits_box(p, q, grow(c)) for n, c in sb if n not in (a, z)):
-            return "c8"
+            return "own fans"
         return False
 
     def staircase(n, x, y, side, combs, shape, guard):
@@ -208,7 +229,7 @@ def layout(d, hint):
                 r = (base + 2 * i) * G
                 spots.append((x - G * round(r * inv / G), y + side * r))
                 inv += STEP_CLEAR / r
-            if inv - STEP_CLEAR / r > MAX_INV or r > MAX_REACH:
+            if inv - STEP_CLEAR / r > MAX_INV or any(long_diagonal(x - px, py - y) for px, py in spots):
                 continue
             trial = shape
             for m, (px, py) in zip(combs, spots):
@@ -336,8 +357,6 @@ def layout(d, hint):
                     if not slide and all(b[2] <= x - PAD for m2, b in S2[0] if m2 != main):
                         break
                 else:
-                    if os.environ.get("LT_DEBUG"):
-                        warn("  %s: main %s slide: %s" % (n, main, clash(sh, S2, edge)))
                     S2, edge, j = S, (c, (xm + lg.NODE / 2, c[1]), n, main), 0
                     offs[main] = (0, 0)
                     return (sh[0] + S2[0], sh[1] + S2[1] + [edge]), 1
@@ -354,8 +373,6 @@ def layout(d, hint):
                             got = staircase(n, x, y, side, combs, sh, guard)
                             if got is None:
                                 fails += 1
-                                if os.environ.get("LT_DEBUG"):
-                                    warn("  %s first=%s: staircase %s %s" % (n, main_first, side, combs))
                                 got = (sh, {m: (xl, y + side * (3 + 2 * i) * G) for i, m in enumerate(combs)})
                             sh, sp = got
                             spots.update(sp)
@@ -369,7 +386,7 @@ def layout(d, hint):
                                 edge = (c, (x0 + lg.NODE / 2, dy + lg.NODE / 2), n, m)
                                 why = clash(sh, S2, edge, guard)
                                 turn = round(math.degrees(math.atan2(y - dy, x - x0)) / 10)
-                                if why == "c8" and turn not in tried and len(tried) < 6:
+                                if why == "own fans" and turn not in tried and len(tried) < 6:
                                     # the bundle in hits m's own fans: lay m's subtree out again with
                                     # its guard along this bundle
                                     tried.add(turn)
@@ -381,8 +398,6 @@ def layout(d, hint):
                                     break
                             else:
                                 fails += 1
-                                if os.environ.get("LT_DEBUG"):
-                                    warn("  %s first=%s: side %s -> %s: %s" % (n, main_first, side, m, clash(sh, shifted(S, y + side * 60 * G), (c, (x0 + 15, y + side * 60 * G + 15), n, m), guard)))
                             offs[m] = (0, dy)
                             sh = (sh[0] + S2[0], sh[1] + S2[1] + [edge])
             if main and not main_first:
@@ -417,7 +432,7 @@ def layout(d, hint):
 
     place(root, None, 0, 0, hint.get("inc"))
     missing = [n for n in adj if n not in pos]
-    if missing:
+    if missing and not hint.get("piece"):
         raise SystemExit("bundle graph is not one tree from %s: %s" % (root, missing[:5]))
     return pos
 
@@ -554,7 +569,7 @@ def layout_right(d, hint):
 
     place(root, None, 0, 0)
     missing = [n for n in adj if n not in pos]
-    if missing:
+    if missing and not hint.get("piece"):
         raise SystemExit("bundle graph is not one tree from %s: %s" % (root, missing[:5]))
     return pos
 
