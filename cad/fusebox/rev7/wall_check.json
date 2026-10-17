@@ -1,5 +1,5 @@
 {
- "rule": "R127: walls > 1.95 mm (W, sections every 0.5 mm), features attached by >= 3.0 mm (A, voxels 0.20 mm); R150: fail on structural spots only, flag non-structural / questionable ones",
+ "rule": "R127: walls > 1.95 mm (W, sections every 0.5 mm), features attached by >= 3.0 mm (A, voxels 0.20 mm); R151: fail on structural spots only, flag non-structural / questionable ones",
  "parts": {
   "Power_Base_PA12_printed": {
    "allowed": [],

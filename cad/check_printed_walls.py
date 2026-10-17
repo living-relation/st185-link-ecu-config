@@ -14,7 +14,7 @@ less. check all boxes for floating or nearly floating features or cantilevers at
 EXEMPT (R127 sweep, Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of the parts"): the
 build records a box round every spot that has to stay thin (fusebox_report.json "wall_exempt", reasons in spec.WALL_EXEMPT); a W piece
 or A spot inside one is not listed but counted under its name ("exempt").
-CLASSES (DECISIONS R150, Dan 2026-10-17: "Minimum thickness for walls is for critical or structural features, and doesn't apply to
+CLASSES (DECISIONS R151, Dan 2026-10-17: "Minimum thickness for walls is for critical or structural features, and doesn't apply to
 everything. If something is questionable or unclear, it should be flagged for change or approval."): every W / A spot gets a class from
 cad/fusebox/src/wall_classes.py - structural (check_printed_solid.py S4 / S5 fail on it), non-structural or questionable (FLAGGED: listed
 for Dan, never failed, never dropped). Each part also records its x / y / z 'bounds' and, for a base, its deck 'outline' (the map needs
@@ -274,7 +274,7 @@ def inside(g, b, tol=0.0):
 
 
 def extents(m, name, report):
-    """R150 map inputs: the part's bounds and, for a base, the plan bounds of its outline without the legs, ears and end tabs: the
+    """R151 map inputs: the part's bounds and, for a base, the plan bounds of its outline without the legs, ears and end tabs: the
     section half way up the deck (POWER / LOGIC: deck block + skirt), or 2 mm above the 6 mm mount ears / end tabs (battery block rim;
     spec.LIMITER_M6 l = ear thickness)."""
     lo, hi = m.bounds
@@ -290,7 +290,7 @@ def extents(m, name, report):
 
 
 def classify_all(res, report, flags_md):
-    """R150: class + why on every spot, the flagged count per part and in total, and WALL-FLAGS.md."""
+    """R151: class + why on every spot, the flagged count per part and in total, and WALL-FLAGS.md."""
     total = 0
     for name, info in res['parts'].items():
         n = 0
@@ -303,7 +303,7 @@ def classify_all(res, report, flags_md):
     lines = WCL.write_flags_md(flags_md, res['parts'], report)
     for l in lines:
         print('   FLAG ' + l)
-    print('R150: %d spot(s) flagged for Dan (%s)' % (total, flags_md))
+    print('R151: %d spot(s) flagged for Dan (%s)' % (total, flags_md))
     return total
 
 
@@ -315,7 +315,7 @@ def main():
     ap.add_argument('--classify', action='store_true')
     a = ap.parse_args()
     out = a.out or a.src
-    rule = ('R127: walls > %.2f mm (W, sections every %.1f mm), features attached by >= %.1f mm (A, voxels %.2f mm); R150: fail on '
+    rule = ('R127: walls > %.2f mm (W, sections every %.1f mm), features attached by >= %.1f mm (A, voxels %.2f mm); R151: fail on '
             'structural spots only, flag non-structural / questionable ones' % (WALL, STEP, ATTACH, PITCH))
     res = {'rule': rule, 'parts': {}}
     outp = os.path.join(out, FUSEBOX, 'wall_check.json')

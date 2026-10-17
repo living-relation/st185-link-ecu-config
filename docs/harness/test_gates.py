@@ -261,7 +261,7 @@ def fusebox_mesh_cases():
 
 
 def wall_class_cases():
-    """R150 (Dan 2026-10-17: minimum wall for critical / structural features only; questionable or unclear = flagged): the pass / flag /
+    """R151 (Dan 2026-10-17: minimum wall for critical / structural features only; questionable or unclear = flagged): the pass / flag /
     fail split of cad/fusebox/src/check_printed_solid.py S4 / S5 (wall_findings) and wall_classes.py, on hand-made wall_check data."""
     sys.path.insert(0, os.path.join(ROOT, "cad", "fusebox", "src"))
     import check_printed_solid as cps
@@ -293,35 +293,35 @@ def wall_class_cases():
     inner = (40.0, 41.0, 160.0, 161.0, 45.0, 46.0)        # LOGIC deck, away from the skin and the terminal hole
     out = []
     bad, flags = run(wc())
-    out.append(("R150 S4/S5: no thin spots pass, nothing flagged", True, not bad and not flags))
+    out.append(("R151 S4/S5: no thin spots pass, nothing flagged", True, not bad and not flags))
     bad, flags = run(wc(LB, [inner]))
-    out.append(("R150 S4: a base spot the map cannot place is FLAGGED (questionable), not failed", True, not bad and len(flags) == 1
+    out.append(("R151 S4: a base spot the map cannot place is FLAGGED (questionable), not failed", True, not bad and len(flags) == 1
                 and flags[0].startswith(wcl.QUESTIONABLE)))
     bad, flags = run(wc(LB, [inner], flagged=0))
-    out.append(("R150 S4: wall_check.json whose flag count disagrees fails (stale)", False, not bad))
+    out.append(("R151 S4: wall_check.json whose flag count disagrees fails (stale)", False, not bad))
     bad, flags = run(wc(LB, [inner]), md="- none\n")
-    out.append(("R150 S4: WALL-FLAGS.md that leaves a flagged spot out fails (stale)", False, not bad))
+    out.append(("R151 S4: WALL-FLAGS.md that leaves a flagged spot out fails (stale)", False, not bad))
     bad, flags = run(wc(LB, [inner], outline=False))
-    out.append(("R150 S4: no deck outline recorded = questionable, flagged (never silently passed)", True, not bad and len(flags) == 1))
+    out.append(("R151 S4: no deck outline recorded = questionable, flagged (never silently passed)", True, not bad and len(flags) == 1))
     bad, flags = run(wc(LB, [(2.0, 3.0, 90.0, 95.0, 45.0, 50.0)]))
-    out.append(("R150 S4: outer skin behind the pockets (structural) fails", False, not bad))
+    out.append(("R151 S4: outer skin behind the pockets (structural) fails", False, not bad))
     bad, flags = run(wc(LB, [(14.0, 15.0, 27.0, 29.0, 45.0, 50.0)]))
-    out.append(("R150 S4: wall between terminals (structural) fails", False, not bad))
+    out.append(("R151 S4: wall between terminals (structural) fails", False, not bad))
     bad, flags = run(wc(LB, [(40.0, 41.0, 100.0, 101.0, 10.0, 12.0)]))
-    out.append(("R150 S4: leg / block under the deck (load-bearing) fails", False, not bad))
+    out.append(("R151 S4: leg / block under the deck (load-bearing) fails", False, not bad))
     bad, flags = run(wc(LB, [(-30.0, -28.0, 100.0, 101.0, 45.0, 46.0)]))
-    out.append(("R150 S4: mount ear outside the deck outline fails", False, not bad))
+    out.append(("R151 S4: mount ear outside the deck outline fails", False, not bad))
     bad, flags = run(wc(LB, attach=[inner]))
-    out.append(("R150 S5: attachment < 3 mm (retention) fails", False, not bad))
+    out.append(("R151 S5: attachment < 3 mm (retention) fails", False, not bad))
     bad, flags = run(wc(PB, [(200.0, 201.0, 40.0, 41.0, 30.0, 31.0)]))
-    out.append(("R150 S4: a spot Dan marked (R127 M1) fails", False, not bad))
+    out.append(("R151 S4: a spot Dan marked (R127 M1) fails", False, not bad))
     bad, flags = run(wc(LC, [(40.0, 41.0, 90.0, 91.0, 88.0, 89.9)]))
-    out.append(("R150 S4: cover top away from its side walls is flagged, not failed", True, not bad and len(flags) == 1))
+    out.append(("R151 S4: cover top away from its side walls is flagged, not failed", True, not bad and len(flags) == 1))
     bad, flags = run(wc(LC, [(-39.0, -38.0, 90.0, 91.0, 60.0, 70.0)]))
-    out.append(("R150 S4: cover side wall (structural) fails", False, not bad))
+    out.append(("R151 S4: cover side wall (structural) fails", False, not bad))
     feat = {LB: [(wcl.NON_STRUCTURAL, "test: approved cosmetic rib", (39.0, 42.0, 159.0, 162.0, 44.0, 47.0))]}
     c, _ = wcl.classify(LB, inner, "W", {"outline": [0.0, 86.0, 0.0, 182.0]}, rep, feat)
-    out.append(("R150 map: a spot in a non-structural box is non-structural (flagged)", True, c == wcl.NON_STRUCTURAL))
+    out.append(("R151 map: a spot in a non-structural box is non-structural (flagged)", True, c == wcl.NON_STRUCTURAL))
     return out
 
 

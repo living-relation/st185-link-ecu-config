@@ -14,7 +14,7 @@ Two checks, both must pass:
       its WALL_BASELINE. R128 (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of
       the parts"): the baseline is 0 everywhere - every spot that has to stay thin is a named exemption (spec.WALL_EXEMPT, boxes recorded
       by the build), listed with its count, never a number to hide behind.
-      R150 (Dan 2026-10-17: "Minimum thickness for walls is for critical or structural features, and doesn't apply to everything. If
+      R151 (Dan 2026-10-17: "Minimum thickness for walls is for critical or structural features, and doesn't apply to everything. If
       something is questionable or unclear, it should be flagged for change or approval."): each spot is classed by wall_classes.py.
       S4 / S5 FAIL on structural spots (the marked spots, attachments, legs / block under the deck, mount ears, outer skins, walls at
       the terminals, shell side walls) over the baseline, and on any marked-spot hit as before. Non-structural and questionable spots
@@ -49,12 +49,12 @@ MAIN = r'C:\projects\active\st185-link-ecu-config'   # heavy files live in the m
 WALLS = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wall_check.json')
 FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'WALL-FLAGS.md')
 # R127 / R128 baseline: (thin-wall spots, attachment spots) per part outside the named exemptions - 0 after the R128 sweep (2026-10-16);
-# it may only go down, so it stays 0. R150: it counts STRUCTURAL spots; non-structural / questionable ones are flagged, not counted.
+# it may only go down, so it stays 0. R151: it counts STRUCTURAL spots; non-structural / questionable ones are flagged, not counted.
 WALL_BASELINE = {n: (0, 0) for n in (
     'Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
     'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed')}
 # the spots Dan marked on 2026-10-15 (closeup_c2), world mm boxes that must stay clear: the R1 cavity group under the deck (M1, M5),
-# the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2) - kept in wall_classes.FEATURES (R150), structural
+# the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2) - kept in wall_classes.FEATURES (R151), structural
 MARKED = WCL.MARKED
 
 
@@ -222,7 +222,7 @@ def _split(items):
 
 
 def wall_findings(wcj, pp, rep, flags_md=None):
-    """S4 / S5 from a wall_check.json dict (R127 / R128 / R150). Returns (bad, notes, flags): structural spots over the baseline and
+    """S4 / S5 from a wall_check.json dict (R127 / R128 / R151). Returns (bad, notes, flags): structural spots over the baseline and
     marked-spot hits are bad; non-structural / questionable spots are flags (reported for Dan, never failed)."""
     bad, notes, flags = [], [], []
     wc = wcj['parts']
@@ -245,7 +245,7 @@ def wall_findings(wcj, pp, rep, flags_md=None):
         flags.extend('%s %s: %s at %s - %s' % (c, name, 'wall <= 1.95' if k == 'W' else x.get('kind', 'attachment < 3'), x['at'], why)
                      for (k, x, c, why) in fl)
         if w.get('flagged') is None:
-            bad.append('S4 %s: wall_check.json has no R150 classes - re-run cad/check_printed_walls.py --classify' % name)
+            bad.append('S4 %s: wall_check.json has no R151 classes - re-run cad/check_printed_walls.py --classify' % name)
         elif w['flagged'] != len(fl):
             bad.append('S4 %s: wall_check.json flags %d spot(s), this gate classes %d - stale, re-run cad/check_printed_walls.py --classify' % (
                 name, w['flagged'], len(fl)))
@@ -269,7 +269,7 @@ def wall_findings(wcj, pp, rep, flags_md=None):
             bad.append('S4 cad/fusebox/rev7/WALL-FLAGS.md is stale (%d listed, %d flagged) - re-run cad/check_printed_walls.py --classify' % (len(got), len(want)))
     else:
         bad.append('S4 no cad/fusebox/rev7/WALL-FLAGS.md - re-run cad/check_printed_walls.py --classify')
-    notes.append('S4 / S5 R150: %d spot(s) flagged for Dan (cad/fusebox/rev7/WALL-FLAGS.md) - change or approve' % len(flags))
+    notes.append('S4 / S5 R151: %d spot(s) flagged for Dan (cad/fusebox/rev7/WALL-FLAGS.md) - change or approve' % len(flags))
     return bad, notes, flags
 
 
