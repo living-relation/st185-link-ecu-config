@@ -165,7 +165,7 @@
       },
       "layoutPosition": {
         "x": 900,
-        "y": 600
+        "y": -600
       },
       "partImage": {
         "schematic": {
@@ -195,7 +195,7 @@
       ],
       "layoutPosition": {
         "x": 900,
-        "y": 450
+        "y": -450
       },
       "schematicPosition": {
         "x": -300,
@@ -227,7 +227,7 @@
       ],
       "layoutPosition": {
         "x": 480,
-        "y": 780
+        "y": -780
       },
       "schematicPosition": {
         "x": 270,
@@ -259,7 +259,7 @@
       "signal": "FP GND -> trunk stud M6",
       "layoutPosition": {
         "x": 480,
-        "y": 900
+        "y": -900
       },
       "schematicPosition": {
         "x": -300,
@@ -305,7 +305,7 @@
           "id": "b_bn_br_fp_pump__fuelpump_lp1",
           "layoutPosition": {
             "x": 0,
-            "y": 600
+            "y": -600
           }
         }
       ]

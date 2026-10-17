@@ -1,11 +1,15 @@
 """Re-place a drawing's LAYOUT view as an overhead view that follows its approved route
-(DECISIONS R107, R140: front of the car on the RIGHT, Dan 2026-10-16). Moves layoutPosition only -
+(DECISIONS R107, R140: front of the car on the RIGHT, Dan 2026-10-16; R153: a true top view, driver
+(LH) side up, passenger (RH) side down, Dan 2026-10-17). Moves layoutPosition only -
 no wire, bundle, length, part, colour, band or schematic change (R90).
 
 The bundles of one harness form a tree. It is drawn as a tidy tree read right to left (R42 / L1:
 no branch doubles back):
   - the root (the front-most node) is at the right; x falls towards the back of the car,
-  - up = passenger (RH) side, down = driver (LH) side, as in the route top views,
+  - up = passenger (RH) side, down = driver (LH) side IN THE TOOL'S OWN FRAME (and in every
+    "up" / "down" / "dir" / "at" / "origin" of layout_hints.json). The files are a true top view
+    (R153: passenger side DOWN), so both tools flip the drawing top to bottom as they read it and
+    again as they write it (flip_top_bottom); in the app the "up" side shows at the bottom,
   - a branch point keeps its main run straight on its own row; side branches fan out above or
     below, each in its own band of rows, so no bundle, node or label lands on another (Y1-Y3),
   - the app shows a connector / terminal label to the RIGHT of its node, i.e. towards the parent
@@ -99,6 +103,18 @@ def mirror(d):
     s -= s % G
     for p in pts:
         p["x"] = s - p["x"]
+
+
+def flip_top_bottom(d):
+    """mirror the layout top to bottom (y -> -y): every node, bundle layout point and layout note.
+    Every layout node is 30 x 30, so this is an exact mirror plus a 30-unit shift, on the grid.
+    The tools lay out in the old passenger-up frame; the files are a true top view (R153)."""
+    pts = [x["layoutPosition"] for k in lg.KINDS for x in d.get(k, []) if x.get("layoutPosition")]
+    pts += [q["layoutPosition"] for b in d.get("bundles", []) for q in b.get("layoutPoints", [])
+            if q.get("layoutPosition")]
+    pts += [x["layoutPosition"] for x in d.get("layoutNotes", []) if x.get("layoutPosition")]
+    for p in pts:
+        p["y"] = -p["y"]
 
 
 def toward(d, n, rules):
@@ -650,11 +666,13 @@ def main(argv):
             nl = "\r\n" if b"\r\n" in f.read(4096) else "\n"
         with open(path, encoding="utf-8") as f:
             d = json.load(f)
+        flip_top_bottom(d)      # true top view (R153) -> the tool's passenger-up frame
         if flip:
             mirror(d)
         else:
             pos = layout(d, hints[loom])
             apply(d, pos, hints[loom])
+        flip_top_bottom(d)      # and back
         bad = audit_layout.check(loom, d) + [b for b in audit_drawing_rules.check(loom, d)
                                              if b.startswith(("L1", "G1"))]
         for b in bad:

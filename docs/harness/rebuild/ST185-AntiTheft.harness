@@ -564,7 +564,7 @@
       ],
       "layoutPosition": {
         "x": -1290,
-        "y": 270
+        "y": -270
       },
       "schematicPosition": {
         "x": 660,
@@ -600,7 +600,7 @@
       ],
       "layoutPosition": {
         "x": -3450,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 1320,
@@ -630,7 +630,7 @@
       ],
       "layoutPosition": {
         "x": -570,
-        "y": -90
+        "y": 90
       },
       "schematicPosition": {
         "x": 1320,
@@ -659,7 +659,7 @@
       ],
       "layoutPosition": {
         "x": -2370,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 1320,
@@ -688,7 +688,7 @@
       ],
       "layoutPosition": {
         "x": -2370,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 1320,
@@ -704,7 +704,7 @@
       "signal": "Alarm 12V -> FB-LOGIC ALM 5A",
       "layoutPosition": {
         "x": -1650,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 0,
@@ -719,7 +719,7 @@
       "signal": "Alarm IG -> FB-LOGIC ALMIG 2A",
       "layoutPosition": {
         "x": -930,
-        "y": -90
+        "y": 90
       },
       "schematicPosition": {
         "x": 0,
@@ -735,7 +735,7 @@
       "signal": "Alarm GND -> stud M6 A",
       "layoutPosition": {
         "x": -1650,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 1980,
@@ -750,7 +750,7 @@
       "signal": "Door trig -> door SWs",
       "layoutPosition": {
         "x": -3810,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 0,
@@ -782,7 +782,7 @@
       "signal": "Trunk trig -> trunk pin SW",
       "layoutPosition": {
         "x": -4170,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 0,
@@ -798,7 +798,7 @@
       "signal": "Park flash -> park relay",
       "layoutPosition": {
         "x": -2730,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 1320,
@@ -815,7 +815,7 @@
       "signal": "Shock/LED GND -> M6 B",
       "layoutPosition": {
         "x": -2010,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 1980,
@@ -831,7 +831,7 @@
       "signal": "Valet GND -> stud M6 C",
       "layoutPosition": {
         "x": -2730,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 1980,
@@ -846,7 +846,7 @@
       "signal": "Shock 12V -> FB-LOGIC ALMS 2A",
       "layoutPosition": {
         "x": -2010,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 1980,
@@ -861,7 +861,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -3090,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 60,
@@ -1142,7 +1142,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -1650,
-        "y": 120
+        "y": -120
       },
       "schematicPosition": {
         "x": 510,
@@ -1155,7 +1155,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -900,
-        "y": 60
+        "y": -60
       },
       "schematicPosition": {
         "x": 510,
@@ -1168,7 +1168,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -3090,
-        "y": 330
+        "y": -330
       },
       "schematicPosition": {
         "x": 450,
@@ -1181,7 +1181,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -570,
-        "y": 60
+        "y": -60
       },
       "schematicPosition": {
         "x": 510,
@@ -1194,7 +1194,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -3810,
-        "y": 330
+        "y": -330
       },
       "schematicPosition": {
         "x": 510,
@@ -1207,7 +1207,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -2010,
-        "y": 120
+        "y": -120
       },
       "schematicPosition": {
         "x": 1170,
@@ -1220,7 +1220,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": -3150,
-        "y": 330
+        "y": -330
       },
       "schematicPosition": {
         "x": 1830,
@@ -1393,56 +1393,56 @@
       "id": "bp_990",
       "layoutPosition": {
         "x": -1650,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
         "x": -2010,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
         "x": -2370,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
         "x": -2730,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
         "x": -3090,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
         "x": -3450,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_1260",
       "layoutPosition": {
         "x": -3810,
-        "y": 270
+        "y": -270
       }
     },
     {
       "id": "bp_2520",
       "layoutPosition": {
         "x": -4170,
-        "y": 270
+        "y": -270
       }
     }
   ],

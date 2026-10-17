@@ -420,7 +420,7 @@
       },
       "layoutPosition": {
         "x": 0,
-        "y": 120
+        "y": -120
       },
       "propagate": false
     },
@@ -436,7 +436,7 @@
       },
       "layoutPosition": {
         "x": -90,
-        "y": 180
+        "y": -180
       },
       "propagate": false
     },
@@ -452,7 +452,7 @@
       },
       "layoutPosition": {
         "x": -60,
-        "y": -300
+        "y": 300
       },
       "propagate": false
     },
@@ -468,7 +468,7 @@
       },
       "layoutPosition": {
         "x": -150,
-        "y": -360
+        "y": 360
       },
       "propagate": false
     },
@@ -483,7 +483,7 @@
       },
       "layoutPosition": {
         "x": 0,
-        "y": -240
+        "y": 240
       },
       "propagate": false
     },
@@ -499,7 +499,7 @@
       },
       "layoutPosition": {
         "x": -720,
-        "y": -810
+        "y": 810
       },
       "propagate": false
     },
@@ -515,7 +515,7 @@
       },
       "layoutPosition": {
         "x": -720,
-        "y": 720
+        "y": -720
       },
       "propagate": false
     },
@@ -531,7 +531,7 @@
       },
       "layoutPosition": {
         "x": -780,
-        "y": -870
+        "y": 870
       },
       "propagate": false
     },
@@ -547,7 +547,7 @@
       },
       "layoutPosition": {
         "x": -780,
-        "y": 780
+        "y": -780
       },
       "propagate": false
     },
@@ -563,7 +563,7 @@
       },
       "layoutPosition": {
         "x": -840,
-        "y": -930
+        "y": 930
       },
       "propagate": false
     },
@@ -579,7 +579,7 @@
       },
       "layoutPosition": {
         "x": -840,
-        "y": 840
+        "y": -840
       },
       "propagate": false
     },
@@ -595,7 +595,7 @@
       },
       "layoutPosition": {
         "x": -1440,
-        "y": -240
+        "y": 240
       },
       "propagate": false
     },
@@ -611,7 +611,7 @@
       },
       "layoutPosition": {
         "x": -1440,
-        "y": 240
+        "y": -240
       },
       "propagate": false
     },
@@ -627,7 +627,7 @@
       },
       "layoutPosition": {
         "x": -1500,
-        "y": -300
+        "y": 300
       },
       "propagate": false
     },
@@ -643,7 +643,7 @@
       },
       "layoutPosition": {
         "x": -1500,
-        "y": 300
+        "y": -300
       },
       "propagate": false
     },
@@ -659,7 +659,7 @@
       },
       "layoutPosition": {
         "x": -1590,
-        "y": -360
+        "y": 360
       },
       "propagate": false
     },
@@ -675,7 +675,7 @@
       },
       "layoutPosition": {
         "x": -1590,
-        "y": 360
+        "y": -360
       },
       "propagate": false
     },
@@ -691,7 +691,7 @@
       },
       "layoutPosition": {
         "x": -1080,
-        "y": -120
+        "y": 120
       },
       "propagate": false
     },
@@ -707,7 +707,7 @@
       },
       "layoutPosition": {
         "x": -1080,
-        "y": 90
+        "y": -90
       },
       "propagate": false
     },
@@ -723,7 +723,7 @@
       },
       "layoutPosition": {
         "x": -630,
-        "y": -11040
+        "y": 11040
       },
       "propagate": false
     },
@@ -739,7 +739,7 @@
       },
       "layoutPosition": {
         "x": -720,
-        "y": -11100
+        "y": 11100
       },
       "propagate": false
     },
@@ -755,7 +755,7 @@
       },
       "layoutPosition": {
         "x": -1170,
-        "y": -180
+        "y": 180
       },
       "propagate": false
     }
@@ -1016,7 +1016,7 @@
       },
       "layoutPosition": {
         "x": -780,
-        "y": -60
+        "y": 60
       }
     },
     {
@@ -1029,7 +1029,7 @@
       },
       "layoutPosition": {
         "x": -360,
-        "y": 60
+        "y": -60
       }
     },
     {
@@ -1042,7 +1042,7 @@
       },
       "layoutPosition": {
         "x": -660,
-        "y": -60
+        "y": 60
       }
     },
     {
@@ -1055,7 +1055,7 @@
       },
       "layoutPosition": {
         "x": -1140,
-        "y": 60
+        "y": -60
       }
     }
   ],
@@ -1197,7 +1197,7 @@
       "id": "bp_rl_h6",
       "layoutPosition": {
         "x": -630,
-        "y": -10920
+        "y": 10920
       }
     },
     {

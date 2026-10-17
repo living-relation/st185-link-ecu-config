@@ -109,7 +109,7 @@
       },
       "layoutPosition": {
         "x": 1530,
-        "y": 330
+        "y": -330
       },
       "partImage": {
         "schematic": {
@@ -146,7 +146,7 @@
       },
       "layoutPosition": {
         "x": 1530,
-        "y": -330
+        "y": 330
       }
     },
     {
@@ -198,7 +198,7 @@
       },
       "layoutPosition": {
         "x": 30,
-        "y": -120
+        "y": 120
       },
       "partImage": {
         "schematic": {
@@ -217,7 +217,7 @@
       "partId": "cp_lp16_5f",
       "layoutPosition": {
         "x": 480,
-        "y": 330
+        "y": -330
       },
       "schematicPosition": {
         "x": 1140,
@@ -259,7 +259,7 @@
       "partId": "cp_lp16_5f",
       "layoutPosition": {
         "x": 330,
-        "y": 60
+        "y": -60
       },
       "schematicPosition": {
         "x": 30,
@@ -943,14 +943,14 @@
           "id": "lp_f_l",
           "layoutPosition": {
             "x": 1530,
-            "y": 270
+            "y": -270
           }
         },
         {
           "id": "lp_f_l2",
           "layoutPosition": {
             "x": 810,
-            "y": 270
+            "y": -270
           }
         }
       ],
@@ -973,14 +973,14 @@
           "id": "lp_f_r",
           "layoutPosition": {
             "x": 1530,
-            "y": -270
+            "y": 270
           }
         },
         {
           "id": "lp_f_r2",
           "layoutPosition": {
             "x": 810,
-            "y": -270
+            "y": 270
           }
         }
       ],
@@ -1041,7 +1041,7 @@
       },
       "layoutPosition": {
         "x": 420,
-        "y": 420
+        "y": -420
       }
     }
   ],
@@ -1082,7 +1082,7 @@
       "width": 210,
       "layoutPosition": {
         "x": 900,
-        "y": 30
+        "y": -30
       }
     }
   ],

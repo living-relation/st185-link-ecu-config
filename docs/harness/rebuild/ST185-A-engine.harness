@@ -1521,7 +1521,7 @@
       ],
       "layoutPosition": {
         "x": -1320,
-        "y": 450
+        "y": -450
       },
       "schematicPosition": {
         "x": 3060,
@@ -1554,7 +1554,7 @@
       ],
       "layoutPosition": {
         "x": 3360,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2580,
@@ -1583,7 +1583,7 @@
       ],
       "layoutPosition": {
         "x": -270,
-        "y": 420
+        "y": -420
       },
       "schematicPosition": {
         "x": 2640,
@@ -1615,7 +1615,7 @@
       ],
       "layoutPosition": {
         "x": -780,
-        "y": 300
+        "y": -300
       },
       "schematicPosition": {
         "x": 2640,
@@ -1641,7 +1641,7 @@
       ],
       "layoutPosition": {
         "x": 1380,
-        "y": 420
+        "y": -420
       },
       "schematicPosition": {
         "x": 2100,
@@ -1668,7 +1668,7 @@
       ],
       "layoutPosition": {
         "x": 810,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2100,
@@ -1695,7 +1695,7 @@
       ],
       "layoutPosition": {
         "x": 240,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2100,
@@ -1722,7 +1722,7 @@
       ],
       "layoutPosition": {
         "x": -270,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2100,
@@ -1753,7 +1753,7 @@
       ],
       "layoutPosition": {
         "x": -780,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2100,
@@ -1786,7 +1786,7 @@
       ],
       "layoutPosition": {
         "x": -1110,
-        "y": -420
+        "y": 420
       },
       "schematicPosition": {
         "x": 2100,
@@ -1819,7 +1819,7 @@
       ],
       "layoutPosition": {
         "x": -960,
-        "y": -360
+        "y": 360
       },
       "schematicPosition": {
         "x": 2100,
@@ -1852,7 +1852,7 @@
       ],
       "layoutPosition": {
         "x": -840,
-        "y": -300
+        "y": 300
       },
       "schematicPosition": {
         "x": 2100,
@@ -1900,7 +1900,7 @@
       ],
       "layoutPosition": {
         "x": 1380,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2640,
@@ -1925,7 +1925,7 @@
       ],
       "layoutPosition": {
         "x": 3480,
-        "y": 420
+        "y": -420
       },
       "schematicPosition": {
         "x": 2580,
@@ -1949,7 +1949,7 @@
       ],
       "layoutPosition": {
         "x": 2760,
-        "y": 480
+        "y": -480
       },
       "schematicPosition": {
         "x": 2100,
@@ -1974,7 +1974,7 @@
       ],
       "layoutPosition": {
         "x": 810,
-        "y": 480
+        "y": -480
       },
       "schematicPosition": {
         "x": 2580,
@@ -1998,7 +1998,7 @@
       ],
       "layoutPosition": {
         "x": 3240,
-        "y": 300
+        "y": -300
       },
       "schematicPosition": {
         "x": 2040,
@@ -2026,7 +2026,7 @@
       ],
       "layoutPosition": {
         "x": -600,
-        "y": -240
+        "y": 240
       },
       "schematicPosition": {
         "x": 2040,
@@ -2079,7 +2079,7 @@
       ],
       "layoutPosition": {
         "x": -960,
-        "y": -540
+        "y": 540
       },
       "schematicPosition": {
         "x": 2520,
@@ -2094,7 +2094,7 @@
       "signal": "Power GND -> eng block",
       "layoutPosition": {
         "x": 2460,
-        "y": 300
+        "y": -300
       },
       "schematicPosition": {
         "x": 1080,
@@ -2110,7 +2110,7 @@
       "signal": "Start sig -> starter S",
       "layoutPosition": {
         "x": 2670,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 0,
@@ -2127,7 +2127,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -780,
-        "y": 240
+        "y": -240
       },
       "schematicPosition": {
         "x": 3000,
@@ -2142,7 +2142,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -780,
-        "y": 180
+        "y": -180
       },
       "schematicPosition": {
         "x": 3000,
@@ -2157,7 +2157,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -960,
-        "y": 510
+        "y": -510
       },
       "schematicPosition": {
         "x": 2340,
@@ -2172,7 +2172,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -780,
-        "y": 90
+        "y": -90
       },
       "schematicPosition": {
         "x": 2910,
@@ -2202,7 +2202,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -780,
-        "y": -90
+        "y": 90
       },
       "schematicPosition": {
         "x": 2910,
@@ -2217,7 +2217,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -780,
-        "y": -180
+        "y": 180
       },
       "schematicPosition": {
         "x": 2580,
@@ -4830,7 +4830,7 @@
       "id": "sp_sw12_eng",
       "layoutPosition": {
         "x": 720,
-        "y": 510
+        "y": -510
       },
       "schematicPosition": {
         "x": 1590,
@@ -4843,7 +4843,7 @@
       "id": "sp_gndout_eng",
       "layoutPosition": {
         "x": 810,
-        "y": 300
+        "y": -300
       },
       "schematicPosition": {
         "x": 1590,
@@ -4856,7 +4856,7 @@
       "id": "sp_chassis_eng",
       "layoutPosition": {
         "x": -960,
-        "y": -660
+        "y": 660
       },
       "schematicPosition": {
         "x": 930,
@@ -4869,7 +4869,7 @@
       "id": "sp_inj_eng",
       "layoutPosition": {
         "x": -1350,
-        "y": -780
+        "y": 780
       },
       "schematicPosition": {
         "x": 930,
@@ -4881,7 +4881,7 @@
       "id": "sp_cop_eng",
       "layoutPosition": {
         "x": -1380,
-        "y": -900
+        "y": 900
       },
       "schematicPosition": {
         "x": 930,
@@ -4895,7 +4895,7 @@
       "locationId": "bp_750",
       "layoutPosition": {
         "x": -1380,
-        "y": 390
+        "y": -390
       },
       "schematicPosition": {
         "x": 930,
@@ -5257,196 +5257,196 @@
       "id": "bp_360",
       "layoutPosition": {
         "x": 3360,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "bp_420",
       "layoutPosition": {
         "x": 3240,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
         "x": 3030,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
         "x": 2940,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
         "x": 2850,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
         "x": 2760,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "bp_570",
       "layoutPosition": {
         "x": 2520,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_600",
       "layoutPosition": {
         "x": 1740,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_630",
       "layoutPosition": {
         "x": 1170,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_660",
       "layoutPosition": {
         "x": 600,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_690",
       "layoutPosition": {
         "x": 90,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_720",
       "layoutPosition": {
         "x": -420,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_750",
       "layoutPosition": {
         "x": -1260,
-        "y": 390
+        "y": -390
       }
     },
     {
       "id": "bp_810",
       "layoutPosition": {
         "x": -1320,
-        "y": -210
+        "y": 210
       }
     },
     {
       "id": "bp_840",
       "layoutPosition": {
         "x": -1110,
-        "y": -240
+        "y": 240
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
         "x": -960,
-        "y": -240
+        "y": 240
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
         "x": -840,
-        "y": -240
+        "y": 240
       }
     },
     {
       "id": "be_660",
       "layoutPosition": {
         "x": 810,
-        "y": 420
+        "y": -420
       }
     },
     {
       "id": "be_750",
       "layoutPosition": {
         "x": -960,
-        "y": -600
+        "y": 600
       }
     },
     {
       "id": "be_870",
       "layoutPosition": {
         "x": 1950,
-        "y": 360
+        "y": -360
       }
     },
     {
       "id": "be_900",
       "layoutPosition": {
         "x": 2040,
-        "y": 360
+        "y": -360
       }
     },
     {
       "id": "be_930",
       "layoutPosition": {
         "x": 2160,
-        "y": 360
+        "y": -360
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
         "x": 2250,
-        "y": 360
+        "y": -360
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
         "x": 2460,
-        "y": 360
+        "y": -360
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
         "x": -1170,
-        "y": 510
+        "y": -510
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
         "x": -1320,
-        "y": 510
+        "y": -510
       }
     },
     {
       "id": "bp_at_fuelp",
       "layoutPosition": {
         "x": 1860,
-        "y": 360
+        "y": -360
       }
     },
     {
       "id": "bp_at_bh_b_eng",
       "layoutPosition": {
         "x": -1110,
-        "y": -540
+        "y": 540
       }
     }
   ],

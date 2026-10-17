@@ -15,7 +15,8 @@
       from the parent comes in from the right, so it must reach the node steeply (from above or
       below) or from the left, never along the label
 
-The shape itself (front of the car to the RIGHT (R140, replaces R107(a)), passenger side up, driver side down, branch order
+The shape itself (front of the car to the RIGHT (R140, replaces R107(a)), a true top view: driver side up,
+passenger side down (R153), branch order
 and branch ends as the route's top view) is judged against the route figure by eye; R42's left to
 right is gated by audit_drawing_rules.py L1. The routes carry no bundle lengths, so lengths are not
 compared here - a bundle keeps its own `length`.
