@@ -10134,145 +10134,184 @@
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    245.35,
-    248.15,
-    34.42,
-    51.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    37.79,
+    48.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    245.35,
-    248.15,
-    52.42,
-    69.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    55.79,
+    66.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    245.35,
-    248.15,
-    70.42,
-    87.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    73.79,
+    84.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    245.35,
-    248.15,
-    88.42,
-    105.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    91.79,
+    102.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    245.35,
-    248.15,
-    106.42,
-    123.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    109.79,
+    120.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    245.35,
-    248.15,
-    124.42,
-    141.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    127.79,
+    138.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    328.85,
-    331.65,
-    34.42,
-    51.58,
-    11.5,
-    17.2
+    247.04,
+    257.46,
+    145.79,
+    156.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    328.85,
-    331.65,
-    52.42,
-    69.58,
-    11.5,
-    17.2
+    319.54,
+    329.96,
+    37.79,
+    48.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    328.85,
-    331.65,
-    70.42,
-    87.58,
-    11.5,
-    17.2
+    319.54,
+    329.96,
+    55.79,
+    66.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    328.85,
-    331.65,
-    88.42,
-    105.58,
-    11.5,
-    17.2
+    319.54,
+    329.96,
+    73.79,
+    84.21,
+    42.65,
+    50.35
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "collar notch",
-   "only": "A",
+   "key": "crush rib",
+   "only": null,
    "box": [
-    328.85,
-    331.65,
-    124.42,
-    141.58,
-    11.5,
-    17.2
+    319.54,
+    329.96,
+    91.79,
+    102.21,
+    42.65,
+    50.35
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "crush rib",
+   "only": null,
+   "box": [
+    319.54,
+    329.96,
+    109.79,
+    120.21,
+    42.65,
+    50.35
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "crush rib",
+   "only": null,
+   "box": [
+    319.54,
+    329.96,
+    127.79,
+    138.21,
+    42.65,
+    50.35
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "crush rib",
+   "only": null,
+   "box": [
+    319.54,
+    329.96,
+    145.79,
+    156.21,
+    42.65,
+    50.35
    ]
   },
   {
@@ -10286,6 +10325,58 @@
     51.0,
     31.5,
     52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    284.2,
+    292.8,
+    5.1,
+    11.3,
+    40.2,
+    56.5
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    270.9,
+    277.1,
+    159.5,
+    168.1,
+    40.2,
+    56.5
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    182.2,
+    190.8,
+    187.4,
+    193.6,
+    40.2,
+    56.5
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    228.2,
+    236.8,
+    187.4,
+    193.6,
+    40.2,
+    56.5
    ]
   },
   {
@@ -10559,6 +10650,32 @@
     -82.6,
     3.8,
     12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    24.7,
+    33.3,
+    -164.3,
+    -156.5,
+    3.7,
+    41.2
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    24.7,
+    33.3,
+    -133.7,
+    -125.9,
+    3.7,
+    41.2
    ]
   },
   {
@@ -11651,73 +11768,31 @@
   "Logic_y 10.5-15.6",
   "Power_x 35.0-43.0"
  ],
- "stud_retention": {
-  "collar_od": 16.56,
-  "gap": 0.3,
-  "wall": 3.2,
-  "bore_rot": 90,
-  "columns": 14,
-  "collar_z": [
-   11.8,
-   32.0
+ "stud_fit": {
+  "chord_mm": 0.98,
+  "press_N": [
+   339,
+   508
   ],
-  "barrel_notch": [
-   {
-    "at": "HTR",
-    "row": "IN",
-    "wall": 2.2
-   },
-   {
-    "at": "EFI",
-    "row": "IN",
-    "wall": 2.2
-   },
-   {
-    "at": "STR",
-    "row": "IN",
-    "wall": 2.2
-   },
-   {
-    "at": "FAN",
-    "row": "IN",
-    "wall": 2.2
-   },
-   {
-    "at": "FAN2",
-    "row": "IN",
-    "wall": 2.2
-   },
-   {
-    "at": "PWR",
-    "row": "IN",
-    "wall": 2.2
-   },
-   {
-    "at": "BUS1",
-    "row": "OUT",
-    "wall": 2.2
-   },
-   {
-    "at": "RTR",
-    "row": "OUT",
-    "wall": 2.2
-   },
-   {
-    "at": "AM1",
-    "row": "OUT",
-    "wall": 2.2
-   },
-   {
-    "at": "AM2",
-    "row": "OUT",
-    "wall": 2.2
-   },
-   {
-    "at": "EPS",
-    "row": "OUT",
-    "wall": 2.2
-   }
-  ]
+  "hold_new_N": 339,
+  "hold_aged_N": 85,
+  "need_N": 3.7,
+  "springback_mm": 0.016,
+  "bore_growth_mm": {
+   "85.0": 0.036,
+   "105.0": 0.047,
+   "-40.0": -0.033
+  },
+  "interference_tol": [
+   0.05,
+   0.55
+  ],
+  "bore_af": 8.5,
+  "rib_r": 0.55,
+  "interference": 0.3,
+  "rib_len": 6.0,
+  "columns": 14,
+  "backup": "LOCTITE 406"
  },
  "saddle_top_cut": [
   {
@@ -12024,6 +12099,98 @@
    }
   ]
  },
+ "bar_tabs": [
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    128.5,
+    10.0
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 14.1,
+   "deflection_mm": 1.0,
+   "strain_pct": 1.66,
+   "push_N": 9.7
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    115.8,
+    163.8
+   ],
+   "n": [
+    -1,
+    0
+   ],
+   "arm_mm": 14.1,
+   "deflection_mm": 1.0,
+   "strain_pct": 1.66,
+   "push_N": 9.7
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    26.5,
+    192.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 14.1,
+   "deflection_mm": 1.0,
+   "strain_pct": 1.66,
+   "push_N": 9.7
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    72.5,
+    192.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 14.1,
+   "deflection_mm": 1.0,
+   "strain_pct": 1.66,
+   "push_N": 9.7
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "at": [
+    29.0,
+    17.2
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 35.3,
+   "deflection_mm": 1.0,
+   "strain_pct": 0.42,
+   "push_N": 2.5
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "at": [
+    29.0,
+    42.6
+   ],
+   "n": [
+    0,
+    1
+   ],
+   "arm_mm": 35.3,
+   "deflection_mm": 1.0,
+   "strain_pct": 0.42,
+   "push_N": 2.5
+  }
+ ],
  "pan_floor_pads": [
   "Power_x 115.0"
  ],
@@ -12110,8 +12277,8 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 882.2,
-   "mass_g_pa12": 891.0,
+   "volume_cm3": 840.3,
+   "mass_g_pa12": 849.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -12144,10 +12311,10 @@
    "size_mm": [
     228.0,
     92.6,
-    36.2
+    40.9
    ],
-   "volume_cm3": 171.8,
-   "mass_g_pa12": 173.0,
+   "volume_cm3": 173.4,
+   "mass_g_pa12": 175.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1

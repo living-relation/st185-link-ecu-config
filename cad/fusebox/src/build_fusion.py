@@ -69,6 +69,14 @@ def cylz(x, y, z0, z1, d):
     return cyl((x, y, z0), (x, y, z1), d)
 
 
+def cone(p0, d0, p1, d1):
+    return tb.createCylinderOrCone(P(*p0), d0 / 20.0, P(*p1), d1 / 20.0)
+
+
+def sphere(p, d):
+    return tb.createSphere(P(*p), d / 20.0)
+
+
 def hexz(x, y, z0, z1, af, rot=0):
     """Hex prism along z; rot 0 = corners on the x axis, rot 90 = flats facing +-x."""
     h = rbox(x, y, z0, z1, af * 2, af, rot)
@@ -839,6 +847,45 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             report.setdefault('wall_exempt', []).append(dict(part=part, key=key, only=only, box=[round(v, 2) for v in (
                 x0 + sh[0], x1 + sh[0], y0 + sh[1], y1 + sh[1], z0, z1)]))
 
+    def deck_tab(xe, ye, n, z_t, btop, part, sh, standing=None):
+        """R146 bar hold-down snap tab (spec.BAR_TAB) at the point (xe, ye) on a bar edge, n = outward axis normal (+-1, 0) / (0, +-1).
+        Deck tab: the arm is the pocket wall freed by a U slot `root` deep; standing = (z_floor, s0): a free arm standing on the floor s0
+        out from the bar edge (battery block, the bar on its pedestal). The hook reaches `over` past the bar edge, 0.1 over the bar top,
+        45 deg lead-in. Returns (cuts, bodies to add)."""
+        TB = dict(S.BAR_TAB)
+        s0 = (S.CLR + TB['slot']) if standing is None else standing[1]     # deck tab: a slot on the bar side too, so the arm flexes its whole length
+        if standing is not None:
+            TB['t'] = TB['t_stand']
+        hw = TB['w'] / 2
+
+        def bx(sa, sb, ua, ub, za, zb):          # box in (s along n, u along the edge, z)
+            if n[0]:
+                xs = (xe + n[0] * sa, xe + n[0] * sb)
+                return box(min(xs), ye + ua, za, max(xs), ye + ub, zb)
+            ys = (ye + n[1] * sa, ye + n[1] * sb)
+            return box(xe + ua, min(ys), za, xe + ub, max(ys), zb)
+        zr = (z_t - TB['root']) if standing is None else standing[0]
+        cuts_ = []
+        if standing is None:
+            cuts_ += [bx(S.CLR - 0.01, s0 + TB['t'] + TB['slot'], -hw - TB['slot'], hw + TB['slot'], zr, z_t + 1)]   # slot ring round the arm
+        zh0 = btop + 0.1
+        zh1 = zh0 + TB['hook_t']
+        arm = bx(s0, s0 + TB['t'], -hw, hw, zr - 0.01, zh1)                 # rooted at the slot bottom (deck) / on the floor
+        hook = bx(-TB['over'], s0 + TB['t'], -hw, hw, zh0, zh1)
+        sx_, sy_ = (n[0], n[1])
+        half_cut(hook, (xe - sx_ * TB['over'], ye - sy_ * TB['over'], zh0 + 0.3), (-sx_, -sy_, 1.0))    # lead-in on the bar side
+        bo(arm, hook, 'u')
+        L_ = (zh0 - zr)
+        d_ = TB['over']                     # the hook tip has to move out to the bar edge
+        I_ = TB['w'] * TB['t'] ** 3 / 12.0
+        report.setdefault('bar_tabs', []).append(dict(part=part, at=[round(xe, 1), round(ye, 1)], n=list(n), arm_mm=round(L_, 1), deflection_mm=round(d_, 2),
+                                                      strain_pct=round(100 * 1.5 * TB['t'] * d_ / L_ ** 2, 2),
+                                                      push_N=round(3 * S.STUD_FIT_CALC['E'] * I_ * d_ / L_ ** 3, 1)))
+        lo_ = [-TB['over'] - 0.3, s0 + TB['t'] + TB['slot'] + 0.3]
+        e_ = bx(lo_[0], lo_[1], -hw - TB['slot'] - 0.3, hw + TB['slot'] + 0.3, zr - 0.3, zh1 + 0.3).boundingBox
+        exempt(part, 'bar snap tab', e_.minPoint.x * 10, e_.maxPoint.x * 10, e_.minPoint.y * 10, e_.maxPoint.y * 10, e_.minPoint.z * 10, e_.maxPoint.z * 10, sh)
+        return cuts_, [arm]
+
     def groove_join(L, z_d, rects, reach=0.01):
         """R127 sweep (rev 7): a cut (zlo, zhi, x0, x1, y0, y1) that comes closer than min_wall to the groove inside the skirt where the
         belly-pan wall slides up runs on into it over the groove height - no sliver of PA12 left standing between them (the pan wall
@@ -1318,16 +1365,13 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         for r in relays:
             parts.append(cbox(r['cx'] + 1.3, r['cy'], z_d, plate_b + 0.01, 21.1 + 2 * T + (2.0 if r['B'] else 0), 19.7 + 2 * T))
         parts.append(cbox(acps[0], acps[1], z_d, plate_b + 0.01, 6.0 + 3.0 + 2 * T, 4.6 + 2 * T))
-        CL = S.COLLAR
+        SF = S.STUD_FIT
         for a in ami:                                            # standoff bosses, both rows (hex hole = anti-rotation)
             if True:
                 parts.append(cylz(a['x_out'], a['y'], z_d, plate_b + 0.01, SO['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
-            # stud retention (Dan 2026-10-16): collar from the deck underside down to CL['gap'] over the standoff's bottom end (= the lug palm
-            # top), so the bolted lug stops the column rising; spec.COLLAR
-            a['cz0'] = a['lz'] + 2.0 + CL['gap']
-            parts.append(cylz(a['x_out'], a['y'], a['cz0'], z_d + 0.01, CL['od']))
-        report['stud_retention'] = dict(collar_od=CL['od'], gap=CL['gap'], wall=CL['wall'], bore_rot=CL['rot'], columns=len(ami),
-                                        collar_z=[round(min(a['cz0'] for a in ami), 2), round(z_d, 2)])
+        # R146 (Dan N5 / N7, 2026-10-17; supersedes R144's collars): each standoff holds itself by 6 crush ribs in its bore (+ Loctite 406)
+        report['stud_fit'] = dict(S.stud_fit_numbers(), bore_af=SO['af'] + 2 * SF['clr'], rib_r=SF['r'], interference=SF['i'], rib_len=SF['len'],
+                                  columns=len(ami), backup=S.BACKUP['pn'])
         if R7:            # rev 7: the bus bar terminals - M8 on the POS bar (BAT+ IN, RADLOK+, spare) and on the NEG bar
             NB = R7['neg_bar']
             m8_pos = [(xb, y_, 8) for (y_, _n, _h) in R7['pos_studs']]
@@ -1417,6 +1461,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         cuts.append(box(xb - B_['w'] / 2 - S.CLR, B_['y0'] - S.CLR, bz0, xb + B_['w'] / 2 + S.CLR, B_['y1'] + S.CLR, z_t + 1))
         if R7:
             cuts.append(box(NB['x0'] - S.CLR, NB['yc'] - B_['w'] / 2 - S.CLR, bz0, NB['x1'] + S.CLR, NB['yc'] + B_['w'] / 2 + S.CLR, z_t + 1))
+        ribs_ = []
         for a in ami:
             cuts.append(pad_box(a, pz0, z_t + 1, S.CLR))
             xc = (a['x_in'] + a['x_out']) / 2
@@ -1424,22 +1469,27 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             if R7:   # R127 sweep: the fuse-body recess floor level with the pad seat (0.4 under the body, was 0.6) - no 0.2 shelf between them
                 zb_ami = max(zb_ami, pz0)
             cuts.append(cbox(xc, a['y'], zb_ami, z_t + 1, S.AMI['body_l'] + 1, S.AMI['body_w'] + 1))
-            cuts.append(hexz(a['x_out'], a['y'], a['cz0'] - 1, pz0 + 0.01, SO['af'] + 2 * S.CLR, CL['rot']))   # bore: collar bottom -> pad
-            r3_ = (SO['af'] + 2 * S.CLR) / math.sqrt(3.0)
-            hx_, hy_ = ((SO['af'] + 2 * S.CLR) / 2, r3_) if CL['rot'] == 90 else (r3_, (SO['af'] + 2 * S.CLR) / 2)
+            bf_ = SO['af'] + 2 * SF['clr']                       # R146: 8.5 AF bore, deck underside -> pad pocket
+            cuts.append(hexz(a['x_out'], a['y'], z_d - 1, pz0 + 0.01, bf_, SF['rot']))
+            rc_ = bf_ / math.sqrt(3.0)
+            for k_ in range(6):                                  # corner reliefs (the brass hex corners never bind; powder clears)
+                an_ = math.radians(SF['rot'] - 60 + 60 * k_)
+                cuts.append(cylz(a['x_out'] + rc_ * math.cos(an_), a['y'] + rc_ * math.sin(an_), z_d - 1, pz0 + 0.01, SF['corner_d']))
+            cuts.append(cone((a['x_out'], a['y'], pz0 - SF['chamfer'] - 0.01), bf_ - 0.02, (a['x_out'], a['y'], pz0 + 0.02), bf_ + 2 * SF['chamfer'] + 0.06))
+            z1r_ = pz0 - SF['top']
+            z0r_ = z1r_ - SF['len']
+            for k_ in range(6):                                  # crush ribs, one on the middle of each flat, round ends
+                an_ = math.radians(SF['rot'] - 90 + 60 * k_)
+                rx_, ry_ = a['x_out'] + bf_ / 2 * math.cos(an_), a['y'] + bf_ / 2 * math.sin(an_)
+                rb_ = cylz(rx_, ry_, z0r_, z1r_, 2 * SF['r'])
+                bo(rb_, sphere((rx_, ry_, z1r_), 2 * SF['r']), 'u')
+                bo(rb_, sphere((rx_, ry_, z0r_), 2 * SF['r']), 'u')
+                ribs_.append(rb_)
+            exempt(pre + 'Base_PA12_printed', 'crush rib', a['x_out'] - rc_ - 0.3, a['x_out'] + rc_ + 0.3, a['y'] - rc_ - 0.3, a['y'] + rc_ + 0.3,
+                   z0r_ - SF['r'] - 0.3, z1r_ + SF['r'] + 0.3, sh)
+            r3_ = bf_ / math.sqrt(3.0)
+            hx_, hy_ = (bf_ / 2, r3_) if SF['rot'] == 90 else (r3_, bf_ / 2)
             cuts += groove_join(L, z_d, [(z_d - 1, pz0, a['x_out'] - hx_, a['x_out'] + hx_, a['y'] - hy_, a['y'] + hy_)], max(hx_, hy_))
-            if a['amps']:     # notch the collar round the lug's barrel start (ring_lug: the barrel starts l - tip - 9 out), up to the barrel top
-                lg_ = S.LUG_6AWG if S.AMI_AWG[a['name']] == 6 else LUG
-                b0_ = lg_['l'] - lg_['tip'] - 9.0 - CL['notch_clr']
-                if b0_ < CL['od'] / 2:
-                    # a full-width slab (a notch only as wide as the barrel left slivers of the round collar beside it)
-                    xa_, xb_ = a['x_out'] + a['sgn'] * b0_, a['x_out'] + a['sgn'] * (CL['od'] / 2 + 1.0)
-                    hw_, zn_ = CL['od'] / 2 + 1.0, a['lz'] + lg_['d4'] + CL['notch_clr']
-                    cuts.append(box(min(xa_, xb_), a['y'] - hw_, a['cz0'] - 1, max(xa_, xb_), a['y'] + hw_, zn_))
-                    xw_ = a['x_out'] + a['sgn'] * (SO['af'] / 2 + S.CLR)          # the bore flat facing the barrel
-                    exempt(pre + 'Base_PA12_printed', 'collar notch', min(xw_, xa_) - 0.3, max(xw_, xa_) + 0.3, a['y'] - CL['od'] / 2 - 0.3,
-                           a['y'] + CL['od'] / 2 + 0.3, a['cz0'] - 0.3, zn_ + 0.3, sh, only='A')
-                    report['stud_retention'].setdefault('barrel_notch', []).append(dict(at=a['name'], row=a['row'], wall=round(b0_ - (SO['af'] + 2 * S.CLR) / 2, 2)))
         for (bx_, by_, m) in bar_bolts:
             cuts.append(hexz(bx_, by_, z_d - 1, bz0 + 0.01, HD[m]['af'] + 2 * S.CLR))
             af_ = HD[m]['af'] + 2 * S.CLR    # R127 sweep: the head goes in from below; under the head a pocket near the groove runs into it
@@ -1472,7 +1522,18 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         for dx in (-3.0, 3.0):
             cuts.append(cbox(acps[0] + dx, acps[1], slot_z0('POWER', acps[0] + dx, acps[1], z_d, z_t, S.TERM['880398-2']['L']), z_t + 1, 3.0, 4.6))
         # rev 6: the OUT-row lugs sit on 40 mm standoffs at the IN-row height, under the skirt: no skirt notches (belly pan exits below)
+        tabs_add = []
+        if R7:   # R146 (Dan N5): snap tabs that hold the POS and NEG bars down - the POS bar's front end and its -x edge before the barrier,
+            # the NEG bar's front edge between the studs
+            hb_ = B_['w'] / 2
+            for (xe_, ye_, n_) in [(xb, B_['y0'], (0, -1)), (xb - hb_, 163.8, (-1, 0)),
+                                   (26.5, NB['yc'] - hb_, (0, -1)), (72.5, NB['yc'] - hb_, (0, -1))]:
+                c_, a_ = deck_tab(xe_, ye_, n_, z_t, btop, pre + 'Base_PA12_printed', sh)
+                cuts += c_
+                tabs_add += a_
         sub_all(deck, cuts)
+        for b_ in ribs_ + tabs_add:
+            bo(deck, b_, 'u')
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
 
@@ -1493,7 +1554,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 bo(nbar, cylz(bx_, by_, bz0 - 1, btop + 1, S.CLEAR[8]), 's')
             edge_break(comp(pre + 'BarNeg_%s_25x6p35_L105' % BM['name'], nbar, AP['tin'], MAT['cu'], sh))
         edge_break(comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh))
-        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af'], CL['rot']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
+        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af'], SF['rot']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
                                                                  for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
         z_ear = btop + S.AMI['ear_t']
         comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, bz0 + S.BOLT_L[m], float(m))])
@@ -1503,15 +1564,6 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         comp(pre + 'LugBolt_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], a['lz'] - HD[5]['k'], a['lz'], HD[5]['af']),
                                                      cylz(a['x_out'], a['y'], a['lz'], a['lz'] + 10.0, 5.0)])
                                           for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # M5 x 10 both rows (rev 6: 40 mm standoffs)
-        # stud retention: a spare position has no lug - its M5 x 10 + an OD 15 washer under the standoff stop it rising into the collar
-        RW = S.RETAIN_WASHER
-        zw_ = {id(a): a['lz'] + 2.0 - RW['t'] for a in ami if not a['amps']}
-        comp(pre + 'LugBolt_spare_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], zw_[id(a)] - HD[5]['k'], zw_[id(a)], HD[5]['af']),
-                                                           cylz(a['x_out'], a['y'], zw_[id(a)], zw_[id(a)] + 10.0, 5.0)])
-                                                for a in ami if not a['amps']], AP['al'], MAT['ss'], sh)
-        comp(pre + 'Washer_DIN7349_M5_spare', [bo(cylz(a['x_out'], a['y'], zw_[id(a)], zw_[id(a)] + RW['t'], RW['od']),
-                                                  cylz(a['x_out'], a['y'], zw_[id(a)] - 1, zw_[id(a)] + RW['t'] + 1, RW['id']), 's')
-                                               for a in ami if not a['amps']], AP['al'], MAT['ss'], sh)
         nuts = [hexz(a['x_in'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         nuts += [hexz(a['x_out'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         for (bx_, by_, m) in ((m8_pos + m8_neg) if R7 else [(xb, S.IN_STUD_Y, 8)]):
@@ -2026,7 +2078,15 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                    min(ya_ - 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)), max(ya_ + 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)),
                    rb_zs - S.SCREW['d_ins'] / 2 - 2.2, R['rim'] + 0.1, sh)
         cuts += screw_inserts(Lr, Dr, rb_zs, rb_faces, outward=True)
+        rb_tabs = []
+        if REV[0] == 7:   # R146 (Dan N5): snap tabs on both long edges of the bar, between the M6 stud lug and the AMI ear; the bar sits on its
+            # pedestal (1.0 wider each side), so each arm stands free on the floor, BAR_TAB gap off the pedestal
+            for sy_ in (-1, 1):
+                c_, a_ = deck_tab(29.0, tsy + sy_ * Bb['w'] / 2, (0, sy_), fl, btop, pre + 'Base_PA12_printed', sh, standing=(fl, 1.0 + S.BAR_TAB['gap']))
+                rb_tabs += a_
         sub_all(base, cuts)
+        for b_ in rb_tabs:
+            bo(base, b_, 'u')
         comp(pre + 'Base_PA12_printed', base, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
         # ---- HCR150 envelope from the TE drawing

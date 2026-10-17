@@ -324,24 +324,22 @@ def build(rev=6):
           checked='Accu listing via web search 2026-10-16 (M5 x 40 x 8 AF, female both ends, brass nickel, hole depth 10 mm each end; the page itself refuses scripted reads - re-check on receipt); '
                   'OPEN-5: replaces Essentra 301540040050, whose page would not open, so its thread depth could not be confirmed; no TE part and none of the R38 approved suppliers lists standoffs (step 4)',
           note='B5 (Dan): one 40 mm part number for every standoff: %d IN row + %d OUT row = %d, all drawn 40 mm in CAD rev 6; the LOGIC box has none any more (its feed lugs bolt onto the strips). Sold in 50s.' % (N_IN, N_OUT, n_so)
-               + (' Stud retention (2026-10-17): each standoff sits in a printed hex bore that runs from the pad pocket down a collar to 0.3 over its lug, '
-                  'so it cannot turn or lift; it goes in from above before its pad.' if R7 else ''))
+               + (' R146 (Dan N5 / N7): each standoff is pressed (vise / arbor press, about 340-510 N) into its 8.5 AF bore past 6 crush ribs, '
+                  'from above before its pad, then 2-3 drops of LOCTITE 406 wicked in from the deck underside; it holds itself with the fuse out.' if R7 else ''))
     # fasteners
     L.add(P, 'Fasteners', 'Set screw M5 x 20 (stud on each pad standoff)', 'bolts.co.uk SSPMCA205020', 'Bolts.co.uk', 'Socket set screw M5 x 20, plain cup point, DIN 916, A2 stainless (pack of 25)',
           N_POS, spare(N_POS), unit=0.63, basis='seen', url='https://bolts.co.uk/m5-x-20mm-socket-set-screw-plain-cup-point-pcp-din-916-a2-stainless-steel-pack-of-25-p-SSPMCA205020',
           checked='bolts.co.uk listing via web search 2026-10-16 (M5 x 20, DIN 916, A2, 2.5 hex, pack of 25 GBP 15.70); R38 step 4: no RS PRO M5 x 20 set screw checked this session',
           note='OPEN-5 (F06): 9.5 into the 10 mm standoff thread (1.9 x D), then pad 3.0 + AMI ear 0.8 + DIN 6923 nut 5.0, 1.7 past the nut. Was M5 x 12 (5 in the standoff, nut not fully engaged).')
     hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10,
-       note='One length for both rows now that every standoff is 40 mm.' + (' Stud retention (Dan 2026-10-16): the lug this bolt holds is what stops '
-            'the standoff lifting - it meets the printed collar 0.3 above it - so fit every bolt, spare positions included (with the washer below). '
-            'Torque into the brass standoff: TBD (no maker figure found for the brass thread; the AMI nut on top is 4 N.m max).' if R7 else ''))
-    n_sp = sum(1 for row in ('IN', 'OUT') for i in range(S.AMI_SLOTS[row]) if S.AMI_ROWS[row][i][1] is None)
-    RW = S.RETAIN_WASHER
+       note='One length for both rows now that every standoff is 40 mm.' + (' Torque into the brass standoff: TBD (no maker figure found for the '
+            'brass thread; the AMI nut on top is 4 N.m max).' if R7 else ''))
     if R7:
-      L.add(P, 'Fasteners', 'Washer M5 x 15 x 1.4 under each spare-position standoff (stands in for the lug)', 'Accu HDTW-M5-A2', 'Accu',
-          'Heavy duty flat washer DIN 7349 M5, ID 5.3, OD 15, T 1.4, A2 stainless', n_sp, 1, unit=1.47, basis='seen', url=RW['url'],
-          checked='Accu product page read 2026-10-17 (DIN 7349, ID 5.3, OD 15, T 1.4, A2, 1 off USD 1.47); no TE part, none of the R38 approved suppliers sells washers (step 4)',
-          note='Stud retention: OD 15 is wider than the collar bore (10.16 across corners), so a spare standoff cannot lift either; swap for the lug when the position is used.')
+        BK = S.BACKUP
+        L.add(P, 'Assembly', 'Standoff retaining adhesive (R146 backup to the crush ribs)', 'LOCTITE 406', 'Henkel', BK['what'], 1, 0, unit=31.70, basis='seen',
+              url=BK['url'], checked='Henkel TDS LOCTITE 406 Feb 2012 (RS copy, read 2026-10-17): plastics and rubbers, hot strength ~80 % at 80 C, ~50 % after '
+              '1000 h at 80 C; Henkel product page -40 .. +120 C, USD 31.70 listed; no TE part, none of the R38 approved suppliers sells adhesive (step 4)',
+              note=BK['how'])
     hw(L, P, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar, head captured)', N_POS, spare(N_POS), 0.12)
     hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears, 2 per position)', 2 * N_POS, spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet).')
     if not R7:

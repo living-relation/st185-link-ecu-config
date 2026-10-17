@@ -4,17 +4,19 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 881.9,
+   "volume_cm3": 840.2,
    "exempt": {
     "seat lip": 1327,
+    "bar snap tab": 68,
     "pan catch pocket": 116,
+    "crush rib": 1260,
+    "A bar snap tab": 4,
     "A groove strip": 1,
     "A seat lip": 28,
     "A saddle lip": 12,
-    "A relay cavity web": 1,
-    "A collar notch": 11
+    "A relay cavity web": 1
    },
-   "attach_skin": 52,
+   "attach_skin": 62,
    "walls": [],
    "attach": []
   },
@@ -98,10 +100,12 @@
   "BattRelay_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 171.8,
+   "volume_cm3": 173.3,
    "exempt": {
+    "bar snap tab": 34,
     "cover catch pocket": 4,
-    "A cover screw insert": 3
+    "A cover screw insert": 3,
+    "A bar snap tab": 2
    },
    "attach_skin": 10,
    "walls": [],
