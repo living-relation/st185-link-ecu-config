@@ -245,7 +245,7 @@ def allowed(name, src):
     """Named thin features that are not walls: the R1 retainer clip's snap barbs (spec.RETAINER barb x barb_h, at the top of each leg)."""
     if 'Retainer' not in name:
         return []
-    sys.path.insert(0, os.path.join(src, 'cad', 'fusebox', 'src'))
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fusebox', 'src'))   # this checkout's spec (--src may hold STLs only)
     import spec as S
     RT = S.RETAINER
     rr = json.load(open(os.path.join(src, FUSEBOX, 'fusebox_report.json')))['retainers']['POWER'][0]

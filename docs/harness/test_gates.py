@@ -233,6 +233,30 @@ def unit_cases():
     for name, ends, ok in checks:
         got = bhc.judge(ends, "") is None
         out.append((name, ok, got))
+    out += fusebox_mesh_cases()
+    return out
+
+
+def _box_tris(x0, y0, z0, x1, y1, z1):
+    """Outward-facing triangles of an axis-aligned box (STL right-hand order)."""
+    v = [(x, y, z) for z in (z0, z1) for y in (y0, y1) for x in (x0, x1)]
+    quads = [(0, 2, 3, 1), (4, 5, 7, 6), (0, 1, 5, 4), (2, 6, 7, 3), (0, 4, 6, 2), (1, 3, 7, 5)]
+    return [t for q in quads for t in ((v[q[0]], v[q[1]], v[q[2]]), (v[q[0]], v[q[2]], v[q[3]]))]
+
+
+def fusebox_mesh_cases():
+    """cad/fusebox/src/check_printed_solid.py S6 (gaps under 0.5 mm, SteveCAD sweep C1) and S2 zero-thickness edges (C3)."""
+    sys.path.insert(0, os.path.join(ROOT, "cad", "fusebox", "src"))
+    import check_printed_solid as cps
+    out = []
+    for g, want_ok in ((0.375, False), (0.65, True)):        # two blocks with a slot between them, 10 x 10 face
+        tris = _box_tris(0, 0, 0, 10, 5, 10) + _box_tris(0, 5 + g, 0, 10, 10 + g, 10)
+        found = [x for x in cps.gaps(tris) if x[0] < cps.GAP_MIN]
+        out.append(("S6 fuse box gap %.3f mm %s" % (g, "passes" if want_ok else "fails"), want_ok, not found))
+    tris = _box_tris(0, 0, 0, 5, 5, 5) + _box_tris(5, 5, 0, 10, 10, 5)  # corners touching along one edge
+    out.append(("S2 fuse box cavity corners touching edge to edge fail", False, not cps.nonmanifold(tris)))
+    tris = _box_tris(0, 0, 0, 5, 5, 5) + _box_tris(7, 7, 0, 12, 12, 5)
+    out.append(("S2 fuse box blocks 2 mm apart pass", True, not cps.nonmanifold(tris)))
     return out
 
 

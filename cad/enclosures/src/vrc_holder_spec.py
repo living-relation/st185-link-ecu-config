@@ -18,7 +18,9 @@ import math
 # ---------- enclosure (read from Fusion ST185-VRC-Enclosure v1, VRC-Body)
 FLOOR_Z, LID_Z = 5.0, 39.0
 CAV_X, CAV_Y, CAV_R = 38.0, 18.0, 7.7
-BOSS_XY, BOSS_TOP, BOSS_D = (14.0, 12.0), 8.0, 7.0      # 4 bosses, M3 tapped 4.5 deep
+BOSS_XY, BOSS_TOP, BOSS_D = (14.0, 12.0), 8.0, 7.0      # HISTORY ONLY (unused): the 4 R108 M3 floor bosses, removed by R126 - read from Fusion
+# ST185-VRC-Enclosure v11 (SteveCAD sweep C10, 2026-10-17): VRC-Body has no bosses at (+-14, +-12); its tapped holes are the 2 M6 holder bosses
+# (BOSS2_D below: D11 z 5.0 - 12.5, D5.0 tap drill z 1.0 - 12.5) and the 4 lid screw holes (D2.53 tap drill, z 29.5 - 38.74)
 LP16_REAR_X, LP16_AXIS_Z, LP16_REAR_R = 28.9, 21.0, 9.0  # rear envelope ends at x = +-28.9 (cups included), D18 about z 21
 
 # ---------- board (KiCad RevB3)
