@@ -2,7 +2,7 @@
 
 **Scope: ONLY for Claude Dispatch** (the orchestrator chat that starts and watches sessions). Code sessions and other agents ignore this file and follow `AGENTS.md`.
 
-A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-HANDOFF-*.md`.
+A new Dispatch chat reads, in order: this file, DECISIONS 'Binding rules from Daniel', `%USERPROFILE%\.claude\working-memory\st185-link-ecu-config\INDEX.md` (shared project working memory), then the newest `_research\DISPATCH-HANDOFF-*.md`. No question to Dan before all four are read.
 
 ## Talking to Dan
 - Max one page. Very simple words (ELI5), bullets. No reasoning, no tool/process details.
@@ -12,6 +12,7 @@ A new Dispatch chat reads this file first, then the newest `_research\DISPATCH-H
 - Say things literally (no idioms).
 
 ## Questions
+- Before asking Dan anything, search DECISIONS (Binding rules from Daniel) and this file. If a rule already answers it (e.g. R47/R107: layouts follow the approved route; R45: the SoT governs every endpoint), act on it and cite the rule - do not ask. (Dan 2026-10-17: 'don't forget it'.)
 - Every question gets the next ID in one running list: A1..A9, B1..B9 ... Z9, then back to A1. Never bare 1/2/3.
 - Always multiple choice with a recommendation.
 - When a question is repeated, restate the full context and all options ("M1 is still open" alone is not OK).
