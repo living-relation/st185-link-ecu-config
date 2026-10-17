@@ -128,7 +128,7 @@
  },
  "fuel-hanger": {
   "png": "cad/fuel-hanger/trimetric.png",
-  "solids": 5,
+  "solids": 4,
   "part_types": 2,
   "extent_mm": [
    149.6,
@@ -136,7 +136,7 @@
    303.0
   ],
   "sources": {
-   "C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014/rev8/hanger_billet_assembly.step": 1792211793
+   "C:/projects/active/st185-link-ecu-config/.claude/worktrees/fuel-hanger-revH/cad/fuel-hanger/fuel-hanger-assembly.step": 1792251911
   },
   "rendered": "2026-10-17"
  },
