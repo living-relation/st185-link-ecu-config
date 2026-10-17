@@ -419,8 +419,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": -570
+        "x": 1680,
+        "y": -540
       },
       "cavities": [
         {
@@ -484,7 +484,7 @@
       },
       "layoutPosition": {
         "x": 2400,
-        "y": -570
+        "y": -660
       },
       "cavities": [
         {
@@ -528,7 +528,7 @@
         "y": 1080
       },
       "layoutPosition": {
-        "x": 2400,
+        "x": 2760,
         "y": -360
       }
     },
@@ -752,7 +752,7 @@
       },
       "layoutPosition": {
         "x": 2040,
-        "y": -750
+        "y": -240
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -767,8 +767,8 @@
         "y": 570
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": -390
+        "x": 2040,
+        "y": -750
       },
       "partId": "tp_lug_m10_2",
       "propagate": false
@@ -783,8 +783,8 @@
         "y": 660
       },
       "layoutPosition": {
-        "x": 2400,
-        "y": -660
+        "x": 1980,
+        "y": -180
       },
       "partId": "tp_lug_m10_2",
       "propagate": false
@@ -799,8 +799,8 @@
         "y": 750
       },
       "layoutPosition": {
-        "x": 1680,
-        "y": -300
+        "x": 1590,
+        "y": -480
       },
       "partId": "tp_lug_m8_2",
       "propagate": false
@@ -831,7 +831,7 @@
         "y": 1080
       },
       "layoutPosition": {
-        "x": 2310,
+        "x": 2670,
         "y": -180
       },
       "propagate": false
@@ -846,7 +846,7 @@
         "y": 1140
       },
       "layoutPosition": {
-        "x": 2400,
+        "x": 2760,
         "y": -450
       },
       "propagate": false
@@ -861,7 +861,7 @@
         "y": 1200
       },
       "layoutPosition": {
-        "x": 2400,
+        "x": 2760,
         "y": -240
       },
       "propagate": false
@@ -1034,11 +1034,29 @@
       }
     },
     {
-      "id": "bn_rl_pos_eng__bp_hdc_str",
+      "id": "bn_rl_pos_eng__bp_hdc_join",
       "sourceId": "rl_pos_eng",
-      "targetId": "bp_hdc_str",
+      "targetId": "bp_hdc_join",
+      "length": {
+        "value": 130,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_join__t_alt_b",
+      "sourceId": "bp_hdc_join",
+      "targetId": "t_alt_b",
       "length": {
         "value": 410,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_join__bp_hdc_str",
+      "sourceId": "bp_hdc_join",
+      "targetId": "bp_hdc_str",
+      "length": {
+        "value": 1550,
         "unit": "mm"
       }
     },
@@ -1056,7 +1074,7 @@
       "sourceId": "bp_hdc_str",
       "targetId": "t_starter_b",
       "length": {
-        "value": 1060,
+        "value": 20,
         "unit": "mm"
       }
     },
@@ -1065,7 +1083,7 @@
       "sourceId": "bp_hdc_str",
       "targetId": "t_starter_b_2",
       "length": {
-        "value": 1060,
+        "value": 20,
         "unit": "mm"
       }
     },
@@ -1074,25 +1092,16 @@
       "sourceId": "bp_hdc_str",
       "targetId": "t_starter_b_3",
       "length": {
-        "value": 1060,
+        "value": 20,
         "unit": "mm"
       }
     },
     {
-      "id": "bn_t_starter_b_2__t_alt_b",
-      "sourceId": "t_starter_b_2",
-      "targetId": "t_alt_b",
-      "length": {
-        "value": 990,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_t_starter_b_3__jump_pos",
-      "sourceId": "t_starter_b_3",
+      "id": "bn_bp_hdc_str__jump_pos",
+      "sourceId": "bp_hdc_str",
       "targetId": "jump_pos",
       "length": {
-        "value": 1340,
+        "value": 390,
         "unit": "mm"
       },
       "separateLabels": true,
@@ -1401,6 +1410,13 @@
       "layoutPosition": {
         "x": 1500,
         "y": -60
+      }
+    },
+    {
+      "id": "bp_hdc_join",
+      "layoutPosition": {
+        "x": 1680,
+        "y": -660
       }
     },
     {

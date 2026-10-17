@@ -213,6 +213,24 @@ def _(d):
     save(p, doc)
 
 
+
+@case("R154: a copied starter lug on its own empty 1060 mm leg (T1, the old N11 shape)", "audit_bundle_topology.py", 1)
+def _(d):
+    p, doc = load(d, "HeavyDC")
+    leg = next(b for b in doc["bundles"] if b["id"] == "bn_bp_hdc_str__t_starter_b_2")
+    leg["length"] = {"value": 1060, "unit": "mm"}
+    doc["bundles"].append({"id": "bn_copy_leg", "sourceId": "bp_hdc_join", "targetId": "t_copy",
+                           "length": {"value": 1060, "unit": "mm"}})
+    doc["terminals"].append({"id": "t_copy", "type": "Ring", "signal": "copied stud",
+                             "layoutPosition": {"x": 0, "y": 0}})
+    save(p, doc)
+
+
+@case("R154: HeavyDC as drawn - H4 + H5 share the join -> starter bundle", "audit_bundle_topology.py", 0)
+def _(d):
+    p, doc = load(d, "HeavyDC")
+    save(p, doc)
+
 def unit_cases():
     """judge() on hand-made pin contents (classes that the drawings don't contain yet)."""
     out = []

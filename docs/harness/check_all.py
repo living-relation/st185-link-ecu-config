@@ -48,6 +48,9 @@ What it runs, in order - every one in HARD is a hard gate:
   check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
+  audit_bundle_topology.py bundle shape (DECISIONS R154): no bundle that carries no wire (T1), lugs of
+                           one stud never drawn apart (T2), no wire whose ends no bundle joins (T3);
+                           findings waiting on Dan are listed in PENDING_DAN and do not fail.
   audit_layout.py          layout view (DECISIONS R107, R140 front right): no node or label on another,
                            no bundle through a node or label (Y5: nor along its own end's label), no
                            bundle on top of another, no lone long diagonal. Re-place with layout_tree.py (one straight tree) or
@@ -81,6 +84,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
+        ["audit_bundle_topology.py"],   # R154: bundle shape follows the route, no empty / copied legs
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
         ["../../cad/fusebox/src/check_terminal_holes.py"],     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
