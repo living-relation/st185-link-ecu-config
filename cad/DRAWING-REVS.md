@@ -36,21 +36,21 @@ Rev A is only for a brand-new model. An existing model: rev number -> letter (re
 | ST185-CSB3-102 | C | No rev number. PRs that changed the lid: #139 first release (A), #272 F09 D-hole corners R3 (B), #273 R132 lid loft D62 x 6 (C). Not counted: #274 (`csb3_lockin.py` edits the body only). |
 | ST185-VRC-103 | D | No rev number on the file ("v2" in #267 names a design pass, not the current rev). PRs that changed the holder: #239 first model (A), #267 holder v2 (B), #272 recess height follows the F02 boss (C), #273 N4 +2.5 mm, lead reliefs, M6 x 14 (D). Not counted: #266 (print-file export), #275 (comment only). |
 | ST185-DRB-101 | C | No rev number. PRs that changed the plate (`build_DRB102_plate.py`): #143 first in the repo (A), #272 D1 / F08 / OPEN-10 groove (B), #275 M5 tapped through (C). Not counted: #189 (trimetric only). |
-| ST185-FB-101 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-102 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-103 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-104 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-105 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-106 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-107 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-108 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-109 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-111 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-112 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-113 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-114 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-115 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
-| ST185-FB-116 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. |
+| ST185-FB-101 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-102 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-103 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-104 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-105 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-106 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-107 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-108 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-109 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-111 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-112 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-113 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-114 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-115 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
+| ST185-FB-116 | G | Rev number 7 (folder `cad/fusebox/rev7/`, `ST185_fusebox_rev7.f3d`) = G. Open for Dan: the rev 7 parts were changed in place after the rev 7 rebuild (#265) by #266, #268, #272, #273, #275, #277 without a new rev number; the rule takes the number, so G. |
 
 The older Fusion drawings `cad/enclosures/csb3/ST185-CSB3-enclosure-drawing.pdf` and `cad/enclosures/vrc/ST185-VRC-enclosure-drawing.pdf` and their 2026-10-17 markups are kept as they are (no rev letter assigned).
 
