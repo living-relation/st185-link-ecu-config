@@ -48,7 +48,7 @@ MODELS = {
                              "cad/enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step"]),
     "enclosure-csb3": ("cad/enclosures/csb3/trimetric.png",   ["cad/enclosures/csb3/CSB3_assembly.step"]),
     "drb102-plate":   ("cad/drb102-plate/trimetric.png",      ["cad/drb102-plate/DRB102-firewall-plate-assembly.step"]),
-    "fuel-hanger":    ("cad/fuel-hanger/trimetric.png",       ["HANGER/hanger_billet_assembly.step"]),
+    "fuel-hanger":    ("cad/fuel-hanger/trimetric.png",       ["cad/fuel-hanger/fuel-hanger-assembly.step"]),   # in-repo since 2026-10-17
     # rev 7 option (E2 = A): POWER box with the bus bar in it; its LOGIC box and battery block are rev 6's pictures
     "fusebox-rev7-power": ("cad/fusebox/rev7/trimetric-power.png", ["cad/fusebox/rev7/Power_*.step"]),
     # rev 7 LOGIC: the 3 mm clearance fix (Bus 2 + relay columns 2.5 mm outboard, box 81.5 wide); rev 6's LOGIC picture is history
