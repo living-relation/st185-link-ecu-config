@@ -105,7 +105,7 @@ connector back 12.6 + wire bend 8 + carrier 34 + wire bend 8 + connector back 12
 ### CSB3 box
 - Connector on the **lid**: D-hole Ø43.08 / flat 41.45. The lid is 6 mm, locally faced to 4.0 mm (within 1.59-4.76). A Ø50.8 sealing face at 0.8 µm Ra on the flange side, and Ø52 nut and lockwasher clearance on the other side.
 - Lid face at least about 70 x 70 mm (Ø50.8 flange + groove + corner screws).
-- CSB3 on 2 x Keystone 25510 at its two Ø3.5 holes (27 x 27 mm diagonal) on floor bosses, with 26 wires from the receptacle contacts to the pads.
+- CSB3 on 2 x Cat. 8847 L = 10 nylon lock-in supports at its two holes (27 x 27 mm diagonal, drilled D3.5 -> D4.0) on D10 floor bosses (R133, 2026-10-16; was 2 x Keystone 25510): D4.0 through a 1.57 boss top, D6.5 relief and M8 x 1.25 x 4.32 from the bottom face (thread mill or bottoming tap from below), sealed by an M8 x 6 ISO 4026 set screw + thread sealant, 2.0 proud; board height unchanged. 26 wires from the receptacle contacts to the pads.
 - **Internal height is TBD** until the HD34 STEP shows the depth behind the panel. Working guess from plan 6.40 is about 40 mm internal; this is not a datasheet value.
 - O-ring is sized the same way as the VRC box once the rim is fixed (likely around AS568-036 to -038).
 - Tabs and slots as on the VRC box.

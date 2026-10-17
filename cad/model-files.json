@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-16",
+ "generated": "2026-10-17",
  "files": {
   "cad/drb102-plate": [
    "DRB102-firewall-plate-assembly.step",
@@ -133,8 +133,9 @@
    "CSB3_part_CSB3-Lid.step",
    "CSB3_part_ECUMaster_CSB3_manual_v2.1_p.4.step",
    "CSB3_part_HD34-24-33PE_envelope_from_TE_CVM_model.step",
+   "CSB3_part_Lock-in_supports_Cat_8847_L10_x2.step",
    "CSB3_part_ORING-AS568-039.step",
-   "CSB3_part_Standoffs_Keystone_25510_x2.step",
+   "CSB3_part_Set_screws_M8x1.25x6_ISO_4026_x2.step",
    "ST185-CSB3-Enclosure.f3d"
   ],
   "cad/enclosures/vrc": [
@@ -184,6 +185,29 @@
   "cad/enclosures/vrc/print": [
    "ST185_VRC_board_holder_PA12.step",
    "ST185_VRC_board_holder_PA12.stl"
+  ],
+  "C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014/rev7": [
+   "hanger_band_clamp_worm_drive.step",
+   "hanger_band_clamp_worm_drive.stl",
+   "hanger_billet_assembly.step",
+   "hanger_billet_assembly.stl",
+   "hanger_check_valve_radium_20-0598.step",
+   "hanger_check_valve_radium_20-0598.stl",
+   "hanger_foot.step",
+   "hanger_foot.stl",
+   "hanger_inside_keepouts.step",
+   "hanger_inside_keepouts.stl",
+   "hanger_lug_block.step",
+   "hanger_lug_block.stl",
+   "hanger_pump_f90000295.step",
+   "hanger_pump_f90000295.stl",
+   "hanger_saddle1.step",
+   "hanger_saddle1.stl",
+   "hanger_strut.step",
+   "hanger_strut.stl",
+   "hanger_top_plate.step",
+   "hanger_top_plate.stl",
+   "hanger_with_pump_fittings.stl"
   ]
  }
 }
