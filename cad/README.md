@@ -28,7 +28,7 @@ The ONE list of every custom-part CAD model (DECISIONS R77). **A new CAD model g
 
 ## Drawings (shop drawings, 2026-10-17)
 
-Made by SteveCAD's build123d drawing engine (`stevecad-tools`, DansPC WSL) from the STEP files in the main checkout (main 4744454, PR #274 / #275). Drawings do NOT update themselves: after a model change, re-export the STEP and re-run the drawing. Each PDF has a `_sh1.png` preview beside it. Edge breaks per R138; tapped holes carry the tap drill + thread from the model. **Rev letters** come from the model (R147) and live in the title block and in [`DRAWING-REVS.md`](DRAWING-REVS.md) (how each letter was found + what made every model file, R149), never in a file name (R148).
+Made by SteveCAD's build123d drawing engine (handbuilt-cad `drawing/`, DansPC WSL; st185 job specs and run scripts in [`drawings/`](drawings/README.md)) from the STEP files in the main checkout (main 4744454, PR #274 / #275). Drawings do NOT update themselves: after a model change, re-export the STEP and re-run the drawing. Each PDF has a `_sh1.png` preview beside it. Edge breaks per R138; tapped holes carry the tap drill + thread from the model. **Rev letters** come from the model (R147) and live in the title block and in [`DRAWING-REVS.md`](DRAWING-REVS.md) (how each letter was found + what made every model file, R149), never in a file name (R148).
 
 | Model (tool) | Drawing | Rev | Status |
 |---|---|---|---|
