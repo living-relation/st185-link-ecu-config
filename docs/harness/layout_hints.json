@@ -206,7 +206,7 @@
         ]
       },
       {
-        "root": "t_starter_b_3",
+        "root": "jump_pos",
         "at": [
           2400,
           660
@@ -222,10 +222,18 @@
       {
         "root": "alt_plug",
         "at": [
-          2400,
+          2760,
           360
         ]
       }
-    ]
+    ],
+    "nodes": {
+      "bp_hdc_join": {
+        "up": [
+          "rl_pos_eng",
+          "t_alt_b"
+        ]
+      }
+    }
   }
 }
