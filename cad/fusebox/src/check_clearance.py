@@ -22,14 +22,14 @@ sys.path.insert(0, os.path.join(REPO, 'docs'))
 from needs_dan import open_questions  # noqa: E402
 
 LIVE_LIVE = {   # key -> what the two live parts are
-    'pad_to_pad_min_mm': 'POWER: AMI output pad to the next pad',
-    'bar_to_pad_min_mm': 'POWER: + bar to an output pad',
-    'input_lug_to_pad_min_mm': 'POWER: bus zone 1/0 lug to an output pad',
+    'strap_to_strap_min_mm': 'POWER: AMI copper strap to the next strap (R155)',
+    'strap_station_to_station_min_mm': 'POWER: any live part of one strap station (strap, PEM nuts, ear / lug bolts, lug) to the next (R155)',
+    'bar_to_strap_min_mm': 'POWER: + bar to a copper strap',
+    'input_lug_to_strap_min_mm': 'POWER: bus zone 1/0 lug to a copper strap',
     'under_deck_lug_to_lug_min_mm': 'POWER: lugs under the deck',
-    'standoff_to_standoff_min_mm': 'POWER: brass standoffs',
     'bus_pos_lug_to_lug_min_mm': 'POWER bus zone: + bar lug to lug',
     'bus_neg_to_pos_min_mm': 'POWER bus zone: any NEG part to any + part',
-    'bus_pos_lug_to_out_pad_min_mm': 'POWER: + bus lug to an AMI output pad',
+    'bus_pos_lug_to_out_strap_min_mm': 'POWER: + bus lug to an AMI copper strap',
     'logic_strip_to_strip_mm': 'LOGIC: Bus 1 strip to Bus 2 strip',
     'logic_bolt_to_other_strip_min_mm': 'LOGIC: a strip bolt tip to the OTHER strip',
     'logic_pem_nut_to_other_strip_min_mm': 'LOGIC: a PEM nut head (N2) to the OTHER strip',

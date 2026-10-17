@@ -290,7 +290,7 @@
    "where": "POWER AMI IN HTR (40A) -> heater terminal 30",
    "awg": "8",
    "od": 5.13,
-   "path": "straight 2 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 1 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 15.4,
    "rule": "3 x OD, supported",
@@ -323,7 +323,7 @@
    "where": "POWER AMI IN FAN (40A) -> k_fan terminal 30",
    "awg": "8",
    "od": 5.13,
-   "path": "straight 31 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 30 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 15.4,
    "rule": "3 x OD, supported",
@@ -334,7 +334,7 @@
    "where": "POWER AMI IN FAN2 (30A) -> k_fan2 terminal 30",
    "awg": "8",
    "od": 5.13,
-   "path": "straight 2 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 1 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 15.4,
    "rule": "3 x OD, supported",
@@ -345,7 +345,7 @@
    "where": "POWER AMI IN PWR (30A) -> power terminal 30",
    "awg": "10",
    "od": 3.61,
-   "path": "straight 32 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 31 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 10.8,
    "rule": "3 x OD, supported",
@@ -1015,7 +1015,7 @@
     2,
     1042.5,
     405.9,
-    "relay feed: lug on the 40 mm standoff"
+    "relay feed: lug under its copper strap"
    ],
    [
     3,
@@ -1027,7 +1027,7 @@
     4,
     1185.9,
     506.2,
-    "OUT lug on the 40 mm standoff"
+    "OUT lug under its copper strap"
    ],
    [
     5,
@@ -1120,20 +1120,20 @@
    [
     3,
     985.3,
-    306.6,
+    305.6,
     "AMI fuses on the studs"
    ],
    [
     4,
-    901.9,
-    258.8,
+    886.9,
+    261.6,
     "Keps nuts, 4 Nm max"
    ],
    [
     5,
-    967.5,
-    334.7,
-    "M5 set screws (studs)"
+    973.1,
+    246.6,
+    "M5 x 10 ear bolts into the strap PEM nuts"
    ],
    [
     6,
@@ -1144,8 +1144,8 @@
    [
     7,
     967.5,
-    378.8,
-    "output pads 15 x 3"
+    399.4,
+    "copper C-straps 15 x 3 (14), PEM nuts pressed in"
    ],
    [
     8,
@@ -1156,69 +1156,51 @@
    [
     9,
     886.9,
-    480.0,
+    479.1,
     "bar bolts up from below"
-   ],
-   [
-    10,
-    967.5,
-    562.5,
-    "standoffs 40 mm (both rows, one part)"
    ],
    [
     11,
     973.1,
-    660.9,
+    657.2,
     "cable lugs"
    ],
    [
     12,
     973.1,
-    660.9,
+    657.2,
     "M5 x 10 lug bolts"
    ],
    [
     13,
     913.1,
-    707.8,
+    706.9,
     "belly pan (snaps on)"
    ]
   ],
   "fusebox_power_step1.png": [
    [
     1,
-    1081.9,
-    178.1,
+    1113.8,
+    198.8,
     "lay the bar in its pocket"
    ],
    [
     2,
-    1140.0,
-    182.8,
-    "lay the 14 pads in theirs"
+    1181.2,
+    294.4,
+    "drop the 14 copper straps into their wells (PEM nuts already pressed in): the lips rest on the ledge, the hook snaps over them"
    ],
    [
     3,
-    862.5,
-    426.6,
+    855.9,
+    490.3,
     "bar bolts up through the hex head pockets"
    ],
    [
-    4,
-    1140.0,
-    597.2,
-    "40 mm standoffs up into the hex holes, both rows"
-   ],
-   [
-    5,
-    1140.0,
-    186.6,
-    "set screw down through each pad into its standoff"
-   ],
-   [
     6,
-    899.1,
-    398.4,
+    900.0,
+    457.5,
     "base, right way up"
    ]
   ],
@@ -1233,7 +1215,7 @@
     2,
     963.8,
     482.8,
-    "relay feed lug on its long standoff (M5 x 10)"
+    "relay feed lug palm-up under its strap (M5 x 10 into the PEM nut)"
    ],
    [
     3,
@@ -1245,7 +1227,7 @@
     4,
     1072.5,
     567.2,
-    "OUT lug on its standoff (M5 x 10)"
+    "OUT lug palm-up under its strap (M5 x 10)"
    ],
    [
     5,
@@ -1263,9 +1245,9 @@
    ],
    [
     2,
-    874.7,
-    282.2,
-    "Keps nuts, 4 Nm max"
+    836.2,
+    289.7,
+    "Keps nuts on the bar studs, M5 x 10 ear bolts into the straps: 4 Nm max"
    ],
    [
     3,
@@ -1296,13 +1278,13 @@
    [
     2,
     901.9,
-    182.8,
+    181.9,
     "cover snaps down over the deck"
    ],
    [
     3,
     960.0,
-    615.0,
+    614.1,
     "M6 through each foot (4), steel limiter"
    ]
   ],
@@ -1369,16 +1351,6 @@
    "note": "rev 6: no standoffs - the feed lugs bolt straight onto the strips",
    "z_d": 38.5,
    "z_t": 60.5
-  },
-  "POWER": {
-   "IN": 40.0,
-   "OUT": 40.0,
-   "in_lug_z": 9.5,
-   "out_lug_z": 9.5,
-   "z_d": 32.0,
-   "z_t": 52.5,
-   "plate_bottom": 46.5,
-   "pad_bottom": 51.5
   }
  },
  "terminal_holes": {
@@ -9309,7 +9281,7 @@
     234.62,
     37.64,
     40.23,
-    8.14,
+    5.64,
     32.3
    ]
   },
@@ -9322,7 +9294,7 @@
     234.62,
     45.77,
     48.36,
-    8.14,
+    5.64,
     32.3
    ]
   },
@@ -9335,7 +9307,7 @@
     204.53,
     56.72,
     59.31,
-    9.21,
+    6.71,
     32.3
    ]
   },
@@ -9348,7 +9320,7 @@
     204.53,
     62.69,
     65.28,
-    9.21,
+    6.71,
     32.3
    ]
   },
@@ -9361,7 +9333,7 @@
     233.53,
     74.72,
     77.31,
-    9.21,
+    6.71,
     32.3
    ]
   },
@@ -9374,7 +9346,7 @@
     233.53,
     80.69,
     83.28,
-    9.21,
+    6.71,
     32.3
    ]
   },
@@ -9387,7 +9359,7 @@
     205.62,
     91.64,
     94.23,
-    8.14,
+    5.64,
     32.3
    ]
   },
@@ -9400,7 +9372,7 @@
     205.62,
     99.77,
     102.36,
-    8.14,
+    5.64,
     32.3
    ]
   },
@@ -9413,7 +9385,7 @@
     234.62,
     109.64,
     112.23,
-    8.14,
+    5.64,
     32.3
    ]
   },
@@ -9426,7 +9398,7 @@
     234.62,
     117.77,
     120.36,
-    8.14,
+    5.64,
     32.3
    ]
   },
@@ -9439,7 +9411,7 @@
     204.85,
     128.39,
     131.0,
-    8.89,
+    6.4,
     32.3
    ]
   },
@@ -9452,7 +9424,7 @@
     204.85,
     135.0,
     137.61,
-    8.89,
+    6.4,
     32.3
    ]
   },
@@ -10134,184 +10106,184 @@
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    37.79,
-    48.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    36.1,
+    49.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    55.79,
-    66.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    54.1,
+    67.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    73.79,
-    84.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    72.1,
+    85.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    91.79,
-    102.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    90.1,
+    103.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    109.79,
-    120.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    108.1,
+    121.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    127.79,
-    138.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    126.1,
+    139.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    247.04,
-    257.46,
-    145.79,
-    156.21,
-    42.65,
-    50.35
+    234.3,
+    243.8,
+    144.1,
+    157.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    37.79,
-    48.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    36.1,
+    49.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    55.79,
-    66.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    54.1,
+    67.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    73.79,
-    84.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    72.1,
+    85.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    91.79,
-    102.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    90.1,
+    103.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    109.79,
-    120.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    108.1,
+    121.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    127.79,
-    138.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    126.1,
+    139.9,
+    36.2,
+    58.1
    ]
   },
   {
    "part": "Power_Base_PA12_printed",
-   "key": "crush rib",
+   "key": "strap snap tab",
    "only": null,
    "box": [
-    319.54,
-    329.96,
-    145.79,
-    156.21,
-    42.65,
-    50.35
+    333.2,
+    343.1,
+    144.1,
+    157.9,
+    36.2,
+    58.1
    ]
   },
   {
@@ -11714,6 +11686,69 @@
    0.15
   ],
   [
+   157.85,
+   173.3,
+   35.6,
+   50.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   157.85,
+   173.3,
+   53.6,
+   68.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   157.85,
+   173.3,
+   71.6,
+   86.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   157.85,
+   173.3,
+   89.6,
+   104.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   157.85,
+   173.3,
+   107.6,
+   122.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   157.85,
+   173.3,
+   125.6,
+   140.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   157.85,
+   173.3,
+   143.6,
+   158.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
    7.03,
    22.97,
    198.1,
@@ -11743,11 +11778,6 @@
    "bodies": 1,
    "failed": 0
   },
-  "Power_Pad_Out_CuC110_15x3": {
-   "d": 0.3,
-   "bodies": 14,
-   "failed": 0
-  },
   "BattRelay_Bar_Power_CuC110_25x6p35": {
    "d": 0.3,
    "bodies": 1,
@@ -11768,31 +11798,159 @@
   "Logic_y 10.5-15.6",
   "Power_x 35.0-43.0"
  ],
- "stud_fit": {
-  "chord_mm": 0.98,
-  "press_N": [
-   339,
-   508
+ "straps": {
+  "z_bl": 14.0,
+  "lug_palm_underside": 12.0,
+  "top": [
+   51.5,
+   54.5
   ],
-  "hold_new_N": 339,
-  "hold_aged_N": 85,
-  "need_N": 3.7,
-  "springback_mm": 0.016,
-  "bore_growth_mm": {
-   "85.0": 0.036,
-   "105.0": 0.047,
-   "-40.0": -0.033
+  "z_d": 32.0,
+  "z_t": 52.5,
+  "numbers": {
+   "R_strap_uohm_20C": 23.1,
+   "R_strap_uohm_95C": 30.0,
+   "R_old_conductor_uohm_20C": 58.8,
+   "joints": {
+    "strap": "ear -> strap, strap -> lug: two clamped copper faces, no thread in the path",
+    "old": "ear -> pad, pad -> brass, brass -> lug (3) + the set-screw thread in parallel"
+   },
+   "per_position": {
+    "HTR": {
+     "amps": 40,
+     "awg": 8,
+     "strap_W": 0.048,
+     "old_conductor_W": 0.108,
+     "strap_W_per_m": 0.84,
+     "neck_W_per_m": 1.7,
+     "rise_K_no_end_cooling": 4.1,
+     "worst_strap_C": 89.1
+    },
+    "EFI": {
+     "amps": 30,
+     "awg": 12,
+     "strap_W": 0.027,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "STR": {
+     "amps": 30,
+     "awg": 12,
+     "strap_W": 0.027,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "FAN": {
+     "amps": 40,
+     "awg": 8,
+     "strap_W": 0.048,
+     "old_conductor_W": 0.108,
+     "strap_W_per_m": 0.84,
+     "neck_W_per_m": 1.7,
+     "rise_K_no_end_cooling": 4.1,
+     "worst_strap_C": 89.1
+    },
+    "FAN2": {
+     "amps": 30,
+     "awg": 8,
+     "strap_W": 0.027,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "PWR": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.027,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "BUS1": {
+     "amps": 50,
+     "awg": 8,
+     "strap_W": 0.075,
+     "old_conductor_W": 0.169,
+     "strap_W_per_m": 1.31,
+     "neck_W_per_m": 2.65,
+     "rise_K_no_end_cooling": 6.3,
+     "worst_strap_C": 91.3
+    },
+    "RTR": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.027,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "AM1": {
+     "amps": 40,
+     "awg": 8,
+     "strap_W": 0.048,
+     "old_conductor_W": 0.108,
+     "strap_W_per_m": 0.84,
+     "neck_W_per_m": 1.7,
+     "rise_K_no_end_cooling": 4.1,
+     "worst_strap_C": 89.1
+    },
+    "AM2": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.027,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "JB1": {
+     "amps": 60,
+     "awg": 6,
+     "strap_W": 0.108,
+     "old_conductor_W": 0.243,
+     "strap_W_per_m": 1.88,
+     "neck_W_per_m": 3.82,
+     "rise_K_no_end_cooling": 9.1,
+     "worst_strap_C": 94.1
+    },
+    "EPS": {
+     "amps": 60,
+     "awg": 8,
+     "strap_W": 0.108,
+     "old_conductor_W": 0.243,
+     "strap_W_per_m": 1.88,
+     "neck_W_per_m": 3.82,
+     "rise_K_no_end_cooling": 9.1,
+     "worst_strap_C": 94.1
+    }
+   },
+   "bolt": {
+    "T_Nm": 4.0,
+    "preload_N": 4000,
+    "thread_share_Nm": 2.06,
+    "head_share_Nm": 1.98,
+    "nut_reaction_Nm": 2.06,
+    "pem_torque_out_Nm": 5.3,
+    "margin": 2.6,
+    "margin_trimmed_top": 2.2,
+    "note": "torque-out = PEM copper data for the steel S type (SS-M5-2, same M5 / code 2 envelope); the CLSS copper figure is not published - first-article check on the drawing"
+   }
   },
-  "interference_tol": [
-   0.05,
-   0.55
-  ],
-  "bore_af": 8.5,
-  "rib_r": 0.55,
-  "interference": 0.3,
-  "rib_len": 6.0,
-  "columns": 14,
-  "backup": "LOCTITE 406"
+  "pem": "CLSS-M5-2",
+  "positions": 14
  },
  "saddle_top_cut": [
   {
@@ -12099,6 +12257,190 @@
    }
   ]
  },
+ "strap_tabs": [
+  {
+   "row": "IN",
+   "name": "HTR",
+   "y": 43.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "IN",
+   "name": "EFI",
+   "y": 61.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "IN",
+   "name": "STR",
+   "y": 79.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "IN",
+   "name": "FAN",
+   "y": 97.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "IN",
+   "name": "FAN2",
+   "y": 115.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "IN",
+   "name": "PWR",
+   "y": 133.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "IN",
+   "name": "SP",
+   "y": 151.0,
+   "arm": [
+    75.2,
+    79.5
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "BUS1",
+   "y": 43.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "RTR",
+   "y": 61.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "AM1",
+   "y": 79.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "AM2",
+   "y": 97.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "JB1",
+   "y": 115.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "EPS",
+   "y": 133.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  },
+  {
+   "row": "OUT",
+   "name": "SP",
+   "y": 151.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 18.1,
+   "t": 4.3,
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  }
+ ],
  "bar_tabs": [
   {
    "part": "Power_Base_PA12_printed",
@@ -12195,22 +12537,22 @@
   "Power_x 115.0"
  ],
  "live_clearance": {
-  "pad_to_pad_min_mm": 3.0,
-  "bar_to_pad_min_mm": 17.05,
-  "input_lug_to_pad_min_mm": 13.82,
+  "strap_to_strap_min_mm": 3.0,
+  "bar_to_strap_min_mm": 17.05,
+  "input_lug_to_strap_min_mm": 13.72,
   "under_deck_lug_to_lug_min_mm": 5.5,
-  "standoff_to_standoff_min_mm": 8.76,
   "logic_strip_to_strip_mm": 9.2,
   "logic_feed_lug_to_lug_mm": 103.58,
   "battrelay_bar_to_pad_mm": 17.0,
   "battrelay_relay_lug_to_lug_mm": 5.0,
-  "pan_to_nearest_live_power_mm": 0.59,
+  "pan_to_nearest_live_power_mm": 0.6,
+  "strap_station_to_station_min_mm": 3.0,
   "bus_pos_lug_to_lug_min_mm": 4.0,
   "bus_neg_lug_to_lug_min_mm": 1.5,
   "bus_neg_nut_to_nut_min_mm": 2.99,
   "bus_neg_nut_to_barrier_mm": 0.99,
   "bus_neg_to_pos_min_mm": 5.8,
-  "bus_pos_lug_to_out_pad_min_mm": 13.82,
+  "bus_pos_lug_to_out_strap_min_mm": 13.72,
   "logic_jumper_lug_to_lug_min_mm": 1.52,
   "logic_jumper_parts_to_printed_min_mm": 0.28,
   "logic_jumper_parts_to_harness_min_mm": 0.59,
@@ -12277,8 +12619,8 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 840.3,
-   "mass_g_pa12": 849.0,
+   "volume_cm3": 800.0,
+   "mass_g_pa12": 808.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -12287,9 +12629,9 @@
    "size_mm": [
     173.6,
     238.5,
-    34.7
+    35.4
    ],
-   "volume_cm3": 157.1,
+   "volume_cm3": 157.0,
    "mass_g_pa12": 159.0,
    "bodies": 1,
    "lumps": 1,
@@ -12363,9 +12705,9 @@
  "interference": [],
  "mass_g": {
   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 151.1,
+  "Power_Strap_Out_CuC110_15x3_C": 301.4,
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 295.5,
   "Power_BarNeg_CuC110_25x6p35_L105": 133.0,
-  "Power_Pad_Out_CuC110_15x3": 88.7,
   "BattRelay_Bar_Power_CuC110_25x6p35": 49.2,
   "BattRelay_Pad_Out_CuC110_15x3": 6.3
  },
@@ -12381,9 +12723,9 @@
   "Power_Retainer_R1_PA12_printed.stl",
   "Power_Base_PA12_printed.step",
   "Power_Base_PA12_printed.stl",
+  "Power_Strap_Out_CuC110_15x3_C.step",
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
   "Power_BarNeg_CuC110_25x6p35_L105.step",
-  "Power_Pad_Out_CuC110_15x3.step",
   "Power_Pan_PA12_printed.step",
   "Power_Pan_PA12_printed.stl",
   "Power_Cover_PA12_printed.step",

@@ -94,48 +94,117 @@ STANDOFF = dict(af=8.0, long=40.0, thread=5, depth=10.0)    # brass hex standoff
 # Pad stud (OPEN-5): M5 x 20 DIN 916 A2 set screw, 9.5 into the standoff (1.9 x D, 0.5 short of its 10 mm thread), then pad 3.0 + AMI ear 0.8
 # + DIN 6923 nut 5.0, 1.7 past the nut (2 threads)
 SETSCREW = dict(l=20.0, in_so=9.5)
-# Stud self-retention (Dan 2026-10-17, N5 / N7; R146 supersedes R144's collars): "the brass stud needs to hold itself in place if a fuse is
-# removed" ... "if you turn it upside down it will slide out of the hole" ... "using friction fit for just the stud is probably smart. we just
-# have to calculate it right". Each 40 mm standoff presses into its hex bore past 6 crush ribs (one on each flat); a few drops of Loctite 406
-# wicked in from below along the ribs are the positive backup (BACKUP). Nothing comes between the pad and the brass top (current path, R73).
-#   bore: flats `clr` off the 8.0 AF hex (8.5 AF bore) so the flats never touch with MJF's +-0.2-0.3; corners relieved (`corner_d`), and
-#         a 45 deg lead-in `chamfer` at the top; the bore runs deck underside -> pad pocket (no collar).
-#   ribs: half-round, radius `r`, centred on each flat, crest `i` inside the brass flat (interference), `len` long from `top` under the
-#         pad pocket floor, round ends (the top end is the rib's lead-in). See STUD_FIT_CALC for the numbers (shown in the PR).
-STUD_FIT = dict(clr=0.25, corner_d=1.2, chamfer=1.0, i=0.30, len=6.0, top=2.0, rot=90)
-STUD_FIT['r'] = STUD_FIT['clr'] + STUD_FIT['i']      # rib centred on the bore flat: its crest is i inside the brass flat (0.55)
-# Option C (Dan 2026-10-17: "try c also"), built only when FLANGE['on']: a FLANGED brass standoff whose flange sits in a counterbore at the
-# top of the bore (flange top = the pad seat, so the pad still sits on bare brass and its height is unchanged); the flange stops it dropping, the
-# crush ribs stop it rising. Overall 40 incl. the flange. No stocked flanged 40 mm M5 brass hex standoff found (Accu / spacer-express / RS /
-# Wurth searched 2026-10-17): it would be a turned part - PN TBD. Default off: ribs + LOCTITE 406 (R146) is the build.
-FLANGE = dict(on=False, d=12.0, t=2.0, clr=0.4)
 # HP 3D High Reusability PA 12 data sheet 4AA6-4895ENE (2017): E 1700 MPa XY, tensile 48 MPa, elongation 20 % XY / 15 % Z, HDT 95 C XY at
-# 1.82 MPa. CTE: HP publishes none - unfilled PA12 100 - 150e-6/K, 150 used (worst). Brass C36000 20.5e-6/K (Copper Development Assoc.).
-# Box range -40 .. +85 C (cabin, docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md), +105 checked as a margin; assembled at 20 C.
-STUD_FIT_CALC = dict(E=1700.0, sy=48.0, cte_pa=150e-6, cte_brass=20.5e-6, t_hot=85.0, t_margin=105.0, t_cold=-40.0, t_asm=20.0, mu_lo=0.20, mu_hi=0.30,
-                     relax=0.25, mass_g=75.0, vib_g=5.0)
+# 1.82 MPa. Used by the snap-tab checks below.
+PA12 = dict(E=1700.0, sy=48.0, nu=0.39)
+
+# ---------- POWER outputs: copper C-strap per AMI position (N14 = B, Dan 2026-10-17: "do B"; DECISIONS R155 supersedes R146 / R144)
+# Every POWER position - the 6 outputs, the 6 relay feeds (IN row, Dispatch 2026-10-17: "C-strap on all 12") and the 2 spares - is ONE bent
+# copper strap instead of pad + 40 mm brass standoff + set screw: top leg under the AMI ear, web down through a well in the deck, bottom
+# leg under the deck with the lug bolted palm-UP against its underside. Current runs ear -> copper -> lug on clamped flat copper faces only:
+# no brass, no thread in the path (Dan's current rule: copper over brass over aluminium, never through threads).
+# Hold (positive, no friction / glue): two side lips (the top leg's wings carried `lip` past the web, either side of a `neck` wide web
+# top) rest on a printed ledge = DOWN stop; a printed snap hook reaches `over` across the lip ends = UP stop. Mirror image on the IN row
+# (web inboard of the output stud, lug pointing -x to its relay saddle). Concept: _research/snapshots/2026-10-17-N14/B (concept B), with
+# the edge distances below fixed for the real nuts.
+#   stock: 3 x 15 tinned C110 (STOCK['pad'], Bopaodao B09Z7NBLDK, the old pad stock); ri inside bend radius (annealed C110 <= 1 t)
+#   x offsets from the output stud x_out, + = the web side: web 5.25 .. 8.25, lug bolt 0.5 (bottom PEM 7.1 from the bottom leg end; its
+#   head clears the web by 0.43); ledge: the printed ledge runs on this far past the lip ends to the hook slot (the ledge band is then
+#   3.6 thick: R127 >= 3 for the DOWN stop, which on the OUT row stands over the belly-pan groove)
+#   z: top leg = bar_top - t .. bar_top (the old pad), bottom leg z_bl .. z_bl + t, lug palm top = z_bl
+STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), lip=2.0, ledge=1.9, neck=7.0, slit=6.0, z_bl=14.0, lug=0.5,
+             clr=0.3, trim=0.6, kerf=0.5, k=0.33)
+# w_low: below the top leg (web and bottom leg) the strap is milled / filed to 14.2 (= 2 x the PEM edge 7.1), so the PA12 wall between two
+# neighbouring wells is 18 - 14.2 - 2 x 0.3 = 3.2 (R127 >= 3; at 15 wide it was 2.4); the top leg, the lips and the AMI ear face stay 15.
+# trim: the top leg is cut 0.6 long, its top PEM pressed, then trimmed (see STRAP_PEM 'top_edge'). kerf: the saw cut either side of the
+# neck tongue, so the tongue bends down while the lips beside it stay flat (lips 3.5 wide each). k: bend K-factor for the flat blank
+# (annealed C110, ri / t = 0.33: K 0.33), bend allowance pi / 2 (ri + k t) per 90 deg bend - the shop checks the first blank (drawing note).
+# PEM nuts in the strap (Dan's card: stainless; PennEngineering bulletin CL / pemnet.com product page CLSS-M5-2, read 2026-10-17): 300-series
+# stainless self-clinching nut M5, shank code 2, mounting hole 6.35 +0.08, head E 8.64 x T 2.0, C max 6.33, min hole centre to edge 7.1,
+# sheet HRB 70 / HB 125 or less (C110 copper is far softer). PEM's "Performance data for PEM fasteners installed into copper" (Rev. 5/22/20)
+# lists only the steel type S: SS-M5-2 in 1.5 mm Cu-ETP torque-out 5.3 N.m, pushout 1080 N (SS-M5-2ZI = heat-treated steel, zinc - PEM
+# Table II "S, SS and H: steel", so it is NOT the stainless part). CLSS has the same envelope; its copper figure is not published.
+# top_edge: the AMI fuse body sits 7.0 from the ear stud (AMI c 30, body 16), so the top leg can only reach 6.5 from the top nut - under the
+# 7.1 rule. The rule is about bulging the edge while the nut is pressed in: the blank is cut `trim` long (7.1), the nut pressed, THEN the end
+# trimmed to 6.5 (drawing note); the ligament left round the knurl is 85 % of a 7.1 one. First article: torque check (drawing note).
+STRAP_PEM = dict(pn='CLSS-M5-2', maker='PennEngineering (PEM)', hole=6.35, E=8.64, T=2.0, A=1.38, edge=7.1, top_edge=6.5,
+                 url='https://www.pemnet.com/products/product-finder/clss-m5-2/', copper_torque_out_Nm=5.3, copper_pushout_N=1080)
+# Bolt torque: AMI sheet 4 N.m max on the ear; the lug bolt the same. A nut only reacts the THREAD share of the bolt torque (the head share
+# goes into the ear / palm): K = 0.2, mu 0.15 (thread and head), M5 d2 4.48, head bearing radius 3.3 -> preload F = T / (K d) and
+# T_thread = F d2 / 2 (p / (pi d2) + 1.155 mu). See strap_numbers().
+BOLT_T = dict(T=4.0, K=0.2, mu=0.15, d=5.0, d2=4.48, p=0.8, r_head=3.3)
+# Snap hooks (UP stop). OUT row: the hook is on the base skirt - the skirt is the arm (freed by two side slots + an inner slot from `root`
+# up), and the cover skirt overlaps it from outside, so with the cover on the hook cannot open. IN row: an arm cut free in the deck block by
+# a slot ring (deck_tab style), inboard of the lips. w across the strap width (covers both lips), over = hook past the lip end (lip 2.0),
+# t arm thickness, root = arm root z, hook_t hook thickness, slot 1.0 (> 0.5 MJF, S6). FEA: cad/fusebox/src/strap_fea.py.
+STRAP_TAB = {'OUT': dict(w=12.0, over=1.5, t=None, root=36.5, hook_t=3.2, slot=0.6),
+             'IN': dict(w=12.0, over=1.5, t=4.3, root=36.5, hook_t=3.2, slot=0.6)}
+# w 12 / slot 0.6: the PA12 left between two neighbouring arms' slots is 4.8 (R127 >= 3); the hook still covers 2.0 of each lip.
 
 
-def stud_fit_numbers():
-    """Crush-rib estimate per standoff (6 ribs). Contact chord after crush w = 2 sqrt(2 r i - i^2); the PA12 crest flows at about its
-    tensile strength, so N = sy * w * len per rib at assembly; long term at temperature it relaxes to `relax` of that. Elastic grip left
-    after the crush = sy / E * rib height; PA12 out-grows brass by (cte_pa - cte_brass) * dT * flat distance."""
-    F, C = STUD_FIT, STUD_FIT_CALC
-    w = 2 * math.sqrt(2 * F['r'] * F['i'] - F['i'] ** 2)
-    n0 = 6 * C['sy'] * w * F['len']
-    flat = STANDOFF['af'] / 2 + F['clr']
-    spring = C['sy'] / C['E'] * F['r']
-    grow = {T: (C['cte_pa'] - C['cte_brass']) * (T - C['t_asm']) * flat for T in (C['t_hot'], C['t_margin'], C['t_cold'])}
-    need = C['mass_g'] / 1000 * 9.81 * C['vib_g']
-    return dict(chord_mm=round(w, 2), press_N=(round(C['mu_lo'] * n0), round(C['mu_hi'] * n0)), hold_new_N=round(C['mu_lo'] * n0),
-                hold_aged_N=round(C['mu_lo'] * n0 * C['relax']), need_N=round(need, 1), springback_mm=round(spring, 3),
-                bore_growth_mm={k: round(v, 3) for k, v in grow.items()}, interference_tol=(round(F['i'] - 0.25, 2), round(F['i'] + 0.25, 2)))
-# Positive backup (Dan: friction "won't necessarily stop it from sliding through the hole due to temperature expansion or age"): the crushed
-# rib keeps only ~0.01 mm of spring, PA12 out-grows the brass by ~0.02-0.03 mm at +85 C, so hot and aged the ribs may go slack - the bond holds.
-BACKUP = dict(pn='LOCTITE 406', what='ethyl cyanoacrylate for plastics, low viscosity (12-22 mPa.s), -40 .. +120 C (Henkel TDS Feb 2012)',
-              url='https://next.henkel-adhesives.com/ca/en/products/industrial-adhesives/central-pdp.html/loctite-406/BP000000153530.html',
-              how='after pressing the standoff in: 2-3 drops at the bore bottom (deck underside), it wicks up the rib lines and corners; '
-                  'nothing on the top face (the pad sits on bare brass). Full strength 24 h.')
+def strap_blank():
+    """Flat blank of the C-strap (shop drawing ST185-FB-117), measured along the strip from the TOP-leg end (after the trim; the cut
+    blank is `trim` longer at that end). Bend allowance per 90 deg bend = pi / 2 (ri + k t); straights between the bend tangents."""
+    st = STRAP
+    ro = st['ri'] + st['t']
+    ba = math.pi / 2 * (st['ri'] + st['k'] * st['t'])
+    top = (st['web'][1] - ro) + st['top_in']                       # top-leg end -> first bend tangent
+    web = (POWER['bar_top'] - ro) - (st['z_bl'] + ro)               # web between the bend tangents
+    bot = (st['web'][1] - ro) - (st['lug'] - STRAP_PEM['edge'])     # second bend tangent -> bottom-leg end
+    L = top + ba + web + ba + bot
+    lip_end = top + (st['web'][1] + st['lip'] - (st['web'][1] - ro))           # the lips carry on flat past the first bend start
+    neck_end = top + ba + (st['slit'] - (ro - st['t']))                          # the tongue is neck wide this far (model: slit under the leg)
+    return dict(w=st['w'], w_low=st['w_low'], low_from=round(neck_end, 2), t=st['t'], length=round(L, 2), cut_length=round(L + st['trim'], 2), bend_allowance=round(ba, 3), ri=st['ri'], k=st['k'],
+                straights=(round(top, 2), round(web, 2), round(bot, 2)), bend_centres=(round(top + ba / 2, 2), round(top + ba + web + ba / 2, 2)),
+                pem_top=st['top_in'], pem_bottom=round(L - STRAP_PEM['edge'], 2), pem_hole=STRAP_PEM['hole'],
+                kerf=dict(y=(st['neck'] / 2, st['neck'] / 2 + st['kerf']), x=(round(top, 2), round(lip_end, 2))),
+                notch=dict(y=(st['neck'] / 2, st['w'] / 2), x=(round(lip_end, 2), round(neck_end, 2))))
+
+
+def strap_numbers(amps_awg, t_hot=85.0):
+    """Ampacity / temperature rise of the copper strap (Dan's rule: calculate it for anything non-standard), per position, and the bolt
+    torque the PEM nut has to react. Method as concept B (_research/snapshots/2026-10-17-N14/B/B_numbers.json): C110 100 % IACS
+    rho 1.72e-8 ohm.m, alpha 0.00393 /K; box ambient t_hot (cabin, -40 .. +85 C) + 10 K for the
+    strap's own resistance; heat out by still air only (h 6 W/m2K on the perimeter, no heat out the ends = upper bound).
+    The old part: pad 8 mm + 40 mm brass hex 8 AF (C36000, 26 % IACS; 20 mm of it tapped 10 deep each end).
+    Path: the strap's own centre line (concept B summed 7 + 6 + 37 + 6.5 and counted the neck twice); the rise uses the narrowest long
+    section (web / bottom leg, w_low x t) - the 7 mm neck is 11 mm long and clamped next to the ear, so it is listed (neck_W_per_m), not
+    used for the rise."""
+    rho, a = 1.72e-8, 0.00393
+    t_, w_, n_ = STRAP['t'], STRAP['w'], STRAP['neck']
+    A, An, Al = w_ * t_, n_ * t_, STRAP['w_low'] * t_
+    ro = STRAP['ri'] + t_
+    arc = math.pi / 2 * (STRAP['ri'] + t_ / 2)                       # bend centre line
+    top = STRAP['web'][1] - ro                                       # ear centre -> first bend (full 15 x 3)
+    neck = arc + (STRAP['slit'] - (ro - t_))                         # first bend + the slit under the leg, neck wide
+    web = (POWER['bar_top'] - ro) - (STRAP['z_bl'] + ro) - (STRAP['slit'] - (ro - t_))   # rest of the web (14.2 x 3)
+    bot = arc + (STRAP['web'][1] - ro - STRAP['lug'])                # second bend + bottom leg to the lug bolt (14.2 x 3)
+    seg = [(top, A), (neck, An), (web, Al), (bot, Al)]
+    R = lambda T: sum(rho * (l / 1000) / (s * 1e-6) for l, s in seg) * (1 + a * (T - 20))
+    A_hex = math.sqrt(3) / 2 * 8.0 ** 2
+    R_old = rho * (8.0 / 1000) / (A * 1e-6) + (rho / 0.26) * sum((l / 1000) / (s * 1e-6) for l, s in ((20.0, A_hex), (20.0, A_hex - math.pi * 2.1 ** 2)))
+    h, perim = 6.0, 2 * (w_ + t_) / 1000
+    rows = {}
+    for name, (amps, awg) in amps_awg.items():
+        qp = amps ** 2 * rho * (1 + a * (t_hot + 10 - 20)) / (Al * 1e-6)     # W/m along the web / bottom leg (14.2 x 3)
+        qn = amps ** 2 * rho * (1 + a * (t_hot + 10 - 20)) / (An * 1e-6)     # W/m in the neck
+        rise = qp / (h * 2 * (STRAP['w_low'] + t_) / 1000)
+        rows[name] = dict(amps=amps, awg=awg, strap_W=round(amps ** 2 * R(t_hot + 10), 3), old_conductor_W=round(amps ** 2 * R_old * 1.15, 3),
+                          strap_W_per_m=round(qp, 2), neck_W_per_m=round(qn, 2), rise_K_no_end_cooling=round(rise, 1), worst_strap_C=round(t_hot + rise, 1))
+    B = BOLT_T
+    F = B['T'] / (B['K'] * B['d'] / 1000)
+    t_thread = F * (B['d2'] / 2000) * (B['p'] / (math.pi * B['d2']) + 1.155 * B['mu'])
+    t_head = F * B['mu'] * B['r_head'] / 1000
+    return dict(R_strap_uohm_20C=round(R(20.0) * 1e6, 1), R_strap_uohm_95C=round(R(t_hot + 10) * 1e6, 1), R_old_conductor_uohm_20C=round(R_old * 1e6, 1),
+                joints=dict(strap='ear -> strap, strap -> lug: two clamped copper faces, no thread in the path',
+                            old='ear -> pad, pad -> brass, brass -> lug (3) + the set-screw thread in parallel'),
+                per_position=rows,
+                bolt=dict(T_Nm=B['T'], preload_N=round(F), thread_share_Nm=round(t_thread, 2), head_share_Nm=round(t_head, 2),
+                          nut_reaction_Nm=round(t_thread, 2), pem_torque_out_Nm=STRAP_PEM['copper_torque_out_Nm'],
+                          margin=round(STRAP_PEM['copper_torque_out_Nm'] / t_thread, 1),
+                          margin_trimmed_top=round(0.85 * STRAP_PEM['copper_torque_out_Nm'] / t_thread, 1),
+                          note='torque-out = PEM copper data for the steel S type (SS-M5-2, same M5 / code 2 envelope); the CLSS copper figure is not '
+                               'published - first-article check on the drawing'))
 # Bar hold-down tabs (Dan N5: "add printed tabs that hold the bars down"): a snap arm cut free of the deck by a slot all round (`slot`), `t` thick,
 # `w` wide, rooted `root` under the deck top; its hook reaches `over` past the bar edge (inside the 0.3 edge break) with a 45 deg lead-in, the
 # underside square. The bar pushes the arm out by over + CLR on the way in. Battery block: the bar sits on its pedestal, so the arm stands
@@ -194,10 +263,10 @@ WALL_EXEMPT = {
     'strip lip': 'LOGIC spine lips the bus strips slide in on (from the rear): 0.9 thick (spec.SPINE lip_t, z 4.6 - 5.5), 0.4 under the strip '
                  'and 0.6 over the belly-pan floor (z 4.0); thicker raises the strips (every stud row and PEM edge distance moves) or closes '
                  'the pan gap. Re-measured 2026-10-17 (SteveCAD sweep C7): the lips are this feature - the solid PA12 over the strips is not it',
-    'crush rib': 'R146 (Dan N7: friction fit for the standoff): the 6 half-round crush ribs (r 0.55) in each POWER standoff bore are meant to be thin - '
-                 'their crests crush 0.30 into the brass flats on pressing (STUD_FIT); the bore wall round them is the deck block',
-    'bar snap tab': 'R146 (Dan N5: printed tabs that hold the bars down): the snap arm (2.2 thick) has to flex to let the bar in, and its hook '
+    'bar snap tab': 'R146 / R155 (Dan N5: printed tabs that hold the bars down): the snap arm (2.2 thick) has to flex to let the bar in, and its hook '
                     '(1.6) carries no load but the bar\'s own lift; walls, slots and the arm are sized for MJF (slots 1.0 > 0.5 S6)',
+    'strap snap tab': 'R155 (N14 = B): the snap arm over each copper strap\'s lips has to flex 1.5 to let the strap in (STRAP_TAB, FEA in '
+                      'strap_fea.py); its slots are 1.0 (> 0.5 S6) and the ledge the lips rest on is between the well and the slot',
 }
 GAP_OPEN = 0.65      # SteveCAD sweep C1 (S6): least opening of a cavity-join bridge - HP MJF needs >= 0.5 between faces (check_printed_solid S6)
 MICRO_NO = ('5-1393292-8', '4-1904124-3', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)

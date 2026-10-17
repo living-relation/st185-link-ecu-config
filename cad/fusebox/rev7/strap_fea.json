@@ -1,0 +1,53 @@
+{
+ "OUT": {
+  "arm_x": [
+   177.5,
+   181.8
+  ],
+  "arm_t": 4.3,
+  "w": 12.0,
+  "root_z": 36.5,
+  "arm_len": 18.1,
+  "over": 1.5,
+  "load_N": 100.0,
+  "peak_MPa": 21.6,
+  "p99_9_MPa": 14.8,
+  "SF": 2.23,
+  "SF_99_9": 3.24,
+  "max_disp_mm": 0.623,
+  "hook_tip_out_mm": 0.38,
+  "hook_tip_up_mm": 0.338,
+  "overlap_left_mm": 1.12,
+  "nodes": 44188,
+  "insert": {
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  }
+ },
+ "IN": {
+  "arm_x": [
+   75.2,
+   79.5
+  ],
+  "arm_t": 4.3,
+  "w": 12.0,
+  "root_z": 36.5,
+  "arm_len": 18.1,
+  "over": 1.5,
+  "load_N": 100.0,
+  "peak_MPa": 21.6,
+  "p99_9_MPa": 14.8,
+  "SF": 2.22,
+  "SF_99_9": 3.23,
+  "max_disp_mm": 0.608,
+  "hook_tip_out_mm": 0.37,
+  "hook_tip_up_mm": 0.331,
+  "overlap_left_mm": 1.13,
+  "nodes": 43663,
+  "insert": {
+   "strain_pct": 2.95,
+   "push_N": 102.6
+  }
+ },
+ "note": "CalculiX C3D10 linear static, PA12 E 1700 / nu 0.39, yield 48 MPa (HP data sheet 4AA6-4895ENE); 100 N up spread over the hook underside, arm root fixed; OUT row with the cover off (with it on the skirt cannot open). Card rule SF >= 2."
+}

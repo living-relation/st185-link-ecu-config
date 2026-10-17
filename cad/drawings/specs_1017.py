@@ -79,8 +79,14 @@ for k in ('fb_strip1','fb_strip2'):
       "0.3 x 45° EDGE BREAK IS MODELLED (THE ⌀6.01 / ⌀6.95 RIMS) - R138 / R76.","MOUNTS ON EDGE IN THE LOGIC BASE. DEBURR ALL HOLES AND EDGES."]
 PARTS['fb_power_base']['notes']=PARTS['fb_power_base']['notes']+[
   "VERIFIED 2026-10-17: R145 SLITS FILLED (NO GAP < 0.5, S6).",
-  "STANDOFF RETENTION (R146, #277): 6 CRUSH RIBS IN THE 8.5 AF BORE, CORNERS RELIEVED ⌀1.2, + LOCTITE 406 WICKED IN FROM BELOW. R144 COLLARS REMOVED.",
-  "OPEN ITEM (OPEN-ITEMS 124): M5 x 10 LUG BOLT TORQUE INTO THE BRASS STANDOFF - TBD."]
+  "OUTPUTS (R155, N14 = B): 14 WELLS FOR THE COPPER C-STRAPS (ST185-FB-117); THE LIPS REST ON THE LEDGE (DOWN STOP), A SNAP HOOK REACHES OVER "
+  "THE LIPS (UP STOP) - OUT ROW: THE FREED SKIRT, IN ROW: AN ARM CUT FREE IN THE DECK. NO STANDOFFS, CRUSH RIBS OR ADHESIVE (R146 SUPERSEDED)."]
+# N14 = B (R155): the POWER outputs are copper C-straps (ST185-FB-117, run_fb117.py); the output pad drawing is the battery block pad only
+_p=PARTS['fb_pad']
+_p['file']=src('st185_fusebox_1017','BattRelay_Pad_Out_CuC110_15x3.step')
+_p['source']=_p['source'].replace('Power_Pad_Out_CuC110_15x3','BattRelay_Pad_Out_CuC110_15x3')
+_p['title']='OUTPUT PAD 15 x 3 x 17.5 (BATTERY RELAY BLOCK)'
+_p['notes']=[n.replace('QTY 15 (14 POWER + 1 BATTRELAY).','QTY 1 (BATTERY RELAY BLOCK; THE POWER BOX OUTPUTS ARE THE C-STRAPS ST185-FB-117 SINCE R155).') for n in _p['notes']]
 # ---------------- fuel hanger (build123d, cad/fuel-hanger; option B holder approved B9, Dan 2026-10-17) ----------------
 # Replaces the fairsolid rev 8 entries (Dan rejected rev 8). Models: fuel_hanger.py (FH-101 flange) and build_holder.py
 # (FH-103 strut, FH-104 foot, FH-105 saddle, assembly). Rev log rows come from cad/fuel-hanger/<PN>.REVLOG.md (R152).
@@ -140,13 +146,19 @@ REV_LETTER={'csb3_body':('C','FIRST ISSUE. MODEL REV C (PR #274)'),
             'drb_plate':('C','FIRST ISSUE. MODEL REV C (PR #275)')}
 # Fuse box rev 7 parts (Dan 2026-10-17: count each model's past releases in the repo history; rev 7 is NOT converted to G):
 # releases = PRs where the part's size / volume (printed) or mass (copper) in fusebox_report.json changed, + #273 NEG bar holes, #275 LOGIC corner.
-FB_REL={'fb_power_base':14,'fb_power_pan':5,'fb_power_cover':6,'fb_retainer':3,'fb_logic_base':12,'fb_logic_pan':6,'fb_logic_cover':8,
+FB_REL={'fb_power_base':15,'fb_power_pan':6,'fb_power_cover':6,'fb_retainer':3,'fb_logic_base':12,'fb_logic_pan':6,'fb_logic_cover':8,
         'fb_br_base':7,'fb_br_cover':6,'fb_bar_br':3,'fb_pad':2,'fb_barneg':3,'fb_barpos':2,'fb_strip1':4,'fb_strip2':4}
 SEQ='ABCDEFGHJKMNPRSTUVWXYZ'
 for _k,_n in FB_REL.items(): REV_LETTER[_k]=(SEQ[_n-1],'FIRST ISSUE. MODEL REV %s (%d RELEASES)'%(SEQ[_n-1],_n))
+REV_LETTER['fb_pad']=('B.01','CLERICAL: BATTERY BLOCK PAD ONLY, QTY 1 (R155)')   # N14 = B: same model, title / quantity only
 for _k in ORDER:
     _l,_d=REV_LETTER[_k]
     PARTS[_k]['rev']=_l; PARTS[_k]['revs']=[(_l,_d,TODAY,'SC')]
+# N14 = B (R155, 2026-10-17): the fuse box drawings read the full rev history from <part no>.REVLOG.md beside the model in cad/fusebox/rev7
+_REV7=_os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),'..','fusebox','rev7'))
+for _k in ORDER:
+    if _k.startswith('fb_') and _os.path.exists(_os.path.join(_REV7,PARTS[_k]['pn']+'.REVLOG.md')):
+        PARTS[_k]['revlog']=_os.path.join(_REV7,PARTS[_k]['pn']+'.REVLOG.md')
 
 # CSB3 body tab slots: the model has 6.6 x 10.0 since SteveCAD audit v3 F01 (#272), measured from the STEP 2026-10-17; specs.py still said 5.5 x 9.9
 def _fix_slot(o):

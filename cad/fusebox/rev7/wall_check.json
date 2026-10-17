@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 840.2,
+   "volume_cm3": 799.9,
    "bounds": [
     128.0,
     341.8,
@@ -23,14 +23,14 @@
     "seat lip": 1327,
     "bar snap tab": 68,
     "pan catch pocket": 116,
-    "crush rib": 1260,
+    "strap snap tab": 7,
     "A bar snap tab": 4,
     "A groove strip": 1,
     "A seat lip": 28,
     "A saddle lip": 12,
     "A relay cavity web": 1
    },
-   "attach_skin": 62,
+   "attach_skin": 60,
    "walls": [],
    "attach": [],
    "flagged": 0
@@ -38,13 +38,13 @@
   "Power_Pan_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 157.1,
+   "volume_cm3": 156.9,
    "bounds": [
     163.45,
     337.05,
     2.25,
     240.75,
-    1.33,
+    0.58,
     36.0
    ],
    "exempt": {
