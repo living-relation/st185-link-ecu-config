@@ -10,15 +10,21 @@
       neither near-horizontal nor near-vertical, unless it is one ray of a fan (a node with
       FAN or more bundles - CabinPower's box hubs); readable at fit-to-screen: the 2026-10-15
       A-cabin APS run was a lone ~3,500-unit diagonal
+  Y5  no bundle runs over the label of its OWN end node. The app shows a connector / terminal label
+      to the right of the node; with the front of the car on the right (R140, 2026-10-16) a bundle
+      from the parent comes in from the right, so it must reach the node steeply (from above or
+      below) or from the left, never along the label
 
-The shape itself (front of the car to the left, passenger side up, driver side down, branch order
+The shape itself (front of the car to the RIGHT (R140, replaces R107(a)), passenger side up, driver side down, branch order
 and branch ends as the route's top view) is judged against the route figure by eye; R42's left to
 right is gated by audit_drawing_rules.py L1. The routes carry no bundle lengths, so lengths are not
 compared here - a bundle keeps its own `length`.
 
 HARD in check_all.py since 2026-10-15 (every drawing at zero).
 
-    python docs/harness/audit_layout.py [ST185-A-cabin ...]
+    python docs/harness/audit_layout.py [A-cabin | ST185-A-cabin | ST185-A-cabin.harness ...]
+
+A name that matches no drawing is an error (exit 2), never a silent pass.
 """
 import collections
 import sys
@@ -45,6 +51,8 @@ def check(loom, d):
         for p, q in zip(pts, pts[1:]):
             for n, box in nodes.items():
                 if n in ends:
+                    if g["kind"][n] in ("connectors", "terminals") and                             lg.seg_hits_box(p, q, (box[2] + 2, box[1] + 8, g["boxes"][n][2], box[3] - 8)):
+                        bad.append("Y5 %s: bundle %s runs over the label of its own end %s" % (loom, bid, n))
                     continue
                 if lg.seg_hits_box(p, q, box):
                     bad.append("Y2 %s: bundle %s runs through node %s" % (loom, bid, n))
@@ -63,10 +71,22 @@ def check(loom, d):
     return bad
 
 
+def loom_name(a):
+    a = a.replace("\\", "/").rsplit("/", 1)[-1]
+    if a.endswith(".harness"):
+        a = a[:-len(".harness")]
+    return a[len("ST185-"):] if a.startswith("ST185-") else a
+
+
 if __name__ == "__main__":
-    want = set(sys.argv[1:])
+    docs = model.docs()
+    want = {loom_name(a) for a in sys.argv[1:]}
+    unknown = sorted(want - set(docs))
+    if unknown:
+        print("audit_layout: no drawing named %s (looms: %s)" % (", ".join(unknown), ", ".join(docs)))
+        sys.exit(2)
     bad = []
-    for loom, d in model.docs().items():
+    for loom, d in docs.items():
         if not want or loom in want:
             bad += check(loom, d)
     for line in bad:

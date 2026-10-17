@@ -1623,8 +1623,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": -1200
+        "x": -840,
+        "y": -5160
       },
       "schematicPosition": {
         "x": 4200,
@@ -1664,8 +1664,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": 1350
+        "x": -930,
+        "y": 5220
       },
       "schematicPosition": {
         "x": 5400,
@@ -1709,8 +1709,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": -1350
+        "x": -930,
+        "y": -5220
       },
       "schematicPosition": {
         "x": 4200,
@@ -1750,8 +1750,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": 1650
+        "x": -1050,
+        "y": 5340
       },
       "schematicPosition": {
         "x": 4800,
@@ -1791,8 +1791,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": -1500
+        "x": -990,
+        "y": -5280
       },
       "schematicPosition": {
         "x": 5400,
@@ -1810,8 +1810,8 @@
         "y": 3900
       },
       "layoutPosition": {
-        "x": 600,
-        "y": 1200
+        "x": -840,
+        "y": 5160
       },
       "cavities": [
         {
@@ -1879,8 +1879,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": 990
+        "x": -1890,
+        "y": 4230
       },
       "schematicPosition": {
         "x": 4800,
@@ -1927,8 +1927,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": -1110
+        "x": -1950,
+        "y": -4590
       },
       "schematicPosition": {
         "x": 5400,
@@ -1975,8 +1975,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": -1380
+        "x": -2100,
+        "y": -4710
       },
       "schematicPosition": {
         "x": 6000,
@@ -2023,8 +2023,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": 1110
+        "x": -1950,
+        "y": 4290
       },
       "schematicPosition": {
         "x": 4200,
@@ -2071,8 +2071,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": 1230
+        "x": -2040,
+        "y": 4350
       },
       "schematicPosition": {
         "x": 4800,
@@ -2119,8 +2119,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": -1230
+        "x": -2040,
+        "y": -4650
       },
       "schematicPosition": {
         "x": 5400,
@@ -2170,8 +2170,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": 1500
+        "x": -990,
+        "y": 5280
       },
       "schematicPosition": {
         "x": 6000,
@@ -2214,8 +2214,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": -1650
+        "x": -1050,
+        "y": -5340
       },
       "schematicPosition": {
         "x": 6600,
@@ -2319,8 +2319,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 600,
-        "y": 840
+        "x": -720,
+        "y": -5040
       },
       "schematicPosition": {
         "x": 480,
@@ -2498,8 +2498,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1590,
-        "y": -660
+        "x": -1740,
+        "y": 4110
       },
       "schematicPosition": {
         "x": 1200,
@@ -2516,8 +2516,8 @@
       "signal": "INJ 12V -> BH-A 1",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 750
+        "x": -1560,
+        "y": 3930
       },
       "schematicPosition": {
         "x": 1260,
@@ -2531,8 +2531,8 @@
       "signal": "COP 12V -> BH-A 2",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 300
+        "x": -1350,
+        "y": 3750
       },
       "schematicPosition": {
         "x": 1260,
@@ -2546,8 +2546,8 @@
       "signal": "SW12 12V -> splice SW12",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 660
+        "x": -1470,
+        "y": 3870
       },
       "schematicPosition": {
         "x": 1710,
@@ -2561,8 +2561,8 @@
       "signal": "EHPS enable -> BH-A 42",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 570
+        "x": -1470,
+        "y": -4170
       },
       "schematicPosition": {
         "x": 3660,
@@ -2576,8 +2576,8 @@
       "signal": "Lambda 12V -> BH-B 95",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 870
+        "x": -1620,
+        "y": -4290
       },
       "schematicPosition": {
         "x": 1710,
@@ -2591,8 +2591,8 @@
       "signal": "Head LH 12V -> H1-3",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": -390
+        "x": -1680,
+        "y": -4350
       },
       "schematicPosition": {
         "x": 3300,
@@ -2606,8 +2606,8 @@
       "signal": "Head RH 12V -> H2-3",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": -570
+        "x": -1740,
+        "y": -4410
       },
       "schematicPosition": {
         "x": 3300,
@@ -2621,8 +2621,8 @@
       "signal": "Horn 12V -> splice HORN",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": -480
+        "x": -1680,
+        "y": 4050
       },
       "schematicPosition": {
         "x": 3300,
@@ -2636,8 +2636,8 @@
       "signal": "Dome 12V -> JB1 1H-2",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": -300
+        "x": -1620,
+        "y": 3990
       },
       "schematicPosition": {
         "x": 3300,
@@ -2651,8 +2651,8 @@
       "signal": "RTR 12V -> IE1-3",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -540
+        "x": -450,
+        "y": -4800
       },
       "schematicPosition": {
         "x": 3300,
@@ -2666,8 +2666,8 @@
       "signal": "A/C PSW 12V -> A5-1",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -30
+        "x": -60,
+        "y": 4440
       },
       "schematicPosition": {
         "x": 3300,
@@ -2681,8 +2681,8 @@
       "signal": "AM1 12V -> IE1-10",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -270
+        "x": -300,
+        "y": 4680
       },
       "schematicPosition": {
         "x": 3300,
@@ -2696,8 +2696,8 @@
       "signal": "AM2 12V -> IE1-17",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -360
+        "x": -390,
+        "y": -4740
       },
       "schematicPosition": {
         "x": 3300,
@@ -2711,8 +2711,8 @@
       "signal": "JB1 hot -> JB1 1I-1",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -450
+        "x": -390,
+        "y": 4740
       },
       "schematicPosition": {
         "x": 3300,
@@ -2726,8 +2726,8 @@
       "signal": "Blower 12V -> B4-2",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -840
+        "x": -510,
+        "y": 4860
       },
       "schematicPosition": {
         "x": 3300,
@@ -2741,8 +2741,8 @@
       "signal": "P/W 12V -> RB2-1",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -630
+        "x": -450,
+        "y": 4800
       },
       "schematicPosition": {
         "x": 3300,
@@ -2756,8 +2756,8 @@
       "signal": "CSB3 12V -> CSB3 c1",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 390
+        "x": -1410,
+        "y": -4110
       },
       "schematicPosition": {
         "x": 1710,
@@ -2771,8 +2771,8 @@
       "signal": "EFI coil- -> ECU-A A28",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 30
+        "x": 0,
+        "y": -4380
       },
       "schematicPosition": {
         "x": 4200,
@@ -2786,8 +2786,8 @@
       "signal": "Rad fan coil- -> ECU-A A29",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 450
+        "x": -240,
+        "y": 4620
       },
       "schematicPosition": {
         "x": 5400,
@@ -2801,8 +2801,8 @@
       "signal": "Rad fan 12V -> RAD FAN+ +",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -210
+        "x": -300,
+        "y": -4680
       },
       "schematicPosition": {
         "x": 1260,
@@ -2816,8 +2816,8 @@
       "signal": "ETB coil- -> ECU-A A20",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 90
+        "x": 0,
+        "y": 4380
       },
       "schematicPosition": {
         "x": 4200,
@@ -2831,8 +2831,8 @@
       "signal": "ETB 12V -> ECU-B B5",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 150
+        "x": -60,
+        "y": -4440
       },
       "schematicPosition": {
         "x": 1260,
@@ -2846,8 +2846,8 @@
       "signal": "Start coil- -> ECU-A A26",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 720
+        "x": -630,
+        "y": -4980
       },
       "schematicPosition": {
         "x": 4800,
@@ -2861,8 +2861,8 @@
       "signal": "Starter S -> starter S",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -960
+        "x": -630,
+        "y": 4980
       },
       "schematicPosition": {
         "x": 1260,
@@ -2876,8 +2876,8 @@
       "signal": "Cond fan coil- -> ECU-B B13",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 360
+        "x": -180,
+        "y": 4560
       },
       "schematicPosition": {
         "x": 5400,
@@ -2891,8 +2891,8 @@
       "signal": "Cond fan 12V -> COND FAN+ +",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -150
+        "x": -240,
+        "y": -4620
       },
       "schematicPosition": {
         "x": 1260,
@@ -2906,8 +2906,8 @@
       "signal": "EPS EN coil- -> ECU-B B12",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 270
+        "x": -180,
+        "y": -4560
       },
       "schematicPosition": {
         "x": 4200,
@@ -2921,8 +2921,8 @@
       "signal": "EHPS 12V -> EHPS PUMP A-1",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -90
+        "x": -120,
+        "y": -4500
       },
       "schematicPosition": {
         "x": 1260,
@@ -2936,8 +2936,8 @@
       "signal": "A/C coil- -> ECU-B B10",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 240
+        "x": -1350,
+        "y": -4050
       },
       "schematicPosition": {
         "x": 4800,
@@ -2951,8 +2951,8 @@
       "signal": "A/C coil+ -> splice AC PSW",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 180
+        "x": -1290,
+        "y": -3990
       },
       "schematicPosition": {
         "x": 4800,
@@ -2966,8 +2966,8 @@
       "signal": "A/C clutch -> A4-4",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": -180
+        "x": -1290,
+        "y": 3690
       },
       "schematicPosition": {
         "x": 4800,
@@ -2981,8 +2981,8 @@
       "signal": "Start req in -> RB4-1",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 540
+        "x": -570,
+        "y": -4920
       },
       "schematicPosition": {
         "x": 3180,
@@ -2996,8 +2996,8 @@
       "signal": "Start req -> ECU-B B30",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 630
+        "x": -570,
+        "y": 4920
       },
       "schematicPosition": {
         "x": 3180,
@@ -3011,8 +3011,8 @@
       "signal": "Alarm 12V -> splice AT 12V",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 1380
+        "x": -2100,
+        "y": 4410
       },
       "schematicPosition": {
         "x": 1200,
@@ -3026,8 +3026,8 @@
       "signal": "Shock 12V -> splice 12V SHK",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 1530
+        "x": -2160,
+        "y": -4770
       },
       "schematicPosition": {
         "x": 1200,
@@ -3041,8 +3041,8 @@
       "signal": "Alarm IG -> splice IG",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 1680
+        "x": -2190,
+        "y": 4470
       },
       "schematicPosition": {
         "x": 1200,
@@ -3056,8 +3056,8 @@
       "signal": "Dash 12V -> splice DEV",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": 480
+        "x": -1410,
+        "y": 3810
       },
       "schematicPosition": {
         "x": 1200,
@@ -3071,8 +3071,8 @@
       "signal": "Hazard 12V -> IE1-12",
       "width": 390,
       "layoutPosition": {
-        "x": 1590,
-        "y": -240
+        "x": -1560,
+        "y": -4230
       },
       "schematicPosition": {
         "x": 3300,
@@ -3086,8 +3086,8 @@
       "signal": "EHPS coil- -> BH-A 56",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": 210
+        "x": -120,
+        "y": 4500
       },
       "schematicPosition": {
         "x": 4200,
@@ -3101,8 +3101,8 @@
       "signal": "Door lock 12V -> RB2-2",
       "width": 390,
       "layoutPosition": {
-        "x": 600,
-        "y": -720
+        "x": -510,
+        "y": -4860
       },
       "schematicPosition": {
         "x": 3300,
@@ -3121,8 +3121,8 @@
         "y": 4170
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": -990
+        "x": -1890,
+        "y": -4530
       },
       "propagate": false
     },
@@ -3136,8 +3136,8 @@
         "y": 4230
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": 120
+        "x": -1230,
+        "y": -3930
       },
       "propagate": false
     },
@@ -3151,8 +3151,8 @@
         "y": 4290
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": 60
+        "x": -1170,
+        "y": 3570
       },
       "propagate": false
     },
@@ -3166,8 +3166,8 @@
         "y": 4350
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": -120
+        "x": -1230,
+        "y": 3630
       },
       "propagate": false
     },
@@ -3182,8 +3182,8 @@
         "y": 4410
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": -1530
+        "x": -2250,
+        "y": -4830
       },
       "propagate": false
     },
@@ -3197,8 +3197,8 @@
         "y": 3660
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": -60
+        "x": -1170,
+        "y": -3870
       },
       "propagate": false
     },
@@ -3213,8 +3213,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": -870
+        "x": -1830,
+        "y": 4170
       },
       "propagate": false
     },
@@ -3229,8 +3229,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 1590,
-        "y": -750
+        "x": -1830,
+        "y": -4470
       },
       "propagate": false
     },
@@ -3245,8 +3245,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 600,
-        "y": -1080
+        "x": -780,
+        "y": -5100
       },
       "propagate": false
     },
@@ -3261,8 +3261,8 @@
         "y": 5490
       },
       "layoutPosition": {
-        "x": 600,
-        "y": 1080
+        "x": -780,
+        "y": 5100
       },
       "propagate": false
     },
@@ -3277,8 +3277,8 @@
         "y": 5430
       },
       "layoutPosition": {
-        "x": 600,
-        "y": 960
+        "x": -720,
+        "y": 5040
       },
       "propagate": false
     },
@@ -3293,8 +3293,8 @@
         "y": 5490
       },
       "layoutPosition": {
-        "x": 600,
-        "y": 1830
+        "x": -1140,
+        "y": 5400
       },
       "propagate": false
     },
@@ -3309,8 +3309,8 @@
         "y": 5550
       },
       "layoutPosition": {
-        "x": 600,
-        "y": -1830
+        "x": -1140,
+        "y": -5400
       },
       "propagate": false
     },
@@ -3320,8 +3320,8 @@
       "signal": "FP coil+ -> BATT K1 86",
       "width": 390,
       "layoutPosition": {
-        "x": 1740,
-        "y": 0
+        "x": -1770,
+        "y": -90
       },
       "schematicPosition": {
         "x": 4800,
@@ -4054,8 +4054,8 @@
     {
       "id": "sp_cp_sw12",
       "layoutPosition": {
-        "x": 960,
-        "y": -90
+        "x": -1110,
+        "y": -60
       },
       "schematicPosition": {
         "x": 1500,
@@ -4073,8 +4073,8 @@
         "y": 4170
       },
       "layoutPosition": {
-        "x": 960,
-        "y": 90
+        "x": -1110,
+        "y": 60
       }
     },
     {
@@ -4086,14 +4086,14 @@
         "y": 5370
       },
       "layoutPosition": {
-        "x": 960,
-        "y": -150
+        "x": -1260,
+        "y": -60
       }
     },
     {
       "id": "sp_htr87",
       "layoutPosition": {
-        "x": -60,
+        "x": 60,
         "y": 0
       },
       "schematicPosition": {
@@ -4106,8 +4106,8 @@
     {
       "id": "sp_hz",
       "layoutPosition": {
-        "x": 960,
-        "y": 150
+        "x": -1260,
+        "y": 60
       },
       "schematicPosition": {
         "x": 1680,
@@ -4125,8 +4125,8 @@
         "y": 1890
       },
       "layoutPosition": {
-        "x": 990,
-        "y": -210
+        "x": -1110,
+        "y": -120
       }
     },
     {
@@ -4138,8 +4138,8 @@
         "y": 2010
       },
       "layoutPosition": {
-        "x": 990,
-        "y": 210
+        "x": -1110,
+        "y": 120
       }
     }
   ],
@@ -4437,14 +4437,14 @@
     {
       "id": "b_bp_1050",
       "layoutPosition": {
-        "x": 990,
+        "x": -1170,
         "y": 0
       }
     },
     {
       "id": "b_bp_2100",
       "layoutPosition": {
-        "x": 1590,
+        "x": -1770,
         "y": 0
       }
     },

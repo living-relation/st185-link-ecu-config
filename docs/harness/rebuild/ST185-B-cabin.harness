@@ -1839,8 +1839,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1320,
-        "y": 1080
+        "x": -2070,
+        "y": -540
       },
       "schematicPosition": {
         "x": 3120,
@@ -1871,8 +1871,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 2400,
-        "y": 900
+        "x": -3780,
+        "y": 30
       }
     },
     {
@@ -1922,8 +1922,8 @@
         "y": 1200
       },
       "layoutPosition": {
-        "x": 900,
-        "y": 120
+        "x": -1320,
+        "y": -1050
       }
     }
   ],
@@ -1938,8 +1938,8 @@
         "y": 960
       },
       "layoutPosition": {
-        "x": 1710,
-        "y": 60
+        "x": -2310,
+        "y": -870
       },
       "propagate": false
     },
@@ -1953,8 +1953,8 @@
         "y": 810
       },
       "layoutPosition": {
-        "x": 990,
-        "y": 180
+        "x": -1410,
+        "y": -1110
       },
       "propagate": false
     },
@@ -1967,8 +1967,8 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1320,
-        "y": 1140
+        "x": -2070,
+        "y": -750
       },
       "propagate": false
     },
@@ -1981,8 +1981,8 @@
         "y": 1260
       },
       "layoutPosition": {
-        "x": 1320,
-        "y": 1200
+        "x": -1860,
+        "y": -600
       },
       "propagate": false
     },
@@ -1992,8 +1992,8 @@
       "signal": "ECU GND B25 -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 570
+        "x": -1800,
+        "y": 420
       },
       "schematicPosition": {
         "x": 1770,
@@ -2007,8 +2007,8 @@
       "signal": "ECU GND B34 -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 480
+        "x": -1890,
+        "y": -420
       },
       "schematicPosition": {
         "x": 1770,
@@ -2022,8 +2022,8 @@
       "signal": "+5V rail B -> splice 5V",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 360
+        "x": -1890,
+        "y": 480
       },
       "schematicPosition": {
         "x": 1770,
@@ -2037,8 +2037,8 @@
       "signal": "SW12 rail B -> splice SW12",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 240
+        "x": -1980,
+        "y": -480
       },
       "schematicPosition": {
         "x": 1770,
@@ -2052,8 +2052,8 @@
       "signal": "ETB 12V -> LOGIC M14 87",
       "width": 390,
       "layoutPosition": {
-        "x": 1560,
-        "y": 810
+        "x": -2400,
+        "y": 30
       },
       "schematicPosition": {
         "x": 1260,
@@ -2067,8 +2067,8 @@
       "signal": "WS FR sig -> IX-WS-F 4",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
-        "y": -60
+        "x": -1230,
+        "y": -990
       },
       "schematicPosition": {
         "x": 4140,
@@ -2082,8 +2082,8 @@
       "signal": "WS FR screen -> A-cabin open",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
-        "y": 0
+        "x": -1170,
+        "y": -930
       },
       "schematicPosition": {
         "x": 4140,
@@ -2097,8 +2097,8 @@
       "signal": "Reverse sig -> OPTO8 02",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 1020
+        "x": -2010,
+        "y": 540
       },
       "schematicPosition": {
         "x": 1380,
@@ -2112,8 +2112,8 @@
       "signal": "APS VPA2 -> APS 3",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": 0
+        "x": -480,
+        "y": 30
       },
       "schematicPosition": {
         "x": 720,
@@ -2127,8 +2127,8 @@
       "signal": "Immob out -> ALARM 9",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 960
+        "x": -1800,
+        "y": -360
       },
       "schematicPosition": {
         "x": 3180,
@@ -2142,8 +2142,8 @@
       "signal": "CAN H -> splice CANH",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": -420
+        "x": -390,
+        "y": -1320
       },
       "schematicPosition": {
         "x": 3300,
@@ -2157,8 +2157,8 @@
       "signal": "CAN L -> splice CANL",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": -510
+        "x": -480,
+        "y": -1380
       },
       "schematicPosition": {
         "x": 3300,
@@ -2172,8 +2172,8 @@
       "signal": "Lambda 12V -> FB-LOGIC LAM 7.5A",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": -180
+        "x": -180,
+        "y": -1140
       },
       "schematicPosition": {
         "x": 3300,
@@ -2187,8 +2187,8 @@
       "signal": "Lambda GND -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": -240
+        "x": -240,
+        "y": -1200
       },
       "schematicPosition": {
         "x": 3300,
@@ -2202,8 +2202,8 @@
       "signal": "CAN screen -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": -120
+        "x": -120,
+        "y": -1080
       },
       "schematicPosition": {
         "x": 3300,
@@ -2217,8 +2217,8 @@
       "signal": "CAN drain -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
-        "x": 360,
-        "y": -330
+        "x": -330,
+        "y": -1260
       },
       "schematicPosition": {
         "x": 3300,
@@ -2232,8 +2232,8 @@
       "signal": "Cond fan coil- -> POWER R5 85",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 780
+        "x": -3090,
+        "y": 210
       },
       "schematicPosition": {
         "x": 3120,
@@ -2247,8 +2247,8 @@
       "signal": "EPS EN coil- -> LOGIC M21 85",
       "width": 390,
       "layoutPosition": {
-        "x": 2160,
-        "y": 840
+        "x": -3090,
+        "y": 30
       },
       "schematicPosition": {
         "x": 3120,
@@ -2262,8 +2262,8 @@
       "signal": "A/C coil- -> LOGIC M15 85",
       "width": 390,
       "layoutPosition": {
-        "x": 1320,
-        "y": 1260
+        "x": -2340,
+        "y": -330
       },
       "schematicPosition": {
         "x": 3120,
@@ -2277,8 +2277,8 @@
       "signal": "Start req in -> FB-LOGIC B30 in",
       "width": 390,
       "layoutPosition": {
-        "x": 1710,
-        "y": 0
+        "x": -2220,
+        "y": -810
       },
       "schematicPosition": {
         "x": 660,
@@ -2292,8 +2292,8 @@
       "signal": "Start req -> FB-LOGIC B30 2A",
       "width": 390,
       "layoutPosition": {
-        "x": 1710,
-        "y": -90
+        "x": -2220,
+        "y": -600
       },
       "schematicPosition": {
         "x": 660,
@@ -2311,8 +2311,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 1320,
-        "y": 750
+        "x": -1740,
+        "y": -300
       },
       "propagate": false
     },
@@ -2326,8 +2326,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 1320,
-        "y": 660
+        "x": -1740,
+        "y": 360
       },
       "propagate": false
     },
@@ -2340,8 +2340,8 @@
         "y": 1320
       },
       "layoutPosition": {
-        "x": 1320,
-        "y": 1320
+        "x": -1860,
+        "y": -810
       },
       "propagate": false
     }
@@ -3732,8 +3732,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_1200",
       "layoutPosition": {
-        "x": 1350,
-        "y": 0
+        "x": -1710,
+        "y": -750
       }
     },
     {
@@ -3743,8 +3743,8 @@
         "y": 750
       },
       "layoutPosition": {
-        "x": 1260,
-        "y": 1140
+        "x": -2130,
+        "y": -540
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_b"
@@ -3754,8 +3754,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
       "layoutPosition": {
-        "x": 930,
-        "y": 960
+        "x": -1680,
+        "y": 60
       },
       "schematicPosition": {
         "x": 2400,
@@ -3767,8 +3767,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
       "layoutPosition": {
-        "x": 900,
-        "y": 840
+        "x": -1680,
+        "y": 180
       },
       "schematicPosition": {
         "x": 2400,
@@ -3780,8 +3780,8 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_870",
       "layoutPosition": {
-        "x": -60,
-        "y": 900
+        "x": -120,
+        "y": 180
       },
       "schematicPosition": {
         "x": 3000,
@@ -3797,8 +3797,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 990,
-        "y": 990
+        "x": -1860,
+        "y": 60
       }
     },
     {
@@ -3810,8 +3810,8 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1200,
-        "y": 1110
+        "x": -2130,
+        "y": -480
       }
     },
     {
@@ -3823,8 +3823,8 @@
         "y": 1260
       },
       "layoutPosition": {
-        "x": 1260,
-        "y": 1200
+        "x": -2190,
+        "y": -540
       }
     }
   ],
@@ -3834,8 +3834,8 @@
       "partId": "rp_470",
       "locationId": "bp_1230",
       "layoutPosition": {
-        "x": 1680,
-        "y": 960
+        "x": -2730,
+        "y": 0
       },
       "schematicPosition": {
         "x": 510,
@@ -3851,8 +3851,8 @@
         "y": 1170
       },
       "layoutPosition": {
-        "x": 1200,
-        "y": 1170
+        "x": -2100,
+        "y": -420
       }
     },
     {
@@ -3864,8 +3864,8 @@
         "y": 1170
       },
       "layoutPosition": {
-        "x": 1200,
-        "y": 1230
+        "x": -2190,
+        "y": -480
       }
     },
     {
@@ -3877,8 +3877,8 @@
         "y": 1320
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": 1080
+        "x": -2160,
+        "y": -420
       }
     }
   ],
@@ -4228,211 +4228,211 @@
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": 0,
-        "y": -60
+        "x": -120,
+        "y": -30
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 360,
-        "y": -60
+        "x": -480,
+        "y": -30
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 450,
-        "y": -60
+        "x": -570,
+        "y": -30
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 660,
-        "y": 60
+        "x": -1170,
+        "y": -690
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 900,
-        "y": 60
+        "x": -1410,
+        "y": -690
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 990,
-        "y": 60
+        "x": -1500,
+        "y": -690
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1080,
-        "y": 60
+        "x": -1590,
+        "y": -690
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 1170,
-        "y": 60
+        "x": -1680,
+        "y": -690
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 1260,
-        "y": 60
+        "x": -1770,
+        "y": -690
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1350,
-        "y": 60
+        "x": -1860,
+        "y": -690
       }
     },
     {
       "id": "bp_1230",
       "layoutPosition": {
-        "x": 1740,
-        "y": 960
+        "x": -2730,
+        "y": 60
       }
     },
     {
       "id": "bp_fl_ign_sw",
       "layoutPosition": {
-        "x": 900,
-        "y": 180
+        "x": -1410,
+        "y": -1020
       }
     },
     {
       "id": "bp_fl_start_req",
       "layoutPosition": {
-        "x": 1560,
-        "y": 60
+        "x": -2220,
+        "y": -690
       }
     },
     {
       "id": "b_bp_870",
       "layoutPosition": {
-        "x": 0,
-        "y": 900
+        "x": -120,
+        "y": 120
       }
     },
     {
       "id": "b_bp_900",
       "layoutPosition": {
-        "x": 120,
-        "y": 900
+        "x": -480,
+        "y": 120
       }
     },
     {
       "id": "b_bp_930",
       "layoutPosition": {
-        "x": 360,
-        "y": 900
+        "x": -720,
+        "y": 120
       }
     },
     {
       "id": "b_bp_960",
       "layoutPosition": {
-        "x": 450,
-        "y": 900
+        "x": -810,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1020",
       "layoutPosition": {
-        "x": 660,
-        "y": 900
+        "x": -1170,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1050",
       "layoutPosition": {
-        "x": 780,
-        "y": 900
+        "x": -1290,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1080",
       "layoutPosition": {
-        "x": 960,
-        "y": 900
+        "x": -1740,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1110",
       "layoutPosition": {
-        "x": 1320,
-        "y": 900
+        "x": -2040,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1140",
       "layoutPosition": {
-        "x": 1410,
-        "y": 900
+        "x": -2400,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1170",
       "layoutPosition": {
-        "x": 1560,
-        "y": 900
+        "x": -2550,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1200",
       "layoutPosition": {
-        "x": 1650,
-        "y": 900
+        "x": -2640,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1230",
       "layoutPosition": {
-        "x": 1740,
-        "y": 900
+        "x": -2730,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1260",
       "layoutPosition": {
-        "x": 1830,
-        "y": 900
+        "x": -3090,
+        "y": 120
       }
     },
     {
       "id": "b_bp_2100",
       "layoutPosition": {
-        "x": 2160,
-        "y": 900
+        "x": -3420,
+        "y": 120
       }
     },
     {
       "id": "b_bp_2130",
       "layoutPosition": {
-        "x": 2250,
-        "y": 900
+        "x": -3780,
+        "y": 120
       }
     },
     {
       "id": "b_bp_1065",
       "layoutPosition": {
-        "x": 870,
-        "y": 900
+        "x": -1380,
+        "y": 120
       }
     },
     {
       "id": "bp_at_ecu_a",
       "layoutPosition": {
-        "x": 570,
-        "y": 900
+        "x": -1080,
+        "y": 120
       }
     }
   ],

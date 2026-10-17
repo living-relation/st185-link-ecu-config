@@ -312,8 +312,8 @@
         "y": 1500
       },
       "layoutPosition": {
-        "x": 330,
-        "y": 60
+        "x": -600,
+        "y": 90
       },
       "partId": "tp_ring_m6_22_16",
       "propagate": false
@@ -328,8 +328,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 90,
-        "y": -600
+        "x": -90,
+        "y": -180
       },
       "propagate": false
     },
@@ -343,8 +343,8 @@
         "y": 60
       },
       "layoutPosition": {
-        "x": 90,
-        "y": -300
+        "x": 0,
+        "y": -120
       },
       "propagate": false
     },
@@ -358,8 +358,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": 90,
-        "y": 120
+        "x": 0,
+        "y": 90
       },
       "propagate": false
     },
@@ -373,8 +373,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 300,
-        "y": -240
+        "x": -360,
+        "y": -300
       },
       "propagate": false
     },
@@ -388,8 +388,8 @@
         "y": 240
       },
       "layoutPosition": {
-        "x": 300,
-        "y": -60
+        "x": -420,
+        "y": -360
       },
       "propagate": false
     },
@@ -403,8 +403,8 @@
         "y": 300
       },
       "layoutPosition": {
-        "x": 300,
-        "y": -150
+        "x": -510,
+        "y": -420
       },
       "propagate": false
     },
@@ -414,8 +414,8 @@
       "signal": "Oil LED sink -> CSB3 c26",
       "width": 390,
       "layoutPosition": {
-        "x": 570,
-        "y": 0
+        "x": -960,
+        "y": -90
       },
       "schematicPosition": {
         "x": 1350,
@@ -434,8 +434,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": -30,
-        "y": 90
+        "x": -240,
+        "y": 60
       },
       "locationId": "bp_960"
     },
@@ -448,8 +448,8 @@
         "y": -90
       },
       "layoutPosition": {
-        "x": -60,
-        "y": 0
+        "x": -210,
+        "y": -60
       },
       "locationId": "bp_960"
     },
@@ -462,8 +462,8 @@
         "y": -90
       },
       "layoutPosition": {
-        "x": -60,
-        "y": -60
+        "x": -180,
+        "y": 60
       },
       "locationId": "bp_960"
     },
@@ -476,8 +476,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": 30,
-        "y": 150
+        "x": -270,
+        "y": -90
       },
       "locationId": "bp_960"
     },
@@ -490,8 +490,8 @@
         "y": 180
       },
       "layoutPosition": {
-        "x": -60,
-        "y": -120
+        "x": -150,
+        "y": -60
       },
       "locationId": "bp_960"
     },
@@ -504,8 +504,8 @@
         "y": 90
       },
       "layoutPosition": {
-        "x": 450,
-        "y": 120
+        "x": -1020,
+        "y": 0
       },
       "locationId": "bp_1020"
     }
@@ -628,8 +628,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 180,
-        "y": 60
+        "x": -600,
+        "y": -60
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_990"
@@ -641,8 +641,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 120,
-        "y": -150
+        "x": -660,
+        "y": 60
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_990"
@@ -821,21 +821,21 @@
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 90,
+        "x": -240,
         "y": 0
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 210,
+        "x": -600,
         "y": 0
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 330,
+        "x": -960,
         "y": 0
       }
     },
@@ -849,8 +849,8 @@
     {
       "id": "bp_fl_cl_c12",
       "layoutPosition": {
-        "x": 210,
-        "y": -150
+        "x": -360,
+        "y": -60
       }
     }
   ],

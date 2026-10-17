@@ -674,8 +674,8 @@
         "y": 900
       },
       "layoutPosition": {
-        "x": 540,
-        "y": 540
+        "x": -600,
+        "y": -60
       }
     }
   ],
@@ -690,8 +690,8 @@
         "y": 570
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": 660
+        "x": -1260,
+        "y": 330
       },
       "propagate": false
     },
@@ -705,8 +705,8 @@
         "y": 630
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": 750
+        "x": -1410,
+        "y": 450
       },
       "propagate": false
     },
@@ -720,8 +720,8 @@
         "y": 690
       },
       "layoutPosition": {
-        "x": 1140,
-        "y": 840
+        "x": -1320,
+        "y": 390
       },
       "propagate": false
     },
@@ -735,8 +735,8 @@
         "y": 420
       },
       "layoutPosition": {
-        "x": 1800,
-        "y": 540
+        "x": -1950,
+        "y": -120
       },
       "propagate": false
     },
@@ -750,8 +750,8 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 2040,
-        "y": 600
+        "x": -2310,
+        "y": -60
       },
       "propagate": false
     },
@@ -761,8 +761,8 @@
       "signal": "Cruise +5V -> splice 5V 2",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 420
+        "x": -180,
+        "y": 1680
       },
       "schematicPosition": {
         "x": 60,
@@ -776,8 +776,8 @@
       "signal": "CSB3 12V -> FB-LOGIC CSB 5A",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 330
+        "x": -240,
+        "y": 1740
       },
       "schematicPosition": {
         "x": 60,
@@ -791,8 +791,8 @@
       "signal": "CSB3 GND -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 240
+        "x": -300,
+        "y": 1800
       },
       "schematicPosition": {
         "x": 60,
@@ -806,8 +806,8 @@
       "signal": "Reverse sig -> splice REV SW",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 150
+        "x": -450,
+        "y": 1920
       },
       "schematicPosition": {
         "x": 1380,
@@ -821,8 +821,8 @@
       "signal": "Oil LED sink -> oil diode",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 660
+        "x": -390,
+        "y": 1860
       },
       "schematicPosition": {
         "x": 1380,
@@ -836,8 +836,8 @@
       "signal": "CAN H -> splice CANH",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 60
+        "x": -510,
+        "y": 1980
       },
       "schematicPosition": {
         "x": 1380,
@@ -851,8 +851,8 @@
       "signal": "CAN L -> splice CANL",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": -60
+        "x": -600,
+        "y": 2040
       },
       "schematicPosition": {
         "x": 1380,
@@ -866,8 +866,8 @@
       "signal": "CAN screen -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
-        "x": 420,
-        "y": 480
+        "x": -120,
+        "y": 1620
       },
       "schematicPosition": {
         "x": 1380,
@@ -1364,8 +1364,8 @@
     {
       "id": "sp_cruise_ladder",
       "layoutPosition": {
-        "x": 540,
-        "y": 720
+        "x": -720,
+        "y": -30
       },
       "schematicPosition": {
         "x": 1170,
@@ -1383,8 +1383,8 @@
         "y": 120
       },
       "layoutPosition": {
-        "x": -60,
-        "y": 600
+        "x": -120,
+        "y": -30
       }
     }
   ],
@@ -1394,8 +1394,8 @@
       "partId": "rp_1k",
       "locationId": "bp_1140",
       "layoutPosition": {
-        "x": 630,
-        "y": 720
+        "x": -810,
+        "y": -30
       },
       "schematicPosition": {
         "x": 720,
@@ -1543,106 +1543,106 @@
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": 1710,
-        "y": 600
+        "x": -1950,
+        "y": 30
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1470,
-        "y": 600
+        "x": -1710,
+        "y": 30
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": 1380,
-        "y": 600
+        "x": -1590,
+        "y": 30
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1140,
-        "y": 600
+        "x": -1350,
+        "y": 30
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1050,
-        "y": 600
+        "x": -1260,
+        "y": 30
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 810,
-        "y": 600
+        "x": -1020,
+        "y": 30
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 720,
-        "y": 600
+        "x": -900,
+        "y": 30
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": 630,
-        "y": 600
+        "x": -810,
+        "y": 30
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": 540,
-        "y": 600
+        "x": -720,
+        "y": 30
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 420,
-        "y": 600
+        "x": -600,
+        "y": 30
       }
     },
     {
       "id": "bp_1230",
       "layoutPosition": {
-        "x": 0,
-        "y": 600
+        "x": -120,
+        "y": 30
       }
     },
     {
       "id": "bp_fl_brake_sw",
       "layoutPosition": {
-        "x": 1950,
-        "y": 600
+        "x": -2310,
+        "y": 30
       }
     },
     {
       "id": "bp_fl_clutch_sw",
       "layoutPosition": {
-        "x": 1710,
-        "y": 540
+        "x": -1950,
+        "y": -30
       }
     },
     {
       "id": "bp_fl_cruise_stalk",
       "layoutPosition": {
-        "x": 1050,
-        "y": 750
+        "x": -1260,
+        "y": 90
       }
     },
     {
       "id": "bp_at_ecu_a",
       "layoutPosition": {
-        "x": 1230,
-        "y": 600
+        "x": -1440,
+        "y": 30
       }
     }
   ],

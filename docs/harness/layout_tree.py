@@ -1,27 +1,35 @@
 """Re-place a drawing's LAYOUT view as an overhead view that follows its approved route
-(DECISIONS R107, Dan 2026-10-15). Moves layoutPosition only - no wire, bundle, length, part,
-colour, band or schematic change (R90).
+(DECISIONS R107, R140: front of the car on the RIGHT, Dan 2026-10-16). Moves layoutPosition only -
+no wire, bundle, length, part, colour, band or schematic change (R90).
 
-The bundles of one harness form a tree. It is drawn as a tidy tree read left to right (R42):
-  - x = towards the back of the car (the route top views have the front on the left),
+The bundles of one harness form a tree. It is drawn as a tidy tree read right to left (R42 / L1:
+no branch doubles back):
+  - the root (the front-most node) is at the right; x falls towards the back of the car,
   - up = passenger (RH) side, down = driver (LH) side, as in the route top views,
   - a branch point keeps its main run straight on its own row; side branches fan out above or
     below, each in its own band of rows, so no bundle, node or label lands on another (Y1-Y3),
-  - a node that shows a label (connector, terminal) keeps its row to itself: its (at most two)
-    children drop straight up and down from it, so no bundle runs over the label,
+  - the app shows a connector / terminal label to the RIGHT of its node, i.e. towards the parent
+    (front-left drawings had their children drop straight up and down from a labelled node for
+    that reason; right to left they leave away from it). So a labelled node never takes its
+    parent's row (it is never the main run), its bundle comes in steeply enough to reach the node
+    without crossing its own label (audit_layout.py Y5), and a fan with a labelled child sits a
+    label's width left of its parent, so no child label covers the parent,
   - all children of a node share one x, set by the longest child bundle (a bundle keeps its
     `length`; only the canvas spacing follows it, roughly as its square root).
 Splices, resistors and diodes (no bundle; they sit at their locationId) and loose nodes go on the
 nearest free grid spot next to their location.
 
-Hints per drawing: layout_hints.json - root (the front-most node), and per node the children
+Hints per drawing: layout_hints.json - root (the front-most node, placed at the right), and per node the children
 that go "up" / "down" (inner to outer) or "main"; "main_last": true places a hub's side branches
 first, in one column, and carries the main run on past their labels (CabinPower's two hubs). A terminal broken off toward another harness
 takes that harness's side from "toward" unless a node hint says otherwise.
 
     python docs/harness/layout_tree.py A-cabin [--write | --out DIR]
+    python docs/harness/layout_tree.py --mirror RearFuel [--write | --out DIR]
 
-Without --write it only prints the audit_layout.py / L1 result for the new positions (--out DIR
+--mirror only flips the drawing left to right as it is (node and bundle layout points; for the
+hand-laid drawings without a hint, and those whose bundle points Dan kept), so a front-left drawing
+becomes front-right; it does not re-place anything. Without --write it only prints the audit_layout.py / L1 result for the new positions (--out DIR
 writes the re-placed copy there instead, for render_layout.py).
 """
 import json
@@ -38,6 +46,8 @@ HINTS = os.path.join(HERE, "layout_hints.json")
 G = 30
 PAD = 14       # free margin around every node and label: rows 60 apart pass, 30 apart do not
 SEG_PAD = 10   # and a bundle keeps this much more clear of any node or label it does not end at
+STEP_CLEAR = 60   # staircase: a later bundle passes this far left of a nearer labelled end's node
+MAX_INV = 1.0     # staircase: a bundle into a labelled end is at least 45 degrees steep
 
 
 def cross(p, q, r, s):
@@ -71,6 +81,25 @@ def labelled(kinds, n):
     return kinds.get(n) in ("connectors", "terminals")
 
 
+def label_box(b):
+    """the label part of a node box made by box() (node + label + PAD): right of the node."""
+    return (b[0] + PAD + lg.NODE + 2, b[1] + PAD + 6, b[2] - PAD, b[3] - PAD - 6)
+
+
+def mirror(d):
+    """flip the layout left to right about its own middle, on the grid: every node's centre and
+    every bundle layout point mirrored (the label stays to the right of its node)."""
+    pts = [x["layoutPosition"] for k in lg.KINDS for x in d.get(k, []) if x.get("layoutPosition")]
+    pts += [q["layoutPosition"] for b in d.get("bundles", []) for q in b.get("layoutPoints", [])
+            if q.get("layoutPosition")]
+    if not pts:
+        return
+    s = min(p["x"] for p in pts) + max(p["x"] for p in pts)
+    s -= s % G
+    for p in pts:
+        p["x"] = s - p["x"]
+
+
 def toward(d, n, rules):
     for x in d.get("terminals", []):
         if x["id"] == n:
@@ -78,6 +107,10 @@ def toward(d, n, rules):
             if m:
                 return rules.get(m.group(1))
     return None
+
+
+def warn(msg):
+    print("layout_tree: " + msg, file=sys.stderr)
 
 
 def layout(d, hint):
@@ -115,36 +148,75 @@ def layout(d, hint):
         w = lg.LABEL_W if labelled(kinds, n) else lg.NODE
         return (x - PAD, y - PAD, x + w + PAD, y + lg.NODE + PAD)
 
-    def shifted(shape, dy):
-        bx = [(n, (b[0], b[1] + dy, b[2], b[3] + dy)) for n, b in shape[0]]
-        sg = [((p[0], p[1] + dy), (q[0], q[1] + dy), a, z) for p, q, a, z in shape[1]]
+    def shifted(shape, dy, dx=0):
+        bx = [(n, (b[0] + dx, b[1] + dy, b[2] + dx, b[3] + dy)) for n, b in shape[0]]
+        sg = [((p[0] + dx, p[1] + dy), (q[0] + dx, q[1] + dy), a, z) for p, q, a, z in shape[1]]
         return bx, sg
 
     def grow(b, e=SEG_PAD):
         return (b[0] - e, b[1] - e, b[2] + e, b[3] + e)
 
-    def clash(P, S, edge):
-        """True if shape S (with the new edge joining it) collides with placed shape P."""
+    def clash(P, S, edge, guard=()):
+        """True if shape S (with the new edge joining it) collides with placed shape P; `guard`
+        segments (the way in from the parent) must stay clear of S's nodes and labels."""
         pb, ps = P
         sb, ss = S
+        for p, q in guard:
+            if any(lg.seg_hits_box(p, q, grow(c)) for _, c in sb):
+                return "c1"
         for _, b in sb:
             if any(lg.boxes_overlap(b, c) for _, c in pb):
-                return True
+                return "c2"
         for p, q, a, z in ss + [edge]:
-            if any(lg.seg_hits_box(p, q, grow(c)) for n, c in pb if n not in (a, z)):
-                return True
+            for n, c in pb:
+                if n not in (a, z) and lg.seg_hits_box(p, q, grow(c)):
+                    return "c3 %s-%s hits %s %s" % (a, z, n, tuple(int(v) for v in c))
             if any(cross(p, q, r, s) for r, s, a2, z2 in ps if not {a, z} & {a2, z2}):
-                return True
+                return "c4"
         for p, q, a, z in ps:
             if any(lg.seg_hits_box(p, q, grow(c)) for n, c in sb if n not in (a, z)):
-                return True
+                return "c5"
         p, q, a, z = edge
+        if any(lg.segs_overlap(p, q, r, s) for r, s, a2, z2 in ps if {a, z} & {a2, z2}):
+            return "c6"         # two bundles out of one node on one line: one hides the other (Y3)
+        for n, c in pb + sb:
+            if n in (a, z) and labelled(kinds, n) and lg.seg_hits_box(p, q, label_box(c), 2):
+                return "c7"     # the edge would run over its own end's label (Y5)
         if any(lg.seg_hits_box(p, q, grow(c)) for n, c in sb if n not in (a, z)):
-            return True
+            return "c8"
         return False
 
-    def place(n, parent, x, y):
-        """place n's subtree with n at (x, y); return its shape (boxes, segments)."""
+    def staircase(n, x, y, side, combs, shape, guard):
+        """labelled ends of n on one side, as a staircase out from n: the first straight above /
+        below n, each next one further out and further left, so the bundle to a later end passes
+        to the LEFT of every nearer end instead of over its label (the label shows to the right
+        of its node). Row distance r_i grows by 2 grid rows per end; the inverse slope starts at 0
+        and grows by STEP_CLEAR / r_i, so at r_i the next bundle is STEP_CLEAR left of end i; every
+        bundle stays at least 1 / MAX_INV steep, so it reaches its own node, not its label (Y5)."""
+        c = (x + lg.NODE / 2, y + lg.NODE / 2)
+        for base in range(3, 400):
+            spots, inv = [], 0.0
+            for i in range(len(combs)):
+                r = (base + 2 * i) * G
+                spots.append((x - G * round(r * inv / G), y + side * r))
+                inv += STEP_CLEAR / r
+            if inv - STEP_CLEAR / r > MAX_INV:
+                continue
+            trial = shape
+            for m, (px, py) in zip(combs, spots):
+                S2 = ([(m, box(m, px, py))], [])
+                edge = (c, (px + lg.NODE / 2, py + lg.NODE / 2), n, m)
+                if clash(trial, S2, edge, guard):
+                    break
+                trial = (trial[0] + S2[0], trial[1] + [edge])
+            else:
+                return trial, dict(zip(combs, spots))
+        return None
+
+    def place(n, parent, x, y, inc=None):
+        """place n's subtree with n at (x, y); return its shape (boxes, segments). inc: the vector
+        from n to its parent (the bundle in from the parent runs along it); n's own fans keep out
+        of its way."""
         pos[n] = (x, y)
         kids = [(m, L) for m, L in adj.get(n, []) if m != parent]
         shape = ([(n, box(n, x, y))], [])
@@ -153,15 +225,21 @@ def layout(d, hint):
         h = nodes_hint.get(n, {})
         ids = [m for m, _ in kids]
         main = h.get("main")
-        if main is None and not labelled(kinds, n) and "main" not in h:
-            main = max(ids, key=lambda m: (size[m], m))
+        if main is None and "main" not in h:
+            plain = [m for m in ids if not labelled(kinds, m)     # a label on the row would hide the run
+                     and m not in h.get("up", []) + h.get("down", [])]
+            main = max(plain, key=lambda m: (size[m], m)) if plain else None
+        if main is not None and labelled(kinds, main):
+            main = None       # its label would lie along the run from n: it goes to a side instead
         ups = [m for m in h.get("up", []) if m in ids]
         downs = [m for m in h.get("down", []) if m in ids]
         rest = [m for m in ids if m != main and m not in ups and m not in downs]
-        if labelled(kinds, n) and len(kids) == 2 and not (ups or downs):
+        if labelled(kinds, n) and main is None and len(rest) == 2 and not (ups or downs):
             ups, downs, rest = [rest[0]], [rest[1]], []
+        out = None if not inc or not inc[1] else ("down" if inc[1] < 0 else "up")
         for m in sorted(rest, key=lambda m: (size[m], m)):
-            s = toward(d, m, rules) or side_of(m, n)
+            # a side branch fans outward, away from the bundle that comes in from its parent
+            s = out or toward(d, m, rules) or side_of(m, n)
             if s == "up":
                 ups.append(m)
             elif s == "down":
@@ -170,42 +248,129 @@ def layout(d, hint):
                 ups.append(m)
             else:
                 downs.append(m)
-        xk = x + max(dx_for(L) for _, L in kids)
+        xk = x - max(dx_for(L) for _, L in kids)
         fan = max(len(ups), len(downs))
         if fan >= 4:      # a wide fan opens out so its bundles stay apart near the branch point
-            xk = max(xk, x + G * min(20, 2 * fan))
-        if labelled(kinds, n) and len(kids) <= 2:
-            xk = x      # drop straight up / down, clear of the label on n's row
+            xk = min(xk, x - G * min(20, 2 * fan))
+        xl = min(xk, x - lg.LABEL_W - G)    # far enough left that a child's label stays clear of n
         c = (x + lg.NODE / 2, y + lg.NODE / 2)
-        last = h.get("main_last")      # side branches first, the main run goes on past their labels
-        if main and not last:
-            sb, ss = place(main, n, xk, y)
-            shape = (shape[0] + sb, shape[1] + ss + [(c, (xk + lg.NODE / 2, c[1]), n, main)])
+        guard = [(c, (c[0] + v[0], c[1] + v[1])) for v in ([inc] if inc else []) +
+                 (hint.get("guards", []) if parent is None else [])]
+        last = h.get("main_last")      # the main run goes on past the side branches' labels
+        # each child's own subtree is laid out once, at a base spot; the two arrangements below
+        # only shift those shapes, so trying both costs no second layout
+        base, sides = {}, []
         for side, kids_s in ((-1, ups), (1, downs)):
-            for m in kids_s:
-                S = place(m, n, xk, 0)
-                for k in range(1, 400):
-                    dy = y + side * k * G
-                    S2 = shifted(S, dy)
-                    edge = (c, (xk + lg.NODE / 2, dy + lg.NODE / 2), n, m)
-                    if not clash(shape, S2, edge):
+            combs = [m for m in kids_s if labelled(kinds, m) and len(adj.get(m, [])) == 1]
+            others = [m for m in kids_s if m not in combs]
+            for m in others:
+                x0 = xl if labelled(kinds, m) else xk
+                base[m] = (x0, place(m, n, x0, 0, (15 * G, -side * 15 * G)))
+            sides.append((side, others, combs))
+        if main:
+            xm = min(x - dx_for(dict(kids)[main]), xl - lg.LABEL_W - 2 * G) if last else xk
+            base[main] = (xm, place(main, n, xm, y, (3 * G, 0)))
+
+        def arrange(main_first, ends_first):
+            """main_first: the main run on its spot first and the side branches round it (as the
+            front-left drawings were made); else the side branches first and the main run slid
+            left until its subtree clears them (its own ends' labels reach back over n's column).
+            ends_first: on each side the staircase of labelled ends before the other branches, or
+            after them. Returns (failed placements, shape, child -> (dx, dy), labelled end -> spot)."""
+            sh, offs, spots, fails = shape, {}, {}, 0
+
+            def put_main(sh, slide):
+                xm, S = base[main]
+                for j in range(400):
+                    S2 = shifted(S, 0, -j * G)
+                    edge = (c, (xm - j * G + lg.NODE / 2, c[1]), n, main)
+                    if slide and not clash(sh, S2, edge):
                         break
-                move(m, n, dy)
-                shape = (shape[0] + S2[0], shape[1] + S2[1] + [edge])
-        if main and last:
-            xm = max(x + dx_for(dict(kids)[main]), xk + lg.LABEL_W + 2 * G)
-            sb, ss = place(main, n, xm, y)
-            shape = (shape[0] + sb, shape[1] + ss + [(c, (xm + lg.NODE / 2, c[1]), n, main)])
+                    # main first: far enough left that no label of its subtree reaches n's column,
+                    # which keeps a way out for the side branches
+                    if not slide and all(b[2] <= x - PAD for m2, b in S2[0] if m2 != main):
+                        break
+                else:
+                    if os.environ.get("LT_DEBUG"):
+                        warn("  %s: main %s slide: %s" % (n, main, clash(sh, S2, edge)))
+                    S2, edge, j = S, (c, (xm + lg.NODE / 2, c[1]), n, main), 0
+                    offs[main] = (0, 0)
+                    return (sh[0] + S2[0], sh[1] + S2[1] + [edge]), 1
+                offs[main] = (-j * G, 0)
+                return (sh[0] + S2[0], sh[1] + S2[1] + [edge]), 0
+
+            if main and main_first:
+                sh, f = put_main(sh, False)
+                fails += f
+            for side, others, combs in sides:
+                for step in (("ends", "others") if ends_first else ("others", "ends")):
+                    if step == "ends":
+                        if combs:
+                            got = staircase(n, x, y, side, combs, sh, guard)
+                            if got is None:
+                                fails += 1
+                                if os.environ.get("LT_DEBUG"):
+                                    warn("  %s first=%s: staircase %s %s" % (n, main_first, side, combs))
+                                got = (sh, {m: (xl, y + side * (3 + 2 * i) * G) for i, m in enumerate(combs)})
+                            sh, sp = got
+                            spots.update(sp)
+                    else:
+                        for m in others:
+                            x0, S = base[m]
+                            tried = set()
+                            for k in range(1, 400):
+                                dy = y + side * k * G
+                                S2 = shifted(S, dy)
+                                edge = (c, (x0 + lg.NODE / 2, dy + lg.NODE / 2), n, m)
+                                why = clash(sh, S2, edge, guard)
+                                turn = round(math.degrees(math.atan2(y - dy, x - x0)) / 10)
+                                if why == "c8" and turn not in tried and len(tried) < 6:
+                                    # the bundle in hits m's own fans: lay m's subtree out again with
+                                    # its guard along this bundle
+                                    tried.add(turn)
+                                    S = place(m, n, x0, 0, (x - x0, y - dy))
+                                    base[m] = (x0, S)
+                                    S2 = shifted(S, dy)
+                                    why = clash(sh, S2, edge, guard)
+                                if not why:
+                                    break
+                            else:
+                                fails += 1
+                                if os.environ.get("LT_DEBUG"):
+                                    warn("  %s first=%s: side %s -> %s: %s" % (n, main_first, side, m, clash(sh, shifted(S, y + side * 60 * G), (c, (x0 + 15, y + side * 60 * G + 15), n, m), guard)))
+                            offs[m] = (0, dy)
+                            sh = (sh[0] + S2[0], sh[1] + S2[1] + [edge])
+            if main and not main_first:
+                sh, f = put_main(sh, True)
+                fails += f
+            return fails, sh, offs, spots
+
+        tries = [(mf, ef) for mf in ((False,) if last else (True, False)) for ef in (False, True)]
+        best = None
+        for t in tries:
+            got = arrange(*t)
+            if not got[0]:
+                break
+            if best is None or got[0] < best[0]:
+                best = (got[0], t)
+        else:
+            got = arrange(*best[1])     # again: a child may have been laid out again meanwhile
+        fails, shape, offs, spots = got
+        if fails:
+            warn("%d bundle(s) out of %s found no free spot" % (fails, n))
+        for m, (dx, dy) in offs.items():
+            move(m, n, dy, dx)
+        pos.update(spots)
         return shape
 
-    def move(n, parent, dy):
+    def move(n, parent, dy, dx=0):
         todo = [(n, parent)]
         while todo:
             a, p = todo.pop()
-            pos[a] = (pos[a][0], pos[a][1] + dy)
+            pos[a] = (pos[a][0] + dx, pos[a][1] + dy)
             todo += [(m, a) for m, _ in adj.get(a, []) if m != p]
 
-    place(root, None, 0, 0)
+    place(root, None, 0, 0, hint.get("inc"))
     missing = [n for n in adj if n not in pos]
     if missing:
         raise SystemExit("bundle graph is not one tree from %s: %s" % (root, missing[:5]))
@@ -275,6 +440,7 @@ def main(argv):
     import audit_layout
     import audit_drawing_rules
     write = "--write" in argv
+    flip = "--mirror" in argv
     out = argv[argv.index("--out") + 1] if "--out" in argv else None
     looms = [a for a in argv if not a.startswith("--") and a != out]
     with open(HINTS, encoding="utf-8") as f:
@@ -287,8 +453,11 @@ def main(argv):
             nl = "\r\n" if b"\r\n" in f.read(4096) else "\n"
         with open(path, encoding="utf-8") as f:
             d = json.load(f)
-        pos = layout(d, hints[loom])
-        apply(d, pos, hints[loom])
+        if flip:
+            mirror(d)
+        else:
+            pos = layout(d, hints[loom])
+            apply(d, pos, hints[loom])
         bad = audit_layout.check(loom, d) + [b for b in audit_drawing_rules.check(loom, d)
                                              if b.startswith(("L1", "G1"))]
         for b in bad:
