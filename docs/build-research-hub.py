@@ -884,7 +884,7 @@ MODEL_EXT = {".step", ".stp", ".stl", ".f3d", ".f3z"}
 CAD_MANIFEST = REPO / "cad" / "model-files.json"
 # Where the heavy (gitignored) model files live on Dan's PC; shown as the "full local path".
 DAN_ROOT = "C:/projects/active/st185-link-ecu-config"
-HANGER_RUN = Path("C:/projects/active/fairsolid/runs/fuel_hanger_billet_1014")
+HANGER_RUN = Path("C:/projects/_archive/2026-10-17-fairsolid/fairsolid/runs/fuel_hanger_billet_1014")  # archived 2026-10-17
 # Trimetric pictures (DECISIONS R83): rendered by cad/render_trimetric.py, sources + dates here.
 TRIMETRICS = REPO / "cad" / "trimetrics.json"
 # GitHub Pages serves docs/ only; the page swaps "../" links and images to these on github.io.

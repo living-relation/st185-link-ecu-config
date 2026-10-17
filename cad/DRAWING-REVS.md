@@ -5,7 +5,7 @@ Drawing-only clerical changes (notes, added views or sheets, no change to fit / 
 Redlines go on the drawing first, then the model is fixed, then the drawing is regenerated from the model. Filenames carry no rev.
 
 
-Fuel hanger evidence: the fairsolid run `C:\projects\active\fairsolid\runs\fuel_hanger_billet_1014\` - `rev1` = the run root folder, then `rev2`..`rev8`; each folder is one release. `runs/` is gitignored in fairsolid, so there is no git history for it; a part counts as released in a folder when its model changed there (volume / bounding box in that folder's `hanger_report.json`).
+Fuel hanger evidence: the fairsolid run `C:\projects\_archive\2026-10-17-fairsolid\fairsolid\runs\fuel_hanger_billet_1014\` (moved from `C:\projects\active\fairsolid` on 2026-10-17, when Fairsolid moved into handbuilt-cad `pipelines/fairsolid/`) - `rev1` = the run root folder, then `rev2`..`rev8`; each folder is one release. `runs/` is gitignored in fairsolid, so there is no git history for it; a part counts as released in a folder when its model changed there (volume / bounding box in that folder's `hanger_report.json`).
 | Item | Part no. | Model | Rev | Date | Change | Evidence (counted releases) | Files |
 |---|---|---|---|---|---|---|---|
 | CSB3 enclosure - body | ST185-CSB3-101 | `cad/enclosures/csb3/CSB3_part_CSB3-Body.step` (Fusion 360) | C | 2026-10-17 | First issue from the model (rev letter: see "How the letters were found") | see "How the letters were found" | `cad/enclosures/csb3/ST185-CSB3-101.pdf` |
