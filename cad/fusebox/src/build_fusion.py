@@ -1371,7 +1371,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 parts.append(cylz(a['x_out'], a['y'], z_d, plate_b + 0.01, SO['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
         # R146 (Dan N5 / N7, 2026-10-17; supersedes R144's collars): each standoff holds itself by 6 crush ribs in its bore (+ Loctite 406)
         report['stud_fit'] = dict(S.stud_fit_numbers(), bore_af=SO['af'] + 2 * SF['clr'], rib_r=SF['r'], interference=SF['i'], rib_len=SF['len'],
-                                  columns=len(ami), backup=S.BACKUP['pn'])
+                                  columns=len(ami), backup=S.BACKUP['pn'], flange=dict(S.FLANGE))
         if R7:            # rev 7: the bus bar terminals - M8 on the POS bar (BAT+ IN, RADLOK+, spare) and on the NEG bar
             NB = R7['neg_bar']
             m8_pos = [(xb, y_, 8) for (y_, _n, _h) in R7['pos_studs']]
@@ -1476,6 +1476,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 an_ = math.radians(SF['rot'] - 60 + 60 * k_)
                 cuts.append(cylz(a['x_out'] + rc_ * math.cos(an_), a['y'] + rc_ * math.sin(an_), z_d - 1, pz0 + 0.01, SF['corner_d']))
             cuts.append(cone((a['x_out'], a['y'], pz0 - SF['chamfer'] - 0.01), bf_ - 0.02, (a['x_out'], a['y'], pz0 + 0.02), bf_ + 2 * SF['chamfer'] + 0.06))
+            if S.FLANGE['on']:                                   # option C: counterbore for the standoff flange, its top = the pad seat
+                cuts.append(cylz(a['x_out'], a['y'], pz0 - S.FLANGE['t'], pz0 + 0.02, S.FLANGE['d'] + 2 * S.FLANGE['clr']))
             z1r_ = pz0 - SF['top']
             z0r_ = z1r_ - SF['len']
             for k_ in range(6):                                  # crush ribs, one on the middle of each flat, round ends
@@ -1554,7 +1556,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 bo(nbar, cylz(bx_, by_, bz0 - 1, btop + 1, S.CLEAR[8]), 's')
             edge_break(comp(pre + 'BarNeg_%s_25x6p35_L105' % BM['name'], nbar, AP['tin'], MAT['cu'], sh))
         edge_break(comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh))
-        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af'], SF['rot']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
+        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(union_all([hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0 - (S.FLANGE['t'] if S.FLANGE['on'] else 0.0), SO['af'], SF['rot'])] + ([cylz(a['x_out'], a['y'], pz0 - S.FLANGE['t'], pz0, S.FLANGE['d'])] if S.FLANGE['on'] else [])), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
                                                                  for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
         z_ear = btop + S.AMI['ear_t']
         comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, bz0 + S.BOLT_L[m], float(m))])
