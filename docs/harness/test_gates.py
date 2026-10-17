@@ -202,6 +202,17 @@ def _(d):
     save(p, doc)
 
 
+@case("R140: a terminal moved so its bundle runs along its own label (Y5)", "audit_layout.py", 1)
+def _(d):
+    p, doc = load(d, "RearFuel")
+    pos = {x["id"]: x["layoutPosition"] for k in ("connectors", "terminals")
+           for x in doc.get(k, []) if x.get("layoutPosition")}
+    gnd = next(x for x in doc["terminals"] if x["id"] == "t_trunk_fp_gnd")
+    pump = pos["fuelpump"]
+    gnd["layoutPosition"] = {"x": pump["x"] - 600, "y": pump["y"]}   # level with the pump, to its left
+    save(p, doc)
+
+
 def unit_cases():
     """judge() on hand-made pin contents (classes that the drawings don't contain yet)."""
     out = []

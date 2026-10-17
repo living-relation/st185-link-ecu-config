@@ -8,7 +8,7 @@
     "title": "ST185-HeavyDC - heavy DC harness: trunk battery, kill switch, RADLOK bulkhead, starter / alternator cables, fuel pump relay",
     "drawingNumber": "ST185-HeavyDC"
   },
-  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each fuel pump feed end (KILL SW C2, FB BATT IN, K_FP 30 ...) and at the jump post (JUMP +).",
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each fuel pump feed end (KILL SW C2, FB BATT IN, BATT K1 30 ...) and at the jump post (JUMP +).",
   "pdfExportSettings": {
     "includeSchematic": true,
     "includeLayout": true,
@@ -1181,7 +1181,7 @@
       },
       "separateLabels": true,
       "label": "FB BATT FP",
-      "endLabel": "K_FP 30",
+      "endLabel": "BATT K1 30",
       "partIds": [
         "cov_lbl_38",
         "cov_lbl_38"
@@ -1214,7 +1214,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "label": "K_FP 87",
+      "label": "BATT K1 87",
       "partIds": [
         "cov_lbl_38"
       ]
