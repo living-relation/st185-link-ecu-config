@@ -346,8 +346,8 @@
         }
       ],
       "layoutPosition": {
-        "x": 1950,
-        "y": 960
+        "x": 960,
+        "y": 1530
       },
       "schematicPosition": {
         "x": 0,
@@ -377,7 +377,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 330,
+        "x": 2100,
         "y": 390
       },
       "schematicPosition": {
@@ -397,8 +397,8 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 1950,
-        "y": 1620
+        "x": 960,
+        "y": 810
       },
       "signal": "CAN -> cluster",
       "partId": "tp_flying_lead",
@@ -413,8 +413,8 @@
         "y": 360
       },
       "layoutPosition": {
-        "x": 2100,
-        "y": 1230
+        "x": 1110,
+        "y": 1350
       },
       "signal": "CAN -> RealDash Pi",
       "partId": "tp_flying_lead",
@@ -426,8 +426,8 @@
       "signal": "CAN H -> CSB3 c5",
       "width": 390,
       "layoutPosition": {
-        "x": 2100,
-        "y": 1440
+        "x": 1110,
+        "y": 1260
       },
       "schematicPosition": {
         "x": 720,
@@ -441,8 +441,8 @@
       "signal": "CAN L -> CSB3 c6",
       "width": 390,
       "layoutPosition": {
-        "x": 2100,
-        "y": 1560
+        "x": 1110,
+        "y": 1050
       },
       "schematicPosition": {
         "x": 720,
@@ -456,7 +456,7 @@
       "signal": "Lambda 12V -> splice LAM12 B",
       "width": 390,
       "layoutPosition": {
-        "x": 780,
+        "x": 1740,
         "y": 360
       },
       "schematicPosition": {
@@ -471,8 +471,8 @@
       "signal": "Lambda GND -> splice LAMG B",
       "width": 390,
       "layoutPosition": {
-        "x": 780,
-        "y": 240
+        "x": 1740,
+        "y": 420
       },
       "schematicPosition": {
         "x": 2700,
@@ -486,8 +486,8 @@
       "signal": "CAN H -> BH-B 92",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 900
+        "x": 840,
+        "y": 240
       },
       "schematicPosition": {
         "x": 1380,
@@ -501,8 +501,8 @@
       "signal": "CAN L -> BH-B 93",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 390
+        "x": 840,
+        "y": 540
       },
       "schematicPosition": {
         "x": 1380,
@@ -516,8 +516,8 @@
       "signal": "CAN H Lambda -> BH-B 92",
       "width": 390,
       "layoutPosition": {
-        "x": 1230,
-        "y": 240
+        "x": 1290,
+        "y": 420
       },
       "schematicPosition": {
         "x": 2040,
@@ -531,8 +531,8 @@
       "signal": "CAN L Lambda -> BH-B 93",
       "width": 390,
       "layoutPosition": {
-        "x": 1230,
-        "y": 30
+        "x": 1290,
+        "y": 240
       },
       "schematicPosition": {
         "x": 2040,
@@ -546,7 +546,7 @@
       "signal": "Lambda screen -> BH-B 94",
       "width": 390,
       "layoutPosition": {
-        "x": 1230,
+        "x": 1290,
         "y": 360
       },
       "schematicPosition": {
@@ -561,8 +561,8 @@
       "signal": "CAN screen -> BH-B 94",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 480
+        "x": 840,
+        "y": 360
       },
       "schematicPosition": {
         "x": 1380,
@@ -576,8 +576,8 @@
       "signal": "CAN drain -> splice SHIELD B",
       "width": 390,
       "layoutPosition": {
-        "x": 1680,
-        "y": 630
+        "x": 840,
+        "y": 420
       },
       "schematicPosition": {
         "x": 1380,
@@ -591,8 +591,8 @@
       "signal": "CAN screen -> CSB3 open",
       "width": 390,
       "layoutPosition": {
-        "x": 2100,
-        "y": 1350
+        "x": 1110,
+        "y": 1140
       },
       "schematicPosition": {
         "x": 720,
@@ -609,8 +609,8 @@
         "y": 870
       },
       "layoutPosition": {
-        "x": 1950,
-        "y": 1920
+        "x": 960,
+        "y": 600
       },
       "signal": "Dash 12V -> cluster",
       "partId": "tp_flying_lead",
@@ -625,8 +625,8 @@
         "y": 960
       },
       "layoutPosition": {
-        "x": 2100,
-        "y": 1290
+        "x": 1110,
+        "y": 1200
       },
       "signal": "Dash 12V -> RealDash Pi",
       "partId": "tp_flying_lead",
@@ -641,8 +641,8 @@
         "y": 1020
       },
       "layoutPosition": {
-        "x": 1950,
-        "y": 2100
+        "x": 960,
+        "y": 690
       },
       "signal": "Cluster GND -> GND IF",
       "partId": "tp_ring_m6_22_16",
@@ -657,8 +657,8 @@
         "y": 1050
       },
       "layoutPosition": {
-        "x": 2100,
-        "y": 1140
+        "x": 1110,
+        "y": 930
       },
       "signal": "Pi GND -> GND IF",
       "partId": "tp_ring_m6_22_16",
@@ -670,8 +670,8 @@
       "signal": "Dash 12V -> FB-LOGIC DEV 15A",
       "width": 390,
       "layoutPosition": {
-        "x": 1950,
-        "y": 1770
+        "x": 960,
+        "y": 750
       },
       "schematicPosition": {
         "x": 0,
@@ -688,8 +688,8 @@
         "y": 1110
       },
       "layoutPosition": {
-        "x": 1950,
-        "y": 2310
+        "x": 960,
+        "y": 870
       },
       "signal": "Cluster GND -> ESP32-P4",
       "partId": "tp_flying_lead",
@@ -704,8 +704,8 @@
         "y": 1140
       },
       "layoutPosition": {
-        "x": 2100,
-        "y": 1020
+        "x": 1110,
+        "y": 1470
       },
       "signal": "Pi GND -> RealDash Pi",
       "partId": "tp_flying_lead",
@@ -2374,8 +2374,8 @@
         "y": -120
       },
       "layoutPosition": {
-        "x": 1530,
-        "y": 930
+        "x": 690,
+        "y": 780
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_930"
@@ -2387,8 +2387,8 @@
         "y": -120
       },
       "layoutPosition": {
-        "x": 1530,
-        "y": 870
+        "x": 690,
+        "y": 720
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_930"
@@ -2402,8 +2402,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_780",
       "layoutPosition": {
-        "x": 1140,
-        "y": 450
+        "x": 1200,
+        "y": 480
       }
     },
     {
@@ -2415,8 +2415,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_780",
       "layoutPosition": {
-        "x": 1080,
-        "y": 450
+        "x": 1170,
+        "y": 300
       }
     },
     {
@@ -2424,8 +2424,8 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_930",
       "layoutPosition": {
-        "x": 1530,
-        "y": 990
+        "x": 690,
+        "y": 840
       },
       "schematicPosition": {
         "x": 510,
@@ -2439,8 +2439,8 @@
         "y": 900
       },
       "layoutPosition": {
-        "x": 1470,
-        "y": 930
+        "x": 630,
+        "y": 780
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_930"
@@ -2455,8 +2455,8 @@
         "y": -90
       },
       "layoutPosition": {
-        "x": 1890,
-        "y": 1290
+        "x": 930,
+        "y": 1110
       },
       "locationId": "bp_1050"
     },
@@ -2468,8 +2468,8 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 690,
-        "y": 450
+        "x": 1650,
+        "y": 300
       },
       "locationId": "bp_390"
     }
@@ -2613,36 +2613,36 @@
     {
       "id": "bp_390",
       "layoutPosition": {
-        "x": 690,
+        "x": 1650,
         "y": 390
       }
     },
     {
       "id": "bp_780",
       "layoutPosition": {
-        "x": 1140,
+        "x": 1200,
         "y": 390
       }
     },
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": 1590,
+        "x": 750,
         "y": 390
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 1590,
-        "y": 930
+        "x": 750,
+        "y": 780
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1950,
-        "y": 1290
+        "x": 960,
+        "y": 1200
       }
     }
   ],

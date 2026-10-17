@@ -563,7 +563,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 960,
+        "x": 1980,
         "y": 300
       },
       "schematicPosition": {
@@ -599,7 +599,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1980,
+        "x": 960,
         "y": 600
       },
       "schematicPosition": {
@@ -629,7 +629,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 480,
+        "x": 2460,
         "y": 270
       },
       "schematicPosition": {
@@ -658,7 +658,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1620,
+        "x": 1320,
         "y": -300
       },
       "schematicPosition": {
@@ -687,7 +687,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 1620,
+        "x": 1320,
         "y": 780
       },
       "schematicPosition": {
@@ -703,7 +703,7 @@
       "width": 390,
       "signal": "Alarm 12V -> FB-LOGIC ALM 5A",
       "layoutPosition": {
-        "x": 1380,
+        "x": 1560,
         "y": -420
       },
       "schematicPosition": {
@@ -718,7 +718,7 @@
       "width": 390,
       "signal": "Alarm IG -> FB-LOGIC ALMIG 2A",
       "layoutPosition": {
-        "x": 870,
+        "x": 2070,
         "y": -480
       },
       "schematicPosition": {
@@ -734,7 +734,7 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Alarm GND -> stud M6 A",
       "layoutPosition": {
-        "x": 1380,
+        "x": 1560,
         "y": 900
       },
       "schematicPosition": {
@@ -749,7 +749,7 @@
       "width": 390,
       "signal": "Door trig -> door SWs",
       "layoutPosition": {
-        "x": 2100,
+        "x": 840,
         "y": 540
       },
       "schematicPosition": {
@@ -765,7 +765,7 @@
       "width": 390,
       "signal": "Hood trig -> hood pin SW",
       "layoutPosition": {
-        "x": 0,
+        "x": 2940,
         "y": -120
       },
       "schematicPosition": {
@@ -781,7 +781,7 @@
       "width": 150,
       "signal": "Trunk trig -> trunk pin SW",
       "layoutPosition": {
-        "x": 2940,
+        "x": 0,
         "y": 300
       },
       "schematicPosition": {
@@ -797,7 +797,7 @@
       "width": 390,
       "signal": "Park flash -> park relay",
       "layoutPosition": {
-        "x": 1740,
+        "x": 1200,
         "y": -240
       },
       "schematicPosition": {
@@ -814,7 +814,7 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Shock/LED GND -> M6 B",
       "layoutPosition": {
-        "x": 1500,
+        "x": 1440,
         "y": 840
       },
       "schematicPosition": {
@@ -830,7 +830,7 @@
       "partId": "tp_ring_m6_22_16",
       "signal": "Valet GND -> stud M6 C",
       "layoutPosition": {
-        "x": 1740,
+        "x": 1200,
         "y": 720
       },
       "schematicPosition": {
@@ -845,7 +845,7 @@
       "width": 390,
       "signal": "Shock 12V -> FB-LOGIC ALMS 2A",
       "layoutPosition": {
-        "x": 1500,
+        "x": 1440,
         "y": -360
       },
       "schematicPosition": {
@@ -860,7 +860,7 @@
       "signal": "Immob out -> ECU-B B27",
       "width": 390,
       "layoutPosition": {
-        "x": 1860,
+        "x": 1080,
         "y": -180
       },
       "schematicPosition": {
@@ -1141,7 +1141,7 @@
       "id": "sp_at_12v",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1320,
+        "x": 1620,
         "y": 240
       },
       "schematicPosition": {
@@ -1154,7 +1154,7 @@
       "id": "sp_ig",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 870,
+        "x": 2070,
         "y": 300
       },
       "schematicPosition": {
@@ -1167,7 +1167,7 @@
       "id": "sp_door",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1860,
+        "x": 1080,
         "y": 360
       },
       "schematicPosition": {
@@ -1180,7 +1180,7 @@
       "id": "sp_hood",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 480,
+        "x": 2460,
         "y": -60
       },
       "schematicPosition": {
@@ -1193,7 +1193,7 @@
       "id": "sp_trunk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 2100,
+        "x": 840,
         "y": 240
       },
       "schematicPosition": {
@@ -1206,7 +1206,7 @@
       "id": "sp_park",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1440,
+        "x": 1500,
         "y": 240
       },
       "schematicPosition": {
@@ -1219,7 +1219,7 @@
       "id": "sp_12v_shk",
       "partId": "spp_solder_generic",
       "layoutPosition": {
-        "x": 1800,
+        "x": 1140,
         "y": 240
       },
       "schematicPosition": {
@@ -1371,77 +1371,77 @@
     {
       "id": "bp_180",
       "layoutPosition": {
-        "x": 360,
+        "x": 2580,
         "y": 0
       }
     },
     {
       "id": "bp_270",
       "layoutPosition": {
-        "x": 480,
+        "x": 2460,
         "y": 0
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": 870,
+        "x": 2070,
         "y": 240
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
-        "x": 1380,
+        "x": 1560,
         "y": 300
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": 1500,
+        "x": 1440,
         "y": 300
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": 1620,
+        "x": 1320,
         "y": 300
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": 1740,
+        "x": 1200,
         "y": 300
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": 1860,
+        "x": 1080,
         "y": 300
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
-        "x": 1980,
+        "x": 960,
         "y": 300
       }
     },
     {
       "id": "bp_1260",
       "layoutPosition": {
-        "x": 2100,
+        "x": 840,
         "y": 300
       }
     },
     {
       "id": "bp_2520",
       "layoutPosition": {
-        "x": 2640,
+        "x": 300,
         "y": 300
       }
     }

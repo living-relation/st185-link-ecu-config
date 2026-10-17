@@ -164,7 +164,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 0,
+        "x": 900,
         "y": 600
       },
       "partImage": {
@@ -194,7 +194,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 390,
+        "x": 510,
         "y": 480
       },
       "schematicPosition": {
@@ -226,7 +226,7 @@
         }
       ],
       "layoutPosition": {
-        "x": 420,
+        "x": 480,
         "y": 780
       },
       "schematicPosition": {
@@ -244,7 +244,7 @@
       "signal": "Fuel pump 12V -> BATT K1 87",
       "width": 390,
       "layoutPosition": {
-        "x": 900,
+        "x": 0,
         "y": 0
       },
       "schematicPosition": {
@@ -258,7 +258,7 @@
       "type": "Ring",
       "signal": "FP GND -> trunk stud M6",
       "layoutPosition": {
-        "x": 810,
+        "x": 90,
         "y": 780
       },
       "schematicPosition": {
@@ -304,7 +304,7 @@
         {
           "id": "b_bn_br_fp_pump__fuelpump_lp1",
           "layoutPosition": {
-            "x": 900,
+            "x": 0,
             "y": 600
           }
         }

@@ -108,7 +108,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 0,
+        "x": 1530,
         "y": 330
       },
       "partImage": {
@@ -145,7 +145,7 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 0,
+        "x": 1530,
         "y": -330
       }
     },
@@ -197,7 +197,7 @@
         "y": 510
       },
       "layoutPosition": {
-        "x": 1530,
+        "x": 0,
         "y": 0
       },
       "partImage": {
@@ -216,7 +216,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 810,
+        "x": 720,
         "y": 0
       },
       "schematicPosition": {
@@ -258,7 +258,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 1200,
+        "x": 330,
         "y": 60
       },
       "schematicPosition": {
@@ -942,14 +942,14 @@
         {
           "id": "lp_f_l",
           "layoutPosition": {
-            "x": 0,
+            "x": 1530,
             "y": 270
           }
         },
         {
           "id": "lp_f_l2",
           "layoutPosition": {
-            "x": 720,
+            "x": 810,
             "y": 270
           }
         }
@@ -972,14 +972,14 @@
         {
           "id": "lp_f_r",
           "layoutPosition": {
-            "x": 0,
+            "x": 1530,
             "y": -270
           }
         },
         {
           "id": "lp_f_r2",
           "layoutPosition": {
-            "x": 720,
+            "x": 810,
             "y": -270
           }
         }
@@ -1040,7 +1040,7 @@
         "y": 210
       },
       "layoutPosition": {
-        "x": 780,
+        "x": 750,
         "y": 60
       }
     }
@@ -1173,21 +1173,21 @@
     {
       "id": "bp_f_y",
       "layoutPosition": {
-        "x": 720,
+        "x": 810,
         "y": 0
       }
     },
     {
       "id": "bp_f_out",
       "layoutPosition": {
-        "x": 1200,
+        "x": 330,
         "y": 0
       }
     },
     {
       "id": "bp_f_fwd",
       "layoutPosition": {
-        "x": 1500,
+        "x": 30,
         "y": 0
       }
     }

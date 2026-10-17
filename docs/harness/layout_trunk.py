@@ -17,7 +17,7 @@ a U in the top view). This script keeps such a drawing's trunk as drawn and re-l
 Splices, resistors and diodes (no bundle) go next to their location as in layout_tree.py.
 
 Hints: layout_hints.json, same entry as layout_tree.py plus "mode": "trunk", optional
-"fan_max" (default 14) and "dir": {node: "right" | "left" | "up" | "down"} for the bundle from a
+"fan_max" (default 14) and "dir": {node: "right" | "left" | "up" | "down" | "up-right" | "down-right"} for the bundle from a
 trunk node's parent to it.
 
     python docs/harness/layout_trunk.py EngineRoom-C [--write | --out DIR]
@@ -39,7 +39,10 @@ SEG_PAD = lt.SEG_PAD
 # node's own row, then every fan up, every fan down
 VARIANTS = ((True, None), (False, None), (False, "up"), (False, "down"))
 STUB = 1500    # how far a trunk bundle's way is kept clear of its own node's fans
-DIRS = {"right": (1, 0), "left": (-1, 0), "up": (0, -1), "down": (0, 1)}
+DIRS = {"right": (1, 0), "left": (-1, 0), "up": (0, -1), "down": (0, 1),
+        # 45 degrees: a trunk that leaves a connector towards the front (right) would run over
+        # the connector's own label (Y5), which shows to its right
+        "up-right": (1, -1), "down-right": (1, 1)}
 
 
 def subtree_sizes(adj, root):
@@ -57,9 +60,11 @@ def subtree_sizes(adj, root):
     return size, parent
 
 
-def fan_shape(d, adj, kinds, n, kids, hint, straight=True, side=None):
+def fan_shape(d, adj, kinds, n, kids, hint, straight=True, side=None, inc=None, guards=()):
     """Tidy-tree positions of n's fans relative to n (n at 0, 0), from layout_tree.layout on a copy
-    of the drawing cut down to n and those fans."""
+    of the drawing cut down to n and those fans. inc: vector from n to its trunk parent; guards:
+    vectors along n's other trunk bundles - the fans keep clear of both (labels show to the right
+    of their node, so with the front on the right they would otherwise lie across them)."""
     keep, todo = {n}, list(kids)
     while todo:
         a = todo.pop()
@@ -72,7 +77,8 @@ def fan_shape(d, adj, kinds, n, kids, hint, straight=True, side=None):
         nodes[n] = dict(nodes.get(n, {}), main=None)    # no fan on the trunk node's own row
     if side:
         nodes[n] = dict(nodes.get(n, {}), main=None, **{side: list(kids)})   # every fan on one side
-    h = {"root": n, "toward": hint.get("toward", {}), "nodes": nodes}
+    h = {"root": n, "toward": hint.get("toward", {}), "nodes": nodes, "inc": inc, "guards": list(guards),
+         "grow": hint.get("fan_grow", "left")}
     pos = lt.layout(sub, h)
     ox, oy = pos[n]
     return {m: (x - ox, y - oy) for m, (x, y) in pos.items()}
@@ -180,7 +186,13 @@ def layout(d, hint):
         kids = [m for m, _ in adj.get(n, []) if m != parent[n] and size[m] <= fan_max]
         if (n, variant) not in shapes:
             straight, side = variant
-            shapes[n, variant] = fan_shape(d, adj, kinds, n, kids, hint, straight, side) if kids else {n: (0, 0)}
+            inc = None
+            if parent[n] is not None:
+                ux, uy = direction(n)
+                inc = (-ux * STUB, -uy * STUB)
+            guards = [(direction(m)[0] * STUB, direction(m)[1] * STUB)
+                      for m, _ in adj.get(n, []) if m != parent[n] and size[m] > fan_max]
+            shapes[n, variant] = fan_shape(d, adj, kinds, n, kids, hint, straight, side, inc, guards)                 if kids else {n: (0, 0)}
         rel = shapes[n, variant]
         P = {m: (x + rx, y + ry) for m, (rx, ry) in rel.items()}
         B = {m: box_of(kinds, m, *p) for m, p in P.items()}
@@ -213,18 +225,29 @@ def layout(d, hint):
         n = todo.pop(0)
         ux, uy = direction(n)
         px, py = pos[parent[n]]
+        # the trunk bundles still to place keep their way clear too: their stubs from their placed
+        # parents (fans now open towards the parent side, so a sibling's fan could block them)
+        pending = ({}, [s for m in todo for s in stubs(parent[m], *pos[parent[m]]) if s[3] == m])
         hit = None
         for k in range(2, 400):
             x, y = px + ux * k * G, py + uy * k * G
             edge = (centre((px, py)), centre((x, y)), parent[n], n)
             for variant in VARIANTS:
                 P, B, S = cluster(n, x, y, variant)
-                if fits_self(n, x, y, B, S, edge) and not clashes(placed, (B, S + [edge]), kinds):
+                if fits_self(n, x, y, B, S, edge) and not clashes(placed, (B, S + [edge]), kinds)                         and not clashes(pending, (B, S + [edge]), kinds):
                     hit = True
                     break
             if hit:
                 break
         else:
+            if os.environ.get("LT_DEBUG"):
+                x, y = px + ux * 20 * G, py + uy * 20 * G
+                edge = (centre((px, py)), centre((x, y)), parent[n], n)
+                for variant in VARIANTS:
+                    P, B, S = cluster(n, x, y, variant)
+                    print("  ", n, variant, "self:", self_clash(B, S),
+                          "own:", clashes(({m: b for m, b in B.items() if m != n}, S), ({}, stubs(n, x, y) + [edge]), kinds),
+                          "placed:", clashes(placed, (B, S + [edge]), kinds), file=sys.stderr)
             raise SystemExit("layout_trunk: no room for %s" % n)
         pos.update(P)
         placed[0].update(B)

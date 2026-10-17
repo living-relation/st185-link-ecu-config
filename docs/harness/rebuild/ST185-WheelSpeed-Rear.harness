@@ -109,7 +109,7 @@
         "y": 0
       },
       "layoutPosition": {
-        "x": 1170,
+        "x": 300,
         "y": 330
       }
     },
@@ -137,7 +137,7 @@
         "y": 270
       },
       "layoutPosition": {
-        "x": 1170,
+        "x": 300,
         "y": -330
       }
     },
@@ -189,7 +189,7 @@
         "y": 510
       },
       "layoutPosition": {
-        "x": 660,
+        "x": 810,
         "y": -120
       }
     },
@@ -199,7 +199,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 300,
+        "x": 1170,
         "y": 0
       },
       "schematicPosition": {
@@ -241,7 +241,7 @@
       "width": 390,
       "partId": "cp_lp16_5f",
       "layoutPosition": {
-        "x": 300,
+        "x": 1170,
         "y": -120
       },
       "schematicPosition": {
@@ -891,14 +891,14 @@
         {
           "id": "lp_r_o1",
           "layoutPosition": {
-            "x": 300,
+            "x": 1170,
             "y": -180
           }
         },
         {
           "id": "lp_r_o2",
           "layoutPosition": {
-            "x": 660,
+            "x": 810,
             "y": -180
           }
         }
@@ -917,7 +917,7 @@
         {
           "id": "lp_r_l1",
           "layoutPosition": {
-            "x": 300,
+            "x": 1170,
             "y": 330
           }
         }
@@ -936,35 +936,35 @@
         {
           "id": "lp_r_r1",
           "layoutPosition": {
-            "x": 1020,
+            "x": 450,
             "y": -330
           }
         },
         {
           "id": "lp_r_r2",
           "layoutPosition": {
-            "x": 1020,
+            "x": 450,
             "y": 270
           }
         },
         {
           "id": "lp_r_r3",
           "layoutPosition": {
-            "x": 360,
+            "x": 1110,
             "y": 270
           }
         },
         {
           "id": "lp_r_r4",
           "layoutPosition": {
-            "x": 360,
+            "x": 1110,
             "y": 90
           }
         },
         {
           "id": "lp_r_r5",
           "layoutPosition": {
-            "x": 330,
+            "x": 1140,
             "y": 60
           }
         }
@@ -984,7 +984,7 @@
         "y": 210
       },
       "layoutPosition": {
-        "x": 420,
+        "x": 1050,
         "y": 120
       }
     }
