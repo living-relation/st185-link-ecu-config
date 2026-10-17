@@ -675,7 +675,7 @@
       },
       "layoutPosition": {
         "x": -600,
-        "y": -60
+        "y": 60
       }
     }
   ],
@@ -691,7 +691,7 @@
       },
       "layoutPosition": {
         "x": -1260,
-        "y": 330
+        "y": -330
       },
       "propagate": false
     },
@@ -706,7 +706,7 @@
       },
       "layoutPosition": {
         "x": -1410,
-        "y": 450
+        "y": -450
       },
       "propagate": false
     },
@@ -721,7 +721,7 @@
       },
       "layoutPosition": {
         "x": -1320,
-        "y": 390
+        "y": -390
       },
       "propagate": false
     },
@@ -736,7 +736,7 @@
       },
       "layoutPosition": {
         "x": -1950,
-        "y": -120
+        "y": 120
       },
       "propagate": false
     },
@@ -751,7 +751,7 @@
       },
       "layoutPosition": {
         "x": -2310,
-        "y": -60
+        "y": 60
       },
       "propagate": false
     },
@@ -762,7 +762,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -180,
-        "y": 2070
+        "y": -2070
       },
       "schematicPosition": {
         "x": 60,
@@ -777,7 +777,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -240,
-        "y": 2130
+        "y": -2130
       },
       "schematicPosition": {
         "x": 60,
@@ -792,7 +792,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -300,
-        "y": 2190
+        "y": -2190
       },
       "schematicPosition": {
         "x": 60,
@@ -807,7 +807,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -450,
-        "y": 2310
+        "y": -2310
       },
       "schematicPosition": {
         "x": 1380,
@@ -822,7 +822,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -390,
-        "y": 2250
+        "y": -2250
       },
       "schematicPosition": {
         "x": 1380,
@@ -837,7 +837,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -510,
-        "y": 2370
+        "y": -2370
       },
       "schematicPosition": {
         "x": 1380,
@@ -852,7 +852,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -600,
-        "y": 2430
+        "y": -2430
       },
       "schematicPosition": {
         "x": 1380,
@@ -867,7 +867,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -120,
-        "y": 2010
+        "y": -2010
       },
       "schematicPosition": {
         "x": 1380,
@@ -1365,7 +1365,7 @@
       "id": "sp_cruise_ladder",
       "layoutPosition": {
         "x": -720,
-        "y": -30
+        "y": 30
       },
       "schematicPosition": {
         "x": 1170,
@@ -1384,7 +1384,7 @@
       },
       "layoutPosition": {
         "x": -120,
-        "y": -30
+        "y": 30
       }
     }
   ],
@@ -1395,7 +1395,7 @@
       "locationId": "bp_1140",
       "layoutPosition": {
         "x": -810,
-        "y": -30
+        "y": 30
       },
       "schematicPosition": {
         "x": 720,
@@ -1544,105 +1544,105 @@
       "id": "bp_900",
       "layoutPosition": {
         "x": -1950,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
         "x": -1710,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
         "x": -1590,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
         "x": -1350,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
         "x": -1260,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
         "x": -1020,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
         "x": -900,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
         "x": -810,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
         "x": -720,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
         "x": -600,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1230",
       "layoutPosition": {
         "x": -120,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_fl_brake_sw",
       "layoutPosition": {
         "x": -2310,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_fl_clutch_sw",
       "layoutPosition": {
         "x": -1950,
-        "y": -30
+        "y": 30
       }
     },
     {
       "id": "bp_fl_cruise_stalk",
       "layoutPosition": {
         "x": -1260,
-        "y": 90
+        "y": -90
       }
     },
     {
       "id": "bp_at_ecu_a",
       "layoutPosition": {
         "x": -1440,
-        "y": 30
+        "y": -30
       }
     }
   ],

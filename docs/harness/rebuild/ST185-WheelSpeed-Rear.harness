@@ -110,7 +110,7 @@
       },
       "layoutPosition": {
         "x": 1170,
-        "y": 450
+        "y": -450
       }
     },
     {
@@ -138,7 +138,7 @@
       },
       "layoutPosition": {
         "x": 450,
-        "y": -450
+        "y": 450
       }
     },
     {
@@ -190,7 +190,7 @@
       },
       "layoutPosition": {
         "x": 810,
-        "y": -120
+        "y": 120
       }
     },
     {
@@ -242,7 +242,7 @@
       "partId": "cp_lp16_5f",
       "layoutPosition": {
         "x": 1170,
-        "y": -120
+        "y": 120
       },
       "schematicPosition": {
         "x": 480,
@@ -892,14 +892,14 @@
           "id": "lp_r_o1",
           "layoutPosition": {
             "x": 1170,
-            "y": -180
+            "y": 180
           }
         },
         {
           "id": "lp_r_o2",
           "layoutPosition": {
             "x": 810,
-            "y": -180
+            "y": 180
           }
         }
       ],
@@ -918,7 +918,7 @@
           "id": "lp_r_l1",
           "layoutPosition": {
             "x": 1170,
-            "y": 330
+            "y": -330
           }
         }
       ],
@@ -937,35 +937,35 @@
           "id": "lp_r_r1",
           "layoutPosition": {
             "x": 450,
-            "y": -330
+            "y": 330
           }
         },
         {
           "id": "lp_r_r2",
           "layoutPosition": {
             "x": 450,
-            "y": 270
+            "y": -270
           }
         },
         {
           "id": "lp_r_r3",
           "layoutPosition": {
             "x": 1110,
-            "y": 270
+            "y": -270
           }
         },
         {
           "id": "lp_r_r4",
           "layoutPosition": {
             "x": 1110,
-            "y": 90
+            "y": -90
           }
         },
         {
           "id": "lp_r_r5",
           "layoutPosition": {
             "x": 1140,
-            "y": 60
+            "y": -60
           }
         }
       ],
@@ -985,7 +985,7 @@
       },
       "layoutPosition": {
         "x": 1050,
-        "y": 120
+        "y": -120
       }
     }
   ],
@@ -1026,7 +1026,7 @@
       "width": 210,
       "layoutPosition": {
         "x": 330,
-        "y": -60
+        "y": 60
       }
     }
   ],

@@ -8,7 +8,7 @@
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R152).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R153).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -162,7 +162,7 @@ $env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 ```bash
 python docs/harness/check_all.py          # harness gates; --check mode, never writes
 python docs/harness/audit_wire_spacing.py # no wire routing points RP1 (R141), layout spacing W2 (R107)
-python docs/harness/audit_layout.py      # layout view: front right (R140), overlaps / hidden bundles / own labels (R107); re-place: layout_tree.py / layout_trunk.py
+python docs/harness/audit_layout.py      # layout view: front right, true top view (R140, R153), overlaps / hidden bundles / own labels (R107); re-place: layout_tree.py / layout_trunk.py
 python bench/check_parity.py              # CAN contract parity
 python tune/scripts/validate_tune.py      # tune seed tables (needs PyYAML)
 python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-only)
@@ -187,7 +187,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 - harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v1.2 `.harness` / `.harnesslib` - the files follow the desktop app's current schema, DECISIONS R111), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
 - Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
 - No wire routing points (the white crosses on hover) unless Dan asks; harness.design auto-routes every wire (DECISIONS R141, which retires R86 and `route_wires.py`; the drawings keep the real insulation colours). Gate `docs/harness/audit_wire_spacing.py` RP1 (in `check_all.py`); strip with `python docs/harness/strip_routing_points.py --write`. Bundle layout points are not routing points (Dan kept 13). Path model of the app's routing: `docs/harness/wire_paths.py`. Snapshots: the app's Export > PDF; agents' fallback PNG `docs/harness/render_schematic.py`.
-- Layout views have the front of the car on the RIGHT, passenger side up (DECISIONS R140, replaces R107(a)); a bundle never runs along its own end's label (labels show to the right of their node; `audit_layout.py` Y5).
+- Layout views have the front of the car on the RIGHT, a true top view: driver side up, passenger side down (DECISIONS R140, R153; replaces R107(a)); a bundle never runs along its own end's label (labels show to the right of their node; `audit_layout.py` Y5).
 - Every wire carries its circuit's ident bands (`identColors`, Blue / Yellow / White) and bundles ending at a connector carry a printed end label (DECISIONS R87; circuits in `docs/harness/interfaces.json` "identBands"; gate `docs/harness/audit_ident_bands.py`, in `check_all.py`). The band code goes at every end of the circuit.
 - The deliverable for each harness is its `.harness` file in `docs/harness/rebuild/` (DECISIONS R88, amended 2026-10-15, K5): ident bands, end labels, title block and notes stay; there is no PDF export step and no gate for it (`pdfExportSettings` stays in the files, unchecked).
 - The part library is the master (Daniel, 2026-10-12): change a part in `docs/harness/rebuild/ST185.harnesslib` FIRST, then copy it into the drawings, in the same PR; any difference between a drawing's part and the library fails, no exceptions (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).

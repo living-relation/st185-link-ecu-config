@@ -1088,7 +1088,7 @@
       ],
       "layoutPosition": {
         "x": 2610,
-        "y": 300
+        "y": -300
       },
       "schematicPosition": {
         "x": 330,
@@ -1116,7 +1116,7 @@
       ],
       "layoutPosition": {
         "x": 2670,
-        "y": 2430
+        "y": -2430
       },
       "schematicPosition": {
         "x": 0,
@@ -1144,7 +1144,7 @@
       ],
       "layoutPosition": {
         "x": 1860,
-        "y": 210
+        "y": -210
       },
       "schematicPosition": {
         "x": 0,
@@ -1172,7 +1172,7 @@
       ],
       "layoutPosition": {
         "x": 2670,
-        "y": 1770
+        "y": -1770
       },
       "schematicPosition": {
         "x": 0,
@@ -1197,7 +1197,7 @@
       ],
       "layoutPosition": {
         "x": 3030,
-        "y": 2700
+        "y": -2700
       },
       "schematicPosition": {
         "x": 60,
@@ -1225,7 +1225,7 @@
       ],
       "layoutPosition": {
         "x": 2310,
-        "y": 150
+        "y": -150
       },
       "schematicPosition": {
         "x": 990,
@@ -1250,7 +1250,7 @@
       ],
       "layoutPosition": {
         "x": 2190,
-        "y": 2400
+        "y": -2400
       },
       "schematicPosition": {
         "x": 0,
@@ -1269,7 +1269,7 @@
       },
       "layoutPosition": {
         "x": 1410,
-        "y": 210
+        "y": -210
       },
       "cavities": [
         {
@@ -1309,7 +1309,7 @@
       ],
       "layoutPosition": {
         "x": 1920,
-        "y": 2550
+        "y": -2550
       },
       "schematicPosition": {
         "x": 60,
@@ -1362,7 +1362,7 @@
       ],
       "layoutPosition": {
         "x": 2490,
-        "y": -1980
+        "y": 1980
       },
       "schematicPosition": {
         "x": 1530,
@@ -1378,7 +1378,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2910,
-        "y": -1620
+        "y": 1620
       },
       "schematicPosition": {
         "x": 480,
@@ -1393,7 +1393,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2850,
-        "y": -1680
+        "y": 1680
       },
       "schematicPosition": {
         "x": 480,
@@ -1408,7 +1408,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2640,
-        "y": -1860
+        "y": 1860
       },
       "schematicPosition": {
         "x": 480,
@@ -1423,7 +1423,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2580,
-        "y": -1920
+        "y": 1920
       },
       "schematicPosition": {
         "x": 480,
@@ -1438,7 +1438,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2760,
-        "y": -1740
+        "y": 1740
       },
       "schematicPosition": {
         "x": 480,
@@ -1453,7 +1453,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2700,
-        "y": -1800
+        "y": 1800
       },
       "schematicPosition": {
         "x": 480,
@@ -1468,7 +1468,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 3030,
-        "y": -1500
+        "y": 1500
       },
       "schematicPosition": {
         "x": 480,
@@ -1483,7 +1483,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2970,
-        "y": -1560
+        "y": 1560
       },
       "schematicPosition": {
         "x": 480,
@@ -3041,7 +3041,7 @@
       "partId": "spp_solder_generic",
       "layoutPosition": {
         "x": 3090,
-        "y": 2610
+        "y": -2610
       },
       "schematicPosition": {
         "x": 2250,
@@ -3055,7 +3055,7 @@
       "locationId": "be_570",
       "layoutPosition": {
         "x": 3090,
-        "y": 1080
+        "y": -1080
       },
       "schematicPosition": {
         "x": 2250,
@@ -3068,7 +3068,7 @@
       "locationId": "be_870",
       "layoutPosition": {
         "x": 1860,
-        "y": 360
+        "y": -360
       },
       "schematicPosition": {
         "x": 2250,
@@ -3081,7 +3081,7 @@
       "locationId": "be_750",
       "layoutPosition": {
         "x": 3090,
-        "y": 720
+        "y": -720
       },
       "schematicPosition": {
         "x": 930,
@@ -3094,7 +3094,7 @@
       "locationId": "be_750",
       "layoutPosition": {
         "x": 2970,
-        "y": 780
+        "y": -780
       },
       "schematicPosition": {
         "x": 930,
@@ -3336,189 +3336,189 @@
       "id": "bp_420",
       "layoutPosition": {
         "x": 2550,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
         "x": 2460,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "bp_480",
       "layoutPosition": {
         "x": 2370,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "bp_510",
       "layoutPosition": {
         "x": 2280,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "bp_540",
       "layoutPosition": {
         "x": 1920,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "be_330",
       "layoutPosition": {
         "x": 2190,
-        "y": 2490
+        "y": -2490
       }
     },
     {
       "id": "be_360",
       "layoutPosition": {
         "x": 2550,
-        "y": 2490
+        "y": -2490
       }
     },
     {
       "id": "bp_390",
       "layoutPosition": {
         "x": 2640,
-        "y": 2490
+        "y": -2490
       }
     },
     {
       "id": "be_420",
       "layoutPosition": {
         "x": 2760,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "be_450",
       "layoutPosition": {
         "x": 2850,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "be_480",
       "layoutPosition": {
         "x": 3030,
-        "y": 2610
+        "y": -2610
       }
     },
     {
       "id": "be_510",
       "layoutPosition": {
         "x": 3030,
-        "y": 1740
+        "y": -1740
       }
     },
     {
       "id": "be_540",
       "layoutPosition": {
         "x": 3030,
-        "y": 1170
+        "y": -1170
       }
     },
     {
       "id": "be_570",
       "layoutPosition": {
         "x": 3030,
-        "y": 1080
+        "y": -1080
       }
     },
     {
       "id": "be_600",
       "layoutPosition": {
         "x": 3030,
-        "y": 1020
+        "y": -1020
       }
     },
     {
       "id": "be_630",
       "layoutPosition": {
         "x": 3030,
-        "y": 960
+        "y": -960
       }
     },
     {
       "id": "be_660",
       "layoutPosition": {
         "x": 3030,
-        "y": 900
+        "y": -900
       }
     },
     {
       "id": "be_690",
       "layoutPosition": {
         "x": 3030,
-        "y": 840
+        "y": -840
       }
     },
     {
       "id": "be_720",
       "layoutPosition": {
         "x": 3030,
-        "y": 780
+        "y": -780
       }
     },
     {
       "id": "be_750",
       "layoutPosition": {
         "x": 3030,
-        "y": 720
+        "y": -720
       }
     },
     {
       "id": "be_810",
       "layoutPosition": {
         "x": 2310,
-        "y": 300
+        "y": -300
       }
     },
     {
       "id": "be_840",
       "layoutPosition": {
         "x": 2220,
-        "y": 300
+        "y": -300
       }
     },
     {
       "id": "be_870",
       "layoutPosition": {
         "x": 1860,
-        "y": 300
+        "y": -300
       }
     },
     {
       "id": "be_900",
       "layoutPosition": {
         "x": 1770,
-        "y": 300
+        "y": -300
       }
     },
     {
       "id": "be_930",
       "layoutPosition": {
         "x": 1410,
-        "y": 300
+        "y": -300
       }
     },
     {
       "id": "bp_at_turbospd",
       "layoutPosition": {
         "x": 2640,
-        "y": 2640
+        "y": -2640
       }
     },
     {
       "id": "bp_rev_sw",
       "layoutPosition": {
         "x": 2310,
-        "y": 240
+        "y": -240
       }
     }
   ],

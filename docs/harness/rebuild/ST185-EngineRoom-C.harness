@@ -1349,7 +1349,7 @@
       },
       "layoutPosition": {
         "x": 1890,
-        "y": 600
+        "y": -600
       },
       "cavities": [
         {
@@ -1381,7 +1381,7 @@
       },
       "layoutPosition": {
         "x": 5670,
-        "y": 3090
+        "y": -3090
       },
       "cavities": [
         {
@@ -1402,7 +1402,7 @@
       },
       "layoutPosition": {
         "x": 6360,
-        "y": 3150
+        "y": -3150
       },
       "cavities": [
         {
@@ -1468,7 +1468,7 @@
       ],
       "layoutPosition": {
         "x": 5070,
-        "y": 630
+        "y": -630
       },
       "schematicPosition": {
         "x": 1980,
@@ -1485,7 +1485,7 @@
       },
       "layoutPosition": {
         "x": 5670,
-        "y": 3030
+        "y": -3030
       },
       "cavities": [
         {
@@ -1506,7 +1506,7 @@
       },
       "layoutPosition": {
         "x": 6150,
-        "y": 3090
+        "y": -3090
       },
       "cavities": [
         {
@@ -1528,7 +1528,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 1140
+        "y": -1140
       },
       "cavities": [
         {
@@ -1556,7 +1556,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 1200
+        "y": -1200
       },
       "cavities": [
         {
@@ -1585,7 +1585,7 @@
       },
       "layoutPosition": {
         "x": 2310,
-        "y": 690
+        "y": -690
       },
       "propagate": false
     },
@@ -1599,7 +1599,7 @@
       },
       "layoutPosition": {
         "x": 2040,
-        "y": 1140
+        "y": -1140
       },
       "propagate": false
     },
@@ -1613,7 +1613,7 @@
       },
       "layoutPosition": {
         "x": 2310,
-        "y": 750
+        "y": -750
       },
       "propagate": false
     },
@@ -1627,7 +1627,7 @@
       },
       "layoutPosition": {
         "x": 2040,
-        "y": 1230
+        "y": -1230
       },
       "propagate": false
     },
@@ -1642,7 +1642,7 @@
       },
       "layoutPosition": {
         "x": 3750,
-        "y": 630
+        "y": -630
       },
       "partId": "tp_lug_m10_4",
       "propagate": false
@@ -1658,7 +1658,7 @@
       },
       "layoutPosition": {
         "x": 3090,
-        "y": 630
+        "y": -630
       },
       "partId": "tp_lug_m10_8",
       "propagate": false
@@ -1674,7 +1674,7 @@
       },
       "layoutPosition": {
         "x": 5520,
-        "y": 2460
+        "y": -2460
       },
       "partId": "tp_lug_m8_8",
       "propagate": false
@@ -1690,7 +1690,7 @@
       },
       "layoutPosition": {
         "x": 5520,
-        "y": 2280
+        "y": -2280
       },
       "partId": "tp_lug_m8_8",
       "propagate": false
@@ -1706,7 +1706,7 @@
       },
       "layoutPosition": {
         "x": 5730,
-        "y": 2850
+        "y": -2850
       },
       "partId": "tp_lug_m8_4",
       "propagate": false
@@ -1722,7 +1722,7 @@
       },
       "layoutPosition": {
         "x": 2190,
-        "y": 3210
+        "y": -3210
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -1738,7 +1738,7 @@
       },
       "layoutPosition": {
         "x": 2040,
-        "y": 1350
+        "y": -1350
       },
       "partId": "tp_lug_m10_50",
       "propagate": false
@@ -1754,7 +1754,7 @@
       },
       "layoutPosition": {
         "x": 6090,
-        "y": 3480
+        "y": -3480
       },
       "propagate": false
     },
@@ -1769,7 +1769,7 @@
       },
       "layoutPosition": {
         "x": 6090,
-        "y": 3630
+        "y": -3630
       },
       "propagate": false
     },
@@ -1784,7 +1784,7 @@
       },
       "layoutPosition": {
         "x": 6090,
-        "y": 3750
+        "y": -3750
       },
       "propagate": false
     },
@@ -1799,7 +1799,7 @@
       },
       "layoutPosition": {
         "x": 6090,
-        "y": 3420
+        "y": -3420
       },
       "propagate": false
     },
@@ -1814,7 +1814,7 @@
       },
       "layoutPosition": {
         "x": 6090,
-        "y": 3540
+        "y": -3540
       },
       "propagate": false
     },
@@ -1829,7 +1829,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 3690
+        "y": -3690
       },
       "propagate": false
     },
@@ -1844,7 +1844,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 3750
+        "y": -3750
       },
       "propagate": false
     },
@@ -1859,7 +1859,7 @@
       },
       "layoutPosition": {
         "x": 2430,
-        "y": 3480
+        "y": -3480
       },
       "propagate": false
     },
@@ -1870,7 +1870,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2040,
-        "y": 2910
+        "y": -2910
       },
       "schematicPosition": {
         "x": 60,
@@ -1885,7 +1885,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2040,
-        "y": 3120
+        "y": -3120
       },
       "schematicPosition": {
         "x": 60,
@@ -1900,7 +1900,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 4410,
-        "y": 630
+        "y": -630
       },
       "schematicPosition": {
         "x": 2040,
@@ -1915,7 +1915,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2310,
-        "y": 990
+        "y": -990
       },
       "schematicPosition": {
         "x": 2700,
@@ -1930,7 +1930,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2310,
-        "y": 900
+        "y": -900
       },
       "schematicPosition": {
         "x": 2700,
@@ -1945,7 +1945,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1410
+        "y": -1410
       },
       "schematicPosition": {
         "x": 0,
@@ -1960,7 +1960,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1470
+        "y": -1470
       },
       "schematicPosition": {
         "x": 0,
@@ -1975,7 +1975,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1530
+        "y": -1530
       },
       "schematicPosition": {
         "x": 0,
@@ -1990,7 +1990,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1590
+        "y": -1590
       },
       "schematicPosition": {
         "x": 0,
@@ -2005,7 +2005,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1650
+        "y": -1650
       },
       "schematicPosition": {
         "x": 0,
@@ -2020,7 +2020,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1740
+        "y": -1740
       },
       "schematicPosition": {
         "x": 0,
@@ -2035,7 +2035,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1830
+        "y": -1830
       },
       "schematicPosition": {
         "x": 0,
@@ -2050,7 +2050,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 1920
+        "y": -1920
       },
       "schematicPosition": {
         "x": 0,
@@ -2065,7 +2065,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 2010
+        "y": -2010
       },
       "schematicPosition": {
         "x": 0,
@@ -2080,7 +2080,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 2100
+        "y": -2100
       },
       "schematicPosition": {
         "x": 0,
@@ -2095,7 +2095,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 2220
+        "y": -2220
       },
       "schematicPosition": {
         "x": 0,
@@ -2114,7 +2114,7 @@
       },
       "layoutPosition": {
         "x": 6090,
-        "y": 3210
+        "y": -3210
       },
       "propagate": false
     },
@@ -2125,7 +2125,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 6090,
-        "y": 3330
+        "y": -3330
       },
       "schematicPosition": {
         "x": 0,
@@ -2140,7 +2140,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 2340
+        "y": -2340
       },
       "schematicPosition": {
         "x": 0,
@@ -2159,7 +2159,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 3810
+        "y": -3810
       },
       "propagate": false
     },
@@ -2174,7 +2174,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 3870
+        "y": -3870
       },
       "propagate": false
     },
@@ -2189,7 +2189,7 @@
       },
       "layoutPosition": {
         "x": 2430,
-        "y": 3420
+        "y": -3420
       },
       "propagate": false
     },
@@ -2204,7 +2204,7 @@
       },
       "layoutPosition": {
         "x": 2670,
-        "y": 3180
+        "y": -3180
       },
       "propagate": false
     },
@@ -2219,7 +2219,7 @@
       },
       "layoutPosition": {
         "x": 2400,
-        "y": 810
+        "y": -810
       },
       "propagate": false
     },
@@ -2234,7 +2234,7 @@
       },
       "layoutPosition": {
         "x": 5580,
-        "y": 300
+        "y": -300
       },
       "propagate": false
     },
@@ -2249,7 +2249,7 @@
       },
       "layoutPosition": {
         "x": 5790,
-        "y": 1260
+        "y": -1260
       },
       "propagate": false
     },
@@ -2264,7 +2264,7 @@
       },
       "layoutPosition": {
         "x": 5520,
-        "y": 2580
+        "y": -2580
       },
       "partId": "tp_ring_m8_22_16",
       "propagate": false
@@ -2280,7 +2280,7 @@
       },
       "layoutPosition": {
         "x": 5520,
-        "y": 2400
+        "y": -2400
       },
       "partId": "tp_ring_m8_22_16",
       "propagate": false
@@ -2292,7 +2292,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2310,
-        "y": 1080
+        "y": -1080
       },
       "schematicPosition": {
         "x": 2700,
@@ -2307,7 +2307,7 @@
       "width": 390,
       "layoutPosition": {
         "x": 2490,
-        "y": 2460
+        "y": -2460
       },
       "schematicPosition": {
         "x": 0,
@@ -2326,7 +2326,7 @@
       },
       "layoutPosition": {
         "x": 2670,
-        "y": 3270
+        "y": -3270
       },
       "propagate": false
     },
@@ -2342,7 +2342,7 @@
       },
       "layoutPosition": {
         "x": 2430,
-        "y": 3330
+        "y": -3330
       },
       "propagate": false
     },
@@ -2358,7 +2358,7 @@
       },
       "layoutPosition": {
         "x": 2430,
-        "y": 3540
+        "y": -3540
       },
       "propagate": false
     },
@@ -2374,7 +2374,7 @@
       },
       "layoutPosition": {
         "x": 2430,
-        "y": 3630
+        "y": -3630
       },
       "propagate": false
     },
@@ -2390,7 +2390,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4830
+        "y": -4830
       },
       "propagate": false
     },
@@ -2406,7 +2406,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 5040
+        "y": -5040
       },
       "propagate": false
     },
@@ -2422,7 +2422,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4620
+        "y": -4620
       },
       "propagate": false
     },
@@ -2438,7 +2438,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4530
+        "y": -4530
       },
       "propagate": false
     },
@@ -2454,7 +2454,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 3930
+        "y": -3930
       },
       "propagate": false
     },
@@ -2470,7 +2470,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4020
+        "y": -4020
       },
       "propagate": false
     },
@@ -2486,7 +2486,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4110
+        "y": -4110
       },
       "propagate": false
     },
@@ -2502,7 +2502,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4200
+        "y": -4200
       },
       "propagate": false
     },
@@ -2518,7 +2518,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4290
+        "y": -4290
       },
       "propagate": false
     },
@@ -2534,7 +2534,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4380
+        "y": -4380
       },
       "propagate": false
     },
@@ -2550,7 +2550,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4500
+        "y": -4500
       },
       "propagate": false
     },
@@ -2566,7 +2566,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 4620
+        "y": -4620
       },
       "propagate": false
     },
@@ -2582,7 +2582,7 @@
       },
       "layoutPosition": {
         "x": 2640,
-        "y": 2580
+        "y": -2580
       },
       "propagate": false
     },
@@ -2598,7 +2598,7 @@
       },
       "layoutPosition": {
         "x": 2640,
-        "y": 2520
+        "y": -2520
       },
       "propagate": false
     },
@@ -2614,7 +2614,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 960
+        "y": -960
       },
       "propagate": false
     },
@@ -2630,7 +2630,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 1080
+        "y": -1080
       },
       "propagate": false
     },
@@ -2646,7 +2646,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 1020
+        "y": -1020
       },
       "propagate": false
     },
@@ -2662,7 +2662,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1320
+        "y": -1320
       },
       "propagate": false
     },
@@ -2678,7 +2678,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1440
+        "y": -1440
       },
       "propagate": false
     },
@@ -2694,7 +2694,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1380
+        "y": -1380
       },
       "propagate": false
     },
@@ -2710,7 +2710,7 @@
       },
       "layoutPosition": {
         "x": 5580,
-        "y": 450
+        "y": -450
       },
       "propagate": false
     },
@@ -2726,7 +2726,7 @@
       },
       "layoutPosition": {
         "x": 5580,
-        "y": 870
+        "y": -870
       },
       "propagate": false
     },
@@ -2742,7 +2742,7 @@
       },
       "layoutPosition": {
         "x": 5790,
-        "y": 2070
+        "y": -2070
       },
       "propagate": false
     },
@@ -2758,7 +2758,7 @@
       },
       "layoutPosition": {
         "x": 5790,
-        "y": 2220
+        "y": -2220
       },
       "propagate": false
     },
@@ -2774,7 +2774,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 600
+        "y": -600
       },
       "propagate": false
     },
@@ -2790,7 +2790,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 720
+        "y": -720
       },
       "propagate": false
     },
@@ -2806,7 +2806,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 510
+        "y": -510
       },
       "propagate": false
     },
@@ -2822,7 +2822,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 810
+        "y": -810
       },
       "propagate": false
     },
@@ -2838,7 +2838,7 @@
       },
       "layoutPosition": {
         "x": 5700,
-        "y": 660
+        "y": -660
       },
       "propagate": false
     },
@@ -2854,7 +2854,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1590
+        "y": -1590
       },
       "propagate": false
     },
@@ -2870,7 +2870,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1710
+        "y": -1710
       },
       "propagate": false
     },
@@ -2886,7 +2886,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1500
+        "y": -1500
       },
       "propagate": false
     },
@@ -2902,7 +2902,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1800
+        "y": -1800
       },
       "propagate": false
     },
@@ -2918,7 +2918,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1650
+        "y": -1650
       },
       "propagate": false
     },
@@ -2934,7 +2934,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1860
+        "y": -1860
       },
       "propagate": false
     },
@@ -2950,7 +2950,7 @@
       },
       "layoutPosition": {
         "x": 5910,
-        "y": 1920
+        "y": -1920
       },
       "propagate": false
     },
@@ -2966,7 +2966,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4770
+        "y": -4770
       },
       "propagate": false
     },
@@ -2982,7 +2982,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4890
+        "y": -4890
       },
       "propagate": false
     },
@@ -2998,7 +2998,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4710
+        "y": -4710
       },
       "propagate": false
     },
@@ -3014,7 +3014,7 @@
       },
       "layoutPosition": {
         "x": 2940,
-        "y": 4950
+        "y": -4950
       },
       "propagate": false
     },
@@ -3030,7 +3030,7 @@
       },
       "layoutPosition": {
         "x": 5730,
-        "y": 2910
+        "y": -2910
       },
       "propagate": false
     },
@@ -3046,7 +3046,7 @@
       },
       "layoutPosition": {
         "x": 5730,
-        "y": 2970
+        "y": -2970
       },
       "propagate": false
     },
@@ -3062,7 +3062,7 @@
       },
       "layoutPosition": {
         "x": 5520,
-        "y": 2790
+        "y": -2790
       },
       "propagate": false
     },
@@ -3077,7 +3077,7 @@
       },
       "layoutPosition": {
         "x": 4560,
-        "y": 750
+        "y": -750
       },
       "propagate": false
     },
@@ -3092,7 +3092,7 @@
       },
       "layoutPosition": {
         "x": 4560,
-        "y": 810
+        "y": -810
       },
       "propagate": false
     },
@@ -3107,7 +3107,7 @@
       },
       "layoutPosition": {
         "x": 4560,
-        "y": 690
+        "y": -690
       },
       "propagate": false
     },
@@ -3123,7 +3123,7 @@
       },
       "layoutPosition": {
         "x": 2130,
-        "y": 2970
+        "y": -2970
       },
       "propagate": false
     },
@@ -3139,7 +3139,7 @@
       },
       "layoutPosition": {
         "x": 2130,
-        "y": 3060
+        "y": -3060
       },
       "propagate": false
     },
@@ -3154,7 +3154,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 2730
+        "y": -2730
       },
       "propagate": false
     },
@@ -3169,7 +3169,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 2880
+        "y": -2880
       },
       "propagate": false
     },
@@ -3184,7 +3184,7 @@
       },
       "layoutPosition": {
         "x": 2490,
-        "y": 3030
+        "y": -3030
       },
       "propagate": false
     }
@@ -4668,7 +4668,7 @@
       },
       "layoutPosition": {
         "x": 5550,
-        "y": 1110
+        "y": -1110
       }
     },
     {
@@ -4681,7 +4681,7 @@
       },
       "layoutPosition": {
         "x": 5370,
-        "y": 1230
+        "y": -1230
       }
     },
     {
@@ -4694,7 +4694,7 @@
       },
       "layoutPosition": {
         "x": 5370,
-        "y": 1170
+        "y": -1170
       }
     },
     {
@@ -4707,7 +4707,7 @@
       },
       "layoutPosition": {
         "x": 5370,
-        "y": 1290
+        "y": -1290
       }
     },
     {
@@ -4720,7 +4720,7 @@
       },
       "layoutPosition": {
         "x": 5310,
-        "y": 1230
+        "y": -1230
       }
     },
     {
@@ -4733,7 +4733,7 @@
       },
       "layoutPosition": {
         "x": 5310,
-        "y": 1170
+        "y": -1170
       }
     },
     {
@@ -4746,7 +4746,7 @@
       },
       "layoutPosition": {
         "x": 5400,
-        "y": 570
+        "y": -570
       }
     },
     {
@@ -4759,7 +4759,7 @@
       },
       "layoutPosition": {
         "x": 5790,
-        "y": 1530
+        "y": -1530
       }
     },
     {
@@ -4772,7 +4772,7 @@
       },
       "layoutPosition": {
         "x": 5400,
-        "y": 510
+        "y": -510
       }
     },
     {
@@ -4785,7 +4785,7 @@
       },
       "layoutPosition": {
         "x": 5790,
-        "y": 1770
+        "y": -1770
       }
     }
   ],
@@ -5342,336 +5342,336 @@
       "id": "bp_120",
       "layoutPosition": {
         "x": 6150,
-        "y": 3150
+        "y": -3150
       }
     },
     {
       "id": "bp_150",
       "layoutPosition": {
         "x": 5670,
-        "y": 3480
+        "y": -3480
       }
     },
     {
       "id": "bp_180",
       "layoutPosition": {
         "x": 5430,
-        "y": 3120
+        "y": -3120
       }
     },
     {
       "id": "bp_210",
       "layoutPosition": {
         "x": 5430,
-        "y": 2820
+        "y": -2820
       }
     },
     {
       "id": "bp_240",
       "layoutPosition": {
         "x": 5430,
-        "y": 2430
+        "y": -2430
       }
     },
     {
       "id": "bp_270",
       "layoutPosition": {
         "x": 5430,
-        "y": 2250
+        "y": -2250
       }
     },
     {
       "id": "bp_300",
       "layoutPosition": {
         "x": 5430,
-        "y": 1230
+        "y": -1230
       }
     },
     {
       "id": "bp_330",
       "layoutPosition": {
         "x": 5430,
-        "y": 1170
+        "y": -1170
       }
     },
     {
       "id": "bp_360",
       "layoutPosition": {
         "x": 5430,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_390",
       "layoutPosition": {
         "x": 4980,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_420",
       "layoutPosition": {
         "x": 4920,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_450",
       "layoutPosition": {
         "x": 4230,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_660",
       "layoutPosition": {
         "x": 4170,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_690",
       "layoutPosition": {
         "x": 4110,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_720",
       "layoutPosition": {
         "x": 3510,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_750",
       "layoutPosition": {
         "x": 3450,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_780",
       "layoutPosition": {
         "x": 2850,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_810",
       "layoutPosition": {
         "x": 2790,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_840",
       "layoutPosition": {
         "x": 2730,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
         "x": 2670,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
         "x": 1950,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
         "x": 1890,
-        "y": 1110
+        "y": -1110
       }
     },
     {
       "id": "bp_990",
       "layoutPosition": {
         "x": 1890,
-        "y": 1380
+        "y": -1380
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
         "x": 1890,
-        "y": 2880
+        "y": -2880
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
         "x": 1890,
-        "y": 3090
+        "y": -3090
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
         "x": 1890,
-        "y": 3150
+        "y": -3150
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
         "x": 1890,
-        "y": 3210
+        "y": -3210
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
         "x": 1890,
-        "y": 3450
+        "y": -3450
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
         "x": 1980,
-        "y": 3480
+        "y": -3480
       }
     },
     {
       "id": "bp_1200",
       "layoutPosition": {
         "x": 2280,
-        "y": 3270
+        "y": -3270
       }
     },
     {
       "id": "bp_185",
       "layoutPosition": {
         "x": 5430,
-        "y": 3000
+        "y": -3000
       }
     },
     {
       "id": "bp_125",
       "layoutPosition": {
         "x": 5940,
-        "y": 3150
+        "y": -3150
       }
     },
     {
       "id": "bp_fl_ac_press",
       "layoutPosition": {
         "x": 5940,
-        "y": 3480
+        "y": -3480
       }
     },
     {
       "id": "bp_fl_oem_ie1",
       "layoutPosition": {
         "x": 1890,
-        "y": 3660
+        "y": -3660
       }
     },
     {
       "id": "bp_fl_oem_jb1_1i",
       "layoutPosition": {
         "x": 2280,
-        "y": 3480
+        "y": -3480
       }
     },
     {
       "id": "bp_fl_oem_rb2",
       "layoutPosition": {
         "x": 2580,
-        "y": 3270
+        "y": -3270
       }
     },
     {
       "id": "bp_fl_oem_rb4",
       "layoutPosition": {
         "x": 2310,
-        "y": 810
+        "y": -810
       }
     },
     {
       "id": "bp_horn",
       "layoutPosition": {
         "x": 5550,
-        "y": 1200
+        "y": -1200
       }
     },
     {
       "id": "bp_f8",
       "layoutPosition": {
         "x": 5790,
-        "y": 1380
+        "y": -1380
       }
     },
     {
       "id": "bp_r3",
       "layoutPosition": {
         "x": 5790,
-        "y": 1650
+        "y": -1650
       }
     },
     {
       "id": "bp_w1",
       "layoutPosition": {
         "x": 5790,
-        "y": 1920
+        "y": -1920
       }
     },
     {
       "id": "bp_f7",
       "layoutPosition": {
         "x": 5580,
-        "y": 1020
+        "y": -1020
       }
     },
     {
       "id": "bp_r2",
       "layoutPosition": {
         "x": 5580,
-        "y": 660
+        "y": -660
       }
     },
     {
       "id": "bp_f9",
       "layoutPosition": {
         "x": 2700,
-        "y": 4830
+        "y": -4830
       }
     },
     {
       "id": "bp_fl_w1",
       "layoutPosition": {
         "x": 2490,
-        "y": 2580
+        "y": -2580
       }
     },
     {
       "id": "bp_alt",
       "layoutPosition": {
         "x": 4410,
-        "y": 750
+        "y": -750
       }
     },
     {
       "id": "bp_fl_ig2",
       "layoutPosition": {
         "x": 2040,
-        "y": 3060
+        "y": -3060
       }
     },
     {
       "id": "bp_l_pass",
       "layoutPosition": {
         "x": 2490,
-        "y": 4830
+        "y": -4830
       }
     }
   ],

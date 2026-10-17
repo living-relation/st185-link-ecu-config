@@ -1547,7 +1547,7 @@
       ],
       "layoutPosition": {
         "x": -1140,
-        "y": -240
+        "y": 240
       },
       "schematicPosition": {
         "x": 2310,
@@ -2268,7 +2268,7 @@
       },
       "layoutPosition": {
         "x": -1350,
-        "y": -1320
+        "y": 1320
       }
     },
     {
@@ -2314,7 +2314,7 @@
       ],
       "layoutPosition": {
         "x": -780,
-        "y": 150
+        "y": -150
       },
       "schematicPosition": {
         "x": 450,
@@ -2335,7 +2335,7 @@
       },
       "layoutPosition": {
         "x": -1830,
-        "y": 1740
+        "y": -1740
       },
       "propagate": false
     },
@@ -2350,7 +2350,7 @@
       },
       "layoutPosition": {
         "x": -2130,
-        "y": 60
+        "y": -60
       },
       "propagate": false
     },
@@ -2365,7 +2365,7 @@
       },
       "layoutPosition": {
         "x": -2130,
-        "y": 6660
+        "y": -6660
       },
       "propagate": false
     },
@@ -2380,7 +2380,7 @@
       },
       "layoutPosition": {
         "x": -2130,
-        "y": 150
+        "y": -150
       },
       "propagate": false
     },
@@ -2395,7 +2395,7 @@
       },
       "layoutPosition": {
         "x": -2130,
-        "y": 6750
+        "y": -6750
       },
       "propagate": false
     },
@@ -2405,7 +2405,7 @@
       "signal": "ECU GND -> cabin chassis",
       "layoutPosition": {
         "x": -1230,
-        "y": 90
+        "y": -90
       },
       "schematicPosition": {
         "x": 3750,
@@ -2422,7 +2422,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -2400,
-        "y": -1890
+        "y": 1890
       },
       "schematicPosition": {
         "x": 3000,
@@ -2437,7 +2437,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -2400,
-        "y": -1650
+        "y": 1650
       },
       "schematicPosition": {
         "x": 3000,
@@ -2452,7 +2452,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -810,
-        "y": -300
+        "y": 300
       },
       "schematicPosition": {
         "x": 3000,
@@ -2467,7 +2467,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1830,
-        "y": -1860
+        "y": 1860
       },
       "schematicPosition": {
         "x": 3000,
@@ -2482,7 +2482,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1290,
-        "y": -1260
+        "y": 1260
       },
       "schematicPosition": {
         "x": 630,
@@ -2497,7 +2497,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1230,
-        "y": -1200
+        "y": 1200
       },
       "schematicPosition": {
         "x": 630,
@@ -2512,7 +2512,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -810,
-        "y": -480
+        "y": 480
       },
       "schematicPosition": {
         "x": 3000,
@@ -2527,7 +2527,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -2490,
-        "y": -1950
+        "y": 1950
       },
       "schematicPosition": {
         "x": 3000,
@@ -2542,7 +2542,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -870,
-        "y": 210
+        "y": -210
       },
       "schematicPosition": {
         "x": 4710,
@@ -2557,7 +2557,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1680,
-        "y": -180
+        "y": 180
       },
       "schematicPosition": {
         "x": 3570,
@@ -2572,7 +2572,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1590,
-        "y": 90
+        "y": -90
       },
       "schematicPosition": {
         "x": 3570,
@@ -2587,7 +2587,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -2490,
-        "y": -1590
+        "y": 1590
       },
       "schematicPosition": {
         "x": 3000,
@@ -2602,7 +2602,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -210,
-        "y": 210
+        "y": -210
       },
       "schematicPosition": {
         "x": 1470,
@@ -2617,7 +2617,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -120,
-        "y": 150
+        "y": -150
       },
       "schematicPosition": {
         "x": 1470,
@@ -2632,7 +2632,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1590,
-        "y": -360
+        "y": 360
       },
       "schematicPosition": {
         "x": 2130,
@@ -2647,7 +2647,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -2310,
-        "y": -360
+        "y": 360
       },
       "schematicPosition": {
         "x": 2130,
@@ -2662,7 +2662,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -3030,
-        "y": -360
+        "y": 360
       },
       "schematicPosition": {
         "x": 2130,
@@ -2677,7 +2677,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1950,
-        "y": -360
+        "y": 360
       },
       "schematicPosition": {
         "x": 2130,
@@ -2692,7 +2692,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -2670,
-        "y": -360
+        "y": 360
       },
       "schematicPosition": {
         "x": 2130,
@@ -2707,7 +2707,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1770,
-        "y": 1680
+        "y": -1680
       },
       "schematicPosition": {
         "x": 4110,
@@ -2722,7 +2722,7 @@
       "width": 390,
       "layoutPosition": {
         "x": -1590,
-        "y": -120
+        "y": 120
       },
       "schematicPosition": {
         "x": 3570,
@@ -4430,14 +4430,14 @@
       "locationId": "bp_960",
       "layoutPosition": {
         "x": -750,
-        "y": -30
+        "y": 30
       }
     },
     {
       "id": "sp_5v",
       "layoutPosition": {
         "x": -870,
-        "y": -390
+        "y": 390
       },
       "schematicPosition": {
         "x": 3480,
@@ -4454,7 +4454,7 @@
       },
       "layoutPosition": {
         "x": -1110,
-        "y": -300
+        "y": 300
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_a"
@@ -4463,7 +4463,7 @@
       "id": "sp_8v",
       "layoutPosition": {
         "x": -870,
-        "y": -450
+        "y": 450
       },
       "schematicPosition": {
         "x": 2940,
@@ -4476,7 +4476,7 @@
       "id": "sp_sw12",
       "layoutPosition": {
         "x": -1830,
-        "y": -1710
+        "y": 1710
       },
       "schematicPosition": {
         "x": 3420,
@@ -4489,7 +4489,7 @@
       "id": "sp_gndout",
       "layoutPosition": {
         "x": -2040,
-        "y": -1830
+        "y": 1830
       },
       "schematicPosition": {
         "x": 4080,
@@ -4502,7 +4502,7 @@
       "id": "sp_chassis",
       "layoutPosition": {
         "x": -2340,
-        "y": -1830
+        "y": 1830
       },
       "schematicPosition": {
         "x": 3600,
@@ -4517,7 +4517,7 @@
       "locationId": "bp_840",
       "layoutPosition": {
         "x": -120,
-        "y": -30
+        "y": 30
       },
       "schematicPosition": {
         "x": 2760,
@@ -4530,7 +4530,7 @@
       "locationId": "bp_840",
       "layoutPosition": {
         "x": -60,
-        "y": 90
+        "y": -90
       },
       "schematicPosition": {
         "x": 2790,
@@ -4543,7 +4543,7 @@
       "locationId": "b_bp_900",
       "layoutPosition": {
         "x": -870,
-        "y": -330
+        "y": 330
       },
       "schematicPosition": {
         "x": 3450,
@@ -4554,7 +4554,7 @@
       "id": "sp_ac_psw",
       "layoutPosition": {
         "x": -1890,
-        "y": -210
+        "y": 210
       },
       "schematicPosition": {
         "x": 4230,
@@ -4571,7 +4571,7 @@
       "locationId": "bp_1050",
       "layoutPosition": {
         "x": -1590,
-        "y": -420
+        "y": 420
       },
       "schematicPosition": {
         "x": 510,
@@ -5014,98 +5014,98 @@
       "id": "bp_840",
       "layoutPosition": {
         "x": -120,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_870",
       "layoutPosition": {
         "x": -210,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_900",
       "layoutPosition": {
         "x": -330,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
         "x": -420,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
         "x": -780,
-        "y": 30
+        "y": -30
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
         "x": -1230,
-        "y": -270
+        "y": 270
       }
     },
     {
       "id": "bp_1050",
       "layoutPosition": {
         "x": -1590,
-        "y": -270
+        "y": 270
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
         "x": -1950,
-        "y": -270
+        "y": 270
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
         "x": -2310,
-        "y": -270
+        "y": 270
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
         "x": -2670,
-        "y": -270
+        "y": 270
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
         "x": -3030,
-        "y": -270
+        "y": 270
       }
     },
     {
       "id": "bp_fl_acamp",
       "layoutPosition": {
         "x": -1770,
-        "y": -210
+        "y": 210
       }
     },
     {
       "id": "b_bp_870",
       "layoutPosition": {
         "x": -450,
-        "y": -390
+        "y": 390
       }
     },
     {
       "id": "b_bp_900",
       "layoutPosition": {
         "x": -810,
-        "y": -390
+        "y": 390
       }
     },
     {
@@ -5126,28 +5126,28 @@
       "id": "b_bp_1080",
       "layoutPosition": {
         "x": -1830,
-        "y": -1770
+        "y": 1770
       }
     },
     {
       "id": "b_bp_1110",
       "layoutPosition": {
         "x": -1950,
-        "y": -1770
+        "y": 1770
       }
     },
     {
       "id": "b_bp_1140",
       "layoutPosition": {
         "x": -2040,
-        "y": -1770
+        "y": 1770
       }
     },
     {
       "id": "b_bp_1170",
       "layoutPosition": {
         "x": -2400,
-        "y": -1770
+        "y": 1770
       }
     },
     {
@@ -5161,14 +5161,14 @@
       "id": "bp_at_bh_b_fw",
       "layoutPosition": {
         "x": -330,
-        "y": -390
+        "y": 390
       }
     },
     {
       "id": "bp_at_ecu_b",
       "layoutPosition": {
         "x": -1470,
-        "y": -1770
+        "y": 1770
       }
     }
   ],

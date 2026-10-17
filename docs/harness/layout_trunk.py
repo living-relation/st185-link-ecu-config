@@ -18,7 +18,9 @@ Splices, resistors and diodes (no bundle) go next to their location as in layout
 
 Hints: layout_hints.json, same entry as layout_tree.py plus "mode": "trunk", optional
 "fan_max" (default 14) and "dir": {node: "right" | "left" | "up" | "down" | "up-right" | "down-right"} for the bundle from a
-trunk node's parent to it.
+trunk node's parent to it. Like layout_tree.py, it works in the passenger-up frame and flips the
+drawing top to bottom on read and write (lt.flip_top_bottom), so the file stays a true top view
+(DECISIONS R153: driver side up, passenger side down).
 
     python docs/harness/layout_trunk.py EngineRoom-C [--write | --out DIR]
 """
@@ -265,6 +267,7 @@ def main(argv):
             nl = "\r\n" if b"\r\n" in f.read(4096) else "\n"
         with open(path, encoding="utf-8") as f:
             d = json.load(f)
+        lt.flip_top_bottom(d)   # true top view (R153) -> the passenger-up frame the hints use
         hint = dict(hints[loom])
         ends = {b["id"]: b["targetId"] for b in d.get("bundles", [])}
         hint["loose"] = dict({x["id"]: ends[x["locationId"]] for k in ("splices", "resistors", "diodes")
@@ -275,6 +278,7 @@ def main(argv):
         for b in d.get("bundles", []):
             if b.get("layoutPoints") and (b["sourceId"] in pos or b["targetId"] in pos):
                 del b["layoutPoints"]
+        lt.flip_top_bottom(d)   # and back
         bad = audit_layout.check(loom, d) + audit_wire_spacing.check_layout(loom, d) + \
             [b for b in audit_drawing_rules.check(loom, d) if b.startswith(("L1", "G1"))]
         for b in bad:
