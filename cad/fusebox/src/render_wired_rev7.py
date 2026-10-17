@@ -270,7 +270,7 @@ def run(_context: str):
                 for b in o.bRepBodies:
                     if kd.startswith(('Base', 'Cover', 'Pan')):
                         printed.setdefault(box, []).append((kd.split('_')[0], b, bbox(b)))
-                    elif kd.startswith(('Bar', 'Pad', 'Strip', 'Standoff', 'Lug', 'LugBolt', 'BarBolt', 'SetScrew', 'Nut', 'Washer', 'FlangeBolt')):
+                    elif kd.startswith(('Bar', 'Pad', 'Strip', 'Strap', 'Standoff', 'Lug', 'LugBolt', 'EarBolt', 'BarBolt', 'SetScrew', 'Nut', 'Washer', 'FlangeBolt')):
                         metal.setdefault(box, []).append((kd, b, bbox(b)))
                     elif kd.startswith(('Fuse', 'Relay')):
                         pullers.setdefault(box, []).append((kd, b, bbox(b)))
