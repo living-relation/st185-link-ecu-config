@@ -69,10 +69,11 @@ def cylz(x, y, z0, z1, d):
     return cyl((x, y, z0), (x, y, z1), d)
 
 
-def hexz(x, y, z0, z1, af):
-    h = rbox(x, y, z0, z1, af * 2, af, 0)
+def hexz(x, y, z0, z1, af, rot=0):
+    """Hex prism along z; rot 0 = corners on the x axis, rot 90 = flats facing +-x."""
+    h = rbox(x, y, z0, z1, af * 2, af, rot)
     for ang in (60, 120):
-        bo(h, rbox(x, y, z0, z1, af * 2, af, ang), 'i')
+        bo(h, rbox(x, y, z0, z1, af * 2, af, rot + ang), 'i')
     return h
 
 
@@ -345,7 +346,7 @@ def open_doc():
     raise RuntimeError('fusebox document not found - R74: do not create a new one')
 
 
-def build(out_dir, save=True, renders=True, rev=6):
+def build(out_dir, save=True, renders=True, rev=6, msg=None):
     REV[0] = rev
     R7 = S.REV7 if rev == 7 else None
     DIM = {'D': S.D, 'snaps_rear': None,   # rev 7: the POWER box is deeper; the shared shell / pan / cover helpers read DIM
@@ -490,13 +491,50 @@ def build(out_dir, save=True, renders=True, rev=6):
                 elif d < G['reach']:
                     near_.append((i, j, d))
         cuts = [box(z[2], z[4], z[0], z[3], z[5], z[1]) for h in hs for z in h['abs']]
+        all_z = [z for h in hs for z in h['abs']]
+
+        def diagonal_solid(p, q, lo, hi, gx, gy, clip_=False, e=0.05):
+            """Sweep C1 / C3: leave the bridge between diagonal zones p, q (x0, x1, y0, y1) out? Yes when its narrow side is under GAP_OPEN,
+            or when at one of the two zone corners it would meet, both off-diagonal neighbours of that corner are PA12 (no other zone cut
+            there over these heights) - the void would then meet itself along an edge."""
+            if min(gx, gy) < S.GAP_OPEN:
+                return True
+            if clip_:           # the R123 retainer clip's leg pockets (cut below) open these corners
+                return False
+            zm = (lo + hi) / 2
+            act = [z for z in all_z if z[0] <= zm <= z[1]]
+            sx = 1 if q[0] >= p[1] else -1
+            sy = 1 if q[2] >= p[3] else -1
+            for (cx_, cy_) in ((p[1] if sx > 0 else p[0], p[3] if sy > 0 else p[2]), (q[0] if sx > 0 else q[1], q[2] if sy > 0 else q[3])):
+                pts = [(cx_ + sx * e, cy_ - sy * e), (cx_ - sx * e, cy_ + sy * e)]
+                if not any(z[2] <= px_ <= z[3] and z[4] <= py_ <= z[5] for (px_, py_) in pts for z in act):
+                    return True
+            return False
         bridges = {}
         for (i, j, under) in edges:
             for (lo, hi, p, q, g) in under:
                 if g <= 0:
                     continue                                # the zones already overlap
-                xs_ = sorted([max(p[0], q[0]), min(p[1], q[1])]) if min(p[1], q[1]) > max(p[0], q[0]) else sorted([min(p[1], q[1]), max(p[0], q[0])])
-                ys_ = sorted([max(p[2], q[2]), min(p[3], q[3])]) if min(p[3], q[3]) > max(p[2], q[2]) else sorted([min(p[3], q[3]), max(p[2], q[2])])
+                ox = min(p[1], q[1]) - max(p[0], q[0])      # > 0: the zones overlap in x (side by side in y), < 0: x gap
+                oy = min(p[3], q[3]) - max(p[2], q[2])
+                clip_ = all(c_['cav'].split()[0] in S.RETAIN.get(box_name, []) for c_ in (hs[i], hs[j]))   # R123 clip: its leg pockets open the corners
+                if REV[0] == 7 and ox <= 0 and oy <= 0 and diagonal_solid(p, q, lo, hi, -ox, -oy, clip_):
+                    # SteveCAD sweep C1 / C3 (Dan 2026-10-16: "FILL SOLID"): diagonal neighbours (apart in x AND in y) whose bridge would be a
+                    # slit under GAP_OPEN (POWER R2 - R7 85 / 86 to 87: 0.3 / 0.375, under MJF's 0.5 least gap), or would touch a cavity only
+                    # along a corner edge with nothing else cut round it (a zero-thickness joint: LOGIC Bus 2 outputs to the micro relay 85,
+                    # x 48.1), get no bridge - that corner stays solid. Other diagonal bridges (R1 30 to 85 / 86) are kept as they were.
+                    report.setdefault('diagonal_joins_solid', {}).setdefault(box_name, []).append(
+                        [a_['cav'] for a_ in (hs[i], hs[j])] + [round(g, 2), round(lo, 2), round(hi, 2)])
+                    continue
+                xs_ = sorted([max(p[0], q[0]), min(p[1], q[1])]) if ox > 0 else sorted([min(p[1], q[1]), max(p[0], q[0])])
+                ys_ = sorted([max(p[2], q[2]), min(p[3], q[3])]) if oy > 0 else sorted([min(p[3], q[3]), max(p[2], q[2])])
+                if REV[0] == 7:   # S6: a bridge whose opening (the zones' shared length) is under GAP_OPEN would be a powder-trap throat
+                    for (rng, o_) in ((xs_, ox), (ys_, oy)):
+                        if 0 < o_ < S.GAP_OPEN:
+                            m_ = (rng[0] + rng[1]) / 2
+                            rng[0], rng[1] = m_ - S.GAP_OPEN / 2, m_ + S.GAP_OPEN / 2
+                            report.setdefault('bridge_throats_opened', {}).setdefault(box_name, []).append(
+                                [a_['cav'] for a_ in (hs[i], hs[j])] + [round(o_, 3), round(lo, 2), round(hi, 2)])
                 cuts.append(box(xs_[0], ys_[0], lo, xs_[1], ys_[1], hi))
                 bridges.setdefault(root_(i), []).append((lo, hi, xs_[0], xs_[1], ys_[0], ys_[1]))
         islands = []
@@ -513,6 +551,15 @@ def build(out_dir, save=True, renders=True, rev=6):
             for (lo, hi, x0_, x1_, y0_, y1_) in st_:
                 cuts.append(box(x0_ - 0.01, y0_ - 0.01, lo, x1_ + 0.01, y1_ + 0.01, hi))
             report.setdefault('cavity_strips_cut', {})[box_name] = [[round(v, 2) for v in s_] for s_ in st_]
+            for z in [z for h in hs for z in h['abs']]:   # sweep 2026-10-17: a 2.0 - 3.0 strip left between a cavity and the pan groove (kept: under 2.0 is cut)
+                lo_, hi_ = max(z[0], z_d), min(z[1], zg_)
+                if hi_ <= lo_:
+                    continue
+                for (gp_, bx_) in ((z[2] - m_, (m_, z[2], z[4], z[5])), (Lb - m_ - z[3], (z[3], Lb - m_, z[4], z[5])),
+                                   (z[4] - m_, (z[2], z[3], m_, z[4])), (Db - m_ - z[5], (z[2], z[3], z[5], Db - m_))):
+                    if HO['min_wall'] <= gp_ < 3.0:
+                        exempt('%s_Base_PA12_printed' % box_name.capitalize(), 'groove strip', bx_[0] - 0.3, bx_[1] + 0.3, bx_[2] - 0.3, bx_[3] + 0.3,
+                               lo_ - 0.3, hi_ + 0.3, S.PLACE[box_name], only='A')
         cuts += groove_join((S.LOGIC if box_name == 'LOGIC' else S.POWER)['L'], z_d, [z for h in hs for z in h['abs']])
         collars = []
         if plate_b is not None:
@@ -1271,9 +1318,16 @@ def build(out_dir, save=True, renders=True, rev=6):
         for r in relays:
             parts.append(cbox(r['cx'] + 1.3, r['cy'], z_d, plate_b + 0.01, 21.1 + 2 * T + (2.0 if r['B'] else 0), 19.7 + 2 * T))
         parts.append(cbox(acps[0], acps[1], z_d, plate_b + 0.01, 6.0 + 3.0 + 2 * T, 4.6 + 2 * T))
+        CL = S.COLLAR
         for a in ami:                                            # standoff bosses, both rows (hex hole = anti-rotation)
             if True:
                 parts.append(cylz(a['x_out'], a['y'], z_d, plate_b + 0.01, SO['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
+            # stud retention (Dan 2026-10-16): collar from the deck underside down to CL['gap'] over the standoff's bottom end (= the lug palm
+            # top), so the bolted lug stops the column rising; spec.COLLAR
+            a['cz0'] = a['lz'] + 2.0 + CL['gap']
+            parts.append(cylz(a['x_out'], a['y'], a['cz0'], z_d + 0.01, CL['od']))
+        report['stud_retention'] = dict(collar_od=CL['od'], gap=CL['gap'], wall=CL['wall'], bore_rot=CL['rot'], columns=len(ami),
+                                        collar_z=[round(min(a['cz0'] for a in ami), 2), round(z_d, 2)])
         if R7:            # rev 7: the bus bar terminals - M8 on the POS bar (BAT+ IN, RADLOK+, spare) and on the NEG bar
             NB = R7['neg_bar']
             m8_pos = [(xb, y_, 8) for (y_, _n, _h) in R7['pos_studs']]
@@ -1317,6 +1371,10 @@ def build(out_dir, save=True, renders=True, rev=6):
                     kind='saddle', at=[round(ccx - rs / 2, 1), round(a['y'], 1)], before=round(c0, 3), web=c0 < S.FLOAT_BACKING,
                     after=round(after, 3)))
             bo(core, top_, 'u')
+            for sy in (-1, 1):   # sweep 2026-10-17: the 2.0 lips (R127 amendment keeps both) meet the saddle core along its whole curve
+                ya_, yb_ = a['y'] + sy * (od / 2 + 0.5), a['y'] + sy * lw_
+                exempt(pre + 'Base_PA12_printed', 'saddle lip', ccx - S.R_SADDLE - od - 2.3, ccx + 0.3, min(ya_, yb_) - 0.3, max(ya_, yb_) + 0.3,
+                       ccz - S.R_SADDLE - od - 2.3, z_d + 0.3, sh, only='A')
             # R127 amendment (Dan 2026-10-16: "i liked the curved saddles. you should've kept those, just supported them underneath and cut out the
             # thin walls near the top"): the saddle keeps its whole curve and both lips (as before #268) and is carried by the block above it
             # (R101 back up into the deck plate); only near the top, where the relay's 30 cavity comes down into it, the saddle is cut away
@@ -1366,9 +1424,22 @@ def build(out_dir, save=True, renders=True, rev=6):
             if R7:   # R127 sweep: the fuse-body recess floor level with the pad seat (0.4 under the body, was 0.6) - no 0.2 shelf between them
                 zb_ami = max(zb_ami, pz0)
             cuts.append(cbox(xc, a['y'], zb_ami, z_t + 1, S.AMI['body_l'] + 1, S.AMI['body_w'] + 1))
-            cuts.append(hexz(a['x_out'], a['y'], z_d - 1, pz0 + 0.01, SO['af'] + 2 * S.CLR))
+            cuts.append(hexz(a['x_out'], a['y'], a['cz0'] - 1, pz0 + 0.01, SO['af'] + 2 * S.CLR, CL['rot']))   # bore: collar bottom -> pad
             r3_ = (SO['af'] + 2 * S.CLR) / math.sqrt(3.0)
-            cuts += groove_join(L, z_d, [(z_d - 1, pz0, a['x_out'] - r3_, a['x_out'] + r3_, a['y'] - (SO['af'] + 2 * S.CLR) / 2, a['y'] + (SO['af'] + 2 * S.CLR) / 2)], r3_)
+            hx_, hy_ = ((SO['af'] + 2 * S.CLR) / 2, r3_) if CL['rot'] == 90 else (r3_, (SO['af'] + 2 * S.CLR) / 2)
+            cuts += groove_join(L, z_d, [(z_d - 1, pz0, a['x_out'] - hx_, a['x_out'] + hx_, a['y'] - hy_, a['y'] + hy_)], max(hx_, hy_))
+            if a['amps']:     # notch the collar round the lug's barrel start (ring_lug: the barrel starts l - tip - 9 out), up to the barrel top
+                lg_ = S.LUG_6AWG if S.AMI_AWG[a['name']] == 6 else LUG
+                b0_ = lg_['l'] - lg_['tip'] - 9.0 - CL['notch_clr']
+                if b0_ < CL['od'] / 2:
+                    # a full-width slab (a notch only as wide as the barrel left slivers of the round collar beside it)
+                    xa_, xb_ = a['x_out'] + a['sgn'] * b0_, a['x_out'] + a['sgn'] * (CL['od'] / 2 + 1.0)
+                    hw_, zn_ = CL['od'] / 2 + 1.0, a['lz'] + lg_['d4'] + CL['notch_clr']
+                    cuts.append(box(min(xa_, xb_), a['y'] - hw_, a['cz0'] - 1, max(xa_, xb_), a['y'] + hw_, zn_))
+                    xw_ = a['x_out'] + a['sgn'] * (SO['af'] / 2 + S.CLR)          # the bore flat facing the barrel
+                    exempt(pre + 'Base_PA12_printed', 'collar notch', min(xw_, xa_) - 0.3, max(xw_, xa_) + 0.3, a['y'] - CL['od'] / 2 - 0.3,
+                           a['y'] + CL['od'] / 2 + 0.3, a['cz0'] - 0.3, zn_ + 0.3, sh, only='A')
+                    report['stud_retention'].setdefault('barrel_notch', []).append(dict(at=a['name'], row=a['row'], wall=round(b0_ - (SO['af'] + 2 * S.CLR) / 2, 2)))
         for (bx_, by_, m) in bar_bolts:
             cuts.append(hexz(bx_, by_, z_d - 1, bz0 + 0.01, HD[m]['af'] + 2 * S.CLR))
             af_ = HD[m]['af'] + 2 * S.CLR    # R127 sweep: the head goes in from below; under the head a pocket near the groove runs into it
@@ -1392,6 +1463,8 @@ def build(out_dir, save=True, renders=True, rev=6):
             pins = [(0, 7.65, 11.5, 3.2), (0, -10.25, 11.5, 3.2), (-8.45, -0.25, 2.8, 8.3), (8.45, -0.25, 2.8, 8.3)]
             if r['B']:
                 pins.append((0, S.RELAY_B['v87a'], 8.3, 2.8))
+                x7_ = r['cx'] - S.RELAY_B['v87a']     # sweep 2026-10-17: the PA12 between the 87a cavity and the 85 / 86 cavities (pin spacing)
+                exempt(pre + 'Base_PA12_printed', 'relay cavity web', x7_ - 3.0, x7_ + 3.0, r['cy'] - 8.0, r['cy'] + 8.0, z_d - 0.5, z_t + 0.1, sh, only='A')
             for (u, v, lx, ly) in pins:
                 zs0 = slot_z0('POWER', r['cx'] - v, r['cy'] + u, z_d, z_t, S.TERM['42281-1']['L'])
                 cuts.append(cbox(r['cx'] - v, r['cy'] + u, zs0, z_t + 1, ly, lx))
@@ -1420,7 +1493,7 @@ def build(out_dir, save=True, renders=True, rev=6):
                 bo(nbar, cylz(bx_, by_, bz0 - 1, btop + 1, S.CLEAR[8]), 's')
             edge_break(comp(pre + 'BarNeg_%s_25x6p35_L105' % BM['name'], nbar, AP['tin'], MAT['cu'], sh))
         edge_break(comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pads, AP['tin'], MAT['cu'], sh))
-        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
+        comp(pre + 'Standoff_M5_FF_hex8_L%d_brass' % SO['long'], [bo(hexz(a['x_out'], a['y'], a['lz'] + 2.0, pz0, SO['af'], CL['rot']), cylz(a['x_out'], a['y'], a['lz'], pz0 + 1, 4.2), 's')
                                                                  for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
         z_ear = btop + S.AMI['ear_t']
         comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, bz0 + S.BOLT_L[m], float(m))])
@@ -1430,6 +1503,15 @@ def build(out_dir, save=True, renders=True, rev=6):
         comp(pre + 'LugBolt_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], a['lz'] - HD[5]['k'], a['lz'], HD[5]['af']),
                                                      cylz(a['x_out'], a['y'], a['lz'], a['lz'] + 10.0, 5.0)])
                                           for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # M5 x 10 both rows (rev 6: 40 mm standoffs)
+        # stud retention: a spare position has no lug - its M5 x 10 + an OD 15 washer under the standoff stop it rising into the collar
+        RW = S.RETAIN_WASHER
+        zw_ = {id(a): a['lz'] + 2.0 - RW['t'] for a in ami if not a['amps']}
+        comp(pre + 'LugBolt_spare_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], zw_[id(a)] - HD[5]['k'], zw_[id(a)], HD[5]['af']),
+                                                           cylz(a['x_out'], a['y'], zw_[id(a)], zw_[id(a)] + 10.0, 5.0)])
+                                                for a in ami if not a['amps']], AP['al'], MAT['ss'], sh)
+        comp(pre + 'Washer_DIN7349_M5_spare', [bo(cylz(a['x_out'], a['y'], zw_[id(a)], zw_[id(a)] + RW['t'], RW['od']),
+                                                  cylz(a['x_out'], a['y'], zw_[id(a)] - 1, zw_[id(a)] + RW['t'] + 1, RW['id']), 's')
+                                               for a in ami if not a['amps']], AP['al'], MAT['ss'], sh)
         nuts = [hexz(a['x_in'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         nuts += [hexz(a['x_out'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         for (bx_, by_, m) in ((m8_pos + m8_neg) if R7 else [(xb, S.IN_STUD_Y, 8)]):
@@ -1759,7 +1841,7 @@ def build(out_dir, save=True, renders=True, rev=6):
         comp(pre + 'Washer_DIN127B_M4', jw, AP['al'], MAT['ss'], sh)
         comp(pre + 'Wire_jumper_14AWG', jwire, AP['wire'], None, sh)
 
-        # ---- feeds: Klauke 2R5 on the strip's lug face, M5 x 10 into the tapped strip; wire straight out (BUS1 front, BUS2 rear)
+        # ---- feeds: Klauke 2R5 on the strip's lug face, M5 x 10 into the PEM nut in the strip (R129); wire straight out (BUS1 front, BUS2 rear)
         flugs, fbolts, fwires, pan_feed = [], [], [], []
         for col, f in S.FEED.items():
             v = strips[col]
@@ -2178,8 +2260,7 @@ def build(out_dir, save=True, renders=True, rev=6):
 
     if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
         if doc.dataFile.name == DOC7:
-            doc.save('rev 7: Dan N2 = A PEM self-clinching nuts in the LOGIC strips (S-M4-2ZI / SS-M5-2ZI; strips 8.2 apart, LOGIC +1.9 wide, rows z 12.8 / 17.8), '
-                     'N3 NEG GND stud 102.0 + bar 5 - 110 (1.5 mm between NEG lugs) (Claude Code 2026-10-16)')
+            doc.save(msg or 'rev 7 rebuild (Claude Code)')
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7
@@ -2375,7 +2456,7 @@ def render_all(out_dir, root, report, sizes):
     shot('fusebox_logic_explode.png', callouts=[
         (1, l_of('Cover', True), 'cover (snaps on)'), (2, l_of('Relay'), 'micro relays'), (3, l_of('Fuse_ATM_15A'), 'mini fuses'),
         (4, l_of('Base'), 'base: deck, cavity towers, spine between the strips'), (5, l_of('Strip_'), 'Bus 1 / Bus 2 strips on edge, slide in from the rear'),
-        (6, l_of('Lug_TE'), 'input jumper lugs, TE PIDG 53941-1'), (7, l_of('LugBolt_M4'), 'M4 x 8 + spring washer into the tapped strip'),
+        (6, l_of('Lug_TE'), 'input jumper lugs, TE PIDG 53941-1'), (7, l_of('LugBolt_M4'), 'M4 x 8 + spring washer into the PEM nut in the strip'),
         (8, l_of('Lug_Klauke'), 'feed lugs, M5 x 10 into the strip'), (9, l_of('Pan'), 'belly pan (snaps on)')],
         eye=(-330, -420, 240), target=(40.0, 90.0, 30.0))
     place({})

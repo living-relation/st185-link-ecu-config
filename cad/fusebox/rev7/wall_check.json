@@ -4,12 +4,17 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 840.7,
+   "volume_cm3": 881.9,
    "exempt": {
-    "seat lip": 1375,
-    "pan catch pocket": 116
+    "seat lip": 1327,
+    "pan catch pocket": 116,
+    "A groove strip": 1,
+    "A seat lip": 28,
+    "A saddle lip": 12,
+    "A relay cavity web": 1,
+    "A collar notch": 11
    },
-   "attach_skin": 59,
+   "attach_skin": 52,
    "walls": [],
    "attach": []
   },

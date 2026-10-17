@@ -28,9 +28,15 @@ per_target=1.01*math.pi*ID261
 G_IA=(per_target+(8-2*math.pi)*G_IR)/4 - G_IB
 G_OA, G_OB, G_OR = G_IA+G_W, G_IB+G_W, G_IR+G_W
 TAP_X, TAP_Y = 93.5, 67.5
-TAP_D, TAP_DRILL, TAP_THR = 4.2, 10.0, 7.5   # F08 (rev2): M5 tap drill 4.2 x 10 + 118 deg point, thread 7.5 = 1.5 x D (2 x D would break through)
+# SteveCAD sweep C4 (Dan 2026-10-16: "thread them ALL THE WAY THROUGH if that fits with the full assembly"): the 10 M5 taps go through the
+# 12.7 plate. It fits: every tap is outside the O-ring groove (x 93.5 > G_OA 88.1, y 67.5 > G_OB 62.25) and comes out on the solid engine face
+# (the pocket ends at x 76 / y 52), clear of the DRB16 plug envelope and the TE screw heads; the screw is chosen no longer than the thread, so
+# nothing stands out behind the plate. (F08 rev2 was a blind 4.2 x 10 drill, thread 7.5, leaving a 1.44 floor.)
+TAP_D, TAP_DRILL, TAP_THR = 4.2, T, T        # M5 tap drill 4.2 through, thread through (12.7 = 2.5 x D)
 HOLE_D = 6.6     # D1 (Dan): DRBF-1A flange M6 holes, ISO 273 medium clearance (TE shows 6.35)
-SCREW_NOTE = 'Firewall screws: M5 x 8 max, A2, qty 10, no part number (D5, F16): thread depth 7.5, a longer screw bottoms out.'
+SCREW_NOTE = ('Firewall screws: M5, A2, qty 10, no part number (D5, F16): tapped through the 12.7 plate - length = firewall sheet (+ washer) '
+              '+ 7.5 to 12.7 of thread (>= 1.5 x D, tip at or under the engine face), e.g. M5 x 12 on a 1 mm sheet. Thread sealant on each screw: '
+              'the holes are outside the O-ring and no longer blind.')
 taps=[(sx*TAP_X,sy*TAP_Y) for sx in (-1,1) for sy in (-1,1)]+[(sx*31.0,sy*TAP_Y) for sx in (-1,1) for sy in (-1,1)]+[(-TAP_X,0),(TAP_X,0)]
 
 def rrect(w,h,r,d,z0=0):
@@ -47,11 +53,10 @@ teh=cq.Workplane("XY").workplane(offset=-1).pushPoints([(sx*TE['hole_x']/2,sy*TE
 tools['te_holes']=teh
 groove=rrect(2*G_OA,2*G_OB,G_OR,G_D+1,-1).cut(rrect(2*G_IA,2*G_IB,G_IR,G_D+3,-2))
 tools['groove']=groove
-# blind tapped holes from firewall face (z=0), tap drill + 118deg point
-cone_h=(TAP_D/2)/math.tan(math.radians(59))
+# tapped holes through the plate (C4), tap drill modelled (the thread is a drawing callout)
 tp=None
 for (x,y) in taps:
-    s=cq.Solid.makeCylinder(TAP_D/2,TAP_DRILL+1,cq.Vector(x,y,-1)).fuse(cq.Solid.makeCone(TAP_D/2,0,cone_h,cq.Vector(x,y,TAP_DRILL)))
+    s=cq.Solid.makeCylinder(TAP_D/2,TAP_DRILL+2,cq.Vector(x,y,-1))
     tp=s if tp is None else tp.fuse(s)
 tools['taps']=cq.Workplane().add(tp)
 p=plate

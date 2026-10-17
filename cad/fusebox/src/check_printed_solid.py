@@ -15,11 +15,16 @@ Two checks, both must pass:
       the parts"): the baseline is 0 everywhere - every spot that has to stay thin is a named exemption (spec.WALL_EXEMPT, boxes recorded
       by the build), listed with its count, never a number to hide behind.
   S2  Mesh: when the exported STL files are on this PC (heavy CAD is gitignored; CI has none), each STL's triangles form one connected
-      piece (triangles joined by shared vertices). Skipped, with a note, when a file is missing.
+      piece (triangles joined by shared vertices), and no edge is shared by more than two triangles (a zero-thickness joint: two pieces
+      meeting only along a line, SteveCAD sweep C3). Skipped, with a note, when a file is missing.
+  S6  Gaps (SteveCAD sweep C1, Dan 2026-10-16: the 0.375 mm POWER base slots "FILL SOLID"): MJF needs >= GAP_MIN (0.5 mm) between two
+      faces of one part or the powder fuses / stays trapped. From the same STL: every pair of opposite, axis-aligned faces that face each
+      other across empty space closer than GAP_MIN fails, closer than GAP_FLAG (0.6) is listed. Skipped, with a note, when the STL is
+      missing. Spots inside a 'label' exemption box (the strokes of the etched cover text, R137) are counted, not failed.
     python cad/fusebox/src/check_printed_solid.py [--stl-dir DIR ...]
-Claude Code, 2026-10-15.
+Claude Code, 2026-10-15; S6 2026-10-17.
 """
-import json, os, struct, sys
+import bisect, json, os, struct, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -100,6 +105,114 @@ def pieces(tris):
     return sorted(grp.values(), key=lambda g: -g[0])
 
 
+def nonmanifold(tris):
+    """S2 (SteveCAD sweep C3): mesh edges shared by more than two triangles - two pieces of a solid meeting only along a line (a
+    zero-thickness joint, e.g. two cavity corners touching edge to edge). [(p, q, faces)]."""
+    e = {}
+    for (a, b, c) in tris:
+        for (u, v) in ((a, b), (b, c), (c, a)):
+            k = (u, v) if u < v else (v, u)
+            e[k] = e.get(k, 0) + 1
+    return [(k[0], k[1], n) for k, n in e.items() if n > 2]
+
+
+GAP_MIN, GAP_FLAG = 0.5, 0.6    # S6: HP MJF least gap between two faces of one part (fail below 0.5, list below 0.6)
+GAP_EXEMPT = ('label',)          # exemption keys whose boxes hold open etched strokes, not powder traps
+
+
+def _area(poly):
+    return abs(sum(poly[i - 1][0] * p[1] - p[0] * poly[i - 1][1] for i, p in enumerate(poly))) / 2.0
+
+
+def _tri_overlap(a, b):
+    """Overlap area of two 2D triangles: Sutherland-Hodgman clip of a by the inside half-plane of each edge of b."""
+    cr = (b[1][0] - b[0][0]) * (b[2][1] - b[0][1]) - (b[1][1] - b[0][1]) * (b[2][0] - b[0][0])
+    if abs(cr) < 1e-12:
+        return 0.0
+    sgn = 1.0 if cr > 0 else -1.0
+    poly = list(a)
+    for i in range(3):
+        p, q = b[i], b[(i + 1) % 3]
+
+        def side(r):            # > 0 inside b (left of p->q for a counter-clockwise b)
+            return sgn * ((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]))
+        out = []
+        for j, r in enumerate(poly):
+            s_ = poly[j - 1]
+            fr, fs = side(r), side(s_)
+            if (fr >= 0) != (fs >= 0):
+                t = fs / (fs - fr)
+                out.append((s_[0] + t * (r[0] - s_[0]), s_[1] + t * (r[1] - s_[1])))
+            if fr >= 0:
+                out.append(r)
+        poly = out
+        if len(poly) < 3:
+            return 0.0
+    return _area(poly)
+
+
+def gaps(tris, lo=GAP_FLAG, min_area=0.05):
+    """S6: narrow gaps between opposite axis-aligned faces of one mesh. A face's outward normal comes from its vertex order (STL
+    right-hand rule). Two faces facing each other (normals pointing at one another) closer than lo, whose projections overlap by
+    more than min_area mm2, bound a gap of empty space. Returns [(gap, axis, (x0, x1, y0, y1, z0, z1))] merged per gap and axis."""
+    faces = {k: {+1: [], -1: []} for k in range(3)}
+    for t in tris:
+        ux, uy, uz = (t[1][i] - t[0][i] for i in range(3))
+        vx, vy, vz = (t[2][i] - t[0][i] for i in range(3))
+        n = (uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx)
+        ln = (n[0] ** 2 + n[1] ** 2 + n[2] ** 2) ** 0.5
+        if ln < 1e-9:
+            continue
+        for k in range(3):
+            if abs(n[k]) / ln > 0.999:
+                o = [i for i in range(3) if i != k]
+                faces[k][1 if n[k] > 0 else -1].append((t[0][k], [(p[o[0]], p[o[1]]) for p in t], t))
+                break
+    found = []
+    for k in range(3):
+        neg = sorted(faces[k][-1], key=lambda f: f[0])
+        cs = [f[0] for f in neg]
+        for (c, tri2, t) in faces[k][+1]:            # +k face at c: empty space above it; a -k face just above closes the gap
+            i = bisect.bisect_right(cs, c + 1e-4)
+            while i < len(neg) and cs[i] < c + lo:
+                c2, tri2b, t2 = neg[i]
+                if min(max(p[0] for p in tri2), max(p[0] for p in tri2b)) > max(min(p[0] for p in tri2), min(p[0] for p in tri2b)) and \
+                   min(max(p[1] for p in tri2), max(p[1] for p in tri2b)) > max(min(p[1] for p in tri2), min(p[1] for p in tri2b)):
+                    if _tri_overlap(tri2, tri2b) > min_area:
+                        pts = list(t) + list(t2)
+                        bb = []
+                        for d in range(3):
+                            if d == k:
+                                bb += [c, c2]
+                            else:
+                                o = [p[d] for p in pts]
+                                bb += [min(o), max(o)]
+                        found.append((round(c2 - c, 3), k, tuple(round(v, 2) for v in bb)))
+                i += 1
+    merged = {}
+    for (g, k, bb) in found:                          # one entry per (gap, axis, face coordinate): union of the boxes
+        key = (g, k, bb[2 * k])
+        m = merged.get(key)
+        merged[key] = bb if m is None else tuple(min(m[j], bb[j]) if j % 2 == 0 else max(m[j], bb[j]) for j in range(6))
+    out = []
+    for (g, k, _), bb in sorted(merged.items()):      # split each union into separate spots (boxes that do not touch)
+        out.append((g, k, bb))
+    return _split(out)
+
+
+def _split(items):
+    """Merge boxes of one (gap, axis) that touch; keep apart those that do not."""
+    res = []
+    for (g, k, bb) in items:
+        for r in res:
+            if r[0] == g and r[1] == k and all(r[2][2 * d] <= bb[2 * d + 1] + 0.01 and bb[2 * d] <= r[2][2 * d + 1] + 0.01 for d in range(3)):
+                r[2] = [min(r[2][j], bb[j]) if j % 2 == 0 else max(r[2][j], bb[j]) for j in range(6)]
+                break
+        else:
+            res.append([g, k, list(bb)])
+    return [(g, k, tuple(round(v, 2) for v in bb)) for (g, k, bb) in res]
+
+
 def main(argv):
     dirs = [a for i, a in enumerate(argv) if i and argv[i - 1] == '--stl-dir']
     bad, notes = [], []
@@ -142,7 +255,7 @@ def main(argv):
                 bad.append('S4 %s: not in wall_check.json - re-run cad/check_printed_walls.py' % name)
                 continue
             v = (pp.get(name) or {}).get('volume_cm3')
-            if v is not None and abs(v - w['volume_cm3']) > 0.3:
+            if v is not None and abs(v - w['volume_cm3']) > max(0.3, 0.0005 * v):    # STL tessellation of round faces (the 14 standoff collars) loses ~0.3 cm3
                 bad.append('S4 %s: wall_check.json is stale (%.1f cm3, the build %.1f) - re-run cad/check_printed_walls.py' % (name, w['volume_cm3'], v))
                 continue
             mk = MARKED.get(name)
@@ -163,11 +276,28 @@ def main(argv):
         if path is None and dirs:
             path = next((os.path.join(r, name + '.stl') for r in roots if os.path.isfile(os.path.join(r, name + '.stl'))), None)
         if path is None:
-            notes.append('S2 %s: no STL on this PC - mesh check skipped' % name)
+            notes.append('S2 / S6 %s: no STL on this PC - mesh and gap checks skipped' % name)
             continue
-        ps = pieces(stl_triangles(path))
+        tris = stl_triangles(path)
+        ps = pieces(tris)
+        ex = [e['box'] for e in rep.get('wall_exempt') or [] if e['part'] == name and e['key'] in GAP_EXEMPT]
+        g_in, g_ex = [], 0
+        for (g, k, bb) in gaps(tris):
+            if any(all(b[2 * d] - 0.05 <= bb[2 * d] and bb[2 * d + 1] <= b[2 * d + 1] + 0.05 for d in range(3)) for b in ex):
+                g_ex += 1
+            else:
+                g_in.append((g, k, bb))
+        g_bad = [x for x in g_in if x[0] < GAP_MIN]
+        bad.extend('S6 %s: %.3f mm gap (< %.1f, MJF powder fuses / traps) across %s at x %.2f..%.2f y %.2f..%.2f z %.2f..%.2f' % (
+            name, g, GAP_MIN, 'xyz'[k], *bb) for (g, k, bb) in g_bad)
+        (bad if g_bad else notes).append('S6 %s: %d gap(s) < %.1f mm, %d between %.1f and %.1f%s%s' % (
+            name, len(g_bad), GAP_MIN, len(g_in) - len(g_bad), GAP_MIN, GAP_FLAG,
+            ''.join('; flag %.3f across %s at x %.2f..%.2f y %.2f..%.2f z %.2f..%.2f' % (g, 'xyz'[k], *bb) for (g, k, bb) in g_in if g >= GAP_MIN),
+            '; exempt label x%d' % g_ex if g_ex else ''))
+        nm_ = nonmanifold(tris)
+        bad.extend('S2 %s: zero-thickness joint (edge on %d faces) at %s - %s' % (name, n_, a_, b_) for (a_, b_, n_) in nm_[:12])
         if len(ps) == 1:
-            notes.append('S2 %s: one connected mesh (%d triangles)' % (name, ps[0][0]))
+            notes.append('S2 %s: one connected mesh (%d triangles), %d zero-thickness edges' % (name, ps[0][0], len(nm_)))
         else:
             bad.append('S2 %s: %d separate pieces - floating: %s' % (name, len(ps), '; '.join(
                 '%d tris at x %.1f..%.1f y %.1f..%.1f z %.1f..%.1f' % (g[0], g[1][0], g[2][0], g[1][1], g[2][1], g[1][2], g[2][2]) for g in ps[1:9])

@@ -94,6 +94,19 @@ STANDOFF = dict(af=8.0, long=40.0, thread=5, depth=10.0)    # brass hex standoff
 # Pad stud (OPEN-5): M5 x 20 DIN 916 A2 set screw, 9.5 into the standoff (1.9 x D, 0.5 short of its 10 mm thread), then pad 3.0 + AMI ear 0.8
 # + DIN 6923 nut 5.0, 1.7 past the nut (2 threads)
 SETSCREW = dict(l=20.0, in_so=9.5)
+# Stud retention (Dan 2026-10-16: "nothing holding the long fusebox copper studs/standoffs into their holes ... they can be pulled up
+# through the holes as far as the studs are long, until the bottom terminals make contact with the under side of the base"): the POWER
+# base grows a printed COLLAR round every 40 mm standoff, from the deck underside down to `gap` over the standoff's bottom end. The lug
+# (or, at a spare position, the M5 x 10 bolt + RETAIN_WASHER) is bolted to that end, so the column can rise `gap` at most before the lug
+# meets the collar; the pad on the deck stops it going down; the hex bore (now from the collar bottom to the pad) stops it turning.
+# The collar carries no clamp load and is not in the current path (pad -> standoff -> lug stays metal to metal, R73). Hex bore turned
+# 90 deg (flats facing the lug barrel) so the notch round the barrel start leaves `notch_wall` of PA12; wall 3.2 = an R127 >= 3 mm body.
+COLLAR = dict(gap=0.3, wall=3.2, rot=90, notch_clr=0.4)
+COLLAR['od'] = round((STANDOFF['af'] + 2 * 0.4) / math.cos(math.radians(30)) + 2 * COLLAR['wall'], 2)   # 16.56 (hex bore corners + 2 walls)
+# spare AMI positions have no lug: an M5 x 10 bolt + this washer stands in for it (OD > the bore's 10.16 across corners). Accu HDTW-M5-A2,
+# DIN 7349 M5 x 15 heavy duty flat washer, A2, ID 5.3, OD 15, T 1.4 (accu-components.com/us/metric-flat-washers/63173-HDTW-M5-A2, 2026-10-17)
+RETAIN_WASHER = dict(pn='Accu HDTW-M5-A2 (DIN 7349 M5 x 15 x 1.4, A2)', id=5.3, od=15.0, t=1.4,
+                     url='https://accu-components.com/us/metric-flat-washers/63173-HDTW-M5-A2')
 TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck underside (terminal cavity length)
 
 # ---------- logic zone (inboard): mini fuses + micro relays
@@ -135,10 +148,23 @@ WALL_EXEMPT = {
     'label': 'rev 4 etched names (Dan: "the lid labels were fine as they were"): the PA12 between letter strokes, 0.5 deep; the cover top under the text is 2.0',
     'notch at corner': 'a cable exit notch (its size and place set by its cable) runs into a rounded corner of the cover / pan: the notch side '
                        'meets the curved wall at a slant; widening it opens the corner, moving it moves the cable',
-    'relay cavity web': 'attachment only: the PA12 between the cavities of a micro relay - its size follows the TE pin spacing and the R120 hole '
-                        'sizes, and it joins the box at its corners between the cavities (2.0-2.9); the walls themselves pass W',
-    'strip lip': 'LOGIC bus strip lips: 0.9 between the strip (on it) and the belly-pan floor (0.45 under it); thicker moves the strips or the pan',
+    'relay cavity web': 'attachment only: the PA12 between the cavities of a micro relay (and between the 87a and 85 / 86 cavities of the POWER '
+                        'heater relay, Power Relay B pattern) - its size follows the TE pin spacing and the R120 hole sizes, and it joins the box '
+                        'at its corners between the cavities (2.0-2.9); the walls themselves pass W',
+    'saddle lip': 'attachment only: the 2.0 lips each side of a POWER bend saddle (R127 amendment: whole curve, both lips kept) meet the saddle '
+                  'core along the full curve; listed since the 2026-10-17 sweep filled the R2 - R7 slits, which split the thin network the '
+                  'checker had joined them to (geometry unchanged)',
+    'groove strip': 'attachment only: a 2.0 - 3.0 strip of PA12 between a terminal cavity and the groove the belly-pan wall slides up in, '
+                    'hanging from the deck block (R128 cuts such strips only under 2.0); the cavity and the pan set it (geometry unchanged, '
+                    'listed since the 2026-10-17 sweep)',
+    'strip lip': 'LOGIC spine lips the bus strips slide in on (from the rear): 0.9 thick (spec.SPINE lip_t, z 4.6 - 5.5), 0.4 under the strip '
+                 'and 0.6 over the belly-pan floor (z 4.0); thicker raises the strips (every stud row and PEM edge distance moves) or closes '
+                 'the pan gap. Re-measured 2026-10-17 (SteveCAD sweep C7): the lips are this feature - the solid PA12 over the strips is not it',
+    'collar notch': 'attachment only: the stud-retention collar round each POWER standoff is cut back over the lug barrel start (Klauke '
+                    'l - tip - 9 out from the stud, spec.LUG_M5) - 2.2 of PA12 (> 1.95, W passes) from the bore flat to the cut, joined to the full '
+                    'collar on both sides and above; the barrel position sets it',
 }
+GAP_OPEN = 0.65      # SteveCAD sweep C1 (S6): least opening of a cavity-join bridge - HP MJF needs >= 0.5 between faces (check_printed_solid S6)
 MICRO_NO = ('5-1393292-8', '4-1904124-3', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)
 MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'), ('horn', '4-1904124-3', 'OWN'),
              ('k_etb', '4-1904124-2', 'OWN'), ('k_acc', '6-1419137-4', 'OWN'), ('k_eps_en', '6-1419137-4', 'OWN'),
@@ -222,7 +248,7 @@ PEM = {4: dict(pn='S-M4-2ZI', hole=5.41, E=7.87, T=2.0, A=1.38, edge=6.9, url='h
 JLUG = dict(ring=8.0, t=0.78, L=20.65, neck=2.0, sleeve=5.3, hole=4.34, ax=2.26)
 # TE PIDG 53941-1 (TE page 2026-10-14: #8 / M4 stud, 16-14 AWG, overall 20.65, tongue 0.78; blue sleeve). Ring 8.0 and sleeve 5.3
 # are PIDG #8 family sizes, not on the TE page: read them off the first sample. ax = barrel axis off the palm mid-plane.
-JBOLT = dict(m=4, l=8.0, washer_t=0.9, washer_od=7.6)  # RS 287-3915 M4 x 8 A2 + RS 231-0691 DIN 127B spring washer, into the tapped strip
+JBOLT = dict(m=4, l=8.0, washer_t=0.9, washer_od=7.6)  # RS 287-3915 M4 x 8 A2 + RS 231-0691 DIN 127B spring washer, into the PEM nut in the strip (R129)
 JROW = dict(z_lo=12.8, dz=5.0)                        # palm centres: N2: lower row 5.9 + 6.9 PEM edge (was 10.0); upper row +5.0 (was 7.5), so the upper
                                                       # lug barrel still ends 4 under the deck (34.45 + 4 <= 38.5); one strip = one circuit (J1 = A)
 JUMPER_AWG = 14
@@ -304,9 +330,12 @@ STOCK = {
         ('alt', 'MECCANIXITY 2 pcs 12" x 1" x 1/8" tinned', 'Amazon B0CGJC2S1L', '25.4 x 3.2 x 305 (2)', '$27.19',
          'https://www.amazon.com/dp/B0CGJC2S1L', 'Pads would be 25.4 long, not 17.5 - the box grows about 8 mm; only if the 15 mm stock is gone.'),
     ]),
-    'strip': ('Logic strips on edge (rev 7 J answers: Bus 1 111.5 mm, Bus 2 116.5 mm, 25.4 x 3.2)', [
+    # SteveCAD sweep C6 (2026-10-17): lengths = STRIP_Y (N2 / R129 moved the ends for the PEM edge distance); holes = the PEM mounting
+    # holes (S-M4-2ZI 5.41, SS-M5-2ZI 6.35, +0.08 / -0), never tapped (R129); a STEP reads 6.01 / 6.95 at the rims = the 0.3 x 45 edge break
+    'strip': ('Logic strips on edge (Bus 1 %.1f mm, Bus 2 %.1f mm, 25.4 x 3.2)' % (STRIP_Y['BUS1'][1] - STRIP_Y['BUS1'][0], STRIP_Y['BUS2'][1] - STRIP_Y['BUS2'][0]), [
         ('PICK', 'MECCANIXITY 2 pcs 12" x 1" x 1/8" tinned copper flat bar', 'Amazon B0CGJC2S1L', '25.4 x 3.2 x 305 (2)', '$27.19',
-         'https://www.amazon.com/dp/B0CGJC2S1L', 'Both strips from one bar (230 mm with kerf); the second bar is spare. Drill + tap M4 at each stud, M5 at the feed.'),
+         'https://www.amazon.com/dp/B0CGJC2S1L', 'Both strips from one bar (235 mm with kerf); the second bar is spare. Drill the PEM mounting holes '
+         '(5.41 +0.08 at each M4 stud, 6.35 +0.08 at the M5 feed) and press in the PEM nuts (R129) - no tapping.'),
         ('alt', 'Tinned copper flat bus bar 3 x 25 x 200 mm, C110 (Bopaodao listing)', 'Amazon B09Z7KJV65', '25 x 3 x 200', '$27.79 each (buy 2)',
          'https://www.amazon.com/dp/B09Z7KJV65', 'One strip per piece; 3.0 thick (0.2 thinner - the lugs sit 0.2 further from their jumpers, fine).'),
     ]),
