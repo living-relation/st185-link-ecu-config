@@ -31,6 +31,27 @@ PARTS['csb3_lid'].update(job='st185_csb3_1017',file=src('st185_csb3_1017','CSB3_
 # ---------------- VRC board holder (printed, no drawing yet) ----------------
 h=PARTS['vrc_holder']; h.update(job='st185_vrc_1017',file=src('st185_vrc_1017','ST185_VRC_board_holder_PA12.step'),rev='A')
 h['notes']=[n.replace('M6 x 12','M6 x 14 (LEMU 2990806014, 9.0 THREAD = 1.5xD)') for n in h['notes']]
+# ---------------- VRC body + lid (Fusion ST185-VRC-Enclosure after #273; first engine drawings 2026-10-17, R150-R152) ----------------
+# Geometry measured from the STEP 2026-10-17: bosses D11 z 5.0-12.5, drill D5.0 from z 1.0 (11.5 deep, 1.0 floor left); lid M3 tap drill
+# D2.53 x 9.5; tab slots 6.6 wide, arc centres 10 apart; groove 2.646 x 1.32. Lid: 90 x 50 x 6, 4 x D3.4.
+import os as _os0
+_VRCDIR=_os0.path.join(_os0.path.dirname(_os0.path.dirname(_os0.path.abspath(__file__))),'enclosures','vrc')
+vb=PARTS['vrc_body']; vb.update(job='st185_vrc_1017',file=src('st185_vrc_1017','VRC_part_VRC-Body.step'),revlog=_os0.path.join(_VRCDIR,'ST185-VRC-101.REVLOG.md'))
+vb['thread_depth']={2.5:8.0,5.0:10.0}
+vb['hole_text']={('Z',5.0):"2X ⌀5.0 ↧11.5 (1.0 FLOOR LEFT, NOT THRU)\nM6x1.0-6H ↧10.0, TAP AT FIT\nON 2X ⌀11 BOSS, 7.5 HIGH (TOP z 12.5)",
+                 ('X',18.5):"⌀18.5 THRU, BOTH END WALLS\nD-FLAT 16.5 ACROSS (FLAT AT TOP)\n⌴ ⌀30 ↧3.5 ON INSIDE FACE (SEE NOTE 3)"}
+vb['notes']=["6061-T6. STOCK 95 x 80 x 42 BILLET. QTY 2 PER CAR (FRONT + REAR), IDENTICAL.",
+  "O-RING GROOVE (DETAIL B): AS568-039 NBR70 FACE SEAL. GROOVE + LID FACE Ra 0.8, GROOVE CORNER R0.13-0.38.",
+  "⌀30 x 3.5 SPOTFACE INSIDE EACH END WALL: BACK-COUNTERBORE THROUGH THE D-HOLE OR A 2ND SETUP.",
+  "BOSSES: M6 x 14 ISO 10642 ENGAGES 9.0 (1.5xD, R131). TAB CORNERS R3; FLOOR CORNERS SQUARE OK.",
+  "ENGRAVE IN (+X) / OUT (-X): ARIAL BLACK 4.0 HIGH, 0.3 DEEP, UPRIGHT FROM OUTSIDE.",
+  "EDGE BREAKS NOT MODELLED (R138): BREAK SHARP EDGES 0.2-0.4 EXCEPT GROOVE / SEAL FACE. SPOT TAPPED ENTRIES 90°."]
+vl=PARTS['vrc_lid']; vl.update(job='st185_vrc_1017',file=src('st185_vrc_1017','VRC_part_VRC-Lid.step'),revlog=_os0.path.join(_VRCDIR,'ST185-VRC-102.REVLOG.md'),hidden=False)
+vl.pop('hidden_views',None)
+vl['hole_text']={('Z',3.4):"4X ⌀3.4 THRU\n⌵ ⌀6.9 X 90° (ISO 10642 M3)"}
+vl['notes']=["MATERIAL: 6061-T6 ALUMINUM. STOCK: 8 x 95 x 55 PLATE (FACE BOTH SIDES TO 6.0). QTY 2 PER CAR.",
+  "BOTTOM FACE IS THE O-RING SEALING FACE (AS568-039 IN THE BODY RIM, ST185-VRC-101): Ra 0.8, FLAT WITHIN 0.05, NO TOOL MARKS ACROSS THE SEAL PATH. LID CLOSES METAL-TO-METAL ON THE RIM.",
+  "EDGE BREAKS NOT MODELLED (R138): BREAK SHARP EDGES 0.2-0.4 EXCEPT THE SEALING FACE."]
 # ---------------- DRB102 plate (CadQuery, #275: M5 tapped through, chamfers kept) ----------------
 d=PARTS['drb_plate']; d.update(job='st185_drb102_1017',file=src('st185_drb102_1017','DRB102-firewall-plate.step'),rev='C',
   revs=[('B','REV B ISSUE','2026-10-15','SC'),('C','M5 TAPPED THRU (#275), GROOVE 4.75',TODAY,'SC')])
@@ -103,7 +124,7 @@ HP('fh105','fuel-hanger-saddle.step','ST185-FH-105','FUEL HANGER - PUMP SADDLE',
     "TAB LOCATING FACE 22.22 / 28.72 FROM THE TAPPED HOLES +0.05/0: SLIP FIT 0-0.10 ON FH-103. PUSH SADDLE TOWARD STRUT, THEN TORQUE.",
     "TAB ROOT R0.5 MAX. LIP ENDS R2 MAX. DEBURR 0.2 MAX.", PUMP])
 FH_ORDER=['fh101','fh103','fh104','fh105']
-ORDER=['csb3_body','csb3_lid','vrc_holder','drb_plate','fb_power_base','fb_power_pan','fb_power_cover','fb_retainer','fb_logic_base','fb_logic_pan',
+ORDER=['csb3_body','csb3_lid','vrc_body','vrc_lid','vrc_holder','drb_plate','fb_power_base','fb_power_pan','fb_power_cover','fb_retainer','fb_logic_base','fb_logic_pan',
        'fb_logic_cover','fb_br_base','fb_br_cover','fb_bar_br','fb_pad','fb_barneg','fb_barpos','fb_strip1','fb_strip2']
 # Fuel hanger rev 8 dropped 2026-10-17 (Dan rejected it); the fuel hanger sheets are FH_ORDER above, from cad/fuel-hanger.
 # ---------------- Rev letters (Dan 2026-10-17): the MODEL drives the rev letter; drawing = model letter.
@@ -114,6 +135,8 @@ ORDER=['csb3_body','csb3_lid','vrc_holder','drb_plate','fb_power_base','fb_power
 REV_LETTER={'csb3_body':('C','FIRST ISSUE. MODEL REV C (PR #274)'),
             'csb3_lid':('C','FIRST ISSUE. MODEL REV C (PR #273)'),
             'vrc_holder':('D','FIRST ISSUE. MODEL REV D (PR #273)'),
+            'vrc_body':('D','FIRST ENGINE DRAWING. MODEL REV D (PR #273)'),
+            'vrc_lid':('A','FIRST ENGINE DRAWING. MODEL REV A (PR #139)'),
             'drb_plate':('C','FIRST ISSUE. MODEL REV C (PR #275)')}
 # Fuse box rev 7 parts (Dan 2026-10-17: count each model's past releases in the repo history; rev 7 is NOT converted to G):
 # releases = PRs where the part's size / volume (printed) or mass (copper) in fusebox_report.json changed, + #273 NEG bar holes, #275 LOGIC corner.
@@ -133,6 +156,7 @@ def _fix_slot(o):
     if o=="4X SLOT 5.5 X 9.9 THRU": return "4X SLOT 6.6 X 10.0 THRU"
     return o
 PARTS['csb3_body']=_fix_slot(PARTS['csb3_body'])
+PARTS['vrc_body']=_fix_slot(PARTS['vrc_body'])   # VRC slots are 6.6 x 10 too (F01, #272)
 # CSB3 section through the (+13.5, +13.5) boss so the 4.0 / 6.5 / M8 stack shows
 PARTS['csb3_body']['section']=dict(slot='front',origin=(0,13.5,0),label='A-A')
 
