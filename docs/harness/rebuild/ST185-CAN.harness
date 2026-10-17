@@ -77,22 +77,6 @@
         "handle": "Splice"
       },
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "wc_term1_lp1",
-          "schematicPosition": {
-            "x": 450,
-            "y": -90
-          }
-        },
-        {
-          "id": "wc_term1_lp2",
-          "schematicPosition": {
-            "x": 420,
-            "y": -90
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -109,43 +93,6 @@
         "handle": "Splice"
       },
       "partId": "m16_20_5",
-      "layoutPoints": [
-        {
-          "id": "wc_term2_lp1",
-          "schematicPosition": {
-            "x": 510,
-            "y": -90
-          }
-        },
-        {
-          "id": "wc_term2_lp2",
-          "schematicPosition": {
-            "x": 510,
-            "y": -120
-          }
-        },
-        {
-          "id": "wc_term2_lp3",
-          "schematicPosition": {
-            "x": 390,
-            "y": -120
-          }
-        },
-        {
-          "id": "wc_term2_lp4",
-          "schematicPosition": {
-            "x": 390,
-            "y": -150
-          }
-        },
-        {
-          "id": "wc_term2_lp5",
-          "schematicPosition": {
-            "x": 270,
-            "y": -150
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -162,43 +109,6 @@
         "handle": "Splice"
       },
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "wc_term3_lp1",
-          "schematicPosition": {
-            "x": 420,
-            "y": 0
-          }
-        },
-        {
-          "id": "wc_term3_lp2",
-          "schematicPosition": {
-            "x": 420,
-            "y": 30
-          }
-        },
-        {
-          "id": "wc_term3_lp3",
-          "schematicPosition": {
-            "x": 780,
-            "y": 30
-          }
-        },
-        {
-          "id": "wc_term3_lp4",
-          "schematicPosition": {
-            "x": 780,
-            "y": -30
-          }
-        },
-        {
-          "id": "wc_term3_lp5",
-          "schematicPosition": {
-            "x": 2430,
-            "y": -30
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -215,15 +125,6 @@
         "handle": "Splice"
       },
       "partId": "m16_20_5",
-      "layoutPoints": [
-        {
-          "id": "wc_term4_lp1",
-          "schematicPosition": {
-            "x": 480,
-            "y": 0
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -240,29 +141,6 @@
         "handle": "c4"
       },
       "partId": "m16_20_9",
-      "layoutPoints": [
-        {
-          "id": "wc_h_lam_pin_lp1",
-          "schematicPosition": {
-            "x": 2520,
-            "y": 60
-          }
-        },
-        {
-          "id": "wc_h_lam_pin_lp2",
-          "schematicPosition": {
-            "x": 2520,
-            "y": 120
-          }
-        },
-        {
-          "id": "wc_h_lam_pin_lp3",
-          "schematicPosition": {
-            "x": 2610,
-            "y": 120
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -279,29 +157,6 @@
         "handle": "c3"
       },
       "partId": "m16_20_5",
-      "layoutPoints": [
-        {
-          "id": "wc_l_lam_pin_lp1",
-          "schematicPosition": {
-            "x": 2490,
-            "y": 30
-          }
-        },
-        {
-          "id": "wc_l_lam_pin_lp2",
-          "schematicPosition": {
-            "x": 2490,
-            "y": 90
-          }
-        },
-        {
-          "id": "wc_l_lam_pin_lp3",
-          "schematicPosition": {
-            "x": 2610,
-            "y": 90
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -318,29 +173,6 @@
       },
       "color": "Red",
       "partId": "m16_20_2",
-      "layoutPoints": [
-        {
-          "id": "w_lam12_can_lp1",
-          "schematicPosition": {
-            "x": 3030,
-            "y": 30
-          }
-        },
-        {
-          "id": "w_lam12_can_lp2",
-          "schematicPosition": {
-            "x": 3090,
-            "y": 30
-          }
-        },
-        {
-          "id": "w_lam12_can_lp3",
-          "schematicPosition": {
-            "x": 3090,
-            "y": -60
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White",
@@ -359,29 +191,6 @@
       },
       "color": "Black",
       "partId": "m16_20_0",
-      "layoutPoints": [
-        {
-          "id": "w_lamg_can_lp1",
-          "schematicPosition": {
-            "x": 3030,
-            "y": 60
-          }
-        },
-        {
-          "id": "w_lamg_can_lp2",
-          "schematicPosition": {
-            "x": 3090,
-            "y": 60
-          }
-        },
-        {
-          "id": "w_lamg_can_lp3",
-          "schematicPosition": {
-            "x": 3090,
-            "y": 180
-          }
-        }
-      ],
       "identColors": [
         "Blue",
         "White",
@@ -401,22 +210,6 @@
         "handle": "Terminal"
       },
       "partId": "m16_20_06",
-      "layoutPoints": [
-        {
-          "id": "w_shd_can_lp1",
-          "schematicPosition": {
-            "x": 1350,
-            "y": 150
-          }
-        },
-        {
-          "id": "w_shd_can_lp2",
-          "schematicPosition": {
-            "x": 1350,
-            "y": 120
-          }
-        }
-      ],
       "identColors": [
         "Yellow"
       ]
@@ -433,36 +226,6 @@
         "handle": "Splice"
       },
       "partId": "m16_16_2",
-      "layoutPoints": [
-        {
-          "id": "w_dev_lp1",
-          "schematicPosition": {
-            "x": -30,
-            "y": 330
-          }
-        },
-        {
-          "id": "w_dev_lp2",
-          "schematicPosition": {
-            "x": -150,
-            "y": 330
-          }
-        },
-        {
-          "id": "w_dev_lp3",
-          "schematicPosition": {
-            "x": -150,
-            "y": 810
-          }
-        },
-        {
-          "id": "w_dev_lp4",
-          "schematicPosition": {
-            "x": 600,
-            "y": 810
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue",
@@ -481,22 +244,6 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_2",
-      "layoutPoints": [
-        {
-          "id": "w_dev_clu_lp1",
-          "schematicPosition": {
-            "x": 390,
-            "y": 900
-          }
-        },
-        {
-          "id": "w_dev_clu_lp2",
-          "schematicPosition": {
-            "x": 390,
-            "y": 870
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue",
@@ -515,29 +262,6 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_2",
-      "layoutPoints": [
-        {
-          "id": "w_dev_rd_lp1",
-          "schematicPosition": {
-            "x": 540,
-            "y": 930
-          }
-        },
-        {
-          "id": "w_dev_rd_lp2",
-          "schematicPosition": {
-            "x": 390,
-            "y": 930
-          }
-        },
-        {
-          "id": "w_dev_rd_lp3",
-          "schematicPosition": {
-            "x": 390,
-            "y": 960
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue",
@@ -556,22 +280,6 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_0",
-      "layoutPoints": [
-        {
-          "id": "w_gnd_clu_lp1",
-          "schematicPosition": {
-            "x": -30,
-            "y": 1110
-          }
-        },
-        {
-          "id": "w_gnd_clu_lp2",
-          "schematicPosition": {
-            "x": -30,
-            "y": 1020
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue",
@@ -590,22 +298,6 @@
         "handle": "Terminal"
       },
       "partId": "m16_16_0",
-      "layoutPoints": [
-        {
-          "id": "w_gnd_rd_lp1",
-          "schematicPosition": {
-            "x": 390,
-            "y": 1140
-          }
-        },
-        {
-          "id": "w_gnd_rd_lp2",
-          "schematicPosition": {
-            "x": 390,
-            "y": 1050
-          }
-        }
-      ],
       "identColors": [
         "Yellow",
         "Blue",

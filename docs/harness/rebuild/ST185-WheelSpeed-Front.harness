@@ -80,23 +80,7 @@
         "White"
       ],
       "stripeColor": "Blue",
-      "partId": "m16_20_06",
-      "layoutPoints": [
-        {
-          "id": "e7gavP_lp1",
-          "schematicPosition": {
-            "x": 810,
-            "y": 180
-          }
-        },
-        {
-          "id": "e7gavP_lp2",
-          "schematicPosition": {
-            "x": 1110,
-            "y": 180
-          }
-        }
-      ]
+      "partId": "m16_20_06"
     }
   ],
   "connectors": [

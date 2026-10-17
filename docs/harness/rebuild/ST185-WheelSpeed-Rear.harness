@@ -81,16 +81,7 @@
         "Yellow"
       ],
       "stripeColor": "Blue",
-      "partId": "m16_20_06",
-      "layoutPoints": [
-        {
-          "id": "_TXY7m_lp1",
-          "schematicPosition": {
-            "x": 1200,
-            "y": 210
-          }
-        }
-      ]
+      "partId": "m16_20_06"
     }
   ],
   "connectors": [
