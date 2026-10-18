@@ -24,7 +24,7 @@ A new Dispatch chat reads, in order: this file, DECISIONS 'Binding rules from Da
 - Keep a one-shot wake timer armed while any session runs (current: scheduled task `st185-dispatch-wake-3`, fireAt + notifyOnCompletion). Re-arm on every wake. Disable only when nothing runs.
 - Set the wake time from how many sessions run, how big they are, and when each should finish (5-30 min, never more than 30).
 - On every wake: check each running session (read_transcript), send Dan a short status, re-arm.
-- Dan does not read session chats. Relay every session question here with an ID. If Dan must open a session chat, name it and make sure it shows a clickable multiple-choice picker.
+- Dan does not read session chats. Relay every session question here with an ID. If Dan must open a session chat, name it; the question there is plain text with lettered options.
 - Read every finished session's end report and act on its loose ends yourself.
 - The desktop app auto-archives a session after its PR merges. A session that is NOT archived has uncommitted changes or is waiting for a reply: Dispatch checks it and handles it by chatting with it directly, and tells Dan only if it truly needs him.
 
@@ -32,6 +32,7 @@ A new Dispatch chat reads, in order: this file, DECISIONS 'Binding rules from Da
 - One standing code session, "ST185 maintenance", runs hygiene, checks and small docs jobs. Dispatch sends it work; new sessions only for big tasks.
 - Prefer Claude Code sessions. Opus = harness/wiring/CAD, Sonnet = docs/hub/research, Haiku = checks.
 - Task details go in `_research\TASK-*.md`; the prompt is ~5 lines pointing at it + skills.
+- Every session prompt says: never use the on-screen multiple-choice picker (AskUserQuestion) - Dispatch cannot answer it. Check DECISIONS and the task card first; if still stuck, ask in plain text with lettered options (A, B, C ...) and a recommendation, end the turn, and Dispatch replies (Dan 2026-10-17).
 - Give each session its own pre-made worktree (`git worktree add .claude\worktrees\<name> -b <branch> origin/main`).
 - start_code_task may time out but still start the session: check before retrying.
 

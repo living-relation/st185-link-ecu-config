@@ -80,7 +80,8 @@ def main():
     xbl0 = ST['lug'] - PM['edge']
     hw, hl = BL['w'] / 2, BL['w_low'] / 2
     sp = dict(project=specs.PROJECT_NAME, drawn=specs.DRAWN_BY, job=JOB, file=mdl, process='machined', single=False, offset=(0, 0, 0),
-              rotate=[], pn='ST185-FB-117', title='POWER OUTPUT C-STRAP 3 x 15 (FORMED + FLAT BLANK)',
+              rotate=[], pn='ST185-FB-117', rev='A.01',   # A.01 (R147 clerical): N15 proof-test note
+              title='POWER OUTPUT C-STRAP 3 x 15 (FORMED + FLAT BLANK)',
               material='C110 COPPER, TINNED', ordinates=False, overall=False, max_hole_groups=1,
               source='Power_Strap_Out_CuC110_15x3_C.step (Fusion) + flat blank from spec.strap_blank() (build123d)',
               hidden=False, revlog=os.path.join(REV7, 'ST185-FB-117.REVLOG.md'),
@@ -110,7 +111,8 @@ def main():
                   'PRESS BOTH NUTS (HEADS INSIDE THE C), THEN TRIM THE TOP END BACK TO 6.5 FROM THE TOP NUT (PEM EDGE 7.1 WHILE PRESSING).',
                   'BEND 2X 90 DEG ROUND R%.1f INSIDE, BEND CL %.2f AND %.2f FROM THE TOP END (K %.2f, %.2f PER BEND); BEND 1 ON THE TONGUE ONLY, LIPS STAY '
                   'FLAT. CHECK THE FIRST PART.' % (ST['ri'], BL['bend_centres'][0], BL['bend_centres'][1], BL['k'], BL['bend_allowance']),
-                  'FIRST ARTICLE: M5 x 10 INTO EACH NUT AT 4 N.m TWICE, NUT MUST NOT TURN. BREAK EDGES 0.2-0.4 (R138), KEEP TIN ON CLAMP FACES.',
+                  'FIRST ARTICLE (N15): ONE SAMPLE STRAP, M5 x 10 INTO EACH NUT AT 6 N.m (1.5 x 4 N.m); NUT MUST NOT TURN OR PUSH OUT; SCRAP IT. '
+                  'BREAK EDGES 0.2-0.4 (R138), KEEP TIN ON CLAMP FACES.',
               ])
     os.makedirs('out/' + JOB, exist_ok=True)
     stats = part.make_part(sp, 'out/%s/ST185-FB-117.pdf' % JOB, 'out/%s/ST185-FB-117.dxf' % JOB, 'previews/ST185-FB-117')
