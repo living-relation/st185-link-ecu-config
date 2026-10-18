@@ -80,76 +80,168 @@
     ],
     "cavities": {
      "c48": [
-      "INJ 12V",
+      "Injector +12 V feed",
       "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
      ],
      "c49": [
-      "COP 12V",
+      "Coil +12 V feed",
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
      "c41": [
-      "Gnd Out crank",
+      "ECU A24 crank ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
      ],
      "c42": [
-      "Gnd Out cam",
+      "ECU A24 cam ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
      ],
      "c40": [
-      "+5V Out turbo",
+      "ECU A32 turbo +5 V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
      ],
      "c43": [
-      "Gnd Out turbo",
+      "ECU A24 turbo ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
      ],
      "c5": [
-      "SW12 eng sens",
+      "Sw +12 V boost/flex",
       "Switched 12V to engine sensors"
      ],
      "c2": [
-      "+5V Out ETB",
+      "ECU A32 throttle 5V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
      ],
      "c3": [
-      "Gnd Out IAT",
+      "ECU A24 temp/thr ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
-      "ETB sens screen",
+      "ECU A7 throt screen",
       "ETB sensor group screen"
      ],
      "c39": [
-      "+5V Out MAP",
+      "ECU A32 MAP +5 V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
      ],
      "c44": [
-      "Gnd Out flex",
+      "ECU A24 MAP/flex ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
-      "EHPS enable",
+      "EHPS enable +12 V",
       "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
      ],
      "c36": [
-      "Aux 7 MRS speed-out",
+      "ECU A27 EHPS speed",
       "Aux 7 MRS speed-out (ECU A27)"
      ],
      "c45": [
-      "+5V oil press",
+      "ECU A32 oil press 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c46": [
-      "+5V fuel press",
+      "ECU A32 fuel prs 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c47": [
-      "+5V coolant press",
+      "ECU A32 clnt prs 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ],
      "c27": [
-      "EHPS coil-",
+      "EPS relay coil 85",
       "MR-S pump B5 -> EPS relay k_eps coil- (85)"
+     ],
+     "c24": [
+      "ECU A8 crank sig",
+      "ECU-A A8"
+     ],
+     "c33": [
+      "ECU A7 crank screen",
+      "Crank VR screen"
+     ],
+     "c4": [
+      "ECU A6 cam +8 V",
+      "+8V Out to cam Hall"
+     ],
+     "c29": [
+      "ECU A9 cam sig",
+      "ECU-A A9"
+     ],
+     "c34": [
+      "ECU A7 cam screen",
+      "Cam Hall screen"
+     ],
+     "c7": [
+      "ECU A30 turbo sig",
+      "ECU-A A30"
+     ],
+     "c6": [
+      "ECU A7 turbo screen",
+      "Turbo speed screen"
+     ],
+     "c9": [
+      "ECU A31 flex sig",
+      "ECU-A A31"
+     ],
+     "c10": [
+      "ECU A7 flex screen",
+      "Flex fuel screen"
+     ],
+     "c21": [
+      "ECU A22 throttle 1",
+      "ECU-A A22"
+     ],
+     "c22": [
+      "ECU A33 throttle 2",
+      "ECU-A A33"
+     ],
+     "c8": [
+      "ECU A17 MAP sig",
+      "ECU-A A17"
+     ],
+     "c13": [
+      "ECU A4 injector 1",
+      "ECU-A A4"
+     ],
+     "c14": [
+      "ECU A3 injector 2",
+      "ECU-A A3"
+     ],
+     "c15": [
+      "ECU A2 injector 3",
+      "ECU-A A2"
+     ],
+     "c16": [
+      "ECU A1 injector 4",
+      "ECU-A A1"
+     ],
+     "c17": [
+      "ECU A13 coil 1 trig",
+      "ECU-A A13"
+     ],
+     "c18": [
+      "ECU A12 coil 2 trig",
+      "ECU-A A12"
+     ],
+     "c19": [
+      "ECU A11 coil 3 trig",
+      "ECU-A A11"
+     ],
+     "c20": [
+      "ECU A10 coil 4 trig",
+      "ECU-A A10"
+     ],
+     "c23": [
+      "ECU A21 boost sol",
+      "ECU-A A21"
+     ],
+     "c25": [
+      "ECU A15 coolant temp",
+      "ECU-A A15"
+     ],
+     "c26": [
+      "ECU A16 intake temp",
+      "ECU-A A16"
      ]
     }
    },
@@ -200,111 +292,111 @@
   },
   "terminals": {
    "fl_acamp_act": [
-    "ACT cut -> A18-11",
+    "",
     "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"
    ],
    "fl_acamp_mg": [
-    "A/C VC coil -> A18-5",
+    "",
     "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier"
    ],
    "fl_acamp_psw": [
-    "A/C PSW in -> A18-13",
+    "",
     "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"
    ],
    "br_ac_mg": [
-    "A/C VC coil -> A4-3",
+    "",
     "Broken off - continues on ST185-EngineRoom-C: A/C VC control coil A4-3 (not fitted) <- A18-5 (fl_acamp_mg)"
    ],
    "br_ac_psw": [
-    "A/C PSW -> A5-4",
+    "",
     "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch A5-4 -> A18-13 (fl_acamp_psw)"
    ],
    "chassis_ring": [
-    "ECU GND -> cabin chassis",
+    "",
     "Chassis Ground Point"
    ],
    "br_w_b25": [
-    "ECU GND B25 -> ECU-B B25",
+    "",
     "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis"
    ],
    "br_w_b34": [
-    "ECU GND B34 -> ECU-B B34",
+    "",
     "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis"
    ],
    "br_w_rail_5v_b_c": [
-    "+5V rail B -> splice 5V B",
+    "",
     "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)"
    ],
    "br_w_rail_sw12_b_c": [
-    "SW12 rail B -> BH-B 90",
+    "",
     "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)"
    ],
    "br_cab_fspur_r": [
-    "WS FR sig -> ECU-B B21",
+    "",
     "Broken off - continues on ST185-B-cabin: front wheel-speed FR core to ECU-B B21"
    ],
    "br_cab_fspur_fr_sh": [
-    "WS FR screen -> splice SHIELD B",
+    "",
     "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)"
    ],
    "br_w_cru_5v": [
-    "Cruise +5V -> cruise resistor",
+    "",
     "Broken off - continues on ST185-CSB3: +5V to the cruise ladder pull-up"
    ],
    "br_w_csbg": [
-    "CSB3 GND -> splice CSB GND",
+    "",
     "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis"
    ],
    "br_w39": [
-    "APS VPA2 -> ECU-B B33",
+    "",
     "Broken off - continues on ST185-B-cabin: e-throttle pedal pin 3 (VPA2) -> ECU-B B33"
    ],
    "br_w_fb_sw12": [
-    "SW12 12V -> splice CP SW12",
+    "",
     "Broken off - continues on ST185-CabinPower: LOGIC SW12 to sp_sw12"
    ],
    "br_w_fb_mrs_en": [
-    "EHPS enable -> FB-LOGIC MRS 7.5A",
+    "",
     "Broken off - continues on ST185-CabinPower: LOGIC MRS to Bulkhead A 35"
    ],
    "br_w_lamg_b": [
-    "Lambda GND -> BH-B 96",
+    "",
     "Broken off - continues on ST185-B-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis"
    ],
    "br_w_inj_pwr_c": [
-    "INJ 12V -> FB-LOGIC INJ 15A",
+    "",
     "Broken off - continues on ST185-CabinPower: LOGIC INJ 15A injector rail from the fuse box to bulkhead A c48 (shared DRB102)"
    ],
    "br_w_cop_pwr_c": [
-    "COP 12V -> FB-LOGIC COP 15A",
+    "",
     "Broken off - continues on ST185-CabinPower: LOGIC COP 15A COP rail from the fuse box to bulkhead A c49 (shared DRB102)"
    ],
    "br_w76": [
-    "EFI coil- -> POWER R2 85",
+    "",
     "Broken off - continues on ST185-CabinPower: EFI Main Relay 85 (k_efi) <- ECU-A A28"
    ],
    "br_w_fp85": [
-    "FP coil- -> BATT K1 85",
+    "",
     "Broken off - continues on ST185-HeavyDC: Fuel Pump Relay 85 (k_fp, battery relay block in the trunk) <- ECU-A A19"
    ],
    "br_w_fan85": [
-    "Rad fan coil- -> POWER R4 85",
+    "",
     "Broken off - continues on ST185-CabinPower: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29"
    ],
    "br_w81": [
-    "ETB coil- -> LOGIC M14 85",
+    "",
     "Broken off - continues on ST185-CabinPower: ETB Power Relay 85 (k_etb) <- ECU-A A20"
    ],
    "br_w_str85": [
-    "Start coil- -> POWER R3 85",
+    "",
     "Broken off - continues on ST185-CabinPower: Start Relay 85 (k_str) <- ECU-A A26"
    ],
    "br_w_acc86": [
-    "A/C coil+ -> LOGIC M15 86",
+    "",
     "Broken off - continues on ST185-CabinPower: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)"
    ],
    "br_w_eps_rly": [
-    "EHPS coil- -> EHPS RELAY 85",
+    "",
     "Broken off - continues on ST185-CabinPower: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
    ]
   }
@@ -318,64 +410,96 @@
     ],
     "cavities": {
      "c25": [
-      "Rev SW feed",
+      "Back-up sw feed 15A",
       "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
      ],
      "c12": [
-      "Rev SW out",
+      "Reverse +12 V out",
       "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
      ],
      "c19": [
-      "Gnd Out B-eng",
+      "ECU B22 temp/prs ret",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
      ],
      "c21": [
-      "Gnd Out B-eng",
+      "ECU B22 fuel/VSS ret",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
      ],
      "c16": [
-      "Knock 1 SIG+",
+      "ECU B9 knock +",
       "Knock 1 SIG+ (ECU B9)"
      ],
      "c17": [
-      "Knock 1 SIG-",
+      "ECU B22 knock -",
       "Knock 1 SIG- (to Gnd Out B22)"
      ],
      "c5": [
-      "ETB motor +",
+      "ECU B18 throttle M+",
       "ETB motor + (Aux 9, B18)"
      ],
      "c6": [
-      "ETB motor -",
+      "ECU B26 throttle M-",
       "ETB motor - (Aux 10, B26)"
      ],
      "c15": [
-      "Gearbox VSS signal",
+      "ECU B29 gearbox spd",
       "Gearbox VSS signal (ECU B29, DI 8)"
      ],
      "c20": [
-      "VSS 12V",
+      "Sw +12 V gearbox spd",
       "Switched 12V to gearbox VSS (from sp_sw12)"
      ],
      "c13": [
-      "CAN H Lambda",
+      "CAN H to CAN-Lambda",
       "CAN H to Link CAN-Lambda (ST185-CAN)"
      ],
      "c14": [
-      "CAN L Lambda",
+      "CAN L to CAN-Lambda",
       "CAN L to Link CAN-Lambda (ST185-CAN)"
      ],
      "c24": [
-      "Lambda CAN screen",
+      "CAN-Lambda screen",
       "CAN-Lambda CAN pair screen"
      ],
      "c3": [
-      "CAN-Lambda +12V",
+      "CAN-Lambda +12 V",
       "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
      ],
      "c4": [
-      "Lambda GND",
+      "CAN-Lambda ground",
       "CAN-Lambda ground to cabin chassis ground (14 AWG)"
+     ],
+     "c7": [
+      "ECU B15 oil press",
+      "ECU-B B15"
+     ],
+     "c8": [
+      "ECU B16 fuel press",
+      "ECU-B B16"
+     ],
+     "c9": [
+      "ECU B23 clnt press",
+      "ECU-B B23"
+     ],
+     "c10": [
+      "ECU B6 oil temp",
+      "ECU-B B6"
+     ],
+     "c11": [
+      "ECU B7 charge temp",
+      "ECU-B B7"
+     ],
+     "c18": [
+      "ECU B17 knock screen",
+      "Knock 1 screen"
+     ],
+     "c22": [
+      "ECU B17 thr screen",
+      "ETB motor screen"
+     ],
+     "c23": [
+      "ECU B17 VSS screen",
+      "Gearbox VSS screen"
      ]
     }
    },
@@ -514,115 +638,115 @@
   },
   "terminals": {
    "fl_start_req_c1": [
-    "Start req -> RB4-1",
+    "",
     "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead"
    ],
    "fl_ign_sw_c1": [
-    "IGN ON -> JB1 1H-7",
+    "",
     "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead"
    ],
    "t_ac_btn": [
-    "A/C req -> A/C SW V-G",
+    "",
     "A/C request: dash A/C switch output V-G (12 V when ON; old A15 pin 3 / IJ1-7) -> 10k / 3.9k divider -> ECU-B B31 (An Volt 10)"
    ],
    "t_evap_temp": [
-    "Evap temp -> A24-1",
+    "",
     "Evaporator thermistor A24 element 1 (1.5 kohm at 25 C) -> ECU-B B32 (An Volt 11), 2.2k pull-up to +5V"
    ],
    "br_w_b25": [
-    "ECU GND B25 -> splice CHASSIS",
+    "",
     "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis"
    ],
    "br_w_b34": [
-    "ECU GND B34 -> splice CHASSIS",
+    "",
     "Broken off - continues on ST185-A-cabin: cabin chassis ground splice sp_chassis"
    ],
    "br_w_rail_5v_b_c": [
-    "+5V rail B -> splice 5V",
+    "",
     "Broken off - continues on ST185-A-cabin: +5V from sp_5v at ECU A (crossover a)"
    ],
    "br_w_rail_sw12_b_c": [
-    "SW12 rail B -> splice SW12",
+    "",
     "Broken off - continues on ST185-A-cabin: switched 12V from sp_sw12 (cabin)"
    ],
    "br_w82": [
-    "ETB 12V -> LOGIC M14 87",
+    "",
     "Broken off - continues on ST185-CabinPower: ETB relay 87 to ECU-B B5 (crossover b)"
    ],
    "br_cab_fspur_r": [
-    "WS FR sig -> IX-WS-F 4",
+    "",
     "Broken off - continues on ST185-A-cabin: front wheel-speed FR core from IX_WS_FRONT pin 4"
    ],
    "br_cab_fspur_fr_sh": [
-    "WS FR screen -> A-cabin open",
+    "",
     "Broken off - continues on ST185-A-cabin: front wheel-speed FR shield from IX_WS_FRONT pin 6"
    ],
    "br_w_sw7_c": [
-    "Reverse sig -> OPTO8 02",
+    "",
     "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8"
    ],
    "br_w39": [
-    "APS VPA2 -> APS 3",
+    "",
     "Broken off - continues on ST185-A-cabin: e-throttle pedal pin 3 (VPA2) - folded in from ST185-APS-Pedal 2026-10-11"
    ],
    "br_w_at_immob2": [
-    "Immob out -> ALARM 9",
+    "",
     "Broken off - continues on ST185-AntiTheft: immobiliser output to ECU-B B27 (DI 10)"
    ],
    "br_wc_h_bh": [
-    "CAN H -> splice CANH",
+    "",
     "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13"
    ],
    "br_wc_l_bh": [
-    "CAN L -> splice CANL",
+    "",
     "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14"
    ],
    "br_w_lam12_c": [
-    "Lambda 12V -> FB-LOGIC LAM 7.5A",
+    "",
     "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3"
    ],
    "br_w_lamg_b": [
-    "Lambda GND -> splice CHASSIS",
+    "",
     "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis"
    ],
    "br_cab_canbh_sh": [
-    "CAN screen -> splice SHIELD CAN",
+    "",
     "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24"
    ],
    "br_w_shd_can": [
-    "CAN drain -> splice SHIELD CAN",
+    "",
     "Broken off - drain comes in from ST185-CAN: CAN screen splice sp_shield_can to sp_shield_b (B17)"
    ],
    "br_w_fan285": [
-    "Cond fan coil- -> POWER R5 85",
+    "",
     "Broken off - continues on ST185-CabinPower: Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13"
    ],
    "br_w_eps_trig": [
-    "EPS EN coil- -> LOGIC M21 85",
+    "",
     "Broken off - continues on ST185-CabinPower: EPS enable relay k_eps_en 85 <- ECU-B B12"
    ],
    "br_w_acc_trig": [
-    "A/C coil- -> LOGIC M15 85",
+    "",
     "Broken off - continues on ST185-CabinPower: A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10"
    ],
    "br_w_start_in": [
-    "Start req in -> FB-LOGIC B30 in",
+    "",
     "Broken off - continues on ST185-CabinPower: Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN"
    ],
    "br_w_start_out": [
-    "Start req -> FB-LOGIC B30 2A",
+    "",
     "Broken off - continues on ST185-CabinPower: LOGIC B30 2A out -> ECU-B B30 (DI 7)"
    ],
    "br_rev_coil": [
-    "Rev coil+ -> LOGIC M22 86",
+    "",
     "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86"
    ],
    "br_rev_feed": [
-    "Rev SW feed -> splice REV GAUGE",
+    "",
     "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2"
    ],
    "t_evap_rtn": [
-    "Evap rtn -> A24-2",
+    "",
     "Evaporator thermistor A24 element 2 -> Gnd Out (sp_gndout_b)"
    ]
   }
