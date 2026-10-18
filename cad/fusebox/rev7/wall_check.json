@@ -173,7 +173,7 @@
   "BattRelay_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 191.8,
+   "volume_cm3": 190.4,
    "bounds": [
     -22.0,
     206.0,
@@ -191,8 +191,8 @@
    "exempt": {
     "cover catch pocket": 4,
     "bar snap tab": 12,
-    "A cover screw insert": 3,
-    "A bar snap tab": 4
+    "A bar snap tab": 4,
+    "A cover screw insert": 3
    },
    "attach_skin": 15,
    "walls": [],
@@ -212,7 +212,7 @@
     54.0
    ],
    "exempt": {
-    "label": 302,
+    "label": 298,
     "cover screw hole": 12,
     "notch at corner": 5,
     "cover snap tongue": 4

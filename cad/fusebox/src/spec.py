@@ -352,7 +352,7 @@ RELAY_B_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '87a': (0.0, RELAY_B['v8
 # Which harness pin (sot/channels.csv c1 = 30, c4 = 87) lands on which real blade. The box brings every AMI feed up round its saddle into the FAR
 # blade (v -10.25) = the real 87, and takes the harness out of the NEAR blade = the real 30. The F7s are 1 form A (30 - 87 is one switch, either way
 # round): their SoT feed (30) sits on the real 87 - OPEN-ITEMS row: swap the SoT / CabinPower roles or re-route. The heater (1 form C, DECISIONS
-# R163): SoT 87 = the 40 A feed = the far blade, SoT 30 = the blower = the near blade, as on the car (1993 EWD p.215); ST185-CabinPower still draws
+# R164): SoT 87 = the 40 A feed = the far blade, SoT 30 = the blower = the near blade, as on the car (1993 EWD p.215); ST185-CabinPower still draws
 # the feed on c1 (OPEN-ITEMS row), so the map below stays c1 -> far, c4 -> near for every relay until that redraw (then k_htr: c1 near, c4 far).
 POWER_ROLE_POS = {'30': 'far', '87': 'near'}
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
@@ -482,10 +482,16 @@ RELAY87_AWG = {'k_efi': 10}   # 87 tails whose harness gauge differs from the AM
 # slot), 13.5 above the body's terminal edge; M6 screw load terminals 17 apart, 65.2 to their ends; 2-pole Superseal
 # 1.5 coil plug to 71; 130 A at 85 C (16 mm2 cable 120 A), 3.9 W coil (0.33 A - Link Aux 3 is a 2 A low side).
 HCR = dict(body_x=63.0, body_y=45.0, depth=40.0, holes=84.0, hole_d=6.5, hole_z=13.5, term_pitch=17.0,
-           term_to=65.2 - 45.0, plug_to=71.0 - 45.0, term_w=14.0, flange_t=3.0)
+           term_to=65.2 - 45.0, plug_to=71.0 - 45.0, term_w=19.1, flange_t=3.0,   # term_w 14 -> 19.1: TE STEP terminal blocks reach 9.55 either side of a stud (fit audit 2026-10-18)
+          
+           term_x0=1.95, term_y=9.0)   # fit audit 2026-10-18: the M6 terminals are NOT centred between the flange holes - TE STEP c-1416010-1-a-3d.stp puts
+                           # them at +1.95 / +18.95 from the hole midpoint (coil connector at -30.5 .. -11.3), as TE data sheet V23132 rev 0314 p.2
+                           # front view shows (terminals right of centre, connector left); the box had them centred (10.45 off). term_y: the stud
+                           # axes are 9.0 off the body's terminal edge (TE STEP; the box used term_to / 2 = 10.1)
 RB = dict(L=184.0, D=92.0, floor=4.0, rim=12.0,     # base outer; relay on its flange face (40 deep), flange raised 6 on bosses
           y_b=40.0,                                  # relay body terminal edge (body y_b .. y_b + 45)
-          x_stud=20.0, x_ami_in=38.0, x_t3=118.0,    # M6 battery stud, AMI in (out = +30), HCR150 terminal 3 (5 = +17): 18 mm jumper
+          x_stud=20.0, x_ami_in=38.0, x_t3=128.45,   # M6 battery stud, AMI in (out = +30), HCR150 terminal 3 (5 = +17); fit audit 2026-10-18:
+                                                     # 118 -> 128.45 = the real stud (HCR term_x0), the relay body / holes stay at x 126.5
           bar=dict(x0=8.0, x1=44.5, w=25.4, t=6.35),       # ends 0.5 short of the AMI body
           term_z=(14.0, 34.0),                       # terminal blocks set back 10 from the flange face (TE side view)
           lim_m6=LIMITER_M6_SHORT, tab_y=67.0,   # rev 5: one tab on each SHORT end at y 67, clear of the cables (y 13-30)
@@ -606,7 +612,7 @@ REV7_STOCK_BARS = 2   # POS bar 226 + battery block bar 36.5 from bar 1; NEG bar
 # to come back in.
 # Terminal data from the TE product pages, read 2026-10-14 (te.com/en/product-<pn>.html, "Features"): compatible insulation diameter
 # range (mm), terminal material thickness t (mm), product length L (mm). None = not on the TE page: T_EST / L_EST are used and marked est.
-TERM = {   # L: R161 / R162 - from the TE STEP where we have one (42281-1 19.05 -> 20.18, 280755 / 6 29 -> 28.2, 1241388-2 18.45)
+TERM = {   # L: R163 - from the TE STEP where we have one (42281-1 19.05 -> 20.18, 280755 / 6 29 -> 28.2, 1241388-2 18.45)
     '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, head=(5.6, 4.1), what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
     '1241388-2': dict(ins=(1.4, 2.1), t=None, L=18.45, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
     '1241390-1': dict(ins=(2.2, 3.0), t=None, L=18.45, head=(3.1, 4.4), what='MCP 2.8K receptacle 1.5-2.5 mm2, unsealed, tin, typical 22 A'),
@@ -883,7 +889,7 @@ PAN_SNAPS_X = (63.0, 123.0)       # LOGIC belly pan catches on the end walls, cl
 CHANNEL_CAD_SKIP = {'HL', 'HR', 'ETB', 'HEAD LH 30', 'HEAD LH 86', 'HEAD RH 30', 'HEAD RH 86', 'k_etb 30'}   # CAD tails that are channel wires now
 
 
-# ---------- vendor CAD models (Dan 2026-10-18, DECISIONS R161: "you should use actual official cad models from manufacturer websites or other
+# ---------- vendor CAD models (Dan 2026-10-18, DECISIONS R163: "you should use actual official cad models from manufacturer websites or other
 # community shared sites when possible"). The files live in the main checkout's cad/vendor/<maker>/<pn>/ (gitignored, R67); cad/vendor/INDEX.md
 # (committed) lists PN, source URL and file. TE customer view models (te.com "3D STEP" link on each product page, read 2026-10-18): frame =
 # contact (mating) end at Z 0, the wire running down -Z, blade width along X, the locking lance on the -Y side; y_box = the contact box's Y centre
@@ -902,7 +908,7 @@ VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
 }
 
 
-# R161 / R162 (card item 13, 2026-10-18): the terminal cavities are sized from the REAL terminal - TE's own STEP (spec.VENDOR_TERM) - not from
+# R163 (card item 13, 2026-10-18): the terminal cavities are sized from the REAL terminal - TE's own STEP (spec.VENDOR_TERM) - not from
 # estimates. Measured on each model (sections every 0.5 mm, model frame: contact end Z 0, wire down -Z, blade width X, lance on -Y, box floor
 # Y 0): box W x H (Y 0..H, the blade line at H / 2), lock (W = side lances +-X / H = one lance on -Y: spring-out past the box, tip depth =
 # the deepest section the lance reaches, + 0.1 - checked by interference in the assembly), neck

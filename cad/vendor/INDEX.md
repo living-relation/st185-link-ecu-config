@@ -1,7 +1,7 @@
 # Vendor CAD models and maker documents (index)
 
 The files live in the main checkout's `cad/vendor/<maker>/<pn>/` and are **not committed** (gitignored, R67; only this
-index is tracked). DECISIONS R162: every bought part in a CAD assembly is the maker's own model; a community model only
+index is tracked). DECISIONS R163: every bought part in a CAD assembly is the maker's own model; a community model only
 after Dispatch gives the URL; anything built from a data sheet says so here, in its file name, and cites the sheet (Dispatch Q2 = A, 2026-10-18).
 
 **How the files were fetched:** te.com, littelfuse.com and eaton.com refuse plain shell downloads (TE 403, Littelfuse 403,

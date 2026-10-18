@@ -1668,7 +1668,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 if 'R%d' % (a['i'] + 1) in S.RETAIN.get('POWER', []):
                     x_cut = max(x_cut, c30['x'] + S.retainer_hole(c30['part'], c30['wire_od'])[0] / 2 + mw + S.RETAINER['clr'] + 0.05)
                 z_cut = z_d - S.GUIDE['h'] - 1.0          # the cavity's lower end under the deck (crimp_holes z0)
-                if c30['part'] in S.REAL:                  # R162: the real terminal hangs below the deck - the saddle stays clear of all of it
+                if c30['part'] in S.REAL:                  # R163: the real terminal hangs below the deck - the saddle stays clear of all of it
                     z_cut = min(z_cut, z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'] - 0.5)
                     report.setdefault('saddle_vs_terminal', []).append(dict(relay='R%d' % (a['i'] + 1), terminal_end_z=round(z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'], 2),
                                                                            bend_top_z=round(ccz, 2), straight_wire_mm=round(z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'] - ccz, 2)))
@@ -2377,10 +2377,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         zf = 10.0                                          # relay flange face (raised 6 on bosses: captured nut + limiter under it)
         tz0, tz1 = zf + 10.0, zf + 30.0                    # terminal blocks (TE side view: 10 back from the flange face, 20 tall)
         x3 = R['x_t3']
-        rx = x3 + H_['term_pitch'] / 2
+        rx = x3 - H_['term_x0']                           # fit audit 2026-10-18: relay centre = flange-hole midpoint, terminal 3 1.95 to its +x (TE STEP)
         xs = (x3, x3 + H_['term_pitch'])                   # terminal 3 (fused feed), terminal 5 (pump)
         yb = R['y_b']
-        tsy = yb - H_['term_to'] / 2                        # the power line
+        tsy = yb - H_['term_y']                            # fit audit 2026-10-18: the real stud axis (TE STEP), was term_to / 2                        # the power line
         hxs = (rx - H_['holes'] / 2, rx + H_['holes'] / 2)
         fy = yb + H_['hole_z']
         Bb = R['bar']
@@ -2527,8 +2527,33 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             bo(tbk, cylz(x, tsy, tz1 - 8.0, tz1 + 0.1, 5.0), 's')
             bo(rel, tbk, 'u')
         gcx = px0 + 8.0
-        comp(pre + 'Relay_TE_HCR150_1416010-1', rel, AP['black'], MAT['abs'], sh)
-        comp(pre + 'CoilPlug_TE_Superseal_282080-1', box(gcx - 5.0, yb - H_['plug_to'], tz0, gcx + 5.0, yb - 0.05, tz0 + 9.0), AP['black'], MAT['abs'], sh)
+        # fit audit 2026-10-18 (R163): the relay in the assembly is TE's own STEP (cad/vendor/te/1416010-1), seated on its flange face at zf with its
+        # flange holes on the bosses; the box envelope above stays only as the fallback when the vendor file is missing
+        real_hcr = None
+        hdir = next((os.path.join(d_, 'te', '1416010-1') for d_ in (os.path.join(os.path.dirname(os.path.dirname(SRC)), 'vendor'), S.VENDOR_DIR_MAIN)
+                     if os.path.isdir(os.path.join(d_, 'te', '1416010-1'))), None)
+        if hdir:
+            stp = [f_ for f_ in os.listdir(hdir) if f_.lower().endswith('.stp')]
+            if stp:
+                tocc = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+                app.importManager.importToTarget(app.importManager.createSTEPImportOptions(os.path.join(hdir, stp[0])), tocc.component)
+                hb_ = [tb.copy(b_) for b_ in tocc.component.bRepBodies] + [tb.copy(b_) for o_ in tocc.component.allOccurrences for b_ in o_.component.bRepBodies]
+                tocc.deleteMe()
+                m_ = adsk.core.Matrix3D.create()     # model: flange face -Y at y -5.98, holes x +-42 / z -39.5, studs x 1.95 / 18.95 (spec.HCR term_x0)
+                m_.setWithCoordinateSystem(P(rx, yb - 26.0, zf + 5.98), adsk.core.Vector3D.create(1, 0, 0), adsk.core.Vector3D.create(0, 0, 1),
+                                           adsk.core.Vector3D.create(0, -1, 0))
+                for b_ in hb_:
+                    tb.transform(b_, m_)
+                real_hcr = hb_
+                report.setdefault('battrelay', {})['hcr150_model'] = 'cad/vendor/te/1416010-1/' + stp[0]
+        comp(pre + 'Relay_TE_HCR150_1416010-1', real_hcr if real_hcr else rel, AP['black'], MAT['abs'], sh)
+        if real_hcr:   # fit audit 2026-10-18: TE's STEP has the coil connector at x -30.5 .. -11.3 / z 20.1 .. 40.1 (box frame), its tip 20.2 out of the
+            # body face; the mated plug (TE 282080-1, its housing drawing not on disk) runs from that tip to y_b - plug_to as before (5.8 long, UNVERIFIED)
+            gcx, gcz = rx - 20.9, zf + 5.98 + 14.1
+            plug_y0, plug_y1 = yb - H_['plug_to'], yb - H_['term_to'] - 0.05
+        else:
+            gcz, plug_y0, plug_y1 = tz0 + 4.5, yb - H_['plug_to'], yb - 0.05
+        comp(pre + 'CoilPlug_TE_Superseal_282080-1', box(gcx - 5.0, plug_y0, gcz - 4.5, gcx + 5.0, plug_y1, gcz + 4.5), AP['black'], MAT['abs'], sh)
         # ---- copper + fuse + hardware
         bar = box(Bb['x0'], tsy - Bb['w'] / 2, bz0, Bb['x1'], tsy + Bb['w'] / 2, btop)
         bo(bar, cylz(xst, tsy, bz0 - 1, btop + 1, S.CLEAR[6]), 's')     # F19: ISO 273 medium (was 6.5)
@@ -2569,7 +2594,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         wires.append(cyl(e3, (Lr + 30.0, tsy, e3[2]), odp))
         cy_ = yb - H_['plug_to']                         # coil leads: out of the plug toward -y, one turn to +x, along the front to the +x end
         rcl = 7.0
-        yl, zl = cy_ - rcl - 1.0, tz0 + 4.5
+        yl, zl = cy_ - rcl - 1.0, gcz                    # fit audit 2026-10-18: at the real connector's height
         coil_w = []
         for k in range(R['n_coil']):                     # 119 (b): two 18 AWG leads side by side, bends on one centre (nested)
             dk = (k - (R['n_coil'] - 1) / 2) * (odc + 0.4)
@@ -2609,7 +2634,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
     sizes = {'LOGIC': build_logic(), 'POWER': build_power(), 'BATTRELAY': build_relay_block()}
 
     def place_terminals():
-        """R161 (Dan 2026-10-18, card item 13: "why are there no terminals in the assembly models?" - they were never built; only
+        """R163 (Dan 2026-10-18, card item 13: "why are there no terminals in the assembly models?" - they were never built; only
         render_closeups.py drew stand-ins in a scratch design): the maker's own STEP (spec.VENDOR_TERM) of the terminal the wiring plan puts
         in every cavity, seated: contact end on the seat (deck top - HOLE top_gap, R121), blade width along the cavity's blade axis, the
         locking lance toward the side its R121 window opens (W lances: both sides, either way round). One component per box and part."""
@@ -2638,7 +2663,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             mz.translation = V(0, 0, -zmx / 10.0)
             for b_ in src[pn]:
                 tb.transform(b_, mz)
-            if pn in S.REAL:      # R162: TE's model shows the barrels OPEN - trim them to the crimped envelope the cavity is sized for
+            if pn in S.REAL:      # R163: TE's model shows the barrels OPEN - trim them to the crimped envelope the cavity is sized for
                 E_, R_ = S.real_env(pn), S.REAL[pn]
                 bw_, wz_, iz_ = E_['box'][0], R_['wz'][0], R_['iz'][0]
                 env = union_all([box(-20, -20, -wz_, 20, 20, 5), box(-E_['wire'][0], -5, -iz_, E_['wire'][0], E_['wire'][2], -wz_ + 0.01),
