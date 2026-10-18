@@ -158,7 +158,7 @@ REV_LETTER={'csb3_body':('C','FIRST ISSUE. MODEL REV C (PR #274)'),
             'drb_plate':('C','FIRST ISSUE. MODEL REV C (PR #275)')}
 # Fuse box rev 7 parts (Dan 2026-10-17: count each model's past releases in the repo history; rev 7 is NOT converted to G):
 # releases = PRs where the part's size / volume (printed) or mass (copper) in fusebox_report.json changed, + #273 NEG bar holes, #275 LOGIC corner.
-FB_REL={'fb_power_base':17,'fb_power_pan':7,'fb_power_cover':7,'fb_retainer':5,'fb_logic_base':14,'fb_logic_pan':8,'fb_logic_cover':10,
+FB_REL={'fb_power_base':18,'fb_power_pan':7,'fb_power_cover':7,'fb_retainer':5,'fb_logic_base':15,'fb_logic_pan':8,'fb_logic_cover':10,
         'fb_br_base':9,'fb_br_cover':7,'fb_bar_br':3,'fb_pad':3,'fb_barneg':3,'fb_barpos':2,'fb_strip1':5,'fb_strip2':5}   # + Dan's markup 2026-10-17; + fit audit / N21 2026-10-18
 SEQ='ABCDEFGHJKMNPRSTUVWXYZ'
 for _k,_n in FB_REL.items(): REV_LETTER[_k]=(SEQ[_n-1],'FIRST ISSUE. MODEL REV %s (%d RELEASES)'%(SEQ[_n-1],_n))

@@ -59,6 +59,9 @@ Save each file into the folder named, in this order (1 first):
 | 6 | TE DT application spec 114-151009 (46 pages) | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-151009&DocType=Specification%20Or%20Standard&DocLang=English&DocFormat=pdf | `te/specs/dt-bussed/` | wire AWG 14-20 and the N-seal (2.23-3.68 mm) / E-seal (1.35-3.05 mm) insulation ranges, for DT plugs forward of the firewall (R173) |
 | 7 | Glenair M22759/16 data sheet | https://www.glenair.com/wire-and-cable/as22759/pdf/m22759-16.pdf | `glenair/specs/` | finished wire outside diameter per gauge (the study used search-snippet values: about 1.5 / 1.8 / 2.0 / 2.4 mm for 20 / 18 / 16 / 14 AWG) |
 | 8 | Littelfuse MINI 3D model (optional, to replace the built ATM) | https://info.littelfuse.com/ (MINI fuse 3D model form - fill it in yourself) | `littelfuse/MINI/` | an official mini fuse model |
+| 9 | TE product specification for the MCP 2.8 receptacles 1-968851-1 / 1-968849-1 (contact retention in the housing) | https://www.te.com/en/product-1-968851-1.html ("Product Specification") | `te/specs/` | the buildability review (R181) checked the printed ledges against 40 N, the FASTIN-FASTON 2.8 mm value of 108-20020, as a stated proxy: the MCP figure itself is UNVERIFIED |
+
+TE product specification 108-20020 Rev D3 (FASTIN-FASTON 2.8 - 9.5 mm series; lists 280919, 280755, 280756; 3.7 contact retention 40 N min 2.8 / 4.8 mm, 60 N min 6.3 - 9.5 mm) is saved as `te/specs/108-20020.pdf` (TE document hosted at https://www.farnell.com/datasheets/597322.pdf, shell download 2026-10-18; a maker sheet on a distributor site counts, R167). Already on disk and used by the buildability review: `te/specs/114-2025.pdf` (FASTIN-FASTON housings and contacts, Rev G2), `114-20021.pdf` (Rev D16), `114-2036.pdf` (Rev F4).
 
 The two 416-byte "Access Denied" pages saved as `te/specs/114-18022.pdf` / `114-20011.pdf` by an earlier session were deleted 2026-10-18.
 

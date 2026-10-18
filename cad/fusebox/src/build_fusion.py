@@ -1764,7 +1764,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             c_, hw_ = ST['clr'], ST['w'] / 2
             T_ = S.STRAP_TAB[a['row']]
             x_slot = g['x_lip'] + s_ * ST['ledge']                # inner face of the hook slot (the ledge band ends here)
-            xs_ = sorted((g['x_tl0'] - s_ * c_, x_slot + s_ * 0.01))
+            # buildability review 2026-10-18 (R181): the bottom leg ends 0.1 past the top leg (PEM edge 7.1 vs top_in 6.5 + lug 0.5), and it
+            # drops through this pocket on the way in - start the pocket at whichever leg end reaches further, so it passes with the full clr
+            x_end_ = g['x_bl0'] if s_ * g['x_bl0'] < s_ * g['x_tl0'] else g['x_tl0']
+            xs_ = sorted((x_end_ - s_ * c_, x_slot + s_ * 0.01))
             cuts.append(box(xs_[0], y_ - hw_ - c_, btop - ST['t'], xs_[1], y_ + hw_ + c_, z_t + 1))
             xw_ = sorted((g['x_bl0'] - s_ * c_, g['x_wo'] + s_ * c_))
             hl_ = ST['w_low'] / 2                                 # web + bottom leg are 14.2: the walls between wells are 3.2
@@ -1792,7 +1795,9 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 xh_ = sorted((a1_, tip_))
                 hook_ = box(xh_[0] - 0.01, y_ - th_, zh0_, xh_[1], y_ + th_, zh1_)
                 ex_ = (min(xr_[0], tip_) - 0.3, max(xr_[1], tip_) + 0.3)
-            half_cut(hook_, (tip_, y_, zh1_ - 0.9), (-s_, 0.0, 1.0))              # 45 deg lead-in: the lips push the hook out going in
+            # R181 (buildability review 2026-10-18): lead-in T_['lead'] deg from the vertical from T_['lead_z'] above the underside (the R157
+            # bar-tab rule), reaching past the lip end - the lips cam the hook out all the way (was 0.9 x 45 deg: the lip landed on a flat top)
+            half_cut(hook_, (tip_, y_, zh0_ + T_['lead_z']), (-s_, 0.0, math.tan(math.radians(T_['lead']))))
             bo(arm_, hook_, 'u')
             strap_arms.append(arm_)
             exempt(pre + 'Base_PA12_printed', 'strap snap tab', min(ex_), max(ex_), y_ - th_ - T_['slot'] - 0.3, y_ + th_ + T_['slot'] + 0.3,

@@ -48,7 +48,7 @@ td.d{font-weight:700}</style></head><body><main>
 <li><b>B rev3 adapted to R76:</b> its machined aluminium bars and 1/0 set-screw port blocks become plain tinned copper bars with M8 bolts (head captured in the deck, like every other bolt) and Klauke 6R8 lugs. Its universal bar U and the link strap / AMG fuse option are dropped (question U1 below).</li>
 <li><b>Feet:</b> still four with M6 limiters; the rear-inboard foot moved round to the inboard end so no cable runs over a mounting bolt.</li>
 <li><b>Unchanged:</b> LOGIC box and battery relay block (their feeds do not move); bend radius rule, belly pan, PA12 print rules, M6 limiters.</li>
-<li><b>R155 (N14 = B, 2026-10-17): every AMI position is one copper C-strap</b> (ST185-FB-117, 3 x 15 tinned C110, web / bottom leg 14.2): top leg under the AMI ear, web down a well in the deck, bottom leg under the deck with the lug bolted palm-up to it; two PEM CLSS-M5-2 stainless nuts, M5 x 10 bolts at 4 N.m. Current: ear -> copper -> lug, no brass and no thread in the path (23.1 uohm, the old pad + standoff 58.8). Held both ways: the lips rest on a printed ledge (down), a snap hook reaches over them (up) - OUT row the freed skirt, IN row an arm in the deck; 100 N up on the hook: SF 2.07 / 2.01 (PA12). The brass standoffs, set screws, crush ribs and LOCTITE 406 (R146) are gone.</li>
+<li><b>R155 (N14 = B, 2026-10-17): every AMI position is one copper C-strap</b> (ST185-FB-117, 3 x 15 tinned C110, web / bottom leg 14.2): top leg under the AMI ear, web down a well in the deck, bottom leg under the deck with the lug bolted palm-up to it; two PEM CLSS-M5-2 stainless nuts, M5 x 10 bolts at 4 N.m. Current: ear -> copper -> lug, no brass and no thread in the path (23.1 uohm, the old pad + standoff 58.8). Held both ways: the lips rest on a printed ledge (down), a snap hook reaches over them (up) - OUT row the freed skirt, IN row an arm in the deck; 100 N up on the hook: SF 2.14 / 2.06 (PA12). The brass standoffs, set screws, crush ribs and LOCTITE 406 (R146) are gone.</li>
 </ol>
 <h2>R155: the copper C-strap station</h2>
 <figure><img src="renders/closeups/r155_strap_half_section_OUT_JB1.png" alt="OUT row (JB1 60 A), half-section at the fuse line: ear on copper, web down the well, lug palm-up under the bottom leg; lips on the ledge, snap hook over them."><figcaption>OUT row (JB1 60 A), half-section at the fuse line: ear on copper, web down the well, lug palm-up under the bottom leg; lips on the ledge, snap hook over them.</figcaption>
@@ -56,6 +56,12 @@ td.d{font-weight:700}</style></head><body><main>
 <figure><img src="renders/closeups/r155_strap_iso_OUT_JB1.png" alt="The same station, printed base and pan see-through."><figcaption>The same station, printed base and pan see-through.</figcaption>
 </figure>
 <figure><img src="renders/closeups/r155_strap_half_section_IN_HTR.png" alt="IN row (HTR 40 A): the same strap turned 180 deg, its lug runs inboard under the web to the relay saddle."><figcaption>IN row (HTR 40 A): the same strap turned 180 deg, its lug runs inboard under the web to the relay saddle.</figcaption>
+</figure>
+<h2>R181: the C-straps drop straight in (buildability review, 2026-10-18)</h2>
+<p>Dan: "make sure the bent copper bars ... can actually be installed from either the top or the bottom". Insertion sweep on the real STEP solids (base + 14 straps + PEM nuts), 0.25 mm / 2 deg steps, the snap arm free to move within its 2.6 % strain limit (SNAP_EPS, 1.53 mm): straight down is the only path - from below, tilted (10 / 20 / 30 deg, either end first) or slid in, the strap hits the rigid deck (the well fits the web and bottom leg with 0.3 mm a side). Straight down cleared everything rigid, but the lip landed flat on the 0.6 mm of hook top past the old 0.9 x 45 chamfer: contact ~88 deg to the push, self-locking - the strap only went in with the hook pushed back by hand. Fix (R181): the bar-tab lead-in on the strap hooks, 40 deg from the vertical from 0.3 above the underside, reaching past the lip end; the strap seat pocket starts at the bottom-leg end (0.2 -&gt; 0.3 passing clearance). Rebuilt model: all 14 stations clear, hook out 1.50 of 1.53, steepest contact 51 deg (self-locks only above mu 0.8); hook FEA 100 N up: SF 2.14 / 2.06 (was 2.07 / 2.01).</p>
+<figure><img src="renders/closeups/r180_strap_insertion_OUT_JB1.png" alt="OUT row (JB1), section through a lip: top row the #303 model (stops at 6.00 above the seat), bottom row the rebuilt model."><figcaption>OUT row (JB1), section through a lip: top row the #303 model (stops at 6.00 above the seat), bottom row the rebuilt model.</figcaption>
+</figure>
+<figure><img src="renders/closeups/r180_strap_insertion_IN_HTR.png" alt="IN row (HTR), the same."><figcaption>IN row (HTR), the same.</figcaption>
 </figure>
 <h2>R170: HEAD relay sockets (5 blades)</h2>
 <figure><img src="renders/closeups/head_relay_sockets.png" alt="HEAD LH / RH (TE 5-1393292-8): TE drawing V23074-A2001-CD (N26, Dan 2026-10-18) shows a 5th blade at terminal 4 (87a, 4.8 x 0.8), so both sockets now have the 87a blade slot between 85 and 86, like the horn. 87a carries no wire, so it is a plain slot joined to the 87 cavity; fit audit: all 5 TE blades on their slots (offset 0.00), interference 0 (was 42.9 mm3 from the blade the box had no slot for)."><figcaption>HEAD LH / RH (TE 5-1393292-8): TE drawing V23074-A2001-CD (N26, Dan 2026-10-18) shows a 5th blade at terminal 4 (87a, 4.8 x 0.8), so both sockets now have the 87a blade slot between 85 and 86, like the horn. 87a carries no wire, so it is a plain slot joined to the 87 cavity; fit audit: all 5 TE blades on their slots (offset 0.00), interference 0 (was 42.9 mm3 from the blade the box had no slot for).</figcaption>
@@ -220,7 +226,7 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>lug pocket wall</td><td>markup 2026-10-17 (Dan 23-18 / 23-27 pockets, R160): attachment only - the PA12 wall between two NEG bus lug tongues is 2.2 (3.0 between the tongues, Dan&#x27;s lug rule, less 0.4 clearance each side); it only stops a lug turning while its nut is torqued and stands on the raised pocket floor along its whole 26 mm length. One ground node (R135).</td></tr>
 <tr><td>strap snap tab</td><td>R155 (N14 = B): the snap arm over each copper strap&#x27;s lips has to flex 1.5 to let the strap in (STRAP_TAB, FEA in strap_fea.py); its slots are 1.0 (&gt; 0.5 S6) and the ledge the lips rest on is between the well and the slot</td></tr>
 </table></div><div class="wrap"><table><tr><th>Part</th><th>Thin-wall spots</th><th>Attachment spots</th><th>Volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>845.9 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>0</td><td>0</td><td>845.4 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>0</td><td>shell</td><td>156.7 cm3</td></tr>
 <tr><td>Power_Cover_PA12_printed</td><td>0</td><td>shell</td><td>198.9 cm3</td></tr>
 <tr><td>Power_Retainer_R1_PA12_printed</td><td>0</td><td>shell</td><td>1.3 cm3</td></tr>
@@ -376,7 +382,7 @@ td.d{font-weight:700}</style></head><body><main>
 <h2>POWER box parts list, rev 7 (with the bus bar in it)</h2>
 <p class="mut">Every line a real part with a link (R82; <code>parts_lists.py --check</code>). CSV: <code>cad/fusebox/rev7/fusebox-parts-power.csv</code>. LOGIC and battery block: the lists in <code>cad/fusebox/fusebox-parts-logic.csv</code> / <code>-battrelay.csv</code>, printed parts priced from these rev 7 volumes.</p>
 <div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part</th><th>Need</th><th>Own</th><th>Buy</th><th>$ line</th></tr>
-<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>84.60</td></tr>
+<tr><td>Printed</td><td>Power Base (with the bus zone)</td><td>Power_Base_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>84.55</td></tr>
 <tr><td>Printed</td><td>Power Pan (belly pan)</td><td>Power_Pan_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>15.67</td></tr>
 <tr><td>Printed</td><td>Power Cover</td><td>Power_Cover_PA12_printed.stl + .step (PA12)</td><td>1</td><td>0</td><td>1</td><td>19.90</td></tr>
 <tr><td>Copper</td><td>POS bus bar 25.4 x 6.35 x 226 mm + NEG bus bar 25.4 x 6.35 x 105 mm, tinned</td><td><a href="https://www.amazon.com/dp/B0CGJBRNJX">MECCANIXITY B0CGJBRNJX</a></td><td>2</td><td>0</td><td>2</td><td>52.38</td></tr>
@@ -414,9 +420,9 @@ td.d{font-weight:700}</style></head><body><main>
 <tr><td>Fasteners</td><td>Hex nut M8 (bus studs)</td><td><a href="https://hkcn.rs-online.com/web/p/products/530769">RS 530-769</a></td><td>8</td><td>0</td><td>9</td><td>0.72</td></tr>
 <tr><td>Fasteners</td><td>Plain washer M8 (bus studs)</td><td><a href="https://th.rs-online.com/web/p/washers/7976068">RS 797-6068</a></td><td>8</td><td>0</td><td>9</td><td>0.45</td></tr>
 <tr><td>Mounting</td><td>Compression limiter, feet (4)</td><td><a href="https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters">EFC 10S00056</a></td><td>4</td><td>0</td><td>5</td><td>1.50</td></tr>
-<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$372.86</b></td></tr></table></div>
+<tr><td></td><td><b>Total (est.)</b></td><td></td><td><b>194</b></td><td></td><td></td><td><b>$372.81</b></td></tr></table></div>
 <h2>Printed parts</h2><div class="wrap"><table><tr><th>Part</th><th>Rev 7 size (mm)</th><th>Rev 7 volume</th><th>Rev 6 volume</th></tr>
-<tr><td>Power_Base_PA12_printed</td><td>214 x 307 x 72</td><td>846.0 cm3</td><td>361.6 cm3</td></tr>
+<tr><td>Power_Base_PA12_printed</td><td>214 x 307 x 72</td><td>845.5 cm3</td><td>361.6 cm3</td></tr>
 <tr><td>Power_Pan_PA12_printed</td><td>174 x 238 x 35</td><td>156.7 cm3</td><td>120.4 cm3</td></tr>
 <tr><td>Power_Cover_PA12_printed</td><td>192 x 254 x 42</td><td>199.0 cm3</td><td>160.0 cm3</td></tr>
 </table></div><p class="mut">The base is 307 mm long over the feet: check it against the printer bed.</p>

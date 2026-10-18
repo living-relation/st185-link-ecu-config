@@ -1,5 +1,12 @@
-"""Shop drawings for the ST185 billet fuel hanger (stevecad-tools drawing engine, read-only use)."""
+"""Shop drawings for the ST185 billet fuel hanger (stevecad-tools drawing engine, read-only use).
+
+SUPERSEDED 2026-10-17 (found stale in the buildability review, 2026-10-18): the rev letters below are from before the option B holder
+(strut E, foot D, saddle C) and the saddle entry reads the old band-clamp saddle `fuel-hanger-saddle1.step`. The current FH drawings
+(FH-101 G, -103 F, -104 E, -105 D, assembly FH-100 K) come from cad/drawings/specs_1017.py (FH_ORDER) and cad/drawings/aspecs.py
+(fuel_hanger). This script refuses to run unless FH_OLD_DRAWINGS=1; retiring it needs Dan's OK (DECISIONS R46)."""
 import os, sys
+if os.environ.get("FH_OLD_DRAWINGS") != "1":
+    raise SystemExit("make_drawings.py is superseded - use cad/drawings/specs_1017.py / aspecs.py (see the docstring)")
 TK = "/home/daniel/projects/stevecad-tools"
 for d in ("drawing", "render", "checks"): sys.path.insert(0, os.path.join(TK, d))
 W = os.environ.get("FH_DWG_WORK", os.getcwd()); os.chdir(W); os.makedirs("previews", exist_ok=True); os.makedirs("out", exist_ok=True)
