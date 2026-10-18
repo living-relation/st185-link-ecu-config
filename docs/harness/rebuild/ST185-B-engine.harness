@@ -375,7 +375,7 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "partId": "m16_14_2",
+      "partId": "m16_12_2",
       "identColors": [
         "Blue",
         "White",
@@ -411,7 +411,7 @@
         "handle": "c4"
       },
       "color": "Black",
-      "partId": "m16_14_0",
+      "partId": "m16_12_0",
       "identColors": [
         "Blue",
         "White",
@@ -1320,7 +1320,7 @@
       "id": "ix_brail_p",
       "label": "IX-B-RAIL inline socket, +5 V from A-engine",
       "width": 270,
-      "partId": "cp_dt04_6p",
+      "partId": "cp_dt04_6p_ce03",
       "cavities": [
         {
           "id": "c1",
@@ -1494,7 +1494,7 @@
   "cables": [
     {
       "id": "cab_knock1",
-      "partId": "cab_sh_2c",
+      "partId": "cab_55a1821",
       "schematicPosition": {
         "x": 180,
         "y": 3030
@@ -1502,7 +1502,7 @@
       "cores": [
         {
           "id": "cab_knock1_c1",
-          "color": "Gray",
+          "color": "Blue",
           "source": {
             "id": "bh_b_eng",
             "handle": "c16"
@@ -1519,7 +1519,7 @@
         },
         {
           "id": "cab_knock1_c2",
-          "color": "Green",
+          "color": "White",
           "source": {
             "id": "bh_b_eng",
             "handle": "c17"
@@ -1607,7 +1607,7 @@
     },
     {
       "id": "cab_vss",
-      "partId": "cab_sh_3c",
+      "partId": "cab_55a1831",
       "schematicPosition": {
         "x": 810,
         "y": 2310
@@ -1615,7 +1615,7 @@
       "cores": [
         {
           "id": "w_vss_12v",
-          "color": "Orange",
+          "color": "Red",
           "source": {
             "id": "bh_b_eng",
             "handle": "c20"
@@ -1630,7 +1630,7 @@
         },
         {
           "id": "w_vss_gnd",
-          "color": "Black",
+          "color": "Yellow",
           "source": {
             "id": "vss",
             "handle": "c2"
@@ -2293,7 +2293,7 @@
         "x": 930,
         "y": 2100
       },
-      "label": "CAN-Lambda +12 V splice - 14 AWG from BH-B pin 95 to the 20 AWG lead"
+      "label": "CAN-Lambda +12 V splice - 12 AWG from BH-B pin 95 to the 20 AWG lead"
     },
     {
       "id": "sp_lamg_b",
@@ -2307,7 +2307,7 @@
         "x": 930,
         "y": 2220
       },
-      "label": "CAN-Lambda ground splice - 14 AWG from BH-B pin 96 to the 20 AWG lead"
+      "label": "CAN-Lambda ground splice - 12 AWG from BH-B pin 96 to the 20 AWG lead"
     }
   ],
   "schematicNotes": [
@@ -2400,28 +2400,6 @@
       }
     },
     {
-      "id": "m16_14_2",
-      "partNumber": "M22759/16-14-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_14_0",
-      "partNumber": "M22759/16-14-0",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Black",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "m16_16_20",
       "partNumber": "M22759/16-16-20",
       "manufacturer": "M22759",
@@ -2442,6 +2420,28 @@
       "stripeColor": "Blue",
       "gauge": {
         "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_2",
+      "partNumber": "M22759/16-12-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_12_0",
+      "partNumber": "M22759/16-12-0",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "gauge": {
+        "value": 12,
         "unit": "AWG"
       }
     }
@@ -2499,14 +2499,16 @@
       "shielded": true
     },
     {
-      "id": "cab_sh_3c",
-      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "id": "cab_55a1821",
+      "partNumber": "55A1821-20-6/9-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-3181663001.html",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
       "cores": [
         {
           "id": "k1",
-          "color": "Orange",
+          "color": "Blue",
+          "twistedWithNext": true,
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -2514,7 +2516,33 @@
         },
         {
           "id": "k2",
-          "color": "Black",
+          "color": "White",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1831",
+      "partNumber": "55A1831-20-2/4/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318056-002.html",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -3152,12 +3180,12 @@
       "numberOfCavities": 3
     },
     {
-      "id": "cp_dt04_6p",
-      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
+      "id": "cp_dt04_6p_ce03",
+      "url": "https://www.te.com/usa-en/product-DT04-6P-CE03.html",
       "gender": "Male",
       "hasShell": false,
-      "partNumber": "DT04-6P",
-      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "partNumber": "DT04-6P-CE03",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, E SEAL, INSUL 1.35-3.05 MM, END CAP, BLACK",
       "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
@@ -3181,7 +3209,8 @@
           ]
         }
       ],
-      "numberOfCavities": 6
+      "numberOfCavities": 6,
+      "color": "Black"
     }
   ],
   "lockParts": [

@@ -750,40 +750,6 @@
   ],
   "cableParts": [
     {
-      "id": "cab_sh_1c",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, BLUE, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_1c_vio",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
       "id": "cab_sh_2c_18",
       "partNumber": "GENERIC SHLD CABLE 2C 18AWG",
       "manufacturer": "generic",
@@ -826,80 +792,6 @@
         {
           "id": "k2",
           "color": "Green",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_3c",
-      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_4c",
-      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Violet",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -956,6 +848,127 @@
         },
         {
           "id": "k6",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1811",
+      "partNumber": "55A1811-20-9-9CS2275",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-913237-000.html",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1821",
+      "partNumber": "55A1821-20-6/9-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-3181663001.html",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Blue",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "White",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1831",
+      "partNumber": "55A1831-20-2/4/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318056-002.html",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1841",
+      "partNumber": "55A1841-20-2/4/5/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318074-002.html",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
           "color": "Blue",
           "gauge": {
             "value": 20,
@@ -1261,22 +1274,6 @@
       },
       "partNumber": "15326426",
       "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM",
-      "manufacturer": "Aptiv"
-    },
-    {
-      "id": "ct_uscar_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "partNumber": "15326427",
-      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2",
       "manufacturer": "Aptiv"
     },
     {
@@ -1616,6 +1613,22 @@
         "unit": "AWG",
         "value": 18
       }
+    },
+    {
+      "id": "ct_gt150_skt_16",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "12191819",
+      "description": "CONTACT, SOCKET, CRIMP, GT 150, TIN, SEALED, 18-16 AWG, CABLE OD 1.70-2.25 MM",
+      "manufacturer": "Aptiv"
     }
   ],
   "coveringParts": [
@@ -2095,6 +2108,14 @@
       "manufacturer": "TE Connectivity (Raychem)",
       "description": "TRANSITION, MOULDED, HEAT SHRINK, Y, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 38.6/18.0 X 26.9/12.4 MM SUPPLIED / RECOVERED, -75 TO 150 C",
       "url": "https://www.te.com/en/search.html?q=382A034-25-0",
+      "color": "Black"
+    },
+    {
+      "id": "boot_462a023",
+      "partNumber": "462A023-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, 1 TO 3, 4 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/13.2 X 13.2/6.9 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=462A023-25-0",
       "color": "Black"
     }
   ],
@@ -3898,6 +3919,218 @@
         }
       ],
       "numberOfCavities": 8
+    },
+    {
+      "id": "cp_dt2s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-2S-CE05.html",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "Wr6W4NbhdPbClGtmLWBXH"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      },
+      "color": "Black"
+    },
+    {
+      "id": "cp_dt3s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-3S-CE05.html",
+      "color": "Black",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-3",
+        "name": "DT 3-way",
+        "pins": [
+          {
+            "x": -4.33,
+            "y": -2.5,
+            "size": 5
+          },
+          {
+            "x": 4.33,
+            "y": -2.5,
+            "size": 5
+          },
+          {
+            "x": 0,
+            "y": 4.9,
+            "size": 5
+          }
+        ],
+        "outline": {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              14
+            ],
+            [
+              -11.2,
+              -7
+            ],
+            [
+              11.2,
+              -7
+            ]
+          ],
+          "cornerRadius": 4
+        },
+        "features": [
+          {
+            "y": -7,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 10,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "partNumber": "DT06-3S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE Connectivity DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_dt3wl"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 3,
+      "designationStrategy": {
+        "type": "alphabetical"
+      }
+    },
+    {
+      "id": "cp_dt6s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-6S-CE05.html",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DT06-6S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "SgWjOns8hjCkJhemuENz-"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "n2P7k5Wp2TRezmHgd1q87"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6,
+      "color": "Black"
+    },
+    {
+      "id": "cp_dt04_6p_ce03",
+      "url": "https://www.te.com/usa-en/product-DT04-6P-CE03.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-6P-CE03",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, E SEAL, INSUL 1.35-3.05 MM, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "rSeF6u1DSyLpofLhd7xBw"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "jbEmvVFIMtwgbQyl7PHUl"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6,
+      "color": "Black"
     }
   ],
   "lockParts": [

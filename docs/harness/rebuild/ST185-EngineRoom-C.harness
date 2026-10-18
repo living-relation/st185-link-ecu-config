@@ -1521,7 +1521,7 @@
       "id": "horn_lh",
       "label": "HORN LH",
       "width": 390,
-      "partId": "9ZUUE7W4KO7XV5_EclsXt",
+      "partId": "cp_dt2s_ce05",
       "schematicPosition": {
         "x": 1320,
         "y": 690
@@ -1549,7 +1549,7 @@
       "id": "horn_rh",
       "label": "HORN RH",
       "width": 390,
-      "partId": "9ZUUE7W4KO7XV5_EclsXt",
+      "partId": "cp_dt2s_ce05",
       "schematicPosition": {
         "x": 1320,
         "y": 870
@@ -6388,12 +6388,28 @@
       "numberOfCavities": 1
     },
     {
-      "id": "9ZUUE7W4KO7XV5_EclsXt",
-      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
-        "source": "cloud"
-      },
+      "id": "cp_fb_bus",
+      "partNumber": "ST185-FB-POWER rev 7 BUS ZONE",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BUS ZONE OF POWER BOX, PRINTED PA12, TINNED COPPER POS BAR (3 M8 STUDS) + NEG BAR (5 M8 STUDS)",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_lug_stud"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cp_dt2s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-2S-CE05.html",
       "gender": "Female",
       "pinout": {
         "id": "te-deutsch-dt-2",
@@ -6430,8 +6446,8 @@
         "mirrored": true
       },
       "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "partNumber": "DT06-2S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
       "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
@@ -6458,27 +6474,8 @@
       "numberOfCavities": 2,
       "designationStrategy": {
         "type": "sequential"
-      }
-    },
-    {
-      "id": "cp_fb_bus",
-      "partNumber": "ST185-FB-POWER rev 7 BUS ZONE",
-      "manufacturer": "custom (PA12 print)",
-      "description": "BUS ZONE OF POWER BOX, PRINTED PA12, TINNED COPPER POS BAR (3 M8 STUDS) + NEG BAR (5 M8 STUDS)",
-      "gender": "Female",
-      "hasShell": false,
-      "configurations": [
-        {
-          "id": "cfg",
-          "accessories": [
-            {
-              "id": "cfg-1",
-              "type": "ContactPart",
-              "partId": "ct_lug_stud"
-            }
-          ]
-        }
-      ]
+      },
+      "color": "Black"
     }
   ],
   "lockParts": [
@@ -6496,5 +6493,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "cableParts": []
 }

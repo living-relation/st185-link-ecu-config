@@ -2958,7 +2958,7 @@
   "cables": [
     {
       "id": "cab_fspur",
-      "partId": "cab_sh_3c",
+      "partId": "cab_55a1831",
       "schematicPosition": {
         "x": 1080,
         "y": 3150
@@ -2966,7 +2966,7 @@
       "cores": [
         {
           "id": "cab_fspur_5v",
-          "color": "Orange",
+          "color": "Red",
           "identColors": [
             "Blue",
             "Blue"
@@ -2982,7 +2982,7 @@
         },
         {
           "id": "cab_fspur_gnd",
-          "color": "Black",
+          "color": "Yellow",
           "identColors": [
             "Yellow",
             "Yellow",
@@ -3035,7 +3035,7 @@
     },
     {
       "id": "cab_fspur_fr_ac",
-      "partId": "cab_sh_1c_vio",
+      "partId": "cab_55a1811",
       "schematicPosition": {
         "x": 840,
         "y": 1350
@@ -3043,7 +3043,7 @@
       "cores": [
         {
           "id": "cab_fspur_r_ac",
-          "color": "Violet",
+          "color": "White",
           "identColors": [
             "White",
             "Blue",
@@ -3219,7 +3219,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_1"
+        "cov_dr25_34"
       ]
     },
     {
@@ -3231,7 +3231,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_1"
+        "cov_dr25_34"
       ]
     },
     {
@@ -3243,7 +3243,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_1"
+        "cov_dr25_34"
       ]
     },
     {
@@ -3258,7 +3258,7 @@
       "endLabel": "ECU-A",
       "partIds": [
         "cov_lbl_12",
-        "cov_dr25_1"
+        "cov_dr25_34"
       ]
     },
     {
@@ -3393,7 +3393,7 @@
       "endLabel": "IX WS-F",
       "partIds": [
         "cov_lbl_38",
-        "cov_dr25_12"
+        "cov_dr25_38"
       ]
     },
     {
@@ -3492,7 +3492,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_34"
+        "cov_dr25_12"
       ]
     },
     {
@@ -3504,7 +3504,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_34"
+        "cov_dr25_12"
       ]
     },
     {
@@ -4279,56 +4279,6 @@
   ],
   "cableParts": [
     {
-      "id": "cab_sh_3c",
-      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_1c_vio",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG VIO",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, VIOLET, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
       "id": "cab_sh_6c",
       "partNumber": "GENERIC SHLD CABLE 6C 20AWG",
       "manufacturer": "generic",
@@ -4377,6 +4327,58 @@
         {
           "id": "k6",
           "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1831",
+      "partNumber": "55A1831-20-2/4/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318056-002.html",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1811",
+      "partNumber": "55A1811-20-9-9CS2275",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-913237-000.html",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -4747,28 +4749,6 @@
         "value": 50,
         "unit": "mm"
       }
-    },
-    {
-      "id": "cov_dr25_1",
-      "type": "HeatShrink",
-      "partNumber": "DR-25-1-0-SP",
-      "manufacturer": "TE Connectivity (Raychem)",
-      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 25.4 MM EXPANDED ID, 12.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
-      "url": "https://www.te.com/en/product-5039244037.html",
-      "color": "Black",
-      "minDiameter": {
-        "value": 12.8,
-        "unit": "mm"
-      },
-      "maxDiameter": {
-        "value": 25.4,
-        "unit": "mm"
-      },
-      "thickness": {
-        "value": 1.78,
-        "unit": "mm"
-      },
-      "isFixedLength": false
     },
     {
       "id": "cov_dr25_12",
