@@ -656,7 +656,6 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "H1 battery + 1/0",
       "schematicPosition": {
         "x": 0,
         "y": 150
@@ -666,13 +665,12 @@
         "y": 660
       },
       "propagate": false,
-      "label": "POWER box bus BAT+ stud, c1 (glove box; EngineRoom-C) - via H1",
+      "label": "POWER box bus BAT+ stud (glove box; EngineRoom-C) - battery + via H1",
       "width": 390
     },
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "H2 battery - 1/0",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -682,12 +680,11 @@
         "y": -780
       },
       "propagate": false,
-      "label": "POWER box bus NEG bar, c8 (glove box; EngineRoom-C) - via H2"
+      "label": "POWER box bus NEG bar (glove box; EngineRoom-C) - battery - via H2"
     },
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "H3 ALT/STR + 1/0",
       "schematicPosition": {
         "x": 330,
         "y": 0
@@ -697,12 +694,11 @@
         "y": 720
       },
       "propagate": false,
-      "label": "POWER box bus ALT/STR stud, c2 (glove box; EngineRoom-C) - via H3"
+      "label": "POWER box bus ALT/STR stud (glove box; EngineRoom-C) - starter feed via H3"
     },
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "H6a engine ground 1/0",
       "schematicPosition": {
         "x": 330,
         "y": 240
@@ -712,12 +708,11 @@
         "y": -840
       },
       "propagate": false,
-      "label": "POWER box bus NEG bar, c8 (glove box; EngineRoom-C) - via H6a"
+      "label": "POWER box bus NEG bar (glove box; EngineRoom-C) - engine ground via H6a"
     },
     {
       "id": "t_trunk_pos",
       "type": "Ring",
-      "signal": "Battery + 1/0",
       "width": 270,
       "schematicPosition": {
         "x": 0,
@@ -729,12 +724,11 @@
       },
       "partId": "tp_lug_m10_50",
       "propagate": false,
-      "label": "Battery + post - trunk RH rear corner (Route 1 point 1)"
+      "label": "Battery positive terminal post, trunk RH rear (Route 1 point 1) - main feed 1/0"
     },
     {
       "id": "t_trunk_neg",
       "type": "Ring",
-      "signal": "Battery - 1/0",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -746,12 +740,11 @@
       },
       "partId": "tp_lug_m10_50",
       "propagate": false,
-      "label": "Battery - post - trunk RH rear corner (Route 1 point 1)"
+      "label": "Battery negative terminal post, trunk RH rear (Route 1 point 1) - main ground 1/0"
     },
     {
       "id": "t_starter_b",
       "type": "Ring",
-      "signal": "Starter B+ 1/0",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -763,12 +756,11 @@
       },
       "partId": "tp_lug_m10_50",
       "propagate": false,
-      "label": "Starter B+ post, engine bay (Route 1 point 2) - lug 1, 1/0 from RADLOK +"
+      "label": "Starter B+ stud, lug 1 (Route 1 point 2) - 1/0 from RADLOK +"
     },
     {
       "id": "t_starter_b_2",
       "type": "Ring",
-      "signal": "Alt B+ at starter",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -780,12 +772,11 @@
       },
       "partId": "tp_lug_m10_2",
       "propagate": false,
-      "label": "Starter B+ post, engine bay (Route 1 point 2) - lug 2, 2 AWG from the alternator"
+      "label": "Starter B+ stud, lug 2 (Route 1 point 2) - 2 AWG from the alternator"
     },
     {
       "id": "t_starter_b_3",
       "type": "Ring",
-      "signal": "Jump post feed at starter",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -797,12 +788,11 @@
       },
       "partId": "tp_lug_m10_2",
       "propagate": false,
-      "label": "Starter B+ post, engine bay (Route 1 point 2) - lug 3, 2 AWG to the jump post"
+      "label": "Starter B+ stud, lug 3 (Route 1 point 2) - 2 AWG to the jump post"
     },
     {
       "id": "t_alt_b",
       "type": "Ring",
-      "signal": "Alt B+ 2 AWG",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -814,12 +804,11 @@
       },
       "partId": "tp_lug_m8_2",
       "propagate": false,
-      "label": "Alternator B+ stud - rear RH of engine, under the bulkhead (Route 1 point 3)"
+      "label": "Alternator B+ stud, rear RH of engine (Route 1 point 3) - 2 AWG to starter"
     },
     {
       "id": "t_eng_block",
       "type": "Ring",
-      "signal": "Engine ground 1/0",
       "width": 390,
       "schematicPosition": {
         "x": 990,
@@ -831,13 +820,12 @@
       },
       "partId": "tp_lug_m10_50",
       "propagate": false,
-      "label": "Engine block ground stud (Route 1 point 5) - lug 1, 1/0 from RADLOK -"
+      "label": "Engine block ground stud, lug 1 (Route 1 point 5) - 1/0 from RADLOK -"
     },
     {
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt S sense",
       "schematicPosition": {
         "x": 480,
         "y": 1080
@@ -847,13 +835,12 @@
         "y": -180
       },
       "propagate": false,
-      "label": "LOGIC BUS1-9 ALTS 2 A fuse out (glove-box LOGIC box; via EngineRoom-C and CabinPower)"
+      "label": "LOGIC box Bus 1 pin 9 (glove box; via EngineRoom-C) - ALT S 2 A fuse out"
     },
     {
       "id": "br_alt_l",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt L charge lamp",
       "schematicPosition": {
         "x": 480,
         "y": 1140
@@ -863,13 +850,12 @@
         "y": -450
       },
       "propagate": false,
-      "label": "OEM IG2 joiner (under the ECU, cowl side) pin 16 - Y, charge lamp lead (via EngineRoom-C) (EWD p.74)"
+      "label": "OEM IG2 pin 16 (under the ECU, cowl side) - Y, charge lamp (via EngineRoom-C) (EWD p.74)"
     },
     {
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt IG excite",
       "schematicPosition": {
         "x": 480,
         "y": 1200
@@ -879,13 +865,12 @@
         "y": -240
       },
       "propagate": false,
-      "label": "Kill switch ALT 2 stud (2nd pole out), trunk RH rear corner (wire runs via EngineRoom-C)"
+      "label": "Kill switch ALT 2 stud, trunk RH rear (via EngineRoom-C) - alt IG out"
     },
     {
       "id": "br_ig_ks_in",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt IG to kill switch",
       "schematicPosition": {
         "x": 0,
         "y": 660
@@ -895,13 +880,12 @@
         "y": 780
       },
       "propagate": false,
-      "label": "OEM IG2 joiner (under the ECU, cowl side) pin 15 - B-R, ECU-IG 15 A (via EngineRoom-C) (EWD p.74)"
+      "label": "OEM IG2 pin 15 (under the ECU, cowl side) - B-R, ECU-IG 15 A (via EngineRoom-C) (EWD p.74)"
     },
     {
       "id": "br_ig_ks_out",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt IG from kill switch",
       "schematicPosition": {
         "x": 0,
         "y": 720
@@ -911,12 +895,11 @@
         "y": -900
       },
       "propagate": false,
-      "label": "Alternator G2 plug pin 3 - IG excite, rear RH of engine (wire runs via EngineRoom-C)"
+      "label": "Alternator plug G2 pin 3, rear RH of engine (via EngineRoom-C) - IG excite"
     },
     {
       "id": "br_w_fp85",
       "type": "Loose",
-      "signal": "FP relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -450,
@@ -927,12 +910,11 @@
         "y": 1380
       },
       "propagate": false,
-      "label": "ECU-A pin A19 (Link ECU plug A, Aux 3, center dash; A-cabin) - fuel pump relay drive"
+      "label": "ECU A pin 19 (Link ECU, center dash; A-cabin) - fuel pump relay drive"
     },
     {
       "id": "br_fp86",
       "type": "Loose",
-      "signal": "FP relay coil+ 12V",
       "width": 390,
       "layoutPosition": {
         "x": -300,
@@ -943,12 +925,11 @@
         "y": 1440
       },
       "propagate": false,
-      "label": "Splice SW12 after the LOGIC BUS2-2 SW12 7.5 A fuse (glove-box LOGIC box; CabinPower)"
+      "label": "SW12 splice after LOGIC Bus 2 pin 2 (glove box; CabinPower) - switched 12 V"
     },
     {
       "id": "br_fp_pump",
       "type": "Loose",
-      "signal": "Fuel pump 12V",
       "width": 390,
       "layoutPosition": {
         "x": -360,
@@ -959,7 +940,7 @@
         "y": 1500
       },
       "propagate": false,
-      "label": "Fuel pump plug pin 1 (in the tank, trunk; RearFuel) - pump +12 V"
+      "label": "Fuel pump plug pin 1 (in the tank; RearFuel) - pump +12 V"
     }
   ],
   "bundles": [
@@ -1300,10 +1281,10 @@
     },
     {
       "id": "shdr_1",
-      "width": 150,
+      "width": 270,
       "schematicPosition": {
-        "x": 480,
-        "y": 360
+        "x": 660,
+        "y": -90
       },
       "color": "Orange",
       "text": "FIREWALL RADLOK"

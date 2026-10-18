@@ -400,10 +400,9 @@
         "x": 960,
         "y": -810
       },
-      "signal": "Cluster CAN stub",
       "partId": "tp_flying_lead",
       "propagate": false,
-      "label": "Center cluster CAN board (SN65HVD230) CANH + CANL terminals, old meter spot"
+      "label": "Cluster CAN board CANH + CANL pins (old meter spot) - CAN 1 stub"
     },
     {
       "id": "t_realdash_can",
@@ -417,15 +416,13 @@
         "x": 1110,
         "y": -1350
       },
-      "signal": "Pi CAN stub",
       "partId": "tp_flying_lead",
       "propagate": false,
-      "label": "RealDash Pi USB-CAN adapter CANH + CANL terminals, center dash (CANable or PCAN USB - TBD at install)"
+      "label": "Pi USB-CAN adapter CANH + CANL pins (center dash) - CAN 1 stub"
     },
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "CAN H to CSB3",
       "width": 390,
       "layoutPosition": {
         "x": 1110,
@@ -436,12 +433,11 @@
         "y": 60
       },
       "propagate": false,
-      "label": "CSB3 plug pin 5 (HD36-24-33SE, under the center cluster; CSB3) - CSB3 CAN H"
+      "label": "CSB3 plug pin 5 (under the center cluster; CSB3) - CSB3 CAN H"
     },
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "CAN L to CSB3",
       "width": 390,
       "layoutPosition": {
         "x": 1110,
@@ -452,12 +448,11 @@
         "y": 180
       },
       "propagate": false,
-      "label": "CSB3 plug pin 6 (HD36-24-33SE, under the center cluster; CSB3) - CSB3 CAN L"
+      "label": "CSB3 plug pin 6 (under the center cluster; CSB3) - CSB3 CAN L"
     },
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Lambda 12V",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -468,12 +463,11 @@
         "y": -60
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 95 (firewall connector, RH firewall, engine side; B-engine) - LOGIC BUS2-1 LAM 7.5 A fuse"
+      "label": "Bulkhead DRB102 pin 95 (RH firewall, engine side; B-engine) - Lambda 7.5 A feed"
     },
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "Lambda ground",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -484,12 +478,11 @@
         "y": 180
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 96 (firewall connector, RH firewall, engine side; B-engine) - cabin chassis ground"
+      "label": "Bulkhead DRB102 pin 96 (RH firewall, engine side; B-engine) - Lambda ground"
     },
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "CAN H to bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -500,12 +493,11 @@
         "y": 60
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 92 (firewall connector, RH firewall, cabin side; B-cabin) - CAN H to the CAN-Lambda"
+      "label": "Bulkhead DRB102 pin 92 (RH firewall, cabin side; B-cabin) - CAN H to the Lambda"
     },
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "CAN L to bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -516,12 +508,11 @@
         "y": 180
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 93 (firewall connector, RH firewall, cabin side; B-cabin) - CAN L to the CAN-Lambda"
+      "label": "Bulkhead DRB102 pin 93 (RH firewall, cabin side; B-cabin) - CAN L to the Lambda"
     },
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "CAN H from bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 1290,
@@ -532,12 +523,11 @@
         "y": 60
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 92 (firewall connector, RH firewall, engine side; B-engine) - CAN H from the cabin bus"
+      "label": "Bulkhead DRB102 pin 92 (RH firewall, engine side; B-engine) - CAN H from the cabin"
     },
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "CAN L from bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 1290,
@@ -548,12 +538,11 @@
         "y": 180
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 93 (firewall connector, RH firewall, engine side; B-engine) - CAN L from the cabin bus"
+      "label": "Bulkhead DRB102 pin 93 (RH firewall, engine side; B-engine) - CAN L from the cabin"
     },
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "Lambda run screen",
       "width": 390,
       "layoutPosition": {
         "x": 1290,
@@ -564,12 +553,11 @@
         "y": 120
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 94 (firewall connector, RH firewall, engine side; B-engine) - CAN-Lambda pair screen"
+      "label": "Bulkhead DRB102 pin 94 (RH firewall, engine side; B-engine) - Lambda pair screen"
     },
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "Bulkhead run screen",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -580,12 +568,11 @@
         "y": 240
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 94 (firewall connector, RH firewall, cabin side; B-cabin) - CAN pair screen"
+      "label": "Bulkhead DRB102 pin 94 (RH firewall, cabin side; B-cabin) - CAN pair screen"
     },
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "CAN screen drain",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -596,12 +583,11 @@
         "y": 120
       },
       "propagate": false,
-      "label": "Splice SHIELD B at ECU-B pin B17 (screen ground, center dash; B-cabin)"
+      "label": "Shield splice at ECU B pin 17 (center dash; B-cabin) - CAN screen drain"
     },
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "CSB3 run screen",
       "width": 390,
       "layoutPosition": {
         "x": 1110,
@@ -612,7 +598,7 @@
         "y": 120
       },
       "propagate": false,
-      "label": "Screen ends open (floats) at the CSB3 plug, under the center cluster (CSB3)"
+      "label": "CSB3 run screen lead, cut open at the CSB3 plug (CSB3) - screen floats"
     },
     {
       "id": "t_cluster_pwr",
@@ -626,10 +612,9 @@
         "x": 960,
         "y": -600
       },
-      "signal": "Cluster 12V",
       "partId": "tp_flying_lead",
       "propagate": false,
-      "label": "Center cluster 12 V-to-5 V buck converter IN+ terminal, old meter spot"
+      "label": "Cluster buck converter IN+ pin (old meter spot) - 12 V in"
     },
     {
       "id": "t_realdash_pwr",
@@ -643,10 +628,9 @@
         "x": 1110,
         "y": -1200
       },
-      "signal": "Pi 12V",
       "partId": "tp_flying_lead",
       "propagate": false,
-      "label": "RealDash Pi 12 V-to-5 V supply IN+ terminal, center dash"
+      "label": "Pi 12-to-5 V supply IN+ pin (center dash) - 12 V in"
     },
     {
       "id": "t_cluster_gnd",
@@ -660,10 +644,9 @@
         "x": 960,
         "y": -690
       },
-      "signal": "Cluster ground",
       "partId": "tp_ring_m6_22_16",
       "propagate": false,
-      "label": "Ground point IF, instrument panel brace RH (EWD ground point IF, p.42) - cluster lug"
+      "label": "Ground point IF, I/P brace RH (EWD ground point IF, p.42) - cluster ground"
     },
     {
       "id": "t_realdash_gnd",
@@ -677,15 +660,13 @@
         "x": 1110,
         "y": -930
       },
-      "signal": "Pi ground",
       "partId": "tp_ring_m6_22_16",
       "propagate": false,
-      "label": "Ground point IF, instrument panel brace RH (EWD ground point IF, p.42) - Pi lug"
+      "label": "Ground point IF, I/P brace RH (EWD ground point IF, p.42) - Pi ground"
     },
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "Dash 12V feed",
       "width": 390,
       "layoutPosition": {
         "x": 960,
@@ -696,7 +677,7 @@
         "y": 330
       },
       "propagate": false,
-      "label": "LOGIC BUS2-6 DEV 15 A fuse out (glove-box LOGIC box; CabinPower)"
+      "label": "LOGIC box Bus 2 pin 6 (glove box; CabinPower) - DEV 15 A fuse out"
     },
     {
       "id": "t_cluster_gnd_lead",
@@ -710,10 +691,9 @@
         "x": 960,
         "y": -870
       },
-      "signal": "Cluster ground lead",
       "partId": "tp_flying_lead",
       "propagate": false,
-      "label": "Center cluster 12 V-to-5 V buck converter IN- terminal, old meter spot"
+      "label": "Cluster buck converter IN- pin (old meter spot) - 0 V"
     },
     {
       "id": "t_realdash_gnd_lead",
@@ -727,10 +707,9 @@
         "x": 1110,
         "y": -1470
       },
-      "signal": "Pi ground lead",
       "partId": "tp_flying_lead",
       "propagate": false,
-      "label": "RealDash Pi 12 V-to-5 V supply IN- terminal, center dash"
+      "label": "Pi 12-to-5 V supply IN- pin (center dash) - 0 V"
     }
   ],
   "cables": [
