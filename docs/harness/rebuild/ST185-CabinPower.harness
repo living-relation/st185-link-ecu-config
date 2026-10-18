@@ -3499,7 +3499,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_34"
+      ]
     },
     {
       "id": "cp_bn_bp_1050__bp_2100",
@@ -3674,7 +3677,8 @@
       "separateLabels": true,
       "endLabel": "R2 EFI",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     },
     {
@@ -3697,7 +3701,8 @@
       "separateLabels": true,
       "endLabel": "R4 FAN",
       "partIds": [
-        "cov_lbl_12"
+        "cov_lbl_12",
+        "cov_dr25_12"
       ]
     },
     {
@@ -3729,7 +3734,8 @@
       "separateLabels": true,
       "endLabel": "M14 ETB",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_14"
       ]
     },
     {
@@ -3761,7 +3767,8 @@
       "separateLabels": true,
       "endLabel": "R3 STR",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     },
     {
@@ -3793,7 +3800,8 @@
       "separateLabels": true,
       "endLabel": "R5 FAN2",
       "partIds": [
-        "cov_lbl_12"
+        "cov_lbl_12",
+        "cov_dr25_12"
       ]
     },
     {
@@ -3825,7 +3833,8 @@
       "separateLabels": true,
       "endLabel": "HCR EPS",
       "partIds": [
-        "cov_lbl_12"
+        "cov_lbl_12",
+        "cov_dr25_12"
       ]
     },
     {
@@ -3857,7 +3866,8 @@
       "separateLabels": true,
       "endLabel": "M15 ACC",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_14"
       ]
     },
     {
@@ -3961,7 +3971,8 @@
       "separateLabels": true,
       "endLabel": "M21 EPSEN",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_14"
       ]
     },
     {
@@ -3993,7 +4004,8 @@
       "separateLabels": true,
       "endLabel": "M22 REV",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_14"
       ]
     },
     {
@@ -4061,7 +4073,8 @@
       "separateLabels": true,
       "endLabel": "M11 HL",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     },
     {
@@ -4075,7 +4088,8 @@
       "separateLabels": true,
       "endLabel": "M12 HR",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     },
     {
@@ -4089,7 +4103,8 @@
       "separateLabels": true,
       "endLabel": "M13 HORN",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_14"
       ]
     },
     {
@@ -4103,7 +4118,8 @@
       "separateLabels": true,
       "endLabel": "R1 HTR",
       "partIds": [
-        "cov_lbl_12"
+        "cov_lbl_12",
+        "cov_dr25_12"
       ]
     },
     {
@@ -4117,7 +4133,8 @@
       "separateLabels": true,
       "endLabel": "R6 PWR",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     },
     {
@@ -4190,7 +4207,10 @@
       "length": {
         "value": 250,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_1"
+      ]
     },
     {
       "id": "b_bn_bp_1050__fb_logic",
@@ -4199,7 +4219,10 @@
       "length": {
         "value": 200,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_1"
+      ]
     },
     {
       "id": "b_bn_bp_2100__br_fp86",
@@ -4221,7 +4244,8 @@
       "separateLabels": true,
       "endLabel": "SW12 BUS",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     }
   ],
@@ -4883,6 +4907,116 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_dr25_1",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 25.4 MM EXPANDED ID, 12.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039244037.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 12.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 25.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.78,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_12",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/2-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 12.7 MM EXPANDED ID, 6.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039304024.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.22,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_14",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039274019.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.89,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_34",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 19.0 MM EXPANDED ID, 9.5 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039254029.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 19.0,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.44,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_38",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/8-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 9.53 MM EXPANDED ID, 4.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039264026.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.53,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.02,
+        "unit": "mm"
+      },
+      "isFixedLength": false
     }
   ],
   "terminalParts": [
