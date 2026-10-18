@@ -73,7 +73,7 @@
       },
       "target": {
         "id": "oilp",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "White",
       "partId": "m16_20_9",
@@ -90,7 +90,7 @@
       },
       "target": {
         "id": "fuelp",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "White",
       "partId": "m16_20_9",
@@ -107,7 +107,7 @@
       },
       "target": {
         "id": "clntp",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "White",
       "partId": "m16_20_9",
@@ -177,7 +177,7 @@
       },
       "target": {
         "id": "oilp",
-        "handle": "c1"
+        "handle": "c2"
       },
       "partId": "m16_20_3",
       "identColors": [
@@ -194,7 +194,7 @@
       },
       "target": {
         "id": "fuelp",
-        "handle": "c1"
+        "handle": "c2"
       },
       "partId": "m16_20_3",
       "identColors": [
@@ -211,7 +211,7 @@
       },
       "target": {
         "id": "clntp",
-        "handle": "c1"
+        "handle": "c2"
       },
       "partId": "m16_20_3",
       "identColors": [
@@ -261,7 +261,7 @@
       "color": "Black",
       "source": {
         "id": "oilp",
-        "handle": "c3"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_gndout_b_eng2",
@@ -279,7 +279,7 @@
       "color": "Black",
       "source": {
         "id": "fuelp",
-        "handle": "c3"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_gndout_b_eng3",
@@ -297,7 +297,7 @@
       "color": "Black",
       "source": {
         "id": "clntp",
-        "handle": "c3"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_gndout_b_eng2",
@@ -1101,16 +1101,16 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+5 V supply"
+          "signal": "sensor ground",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "pressure signal out"
+          "signal": "+5 V supply"
         },
         {
           "id": "c3",
-          "signal": "sensor ground",
-          "propagate": false
+          "signal": "pressure signal out"
         }
       ],
       "layoutPosition": {
@@ -1130,15 +1130,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+5 V supply"
+          "signal": "sensor ground"
         },
         {
           "id": "c2",
-          "signal": "pressure signal out"
+          "signal": "+5 V supply"
         },
         {
           "id": "c3",
-          "signal": "sensor ground"
+          "signal": "pressure signal out"
         }
       ],
       "layoutPosition": {
@@ -1158,15 +1158,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+5 V supply"
+          "signal": "sensor ground"
         },
         {
           "id": "c2",
-          "signal": "pressure signal out"
+          "signal": "+5 V supply"
         },
         {
           "id": "c3",
-          "signal": "sensor ground"
+          "signal": "pressure signal out"
         }
       ],
       "layoutPosition": {

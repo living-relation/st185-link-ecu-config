@@ -73,7 +73,7 @@
       },
       "target": {
         "id": "map",
-        "handle": "c2"
+        "handle": "c3"
       },
       "color": "White",
       "partId": "m16_20_9",
@@ -305,7 +305,7 @@
       },
       "target": {
         "id": "map",
-        "handle": "c1"
+        "handle": "c2"
       },
       "partId": "m16_20_3",
       "identColors": [
@@ -392,7 +392,7 @@
       "color": "Black",
       "source": {
         "id": "map",
-        "handle": "c3"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_gndout_eng2",
@@ -1569,16 +1569,16 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+5 V supply"
+          "signal": "sensor ground",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "pressure signal out"
+          "signal": "+5 V supply"
         },
         {
           "id": "c3",
-          "signal": "sensor ground",
-          "propagate": false
+          "signal": "pressure signal out"
         }
       ],
       "layoutPosition": {
