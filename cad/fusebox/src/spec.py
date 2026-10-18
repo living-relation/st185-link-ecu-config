@@ -358,7 +358,7 @@ F7_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '85': (-8.45, -1.85), '86': (
 RELAY_B_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '87a': (0.0, RELAY_B['v87a']), '85': (-8.4, -2.35), '86': (8.4, -2.35)}
 # Which harness pin (sot/channels.csv c1 = 30, c4 = 87) lands on which real blade. The box brings every AMI feed up round its saddle into the FAR
 # blade (v -10.25) = the real 87, and takes the harness out of the NEAR blade = the real 30. The F7s are 1 form A (30 - 87 is one switch, either way
-# round): their SoT feed (30) sits on the real 87 - OPEN-ITEMS row: swap the SoT / CabinPower roles or re-route. The heater (1 form C, DECISIONS
+# round): DECISIONS R168 (N22 = A) moves the SoT feed to 87; ST185-CabinPower still draws it on c1 (OPEN-ITEMS row 137). The heater (1 form C, DECISIONS
 # R164): SoT 87 = the 40 A feed = the far blade, SoT 30 = the blower = the near blade, as on the car (1993 EWD p.215); ST185-CabinPower still draws
 # the feed on c1 (OPEN-ITEMS row), so the map below stays c1 -> far, c4 -> near for every relay until that redraw (then k_htr: c1 near, c4 far).
 POWER_ROLE_POS = {'30': 'far', '87': 'near'}
