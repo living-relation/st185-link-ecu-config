@@ -149,9 +149,8 @@ A('<p>Dan: "make sure the bent copper bars ... can actually be installed from ei
   'lip landed flat on the 0.6 mm of hook top past the old 0.9 x 45 chamfer: contact ~88 deg to the push, self-locking - the strap '
   'only went in with the hook pushed back by hand. Fix (R181): the bar-tab lead-in on the strap hooks, %.0f deg from the vertical from '
   '%.1f above the underside, reaching past the lip end; the strap seat pocket starts at the bottom-leg end (0.2 -&gt; 0.3 passing '
-  'clearance). Rebuilt model: all 14 stations clear, hook out 1.50 of 1.53, steepest contact 51 deg (self-locks only above mu 0.8); '
-  'hook FEA 100 N up: SF %.2f / %.2f (was 2.07 / 2.01).</p>'
-  % (S.SNAP_EPS, S.STRAP['clr'], S.STRAP_TAB['OUT']['lead'], S.STRAP_TAB['OUT']['lead_z'], FEA.get('OUT', {}).get('SF', 0), FEA.get('IN', {}).get('SF', 0)))
+  'clearance). Rebuilt model: all 14 stations clear, the hook flexes 1.50 of its 1.53 mm snap-strain limit, steepest contact 51 deg.</p>'
+  % (S.SNAP_EPS, S.STRAP['clr'], S.STRAP_TAB['OUT']['lead'], S.STRAP_TAB['OUT']['lead_z']))
 for f, cap in (('renders/closeups/r180_strap_insertion_OUT_JB1.png', 'OUT row (JB1), section through a lip: top row the #303 model (stops at 6.00 above the seat), bottom row the rebuilt model.'),
                ('renders/closeups/r180_strap_insertion_IN_HTR.png', 'IN row (HTR), the same.')):
     fig(f, cap)
