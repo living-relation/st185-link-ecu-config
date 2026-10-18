@@ -27,13 +27,9 @@ import sys
 import model
 
 STUB_MAX = 100   # mm between two lugs of one stud, along the bundles
-# Findings waiting on Dan (OPEN-ITEMS Needs Dan N14): printed, not failing. Remove an entry once
+# Findings waiting on Dan (OPEN-ITEMS Needs Dan): printed, not failing. Remove an entry once
 # its drawing is fixed or Dan keeps it (then say so in DECISIONS R154). Anything new fails.
-PENDING_DAN = {
-    "A-cabin": {"bn_bp_fl_acamp__fl_acamp_mg", "b_bn_bp_1050__bp_1065"},
-    "B-cabin": {"bn_bp_870__bp_900", "bn_bp_900__bp_930"},
-    "CAN": {"bn_bp_780__bp_840"},
-}
+PENDING_DAN = {}   # N28 cleared 2026-10-18 (DECISIONS R179)
 
 
 def graph(d):

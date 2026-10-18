@@ -2602,7 +2602,7 @@
         "y": 1410
       },
       "layoutPosition": {
-        "x": -2130,
+        "x": -2310,
         "y": -150
       },
       "propagate": false,
@@ -3427,8 +3427,8 @@
       ]
     },
     {
-      "id": "bn_fl_acamp_mg__br_ac_mg",
-      "sourceId": "fl_acamp_mg",
+      "id": "bn_bp_fl_acamp__br_ac_mg",
+      "sourceId": "bp_fl_acamp",
       "targetId": "br_ac_mg",
       "length": {
         "value": 20,
@@ -3551,15 +3551,6 @@
       "partIds": [
         "cov_dr25_34"
       ]
-    },
-    {
-      "id": "b_bn_bp_1050__bp_1065",
-      "sourceId": "b_bp_1050",
-      "targetId": "b_bp_1065",
-      "length": {
-        "value": 30,
-        "unit": "mm"
-      }
     },
     {
       "id": "bn_b_bp_1170__br_w_b25",
@@ -4546,13 +4537,6 @@
       "layoutPosition": {
         "x": -2400,
         "y": 1770
-      }
-    },
-    {
-      "id": "b_bp_1065",
-      "layoutPosition": {
-        "x": -1680,
-        "y": 0
       }
     },
     {
