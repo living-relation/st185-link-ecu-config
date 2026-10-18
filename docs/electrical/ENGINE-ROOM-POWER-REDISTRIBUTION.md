@@ -64,7 +64,7 @@ J/B No.2 is removed with its plugs and the engine-room main wire. Everything it 
 TRUNK battery +  ──2 AWG / 1/0──►  GLOVE BOX PDB  ─┬─► POWER + LOGIC fuse boxes (ECU / EPS / fans / body, ex-J/B2)
                      jump lug                     │   (ST185-CabinPower, Option B)
 TRUNK battery −  ──2 AWG / 1/0──►  PDB ground     ├─► always-hot + AM1 + AM2 to kick-panel J/Bs
-                                                  └─► RADLOK +  ──firewall──► starter B+ ◄── 160 A alt B+
+                                                  └─► RADLOK +  ──firewall──► starter B+ ◄── 170 A alt B+
                                                      RADLOK −  ──firewall──► engine block
                                                      engine-bay jump post on the starter B+ net
 ```
@@ -88,7 +88,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | Load | Path | Why |
 |---|---|---|
 | Starter motor | Battery cable + RADLOK + existing `k_str` for solenoid | Cranking amps |
-| 160 A alternator B+ | 4 AWG (or 2 AWG) to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28) |
+| 170 A alternator B+ (Dan 2026-10-18, DECISIONS R161) | 1/0 to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28): Littelfuse `880014250` (250 A MEGA, 187 A continuous) on H3 at the POWER box ALT/STR stud, sizing in DECISIONS S39 |
 | MRS EPS pump | `k_eps` HCR 150 in the glove box beside the fuse box (moved from the engine bay 2026-09-28; drawn on `ST185-CabinPower` since 2026-10-11), POWER AMI OUT-6 Bussmann AMI-60 (was LMI L7, HCFB H4 before that), 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Relays seated in the glove-box fuse box, `ST185-CabinPower.harness` (coil wires on `ST185-A-cabin.harness`) | Hold-power and Link's published ETB circuit |
@@ -130,7 +130,7 @@ ratings not written above are `TBD` until sized against the load.
 | H2 | Battery − | **1/0** | Trunk battery − , jump lug | PDB ground + body | Bond to the cargo floor | Separate from sensor Gnd Out |
 | H3 | Charge / start + | **1/0** | PDB ALT/STR stud | RADLOK + firewall, cabin side (`RL00801-50RE`) | Feed-through is `RL9080-301-F1RE` | |
 | H4 | Charge / start + | **1/0** | RADLOK + firewall, engine side (`RL00801-50RE`) | Starter B+ post, jump lug | | |
-| H5 | Alternator B+ | 2 AWG | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Short bay jumper; factory A17 pin B, we replace that cable |
+| H5 | Alternator B+ | **1/0** (was 2 AWG; 170 A, DECISIONS R161 / S39) | Alternator B+ (rear of block, under intake) | Starter B+ | Does **not** recross the firewall | Short bay jumper; factory A17 pin B, we replace that cable |
 | H6 | Engine ground | **1/0** | RADLOK − firewall, engine side (`RL00801-50BK`) | Engine block stud, jump lug | Feed-through is `RL9080-301-F1` | OEM grounds EA / EB / EC stay |
 | H7 | Cabin ground | **1/0** | PDB ground | Kick-panel ground **ID** (left) and a new glove-box ground at IG (old R/B4 set bolt) | | |
 | H8 | Jump post | 2 AWG | Starter B+ | Engine-bay jump post | So you can still jump-start from the bay | |
@@ -142,13 +142,13 @@ ratings not written above are `TBD` until sized against the load.
 **SETTLED 2026-09-22 — 1/0 and RADLOK 8.0.** The old `RL00571-35` spec was wrong twice
 over: Amphenol's catalogue has no `-35` (the trailing number is cable mm², and only
 `-16` and `-25` exist for 5.7 mm), and 5.7 mm RADSOK is rated **120 A** — under the
-160 A the alternator can push back through this crossing.
+170 A the alternator can push back through this crossing (DECISIONS R161).
 
 Sizing, done properly:
 
 | Case | Current | 2 AWG drop | **1/0 drop** | 2/0 drop |
 |---|---|---|---|---|
-| Alternator at rating, continuous | 160 A | 0.90 V | **0.57 V (4%)** | 0.45 V |
+| Alternator at rating, continuous | 170 A (R161; was 160 A) | 0.96 V | **0.61 V (4.4%)** | 0.48 V |
 | Cranking, a few seconds | ~300 A | 1.69 V (13%) | **1.06 V (8.4%)** | 0.84 V |
 
 Round trip is about **36 ft** — roughly 18 ft each way, trunk → PDB → firewall →
@@ -165,8 +165,8 @@ cable size.
 | Cable connector, negative | `RL00801-50BK` — same, black | 2 (one each side) |
 
 Each polarity is three pieces: the feed-through lives in the firewall, a cable
-connector plugs onto each side. 200 A continuous gives 25% headroom over the
-alternator case, and a connector of this class shrugs off a few seconds of
+connector plugs onto each side. 200 A continuous gives 18% headroom over the
+170 A alternator case (25% at the old 160 A), and a connector of this class shrugs off a few seconds of
 cranking. The `-303` nickel variant is discontinued; RS names `-301` as its
 replacement.
 
@@ -406,7 +406,7 @@ about 0.65 V on 12 AWG and about 0.41 V on 10 AWG. Both go up to **10 AWG** (tak
 size). Fans (8 AWG, about 3 m): radiator fan 40 A drops about 0.31 V (2.6 %). EPS pump
 (8 AWG, about 3 m, 60 A peak): about 0.47 V at peak, about 0.25 V at a typical 30 A; stays
 8 AWG because the MR-S pump plug's Toyota terminals do not take 6 AWG. H5 alternator B+ is
-DECISIONS S6. Run lengths are estimates from the routes; re-check if a run grows.
+DECISIONS S6, re-sized to 1/0 in S39 (170 A alternator, R161). Run lengths are estimates from the routes; re-check if a run grows.
 
 **Spare capacity** (CAD rev 5 slot map)
 

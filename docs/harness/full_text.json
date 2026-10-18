@@ -2477,7 +2477,7 @@
     "cavities": {
      "c2": [
       "Bus ALT/STR stud",
-      "To RADLOK +  (starter / 160 A alt)"
+      "To RADLOK +  (starter / 170 A alt)"
      ],
      "c1": [
       "Bus BAT+ stud",
@@ -3203,7 +3203,7 @@
    ],
    "t_alt_b": [
     "",
-    "160 A alternator B+, 2 AWG to starter B+ (rear of engine, RH, under bulkheads A/B - Route 1 rev 3/4)"
+    "170 A alternator B+, 1/0 to starter B+ (rear of engine, RH, under bulkheads A/B - Route 1 rev 3/4)"
    ],
    "t_eng_block": [
     "",
