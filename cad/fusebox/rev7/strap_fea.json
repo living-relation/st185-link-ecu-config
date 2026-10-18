@@ -6,48 +6,106 @@
   ],
   "arm_t": 4.3,
   "w": 12.0,
-  "root_z": 36.5,
-  "arm_len": 18.1,
+  "root_z": 35.0,
+  "arm_len": 19.5,
   "over": 1.5,
   "load_N": 100.0,
-  "peak_MPa": 21.6,
-  "p99_9_MPa": 14.8,
-  "SF": 2.23,
-  "SF_99_9": 3.24,
-  "max_disp_mm": 0.623,
-  "hook_tip_out_mm": 0.38,
-  "hook_tip_up_mm": 0.338,
-  "overlap_left_mm": 1.12,
-  "nodes": 44188,
+  "peak_MPa": 23.2,
+  "p99_9_MPa": 15.3,
+  "SF": 2.07,
+  "SF_99_9": 3.14,
+  "max_disp_mm": 0.716,
+  "hook_tip_out_mm": 0.454,
+  "hook_tip_up_mm": 0.371,
+  "overlap_left_mm": 1.046,
+  "nodes": 45697,
   "insert": {
-   "strain_pct": 2.95,
-   "push_N": 102.6
+   "strain_pct": 2.54,
+   "limit_pct": 2.6,
+   "deflection_mm": 1.5,
+   "push_N": 82.0
   }
  },
  "IN": {
   "arm_x": [
-   75.2,
-   79.5
+   74.8,
+   79.1
   ],
   "arm_t": 4.3,
   "w": 12.0,
-  "root_z": 36.5,
-  "arm_len": 18.1,
+  "root_z": 35.0,
+  "arm_len": 19.5,
   "over": 1.5,
   "load_N": 100.0,
-  "peak_MPa": 21.6,
-  "p99_9_MPa": 14.8,
-  "SF": 2.22,
-  "SF_99_9": 3.23,
-  "max_disp_mm": 0.608,
-  "hook_tip_out_mm": 0.37,
-  "hook_tip_up_mm": 0.331,
-  "overlap_left_mm": 1.13,
-  "nodes": 43663,
+  "peak_MPa": 23.9,
+  "p99_9_MPa": 16.0,
+  "SF": 2.01,
+  "SF_99_9": 2.99,
+  "max_disp_mm": 0.764,
+  "hook_tip_out_mm": 0.475,
+  "hook_tip_up_mm": 0.414,
+  "overlap_left_mm": 1.025,
+  "nodes": 46324,
   "insert": {
-   "strain_pct": 2.95,
-   "push_N": 102.6
+   "strain_pct": 2.54,
+   "limit_pct": 2.6,
+   "deflection_mm": 1.5,
+   "push_N": 82.0
   }
  },
- "note": "CalculiX C3D10 linear static, PA12 E 1700 / nu 0.39, yield 48 MPa (HP data sheet 4AA6-4895ENE); 100 N up spread over the hook underside, arm root fixed; OUT row with the cover off (with it on the skirt cannot open). Card rule SF >= 2."
+ "BAR": {
+  "arm_x": [
+   1.4,
+   3.6
+  ],
+  "arm_t": 2.2,
+  "w": 6.0,
+  "root_z": 36.5,
+  "arm_len": 18.0,
+  "over": 2.0,
+  "load_N": 20.0,
+  "peak_MPa": 15.5,
+  "p99_9_MPa": 12.5,
+  "SF": 3.09,
+  "SF_99_9": 3.85,
+  "max_disp_mm": 1.194,
+  "hook_tip_out_mm": 0.84,
+  "hook_tip_up_mm": 0.473,
+  "overlap_left_mm": 1.16,
+  "nodes": 13642,
+  "insert": {
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "deflection_mm": 2.4,
+   "push_N": 11.2
+  }
+ },
+ "BAR_RB": {
+  "arm_x": [
+   1.7,
+   5.7
+  ],
+  "arm_t": 4.0,
+  "w": 12.0,
+  "root_z": 4.0,
+  "arm_len": 35.2,
+  "over": 2.0,
+  "load_N": 20.0,
+  "peak_MPa": 5.1,
+  "p99_9_MPa": 3.1,
+  "SF": 9.35,
+  "SF_99_9": 15.58,
+  "max_disp_mm": 0.423,
+  "hook_tip_out_mm": 0.344,
+  "hook_tip_up_mm": 0.134,
+  "overlap_left_mm": 1.656,
+  "nodes": 66473,
+  "insert": {
+   "strain_pct": 1.16,
+   "limit_pct": 2.6,
+   "deflection_mm": 2.4,
+   "push_N": 18.0
+  }
+ },
+ "note": "CalculiX C3D10 linear static, PA12 E 1700 / nu 0.39, yield 48 MPa (HP data sheet 4AA6-4895ENE); 100 N up spread over the hook underside, arm root fixed; OUT row with the cover off (with it on the skirt cannot open). Card rule SF >= 2. BAR / BAR_RB: the bar hold-down hooks, 20 N up, hook bearing on the copper (R157). Insert strain 1.5 t y / L^2 against SNAP_EPS (HP MJF Handbook snap-fits: < 1/3 of the elongation at yield, HP 5200 PA 12 TDS 8 % Z)."
 }

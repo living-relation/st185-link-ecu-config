@@ -17,18 +17,18 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 25 | 0 | **25** |
-| `PEM S-M4-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M4, TYPE S, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 5.41 +0.08, HEAD 7.87 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 6.9, FOR SHEET HRB 80 / HB 150 OR LESS | 25 | 0 | **25** |
-| `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 21 | 0 | **21** |
+| `PEM S-M4-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M4, TYPE S, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 5.41 +0.08, HEAD 7.87 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 6.9, FOR SHEET HRB 80 / HB 150 OR LESS | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
-| `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 20 | 0 | **20** |
 | `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 20 | 0 | **20** |
+| `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `bolts.co.uk SSPMCA205020` | Bolts.co.uk | SOCKET SET SCREW M5 X 20, PLAIN CUP POINT, DIN 916, A2 STAINLESS (PACK OF 25) | 16 | 0 | **16** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
 | `280919-2` | TE Connectivity | TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
 | `Accu HHTPS-M5-8-40-BR-NI` | Accu | THREADED HEXAGON SPACER, FEMALE-FEMALE M5, 8 AF, 40 MM, NICKEL-PLATED BRASS, THREAD DEPTH 10 MM EACH END | 14 | 0 | **14** |
 | `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 14 | 0 | **14** |
+| `320554` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 22-16 AWG, #8 / M4 STUD, TIN | 13 | 0 | **13** |
 | `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
@@ -36,6 +36,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `94459A140` | McMaster-Carr | HEAT-SET INSERT FOR PLASTIC, BRASS, M3 X 0.5, 5.7 MM INSTALLED LENGTH, 4.0 MM HOLE (PACK OF 50 COVERS ALL THREE BOXES) | 11 | 0 | **11** |
 | `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
+| `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
@@ -44,7 +45,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `42281-1` | TE Connectivity | TERMINAL, FASTON, RECEPTACLE, 6.35 MM, 18-14 AWG, TIN PLATED | 27 | 20 | **7** |
 | `ATM-15` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 7 | 0 | **7** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 7 | 0 | **7** |
-| `M22759/16-14-2` | M22759 (Tefzel, red) | WIRE, 14 AWG, ETFE, TIN PLATED COPPER, 150 C, 600 V (THE HARNESS WIRE, ST185.HARNESSLIB M16_14_2) | 7 | 0 | **7** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
 | `AMI-30` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 6 | 0 | **6** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 6 | 0 | **6** |
@@ -95,6 +95,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RNF-100-3/32-0-STK` | TE Connectivity (Raychem) | RNF-100 HEAT SHRINK 2:1, BLACK, 4 FT STICK: ONE PIECE UNDER THE INSULATION CRIMP OF EACH THIN-WALL END | 2 | 0 | **2** |
 | `RNF-100-3/8-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 2 | 0 | **2** |
 | `RS 190-276` | RS PRO | RS PRO STAINLESS HEX BOLT M8 X 25, DIN 933 (GRADE NOT STATED ON THE LISTING) | 2 | 0 | **2** |
+| `RS 484-0098` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 12, DIN 933 (FEATURE TEXT: A4 / 316) | 2 | 0 | **2** |
 | `RS 530-769` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M8, DIN 934 | 2 | 0 | **2** |
 | `RS 797-6068` | RS PRO | RS PRO STAINLESS PLAIN WASHER M8, DIN 125A | 2 | 0 | **2** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 2 | 0 | **2** |
@@ -133,6 +134,10 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `Logic_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | DECK ON FOUR ANGULAR LEGS, CAVITY TOWERS, PRINTED SPINE BETWEEN THE BUS STRIPS (LIPS UNDER THEM); PA12 | 1 | 0 | **1** |
 | `Logic_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, ETCHED LABELS, VENT SLOTS; PA12 | 1 | 0 | **1** |
 | `Logic_Pan_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON BELLY PAN; PA12 | 1 | 0 | **1** |
+| `M22759/16-14-2` | M22759 (Tefzel, red) | WIRE, 14 AWG, ETFE, TIN PLATED COPPER, 150 C, 600 V (THE HARNESS WIRE, ST185.HARNESSLIB M16_14_2) | 1 | 0 | **1** |
+| `M22759/16-16-2` | M22759 (Tefzel, red) | WIRE, 16 AWG, ETFE, TIN PLATED COPPER, 150 C, 600 V (THE HARNESS WIRE, ST185.HARNESSLIB M16_16_2) | 1 | 0 | **1** |
+| `M22759/16-18-2` | M22759 (Tefzel, red) | WIRE, 18 AWG, ETFE, TIN PLATED COPPER, 150 C, 600 V (THE HARNESS WIRE, ST185.HARNESSLIB M16_18_2) | 1 | 0 | **1** |
+| `M22759/16-20-2` | M22759 (Tefzel, red) | WIRE, 20 AWG, ETFE, TIN PLATED COPPER, 150 C, 600 V (THE HARNESS WIRE, ST185.HARNESSLIB M16_20_2) | 1 | 0 | **1** |
 | `MECCANIXITY B0CGJBRNJX` | MECCANIXITY (Amazon) | 12 IN X 1 IN X 1/4 IN TINNED COPPER FLAT BAR: ONE BAR MAKES THE POWER BAR (148 MM) AND THE BATTERY BLOCK BAR (36.5 MM) | 1 | 0 | **1** |
 | `MECCANIXITY B0CGJC2S1L` | MECCANIXITY (Amazon) | 2 PCS 12 IN X 1 IN X 1/8 IN TINNED COPPER FLAT BAR: ONE BAR MAKES BOTH STRIPS | 1 | 0 | **1** |
 | `MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942` | Toyota / Sumitomo | CONNECTOR SET, TOYOTA, 3 HOUSINGS: 90980-12068 2 POS, 90980-10897 6 POS, 90980-10942 2 POS | 1 | 0 | **1** |
@@ -324,8 +329,8 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
 | `280919-2` | LOGIC | 16 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
-| `1241388-2` | LOGIC | 13 | the harness drawings |
-| `880398-2` | LOGIC | 35 | the harness drawings |
+| `1241388-2` | LOGIC | 25 | the harness drawings |
+| `880398-2` | LOGIC | 22 | the harness drawings |
 | `282110-1` | BATTRELAY | 3 | the harness drawings |
 | `Power_Base_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
@@ -349,7 +354,7 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `Accu HHTPS-M5-8-40-BR-NI` | POWER | 14 | this section's CSVs |
 | `bolts.co.uk SSPMCA205020` | POWER | 16 | this section's CSVs |
 | `RS 287-3921` | LOGIC, POWER | 20 | this section's CSVs |
-| `RS 263-2205` | BATTRELAY, POWER | 20 | this section's CSVs |
+| `RS 263-2205` | BATTRELAY, POWER | 18 | this section's CSVs |
 | `RS 264-6432` | BATTRELAY, POWER | 34 | this section's CSVs |
 | `RS 190-276` | POWER | 2 | this section's CSVs |
 | `RS 530-769` | POWER | 2 | this section's CSVs |
@@ -359,15 +364,19 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `Logic_Pan_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
 | `Logic_Cover_PA12_printed.stl + .step (PA12)` | LOGIC | 1 | this section's CSVs |
 | `MECCANIXITY B0CGJC2S1L` | LOGIC | 1 | this section's CSVs |
-| `PEM S-M4-2ZI` | LOGIC | 25 | this section's CSVs |
+| `PEM S-M4-2ZI` | LOGIC | 21 | this section's CSVs |
 | `PEM SS-M5-2ZI` | LOGIC | 4 | this section's CSVs |
 | `ATM-2` | LOGIC | 4 | this section's CSVs |
 | `ATM-5` | LOGIC | 3 | this section's CSVs |
 | `ATM-7-1/2` | LOGIC | 4 | this section's CSVs |
 | `ATM-15` | LOGIC | 7 | this section's CSVs |
 | `ATM-20` | LOGIC | 1 | this section's CSVs |
-| `53941-1` | LOGIC | 21 | this section's CSVs |
-| `M22759/16-14-2` | LOGIC | 7 | this section's CSVs |
+| `320554` | LOGIC | 13 | this section's CSVs |
+| `53941-1` | LOGIC | 10 | this section's CSVs |
+| `M22759/16-14-2` | LOGIC | 1 | this section's CSVs |
+| `M22759/16-16-2` | LOGIC | 1 | this section's CSVs |
+| `M22759/16-18-2` | LOGIC | 1 | this section's CSVs |
+| `M22759/16-20-2` | LOGIC | 1 | this section's CSVs |
 | `RS 287-3915` | LOGIC | 21 | this section's CSVs |
 | `RS 231-0691` | LOGIC | 21 | this section's CSVs |
 | `BattRelay_Base_PA12_printed.stl + .step (PA12)` | BATTRELAY | 1 | this section's CSVs |
@@ -379,6 +388,7 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `RS 190-169` | BATTRELAY | 4 | this section's CSVs |
 | `RS 527-274` | BATTRELAY | 4 | this section's CSVs |
 | `RS 287-3962` | BATTRELAY | 4 | this section's CSVs |
+| `RS 484-0098` | BATTRELAY | 2 | this section's CSVs |
 | `EFC 10S00052` | BATTRELAY | 3 | this section's CSVs |
 
 Fuse-box lines with no part number yet:

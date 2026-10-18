@@ -87,6 +87,18 @@ _p['file']=src('st185_fusebox_1017','BattRelay_Pad_Out_CuC110_15x3.step')
 _p['source']=_p['source'].replace('Power_Pad_Out_CuC110_15x3','BattRelay_Pad_Out_CuC110_15x3')
 _p['title']='OUTPUT PAD 15 x 3 x 17.5 (BATTERY RELAY BLOCK)'
 _p['notes']=[n.replace('QTY 15 (14 POWER + 1 BATTRELAY).','QTY 1 (BATTERY RELAY BLOCK; THE POWER BOX OUTPUTS ARE THE C-STRAPS ST185-FB-117 SINCE R155).') for n in _p['notes']]
+# Dan's markup 2026-10-17 (23-06): the battery block pad grows to the bar width - 25.4 x 3.2 x 15.5 from the 1" x 1/8" strip stock (the spare
+# second bar of the LOGIC strip pair), two printed snap tabs hold it (R157); the drawings that change with the markup: run_markup_1017.py
+_p['file']=src('st185_fusebox_1017','BattRelay_Pad_Out_CuC110_25p4x3p2.step')
+_p['source']=_p['source'].replace('BattRelay_Pad_Out_CuC110_15x3','BattRelay_Pad_Out_CuC110_25p4x3p2')
+_p['title']='BATTERY BLOCK PAD 25.4 x 3.2 x 15.5'
+_p['notes']=["MATERIAL: C110 COPPER, TINNED. CUT FROM 1\" x 1/8\" (25.4 x 3.2) TINNED FLAT BAR (MECCANIXITY B0CGJC2S1L, THE SPARE BAR OF THE LOGIC STRIP PAIR). QTY 1.",
+             "SAW CUT, DRILL; DEBURR ALL HOLES AND EDGES. DO NOT REMOVE TIN ON CONTACT FACES."]
+PARTS['fb_power_base']['notes']=PARTS['fb_power_base']['notes']+[
+  "MARKUP 2026-10-17 (R157 - R160): EVERY HOLD-DOWN HOOK BEARS ON THE COPPER (0 GAP); LUG POCKETS (WALLS + RAISED FLOOR) WHERE EVERY BUS LUG LEAVES "
+  "THE COPPER; RIBS BETWEEN THE STRAP STATIONS UNDER THE DECK; NEG FRONT WALL; ROOT FILLETS ON THE STANDING WALLS; 7 COVER CATCHES."]
+for _k in ('fb_strip1','fb_strip2'):
+    PARTS[_k]['notes']=PARTS[_k]['notes']+["MARKUP 2026-10-17: SPARE STUD POSITIONS DELETED; STUDS ON A 9.35 PITCH (BUS1 10, BUS2 9)."]
 # ---------------- fuel hanger (build123d, cad/fuel-hanger; option B holder approved B9, Dan 2026-10-17) ----------------
 # Replaces the fairsolid rev 8 entries (Dan rejected rev 8). Models: fuel_hanger.py (FH-101 flange) and build_holder.py
 # (FH-103 strut, FH-104 foot, FH-105 saddle, assembly). Rev log rows come from cad/fuel-hanger/<PN>.REVLOG.md (R152).
@@ -146,11 +158,11 @@ REV_LETTER={'csb3_body':('C','FIRST ISSUE. MODEL REV C (PR #274)'),
             'drb_plate':('C','FIRST ISSUE. MODEL REV C (PR #275)')}
 # Fuse box rev 7 parts (Dan 2026-10-17: count each model's past releases in the repo history; rev 7 is NOT converted to G):
 # releases = PRs where the part's size / volume (printed) or mass (copper) in fusebox_report.json changed, + #273 NEG bar holes, #275 LOGIC corner.
-FB_REL={'fb_power_base':15,'fb_power_pan':6,'fb_power_cover':6,'fb_retainer':3,'fb_logic_base':12,'fb_logic_pan':6,'fb_logic_cover':8,
-        'fb_br_base':7,'fb_br_cover':6,'fb_bar_br':3,'fb_pad':2,'fb_barneg':3,'fb_barpos':2,'fb_strip1':4,'fb_strip2':4}
+FB_REL={'fb_power_base':16,'fb_power_pan':6,'fb_power_cover':7,'fb_retainer':4,'fb_logic_base':13,'fb_logic_pan':7,'fb_logic_cover':9,
+        'fb_br_base':8,'fb_br_cover':6,'fb_bar_br':3,'fb_pad':3,'fb_barneg':3,'fb_barpos':2,'fb_strip1':5,'fb_strip2':5}   # + Dan's markup 2026-10-17
 SEQ='ABCDEFGHJKMNPRSTUVWXYZ'
 for _k,_n in FB_REL.items(): REV_LETTER[_k]=(SEQ[_n-1],'FIRST ISSUE. MODEL REV %s (%d RELEASES)'%(SEQ[_n-1],_n))
-REV_LETTER['fb_pad']=('B.01','CLERICAL: BATTERY BLOCK PAD ONLY, QTY 1 (R155)')   # N14 = B: same model, title / quantity only
+# REV_LETTER['fb_pad'] was ('B.01', clerical, N14 = B); Dan's markup 2026-10-17 changed the pad model (25.4 x 3.2): rev C from the release count
 for _k in ORDER:
     _l,_d=REV_LETTER[_k]
     PARTS[_k]['rev']=_l; PARTS[_k]['revs']=[(_l,_d,TODAY,'SC')]

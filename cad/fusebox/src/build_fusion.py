@@ -214,6 +214,24 @@ def quarter_bend_yz(cx, cy, cz, Rc, d, quad):
     return bo(t, q, 'i')
 
 
+def root_fillets(x0, y0, x1, y1, zb, r, sides='xy', ends=None):
+    """Concave fillets of radius r along the bottom edges of a wall standing on a face at zb (wall footprint x0..x1, y0..y1).
+    sides 'x': along the wall's two long faces normal to x (a wall running in y); 'y': normal to y; 'xy': all four.
+    Markup 2026-10-17 (Dan 23-31, DECISIONS R159): every free-standing printed wall gets a root fillet so it cannot snap off its base."""
+    out = []
+    if 'x' in sides:
+        for (xf, sg) in ((x0, -1), (x1, 1)):
+            f = box(min(xf, xf + sg * r), y0, zb - 0.01, max(xf, xf + sg * r), y1, zb + r)
+            bo(f, cyl((xf + sg * r, y0 - 1, zb + r), (xf + sg * r, y1 + 1, zb + r), 2 * r), 's')
+            out.append(f)
+    if 'y' in sides:
+        for (yf, sg) in ((y0, -1), (y1, 1)):
+            f = box(x0, min(yf, yf + sg * r), zb - 0.01, x1, max(yf, yf + sg * r), zb + r)
+            bo(f, cyl((x0 - 1, yf + sg * r, zb + r), (x1 + 1, yf + sg * r, zb + r), 2 * r), 's')
+            out.append(f)
+    return out
+
+
 def bundle_d(ods):
     """Bundle diameter for wires of the given ODs (one wire: its OD; more: 1.2 x the root of the summed squares)."""
     return ods[0] if len(ods) == 1 else 1.2 * math.sqrt(sum(o * o for o in ods))
@@ -589,7 +607,13 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             plate = box(x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)
             clip_feet.append((x0_ - RT['clr'], x1_ + RT['clr'], y0_ - RT['clr'], y1_ + RT['clr']))
             for h in rh:            # threaded onto the wires before crimping: bare wire + clr (the build-up ends inside the barrel)
-                bo(plate, cylz(h['x'], h['y'], ztop - RT['t'] - 1, ztop + 1, S.retainer_hole(h['part'], h['wire_od'])[0]), 's')
+                dh_ = S.retainer_hole(h['part'], h['wire_od'])[0]
+                bo(plate, cylz(h['x'], h['y'], ztop - RT['t'] - 1, ztop + 1, dh_), 's')
+                if REV[0] == 7:     # markup 2026-10-17 (Dan 23-26: "terminals need to fit through these holes. Or need slots for the wires"):
+                    # each hole runs on as a slot of the same width to the plate's -y edge - the clip slides onto the finished wires from the
+                    # front, and the slot still stops the crimped insulation barrel (larger than the slot)
+                    bo(plate, box(h['x'] - dh_ / 2, y0_ - 1.0, ztop - RT['t'] - 1, h['x'] + dh_ / 2, h['y'], ztop + 1), 's')
+                    report.setdefault('retainer_slots', []).append([h['cav'], round(dh_, 2), round(S.retainer_hole(h['part'], h['wire_od'])[1], 2)])
             lw, ld = RT['leg']
             long_x = (x1_ - x0_) >= (y1_ - y0_)
             d0, d1 = RT['leg_shift'].get(rel, (0.0, 0.0))
@@ -857,6 +881,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         s0 = (S.CLR + TB['slot']) if standing is None else standing[1]     # deck tab: a slot on the bar side too, so the arm flexes its whole length
         if standing is not None:
             TB['t'] = TB['t_stand']
+            if REV[0] == 7:
+                TB['w'] = TB['w_stand']     # markup 2026-10-17 (Dan 23-06: "make these 2 tabs bigger")
         hw = TB['w'] / 2
 
         def bx(sa, sb, ua, ub, za, zb):          # box in (s along n, u along the edge, z)
@@ -869,18 +895,23 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         cuts_ = []
         if standing is None:
             cuts_ += [bx(S.CLR - 0.01, s0 + TB['t'] + TB['slot'], -hw - TB['slot'], hw + TB['slot'], zr, z_t + 1)]   # slot ring round the arm
-        zh0 = btop + 0.1
+        zh0 = btop + (S.HOOK_GAP if REV[0] == 7 else 0.1)    # markup 2026-10-17 (R157): the hook bears on the copper, no gap
         zh1 = zh0 + TB['hook_t']
         arm = bx(s0, s0 + TB['t'], -hw, hw, zr - 0.01, zh1)                 # rooted at the slot bottom (deck) / on the floor
         hook = bx(-TB['over'], s0 + TB['t'], -hw, hw, zh0, zh1)
         sx_, sy_ = (n[0], n[1])
-        half_cut(hook, (xe - sx_ * TB['over'], ye - sy_ * TB['over'], zh0 + 0.3), (-sx_, -sy_, 1.0))    # lead-in on the bar side
+        if REV[0] == 7:     # lead-in at TB['lead'] deg from the vertical (HP: 35 - 40), from the tip's bottom edge + 0.3 up
+            ta_ = math.tan(math.radians(TB['lead']))
+            half_cut(hook, (xe - sx_ * TB['over'], ye - sy_ * TB['over'], zh0 + 0.3), (-sx_, -sy_, ta_))
+        else:
+            half_cut(hook, (xe - sx_ * TB['over'], ye - sy_ * TB['over'], zh0 + 0.3), (-sx_, -sy_, 1.0))    # lead-in on the bar side
         bo(arm, hook, 'u')
         L_ = (zh0 - zr)
-        d_ = TB['over']                     # the hook tip has to move out to the bar edge
+        d_ = TB['over'] + (S.CLR if REV[0] == 7 else 0.0)   # the hook tip has to move out to the bar edge (+ the pocket clearance, worst)
         I_ = TB['w'] * TB['t'] ** 3 / 12.0
         report.setdefault('bar_tabs', []).append(dict(part=part, at=[round(xe, 1), round(ye, 1)], n=list(n), arm_mm=round(L_, 1), deflection_mm=round(d_, 2),
-                                                      strain_pct=round(100 * 1.5 * TB['t'] * d_ / L_ ** 2, 2),
+                                                      strain_pct=round(100 * 1.5 * TB['t'] * d_ / L_ ** 2, 2), limit_pct=S.SNAP_EPS, t=TB['t'], w=TB['w'],
+                                                      over=TB['over'], hook_t=TB['hook_t'], gap=round(zh0 - btop, 2),
                                                       push_N=round(3 * S.PA12['E'] * I_ * d_ / L_ ** 3, 1)))
         lo_ = [-TB['over'] - 0.3, s0 + TB['t'] + TB['slot'] + 0.3]
         e_ = bx(lo_[0], lo_[1], -hw - TB['slot'] - 0.3, hw + TB['slot'] + 0.3, zr - 0.3, zh1 + 0.3).boundingBox
@@ -992,7 +1023,32 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
     def cover_catches(L):
         """(x, y face) of every cover catch: two on the front, two on the rear (rev 7 POWER: rear pair moved clear of the NEG cable notches)."""
         rear = DIM['snaps_rear'] or snap_xs(L)
-        return [(x, 0.0) for x in snap_xs(L)] + [(x, DIM['D']) for x in rear]
+        front = DIM.get('snaps_front') or snap_xs(L)
+        return [(x, 0.0) for x in front] + [(x, DIM['D']) for x in rear]
+
+    def xcatch_screw_y(y):
+        return y + S.SCREW['off'] if y < DIM['D'] / 2 else y - S.SCREW['off']
+
+    def xcatch_cuts(L, z_t, part, sh):
+        """Markup 2026-10-17 (Dan 23-30, R158): cover catches on the END faces (x) too - the pocket for the cover bump in the skirt's outer
+        face and, where it fits, the R122 heat-set insert beside it (toward the middle of the face)."""
+        out = []
+        zc = z_t - S.SNAP['z_from_top']
+        zi = z_t - S.SCREW['z_from_top']
+        hw = S.SNAP['w'] / 2 + 0.5 + S.HOLE['min_wall']
+        for (face, y, screw) in DIM.get('xcatch', ()):
+            sg = -1 if face == '-x' else 1
+            xo = -DIM['so'] if sg < 0 else L + DIM['so']
+            out.append(cyl((xo, y - S.SNAP['w'] / 2 - 0.5, zc), (xo, y + S.SNAP['w'] / 2 + 0.5, zc), S.SNAP['bump'] + 0.2))
+            xi = (S.SKIRT + 0.1) if sg < 0 else (L - S.SKIRT - 0.1)
+            exempt(part, 'cover catch pocket', min(xo - sg * 0.1, xi), max(xo - sg * 0.1, xi), y - hw, y + hw,
+                   zc - S.SNAP['bump'] / 2 - 2.2, zc + S.SNAP['bump'] / 2 + 2.2, sh)
+            if screw:
+                ys = xcatch_screw_y(y)
+                out.append(cyl((xo + sg * 0.5, ys, zi), (xo - sg * S.SCREW['ins_depth'], ys, zi), S.SCREW['d_ins']))
+                exempt(part, 'cover screw insert', min(xo + sg * 0.1, xo - sg * (S.SCREW['ins_depth'] + 2.6)), max(xo + sg * 0.1, xo - sg * (S.SCREW['ins_depth'] + 2.6)),
+                       ys - S.SCREW['d_ins'] / 2 - 2.2, ys + S.SCREW['d_ins'] / 2 + 2.2, zi - S.SCREW['d_ins'] / 2 - 2.2, zi + S.SCREW['d_ins'] / 2 + 2.2, sh)
+        return out
 
     def screw_points(L, faces, outward=False):
         """R122: (x, face y, inward sign) of the optional backup screw beside each cover catch, `off` toward the middle of the wall
@@ -1054,6 +1110,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     exempt(part, 'pan catch pocket', (-0.1 if not far else L - S.SKIRT - 1.5), (S.SKIRT + 1.5 if not far else L + 0.1), pos - hw, pos + hw,
                            z_d - 1.1, zq_ + S.SNAP['bump'] / 2 + 2.2, sh)
         cuts = screw_inserts(L, DIM['D'], z_t - S.SCREW['z_from_top'], cover_catches(L))     # R122 heat-set insert holes
+        cuts += xcatch_cuts(L, z_t, part, sh)
         for (x, y) in cover_catches(L):
             yo_ = y - DIM['so'] if y == 0.0 else y + DIM['so']      # the outer face (R127 amendment: moved out by so)
             cuts.append(cyl((x - S.SNAP['w'] / 2 - 0.5, yo_, zc), (x + S.SNAP['w'] / 2 + 0.5, yo_, zc), S.SNAP['bump'] + 0.2))
@@ -1080,7 +1137,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return [('x', y_) for y_ in S.PAN_SNAPS_X]
         return [('x', DIM['D'] * 0.3), ('x', DIM['D'] * 0.7)]
 
-    def belly_pan(L, z_d, faces, exits, pre, sh, rib=None, reliefs=()):
+    def belly_pan(L, z_d, faces, exits, pre, sh, rib=None, reliefs=(), walls=()):
         """Rev 5 (Dan: snap-on covers for every live point underneath): a shallow PA12 tray under the open bottom. Its wall
         slides PAN over mm up inside the skirt; 4 tongues catch in pockets in the skirt's inner face. exits = U-notches open
         at the top of the wall, where wires leave: (axis, u, z_bottom, width) - axis 'x' = an end wall (u = y), 'y' = front /
@@ -1166,6 +1223,11 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 bo(pan, box(u1, yw - 4, zb_, u2, yw + 4, ztop + 1), 's')
         if rib:      # J2 = B (R94): a rib standing on the pan floor (rib = (x0, x1, y0, y1, z_top))
             bo(pan, box(rib[0], rib[2], PN['z0'] + t - 0.01, rib[1], rib[3], rib[4]), 'u')
+        for (wx0, wx1, wy0, wy1, wz) in walls:   # markup 2026-10-17 (23-12 / 23-33): wire-group walls on the pan floor, root fillets both sides
+            bo(pan, box(wx0, wy0 - 0.01, PN['z0'] + t - 0.01, wx1, wy1, wz), 'u')
+            for f_ in root_fillets(wx0, wy0, wx1, wy1 - S.FILLET_R, PN['z0'] + t, S.FILLET_R, 'x'):
+                bo(pan, f_, 'u')
+            report.setdefault('logic_group_walls', []).append([round(v, 2) for v in (wx0, wx1, wy0, wy1, wz)])
         for (ya, yb, depth) in reliefs:   # J2 = B: the +x wall's inner face cut back `depth` over y ya..yb (the 86 wires drop 1 mm from it)
             bo(pan, box(x1 - t - 0.01, ya, PN['z0'] + t, x1 - t + depth, yb, ztop + 1.0), 's')
         return comp(pre + 'Pan_PA12_printed', pan, AP['pa12_pan'], MAT['pa'], sh)
@@ -1214,6 +1276,22 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 bo(out, cyl((x0 + x - sw['w'] / 2 + 0.5, yf, zc), (x0 + x + sw['w'] / 2 - 0.5, yf, zc), sw['bump']), 'u')
         zs_ = z_t - S.SCREW['z_from_top'] if screw_z is None else screw_z
         part_ = pre + 'Cover_PA12_printed'
+        for (face, y, screw) in DIM.get('xcatch', ()):    # markup 2026-10-17 (R158): catches in the end walls
+            sg = -1 if face == '-x' else 1
+            xf = x0 - g if sg < 0 else x0 + L + g          # inner face of the end wall
+            for dy in (-1, 1):
+                ys_ = y0 + y + dy * (sw['w'] / 2 + sw['slot'] / 2)
+                xa_, xb3 = (xf - t - bo_ - 1, xf + 1) if sg < 0 else (xf - 1, xf + t + bo_ + 1)
+                bo(out, box(xa_, ys_ - sw['slot'] / 2, zb - 1, xb3, ys_ + sw['slot'] / 2, zb + sw['len']), 's')
+            bo(out, cyl((xf, y0 + y - sw['w'] / 2 + 0.5, zc), (xf, y0 + y + sw['w'] / 2 - 0.5, zc), sw['bump']), 'u')
+            xa_, xb3 = (xf - t - bo_ - 0.1, xf + sw['bump'] / 2 + 0.3) if sg < 0 else (xf - sw['bump'] / 2 - 0.3, xf + t + bo_ + 0.1)
+            exempt(part_, 'cover snap tongue', xa_, xb3, y0 + y - sw['w'] / 2 - sw['slot'] - 1.0, y0 + y + sw['w'] / 2 + sw['slot'] + 1.0, zb - 0.1, zb + sw['len'] + 1.0, sh)
+            if screw:
+                ys = y0 + xcatch_screw_y(y)
+                bo(out, cyl((xf + sg * (t + bo_ + 1), ys, zs_), (xf - sg * 1.0, ys, zs_), S.SCREW['d_clear']), 's')
+                xa_, xb3 = (xf - t - bo_ - 0.1, xf + 0.1) if sg < 0 else (xf - 0.1, xf + t + bo_ + 0.1)
+                exempt(part_, 'cover screw hole', xa_, xb3, ys - S.SCREW['d_clear'] / 2 - 2.2, ys + S.SCREW['d_clear'] / 2 + 2.2,
+                       min(zb - 0.1, zs_ - S.SCREW['d_clear'] / 2 - 2.2), zs_ + S.SCREW['d_clear'] / 2 + 2.2, sh)
         for (x, yface) in cover_catches(L):
             yf = y0 - g if yface == 0.0 else y0 + D + g
             ya, yb_ = (yf - t - bo_ - 0.1, yf + sw['bump'] / 2 + 0.3) if yface == 0.0 else (yf - sw['bump'] / 2 - 0.3, yf + t + bo_ + 0.1)
@@ -1322,6 +1400,101 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         comp(pre + 'Harness_wires', bodies, AP['harness'], None, sh)
         return exits
 
+    def markup_1017_power(L, D7, z_d, z_t, btop, xb, B_, NB, ami, sh):
+        """Dan's markup 2026-10-17 on the POWER base (DECISIONS R157 - R160). Returns the printed bodies to add to the base:
+        (1) lug pockets (23-18 / 23-27 / 23-31) - walls + raised floor where every bus lug's tongue / barrel leaves the copper;
+        (2) the NEG front wall (23-31 'add more wall here') and root fillets on it and on the R7 barrier (23-31 'strengthening ... ALL walls');
+        (3) the under-deck isolation ribs between the strap stations, both rows (23-27 T walls / 23-33 tall features), widened to a pocket
+            at every palm-up output lug, tied by a bottom rail at the far end of each row."""
+        PK, R7_, fr = S.POCKET, S.REV7, S.FILLET_R
+        out, rep_ = [], report.setdefault('markup_1017', {})
+        so, x_end = DIM['so'], L + DIM['so'] - 0.01
+        z_fl = btop - PK['under']                                  # pocket floor, under the palm underside
+        # ---- (1a) POS bus lugs: tongue out +x over the deck - walls b + 2 clr apart, x from the bar pocket edge to the base edge
+        bpe = xb + B_['w'] / 2 + S.CLR
+        lugs_ = [y_ for (y_, nm, h_) in R7_['pos_studs'] if nm != 'SPARE']
+        hw_ = S.LUG_M8['b'] / 2 + PK['clr']
+        zt_ = z_t + S.POS_WALL_H
+        walls = []
+        for k, y_ in enumerate(lugs_):
+            out.append(box(bpe, y_ - hw_, z_t - 0.01, x_end, y_ + hw_, z_fl))                       # floor under the tongue / barrel
+            lo, hi = (y_ - hw_ - PK['wall'], y_ - hw_), (y_ + hw_, y_ + hw_ + PK['wall'])
+            x0_lo = bpe if k else 147.4                         # BAT+ front wall starts behind the bar tab at y 164 (its arm is the palm's wall there)
+            walls += [(x0_lo, lo), (bpe, hi)]
+        seen = set()
+        for (x0_, (ya, yb)) in walls:
+            key = (round(ya, 2), round(yb, 2))
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(box(x0_, ya, z_t - 0.01, x_end, yb, zt_))
+        # root fillets on the outer faces only (the pocket faces carry the raised floor; a fillet there would press on the palm edge)
+        out += root_fillets(147.4, lugs_[0] - hw_ - PK['wall'], x_end, lugs_[0] - hw_, z_t, fr, 'y')[:1]
+        out += root_fillets(bpe, lugs_[-1] + hw_, x_end, lugs_[-1] + hw_ + PK['wall'], z_t, fr, 'y')[1:]
+        rep_['pos_pockets'] = dict(lugs=lugs_, slot=round(2 * hw_, 2), wall=PK['wall'], floor=round(z_fl, 2), wall_top=zt_, x=[round(bpe, 2), round(x_end, 2)])
+        # ---- (1b) NEG bus lugs: tongues out +y past the bar's rear edge - walls between the tongues (one ground node, R135: 2.2 where 3 is not there)
+        neg = [(x_, S.LUG_M8['b'] if g_ == '1/0' else R7_['small_ring_b']) for (x_, nm, h_, g_) in R7_['neg_studs']]
+        y0_ = NB['yc'] + B_['w'] / 2 + S.CLR
+        y1_ = D7 + so - 0.01
+        zn_ = btop + S.LUG_M8['t'] + PK['h_over_palm']
+        out.append(box(S.SKIRT - 0.01, y0_, z_t - 0.01, R7_['barrier'][0] + 0.01, y1_, z_fl))   # floor under every tongue
+        nw = []
+        for (xa, ba), (xc, bc) in zip(neg, neg[1:]):
+            f0, f1 = xa + ba / 2 + PK['clr'], xc - bc / 2 - PK['clr']
+            if f1 - f0 >= PK['wall_min']:
+                out.append(box(f0, y0_, z_fl - 0.01, f1, y1_, zn_))
+                nw.append([round(f0, 2), round(f1, 2)])
+                exempt('Power_Base_PA12_printed', 'lug pocket wall', f0 - 0.3, f1 + 0.3, y0_ - 0.3, y1_ + 0.3, z_fl - 0.5, zn_ + 0.3, sh, only='A')
+            else:
+                rep_.setdefault('neg_pocket_shared', []).append(dict(x=[xa, xc], gap=round(f1 - f0, 2)))
+        x_lo, x_hi = neg[0][0] - neg[0][1] / 2 - PK['clr'], neg[-1][0] + neg[-1][1] / 2 + PK['clr']
+        out.append(box(-so, y0_, z_fl - 0.01, x_lo, y1_, zn_))                                   # outer walls: skirt side, out to the base edge ...
+        out.append(box(x_hi, y0_, z_fl - 0.01, R7_['barrier'][1], y1_, zn_))                       # ... and barrier side, the barrier's full width
+        rep_['neg_pockets'] = dict(walls=nw, outer=[round(x_lo, 2), round(x_hi, 2)], floor=round(z_fl, 2), top=round(zn_, 2), y=[round(y0_, 2), round(y1_, 2)])
+        # ---- (2) NEG front wall + root fillets, R7 barrier root fillets
+        NW = S.NEG_FRONT_WALL
+        wy0, wy1 = NW['y']
+        bx0, bx1 = R7_['barrier']
+        out.append(box(NW['x0'], wy0, z_t - 0.01, bx0 + 0.01, wy1, z_t + R7_['barrier_h']))
+        out += root_fillets(NW['x0'], wy0, bx0, wy1, z_t, fr, 'y')
+        out += root_fillets(bx0, 168.0, bx1, D7 - S.SKIRT, z_t, 1.5, 'x')[1:]                    # +x side: 1.5 keeps 0.4 off the POS bar pocket
+        out += root_fillets(bx0, 168.0, bx1, NB['yc'] - B_['w'] / 2 - S.CLR - 0.4, z_t, fr, 'x')[:1]   # -x side: in front of the NEG bar only
+        rep_['neg_front_wall'] = dict(y=list(NW['y']), x=[NW['x0'], bx0], top=z_t + R7_['barrier_h'], fillet=fr)
+        # ---- (3) under-deck isolation ribs + output-lug palm pockets, both rows
+        FN = S.FIN
+        c_ = S.STRAP['clr']
+        pan_in = L - S.SKIRT - W_CL - PN['t']
+        rows = {}
+        for a in ami:
+            rows.setdefault(a['row'], []).append(a)
+        fins_rep = {}
+        for row, al in rows.items():
+            al = sorted(al, key=lambda a: a['y'])
+            s_ = al[0]['sgn']
+            g0 = al[0]['g']
+            if s_ > 0:
+                xr = (g0['x_bl0'] - c_ - 1.0, pan_in - FN['pan_gap'])
+            else:
+                xr = (al[0]['x_lug'] - (S.LUG_M5['l'] - S.LUG_M5['tip']) - 0.3, g0['x_bl0'] + c_ + 1.0)
+            bw = [(S.LUG_6AWG if a['amps'] and S.AMI_AWG[a['name']] == 6 else S.LUG_M5)['b'] for a in al]
+            ys_ = [a['y'] for a in al]
+            pitch = ys_[1] - ys_[0]
+            fl = []
+            for k in range(len(al) + 1):
+                yf = ys_[0] - pitch / 2 + k * pitch
+                out.append(box(xr[0], yf - FN['t'] / 2, FN['z0'], xr[1], yf + FN['t'] / 2, z_d + 0.01))
+                lo_ = ys_[k - 1] + bw[k - 1] / 2 + PK['clr'] if k > 0 else yf - FN['t'] / 2
+                hi_ = ys_[k] - bw[k] / 2 - PK['clr'] if k < len(al) else yf + FN['t'] / 2
+                out.append(box(xr[0], lo_, FN['palm_z'][0], xr[1], hi_, FN['palm_z'][1]))
+                fl.append([round(yf, 2), round(lo_, 2), round(hi_, 2)])
+            fins_rep[row] = dict(x=[round(v, 2) for v in xr], ribs=fl, t=FN['t'], z=[FN['z0'], z_d], palm_z=list(FN['palm_z']))
+        rep_['under_deck_ribs'] = fins_rep
+        # everything stays inside the base's rounded plan outline (the NEG pockets run to the rear face, into its rounded corner)
+        ol = rrect(-so, -so, L + so, D7 + so, -5.0, 200.0, S.BASE_R + so)
+        for b_ in out:
+            bo(b_, tb.copy(ol), 'i')
+        return out
+
     # ================================================================== POWER box
     def build_power():
         PW = S.POWER
@@ -1331,6 +1504,11 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         D7 = R7['D'] if R7 else S.D                              # rev 7: + the bus zone at the rear
         DIM['D'] = D7
         DIM['snaps_rear'] = R7['cover_snaps_rear'] if R7 else None
+        if R7:   # markup 2026-10-17 (Dan 23-30: "the larger the base, the more holding tabs it needs"): spec.POWER_CATCHES
+            PC = S.POWER_CATCHES
+            DIM['snaps_front'] = PC['-y']
+            DIM['snaps_rear'] = PC['+y']
+            DIM['xcatch'] = [('-x', y_, True) for y_ in PC['-x']] + [('+x', y_, False) for y_ in PC['+x']]
         bz0 = btop - S.BAR_T
         pz0 = btop - S.PAD['t']                                  # = standoff top
         plate_b = z_t - S.PLATE
@@ -1498,7 +1676,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             hl_ = ST['w_low'] / 2                                 # web + bottom leg are 14.2: the walls between wells are 3.2
             cuts.append(box(xw_[0], y_ - hl_ - c_, z_d - 1, xw_[1], y_ + hl_ + c_, btop - ST['t'] + 0.01))
             cuts += groove_join(L, z_d, [(z_d - 1, btop - ST['t'], xw_[0], xw_[1], y_ - hl_ - c_, y_ + hl_ + c_)], 0.01)
-            th_, zh0_ = T_['w'] / 2, btop + 0.1
+            th_, zh0_ = T_['w'] / 2, btop + S.HOOK_GAP          # markup 2026-10-17 (R157): the hook bears on the lips
             zh1_ = zh0_ + T_['hook_t']
             tip_ = g['x_lip'] - s_ * T_['over']
             if a['row'] == 'OUT':                                 # the skirt is the arm: two side slots + the inner slot, from the root up
@@ -1566,14 +1744,22 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         if R7:   # R146 (Dan N5): snap tabs that hold the POS and NEG bars down - the POS bar's front end and its -x edge before the barrier,
             # the NEG bar's front edge between the studs
             hb_ = B_['w'] / 2
+            # markup 2026-10-17 (Dan 23-19 "NEED MORE HOLD DOWN TABS", one per arrow): POS bar both edges at the front end (y 22) and its +x edge
+            # beside the BAT+ lug (y 164) and at the rear end (y 230); NEG bar front edge at its -x end (x 9) and by the GND stud (x 98). The
+            # arrow on the NEG rear edge between RADLOK- and GND ID has no room: the lug tongues there are 3.0 apart (Dan's rule) - listed.
             for (xe_, ye_, n_) in [(xb, B_['y0'], (0, -1)), (xb - hb_, 163.8, (-1, 0)),
-                                   (26.5, NB['yc'] - hb_, (0, -1)), (72.5, NB['yc'] - hb_, (0, -1))]:
+                                   (26.5, NB['yc'] - hb_, (0, -1)), (72.5, NB['yc'] - hb_, (0, -1)),
+                                   (xb - hb_, 22.0, (-1, 0)), (xb + hb_, 22.0, (1, 0)), (xb + hb_, 164.0, (1, 0)), (xb + hb_, 230.0, (1, 0)),
+                                   (9.0, NB['yc'] - hb_, (0, -1)), (98.0, NB['yc'] - hb_, (0, -1))]:
                 c_, a_ = deck_tab(xe_, ye_, n_, z_t, btop, pre + 'Base_PA12_printed', sh)
                 cuts += c_
                 tabs_add += a_
         sub_all(deck, cuts)
         for b_ in strap_arms + tabs_add:
             bo(deck, b_, 'u')
+        if R7:
+            for b_ in markup_1017_power(L, D7, z_d, z_t, btop, xb, B_, NB, ami, sh):
+                bo(deck, b_, 'u')
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
 
@@ -1681,7 +1867,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
              AP['black'], MAT['abs'], sh)
         comp(pre + 'Relay_TE_PowerB_V23234_CO', [cbox(r['cx'], r['cy'], z_t, z_t + RBd['h'], RBd['body'], RBd['body']) for r in relays if r['B']],
              AP['black'], MAT['abs'], sh)
-        comp(pre + 'SPARE_positions', [cbox(r['cx'], r['cy'], z_t, z_t + 1.0, S.F7['body'], S.F7['body']) for r in relays if not r['pn']], AP['spare'], None, sh)
+        if not R7:   # markup 2026-10-17 (Dan 23-29 "what is this?"): the grey 1 mm square was a CAD marker for the empty relay spot, not a part - gone
+            comp(pre + 'SPARE_positions', [cbox(r['cx'], r['cy'], z_t, z_t + 1.0, S.F7['body'], S.F7['body']) for r in relays if not r['pn']], AP['spare'], None, sh)
 
         # ---- lugs + cables: OUT row straight out +x under the deck plate; IN row straight -x, one bend up round its saddle
         lugs, wires = [], []
@@ -1815,6 +2002,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             ribs = {'y': [26.5, 49.5, 72.5, 140.0, L - 15.0], 'x': [34.0 + 36.0 * k for k in range(4)] + [190.0, 214.0]}
         cover(L, D7, z_t, z_top, notches, labels, pre, sh, vents=vents, ribs=ribs)
         DIM['D'], DIM['snaps_rear'] = S.D, None
+        DIM.pop('snaps_front', None)
+        DIM.pop('xcatch', None)
         return dict(L=L, D=D7, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, relays=relays, ami=ami, acps=acps,
                     in_y=(R7['pos_studs'][0][0] if R7 else S.IN_STUD_Y))
 
@@ -1833,10 +2022,9 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         s_z0, s_z1 = S.STRIP_Z0, S.STRIP_Z0 + ST['h']
         mini, micro = [], []
         n = 0
-        for col, (cx, fuses) in S.MINI_COLS.items():
-            for i, (nm, amps) in enumerate(fuses):
-                n += 1
-                mini.append((col, nm, amps, cx, S.MINI_Y0 + i * S.MINI['pitch'], n, i))
+        for (col, i, nm, amps, cx, y_) in S.mini_list():      # markup 2026-10-17: spares deleted, the rest on spec.MINI_GRID
+            n += 1
+            mini.append((col, nm, amps, cx, y_, n, i))
         k = 0
         for cx in S.MICRO_COLS:
             for cy in S.MICRO_Y:
@@ -1859,7 +2047,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         spx = (sx_lo + sx_hi) / 2
         studs = []                                              # (col, i, y, z, fuse name or None)
         for (col, nm, amps, cx, y, n_, i) in mini:
-            if i >= S.STUDS[col]:
+            if not S.mini_stud(col, i):
                 continue
             lower = (i % 2 == 0) == (col == 'BUS1')             # BUS1 even = lower row, BUS2 even = upper row (no tip meets a tip)
             z = JR['z_lo'] + (0.0 if lower else JR['dz'])
@@ -1872,8 +2060,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         parts, lims = [], []
         T = S.TOWER
         for col, (cx, fuses) in S.MINI_COLS.items():            # cavity tower over the whole fuse column
-            yl = S.MINI_Y0 + (len(fuses) - 1) * S.MINI['pitch']
-            parts.append(box(cx - S.MINI['l'] / 2 - T, S.MINI_Y0 - 6.4 - T, z_d, cx + S.MINI['l'] / 2 + T, yl + 6.4 + T, plate_b + 0.01))
+            ys_ = [y_ for (c_, i_, n_, a_, x_, y_) in S.mini_list() if c_ == col]
+            parts.append(box(cx - S.MINI['l'] / 2 - T, min(ys_) - 6.4 - T, z_d, cx + S.MINI['l'] / 2 + T, max(ys_) + 6.4 + T, plate_b + 0.01))
         for (nm, pn, own, cx, cy, k_) in micro:
             parts.append(cbox(cx, cy, z_d, plate_b + 0.01, 11.6 + 2 * T, 18.6 + 2 * T))
         ylo = min(v['y0'] for v in strips.values()) - 1.0
@@ -1953,10 +2141,14 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
 
         # ---- jumper lugs, bolts, washers, jumpers (straight down from the input cavity into the lug barrel)
         jl, jb, jw, jwire = [], [], [], []
-        od_j = S.OD[S.JUMPER_AWG]
+        jl_pn = {}
         for s_ in studs:
             v = strips[s_['col']]
             sd, y, z = v['sd'], s_['y'], s_['z']
+            if s_['fuse']:      # markup 2026-10-17: the jumper is sized by its own fuse (spec.jumper); the strip stays where JLUG puts it
+                awg_j, rcp_j, pn_j, JL = S.jumper(s_['amps'])
+                od_j = S.OD[awg_j]
+                jl_pn.setdefault(pn_j, []).append(s_['fuse'])
             xa, xb_ = v['xpm'] - JL['t'] / 2, v['xpm'] + JL['t'] / 2
             if s_['fuse']:
                 ring = cyl((xa, y, z), (xb_, y, z), JL['ring'])
@@ -1976,10 +2168,12 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             shank = cyl((xh, y, z), (xh + sd * JB['l'], y, z), float(JB['m']))
             jb.append(union_all([head, shank]))
             if s_['fuse']:
-                bend_row('LOGIC %s %s input jumper (%d AWG)' % (s_['col'], s_['fuse'], S.JUMPER_AWG), S.JUMPER_AWG,
+                bend_row('LOGIC %s %s input jumper (%d AWG)' % (s_['col'], s_['fuse'], awg_j), awg_j,
                          'straight down from the input receptacle into its PIDG lug barrel (%.1f mm of wire between them)' % (z_d - zb1),
                          None, True, 'no bend: the lug barrel is right under the input blade')
-        comp(pre + 'Lug_TE_PIDG_53941-1', jl, AP['cu'], None, sh)
+        comp(pre + 'Lug_TE_PIDG_53941-1_320554', jl, AP['cu'], None, sh)
+        report['logic_jumpers']['ring_lugs'] = jl_pn
+        report['logic_jumpers']['gauges'] = {s_['fuse']: S.jumper(s_['amps'])[0] for s_ in studs if s_['fuse']}
         comp(pre + 'LugBolt_M4x8_A2', jb, AP['al'], MAT['ss'], sh)
         comp(pre + 'Washer_DIN127B_M4', jw, AP['al'], MAT['ss'], sh)
         comp(pre + 'Wire_jumper_14AWG', jwire, AP['wire'], None, sh)
@@ -2022,7 +2216,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             comp(pre + 'Fuse_ATM_%sA' % str(amps).replace('.', 'p'), bodies, MINI_AP[amps], MAT['abs'], sh)
         comp(pre + 'Relay_TE_MicroA_V23074', [cbox(cx, cy, z_t, z_t + S.MICRO['h'], S.MICRO['x'], S.MICRO['y']) for (nm, pn, own, cx, cy, k_) in micro if pn],
              AP['black'], MAT['abs'], sh)
-        comp(pre + 'SPARE_positions', [cbox(cx, cy, z_t, z_t + 1.0, S.MICRO['x'], S.MICRO['y']) for (nm, pn, own, cx, cy, k_) in micro if not pn], AP['spare'], None, sh)
+        if REV[0] != 7:   # markup 2026-10-17 (23-29): the same CAD-only spare markers (not parts) are gone here too
+            comp(pre + 'SPARE_positions', [cbox(cx, cy, z_t, z_t + 1.0, S.MICRO['x'], S.MICRO['y']) for (nm, pn, own, cx, cy, k_) in micro if not pn], AP['spare'], None, sh)
 
         # ---- harness: one load wire per fuse (output blade), MRS / B30 inputs, 5 per micro relay; bundles to the front edge
         tails = []
@@ -2033,7 +2228,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             sd = S.MINI_IN[col]
             lane = cx - sd * 3.0
             tails.append(dict(x=lane, y=y, awg=S.MINI_AWG[amps], what=nm, lane=lane))
-            if i >= S.STUDS[col] + (1 if col == 'BUS2' else 0):           # own input (MRS, B30): a harness wire, not a jumper
+            if i in S.MINI_OWN_IN.get(col, ()):                          # own input (MRS, B30): a harness wire, not a jumper
                 tails.append(dict(x=cx + sd * 3.0, y=y, awg=S.MINI_AWG[amps], what=nm + ' in', lane=lane))
         for (nm, pn, own, cx, cy, k_) in micro:
             if not pn:
@@ -2048,8 +2243,17 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'y', 0.0, pre, sh, 'LOGIC')
         pan_exits = [('y', u, zb_, wd, -1) for (u, zb_, wd) in exits] + pan_feed
         if REV[0] == 7:   # J2 = B (R94): rib between the Bus 1 output wires and the Bus 1 strip bolt heads; reliefs at the outboard relay column
+            # markup 2026-10-17 (23-12 / 23-33): a wire-group wall half way between the bundle edges of two neighbouring lanes - the two micro
+            # relay columns, and micro column 1 / the Bus 2 outputs - from the pan's front wall back past the last relay
+            ln_ = {round(e[0], 2): e[2] - 1.6 for e in exits}
+            GW = S.LOGIC_GROUP_WALLS
+            y_front = S.SKIRT + W_CL + PN['t'] - 0.01
+            gw = []
+            for (la, lb) in ((S.MINI_COLS['BUS2'][0] + 3.0, S.MICRO_COLS[0]), (S.MICRO_COLS[0], S.MICRO_COLS[1])):
+                xm_ = ((la + ln_[round(la, 2)] / 2) + (lb - ln_[round(lb, 2)] / 2)) / 2
+                gw.append((xm_ - GW['t'] / 2, xm_ + GW['t'] / 2, y_front, GW['y1'], GW['z_top']))
             belly_pan(L, z_d, 'x', pan_exits, pre, sh, rib=(S.PAN_RIB['x'][0], S.PAN_RIB['x'][1], S.PAN_RIB['y'][0], S.PAN_RIB['y'][1], S.PAN_RIB['z_top']),
-                      reliefs=[(cy - S.PAN_RELIEF['fwd'], cy + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y])
+                      reliefs=[(cy - S.PAN_RELIEF['fwd'], cy + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y], walls=gw)
         else:
             belly_pan(L, z_d, 'x', pan_exits, pre, sh)
         bend_row('LOGIC fuse / micro relay receptacles, largest %d AWG' % S.LOGIC_MAX_AWG, S.LOGIC_MAX_AWG, 'straight down out of the cavity, one bend into its bundle (rows above)',
@@ -2059,7 +2263,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         short = {'HEAD LH': 'HEAD L', 'HEAD RH': 'HEAD R', 'horn': 'HORN', 'k_etb': 'ETB', 'k_acc': 'A/C', 'k_eps_en': 'EPS EN', 'k_rev': 'REV', 'SPARE': 'SPARE'}
         labels = [(short[nm], cx, cy, S.LABEL['h_micro']) for (nm, pn, own, cx, cy, k_) in micro]           # rev 4 etched names, unchanged
         labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_, i) in mini]
-        labels += [(col, cx, S.MINI_Y0 - 11.0, S.LABEL['h_mini']) for col, (cx, fuses) in S.MINI_COLS.items()]
+        labels += [(col, cx, S.MINI_GRID['y0'] - 11.0, S.LABEL['h_mini']) for col, (cx, fuses) in S.MINI_COLS.items()]
         xm_ = sum(S.MICRO_COLS) / 2                     # between the micro relay columns (rev 6: 58.25)
         labels.append(('LOGIC', xm_, 168.0, 5.0))
         vents = [(x, y, 'y') for x in (spx, xm_) for y in (30.0 + k * S.VENT['pitch'] for k in range(7))]    # clear of the labels
@@ -2087,8 +2291,13 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         Bb = R['bar']
         btop = tz1 - S.AMI['ear_t']                         # AMI ear top = terminal top: the jumper lug lies at the terminal height
         bz0 = btop - Bb['t']
-        pz0 = btop - S.PAD['t']
+        RP = S.RB_PAD
+        R7b = REV[0] == 7                                   # markup 2026-10-17 (Dan 23-06): the out pad grows to the bar width, 3.2 stock
+        pad_t = RP['t'] if R7b else S.PAD['t']
+        pz0 = btop - pad_t
         a_in, a_out = R['x_ami_in'], R['x_ami_in'] + S.AMI['c']
+        pad_x = (a_out + RP['x0'], a_out + RP['x1']) if R7b else (a_out - S.PAD['inner'], a_out + S.PAD['outer'])
+        pad_w = RP['w'] if R7b else S.PAD['w']
         xst = R['x_stud']
         LM = R['lim_m6']
         parts, lims = [], []
@@ -2115,11 +2324,11 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             parts.append(cylz(x, fy, fl - 0.01, zf, 18.0))
         # fuse pedestal (rev 5: the bar's and the pad's risers joined into one ribbed block - point 8 asked what they were)
         pw = Bb['w'] / 2 + 1.0
-        ped = box(Bb['x0'] - 1.0, tsy - pw, fl - 0.01, a_out + S.PAD['outer'] + 1.0, tsy + pw, bz0)
+        ped = box(Bb['x0'] - 1.0, tsy - pw, fl - 0.01, pad_x[1] + 1.0, tsy + pw, bz0)
         if not solid_rb:
             bo(ped, box(Bb['x0'] + 1.5, tsy - pw + 2.5, fl, a_out + S.PAD['outer'] - 1.5, tsy + pw - 2.5, bz0 + 1), 's')
         else:   # solid: the same outline up to under the bar, and a riser under the pad up to the pad (pad top = bar top, the pad is thinner)
-            bo(ped, box(a_out - S.PAD['inner'] - 1.0, tsy - pw, fl, a_out + S.PAD['outer'] + 1.0, tsy + pw, pz0), 'u')
+            bo(ped, box(pad_x[0] - 1.0, tsy - pw, fl, pad_x[1] + 1.0, tsy + pw, pz0), 'u')
         parts.append(ped)
         for y in ((tsy - Bb['w'] / 2 + 1.25, tsy, tsy + Bb['w'] / 2 - 1.25) if not solid_rb else ()):    # ribs under bar + pad
             parts.append(box(Bb['x0'], y - S.RIB / 2, fl - 0.01, Bb['x1'], y + S.RIB / 2, bz0))
@@ -2169,16 +2378,48 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                    min(ya_ - 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)), max(ya_ + 0.1, ya_ + sg_ * (S.SCREW['ins_depth'] + 2.6)),
                    rb_zs - S.SCREW['d_ins'] / 2 - 2.2, R['rim'] + 0.1, sh)
         cuts += screw_inserts(Lr, Dr, rb_zs, rb_faces, outward=True)
+        rb_cradle_rep = []
+
+        def rb_cradles():
+            """Markup 2026-10-17 (23-18 / 23-31, R160): a printed cradle under the barrel of every battery block ring lug where it leaves its
+            copper / terminal - a floor block from the base floor to under the barrel and two walls d4 + 2 x trough apart - so the lug cannot
+            turn when its nut is torqued: the battery feed lug off the bar's -x end, the AMI out lug past the pad, the pump lug off terminal 5.
+            (Terminal 3's lug barrel sits over the HCR150 coil plug, so it gets none - listed.) Root fillets on the walls' outer faces."""
+            PK, d4, wt = S.POCKET, 7.0, 3.0
+            hw = d4 / 2 + PK['trough']
+            out = []
+            for (nm, xa, xb2, z_palm) in (('feed', -DIM['so'] + 0.5, Bb['x0'] - S.CLR, btop), ('ami_out', pad_x[1] + S.CLR, a_out + 20.0, btop + S.AMI['ear_t']),
+                                          ('pump', xs[1] + H_['term_w'] / 2 + S.CLR, xs[1] + 17.0, tz1)):
+                z_fl = z_palm - PK['under']
+                zw = z_palm + d4 / 2 + 1.0
+                out.append(box(xa, tsy - hw - wt, fl - 0.01, xb2, tsy + hw + wt, z_fl))
+                for sg in (-1, 1):
+                    ya, yb2 = sorted((tsy + sg * hw, tsy + sg * (hw + wt)))
+                    out.append(box(xa, ya, z_fl - 0.01, xb2, yb2, zw))
+                    out += root_fillets(xa, ya, xb2, yb2, z_fl, 1.5, 'y')[(1 if sg > 0 else 0):(2 if sg > 0 else 1)]
+                rb_cradle_rep.append(dict(lug=nm, x=[round(xa, 2), round(xb2, 2)], trough=round(2 * hw, 2), floor=round(z_fl, 2), wall_top=round(zw, 2)))
+            rw2 = 4.0                                         # the long-side rim (R128: 4.0): root fillets on its inner bottom edge (23-31)
+            out += root_fillets(22.0, -DIM['so'], Lr - 22.0, rw2, fl, S.FILLET_R, 'y')[1:]
+            out += root_fillets(22.0, Dr - rw2, Lr - 22.0, Dr + DIM['so'], fl, S.FILLET_R, 'y')[:1]
+            return out
+
         rb_tabs = []
         if REV[0] == 7:   # R146 (Dan N5): snap tabs on both long edges of the bar, between the M6 stud lug and the AMI ear; the bar sits on its
             # pedestal (1.0 wider each side), so each arm stands free on the floor, BAR_TAB gap off the pedestal
             for sy_ in (-1, 1):
                 c_, a_ = deck_tab(29.0, tsy + sy_ * Bb['w'] / 2, (0, sy_), fl, btop, pre + 'Base_PA12_printed', sh, standing=(fl, 1.0 + S.BAR_TAB['gap']))
                 rb_tabs += a_
+                # markup 2026-10-17 (Dan 23-06: "make pad larger and add hold down tabs"): the same standing tab on each long edge of the pad
+                c_, a_ = deck_tab(a_out + RP['tab_x'], tsy + sy_ * pad_w / 2, (0, sy_), fl, btop, pre + 'Base_PA12_printed', sh,
+                                  standing=(fl, (pw - pad_w / 2) + S.BAR_TAB['gap']))
+                rb_tabs += a_
+            rb_tabs += rb_cradles()
         sub_all(base, cuts)
         for b_ in rb_tabs:
             bo(base, b_, 'u')
         comp(pre + 'Base_PA12_printed', base, AP['pa12_lt'], MAT['pa'], sh)
+        report.setdefault('markup_1017', {})['battrelay'] = dict(pad=dict(x=[round(v, 2) for v in pad_x], w=pad_w, t=pad_t, stock=RP['stock']),
+                                                                out_bolt=RP['bolt_out'], cradles=rb_cradle_rep)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
         # ---- HCR150 envelope from the TE drawing
         rel = box(px0, yb, zf, px1, yb + H_['body_y'], zf + H_['depth'])
@@ -2197,10 +2438,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         bar = box(Bb['x0'], tsy - Bb['w'] / 2, bz0, Bb['x1'], tsy + Bb['w'] / 2, btop)
         bo(bar, cylz(xst, tsy, bz0 - 1, btop + 1, S.CLEAR[6]), 's')     # F19: ISO 273 medium (was 6.5)
         bo(bar, cylz(a_in, tsy, bz0 - 1, btop + 1, S.CLEAR[5]), 's')
-        pad = box(a_out - S.PAD['inner'], tsy - S.PAD['w'] / 2, pz0, a_out + S.PAD['outer'], tsy + S.PAD['w'] / 2, btop)
+        pad = box(pad_x[0], tsy - pad_w / 2, pz0, pad_x[1], tsy + pad_w / 2, btop)
         bo(pad, cylz(a_out, tsy, pz0 - 1, btop + 1, S.CLEAR[5]), 's')
         edge_break(comp(pre + 'Bar_Power_%s_25x6p35' % BM['name'], bar, AP['tin'], MAT['cu'], sh))
-        edge_break(comp(pre + 'Pad_Out_%s_15x3' % BM['name'], pad, AP['tin'], MAT['cu'], sh))
+        edge_break(comp(pre + ('Pad_Out_%s_25p4x3p2' if R7b else 'Pad_Out_%s_15x3') % BM['name'], pad, AP['tin'], MAT['cu'], sh))
         fe = slot_x(a_in, a_out, tsy, btop, btop + S.AMI['ear_t'], S.AMI['ear_w'])
         for x in (a_in, a_out):
             bo(fe, cylz(x, tsy, btop - 1, btop + 2, S.AMI['hole']), 's')
@@ -2209,7 +2450,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         bo(fb, fe, 'u')
         comp(pre + 'Fuse_AMI_ltgreen', fb, AP['ltgreen'], MAT['abs'], sh)
         lug_z = btop + S.AMI['ear_t']                    # = tz1
-        comp(pre + 'BarBolt_M5_M6_ISO4017_A2', [union_all([hexz(px, tsy, zu - HD[m]['k'], zu, HD[m]['af']), cylz(px, tsy, zu, zu + (16.0 if m == 6 else S.BOLT_L[5]), float(m))]) for (px, m, zu) in rb_bolts],
+        bl_ = lambda px, m: 16.0 if m == 6 else (RP['bolt_out'] if (R7b and abs(px - a_out) < 0.01) else S.BOLT_L[5])   # 22-59: FP 40A out M5 x 12
+        comp(pre + 'BarBolt_M5_M6_ISO4017_A2', [union_all([hexz(px, tsy, zu - HD[m]['k'], zu, HD[m]['af']), cylz(px, tsy, zu, zu + bl_(px, m), float(m))]) for (px, m, zu) in rb_bolts],
              AP['al'], MAT['ss'], sh)
         comp(pre + 'FlangeBolt_M6_ISO4017_A2', [union_all([hexz(x, fy, zf + H_['flange_t'], zf + H_['flange_t'] + 4.0, 10.0), cylz(x, fy, 0.5, zf + H_['flange_t'], 6.0)]) for x in hxs],
              AP['al'], MAT['ss'], sh)
