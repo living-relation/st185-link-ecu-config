@@ -2568,7 +2568,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "bn_bp_1020__bp_1050",
@@ -2577,7 +2580,10 @@
       "length": {
         "value": 40,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1050__bp_1080",
@@ -2586,7 +2592,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1080__bp_1110",
@@ -2595,7 +2604,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1110__bp_1140",
@@ -2604,7 +2616,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1140__bp_1170",
@@ -2613,7 +2628,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1170__bp_1200",
@@ -2622,7 +2640,10 @@
       "length": {
         "value": 20,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_870__bh_b_fw",
@@ -2635,7 +2656,8 @@
       "separateLabels": true,
       "endLabel": "BH-B",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_12"
       ]
     },
     {
@@ -2695,7 +2717,10 @@
       "length": {
         "value": 80,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "b_bn_bp_900__bp_930",
@@ -2704,7 +2729,10 @@
       "length": {
         "value": 90,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "b_bn_bp_930__bp_960",
@@ -2713,7 +2741,10 @@
       "length": {
         "value": 20,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "b_bn_bp_960__ecu_a",
@@ -2722,7 +2753,10 @@
       "length": {
         "value": 80,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "b_bn_ecu_a__bp_1020",
@@ -2731,7 +2765,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_34"
+      ]
     },
     {
       "id": "b_bn_bp_1020__bp_1050",
@@ -2740,7 +2777,10 @@
       "length": {
         "value": 60,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_34"
+      ]
     },
     {
       "id": "b_bn_bp_1080__bp_1110",
@@ -2749,7 +2789,10 @@
       "length": {
         "value": 60,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "b_bn_bp_1110__bp_1140",
@@ -2758,7 +2801,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "b_bn_bp_1140__bp_1170",
@@ -2767,7 +2813,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "b_bn_bp_1170__bp_1200",
@@ -2776,7 +2825,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "b_bn_bp_1200__bp_1230",
@@ -2785,7 +2837,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "b_bn_bp_1230__bp_1260",
@@ -2794,7 +2849,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "b_bn_bp_1260__bp_2100",
@@ -2803,7 +2861,10 @@
       "length": {
         "value": 1980,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_316"
+      ]
     },
     {
       "id": "b_bn_bp_2100__bp_2130",
@@ -2812,7 +2873,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_316"
+      ]
     },
     {
       "id": "b_bn_bp_870__bh_b_fw",
@@ -2825,7 +2889,8 @@
       "separateLabels": true,
       "endLabel": "BH-B",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_12"
       ]
     },
     {
@@ -2839,7 +2904,8 @@
       "separateLabels": true,
       "endLabel": "ECU-B",
       "partIds": [
-        "cov_lbl_12"
+        "cov_lbl_12",
+        "cov_dr25_34"
       ]
     },
     {
@@ -2853,7 +2919,8 @@
       "separateLabels": true,
       "endLabel": "IX FUEL-R",
       "partIds": [
-        "cov_lbl_316"
+        "cov_lbl_316",
+        "cov_dr25_316"
       ]
     },
     {
@@ -2863,7 +2930,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_34"
+      ]
     },
     {
       "id": "b_bn_bp_1065__bp_1080",
@@ -2872,7 +2942,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_34"
+      ]
     },
     {
       "id": "bn_b_bp_1140__br_w82",
@@ -3727,7 +3800,10 @@
       "layoutPosition": {
         "x": -1740,
         "y": -120
-      }
+      },
+      "partIds": [
+        "boot_342a024"
+      ]
     },
     {
       "id": "b_bp_1110",
@@ -3797,7 +3873,10 @@
       "layoutPosition": {
         "x": -1080,
         "y": -120
-      }
+      },
+      "partIds": [
+        "boot_382a023"
+      ]
     }
   ],
   "contactParts": [
@@ -3954,6 +4033,112 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_dr25_12",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/2-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 12.7 MM EXPANDED ID, 6.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039304024.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.22,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_14",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039274019.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.89,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_316",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/16-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039294018.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.84,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_34",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 19.0 MM EXPANDED ID, 9.5 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039254029.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 19.0,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.44,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    }
+  ],
+  "bootParts": [
+    {
+      "id": "boot_342a024",
+      "partNumber": "342A024-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/12.7 X 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=342A024-25-0",
+      "color": "Black"
+    },
+    {
+      "id": "boot_382a023",
+      "partNumber": "382A023-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, Y, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/12.4 X 13.2/6.1 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=382A023-25-0",
+      "color": "Black"
     }
   ],
   "resistorParts": [

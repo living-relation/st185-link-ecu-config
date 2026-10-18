@@ -58,18 +58,30 @@ def render(path, out, scale=0.5):
     for sp, (lx, ly) in g["locations"].items():
         a = g["centre"][sp]
         dr.line([P(*a), P(lx, ly)], fill=(200, 140, 40), width=1)
+    parts = {q["id"]: q for k in d if k.endswith("Parts") for q in d[k]}
+    bpart = {b["id"]: [parts[i] for i in b.get("partIds", []) if i in parts and parts[i].get("isFixedLength") is False]
+             for b in d.get("bundles", [])}
     for bid, pts in g["segments"].items():
-        dr.line([P(*p) for p in pts], fill=(60, 60, 60), width=max(2, int(5 * s)))
+        tube = bpart.get(bid)   # cut-to-length covering tubing (DR-25): drawn wide and blue, size after the length
+        dr.line([P(*p) for p in pts], fill=(40, 90, 200) if tube else (60, 60, 60),
+                width=max(2, int((9 if tube else 5) * s)))
         L = g["lengths"].get(bid)
-        if L:
+        if L or tube:
             (ax, ay), (bx, by) = pts[len(pts) // 2 - 1], pts[len(pts) // 2]
-            dr.text(P((ax + bx) / 2 + 4, (ay + by) / 2 - 22), "%g mm" % L, fill=(30, 110, 30), font=f_len)
+            txt = ("%g mm" % L if L else "") + "".join("  " + q["partNumber"].replace("-0-SP", "") for q in tube or [])
+            dr.text(P((ax + bx) / 2 + 4, (ay + by) / 2 - 22), txt, fill=(30, 110, 30), font=f_len)
     for nid, (bx0, by0, bx1, by1) in g["boxes"].items():
         kind = g["kind"][nid]
         dr.rectangle([P(bx0, by0), P(bx0 + 30, by0 + 30)], fill=KIND_FILL.get(kind, (0, 0, 0)))
         txt = g["text"].get(nid)
         if txt:
             dr.text(P(bx0 + 36, by0 + 4), txt, fill=(0, 0, 0), font=f_lab)
+    for bp in d.get("branchPoints", []):   # boots on a branch point: orange ring + part number(s)
+        boots = [parts[i]["partNumber"] for i in bp.get("partIds", []) if i in parts and i.startswith("boot_")]
+        if boots and bp["id"] in g["boxes"]:
+            bx0, by0 = g["boxes"][bp["id"]][:2]
+            dr.ellipse([P(bx0 - 12, by0 - 12), P(bx0 + 42, by0 + 42)], outline=(230, 120, 0), width=max(2, int(5 * s)))
+            dr.text(P(bx0 - 10, by0 + 44), " + ".join(boots), fill=(200, 90, 0), font=f_len)
     dr.text((10, 6), "%s - fallback layout snapshot (straight bundles; not the app's PDF export)"
             % os.path.basename(path), fill=(0, 0, 0), font=f_t)
     im.save(out)

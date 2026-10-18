@@ -952,7 +952,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_960__ecu_a",
@@ -961,7 +964,10 @@
       "length": {
         "value": 190,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_ecu_a__bp_1020",
@@ -970,7 +976,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1020__bp_1050",
@@ -979,7 +988,10 @@
       "length": {
         "value": 40,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1050__bp_1080",
@@ -988,7 +1000,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1080__bp_1110",
@@ -997,7 +1012,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1110__bp_1140",
@@ -1006,7 +1024,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1140__bp_1170",
@@ -1015,7 +1036,10 @@
       "length": {
         "value": 10,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1170__bp_1200",
@@ -1024,7 +1048,10 @@
       "length": {
         "value": 20,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_1200__bp_1230",
@@ -1033,7 +1060,10 @@
       "length": {
         "value": 30,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "bn_bp_900__bp_fl_brake_sw",
@@ -1060,7 +1090,10 @@
       "length": {
         "value": 960,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_316"
+      ]
     },
     {
       "id": "bn_bp_1230__csb3io",
@@ -1073,7 +1106,8 @@
       "separateLabels": true,
       "endLabel": "CSB3",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_12"
       ]
     },
     {
@@ -1204,7 +1238,8 @@
       "separateLabels": true,
       "endLabel": "OPTO8",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_38"
       ]
     }
   ],
@@ -1431,7 +1466,10 @@
       "layoutPosition": {
         "x": -1020,
         "y": -30
-      }
+      },
+      "partIds": [
+        "boot_301a011"
+      ]
     },
     {
       "id": "bp_1110",
@@ -1459,7 +1497,10 @@
       "layoutPosition": {
         "x": -600,
         "y": -30
-      }
+      },
+      "partIds": [
+        "boot_342a012"
+      ]
     },
     {
       "id": "bp_1230",
@@ -1540,6 +1581,112 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_dr25_12",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/2-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 12.7 MM EXPANDED ID, 6.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039304024.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.22,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_14",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039274019.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.89,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_316",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/16-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039294018.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.84,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_38",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/8-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 9.53 MM EXPANDED ID, 4.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039264026.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.53,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.02,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    }
+  ],
+  "bootParts": [
+    {
+      "id": "boot_301a011",
+      "partNumber": "301A011-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, T, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=301A011-25-0",
+      "color": "Black"
+    },
+    {
+      "id": "boot_342a012",
+      "partNumber": "342A012-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 13.2/6.9 X 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=342A012-25-0",
+      "color": "Black"
     }
   ],
   "resistorParts": [
