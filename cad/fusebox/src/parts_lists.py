@@ -36,6 +36,7 @@ COLS = ['box', 'group', 'item', 'part_number', 'maker', 'description', 'qty_need
 
 RS = {   # RS PRO stock numbers and the listing each was read on
     'M5x10': ('RS 287-3921', 'https://th.rs-online.com/web/p/hex-bolts/2873921', 'RS PRO A2/304 stainless hex bolt M5 x 10, DIN 933'),
+    'M5x12': ('RS 484-0098', 'https://ph.rs-online.com/web/p/hex-bolts/4840098', 'RS PRO stainless hex bolt M5 x 12, DIN 933 (feature text: A4 / 316)'),
     'M5x16': ('RS 263-2205', 'https://ph.rs-online.com/web/p/hex-bolts/2632205', 'RS PRO stainless hex bolt M5 x 16, DIN 933 (grade not stated on the listing)'),
     'M5set': ('RS 137-809', 'https://uk.rs-online.com/web/p/grub-screws-set-screws/0137809', 'RS PRO A2/304 stainless hex socket set screw M5 x 12, DIN 916'),
     'M5nut': ('RS 264-6432', 'https://se.rs-online.com/web/p/products/2646432', 'RS PRO A2/304 stainless serrated flange hex nut M5, DIN 6923'),
@@ -50,6 +51,7 @@ RS = {   # RS PRO stock numbers and the listing each was read on
     'M4spring': ('RS 231-0691', 'https://se.rs-online.com/web/p/washers/2310691', 'RS PRO AISI 301 stainless spring washer M4, DIN 127B, 0.9 thick'),
 }
 EFC_URL = 'https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters'
+TE_320554 = 'https://www.te.com/en/product-320554.html'
 FUTURE_53941 = 'https://www.futureelectronics.com/p/interconnect--pin-and-socket-connectors--crimp-terminals/53941-1-te-connectivity-5139464'
 AWC_M22759_16_14 = 'https://www.awcwire.com/product/m22759_16-14'
 ATM_URL = {2: 'https://www.standardelectricsupply.com/Bussmann-ATM-2-Automotive-Fuse', 5: 'https://www.stanion.com/Product/atm5bus',
@@ -243,10 +245,10 @@ def build(rev=6):
               url='https://www.amazon.com/dp/B09Z7NBLDK', checked='summary "Copper" section; seller page 2026-10-14', note='Machined (D6): one 5.5 hole each, 0.3 x 45 edge break on every edge.')
     else:            # R155 (N14 = B): one copper C-strap per AMI position, cut from the same 3 x 15 stock
         BL = S.strap_blank()
-        use = N_POS * (BL['cut_length'] + 2.0) + 17.5 + 2.0
-        L.add(P, 'Copper', 'Output C-straps 3 x 15, tinned: %d blanks %.1f mm (drawing ST185-FB-117) + the battery block pad 17.5' % (N_POS, BL['cut_length']),
+        use = N_POS * (BL['cut_length'] + 2.0)          # markup 2026-10-17: the battery block pad is 25.4 wide now, cut from the spare LOGIC strip bar
+        L.add(P, 'Copper', 'Output C-straps 3 x 15, tinned: %d blanks %.1f mm (drawing ST185-FB-117)' % (N_POS, BL['cut_length']),
               'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)',
-              'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all %d straps and the battery block pad (%.0f mm with 2 mm saw kerf, %.0f spare)'
+              'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all %d straps (%.0f mm with 2 mm saw kerf, %.0f spare)'
               % (N_POS, use, 1000 - use), 1, unit=51.99, basis='seen', url='https://www.amazon.com/dp/B09Z7NBLDK',
               checked='summary "Copper" section; seller page 2026-10-14; blank from spec.strap_blank() (K %.2f, ri %.1f)' % (BL['k'], BL['ri']),
               note='R155: saw the blank, drill the two PEM holes 6.35 (+0.08), saw the two kerfs and notches beside the neck, press the two PEM nuts, '
@@ -401,7 +403,7 @@ def build(rev=6):
                'punched or drilled, no deburr (PEM install step 1); 0.3 x 45 edge break; then the PEM nuts pressed in (rows below; N2 = A, DECISIONS R129).'
                % (S.PEM[4]['hole'], S.PEM[5]['hole']))
     n4 = sum(S.STUDS.values())
-    for m_, n_, what in ((4, n4, 'one per jumper stud, spares included'), (5, len(S.FEED), 'one per feed')):
+    for m_, n_, what in ((4, n4, 'one per jumper stud - the spare studs are gone, markup 2026-10-17'), (5, len(S.FEED), 'one per feed')):
         N_ = S.PEM[m_]
         L.add(G, 'Copper', 'Self-clinching nut M%d, pressed into the strip (%s)' % (m_, what), 'PEM %s' % N_['pn'], 'PennEngineering (PEM)',
               'Self-clinching nut M%d, type %s, shank code 2, zinc-plated steel; mounting hole %.2f +0.08, head %.2f x %.1f, min sheet 1.4, '
@@ -433,25 +435,39 @@ def build(rev=6):
     L.add(G, 'Terminals', 'Micro relay load receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', n_micro_load, spare(n_micro_load), unit=0.10, basis='est',
           url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
     outs = [(nm, a) for c, (x, f) in S.MINI_COLS.items() for nm, a in f if a]
-    own_in = [nm for c, (x, f) in S.MINI_COLS.items() for i, (nm, a) in enumerate(f) if a and i >= S.STUDS[c] + (1 if c == 'BUS2' else 0)]
-    jumpers = [nm for c, (x, f) in S.MINI_COLS.items() for i, (nm, a) in enumerate(f) if a and i < S.STUDS[c]]
-    n_small = sum(1 for nm, a in outs if nm in S.OUT_SMALL) + len(own_in)
+    own_in = [nm for (c, i, nm, a, x, y) in S.mini_list() if a and i in S.MINI_OWN_IN.get(c, ())]
+    # markup 2026-10-17 (Dan 23-21): each input jumper sized by its own fuse (spec.jumper): 20 - 18 AWG -> 1241388-2 + TE 320554, 16 - 14 -> 880398-2 + 53941-1
+    jumpers = [(nm, a) for (c, i, nm, a, x, y) in S.mini_list() if a and S.mini_stud(c, i)]
+    j_small = [nm for nm, a in jumpers if S.jumper(a)[1] == '1241388-2']
+    j_big = [nm for nm, a in jumpers if S.jumper(a)[1] == '880398-2']
+    j_awg = {}
+    for nm, a in jumpers:
+        j_awg.setdefault(S.jumper(a)[0], []).append(nm)
+    n_small = sum(1 for nm, a in outs if nm in S.OUT_SMALL) + len(own_in) + len(j_small)
     n_big = sum(1 for nm, a in outs if nm not in S.OUT_SMALL)
     L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (outputs + MRS / B30 inputs)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
           n_small, spare(n_small), unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower fb_logic contacts',
-          note='By wire gauge (row 110 (c)): outputs %s + inputs %s.' % (', '.join(sorted(n for n, a in outs if n in S.OUT_SMALL)), ', '.join(own_in)))
-    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 17-13 AWG (16-14 AWG outputs + the %d input jumpers)' % len(jumpers), '880398-2', 'TE Connectivity', 'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed',
-          n_big + len(jumpers), spare(n_big + len(jumpers)), unit=0.15, basis='est', url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower fb_logic contacts',
-          note='Outputs %s (%d) + one per input jumper (%d, 14 AWG, C4). DM is 14 AWG (13 AWG max here).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, len(jumpers)))
+          note='By wire gauge (row 110 (c)): outputs %s + inputs %s + the 20 / 18 AWG input jumpers %s (markup 2026-10-17).' % (
+              ', '.join(sorted(n for n, a in outs if n in S.OUT_SMALL)), ', '.join(own_in), ', '.join(j_small)))
+    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 17-13 AWG (16-14 AWG outputs + the %d 16 / 14 AWG input jumpers)' % len(j_big), '880398-2', 'TE Connectivity', 'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed',
+          n_big + len(j_big), spare(n_big + len(j_big)), unit=0.15, basis='est', url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower fb_logic contacts',
+          note='Outputs %s (%d) + one per 16 / 14 AWG input jumper (%s). DM is 14 AWG (13 AWG max here).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, ', '.join(j_big)))
     sleeves(L, G)
     cover_screws(L, G)
-    L.add(G, 'Jumpers', 'Input jumper ring lug, 16-14 AWG, #8 / M4 (one per fuse input)', '53941-1', 'TE Connectivity',
-          'PIDG closed ring tongue terminal, 16-14 AWG, #8 / M4 stud, blue, tin', len(jumpers), spare(len(jumpers)), unit=0.37, basis='seen',
+    L.add(G, 'Jumpers', 'Input jumper ring lug, 22-16 AWG, #8 / M4 (the 20 / 18 AWG jumpers)', '320554', 'TE Connectivity',
+          'PIDG closed ring tongue terminal, 22-16 AWG, #8 / M4 stud, tin', len(j_small), spare(len(j_small)), unit=0.40, basis='est', url=TE_320554,
+          checked='TE page 320554 2026-10-17 (PIDG closed ring, 22-16 AWG, .3-1.42 mm2, stud 8 / M4, tongue 0.79, length 20.24, insulation 2.03-3.18)',
+          note='Markup 2026-10-17 (Dan 23-21): %s. R38 step 2 (TE). Thin-wall 20 / 18 AWG is under its 2.03 insulation minimum: the R120 RNF-100 build-up goes under the crimp.' % ', '.join(j_small))
+    L.add(G, 'Jumpers', 'Input jumper ring lug, 16-14 AWG, #8 / M4 (the 16 / 14 AWG jumpers)', '53941-1', 'TE Connectivity',
+          'PIDG closed ring tongue terminal, 16-14 AWG, #8 / M4 stud, blue, tin', len(j_big), spare(len(j_big)), unit=0.37, basis='seen',
           url=FUTURE_53941, checked='TE page 53941-1 2026-10-14 (PIDG, #8 / M4, 16-14, overall 20.65, tongue 0.78, Active); Future Electronics listing $0.37 at 50, 22,000 in stock',
           note='C4 (Dan, option C). R38 step 2 (TE). TE sells it through distributors only ("not currently available" direct): Future link. Ring / sleeve size from the PIDG family - read off the first sample.')
-    L.add(G, 'Jumpers', 'Input jumper wire 14 AWG, ~60 mm each (%d), per foot' % len(jumpers), 'M22759/16-14-2', 'M22759 (Tefzel, red)', 'Wire, 14 AWG, ETFE, tin plated copper, 150 C, 600 V (the harness wire, ST185.harnesslib m16_14_2)',
-          5, 2, unit=1.00, basis='est', url=AWC_M22759_16_14, checked='ST185.harnesslib wire part m16_14_2; AWC M22759/16-14 listing (19 strands tinned copper, ETFE, 600 V, 150 C)',
-          note='%d x ~60 mm = %.1f m (5 ft) + spare. R38 step 4: no ProWire USA listing for M22759/16-14 confirmed; AWC sells it by the foot. The same reel as the harness 14 AWG if one is bought.' % (len(jumpers), len(jumpers) * 0.06))
+    for g_, nms in sorted(j_awg.items()):     # markup 2026-10-17: one row per jumper gauge (each jumper takes its own fuse's gauge)
+        L.add(G, 'Jumpers', 'Input jumper wire %d AWG, ~60 mm each (%d), per foot' % (g_, len(nms)), 'M22759/16-%d-2' % g_, 'M22759 (Tefzel, red)',
+              'Wire, %d AWG, ETFE, tin plated copper, 150 C, 600 V (the harness wire, ST185.harnesslib m16_%d_2)' % (g_, g_), 1, 0, unit=1.00, basis='est',
+              url='https://www.awcwire.com/product/m22759_16-%d' % g_, checked='ST185.harnesslib wire part m16_%d_2 (the harness reel of that gauge); AWC M22759/16-%d page (200, 2026-10-18)' % (g_, g_),
+              note='%s: %d x ~60 mm = %.2f m; the same reel as the harness %d AWG (markup 2026-10-17, Dan 23-21: sized by the fuse, not 14 AWG for all).'
+                   % (', '.join(nms), len(nms), len(nms) * 0.06, g_))
     hw(L, G, 'Jumpers', 'M4x8', 'Hex bolt M4 x 8, into the PEM nut in the strip (one per jumper lug)', len(jumpers), spare(len(jumpers)), 0.08,
        note='Head on the lug side, into the PEM S-M4-2ZI nut in the strip (N2): 1.1 past the nut head, 3.1 from the nearest Bus 2 part (Fusion). '
             'The shortest stocked length that passes the nut.')
@@ -467,8 +483,11 @@ def build(rev=6):
     cover_screws(L, B, n=3)     # the rear catch by the relay flange has none (spec.SCREW_SKIP_RB)
     L.add(B, 'Copper', 'Bar 25.4 x 6.35 x 36.5 mm, tinned (cut from the POWER bar stock)', 'MECCANIXITY B0CGJBRNJX', 'MECCANIXITY (Amazon)', 'Same 305 mm bar as the POWER bar: no extra stock to buy', 0,
           url='https://www.amazon.com/dp/B0CGJBRNJX', checked='stock bought in the POWER list', note='Machined (D6): M6 feed 6.6 (ISO 273 medium, F19), AMI 40 input 5.5; 0.3 x 45 edge break.')
-    L.add(B, 'Copper', 'Pad 15 x 3 x 17.5 mm, tinned (cut from the pad stock)', 'Bopaodao B09Z7NBLDK', 'Bopaodao (Amazon)', 'Same 1000 mm bar as the POWER pads: no extra stock to buy', 0,
-          url='https://www.amazon.com/dp/B09Z7NBLDK', checked='stock bought in the POWER list', note='Machined (D6): one 5.5 hole, 0.3 x 45 edge break.')
+    RP = S.RB_PAD
+    L.add(B, 'Copper', 'Pad 25.4 x 3.2 x %.1f mm, tinned (markup 2026-10-17: bar width, was 15 x 3 x 17.5)' % (RP['x1'] - RP['x0']), 'MECCANIXITY B0CGJC2S1L', 'MECCANIXITY (Amazon)',
+          'The second 1" x 1/8" bar of the LOGIC strip pair (spare until now): no extra stock to buy', 0,
+          url='https://www.amazon.com/dp/B0CGJC2S1L', checked='stock bought in the LOGIC list (2 bars, both strips from one)',
+          note='Dan 23-06: "make pad larger and add hold down tabs" - two printed snap tabs hold it (R157). Machined (D6): one 5.5 hole, 0.3 x 45 edge break.')
     L.add(B, 'Relay', 'Fuel pump relay k_fp, HCR150, 12 V, 130 A, IP67', '1416010-1', 'TE Connectivity', 'High Current Relay 150 (V23132-A2001-B200), M6 screw load terminals, Superseal 1.5 coil plug', 1, url=TE('1416010-1'),
           checked='TE page + data sheet V23132-X0000-A001 (130 A contact, 150 A limiting, 3.9 W coil, M6 5 Nm, lug up to 25 mm2); te-on-hand-bom.csv qty_ordered 2',
           note='On the shelf. The second HCR150 is the k_eps relay (not in a box list).')
@@ -488,8 +507,8 @@ def build(rev=6):
     hw(L, B, 'Fasteners', 'M6wash', 'Plain washer M6 (feed stud, 2 flange bolts)', 3, 1, 0.05)
     hw(L, B, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar)', 1, 1, 0.12)
     hw(L, B, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears)', 2, 1, 0.07)
-    hw(L, B, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI output stud: up through the pad, head in a printed hex pocket)', 1, 1, 0.12,
-       note='No standoff in this box: the pad sits on the printed pedestal; the stud is a bolt from below (the CAD has always drawn it so - this row said set screw M5 x 12, F06).')
+    hw(L, B, 'Fasteners', 'M5x12', 'Hex bolt M5 x 12 (AMI output stud: up through the pad, head in a printed hex pocket)', 1, 1, 0.12,
+       note='Markup 2026-10-17 (22-59): was M5 x 16, whose end reached 0.7 into the cover; M5 x 12 ends 1.0 past the nut (1.25 threads; pad 3.2 + ear 0.8 + lug 2.0 + nut 5.0), 3.5 under the cover.')
     L.add(B, 'Mounting', 'Compression limiter, end tabs (2)', 'EFC 10S00056', 'EFC International',
           'Knurled solid compression limiter, M6, ID 6.80, OD 9.8, L 6 mm, zinc-plated steel', 2, 1, unit=0.30, basis='est', url=EFC_URL,
           checked='EFC comparison table 2026-10-14; the end tab is 6 mm thick, so the L 6 part (rev 5 listed the L 4 one here)',

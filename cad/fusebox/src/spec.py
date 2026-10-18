@@ -137,9 +137,17 @@ BOLT_T = dict(T=4.0, K=0.2, mu=0.15, d=5.0, d2=4.48, p=0.8, r_head=3.3)
 # up), and the cover skirt overlaps it from outside, so with the cover on the hook cannot open. IN row: an arm cut free in the deck block by
 # a slot ring (deck_tab style), inboard of the lips. w across the strap width (covers both lips), over = hook past the lip end (lip 2.0),
 # t arm thickness, root = arm root z, hook_t hook thickness, slot 1.0 (> 0.5 MJF, S6). FEA: cad/fusebox/src/strap_fea.py.
-STRAP_TAB = {'OUT': dict(w=12.0, over=1.5, t=None, root=36.5, hook_t=3.2, slot=0.6),
-             'IN': dict(w=12.0, over=1.5, t=4.3, root=36.5, hook_t=3.2, slot=0.6)}
-# w 12 / slot 0.6: the PA12 left between two neighbouring arms' slots is 4.8 (R127 >= 3); the hook still covers 2.0 of each lip.
+STRAP_TAB = {'OUT': dict(w=12.0, over=1.5, t=None, root=35.0, hook_t=3.2, slot=1.0),
+             'IN': dict(w=12.0, over=1.5, t=4.3, root=35.0, hook_t=3.2, slot=1.0)}
+# w 12 / slot 1.0: the PA12 left between two neighbouring arms' slots is 4.0 (R127 >= 3); the hook still covers 2.0 of each lip.
+# Markup 2026-10-17 (Dan 23-15 / 23-17, DECISIONS R157): every hold-down hook bears on what it holds - its underside is level with the copper
+# top (0 gap, was 0.1 over it) - and its arm stays inside the HP snap-fit strain limit. HP MJF Handbook, "Snap-fits" chapter: allowable strain
+# < 1/3 x elongation at yield (eq. 7), base radius >= h / 2, assembly angle 35-40 deg; HP Jet Fusion 5200 PA 12 TDS: elongation at yield 10 % XY,
+# 8 % Z. The arms stand up in Z, so SNAP_EPS = 8 / 3 = 2.67 %, 2.6 used. Strain 1.5 h y / L^2 (HP: y = 0.67 eps L^2 / h, rectangular beam).
+# Strap arms: root 36.5 -> 35.0 (3.0 of skirt / block left under the slots) so the 4.3 arm stays under the limit with the hook on the lip
+# (L 18.0 -> 19.5: 2.95 % -> 2.55 %); the strap lip is only 2.0 long, so the catch stays 1.5 (Dispatch card: >= 1.5 - 2); slots 0.6 -> 1.0.
+SNAP_EPS = 2.6
+HOOK_GAP = 0.0       # hook underside to the copper top (Dan 23-15: "a tab that doesn't touch holds nothing"); MJF +-0.25 gives 0 - 0.1 preload
 
 
 def strap_blank():
@@ -209,7 +217,10 @@ def strap_numbers(amps_awg, t_hot=85.0):
 # `w` wide, rooted `root` under the deck top; its hook reaches `over` past the bar edge (inside the 0.3 edge break) with a 45 deg lead-in, the
 # underside square. The bar pushes the arm out by over + CLR on the way in. Battery block: the bar sits on its pedestal, so the arm stands
 # on the floor beside the pedestal, `gap` off it. Arm strain 1.5 t d / L^2 and push force 3 E I d / L^3 are in the build report.
-BAR_TAB = dict(t=2.2, w=6.0, root=12.0, slot=1.0, over=1.0, hook_t=1.6, gap=0.7, t_stand=3.5)   # t_stand: the free arms on the battery block floor (35 long)
+BAR_TAB = dict(t=2.2, w=6.0, root=16.0, slot=1.0, over=2.0, hook_t=2.5, gap=0.7, t_stand=4.0, w_stand=12.0, lead=40.0)
+# t_stand / w_stand: the free arms on the battery block floor (35 long). Markup 2026-10-17 (R157): catch 1.0 -> 2.0, hook 1.6 -> 2.5 thick,
+# root 12 -> 16 under the deck top (arm 14 -> 18 long: strain 1.5 x 2.2 x (2.0 + 0.4 CLR) / 18^2 = 2.44 % < SNAP_EPS), lead-in 40 deg
+# (HP 35 - 40); battery block arms 6 x 3.5 -> 12 x 4.0 (Dan 23-06: "make these 2 tabs bigger").
 TOWER_H = {'POWER': 20.5, 'LOGIC': 22.0}                     # deck top to deck underside (terminal cavity length)
 
 # ---------- logic zone (inboard): mini fuses + micro relays
@@ -229,7 +240,36 @@ MINI_COLS = {   # x centre, fuses forward -> rear: (label, amps or None for a sp
     'BUS2': (37.5 + PEM_GROW, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
                     ('ACC', 10), ('ALMIG', 2), ('SP', None), ('SP', None), ('MRS', 7.5), ('B30', 2)]),
 }
-MINI_Y0 = 28.0       # first fuse centre
+MINI_Y0 = 28.0       # first fuse centre (rev 6 / 7 up to 2026-10-17)
+# Markup 2026-10-17 (Dan 23-21: "some are too close ... There is room to spread them out while keeping the bar the same size. don't need the
+# extra positions"): the 4 spare fuse positions (BUS1 11 / 12, BUS2 10 / 11, no stud feed in use) are deleted and the rest spread out on ONE
+# grid for both columns, so every Bus 1 stud still has its Bus 2 neighbour at the same y in the other row (the 3 mm Bus 1 / Bus 2 gate):
+# pitch 8.1 -> 9.35 from y 31.7. 31.7 = the first Bus 1 stud's bolt head 3.0 clear of the Bus 1 feed lug (Dan's "overlap!!": at y 28 the head
+# corner sat 0.6 inside the feed lug ring); 9.35 = the most that keeps the last Bus 1 stud at its PEM edge distance (strip end 124 - 6.9) and
+# B30 (BUS2-13) in front of the Bus 2 feed lug ring. The cavity numbers keep their old numbers (BUS2-12 / -13 are in ST185-CabinPower).
+MINI_GRID = dict(y0=31.7, pitch=9.35)
+MINI_DROP = {'BUS1': (10, 11), 'BUS2': (9, 10)}     # spare positions deleted (index into MINI_COLS)
+MINI_OWN_IN = {'BUS2': (11, 12)}                    # MRS / B30: own harness input, no stud
+
+
+def mini_kept(col, i):
+    return i not in MINI_DROP.get(col, ())
+
+
+def mini_y(col, i):
+    """y of fuse i (index into MINI_COLS[col]) on the shared grid: the kept positions in order."""
+    k = [j for j in range(len(MINI_COLS[col][1])) if mini_kept(col, j)].index(i)
+    return round(MINI_GRID['y0'] + k * MINI_GRID['pitch'], 3)
+
+
+def mini_stud(col, i):
+    """True where fuse i is fed by a jumper from a stud on its bus strip."""
+    return mini_kept(col, i) and i not in MINI_OWN_IN.get(col, ())
+
+
+def mini_list():
+    """[(col, i, name, amps, x centre, y)] of every kept fuse position."""
+    return [(col, i, nm, amps, cx, mini_y(col, i)) for col, (cx, fuses) in MINI_COLS.items() for i, (nm, amps) in enumerate(fuses) if mini_kept(col, i)]
 MICRO = dict(x=15.5, y=23.0, h=24.1)
 MICRO_COLS = (53.5 + PEM_GROW, 72.0 + PEM_GROW)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
                              # R123: + 2.0 so the Bus 2 output terminals (880398-2) keep their lance ledges next to the micro relay 85 (R73 2.0 wall)
@@ -265,6 +305,9 @@ WALL_EXEMPT = {
                  'the pan gap. Re-measured 2026-10-17 (SteveCAD sweep C7): the lips are this feature - the solid PA12 over the strips is not it',
     'bar snap tab': 'R146 / R155 (Dan N5: printed tabs that hold the bars down): the snap arm (2.2 thick) has to flex to let the bar in, and its hook '
                     '(1.6) carries no load but the bar\'s own lift; walls, slots and the arm are sized for MJF (slots 1.0 > 0.5 S6)',
+    'lug pocket wall': 'markup 2026-10-17 (Dan 23-18 / 23-27 pockets, R160): attachment only - the PA12 wall between two NEG bus lug tongues is 2.2 '
+                       '(3.0 between the tongues, Dan\'s lug rule, less 0.4 clearance each side); it only stops a lug turning while its nut is '
+                       'torqued and stands on the raised pocket floor along its whole 26 mm length. One ground node (R135).',
     'strap snap tab': 'R155 (N14 = B): the snap arm over each copper strap\'s lips has to flex 1.5 to let the strap in (STRAP_TAB, FEA in '
                       'strap_fea.py); its slots are 1.0 (> 0.5 S6) and the ledge the lips rest on is between the well and the slot',
 }
@@ -355,7 +398,23 @@ JLUG = dict(ring=8.0, t=0.78, L=20.65, neck=2.0, sleeve=5.3, hole=4.34, ax=2.26)
 JBOLT = dict(m=4, l=8.0, washer_t=0.9, washer_od=7.6)  # RS 287-3915 M4 x 8 A2 + RS 231-0691 DIN 127B spring washer, into the PEM nut in the strip (R129)
 JROW = dict(z_lo=12.8, dz=5.0)                        # palm centres: N2: lower row 5.9 + 6.9 PEM edge (was 10.0); upper row +5.0 (was 7.5), so the upper
                                                       # lug barrel still ends 4 under the deck (34.45 + 4 <= 38.5); one strip = one circuit (J1 = A)
-JUMPER_AWG = 14
+JUMPER_AWG = 14      # the largest jumper (20 A DM); rev 6 / 7 used it on every input
+# Markup 2026-10-17 (Dan 23-21: "does the wire and terminal have to be so large for these fuses?"): no - each jumper is sized by its own fuse,
+# the same gauge the fuse's output wire takes (MINI_AWG: 2 / 5 A 20 AWG, 7.5 / 10 A 18, 15 A 16, 20 A 14). The jumper sits upstream of its mini
+# fuse, so only the bus feed fuse is in front of it - the same short-tap basis as the 14 AWG jumper it replaces (14 AWG is not covered by the
+# 50 A Bus 1 fuse either): one ~10 mm run inside the closed box, its load current capped by its own mini fuse. Terminals by gauge (TE pages,
+# read 2026-10-17): 20 - 18 AWG -> receptacle 1241388-2 (MCP 2.8K, 0.5 - 1 mm2, already the small LOGIC output part) + ring TE 320554 (PIDG
+# #8 / M4, 22 - 16 AWG, tongue 0.79, length 20.24, insulation 2.03 - 3.18: thin-wall 18 / 20 AWG gets the R120 RNF-100 build-up); 16 - 14 AWG
+# -> 880398-2 + 53941-1 as before.
+JLUG_SMALL = dict(JLUG, pn='320554', t=0.79, L=20.24, sleeve=4.6, ins=(2.03, 3.18))   # sleeve 4.6 est. (PIDG red family, not on the TE page)
+
+
+def jumper(amps):
+    """(awg, receptacle, ring lug pn, lug dims) of the input jumper of a mini fuse of this rating."""
+    awg = MINI_AWG[amps]
+    if awg >= 18:
+        return awg, '1241388-2', '320554', JLUG_SMALL
+    return awg, '880398-2', '53941-1', JLUG
 LOGIC = dict(L=83.5 + PEM_GROW, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
 LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
@@ -366,7 +425,7 @@ SPINE = dict(t=2.2, lip=3.2, lip_t=0.9)               # printed wall between the
 STRIP_Y = {'BUS1': (11.5, 124.0), 'BUS2': (21.1, 140.1)}     # N2: PEM edge distance at both ends (6.9 M4 / 7.1 M5): Bus 1 + 1.0 at the rear,
 # Bus 2 starts 2.4 earlier (was 23.5: the Bus 1 feed bolt tip now keeps 3.4 in x from it across the wider gap) and ends 0.1 later
 FEED = {'BUS1': dict(y=18.6, z=13.0, dir=-1), 'BUS2': dict(y=133.0, z=13.0, dir=+1)}   # N2: Bus 1 feed 0.6 rearward (PEM M5 edge 7.1)
-STUDS = {'BUS1': 12, 'BUS2': 10}                      # stud positions per strip (BUS2 11 / 12 = MRS / B30 have their own inputs; 10 = SP, no stud)
+STUDS = {'BUS1': 10, 'BUS2': 9}                       # stud positions per strip (markup 2026-10-17: spares deleted - see MINI_DROP / mini_stud)
 FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 87', 10)}   # (from, AWG) - wires run box to box
 # harness gauge per LOGIC output (ST185-CabinPower fb_logic contacts: 1241388-2 = 20-18 AWG, 880398-2 = 16-14 AWG)
 OUT_SMALL = {'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'MRS', 'B30'}
@@ -476,7 +535,43 @@ REV7 = dict(
     barrier_h=20.0,                            # wall above the deck top (lug barrels top out 13.9 above the bar)
     cover_snaps_rear=(124.0, 160.0),           # rear-face cover catches moved clear of the NEG cable notches
 )
-REV7_STOCK_BARS = 2    # POS bar 226 + battery block bar 36.5 from bar 1; NEG bar 105 from bar 2 (MECCANIXITY B0CGJBRNJX, 305 long)
+
+# ---------- Dan's markup 2026-10-17 (task card _research/TASK-fusebox-markup-1017.md, DECISIONS R157 - R160)
+# Lug pockets (23-18 / 23-27: "WHERE ARE MY MACHINED 'POCKETS' FOR EACH RING TERMINAL TO SIT IN?"), the bus bar idea (cad/busbar spec.POCKET,
+# Dan 2026-10-13) moved into the printed base: the lug palm keeps sitting on bare copper (copper to copper, nothing printed under the clamp);
+# where its tongue / barrel leaves the copper it runs between printed walls (palm b + 2 x clr, barrel d4 + 2 x trough) over a printed floor
+# `under` below the palm underside, so it cannot turn when its nut is torqued. Sizes from the lug drawings already in this file (LUG_M8 Klauke
+# 6R8 b 20 / d4 14, LUG_M5 2R5 b 12 / d4 7, LUG_6AWG 3R5 b 13, the battery block 2R5 / 1R6 lugs).
+POCKET = dict(clr=0.4, trough=0.5, under=0.3, wall=3.2, wall_neg=2.2, h_over_palm=2.0, wall_min=2.0)
+# POS bus lugs (BAT+ IN, RADLOK+): walls along x from the bar edge to the box edge, z_t + POS_WALL_H high - the wall between the two is Dan's
+# 23-31 "separating wall here"; the one in front of BAT+ starts behind the bar tab at y 164 (that tab's arm is the palm's front wall there).
+POS_WALL_H = 20.0
+# NEG front wall (23-31 "add more wall here", the orange lines): in front of the NEG terminals, from the skirt to the R7 barrier, as high and
+# thick as the barrier.
+NEG_FRONT_WALL = dict(y=(177.5, 180.5), x0=SKIRT - 0.01)
+# Under-deck isolation ribs (23-27 T walls inside the skirt segments, 23-33 "tall features from the base that extend between each bar"): one rib
+# between every two strap stations and one past each end, both rows, hanging from the deck block down to RIB_Z0 - the 3.2 PA12 wall between two
+# strap wells carried on down past the straps' webs, bottom legs and lugs. At the lug palm height (z PALM_Z) the rib widens to the lug: walls
+# b + 2 x clr apart = the pocket of every palm-up output lug (bolted from below, the socket fits the 12.8 slot).
+FIN = dict(t=3.2, z0=6.0, palm_z=(10.0, 13.7), pan_gap=0.65)
+# Wall root fillets (23-31: "add strengthening features to ALL walls, like small fillets at bottom edge, or ribs, so it can't snap off"):
+# a concave fillet of radius FILLET_R along both bottom edges of every free-standing printed wall (HP snap-fit chapter: root radius >= h / 2).
+FILLET_R = 2.0
+# Cover catches (23-30: "the larger the base, the more holding tabs it needs"): R122-style rule - every face of a cover gets catches, no two
+# more than CATCH_MAX apart and none more than CATCH_END from a corner, on the free spans between cable notches, legs and strap arms.
+CATCH_MAX = 100.0
+POWER_CATCHES = {'-y': (45.125, 90.25, 135.375), '+y': (124.0, 160.0), '-x': (52.0, 124.0), '+x': (20.0, 226.0)}
+# -x catches sit between the cover's side ribs (y 34 / 70 / 106 / 142) with their R122 screws 13 toward the middle; the two +x catches get no
+# backup screw: at y 20 the screw would land in the rounded corner or the first strap arm's slot, at y 226 on the cover rib at y 214 (listed).
+# LOGIC wire-group walls (23-12 orange slots / 23-33 "short walls in the base to help align and separate wire groups"): ribs on the belly-pan
+# floor between the harness bundles - between the two micro relay columns and between micro column 1 and the Bus 2 outputs. They start at the
+# pan's front wall (joined to it) and run back past the last relay.
+LOGIC_GROUP_WALLS = dict(t=2.0, x=None, y1=152.0, z_top=13.3)   # top: over the bundles (packed U top 12.8 - 13.2), 0.5 under the direct relay jumpers (wiring_sim JUMP_Z 15, 14 AWG bottom 13.8)
+# Battery relay block (23-06): the AMI out pad grows to the bar width (25.4, MECCANIXITY B0CGJC2S1L 1" x 1/8" stock, the second bar of the LOGIC
+# strip pair, spare until now) and gets two snap tabs of its own; 22-59: the FP 40A out stud was an M5 x 16 whose end pushed into the cover
+# (top 52.2 vs cover inside 51.5) - M5 x 12 (1.0 past the nut, 3.5 under the cover).
+RB_PAD = dict(w=25.4, t=3.2, x0=-6.5, x1=9.0, tab_x=1.0, stock='MECCANIXITY B0CGJC2S1L', bolt_out=12.0)
+REV7_STOCK_BARS = 2   # POS bar 226 + battery block bar 36.5 from bar 1; NEG bar 105 from bar 2 (MECCANIXITY B0CGJBRNJX, 305 long)
 
 
 # ---------- J answers (Dan, 2026-10-14, DECISIONS R94). J1 = A: lugs on one strip are one circuit (the 3 mm rule is between circuits).

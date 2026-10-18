@@ -45,10 +45,9 @@ def awg_mm2(g, unit):
 # ------------------------------------------------------------------ cavity positions (box-local mm; POWER / LOGIC frames as the build)
 def logic_cavities():
     cav = {}
-    for col, (cx, fuses) in S.MINI_COLS.items():
+    for (col, i, nm, amps, cx, y) in S.mini_list():         # markup 2026-10-17: spares deleted, the rest on spec.MINI_GRID
         sd = S.MINI_IN[col]
-        for i, (nm, amps) in enumerate(fuses):
-            y = S.MINI_Y0 + i * S.MINI['pitch']
+        if True:
             d = '%s-%d' % (col, i + 1)
             cav[d] = dict(x=cx - sd * 3.0, y=y, lane=('L', round(cx - sd * 3.0, 2)), kind='fuse out', name=nm)
             cav[d + ' IN'] = dict(x=cx + sd * 3.0, y=y, lane=('L', round(cx - sd * 3.0, 2)), kind='fuse in', name=nm)
@@ -328,8 +327,8 @@ def strip_blocks():
         y0, y1 = S.STRIP_Y[col]
         out.append((min(face, face + sd * S.STRIP['t']), y0, max(face, face + sd * S.STRIP['t']), y1))      # the strip
         for i, (nm, amps) in enumerate(fuses):                                                            # each jumper lug
-            if amps and i < S.STUDS[col]:
-                y = S.MINI_Y0 + i * S.MINI['pitch']
+            if amps and S.mini_stud(col, i):
+                y = S.mini_y(col, i)
                 xs = (face, xin - sd * S.JLUG['sleeve'] / 2)
                 out.append((min(xs), y - S.JLUG['ring'] / 2, max(xs), y + S.JLUG['ring'] / 2))
     return out
@@ -431,13 +430,12 @@ def channel_route(w):
 def all_cavities():
     """Every terminal cavity the bases cut (spare positions too), box-local mm: (box, key) -> dict(x, y, kind)."""
     out = {}
-    for col, (cx, fuses) in S.MINI_COLS.items():
+    for (col, i, nm, amps, cx, y) in S.mini_list():
         sd = S.MINI_IN[col]
-        for i, (nm, amps) in enumerate(fuses):
-            y = S.MINI_Y0 + i * S.MINI['pitch']
+        if True:
             out[('LOGIC', '%s-%d' % (col, i + 1))] = dict(x=cx - sd * 3.0, y=y, kind='fuse out', fuse=nm, amps=amps)
             out[('LOGIC', '%s-%d IN' % (col, i + 1))] = dict(x=cx + sd * 3.0, y=y, kind='fuse in', fuse=nm, amps=amps,
-                                                             jumper=bool(amps) and i < S.STUDS[col])
+                                                             jumper=bool(amps) and S.mini_stud(col, i))
     k = 0
     for cx in S.MICRO_COLS:
         for cy in S.MICRO_Y:
@@ -477,7 +475,8 @@ def terminal_cavities(wires):
             od = max(w['od'] for (w, e) in hits)
             src, wl = 'harness', [w['wire'] for (w, e) in hits]
         elif c.get('jumper'):
-            part, od, src, wl = '880398-2', OD[S.JUMPER_AWG], 'CAD jumper', []
+            g_, part, _lug, _d = S.jumper(c['amps'])     # markup 2026-10-17: each jumper sized by its own fuse
+            od, src, wl = OD[g_], 'CAD jumper %d AWG' % g_, []
         else:
             part, g = S.TERM_DEFAULT[c['kind']]
             od, src, wl = OD[g], 'spare (largest wire it takes)', []
@@ -560,10 +559,9 @@ def main():
             if e['box'] == 'LOGIC':
                 used[(e['at']['x'], e['at']['y'])] = w['od']
     risers += [((x, y), od) for (x, y), od in used.items()]
-    for col, (cx, fuses) in S.MINI_COLS.items():            # the 14 AWG input jumpers (CAD), one per stud with a fuse
-        for i, (nm, amps) in enumerate(fuses):
-            if amps and i < S.STUDS[col]:
-                risers.append(((cx + S.MINI_IN[col] * 3.0, S.MINI_Y0 + i * S.MINI['pitch']), OD[S.JUMPER_AWG]))
+    for (col, i, nm, amps, cx, y) in S.mini_list():         # the input jumpers (CAD), one per stud with a fuse, sized by the fuse
+        if amps and S.mini_stud(col, i):
+            risers.append(((cx + S.MINI_IN[col] * 3.0, y), OD[S.jumper(amps)[0]]))
     jumper_hits = {}
     for w in wires:
         if not w['direct']:

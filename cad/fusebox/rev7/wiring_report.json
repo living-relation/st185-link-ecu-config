@@ -15,7 +15,7 @@
   ]
  ],
  "wire_wire": {
-  "pairs": 417,
+  "pairs": 416,
   "overlaps": [
    [
     "w_k_efi_86_cp#1",
@@ -67,11 +67,15 @@
    ],
    [
     "w_fb_mrs_en_cp",
-    "w_start_cp"
+    "w_k_eps_en_87_cp"
    ],
    [
     "w_pmu_hl_cp",
     "w_horn_30_cp"
+   ],
+   [
+    "w_pmu_hr_cp",
+    "w_fb_k_eps_en_30_cp"
    ],
    [
     "w_pmu_hr_cp",
@@ -179,11 +183,11 @@
    ],
    [
     "w_k_eps_en_87_cp",
-    "w_horn_30_cp"
+    "w_rev_30_cp"
    ],
    [
     "w_k_eps_en_87_cp",
-    "w_horn_85_cp"
+    "w_rev_87_cp"
    ],
    [
     "w_hl_30_cp",
