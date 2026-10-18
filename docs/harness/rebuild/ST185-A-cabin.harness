@@ -3846,9 +3846,18 @@
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead DRB102 - firewall (section A) 35: MRS EPS pump logic enable - fuse box LOGIC MRS 7.5A (fed from k_eps_en 87, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nSP-5V-A (splice): +5V at ECU A (A32 lead 18 AWG) - feeds SP-5V-BHA before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to SP-5V-B on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to SP-5V-PEDAL\nSP-5V-PEDAL (splice): +5V cabin loads off SP-5V-A - APS, cruise ladder, VC2 lead (20 AWG each)\nSP-GNDOUT-A (splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds SP-GND-BHA before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)\nSP-SW12 (splice): switched 12V bus - its B-side load (VSS feed on bulkhead B c20) is drawn on ST185-B-cabin (broken off); relay coil+ feeds come from the SW12 splice in the LOGIC box (ST185-CabinPower)\nSP-GND-CHASSIS (splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)\nSP-SHIELD-A (splice): drain T-splice about 6 mm (0.25 in) behind the ECU-A plug (Daniel 2026-10-12). The crank drain is the one crimped into A7 (the wire into A7 is its last few mm); every other loom-A drain (cam, turbo, flex, ETB sensor, APS, front WS spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20/22 AWG - no combined-gauge pigtail, one wire per pin.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead DRB102 - firewall (section A) 35: MRS EPS pump logic enable - fuse box LOGIC MRS 7.5A (fed from k_eps_en 87, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nSP-5V-A (splice): +5V at ECU A (A32 lead 18 AWG) - feeds SP-5V-BHA before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to SP-5V-B on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to SP-5V-PEDAL\nSP-5V-PEDAL (splice): +5V cabin loads off SP-5V-A - APS, cruise ladder, VC2 lead (20 AWG each)\nSP-GNDOUT-A (splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds SP-GND-BHA before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)",
       "schematicPosition": {
         "x": 4830,
+        "y": 120
+      },
+      "width": 390
+    },
+    {
+      "id": "n_cavity_notes_2",
+      "text": "CAVITY NOTES (cont.)\nSP-SW12 (splice): switched 12V bus - its B-side load (VSS feed on bulkhead B c20) is drawn on ST185-B-cabin (broken off); relay coil+ feeds come from the SW12 splice in the LOGIC box (ST185-CabinPower)\nSP-GND-CHASSIS (splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)\nSP-SHIELD-A (splice): drain T-splice about 6 mm (0.25 in) behind the ECU-A plug (Daniel 2026-10-12). The crank drain is the one crimped into A7 (the wire into A7 is its last few mm); every other loom-A drain (cam, turbo, flex, ETB sensor, APS, front WS spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20/22 AWG - no combined-gauge pigtail, one wire per pin.",
+      "schematicPosition": {
+        "x": 5250,
         "y": 120
       },
       "width": 390
