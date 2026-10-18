@@ -206,6 +206,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 - RealDash frame scope is the documented ECU streams `0x3EF`-`0x3F1` plus one approved exception (2026-09-04): the gear byte of `0x3EB` (`ST185: Gear`) for the reverse-camera auto-switch - see the CAN scope note in `REALDASH-LAYOUT.md` and the SCOPE note in the XML. Do not widen it to other `0x3E8`-`0x3EE` bytes without updating both.
 - Keep conversion parity between the XML formulas and `bench/frames.py` scaling, and warning-bit mapping parity (`startbit`) between XML and the `bench/frames.py` bit constants.
 - Prefer minimal targeted edits; avoid broad rewrites of stable docs.
+- Retiring files: DECISIONS R46 - the common cases (replaced versions, generated files, duplicates, scratch, merged task cards after 7 days, empty / broken files, old `.harness` copies) need no OK; list them in the PR body under "Retired"; `git rm` tracked files, Recycle Bin for untracked ones. Dan's own only-copies, the SoT, DECISIONS rows and anything outside this repo still need his OK.
 - main is protected (ruleset "Protect main"); all changes go through PRs with "Repo checks" and "Protect research hub" green; only the research-hub bot (deploy key `RESEARCH_HUB_DEPLOY_KEY`) bypasses.
 - Root `link_g4x_realdash.xml` is the single copy; do not reintroduce a duplicate under `rd-build/`.
 - Before any CAN ID/frame or wiring change, check compatibility against `center-cluster-esp32-p4` (see **Related Repos** above).

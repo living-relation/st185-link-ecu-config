@@ -10,8 +10,8 @@ Proposal only for *where files should live* and *how the two `.harness` drawings
 > (rails spliced at the bulkhead - now tapered from the ECU, Rule 3), 6.12 (ECU-shell shields),
 > 6.15 (dummy blocks - now broken-off pairs, R3), 6.24 (generic wire - now M22759/16, R35),
 > 6.30 "Why M8" and the enclosure-as-screen path (R31, R33), 6.33 fixed schematic geometry
-> (R42), 6.41 loom list (now 14 files), 6.48 J/B2 landings (S15). Nothing here is deleted or
-> archived without Daniel's OK (R46).
+> (R42), 6.41 loom list (now 14 files), 6.48 J/B2 landings (S15). Nothing here is archived into
+> the repo; retiring any of it follows R46 (updated 2026-10-18: listed in the PR under "Retired").
 >
 > **2026-09-25:** the pin SoT is `sot/channels.csv`. The dated audit notes
 > named in the section 1 table are retired and are not authoritative. The looms
