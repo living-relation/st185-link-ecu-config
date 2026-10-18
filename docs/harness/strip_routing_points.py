@@ -4,6 +4,7 @@ A routing point is a wire `layoutPoints` entry - the white cross the app shows o
 removed by double-clicking a wire. Dan: none unless he asks, and only once the overall layout is
 set; harness.design's own auto-routing is preferred (the docs say the same:
 https://docs.harness.design/files/harness/positioning.md "Avoid adding layout waypoints to wires").
+Cable cores and shields carry theirs in `sourceLayoutPoints` / `targetLayoutPoints`; those go too.
 Bundle layout points are NOT touched (Dan kept the 13 on RearFuel / WheelSpeed-Front / -Rear),
 and neither is anything a wire on the allow-list carries (audit_wire_spacing.ROUTING_POINTS_ALLOWED).
 
@@ -24,11 +25,11 @@ import model
 def strip(loom, d):
     keep = audit_wire_spacing.ROUTING_POINTS_ALLOWED.get(loom, set())
     n = w = 0
-    for x in d.get("wires", []):
-        if x.get("layoutPoints") and x["id"] not in keep:
-            n += len(x["layoutPoints"])
+    for kind, xid, x, k in audit_wire_spacing.routed(d):
+        if x.get(k) and xid not in keep:
+            n += len(x[k])
             w += 1
-            del x["layoutPoints"]
+            del x[k]
     return n, w
 
 

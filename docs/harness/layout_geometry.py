@@ -18,7 +18,7 @@ def text_of(kind, x):
     if kind == "connectors":
         t = x.get("label") or x.get("id")
     elif kind == "terminals":
-        t = x.get("signal") or x.get("id")
+        t = x.get("label") or x.get("signal") or x.get("id")   # R156: the label is the visible name
     else:
         return ""
     return t if len(t) <= LABEL_CHARS else t[:LABEL_CHARS] + "..."

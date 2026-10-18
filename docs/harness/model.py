@@ -67,7 +67,9 @@ def full_text(d, fn):
         return d
 
     def put(obj, key, pair):
-        if pair and obj.get(key) == pair[0]:
+        # R156: a relabelled terminal carries no signal (its label says where it lands); its
+        # pair is ["", long] so the gates still read the long text.
+        if pair and (obj.get(key) or "") == pair[0]:
             obj[key] = pair[1]
 
     for c in d.get("connectors", []):

@@ -16,9 +16,9 @@ def node_index(d):
     for c in d.get("connectors", []):
         ix[c["id"]] = (c.get("label") or c["id"], "connector")
     for t in d.get("terminals", []):
-        ix[t["id"]] = (t.get("signal") or t["id"], "terminal(%s)" % t.get("type",""))
+        ix[t["id"]] = (t.get("label") or t.get("signal") or t["id"], "terminal(%s)" % t.get("type",""))  # R156 label first
     for s in d.get("splices", []):
-        ix[s["id"]] = (s["id"], "splice")
+        ix[s["id"]] = (s.get("label") or s["id"], "splice")
     for b in d.get("branchPoints", []):
         ix[b["id"]] = (b["id"], "branch")
     for r in d.get("resistors", []):

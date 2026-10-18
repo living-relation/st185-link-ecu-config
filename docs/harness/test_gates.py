@@ -381,6 +381,83 @@ def _(d):
     save(p, doc)
 
 
+def _cluster(d, fn):
+    p, doc = load(d, "ClusterLED")
+    fn(doc)
+    save(p, doc)
+
+
+def _term(doc, tid):
+    return next(t for t in doc["terminals"] if t["id"] == tid)
+
+
+@case("R156: relabelled drawings as committed", "audit_destinations.py", 0)
+def _(d):
+    pass
+
+
+@case("R156 L1: a relabelled terminal with no label", "audit_destinations.py", 1)
+def _(d):
+    _cluster(d, lambda doc: _term(doc, "fl_cl_c11_c12").pop("label"))
+
+
+@case("R156 L1: a relabelled terminal that also carries a signal", "audit_destinations.py", 1)
+def _(d):
+    _cluster(d, lambda doc: _term(doc, "fl_cl_c11_c12").update(signal="High beam LED"))
+
+
+@case("R156 L2: a label that names no landing (no pin / stud / lug ...)", "audit_destinations.py", 1)
+def _(d):
+    _cluster(d, lambda doc: _term(doc, "fl_cl_c11_c12").update(label="High beam LED - indicator"))
+
+
+@case("R156 L3: the old '-> X' tail", "audit_destinations.py", 1)
+def _(d):
+    _cluster(d, lambda doc: _term(doc, "fl_cl_c11_c12").update(label="OEM cluster plug pin 12 - high beam -> C11-12"))
+
+
+@case("R156 L3: a bare pin code (IE1-14)", "audit_destinations.py", 1)
+def _(d):
+    _cluster(d, lambda doc: _term(doc, "fl_cl_c11_c12").update(label="Inline IE1-14 pin - motor +"))
+
+
+@case("R156 L4: both ends of one wire print the same name", "audit_destinations.py", 1)
+def _(d):
+    def f(doc):     # the IG tap wire runs from the C12 pin 9 lead to the LED +12 V splice
+        _term(doc, "fl_cl_c12_c9")["label"] = next(x for x in doc["splices"] if x["id"] == "sp_led_12v")["label"]
+    _cluster(d, f)
+
+
+@case("R156 L5: a long note left narrow", "audit_destinations.py", 1)
+def _(d):
+    _cluster(d, lambda doc: doc["schematicNotes"][0].update(width=150, text="x " * 150))
+
+
+def _core_points_live(d, extra):
+    """CSB3 taken off CORE_POINTS_PENDING in the sandbox, its core points stripped, then `extra`."""
+    g = os.path.join(d, "docs", "harness", "audit_wire_spacing.py")
+    txt = open(g, encoding="utf-8").read().replace('"WheelSpeed-Rear", "CSB3"}', '"WheelSpeed-Rear"}')
+    open(g, "w", encoding="utf-8").write(txt)
+    p, doc = load(d, "CSB3")
+    for cb in doc["cables"]:
+        for co in cb.get("cores", []) + ([cb["shield"]] if cb.get("shield") else []):
+            co.pop("sourceLayoutPoints", None)
+            co.pop("targetLayoutPoints", None)
+    extra(doc)
+    save(p, doc)
+
+
+@case("R141 RP1: cable cores stripped, drawing off the pending list", "audit_wire_spacing.py", 0)
+def _(d):
+    _core_points_live(d, lambda doc: None)
+
+
+@case("R141 RP1: a routing point on a cable core leg", "audit_wire_spacing.py", 1)
+def _(d):
+    _core_points_live(d, lambda doc: doc["cables"][0]["cores"][0].update(
+        targetLayoutPoints=[{"id": "lp_t_core", "schematicPosition": {"x": 0, "y": 0}}]))
+
+
 def main():
     fails = 0
     for name, gate, expect, fn in CASES:

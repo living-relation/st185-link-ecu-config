@@ -8,7 +8,10 @@ terminate at the same connector or device".
   RP1 SCHEMATIC: a wire carries routing points (`layoutPoints`, the white crosses the app shows on
       hover) and is not on ROUTING_POINTS_ALLOWED. Strip them with
       `python docs/harness/strip_routing_points.py --write`. Bundle layout points are not routing
-      points of a wire and are not checked here.
+      points of a wire and are not checked here. A cable core or shield keeps its routing points
+      in `sourceLayoutPoints` / `targetLayoutPoints` (the legs from the cable to each end, v1.2
+      schema); those are routing points too (G2 / G3 found them 2026-10-17) and count the same,
+      except in the drawings still on CORE_POINTS_PENDING.
 
   W1  RETIRED 2026-10-16 (R141 replaces R86): it held hand-placed right-angle wire paths 3 line
       widths apart; the app's auto-routing is preferred now. `route_wires.py`, which wrote those
@@ -33,6 +36,22 @@ import model
 # loom -> wire ids that may keep routing points. Only wires Dan asks for, after the overall layout
 # is set (R141); empty until he does.
 ROUTING_POINTS_ALLOWED = {}
+# Drawings whose cable cores / shields still carry routing points: listed, not failed, until the
+# group relabelling that drawing (DECISIONS R156 split) strips them. Only ever shrinks.
+CORE_POINTS_PENDING = {"A-cabin", "B-cabin", "A-engine", "B-engine", "CAN", "WheelSpeed-Front",
+                       "WheelSpeed-Rear", "CSB3"}
+CORE_KEYS = ("sourceLayoutPoints", "targetLayoutPoints")
+
+
+def routed(d):
+    """(kind, id, element, key) for every element that can carry wire routing points: a wire's
+    layoutPoints, and the two legs of every cable core and shield."""
+    for x in d.get("wires", []):
+        yield "wire", x["id"], x, "layoutPoints"
+    for cb in d.get("cables", []):
+        for co in cb.get("cores", []) + ([cb["shield"]] if cb.get("shield") else []):
+            for k in CORE_KEYS:
+                yield "core", co.get("id") or cb["id"], co, k
 
 PARALLEL_DEG = 10.0
 MIN_RUN = 2.0
@@ -68,11 +87,14 @@ def _close_run(a, b, limit):
     return run, at
 
 
-def check_routing_points(loom, d):
+def check_routing_points(loom, d, pending=False):
     keep = ROUTING_POINTS_ALLOWED.get(loom, set())
-    return ["RP1 %s: wire %s carries %d routing point(s) (R141: none unless Dan asks)"
-            % (loom, x["id"], len(x["layoutPoints"]))
-            for x in d.get("wires", []) if x.get("layoutPoints") and x["id"] not in keep]
+    out = []
+    for kind, xid, x, k in routed(d):
+        if x.get(k) and xid not in keep and (kind == "wire") != pending:
+            out.append("RP1 %s: %s %s carries %d routing point(s) in %s (R141: none unless Dan asks)"
+                       % (loom, kind, xid, len(x[k]), k))
+    return out
 
 
 def check_layout(loom, d):
@@ -112,6 +134,13 @@ def main(argv):
         if only and loom not in only:
             continue
         bad = check_routing_points(loom, d) + check_layout(loom, d)
+        if loom not in CORE_POINTS_PENDING:
+            bad += check_routing_points(loom, d, pending=True)
+        else:
+            later = check_routing_points(loom, d, pending=True)
+            if later:
+                print("   pending %s: %d cable core / shield leg(s) with routing points (CORE_POINTS_PENDING)"
+                      % (loom, len(later)))
         total += len(bad)
         for line in (bad if show_all else bad[:15]):
             print(line)
