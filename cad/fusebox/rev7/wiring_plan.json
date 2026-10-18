@@ -1903,12 +1903,12 @@
      "part_from": "parts list"
     },
     {
-     "id": "sp_cp_sw12",
-     "cav": "Splice",
+     "id": "bus_sw12_p",
+     "cav": "c1",
      "box": null,
-     "part": null,
-     "des": "",
-     "sig": "",
+     "part": "0462-201-16141",
+     "des": "1",
+     "sig": "SW12 +12 V bus",
      "at": null
     }
    ],
@@ -2123,12 +2123,12 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "sp_cp_sw12",
-     "cav": "Splice",
+     "id": "bus_sw12_p",
+     "cav": "c4",
      "box": null,
-     "part": null,
-     "des": "",
-     "sig": "",
+     "part": "0462-201-16141",
+     "des": "4",
+     "sig": "SW12 +12 V bus",
      "at": null
     },
     {
@@ -2362,12 +2362,12 @@
    "od": 1.57,
    "ends": [
     {
-     "id": "sp_cp_sw12",
-     "cav": "Splice",
+     "id": "bus_sw12_p",
+     "cav": "c5",
      "box": null,
-     "part": null,
-     "des": "",
-     "sig": "",
+     "part": "0462-201-16141",
+     "des": "5",
+     "sig": "SW12 +12 V bus",
      "at": null
     },
     {
@@ -2601,12 +2601,12 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "sp_cp_sw12",
-     "cav": "Splice",
+     "id": "bus_sw12_p",
+     "cav": "c6",
      "box": null,
-     "part": null,
-     "des": "",
-     "sig": "",
+     "part": "0462-201-16141",
+     "des": "6",
+     "sig": "SW12 +12 V bus",
      "at": null
     },
     {
@@ -2840,12 +2840,12 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "sp_cp_sw12",
-     "cav": "Splice",
+     "id": "bus_sw12_p",
+     "cav": "c7",
      "box": null,
-     "part": null,
-     "des": "",
-     "sig": "",
+     "part": "0462-201-16141",
+     "des": "7",
+     "sig": "SW12 +12 V bus",
      "at": null
     },
     {
@@ -3971,12 +3971,12 @@
    "od": 1.85,
    "ends": [
     {
-     "id": "sp_cp_sw12",
-     "cav": "Splice",
+     "id": "bus_sw12_p",
+     "cav": "c9",
      "box": null,
-     "part": null,
-     "des": "",
-     "sig": "",
+     "part": "0462-201-16141",
+     "des": "9",
+     "sig": "SW12 +12 V bus",
      "at": null
     },
     {

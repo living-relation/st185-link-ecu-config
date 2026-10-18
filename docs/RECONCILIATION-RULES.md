@@ -164,12 +164,13 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     while ECU B has its own).
     **Tapered distribution (Daniel, 2026-09-28):** the ECU pin leads (A32, A24, B22) are
     18 AWG (the largest the Superseal 1.0 contact takes); 18 AWG trunks run from the ECU
-    splices to a splice just before cabin bulkhead A (`sp_5v_bha` / `sp_gnd_bha`) and to the
+    splices to a splice just before cabin bulkhead A (`sp_5v_bha` / `sp_gnd_bha`, each built as a
+    bussed DT pair since DECISIONS R169) and to the
     loom B splices `sp_5v_b` (+5V trunk from A) and `sp_gndout_b` (B22 lead) with
     `sp_gnd_bhb` before bulkhead B; each rail then crosses on several 20 AWG bulkhead
     pins (A: c2, c39, c40 +5V; c3, c41-c44 Gnd. B: c17 knock return, c19, c21 Gnd) that run
     straight to one device or to a small engine-side branch splice. Every splice is a
-    generic soldered splice point. The B-engine sensors' +5V crosses on bulkhead A
+    generic soldered splice point, except the bussed DT splices of DECISIONS R169. The B-engine sensors' +5V crosses on bulkhead A
     c45-c47 and runs as a short A-engine spur to the DT 6-way inline pair `IX_B_RAIL`
     (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
     sensor (Daniel, 2026-09-28). Bulkhead cavities and spares follow the real DRB102

@@ -777,8 +777,8 @@
     {
       "id": "w_rail_sp_5v_c",
       "source": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c2"
       },
       "target": {
         "id": "bh_a_fw",
@@ -794,8 +794,8 @@
     {
       "id": "w_rail_sp_gndout_c",
       "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
+        "id": "bus_gnd_bha_p",
+        "handle": "c2"
       },
       "target": {
         "id": "bh_a_fw",
@@ -989,8 +989,8 @@
         "handle": "Splice"
       },
       "target": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c1"
       },
       "color": "Orange",
       "identColors": [
@@ -1006,8 +1006,8 @@
         "handle": "Splice"
       },
       "target": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
+        "id": "bus_gnd_bha_p",
+        "handle": "c1"
       },
       "color": "Black",
       "identColors": [
@@ -1021,8 +1021,8 @@
     {
       "id": "w_5v_a_c39",
       "source": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c3"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1038,8 +1038,8 @@
     {
       "id": "w_5v_a_c40",
       "source": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c4"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1055,8 +1055,8 @@
     {
       "id": "w_gnd_a_c41",
       "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
+        "id": "bus_gnd_bha_p",
+        "handle": "c3"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1074,8 +1074,8 @@
     {
       "id": "w_gnd_a_c42",
       "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
+        "id": "bus_gnd_bha_p",
+        "handle": "c4"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1093,8 +1093,8 @@
     {
       "id": "w_gnd_a_c43",
       "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
+        "id": "bus_gnd_bha_p",
+        "handle": "c5"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1112,8 +1112,8 @@
     {
       "id": "w_gnd_a_c44",
       "source": {
-        "id": "sp_gnd_bha",
-        "handle": "Splice"
+        "id": "bus_gnd_bha_p",
+        "handle": "c6"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1131,8 +1131,8 @@
     {
       "id": "w_5v_brail_c45",
       "source": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c5"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1148,8 +1148,8 @@
     {
       "id": "w_5v_brail_c46",
       "source": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c6"
       },
       "target": {
         "id": "bh_a_fw",
@@ -1165,8 +1165,8 @@
     {
       "id": "w_5v_brail_c47",
       "source": {
-        "id": "sp_5v_bha",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c7"
       },
       "target": {
         "id": "bh_a_fw",
@@ -2321,6 +2321,230 @@
         "y": 1560
       },
       "width": 270
+    },
+    {
+      "id": "bus_5v_bha_p",
+      "label": "+5 V bus plug DT06-08 (RH firewall, BH-A)",
+      "width": 270,
+      "partId": "cp_dt06_08sa",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "+5 V bus (A32)",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "layoutPosition": {
+        "x": -120,
+        "y": 60
+      },
+      "schematicPosition": {
+        "x": 1740,
+        "y": 1980
+      }
+    },
+    {
+      "id": "bus_5v_bha_r",
+      "label": "+5 V bussed cap DT04-08 P021 (on plug)",
+      "width": 270,
+      "partId": "cp_dt04_08pa_p021",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "designation": "6"
+        },
+        {
+          "id": "c7",
+          "designation": "7"
+        },
+        {
+          "id": "c8",
+          "designation": "8"
+        }
+      ],
+      "layoutPosition": {
+        "x": -120,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 1740,
+        "y": 2280
+      }
+    },
+    {
+      "id": "bus_gnd_bha_p",
+      "label": "Sensor GND bus plug DT06-08 (RH firewall, BH-A)",
+      "width": 270,
+      "partId": "cp_dt06_08sa",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Sensor GND bus (A24)",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Sensor GND bus (A24)",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Sensor GND bus (A24)",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Sensor GND bus (A24)",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "Sensor GND bus (A24)",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "Sensor GND bus (A24)",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "notConnected": true,
+          "cavityPlugPartId": "pl_sz16"
+        }
+      ],
+      "layoutPosition": {
+        "x": -180,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 600,
+        "y": 720
+      }
+    },
+    {
+      "id": "bus_gnd_bha_r",
+      "label": "Sensor GND bussed cap DT04-08 P021 (on plug)",
+      "width": 270,
+      "partId": "cp_dt04_08pa_p021",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "designation": "6"
+        },
+        {
+          "id": "c7",
+          "designation": "7"
+        },
+        {
+          "id": "c8",
+          "designation": "8"
+        }
+      ],
+      "layoutPosition": {
+        "x": -180,
+        "y": 270
+      },
+      "schematicPosition": {
+        "x": 600,
+        "y": 1020
+      }
     }
   ],
   "terminals": [
@@ -3494,6 +3718,34 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_bp_840__bus_5v_bha_p",
+      "sourceId": "bp_840",
+      "targetId": "bus_5v_bha_p",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "endLabel": "5V BUS",
+      "partIds": [
+        "cov_lbl_38"
+      ]
+    },
+    {
+      "id": "bn_bp_840__bus_gnd_bha_p",
+      "sourceId": "bp_840",
+      "targetId": "bus_gnd_bha_p",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "endLabel": "SGND BUS",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     }
   ],
   "splices": [
@@ -3594,34 +3846,6 @@
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1170",
       "label": "SP-GND-CHASSIS - ECU A25/A34/B25/B34, CSB3, lambda grounds to ring"
-    },
-    {
-      "id": "sp_5v_bha",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_840",
-      "layoutPosition": {
-        "x": -120,
-        "y": 30
-      },
-      "schematicPosition": {
-        "x": 2760,
-        "y": 2640
-      },
-      "label": "SP-5V-BHA - +5V to bulkhead A sensors (ETB, MAP, turbo, oil/fuel/coolant press)"
-    },
-    {
-      "id": "sp_gnd_bha",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_840",
-      "layoutPosition": {
-        "x": -60,
-        "y": -90
-      },
-      "schematicPosition": {
-        "x": 2790,
-        "y": 2820
-      },
-      "label": "SP-GND-BHA - sensor ground to bulkhead A (IAT/ETB/ECT, crank, cam, turbo, flex)"
     },
     {
       "id": "sp_5v_2",
@@ -4371,6 +4595,23 @@
       "partNumber": "(generic)",
       "description": "CONTACT, SOCKET, CRIMP, GENERIC",
       "manufacturer": "Generic"
+    },
+    {
+      "id": "l5UlOB1lt6BfYQ7Ey3Ck2",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "coveringParts": [
@@ -4592,6 +4833,50 @@
         }
       ],
       "numberOfCavities": 6
+    },
+    {
+      "id": "cp_dt04_08pa_p021",
+      "url": "https://www.te.com/en/product-DT04-08PA-P021.html",
+      "color": "Gray",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-08PA-P021",
+      "description": "CONNECTOR, RECEPTACLE, DT, 8 POS, BUSSED 1 X 8, NICKEL PINS MOULDED IN, 13 A PER PIN, 52 A BUS, WEDGELOCK INCLUDED, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "numberOfCavities": 8
+    },
+    {
+      "id": "cp_dt06_08sa",
+      "url": "https://www.te.com/en/product-DT06-08SA.html",
+      "color": "Gray",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DT06-08SA",
+      "description": "CONNECTOR, PLUG, DT, 8 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w8s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 8
     }
   ],
   "lockParts": [
@@ -4605,6 +4890,13 @@
       "partNumber": "W6S",
       "description": "WEDGELOCK, DT, 6-WAY PLUG",
       "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w8s",
+      "partNumber": "W8S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 8 POS, PLUG",
+      "url": "https://www.te.com/en/product-W8S.html"
     }
   ],
   "cavityPlugParts": [
@@ -4621,6 +4913,18 @@
       "partNumber": "DRBF-1A",
       "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
       "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "mates": [
+    {
+      "id": "m_bus_5v_bha",
+      "sourceId": "bus_5v_bha_p",
+      "targetId": "bus_5v_bha_r"
+    },
+    {
+      "id": "m_bus_gnd_bha",
+      "sourceId": "bus_gnd_bha_p",
+      "targetId": "bus_gnd_bha_r"
     }
   ]
 }
