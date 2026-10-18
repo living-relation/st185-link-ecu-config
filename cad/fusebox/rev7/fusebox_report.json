@@ -221,7 +221,7 @@
    "note": "no bend in the box; first bend in the harness: >= 15 supported or >= 51 free"
   },
   {
-   "where": "LOGIC BUS2 feed (from k_efi 87)",
+   "where": "LOGIC BUS2 feed (from k_efi 30)",
    "awg": "10",
    "od": 3.61,
    "path": "straight out the rear end, lug axis, under the skirt",
@@ -8384,6 +8384,19 @@
   },
   {
    "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    55.05,
+    64.05,
+    22.9,
+    30.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
    "key": "relay cavity web",
    "only": "A",
    "box": [
@@ -8392,6 +8405,19 @@
     15.0,
     27.0,
     38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    55.05,
+    64.05,
+    52.9,
+    60.4,
+    43.4,
     60.6
    ]
   },
@@ -11496,6 +11522,44 @@
    ]
   ]
  },
+ "micro_87a_join": [
+  [
+   "HEAD LH",
+   1.2
+  ],
+  [
+   "HEAD RH",
+   1.2
+  ],
+  [
+   "horn",
+   1.2
+  ],
+  [
+   "k_acc",
+   1.2
+  ],
+  [
+   "k_eps_en",
+   1.2
+  ],
+  [
+   "k_rev",
+   1.2
+  ],
+  [
+   "SPARE",
+   1.2
+  ],
+  [
+   "SPARE",
+   1.2
+  ],
+  [
+   "SPARE",
+   1.2
+  ]
+ ],
  "micro_underdeck_strip_cut": [
   [
    "HEAD LH",
@@ -11546,36 +11610,6 @@
    "SPARE",
    136.51,
    138.1
-  ]
- ],
- "micro_87a_join": [
-  [
-   "horn",
-   1.2
-  ],
-  [
-   "k_acc",
-   1.2
-  ],
-  [
-   "k_eps_en",
-   1.2
-  ],
-  [
-   "k_rev",
-   1.2
-  ],
-  [
-   "SPARE",
-   1.2
-  ],
-  [
-   "SPARE",
-   1.2
-  ],
-  [
-   "SPARE",
-   1.2
   ]
  ],
  "edge_break": {
@@ -13308,7 +13342,7 @@
     183.6,
     60.5
    ],
-   "volume_cm3": 396.3,
+   "volume_cm3": 395.9,
    "mass_g_pa12": 400.0,
    "bodies": 1,
    "lumps": 1,

@@ -141,6 +141,9 @@ for f, cap in (('renders/closeups/r155_strap_half_section_OUT_JB1.png', 'OUT row
                ('renders/closeups/r155_strap_half_section_IN_HTR.png', 'IN row (HTR 40 A): the same strap turned 180 deg, its lug runs inboard under the web to the relay saddle.')):
     fig(f, cap)
 
+A('<h2>R170: HEAD relay sockets (5 blades)</h2>')
+fig('renders/closeups/head_relay_sockets.png', 'HEAD LH / RH (TE 5-1393292-8): TE drawing V23074-A2001-CD (N26, Dan 2026-10-18) shows a 5th blade at terminal 4 (87a, 4.8 x 0.8), so both sockets now have the 87a blade slot between 85 and 86, like the horn. 87a carries no wire, so it is a plain slot joined to the 87 cavity; fit audit: all 5 TE blades on their slots (offset 0.00), interference 0 (was 42.9 mm3 from the blade the box had no slot for).')
+
 A('<h2>Rev 7 renders</h2>')
 for f, cap in (('fusebox_render_iso_closed.png', 'Closed. The POWER box is 62 mm deeper; the bus terminals are etched on the lid.'),
                ('fusebox_render_iso_closed_rear.png', 'From the back: the four NEG cables + the small ground bundle leave the rear, BAT+ IN and RADLOK+ the outboard end.'),

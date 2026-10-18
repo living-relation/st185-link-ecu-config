@@ -421,10 +421,10 @@ def build(rev=6):
     for p in sorted(set(p[1] for p in MICRO_USED)):
         k = sum(1 for q in MICRO_USED if q[1] == p)
         who = ', '.join(q[0] for q in MICRO_USED if q[1] == p)
-        desc = {'5-1393292-8': 'Micro Relay A (V23074-A2001-A402) 1 form A, 12 V, diode', '4-1904124-3': 'Micro Relay A (V23074-A1001-A403) 1 form C, 12 V, resistor (TE data sheet rev 1119 p.4; was listed as 1 form A)',
+        desc = {'5-1393292-8': 'Micro Relay A (V23074-A2001-A402-EV-CBOX) 5 blades, change-over per TE drawing V23074-A2001-CD (87a unused), 12 V, diode', '4-1904124-3': 'Micro Relay A (V23074-A1001-A403) 1 form C, 12 V, resistor (TE data sheet rev 1119 p.4; was listed as 1 form A)',
                 '4-1904124-2': 'Micro Relay A (V23074-A1001-A402) 1 form A, 12 V, resistor', '6-1419137-4': 'Micro Relay A (V23074-A2001-A403) 1 form C, 25 A, 12 V, diode'}[p]
         L.add(G, 'Relays', 'Micro relay: ' + who, p, 'TE Connectivity', desc, k, url=TE(p),
-              checked='TE page; customer drawing V23074-A2001-A402-CD: terminals 1, 2 coil 4.8 x 0.8, 3, 5 load 6.3 x 0.8' if p == '5-1393292-8' else 'TE page; te-on-hand-bom.csv',
+              checked='TE page; customer drawing V23074-A2001-CD sheet 1 rev A (Dan screenshot, R170): terminals 1, 2 coil 4.8 x 0.8, 3, 5 load 6.3 x 0.8, 4 present (87a)' if p == '5-1393292-8' else 'TE page; te-on-hand-bom.csv',
               note='On the shelf first (R38 step 1); the third 1 form C (k_rev) is the only buy.' if p == '6-1419137-4' else '')
     L.add(G, 'Terminals', 'Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG, self-locking', '280919-2', 'TE Connectivity',
           'FASTIN-FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), insulation 2.31-3.3 mm, locking lance 1.2 mm, brass tin',

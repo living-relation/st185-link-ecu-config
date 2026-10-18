@@ -2494,7 +2494,7 @@
     {
       "id": "cp_rly_micro_no_d",
       "partNumber": "5-1393292-8",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM)",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 5 BLADES, 1 FORM C PER TE DWG V23074-A2001-CD (30 COM, 87 NO, 87A NC), 12 VDC, DIODE (TE ON-HAND BOM)",
       "manufacturer": "TE Connectivity",
       "configurations": [
         {

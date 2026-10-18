@@ -100,7 +100,7 @@
   "Logic_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 396.2,
+   "volume_cm3": 395.9,
    "bounds": [
     -32.0,
     121.55,
@@ -117,9 +117,9 @@
    ],
    "exempt": {
     "pan catch pocket": 116,
-    "seat lip": 1321,
+    "seat lip": 1343,
     "strip lip": 487,
-    "87a slot": 385
+    "87a slot": 495
    },
    "attach_skin": 29,
    "walls": [],

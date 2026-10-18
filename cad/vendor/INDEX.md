@@ -51,7 +51,7 @@ Save each file into the folder named, in this order (1 first):
 
 | # | Part | Maker page URL | Save to | Why it is needed |
 |---|---|---|---|---|
-| 1 | TE customer drawing V23074-A2001-A402 (HEAD relays 5-1393292-8) | https://www.te.com/en/product-5-1393292-8.html ("Customer Drawing") | `te/specs/` | reference for R170 (HEAD relay has 5 blades, Dan's N26 answer cites this drawing); the number V23074-A2001-CD is Dan's, the file here is the one TE lists for 5-1393292-8 |
+| 1 | TE customer drawing V23074-A2001-A402 (HEAD relays 5-1393292-8) | https://www.te.com/en/product-5-1393292-8.html ("Customer Drawing") | `te/specs/` | reference for R170 (HEAD relay has 5 blades, Dan's N26 answer cites this drawing); the number V23074-A2001-CD is Dan's, the file here is the one TE lists for 5-1393292-8; file copy only - applied from Dan's screenshot (shell download still 403, 2026-10-18) |
 | 2 | TE Power Relay F4 A data sheet (V23136X0000A004), heater relay 1-1414687-0 | https://www.te.com/en/product-1-1414687-0.html ("Data Sheet") | `te/specs/` | confirm the heater relay pin pattern (today: the TE STEP + the Power Relay B numbers; OPEN-ITEMS row 132) |
 | 3 | TE application spec 114-18022 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-18022&DocType=SS&DocLang=EN | `te/specs/` | MCP 2.8K crimp heights |
 | 4 | TE application spec 114-20011 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-20011&DocType=SS&DocLang=EN | `te/specs/` | FASTON .187 crimp data (280919-2) |
