@@ -1932,7 +1932,7 @@
       "id": "fl_start_req_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Start req -> RB4-1",
+      "signal": "Start req, ST1",
       "schematicPosition": {
         "x": 660,
         "y": 960
@@ -1941,13 +1941,14 @@
         "x": -2310,
         "y": 870
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM ST1 start wire (B-W) at the old R/B No.4 socket pin 1, RH kick panel - start request (EWD 1993 p.66)"
     },
     {
       "id": "fl_ign_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "IGN ON -> JB1 1H-7",
+      "signal": "IGN ON sense",
       "schematicPosition": {
         "x": 660,
         "y": 810
@@ -1956,12 +1957,13 @@
         "x": -1410,
         "y": 1110
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 (LH kick panel) 1H pin 7 (B-O) - IGN 7.5A fuse out, IG2 (EWD 1993 p.62)"
     },
     {
       "id": "t_ac_btn",
       "type": "Loose",
-      "signal": "A/C req -> A/C SW V-G",
+      "signal": "A/C request",
       "schematicPosition": {
         "x": 660,
         "y": 1110
@@ -1970,12 +1972,13 @@
         "x": -2070,
         "y": 750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM dash A/C switch output (V-G lead; old A15 pin 3 / IJ1 pin 7) - A/C request 12V (EWD page TBD)"
     },
     {
       "id": "t_evap_temp",
       "type": "Loose",
-      "signal": "Evap temp -> A24-1",
+      "signal": "Evap temp",
       "schematicPosition": {
         "x": 660,
         "y": 1260
@@ -1984,12 +1987,13 @@
         "x": -1860,
         "y": 600
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM evaporator thermistor A24 pin 1, at the evaporator case - sensor (EWD page TBD)"
     },
     {
       "id": "br_w_b25",
       "type": "Loose",
-      "signal": "ECU GND B25 -> splice CHASSIS",
+      "signal": "ECU GND B25",
       "width": 390,
       "layoutPosition": {
         "x": -1800,
@@ -1999,12 +2003,13 @@
         "x": 1770,
         "y": 2820
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SP-GND-CHASSIS at the ECU-A plug (A-cabin) - ECU-B B25 to chassis ring"
     },
     {
       "id": "br_w_b34",
       "type": "Loose",
-      "signal": "ECU GND B34 -> splice CHASSIS",
+      "signal": "ECU GND B34",
       "width": 390,
       "layoutPosition": {
         "x": -1890,
@@ -2014,12 +2019,13 @@
         "x": 1770,
         "y": 2880
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SP-GND-CHASSIS at the ECU-A plug (A-cabin) - ECU-B B34 to chassis ring"
     },
     {
       "id": "br_w_rail_5v_b_c",
       "type": "Loose",
-      "signal": "+5V rail B -> splice 5V",
+      "signal": "+5V trunk A to B",
       "width": 390,
       "layoutPosition": {
         "x": -1890,
@@ -2029,12 +2035,13 @@
         "x": 1770,
         "y": 2760
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SP-5V-A at the ECU-A plug (A-cabin) - ECU-A A32 +5V out"
     },
     {
       "id": "br_w_rail_sw12_b_c",
       "type": "Loose",
-      "signal": "SW12 rail B -> splice SW12",
+      "signal": "SW12 to VSS",
       "width": 390,
       "layoutPosition": {
         "x": -1980,
@@ -2044,12 +2051,13 @@
         "x": 1770,
         "y": 3780
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SP-SW12 at the ECU-A plug (A-cabin) - switched 12V bus"
     },
     {
       "id": "br_w82",
       "type": "Loose",
-      "signal": "ETB 12V -> LOGIC M14 87",
+      "signal": "ETB 12V",
       "width": 390,
       "layoutPosition": {
         "x": -2400,
@@ -2059,12 +2067,13 @@
         "x": 1260,
         "y": 3750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) relay M14 ETB power, pin 87 - ETB 12V out"
     },
     {
       "id": "br_cab_fspur_r",
       "type": "Loose",
-      "signal": "WS FR sig -> IX-WS-F 4",
+      "signal": "WS FR out",
       "width": 390,
       "layoutPosition": {
         "x": -1230,
@@ -2074,12 +2083,13 @@
         "x": 4140,
         "y": 1620
       },
-      "propagate": false
+      "propagate": false,
+      "label": "IX-WS-F pin 4 (inline DT 6-way, dash above the ECU) - front VRC, FR wheel-speed out"
     },
     {
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
-      "signal": "WS FR screen -> A-cabin open",
+      "signal": "WS FR screen",
       "width": 390,
       "layoutPosition": {
         "x": -1170,
@@ -2089,12 +2099,13 @@
         "x": 4140,
         "y": 1680
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Screen cut back and insulated at the IX-WS-F end (dash above the ECU) - not connected"
     },
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "Reverse sig -> OPTO8 02",
+      "signal": "Reverse signal",
       "width": 390,
       "layoutPosition": {
         "x": -2010,
@@ -2104,12 +2115,13 @@
         "x": 1380,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Opto board OPTO8 input 02 (CSB3 loom, under the centre cluster) - reverse in"
     },
     {
       "id": "br_w39",
       "type": "Loose",
-      "signal": "APS VPA2 -> APS 3",
+      "signal": "APS VPA2",
       "width": 390,
       "layoutPosition": {
         "x": -480,
@@ -2119,12 +2131,13 @@
         "x": 720,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "APS accelerator pedal plug pin 3 (driver footwell) - VPA2 sub signal"
     },
     {
       "id": "br_w_at_immob2",
       "type": "Loose",
-      "signal": "Immob out -> ALARM 9",
+      "signal": "Immobiliser",
       "width": 390,
       "layoutPosition": {
         "x": -1800,
@@ -2134,12 +2147,13 @@
         "x": 3180,
         "y": -60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alarm module plug pin 9 (centre dash, left of the ECU) - immobiliser out"
     },
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "CAN H -> splice CANH",
+      "signal": "CAN H",
       "width": 390,
       "layoutPosition": {
         "x": -390,
@@ -2149,12 +2163,13 @@
         "x": 3300,
         "y": 1560
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice CAN-H on the CAN loom (dash trunk) - CAN H bus"
     },
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "CAN L -> splice CANL",
+      "signal": "CAN L",
       "width": 390,
       "layoutPosition": {
         "x": -480,
@@ -2164,12 +2179,13 @@
         "x": 3300,
         "y": 1320
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice CAN-L on the CAN loom (dash trunk) - CAN L bus"
     },
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "Lambda 12V -> FB-LOGIC LAM 7.5A",
+      "signal": "Lambda 12V",
       "width": 390,
       "layoutPosition": {
         "x": -180,
@@ -2179,12 +2195,13 @@
         "x": 3300,
         "y": 1380
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) fuse LAM 7.5A output, pin BUS2-1 - CAN-Lambda +12V"
     },
     {
       "id": "br_w_lamg_b",
       "type": "Loose",
-      "signal": "Lambda GND -> splice CHASSIS",
+      "signal": "Lambda GND",
       "width": 390,
       "layoutPosition": {
         "x": -240,
@@ -2194,12 +2211,13 @@
         "x": 3300,
         "y": 1440
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SP-GND-CHASSIS at the ECU-A plug (A-cabin) - lambda ground to chassis ring"
     },
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "CAN screen -> splice SHIELD CAN",
+      "signal": "CAN screen",
       "width": 390,
       "layoutPosition": {
         "x": -120,
@@ -2209,12 +2227,13 @@
         "x": 3300,
         "y": 1500
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SHIELD-CAN on the CAN loom (dash trunk) - bulkhead leg screen"
     },
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "CAN drain -> splice SHIELD CAN",
+      "signal": "CAN drain",
       "width": 390,
       "layoutPosition": {
         "x": -330,
@@ -2224,12 +2243,13 @@
         "x": 3300,
         "y": 1260
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SHIELD-CAN on the CAN loom (dash trunk) - CAN screens drain to B17"
     },
     {
       "id": "br_w_fan285",
       "type": "Loose",
-      "signal": "Cond fan coil- -> POWER R5 85",
+      "signal": "Cond fan relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -3090,
@@ -2239,12 +2259,13 @@
         "x": 3120,
         "y": 1140
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box (glove box) relay R5 condenser fan, pin 85 - coil -"
     },
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "EPS EN coil- -> LOGIC M21 85",
+      "signal": "EPS EN relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -3090,
@@ -2254,12 +2275,13 @@
         "x": 3120,
         "y": 1200
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) relay M21 EPS enable, pin 85 - coil -"
     },
     {
       "id": "br_w_acc_trig",
       "type": "Loose",
-      "signal": "A/C coil- -> LOGIC M15 85",
+      "signal": "A/C relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -2340,
@@ -2269,12 +2291,13 @@
         "x": 3120,
         "y": 1080
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) relay M15 A/C clutch, pin 85 - coil -"
     },
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "Start req in -> FB-LOGIC B30 in",
+      "signal": "Start req to fuse",
       "width": 390,
       "layoutPosition": {
         "x": -2220,
@@ -2284,12 +2307,13 @@
         "x": 660,
         "y": 1080
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) fuse B30 2A input, pin BUS2-13 IN - start request in"
     },
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "Start req -> FB-LOGIC B30 2A",
+      "signal": "Start req fused",
       "width": 390,
       "layoutPosition": {
         "x": -2220,
@@ -2299,13 +2323,14 @@
         "x": 660,
         "y": 1020
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) fuse B30 2A output, pin BUS2-13 - start request to ECU"
     },
     {
       "id": "br_rev_coil",
       "type": "Loose",
       "width": 390,
-      "signal": "Rev coil+ -> LOGIC M22 86",
+      "signal": "Rev relay coil+",
       "schematicPosition": {
         "x": 1380,
         "y": 120
@@ -2314,13 +2339,14 @@
         "x": -1740,
         "y": 300
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box (glove box) relay M22 reverse, pin 86 - coil +"
     },
     {
       "id": "br_rev_feed",
       "type": "Loose",
       "width": 390,
-      "signal": "Rev SW feed -> splice REV GAUGE",
+      "signal": "Rev SW feed",
       "schematicPosition": {
         "x": 1380,
         "y": 180
@@ -2329,12 +2355,13 @@
         "x": -1740,
         "y": -360
       },
-      "propagate": false
+      "propagate": false,
+      "label": "GAUGE 15A feed splice (CabinPower loom) - from OEM J/B No.3 3B pin 9 behind the comb. meter (EWD 1993 p.62)"
     },
     {
       "id": "t_evap_rtn",
       "type": "Loose",
-      "signal": "Evap rtn -> A24-2",
+      "signal": "Evap return",
       "schematicPosition": {
         "x": 660,
         "y": 1320
@@ -2343,7 +2370,8 @@
         "x": -1860,
         "y": 810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM evaporator thermistor A24 pin 2, at the evaporator case - return (EWD page TBD)"
     }
   ],
   "cables": [
@@ -2369,60 +2397,7 @@
           "target": {
             "id": "sp_5v_b",
             "handle": "Splice"
-          },
-          "targetLayoutPoints": [
-            {
-              "id": "cab_rspur_5v_target_lp1",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1230
-              }
-            },
-            {
-              "id": "cab_rspur_5v_target_lp2",
-              "schematicPosition": {
-                "x": 2460,
-                "y": 1230
-              }
-            },
-            {
-              "id": "cab_rspur_5v_target_lp3",
-              "schematicPosition": {
-                "x": 2460,
-                "y": 2730
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "cab_rspur_5v_source_lp1",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1230
-              }
-            },
-            {
-              "id": "cab_rspur_5v_source_lp2",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1170
-              }
-            },
-            {
-              "id": "cab_rspur_5v_source_lp3",
-              "schematicPosition": {
-                "x": 4050,
-                "y": 1170
-              }
-            },
-            {
-              "id": "cab_rspur_5v_source_lp4",
-              "schematicPosition": {
-                "x": 4050,
-                "y": 1230
-              }
-            }
-          ]
+          }
         },
         {
           "id": "cab_rspur_gnd",
@@ -2439,95 +2414,7 @@
           "target": {
             "id": "sp_gndout_b",
             "handle": "Splice"
-          },
-          "targetLayoutPoints": [
-            {
-              "id": "cab_rspur_gnd_target_lp1",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1260
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_target_lp2",
-              "schematicPosition": {
-                "x": 3750,
-                "y": 1260
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_target_lp3",
-              "schematicPosition": {
-                "x": 3750,
-                "y": 1170
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_target_lp4",
-              "schematicPosition": {
-                "x": 2490,
-                "y": 1170
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_target_lp5",
-              "schematicPosition": {
-                "x": 2490,
-                "y": 2910
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "cab_rspur_gnd_source_lp1",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1260
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_source_lp2",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1290
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_source_lp3",
-              "schematicPosition": {
-                "x": 3690,
-                "y": 1290
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_source_lp4",
-              "schematicPosition": {
-                "x": 3690,
-                "y": 1410
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_source_lp5",
-              "schematicPosition": {
-                "x": 4020,
-                "y": 1410
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_source_lp6",
-              "schematicPosition": {
-                "x": 4020,
-                "y": 1260
-              }
-            },
-            {
-              "id": "cab_rspur_gnd_source_lp7",
-              "schematicPosition": {
-                "x": 4050,
-                "y": 1260
-              }
-            }
-          ]
+          }
         },
         {
           "id": "cab_rspur_l",
@@ -2544,88 +2431,7 @@
           "target": {
             "id": "ecu_b",
             "handle": "b20"
-          },
-          "targetLayoutPoints": [
-            {
-              "id": "cab_rspur_l_target_lp1",
-              "schematicPosition": {
-                "x": 3870,
-                "y": 1290
-              }
-            },
-            {
-              "id": "cab_rspur_l_target_lp2",
-              "schematicPosition": {
-                "x": 3900,
-                "y": 1290
-              }
-            },
-            {
-              "id": "cab_rspur_l_target_lp3",
-              "schematicPosition": {
-                "x": 3900,
-                "y": 1140
-              }
-            },
-            {
-              "id": "cab_rspur_l_target_lp4",
-              "schematicPosition": {
-                "x": 3750,
-                "y": 1140
-              }
-            },
-            {
-              "id": "cab_rspur_l_target_lp5",
-              "schematicPosition": {
-                "x": 3750,
-                "y": 600
-              }
-            },
-            {
-              "id": "cab_rspur_l_target_lp6",
-              "schematicPosition": {
-                "x": 3390,
-                "y": 600
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "cab_rspur_l_source_lp1",
-              "schematicPosition": {
-                "x": 3870,
-                "y": 1290
-              }
-            },
-            {
-              "id": "cab_rspur_l_source_lp2",
-              "schematicPosition": {
-                "x": 3870,
-                "y": 1260
-              }
-            },
-            {
-              "id": "cab_rspur_l_source_lp3",
-              "schematicPosition": {
-                "x": 3990,
-                "y": 1260
-              }
-            },
-            {
-              "id": "cab_rspur_l_source_lp4",
-              "schematicPosition": {
-                "x": 3990,
-                "y": 1290
-              }
-            },
-            {
-              "id": "cab_rspur_l_source_lp5",
-              "schematicPosition": {
-                "x": 4050,
-                "y": 1290
-              }
-            }
-          ]
+          }
         },
         {
           "id": "cab_rspur_r",
@@ -2642,81 +2448,7 @@
           "target": {
             "id": "ecu_b",
             "handle": "b19"
-          },
-          "targetLayoutPoints": [
-            {
-              "id": "cab_rspur_r_target_lp1",
-              "schematicPosition": {
-                "x": 3870,
-                "y": 1320
-              }
-            },
-            {
-              "id": "cab_rspur_r_target_lp2",
-              "schematicPosition": {
-                "x": 3960,
-                "y": 1320
-              }
-            },
-            {
-              "id": "cab_rspur_r_target_lp3",
-              "schematicPosition": {
-                "x": 3960,
-                "y": 570
-              }
-            },
-            {
-              "id": "cab_rspur_r_target_lp4",
-              "schematicPosition": {
-                "x": 3390,
-                "y": 570
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "cab_rspur_r_source_lp1",
-              "schematicPosition": {
-                "x": 3780,
-                "y": 1320
-              }
-            },
-            {
-              "id": "cab_rspur_r_source_lp2",
-              "schematicPosition": {
-                "x": 3750,
-                "y": 1320
-              }
-            },
-            {
-              "id": "cab_rspur_r_source_lp3",
-              "schematicPosition": {
-                "x": 3750,
-                "y": 1380
-              }
-            },
-            {
-              "id": "cab_rspur_r_source_lp4",
-              "schematicPosition": {
-                "x": 3990,
-                "y": 1380
-              }
-            },
-            {
-              "id": "cab_rspur_r_source_lp5",
-              "schematicPosition": {
-                "x": 3990,
-                "y": 1320
-              }
-            },
-            {
-              "id": "cab_rspur_r_source_lp6",
-              "schematicPosition": {
-                "x": 4050,
-                "y": 1320
-              }
-            }
-          ]
+          }
         }
       ],
       "shield": {
@@ -2806,53 +2538,7 @@
           "target": {
             "id": "ecu_b",
             "handle": "b21"
-          },
-          "sourceLayoutPoints": [
-            {
-              "id": "cab_fspur_r_source_lp1",
-              "schematicPosition": {
-                "x": 3900,
-                "y": 1080
-              }
-            },
-            {
-              "id": "cab_fspur_r_source_lp2",
-              "schematicPosition": {
-                "x": 4530,
-                "y": 1080
-              }
-            },
-            {
-              "id": "cab_fspur_r_source_lp3",
-              "schematicPosition": {
-                "x": 4530,
-                "y": 1620
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "cab_fspur_r_target_lp1",
-              "schematicPosition": {
-                "x": 3810,
-                "y": 1080
-              }
-            },
-            {
-              "id": "cab_fspur_r_target_lp2",
-              "schematicPosition": {
-                "x": 3810,
-                "y": 630
-              }
-            },
-            {
-              "id": "cab_fspur_r_target_lp3",
-              "schematicPosition": {
-                "x": 3390,
-                "y": 630
-              }
-            }
-          ]
+          }
         }
       ],
       "shield": {
@@ -2962,67 +2648,7 @@
             "id": "bh_b_fw",
             "handle": "c13"
           },
-          "twistedWithNext": true,
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_bh_bc_source_lp1",
-              "schematicPosition": {
-                "x": 3480,
-                "y": 2910
-              }
-            },
-            {
-              "id": "wc_h_bh_bc_source_lp2",
-              "schematicPosition": {
-                "x": 3480,
-                "y": 1620
-              }
-            },
-            {
-              "id": "wc_h_bh_bc_source_lp3",
-              "schematicPosition": {
-                "x": 3270,
-                "y": 1620
-              }
-            },
-            {
-              "id": "wc_h_bh_bc_source_lp4",
-              "schematicPosition": {
-                "x": 3270,
-                "y": 1560
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_bh_bc_target_lp1",
-              "schematicPosition": {
-                "x": 3480,
-                "y": 2910
-              }
-            },
-            {
-              "id": "wc_h_bh_bc_target_lp2",
-              "schematicPosition": {
-                "x": 3420,
-                "y": 2910
-              }
-            },
-            {
-              "id": "wc_h_bh_bc_target_lp3",
-              "schematicPosition": {
-                "x": 3420,
-                "y": 4380
-              }
-            },
-            {
-              "id": "wc_h_bh_bc_target_lp4",
-              "schematicPosition": {
-                "x": 3630,
-                "y": 4380
-              }
-            }
-          ]
+          "twistedWithNext": true
         },
         {
           "id": "wc_l_bh_bc",
@@ -3037,81 +2663,7 @@
           "target": {
             "id": "bh_b_fw",
             "handle": "c14"
-          },
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_bh_bc_source_lp1",
-              "schematicPosition": {
-                "x": 3480,
-                "y": 2940
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_source_lp2",
-              "schematicPosition": {
-                "x": 3180,
-                "y": 2940
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_source_lp3",
-              "schematicPosition": {
-                "x": 3180,
-                "y": 1320
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_source_lp4",
-              "schematicPosition": {
-                "x": 3270,
-                "y": 1320
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_bh_bc_target_lp1",
-              "schematicPosition": {
-                "x": 3570,
-                "y": 2940
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_target_lp2",
-              "schematicPosition": {
-                "x": 3600,
-                "y": 2940
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_target_lp3",
-              "schematicPosition": {
-                "x": 3600,
-                "y": 3420
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_target_lp4",
-              "schematicPosition": {
-                "x": 3540,
-                "y": 3420
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_target_lp5",
-              "schematicPosition": {
-                "x": 3540,
-                "y": 4410
-              }
-            },
-            {
-              "id": "wc_l_bh_bc_target_lp6",
-              "schematicPosition": {
-                "x": 3630,
-                "y": 4410
-              }
-            }
-          ]
+          }
         }
       ],
       "shield": {
@@ -3734,7 +3286,8 @@
       "layoutPosition": {
         "x": -1710,
         "y": 750
-      }
+      },
+      "label": "SP-FUEL-LVL - fuel sender signal + 470R pull-up to ECU-B B24"
     },
     {
       "id": "sp_shield_b",
@@ -3747,7 +3300,8 @@
         "y": 540
       },
       "partId": "spp_solder_generic",
-      "locationId": "ecu_b"
+      "locationId": "ecu_b",
+      "label": "SP-SHIELD-B - loom B cable drains to ECU-B B17"
     },
     {
       "id": "sp_5v_b",
@@ -3760,7 +3314,8 @@
       "schematicPosition": {
         "x": 2400,
         "y": 2760
-      }
+      },
+      "label": "SP-5V-B - +5V from loom A to fuel level, evap, rear WS"
     },
     {
       "id": "sp_gndout_b",
@@ -3773,7 +3328,8 @@
       "schematicPosition": {
         "x": 2400,
         "y": 2910
-      }
+      },
+      "label": "SP-GNDOUT-B - ECU-B B22 sensor ground to fuel, A/C, evap, rear WS, bulkhead B"
     },
     {
       "id": "sp_gnd_bhb",
@@ -3786,7 +3342,8 @@
       "schematicPosition": {
         "x": 3000,
         "y": 2880
-      }
+      },
+      "label": "SP-GND-BHB - sensor ground to bulkhead B (knock, B-engine sensors)"
     },
     {
       "id": "sp_rev_sw",
@@ -3799,7 +3356,8 @@
       "layoutPosition": {
         "x": -1860,
         "y": -60
-      }
+      },
+      "label": "SP-REV - reverse switch out to CSB3 opto + reverse relay"
     },
     {
       "id": "sp_ac_btn",
@@ -3812,7 +3370,8 @@
       "layoutPosition": {
         "x": -2130,
         "y": 480
-      }
+      },
+      "label": "SP-AC-BTN - A/C switch divider mid-point to ECU-B B31"
     },
     {
       "id": "sp_evap",
@@ -3825,7 +3384,8 @@
       "layoutPosition": {
         "x": -2190,
         "y": 540
-      }
+      },
+      "label": "SP-EVAP - evap thermistor + 2.2k pull-up to ECU-B B32"
     }
   ],
   "resistors": [
@@ -3840,7 +3400,8 @@
       "schematicPosition": {
         "x": 510,
         "y": 150
-      }
+      },
+      "label": "470R fuel level pull-up to +5V"
     },
     {
       "id": "r_ac_btn_hi",
@@ -3853,7 +3414,8 @@
       "layoutPosition": {
         "x": -2100,
         "y": 420
-      }
+      },
+      "label": "10k A/C switch divider, top"
     },
     {
       "id": "r_ac_btn_lo",
@@ -3866,7 +3428,8 @@
       "layoutPosition": {
         "x": -2190,
         "y": 480
-      }
+      },
+      "label": "3.9k A/C switch divider, bottom"
     },
     {
       "id": "r_evap",
@@ -3879,25 +3442,27 @@
       "layoutPosition": {
         "x": -2160,
         "y": 420
-      }
+      },
+      "label": "2.2k evap thermistor pull-up to +5V"
     }
   ],
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)\nsp_shield_b (Splice): drain T-splice about 6 mm (0.25 in) behind the ECU-B plug (Daniel 2026-10-12). The knock drain is the one crimped into B17 (w_drain_ecu_b is its last few mm); every other loom-B drain (ETB motor, VSS, CAN trunk drain from ST185-CAN, rear WS spur, front WS FR spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail, one wire per pin.",
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECU-B b27: DI 10 anti-theft input - the wire is drawn on ST185-AntiTheft (broken off)\nSP-SHIELD-B (splice): drain T-splice about 6 mm (0.25 in) behind the ECU-B plug (Daniel 2026-10-12). The knock drain is the one crimped into B17 (the wire into B17 is its last few mm); every other loom-B drain (ETB motor, VSS, CAN trunk drain from ST185-CAN, rear WS spur, front WS FR spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20 AWG - no combined-gauge pigtail, one wire per pin.",
       "schematicPosition": {
         "x": 4260,
         "y": 1740
-      }
+      },
+      "width": 390
     },
     {
       "id": "n_drb102",
       "width": 390,
       "color": "Orange",
       "schematicPosition": {
-        "x": 3690,
-        "y": 1440
+        "x": 4260,
+        "y": 2160
       },
       "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_b_fw is the whole 102-cavity receptacle with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-A-cabin - see ST185-A-cabin (DRB 1-2, 9-42, 44-47, 50-53, 56-59, 61); their contacts and sealing plugs are counted there."
     }
