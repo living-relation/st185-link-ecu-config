@@ -611,7 +611,7 @@
       "id": "siren",
       "label": "SIREN",
       "width": 390,
-      "partId": "pdfTYmAD2zDku_jfHqzBu",
+      "partId": "cp_dt2s_ce05",
       "cavities": [
         {
           "id": "c1",
@@ -1990,6 +1990,76 @@
       "designationStrategy": {
         "type": "sequential"
       }
+    },
+    {
+      "id": "cp_dt2s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-2S-CE05.html",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      },
+      "color": "Black"
     }
   ],
   "lockParts": [
@@ -2024,5 +2094,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "cableParts": []
 }

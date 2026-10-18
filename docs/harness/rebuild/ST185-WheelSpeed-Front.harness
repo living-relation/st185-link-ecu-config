@@ -88,7 +88,7 @@
       "id": "wss_fl",
       "label": "WSS FL",
       "width": 210,
-      "partId": "cp_dt2s_ni",
+      "partId": "cp_dt2s_ce05",
       "cavities": [
         {
           "id": "c1",
@@ -125,7 +125,7 @@
       "id": "wss_fr",
       "label": "WSS FR",
       "width": 210,
-      "partId": "cp_dt2s_ni",
+      "partId": "cp_dt2s_ce05",
       "cavities": [
         {
           "id": "c1",
@@ -312,7 +312,7 @@
   "cables": [
     {
       "id": "cab_fl",
-      "partId": "cab_sh_2c",
+      "partId": "cab_55a1821",
       "schematicPosition": {
         "x": 360,
         "y": 0
@@ -320,7 +320,7 @@
       "cores": [
         {
           "id": "cab_fl_p",
-          "color": "White",
+          "color": "Blue",
           "identColors": [
             "Blue"
           ],
@@ -336,7 +336,7 @@
         },
         {
           "id": "cab_fl_n",
-          "color": "Green",
+          "color": "White",
           "identColors": [
             "Blue"
           ],
@@ -364,7 +364,7 @@
     },
     {
       "id": "cab_fr",
-      "partId": "cab_sh_2c",
+      "partId": "cab_55a1821",
       "schematicPosition": {
         "x": 360,
         "y": 270
@@ -372,7 +372,7 @@
       "cores": [
         {
           "id": "cab_fr_p",
-          "color": "White",
+          "color": "Blue",
           "identColors": [
             "Yellow"
           ],
@@ -388,7 +388,7 @@
         },
         {
           "id": "cab_fr_n",
-          "color": "Green",
+          "color": "White",
           "identColors": [
             "Yellow"
           ],
@@ -416,7 +416,7 @@
     },
     {
       "id": "cab_fout",
-      "partId": "cab_sh_4c",
+      "partId": "cab_55a1841",
       "schematicPosition": {
         "x": 990,
         "y": 510
@@ -424,7 +424,7 @@
       "cores": [
         {
           "id": "cab_fout_5v",
-          "color": "Orange",
+          "color": "Red",
           "identColors": [
             "Blue",
             "Yellow"
@@ -440,7 +440,7 @@
         },
         {
           "id": "cab_fout_gnd",
-          "color": "Black",
+          "color": "Yellow",
           "identColors": [
             "Blue",
             "White"
@@ -456,7 +456,7 @@
         },
         {
           "id": "cab_fout_l",
-          "color": "Blue",
+          "color": "Green",
           "identColors": [
             "Blue"
           ],
@@ -471,7 +471,7 @@
         },
         {
           "id": "cab_fout_r",
-          "color": "Violet",
+          "color": "Blue",
           "identColors": [
             "Yellow"
           ],
@@ -688,14 +688,15 @@
   ],
   "cableParts": [
     {
-      "id": "cab_sh_2c",
-      "partNumber": "GENERIC SHLD CABLE 2C TP 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "id": "cab_55a1821",
+      "partNumber": "55A1821-20-6/9-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-3181663001.html",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
       "cores": [
         {
           "id": "k1",
-          "color": "White",
+          "color": "Blue",
           "twistedWithNext": true,
           "gauge": {
             "value": 20,
@@ -704,7 +705,7 @@
         },
         {
           "id": "k2",
-          "color": "Green",
+          "color": "White",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -714,14 +715,15 @@
       "shielded": true
     },
     {
-      "id": "cab_sh_4c",
-      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
+      "id": "cab_55a1841",
+      "partNumber": "55A1841-20-2/4/5/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318074-002.html",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
       "cores": [
         {
           "id": "k1",
-          "color": "Orange",
+          "color": "Red",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -729,7 +731,7 @@
         },
         {
           "id": "k2",
-          "color": "Black",
+          "color": "Yellow",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -737,7 +739,7 @@
         },
         {
           "id": "k3",
-          "color": "Blue",
+          "color": "Green",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -745,7 +747,7 @@
         },
         {
           "id": "k4",
-          "color": "Violet",
+          "color": "Blue",
           "gauge": {
             "value": 20,
             "unit": "AWG"
@@ -920,79 +922,6 @@
   ],
   "connectorParts": [
     {
-      "id": "cp_dt2s_ni",
-      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
-        "source": "cloud"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-2",
-        "name": "DT 2-way",
-        "pins": [
-          {
-            "x": 2.73,
-            "y": 0,
-            "size": 4.2
-          },
-          {
-            "x": -2.73,
-            "y": 0,
-            "size": 4.2
-          }
-        ],
-        "outline": {
-          "type": "rect",
-          "width": 15.1,
-          "height": 11.7,
-          "cornerRadius": 2.5
-        },
-        "features": [
-          {
-            "y": -5.85,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 8.5,
-              "height": 3
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "accessories": [
-            {
-              "id": "cfg-1",
-              "type": "LockPart",
-              "partId": "lp_w2s"
-            },
-            {
-              "id": "cfg-2",
-              "type": "ContactPart",
-              "partId": "ct_dt16s_ni"
-            },
-            {
-              "id": "cfg-3",
-              "type": "CavityPlugPart",
-              "partId": "pl_sz16"
-            }
-          ]
-        }
-      ],
-      "numberOfCavities": 2,
-      "designationStrategy": {
-        "type": "sequential"
-      }
-    },
-    {
       "id": "cp_dt04_6p",
       "url": "https://www.te.com/usa-en/product-DT04-6P.html",
       "gender": "Male",
@@ -1076,6 +1005,76 @@
           ]
         }
       ]
+    },
+    {
+      "id": "cp_dt2s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-2S-CE05.html",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      },
+      "color": "Black"
     }
   ],
   "lockParts": [

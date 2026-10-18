@@ -755,7 +755,7 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "partId": "m16_14_2",
+      "partId": "m16_12_2",
       "identColors": [
         "Blue",
         "White",
@@ -773,7 +773,7 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "partId": "m16_14_2",
+      "partId": "m16_12_2",
       "identColors": [
         "Blue",
         "White",
@@ -1531,7 +1531,7 @@
     {
       "id": "turbospd",
       "label": "Turbo speed sensor",
-      "partId": "cp_dt3s",
+      "partId": "cp_dt3s_ce05",
       "cavities": [
         {
           "id": "c1",
@@ -1631,7 +1631,7 @@
         {
           "id": "c1",
           "signal": "+12 V feed",
-          "contactPartId": "ct_gt150_skt"
+          "contactPartId": "ct_gt150_skt_16"
         },
         {
           "id": "c2",
@@ -1657,7 +1657,7 @@
         {
           "id": "c1",
           "signal": "+12 V feed",
-          "contactPartId": "ct_gt150_skt",
+          "contactPartId": "ct_gt150_skt_16",
           "propagate": false
         },
         {
@@ -1684,7 +1684,7 @@
         {
           "id": "c1",
           "signal": "+12 V feed",
-          "contactPartId": "ct_gt150_skt",
+          "contactPartId": "ct_gt150_skt_16",
           "propagate": false
         },
         {
@@ -1711,7 +1711,7 @@
         {
           "id": "c1",
           "signal": "+12 V feed",
-          "contactPartId": "ct_gt150_skt",
+          "contactPartId": "ct_gt150_skt_16",
           "propagate": false
         },
         {
@@ -1985,7 +1985,7 @@
     {
       "id": "crank",
       "label": "Crank sensor",
-      "partId": "cp_dt2s",
+      "partId": "cp_dt2s_ce05",
       "cavities": [
         {
           "id": "c1",
@@ -2038,7 +2038,7 @@
       "id": "ix_brail_s",
       "label": "IX-B-RAIL inline plug, +5 V to B-engine",
       "width": 270,
-      "partId": "cp_dt06_6s",
+      "partId": "cp_dt6s_ce05",
       "cavities": [
         {
           "id": "c1",
@@ -2229,7 +2229,7 @@
   "cables": [
     {
       "id": "cab_crank",
-      "partId": "cab_sh_1c",
+      "partId": "cab_55a1811",
       "schematicPosition": {
         "x": 2850,
         "y": 810
@@ -2237,7 +2237,7 @@
       "cores": [
         {
           "id": "cab_crank_c1",
-          "color": "Blue",
+          "color": "White",
           "source": {
             "id": "bh_a_eng",
             "handle": "c24"
@@ -2267,7 +2267,7 @@
     },
     {
       "id": "cab_cam",
-      "partId": "cab_sh_1c",
+      "partId": "cab_55a1811",
       "schematicPosition": {
         "x": 2880,
         "y": 270
@@ -2275,7 +2275,7 @@
       "cores": [
         {
           "id": "cab_cam_c2",
-          "color": "Blue",
+          "color": "White",
           "source": {
             "id": "bh_a_eng",
             "handle": "c29"
@@ -2305,7 +2305,7 @@
     },
     {
       "id": "cab_turbo",
-      "partId": "cab_sh_3c",
+      "partId": "cab_55a1831",
       "schematicPosition": {
         "x": 2910,
         "y": 600
@@ -2313,7 +2313,7 @@
       "cores": [
         {
           "id": "w218",
-          "color": "Orange",
+          "color": "Red",
           "source": {
             "id": "bh_a_eng",
             "handle": "c40"
@@ -2328,7 +2328,7 @@
         },
         {
           "id": "w17",
-          "color": "Black",
+          "color": "Yellow",
           "source": {
             "id": "bh_a_eng",
             "handle": "c43"
@@ -2371,7 +2371,7 @@
     },
     {
       "id": "cab_flex",
-      "partId": "cab_sh_3c",
+      "partId": "cab_55a1831",
       "schematicPosition": {
         "x": 2430,
         "y": 660
@@ -2379,7 +2379,7 @@
       "cores": [
         {
           "id": "w217",
-          "color": "Orange",
+          "color": "Red",
           "source": {
             "id": "flex",
             "handle": "c1"
@@ -2394,7 +2394,7 @@
         },
         {
           "id": "w47",
-          "color": "Black",
+          "color": "Yellow",
           "source": {
             "id": "flex",
             "handle": "c2"
@@ -2440,7 +2440,7 @@
     },
     {
       "id": "cab_etbs",
-      "partId": "cab_sh_4c",
+      "partId": "cab_55a1841",
       "schematicPosition": {
         "x": 2880,
         "y": 960
@@ -2448,7 +2448,7 @@
       "cores": [
         {
           "id": "w126",
-          "color": "Orange",
+          "color": "Red",
           "source": {
             "id": "bh_a_eng",
             "handle": "c2"
@@ -2463,7 +2463,7 @@
         },
         {
           "id": "w127",
-          "color": "Black",
+          "color": "Yellow",
           "source": {
             "id": "etb",
             "handle": "c2"
@@ -2478,7 +2478,7 @@
         },
         {
           "id": "w128_e",
-          "color": "Blue",
+          "color": "Green",
           "source": {
             "id": "bh_a_eng",
             "handle": "c21"
@@ -2493,7 +2493,7 @@
         },
         {
           "id": "w129_e",
-          "color": "Violet",
+          "color": "Blue",
           "source": {
             "id": "bh_a_eng",
             "handle": "c22"
@@ -2608,7 +2608,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_12"
+        "cov_dr25_38"
       ]
     },
     {
@@ -2620,7 +2620,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_12"
+        "cov_dr25_38"
       ]
     },
     {
@@ -2632,7 +2632,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_12"
+        "cov_dr25_38"
       ]
     },
     {
@@ -2644,7 +2644,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_12"
+        "cov_dr25_38"
       ]
     },
     {
@@ -2656,7 +2656,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_12"
+        "cov_dr25_38"
       ]
     },
     {
@@ -2668,7 +2668,7 @@
         "unit": "mm"
       },
       "partIds": [
-        "cov_dr25_34"
+        "cov_dr25_12"
       ]
     },
     {
@@ -3517,17 +3517,6 @@
       }
     },
     {
-      "id": "m16_14_2",
-      "partNumber": "M22759/16-14-2",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 14 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Red",
-      "gauge": {
-        "value": 14,
-        "unit": "AWG"
-      }
-    },
-    {
       "id": "m16_10_2",
       "partNumber": "M22759/16-10-2",
       "manufacturer": "M22759",
@@ -3559,100 +3548,20 @@
         "value": 18,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "m16_12_2",
+      "partNumber": "M22759/16-12-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 12 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 12,
+        "unit": "AWG"
+      }
     }
   ],
   "cableParts": [
-    {
-      "id": "cab_sh_1c",
-      "partNumber": "GENERIC SHLD CABLE 1C 20AWG BLU",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, BLUE, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_3c",
-      "partNumber": "GENERIC SHLD CABLE 3C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
-      "id": "cab_sh_4c",
-      "partNumber": "GENERIC SHLD CABLE 4C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Violet",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
     {
       "id": "cab_sh_2c_18",
       "partNumber": "GENERIC SHLD CABLE 2C 18AWG",
@@ -3672,6 +3581,100 @@
           "color": "Black",
           "gauge": {
             "value": 18,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1811",
+      "partNumber": "55A1811-20-9-9CS2275",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-913237-000.html",
+      "description": "CABLE, SHIELDED, 1 CONDUCTOR, 20 AWG, WHITE, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "White",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1831",
+      "partNumber": "55A1831-20-2/4/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318056-002.html",
+      "description": "CABLE, SHIELDED, 3 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1841",
+      "partNumber": "55A1841-20-2/4/5/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318074-002.html",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
             "unit": "AWG"
           }
         }
@@ -3764,7 +3767,7 @@
         "y": -390
       },
       "partIds": [
-        "boot_382a023"
+        "boot_301a022"
       ]
     },
     {
@@ -3774,8 +3777,7 @@
         "y": -390
       },
       "partIds": [
-        "boot_301a028",
-        "boot_342a024"
+        "boot_462a023"
       ]
     },
     {
@@ -3980,22 +3982,6 @@
       "manufacturer": "TE DEUTSCH"
     },
     {
-      "id": "ct_gt150_skt",
-      "type": "Crimp",
-      "gender": "Socket",
-      "maxGauge": {
-        "unit": "AWG",
-        "value": 16
-      },
-      "minGauge": {
-        "unit": "AWG",
-        "value": 18
-      },
-      "partNumber": "15326427",
-      "description": "CONTACT, SOCKET, CRIMP, GT 150, GOLD, 0.75-1.0 MM2",
-      "manufacturer": "Aptiv"
-    },
-    {
       "id": "ct_gt150_skt_05",
       "type": "Crimp",
       "gender": "Socket",
@@ -4081,6 +4067,22 @@
       "partNumber": "0462-210-1231",
       "description": "CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A",
       "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_gt150_skt_16",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "12191819",
+      "description": "CONTACT, SOCKET, CRIMP, GT 150, TIN, SEALED, 18-16 AWG, CABLE OD 1.70-2.25 MM",
+      "manufacturer": "Aptiv"
     }
   ],
   "coveringParts": [
@@ -4299,11 +4301,11 @@
       "color": "Black"
     },
     {
-      "id": "boot_382a023",
-      "partNumber": "382A023-25-0",
+      "id": "boot_462a023",
+      "partNumber": "462A023-25-0",
       "manufacturer": "TE Connectivity (Raychem)",
-      "description": "TRANSITION, MOULDED, HEAT SHRINK, Y, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/12.4 X 13.2/6.1 MM SUPPLIED / RECOVERED, -75 TO 150 C",
-      "url": "https://www.te.com/en/search.html?q=382A023-25-0",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, 1 TO 3, 4 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/13.2 X 13.2/6.9 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=462A023-25-0",
       "color": "Black"
     }
   ],
@@ -4411,160 +4413,6 @@
         }
       ],
       "numberOfCavities": 4
-    },
-    {
-      "id": "cp_dt2s",
-      "url": "https://www.te.com/usa-en/product-DT06-2S.html",
-      "image": {
-        "path": "97d068b9-43c9-4b19-b8c0-ccc45b65fb7b/1790014830313.png",
-        "source": "cloud"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-2",
-        "name": "DT 2-way",
-        "pins": [
-          {
-            "x": 2.73,
-            "y": 0,
-            "size": 4.2
-          },
-          {
-            "x": -2.73,
-            "y": 0,
-            "size": 4.2
-          }
-        ],
-        "outline": {
-          "type": "rect",
-          "width": 15.1,
-          "height": 11.7,
-          "cornerRadius": 2.5
-        },
-        "features": [
-          {
-            "y": -5.85,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 8.5,
-              "height": 3
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "hasShell": false,
-      "partNumber": "DT06-2S",
-      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "accessories": [
-            {
-              "id": "cfg-1",
-              "type": "LockPart",
-              "partId": "lp_w2s"
-            },
-            {
-              "id": "cfg-2",
-              "type": "ContactPart",
-              "partId": "ct_dt16s_ni"
-            },
-            {
-              "id": "cfg-3",
-              "type": "CavityPlugPart",
-              "partId": "pl_sz16"
-            }
-          ]
-        }
-      ],
-      "numberOfCavities": 2,
-      "designationStrategy": {
-        "type": "sequential"
-      }
-    },
-    {
-      "id": "cp_dt3s",
-      "url": "https://www.te.com/usa-en/product-DT06-3S.html",
-      "color": "Gray",
-      "image": {
-        "url": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-high-res.png",
-        "source": "url",
-        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/000/DT0/63S/DT06-3S-t1.jpg/jcr:content/renditions/product-details.png"
-      },
-      "gender": "Female",
-      "pinout": {
-        "id": "te-deutsch-dt-3",
-        "name": "DT 3-way",
-        "pins": [
-          {
-            "x": -4.33,
-            "y": -2.5,
-            "size": 5
-          },
-          {
-            "x": 4.33,
-            "y": -2.5,
-            "size": 5
-          },
-          {
-            "x": 0,
-            "y": 4.9,
-            "size": 5
-          }
-        ],
-        "outline": {
-          "type": "polygon",
-          "points": [
-            [
-              0,
-              14
-            ],
-            [
-              -11.2,
-              -7
-            ],
-            [
-              11.2,
-              -7
-            ]
-          ],
-          "cornerRadius": 4
-        },
-        "features": [
-          {
-            "y": -7,
-            "layer": "behind",
-            "shape": {
-              "type": "rect",
-              "width": 10,
-              "height": 3
-            }
-          }
-        ],
-        "mirrored": true
-      },
-      "partNumber": "DT06-3S",
-      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, N SEAL, GRAY",
-      "manufacturer": "TE Connectivity DEUTSCH",
-      "configurations": [
-        {
-          "id": "cfg",
-          "accessories": [
-            {
-              "id": "cfg-1",
-              "type": "LockPart",
-              "partId": "lp_w3s"
-            }
-          ]
-        }
-      ],
-      "numberOfCavities": 3,
-      "designationStrategy": {
-        "type": "alphabetical"
-      }
     },
     {
       "id": "cp_etb",
@@ -4701,17 +4549,158 @@
       "numberOfCavities": 2
     },
     {
-      "id": "cp_dt06_6s",
-      "url": "https://www.te.com/usa-en/product-DT06-6S.html",
-      "image": {
-        "url": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/6/300/323/735/DT06-6S_web%28640x640%29.jpg",
-        "source": "url",
-        "lowResUrl": "https://mm.digikey.com/Volume0/opasdata/d220001/derivates/1/300/323/735/DT06-6S_sml%28200x200%29.jpg"
+      "id": "cp_dt3s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-3S-CE05.html",
+      "color": "Black",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-3",
+        "name": "DT 3-way",
+        "pins": [
+          {
+            "x": -4.33,
+            "y": -2.5,
+            "size": 5
+          },
+          {
+            "x": 4.33,
+            "y": -2.5,
+            "size": 5
+          },
+          {
+            "x": 0,
+            "y": 4.9,
+            "size": 5
+          }
+        ],
+        "outline": {
+          "type": "polygon",
+          "points": [
+            [
+              0,
+              14
+            ],
+            [
+              -11.2,
+              -7
+            ],
+            [
+              11.2,
+              -7
+            ]
+          ],
+          "cornerRadius": 4
+        },
+        "features": [
+          {
+            "y": -7,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 10,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
       },
+      "partNumber": "DT06-3S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE Connectivity DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w3s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 3,
+      "designationStrategy": {
+        "type": "alphabetical"
+      }
+    },
+    {
+      "id": "cp_dt2s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-2S-CE05.html",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      },
+      "color": "Black"
+    },
+    {
+      "id": "cp_dt6s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-6S-CE05.html",
       "gender": "Female",
       "hasShell": false,
-      "partNumber": "DT06-6S",
-      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "partNumber": "DT06-6S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
       "manufacturer": "TE DEUTSCH",
       "configurations": [
         {
@@ -4735,7 +4724,8 @@
           ]
         }
       ],
-      "numberOfCavities": 6
+      "numberOfCavities": 6,
+      "color": "Black"
     }
   ],
   "lockParts": [

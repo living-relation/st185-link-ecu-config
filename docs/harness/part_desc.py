@@ -106,6 +106,9 @@ def cable_desc(p):
                                          "/".join(sorted(gs)) or "GAUGE TBD")
     if len(cores) == 1 and cores[0].get("color"):
         s += ", " + colour(cores[0])
+    if (p.get("partNumber") or "").startswith("55A"):
+        # TE / Raychem Spec 55 (R174): braid only, no foil, no drain (TE drawings 55A18x1)
+        return s + ", TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C"
     if p.get("shielded"):
         s += ", FOIL + TINNED COPPER BRAID"
     return s + ", JACKETED"
