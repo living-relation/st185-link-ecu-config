@@ -202,10 +202,10 @@
    54.0
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Bar_Power_CuC110_25x6p35.step": 1792298842,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Base_PA12_printed.step": 1792298842,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Cover_PA12_printed.step": 1792298842,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Pad_Out_CuC110_25p4x3p2.step": 1792298842
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Bar_Power_CuC110_25x6p35.step": 1792342914,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Base_PA12_printed.step": 1792342914,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Cover_PA12_printed.step": 1792342915,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/BattRelay_Pad_Out_CuC110_25p4x3p2.step": 1792342914
   },
   "rendered": "2026-10-18"
  },
@@ -214,15 +214,15 @@
   "solids": 5,
   "part_types": 4,
   "extent_mm": [
-   150.4,
+   153.6,
    192.5,
    89.9
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Base_PA12_printed.step": 1792298835,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Cover_PA12_printed.step": 1792298837,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Pan_PA12_printed.step": 1792298836,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step": 1792298836
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Base_PA12_printed.step": 1792342905,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Cover_PA12_printed.step": 1792342907,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Pan_PA12_printed.step": 1792342906,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step": 1792342906
   },
   "rendered": "2026-10-18"
  },
@@ -236,13 +236,13 @@
    81.8
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792298839,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792298839,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792298839,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792298841,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792298839,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Retainer_R1_PA12_printed.step": 1792298838,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": 1792298839
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792342910,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792342910,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792342909,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792342912,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792342910,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Retainer_R1_PA12_printed.step": 1792342909,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": 1792342910
   },
   "rendered": "2026-10-18"
  },
@@ -265,8 +265,8 @@
  },
  "package-rev7": {
   "png": "cad/fusebox/rev7/package-rev7.png",
-  "solids": 504,
-  "part_types": 76,
+  "solids": 617,
+  "part_types": 86,
   "extent_mm": [
    549.2,
    454.8,
@@ -275,7 +275,7 @@
   "sources": {
    "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792194987,
    "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792159222,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792298845
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792342923
   },
   "rendered": "2026-10-18"
  }

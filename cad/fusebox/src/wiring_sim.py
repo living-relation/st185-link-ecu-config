@@ -25,7 +25,7 @@ OD = dict(S.OD)
 OD[16] = OD.get(16, 2.06)
 METRIC_OD = {53.5: OD['1/0']}            # 1/0 SGX, 53.5 mm2
 MM2 = {20: 0.52, 18: 0.82, 16: 1.31, 14: 2.08, 12: 3.31, 10: 5.26, 8: 8.37, 6: 13.3}
-TERM_RANGE = {'1241388-2': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
+TERM_RANGE = {'1241388-2': (0.5, 1.0), '1241390-1': (1.5, 2.5), '1-968851-1': (1.0, 2.5), '1-968849-1': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
               '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '62998-2': (5.0, 8.0)}     # mm2, from the parts list / harness part text
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn', 'k_etb': 'k_etb', 'k_acc': 'k_acc', 'k_eps_en': 'k_eps_en', 'k_rev': 'k_rev',
                'heater': 'k_htr', 'k_efi': 'k_efi', 'k_str': 'k_str', 'k_fan': 'k_fan', 'k_fan2': 'k_fan2', 'power': 'k_pwr'}
@@ -49,8 +49,8 @@ def logic_cavities():
         sd = S.MINI_IN[col]
         if True:
             d = '%s-%d' % (col, i + 1)
-            cav[d] = dict(x=cx - sd * 3.0, y=y, lane=('L', round(cx - sd * 3.0, 2)), kind='fuse out', name=nm)
-            cav[d + ' IN'] = dict(x=cx + sd * 3.0, y=y, lane=('L', round(cx - sd * 3.0, 2)), kind='fuse in', name=nm)
+            cav[d] = dict(x=cx - sd * S.MINI_BLADE_X, y=y, lane=('L', round(cx - sd * S.MINI_BLADE_X, 2)), kind='fuse out', name=nm)
+            cav[d + ' IN'] = dict(x=cx + sd * S.MINI_BLADE_X, y=y, lane=('L', round(cx - sd * S.MINI_BLADE_X, 2)), kind='fuse in', name=nm)
     k = 0
     for cx in S.MICRO_COLS:
         for cy in S.MICRO_Y:
@@ -59,7 +59,7 @@ def logic_cavities():
             if not pn:
                 continue
             rid = RELAY_NAMES[nm]
-            for (u, v, tn) in ((0, -8.0, '30'), (0, 8.0, '87'), (0, 0, '87a'), (-4.5, 0, '85'), (4.5, 0, '86')):
+            for tn, (u, v) in S.MICRO_PINS.items():
                 cav[(rid, PIN[tn])] = dict(x=cx + u, y=cy + v, lane=('L', cx), kind='micro ' + tn, name=rid)
     return cav
 
@@ -80,15 +80,18 @@ def power_cavities():
     acps_y = S.ACPS_Y
     for r in power_relays():
         cx, cy = r['cx'], r['cy']
-        pins = [('87', cx - 7.65, cy, cy), ('30', cx + 10.25, cy, None), ('85', cx + 0.25, cy - 8.45, cy - 9.0), ('86', cx + 0.25, cy + 8.45, cy + 9.0)]
+        P_ = S.RELAY_B_PINS if r['B'] else S.F7_PINS        # fit audit 2026-10-18: the maker pattern; harness pin -> blade by S.POWER_ROLE_POS
+        pos_ = {'near': (cx - P_['30'][1], cy), 'far': (cx - P_['87'][1], cy)}
+        pins = [('87',) + pos_[S.POWER_ROLE_POS['87']] + (cy,), ('30',) + pos_[S.POWER_ROLE_POS['30']] + (None,),
+                ('85', cx - P_['85'][1], cy + P_['85'][0], cy - 9.0), ('86', cx - P_['86'][1], cy + P_['86'][0], cy + 9.0)]
         if r['B']:
-            pins.append(('87a', cx - S.RELAY_B['v87a'], cy, cy))
+            pins.append(('87a', cx - P_['87a'][1], cy, cy))
         for (tn, x, y, lane) in pins:
             if lane is not None and (abs(lane - acps_y) < 1.0 or abs(lane - (S.AMI_Y0 - 9.0)) < 0.1):
                 lane = acps_y                      # the heater 85 joins the ACPS lane (as the CAD)
             cav[(r['rid'], PIN[tn])] = dict(x=x, y=y, lane=('P', lane) if lane is not None else None, kind='F7 ' + tn, name=r['rid'])
-    cav['ACPS IN'] = dict(x=S.F7_X[0] - 3.0, y=acps_y, lane=('P', acps_y), kind='acps in', name='ACPS')
-    cav['ACPS'] = dict(x=S.F7_X[0] + 3.0, y=acps_y, lane=('P', acps_y), kind='acps out', name='ACPS')
+    cav['ACPS IN'] = dict(x=S.F7_X[0] - S.MINI_BLADE_X, y=acps_y, lane=('P', acps_y), kind='acps in', name='ACPS')
+    cav['ACPS'] = dict(x=S.F7_X[0] + S.MINI_BLADE_X, y=acps_y, lane=('P', acps_y), kind='acps out', name='ACPS')
     return cav
 
 
@@ -151,7 +154,7 @@ def fallback_part(box, end, gauge, unit):
     """Terminal part when the harness cavity names none: the box parts lists."""
     i, des = end['id'], end['des']
     if box == 'LOGIC' and i == 'fb_logic':
-        return '1241388-2' if unit == 'AWG' and gauge >= 18 else '880398-2'
+        return '1-968849-1' if unit == 'AWG' and gauge >= 18 else '1-968851-1'      # N21
     if i == 'fb_power' and des.startswith('AMI'):
         return 'Klauke 3R5MS' if gauge == 6 else ('TE 36161' if gauge == 12 else 'Klauke 2R5')
     if i == 'pdb':
@@ -321,7 +324,7 @@ def strip_blocks():
     out = []
     for col, (cx, fuses) in S.MINI_COLS.items():
         sd = S.MINI_IN[col]
-        xin = cx + sd * 3.0
+        xin = cx + sd * S.MINI_BLADE_X
         xpm = xin + sd * S.JLUG['ax']
         face = xpm + sd * S.JLUG['t'] / 2
         y0, y1 = S.STRIP_Y[col]
@@ -416,7 +419,7 @@ def channel_route(w):
         c = rel['at']
         p0 = (sp['x1'], C['y_sp'], z)
         if k == 'HL30':
-            mid = [(42.0 + S.PEM_GROW / 2, C['y_sp'], z)]     # 2.0 past the splice end (it moves with the gap, N2)
+            mid = [(42.0 + S.PEM_GROW / 2 + S.FUSE_GROW, C['y_sp'], z)]     # 2.0 past the splice end (it moves with the gap, N2)
         elif k == 'HL86':
             mid = [(c['x'], 7.6, z)]
         elif k == 'HR30':
@@ -433,25 +436,24 @@ def all_cavities():
     for (col, i, nm, amps, cx, y) in S.mini_list():
         sd = S.MINI_IN[col]
         if True:
-            out[('LOGIC', '%s-%d' % (col, i + 1))] = dict(x=cx - sd * 3.0, y=y, kind='fuse out', fuse=nm, amps=amps)
-            out[('LOGIC', '%s-%d IN' % (col, i + 1))] = dict(x=cx + sd * 3.0, y=y, kind='fuse in', fuse=nm, amps=amps,
+            out[('LOGIC', '%s-%d' % (col, i + 1))] = dict(x=cx - sd * S.MINI_BLADE_X, y=y, kind='fuse out', fuse=nm, amps=amps)
+            out[('LOGIC', '%s-%d IN' % (col, i + 1))] = dict(x=cx + sd * S.MINI_BLADE_X, y=y, kind='fuse in', fuse=nm, amps=amps,
                                                              jumper=bool(amps) and S.mini_stud(col, i))
     k = 0
     for cx in S.MICRO_COLS:
         for cy in S.MICRO_Y:
             k += 1
-            for (u, v, tn) in ((0, -8.0, '30'), (0, 8.0, '87'), (0, 0, '87a'), (-4.5, 0, '85'), (4.5, 0, '86')):
+            for tn, (u, v) in S.MICRO_PINS.items():
                 out[('LOGIC', 'M%d %s' % (k, tn))] = dict(x=cx + u, y=cy + v, kind='micro ' + tn)
     for i, nm in enumerate(S.IN_RELAY):
         cx = S.F7_X[1] if i % 2 == 0 else S.F7_X[0]
         cy = S.AMI_Y0 + i * S.AMI_PITCH
-        pins = [('87', cx - 7.65, cy), ('30', cx + 10.25, cy), ('85', cx + 0.25, cy - 8.45), ('86', cx + 0.25, cy + 8.45)]
-        if nm == S.RELAY_B['pos']:
-            pins.append(('87a', cx - S.RELAY_B['v87a'], cy))
+        P_ = S.RELAY_B_PINS if nm == S.RELAY_B['pos'] else S.F7_PINS     # the cavities named by the real blade (fit audit 2026-10-18)
+        pins = [(tn, cx - v, cy + u) for tn, (u, v) in P_.items()]
         for (tn, x, y) in pins:
             out[('POWER', 'R%d %s' % (i + 1, tn))] = dict(x=x, y=y, kind='F7 ' + tn, relay=nm)
-    out[('POWER', 'ACPS IN')] = dict(x=S.F7_X[0] - 3.0, y=S.ACPS_Y, kind='acps in')
-    out[('POWER', 'ACPS')] = dict(x=S.F7_X[0] + 3.0, y=S.ACPS_Y, kind='acps out')
+    out[('POWER', 'ACPS IN')] = dict(x=S.F7_X[0] - S.MINI_BLADE_X, y=S.ACPS_Y, kind='acps in')
+    out[('POWER', 'ACPS')] = dict(x=S.F7_X[0] + S.MINI_BLADE_X, y=S.ACPS_Y, kind='acps out')
     return out
 
 
@@ -527,7 +529,7 @@ def main():
     for (box, L0), ms in sorted(lanes.items()):
         ms.sort(key=lambda m: -m['s_c'])                 # farthest from the exit joins first (lowest slots)
         d = bundle_d(sorted([m['od'] for m in ms], reverse=True))
-        c = cad_lanes.get((box, round(L0, 2)))
+        c = cad_lanes.get((box, round(L0, 2))) or next((v for (b_, x_), v in cad_lanes.items() if b_ == box and abs(x_ - L0) < 0.06), None)   # the build reports x to 0.1
         cad_d = c['d'] if c else None
         opening = round(cad_d + 1.6, 2) if cad_d else None
         xr = S.LANE_X.get((box, L0))
@@ -561,7 +563,7 @@ def main():
     risers += [((x, y), od) for (x, y), od in used.items()]
     for (col, i, nm, amps, cx, y) in S.mini_list():         # the input jumpers (CAD), one per stud with a fuse, sized by the fuse
         if amps and S.mini_stud(col, i):
-            risers.append(((cx + S.MINI_IN[col] * 3.0, y), OD[S.jumper(amps)[0]]))
+            risers.append(((cx + S.MINI_IN[col] * S.MINI_BLADE_X, y), OD[S.jumper(amps)[0]]))
     jumper_hits = {}
     for w in wires:
         if not w['direct']:

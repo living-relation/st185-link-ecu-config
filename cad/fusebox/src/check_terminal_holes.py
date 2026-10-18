@@ -193,8 +193,8 @@ def main():
             bad.append('L1 %s %s: %s has no locking lance and no retainer clip (R121 / R123)' % (c['box'], c['cav'], c['part']))
             continue
         sides, keep = ledges(c, partners.get((c['box'], c['cav']), []))
-        if L_['out'] - S.HOLE['clr'] + TOL < LOCK_MIN:
-            bad.append('L1 %s %s: %s lance reaches %.2f past its ledge (min %.1f)' % (c['box'], c['cav'], c['part'], L_['out'] - S.HOLE['clr'], LOCK_MIN))
+        if L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']) + TOL < LOCK_MIN:
+            bad.append('L1 %s %s: %s lance reaches %.2f past its ledge (min %.1f)' % (c['box'], c['cav'], c['part'], L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']), LOCK_MIN))
         if not keep:
             resolve.append('L1 %s %s: %s has no ledge left (window %s, every side joined to a neighbour)' % (c['box'], c['cav'], c['part'], '/'.join(sides)))
         if 'row' in c:

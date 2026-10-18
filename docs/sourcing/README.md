@@ -12,6 +12,9 @@ Binding on every part choice in this project.
    short or has too few options.
 4. **Anything else**, and only then. Say in the BOM row why nothing above fit.
 
+Every spec read off a non-maker listing is validated against the maker's sheet first; the non-maker short list and the
+validation rules are in `TRUSTED-SOURCES.md` (DECISIONS R167).
+
 Never spec a new connector family without checking step 1 first. This project
 already owns HDP20, HD30, Deutsch DT, SuperSeal and AMP MCP hardware.
 

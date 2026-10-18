@@ -47,3 +47,6 @@ cad/busbar/**/*_drawing.pdf
 cad/fusebox/rev7/renders/closeups/raw/
 # MJF print files (cad/export_print_files.py) - local only like the other model files
 *.3mf
+# Vendor CAD models and maker documents: local only, index tracked (R67, R162)
+cad/vendor/**
+!cad/vendor/INDEX.md

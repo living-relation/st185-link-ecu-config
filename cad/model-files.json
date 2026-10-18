@@ -1,35 +1,6 @@
 {
  "generated": "2026-10-18",
  "files": {
-  "cad/fusebox/rev7": [
-   "BattRelay_Bar_Power_CuC110_25x6p35.step",
-   "BattRelay_Base_PA12_printed.step",
-   "BattRelay_Base_PA12_printed.stl",
-   "BattRelay_Cover_PA12_printed.step",
-   "BattRelay_Cover_PA12_printed.stl",
-   "BattRelay_Pad_Out_CuC110_25p4x3p2.step",
-   "Logic_Base_PA12_printed.step",
-   "Logic_Base_PA12_printed.stl",
-   "Logic_Cover_PA12_printed.step",
-   "Logic_Cover_PA12_printed.stl",
-   "Logic_Pan_PA12_printed.step",
-   "Logic_Pan_PA12_printed.stl",
-   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
-   "Power_BarNeg_CuC110_25x6p35_L105.step",
-   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
-   "Power_Base_PA12_printed.step",
-   "Power_Base_PA12_printed.stl",
-   "Power_Cover_PA12_printed.step",
-   "Power_Cover_PA12_printed.stl",
-   "Power_Pan_PA12_printed.step",
-   "Power_Pan_PA12_printed.stl",
-   "Power_Retainer_R1_PA12_printed.step",
-   "Power_Retainer_R1_PA12_printed.stl",
-   "Power_Strap_Out_CuC110_15x3_C.step",
-   "ST185-FB-117_model.step",
-   "ST185_fusebox_rev7.f3d",
-   "ST185_fusebox_rev7_assembly.step"
-  ],
   "cad/drb102-plate": [
    "DRB102-firewall-plate-assembly.step",
    "DRB102-firewall-plate.step"
@@ -198,6 +169,95 @@
    "hanger_lug_block.step",
    "hanger_top_plate.step",
    "hanger_with_pump_fittings.stl"
+  ],
+  "cad/fusebox/rev7": [
+   "BattRelay_Bar_Power_CuC110_25x6p35.step",
+   "BattRelay_Base_PA12_printed.step",
+   "BattRelay_Base_PA12_printed.stl",
+   "BattRelay_Cover_PA12_printed.step",
+   "BattRelay_Cover_PA12_printed.stl",
+   "BattRelay_Pad_Out_CuC110_25p4x3p2.step",
+   "Logic_Base_PA12_printed.step",
+   "Logic_Base_PA12_printed.stl",
+   "Logic_Cover_PA12_printed.step",
+   "Logic_Cover_PA12_printed.stl",
+   "Logic_Pan_PA12_printed.step",
+   "Logic_Pan_PA12_printed.stl",
+   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
+   "Power_BarNeg_CuC110_25x6p35_L105.step",
+   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
+   "Power_Base_PA12_printed.step",
+   "Power_Base_PA12_printed.stl",
+   "Power_Cover_PA12_printed.step",
+   "Power_Cover_PA12_printed.stl",
+   "Power_Pan_PA12_printed.step",
+   "Power_Pan_PA12_printed.stl",
+   "Power_Retainer_R1_PA12_printed.step",
+   "Power_Retainer_R1_PA12_printed.stl",
+   "Power_Strap_Out_CuC110_15x3_C.step",
+   "ST185-FB-117_model.step",
+   "ST185_fusebox_rev7.f3d",
+   "ST185_fusebox_rev7_assembly.step"
+  ],
+  "cad/vendor/eaton/AMI": [
+   "AMI_bolt-in_built-from-Bussmann-AMI-ds-p34.step"
+  ],
+  "cad/vendor/eaton/ATM": [
+   "ATM_mini-blade_built-from-Littelfuse-297-ds-2024-09-27-p2.step"
+  ],
+  "cad/vendor/te/1-1393304-0": [
+   "c-1-1393304-0-a-3d.stp"
+  ],
+  "cad/vendor/te/1-1414147-0": [
+   "c-1-1414147-0-a-3d.stp"
+  ],
+  "cad/vendor/te/1-1414687-0": [
+   "c-1-1414687-0-o-3d.stp"
+  ],
+  "cad/vendor/te/1-968849-1": [
+   "c-1-968849-1-j3-3d.stp"
+  ],
+  "cad/vendor/te/1-968851-1": [
+   "c-1-968851-1-e-3d.stp"
+  ],
+  "cad/vendor/te/1241388-2": [
+   "c-1241388-2-c6-3d.stp"
+  ],
+  "cad/vendor/te/1241390-1": [
+   "c-1241390-1-c6-3d.stp"
+  ],
+  "cad/vendor/te/1416010-1": [
+   "c-1416010-1-a-3d.stp"
+  ],
+  "cad/vendor/te/280755-4": [
+   "c-280755-4-l-3d.stp"
+  ],
+  "cad/vendor/te/280756-4": [
+   "c-280756-4-p-3d.stp"
+  ],
+  "cad/vendor/te/280919-2": [
+   "c-280919-2-m-3d.stp"
+  ],
+  "cad/vendor/te/4-1904124-2": [
+   "c-4-1904124-2-a-3d.stp"
+  ],
+  "cad/vendor/te/4-1904124-3": [
+   "c-4-1904124-3-a-3d.stp"
+  ],
+  "cad/vendor/te/42281-1": [
+   "c-42281-1-dj-3d.stp"
+  ],
+  "cad/vendor/te/5-1393292-8": [
+   "c-5-1393292-8-o-3d.stp"
+  ],
+  "cad/vendor/te/6-1419137-4": [
+   "c-6-1419137-4-o-3d.stp"
+  ],
+  "cad/vendor/te/62998-2": [
+   "c-62998-2-w-3d.stp"
+  ],
+  "cad/vendor/te/880398-2": [
+   "c-880398-2-t-3d.stp"
   ],
   "cad/fusebox/rev7/print": [
    "ST185_R1_retainer_clip_PA12.step",

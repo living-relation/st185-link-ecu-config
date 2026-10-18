@@ -16,7 +16,9 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 36 | 0 | **36** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
+| `1-968849-1` | TE Connectivity | AMP MCP 2.8 RECEPTACLE, PRE-TIN, LOCKING LANCE, UNSEALED, 20 / 18 AWG (0.5 - 1.0 MM2), TAB 2.8 X 0.8 | 27 | 0 | **27** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 25 | 0 | **25** |
+| `1-968851-1` | TE Connectivity | AMP MCP 2.8 RECEPTACLE, PRE-TIN, LOCKING LANCE, UNSEALED, 16 / 14 AWG (1.0 - 2.5 MM2), TAB 2.8 X 0.8 | 24 | 0 | **24** |
 | `PEM S-M4-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M4, TYPE S, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 5.41 +0.08, HEAD 7.87 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 6.9, FOR SHEET HRB 80 / HB 150 OR LESS | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
@@ -320,8 +322,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `42281-1` | POWER | 14 | the harness drawings |
 | `62998-2` | POWER | 4 | the harness drawings |
 | `42281-1` | POWER | 2 | the harness drawings |
-| `880398-2` | POWER | 2 | the harness drawings |
-| `1241388-2` | POWER | 2 | the harness drawings |
 | `36161` | POWER | 4 | the harness drawings |
 | `4-1904124-2` | LOGIC | 1 | the harness drawings |
 | `4-1904124-3` | LOGIC | 1 | the harness drawings |
@@ -329,8 +329,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
 | `280919-2` | LOGIC | 16 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
-| `1241388-2` | LOGIC | 25 | the harness drawings |
-| `880398-2` | LOGIC | 22 | the harness drawings |
 | `282110-1` | BATTRELAY | 3 | the harness drawings |
 | `Power_Base_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
@@ -342,6 +340,8 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `AMI-50` | POWER | 1 | this section's CSVs |
 | `AMI-60` | POWER | 2 | this section's CSVs |
 | `ATM-10` | LOGIC, POWER | 3 | this section's CSVs |
+| `1-968851-1` | LOGIC, POWER | 24 | this section's CSVs |
+| `1-968849-1` | LOGIC, POWER | 27 | this section's CSVs |
 | `RNF-100-1/4-0-STK` | POWER | 1 | this section's CSVs |
 | `RNF-100-1/8-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
 | `RNF-100-3/32-0-STK` | LOGIC, POWER | 2 | this section's CSVs |

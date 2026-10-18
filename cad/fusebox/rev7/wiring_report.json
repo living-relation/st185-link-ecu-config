@@ -1,19 +1,10 @@
 {
  "warn": [
-  "w_hl_86_cp: segment 2 too short for its bends (13.4 < 14.8)"
+  "efi86: segment 2 too short for its bends (26.8 < 26.8)"
  ],
  "through_printed": [],
  "cover": [],
- "pull": [
-  [
-   "BATT Relay_TE_HCR150_1416010-1",
-   "BattRelay_Wire_feed"
-  ],
-  [
-   "BATT Relay_TE_HCR150_1416010-1",
-   "BattRelay_Wire_feed"
-  ]
- ],
+ "pull": [],
  "wire_wire": {
   "pairs": 416,
   "overlaps": [
@@ -58,6 +49,30 @@
     "w_dev_cp"
    ],
    [
+    "w_k_efi_86_cp",
+    "w_hz_cp"
+   ],
+   [
+    "w_k_efi_86_cp",
+    "w_hl_cp"
+   ],
+   [
+    "w_k_efi_86_cp",
+    "w_hr_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_pmu_dome_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_hz_cp"
+   ],
+   [
+    "w_fb_k_etb_30_cp",
+    "w_rb2_wl_cp"
+   ],
+   [
     "w_fb_mrs_en_cp",
     "w_csb12_cp"
    ],
@@ -71,31 +86,19 @@
    ],
    [
     "w_pmu_hl_cp",
-    "w_horn_30_cp"
+    "w_k_eps_en_87_cp"
    ],
    [
-    "w_pmu_hr_cp",
-    "w_fb_k_eps_en_30_cp"
+    "w_pmu_hl_cp",
+    "w_hl_85_cp"
    ],
    [
     "w_pmu_hr_cp",
     "w_hr_85_cp"
    ],
    [
-    "w_pmu_hr_cp",
-    "w_horn_30_cp"
-   ],
-   [
     "w_pmu_horn_cp",
-    "w82_ac"
-   ],
-   [
-    "w_pmu_horn_cp",
-    "w_hr_85_cp"
-   ],
-   [
-    "w_pmu_horn_cp",
-    "w_horn_30_cp"
+    "w_horn_86_cp"
    ],
    [
     "w_pmu_dome_cp",
@@ -115,58 +118,42 @@
    ],
    [
     "w81_cp",
-    "w_k_etb_86_cp"
-   ],
-   [
-    "w81_cp",
     "w82_ac"
-   ],
-   [
-    "w81_cp",
-    "w_acc_trig_cp"
-   ],
-   [
-    "w81_cp",
-    "w_acc86_cp"
    ],
    [
     "w81_cp",
     "w_acc_clutch_cp"
    ],
    [
-    "w81_cp",
+    "w_k_etb_86_cp",
     "w_horn_86_cp"
    ],
    [
-    "w_k_etb_86_cp",
-    "w82_ac"
-   ],
-   [
-    "w_k_etb_86_cp",
-    "w_acc_trig_cp"
-   ],
-   [
-    "w_k_etb_86_cp",
-    "w_acc86_cp"
-   ],
-   [
-    "w_k_etb_86_cp",
+    "w82_ac",
     "w_acc_clutch_cp"
+   ],
+   [
+    "w82_ac",
+    "w_horn_85_cp"
    ],
    [
     "w_eps_trig_cp",
     "w_fb_k_eps_en_30_cp"
    ],
    [
-    "w_acc_trig_cp",
-    "w_acc86_cp"
+    "w_eps_trig_cp",
+    "w_k_eps_en_86_cp"
+   ],
+   [
+    "w_eps_trig_cp",
+    "w_rev_30_cp"
+   ],
+   [
+    "w_eps_trig_cp",
+    "w_rev_87_cp"
    ],
    [
     "w_acc_trig_cp",
-    "w_acc_clutch_cp"
-   ],
-   [
-    "w_acc86_cp",
     "w_acc_clutch_cp"
    ],
    [
@@ -178,15 +165,35 @@
     "w_rb2_wl_cp"
    ],
    [
+    "w_at_12v_tie_cp",
+    "w_alt_s_cp"
+   ],
+   [
     "w_at_12v_shk_tie_cp",
     "w_alt_s_cp"
    ],
    [
-    "w_k_eps_en_87_cp",
+    "w_fb_k_eps_en_30_cp",
+    "w_k_eps_en_87_cp"
+   ],
+   [
+    "w_k_eps_en_86_cp",
     "w_rev_30_cp"
    ],
    [
-    "w_k_eps_en_87_cp",
+    "w_rev_30_cp",
+    "w_rev_87_cp"
+   ],
+   [
+    "w_rev_86_cp",
+    "w_rev_85_cp"
+   ],
+   [
+    "w_rev_86_cp",
+    "w_rev_87_cp"
+   ],
+   [
+    "w_rev_85_cp",
     "w_rev_87_cp"
    ],
    [
@@ -194,12 +201,20 @@
     "w_hl_86_cp"
    ],
    [
+    "w_hl_85_cp",
+    "w_horn_30_cp"
+   ],
+   [
     "w_hr_85_cp",
     "w_horn_30_cp"
    ],
    [
     "w_hr_85_cp",
-    "w_horn_86_cp"
+    "w_horn_85_cp"
+   ],
+   [
+    "w_horn_30_cp",
+    "w_horn_85_cp"
    ]
   ],
   "min_mm": 0.0
