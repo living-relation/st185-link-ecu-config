@@ -16,22 +16,22 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 36 | 0 | **36** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 32 | 0 | **32** |
-| `1-968849-1` | TE Connectivity | AMP MCP 2.8 RECEPTACLE, PRE-TIN, LOCKING LANCE, UNSEALED, 20 / 18 AWG (0.5 - 1.0 MM2), TAB 2.8 X 0.8 | 27 | 0 | **27** |
+| `1-968849-1` | TE Connectivity | TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 0.5-1.0 MM2 (20-18 AWG) | 27 | 0 | **27** |
 | `8100-0461` | Sumitomo | CONTACT, SOCKET, CRIMP, SUMITOMO TS 090 (2.3 MM), TIN, 0.5-1.25 MM2 (20-16 AWG) | 25 | 0 | **25** |
-| `1-968851-1` | TE Connectivity | AMP MCP 2.8 RECEPTACLE, PRE-TIN, LOCKING LANCE, UNSEALED, 16 / 14 AWG (1.0 - 2.5 MM2), TAB 2.8 X 0.8 | 24 | 0 | **24** |
+| `1-968851-1` | TE Connectivity | TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 1.0-2.5 MM2 (16-14 AWG) | 24 | 0 | **24** |
 | `PEM S-M4-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M4, TYPE S, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 5.41 +0.08, HEAD 7.87 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 6.9, FOR SHEET HRB 80 / HB 150 OR LESS | 21 | 0 | **21** |
 | `RS 231-0691` | RS PRO | RS PRO AISI 301 STAINLESS SPRING WASHER M4, DIN 127B, 0.9 THICK | 21 | 0 | **21** |
 | `RS 287-3915` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M4 X 8, DIN 933 | 21 | 0 | **21** |
 | `RS 287-3921` | RS PRO | RS PRO A2/304 STAINLESS HEX BOLT M5 X 10, DIN 933 | 20 | 0 | **20** |
 | `RS 263-2205` | RS PRO | RS PRO STAINLESS HEX BOLT M5 X 16, DIN 933 (GRADE NOT STATED ON THE LISTING) | 18 | 0 | **18** |
+| `280919-2` | TE Connectivity | TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 16 | 0 | **16** |
 | `Klauke 2R5` | Klauke | TINNED COPPER TUBULAR RING LUG, 10 MM2, M5, HOLE 5.3; B 12, L 22 | 16 | 0 | **16** |
 | `bolts.co.uk SSPMCA205020` | Bolts.co.uk | SOCKET SET SCREW M5 X 20, PLAIN CUP POINT, DIN 916, A2 STAINLESS (PACK OF 25) | 16 | 0 | **16** |
+| `42281-1` | TE Connectivity | TERMINAL, FASTON, RECEPTACLE, 6.35 MM, 18-14 AWG, TIN PLATED | 35 | 20 | **15** |
 | `0413-214-1205` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 12, YELLOW | 24 | 10 | **14** |
-| `280919-2` | TE Connectivity | TERMINAL, FASTIN-FASTON .187 (4.75 MM) RECEPTACLE, UNINSULATED, LOCKING LANCE, BRASS, TIN, 20-15 AWG (0.51-1.65 MM2) | 14 | 0 | **14** |
 | `Accu HHTPS-M5-8-40-BR-NI` | Accu | THREADED HEXAGON SPACER, FEMALE-FEMALE M5, 8 AF, 40 MM, NICKEL-PLATED BRASS, THREAD DEPTH 10 MM EACH END | 14 | 0 | **14** |
 | `SSCF-M3-10-A4` | Accu | SOCKET HEAD CAP SCREW M3 X 10, DIN 912 / ISO 4762, A4 (316) STAINLESS | 14 | 0 | **14** |
 | `320554` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 22-16 AWG, #8 / M4 STUD, TIN | 13 | 0 | **13** |
-| `880398-2` | TE Connectivity | TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG) | 13 | 0 | **13** |
 | `EFC 10S00056` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 6 MM, ZINC-PLATED STEEL | 13 | 0 | **13** |
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
@@ -41,13 +41,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
+| `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 8 | 0 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 19 | 12 | **7** |
 | `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 7 | 0 | **7** |
-| `42281-1` | TE Connectivity | TERMINAL, FASTON, RECEPTACLE, 6.35 MM, 18-14 AWG, TIN PLATED | 27 | 20 | **7** |
 | `ATM-15` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 7 | 0 | **7** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 7 | 0 | **7** |
-| `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 6 | 0 | **6** |
+| `280755-4` | TE Connectivity | TERMINAL, FASTON .375 (9.5 MM) RECEPTACLE, UNINSULATED, TIN, 10-7 AWG (5.3-10 MM2) | 6 | 0 | **6** |
 | `AMI-30` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 6 | 0 | **6** |
 | `GENERIC CRIMP SPLICE 14-10` | generic | SPLICE, CRIMP, UNINSULATED, COPPER, TINNED, COMBINED 14-10 AWG, ADHESIVE HEATSHRINK OVER | 6 | 0 | **6** |
 | `GENERIC HEAVY FLYING LEAD 10-6` | generic | TERMINAL, FLYING LEAD, HEAVY | 6 | 0 | **6** |
@@ -58,7 +58,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
 | `15419715` | Aptiv | CONNECTOR, PLUG, GT 150, 2 POS, SEALED, GRAY, USCAR / EV6 | 4 | 0 | **4** |
-| `280755-4` | TE Connectivity | TERMINAL, FASTON .375 (9.5 MM) RECEPTACLE, UNINSULATED, TIN, 10-7 AWG (5.3-10 MM2) | 4 | 0 | **4** |
+| `36161` | TE Connectivity | TERMINAL, RING TONGUE, PIDG, CLOSED, #10 (M5) STUD, 12-10 AWG, TIN, PARTIALLY INSULATED | 4 | 0 | **4** |
+| `62998-2` | TE Connectivity | TERMINAL, FASTON .250 (6.35 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 10-8 AWG (5-8 MM2) | 4 | 0 | **4** |
 | `90980-11062` | Toyota | CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS | 4 | 0 | **4** |
 | `90980-11885` | Toyota | CONNECTOR, PLUG, TOYOTA, 4 POS | 4 | 0 | **4** |
 | `AMI-40` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 4 | 0 | **4** |
@@ -84,9 +85,6 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
 | `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W | 2 | 0 | **2** |
-| `1241388-2` | TE Connectivity | TERMINAL, AMP MCP 2.8K RECEPTACLE, GOLD, TAB 2.8 (0.6 / 0.8), 0.5-1 MM2 (20-18 AWG) | 12 | 10 | **2** |
-| `36161` | TE Connectivity | TERMINAL, RING TONGUE, PIDG, CLOSED, #10 (M5) STUD, 12-10 AWG, TIN, PARTIALLY INSULATED | 2 | 0 | **2** |
-| `62998-2` | TE Connectivity | TERMINAL, FASTON .250 (6.35 MM) RECEPTACLE, UNINSULATED, BRASS, TIN, 10-8 AWG (5-8 MM2) | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
 | `GENERIC LUG M10 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK | 2 | 0 | **2** |
@@ -199,7 +197,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `4-1437290-0` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 1, SOCKET CONTACTS, BLUE | 1 | 2 |
 | `4-1437290-1` | CONNECTOR, RECEPTACLE, SUPERSEAL 1.0, 34 POS, CODE 2, SOCKET CONTACTS, BLUE | 1 | 2 |
 | `4-1904124-2` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A402, 1 FORM A, 25 A, 12 VDC COIL 119 OHM, 680 OHM PARALLEL RESISTOR | 1 | 2 |
-| `4-1904124-3` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM) | 1 | 2 |
+| `4-1904124-3` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM C (CO: 30 COMMON, 87 NO, 87A NC), 12 VDC COIL (TE ON-HAND BOM) | 1 | 2 |
 | `5-1393292-8` | RELAY, PLUG-IN, MICRO ISO, TE V23074-A2001-A402, 1 FORM A (NO), 12 VDC COIL, DIODE SUPPRESSED (TE ON-HAND BOM) | 2 | 2 |
 | `ATUM-4/1-0` | TERMINAL, FLYING LEAD, SOLDERED TO FACTORY BULB-SOCKET PIGTAIL, ADHESIVE-LINED HEAT-SHRINK RAYCHEM ATUM-4/1-0, 4:1, 4.0 MM EXPANDED / 1.0 MM RECOVERED ID, 40 MM CUT | 16 | 50 |
 | `D 261 205 358-01` | CONNECTOR, PLUG, BOSCH MOTORSPORT KIT, 6 POS, SOCKET CONTACTS | 1 | 1 |
@@ -322,6 +320,8 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `42281-1` | POWER | 14 | the harness drawings |
 | `62998-2` | POWER | 4 | the harness drawings |
 | `42281-1` | POWER | 2 | the harness drawings |
+| `1-968851-1` | POWER | 2 | the harness drawings |
+| `1-968849-1` | POWER | 2 | the harness drawings |
 | `36161` | POWER | 4 | the harness drawings |
 | `4-1904124-2` | LOGIC | 1 | the harness drawings |
 | `4-1904124-3` | LOGIC | 1 | the harness drawings |
@@ -329,6 +329,8 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `6-1419137-4` | LOGIC | 3 | the harness drawings |
 | `280919-2` | LOGIC | 16 | the harness drawings |
 | `42281-1` | LOGIC | 19 | the harness drawings |
+| `1-968849-1` | LOGIC | 25 | the harness drawings |
+| `1-968851-1` | LOGIC | 22 | the harness drawings |
 | `282110-1` | BATTRELAY | 3 | the harness drawings |
 | `Power_Base_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
 | `Power_Pan_PA12_printed.stl + .step (PA12)` | POWER | 1 | this section's CSVs |
@@ -340,8 +342,6 @@ second time. When the CabinPower redraw (OPEN-ITEMS row 108) takes it off the dr
 | `AMI-50` | POWER | 1 | this section's CSVs |
 | `AMI-60` | POWER | 2 | this section's CSVs |
 | `ATM-10` | LOGIC, POWER | 3 | this section's CSVs |
-| `1-968851-1` | LOGIC, POWER | 24 | this section's CSVs |
-| `1-968849-1` | LOGIC, POWER | 27 | this section's CSVs |
 | `RNF-100-1/4-0-STK` | POWER | 1 | this section's CSVs |
 | `RNF-100-1/8-0-STK` | LOGIC, POWER | 2 | this section's CSVs |
 | `RNF-100-3/32-0-STK` | LOGIC, POWER | 2 | this section's CSVs |

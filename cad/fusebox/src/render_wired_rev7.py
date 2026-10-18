@@ -453,7 +453,7 @@ def run(_context: str):
     wcol = {w['wire']: (w['colour'], w['od'], w['bands']) for w in plan['wires']}
     s = slot_end[('w77_cp', 'POWER')]
     cable('Bus2', [s, (92, s[1], s[2]), (92, 130, 50), (92, 300, 50), (xb2, 300, 50), (xb2, 250, 13), (xb2, 211, 13)], 3.61, 'Red', rf(3.61),
-          'Bus 2 feed (10 AWG red): k_efi 87 -> LOGIC rear', (92, 230, 50))
+          'Bus 2 feed (10 AWG red): k_efi 30 -> LOGIC rear', (92, 230, 50))
     s, e = slot_end[('w_k_efi_86_cp', 'LOGIC')], slot_end[('w_k_efi_86_cp', 'POWER')]
     cable('efi86', [s, (s[0], -60, s[2]), (s[0], -80, 30), (96, -80, 30), (96, e[1], 30), e], wcol['w_k_efi_86_cp'][1], 'Red', rf(1.85),
           'k_efi 86 (18 AWG red): LOGIC EFI86 5 A -> POWER k_efi', (40, -80, 30), v='FT')

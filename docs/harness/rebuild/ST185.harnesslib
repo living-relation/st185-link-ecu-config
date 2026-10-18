@@ -1522,19 +1522,19 @@
       }
     },
     {
-      "id": "ct_minifuse_880398",
+      "id": "ct_mcp28_968851",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "880398-2",
-      "description": "TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG)",
+      "partNumber": "1-968851-1",
+      "description": "TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 1.0-2.5 MM2 (16-14 AWG)",
       "manufacturer": "TE Connectivity",
       "minGauge": {
         "unit": "AWG",
-        "value": 17
+        "value": 16
       },
       "maxGauge": {
         "unit": "AWG",
-        "value": 13
+        "value": 14
       }
     },
     {
@@ -1602,11 +1602,11 @@
       }
     },
     {
-      "id": "ct_mcp28",
+      "id": "ct_mcp28_968849",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "1241388-2",
-      "description": "TERMINAL, AMP MCP 2.8K RECEPTACLE, GOLD, TAB 2.8 (0.6 / 0.8), 0.5-1 MM2 (20-18 AWG)",
+      "partNumber": "1-968849-1",
+      "description": "TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 0.5-1.0 MM2 (20-18 AWG)",
       "manufacturer": "TE Connectivity",
       "minGauge": {
         "unit": "AWG",
@@ -2513,7 +2513,7 @@
     {
       "id": "cp_rly_micro_no",
       "partNumber": "4-1904124-3",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM)",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM C (CO: 30 COMMON, 87 NO, 87A NC), 12 VDC COIL (TE ON-HAND BOM)",
       "manufacturer": "TE Connectivity",
       "configurations": [
         {
@@ -3540,7 +3540,7 @@
             {
               "id": "cfg-1",
               "type": "ContactPart",
-              "partId": "ct_minifuse_880398"
+              "partId": "ct_mcp28_968851"
             }
           ]
         }

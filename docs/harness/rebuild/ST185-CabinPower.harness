@@ -84,14 +84,14 @@
       "partId": "m16_8_2"
     },
     {
-      "id": "w_fb_k_fan2_30_ac",
+      "id": "w_fb_k_fan2_87_ac",
       "source": {
         "id": "fb_power",
         "handle": "in5"
       },
       "target": {
         "id": "k_fan2",
-        "handle": "c1"
+        "handle": "c4"
       },
       "color": "Red",
       "identColors": [
@@ -163,7 +163,7 @@
       ],
       "source": {
         "id": "k_efi",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "fb_logic",
@@ -188,7 +188,7 @@
       "partId": "m16_18_2"
     },
     {
-      "id": "w_fb_k_efi_30_cp",
+      "id": "w_fb_k_efi_87_cp",
       "color": "Red",
       "identColors": [
         "Blue",
@@ -200,7 +200,7 @@
       },
       "target": {
         "id": "k_efi",
-        "handle": "c1"
+        "handle": "c4"
       },
       "partId": "m16_12_2"
     },
@@ -239,7 +239,7 @@
       "partId": "m16_16_2"
     },
     {
-      "id": "w_fb_k_str_30_cp",
+      "id": "w_fb_k_str_87_cp",
       "color": "Red",
       "identColors": [
         "White",
@@ -251,12 +251,12 @@
       },
       "target": {
         "id": "k_str",
-        "handle": "c1"
+        "handle": "c4"
       },
       "partId": "m16_12_2"
     },
     {
-      "id": "w_fb_k_fan_30_cp",
+      "id": "w_fb_k_fan_87_cp",
       "color": "Red",
       "identColors": [
         "Yellow",
@@ -268,7 +268,7 @@
       },
       "target": {
         "id": "k_fan",
-        "handle": "c1"
+        "handle": "c4"
       },
       "partId": "m16_8_2"
     },
@@ -480,14 +480,14 @@
       "partId": "m16_6_9"
     },
     {
-      "id": "w_htr_87_cp",
+      "id": "w_htr_30_cp",
       "color": "Red",
       "identColors": [
         "Yellow"
       ],
       "source": {
         "id": "k_htr",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_htr87",
@@ -520,7 +520,7 @@
       ],
       "source": {
         "id": "k_pwr",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "br_w_rb2",
@@ -649,7 +649,7 @@
       "id": "w_fan_pwr_ac",
       "source": {
         "id": "k_fan",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "br_w_fan_pwr",
@@ -750,7 +750,7 @@
       "id": "w_strl_ac",
       "source": {
         "id": "k_str",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "br_w_strl",
@@ -800,7 +800,7 @@
       "id": "w_fan2_pwr_bc",
       "source": {
         "id": "k_fan2",
-        "handle": "c4"
+        "handle": "c1"
       },
       "target": {
         "id": "br_w_fan2_pwr",
@@ -1477,7 +1477,7 @@
       "partId": "m16_18_7"
     },
     {
-      "id": "w_htr_30_cp",
+      "id": "w_htr_87_cp",
       "color": "Red",
       "identColors": [
         "Yellow"
@@ -1488,7 +1488,7 @@
       },
       "target": {
         "id": "k_htr",
-        "handle": "c1"
+        "handle": "c4"
       },
       "partId": "m16_8_2"
     },
@@ -1575,7 +1575,7 @@
       "partId": "m16_14_0"
     },
     {
-      "id": "w_pwr_30_cp",
+      "id": "w_pwr_87_cp",
       "color": "Red",
       "identColors": [
         "Yellow",
@@ -1587,7 +1587,7 @@
       },
       "target": {
         "id": "k_pwr",
-        "handle": "c1"
+        "handle": "c4"
       },
       "partId": "m16_10_2"
     }
@@ -1598,8 +1598,8 @@
       "label": "POWER R2",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "30",
+          "id": "c4",
+          "designation": "87",
           "signal": "EFI 12V in",
           "contactPartId": "ct_f7_load"
         },
@@ -1616,8 +1616,8 @@
           "contactPartId": "ct_faston63"
         },
         {
-          "id": "c4",
-          "designation": "87",
+          "id": "c1",
+          "designation": "30",
           "signal": "EFI 12V out",
           "contactPartId": "ct_f7_load"
         }
@@ -1638,8 +1638,8 @@
       "label": "POWER R4",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "30",
+          "id": "c4",
+          "designation": "87",
           "signal": "Rad fan 12V in",
           "contactPartId": "ct_faston95_8"
         },
@@ -1657,8 +1657,8 @@
           "propagate": false
         },
         {
-          "id": "c4",
-          "designation": "87",
+          "id": "c1",
+          "designation": "30",
           "signal": "Rad fan 12V out",
           "contactPartId": "ct_faston95_8"
         }
@@ -1724,8 +1724,8 @@
       "label": "POWER R3",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "30",
+          "id": "c4",
+          "designation": "87",
           "signal": "Start 12V in",
           "contactPartId": "ct_f7_load"
         },
@@ -1743,8 +1743,8 @@
           "propagate": false
         },
         {
-          "id": "c4",
-          "designation": "87",
+          "id": "c1",
+          "designation": "30",
           "signal": "Start 12V out",
           "contactPartId": "ct_f7_load"
         }
@@ -1765,8 +1765,8 @@
       "label": "POWER R5",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "30",
+          "id": "c4",
+          "designation": "87",
           "signal": "Cond fan 12V in",
           "contactPartId": "ct_faston95_8"
         },
@@ -1784,8 +1784,8 @@
           "propagate": false
         },
         {
-          "id": "c4",
-          "designation": "87",
+          "id": "c1",
+          "designation": "30",
           "signal": "Cond fan 12V out",
           "contactPartId": "ct_faston95_8"
         }
@@ -2134,8 +2134,8 @@
       "label": "POWER R1",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "30",
+          "id": "c4",
+          "designation": "87",
           "signal": "Htr 12V in",
           "contactPartId": "ct_faston63_8",
           "propagate": false
@@ -2155,8 +2155,8 @@
           "propagate": false
         },
         {
-          "id": "c4",
-          "designation": "87",
+          "id": "c1",
+          "designation": "30",
           "signal": "Htr 12V out",
           "contactPartId": "ct_faston63_8",
           "propagate": false
@@ -2185,8 +2185,8 @@
       "label": "POWER R6",
       "cavities": [
         {
-          "id": "c1",
-          "designation": "30",
+          "id": "c4",
+          "designation": "87",
           "signal": "PWR 12V in",
           "contactPartId": "ct_f7_load",
           "propagate": false
@@ -2206,8 +2206,8 @@
           "propagate": false
         },
         {
-          "id": "c4",
-          "designation": "87",
+          "id": "c1",
+          "designation": "30",
           "signal": "PWR 12V out",
           "contactPartId": "ct_f7_load",
           "propagate": false
@@ -2308,14 +2308,14 @@
           "designation": "ACPS IN",
           "signal": "ACPS in",
           "propagate": false,
-          "contactPartId": "ct_minifuse_880398"
+          "contactPartId": "ct_mcp28_968851"
         },
         {
           "id": "acps",
           "designation": "ACPS",
           "signal": "ACPS 10A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         }
       ],
       "layoutPosition": {
@@ -2352,7 +2352,7 @@
           "designation": "BUS1-1",
           "signal": "EFI86 5A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "hl",
@@ -2389,21 +2389,21 @@
           "designation": "BUS1-7",
           "signal": "ALM 5A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "alms",
           "designation": "BUS1-8",
           "signal": "ALMS 2A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "alts",
           "designation": "BUS1-9",
           "signal": "ALTS 2A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "etb",
@@ -2440,7 +2440,7 @@
           "designation": "BUS2-5",
           "signal": "CSB 5A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "dev",
@@ -2453,7 +2453,7 @@
           "designation": "BUS2-7",
           "signal": "EPSEN 7.5A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "acc",
@@ -2466,35 +2466,35 @@
           "designation": "BUS2-9",
           "signal": "ALMIG 2A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "mrsin",
           "designation": "BUS2-12 IN",
           "signal": "MRS in",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "mrs",
           "designation": "BUS2-12",
           "signal": "MRS 7.5A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "b30in",
           "designation": "BUS2-13 IN",
           "signal": "B30 in",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "b30",
           "designation": "BUS2-13",
           "signal": "B30 2A",
           "propagate": false,
-          "contactPartId": "ct_mcp28"
+          "contactPartId": "ct_mcp28_968849"
         }
       ],
       "layoutPosition": {
@@ -4158,7 +4158,7 @@
         "x": 2520,
         "y": 0
       },
-      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 87, mini fuses BUS1-n / BUS2-n, micro relays M11-M22; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M11, k_hr M12, k_horn M13, k_etb M14, k_acc M15, k_eps_en M21, k_rev M22 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 30. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
+      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 30, mini fuses BUS1-n / BUS2-n, micro relays M11-M22; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M11, k_hr M12, k_horn M13, k_etb M14, k_acc M15, k_eps_en M21, k_rev M22 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 87. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
     },
     {
       "id": "n_cavity_notes",
@@ -4167,7 +4167,7 @@
         "x": 2520,
         "y": 750
       },
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLOGIC EFI86 (BUS1-1): ATM-5 relay coil feed, PERMANENT (EFI main relay 86)\nLOGIC MRS IN / MRS (BUS2-12): ATM-7.5 MRS EPS pump logic enable, fed from k_eps_en 87 - this fuse position must NOT pick up the Bus 2 strip (OPEN-ITEMS, CAD detail work)\nLOGIC B30 IN / B30 (BUS2-13): ATM-2 start request, fed from the ignition switch ST1 tap - this fuse position must NOT pick up the Bus 2 strip (same)\nPOWER AMI OUT-6: AMI-60 EPS pump relay 30 (k_eps HCR150, beside the box), Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via LOGIC EFI86 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nCondenser Fan Relay (on/off) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - TE 1-1393304-0, plain relay, no diode\nCondenser Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay k_eps 85: coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27); coil + on SW12 (R22)\nMR-S EHPS pump relay k_eps 30: POWER AMI OUT-6 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHeater relay k_htr 87: two wires in one 9.5 receptacle (8 AWG blower + 14 AWG ACPS feed) - receptacle TBD (OPEN-ITEMS)"
+      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLOGIC EFI86 (BUS1-1): ATM-5 relay coil feed, PERMANENT (EFI main relay 86)\nLOGIC MRS IN / MRS (BUS2-12): ATM-7.5 MRS EPS pump logic enable, fed from k_eps_en 87 - this fuse position must NOT pick up the Bus 2 strip (OPEN-ITEMS, CAD detail work)\nLOGIC B30 IN / B30 (BUS2-13): ATM-2 start request, fed from the ignition switch ST1 tap - this fuse position must NOT pick up the Bus 2 strip (same)\nPOWER AMI OUT-6: AMI-60 EPS pump relay 30 (k_eps HCR150, beside the box), Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via LOGIC EFI86 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 30)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 30)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 30)\nCondenser Fan Relay (on/off) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - TE 1-1393304-0, plain relay, no diode\nCondenser Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 30)\nMR-S EHPS pump relay k_eps 85: coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27); coil + on SW12 (R22)\nMR-S EHPS pump relay k_eps 30: POWER AMI OUT-6 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHeater relay k_htr 30: two wires in one 9.5 receptacle (8 AWG blower + 14 AWG ACPS feed) - receptacle TBD (OPEN-ITEMS)"
     }
   ],
   "wireParts": [
@@ -4567,19 +4567,19 @@
       }
     },
     {
-      "id": "ct_minifuse_880398",
+      "id": "ct_mcp28_968851",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "880398-2",
-      "description": "TERMINAL, RECEPTACLE, TAB 2.8 X 0.8 MM, TIN, UNSEALED, 1-2.5 MM2 (17-13 AWG)",
+      "partNumber": "1-968851-1",
+      "description": "TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 1.0-2.5 MM2 (16-14 AWG)",
       "manufacturer": "TE Connectivity",
       "minGauge": {
         "unit": "AWG",
-        "value": 17
+        "value": 16
       },
       "maxGauge": {
         "unit": "AWG",
-        "value": 13
+        "value": 14
       }
     },
     {
@@ -4649,11 +4649,11 @@
       }
     },
     {
-      "id": "ct_mcp28",
+      "id": "ct_mcp28_968849",
       "type": "Crimp",
       "gender": "Socket",
-      "partNumber": "1241388-2",
-      "description": "TERMINAL, AMP MCP 2.8K RECEPTACLE, GOLD, TAB 2.8 (0.6 / 0.8), 0.5-1 MM2 (20-18 AWG)",
+      "partNumber": "1-968849-1",
+      "description": "TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 0.5-1.0 MM2 (20-18 AWG)",
       "manufacturer": "TE Connectivity",
       "minGauge": {
         "unit": "AWG",
@@ -4771,7 +4771,7 @@
             {
               "id": "cfg-1",
               "type": "ContactPart",
-              "partId": "ct_minifuse_880398"
+              "partId": "ct_mcp28_968851"
             }
           ]
         }
@@ -4890,7 +4890,7 @@
     {
       "id": "cp_rly_micro_no",
       "partNumber": "4-1904124-3",
-      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM A (NO), 12 VDC COIL (TE ON-HAND BOM)",
+      "description": "RELAY, PLUG-IN, MICRO ISO, TE V23074-A1001-A403, 1 FORM C (CO: 30 COMMON, 87 NO, 87A NC), 12 VDC COIL (TE ON-HAND BOM)",
       "manufacturer": "TE Connectivity",
       "configurations": [
         {

@@ -760,8 +760,8 @@
     ],
     "cavities": {
      "c1": [
-      "EFI 12V in",
-      "Fused +12V in (POWER AMI IN-2 EFI 30A)"
+      "EFI 12V out",
+      "+12V out -> LOGIC Bus 2 IN (SW12 sensors/coils, COP, INJ)"
      ],
      "c2": [
       "EFI coil-",
@@ -772,8 +772,8 @@
       "Coil + - PERMANENT battery via LOGIC EFI86 5A *"
      ],
      "c4": [
-      "EFI 12V out",
-      "+12V out -> LOGIC Bus 2 IN (SW12 sensors/coils, COP, INJ)"
+      "EFI 12V in",
+      "Fused +12V in (POWER AMI IN-2 EFI 30A)"
      ]
     }
    },
@@ -784,8 +784,8 @@
     ],
     "cavities": {
      "c1": [
-      "Rad fan 12V in",
-      "Fused +12V in (POWER AMI IN-4 FAN 40A)"
+      "Rad fan 12V out",
+      "+12V out -> radiator fan motor"
      ],
      "c2": [
       "Rad fan coil-",
@@ -796,8 +796,8 @@
       "Coil + - ignition-switched 12V *"
      ],
      "c4": [
-      "Rad fan 12V out",
-      "+12V out -> radiator fan motor"
+      "Rad fan 12V in",
+      "Fused +12V in (POWER AMI IN-4 FAN 40A)"
      ]
     }
    },
@@ -832,8 +832,8 @@
     ],
     "cavities": {
      "c1": [
-      "Start 12V in",
-      "Fused +12V in (POWER AMI IN-3 STR 30A)"
+      "Start 12V out",
+      "+12V out -> starter solenoid S - broken off, continues on ST185-A-engine"
      ],
      "c2": [
       "Start coil-",
@@ -844,8 +844,8 @@
       "Coil + - ignition-switched 12V *"
      ],
      "c4": [
-      "Start 12V out",
-      "+12V out -> starter solenoid S - broken off, continues on ST185-A-engine"
+      "Start 12V in",
+      "Fused +12V in (POWER AMI IN-3 STR 30A)"
      ]
     }
    },
@@ -856,8 +856,8 @@
     ],
     "cavities": {
      "c1": [
-      "Cond fan 12V in",
-      "Fused +12V in (POWER AMI IN-5 FAN2 30A)"
+      "Cond fan 12V out",
+      "+12V out -> condenser fan motor"
      ],
      "c2": [
       "Cond fan coil-",
@@ -868,8 +868,8 @@
       "Coil + - ignition-switched 12V *"
      ],
      "c4": [
-      "Cond fan 12V out",
-      "+12V out -> condenser fan motor"
+      "Cond fan 12V in",
+      "Fused +12V in (POWER AMI IN-5 FAN2 30A)"
      ]
     }
    },
@@ -1048,8 +1048,8 @@
     ],
     "cavities": {
      "c1": [
-      "Htr 12V in",
-      "Fused +12V in (POWER AMI IN-1 HTR 40A)"
+      "Htr 12V out",
+      "+12V out -> sp_htr87 (TE 320238 4 AWG splice, 8 + 8 + 14 AWG = 37130 CMA) -> blower motor B4 pin 2 (br_w_rb4) + POWER ACPS IN (14 AWG)"
      ],
      "c2": [
       "Htr coil-",
@@ -1060,8 +1060,8 @@
       "Coil + <- old R/B4 pin 3 R-L (EWD 1993 p.215)"
      ],
      "c4": [
-      "Htr 12V out",
-      "+12V out -> sp_htr87 (TE 320238 4 AWG splice, 8 + 8 + 14 AWG = 37130 CMA) -> blower motor B4 pin 2 (br_w_rb4) + POWER ACPS IN (14 AWG)"
+      "Htr 12V in",
+      "Fused +12V in (POWER AMI IN-1 HTR 40A)"
      ],
      "c5": [
       "Htr 87a",
@@ -1076,8 +1076,8 @@
     ],
     "cavities": {
      "c1": [
-      "PWR 12V in",
-      "Fused +12V in (POWER AMI IN-6 PWR 30A)"
+      "PWR 12V out",
+      "+12V out -> power-window feed W-G (br_w_rb2, EngineRoom-C)"
      ],
      "c2": [
       "PWR coil-",
@@ -1088,8 +1088,8 @@
       "Coil + <- old R/B2 pin 2 L-Y, GAUGE 15A with the ignition on (EWD 1993 p.137-138)"
      ],
      "c4": [
-      "PWR 12V out",
-      "+12V out -> power-window feed W-G (br_w_rb2, EngineRoom-C)"
+      "PWR 12V in",
+      "Fused +12V in (POWER AMI IN-6 PWR 30A)"
      ]
     }
    },
@@ -1105,23 +1105,23 @@
      ],
      "in2": [
       "EFI 30A",
-      "AMI-30 EFI -> EFI main relay k_efi 30 (R2)"
+      "AMI-30 EFI -> EFI main relay k_efi 87 (R2)"
      ],
      "in3": [
       "STR 30A",
-      "AMI-30 STR -> start relay k_str 30 (R3)"
+      "AMI-30 STR -> start relay k_str 87 (R3)"
      ],
      "in4": [
       "FAN 40A",
-      "AMI-40 FAN -> radiator fan relay k_fan 30 (R4)"
+      "AMI-40 FAN -> radiator fan relay k_fan 87 (R4)"
      ],
      "in5": [
       "FAN2 30A",
-      "AMI-30 FAN2 -> condenser fan relay k_fan2 30 (R5)"
+      "AMI-30 FAN2 -> condenser fan relay k_fan2 87 (R5)"
      ],
      "in6": [
       "PWR 30A",
-      "AMI-30 PWR -> power relay k_pwr 30 (R6)"
+      "AMI-30 PWR -> power relay k_pwr 87 (R6)"
      ],
      "out1": [
       "BUS1 50A",
@@ -1149,7 +1149,7 @@
      ],
      "acps_in": [
       "ACPS in",
-      "ACPS mini fuse feed in - heater relay k_htr 87"
+      "ACPS mini fuse feed in - heater relay k_htr 30"
      ],
      "acps": [
       "ACPS 10A",
@@ -1160,7 +1160,7 @@
    "fb_logic": {
     "label": [
      "FB-LOGIC",
-     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 87) mini fuse strips, micro relays M11-M22"
+     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 30) mini fuse strips, micro relays M11-M22"
     ],
     "cavities": {
      "b1": [
@@ -1169,7 +1169,7 @@
      ],
      "b2": [
       "Bus 2 in",
-      "Bus 2 in (switched) - EFI main relay k_efi 87, M5 feed lug"
+      "Bus 2 in (switched) - EFI main relay k_efi 30, M5 feed lug"
      ],
      "efi86": [
       "EFI86 5A",
@@ -1325,11 +1325,11 @@
    ],
    "br_w_rb4": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2"
+    "Broken off - continues on ST185-EngineRoom-C: heater relay 30 (POWER HTR 40A) -> blower motor B4 pin 2"
    ],
    "br_w_rb2": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)"
+    "Broken off - continues on ST185-EngineRoom-C: power relay 30 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)"
    ],
    "br_w_csb12": [
     "",
@@ -1345,7 +1345,7 @@
    ],
    "br_w_fan_pwr": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 87 feed"
+    "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 30 feed"
    ],
    "br_w81": [
     "",
@@ -1361,7 +1361,7 @@
    ],
    "br_w_strl": [
     "",
-    "Broken off - continues on ST185-A-engine: start relay 87 to the starter S terminal"
+    "Broken off - continues on ST185-A-engine: start relay 30 to the starter S terminal"
    ],
    "br_w_fan285": [
     "",
@@ -1369,7 +1369,7 @@
    ],
    "br_w_fan2_pwr": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 87 feed"
+    "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 30 feed"
    ],
    "br_w_eps_trig": [
     "",
@@ -2019,7 +2019,7 @@
    ],
    "br_w_strl": [
     "",
-    "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal"
+    "Broken off - continues on ST185-CabinPower: start relay 30 to the starter S terminal"
    ],
    "br_w124_e": [
     "",
@@ -2497,7 +2497,7 @@
     "cavities": {
      "c1": [
       "Rad fan motor +",
-      "From k_fan 87, 8 AWG"
+      "From k_fan 30, 8 AWG"
      ]
     }
    },
@@ -2509,7 +2509,7 @@
     "cavities": {
      "c1": [
       "Cond fan motor +",
-      "From k_fan2 87, 8 AWG"
+      "From k_fan2 30, 8 AWG"
      ]
     }
    },
@@ -2677,11 +2677,11 @@
    ],
    "br_w_fan_pwr": [
     "",
-    "Broken off - continues on ST185-CabinPower: radiator fan relay 87 feed"
+    "Broken off - continues on ST185-CabinPower: radiator fan relay 30 feed"
    ],
    "br_w_fan2_pwr": [
     "",
-    "Broken off - continues on ST185-CabinPower: condenser fan relay 87 feed"
+    "Broken off - continues on ST185-CabinPower: condenser fan relay 30 feed"
    ],
    "br_w_eps_pwr": [
     "",
@@ -2733,11 +2733,11 @@
    ],
    "br_w_rb4": [
     "",
-    "Broken off - continues on ST185-CabinPower: heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2"
+    "Broken off - continues on ST185-CabinPower: heater relay 30 (POWER HTR 40A) -> blower motor B4 pin 2"
    ],
    "br_w_rb2": [
     "",
-    "Broken off - continues on ST185-CabinPower: power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)"
+    "Broken off - continues on ST185-CabinPower: power relay 30 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)"
    ],
    "fl_a4_4": [
     "",

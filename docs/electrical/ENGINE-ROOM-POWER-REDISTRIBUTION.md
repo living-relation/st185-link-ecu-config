@@ -324,7 +324,7 @@ Since 2026-10-14 (DECISIONS R75, CAD rev 5 layout accepted by Dan 2026-10-14 (B6
 | OEM HOT | 60 A (POWER AMI OUT-5, 6 AWG `w_pdb_jb1`) | FL ALT feed into J/B1 | 1I-1 (L1) |
 | HEATER feed | 40 A AMI (POWER AMI IN-1) + heater relay POWER R1 (R/B No.4 removed, 2026-10-10) | FL ALT → E13 → R/B4 | Blower motor B4 pin 2 (§5.4) |
 | POWER feed | 30 A AMI (POWER AMI IN-6) + power relay POWER R6 (R/B No.2 removed, 2026-10-10) | FL ALT → I2 → R/B2 | W-G window feed (§5.4) |
-| ACPS (A/C pressure switch +12V) | 10 A mini fuse in the POWER box, from heater relay 87 | OEM A/C circuit feed to A5 pin 1, EWD p.152 | CabinPower → flying lead A5 pin 1 (`w_acp_1`); switched return A5 pin 4 (`fl_a5_4`) breaks off to A/C amplifier A18 pin 13 (`fl_acamp_psw`) on `ST185-A-cabin` via `BR_AC_PSW` |
+| ACPS (A/C pressure switch +12V) | 10 A mini fuse in the POWER box, from heater relay 30 | OEM A/C circuit feed to A5 pin 1, EWD p.152 | CabinPower → flying lead A5 pin 1 (`w_acp_1`); switched return A5 pin 4 (`fl_a5_4`) breaks off to A/C amplifier A18 pin 13 (`fl_acamp_psw`) on `ST185-A-cabin` via `BR_AC_PSW` |
 | Fuel pump | 40 A AMI in the battery relay block (trunk), fed from the kill switch LOAD side | old cabin pump fuse | HCR150 `k_fp` → pump (`ST185-RearFuel`) |
 | Charge / start | none at PDB, or ANL 200 A | F11 100A FL ALT | RADLOK + → starter B+ |
 | ABS | **omit** | F11 60A FL ABS | deleted |
@@ -347,7 +347,7 @@ Which circuit sits where, and why. Positions are the CAD slot map's names (POWER
 | 8 | MR-S EPS enable logic (F13) | MTA-2 MiniVal 3 | LOGIC | BUS2-12 | 7.5 | — | — | 18 in / 20 out | fed from k_eps_en 87 - this position must NOT pick up the Bus 2 strip |
 | 9 | Condenser fan | MTA-3 MaxiVal + Maxi R1 | POWER | AMI IN-5 + R5 | 30 AMI | k_fan2 | TE 1-1393304-0 (own; bracket not used) | 8 | Ign 5 B13; plain relay, no diode |
 | 10 | Power windows (ex-R/B2 POWER) | LMI L2 + MTA-3 Maxi R2 | POWER | AMI IN-6 + R6 | 30 AMI | power | TE 1-1393304-0 (own; bracket not used) | 10 | coil: key IG; door lock / tilt-away W-L is LOGIC WL 15 A (R58), not a tap |
-| 11 | A/C (ACPS) from heater-relay 87 | MTA-3 MiniVal 1 | POWER | ACPS mini fuse | 10 | — | — | 14 in / 18 out | the 14 AWG feed shares heater relay 87 with the 8 AWG blower wire |
+| 11 | A/C (ACPS) from heater-relay 30 | MTA-3 MiniVal 1 | POWER | ACPS mini fuse | 10 | — | — | 14 in / 18 out | the 14 AWG feed shares heater relay 30 with the 8 AWG blower wire |
 | 12 | B30 start request (ST1 tap) | MTA-3 MiniVal 2 | LOGIC | BUS2-13 | 2 | — | — | 20 | B-W from old R/B4 spot → DI7 B30; this position must NOT pick up the Bus 2 strip |
 | 13 | RTR pop-up headlights (OEM R8 relay) | LMI L3 | POWER | AMI OUT-2 | 30 AMI | — | no relay (OEM R8) | 10 |  |
 | 14 | AM1 → IE1-10 / I13-4 | LMI L4 | POWER | AMI OUT-3 | 40 AMI | — | — | 8 |  |
@@ -379,7 +379,7 @@ Retired with Option B: the ECU permanent +12V (F8, removed 2026-10-12) and the w
 **Feeds**
 
 - Trunk MEGA 300 A → 1/0 → one combined power + ground bus bar (glove box; part picked: the rev 7 POWER box's bus zone, DECISIONS R57 / R91, parts in `cad/fusebox/rev7/fusebox-parts-power.csv`). That bus feeds the POWER box bar (1/0 on its M8 bolt) and nothing else on the fuse side.
-- LOGIC Bus 1 = permanent, from POWER AMI OUT-1 BUS1 50 A (8 AWG). LOGIC Bus 2 = switched, from k_efi 87 (POWER R2, 10 AWG). Both land on M5 strip-feed bolts.
+- LOGIC Bus 1 = permanent, from POWER AMI OUT-1 BUS1 50 A (8 AWG). LOGIC Bus 2 = switched, from k_efi 30 (POWER R2, 10 AWG). Both land on M5 strip-feed bolts.
 - LOGIC wire size (Daniel 2026-10-12, F2, carried over from the RFRM): mini fuse and micro relay cavities take 12-22 AWG; only the two strip feeds are heavier. Every circuit drawn at 10 AWG or heavier sits in the POWER box. Gate: `docs/harness/audit_logic_gauge.py`.
 - Battery relay block (trunk, passenger side between the rear wall and the battery, Z4): kill switch MAIN 2 (LOAD) → 10 AWG → M6 stud → AMI-40 → straight jumper → HCR150 terminal 3; terminal 5 → pump.
 

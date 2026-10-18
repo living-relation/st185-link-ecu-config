@@ -82,7 +82,7 @@ def power_cavities():
         cx, cy = r['cx'], r['cy']
         P_ = S.RELAY_B_PINS if r['B'] else S.F7_PINS        # fit audit 2026-10-18: the maker pattern; harness pin -> blade by S.POWER_ROLE_POS
         pos_ = {'near': (cx - P_['30'][1], cy), 'far': (cx - P_['87'][1], cy)}
-        pins = [('87',) + pos_[S.POWER_ROLE_POS['87']] + (cy,), ('30',) + pos_[S.POWER_ROLE_POS['30']] + (None,),
+        pins = [('87',) + pos_[S.POWER_ROLE_POS['87']] + (None,), ('30',) + pos_[S.POWER_ROLE_POS['30']] + (cy,),   # 87 = the AMI feed (R164 / R168): no harness lane
                 ('85', cx - P_['85'][1], cy + P_['85'][0], cy - 9.0), ('86', cx - P_['86'][1], cy + P_['86'][0], cy + 9.0)]
         if r['B']:
             pins.append(('87a', cx - P_['87a'][1], cy, cy))

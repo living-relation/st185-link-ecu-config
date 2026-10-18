@@ -51,7 +51,7 @@
    "box_paths": []
   },
   {
-   "wire": "w_fb_k_fan2_30_ac",
+   "wire": "w_fb_k_fan2_87_ac",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -68,22 +68,22 @@
      "box": "POWER",
      "part": "Klauke 2R5",
      "des": "AMI IN-5",
-     "sig": "AMI-30 FAN2 -> condenser fan relay k_fan2 30 (R5)",
+     "sig": "AMI-30 FAN2 -> condenser fan relay k_fan2 87 (R5)",
      "at": null,
      "part_from": "parts list"
     },
     {
      "id": "k_fan2",
-     "cav": "c1",
+     "cav": "c4",
      "box": "POWER",
      "part": "280755-4",
-     "des": "30",
+     "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-5 FAN2 30A)",
      "at": {
       "x": 55.75,
       "y": 115.0,
       "lane": null,
-      "kind": "F7 30",
+      "kind": "F7 87",
       "name": "k_fan2"
      },
      "part_from": "harness"
@@ -310,10 +310,10 @@
    "ends": [
     {
      "id": "k_efi",
-     "cav": "c4",
+     "cav": "c1",
      "box": "POWER",
      "part": "280756-4",
-     "des": "87",
+     "des": "30",
      "sig": "+12V out -> LOGIC Bus 2 IN (SW12 sensors/coils, COP, INJ)",
      "at": {
       "x": 8.85,
@@ -322,7 +322,7 @@
        "P",
        61.0
       ],
-      "kind": "F7 87",
+      "kind": "F7 30",
       "name": "k_efi"
      },
      "part_from": "harness"
@@ -333,7 +333,7 @@
      "box": "LOGIC",
      "part": "2R5",
      "des": "BUS2",
-     "sig": "Bus 2 in (switched) - EFI main relay k_efi 87, M5 feed lug",
+     "sig": "Bus 2 in (switched) - EFI main relay k_efi 30, M5 feed lug",
      "at": null,
      "part_from": "harness"
     }
@@ -373,12 +373,12 @@
       ]
      ],
      "R": 12.635,
-     "end": "k_efi c4"
+     "end": "k_efi c1"
     }
    ]
   },
   {
-   "wire": "w_fb_k_efi_30_cp",
+   "wire": "w_fb_k_efi_87_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -395,22 +395,22 @@
      "box": "POWER",
      "part": "36161",
      "des": "AMI IN-2",
-     "sig": "AMI-30 EFI -> EFI main relay k_efi 30 (R2)",
+     "sig": "AMI-30 EFI -> EFI main relay k_efi 87 (R2)",
      "at": null,
      "part_from": "harness"
     },
     {
      "id": "k_efi",
-     "cav": "c1",
+     "cav": "c4",
      "box": "POWER",
      "part": "280756-4",
-     "des": "30",
+     "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-2 EFI 30A)",
      "at": {
       "x": 26.75,
       "y": 61.0,
       "lane": null,
-      "kind": "F7 30",
+      "kind": "F7 87",
       "name": "k_efi"
      },
      "part_from": "harness"
@@ -451,8 +451,7 @@
       "kind": "fuse out",
       "name": "EFI86"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "k_efi",
@@ -652,7 +651,7 @@
    ]
   },
   {
-   "wire": "w_fb_k_str_30_cp",
+   "wire": "w_fb_k_str_87_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -669,22 +668,22 @@
      "box": "POWER",
      "part": "36161",
      "des": "AMI IN-3",
-     "sig": "AMI-30 STR -> start relay k_str 30 (R3)",
+     "sig": "AMI-30 STR -> start relay k_str 87 (R3)",
      "at": null,
      "part_from": "harness"
     },
     {
      "id": "k_str",
-     "cav": "c1",
+     "cav": "c4",
      "box": "POWER",
      "part": "280756-4",
-     "des": "30",
+     "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-3 STR 30A)",
      "at": {
       "x": 55.75,
       "y": 79.0,
       "lane": null,
-      "kind": "F7 30",
+      "kind": "F7 87",
       "name": "k_str"
      },
      "part_from": "harness"
@@ -697,7 +696,7 @@
    "box_paths": []
   },
   {
-   "wire": "w_fb_k_fan_30_cp",
+   "wire": "w_fb_k_fan_87_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -714,22 +713,22 @@
      "box": "POWER",
      "part": "Klauke 2R5",
      "des": "AMI IN-4",
-     "sig": "AMI-40 FAN -> radiator fan relay k_fan 30 (R4)",
+     "sig": "AMI-40 FAN -> radiator fan relay k_fan 87 (R4)",
      "at": null,
      "part_from": "parts list"
     },
     {
      "id": "k_fan",
-     "cav": "c1",
+     "cav": "c4",
      "box": "POWER",
      "part": "280755-4",
-     "des": "30",
+     "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-4 FAN 40A)",
      "at": {
       "x": 26.75,
       "y": 97.0,
       "lane": null,
-      "kind": "F7 30",
+      "kind": "F7 87",
       "name": "k_fan"
      },
      "part_from": "harness"
@@ -770,8 +769,7 @@
       "kind": "fuse out",
       "name": "MRS"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "br_w_fb_mrs_en",
@@ -929,7 +927,7 @@
      "box": "POWER",
      "part": "1-968851-1",
      "des": "ACPS IN",
-     "sig": "ACPS mini fuse feed in - heater relay k_htr 87",
+     "sig": "ACPS mini fuse feed in - heater relay k_htr 30",
      "at": {
       "x": 12.45,
       "y": 35.0,
@@ -940,8 +938,7 @@
       "kind": "acps in",
       "name": "ACPS"
      },
-     "harness_part": "880398-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     }
    ],
    "kind": "external",
@@ -1375,8 +1372,7 @@
       "kind": "acps out",
       "name": "ACPS"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "br_w_acp_1",
@@ -1541,7 +1537,7 @@
    "box_paths": []
   },
   {
-   "wire": "w_htr_87_cp",
+   "wire": "w_htr_30_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -1553,10 +1549,10 @@
    "ends": [
     {
      "id": "k_htr",
-     "cav": "c4",
+     "cav": "c1",
      "box": "POWER",
      "part": "62998-2",
-     "des": "87",
+     "des": "30",
      "sig": "+12V out -> sp_htr87 (TE 320238 4 AWG splice, 8 + 8 + 14 AWG = 37130 CMA) -> blower motor ",
      "at": {
       "x": 37.85,
@@ -1565,7 +1561,7 @@
        "P",
        43.0
       ],
-      "kind": "F7 87",
+      "kind": "F7 30",
       "name": "k_htr"
      },
      "part_from": "harness"
@@ -1615,7 +1611,7 @@
       ]
      ],
      "R": 17.955000000000002,
-     "end": "k_htr c4"
+     "end": "k_htr c1"
     }
    ]
   },
@@ -1633,10 +1629,10 @@
    "ends": [
     {
      "id": "k_pwr",
-     "cav": "c4",
+     "cav": "c1",
      "box": "POWER",
      "part": "280756-4",
-     "des": "87",
+     "des": "30",
      "sig": "+12V out -> power-window feed W-G (br_w_rb2, EngineRoom-C)",
      "at": {
       "x": 8.85,
@@ -1645,7 +1641,7 @@
        "P",
        133.0
       ],
-      "kind": "F7 87",
+      "kind": "F7 30",
       "name": "k_pwr"
      },
      "part_from": "harness"
@@ -1656,7 +1652,7 @@
      "box": null,
      "part": null,
      "des": "",
-     "sig": "Broken off - continues on ST185-EngineRoom-C: power relay 87 (POWER PWR 30A) -> power-wind",
+     "sig": "Broken off - continues on ST185-EngineRoom-C: power relay 30 (POWER PWR 30A) -> power-wind",
      "at": null
     }
    ],
@@ -1695,7 +1691,7 @@
       ]
      ],
      "R": 12.635,
-     "end": "k_pwr c4"
+     "end": "k_pwr c1"
     }
    ]
   },
@@ -1729,8 +1725,7 @@
       "kind": "fuse out",
       "name": "CSB"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "br_w_csb12",
@@ -2209,10 +2204,10 @@
    "ends": [
     {
      "id": "k_fan",
-     "cav": "c4",
+     "cav": "c1",
      "box": "POWER",
      "part": "280755-4",
-     "des": "87",
+     "des": "30",
      "sig": "+12V out -> radiator fan motor",
      "at": {
       "x": 8.85,
@@ -2221,7 +2216,7 @@
        "P",
        97.0
       ],
-      "kind": "F7 87",
+      "kind": "F7 30",
       "name": "k_fan"
      },
      "part_from": "harness"
@@ -2232,7 +2227,7 @@
      "box": null,
      "part": null,
      "des": "",
-     "sig": "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 87 feed",
+     "sig": "Broken off - continues on ST185-EngineRoom-C: radiator fan relay 30 feed",
      "at": null
     }
    ],
@@ -2271,7 +2266,7 @@
       ]
      ],
      "R": 17.955000000000002,
-     "end": "k_fan c4"
+     "end": "k_fan c1"
     }
    ]
   },
@@ -2687,10 +2682,10 @@
    "ends": [
     {
      "id": "k_str",
-     "cav": "c4",
+     "cav": "c1",
      "box": "POWER",
      "part": "280756-4",
-     "des": "87",
+     "des": "30",
      "sig": "+12V out -> starter solenoid S - broken off, continues on ST185-A-engine",
      "at": {
       "x": 37.85,
@@ -2699,7 +2694,7 @@
        "P",
        79.0
       ],
-      "kind": "F7 87",
+      "kind": "F7 30",
       "name": "k_str"
      },
      "part_from": "harness"
@@ -2710,7 +2705,7 @@
      "box": null,
      "part": null,
      "des": "",
-     "sig": "Broken off - continues on ST185-A-engine: start relay 87 to the starter S terminal",
+     "sig": "Broken off - continues on ST185-A-engine: start relay 30 to the starter S terminal",
      "at": null
     }
    ],
@@ -2749,7 +2744,7 @@
       ]
      ],
      "R": 12.635,
-     "end": "k_str c4"
+     "end": "k_str c1"
     }
    ]
   },
@@ -2926,10 +2921,10 @@
    "ends": [
     {
      "id": "k_fan2",
-     "cav": "c4",
+     "cav": "c1",
      "box": "POWER",
      "part": "280755-4",
-     "des": "87",
+     "des": "30",
      "sig": "+12V out -> condenser fan motor",
      "at": {
       "x": 37.85,
@@ -2938,7 +2933,7 @@
        "P",
        115.0
       ],
-      "kind": "F7 87",
+      "kind": "F7 30",
       "name": "k_fan2"
      },
      "part_from": "harness"
@@ -2949,7 +2944,7 @@
      "box": null,
      "part": null,
      "des": "",
-     "sig": "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 87 feed",
+     "sig": "Broken off - continues on ST185-EngineRoom-C: condenser fan relay 30 feed",
      "at": null
     }
    ],
@@ -2988,7 +2983,7 @@
       ]
      ],
      "R": 17.955000000000002,
-     "end": "k_fan2 c4"
+     "end": "k_fan2 c1"
     }
    ]
   },
@@ -3351,8 +3346,7 @@
       "kind": "fuse in",
       "name": "B30"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     }
    ],
    "kind": "external",
@@ -3424,8 +3418,7 @@
       "kind": "fuse out",
       "name": "B30"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "br_w_start_out",
@@ -3506,8 +3499,7 @@
       "kind": "fuse out",
       "name": "ALM"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "t_at_12v",
@@ -3588,8 +3580,7 @@
       "kind": "fuse out",
       "name": "ALMS"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "t_at_12v_shk",
@@ -3670,8 +3661,7 @@
       "kind": "fuse out",
       "name": "ALMIG"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "t_at_ig",
@@ -3912,8 +3902,7 @@
       "kind": "fuse out",
       "name": "EPSEN"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "k_eps_en",
@@ -4097,8 +4086,7 @@
       "kind": "fuse in",
       "name": "MRS"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     }
    ],
    "kind": "internal",
@@ -4574,8 +4562,7 @@
       "kind": "fuse out",
       "name": "ALTS"
      },
-     "harness_part": "1241388-2",
-     "part_from": "R123 swap"
+     "part_from": "harness"
     },
     {
      "id": "br_alt_s_cp",
@@ -5573,7 +5560,7 @@
    ]
   },
   {
-   "wire": "w_htr_30_cp",
+   "wire": "w_htr_87_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -5595,16 +5582,16 @@
     },
     {
      "id": "k_htr",
-     "cav": "c1",
+     "cav": "c4",
      "box": "POWER",
      "part": "62998-2",
-     "des": "30",
+     "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-1 HTR 40A)",
      "at": {
       "x": 55.75,
       "y": 43.0,
       "lane": null,
-      "kind": "F7 30",
+      "kind": "F7 87",
       "name": "k_htr"
      },
      "part_from": "harness"
@@ -6016,7 +6003,7 @@
    ]
   },
   {
-   "wire": "w_pwr_30_cp",
+   "wire": "w_pwr_87_cp",
    "file": "CabinPower",
    "colour": "Red",
    "bands": [
@@ -6033,22 +6020,22 @@
      "box": "POWER",
      "part": "Klauke 2R5",
      "des": "AMI IN-6",
-     "sig": "AMI-30 PWR -> power relay k_pwr 30 (R6)",
+     "sig": "AMI-30 PWR -> power relay k_pwr 87 (R6)",
      "at": null,
      "part_from": "parts list"
     },
     {
      "id": "k_pwr",
-     "cav": "c1",
+     "cav": "c4",
      "box": "POWER",
      "part": "280756-4",
-     "des": "30",
+     "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-6 PWR 30A)",
      "at": {
       "x": 26.75,
       "y": 133.0,
       "lane": null,
-      "kind": "F7 30",
+      "kind": "F7 87",
       "name": "k_pwr"
      },
      "part_from": "harness"
@@ -6623,7 +6610,7 @@
    "fits": true,
    "what": [
     "k_htr c5",
-    "k_htr c4"
+    "k_htr c1"
    ]
   },
   {
@@ -6658,7 +6645,7 @@
    "margin": 1.59,
    "fits": true,
    "what": [
-    "k_efi c4"
+    "k_efi c1"
    ]
   },
   {
@@ -6693,7 +6680,7 @@
    "margin": 0.99,
    "fits": true,
    "what": [
-    "k_str c4"
+    "k_str c1"
    ]
   },
   {
@@ -6728,7 +6715,7 @@
    "margin": 1.57,
    "fits": true,
    "what": [
-    "k_fan c4"
+    "k_fan c1"
    ]
   },
   {
@@ -6763,7 +6750,7 @@
    "margin": 1.57,
    "fits": true,
    "what": [
-    "k_fan2 c4"
+    "k_fan2 c1"
    ]
   },
   {
@@ -6798,7 +6785,7 @@
    "margin": 1.59,
    "fits": true,
    "what": [
-    "k_pwr c4"
+    "k_pwr c1"
    ]
   },
   {
@@ -10833,7 +10820,7 @@
    "wire_od": 5.13,
    "source": "harness",
    "wires": [
-    "w_htr_87_cp"
+    "w_htr_30_cp"
    ],
    "hole": [
     8.77,
@@ -10954,7 +10941,7 @@
    "wire_od": 5.13,
    "source": "harness",
    "wires": [
-    "w_htr_30_cp"
+    "w_htr_87_cp"
    ],
    "hole": [
     8.77,
@@ -11161,7 +11148,7 @@
    "wire_od": 2.97,
    "source": "harness",
    "wires": [
-    "w_fb_k_efi_30_cp"
+    "w_fb_k_efi_87_cp"
    ],
    "hole": [
     6.92,
@@ -11333,7 +11320,7 @@
    "wire_od": 2.97,
    "source": "harness",
    "wires": [
-    "w_fb_k_str_30_cp"
+    "w_fb_k_str_87_cp"
    ],
    "hole": [
     6.92,
@@ -11505,7 +11492,7 @@
    "wire_od": 5.13,
    "source": "harness",
    "wires": [
-    "w_fb_k_fan_30_cp"
+    "w_fb_k_fan_87_cp"
    ],
    "hole": [
     8.82,
@@ -11677,7 +11664,7 @@
    "wire_od": 5.13,
    "source": "harness",
    "wires": [
-    "w_fb_k_fan2_30_ac"
+    "w_fb_k_fan2_87_ac"
    ],
    "hole": [
     8.82,
@@ -11849,7 +11836,7 @@
    "wire_od": 3.61,
    "source": "harness",
    "wires": [
-    "w_pwr_30_cp"
+    "w_pwr_87_cp"
    ],
    "hole": [
     6.92,

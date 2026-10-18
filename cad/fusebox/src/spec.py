@@ -358,10 +358,9 @@ F7_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '85': (-8.45, -1.85), '86': (
 RELAY_B_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '87a': (0.0, RELAY_B['v87a']), '85': (-8.4, -2.35), '86': (8.4, -2.35)}
 # Which harness pin (sot/channels.csv c1 = 30, c4 = 87) lands on which real blade. The box brings every AMI feed up round its saddle into the FAR
 # blade (v -10.25) = the real 87, and takes the harness out of the NEAR blade = the real 30. The F7s are 1 form A (30 - 87 is one switch, either way
-# round): DECISIONS R168 (N22 = A) moves the SoT feed to 87; ST185-CabinPower still draws it on c1 (OPEN-ITEMS row 137). The heater (1 form C, DECISIONS
-# R164): SoT 87 = the 40 A feed = the far blade, SoT 30 = the blower = the near blade, as on the car (1993 EWD p.215); ST185-CabinPower still draws
-# the feed on c1 (OPEN-ITEMS row), so the map below stays c1 -> far, c4 -> near for every relay until that redraw (then k_htr: c1 near, c4 far).
-POWER_ROLE_POS = {'30': 'far', '87': 'near'}
+# round): DECISIONS R168 (N22 = A) puts the feed on 87; the heater (1 form C, DECISIONS R164): 87 = the 40 A feed, 30 = the blower, as on the car
+# (1993 EWD p.215). ST185-CabinPower draws every POWER relay that way (OPEN-ITEMS rows 132 / 137), so harness pin = real blade for all six.
+POWER_ROLE_POS = {'30': 'near', '87': 'far'}
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
 BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper flat bar stock; machined parts since D6 (Dan 2026-10-16, R76 amended)
 # SteveCAD audit v3 (2026-10-16, Dan's D3 / D6): clearance holes ISO 273 medium, tapped holes modelled at the ISO coarse tap drill,
@@ -459,7 +458,7 @@ STRIP_Y = {'BUS1': (11.5, 124.0), 'BUS2': (21.1, 140.1)}     # N2: PEM edge dist
 # Bus 2 starts 2.4 earlier (was 23.5: the Bus 1 feed bolt tip now keeps 3.4 in x from it across the wider gap) and ends 0.1 later
 FEED = {'BUS1': dict(y=18.6, z=13.0, dir=-1), 'BUS2': dict(y=133.0, z=13.0, dir=+1)}   # N2: Bus 1 feed 0.6 rearward (PEM M5 edge 7.1)
 STUDS = {'BUS1': 10, 'BUS2': 9}                       # stud positions per strip (markup 2026-10-17: spares deleted - see MINI_DROP / mini_stud)
-FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 87', 10)}   # (from, AWG) - wires run box to box
+FEEDS = {'BUS1': ('AMI BUS1 50 A output', 8), 'BUS2': ('k_efi 30', 10)}   # (from, AWG) - wires run box to box
 # harness gauge per LOGIC output (ST185-CabinPower fb_logic contacts: 1241388-2 = 20-18 AWG, 880398-2 = 16-14 AWG)
 OUT_SMALL = {'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'MRS', 'B30'}
 

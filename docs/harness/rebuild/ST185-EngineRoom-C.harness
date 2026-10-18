@@ -1886,7 +1886,7 @@
         "y": 1020
       },
       "propagate": false,
-      "label": "POWER box relay R4 pin 87 (glove box; CabinPower) - radiator fan relay out"
+      "label": "POWER box relay R4 pin 30 (glove box; CabinPower) - radiator fan relay out"
     },
     {
       "id": "br_w_fan2_pwr",
@@ -1901,7 +1901,7 @@
         "y": 1260
       },
       "propagate": false,
-      "label": "POWER box relay R5 pin 87 (glove box; CabinPower) - condenser fan relay out"
+      "label": "POWER box relay R5 pin 30 (glove box; CabinPower) - condenser fan relay out"
     },
     {
       "id": "br_w_eps_pwr",
@@ -2096,7 +2096,7 @@
         "y": 690
       },
       "propagate": false,
-      "label": "Heater relay splice at POWER R1 pin 87 (glove box; CabinPower) - blower feed"
+      "label": "Heater relay splice at POWER R1 pin 30 (glove box; CabinPower) - blower feed"
     },
     {
       "id": "br_w_rb2",
@@ -2111,7 +2111,7 @@
         "y": 570
       },
       "propagate": false,
-      "label": "POWER box relay R6 pin 87 (glove box; CabinPower) - power window relay out"
+      "label": "POWER box relay R6 pin 30 (glove box; CabinPower) - power window relay out"
     },
     {
       "id": "fl_a4_4",
