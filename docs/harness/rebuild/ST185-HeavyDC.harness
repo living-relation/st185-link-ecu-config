@@ -987,7 +987,10 @@
       "length": {
         "value": 3000,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
     },
     {
       "id": "bn_bp_hdc_pdb_h__br_h3_radlok_pos",
@@ -1014,7 +1017,10 @@
       "length": {
         "value": 390,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
     },
     {
       "id": "bn_bp_hdc_fw__rl_pos_fw",
@@ -1059,7 +1065,10 @@
       "length": {
         "value": 1550,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
     },
     {
       "id": "bn_rl_neg_eng__t_eng_block",
@@ -1145,7 +1154,10 @@
       "length": {
         "value": 150,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
     },
     {
       "id": "bn_bp_hdc_pdb_h__br_ig_ks_in",
@@ -1546,6 +1558,28 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_dr25_112",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1-1/2-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 38.1 MM EXPANDED ID, 19.0 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039234011.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 19.0,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 38.1,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 2.41,
+        "unit": "mm"
+      },
+      "isFixedLength": false
     }
   ],
   "terminalParts": [

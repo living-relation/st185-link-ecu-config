@@ -284,7 +284,8 @@
       "endLabel": "FUEL SENDER",
       "partIds": [
         "cov_lbl_316",
-        "cov_lbl_316"
+        "cov_lbl_316",
+        "cov_dr25_316"
       ]
     },
     {
@@ -467,6 +468,28 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_dr25_316",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/16-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039294018.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 2.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.84,
+        "unit": "mm"
+      },
+      "isFixedLength": false
     }
   ],
   "terminalParts": [
