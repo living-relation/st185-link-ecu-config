@@ -1355,17 +1355,17 @@
         {
           "id": "c1",
           "designation": "BAT+",
-          "signal": "Trunk battery + 1/0"
+          "signal": "Bus BAT+ stud"
         },
         {
           "id": "c2",
           "designation": "ALT/STR",
-          "signal": "ALT/STR +"
+          "signal": "Bus ALT/STR stud"
         },
         {
           "id": "c8",
           "designation": "GND",
-          "signal": "POWER box NEG bar"
+          "signal": "Bus NEG bar"
         }
       ],
       "partId": "cp_fb_bus",
@@ -1387,7 +1387,7 @@
         {
           "id": "c1",
           "designation": "+",
-          "signal": "From k_fan 87, 8 AWG"
+          "signal": "Rad fan motor +"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -1408,7 +1408,7 @@
         {
           "id": "c1",
           "designation": "+",
-          "signal": "Cond fan 12V"
+          "signal": "Cond fan motor +"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -1422,12 +1422,12 @@
         {
           "id": "a1",
           "designation": "A-1",
-          "signal": "EHPS 12V"
+          "signal": "Pump +12V power"
         },
         {
           "id": "a2",
           "designation": "A-2",
-          "signal": "EHPS GND"
+          "signal": "Pump ground"
         },
         {
           "id": "b1",
@@ -1436,7 +1436,7 @@
         {
           "id": "b2",
           "designation": "B-2",
-          "signal": "EHPS speed"
+          "signal": "Pump speed input"
         },
         {
           "id": "b3",
@@ -1449,7 +1449,7 @@
         {
           "id": "b5",
           "designation": "B-5",
-          "signal": "EHPS coil-",
+          "signal": "Pump relay request",
           "propagate": false
         },
         {
@@ -1459,7 +1459,7 @@
         {
           "id": "c1",
           "designation": "C-1",
-          "signal": "EHPS IG"
+          "signal": "Pump IG enable"
         },
         {
           "id": "c2",
@@ -1491,7 +1491,7 @@
         {
           "id": "c1",
           "designation": "-",
-          "signal": "Fan GND EA"
+          "signal": "Rad fan motor -"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -1512,7 +1512,7 @@
         {
           "id": "c1",
           "designation": "-",
-          "signal": "Fan GND EA"
+          "signal": "Cond fan motor -"
         }
       ],
       "partId": "cp_dthd_1_8s"
@@ -1540,7 +1540,7 @@
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Horn GND",
+          "signal": "Horn LH ground",
           "propagate": false
         }
       ]
@@ -1568,7 +1568,7 @@
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Horn GND",
+          "signal": "Horn RH ground",
           "propagate": false
         }
       ]
@@ -1578,7 +1578,6 @@
     {
       "id": "br_h1_batt_pos",
       "type": "Loose",
-      "signal": "BATT + -> KILL SW MAIN 2",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -1587,12 +1586,13 @@
         "x": 2310,
         "y": -690
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Kill switch MAIN 2 stud, trunk RH rear (HeavyDC) - battery + after the switch, via H1",
+      "width": 390
     },
     {
       "id": "br_h2_batt_neg",
       "type": "Loose",
-      "signal": "BATT - -> trunk batt -",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -1601,12 +1601,13 @@
         "x": 2040,
         "y": -1140
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Battery negative terminal post, trunk RH rear (HeavyDC) - battery - via H2",
+      "width": 390
     },
     {
       "id": "br_h3_radlok_pos",
       "type": "Loose",
-      "signal": "ALT/STR + -> RADLOK+ FW 1",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -1615,12 +1616,13 @@
         "x": 2310,
         "y": -750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RADLOK + stud, cabin side, RH firewall (HeavyDC) - to starter B+",
+      "width": 390
     },
     {
       "id": "br_h6a_radlok_neg",
       "type": "Loose",
-      "signal": "PWR NEG -> RADLOK- FW 1",
       "schematicPosition": {
         "x": 0,
         "y": 330
@@ -1629,12 +1631,13 @@
         "x": 2040,
         "y": -1230
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RADLOK negative stud, cabin side, RH firewall (HeavyDC) - to engine block",
+      "width": 390
     },
     {
       "id": "t_eng_block_2",
       "type": "Ring",
-      "signal": "EB strap -> eng block 2",
       "width": 390,
       "schematicPosition": {
         "x": 660,
@@ -1645,12 +1648,12 @@
         "y": -630
       },
       "partId": "tp_lug_m10_4",
-      "propagate": false
+      "propagate": false,
+      "label": "Engine block ground stud, lug 2 (Route 1 point 5) - strap to ground stud EB"
     },
     {
       "id": "t_eng_block_3",
       "type": "Ring",
-      "signal": "EHPS GND -> eng block 3",
       "width": 390,
       "schematicPosition": {
         "x": 660,
@@ -1661,12 +1664,12 @@
         "y": -630
       },
       "partId": "tp_lug_m10_8",
-      "propagate": false
+      "propagate": false,
+      "label": "Engine block ground stud, lug 3 (Route 1 point 5) - EHPS pump ground"
     },
     {
       "id": "t_gnd_ea",
       "type": "Ring",
-      "signal": "Rad fan GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -1677,12 +1680,12 @@
         "y": -2460
       },
       "partId": "tp_lug_m8_8",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EA, RH front fender (EWD ground point EA) - radiator fan ground"
     },
     {
       "id": "t_gnd_ea_2",
       "type": "Ring",
-      "signal": "Cond fan GND -> EA 2",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -1693,13 +1696,13 @@
         "y": -2280
       },
       "partId": "tp_lug_m8_8",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EA, RH front fender (EWD ground point EA) - condenser fan ground"
     },
     {
       "id": "t_gnd_eb",
       "type": "Ring",
-      "signal": "EB strap -> EB",
-      "width": 270,
+      "width": 390,
       "schematicPosition": {
         "x": 1980,
         "y": 1170
@@ -1709,13 +1712,13 @@
         "y": -2850
       },
       "partId": "tp_lug_m8_4",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EB, LH front fender (EWD ground point EB) - engine block strap"
     },
     {
       "id": "t_gnd_id",
       "type": "Ring",
-      "signal": "PWR NEG -> GND ID",
-      "width": 270,
+      "width": 390,
       "schematicPosition": {
         "x": 1320,
         "y": 1320
@@ -1725,12 +1728,12 @@
         "y": -3210
       },
       "partId": "tp_lug_m10_50",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud ID, left kick panel (EWD ground point ID) - POWER box NEG strap"
     },
     {
       "id": "t_gnd_ig",
       "type": "Ring",
-      "signal": "PWR NEG -> GND IG",
       "width": 390,
       "schematicPosition": {
         "x": 1320,
@@ -1741,13 +1744,13 @@
         "y": -1350
       },
       "partId": "tp_lug_m10_50",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground bolt IG, right kick (EWD ground point IG) - POWER box NEG strap"
     },
     {
       "id": "fl_ac_press_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "A/C PSW 12V -> A5-1",
       "schematicPosition": {
         "x": 0,
         "y": 1650
@@ -1756,13 +1759,14 @@
         "x": 6090,
         "y": -3480
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C pressure switch A5 pin 1 - +12 V feed (EWD p.152)",
+      "width": 390
     },
     {
       "id": "fl_a4_3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "A/C VC coil -> A4-3",
       "schematicPosition": {
         "x": 0,
         "y": 1710
@@ -1771,13 +1775,14 @@
         "x": 6090,
         "y": -3630
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C compressor A4 pin 3 - VC control coil, not fitted (EWD p.152)",
+      "width": 390
     },
     {
       "id": "fl_a5_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "A/C PSW out -> A5-4",
       "schematicPosition": {
         "x": 0,
         "y": 1770
@@ -1786,12 +1791,13 @@
         "x": 6090,
         "y": -3750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C pressure switch A5 pin 4 - switched output (EWD p.152)",
+      "width": 390
     },
     {
       "id": "br_ac_mg",
       "type": "Loose",
-      "signal": "A/C VC coil -> A18-5",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -1801,12 +1807,12 @@
         "x": 6090,
         "y": -3420
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM A/C amplifier A18 pin 5 lead, Y-B (A-cabin) - VC coil drive (EWD p.152)"
     },
     {
       "id": "br_ac_psw",
       "type": "Loose",
-      "signal": "A/C PSW -> splice AC PSW",
       "width": 390,
       "schematicPosition": {
         "x": 0,
@@ -1816,13 +1822,13 @@
         "x": 6090,
         "y": -3540
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM A/C amplifier A18 pin 13 lead, Y-R (A-cabin) - pressure SW in (EWD p.152)"
     },
     {
       "id": "fl_oem_ie1_c10",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "AM1 feed -> IE1-10",
       "schematicPosition": {
         "x": 1320,
         "y": 0
@@ -1831,13 +1837,14 @@
         "x": 2490,
         "y": -3810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 10 (left kick, cowl side) - W, AM1 to ignition switch (EWD p.31)",
+      "width": 390
     },
     {
       "id": "fl_oem_ie1_c17",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "AM2 feed -> IE1-17",
       "schematicPosition": {
         "x": 1320,
         "y": 60
@@ -1846,13 +1853,14 @@
         "x": 2490,
         "y": -3870
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 17 (left kick, cowl side) - B-R, AM2 to ignition switch (EWD p.31)",
+      "width": 390
     },
     {
       "id": "fl_oem_jb1_1i_c1",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "JB1 B+ -> JB1 1I-1",
       "schematicPosition": {
         "x": 1320,
         "y": 240
@@ -1861,12 +1869,13 @@
         "x": 2430,
         "y": -3600
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 1I pin 1 (left kick) - B, J/B1 always-hot B+ (EWD p.46)",
+      "width": 390
     },
     {
       "id": "br_w_fan_pwr",
       "type": "Loose",
-      "signal": "Rad fan 12V -> POWER R4 87",
       "width": 390,
       "layoutPosition": {
         "x": 2040,
@@ -1876,12 +1885,12 @@
         "x": 60,
         "y": 1020
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box relay R4 pin 87 (glove box; CabinPower) - radiator fan relay out"
     },
     {
       "id": "br_w_fan2_pwr",
       "type": "Loose",
-      "signal": "Cond fan 12V -> POWER R5 87",
       "width": 390,
       "layoutPosition": {
         "x": 2040,
@@ -1891,12 +1900,12 @@
         "x": 60,
         "y": 1260
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box relay R5 pin 87 (glove box; CabinPower) - condenser fan relay out"
     },
     {
       "id": "br_w_eps_pwr",
       "type": "Loose",
-      "signal": "EHPS 12V -> EHPS RELAY 87",
       "width": 390,
       "layoutPosition": {
         "x": 4410,
@@ -1906,12 +1915,12 @@
         "x": 2040,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "EHPS relay pin 87, beside the glove-box POWER box (CabinPower) - pump feed"
     },
     {
       "id": "br_w_hv_mrs_en_e",
       "type": "Loose",
-      "signal": "EHPS enable -> BH-A 42",
       "width": 390,
       "layoutPosition": {
         "x": 2310,
@@ -1921,12 +1930,12 @@
         "x": 2700,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 42 (RH firewall, engine side; A-engine) - EHPS enable 12 V"
     },
     {
       "id": "br_w_mrs_e",
       "type": "Loose",
-      "signal": "EHPS speed -> BH-A 44",
       "width": 390,
       "layoutPosition": {
         "x": 2310,
@@ -1936,12 +1945,12 @@
         "x": 2700,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 44 (RH firewall, engine side; A-engine) - ECU A pin 27 speed out"
     },
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Head LH 12V -> LOGIC M11 87",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -1951,12 +1960,12 @@
         "x": 0,
         "y": 510
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box relay M11 pin 87 (glove box; CabinPower) - HEAD LH relay out"
     },
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Head RH 12V -> LOGIC M12 87",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -1966,12 +1975,12 @@
         "x": 0,
         "y": 630
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box relay M12 pin 87 (glove box; CabinPower) - HEAD RH relay out"
     },
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Horn 12V -> LOGIC M13 87",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -1981,12 +1990,12 @@
         "x": 0,
         "y": 750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box relay M13 pin 87 (glove box; CabinPower) - horn relay out"
     },
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Dome 12V -> FB-LOGIC DM 20A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -1996,12 +2005,12 @@
         "x": 0,
         "y": 870
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 1 pin 5 (glove box; CabinPower) - DOME 20 A fuse out"
     },
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "RTR 12V -> FB-POWER RTR 30A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2011,12 +2020,12 @@
         "x": 0,
         "y": 990
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box AMI OUT pin 2 (glove box; CabinPower) - RTR 30 A fuse out"
     },
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "A/C PSW 12V -> FB-POWER ACPS 10A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2026,12 +2035,12 @@
         "x": 0,
         "y": 1110
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box ACPS fuse pin (glove box; CabinPower) - A/C 10 A fuse out"
     },
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "AM1 12V -> FB-POWER AM1 40A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2041,12 +2050,12 @@
         "x": 0,
         "y": 1050
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box AMI OUT pin 3 (glove box; CabinPower) - AM1 40 A fuse out"
     },
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "AM2 12V -> FB-POWER AM2 30A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2056,12 +2065,12 @@
         "x": 0,
         "y": 930
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box AMI OUT pin 4 (glove box; CabinPower) - AM2 30 A fuse out"
     },
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "JB1 hot -> FB-POWER JB1 60A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2071,12 +2080,12 @@
         "x": 0,
         "y": 810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box AMI OUT pin 5 (glove box; CabinPower) - J/B1 60 A fuse out"
     },
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Blower 12V -> splice HTR87",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2086,12 +2095,12 @@
         "x": 0,
         "y": 690
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Heater relay splice at POWER R1 pin 87 (glove box; CabinPower) - blower feed"
     },
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "P/W 12V -> POWER R6 87",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2101,13 +2110,13 @@
         "x": 0,
         "y": 570
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box relay R6 pin 87 (glove box; CabinPower) - power window relay out"
     },
     {
       "id": "fl_a4_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "A/C clutch -> A4-4",
       "schematicPosition": {
         "x": 0,
         "y": 1530
@@ -2116,12 +2125,13 @@
         "x": 6090,
         "y": -3210
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C compressor A4 pin 4 - magnet clutch + (EWD p.152)",
+      "width": 390
     },
     {
       "id": "br_w_acc_clutch",
       "type": "Loose",
-      "signal": "A/C clutch -> LOGIC M15 87",
       "width": 390,
       "layoutPosition": {
         "x": 6090,
@@ -2131,12 +2141,12 @@
         "x": 0,
         "y": 1590
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box relay M15 pin 87 (glove box; CabinPower) - A/C clutch relay out"
     },
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "Hazard 12V -> splice HZ",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2146,13 +2156,13 @@
         "x": 0,
         "y": 1170
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Hazard splice after LOGIC Bus 1 pin 4 (glove box; CabinPower) - HAZ-HORN 15 A"
     },
     {
       "id": "fl_oem_ie1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "RTR 30A -> IE1-3",
       "schematicPosition": {
         "x": 1320,
         "y": 120
@@ -2161,13 +2171,14 @@
         "x": 2490,
         "y": -3930
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 3 (left kick, cowl side) - W, RTR 30 A to retract relay (EWD p.116)",
+      "width": 390
     },
     {
       "id": "fl_oem_ie1_c12",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Hazard feed -> IE1-12",
       "schematicPosition": {
         "x": 1320,
         "y": 180
@@ -2176,13 +2187,14 @@
         "x": 2490,
         "y": -3990
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 12 (left kick, cowl side) - W, hazard / flasher feed (EWD p.130)",
+      "width": 390
     },
     {
       "id": "fl_oem_jb1_1h_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Dome 20A -> JB1 1H-2",
       "schematicPosition": {
         "x": 1320,
         "y": 300
@@ -2191,13 +2203,14 @@
         "x": 2430,
         "y": -3540
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 1H pin 2 (left kick) - L-Y, DOME 20 A feed (EWD p.132)",
+      "width": 390
     },
     {
       "id": "fl_oem_rb2_wg",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "P/W feed -> RB2-1",
       "schematicPosition": {
         "x": 1320,
         "y": 360
@@ -2206,13 +2219,14 @@
         "x": 2670,
         "y": -3180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM W-G lead at old R/B2 relay pin 1 (left kick) - power windows (EWD p.137)",
+      "width": 390
     },
     {
       "id": "fl_b4_c2",
       "type": "Loose",
       "partId": "tp_flying_lead_heavy",
-      "signal": "Blower + -> B4-2",
       "schematicPosition": {
         "x": 1320,
         "y": 420
@@ -2221,13 +2235,14 @@
         "x": 2400,
         "y": -810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM blower motor B4 pin 2 lead (behind glove box) - B, blower + (EWD p.215)",
+      "width": 390
     },
     {
       "id": "fl_h1_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Head LH + -> H1-3",
       "schematicPosition": {
         "x": 1320,
         "y": 540
@@ -2236,13 +2251,14 @@
         "x": 5580,
         "y": -300
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH headlamp H1 pin 3 - +12 V feed (EWD p.116)",
+      "width": 390
     },
     {
       "id": "fl_h2_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Head RH + -> H2-3",
       "schematicPosition": {
         "x": 1320,
         "y": 600
@@ -2251,12 +2267,13 @@
         "x": 5790,
         "y": -1260
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH headlamp H2 pin 3 - +12 V feed (EWD p.116)",
+      "width": 390
     },
     {
       "id": "t_gnd_ea_h3",
       "type": "Ring",
-      "signal": "Horn LH GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -2267,12 +2284,12 @@
         "y": -2580
       },
       "partId": "tp_ring_m8_22_16",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EA, RH front fender (EWD ground point EA) - horn LH ground"
     },
     {
       "id": "t_gnd_ea_h4",
       "type": "Ring",
-      "signal": "Horn RH GND -> EA",
       "width": 390,
       "schematicPosition": {
         "x": 1980,
@@ -2283,12 +2300,12 @@
         "y": -2400
       },
       "partId": "tp_ring_m8_22_16",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EA, RH front fender (EWD ground point EA) - horn RH ground"
     },
     {
       "id": "br_w_eps_rly_e",
       "type": "Loose",
-      "signal": "EHPS coil- -> BH-A 56",
       "width": 390,
       "layoutPosition": {
         "x": 2310,
@@ -2298,12 +2315,12 @@
         "x": 2700,
         "y": 270
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 56 (RH firewall, engine side; A-engine) - EHPS relay coil 85"
     },
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "Door lock 12V -> FB-LOGIC WL 15A",
       "width": 390,
       "layoutPosition": {
         "x": 2490,
@@ -2313,13 +2330,13 @@
         "x": 0,
         "y": 1230
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 1 pin 6 (glove box; CabinPower) - door lock 15 A fuse out"
     },
     {
       "id": "fl_oem_rb2_wl",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Door lock feed -> RB2-2",
       "schematicPosition": {
         "x": 1320,
         "y": 480
@@ -2328,14 +2345,15 @@
         "x": 2670,
         "y": -3270
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM W-L lead at old R/B2 pin 2 (left kick) - door lock hot (EWD p.137)",
+      "width": 390
     },
     {
       "id": "fl_oem_jb1_1h_c6",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Tail 15A -> JB1 1H-6",
       "schematicPosition": {
         "x": 3750,
         "y": 0
@@ -2344,14 +2362,14 @@
         "x": 2430,
         "y": -3750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 1H pin 6 (left kick) - G, TAIL 15 A out (EWD p.112)"
     },
     {
       "id": "fl_oem_jb1_1h_c4",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Turn LH -> JB1 1H-4",
       "schematicPosition": {
         "x": 3750,
         "y": 60
@@ -2360,14 +2378,14 @@
         "x": 2430,
         "y": -3660
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 1H pin 4 (left kick) - G-B, turn LH out (EWD p.130)"
     },
     {
       "id": "fl_oem_jb1_1h_c8",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Turn RH -> JB1 1H-8",
       "schematicPosition": {
         "x": 3750,
         "y": 120
@@ -2376,14 +2394,14 @@
         "x": 2430,
         "y": -3330
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 1H pin 8 (left kick) - G-Y, turn RH out (EWD p.130)"
     },
     {
       "id": "fl_oem_jb1_1h_c5",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper 20A -> JB1 1H-5",
       "schematicPosition": {
         "x": 3750,
         "y": 180
@@ -2392,14 +2410,14 @@
         "x": 2430,
         "y": -3450
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B No.1 1H pin 5 (left kick) - L, WIPER 20 A out (EWD p.148)"
     },
     {
       "id": "fl_oem_ie1_c20",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper HI -> IE1-20",
       "schematicPosition": {
         "x": 3750,
         "y": 240
@@ -2408,14 +2426,14 @@
         "x": 2490,
         "y": -4050
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 20 (left kick, cowl side) - L-O, wiper HIGH (EWD p.148)"
     },
     {
       "id": "fl_oem_ie1_c13",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper LO -> IE1-13",
       "schematicPosition": {
         "x": 3750,
         "y": 300
@@ -2424,14 +2442,14 @@
         "x": 2490,
         "y": -4140
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 13 (left kick, cowl side) - L-B, wiper LOW (EWD p.148)"
     },
     {
       "id": "fl_oem_ie1_c6",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper park -> IE1-6",
       "schematicPosition": {
         "x": 3750,
         "y": 360
@@ -2440,14 +2458,14 @@
         "x": 2490,
         "y": -4230
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 6 (left kick, cowl side) - L-W, wiper park S (EWD p.148)"
     },
     {
       "id": "fl_oem_ie1_c18",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Low beam rtn -> IE1-18",
       "schematicPosition": {
         "x": 3750,
         "y": 420
@@ -2456,14 +2474,14 @@
         "x": 2490,
         "y": -4320
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 18 (left kick, cowl side) - R-W, low-beam return (EWD p.116)"
     },
     {
       "id": "fl_oem_ie1_c11",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "High beam rtn -> IE1-11",
       "schematicPosition": {
         "x": 3750,
         "y": 480
@@ -2472,14 +2490,14 @@
         "x": 2490,
         "y": -4410
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 11 (left kick, cowl side) - R-L, high-beam return (EWD p.116)"
     },
     {
       "id": "fl_oem_ie1_c14",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH mtr+ -> IE1-14",
       "schematicPosition": {
         "x": 3750,
         "y": 540
@@ -2488,14 +2506,14 @@
         "x": 2490,
         "y": -4500
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 14 (left kick, cowl side) - G, LH retract motor pin 4 (EWD p.117)"
     },
     {
       "id": "fl_oem_ie1_c15",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH mtr- -> IE1-15",
       "schematicPosition": {
         "x": 3750,
         "y": 600
@@ -2504,14 +2522,14 @@
         "x": 2490,
         "y": -4620
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 15 (left kick, cowl side) - G-O, LH retract motor pin 2 (EWD p.117)"
     },
     {
       "id": "fl_oem_ie1_c8",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH mtr- -> IE1-8",
       "schematicPosition": {
         "x": 3750,
         "y": 660
@@ -2520,14 +2538,14 @@
         "x": 2490,
         "y": -4740
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 8 (left kick, cowl side) - G-B, RH retract motor pin 2 (EWD p.117)"
     },
     {
       "id": "fl_oem_ie1_c7",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH mtr+ -> IE1-7",
       "schematicPosition": {
         "x": 3750,
         "y": 720
@@ -2536,14 +2554,14 @@
         "x": 2490,
         "y": -4860
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 7 (left kick, cowl side) - G-Y, RH retract motor pin 4 (EWD p.117)"
     },
     {
       "id": "fl_oem_ie1_c9",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR close lim -> IE1-9",
       "schematicPosition": {
         "x": 3750,
         "y": 780
@@ -2552,14 +2570,14 @@
         "x": 2490,
         "y": -4980
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 9 (left kick, cowl side) - G-Y, retract close limit (EWD p.117)"
     },
     {
       "id": "fl_oem_ie1_c16",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR open lim -> IE1-16",
       "schematicPosition": {
         "x": 3750,
         "y": 840
@@ -2568,14 +2586,14 @@
         "x": 2490,
         "y": -5130
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IE1 pin 16 (left kick, cowl side) - G-W, retract open limit (EWD p.117)"
     },
     {
       "id": "fl_w1_cowl_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Washer + -> W1-2 cowl",
       "schematicPosition": {
         "x": 3750,
         "y": 900
@@ -2584,14 +2602,14 @@
         "x": 2640,
         "y": -2580
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM washer W1 pin 2 cowl lead (firewall, cabin side) - L, +12 V (EWD p.148)"
     },
     {
       "id": "fl_w1_cowl_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Washer - -> W1-1 cowl",
       "schematicPosition": {
         "x": 3750,
         "y": 960
@@ -2600,14 +2618,14 @@
         "x": 2640,
         "y": -2520
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM washer W1 pin 1 cowl lead (firewall, cabin side) - L-R, washer SW (EWD p.148)"
     },
     {
       "id": "fl_f7_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Clear LH -> F7-1",
       "schematicPosition": {
         "x": 4410,
         "y": 0
@@ -2616,14 +2634,14 @@
         "x": 5700,
         "y": -960
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH front turn / clearance lamp F7 pin 1 - clearance + (EWD p.112)"
     },
     {
       "id": "fl_f7_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "F7 GND -> F7-2",
       "schematicPosition": {
         "x": 4410,
         "y": 60
@@ -2632,14 +2650,14 @@
         "x": 5700,
         "y": -1080
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH front turn / clearance lamp F7 pin 2 - ground (EWD p.112)"
     },
     {
       "id": "fl_f7_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Turn LH -> F7-3",
       "schematicPosition": {
         "x": 4410,
         "y": 120
@@ -2648,14 +2666,14 @@
         "x": 5700,
         "y": -1020
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH front turn / clearance lamp F7 pin 3 - turn + (EWD p.130)"
     },
     {
       "id": "fl_f8_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Clear RH -> F8-1",
       "schematicPosition": {
         "x": 4410,
         "y": 180
@@ -2664,14 +2682,14 @@
         "x": 5910,
         "y": -1320
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH front turn / clearance lamp F8 pin 1 - clearance + (EWD p.112)"
     },
     {
       "id": "fl_f8_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "F8 GND -> F8-2",
       "schematicPosition": {
         "x": 4410,
         "y": 240
@@ -2680,14 +2698,14 @@
         "x": 5910,
         "y": -1440
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH front turn / clearance lamp F8 pin 2 - ground (EWD p.112)"
     },
     {
       "id": "fl_f8_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Turn RH -> F8-3",
       "schematicPosition": {
         "x": 4410,
         "y": 300
@@ -2696,14 +2714,14 @@
         "x": 5910,
         "y": -1380
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH front turn / clearance lamp F8 pin 3 - turn + (EWD p.130)"
     },
     {
       "id": "fl_h1_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "High LH rtn -> H1-1",
       "schematicPosition": {
         "x": 4410,
         "y": 360
@@ -2712,14 +2730,14 @@
         "x": 5580,
         "y": -450
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH headlamp H1 pin 1 - high-beam return (EWD p.116)"
     },
     {
       "id": "fl_h1_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Low LH rtn -> H1-2",
       "schematicPosition": {
         "x": 4410,
         "y": 420
@@ -2728,14 +2746,14 @@
         "x": 5580,
         "y": -870
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH headlamp H1 pin 2 - low-beam return (EWD p.116)"
     },
     {
       "id": "fl_h2_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "High RH rtn -> H2-1",
       "schematicPosition": {
         "x": 4410,
         "y": 480
@@ -2744,14 +2762,14 @@
         "x": 5790,
         "y": -2070
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH headlamp H2 pin 1 - high-beam return (EWD p.116)"
     },
     {
       "id": "fl_h2_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Low RH rtn -> H2-2",
       "schematicPosition": {
         "x": 4410,
         "y": 540
@@ -2760,14 +2778,14 @@
         "x": 5790,
         "y": -2220
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH headlamp H2 pin 2 - low-beam return (EWD p.116)"
     },
     {
       "id": "fl_r2_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH open -> R2-1",
       "schematicPosition": {
         "x": 4410,
         "y": 600
@@ -2776,14 +2794,14 @@
         "x": 5700,
         "y": -600
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH retract motor R2 pin 1 - open (UP) limit (EWD p.117)"
     },
     {
       "id": "fl_r2_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH mtr- -> R2-2",
       "schematicPosition": {
         "x": 4410,
         "y": 660
@@ -2792,14 +2810,14 @@
         "x": 5700,
         "y": -720
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH retract motor R2 pin 2 - motor feed from IE1 pin 15 (EWD p.117)"
     },
     {
       "id": "fl_r2_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH close -> R2-3",
       "schematicPosition": {
         "x": 4410,
         "y": 720
@@ -2808,14 +2826,14 @@
         "x": 5700,
         "y": -510
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH retract motor R2 pin 3 - close (DOWN) limit (EWD p.117)"
     },
     {
       "id": "fl_r2_c4",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH mtr+ -> R2-4",
       "schematicPosition": {
         "x": 4410,
         "y": 780
@@ -2824,14 +2842,14 @@
         "x": 5700,
         "y": -810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH retract motor R2 pin 4 - motor feed from IE1 pin 14 (EWD p.117)"
     },
     {
       "id": "fl_r2_c5",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR LH GND -> R2-5",
       "schematicPosition": {
         "x": 4410,
         "y": 840
@@ -2840,14 +2858,14 @@
         "x": 5700,
         "y": -660
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH retract motor R2 pin 5 - ground (EWD p.117)"
     },
     {
       "id": "fl_r3_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH open -> R3-1",
       "schematicPosition": {
         "x": 4410,
         "y": 900
@@ -2856,14 +2874,14 @@
         "x": 5910,
         "y": -1590
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH retract motor R3 pin 1 - open (UP) limit (EWD p.117)"
     },
     {
       "id": "fl_r3_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH mtr- -> R3-2",
       "schematicPosition": {
         "x": 4410,
         "y": 960
@@ -2872,14 +2890,14 @@
         "x": 5910,
         "y": -1710
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH retract motor R3 pin 2 - motor feed from IE1 pin 8 (EWD p.117)"
     },
     {
       "id": "fl_r3_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH close -> R3-3",
       "schematicPosition": {
         "x": 4410,
         "y": 1020
@@ -2888,14 +2906,14 @@
         "x": 5910,
         "y": -1500
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH retract motor R3 pin 3 - close (DOWN) limit (EWD p.117)"
     },
     {
       "id": "fl_r3_c4",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH mtr+ -> R3-4",
       "schematicPosition": {
         "x": 4410,
         "y": 1080
@@ -2904,14 +2922,14 @@
         "x": 5910,
         "y": -1800
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH retract motor R3 pin 4 - motor feed from IE1 pin 7 (EWD p.117)"
     },
     {
       "id": "fl_r3_c5",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "RTR RH GND -> R3-5",
       "schematicPosition": {
         "x": 4410,
         "y": 1140
@@ -2920,14 +2938,14 @@
         "x": 5910,
         "y": -1650
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH retract motor R3 pin 5 - ground (EWD p.117)"
     },
     {
       "id": "fl_w1_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Washer - -> W1-1",
       "schematicPosition": {
         "x": 4410,
         "y": 1200
@@ -2936,14 +2954,14 @@
         "x": 5910,
         "y": -1860
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Washer motor W1 pin 1 (RH front corner, low) - switch side (EWD p.148)"
     },
     {
       "id": "fl_w1_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Washer + -> W1-2",
       "schematicPosition": {
         "x": 4410,
         "y": 1260
@@ -2952,14 +2970,14 @@
         "x": 5910,
         "y": -1920
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Washer motor W1 pin 2 (RH front corner, low) - +12 V (EWD p.148)"
     },
     {
       "id": "fl_f9_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper HI -> F9-1",
       "schematicPosition": {
         "x": 4410,
         "y": 1320
@@ -2968,14 +2986,14 @@
         "x": 2820,
         "y": -5280
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Front wiper motor F9 pin 1 (cowl, driver side) - HIGH (EWD p.148)"
     },
     {
       "id": "fl_f9_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper LO -> F9-2",
       "schematicPosition": {
         "x": 4410,
         "y": 1380
@@ -2984,14 +3002,14 @@
         "x": 2820,
         "y": -5400
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Front wiper motor F9 pin 2 (cowl, driver side) - LOW (EWD p.148)"
     },
     {
       "id": "fl_f9_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper park -> F9-3",
       "schematicPosition": {
         "x": 4410,
         "y": 1440
@@ -3000,14 +3018,14 @@
         "x": 2820,
         "y": -5190
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Front wiper motor F9 pin 3 (cowl, driver side) - park switch S (EWD p.148)"
     },
     {
       "id": "fl_f9_c4",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Wiper +B -> F9-4",
       "schematicPosition": {
         "x": 4410,
         "y": 1500
@@ -3016,14 +3034,14 @@
         "x": 2820,
         "y": -5340
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Front wiper motor F9 pin 4 (cowl, driver side) - +B (EWD p.148)"
     },
     {
       "id": "t_gnd_eb_f7",
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "F7 GND -> EB",
       "schematicPosition": {
         "x": 4410,
         "y": 1560
@@ -3032,14 +3050,14 @@
         "x": 5730,
         "y": -2910
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EB, LH front fender (EWD ground point EB) - LH front lamp F7 ground"
     },
     {
       "id": "t_gnd_eb_rtr",
       "type": "Ring",
       "partId": "tp_lug_m8_8",
       "width": 390,
-      "signal": "RTR GND -> EB M8",
       "schematicPosition": {
         "x": 4410,
         "y": 1620
@@ -3048,14 +3066,14 @@
         "x": 5730,
         "y": -2970
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EB, LH front fender (EWD ground point EB) - retract motors ground (M8)"
     },
     {
       "id": "t_gnd_ea_f8",
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "F8 GND -> EA M8",
       "schematicPosition": {
         "x": 4410,
         "y": 1680
@@ -3064,13 +3082,13 @@
         "x": 5520,
         "y": -2790
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud EA, RH front fender (EWD ground point EA) - RH front lamp F8 ground"
     },
     {
       "id": "br_alt_s",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt S -> ALT G2 1",
       "schematicPosition": {
         "x": 4410,
         "y": 1800
@@ -3079,13 +3097,13 @@
         "x": 4560,
         "y": -750
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alternator plug G2 pin 1 (rear RH of engine; HeavyDC) - S battery sense"
     },
     {
       "id": "br_alt_l",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt L -> ALT G2 2",
       "schematicPosition": {
         "x": 4410,
         "y": 1860
@@ -3094,13 +3112,13 @@
         "x": 4560,
         "y": -810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alternator plug G2 pin 2 (rear RH of engine; HeavyDC) - L charge lamp"
     },
     {
       "id": "br_alt_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt IG -> ALT G2 3",
       "schematicPosition": {
         "x": 4410,
         "y": 1920
@@ -3109,14 +3127,14 @@
         "x": 4560,
         "y": -690
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alternator plug G2 pin 3 (rear RH of engine; HeavyDC) - IG excite"
     },
     {
       "id": "fl_oem_ig2_c15",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "ECU-IG 15A -> IG2-15",
       "schematicPosition": {
         "x": 3750,
         "y": 1800
@@ -3125,14 +3143,14 @@
         "x": 2130,
         "y": -2970
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IG2 pin 15 (under the ECU, cowl side) - B-R, ECU-IG 15 A feed (EWD p.74)"
     },
     {
       "id": "fl_oem_ig2_c16",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Alt L -> IG2-16",
       "schematicPosition": {
         "x": 3750,
         "y": 1860
@@ -3141,13 +3159,13 @@
         "x": 2130,
         "y": -3060
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM IG2 pin 16 (under the ECU, cowl side) - Y, charge lamp (EWD p.74)"
     },
     {
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt S -> FB-LOGIC ALTS 2A",
       "schematicPosition": {
         "x": 3750,
         "y": 1920
@@ -3156,13 +3174,13 @@
         "x": 2490,
         "y": -2730
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 1 pin 9 (glove box; CabinPower) - ALT S 2 A fuse out"
     },
     {
       "id": "br_ig_ks_in",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt IG in -> KILL SW ALT 1",
       "schematicPosition": {
         "x": 3750,
         "y": 1980
@@ -3171,13 +3189,13 @@
         "x": 2490,
         "y": -2880
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Kill switch ALT 1 stud, trunk RH rear (HeavyDC) - alternator IG in"
     },
     {
       "id": "br_ig_ks_out",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt IG out -> KILL SW ALT 2",
       "schematicPosition": {
         "x": 3750,
         "y": 2040
@@ -3186,7 +3204,8 @@
         "x": 2490,
         "y": -3030
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Kill switch ALT 2 stud, trunk RH rear (HeavyDC) - alternator IG out"
     }
   ],
   "bundles": [
@@ -4669,7 +4688,8 @@
       "layoutPosition": {
         "x": 5550,
         "y": -1110
-      }
+      },
+      "label": "Horn feed split - LH + RH horns, front centre"
     },
     {
       "id": "sp_clr",
@@ -4682,7 +4702,8 @@
       "layoutPosition": {
         "x": 5370,
         "y": -1230
-      }
+      },
+      "label": "Clearance feed split - F7 LH + F8 RH"
     },
     {
       "id": "sp_hl_low",
@@ -4695,7 +4716,8 @@
       "layoutPosition": {
         "x": 5370,
         "y": -1170
-      }
+      },
+      "label": "Low-beam return join - H1 + H2 pin 2 to IE1 pin 18"
     },
     {
       "id": "sp_hl_high",
@@ -4708,7 +4730,8 @@
       "layoutPosition": {
         "x": 5370,
         "y": -1290
-      }
+      },
+      "label": "High-beam return join - H1 + H2 pin 1 to IE1 pin 11"
     },
     {
       "id": "sp_rtr_close",
@@ -4721,7 +4744,8 @@
       "layoutPosition": {
         "x": 5310,
         "y": -1230
-      }
+      },
+      "label": "Retract close-limit join - R2 + R3 pin 3 to IE1 pin 9"
     },
     {
       "id": "sp_rtr_open",
@@ -4734,7 +4758,8 @@
       "layoutPosition": {
         "x": 5310,
         "y": -1170
-      }
+      },
+      "label": "Retract open-limit join - R2 + R3 pin 1 to IE1 pin 16"
     },
     {
       "id": "sp_rtr_r2_4",
@@ -4747,7 +4772,8 @@
       "layoutPosition": {
         "x": 5400,
         "y": -570
-      }
+      },
+      "label": "LH retract motor feed - 12 AWG to 16 AWG pigtail, at R2"
     },
     {
       "id": "sp_rtr_r3_4",
@@ -4760,7 +4786,8 @@
       "layoutPosition": {
         "x": 5790,
         "y": -1530
-      }
+      },
+      "label": "RH retract motor feed - 12 AWG to 16 AWG pigtail, at R3"
     },
     {
       "id": "sp_rtr_gnd_r2",
@@ -4773,7 +4800,8 @@
       "layoutPosition": {
         "x": 5400,
         "y": -510
-      }
+      },
+      "label": "LH retract motor ground - 16 AWG pigtail to 12 AWG, at R2"
     },
     {
       "id": "sp_rtr_gnd_r3",
@@ -4786,7 +4814,8 @@
       "layoutPosition": {
         "x": 5790,
         "y": -1770
-      }
+      },
+      "label": "RH retract motor ground - 16 AWG pigtail to 12 AWG, at R3"
     }
   ],
   "schematicNotes": [
@@ -4812,7 +4841,7 @@
     {
       "id": "shdr_0",
       "text": "TRUNK + GLOVE BOX",
-      "width": 270,
+      "width": 390,
       "schematicPosition": {
         "x": 3210,
         "y": 1320
@@ -4832,7 +4861,7 @@
     {
       "id": "shdr_3",
       "text": "NEW ENGINE-ROOM LOADS - MR-S EHPS pump (one device: relay + 3 connectors) and both uprated fans",
-      "width": 270,
+      "width": 390,
       "schematicPosition": {
         "x": 3210,
         "y": 1800
@@ -4843,9 +4872,10 @@
       "id": "note_acamp",
       "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier stays FACTORY wiring (TAM not this pass, 2026-09-30).\nPressure switch A5-4 Y-R and clutch A4-3 Y-B land on ST185-ACAmp-Spur\nas flying leads at A/C AMPLIFIER A18 (pins 13 and 5); this loom does\nnot redraw them. New here: only the ACPS +12V feed, a flying lead into\nA5 pin 1 (V-R). TW (A27 here, A25 in the 1993 book) is the water temp sensor in the\ndash on factory wiring; the old Engine-A run via bulkhead A c37/c38 is\ndeleted (DECISIONS S35, 2026-10-14). The ECU's only\nA/C tie is Aux 4 ACT kill, broken off from ST185-A-cabin onto\nST185-ACAmp-Spur as A18-11. Labels: docs/harness/ACAMP-SPUR-LABELS.md.",
       "schematicPosition": {
-        "x": 2490,
+        "x": 2370,
         "y": 1410
-      }
+      },
+      "width": 390
     },
     {
       "id": "n_cavity_notes",
