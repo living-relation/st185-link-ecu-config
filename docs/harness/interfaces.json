@@ -40,7 +40,7 @@
     "HeavyDC": {
       "file": "ST185-HeavyDC.harness",
       "cloud": {"id": "v9Qn", "title": "ST185-HeavyDC 2026-10-15", "url": "https://app.harness.design/v9Qn"},
-      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 170 A alternator B+ (1/0, DECISIONS R161), engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the POWER box bus zone (breaks H1/H2/H3/H6a) - the POWER box bus zone itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
+      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 170 A alternator B+ (2 AWG behind a 175 A fuse, DECISIONS R161 / R162), engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the POWER box bus zone (breaks H1/H2/H3/H6a) - the POWER box bus zone itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
     },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
