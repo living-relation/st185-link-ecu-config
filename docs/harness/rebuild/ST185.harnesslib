@@ -2121,6 +2121,22 @@
       "partNumber": "320575",
       "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED",
       "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "tp_lug_m8_50",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "Metric",
+        "value": 50
+      },
+      "minGauge": {
+        "unit": "Metric",
+        "value": 50
+      },
+      "partNumber": "6R8",
+      "manufacturer": "Klauke",
+      "description": "TERMINAL, TUBULAR RING LUG, TINNED COPPER, 50 MM2 (1/0), M8 STUD, HOLE 8.4, ADHESIVE HEATSHRINK"
     }
   ],
   "connectorParts": [

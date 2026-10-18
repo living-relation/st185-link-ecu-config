@@ -167,7 +167,7 @@
         "id": "t_starter_b_2",
         "handle": "Terminal"
       },
-      "partId": "wp_2_red"
+      "partId": "wp_1_0_red"
     },
     {
       "id": "w_jump",
@@ -770,9 +770,9 @@
         "x": 2040,
         "y": -750
       },
-      "partId": "tp_lug_m10_2",
+      "partId": "tp_lug_m10_50",
       "propagate": false,
-      "label": "Starter B+ stud, lug 2 (Route 1 point 2) - 2 AWG from the alternator"
+      "label": "Starter B+ stud, lug 2 (Route 1 point 2) - 1/0 from the alternator"
     },
     {
       "id": "t_starter_b_3",
@@ -802,9 +802,9 @@
         "x": 1590,
         "y": -480
       },
-      "partId": "tp_lug_m8_2",
+      "partId": "tp_lug_m8_50",
       "propagate": false,
-      "label": "Alternator B+ stud, rear RH of engine (Route 1 point 3) - 2 AWG to starter"
+      "label": "Alternator B+ stud, rear RH of engine (Route 1 point 3) - 1/0 to starter"
     },
     {
       "id": "t_eng_block",
@@ -1250,7 +1250,7 @@
         "x": 990,
         "y": 0
       },
-      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. Size for the 160 A alternator (plan 6.20: 175 A). Battery is AGM.\nKILL SWITCH (Dan 2026-10-13, J2; DECISIONS S21 / R64): Longacre 52-45780 in the trunk (175 A main, 20 A alternator pole). Main pole: battery + -> MAIN 1, MAIN 2 (LOAD) -> H1 -> PDB BAT+ -> PDB ALT/STR -> H3 -> RADLOK -> starter B+, where the alternator B+ (w_alt) lands - so the alternator is on the LOAD side. Second pole: the alternator IG (excite, J/B No.1 ECU-IG 15A via IG2-15, 16 AWG for the 15 A fuse) runs glove box -> RH sill (with H1 / H2) -> ALT 1 / ALT 2 -> back -> RH fender grommet -> G2-3. Switch off = battery cut AND excite cut, so the alternator cannot keep the engine running; key ON -> ACC is the second stop (ECU ignition input, R97).\nSPIKE PROTECTION (info only, not drawn): opening the main pole while the alternator charges can load-dump into the loads. Option: a cutoff with alternator protection (Pegasus 4430 re-routes the alternator output to ground) - Daniel's call, not part of this build."
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. 170 A alternator (R161): Littelfuse 880014250, 250 A MEGA, on H3 at the POWER box (S39). Battery is AGM.\nKILL SWITCH (Dan 2026-10-13, J2; DECISIONS S21 / R64): Longacre 52-45780 in the trunk (175 A main, 20 A alternator pole; N16). Main pole: battery + -> MAIN 1, MAIN 2 (LOAD) -> H1 -> PDB BAT+ -> PDB ALT/STR -> H3 -> RADLOK -> starter B+, where the alternator B+ (w_alt) lands - so the alternator is on the LOAD side. Second pole: the alternator IG (excite, J/B No.1 ECU-IG 15A via IG2-15, 16 AWG for the 15 A fuse) runs glove box -> RH sill (with H1 / H2) -> ALT 1 / ALT 2 -> back -> RH fender grommet -> G2-3. Switch off = battery cut AND excite cut, so the alternator cannot keep the engine running; key ON -> ACC is the second stop (ECU ignition input, R97).\nSPIKE PROTECTION (info only, not drawn): opening the main pole while the alternator charges can load-dump into the loads. Option: a cutoff with alternator protection (Pegasus 4430 re-routes the alternator output to ground) - Daniel's call, not part of this build."
     },
     {
       "id": "n_rev4",
@@ -1277,7 +1277,7 @@
         "x": 900,
         "y": 1020
       },
-      "text": "HEAVY DC: trunk battery -> POWER box bus zone (glove box, ST185-EngineRoom-C) -> RADLOK 5.7 mm through the firewall -> starter B+. 160 A alt B+ joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. 2 AWG is OK for cranking; 160 A continuous charge may need 1/0 + 8 mm RADLOK - see the table. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the POWER box bus zone (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved."
+      "text": "HEAVY DC: trunk battery -> POWER box bus zone (glove box, ST185-EngineRoom-C) -> RADLOK 8.0 through the firewall -> starter B+. 170 A alt B+ (1/0, R161) joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. H1-H5 are 1/0 with RADLOK 8.0 (200 A); sizes in DECISIONS S39. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the POWER box bus zone (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved."
     },
     {
       "id": "shdr_1",
@@ -1582,20 +1582,20 @@
       "manufacturer": "generic"
     },
     {
-      "type": "Ring",
+      "id": "tp_lug_m8_50",
       "size": "M8",
-      "partNumber": "GENERIC LUG M8 2AWG",
-      "manufacturer": "generic",
-      "minGauge": {
-        "value": 3,
-        "unit": "AWG"
-      },
+      "type": "Ring",
       "maxGauge": {
-        "value": 2,
-        "unit": "AWG"
+        "unit": "Metric",
+        "value": 50
       },
-      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK",
-      "id": "tp_lug_m8_2"
+      "minGauge": {
+        "unit": "Metric",
+        "value": 50
+      },
+      "partNumber": "6R8",
+      "manufacturer": "Klauke",
+      "description": "TERMINAL, TUBULAR RING LUG, TINNED COPPER, 50 MM2 (1/0), M8 STUD, HOLE 8.4, ADHESIVE HEATSHRINK"
     }
   ],
   "connectorParts": [

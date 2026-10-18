@@ -48,7 +48,7 @@ EXTRA = [  # harness hardware the .harness schema cannot attach to a connector
 
  ("Micro ISO relays x4","TE Connectivity","RELAY, PLUG-IN, MICRO ISO, 1 FORM A, 12 VDC COIL",4,4),
  ("ANL/MEGA 300A + holder","generic","FUSE, ANL OR MEGA, 300 A, WITH HOLDER",1,0),
- ("Alternator protection 175A","generic","FUSIBLE LINK OR INLINE FUSE / CIRCUIT BREAKER, 175 A",1,0),
+ ("880014250","Littelfuse","FUSE HOLDER, MEGA SN, SEALED IP66 / IP69K, BOLT-DOWN, M8 STUDS, PRE-LOADED 250 A MEGA FUSE, 187 A CONTINUOUS, 32 VDC (ALTERNATOR OUTPUT, DECISIONS R161 / S39)",1,0),
  ("generic","generic","CABLE, SHIELDED, 1 CONDUCTOR, 22 AWG, WHITE, ETFE (TEFZEL), TINNED COPPER BRAID",1,1),
  # 2026-09-29: HDP24 shell A/B bulkheads and their backshells/gasket/panel nuts
  # are retired - replaced by the shared DRB102 (see docs/harness/redesign/DECISIONS.md).
