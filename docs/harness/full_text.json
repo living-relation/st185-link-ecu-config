@@ -89,19 +89,19 @@
      ],
      "c41": [
       "ECU A24 crank ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
      ],
      "c42": [
       "ECU A24 cam ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
      ],
      "c40": [
       "ECU A32 turbo +5 V",
-      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
+      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
      ],
      "c43": [
       "ECU A24 turbo ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
      ],
      "c5": [
       "Sw +12 V boost/flex",
@@ -109,11 +109,11 @@
      ],
      "c2": [
       "ECU A32 throttle 5V",
-      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
+      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
      ],
      "c3": [
       "ECU A24 temp/thr ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
       "ECU A7 throt screen",
@@ -121,11 +121,11 @@
      ],
      "c39": [
       "ECU A32 MAP +5 V",
-      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
+      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
      ],
      "c44": [
       "ECU A24 MAP/flex ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
       "EHPS enable +12 V",
@@ -1503,19 +1503,19 @@
      ],
      "c41": [
       "ECU A24 crank ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
      ],
      "c42": [
       "ECU A24 cam ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
      ],
      "c40": [
       "ECU A32 turbo +5 V",
-      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
+      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
      ],
      "c43": [
       "ECU A24 turbo ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
      ],
      "c5": [
       "Sw +12 V boost/flex",
@@ -1523,11 +1523,11 @@
      ],
      "c2": [
       "ECU A32 throttle 5V",
-      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
+      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
      ],
      "c3": [
       "ECU A24 temp/thr ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
       "ECU A7 throt screen",
@@ -1535,11 +1535,11 @@
      ],
      "c39": [
       "ECU A32 MAP +5 V",
-      "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
+      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
      ],
      "c44": [
       "ECU A24 MAP/flex ret",
-      "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
+      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
       "EHPS enable +12 V",

@@ -189,6 +189,14 @@ def mate_halves(reg, ds):
     return out
 
 
+def bussed_plugs(reg):
+    """(harness, plug id) -> splice id for every splice built as a bussed DT pair
+    (interfaces.json "bussedSplices", DECISIONS R169): the mated DT04 P021 receptacle
+    buses every pin, so all of the plug's cavities are the one node the splice was."""
+    return {(b["harness"], b["plug"]): b["splice"]
+            for b in reg.get("bussedSplices", {}).get("buses", [])}
+
+
 def endpoint_ends(ep):
     """role -> (id, handle) for a device endpoint. Two forms (interfaces.json "endpoints"):
     "terminals" {role: Loose terminal id}, or - where the harness-side mating plug is drawn
@@ -219,6 +227,7 @@ class Graph:
         self.enc = enclosure_nodes(self.reg)
         self.brk = break_ends(self.reg)
         self.mates = mate_halves(self.reg, self.docs)
+        self.bus = bussed_plugs(self.reg)
         self.components = set()
         for d in self.docs.values():
             for k in ("connectors", "terminals", "resistors", "diodes", "splices"):
@@ -248,6 +257,8 @@ class Graph:
             return ("IX", self.ix[(loom, nid)][0], h)
         if (loom, nid) in self.mates:
             return ("IX", self.mates[(loom, nid)], h)
+        if (loom, nid) in self.bus:
+            return ("SP", self.bus[(loom, nid)])
         if (loom, nid) in self.brk:
             return ("BRK", self.brk[(loom, nid)])
         if (loom, nid) in self.enc:

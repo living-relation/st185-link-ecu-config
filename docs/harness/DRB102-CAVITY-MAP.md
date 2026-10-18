@@ -106,26 +106,26 @@ before buying more (`docs/OPEN-ITEMS.md`).
 | 7 | right (1-51) | 12 | B | c42 | spare (size 12) |
 | 8 | right (1-51) | 12 | B | c43 | spare (size 12) |
 | 9 | right (1-51) | 16 | A | c24 | ECU-A A8 |
-| 10 | right (1-51) | 16 | A | c41 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank |
+| 10 | right (1-51) | 16 | A | c41 | Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank |
 | 11 | right (1-51) | 16 | A | c33 | Crank VR screen |
 | 12 | right (1-51) | 16 | A | c4 | +8V Out to cam Hall |
 | 13 | right (1-51) | 16 | A | c29 | ECU-A A9 |
-| 14 | right (1-51) | 16 | A | c42 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam |
+| 14 | right (1-51) | 16 | A | c42 | Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam |
 | 15 | right (1-51) | 16 | A | c34 | Cam Hall screen |
-| 16 | right (1-51) | 16 | A | c40 | +5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed |
+| 16 | right (1-51) | 16 | A | c40 | +5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed |
 | 17 | right (1-51) | 16 | A | c7 | ECU-A A30 |
-| 18 | right (1-51) | 16 | A | c43 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed |
+| 18 | right (1-51) | 16 | A | c43 | Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed |
 | 19 | right (1-51) | 16 | A | c6 | Turbo speed screen (to A7) |
 | 20 | right (1-51) | 16 | A | c5 | Switched 12V to engine sensors |
 | 21 | right (1-51) | 16 | A | c9 | ECU-A A31 |
 | 22 | right (1-51) | 16 | A | c10 | Flex fuel screen (to A7) |
-| 23 | right (1-51) | 16 | A | c2 | +5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB |
+| 23 | right (1-51) | 16 | A | c2 | +5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB |
 | 24 | right (1-51) | 16 | A | c21 | ECU-A A22 |
 | 25 | right (1-51) | 16 | A | c22 | ECU-A A33 |
-| 26 | right (1-51) | 16 | A | c3 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch |
+| 26 | right (1-51) | 16 | A | c3 | Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch |
 | 27 | right (1-51) | 16 | A | c11 | ETB sensor group screen (to A7) |
-| 28 | right (1-51) | 16 | A | c39 | +5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP |
-| 29 | right (1-51) | 16 | A | c44 | Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch |
+| 28 | right (1-51) | 16 | A | c39 | +5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP |
+| 29 | right (1-51) | 16 | A | c44 | Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch |
 | 30 | right (1-51) | 16 | A | c8 | ECU-A A17 |
 | 31 | right (1-51) | 16 | A | c13 | ECU-A A4 |
 | 32 | right (1-51) | 16 | A | c14 | ECU-A A3 |

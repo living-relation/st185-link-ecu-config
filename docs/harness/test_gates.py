@@ -120,9 +120,9 @@ def _(d):
     add_copy(d, "B-engine", "w_vss_12v", "bh_b_eng", "c19")
 
 
-@case("pigtail + splice: +5V splice also fed from ECU +8V Out", "audit_bh_collisions.py", 1)
+@case("pigtail + splice: +5V bus plug (bussed DT, R169) also fed from ECU +8V Out", "audit_bh_collisions.py", 1)
 def _(d):
-    add_wire(d, "A-cabin", "w_t_8v_into_5v", {"id": "sp_5v_bha", "handle": "Splice"},
+    add_wire(d, "A-cabin", "w_t_8v_into_5v", {"id": "bus_5v_bha_p", "handle": "c8"},
              {"id": "ecu_a", "handle": "a6"})
 
 

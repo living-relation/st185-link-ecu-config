@@ -3585,6 +3585,61 @@
           ]
         }
       ]
+    },
+    {
+      "id": "cp_dt04_12pa_p021",
+      "url": "https://www.te.com/en/product-DT04-12PA-P021.html",
+      "color": "Gray",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-12PA-P021",
+      "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED 1 X 12, NICKEL PINS MOULDED IN, 13 A PER PIN, 78 A BUS, WEDGELOCK INCLUDED, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "numberOfCavities": 12
+    },
+    {
+      "id": "cp_dt04_08pa_p021",
+      "url": "https://www.te.com/en/product-DT04-08PA-P021.html",
+      "color": "Gray",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-08PA-P021",
+      "description": "CONNECTOR, RECEPTACLE, DT, 8 POS, BUSSED 1 X 8, NICKEL PINS MOULDED IN, 13 A PER PIN, 52 A BUS, WEDGELOCK INCLUDED, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "numberOfCavities": 8
+    },
+    {
+      "id": "cp_dt06_08sa",
+      "url": "https://www.te.com/en/product-DT06-08SA.html",
+      "color": "Gray",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "DT06-08SA",
+      "description": "CONNECTOR, PLUG, DT, 8 POS, SOCKET CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w8s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "F6dRxdC4XlgPgmxZh_zyn"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 8
     }
   ],
   "lockParts": [
@@ -3645,6 +3700,13 @@
       "partNumber": "WM-6S",
       "description": "WEDGELOCK, DTM, 6 POS, PLUG",
       "manufacturer": "Deutsch"
+    },
+    {
+      "id": "lp_w8s",
+      "partNumber": "W8S",
+      "manufacturer": "TE DEUTSCH",
+      "description": "WEDGELOCK, DT, 8 POS, PLUG",
+      "url": "https://www.te.com/en/product-W8S.html"
     }
   ],
   "cavityPlugParts": [

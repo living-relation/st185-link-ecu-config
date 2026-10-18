@@ -178,8 +178,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c2"
       },
       "target": {
         "id": "br_w_fb_sw12",
@@ -574,8 +574,8 @@
         "handle": "sw12"
       },
       "target": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c1"
       },
       "partId": "m16_16_2"
     },
@@ -603,8 +603,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c3"
       },
       "target": {
         "id": "br_fp86",
@@ -636,8 +636,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c4"
       },
       "target": {
         "id": "k_fan",
@@ -686,8 +686,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c5"
       },
       "target": {
         "id": "k_etb",
@@ -737,8 +737,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c6"
       },
       "target": {
         "id": "k_str",
@@ -787,8 +787,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c7"
       },
       "target": {
         "id": "k_fan2",
@@ -820,8 +820,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c8"
       },
       "target": {
         "id": "k_eps",
@@ -1082,8 +1082,8 @@
         "Blue"
       ],
       "source": {
-        "id": "sp_cp_sw12",
-        "handle": "Splice"
+        "id": "bus_sw12_p",
+        "handle": "c9"
       },
       "target": {
         "id": "k_eps_en",
@@ -2507,6 +2507,167 @@
       },
       "partId": "cp_fb_logic",
       "width": 390
+    },
+    {
+      "id": "bus_sw12_p",
+      "label": "SW12 bus plug DT06-12 (glove box, by LOGIC box)",
+      "width": 270,
+      "partId": "cp_dt06_12sa",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "SW12 +12 V bus",
+          "propagate": false,
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        }
+      ],
+      "layoutPosition": {
+        "x": -1590,
+        "y": 150
+      },
+      "schematicPosition": {
+        "x": 780,
+        "y": 1740
+      }
+    },
+    {
+      "id": "bus_sw12_r",
+      "label": "SW12 bussed cap DT04-12 P021 (on plug)",
+      "width": 270,
+      "partId": "cp_dt04_12pa_p021",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1"
+        },
+        {
+          "id": "c2",
+          "designation": "2"
+        },
+        {
+          "id": "c3",
+          "designation": "3"
+        },
+        {
+          "id": "c4",
+          "designation": "4"
+        },
+        {
+          "id": "c5",
+          "designation": "5"
+        },
+        {
+          "id": "c6",
+          "designation": "6"
+        },
+        {
+          "id": "c7",
+          "designation": "7"
+        },
+        {
+          "id": "c8",
+          "designation": "8"
+        },
+        {
+          "id": "c9",
+          "designation": "9"
+        },
+        {
+          "id": "c10",
+          "designation": "10"
+        },
+        {
+          "id": "c11",
+          "designation": "11"
+        },
+        {
+          "id": "c12",
+          "designation": "12"
+        }
+      ],
+      "layoutPosition": {
+        "x": -1590,
+        "y": 210
+      },
+      "schematicPosition": {
+        "x": 780,
+        "y": 2160
+      }
     }
   ],
   "terminals": [
@@ -4048,23 +4209,23 @@
         "value": 300,
         "unit": "mm"
       }
+    },
+    {
+      "id": "bn_b_bp_1050__bus_sw12_p",
+      "sourceId": "b_bp_1050",
+      "targetId": "bus_sw12_p",
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "endLabel": "SW12 BUS",
+      "partIds": [
+        "cov_lbl_38"
+      ]
     }
   ],
   "splices": [
-    {
-      "id": "sp_cp_sw12",
-      "layoutPosition": {
-        "x": -1170,
-        "y": 60
-      },
-      "schematicPosition": {
-        "x": 1140,
-        "y": 990
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1050",
-      "label": "SW12 splice - LOGIC SW12 fuse to the relay coils + and the ECU switched 12 V"
-    },
     {
       "id": "sp_rev_gauge",
       "partId": "spp_solder_generic",
@@ -4663,6 +4824,23 @@
         "unit": "AWG",
         "value": 18
       }
+    },
+    {
+      "id": "l5UlOB1lt6BfYQ7Ey3Ck2",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "coveringParts": [
@@ -4968,6 +5146,169 @@
           ]
         }
       ]
+    },
+    {
+      "id": "cp_dt04_12pa_p021",
+      "url": "https://www.te.com/en/product-DT04-12PA-P021.html",
+      "color": "Gray",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-12PA-P021",
+      "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED 1 X 12, NICKEL PINS MOULDED IN, 13 A PER PIN, 78 A BUS, WEDGELOCK INCLUDED, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "numberOfCavities": 12
+    },
+    {
+      "id": "cp_dt06_12sa",
+      "url": "https://www.te.com/usa-en/product-DT06-12SA.html",
+      "color": "Gray",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-12",
+        "name": "DT 12-way",
+        "pins": [
+          {
+            "x": -11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -11.125,
+            "y": -4.56,
+            "size": 3.5
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 32.3,
+          "height": 18.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "x": 16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "x": -16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "y": -9.35,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 2
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "partNumber": "DT06-12SA",
+      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
+      "manufacturer": "TE Connectivity DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg12",
+          "accessories": [
+            {
+              "id": "cfg12-1",
+              "type": "LockPart",
+              "partId": "lp_w12s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 12
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w12s",
+      "partNumber": "W12S",
+      "description": "WEDGELOCK, DT, 12 POS, PLUG",
+      "manufacturer": "Deutsch (TE Connectivity)"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "F6dRxdC4XlgPgmxZh_zyn",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "mates": [
+    {
+      "id": "m_bus_sw12",
+      "sourceId": "bus_sw12_p",
+      "targetId": "bus_sw12_r"
     }
   ]
 }

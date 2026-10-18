@@ -5698,5 +5698,31 @@
         ]
       }
     }
+  },
+  "bussedSplices": {
+    "_doc": "Splices built as a bussed DEUTSCH DT pair (DECISIONS R169, N25): every wire lands on a cavity of the DT06 plug, and the DT04 P021 receptacle mated to it has one bus bar moulded in across all its pins, so every live cavity of the plug is ONE electrical node, named after the splice it replaced (model.py). The receptacle carries no wire. Lives here because harness.design has no bussed-connector field.",
+    "buses": [
+      {
+        "harness": "CabinPower",
+        "splice": "sp_cp_sw12",
+        "plug": "bus_sw12_p",
+        "receptacle": "bus_sw12_r",
+        "mate": "m_bus_sw12"
+      },
+      {
+        "harness": "A-cabin",
+        "splice": "sp_5v_bha",
+        "plug": "bus_5v_bha_p",
+        "receptacle": "bus_5v_bha_r",
+        "mate": "m_bus_5v_bha"
+      },
+      {
+        "harness": "A-cabin",
+        "splice": "sp_gnd_bha",
+        "plug": "bus_gnd_bha_p",
+        "receptacle": "bus_gnd_bha_r",
+        "mate": "m_bus_gnd_bha"
+      }
+    ]
   }
 }
