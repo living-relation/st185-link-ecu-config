@@ -54,7 +54,7 @@ END = 90
 # (2026-10-17 task split: G2 A-cabin, B-cabin; G3 A-engine, B-engine; G4 EngineRoom-C,
 # HeavyDC, CAN, WheelSpeed-Front, WheelSpeed-Rear; G1 the rest). Remove a name when its
 # drawing is relabelled; the list only ever shrinks.
-PENDING_R156 = {"A-cabin", "B-cabin", "A-engine", "B-engine", "EngineRoom-C", "HeavyDC", "CAN",
+PENDING_R156 = {"A-cabin", "B-cabin", "EngineRoom-C", "HeavyDC", "CAN",
                 "WheelSpeed-Front", "WheelSpeed-Rear",
                 "CabinPower", "CSB3", "AntiTheft", "RearLights", "RearFuel"}
 LANDS = re.compile(r"\b(pins?|stud|lug|bar|ground point|splice|terminal post|lead|anode|cathode)\b", re.I)

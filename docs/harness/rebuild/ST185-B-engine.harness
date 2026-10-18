@@ -830,7 +830,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "J/B No.1 GAUGE 15A fuse - back-up light switch feed",
+          "signal": "Back-up sw feed 15A",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -885,54 +885,54 @@
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B15 (An Volt 6) - oil pressure signal",
+          "signal": "ECU B15 oil press",
           "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B16 (An Volt 7) - fuel pressure signal",
+          "signal": "ECU B16 fuel press",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B23 (An Volt 8) - coolant pressure signal",
+          "signal": "ECU B23 clnt press",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B6 (Temp 3) - oil temp signal",
+          "signal": "ECU B6 oil temp",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B7 (Temp 4) - charge-pipe air temp signal",
+          "signal": "ECU B7 charge temp",
           "propagate": false
         },
         {
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16s",
-          "signal": "Reverse relay k_rev 86 + CSB3 opto - back-up switch out"
+          "signal": "Reverse +12 V out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "ECU B22 (Gnd Out) - return: oil temp, charge temp, oil + coolant press",
+          "signal": "ECU B22 temp/prs ret",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "ECU B22 (Gnd Out) - return: fuel pressure + gearbox speed sensor",
+          "signal": "ECU B22 fuel/VSS ret",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -963,89 +963,89 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "ECU B9 (Knock 1) - knock sensor signal +",
+          "signal": "ECU B9 knock +",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "ECU B22 (Gnd Out) - knock sensor signal -",
+          "signal": "ECU B22 knock -",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "85",
-          "signal": "ECU B17 (shield ground) - knock cable screen",
+          "signal": "ECU B17 knock screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B18 (Aux 9) - throttle motor +"
+          "signal": "ECU B18 throttle M+"
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B26 (Aux 10) - throttle motor -"
+          "signal": "ECU B26 throttle M-"
         },
         {
           "id": "c22",
           "designation": "88",
-          "signal": "ECU B17 (shield ground) - throttle motor cable screen",
+          "signal": "ECU B17 thr screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c15",
           "designation": "89",
-          "signal": "ECU B29 (DI 8) - gearbox speed signal",
+          "signal": "ECU B29 gearbox spd",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "LOGIC SW12 switched +12 V - gearbox speed sensor supply",
+          "signal": "Sw +12 V gearbox spd",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "ECU B17 (shield ground) - gearbox speed cable screen",
+          "signal": "ECU B17 VSS screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c13",
           "designation": "92",
-          "signal": "CAN bus H (ST185-CAN) - CAN-Lambda CAN H",
+          "signal": "CAN H to CAN-Lambda",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c14",
           "designation": "93",
-          "signal": "CAN bus L (ST185-CAN) - CAN-Lambda CAN L",
+          "signal": "CAN L to CAN-Lambda",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "CAN bus screen (ST185-CAN) - CAN-Lambda pair screen",
+          "signal": "CAN-Lambda screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c3",
           "designation": "95",
-          "signal": "LOGIC LAM 7.5A fuse - CAN-Lambda +12 V",
+          "signal": "CAN-Lambda +12 V",
           "contactPartId": "ct_hdp12s"
         },
         {
           "id": "c4",
           "designation": "96",
-          "signal": "ECU chassis ground splice (A-cabin) - CAN-Lambda ground",
+          "signal": "CAN-Lambda ground",
           "contactPartId": "ct_hdp12s"
         },
         {
@@ -1219,7 +1219,7 @@
           "id": "c2",
           "designation": "2",
           "propagate": false,
-          "signal": "+12 V feed (GAUGE fuse)"
+          "signal": "+12 V feed GAUGE 15A"
         }
       ],
       "layoutPosition": {
@@ -1274,7 +1274,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+12 V supply (switched)",
+          "signal": "switched +12 V",
           "contactPartId": "ct_toy_ts"
         },
         {
@@ -1318,26 +1318,26 @@
     },
     {
       "id": "ix_brail_p",
-      "label": "IX-B-RAIL inline socket (+5 V from A-engine, by bulkhead)",
+      "label": "IX-B-RAIL inline socket, +5 V from A-engine",
       "width": 270,
       "partId": "cp_dt04_6p",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5 V sensor rail - oil pressure sensor",
+          "signal": "+5 V oil pressure",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5 V sensor rail - fuel pressure sensor",
+          "signal": "+5 V fuel pressure",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5 V sensor rail - coolant pressure sensor",
+          "signal": "+5 V coolant press",
           "propagate": false
         },
         {
@@ -1373,7 +1373,6 @@
     {
       "id": "br_w124_e",
       "type": "Loose",
-      "signal": "Throttle body pin 4 - motor + (on ST185-A-engine)",
       "width": 390,
       "layoutPosition": {
         "x": 2910,
@@ -1383,12 +1382,12 @@
         "x": 480,
         "y": 1380
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Throttle body pin 4 (on A-engine) - motor +, from ECU B18"
     },
     {
       "id": "br_w215_e",
       "type": "Loose",
-      "signal": "Throttle body pin 1 - motor - (on ST185-A-engine)",
       "width": 390,
       "layoutPosition": {
         "x": 2850,
@@ -1398,12 +1397,12 @@
         "x": 480,
         "y": 4680
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Throttle body pin 1 (on A-engine) - motor -, from ECU B26"
     },
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "CAN-Lambda module pin 4 - CAN H, bus end with 120R (on ST185-CAN)",
       "width": 390,
       "layoutPosition": {
         "x": 2640,
@@ -1413,12 +1412,12 @@
         "x": 480,
         "y": 4800
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN-Lambda module pin 4 (on ST185-CAN) - CAN H, bus end with 120R"
     },
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "CAN-Lambda module pin 3 - CAN L, bus end with 120R (on ST185-CAN)",
       "width": 390,
       "layoutPosition": {
         "x": 2580,
@@ -1428,12 +1427,12 @@
         "x": 480,
         "y": 4860
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN-Lambda module pin 3 (on ST185-CAN) - CAN L, bus end with 120R"
     },
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "CAN-Lambda module +12 V pin (pin no. TBD - check Link manual) (on ST185-CAN)",
       "width": 390,
       "layoutPosition": {
         "x": 2760,
@@ -1443,12 +1442,12 @@
         "x": 480,
         "y": 4740
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN-Lambda module +12 V pin, no. TBD (Link manual) (on ST185-CAN) - +12 V supply"
     },
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "CAN-Lambda module ground pin (pin no. TBD - check Link manual) (on ST185-CAN)",
       "width": 390,
       "layoutPosition": {
         "x": 2700,
@@ -1458,12 +1457,12 @@
         "x": 480,
         "y": 4620
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN-Lambda module ground pin, no. TBD (Link manual) (on ST185-CAN) - module ground"
     },
     {
       "id": "br_cab_etbm_sh",
       "type": "Loose",
-      "signal": "Screen - cut back at the throttle body, floats (on ST185-A-engine)",
       "width": 390,
       "layoutPosition": {
         "x": 3030,
@@ -1473,12 +1472,12 @@
         "x": 480,
         "y": 1440
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Throttle body end, screen lead floats (on A-engine) - throttle motor cable screen"
     },
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "Screen - cut back at the CAN-Lambda module, floats (on ST185-CAN)",
       "width": 390,
       "layoutPosition": {
         "x": 2970,
@@ -1488,7 +1487,8 @@
         "x": 480,
         "y": 4920
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN-Lambda module end, screen lead floats (on ST185-CAN) - CAN pair screen"
     }
   ],
   "cables": [
@@ -2186,7 +2186,8 @@
         "x": 2250,
         "y": 1800
       },
-      "locationId": "be_480"
+      "locationId": "be_480",
+      "label": "Sensor return splice - oil temp and charge temp, tied to the BH-B pin 77 splice"
     },
     {
       "id": "sp_gndout_b_eng2",
@@ -2199,7 +2200,8 @@
       "schematicPosition": {
         "x": 2250,
         "y": 2040
-      }
+      },
+      "label": "Sensor return splice - BH-B pin 77 (ECU B22) to oil and coolant pressure"
     },
     {
       "id": "sp_gndout_b_eng3",
@@ -2212,7 +2214,8 @@
       "schematicPosition": {
         "x": 2250,
         "y": 2280
-      }
+      },
+      "label": "Sensor return splice - BH-B pin 78 (ECU B22) to fuel pressure and gearbox speed"
     },
     {
       "id": "sp_lam12_b",
@@ -2225,7 +2228,8 @@
       "schematicPosition": {
         "x": 930,
         "y": 2100
-      }
+      },
+      "label": "CAN-Lambda +12 V splice - 14 AWG from BH-B pin 95 to the 20 AWG lead"
     },
     {
       "id": "sp_lamg_b",
@@ -2238,7 +2242,8 @@
       "schematicPosition": {
         "x": 930,
         "y": 2220
-      }
+      },
+      "label": "CAN-Lambda ground splice - 14 AWG from BH-B pin 96 to the 20 AWG lead"
     }
   ],
   "schematicNotes": [
@@ -2260,51 +2265,6 @@
         "y": 1200
       },
       "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_b_eng is the whole 102-cavity plug with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-A-engine - see ST185-A-engine (DRB 1-2, 9-42, 44-47, 50-53, 56-59, 61); their contacts and sealing plugs are counted there."
-    },
-    {
-      "id": "n_splice_sp_gndout_b_eng",
-      "text": "Splice: sensor return (ECU B22) for oil temp + charge-pipe air temp, tied to the BH-B 77 splice",
-      "width": 270,
-      "schematicPosition": {
-        "x": 2280,
-        "y": 1830
-      }
-    },
-    {
-      "id": "n_splice_sp_gndout_b_eng2",
-      "text": "Splice: sensor return (ECU B22 via BH-B 77) for oil + coolant pressure",
-      "width": 270,
-      "schematicPosition": {
-        "x": 2280,
-        "y": 2070
-      }
-    },
-    {
-      "id": "n_splice_sp_gndout_b_eng3",
-      "text": "Splice: sensor return (ECU B22 via BH-B 78) for fuel pressure + gearbox speed sensor",
-      "width": 270,
-      "schematicPosition": {
-        "x": 2280,
-        "y": 2310
-      }
-    },
-    {
-      "id": "n_splice_sp_lam12_b",
-      "text": "Splice: CAN-Lambda +12 V, 14 AWG from BH-B 95 to 20 AWG",
-      "width": 270,
-      "schematicPosition": {
-        "x": 960,
-        "y": 2130
-      }
-    },
-    {
-      "id": "n_splice_sp_lamg_b",
-      "text": "Splice: CAN-Lambda ground, 14 AWG from BH-B 96 to 20 AWG",
-      "width": 270,
-      "schematicPosition": {
-        "x": 960,
-        "y": 2250
-      }
     }
   ],
   "wireParts": [

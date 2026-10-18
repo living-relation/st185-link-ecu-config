@@ -1365,308 +1365,512 @@
   "connectors": {
    "bh_a_eng": {
     "label": [
-     "BH-A",
+     "Bulkhead BH-A (DRB102, RH firewall)",
      "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section A wired here"
     ],
     "cavities": {
      "c48": [
-      "INJ 12V",
+      "Injector +12 V feed",
       "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
      ],
      "c49": [
-      "COP 12V",
+      "Coil +12 V feed",
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
      "c41": [
-      "Gnd Out crank",
+      "ECU A24 crank ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
      ],
      "c42": [
-      "Gnd Out cam",
+      "ECU A24 cam ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
      ],
      "c40": [
-      "+5V Out turbo",
+      "ECU A32 turbo +5 V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
      ],
      "c43": [
-      "Gnd Out turbo",
+      "ECU A24 turbo ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
      ],
      "c5": [
-      "SW12 eng sens",
+      "Sw +12 V boost/flex",
       "Switched 12V to engine sensors"
      ],
      "c2": [
-      "+5V Out ETB",
+      "ECU A32 throttle 5V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
      ],
      "c3": [
-      "Gnd Out IAT",
+      "ECU A24 temp/thr ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
-      "ETB sens screen",
+      "ECU A7 throt screen",
       "ETB sensor group screen"
      ],
      "c39": [
-      "+5V Out MAP",
+      "ECU A32 MAP +5 V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
      ],
      "c44": [
-      "Gnd Out flex",
+      "ECU A24 MAP/flex ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
-      "EHPS enable",
+      "EHPS enable +12 V",
       "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
      ],
      "c36": [
-      "Aux 7 MRS speed-out",
+      "ECU A27 EHPS speed",
       "Aux 7 MRS speed-out (ECU A27)"
      ],
      "c45": [
-      "+5V oil press",
+      "ECU A32 oil press 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c46": [
-      "+5V fuel press",
+      "ECU A32 fuel prs 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c47": [
-      "+5V coolant press",
+      "ECU A32 clnt prs 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ],
      "c27": [
-      "EHPS coil-",
+      "EPS relay coil 85",
       "MR-S pump B5 -> EPS relay k_eps coil- (85)"
+     ],
+     "c24": [
+      "ECU A8 crank sig",
+      "ECU-A A8"
+     ],
+     "c33": [
+      "ECU A7 crank screen",
+      "Crank VR screen"
+     ],
+     "c4": [
+      "ECU A6 cam +8 V",
+      "+8V Out to cam Hall"
+     ],
+     "c29": [
+      "ECU A9 cam sig",
+      "ECU-A A9"
+     ],
+     "c34": [
+      "ECU A7 cam screen",
+      "Cam Hall screen"
+     ],
+     "c7": [
+      "ECU A30 turbo sig",
+      "ECU-A A30"
+     ],
+     "c6": [
+      "ECU A7 turbo screen",
+      "Turbo speed screen"
+     ],
+     "c9": [
+      "ECU A31 flex sig",
+      "ECU-A A31"
+     ],
+     "c10": [
+      "ECU A7 flex screen",
+      "Flex fuel screen"
+     ],
+     "c21": [
+      "ECU A22 throttle 1",
+      "ECU-A A22"
+     ],
+     "c22": [
+      "ECU A33 throttle 2",
+      "ECU-A A33"
+     ],
+     "c8": [
+      "ECU A17 MAP sig",
+      "ECU-A A17"
+     ],
+     "c13": [
+      "ECU A4 injector 1",
+      "ECU-A A4"
+     ],
+     "c14": [
+      "ECU A3 injector 2",
+      "ECU-A A3"
+     ],
+     "c15": [
+      "ECU A2 injector 3",
+      "ECU-A A2"
+     ],
+     "c16": [
+      "ECU A1 injector 4",
+      "ECU-A A1"
+     ],
+     "c17": [
+      "ECU A13 coil 1 trig",
+      "ECU-A A13"
+     ],
+     "c18": [
+      "ECU A12 coil 2 trig",
+      "ECU-A A12"
+     ],
+     "c19": [
+      "ECU A11 coil 3 trig",
+      "ECU-A A11"
+     ],
+     "c20": [
+      "ECU A10 coil 4 trig",
+      "ECU-A A10"
+     ],
+     "c23": [
+      "ECU A21 boost sol",
+      "ECU-A A21"
+     ],
+     "c25": [
+      "ECU A15 coolant temp",
+      "ECU-A A15"
+     ],
+     "c26": [
+      "ECU A16 intake temp",
+      "ECU-A A16"
      ]
     }
    },
    "turbospd": {
     "label": [
-     "TURBO SPD",
+     "Turbo speed sensor",
      "Turbo Speed Sensor"
     ],
     "cavities": {
      "c3": [
-      "TURBO SPD GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "+5 V supply",
+      "+5V"
+     ],
+     "c2": [
+      "speed signal out",
+      "SIG"
      ]
     }
    },
    "map": {
     "label": [
-     "MAP",
+     "MAP sensor (sensor block, LH firewall)",
      "MAP Sensor"
     ],
     "cavities": {
      "c3": [
-      "MAP GND",
-      "GND"
+      "pressure signal out",
+      "SIG"
+     ],
+     "c1": [
+      "sensor ground",
+      "MAP GND"
+     ],
+     "c2": [
+      "+5 V supply",
+      "5V"
      ]
     }
    },
    "flex": {
     "label": [
-     "FLEX",
+     "Flex fuel sensor (fuel return line)",
      "Flex Fuel Sensor"
     ],
     "cavities": {
      "c2": [
-      "FLEX GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "+12 V supply",
+      "12V/8V"
+     ],
+     "c3": [
+      "ethanol/temp signal",
+      "FREQ OUT"
      ]
     }
    },
    "inj1": {
     "label": [
-     "INJ1",
+     "Injector cyl 1",
      "Injector 1"
     ],
     "cavities": {
      "c1": [
-      "INJ1 12V",
+      "+12 V feed",
       "12V"
+     ],
+     "c2": [
+      "ECU drive (low side)",
+      "INJ"
      ]
     }
    },
    "inj2": {
     "label": [
-     "INJ2",
+     "Injector cyl 2",
      "Injector 2"
     ],
     "cavities": {
      "c1": [
-      "INJ2 12V",
+      "+12 V feed",
       "12V"
+     ],
+     "c2": [
+      "ECU drive (low side)",
+      "INJ"
      ]
     }
    },
    "inj3": {
     "label": [
-     "INJ3",
+     "Injector cyl 3",
      "Injector 3"
     ],
     "cavities": {
      "c1": [
-      "INJ3 12V",
+      "+12 V feed",
       "12V"
+     ],
+     "c2": [
+      "ECU drive (low side)",
+      "INJ"
      ]
     }
    },
    "inj4": {
     "label": [
-     "INJ4",
+     "Injector cyl 4",
      "Injector 4"
     ],
     "cavities": {
      "c1": [
-      "INJ4 12V",
+      "+12 V feed",
       "12V"
+     ],
+     "c2": [
+      "ECU drive (low side)",
+      "INJ"
      ]
     }
    },
    "cop1": {
     "label": [
-     "COP1",
+     "Ignition coil cyl 1",
      "COP 1 (1ZZ)"
     ],
     "cavities": {
      "c1": [
-      "+B 12V",
+      "+12 V feed (+B)",
       "+B 12V (COP rail, spur from ST185-B-engine)"
      ],
      "c4": [
-      "COP1 GND",
+      "ground to eng block",
       "GND"
+     ],
+     "c3": [
+      "IGT trigger from ECU",
+      "IGT (TRIG)"
      ]
     }
    },
    "cop2": {
     "label": [
-     "COP2",
+     "Ignition coil cyl 2",
      "COP 2 (1ZZ)"
     ],
     "cavities": {
      "c1": [
-      "+B 12V",
+      "+12 V feed (+B)",
       "+B 12V (COP rail, spur from ST185-B-engine)"
      ],
      "c4": [
-      "COP2 GND",
+      "ground to eng block",
       "GND"
+     ],
+     "c3": [
+      "IGT trigger from ECU",
+      "IGT (TRIG)"
      ]
     }
    },
    "cop3": {
     "label": [
-     "COP3",
+     "Ignition coil cyl 3",
      "COP 3 (1ZZ)"
     ],
     "cavities": {
      "c1": [
-      "+B 12V",
+      "+12 V feed (+B)",
       "+B 12V (COP rail, spur from ST185-B-engine)"
      ],
      "c4": [
-      "COP3 GND",
+      "ground to eng block",
       "GND"
+     ],
+     "c3": [
+      "IGT trigger from ECU",
+      "IGT (TRIG)"
      ]
     }
    },
    "cop4": {
     "label": [
-     "COP4",
+     "Ignition coil cyl 4",
      "COP 4 (1ZZ)"
     ],
     "cavities": {
      "c1": [
-      "+B 12V",
+      "+12 V feed (+B)",
       "+B 12V (COP rail, spur from ST185-B-engine)"
      ],
      "c4": [
-      "COP4 GND",
+      "ground to eng block",
       "GND"
+     ],
+     "c3": [
+      "IGT trigger from ECU",
+      "IGT (TRIG)"
      ]
     }
    },
    "etb": {
     "label": [
-     "ETB",
+     "Throttle body (Bosch ETB)",
      "Bosch 74.5mm ETB"
-    ]
+    ],
+    "cavities": {
+     "c1": [
+      "motor -",
+      "Motor-"
+     ],
+     "c2": [
+      "sensor ground",
+      "Poti- (GND)"
+     ],
+     "c3": [
+      "position sensor +5V",
+      "Poti+ (5V)"
+     ],
+     "c4": [
+      "motor +",
+      "Motor+"
+     ],
+     "c5": [
+      "position sensor 2",
+      "Poti2 (TPS-S)"
+     ],
+     "c6": [
+      "position sensor 1",
+      "Poti1 (TPS-M)"
+     ]
+    }
    },
    "boost": {
     "label": [
-     "BOOST SOL",
+     "Boost control solenoid",
      "Boost Control Solenoid"
     ],
     "cavities": {
      "c1": [
-      "BOOST SOL 12V",
+      "switched +12 V",
       "12V"
+     ],
+     "c2": [
+      "ECU drive (low side)",
+      "LS"
      ]
     }
    },
    "ect": {
     "label": [
-     "ECT",
+     "Coolant temp sensor (water neck)",
      "ECT Sensor"
     ],
     "cavities": {
      "c2": [
-      "ECT GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "temp signal",
+      "SIG"
      ]
     }
    },
    "iat": {
     "label": [
-     "IAT",
+     "Intake air temp sensor (manifold)",
      "IAT Sensor (Manifold)"
     ],
     "cavities": {
      "c2": [
-      "IAT GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "temp signal",
+      "SIG"
      ]
     }
    },
    "crank": {
     "label": [
-     "CRANK",
+     "Crank sensor",
      "Crank VR Sensor (36-2)"
-    ]
+    ],
+    "cavities": {
+     "c1": [
+      "VR signal +",
+      "SIG+"
+     ],
+     "c2": [
+      "VR signal -",
+      "SIG-"
+     ]
+    }
    },
    "cam": {
     "label": [
-     "CAM",
+     "Cam sensor (Hall)",
      "Cam Hall Sensor (RacerX)"
     ],
     "cavities": {
      "c3": [
-      "CAM GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "+8 V supply",
+      "+8V"
+     ],
+     "c2": [
+      "Hall signal out",
+      "SIG"
      ]
     }
    },
    "ix_brail_s": {
     "label": [
-     "IX-B-RAIL",
+     "IX-B-RAIL inline plug, +5 V to B-engine",
      "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)"
     ],
     "cavities": {
      "c1": [
-      "+5V oil press",
+      "+5 V oil pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c2": [
-      "+5V fuel press",
+      "+5 V fuel pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c3": [
-      "+5V coolant press",
+      "+5 V coolant press",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ]
     }
@@ -1674,39 +1878,39 @@
   },
   "terminals": {
    "eng_gnd_ring": [
-    "Power GND -> eng block",
+    "",
     "Engine block ground stud (power ground)"
    ],
    "starter_trigger": [
-    "Start sig -> starter S",
+    "",
     "Starter Solenoid Trigger (S)"
    ],
    "br_w_hv_mrs_en_e": [
-    "EHPS enable -> EHPS PUMP C-1",
+    "",
     "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35"
    ],
    "br_w_mrs_e": [
-    "EHPS speed -> EHPS PUMP B-2",
+    "",
     "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36"
    ],
    "br_w_strl": [
-    "Starter S -> POWER R3 87",
+    "",
     "Broken off - continues on ST185-CabinPower: start relay 87 to the starter S terminal"
    ],
    "br_w124_e": [
-    "ETB motor + -> BH-B 86",
+    "",
     "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5"
    ],
    "br_w215_e": [
-    "ETB motor - -> BH-B 87",
+    "",
     "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6"
    ],
    "br_cab_etbm_sh": [
-    "ETB screen -> BH-B 88",
+    "",
     "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22"
    ],
    "br_w_eps_rly_e": [
-    "EHPS coil- -> EHPS PUMP B-5",
+    "",
     "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
    ]
   }
@@ -1715,176 +1919,264 @@
   "connectors": {
    "bh_b_eng": {
     "label": [
-     "BH-B",
+     "Bulkhead BH-B (DRB102, RH firewall)",
      "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section B wired here"
     ],
     "cavities": {
      "c25": [
-      "Rev SW feed",
+      "Back-up sw feed 15A",
       "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
      ],
      "c12": [
-      "Rev SW out",
+      "Reverse +12 V out",
       "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
      ],
      "c19": [
-      "Gnd Out B-eng",
+      "ECU B22 temp/prs ret",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
      ],
      "c21": [
-      "Gnd Out B-eng",
+      "ECU B22 fuel/VSS ret",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
      ],
      "c16": [
-      "Knock 1 SIG+",
+      "ECU B9 knock +",
       "Knock 1 SIG+ (ECU B9)"
      ],
      "c17": [
-      "Knock 1 SIG-",
+      "ECU B22 knock -",
       "Knock 1 SIG- (to Gnd Out B22)"
      ],
      "c5": [
-      "ETB motor +",
+      "ECU B18 throttle M+",
       "ETB motor + (Aux 9, B18)"
      ],
      "c6": [
-      "ETB motor -",
+      "ECU B26 throttle M-",
       "ETB motor - (Aux 10, B26)"
      ],
      "c15": [
-      "Gearbox VSS signal",
+      "ECU B29 gearbox spd",
       "Gearbox VSS signal (ECU B29, DI 8)"
      ],
      "c20": [
-      "VSS 12V",
+      "Sw +12 V gearbox spd",
       "Switched 12V to gearbox VSS (from sp_sw12)"
      ],
      "c13": [
-      "CAN H Lambda",
+      "CAN H to CAN-Lambda",
       "CAN H to Link CAN-Lambda (ST185-CAN)"
      ],
      "c14": [
-      "CAN L Lambda",
+      "CAN L to CAN-Lambda",
       "CAN L to Link CAN-Lambda (ST185-CAN)"
      ],
      "c24": [
-      "Lambda CAN screen",
+      "CAN-Lambda screen",
       "CAN-Lambda CAN pair screen"
      ],
      "c3": [
-      "CAN-Lambda +12V",
+      "CAN-Lambda +12 V",
       "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
      ],
      "c4": [
-      "Lambda GND",
+      "CAN-Lambda ground",
       "CAN-Lambda ground to cabin chassis ground (14 AWG)"
+     ],
+     "c7": [
+      "ECU B15 oil press",
+      "ECU-B B15"
+     ],
+     "c8": [
+      "ECU B16 fuel press",
+      "ECU-B B16"
+     ],
+     "c9": [
+      "ECU B23 clnt press",
+      "ECU-B B23"
+     ],
+     "c10": [
+      "ECU B6 oil temp",
+      "ECU-B B6"
+     ],
+     "c11": [
+      "ECU B7 charge temp",
+      "ECU-B B7"
+     ],
+     "c18": [
+      "ECU B17 knock screen",
+      "Knock 1 screen"
+     ],
+     "c22": [
+      "ECU B17 thr screen",
+      "ETB motor screen"
+     ],
+     "c23": [
+      "ECU B17 VSS screen",
+      "Gearbox VSS screen"
      ]
     }
    },
    "oilp": {
     "label": [
-     "OIL PRESS",
+     "Oil pressure sensor (sensor block, LH firewall)",
      "Oil Pressure Sensor"
     ],
     "cavities": {
      "c3": [
-      "OIL PRESS GND",
-      "GND"
+      "pressure signal out",
+      "SIG"
+     ],
+     "c1": [
+      "sensor ground",
+      "OIL PRESS GND"
+     ],
+     "c2": [
+      "+5 V supply",
+      "5V"
      ]
     }
    },
    "fuelp": {
     "label": [
-     "FUEL PRESS",
+     "Fuel pressure sensor (sensor block, LH firewall)",
      "Fuel Pressure Sensor"
     ],
     "cavities": {
      "c3": [
-      "FUEL PRESS GND",
-      "GND"
+      "pressure signal out",
+      "SIG"
+     ],
+     "c1": [
+      "sensor ground",
+      "FUEL PRESS GND"
+     ],
+     "c2": [
+      "+5 V supply",
+      "5V"
      ]
     }
    },
    "clntp": {
     "label": [
-     "CLNT PRESS",
+     "Coolant pressure sensor (rear of block, LH)",
      "Coolant Pressure Sensor"
     ],
     "cavities": {
      "c3": [
-      "CLNT PRESS GND",
-      "GND"
+      "pressure signal out",
+      "SIG"
+     ],
+     "c1": [
+      "sensor ground",
+      "CLNT PRESS GND"
+     ],
+     "c2": [
+      "+5 V supply",
+      "5V"
      ]
     }
    },
    "oilt": {
     "label": [
-     "OIL TEMP",
+     "Oil temp sender",
      "Oil Temp Sensor"
     ],
     "cavities": {
      "c2": [
-      "OIL TEMP GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "temp signal",
+      "SIG"
      ]
     }
    },
    "rev_sw": {
     "label": [
-     "B1 REV SW",
+     "Back-up light switch B1 (transaxle)",
      "Back-up SW B1"
-    ]
+    ],
+    "cavities": {
+     "c1": [
+      "+12 V out in reverse",
+      "OUT +12V in R"
+     ],
+     "c2": [
+      "+12 V feed GAUGE 15A",
+      "FEED GAUGE 15A"
+     ]
+    }
    },
    "cpiat": {
     "label": [
-     "CP IAT",
+     "Charge-pipe air temp sensor",
      "Charge-Pipe IAT Sensor"
     ],
     "cavities": {
      "c2": [
-      "CP IAT GND",
+      "sensor ground",
       "GND"
+     ],
+     "c1": [
+      "temp signal",
+      "SIG"
      ]
     }
    },
    "vss": {
     "label": [
-     "VSS",
+     "Gearbox speed sensor (transaxle)",
      "Gearbox VSS (Toyota 83181-20040, 3-wire) - actual road speed, plug 90980-11143"
     ],
     "cavities": {
      "c1": [
-      "VSS 12V",
+      "switched +12 V",
       "IG +12V switched (pin 1)"
      ],
      "c3": [
-      "VSS speed out",
+      "speed signal out",
       "SP1 speed output (pin 3) -> bulkhead B c15 *"
+     ],
+     "c2": [
+      "sensor ground",
+      "Ground (pin 2)"
      ]
     }
    },
    "knock1": {
     "label": [
-     "KNOCK1",
+     "Knock sensor 1 (block)",
      "Knock Sensor 1"
-    ]
+    ],
+    "cavities": {
+     "c1": [
+      "signal +",
+      "SIG+"
+     ],
+     "c2": [
+      "signal -",
+      "SIG-"
+     ]
+    }
    },
    "ix_brail_p": {
     "label": [
-     "IX-B-RAIL",
+     "IX-B-RAIL inline socket, +5 V from A-engine",
      "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)"
     ],
     "cavities": {
      "c1": [
-      "+5V oil press",
+      "+5 V oil pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c2": [
-      "+5V fuel press",
+      "+5 V fuel pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c3": [
-      "+5V coolant press",
+      "+5 V coolant press",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ]
     }
@@ -1892,35 +2184,35 @@
   },
   "terminals": {
    "br_w124_e": [
-    "ETB motor + -> ETB c4",
+    "",
     "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5"
    ],
    "br_w215_e": [
-    "ETB motor - -> ETB c1",
+    "",
     "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6"
    ],
    "br_wc_h_lam": [
-    "CAN H Lambda -> splice CANH LAM",
+    "",
     "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda"
    ],
    "br_wc_l_lam": [
-    "CAN L Lambda -> splice CANL LAM",
+    "",
     "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda"
    ],
    "br_w_lam12": [
-    "Lambda 12V -> CAN-LAMBDA c1",
+    "",
     "Broken off - continues on ST185-CAN: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3"
    ],
    "br_w_lamg": [
-    "Lambda GND -> CAN-LAMBDA c2",
+    "",
     "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4"
    ],
    "br_cab_etbm_sh": [
-    "ETB screen -> A-engine open",
+    "",
     "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead B c22"
    ],
    "br_cab_lamcan_sh": [
-    "Lambda screen -> CAN open",
+    "",
     "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead B c24"
    ]
   }

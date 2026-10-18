@@ -878,14 +878,14 @@
         {
           "id": "c48",
           "designation": "1",
-          "signal": "LOGIC INJ 15A fuse - injector +12 V feed",
+          "signal": "Injector +12 V feed",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "LOGIC COP 15A fuse - ignition coil +12 V feed",
+          "signal": "Coil +12 V feed",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
@@ -929,13 +929,13 @@
           "id": "c24",
           "designation": "9",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A8 (Trigger 1) - crank sensor signal",
+          "signal": "ECU A8 crank sig",
           "propagate": false
         },
         {
           "id": "c41",
           "designation": "10",
-          "signal": "ECU A24 (Gnd Out) - crank sensor return",
+          "signal": "ECU A24 crank ret",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -943,26 +943,26 @@
           "id": "c33",
           "designation": "11",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A7 (shield ground) - crank cable screen"
+          "signal": "ECU A7 crank screen"
         },
         {
           "id": "c4",
           "designation": "12",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A6 (+8V Out) - cam sensor supply",
+          "signal": "ECU A6 cam +8 V",
           "propagate": false
         },
         {
           "id": "c29",
           "designation": "13",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A9 (Trigger 2) - cam sensor signal",
+          "signal": "ECU A9 cam sig",
           "propagate": false
         },
         {
           "id": "c42",
           "designation": "14",
-          "signal": "ECU A24 (Gnd Out) - cam sensor return",
+          "signal": "ECU A24 cam ret",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -970,12 +970,12 @@
           "id": "c34",
           "designation": "15",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A7 (shield ground) - cam cable screen"
+          "signal": "ECU A7 cam screen"
         },
         {
           "id": "c40",
           "designation": "16",
-          "signal": "ECU A32 (+5V Out) - turbo speed sensor supply",
+          "signal": "ECU A32 turbo +5 V",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -983,87 +983,87 @@
           "id": "c7",
           "designation": "17",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A30 (DI 1) - turbo speed signal",
+          "signal": "ECU A30 turbo sig",
           "propagate": false
         },
         {
           "id": "c43",
           "designation": "18",
-          "signal": "ECU A24 (Gnd Out) - turbo speed sensor return",
+          "signal": "ECU A24 turbo ret",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "19",
-          "signal": "ECU A7 (shield ground) - turbo speed cable screen",
+          "signal": "ECU A7 turbo screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c5",
           "designation": "20",
           "contactPartId": "ct_hdp16s",
-          "signal": "LOGIC SW12 switched +12 V - boost solenoid + flex sensor",
+          "signal": "Sw +12 V boost/flex",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "21",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A31 (DI 2) - flex fuel signal",
+          "signal": "ECU A31 flex sig",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "22",
-          "signal": "ECU A7 (shield ground) - flex cable screen",
+          "signal": "ECU A7 flex screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c2",
           "designation": "23",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A32 (+5V Out) - throttle position sensor supply",
+          "signal": "ECU A32 throttle 5V",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "24",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A22 (An Volt 2) - throttle position main",
+          "signal": "ECU A22 throttle 1",
           "propagate": false
         },
         {
           "id": "c22",
           "designation": "25",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A33 (An Volt 3) - throttle position sub",
+          "signal": "ECU A33 throttle 2",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "26",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A24 (Gnd Out) - return: throttle pos, coolant + intake temp",
+          "signal": "ECU A24 temp/thr ret",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "27",
-          "signal": "ECU A7 (shield ground) - throttle sensor cable screen",
+          "signal": "ECU A7 throt screen",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c39",
           "designation": "28",
-          "signal": "ECU A32 (+5V Out) - MAP sensor supply",
+          "signal": "ECU A32 MAP +5 V",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c44",
           "designation": "29",
-          "signal": "ECU A24 (Gnd Out) - return: MAP + flex sensor",
+          "signal": "ECU A24 MAP/flex ret",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1071,90 +1071,90 @@
           "id": "c8",
           "designation": "30",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A17 (An Volt 1) - MAP signal",
+          "signal": "ECU A17 MAP sig",
           "propagate": false
         },
         {
           "id": "c13",
           "designation": "31",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A4 (Inj 1) - injector cyl 1 drive",
+          "signal": "ECU A4 injector 1",
           "propagate": false
         },
         {
           "id": "c14",
           "designation": "32",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A3 (Inj 2) - injector cyl 2 drive",
+          "signal": "ECU A3 injector 2",
           "propagate": false
         },
         {
           "id": "c15",
           "designation": "33",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A2 (Inj 3) - injector cyl 3 drive",
+          "signal": "ECU A2 injector 3",
           "propagate": false
         },
         {
           "id": "c16",
           "designation": "34",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A1 (Inj 4) - injector cyl 4 drive",
+          "signal": "ECU A1 injector 4",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "35",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A13 (Ign 1) - coil cyl 1 trigger",
+          "signal": "ECU A13 coil 1 trig",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "36",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A12 (Ign 2) - coil cyl 2 trigger",
+          "signal": "ECU A12 coil 2 trig",
           "propagate": false
         },
         {
           "id": "c19",
           "designation": "37",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A11 (Ign 3) - coil cyl 3 trigger",
+          "signal": "ECU A11 coil 3 trig",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "38",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A10 (Ign 4) - coil cyl 4 trigger",
+          "signal": "ECU A10 coil 4 trig",
           "propagate": false
         },
         {
           "id": "c23",
           "designation": "39",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A21 (Aux 1) - boost solenoid drive",
+          "signal": "ECU A21 boost sol",
           "propagate": false
         },
         {
           "id": "c25",
           "designation": "40",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A15 (Temp 1) - coolant temp signal",
+          "signal": "ECU A15 coolant temp",
           "propagate": false
         },
         {
           "id": "c26",
           "designation": "41",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU A16 (Temp 2) - intake air temp signal",
+          "signal": "ECU A16 intake temp",
           "propagate": false
         },
         {
           "id": "c35",
           "designation": "42",
-          "signal": "LOGIC MRS 7.5A fuse - EHPS pump enable +12 V",
+          "signal": "EHPS enable +12 V",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -1166,7 +1166,7 @@
         {
           "id": "c36",
           "designation": "44",
-          "signal": "ECU A27 (Aux 7) - EHPS pump speed signal",
+          "signal": "ECU A27 EHPS speed",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -1184,7 +1184,7 @@
         {
           "id": "c45",
           "designation": "47",
-          "signal": "ECU A32 (+5V Out) - oil pressure sensor supply",
+          "signal": "ECU A32 oil press 5V",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -1202,13 +1202,13 @@
         {
           "id": "c46",
           "designation": "50",
-          "signal": "ECU A32 (+5V Out) - fuel pressure sensor supply",
+          "signal": "ECU A32 fuel prs 5V",
           "contactPartId": "ct_hdp16s"
         },
         {
           "id": "c47",
           "designation": "51",
-          "signal": "ECU A32 (+5V Out) - coolant pressure sensor supply",
+          "signal": "ECU A32 clnt prs 5V",
           "contactPartId": "ct_hdp16s"
         },
         {
@@ -1238,7 +1238,7 @@
         {
           "id": "c27",
           "designation": "56",
-          "signal": "EPS relay k_eps coil 85 - EHPS pump B5 switches it",
+          "signal": "EPS relay coil 85",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -1598,7 +1598,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V supply (switched)",
+          "signal": "+12 V supply",
           "contactPartId": "ct_gt150_skt_05",
           "propagate": false
         },
@@ -1609,7 +1609,7 @@
         },
         {
           "id": "c3",
-          "signal": "ethanol % / fuel temp signal",
+          "signal": "ethanol/temp signal",
           "contactPartId": "ct_gt150_skt_05"
         }
       ],
@@ -1748,7 +1748,7 @@
         },
         {
           "id": "c4",
-          "signal": "ground to engine block"
+          "signal": "ground to eng block"
         }
       ],
       "layoutPosition": {
@@ -1780,7 +1780,7 @@
         },
         {
           "id": "c4",
-          "signal": "ground to engine block",
+          "signal": "ground to eng block",
           "propagate": false
         }
       ],
@@ -1813,7 +1813,7 @@
         },
         {
           "id": "c4",
-          "signal": "ground to engine block",
+          "signal": "ground to eng block",
           "propagate": false
         }
       ],
@@ -1846,7 +1846,7 @@
         },
         {
           "id": "c4",
-          "signal": "ground to engine block",
+          "signal": "ground to eng block",
           "propagate": false
         }
       ],
@@ -1873,13 +1873,13 @@
         },
         {
           "id": "c2",
-          "signal": "position sensor ground",
+          "signal": "sensor ground",
           "contactPartId": "wbsN09tiboovqanDL_xZA",
           "propagate": false
         },
         {
           "id": "c3",
-          "signal": "position sensor +5 V",
+          "signal": "position sensor +5V",
           "contactPartId": "wbsN09tiboovqanDL_xZA"
         },
         {
@@ -1889,12 +1889,12 @@
         },
         {
           "id": "c5",
-          "signal": "position sensor 2 (sub)",
+          "signal": "position sensor 2",
           "contactPartId": "wbsN09tiboovqanDL_xZA"
         },
         {
           "id": "c6",
-          "signal": "position sensor 1 (main)",
+          "signal": "position sensor 1",
           "contactPartId": "wbsN09tiboovqanDL_xZA"
         }
       ],
@@ -1914,7 +1914,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed (switched)",
+          "signal": "switched +12 V",
           "contactPartId": "ct_mp150_skt"
         },
         {
@@ -2036,26 +2036,26 @@
     },
     {
       "id": "ix_brail_s",
-      "label": "IX-B-RAIL inline plug (+5 V to B-engine, by bulkhead)",
+      "label": "IX-B-RAIL inline plug, +5 V to B-engine",
       "width": 270,
       "partId": "cp_dt06_6s",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5 V sensor rail - oil pressure sensor",
+          "signal": "+5 V oil pressure",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5 V sensor rail - fuel pressure sensor",
+          "signal": "+5 V fuel pressure",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5 V sensor rail - coolant pressure sensor",
+          "signal": "+5 V coolant press",
           "propagate": false
         },
         {
@@ -2091,7 +2091,6 @@
     {
       "id": "eng_gnd_ring",
       "type": "Ring",
-      "signal": "Ground ring - engine block ground stud (RADLOK engine ground, H6)",
       "layoutPosition": {
         "x": 2460,
         "y": -300
@@ -2102,12 +2101,12 @@
       },
       "partId": "tp_ring_m6_12_10",
       "width": 390,
-      "propagate": false
+      "propagate": false,
+      "label": "Engine block ground stud (RADLOK engine ground, H6), M6 ring - ignition coil 1-4 grounds"
     },
     {
       "id": "starter_trigger",
       "type": "Spade",
-      "signal": "Spade - starter solenoid terminal S (50), on the starter",
       "layoutPosition": {
         "x": 2670,
         "y": -360
@@ -2117,13 +2116,13 @@
         "y": 150
       },
       "partId": "tp_spade_str",
-      "width": 390,
-      "propagate": false
+      "width": 270,
+      "propagate": false,
+      "label": "Starter solenoid S (50) terminal post, spade - start signal from the start relay"
     },
     {
       "id": "br_w_hv_mrs_en_e",
       "type": "Loose",
-      "signal": "EHPS pump plug C pin 1 - ignition enable in (on ST185-EngineRoom-C)",
       "width": 390,
       "layoutPosition": {
         "x": -780,
@@ -2133,12 +2132,12 @@
         "x": 3000,
         "y": -60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "EHPS pump plug C pin 1 (on EngineRoom-C) - ignition enable in"
     },
     {
       "id": "br_w_mrs_e",
       "type": "Loose",
-      "signal": "EHPS pump plug B pin 2 - speed pulse in (on ST185-EngineRoom-C)",
       "width": 390,
       "layoutPosition": {
         "x": -780,
@@ -2148,12 +2147,12 @@
         "x": 3000,
         "y": 3120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "EHPS pump plug B pin 2 (on EngineRoom-C) - speed pulse in"
     },
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "Start relay k_str pin 87 (POWER box R3, glove box) - on ST185-CabinPower",
       "width": 390,
       "layoutPosition": {
         "x": -960,
@@ -2163,12 +2162,12 @@
         "x": 2340,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Start relay pin 87, POWER box R3 (glove box, on CabinPower) - starter S feed"
     },
     {
       "id": "br_w124_e",
       "type": "Loose",
-      "signal": "BH-B pin 86 (bulkhead B, RH firewall) - ECU B18 throttle motor + (on ST185-B-engine)",
       "width": 390,
       "layoutPosition": {
         "x": -780,
@@ -2178,12 +2177,12 @@
         "x": 2910,
         "y": -120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "BH-B pin 86 (bulkhead B, RH firewall, on B-engine) - ECU B18 throttle motor +"
     },
     {
       "id": "br_w215_e",
       "type": "Loose",
-      "signal": "BH-B pin 87 (bulkhead B, RH firewall) - ECU B26 throttle motor - (on ST185-B-engine)",
       "width": 390,
       "layoutPosition": {
         "x": -780,
@@ -2193,12 +2192,12 @@
         "x": 2910,
         "y": 3180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "BH-B pin 87 (bulkhead B, RH firewall, on B-engine) - ECU B26 throttle motor -"
     },
     {
       "id": "br_cab_etbm_sh",
       "type": "Loose",
-      "signal": "Screen - BH-B pin 88 (bulkhead B) - ECU B17 shield ground (on ST185-B-engine)",
       "width": 390,
       "layoutPosition": {
         "x": -780,
@@ -2208,12 +2207,12 @@
         "x": 2910,
         "y": 3240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "BH-B pin 88 (bulkhead B, on B-engine) - throttle motor cable screen to ECU B17"
     },
     {
       "id": "br_w_eps_rly_e",
       "type": "Loose",
-      "signal": "EHPS pump plug B pin 5 - EPS relay coil switch (on ST185-EngineRoom-C)",
       "width": 390,
       "layoutPosition": {
         "x": -780,
@@ -2223,7 +2222,8 @@
         "x": 2580,
         "y": -60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "EHPS pump plug B pin 5 (on EngineRoom-C) - EPS relay coil switch"
     }
   ],
   "cables": [
@@ -3187,7 +3187,8 @@
         "y": 390
       },
       "partId": "spp_solder_generic",
-      "locationId": "be_660"
+      "locationId": "be_660",
+      "label": "Switched +12 V splice - BH-A pin 20 to boost solenoid and flex sensor"
     },
     {
       "id": "sp_gndout_eng",
@@ -3200,7 +3201,8 @@
         "y": 690
       },
       "partId": "spp_crimp_14_10",
-      "locationId": "be_660"
+      "locationId": "be_660",
+      "label": "Sensor return splice - BH-A pin 26 (ECU A24) to coolant temp, intake temp, throttle"
     },
     {
       "id": "sp_chassis_eng",
@@ -3213,7 +3215,8 @@
         "y": 720
       },
       "partId": "spp_solder_generic",
-      "locationId": "be_750"
+      "locationId": "be_750",
+      "label": "Coil ground splice - ignition coils 1-4 to the engine block ground stud"
     },
     {
       "id": "sp_inj_eng",
@@ -3225,7 +3228,8 @@
         "x": 930,
         "y": 1530
       },
-      "partId": "spp_solder_generic"
+      "partId": "spp_solder_generic",
+      "label": "Injector +12 V splice - BH-A pin 1 (LOGIC INJ 15A) to injectors 1-4"
     },
     {
       "id": "sp_cop_eng",
@@ -3237,7 +3241,8 @@
         "x": 930,
         "y": 930
       },
-      "partId": "spp_solder_generic"
+      "partId": "spp_solder_generic",
+      "label": "Coil +12 V splice - BH-A pin 2 (LOGIC COP 15A) to coils 1-4"
     },
     {
       "id": "sp_gndout_eng2",
@@ -3250,13 +3255,14 @@
       "schematicPosition": {
         "x": 930,
         "y": 2100
-      }
+      },
+      "label": "Sensor return splice - BH-A pin 29 (ECU A24) to MAP and flex sensor"
     }
   ],
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "BULKHEAD BH-A NOTES\nBH-A pin 42: EHPS pump enable, +12 V from the LOGIC MRS 7.5 A fuse (fed by relay k_eps_en 87, ignition-switched). Moved from bulkhead B 2026-09-28 because the pump ECU signal (A27) is on connector A. The wire to the pump (plug C pin 1) is drawn on ST185-EngineRoom-C.\nBH-A pin 44: ECU A27 (Aux 7) speed pulse to the EHPS pump plug B pin 2, drawn on ST185-EngineRoom-C.\nBH-A pin 56: EHPS pump plug B pin 5 switches the EPS relay k_eps coil 85 (glove box) to ground (DECISIONS R22).",
+      "text": "BULKHEAD BH-A NOTES\nBH-A pin 42: EHPS pump enable, +12 V from the LOGIC MRS 7.5 A fuse (fed by the EPS enable relay pin 87, ignition-switched). Moved from bulkhead B 2026-09-28 because the pump ECU signal (A27) is on connector A. The wire to the pump (plug C pin 1) is drawn on ST185-EngineRoom-C.\nBH-A pin 44: ECU A27 (Aux 7) speed pulse to the EHPS pump plug B pin 2, drawn on ST185-EngineRoom-C.\nBH-A pin 56: EHPS pump plug B pin 5 switches the EPS relay coil pin 85 (glove box) to ground (DECISIONS R22).",
       "schematicPosition": {
         "x": 510,
         "y": 180
@@ -3281,60 +3287,6 @@
         "y": -120
       },
       "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_a_eng is the whole 102-cavity plug with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-B-engine - see ST185-B-engine (DRB 3-8, 43, 48-49, 54-55, 60, 62-102); their contacts and sealing plugs are counted there."
-    },
-    {
-      "id": "n_splice_sp_sw12_eng",
-      "text": "Splice: switched +12 V (BH-A 20, LOGIC SW12) to boost solenoid + flex sensor",
-      "width": 270,
-      "schematicPosition": {
-        "x": 1620,
-        "y": 420
-      }
-    },
-    {
-      "id": "n_splice_sp_gndout_eng",
-      "text": "Splice: sensor return (ECU A24 via BH-A 26) for coolant temp, intake temp, throttle position",
-      "width": 270,
-      "schematicPosition": {
-        "x": 1620,
-        "y": 720
-      }
-    },
-    {
-      "id": "n_splice_sp_chassis_eng",
-      "text": "Splice: coil 1-4 grounds to the engine block ground ring",
-      "width": 270,
-      "schematicPosition": {
-        "x": 960,
-        "y": 750
-      }
-    },
-    {
-      "id": "n_splice_sp_inj_eng",
-      "text": "Splice: injector +12 V (BH-A 1, LOGIC INJ 15A) to injectors 1-4",
-      "width": 270,
-      "schematicPosition": {
-        "x": 960,
-        "y": 1560
-      }
-    },
-    {
-      "id": "n_splice_sp_cop_eng",
-      "text": "Splice: coil +12 V (BH-A 2, LOGIC COP 15A) to coils 1-4",
-      "width": 270,
-      "schematicPosition": {
-        "x": 960,
-        "y": 960
-      }
-    },
-    {
-      "id": "n_splice_sp_gndout_eng2",
-      "text": "Splice: sensor return (ECU A24 via BH-A 29) for MAP + flex sensor",
-      "width": 270,
-      "schematicPosition": {
-        "x": 960,
-        "y": 2130
-      }
     }
   ],
   "wireParts": [
