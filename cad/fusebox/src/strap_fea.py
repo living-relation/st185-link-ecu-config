@@ -54,13 +54,15 @@ def geometry():
         arm = bx(a0, -hw, T['root'], a1, hw, zh1)
         hx0, hx1 = (tip, a0) if row == 'OUT' else (a1, tip)
         hook = bx(hx0, -hw, zh0, hx1, hw, zh1)
-        # 45 deg lead-in on the hook's top inner edge (the strap lips push the hook out on the way in)
-        c = 0.9
+        # lead-in on the hook's top inner edge (the strap lips push the hook out on the way in): R181, T['lead'] deg from the vertical from
+        # T['lead_z'] above the underside, as build_fusion cuts it
+        z0c = zh0 + T['lead_z']
+        reach = (zh1 + 0.01 - z0c) * np.tan(np.radians(T['lead']))
         with BuildSketch(Plane.XZ) as sk:
             if row == 'OUT':
-                Polygon((tip - 0.01, zh1 - c), (tip - 0.01, zh1 + 0.01), (tip + c, zh1 + 0.01), align=None)
+                Polygon((tip - 0.01, z0c), (tip - 0.01, zh1 + 0.01), (tip + reach, zh1 + 0.01), align=None)
             else:
-                Polygon((tip + 0.01, zh1 - c), (tip + 0.01, zh1 + 0.01), (tip - c, zh1 + 0.01), align=None)
+                Polygon((tip + 0.01, z0c), (tip + 0.01, zh1 + 0.01), (tip - reach, zh1 + 0.01), align=None)
         cham = extrude(sk.sketch, hw + 1, both=True)
         solid = arm + hook - cham
         out[row] = dict(solid=solid, zh0=zh0, tip_x=tip, sign=-1 if row == 'OUT' else +1, arm=(round(a0, 2), round(a1, 2)), root=T['root'],

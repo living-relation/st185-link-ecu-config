@@ -141,6 +141,21 @@ for f, cap in (('renders/closeups/r155_strap_half_section_OUT_JB1.png', 'OUT row
                ('renders/closeups/r155_strap_half_section_IN_HTR.png', 'IN row (HTR 40 A): the same strap turned 180 deg, its lug runs inboard under the web to the relay saddle.')):
     fig(f, cap)
 
+A('<h2>R181: the C-straps drop straight in (buildability review, 2026-10-18)</h2>')
+A('<p>Dan: "make sure the bent copper bars ... can actually be installed from either the top or the bottom". Insertion sweep on the real '
+  'STEP solids (base + 14 straps + PEM nuts), 0.25 mm / 2 deg steps, the snap arm free to move within its %.1f %% strain limit '
+  '(SNAP_EPS, 1.53 mm): straight down is the only path - from below, tilted (10 / 20 / 30 deg, either end first) or slid in, the strap '
+  'hits the rigid deck (the well fits the web and bottom leg with %.1f mm a side). Straight down cleared everything rigid, but the '
+  'lip landed flat on the 0.6 mm of hook top past the old 0.9 x 45 chamfer: contact ~88 deg to the push, self-locking - the strap '
+  'only went in with the hook pushed back by hand. Fix (R181): the bar-tab lead-in on the strap hooks, %.0f deg from the vertical from '
+  '%.1f above the underside, reaching past the lip end; the strap seat pocket starts at the bottom-leg end (0.2 -&gt; 0.3 passing '
+  'clearance). Rebuilt model: all 14 stations clear, hook out 1.50 of 1.53, steepest contact 51 deg (self-locks only above mu 0.8); '
+  'hook FEA 100 N up: SF %.2f / %.2f (was 2.07 / 2.01).</p>'
+  % (S.SNAP_EPS, S.STRAP['clr'], S.STRAP_TAB['OUT']['lead'], S.STRAP_TAB['OUT']['lead_z'], FEA.get('OUT', {}).get('SF', 0), FEA.get('IN', {}).get('SF', 0)))
+for f, cap in (('renders/closeups/r180_strap_insertion_OUT_JB1.png', 'OUT row (JB1), section through a lip: top row the #303 model (stops at 6.00 above the seat), bottom row the rebuilt model.'),
+               ('renders/closeups/r180_strap_insertion_IN_HTR.png', 'IN row (HTR), the same.')):
+    fig(f, cap)
+
 A('<h2>R170: HEAD relay sockets (5 blades)</h2>')
 fig('renders/closeups/head_relay_sockets.png', 'HEAD LH / RH (TE 5-1393292-8): TE drawing V23074-A2001-CD (N26, Dan 2026-10-18) shows a 5th blade at terminal 4 (87a, 4.8 x 0.8), so both sockets now have the 87a blade slot between 85 and 86, like the horn. 87a carries no wire, so it is a plain slot joined to the 87 cavity; fit audit: all 5 TE blades on their slots (offset 0.00), interference 0 (was 42.9 mm3 from the blade the box had no slot for).')
 

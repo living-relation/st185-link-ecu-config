@@ -25,7 +25,7 @@
     "w_htr_85_cp"
    ],
    [
-    "w_htr_87_cp",
+    "w_htr_30_cp",
     "w_htr_87a_cp"
    ],
    [
@@ -246,7 +246,7 @@
    "od": 3.61,
    "colour": "Red",
    "gauge": 10,
-   "end": "k_efi c4"
+   "end": "k_efi c1"
   },
   "w_k_efi_86_cp": {
    "box": "LOGIC",
@@ -325,19 +325,19 @@
    "gauge": 18,
    "end": "fb_power acps"
   },
-  "w_htr_87_cp": {
+  "w_htr_30_cp": {
    "box": "POWER",
    "od": 5.13,
    "colour": "Red",
    "gauge": 8,
-   "end": "k_htr c4"
+   "end": "k_htr c1"
   },
   "w_rb2_cp": {
    "box": "POWER",
    "od": 3.61,
    "colour": "Red",
    "gauge": 10,
-   "end": "k_pwr c4"
+   "end": "k_pwr c1"
   },
   "w_csb12_cp": {
    "box": "LOGIC",
@@ -386,7 +386,7 @@
    "od": 5.13,
    "colour": "Red",
    "gauge": 8,
-   "end": "k_fan c4"
+   "end": "k_fan c1"
   },
   "w81_cp": {
    "box": "LOGIC",
@@ -428,7 +428,7 @@
    "od": 3.61,
    "colour": "Red",
    "gauge": 10,
-   "end": "k_str c4"
+   "end": "k_str c1"
   },
   "w_fan285_cp": {
    "box": "POWER",
@@ -449,7 +449,7 @@
    "od": 5.13,
    "colour": "Red",
    "gauge": 8,
-   "end": "k_fan2 c4"
+   "end": "k_fan2 c1"
   },
   "w_eps_trig_cp": {
    "box": "LOGIC",

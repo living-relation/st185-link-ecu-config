@@ -137,8 +137,13 @@ BOLT_T = dict(T=4.0, K=0.2, mu=0.15, d=5.0, d2=4.48, p=0.8, r_head=3.3)
 # up), and the cover skirt overlaps it from outside, so with the cover on the hook cannot open. IN row: an arm cut free in the deck block by
 # a slot ring (deck_tab style), inboard of the lips. w across the strap width (covers both lips), over = hook past the lip end (lip 2.0),
 # t arm thickness, root = arm root z, hook_t hook thickness, slot 1.0 (> 0.5 MJF, S6). FEA: cad/fusebox/src/strap_fea.py.
-STRAP_TAB = {'OUT': dict(w=12.0, over=1.5, t=None, root=35.0, hook_t=3.2, slot=1.0),
-             'IN': dict(w=12.0, over=1.5, t=4.3, root=35.0, hook_t=3.2, slot=1.0)}
+STRAP_TAB = {'OUT': dict(w=12.0, over=1.5, t=None, root=35.0, hook_t=3.2, slot=1.0, lead=40.0, lead_z=0.3),
+             'IN': dict(w=12.0, over=1.5, t=4.3, root=35.0, hook_t=3.2, slot=1.0, lead=40.0, lead_z=0.3)}
+# lead / lead_z (buildability review 2026-10-18, DECISIONS R181): the hook's lead-in face, `lead` deg from the vertical, from `lead_z` above the
+# hook underside - the bar-tab rule (BAR_TAB lead, R157), so it reaches 2.43 past the tip, beyond the lip end (over 1.5 + strap clr 0.3). The
+# old 0.9 x 45 chamfer covered only 0.9 of the 1.5 catch: dropped straight down, the lip landed flat on the 0.6 of hook top past the chamfer
+# (contact ~88 deg to the push, self-locking) and the strap could not go in without pushing the hook back by hand. Insertion sweep:
+# _research/cad-buildability-final-2026-10-18.html (real STEP solids, 0.25 mm steps, all 14 stations).
 # w 12 / slot 1.0: the PA12 left between two neighbouring arms' slots is 4.0 (R127 >= 3); the hook still covers 2.0 of each lip.
 # Markup 2026-10-17 (Dan 23-15 / 23-17, DECISIONS R157): every hold-down hook bears on what it holds - its underside is level with the copper
 # top (0 gap, was 0.1 over it) - and its arm stays inside the HP snap-fit strain limit. HP MJF Handbook, "Snap-fits" chapter: allowable strain
