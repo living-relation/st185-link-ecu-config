@@ -1048,15 +1048,6 @@
       ]
     },
     {
-      "id": "bn_bp_780__bp_840",
-      "sourceId": "bp_780",
-      "targetId": "bp_840",
-      "length": {
-        "value": 130,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_840__bp_930",
       "sourceId": "bp_840",
       "targetId": "bp_930",
@@ -1435,6 +1426,15 @@
         "y": 420
       },
       "width": 390
+    },
+    {
+      "id": "n_can_two_runs",
+      "width": 390,
+      "text": "TWO RUNS, NO SHARED LEG (N28, DECISIONS R179). This harness is built as two separate runs. Cabin run: ECU COMMS port (centre dash) - CSB3 plug pins 5 / 6 (under the centre cluster) - cluster and Pi CAN drops - bulkhead DRB102 pins 92 / 93 / 94, cabin side (RH firewall, plugs into ST185-B-cabin). Engine run: bulkhead DRB102 pins 92 / 93 / 94, engine side (RH firewall, from ST185-B-engine) - Link CAN-Lambda (120R end). The two runs meet only through bulkhead B (DRB102 pins 92 / 93 CAN H / L, 94 screen); no wire joins them inside this harness, so there is no bundle between them.",
+      "schematicPosition": {
+        "x": 2700,
+        "y": -360
+      }
     }
   ],
   "wireParts": [

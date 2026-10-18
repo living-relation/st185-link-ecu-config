@@ -2544,24 +2544,6 @@
   ],
   "bundles": [
     {
-      "id": "bn_bp_870__bp_900",
-      "sourceId": "bp_870",
-      "targetId": "bp_900",
-      "length": {
-        "value": 40,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_900__bp_930",
-      "sourceId": "bp_900",
-      "targetId": "bp_930",
-      "length": {
-        "value": 10,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_ecu_a__bp_1020",
       "sourceId": "bp_at_ecu_a",
       "targetId": "bp_1020",
@@ -3668,20 +3650,6 @@
       "id": "bp_870",
       "layoutPosition": {
         "x": -120,
-        "y": 30
-      }
-    },
-    {
-      "id": "bp_900",
-      "layoutPosition": {
-        "x": -480,
-        "y": 30
-      }
-    },
-    {
-      "id": "bp_930",
-      "layoutPosition": {
-        "x": -570,
         "y": 30
       }
     },
