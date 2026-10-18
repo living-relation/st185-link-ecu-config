@@ -768,7 +768,10 @@
       "length": {
         "value": 2400,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
     },
     {
       "id": "bn_bp_rl_hatch__bp_rl_rear",
@@ -777,7 +780,10 @@
       "length": {
         "value": 400,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
     },
     {
       "id": "bn_bp_rl_hatch__bp_rl_h6",
@@ -786,7 +792,10 @@
       "length": {
         "value": 1200,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_rl_rear__bp_rl_center",
@@ -795,7 +804,10 @@
       "length": {
         "value": 500,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
     },
     {
       "id": "bn_bp_rl_center__bp_rl_rh",
@@ -804,7 +816,10 @@
       "length": {
         "value": 500,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
     },
     {
       "id": "bn_bp_rl_kick__fl_oem_jb1_1f_c1",
@@ -1174,6 +1189,62 @@
       }
     }
   ],
+  "coveringParts": [
+    {
+      "id": "cov_dr25_14",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039274019.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.89,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_38",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/8-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 9.53 MM EXPANDED ID, 4.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039264026.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.53,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.02,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    }
+  ],
+  "bootParts": [
+    {
+      "id": "boot_342a012",
+      "partNumber": "342A012-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 13.2/6.9 X 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=342A012-25-0",
+      "color": "Black"
+    }
+  ],
   "spliceParts": [
     {
       "id": "spp_solder_generic",
@@ -1195,7 +1266,10 @@
       "layoutPosition": {
         "x": -360,
         "y": 0
-      }
+      },
+      "partIds": [
+        "boot_342a012"
+      ]
     },
     {
       "id": "bp_rl_h6",

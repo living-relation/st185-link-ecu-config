@@ -1042,7 +1042,10 @@
       "length": {
         "value": 690,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
     },
     {
       "id": "bn_bp_780__bp_840",
@@ -1060,7 +1063,10 @@
       "length": {
         "value": 160,
         "unit": "mm"
-      }
+      },
+      "partIds": [
+        "cov_dr25_12"
+      ]
     },
     {
       "id": "bn_bp_930__ecu_com",
@@ -1073,7 +1079,8 @@
       "separateLabels": true,
       "endLabel": "ECU COM",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_12"
       ]
     },
     {
@@ -1087,7 +1094,8 @@
       "separateLabels": true,
       "label": "ECU COM",
       "partIds": [
-        "cov_lbl_38"
+        "cov_lbl_38",
+        "cov_dr25_12"
       ]
     },
     {
@@ -1101,7 +1109,8 @@
       "separateLabels": true,
       "endLabel": "LAMBDA",
       "partIds": [
-        "cov_lbl_316"
+        "cov_lbl_316",
+        "cov_dr25_14"
       ]
     },
     {
@@ -1644,6 +1653,50 @@
         "value": 50,
         "unit": "mm"
       }
+    },
+    {
+      "id": "cov_dr25_12",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/2-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 12.7 MM EXPANDED ID, 6.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039304024.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.22,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_14",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039274019.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.89,
+        "unit": "mm"
+      },
+      "isFixedLength": false
     }
   ],
   "resistorParts": [

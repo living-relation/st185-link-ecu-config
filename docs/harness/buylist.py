@@ -105,6 +105,10 @@ for f in F:
             pid = n.get("partId") or n.get("bootPartId")
             if pid and pid in parts:
                 q = parts[pid]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+            # boots (and fixed coverings) on a branch point: one each per listed id (v1.2 partIds)
+            for pid2 in n.get("partIds", []):
+                if pid2 in parts:
+                    q = parts[pid2]; req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
             # coverings on a node are one each
             for cid in n.get("coveringIds", []):
                 q = next((x for x in d.get("coveringParts", []) if x["id"] == cid), None)
@@ -207,6 +211,8 @@ import audit_ident_bands as IB
 LIBP = {q["partNumber"]: q for k, v in json.load(open(os.path.join(R, "ST185.harnesslib"), encoding="utf-8")).items()
         if k.endswith("Parts") for q in v}
 BANDS = collections.Counter()
+TUBE_MM = collections.Counter()   # covering tubing on bundles, mm of drawn bundle length
+TUBE_MARGIN = 0.10                # our margin for cut loss and recovery length change (not a TE figure)
 for f in F:
     d = json.load(open(os.path.join(R, f), encoding="utf-8"))
     parts = {q["id"]: q for k in d if k.endswith("Parts") for q in d[k]}
@@ -217,8 +223,13 @@ for f in F:
     for b in d.get("bundles", []):
         for pid in b.get("partIds", []):
             q = parts.get(pid)
-            if q:
+            if q and q.get("isFixedLength") is False:   # cut-to-length tubing (DR-25): metres, below
+                TUBE_MM[q["partNumber"]] += (b.get("length") or {}).get("value", 0) or 0
+                meta[q["partNumber"]] = q
+            elif q:
                 req[q["partNumber"]] += 1; meta[q["partNumber"]] = q
+for pn, mm in TUBE_MM.items():   # whole metres, drawn length + TUBE_MARGIN for cut loss and length change
+    req[pn] += -(-int(mm * (1 + TUBE_MARGIN)) // 1000)
 for pn, n in BANDS.items():
     req[pn] += -(-n // IB.BANDS_PER_STICK)
     meta[pn] = LIBP[pn]
@@ -356,10 +367,14 @@ out += ["", "## Ident bands (DECISIONS R87)", "",
  "| Part number | Bands | Sticks |", "|---|---:|---:|"]
 for pn, n in sorted(BANDS.items()):
     out.append("| `%s` | %d | %d |" % (pn, n, -(-n // IB.BANDS_PER_STICK)))
-out += ["", "## Still unspecified", "",
- "- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. "
- "Needs a real dash number per branch OD once the trunk diameters are known.",
- ""]
+out += ["", "## Covering tubing on bundles (Raychem DR-25)", "",
+ "Cut-to-length tubing in a bundle's `partIds` is counted in metres: the drawn bundle lengths it covers, plus",
+ "%d %% for cut loss and recovery length change, rounded up to whole metres. The Buy column above is in metres." % round(TUBE_MARGIN * 100),
+ "Boots on branch points are counted one per listed id.", "",
+ "| Part number | Drawn mm | Metres |", "|---|---:|---:|"]
+for pn, mm in sorted(TUBE_MM.items()):
+    out.append("| `%s` | %d | %d |" % (pn, mm, -(-int(mm * (1 + TUBE_MARGIN)) // 1000)))
+out += [""]
 p = os.path.join(os.path.dirname(R), "NEED-TO-BUY.md")
 new = "\n".join(out)
 # No date stamp in the file: the content alone decides whether it changed, so

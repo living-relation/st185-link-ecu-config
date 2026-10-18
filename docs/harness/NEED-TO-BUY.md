@@ -37,15 +37,20 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `2R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD | 12 | 0 | **12** |
 | `0413-204-2005` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 20, RED | 11 | 0 | **11** |
 | `94459A140` | McMaster-Carr | HEAT-SET INSERT FOR PLASTIC, BRASS, M3 X 0.5, 5.7 MM INSTALLED LENGTH, 4.0 MM HOLE (PACK OF 50 COVERS ALL THREE BOXES) | 11 | 0 | **11** |
+| `DR-25-3/8-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 9.53 MM EXPANDED ID, 4.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 11 | 0 | **11** |
 | `TMS-SCE-1/2-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 11 | 0 | **11** |
 | `W2S` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY PLUG | 11 | 0 | **11** |
 | `53941-1` | TE Connectivity | PIDG CLOSED RING TONGUE TERMINAL, 16-14 AWG, #8 / M4 STUD, BLUE, TIN | 10 | 0 | **10** |
+| `DR-25-3/16-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 4.8 MM EXPANDED ID, 2.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 10 | 0 | **10** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 11 | 2 | **9** |
 | `12084200` | Aptiv | CONTACT, SOCKET, CRIMP, METRI-PACK 150.2, TIN, CABLE-SEALED, 0.35-0.5 MM2 (22-20 AWG) | 14 | 6 | **8** |
 | `280756-4` | TE Connectivity | CONTACT, RECEPTACLE, FASTIN-FASTON 375 (9.5 MM), UNINSULATED, TIN, 3.3-5.3 MM2 (12-10 AWG) | 8 | 0 | **8** |
+| `DR-25-1/4-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 8 | 0 | **8** |
 | `Jump lugs 1/0` | generic | LUG, RING, COPPER, 1/0 AWG | 8 | 0 | **8** |
 | `15326426` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, GOLD, SEALED, 0.35-0.50 MM2 (22-20 AWG), CABLE OD 1.20-1.85 MM | 7 | 0 | **7** |
+| `342A012-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 13.2/6.9 X 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C | 7 | 0 | **7** |
 | `ATM-15` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 7 | 0 | **7** |
+| `DR-25-1-1/2-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 38.1 MM EXPANDED ID, 19.0 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 7 | 0 | **7** |
 | `GENERIC RING M6 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG | 7 | 0 | **7** |
 | `280755-4` | TE Connectivity | TERMINAL, FASTON .375 (9.5 MM) RECEPTACLE, UNINSULATED, TIN, 10-7 AWG (5.3-10 MM2) | 6 | 0 | **6** |
 | `AMI-30` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 6 | 0 | **6** |
@@ -54,6 +59,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `GENERIC LUG M10 50MM2` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK | 6 | 0 | **6** |
 | `GENERIC RING M8 22-16` | generic | TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG | 6 | 0 | **6** |
 | `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 6 | 0 | **6** |
+| `342A024-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/12.7 X 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C | 5 | 0 | **5** |
+| `342A034-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/13.7 X 13.2/6.1 MM SUPPLIED / RECOVERED, -75 TO 150 C | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
@@ -74,8 +81,13 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `RS 190-169` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 16, DIN 933 | 4 | 0 | **4** |
 | `RS 287-3962` | RS PRO | RS PRO A2/304 STAINLESS PLAIN WASHER M6, BS 4320C | 4 | 0 | **4** |
 | `RS 527-274` | RS PRO | RS PRO A2/304 STAINLESS HEX NUT M6, DIN 934 | 4 | 0 | **4** |
+| `301A011-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, T, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C | 3 | 0 | **3** |
+| `382A012-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, Y, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 13.2/6.1 X 6.6/3.3 MM SUPPLIED / RECOVERED, -75 TO 150 C | 3 | 0 | **3** |
+| `382A023-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, Y, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 26.9/12.4 X 13.2/6.1 MM SUPPLIED / RECOVERED, -75 TO 150 C | 3 | 0 | **3** |
 | `ATM-10` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 3 | 0 | **3** |
 | `ATM-5` | Eaton Bussmann | ATM MINI BLADE FUSE, BLADE 2.8 X 0.8 MM | 3 | 0 | **3** |
+| `DR-25-1/2-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 12.7 MM EXPANDED ID, 6.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 3 | 0 | **3** |
+| `DR-25-3/4-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 19.0 MM EXPANDED ID, 9.5 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 3 | 0 | **3** |
 | `DT04-6P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
 | `DT06-6S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, N SEAL, GRAY | 3 | 0 | **3** |
 | `EFC 10S00052` | EFC International | KNURLED SOLID COMPRESSION LIMITER, M6, ID 6.80, OD 9.8, L 4 MM, ZINC-PLATED STEEL | 3 | 0 | **3** |
@@ -85,6 +97,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
 | `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W | 2 | 0 | **2** |
+| `342A048-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 55.6/26.9 X 13.2/6.9 MM SUPPLIED / RECOVERED, -75 TO 150 C | 2 | 0 | **2** |
 | `AMI-60` | Eaton Bussmann | AMI SERIES, 32 VDC, M5 STUD EARS 9.5 X 0.8 MM | 2 | 0 | **2** |
 | `BDK 2.8` | Bosch | CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG) | 2 | 0 | **2** |
 | `DT04-08PA-P021` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 8 POS, BUSSED 1 X 8, NICKEL PINS MOULDED IN, 13 A PER PIN, 52 A BUS, WEDGELOCK INCLUDED, GRAY | 2 | 0 | **2** |
@@ -111,6 +124,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `3.9k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `320238` | TE Connectivity | SPLICE, BUTT, SOLISTRAND, CLOSED BARREL, SIGHT HOLE, UNINSULATED, 4 AWG (33100-52600 CMA = 5-3 AWG COMBINED), ADHESIVE HEATSHRINK OVER | 1 | 0 | **1** |
 | `320575` | TE Connectivity | TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED | 1 | 0 | **1** |
+| `382A034-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, Y, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 38.6/18.0 X 26.9/12.4 MM SUPPLIED / RECOVERED, -75 TO 150 C | 1 | 0 | **1** |
 | `3R5` | Klauke | TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 16 MM2, M5 STUD | 1 | 0 | **1** |
 | `470R 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 470 OHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `52-45780` | Longacre | SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V | 1 | 0 | **1** |
@@ -123,6 +137,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `BattRelay_Base_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | FLOOR PLATE, RELAY PLATFORM, FUSE PEDESTAL, 2 END TABS; PA12 | 1 | 0 | **1** |
 | `BattRelay_Cover_PA12_printed.stl + .step (PA12)` | print (your PA12 powder-bed printer) | SNAP-ON COVER, SIDE VENTS; PA12 | 1 | 0 | **1** |
 | `Bopaodao B09Z7NBLDK` | Bopaodao (Amazon) | TINNED COPPER BUS BAR 3 X 15 X 1000 MM C110: ONE BAR MAKES ALL 15 PADS (290 MM WITH KERF) | 1 | 0 | **1** |
+| `DR-25-1-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 25.4 MM EXPANDED ID, 12.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 1 | 0 | **1** |
+| `DR-25-2-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 51.0 MM EXPANDED ID, 25.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 1 | 0 | **1** |
 | `DRB12-102PAE-L018` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DRB, 102 POS, PIN CONTACTS, E SEAL, A KEY, WIRE ROUTER, FLANGE MOUNT | 1 | 0 | **1** |
 | `DRB16-102SAE-L018` | TE DEUTSCH | CONNECTOR, PLUG, DRB, 102 POS, SOCKET CONTACTS, E SEAL, A KEY, WIRE ROUTER | 1 | 0 | **1** |
 | `DRBF-1A` | TE DEUTSCH | FLANGE, MOUNTING, DRB 102/128 SERIES | 1 | 0 | **1** |
@@ -413,6 +429,19 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 | `RNF-100-3/32-6-STK` | 952 | 6 |
 | `RNF-100-3/32-9-STK` | 500 | 3 |
 
-## Still unspecified
+## Covering tubing on bundles (Raychem DR-25)
 
-- **Moulded breakout boots** for the branch points — `boot_breakout` is a placeholder. Needs a real dash number per branch OD once the trunk diameters are known.
+Cut-to-length tubing in a bundle's `partIds` is counted in metres: the drawn bundle lengths it covers, plus
+10 % for cut loss and recovery length change, rounded up to whole metres. The Buy column above is in metres.
+Boots on branch points are counted one per listed id.
+
+| Part number | Drawn mm | Metres |
+|---|---:|---:|
+| `DR-25-1-0-SP` | 550 | 1 |
+| `DR-25-1-1/2-0-SP` | 6170 | 7 |
+| `DR-25-1/2-0-SP` | 2520 | 3 |
+| `DR-25-1/4-0-SP` | 6890 | 8 |
+| `DR-25-2-0-SP` | 380 | 1 |
+| `DR-25-3/16-0-SP` | 8220 | 10 |
+| `DR-25-3/4-0-SP` | 2065 | 3 |
+| `DR-25-3/8-0-SP` | 9480 | 11 |
