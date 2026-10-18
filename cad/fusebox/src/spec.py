@@ -234,10 +234,17 @@ MINI = dict(l=10.92, w=3.81, h_above=9.0, pitch=8.1)
 # 6.3 -> 9.2 to keep Dan's 3 mm between Bus 1 and Bus 2 (tip to tip 3.1, tip to the other strip's nut head 4.1): again everything outboard
 # of the spine moves out, by PEM_GROW, and the box is that much wider
 PEM_GROW = 2.9
+# N21 (Dan 2026-10-18: MCP 2.8 receptacles) + the fit audit: a mini fuse's blades are 8.1 apart (Littelfuse MINI 297 data sheet rev 09/27/2024 p.2:
+# 10.9 over both blades, blades 2.8 wide), not the 6.0 the boxes had. MINI_BLADE_X = half the blade pitch. Each fuse column's sockets spread 1.05
+# a side: Bus 1 stays (its tail bundle meets the pan wall), Bus 2 moves out 2 x 1.05 so the strips (on the input blades) keep their 9.2 gap, and
+# everything outboard of Bus 2 (micro relay columns, box width) moves out 3 x 1.05 so Bus 2's outputs keep their clearance to the relays.
+MINI_BLADE_X = (10.9 - 2.8) / 2
+MINI_SLOT = (2.8 + 0.4, 0.8 + 0.8)    # blade slot above the seat: blade 2.8 x 0.8 (Littelfuse p.2) + 0.2 / 0.4 a side; the MCP box (3.10 x 4.40) stops on the 1.6 side
+FUSE_GROW = MINI_BLADE_X - 3.0
 MINI_COLS = {   # x centre, fuses forward -> rear: (label, amps or None for a spare position)
     'BUS1': (13.5, [('EFI86', 5), ('HL', 15), ('HR', 15), ('HZ', 15), ('DM', 20), ('WL', 15), ('ALM', 5),
                     ('ALMS', 2), ('ALTS', 2), ('ETB', 10), ('SP', None), ('SP', None)]),
-    'BUS2': (37.5 + PEM_GROW, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
+    'BUS2': (37.5 + PEM_GROW + 2 * FUSE_GROW, [('LAM', 7.5), ('SW12', 7.5), ('COP', 15), ('INJ', 15), ('CSB', 5), ('DEV', 15), ('EPSEN', 7.5),
                     ('ACC', 10), ('ALMIG', 2), ('SP', None), ('SP', None), ('MRS', 7.5), ('B30', 2)]),
 }
 MINI_Y0 = 28.0       # first fuse centre (rev 6 / 7 up to 2026-10-17)
@@ -271,7 +278,7 @@ def mini_list():
     """[(col, i, name, amps, x centre, y)] of every kept fuse position."""
     return [(col, i, nm, amps, cx, mini_y(col, i)) for col, (cx, fuses) in MINI_COLS.items() for i, (nm, amps) in enumerate(fuses) if mini_kept(col, i)]
 MICRO = dict(x=15.5, y=23.0, h=24.1)
-MICRO_COLS = (53.5 + PEM_GROW, 72.0 + PEM_GROW)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
+MICRO_COLS = (53.5 + PEM_GROW + 3 * FUSE_GROW, 72.0 + PEM_GROW + 3 * FUSE_GROW)    # rev 6: 5 / 4.5 mm outboard (the bus strips sit between the fuse columns); rev 7: + 2.5 (clearance fix);
                              # R123: + 2.0 so the Bus 2 output terminals (880398-2) keep their lance ledges next to the micro relay 85 (R73 2.0 wall)
 MICRO_Y = (21.0, 51.0, 81.0, 111.0, 141.0)
 # R127 sweep (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of the parts"): the
@@ -406,7 +413,7 @@ LUG_6AWG = dict(b=13.0, l=26.0, tip=6.0, t=2.0, d4=8.5)   # Klauke 3R5 (JB1 HOT 
 
 # ---------- LOGIC box (local frame). Rev 6 (C4): bus strips on edge between the fuse columns, one jumper per fuse input.
 # BUS1 inputs on the +x blade (output -x), BUS2 inputs on the -x blade (output +x): both input lines face the strips.
-MINI_IN = {'BUS1': +1, 'BUS2': -1}                    # side of the input blade (blades at cx +- 3.0)
+MINI_IN = {'BUS1': +1, 'BUS2': -1}                    # side of the input blade (blades at cx +- MINI_BLADE_X)
 STRIP = dict(h=25.4, t=3.2)                           # 1" x 1/8" tinned copper flat bar on edge (MECCANIXITY B0CGJC2S1L), PEM self-clinching nuts (N2)
 # N2 (Dan 2026-10-16, OPEN-3 = A): the strip threads are PEM self-clinching nuts pressed into the copper, not tapped copper (3.2 mm gave M4
 # 0.8 x D). PEM bulletin CL (S / SS / CLS / CLSS metric table) + pemnet.com product pages; PEM "Performance data for PEM fasteners installed
@@ -436,10 +443,10 @@ JLUG_SMALL = dict(JLUG, pn='320554', t=0.79, L=20.24, sleeve=4.6, ins=(2.03, 3.1
 def jumper(amps):
     """(awg, receptacle, ring lug pn, lug dims) of the input jumper of a mini fuse of this rating."""
     awg = MINI_AWG[amps]
-    if awg >= 18:
-        return awg, '1241388-2', '320554', JLUG_SMALL
-    return awg, '880398-2', '53941-1', JLUG
-LOGIC = dict(L=83.5 + PEM_GROW, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
+    if awg >= 18:           # N21: TE MCP 2.8 receptacle by gauge (114-18148 Table 7)
+        return awg, '1-968849-1', '320554', JLUG_SMALL
+    return awg, '1-968851-1', '53941-1', JLUG
+LOGIC = dict(L=83.5 + PEM_GROW + 3 * FUSE_GROW, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
 LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
 SPINE = dict(t=3.0, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
@@ -616,6 +623,12 @@ TERM = {   # L: R163 - from the TE STEP where we have one (42281-1 19.05 -> 20.1
     '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, head=(5.6, 4.1), what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
     '1241388-2': dict(ins=(1.4, 2.1), t=None, L=18.45, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
     '1241390-1': dict(ins=(2.2, 3.0), t=None, L=18.45, head=(3.1, 4.4), what='MCP 2.8K receptacle 1.5-2.5 mm2, unsealed, tin, typical 22 A'),
+    # N21 (Dan 2026-10-18): TE AMP MCP 2.8 receptacles, unsealed, pre-tin, locking lance, tab 2.8 x 0.8. Wire / insulation from TE application spec
+    # 114-18148 Rev D1 (07 Feb 2023) Table 7 (AWG wires) + product group drawing 1355036: 1-968851-1 16 / 14 AWG (1.3 / 2.0 mm2; DIN 1.0 - 2.5),
+    # insulation 2.2 - 3.0; 1-968849-1 20 / 18 AWG (0.5 / 0.8 mm2; DIN 0.5 - 1.0), insulation 1.4 - 2.1 (te.com pages say 1.9 - 3.0 / 1.3 - 2.1: the
+    # spec and drawing are tighter and win). L / head from TE's STEPs (c-1-968851-1-e-3d.stp, c-1-968849-1-j3-3d.stp).
+    '1-968851-1': dict(ins=(2.2, 3.0), t=None, L=21.2, head=(3.1, 4.4), what='MCP 2.8 receptacle 16 / 14 AWG (1.0 - 2.5 mm2), unsealed, pre-tin, typical 22 A'),
+    '1-968849-1': dict(ins=(1.4, 2.1), t=None, L=20.2, head=(3.1, 4.4), what='MCP 2.8 receptacle 20 / 18 AWG (0.5 - 1.0 mm2), unsealed, pre-tin, typical 15 A'),
     '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=20.18, head=(7.49, 3.45), what='FASTON .250 receptacle 18-14 AWG'),
     '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, 3.0), what='FASTON .187 receptacle 20-15 AWG'),
     '280919-2': dict(ins=(2.31, 3.3), t=0.25, L=16.0, head=(5.6, 2.3), what='FASTIN-FASTON .187 receptacle 20-15 AWG, locking lance'),
@@ -647,7 +660,7 @@ def seat_gap(part, kind=''):
                                                                 # (R73) or the two holes join into one slot (Dan); >= 2 mm deep at the mouth;
                                                                 # receptacle top 1 below the deck top
 # Default terminal of a cavity with no harness wire yet (a spare): the largest wire it takes, so a later wire still fits.
-TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps in': ('880398-2', 14), 'acps out': ('880398-2', 14),
+TERM_DEFAULT = {'fuse in': ('1-968851-1', 14), 'fuse out': ('1-968851-1', 14), 'acps in': ('1-968851-1', 14), 'acps out': ('1-968851-1', 14),
                 'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('280919-2', 18), 'micro 85': ('280919-2', 18),
                 'micro 86': ('280919-2', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
@@ -732,6 +745,8 @@ LOCK = {
     '880398-2': dict(kind='lance', axis='W', out=1.6, tip=9.7, shoulder=3.8, flange=8.6, neck=13.5, est=True),
     '1241388-2': dict(kind='lance', axis='H', out=0.8, tip=6.3, neck=15.0, est=True),
     '1241390-1': dict(kind='lance', axis='W', out=0.54, tip=5.5, neck=16.0, est=False),
+    '1-968851-1': dict(kind='lance', axis='W', out=0.47, tip=6.8, neck=18.25, est=False),
+    '1-968849-1': dict(kind='lance', axis='W', out=0.47, tip=6.9, neck=18.35, est=False),
     '42281-1': dict(kind='lance', axis='H', out=1.25, tip=7.37, neck=15.0, est=True),
     '280755-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
     '280756-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
@@ -852,12 +867,12 @@ SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, bos
 # RETAINER clip under that relay. It is threaded onto the relay's wires before they are crimped, then pushed up under the deck after the
 # terminals are in; two barbed legs snap into pockets in the cavity collar; its plate stops every terminal on that relay from backing out.
 # Wire holes = the wire there + clr per side (smaller than the crimped insulation barrel it stops; a thicker-wire harness reprints the clip).
-TERM_SWAP = {'2293255-1': '280919-2'}
-# Q1 (held for Dan, 2026-10-18; evidence _research/snapshots/2026-10-18-fusebox-fit/Q1/): the mini fuse sockets keep TE 880398-2 until Dan picks
-# A (880398-2, joined lance windows), B (MCP 2.8K 1241388-2 / 1241390-1 by wire size) or C (wider grid). The 2026-10-18 "clash" was the model
-# turned 90 deg: 880398-2 is a tuning fork (TE drawing 880398 L1) whose tines and 8.21 lances face ACROSS the blade thickness. Until Q1 its
-# STEP is not placed in the assembly (PLACE_HOLD) and the LOGIC fuse rows of the fit audit read HOLD.
-PLACE_HOLD = {'880398-2': 'Q1 (Dan): mini fuse socket terminal not chosen yet'}
+TERM_SWAP = {'2293255-1': '280919-2', '880398-2': '1-968851-1', '1241388-2': '1-968849-1'}
+# N21 (Dan 2026-10-18, "MCP 2.8 female receptacles"; DECISIONS R166): every mini fuse / ACPS socket takes a TE AMP MCP 2.8 receptacle by wire
+# gauge - 1-968849-1 for 20 / 18 AWG, 1-968851-1 for 16 / 14 AWG (the 15 A circuits stay 16 AWG). Box-side swap like R123: ST185-CabinPower and
+# ST185.harnesslib still name 880398-2 / 1241388-2 (OPEN-ITEMS follow-up). Dan's lead was Ballenger Motorsports CONN-100329 ("1.25 - 2.5 mm2"):
+# Ballenger names no TE part number; 1-968851-1 is the TE part with that tab, plating and the 16 / 14 AWG crimp data (114-18148 Table 7).
+PLACE_HOLD = {}
 RETAIN = {'POWER': ['R1']}      # relay positions whose terminals are held by a retainer clip (the heater relay k_htr)
 RETAINER = dict(t=2.0, play=0.2, leg=(2.5, 4.0), leg_h=6.0, barb=0.6, barb_h=1.5, clr=CLR, boss=2.0, bear=0.3,
                 leg_shift={'R1': (0.0, 10.5)})   # along the short side, per leg: R1's +x leg clears the heater feed-cable bend saddle (y 38.4-47.6)
@@ -874,16 +889,16 @@ def retainer_hole(part, wire_od):
 # J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn
 # along the front in front of the spine (y 7.25), each on its own level, over a printed floor (the Bus 1 feed lug is under it); the
 # HL / HR splices lie stacked in the channel past the spine; every branch then runs to its relay on its own level. Levels: centre z.
-CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0 + PEM_GROW), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05 + PEM_GROW / 2,
-               splice=dict(x0=27.5 + PEM_GROW / 2, x1=40.0 + PEM_GROW / 2, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 16 AWG (L1; combined 10 AWG)
+CHANNEL = dict(x_fwd=7.4, y=7.25, y_sp=8.5, floor=(16.95, 18.95), floor_x=(8.5, 44.0 + PEM_GROW + 3 * FUSE_GROW), floor_y=(6.45, 10.6), wide_y=20.5, wide_x0=27.05 + PEM_GROW / 2 + FUSE_GROW,
+               splice=dict(x0=27.5 + PEM_GROW / 2 + FUSE_GROW, x1=40.0 + PEM_GROW / 2 + FUSE_GROW, od=4.5, L=12.5),   # est: solder splice + adhesive heat shrink over 14 + 14 + 16 AWG (L1; combined 10 AWG)
                z=dict(ETB=20.18, HR=24.16, HL=28.86, HR30=23.1, HR86=25.45, HL30=27.8, HL86=29.95),
-               x_etb=44.0 + PEM_GROW, x_hr=62.8 + PEM_GROW)    # x_hr between the micro relay columns (R123: + 2.0 with them)
+               x_etb=44.0 + PEM_GROW + 3 * FUSE_GROW, x_hr=62.8 + PEM_GROW + 3 * FUSE_GROW)    # x_hr between the micro relay columns (R123: + 2.0 with them)
 CHANNEL_SPLICES = ('sp_hl', 'sp_hr')
 # J2 = B rub protection. LOGIC: a rib on the belly pan between the Bus 1 output wires (kept at x <= lane_x_max) and the Bus 1 strip bolt
 # heads (x 14.67 up) - PAN_RIB; a relief (the pan wall thinned) at the outboard micro relay column, where the 86 wires drop 1 mm from the wall
 # and ease forward (the relief runs 11 mm ahead of each relay centre, 5 behind).
 PAN_RIB = dict(x=(12.0, 14.0), y=(23.5, 125.0), z_top=15.5)   # starts behind the Bus 1 feed bolt head (y 13.4 - 22.6 at z 13)
-LANE_X = {('LOGIC', 10.5): (6.9, 11.5)}   # Bus 1 output lane: wire edges between the pan's rounded front corner and the rib
+LANE_X = {('LOGIC', round(13.5 - MINI_BLADE_X, 2)): (6.9, 11.5)}   # Bus 1 output lane: wire edges between the pan's rounded front corner and the rib
 PAN_RELIEF = dict(depth=0.5, fwd=11.0, back=5.0)   # inner face cut back 0.5 (wall 2.5 -> 2.0, the R73 minimum): the base legs sit right outside it at y 21 / 141
 PAN_SNAPS_X = (63.0, 123.0)       # LOGIC belly pan catches on the end walls, clear of the reliefs (rev 7: 0.3 / 0.7 of the depth)
 CHANNEL_CAD_SKIP = {'HL', 'HR', 'ETB', 'HEAD LH 30', 'HEAD LH 86', 'HEAD RH 30', 'HEAD RH 86', 'k_etb 30'}   # CAD tails that are channel wires now
@@ -900,6 +915,8 @@ VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
     '880398-2': ('te', 'c-880398-2-t-3d.stp', 2.24, 'CVM_880398-2'),
     '1241388-2': ('te', 'c-1241388-2-c6-3d.stp', 2.20, '1241388-2'),
     '1241390-1': ('te', 'c-1241390-1-c6-3d.stp', 2.20, '1241390-1'),
+    '1-968851-1': ('te', 'c-1-968851-1-e-3d.stp', 2.20, 'CVM_1-968851-1'),
+    '1-968849-1': ('te', 'c-1-968849-1-j3-3d.stp', 2.20, '1-968849-1'),
     '42281-1': ('te', 'c-42281-1-dj-3d.stp', 1.65, 'CVM_42281-1'),
     '280919-2': ('te', 'c-280919-2-m-3d.stp', 0.85, 'CVM_280919-2'),
     '280755-4': ('te', 'c-280755-4-l-3d.stp', 1.99, 'CVM_280755-4'),
@@ -920,6 +937,11 @@ VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
 REAL = {   # pn: box (W, H), lock (axis, out, tip) or None, neck, L, wire barrel z (from, to), insulation barrel (z from, y_lo), d_max, spec widths
     '1241388-2': dict(box=(3.10, 4.40), lock=('W', 0.54, 6.4), neck=16.0, L=18.45, wz=(9.75, 15.75), iz=(16.25, 0.75), d=1.30, ww=None, iw=None, lclr=0.2),
     '1241390-1': dict(box=(3.10, 4.40), lock=('W', 0.54, 6.4), neck=16.0, L=18.45, wz=(9.75, 15.75), iz=(16.25, 0.55), d=2.00, ww=None, iw=None, lclr=0.2),
+    # N21: measured on TE's STEPs (sections every 0.5), from the spring tips (the seat; they stand 0.6 / 0.7 above the model's Z 0): box 3.10 x 4.40,
+    # side lances to +-2.02 (0.47 out) down to 6.8 / 6.9; wire barrel 13.2 / 13.8 (its earliest section) - 17.0 / 17.1, insulation barrel from 18.5 / 18.6 (y from 0.6 / 0.7).
+    # Lance ledge clearance 0.15 (0.47 - 0.15 = 0.32 >= LOCK_MIN 0.3).
+    '1-968851-1': dict(box=(3.10, 4.40), lock=('W', 0.47, 6.8), neck=18.25, L=21.2, wz=(13.2, 17.0), iz=(18.5, 0.6), d=2.00, ww=None, iw=None, lclr=0.15),
+    '1-968849-1': dict(box=(3.10, 4.40), lock=('W', 0.47, 6.9), neck=18.35, L=20.2, wz=(13.8, 17.1), iz=(18.6, 0.7), d=1.30, ww=None, iw=None, lclr=0.15),
     '42281-1': dict(box=(7.44, 3.30), lock=('H', 1.04, 7.1), neck=16.0, L=20.18, wz=(10.25, 15.75), iz=(16.25, -0.38), d=1.85, ww=None, iw=None),
     '280919-2': dict(box=(5.60, 2.40), lock=('H', 1.00, 5.1), neck=12.5, L=16.0, wz=(8.25, 12.25), iz=(12.5, -0.40), d=1.60, ww=None, iw=None),
     '280755-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.18, wz=(16.5, 22.5), iz=(24.5, -0.64), d=4.10, ww=4.57, iw=6.35),

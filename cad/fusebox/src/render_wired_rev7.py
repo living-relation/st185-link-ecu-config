@@ -291,6 +291,8 @@ def run(_context: str):
         env_o.component.name = 'Tmp_PullEnvelopes'
         for box, L in pullers.items():
             for (kd, b, bxp) in L:
+                if 'HCR150' in kd:     # fit audit 2026-10-18: the HCR150 is bolted down, not plugged in - its lugs and coil plug come off first
+                    continue
                 ob = adsk.core.OrientedBoundingBox3D.create(P((bxp[0] + bxp[3]) / 2, (bxp[1] + bxp[4]) / 2, bxp[2] + 75.0 + 0.5), V(1, 0, 0), V(0, 1, 0),
                                                            (bxp[3] - bxp[0]) / 10.0, (bxp[4] - bxp[1]) / 10.0, 15.0)
                 e = env_o.component.bRepBodies.add(tb.createBox(ob)).createForAssemblyContext(env_o)
@@ -370,7 +372,7 @@ def run(_context: str):
         'logic': [((30.0, S.CHANNEL['y'], S.CHANNEL['floor'][1]), 'J4: front channel - HL, HR, ETB cross in front of the spine, inside the box'),
                   ((34.0, S.CHANNEL['y_sp'], S.CHANNEL['z']['HR'] + 2.5), 'J3: HL and HR splices in the channel (one wire per fuse terminal)'),
                   ((sum(S.PAN_RIB['x']) / 2, 60.0, S.PAN_RIB['z_top']), 'J2: pan rib between the Bus 1 wires and the strip bolt heads'),
-                  ((S.MINI_COLS['BUS1'][0] - 3.0, -30.0, 9.0), 'Bus 1 exit: %d wires' % next(x['wires'] for x in plan['exits'] if x['box'] == 'LOGIC' and abs(x['lane'] - 10.5) < 0.01))],
+                  ((S.MINI_COLS['BUS1'][0] - S.MINI_BLADE_X, -30.0, 9.0), 'Bus 1 exit: %d wires' % next(x['wires'] for x in plan['exits'] if x['box'] == 'LOGIC' and abs(x['lane'] - (S.MINI_COLS['BUS1'][0] - S.MINI_BLADE_X)) < 0.01))],
         'power': [((PX - 30.0, 43.0, 8.0), 'relay + ACPS wires: 21 into 12 bundles out of the inboard end')],
         'battrelay': [((214.0, -169.0, 24.5), 'coil plug: 85 white + 86 red, 18 AWG')],
     }
@@ -480,7 +482,7 @@ def run(_context: str):
         else:
             cable('loom_L%d' % L0, [(L0 + LX, -30.0, z), (L0 + LX, -200.0, z)], d, 'loom', 1.0)
     labels.append(((75, -160, 7), 'POWER relay + ACPS tails: loom forward to the dash (CabinPower)', 'FT'))
-    labels.append(((10.5 + LX, -160, 8.4), 'LOGIC tails: 4 looms forward (CabinPower)', 'FT'))
+    labels.append(((S.MINI_COLS['BUS1'][0] - S.MINI_BLADE_X + LX, -160, 8.4), 'LOGIC tails: 4 looms forward (CabinPower)', 'FT'))
     labels.append(((440, 202, 109.1), 'P-clamp each side of every 1/0 bend (3 x OD supported)', 'FRT'))
     for (name, bodies, colour) in arr:
         tmp('Arr_' + name, [(b, colour) for b in bodies])

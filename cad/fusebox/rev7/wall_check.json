@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 845.4,
+   "volume_cm3": 845.9,
    "bounds": [
     128.0,
     341.8,
@@ -20,12 +20,11 @@
     244.3
    ],
    "exempt": {
-    "seat lip": 1300,
+    "seat lip": 1315,
     "bar snap tab": 117,
     "pan catch pocket": 116,
     "A bar snap tab": 10,
-    "A seat lip": 27,
-    "A groove strip": 1,
+    "A seat lip": 25,
     "A saddle lip": 12,
     "A relay cavity web": 2
    },
@@ -101,10 +100,10 @@
   "Logic_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 373.9,
+   "volume_cm3": 396.2,
    "bounds": [
     -32.0,
-    118.4,
+    121.55,
     -1.3,
     182.3,
     0.0,
@@ -112,17 +111,17 @@
    ],
    "outline": [
     -1.3,
-    87.7,
+    90.85,
     -1.3,
     182.3
    ],
    "exempt": {
-    "pan catch pocket": 114,
-    "seat lip": 1099,
+    "pan catch pocket": 116,
+    "seat lip": 1321,
     "strip lip": 487,
     "87a slot": 385
    },
-   "attach_skin": 31,
+   "attach_skin": 29,
    "walls": [],
    "attach": [],
    "flagged": 0
@@ -130,18 +129,18 @@
   "Logic_Pan_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 83.2,
+   "volume_cm3": 85.3,
    "bounds": [
     2.25,
-    84.15,
+    87.3,
     3.45,
     177.55,
     1.5,
     42.5
    ],
    "exempt": {
-    "pan snap tongue": 18,
-    "notch at corner": 22
+    "pan snap tongue": 16,
+    "notch at corner": 82
    },
    "attach_skin": 0,
    "walls": [],
@@ -151,19 +150,19 @@
   "Logic_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 100.9,
+   "volume_cm3": 103.0,
    "bounds": [
     -5.75,
-    92.15,
+    95.3,
     -5.75,
     186.75,
     47.5,
     89.9
    ],
    "exempt": {
-    "label": 1246,
+    "label": 1254,
     "cover screw hole": 48,
-    "cover snap tongue": 4
+    "cover snap tongue": 30
    },
    "attach_skin": 0,
    "walls": [],

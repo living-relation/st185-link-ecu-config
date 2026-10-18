@@ -310,12 +310,12 @@ def build(rev=6):
     L.add(P, 'Terminals', 'Heater relay 87a receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', 1, 1,
           unit=0.10, basis='est', url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); te-on-hand-bom.csv qty_ordered 20; ST185-CabinPower k_htr 87a 14 AWG',
           note='OPEN-ITEMS row 110 (c).')
-    L.add(P, 'Terminals', 'Mini fuse receptacle 2.8 x 0.8, 17-13 AWG (ACPS input, 14 AWG)', '880398-2', 'TE Connectivity',
-          'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed', 1, 1, unit=0.15, basis='est', url=TE('880398-2'),
-          checked='TE page (tab 2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower ACPS in 14 AWG', note='ACPS input from heater 87 (row 110 (c)).')
-    L.add(P, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (ACPS output, 18 AWG)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
-          1, 1, unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower ACPS out 18 AWG',
-          note='Row 110 (c).')
+    L.add(P, 'Terminals', 'Mini fuse receptacle MCP 2.8, 16 / 14 AWG (ACPS input, 14 AWG)', '1-968851-1', 'TE Connectivity',
+          'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8', 1, 1, unit=0.25, basis='est', url=TE('1-968851-1'),
+          checked='TE page 1-968851-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 1.0 - 2.5 mm2); TE application spec 114-18148 Rev D1 Table 7 (16 AWG / 14 AWG crimp data, insulation 2.2 - 3.0); TE drawing 1355036; N21 (Dan 2026-10-18)', note='ACPS input from heater 87 (row 110 (c)); replaces 880398-2 (N21). Shop 2026-10-18 (R167): TE distributor panel TTI $0.096 / Mouser $0.101 / Online Components $0.094; eBay lots (350 for $65, 30 for $17.54); Amazon UK OTOTEC 30-pack is labelled OE 1-968851-1 (aftermarket, not TE - not used); AliExpress none; Ballenger CONN-100329 $0.25 (no TE PN given).')
+    L.add(P, 'Terminals', 'Mini fuse receptacle MCP 2.8, 20 / 18 AWG (ACPS output, 18 AWG)', '1-968849-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8',
+          1, 1, unit=0.25, basis='est', url=TE('1-968849-1'), checked='TE page 1-968849-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 0.5 - 1.0 mm2); TE application spec 114-18148 Rev D1 Table 7 (20 AWG / 18 AWG crimp data, insulation 1.4 - 2.1); TE drawing 1355036; N21 (Dan 2026-10-18)',
+          note='Row 110 (c); replaces 1241388-2 (N21). Shop 2026-10-18 (R167): TE distributor panel Mouser $0.250 qty 1 / $0.139, DigiKey $0.129, TTI $0.082; Amazon / eBay / AliExpress: none found; Ballenger CONN-100328 (no TE PN given).')
     sleeves(L, P)
     L.add(P, 'Printed', 'Retainer clip under the heater relay R1 (R123 B)', 'Power_Retainer_R1_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
           'Plate (2.0) with a hole per R1 wire and two barbed legs that snap into the cavity collar: stops the 62998-2 (no lance made for 8 AWG on a 6.3 blade) '
@@ -436,22 +436,22 @@ def build(rev=6):
           url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
     outs = [(nm, a) for c, (x, f) in S.MINI_COLS.items() for nm, a in f if a]
     own_in = [nm for (c, i, nm, a, x, y) in S.mini_list() if a and i in S.MINI_OWN_IN.get(c, ())]
-    # markup 2026-10-17 (Dan 23-21): each input jumper sized by its own fuse (spec.jumper): 20 - 18 AWG -> 1241388-2 + TE 320554, 16 - 14 -> 880398-2 + 53941-1
+    # markup 2026-10-17 (Dan 23-21): each input jumper sized by its own fuse (spec.jumper); N21: 20 - 18 AWG -> 1-968849-1 + TE 320554, 16 - 14 -> 1-968851-1 + 53941-1
     jumpers = [(nm, a) for (c, i, nm, a, x, y) in S.mini_list() if a and S.mini_stud(c, i)]
-    j_small = [nm for nm, a in jumpers if S.jumper(a)[1] == '1241388-2']
-    j_big = [nm for nm, a in jumpers if S.jumper(a)[1] == '880398-2']
+    j_small = [nm for nm, a in jumpers if S.jumper(a)[1] == '1-968849-1']
+    j_big = [nm for nm, a in jumpers if S.jumper(a)[1] == '1-968851-1']
     j_awg = {}
     for nm, a in jumpers:
         j_awg.setdefault(S.jumper(a)[0], []).append(nm)
     n_small = sum(1 for nm, a in outs if nm in S.OUT_SMALL) + len(own_in) + len(j_small)
     n_big = sum(1 for nm, a in outs if nm not in S.OUT_SMALL)
-    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 20-18 AWG (outputs + MRS / B30 inputs)', '1241388-2', 'TE Connectivity', 'AMP MCP 2.8K receptacle, gold, 0.5-1 mm2, tab 2.8 (0.6 / 0.8 thick)',
-          n_small, spare(n_small), unit=0.35, basis='est', url=TE('1241388-2'), checked='TE page (2.8 mm tab, 0.6 / 0.8 thick, 0.5-1 mm2); te-on-hand-bom.csv qty_ordered 10; ST185-CabinPower fb_logic contacts',
-          note='By wire gauge (row 110 (c)): outputs %s + inputs %s + the 20 / 18 AWG input jumpers %s (markup 2026-10-17).' % (
+    L.add(G, 'Terminals', 'Mini fuse receptacle MCP 2.8, 20 / 18 AWG (outputs + MRS / B30 inputs)', '1-968849-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8',
+          n_small, spare(n_small), unit=0.25, basis='est', url=TE('1-968849-1'), checked='TE page 1-968849-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 0.5 - 1.0 mm2); TE application spec 114-18148 Rev D1 Table 7 (20 AWG / 18 AWG crimp data, insulation 1.4 - 2.1); TE drawing 1355036; N21 (Dan 2026-10-18)',
+          note='By wire gauge (row 110 (c)): outputs %s + inputs %s + the 20 / 18 AWG input jumpers %s (markup 2026-10-17). Replaces 1241388-2 (N21). Shop 2026-10-18 (R167): TE distributor panel Mouser $0.250 qty 1 / $0.139, DigiKey $0.129, TTI $0.082; Amazon / eBay / AliExpress: none found; Ballenger CONN-100328 (no TE PN given).' % (
               ', '.join(sorted(n for n, a in outs if n in S.OUT_SMALL)), ', '.join(own_in), ', '.join(j_small)))
-    L.add(G, 'Terminals', 'Mini fuse receptacle 2.8, 17-13 AWG (16-14 AWG outputs + the %d 16 / 14 AWG input jumpers)' % len(j_big), '880398-2', 'TE Connectivity', 'Receptacle tab 2.8 x 0.8 mm, 1-2.5 mm2, tin, unsealed',
-          n_big + len(j_big), spare(n_big + len(j_big)), unit=0.15, basis='est', url=TE('880398-2'), checked='TE page (2.8 x 0.8, 1-2.5 mm2, 17-13 AWG); ST185-CabinPower fb_logic contacts',
-          note='Outputs %s (%d) + one per 16 / 14 AWG input jumper (%s). DM is 14 AWG (13 AWG max here).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, ', '.join(j_big)))
+    L.add(G, 'Terminals', 'Mini fuse receptacle MCP 2.8, 16 / 14 AWG (outputs + the %d 16 / 14 AWG input jumpers)' % len(j_big), '1-968851-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8',
+          n_big + len(j_big), spare(n_big + len(j_big)), unit=0.25, basis='est', url=TE('1-968851-1'), checked='TE page 1-968851-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 1.0 - 2.5 mm2); TE application spec 114-18148 Rev D1 Table 7 (16 AWG / 14 AWG crimp data, insulation 2.2 - 3.0); TE drawing 1355036; N21 (Dan 2026-10-18)',
+          note='Outputs %s (%d) + one per 16 / 14 AWG input jumper (%s). The 15 A circuits stay 16 AWG; DM is 14 AWG. Replaces 880398-2 (N21). Shop 2026-10-18 (R167): TE distributor panel TTI $0.096 / Mouser $0.101 / Online Components $0.094; eBay lots (350 for $65, 30 for $17.54); Amazon UK OTOTEC 30-pack is labelled OE 1-968851-1 (aftermarket, not TE - not used); AliExpress none; Ballenger CONN-100329 $0.25 (no TE PN given).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, ', '.join(j_big)))
     sleeves(L, G)
     cover_screws(L, G)
     L.add(G, 'Jumpers', 'Input jumper ring lug, 22-16 AWG, #8 / M4 (the 20 / 18 AWG jumpers)', '320554', 'TE Connectivity',

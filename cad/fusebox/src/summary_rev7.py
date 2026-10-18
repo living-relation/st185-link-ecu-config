@@ -216,7 +216,7 @@ A('<tr><td>J3 two wires in one terminal</td><td>A, only if rated for the combine
   'relay 30 and 86; the horn relay 86 now comes from the existing <code>sp_hz</code> splice (it was a jumper off its own terminal 30). Rating, combined current '
   'through the single wire and terminal: the ATM-15 fuse caps it at 15 A; 14 AWG M22759/16 is about 22 A as a single wire in free air at 80 C '
   '(<a href="https://www.hpacademy.com/assets/Course-Content/Wiring-Fundamentals/1dbddd6411/WireGauge-CurrentRating_CheatSheet.pdf">HP Academy M22759/16 sheet</a>), '
-  'x 0.7 in a bundle (R89) = 15.4 A, so it passes; TE 880398-2: typical 33 A, 1-2.5 mm2 (TE page). No terminal holds two wires now.</td></tr>')
+  'x 0.7 in a bundle (R89) = 15.4 A, so it passes; the fuse receptacle is TE 1-968851-1 (MCP 2.8, R166): 1.0-2.5 mm2, 16 / 14 AWG crimp data (TE 114-18148 Rev D1 Table 7). No terminal holds two wires now.</td></tr>')
 A('<tr><td>J4 wires that left the box and came back in</td><td>B</td><td>A printed <b>channel floor across the front</b> (z %.2f-%.2f, over the Bus 1 feed lug). '
   'To make room in front of the spine the Bus 1 strip starts at y %.1f (was 8), Bus 2 at y %.1f (was 21) and the Bus 1 feed lug sits at y %.0f / z %.0f '
   '(was 15 / 22). %d wires now cross there, each on its own level (%s), the two splices stacked in the channel past the spine; nothing leaves the box '
@@ -252,7 +252,7 @@ A('<div class="note"><b>Thin-wall wire, OPEN-ITEMS row 121 - your M6 = A (DECISI
   'TE Raychem RNF-100 build-up sleeve under the insulation crimp (table below; on the POWER / LOGIC parts lists).</div>' % len(grip))
 A('<h3 id="r120">Terminal cavities: hole sized by everything that passes, self-locking terminals (DECISIONS R120, R121, Dan 2026-10-15)</h3>')
 A('<p><b>Hole (R120):</b> the largest cross-section, along the insertion axis, of everything that goes through - the contact box, the crimped '
-  'barrels on the <b>thickest</b> insulation the terminal accepts (so GXL or thicker wire always fits), the wire behind them, and the 880398-2 stop '
+  'barrels on the <b>thickest</b> insulation the terminal accepts (so GXL or thicker wire always fits), the wire behind them, and any stop '
   'flange - + %.1f mm a side, a combined (rectangular) outline. <b>Lock (R121):</b> the terminal goes up from under the deck, contact box first, and '
   'snaps in: above its neck (where the insulation barrel stops when seated) the cavity steps in to the box - the ledge - and opens a window from the '
   'lance tip up to the seat, so the lance springs out over the ledge; the deck blade slot above (narrower than the box) stops it the other way. Relays '

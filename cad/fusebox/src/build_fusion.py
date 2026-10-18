@@ -691,7 +691,14 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             if a['group'] == b['group']:
                 continue
             ang = math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x'])) + 90.0
-            fd = ((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, max(a['sx'], a['sy'], b['sx'], b['sy']) + 2.0, G['t'], ang)
+            t_fin = G['t']
+            if REV[0] == 7 and (abs(a['y'] - b['y']) < 1e-6 or abs(a['x'] - b['x']) < 1e-6):
+                # N21 / fit audit 2026-10-18: holes 4.0 or less apart (the MCP 2.8 sockets at the 8.1 mini fuse pitch: 3.5) - the wall fills the gap
+                # (the holes trim it) instead of a 2.0 fin standing alone in it (R127 A: a lone 2.0 fin hangs by its top only)
+                gap_ = (abs(a['x'] - b['x']) - (a['sx'] + b['sx']) / 2) if abs(a['y'] - b['y']) < 1e-6 else (abs(a['y'] - b['y']) - (a['sy'] + b['sy']) / 2)
+                if 0 < gap_ <= 4.0:
+                    t_fin = gap_ + 0.4
+            fd = ((a['x'] + b['x']) / 2, (a['y'] + b['y']) / 2, max(a['sx'], a['sy'], b['sx'], b['sy']) + 2.0, t_fin, ang)
             fd = fin_clip(fd, box_name, clip_feet)
             if fd is None:
                 continue
@@ -711,6 +718,42 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             keep = [fd for fd in fin_d if straight(fd) or not any(straight(f2) and on(p_, f2) for f2 in fin_d for p_ in pts(fd))]
             report.setdefault('guide_walls_redundant', {})[box_name] = len(fin_d) - len(keep)
             fin_d = keep
+        if REV[0] == 7:    # N21 / fit audit 2026-10-18 (S6): a straight wall whose end stops under 0.5 short of a crossing straight wall runs on into it
+            def _ext(fd, others):
+                c, s_ = round(math.cos(math.radians(fd[4])), 6), round(math.sin(math.radians(fd[4])), 6)
+                if abs(c * s_) > 1e-6:
+                    return fd
+                along_x = abs(c) > 0.5            # this wall's length runs along x (else along y)
+                lo, hi = (fd[0] - fd[2] / 2, fd[0] + fd[2] / 2) if along_x else (fd[1] - fd[2] / 2, fd[1] + fd[2] / 2)
+                across = fd[1] if along_x else fd[0]
+                for f2 in others:
+                    c2, s2 = round(math.cos(math.radians(f2[4])), 6), round(math.sin(math.radians(f2[4])), 6)
+                    if abs(c2 * s2) > 1e-6 or (abs(c2) > 0.5) == along_x:
+                        continue                   # only a perpendicular straight wall
+                    pos2, span2 = (f2[0], f2[1]) if along_x else (f2[1], f2[0])    # its position along our axis, its centre across
+                    if across + fd[3] / 2 < span2 - f2[2] / 2 or across - fd[3] / 2 > span2 + f2[2] / 2:
+                        continue                   # no overlap across our thickness
+                    if 0 < (pos2 - f2[3] / 2) - hi < 0.5:
+                        hi = pos2 - f2[3] / 2 + 0.05
+                    elif 0 < lo - (pos2 + f2[3] / 2) < 0.5:
+                        lo = pos2 + f2[3] / 2 - 0.05
+                    else:
+                        continue
+                    report.setdefault('guide_walls_joined', {}).setdefault(box_name, 0)
+                    report['guide_walls_joined'][box_name] += 1
+                mid, L_ = (lo + hi) / 2, hi - lo
+                return (mid, fd[1], L_, fd[3], fd[4]) if along_x else (fd[0], mid, L_, fd[3], fd[4])
+            fin_d = [_ext(fd, [f2 for f2 in fin_d if f2 is not fd]) for fd in fin_d]
+
+            def _touch(f1, f2):       # footprints (centre, length, thickness, angle) overlap - corner test both ways
+                def corners(f):
+                    c, s_ = math.cos(math.radians(f[4])), math.sin(math.radians(f[4]))
+                    return [(f[0] + c * u * f[2] / 2 - s_ * v * f[3] / 2, f[1] + s_ * u * f[2] / 2 + c * v * f[3] / 2) for u in (-1, 1) for v in (-1, 1)]
+                return any(on(p_, f2) for p_ in corners(f1)) or any(on(p_, f1) for p_ in corners(f2))
+            lone = [fd for fd in fin_d if not straight(fd) and not any(_touch(fd, f2) for f2 in fin_d if f2 is not fd)]
+            if lone:   # a slanted guide wall touching no other wall: its square ends cut on the slant read as sub-2.0 wedges (R127) - left out
+                report.setdefault('guide_walls_lone_slanted_dropped', {})[box_name] = [[round(fd[0], 1), round(fd[1], 1)] for fd in lone]
+                fin_d = [fd for fd in fin_d if fd not in lone]
         kept_fd = []
         for fd in fin_d:
             f_ = rbox(fd[0], fd[1], z_d - G['h'], z_d + 0.01, fd[2], fd[3], fd[4])
@@ -1605,7 +1648,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         T = S.TOWER
         for r in relays:
             parts.append(cbox(r['cx'] + 1.3, r['cy'], z_d, plate_b + 0.01, 21.1 + 2 * T + (2.0 if r['B'] else 0), 19.7 + 2 * T))
-        parts.append(cbox(acps[0], acps[1], z_d, plate_b + 0.01, 6.0 + 3.0 + 2 * T, 4.6 + 2 * T))
+        parts.append(cbox(acps[0], acps[1], z_d, plate_b + 0.01, 2 * S.MINI_BLADE_X + 3.0 + 2 * T, 4.6 + 2 * T))   # N21: 8.1 blade pitch
         if not R7:
             for a in ami:                                        # rev 6: standoff bosses, both rows (hex hole = anti-rotation)
                 parts.append(cylz(a['x_out'], a['y'], z_d, plate_b + 0.01, SO['af'] / math.cos(math.radians(30)) + 2 * S.CLR + 5.0))
@@ -1791,8 +1834,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 zs0 = slot_z0('POWER', r['cx'] - v, r['cy'] + u, z_d, z_t, S.TERM['42281-1']['L'])
                 cuts.append(cbox(r['cx'] - v, r['cy'] + u, zs0, z_t + 1, ly, lx))
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, r['cx'] - v - ly / 2, r['cx'] - v + ly / 2, r['cy'] + u - lx / 2, r['cy'] + u + lx / 2)])
-        for dx in (-3.0, 3.0):
-            cuts.append(cbox(acps[0] + dx, acps[1], slot_z0('POWER', acps[0] + dx, acps[1], z_d, z_t, S.TERM['880398-2']['L']), z_t + 1, 3.0, 4.6))
+        for dx in (-S.MINI_BLADE_X, S.MINI_BLADE_X):
+            cuts.append(cbox(acps[0] + dx, acps[1], slot_z0('POWER', acps[0] + dx, acps[1], z_d, z_t, S.TERM['1-968851-1']['L']), z_t + 1, *S.MINI_SLOT))
         # rev 6: the OUT-row lugs sit on 40 mm standoffs at the IN-row height, under the skirt: no skirt notches (belly pan exits below)
         tabs_add = []
         if R7:   # R146 (Dan N5): snap tabs that hold the POS and NEG bars down - the POS bar's front end and its -x edge before the barrier,
@@ -2011,7 +2054,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             for sg, tn in ((-1, '85'), (1, '86')):
                 tails.append(dict(x=r['cx'] + 0.25, y=r['cy'] + sg * 8.45, awg=S.COIL_AWG, what='%s %s' % (r['name'], tn),
                                   lane=r['cy'] + sg * 9.0))
-        for dx in (-3.0, 3.0):
+        for dx in (-S.MINI_BLADE_X, S.MINI_BLADE_X):
             tails.append(dict(x=acps[0] + dx, y=acps[1], awg=S.ACPS_AWG, what='ACPS', lane=acps[1]))
         for t_ in tails:          # coil lanes half way between fuse lines; the heater 85 joins the ACPS lane
             if abs(t_['lane'] - acps[1]) < 1.0 or abs(t_['lane'] - (S.AMI_Y0 - 9.0)) < 0.1:
@@ -2107,7 +2150,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         strips = {}
         for col, (cx, fuses) in S.MINI_COLS.items():
             sd = S.MINI_IN[col]
-            xin = cx + sd * 3.0                                 # input blade / jumper line
+            xin = cx + sd * S.MINI_BLADE_X                      # input blade / jumper line
             xpm = xin + sd * JL['ax']                           # lug palm mid-plane
             face = xpm + sd * JL['t'] / 2                       # strip face the palms sit on
             x0, x1 = sorted((face, face + sd * ST['t']))
@@ -2166,10 +2209,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         deck = base_shell(L, z_d, z_t, parts + fins_l)
         cuts = base_snap_cuts(L, z_t, z_d, 'x', pre + 'Base_PA12_printed', sh) + holes_l
         for (col, nm, amps, cx, y, n_, i) in mini:              # 2 x 2.8 mm receptacles per mini fuse (input + output)
-            for dx in (-3.0, 3.0):
-                zs0 = slot_z0('LOGIC', cx + dx, y, z_d, z_t, S.TERM['880398-2']['L'])
-                cuts.append(cbox(cx + dx, y, zs0, z_t + 1, 3.0, 4.6))
-                cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + dx - 1.5, cx + dx + 1.5, y - 2.3, y + 2.3)])
+            for dx in (-S.MINI_BLADE_X, S.MINI_BLADE_X):         # N21: 8.1 blade pitch, MCP 2.8 receptacles, slot = blade + 0.2 / 0.4 a side
+                zs0 = slot_z0('LOGIC', cx + dx, y, z_d, z_t, S.TERM['1-968851-1']['L'])
+                cuts.append(cbox(cx + dx, y, zs0, z_t + 1, *S.MINI_SLOT))
+                cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + dx - S.MINI_SLOT[0] / 2, cx + dx + S.MINI_SLOT[0] / 2, y - S.MINI_SLOT[1] / 2, y + S.MINI_SLOT[1] / 2)])
         for (nm, pn, own, cx, cy, k_) in micro:                 # approximate pattern from TE 1308028; set exactly in detail work
             MP_ = S.MICRO_PINS             # fit audit 2026-10-18: TE V23074 rev 1119 p.3 pattern; 87a is a 4.8 blade like 85 / 86 (slot 6.8 long)
             bt_, c2_ = 0.8 + 2 * S.CLR, 2 * S.CLR    # fit audit 2026-10-18: blade slots = blade + R120 clr a side (0.8 x 6.3 / 4.8, TE V23074 p.3): with the
@@ -2322,10 +2365,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             if not amps or nm in skip:
                 continue
             sd = S.MINI_IN[col]
-            lane = cx - sd * 3.0
+            lane = cx - sd * S.MINI_BLADE_X
             tails.append(dict(x=lane, y=y, awg=S.MINI_AWG[amps], what=nm, lane=lane))
             if i in S.MINI_OWN_IN.get(col, ()):                          # own input (MRS, B30): a harness wire, not a jumper
-                tails.append(dict(x=cx + sd * 3.0, y=y, awg=S.MINI_AWG[amps], what=nm + ' in', lane=lane))
+                tails.append(dict(x=cx + sd * S.MINI_BLADE_X, y=y, awg=S.MINI_AWG[amps], what=nm + ' in', lane=lane))
         for (nm, pn, own, cx, cy, k_) in micro:
             if not pn:
                 continue
@@ -2344,11 +2387,11 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             GW = S.LOGIC_GROUP_WALLS
             y_front = S.SKIRT + W_CL + PN['t'] - 0.01
             gw = []
-            for (la, lb) in ((S.MINI_COLS['BUS2'][0] + 3.0, S.MICRO_COLS[0]), (S.MICRO_COLS[0], S.MICRO_COLS[1])):
+            for (la, lb) in ((S.MINI_COLS['BUS2'][0] + S.MINI_BLADE_X, S.MICRO_COLS[0]), (S.MICRO_COLS[0], S.MICRO_COLS[1])):
                 xm_ = ((la + ln_[round(la, 2)] / 2) + (lb - ln_[round(lb, 2)] / 2)) / 2
                 gw.append((xm_ - GW['t'] / 2, xm_ + GW['t'] / 2, y_front, GW['y1'], GW['z_top']))
             belly_pan(L, z_d, 'x', pan_exits, pre, sh, rib=(S.PAN_RIB['x'][0], S.PAN_RIB['x'][1], S.PAN_RIB['y'][0], S.PAN_RIB['y'][1], S.PAN_RIB['z_top']),
-                      reliefs=[(cy - S.PAN_RELIEF['fwd'], cy + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y], walls=gw, box_name='LOGIC')
+                      reliefs=[(cy + S.MICRO_PINS['86'][1] - S.PAN_RELIEF['fwd'], cy + S.MICRO_PINS['86'][1] + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y], walls=gw, box_name='LOGIC')   # fit audit: at the real 86 pin (coil row +6)
         else:
             belly_pan(L, z_d, 'x', pan_exits, pre, sh)
         bend_row('LOGIC fuse / micro relay receptacles, largest %d AWG' % S.LOGIC_MAX_AWG, S.LOGIC_MAX_AWG, 'straight down out of the cavity, one bend into its bundle (rows above)',
