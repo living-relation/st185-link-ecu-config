@@ -156,6 +156,8 @@ def render(fn, out, scale=1.0, title=None):
             dr.text(T(b[0] + 4, b[1] + 16), lab[:chars], fill=(50, 50, 50), font=f)
         else:
             dr.text(T(b[0] + 2, b[1] + 3), n.kind, fill="black", font=f)
+            if n.el.get("label"):                      # R156: a named LED / resistor
+                dr.text(T(b[0] - 20, b[1] - 13), n.el["label"], fill=(50, 50, 50), font=f)
     owners = {w["id"]: w for w in d.get("wires", [])}
     for c in d.get("cables", []):
         for co in c.get("cores", []) + ([c["shield"]] if c.get("shield") else []):

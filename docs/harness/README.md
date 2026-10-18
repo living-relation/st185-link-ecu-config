@@ -135,7 +135,7 @@ interfaces.json              <- and the ownership facts with them
         audit_wire_spacing.py      no wire routing points unless Dan allow-lists them (RP1, R141);
                                    layout bundles 30 apart unless they end at the same connector / device (R107)
         audit_ident_bands.py       ident band codes: palette, one code per circuit, both sections of a break agree (R87)
-        audit_destinations.py      short names: labels <= 12, signals <= 20, loose ends "<what> -> <where>" (R124, R125)
+        audit_destinations.py      wire-end labels: where each end lands, ends differ, no "->" / pin codes (R156; R124, R125)
         buylist.py                 writes NEED-TO-BUY.md
         buildlist.py               writes HARNESS-BUILD-LIST.csv
 ```
@@ -153,7 +153,9 @@ reader: it loads the registry and builds one electrical graph across every harne
 to one node). It also puts back the long label / signal text the drawings no longer
 carry (`full_text.json`, DECISIONS R124), so the gates read the full text while the app shows
 short destinations. `python docs/harness/audit_destinations.py --table A-cabin ecu_a` prints a
-connector's Destination column (add `--raw` for the long text).
+connector's Destination column (add `--raw` for the long text); `--ends <loom>` prints both
+printed ends of every wire. `relabel_ends.py <spec.json> [--write]` applies R156 wire-end labels
+(and schematic moves / note widths) to one drawing.
 
 ## Parts - how the gates count them
 

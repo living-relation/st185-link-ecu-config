@@ -55,9 +55,10 @@ What it runs, in order - every one in HARD is a hard gate:
                            no bundle through a node or label (Y5: nor along its own end's label), no
                            bundle on top of another, no lone long diagonal. Re-place with layout_tree.py (one straight tree) or
                            layout_trunk.py (keeps a bent trunk); snapshot render_layout.py.
-  audit_destinations.py    short names (DECISIONS R124, R125): labels <= 12, label + designation and
-                           every signal <= 20, loose ends "<what> -> <where it lands>" <= 32 and unique,
-                           no generic words; long text in full_text.json, read back by model.full_text
+  audit_destinations.py    wire-end labels (DECISIONS R156): every terminal / splice labelled with where
+                           that end lands, both ends of a wire differ, no "->" tail, bare pin code or
+                           internal id, notes wide (L1-L5); connector names <= 48, signals <= 20, no
+                           generic words (R124 / R125); drawings not yet relabelled stay on PENDING_R156
 
 SOFT (reported, not failing): none at present.
 

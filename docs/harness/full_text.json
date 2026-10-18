@@ -2779,35 +2779,35 @@
   "connectors": {},
   "terminals": {
    "t_led_gnd": [
-    "LED GND -> GND ID",
+    "",
     "LED common return - OEM ground ID, left kick panel (M6, assumed)"
    ],
    "fl_cl_c11_c2": [
-    "Turn L LED -> C11-2",
+    "",
     "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c11_c11": [
-    "Turn R LED -> C11-11",
+    "",
     "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c11_c12": [
-    "High beam LED -> C11-12",
+    "",
     "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c1": [
-    "Park brake LED -> C12-1",
+    "",
     "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c8": [
-    "Charge LED -> C12-8",
+    "",
     "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c9": [
-    "LED IG +12V -> C12-9",
+    "",
     "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead on the dash-harness side of the meter connector"
    ],
    "br_w_oil_k": [
-    "Oil LED sink -> CSB3 c26",
+    "",
     "Broken off - continues on ST185-CSB3: oil pressure LED sink on CSB3 L4"
    ]
   }
