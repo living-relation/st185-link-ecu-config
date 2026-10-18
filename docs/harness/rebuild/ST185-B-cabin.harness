@@ -1390,7 +1390,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "Rev SW feed",
+          "signal": "J/B No.1 GAUGE 15A fuse - back-up light switch feed",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -1445,54 +1445,54 @@
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B15",
+          "signal": "ECU B15 (An Volt 6) - oil pressure signal",
           "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B16",
+          "signal": "ECU B16 (An Volt 7) - fuel pressure signal",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B23",
+          "signal": "ECU B23 (An Volt 8) - coolant pressure signal",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B6",
+          "signal": "ECU B6 (Temp 3) - oil temp signal",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU-B B7",
+          "signal": "ECU B7 (Temp 4) - charge-pipe air temp signal",
           "propagate": false
         },
         {
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16p",
-          "signal": "Rev SW out"
+          "signal": "Reverse relay k_rev 86 + CSB3 opto - back-up switch out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "Gnd Out B-eng",
+          "signal": "ECU B22 (Gnd Out) - return: oil temp, charge temp, oil + coolant press",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "Gnd Out B-eng",
+          "signal": "ECU B22 (Gnd Out) - return: fuel pressure + gearbox speed sensor",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1523,21 +1523,21 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "Knock 1 SIG+",
+          "signal": "ECU B9 (Knock 1) - knock sensor signal +",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "Knock 1 SIG-",
+          "signal": "ECU B22 (Gnd Out) - knock sensor signal -",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "85",
-          "signal": "Knock 1 screen",
+          "signal": "ECU B17 (shield ground) - knock cable screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1545,71 +1545,71 @@
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor +",
+          "signal": "ECU B18 (Aux 9) - throttle motor +",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16p",
-          "signal": "ETB motor -",
+          "signal": "ECU B26 (Aux 10) - throttle motor -",
           "propagate": false
         },
         {
           "id": "c22",
           "designation": "88",
-          "signal": "ETB motor screen",
+          "signal": "ECU B17 (shield ground) - throttle motor cable screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c15",
           "designation": "89",
-          "signal": "Gearbox VSS signal",
+          "signal": "ECU B29 (DI 8) - gearbox speed signal",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "VSS 12V",
+          "signal": "LOGIC SW12 switched +12 V - gearbox speed sensor supply",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "Gearbox VSS screen",
+          "signal": "ECU B17 (shield ground) - gearbox speed cable screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c13",
           "designation": "92",
-          "signal": "CAN H Lambda",
+          "signal": "CAN bus H (ST185-CAN) - CAN-Lambda CAN H",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c14",
           "designation": "93",
-          "signal": "CAN L Lambda",
+          "signal": "CAN bus L (ST185-CAN) - CAN-Lambda CAN L",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "Lambda CAN screen",
+          "signal": "CAN bus screen (ST185-CAN) - CAN-Lambda pair screen",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c3",
           "designation": "95",
-          "signal": "CAN-Lambda +12V",
+          "signal": "LOGIC LAM 7.5A fuse - CAN-Lambda +12 V",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c4",
           "designation": "96",
-          "signal": "Lambda GND",
+          "signal": "Cabin chassis ground - CAN-Lambda ground",
           "contactPartId": "ct_hdp12p"
         },
         {
