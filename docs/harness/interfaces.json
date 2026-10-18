@@ -2128,7 +2128,7 @@
     {
       "id": "BR_W_FAN_PWR",
       "type": "broken_off",
-      "what": "radiator fan relay 87 feed",
+      "what": "radiator fan relay 30 feed",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -2143,7 +2143,7 @@
     {
       "id": "BR_W_FAN2_PWR",
       "type": "broken_off",
-      "what": "condenser fan relay 87 feed",
+      "what": "condenser fan relay 30 feed",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -2218,7 +2218,7 @@
     {
       "id": "BR_W_STRL",
       "type": "broken_off",
-      "what": "start relay 87 to the starter S terminal",
+      "what": "start relay 30 to the starter S terminal",
       "ends": [
         {
           "harness": "A-engine",
@@ -2668,7 +2668,7 @@
     {
       "id": "BR_W_RB4",
       "type": "broken_off",
-      "what": "heater relay 87 (POWER HTR 40A) -> blower motor B4 pin 2",
+      "what": "heater relay 30 (POWER HTR 40A) -> blower motor B4 pin 2",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2683,7 +2683,7 @@
     {
       "id": "BR_W_RB2",
       "type": "broken_off",
-      "what": "power relay 87 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
+      "what": "power relay 30 (POWER PWR 30A) -> power-window feed W-G (old R/B2 power main relay terminal 1)",
       "ends": [
         {
           "harness": "CabinPower",
@@ -3192,10 +3192,10 @@
           "Yellow"
         ],
         "wires": [
-          "w_htr_30_cp",
+          "w_htr_87_cp",
           "w_htr_86_cp",
           "w_htr_85_cp",
-          "w_htr_87_cp",
+          "w_htr_30_cp",
           "w_rb4_cp",
           "w_htr_87a_cp",
           "w_htr_acps"
@@ -3234,7 +3234,7 @@
           "Yellow"
         ],
         "wires": [
-          "w_fb_k_efi_30_cp",
+          "w_fb_k_efi_87_cp",
           "w_k_efi_86_cp",
           "w76_cp",
           "w77_cp"
@@ -3270,7 +3270,7 @@
           "Yellow"
         ],
         "wires": [
-          "w_pwr_30_cp",
+          "w_pwr_87_cp",
           "w_pwr_86_cp",
           "w_pwr_85_cp",
           "w_rb2_cp"
@@ -3282,7 +3282,7 @@
           "White"
         ],
         "wires": [
-          "w_fb_k_fan_30_cp",
+          "w_fb_k_fan_87_cp",
           "w_fan85_cp",
           "w_fan_pwr_ac"
         ]
@@ -3293,7 +3293,7 @@
           "Blue"
         ],
         "wires": [
-          "w_fb_k_fan2_30_ac",
+          "w_fb_k_fan2_87_ac",
           "w_fan285_cp",
           "w_fan2_pwr_bc"
         ]
@@ -3304,7 +3304,7 @@
           "Yellow"
         ],
         "wires": [
-          "w_fb_k_str_30_cp",
+          "w_fb_k_str_87_cp",
           "w_str85_cp",
           "w_strl_ac"
         ]

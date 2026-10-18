@@ -231,6 +231,7 @@ for pn, n in BANDS.items():
 # under "Still unspecified" instead.
 FB_DIR = os.path.join(os.path.dirname(R), "..", "..", "cad", "fusebox")
 FB_ADDED, FB_DRAWN, FB_OPEN = collections.OrderedDict(), [], []
+FB_DRAWN_N = collections.Counter()   # box-list total per drawn part number
 DRAWN = set(req)      # parts the harness files count; the box lines below must not be tested against their own additions
 for fn in ("fusebox-parts-power.csv", "fusebox-parts-logic.csv", "fusebox-parts-battrelay.csv"):
     fp = os.path.join(FB_DIR, fn)
@@ -245,10 +246,15 @@ for fn in ("fusebox-parts-power.csv", "fusebox-parts-logic.csv", "fusebox-parts-
             continue
         if pn in DRAWN:
             FB_DRAWN.append((r["box"], pn, n))
+            FB_DRAWN_N[pn] += n
             continue
         req[pn] += n
         meta.setdefault(pn, {"partNumber": pn, "manufacturer": r["maker"], "description": r["description"].upper()})
         FB_ADDED.setdefault(pn, []).append(r["box"])
+# 2026-10-18 (N21 / R166): the box list can count more of a drawn part than the drawings do (the MCP 2.8 receptacles: the
+# drawings count the harness wire ends, the box list also the internal input jumpers and spares), so order the larger count.
+for pn, n in FB_DRAWN_N.items():
+    req[pn] = max(req[pn], n)
 
 # things that are modelled as blocks but are not parts anyone buys for this harness:
 # OEM items already on the car, or device-side terminals that come with the device.

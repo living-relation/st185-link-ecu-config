@@ -100,7 +100,7 @@ WC = [
     ('1/0 lug ends in the glove box', 8, 6, 'the link cable had a lug at each end'),
     ('Relay feeds, AMI IN row -> relay terminal 30', 6, 6, 'unchanged (they already bolt onto the bar)'),
     ('AMI OUT row harness cables', 6, 6, 'unchanged'),
-    ('LOGIC feeds (BUS1 50 A, BUS2 k_efi 87)', 2, 2, 'unchanged'),
+    ('LOGIC feeds (BUS1 50 A, BUS2 k_efi 30)', 2, 2, 'unchanged'),
     ('Small relay grounds to the NEG bar (k_htr 87a, k_pwr 85, k_rev 85)', 3, 3, 'same 3 wires; the two POWER-box ones now end in the same box (shorter)'),
 ]
 t6 = t7 = 0

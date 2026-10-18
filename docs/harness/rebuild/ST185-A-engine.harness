@@ -2163,7 +2163,7 @@
         "y": 120
       },
       "propagate": false,
-      "label": "Start relay pin 87, POWER box R3 (glove box, on CabinPower) - starter S feed"
+      "label": "Start relay pin 30, POWER box R3 (glove box, on CabinPower) - starter S feed"
     },
     {
       "id": "br_w124_e",
