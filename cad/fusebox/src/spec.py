@@ -319,11 +319,12 @@ WALL_EXEMPT = {
                       'strap_fea.py); its slots are 1.0 (> 0.5 S6) and the ledge the lips rest on is between the well and the slot',
 }
 GAP_OPEN = 0.65      # SteveCAD sweep C1 (S6): least opening of a cavity-join bridge - HP MJF needs >= 0.5 between faces (check_printed_solid S6)
-MICRO_NO = ('5-1393292-8', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)
+MICRO_NO = ('4-1904124-2',)     # normally-open micro relays: no 87a contact (no 87a blade)
 # Fit audit 2026-10-18: 4-1904124-3 (horn) is V23074-A1001-A403 = 1 form C, resistor (TE Micro Relay A data sheet rev 1119 p.4 part table, te.com
-# page, TE STEP: 5 blades) - it has an 87a blade, so it gets the 87a slot. 5-1393292-8 (V23074-A2001-A402, NOD): the data sheet (p.3 NOD, terminals
-# 1 2 3 5) and TE customer drawing V23074-A2001-A402-CD show 4 blades, but TE's 3D model c-5-1393292-8-o-3d.stp has a 5th at terminal 4 -
-# UNVERIFIED; the box follows the drawings (no slot). Check one on the shelf before printing (OPEN-ITEMS).
+# page, TE STEP: 5 blades) - it has an 87a blade, so it gets the 87a slot. 5-1393292-8 (V23074-A2001-A402-EV-CBOX, HEAD LH / RH): R170 (N26,
+# Dan 2026-10-18) - TE customer drawing V23074-A2001-CD sheet 1 rev A (Dan's screenshot) shows 5 blades, 1 / 2 coil 4.8 x 0.8, 3 / 5 load
+# 6.3 x 0.8, terminal 4 present, change-over circuit (3 = 30 common, 5 = 87 NO, 4 = 87a NC), as TE's 3D model c-5-1393292-8-o-3d.stp - so it
+# gets the 87a slot like the horn (a plain blade slot: 87a has no harness wire).
 MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'), ('horn', '4-1904124-3', 'OWN'),
              ('k_etb', '4-1904124-2', 'OWN'), ('k_acc', '6-1419137-4', 'OWN'), ('k_eps_en', '6-1419137-4', 'OWN'),
              ('k_rev', '6-1419137-4', 'BUY'), ('SPARE', None, None), ('SPARE', None, None), ('SPARE', None, None)]
