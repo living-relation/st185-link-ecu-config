@@ -38,7 +38,7 @@ import model
 ROUTING_POINTS_ALLOWED = {}
 # Drawings whose cable cores / shields still carry routing points: listed, not failed, until the
 # group relabelling that drawing (DECISIONS R156 split) strips them. Only ever shrinks.
-CORE_POINTS_PENDING = {"A-cabin", "B-cabin"}
+CORE_POINTS_PENDING = set()
 CORE_KEYS = ("sourceLayoutPoints", "targetLayoutPoints")
 
 

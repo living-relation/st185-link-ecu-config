@@ -1360,7 +1360,7 @@
   "connectors": [
     {
       "id": "ecu_a",
-      "label": "ECU-A",
+      "label": "ECU-A (Link G4X plug A, centre dash)",
       "width": 210,
       "partId": "cp_ss34a",
       "cavities": [
@@ -1556,7 +1556,7 @@
     },
     {
       "id": "bh_a_fw",
-      "label": "BH-A",
+      "label": "BH-A (firewall bulkhead DRB102, RH)",
       "width": 390,
       "partId": "cp_drb_recept",
       "cavities": [
@@ -2222,7 +2222,7 @@
     },
     {
       "id": "ix_ws_front_p",
-      "label": "IX-WS-F",
+      "label": "IX-WS-F inline to front VRC (dash above ECU)",
       "width": 270,
       "partId": "cp_dt06_6s",
       "cavities": [
@@ -2273,7 +2273,7 @@
     },
     {
       "id": "aps",
-      "label": "APS",
+      "label": "APS accelerator pedal plug (driver footwell)",
       "partId": "cp_brz_aps6",
       "cavities": [
         {
@@ -2328,7 +2328,6 @@
       "id": "fl_acamp_act",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "ACT cut, Aux 4",
       "schematicPosition": {
         "x": 4230,
         "y": 1230
@@ -2338,13 +2337,12 @@
         "y": -1740
       },
       "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 11 (G-Y lead), centre dash by the ECU - ACT compressor cancel (EWD 1992 p.93, p.218)"
+      "label": "OEM A/C amplifier A18 pin 11, G-Y lead, by the ECU - ACT cancel (EWD 1992 p.93)"
     },
     {
       "id": "fl_acamp_mg",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "A/C VC coil, amp side",
       "schematicPosition": {
         "x": 4230,
         "y": 1290
@@ -2354,13 +2352,12 @@
         "y": -60
       },
       "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 5 (Y-B lead), centre dash by the ECU - VC coil out (EWD 1990 p.152)"
+      "label": "OEM A/C amplifier A18 pin 5, Y-B lead, by the ECU - VC coil out (EWD 1990 p.152)"
     },
     {
       "id": "fl_acamp_psw",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "A/C PSW in",
       "schematicPosition": {
         "x": 4230,
         "y": 1350
@@ -2370,12 +2367,11 @@
         "y": -6660
       },
       "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 13 (Y-R lead), centre dash by the ECU - pressure switch in (EWD 1990 p.152)"
+      "label": "OEM A/C amplifier A18 pin 13, Y-R lead, by the ECU - pressure sw in (EWD 1990 p.152)"
     },
     {
       "id": "br_ac_mg",
       "type": "Loose",
-      "signal": "A/C VC coil, comp side",
       "width": 390,
       "schematicPosition": {
         "x": 4110,
@@ -2386,12 +2382,11 @@
         "y": -150
       },
       "propagate": false,
-      "label": "OEM A/C compressor A4 pin 3, engine bay - VC control coil, not fitted (EWD 1990 p.152; wire on EngineRoom-C)"
+      "label": "OEM A/C compressor A4 pin 3, engine bay - VC coil, not fitted (EWD 1990 p.152)"
     },
     {
       "id": "br_ac_psw",
       "type": "Loose",
-      "signal": "A/C PSW out",
       "width": 390,
       "schematicPosition": {
         "x": 4110,
@@ -2402,12 +2397,11 @@
         "y": -6750
       },
       "propagate": false,
-      "label": "OEM A/C dual pressure switch A5 pin 4, engine bay - switch out (EWD 1990 p.152; wire on EngineRoom-C)"
+      "label": "OEM A/C pressure switch A5 pin 4, engine bay - switch out (EWD 1990 p.152)"
     },
     {
       "id": "chassis_ring",
       "type": "Ring",
-      "signal": "ECU + CSB3 + lambda GND",
       "layoutPosition": {
         "x": -1230,
         "y": -90
@@ -2419,12 +2413,11 @@
       "partId": "tp_ring_m6_12_10",
       "width": 210,
       "propagate": false,
-      "label": "Ground ring M6 - cabin chassis stud at the ECU, lower centre dash (EWD ground point ID TBD)"
+      "label": "Ground ring M6 on a cabin chassis stud at the ECU (TBD - EWD ground point ID) - ECU ground"
     },
     {
       "id": "br_w_b25",
       "type": "Loose",
-      "signal": "ECU GND B25",
       "width": 390,
       "layoutPosition": {
         "x": -2400,
@@ -2435,12 +2428,11 @@
         "y": 2940
       },
       "propagate": false,
-      "label": "ECU-B plug pin B25 (Link G4X, lower centre dash) - ECU power ground"
+      "label": "ECU-B plug pin B25 (Link G4X, centre dash) - ECU power ground"
     },
     {
       "id": "br_w_b34",
       "type": "Loose",
-      "signal": "ECU GND B34",
       "width": 390,
       "layoutPosition": {
         "x": -2400,
@@ -2451,12 +2443,11 @@
         "y": 2880
       },
       "propagate": false,
-      "label": "ECU-B plug pin B34 (Link G4X, lower centre dash) - ECU power ground"
+      "label": "ECU-B plug pin B34 (Link G4X, centre dash) - ECU power ground"
     },
     {
       "id": "br_w_rail_5v_b_c",
       "type": "Loose",
-      "signal": "+5V trunk A to B",
       "width": 390,
       "layoutPosition": {
         "x": -810,
@@ -2472,7 +2463,6 @@
     {
       "id": "br_w_rail_sw12_b_c",
       "type": "Loose",
-      "signal": "SW12 to VSS",
       "width": 390,
       "layoutPosition": {
         "x": -1830,
@@ -2483,12 +2473,11 @@
         "y": 3660
       },
       "propagate": false,
-      "label": "BH-B pin 90 (firewall bulkhead DRB102, RH firewall) - gearbox VSS +12V"
+      "label": "BH-B pin 90 (firewall bulkhead, RH) - gearbox speed sensor +12V"
     },
     {
       "id": "br_cab_fspur_r",
       "type": "Loose",
-      "signal": "WS FR out",
       "width": 390,
       "layoutPosition": {
         "x": -1290,
@@ -2499,12 +2488,11 @@
         "y": 1500
       },
       "propagate": false,
-      "label": "ECU-B plug pin B21 (Link G4X, lower centre dash) - DI 4 front RH wheel speed"
+      "label": "ECU-B plug pin B21 (Link G4X, centre dash) - DI 4 front RH wheel speed"
     },
     {
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
-      "signal": "WS FR screen",
       "width": 390,
       "layoutPosition": {
         "x": -1230,
@@ -2515,12 +2503,11 @@
         "y": 1800
       },
       "propagate": false,
-      "label": "Splice SP-SHIELD-B at the ECU-B plug (B-cabin) - drains to ECU-B B17"
+      "label": "Splice SP-SHIELD-B at the ECU-B plug (B-cabin) - FR spur screen to ECU-B B17"
     },
     {
       "id": "br_w_cru_5v",
       "type": "Loose",
-      "signal": "Cruise ladder +5V",
       "width": 390,
       "layoutPosition": {
         "x": -810,
@@ -2531,12 +2518,11 @@
         "y": 2820
       },
       "propagate": false,
-      "label": "Cruise ladder pull-up resistor, +5V end (CSB3 loom, under the centre cluster)"
+      "label": "Cruise ladder pull-up resistor lead (CSB3 loom, under centre cluster) - +5V"
     },
     {
       "id": "br_w_csbg",
       "type": "Loose",
-      "signal": "CSB3 GND",
       "width": 390,
       "layoutPosition": {
         "x": -2490,
@@ -2547,12 +2533,11 @@
         "y": 2760
       },
       "propagate": false,
-      "label": "Splice CSB3 GND on the CSB3 loom (under the centre cluster) - CSB3 + opto ground"
+      "label": "Splice CSB3 GND (CSB3 loom, under centre cluster) - CSB3 + opto ground"
     },
     {
       "id": "br_w39",
       "type": "Loose",
-      "signal": "APS VPA2",
       "width": 390,
       "layoutPosition": {
         "x": -870,
@@ -2563,12 +2548,11 @@
         "y": 60
       },
       "propagate": false,
-      "label": "ECU-B plug pin B33 (Link G4X, lower centre dash) - An Volt 5, pedal sub signal VPA2"
+      "label": "ECU-B plug pin B33 (Link G4X, centre dash) - pedal sub signal VPA2"
     },
     {
       "id": "br_w_fb_sw12",
       "type": "Loose",
-      "signal": "SW12 feed",
       "width": 390,
       "layoutPosition": {
         "x": -1680,
@@ -2579,12 +2563,11 @@
         "y": 2940
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse SW12 7.5A output splice - switched 12V"
+      "label": "LOGIC box (glove box) fuse SW12 7.5A output splice - switched +12V"
     },
     {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
-      "signal": "EHPS enable",
       "width": 390,
       "layoutPosition": {
         "x": -1590,
@@ -2595,12 +2578,11 @@
         "y": 3000
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse MRS 7.5A output, pin BUS2-12 - EHPS pump enable"
+      "label": "LOGIC box (glove box) fuse MRS 7.5A, BUS2 pin 12 - EHPS pump enable"
     },
     {
       "id": "br_w_lamg_b",
       "type": "Loose",
-      "signal": "Lambda GND",
       "width": 390,
       "layoutPosition": {
         "x": -2490,
@@ -2611,12 +2593,11 @@
         "y": 2700
       },
       "propagate": false,
-      "label": "BH-B pin 96 (firewall bulkhead DRB102, RH firewall) - CAN-Lambda ground"
+      "label": "BH-B pin 96 (firewall bulkhead, RH) - CAN-Lambda ground"
     },
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "INJ 12V",
       "width": 390,
       "layoutPosition": {
         "x": -210,
@@ -2627,12 +2608,11 @@
         "y": 3090
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse INJ 15A output, pin BUS2-4 - injector +12V"
+      "label": "LOGIC box (glove box) fuse INJ 15A, BUS2 pin 4 - injector +12V"
     },
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "COP 12V",
       "width": 390,
       "layoutPosition": {
         "x": -120,
@@ -2643,12 +2623,11 @@
         "y": 3150
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse COP 15A output, pin BUS2-3 - coil-on-plug +12V"
+      "label": "LOGIC box (glove box) fuse COP 15A, BUS2 pin 3 - ignition coil +12V"
     },
     {
       "id": "br_w76",
       "type": "Loose",
-      "signal": "EFI relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -1590,
@@ -2659,12 +2638,11 @@
         "y": 1140
       },
       "propagate": false,
-      "label": "POWER box (glove box) relay R2 EFI main, pin 85 - coil -"
+      "label": "POWER box (glove box) relay R2 EFI main, pin 85 - coil minus"
     },
     {
       "id": "br_w_fp85",
       "type": "Loose",
-      "signal": "FP relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -2310,
@@ -2675,12 +2653,11 @@
         "y": 1260
       },
       "propagate": false,
-      "label": "Battery relay block (trunk) relay K1 fuel pump, pin 85 - coil -"
+      "label": "Battery relay block (trunk) relay K1 fuel pump, pin 85 - coil minus"
     },
     {
       "id": "br_w_fan85",
       "type": "Loose",
-      "signal": "Rad fan relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -3030,
@@ -2691,12 +2668,11 @@
         "y": 1320
       },
       "propagate": false,
-      "label": "POWER box (glove box) relay R4 radiator fan, pin 85 - coil -"
+      "label": "POWER box (glove box) relay R4 radiator fan, pin 85 - coil minus"
     },
     {
       "id": "br_w81",
       "type": "Loose",
-      "signal": "ETB relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -1950,
@@ -2707,12 +2683,11 @@
         "y": 1200
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M14 ETB power, pin 85 - coil -"
+      "label": "LOGIC box (glove box) relay M14 ETB power, pin 85 - coil minus"
     },
     {
       "id": "br_w_str85",
       "type": "Loose",
-      "signal": "Start relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -2670,
@@ -2723,12 +2698,11 @@
         "y": 1080
       },
       "propagate": false,
-      "label": "POWER box (glove box) relay R3 start, pin 85 - coil -"
+      "label": "POWER box (glove box) relay R3 start, pin 85 - coil minus"
     },
     {
       "id": "br_w_acc86",
       "type": "Loose",
-      "signal": "A/C relay coil+",
       "width": 390,
       "layoutPosition": {
         "x": -1770,
@@ -2739,12 +2713,11 @@
         "y": 1530
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M15 A/C clutch, pin 86 - coil +"
+      "label": "LOGIC box (glove box) relay M15 A/C clutch, pin 86 - coil plus"
     },
     {
       "id": "br_w_eps_rly",
       "type": "Loose",
-      "signal": "EHPS relay coil-",
       "width": 390,
       "layoutPosition": {
         "x": -1590,
@@ -2755,7 +2728,7 @@
         "y": 3090
       },
       "propagate": false,
-      "label": "EHPS pump relay (glove box), pin 85 - coil -"
+      "label": "EHPS pump relay (glove box), pin 85 - coil minus"
     }
   ],
   "cables": [
@@ -2833,88 +2806,7 @@
         "target": {
           "id": "sp_shield_a",
           "handle": "Splice"
-        },
-        "targetLayoutPoints": [
-          {
-            "id": "cab_fspur_sh_target_lp1",
-            "schematicPosition": {
-              "x": 1050,
-              "y": 3270
-            }
-          },
-          {
-            "id": "cab_fspur_sh_target_lp2",
-            "schematicPosition": {
-              "x": 210,
-              "y": 3270
-            }
-          },
-          {
-            "id": "cab_fspur_sh_target_lp3",
-            "schematicPosition": {
-              "x": 210,
-              "y": -30
-            }
-          },
-          {
-            "id": "cab_fspur_sh_target_lp4",
-            "schematicPosition": {
-              "x": 1560,
-              "y": -30
-            }
-          }
-        ],
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_fspur_sh_source_lp1",
-            "schematicPosition": {
-              "x": 1140,
-              "y": 3270
-            }
-          },
-          {
-            "id": "cab_fspur_sh_source_lp2",
-            "schematicPosition": {
-              "x": 1200,
-              "y": 3270
-            }
-          },
-          {
-            "id": "cab_fspur_sh_source_lp3",
-            "schematicPosition": {
-              "x": 1200,
-              "y": 3090
-            }
-          },
-          {
-            "id": "cab_fspur_sh_source_lp4",
-            "schematicPosition": {
-              "x": 1020,
-              "y": 3090
-            }
-          },
-          {
-            "id": "cab_fspur_sh_source_lp5",
-            "schematicPosition": {
-              "x": 1020,
-              "y": 1830
-            }
-          },
-          {
-            "id": "cab_fspur_sh_source_lp6",
-            "schematicPosition": {
-              "x": 1080,
-              "y": 1830
-            }
-          },
-          {
-            "id": "cab_fspur_sh_source_lp7",
-            "schematicPosition": {
-              "x": 1080,
-              "y": 1710
-            }
-          }
-        ]
+        }
       }
     },
     {
@@ -2954,37 +2846,7 @@
         "target": {
           "id": "br_cab_fspur_fr_sh",
           "handle": "Terminal"
-        },
-        "targetLayoutPoints": [
-          {
-            "id": "cab_fspur_fr_sh_ac_target_lp1",
-            "schematicPosition": {
-              "x": 810,
-              "y": 1410
-            }
-          },
-          {
-            "id": "cab_fspur_fr_sh_ac_target_lp2",
-            "schematicPosition": {
-              "x": 360,
-              "y": 1410
-            }
-          },
-          {
-            "id": "cab_fspur_fr_sh_ac_target_lp3",
-            "schematicPosition": {
-              "x": 360,
-              "y": 1800
-            }
-          },
-          {
-            "id": "cab_fspur_fr_sh_ac_target_lp4",
-            "schematicPosition": {
-              "x": 600,
-              "y": 1800
-            }
-          }
-        ]
+        }
       }
     },
     {
@@ -3107,44 +2969,7 @@
         "target": {
           "id": "sp_shield_a",
           "handle": "Splice"
-        },
-        "targetLayoutPoints": [
-          {
-            "id": "cab_aps_sh_target_lp1",
-            "schematicPosition": {
-              "x": -30,
-              "y": 1770
-            }
-          },
-          {
-            "id": "cab_aps_sh_target_lp2",
-            "schematicPosition": {
-              "x": -210,
-              "y": 1770
-            }
-          },
-          {
-            "id": "cab_aps_sh_target_lp3",
-            "schematicPosition": {
-              "x": -210,
-              "y": -330
-            }
-          },
-          {
-            "id": "cab_aps_sh_target_lp4",
-            "schematicPosition": {
-              "x": 1650,
-              "y": -330
-            }
-          },
-          {
-            "id": "cab_aps_sh_target_lp5",
-            "schematicPosition": {
-              "x": 1650,
-              "y": -60
-            }
-          }
-        ]
+        }
       }
     }
   ],
