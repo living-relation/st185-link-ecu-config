@@ -252,6 +252,116 @@ def unit_cases():
         out.append((name, ok, got))
     out += fusebox_mesh_cases()
     out += wall_class_cases()
+    out += drawing_model_cases()
+    return out
+
+
+def drawing_model_cases():
+    """R183 gate cad/check_drawings_current.py on a sandbox drawing: model changes without a regenerated drawing fail, a re-export of
+    the same geometry, a clerical .NN and a non-geometry report field pass, letters and rev logs follow R147 - R152 / revs.py."""
+    sys.path.insert(0, os.path.join(ROOT, "cad"))
+    import importlib
+    import check_drawings_current as G
+    importlib.reload(G)
+    out = []
+
+    def build(rev="V", revlog=("A", "U", "V"), reg_rev=None, step_data=b"#1=CARTESIAN_POINT('',(0.,0.,0.));", vol=845.5,
+              extra=None, pdf=b"%PDF fake", in_manifest=True):
+        d = tempfile.mkdtemp(prefix="dwg_")
+        cad = os.path.join(d, "cad")
+        os.makedirs(os.path.join(cad, "m"))
+        open(os.path.join(cad, "m", "T-101.REVLOG.md"), "w").write(
+            "| Rev | Description | By | Date |\n|---|---|---|---|\n" + "".join("| %s | x | C | 18/10/26 |\n" % r for r in revlog))
+        open(os.path.join(cad, "m", "part.step"), "wb").write(b"ISO-10303-21;\nHEADER;\nFILE_NAME('part','2026-10-18T10:00:00');\nENDSEC;\nDATA;\n"
+                                                             + step_data + b"\nENDSEC;\n")
+        e = {"size_mm": [1, 2, 3], "volume_cm3": vol}
+        e.update(extra or {})
+        json.dump({"printed_parts": {"P": e}}, open(os.path.join(cad, "m", "report.json"), "w"))
+        open(os.path.join(cad, "m", "ST185-T-101.pdf"), "wb").write(pdf)
+        open(os.path.join(cad, "DRAWING-REVS.md"), "w").write(
+            "| Item | Part no. | Model | Rev | Date | Change | Evidence | Files |\n|---|---|---|---|---|---|---|---|\n"
+            "| T | ST185-T-101 | m | %s | d | c | e | `cad/m/ST185-T-101.pdf` |\n" % (reg_rev or rev))
+        return d, cad
+
+    def gate_on(d, cad, man_fn=None):
+        G.CAD, G.REPO = cad, d
+        G.MANIFEST, G.REGISTER = os.path.join(cad, "drawing-models.json"), os.path.join(cad, "DRAWING-REVS.md")
+        G.main_checkout = lambda: d
+        G.pdf_text = lambda p: None
+        return G
+
+    def baseline(rev="V"):
+        d, cad = build(rev=rev)
+        g = gate_on(d, cad)
+        man = {"drawings": {"ST185-T-101": {"pdf": "m/ST185-T-101.pdf", "revlog": "m/T-101.REVLOG.md", "rev": rev,
+                                            "steps": {"m/part.step": g.step_fp(os.path.join(cad, "m", "part.step"))},
+                                            "ci": {"report:m/report.json#printed_parts#P": g.ci_fp("report:m/report.json#printed_parts#P")},
+                                            "pdf_sha": g.sha(open(os.path.join(cad, "m", "ST185-T-101.pdf"), "rb").read())}}}
+        json.dump(man, open(g.MANIFEST, "w"))
+        return d, cad, g
+
+    def case_(name, want, change):
+        d, cad, g = baseline()
+        try:
+            change(d, cad, g)
+            got = not g.check(quiet=True)
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+        out.append(("R183 " + name, want, got))
+
+    def rewrite(cad, rel, data, mode="w"):
+        open(os.path.join(cad, rel), mode).write(data)
+
+    def step(cad, data, header="2026-10-18T10:00:00"):
+        rewrite(cad, "m/part.step", b"ISO-10303-21;\nHEADER;\nFILE_NAME('part','" + header.encode() + b"');\nENDSEC;\nDATA;\n" + data
+                + b"\nENDSEC;\n", "wb")
+
+    def report(cad, vol=845.5, extra=None):
+        e = {"size_mm": [1, 2, 3], "volume_cm3": vol}
+        e.update(extra or {})
+        json.dump({"printed_parts": {"P": e}}, open(os.path.join(cad, "m", "report.json"), "w"))
+
+    def set_rev(cad, g, reg, man=None, revlog=None):
+        rewrite(cad, "DRAWING-REVS.md", open(g.REGISTER).read().replace("| V |", "| %s |" % reg))
+        m = json.load(open(g.MANIFEST))
+        m["drawings"]["ST185-T-101"]["rev"] = man or reg
+        json.dump(m, open(g.MANIFEST, "w"))
+        if revlog:
+            rewrite(cad, "m/T-101.REVLOG.md", "| Rev | Description | By | Date |\n|---|---|---|---|\n"
+                    + "".join("| %s | x | C | 18/10/26 |\n" % r for r in revlog))
+
+    case_("drawing matches its model", True, lambda d, c, g: None)
+    case_("model re-exported, same geometry (STEP header only)", True, lambda d, c, g: step(c, b"#1=CARTESIAN_POINT('',(0.,0.,0.));", "2026-10-19T09:00:00"))
+    case_("model STEP geometry changed, drawing not regenerated", False, lambda d, c, g: step(c, b"#1=CARTESIAN_POINT('',(1.,0.,0.));"))
+    case_("model STEP not on this disk (CI): tracked fingerprints only", True, lambda d, c, g: os.remove(os.path.join(c, "m", "part.step")))
+    case_("build report: part volume changed, drawing not regenerated", False, lambda d, c, g: report(c, vol=846.0))
+    case_("build report: a non-geometry field changed", True, lambda d, c, g: report(c, extra={"note": "re-run"}))
+    case_("clerical drawing rev V.01 on model V", True, lambda d, c, g: set_rev(c, g, "V.01"))
+    case_("drawing rev W but the model rev log ends at V", False, lambda d, c, g: set_rev(c, g, "W"))
+    case_("a decimal in the model rev log (models never get decimals)", False,
+          lambda d, c, g: set_rev(c, g, "V.01", revlog=("A", "U", "V", "V.01")))
+    case_("letter I is not a rev letter", False, lambda d, c, g: set_rev(c, g, "I", revlog=("A", "I")))
+    case_("register rev differs from the issued drawing", False, lambda d, c, g: set_rev(c, g, "V", man="V.01"))
+    case_("drawing PDF edited without re-registering", False, lambda d, c, g: rewrite(c, "m/ST185-T-101.pdf", b"%PDF hand-edited", "wb"))
+    case_("a registered drawing missing from the manifest", False,
+          lambda d, c, g: rewrite(c, "DRAWING-REVS.md", open(g.REGISTER).read() + "| T2 | ST185-T-102 | m | A | d | c | e | `x.pdf` |\n"))
+
+    def upd(name, want, change):
+        d, cad, g = baseline()
+        try:
+            change(d, cad, g)
+            got = g.update(["ST185-T-101"]) == 0
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+        out.append(("R183 --update: " + name, want, got))
+
+    upd("model changed, letter not bumped: refused", False, lambda d, c, g: report(c, vol=846.0))
+    upd("model changed, letter bumped to W in the rev log + register: accepted", True,
+        lambda d, c, g: (report(c, vol=846.0), set_rev(c, g, "W", man="V", revlog=("A", "U", "V", "W"))))
+    upd("drawing changed, model and rev not: refused (clerical .NN needed)", False,
+        lambda d, c, g: rewrite(c, "m/ST185-T-101.pdf", b"%PDF new notes", "wb"))
+    upd("drawing changed with a clerical V.01: accepted", True,
+        lambda d, c, g: (rewrite(c, "m/ST185-T-101.pdf", b"%PDF new notes", "wb"), set_rev(c, g, "V.01", man="V")))
     return out
 
 

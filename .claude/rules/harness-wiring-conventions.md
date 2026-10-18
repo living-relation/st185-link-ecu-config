@@ -1,7 +1,7 @@
 # Harness Wiring Conventions - pointer only
 
 **Every wiring rule Daniel has set lives in one place: `docs/harness/redesign/DECISIONS.md`,
-section "Binding rules from Daniel" (R1-R182).** Read it before any wiring, harness, shield,
+section "Binding rules from Daniel" (R1-R183).** Read it before any wiring, harness, shield,
 parts or drawing change. This file deliberately restates nothing, so it cannot drift.
 
 - The reconcile procedure (source-of-truth chain, every wiring surface that must agree, Rule 3
