@@ -54,7 +54,7 @@ END = 90
 # (2026-10-17 task split: G2 A-cabin, B-cabin; G3 A-engine, B-engine; G4 EngineRoom-C,
 # HeavyDC, CAN, WheelSpeed-Front, WheelSpeed-Rear; G1 the rest). Remove a name when its
 # drawing is relabelled; the list only ever shrinks.
-PENDING_R156 = {"A-cabin", "B-cabin", "A-engine", "B-engine"}
+PENDING_R156 = {"A-cabin", "B-cabin"}
 LANDS = re.compile(r"\b(pins?|stud|lug|bar|ground point|splice|terminal post|lead|anode|cathode)\b", re.I)
 ARROW = re.compile("->|<-|\u2192|\u2190")
 PINCODE = re.compile(r"\b[A-Z0-9/]*[A-Z][A-Z0-9/]*-\d+\b")
