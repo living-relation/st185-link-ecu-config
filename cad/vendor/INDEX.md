@@ -44,18 +44,39 @@ straight to a local listener on this PC (no Save dialog, nothing clicked); same 
 
 ## Dan to download
 
-te.com, littelfuse.com and eaton.com refuse shell downloads (TE 403, Littelfuse 403, Eaton connection reset / timeout, tested
-2026-10-18), and agents no longer download through the in-app browser (it left Save dialogs open). Save each file into the folder named.
+The one download list (2026-10-18; the earlier lists in OPEN-ITEMS and the research notes are folded in here). te.com,
+littelfuse.com, eaton.com and glenair.com refuse shell downloads (TE 403, Littelfuse 403, Glenair 403, Eaton connection
+reset / timeout, tested 2026-10-18), and agents no longer download through the in-app browser (it left Save dialogs open).
+Save each file into the folder named, in this order (1 first):
 
-| Part | Page URL | Save to | Needed for |
-|---|---|---|---|
-| TE Power Relay F4 A data sheet (V23136X0000A004) - heater relay 1-1414687-0 | https://www.te.com/en/product-1-1414687-0.html ("Data Sheet") | `te/specs/` | confirm the heater relay pin pattern (today: the TE STEP + the Power Relay B numbers) |
-| TE application spec 114-18022 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-18022&DocType=SS&DocLang=EN | `te/specs/` | MCP 2.8K crimp heights (Q1 option B) |
-| TE application spec 114-20011 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-20011&DocType=SS&DocLang=EN | `te/specs/` | FASTON .187 crimp data (280919-2) |
-| TE customer drawing V23074-A2001-A402 (HEAD relays 5-1393292-8) | https://www.te.com/en/product-5-1393292-8.html ("Customer Drawing") | `te/specs/` | settle the UNVERIFIED 5th blade (drawing says 4, TE 3D model shows 5) |
-| Littelfuse MINI 3D model (optional, to replace the built ATM) | https://info.littelfuse.com/ (MINI fuse 3D model form - fill it in yourself) | `littelfuse/MINI/` | an official mini fuse model |
+| # | Part | Maker page URL | Save to | Why it is needed |
+|---|---|---|---|---|
+| 1 | TE customer drawing V23074-A2001-A402 (HEAD relays 5-1393292-8) | https://www.te.com/en/product-5-1393292-8.html ("Customer Drawing") | `te/specs/` | settles Needs Dan N24: drawing says 4 blades, TE 3D model shows a 5th (UNVERIFIED, R165) |
+| 2 | TE Power Relay F4 A data sheet (V23136X0000A004), heater relay 1-1414687-0 | https://www.te.com/en/product-1-1414687-0.html ("Data Sheet") | `te/specs/` | confirm the heater relay pin pattern (today: the TE STEP + the Power Relay B numbers; OPEN-ITEMS row 132) |
+| 3 | TE application spec 114-18022 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-18022&DocType=SS&DocLang=EN | `te/specs/` | MCP 2.8K crimp heights |
+| 4 | TE application spec 114-20011 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-20011&DocType=SS&DocLang=EN | `te/specs/` | FASTON .187 crimp data (280919-2) |
+| 5 | TE customer drawings DT04-4P-EP13, DT04-6P-EP13, DT04-08PA-P021, DT04-08PA-P026 (the 12-way DT04-12PA-P021 was read already) | https://www.te.com/en/product-DT04-4P-EP13.html, https://www.te.com/en/product-DT04-6P-EP13.html, https://www.te.com/en/product-DT04-08PA-P021.html, https://www.te.com/en/product-DT04-08PA-P026.html (each "Customer Drawing") | `te/specs/dt-bussed/` | only if Needs Dan N23 is not "none": bus layout per cavity and the 8-way pin / socket wording, which the TE page leaves unclear |
+| 6 | TE DT application spec 114-151009 (46 pages) | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-151009&DocType=Specification%20Or%20Standard&DocLang=English&DocFormat=pdf | `te/specs/dt-bussed/` | wire AWG 14-20 and the N-seal (2.23-3.68 mm) / E-seal (1.35-3.05 mm) insulation ranges, for any DT plug on thin M22759/16 wire |
+| 7 | Glenair M22759/16 data sheet | https://www.glenair.com/wire-and-cable/as22759/pdf/m22759-16.pdf | `glenair/specs/` | finished wire outside diameter per gauge (the study used search-snippet values: about 1.5 / 1.8 / 2.0 / 2.4 mm for 20 / 18 / 16 / 14 AWG) |
+| 8 | Littelfuse MINI 3D model (optional, to replace the built ATM) | https://info.littelfuse.com/ (MINI fuse 3D model form - fill it in yourself) | `littelfuse/MINI/` | an official mini fuse model |
 
 The two 416-byte "Access Denied" pages saved as `te/specs/114-18022.pdf` / `114-20011.pdf` by an earlier session were deleted 2026-10-18.
+
+## Dan to buy
+
+Validated part numbers only (spec read on the maker's own TE page; dates 2026-10-18). Marketplace links are shopping leads: their
+listing specs are not used, and "compatible" clones are not the TE part. No AliExpress listing was found for any of these.
+Prices move; the Del City figures are single-piece prices seen that day.
+
+| PN | What | Why | Where seen |
+|---|---|---|---|
+| 1-968851-1 | TE MCP 2.8 receptacle 16 / 14 AWG | LOGIC / ACPS mini fuse sockets (R166) | [Amazon, 3,500-piece reel](https://www.amazon.com/Connectivity-1-968851-1-3500-pcs-CONTACT/dp/B00HKI2Q6Q); eBay 30-piece lots (no single link kept) |
+| 1-968849-1 | TE MCP 2.8 receptacle 20 / 18 AWG | same (R166) | none found on Amazon, AliExpress or eBay; buy from a TE distributor |
+| DT04-12PA-P021 | DT 12-way bussed receptacle, 1 x 12 bus, 13 A per pin | only if Needs Dan N23 picks bussed splices (`sp_cp_sw12`; also the bulkhead A stars) | [Del City $19.53](https://www.delcity.net/store/wire-connectors-quick-splices/deutsch-connectors/dt-series/bussed-receptacles/12-way-one-pin-buss/); [eBay](https://www.ebay.com/itm/187450245478); [eBay, pair](https://www.ebay.com/itm/178136574903); [Amazon, no offers](https://www.amazon.com/DT04-12PA-P021-Terminals-Position-Contacts-Included/dp/B09JV82R4C) |
+| DT04-08PA-P021 | DT 8-way bussed receptacle, 1 x 8 bus | N23: bulkhead A 5V and ground stars | [Del City $21.25, call for stock](https://www.delcity.net/store/wire-connectors-quick-splices/deutsch-connectors/dt-series/bussed-receptacles/8-way-one-pin-buss/); [eBay surplus](https://www.ebay.com/itm/354303361302) |
+| DT04-6P-EP13 | DT 6-way bussed receptacle, black, 1 x 6 bus | N23: B-side and rear ground stars | [Del City $14.94](https://www.delcity.net/store/wire-connectors-quick-splices/deutsch-connectors/dt-series/bussed-receptacles/6-way-one-pin-buss/) |
+| DT04-4P-EP13 | DT 4-way bussed receptacle, black, 1 x 4 bus | N23: small ground stars | [Del City $14.57](https://www.delcity.net/store/wire-connectors-quick-splices/deutsch-connectors/dt-series/bussed-receptacles/4-way-one-pin-buss/); [Amazon splice kit](https://www.amazon.com/Deutsch-DT-Enhanced-Splice-DT04-4P-EP13/dp/B06XKX5775); [eBay, 100 pcs](https://www.ebay.com/itm/186523927792) |
+| DT06-12SA-CE05, DT06-08SA-CE05, DT06-6S-CE05, DT06-4S-CE05 | DT plugs with E-seal (1.35-3.05 mm wire) | N23: the plug half; the standard-seal DT06 Dan owns does not seal thin M22759/16 wire | TE pages only list them as "not currently available"; Amazon / eBay "DT06-12SA-CE05" listings exist (e.g. [eBay](https://www.ebay.com/itm/387064691560)) but may be clones: check the part number on the bag |
 
 ## Maker documents (data sheets, customer drawings)
 
