@@ -80,76 +80,168 @@
     ],
     "cavities": {
      "c48": [
-      "INJ 12V",
+      "Injector +12 V feed",
       "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
      ],
      "c49": [
-      "COP 12V",
+      "Coil +12 V feed",
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
      "c41": [
-      "Gnd Out crank",
+      "ECU A24 crank ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - crank"
      ],
      "c42": [
-      "Gnd Out cam",
+      "ECU A24 cam ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - cam"
      ],
      "c40": [
-      "+5V Out turbo",
+      "ECU A32 turbo +5 V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - turbo speed"
      ],
      "c43": [
-      "Gnd Out turbo",
+      "ECU A24 turbo ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - turbo speed"
      ],
      "c5": [
-      "SW12 eng sens",
+      "Sw +12 V boost/flex",
       "Switched 12V to engine sensors"
      ],
      "c2": [
-      "+5V Out ETB",
+      "ECU A32 throttle 5V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - ETB"
      ],
      "c3": [
-      "Gnd Out IAT",
+      "ECU A24 temp/thr ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
-      "ETB sens screen",
+      "ECU A7 throt screen",
       "ETB sensor group screen"
      ],
      "c39": [
-      "+5V Out MAP",
+      "ECU A32 MAP +5 V",
       "+5V Out to engine sensors (bulkhead splice sp_5v_bha, 20 AWG) - MAP"
      ],
      "c44": [
-      "Gnd Out flex",
+      "ECU A24 MAP/flex ret",
       "Gnd Out to engine sensors (bulkhead splice sp_gnd_bha, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
-      "EHPS enable",
+      "EHPS enable +12 V",
       "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
      ],
      "c36": [
-      "Aux 7 MRS speed-out",
+      "ECU A27 EHPS speed",
       "Aux 7 MRS speed-out (ECU A27)"
      ],
      "c45": [
-      "+5V oil press",
+      "ECU A32 oil press 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c46": [
-      "+5V fuel press",
+      "ECU A32 fuel prs 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c47": [
-      "+5V coolant press",
+      "ECU A32 clnt prs 5V",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ],
      "c27": [
-      "EHPS coil-",
+      "EPS relay coil 85",
       "MR-S pump B5 -> EPS relay k_eps coil- (85)"
+     ],
+     "c24": [
+      "ECU A8 crank sig",
+      "ECU-A A8"
+     ],
+     "c33": [
+      "ECU A7 crank screen",
+      "Crank VR screen"
+     ],
+     "c4": [
+      "ECU A6 cam +8 V",
+      "+8V Out to cam Hall"
+     ],
+     "c29": [
+      "ECU A9 cam sig",
+      "ECU-A A9"
+     ],
+     "c34": [
+      "ECU A7 cam screen",
+      "Cam Hall screen"
+     ],
+     "c7": [
+      "ECU A30 turbo sig",
+      "ECU-A A30"
+     ],
+     "c6": [
+      "ECU A7 turbo screen",
+      "Turbo speed screen"
+     ],
+     "c9": [
+      "ECU A31 flex sig",
+      "ECU-A A31"
+     ],
+     "c10": [
+      "ECU A7 flex screen",
+      "Flex fuel screen"
+     ],
+     "c21": [
+      "ECU A22 throttle 1",
+      "ECU-A A22"
+     ],
+     "c22": [
+      "ECU A33 throttle 2",
+      "ECU-A A33"
+     ],
+     "c8": [
+      "ECU A17 MAP sig",
+      "ECU-A A17"
+     ],
+     "c13": [
+      "ECU A4 injector 1",
+      "ECU-A A4"
+     ],
+     "c14": [
+      "ECU A3 injector 2",
+      "ECU-A A3"
+     ],
+     "c15": [
+      "ECU A2 injector 3",
+      "ECU-A A2"
+     ],
+     "c16": [
+      "ECU A1 injector 4",
+      "ECU-A A1"
+     ],
+     "c17": [
+      "ECU A13 coil 1 trig",
+      "ECU-A A13"
+     ],
+     "c18": [
+      "ECU A12 coil 2 trig",
+      "ECU-A A12"
+     ],
+     "c19": [
+      "ECU A11 coil 3 trig",
+      "ECU-A A11"
+     ],
+     "c20": [
+      "ECU A10 coil 4 trig",
+      "ECU-A A10"
+     ],
+     "c23": [
+      "ECU A21 boost sol",
+      "ECU-A A21"
+     ],
+     "c25": [
+      "ECU A15 coolant temp",
+      "ECU-A A15"
+     ],
+     "c26": [
+      "ECU A16 intake temp",
+      "ECU-A A16"
      ]
     }
    },
@@ -318,64 +410,96 @@
     ],
     "cavities": {
      "c25": [
-      "Rev SW feed",
+      "Back-up sw feed 15A",
       "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
      ],
      "c12": [
-      "Rev SW out",
+      "Reverse +12 V out",
       "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
      ],
      "c19": [
-      "Gnd Out B-eng",
+      "ECU B22 temp/prs ret",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
      ],
      "c21": [
-      "Gnd Out B-eng",
+      "ECU B22 fuel/VSS ret",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
      ],
      "c16": [
-      "Knock 1 SIG+",
+      "ECU B9 knock +",
       "Knock 1 SIG+ (ECU B9)"
      ],
      "c17": [
-      "Knock 1 SIG-",
+      "ECU B22 knock -",
       "Knock 1 SIG- (to Gnd Out B22)"
      ],
      "c5": [
-      "ETB motor +",
+      "ECU B18 throttle M+",
       "ETB motor + (Aux 9, B18)"
      ],
      "c6": [
-      "ETB motor -",
+      "ECU B26 throttle M-",
       "ETB motor - (Aux 10, B26)"
      ],
      "c15": [
-      "Gearbox VSS signal",
+      "ECU B29 gearbox spd",
       "Gearbox VSS signal (ECU B29, DI 8)"
      ],
      "c20": [
-      "VSS 12V",
+      "Sw +12 V gearbox spd",
       "Switched 12V to gearbox VSS (from sp_sw12)"
      ],
      "c13": [
-      "CAN H Lambda",
+      "CAN H to CAN-Lambda",
       "CAN H to Link CAN-Lambda (ST185-CAN)"
      ],
      "c14": [
-      "CAN L Lambda",
+      "CAN L to CAN-Lambda",
       "CAN L to Link CAN-Lambda (ST185-CAN)"
      ],
      "c24": [
-      "Lambda CAN screen",
+      "CAN-Lambda screen",
       "CAN-Lambda CAN pair screen"
      ],
      "c3": [
-      "CAN-Lambda +12V",
+      "CAN-Lambda +12 V",
       "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
      ],
      "c4": [
-      "Lambda GND",
+      "CAN-Lambda ground",
       "CAN-Lambda ground to cabin chassis ground (14 AWG)"
+     ],
+     "c7": [
+      "ECU B15 oil press",
+      "ECU-B B15"
+     ],
+     "c8": [
+      "ECU B16 fuel press",
+      "ECU-B B16"
+     ],
+     "c9": [
+      "ECU B23 clnt press",
+      "ECU-B B23"
+     ],
+     "c10": [
+      "ECU B6 oil temp",
+      "ECU-B B6"
+     ],
+     "c11": [
+      "ECU B7 charge temp",
+      "ECU-B B7"
+     ],
+     "c18": [
+      "ECU B17 knock screen",
+      "Knock 1 screen"
+     ],
+     "c22": [
+      "ECU B17 thr screen",
+      "ETB motor screen"
+     ],
+     "c23": [
+      "ECU B17 VSS screen",
+      "Gearbox VSS screen"
      ]
     }
    },

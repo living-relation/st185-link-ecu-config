@@ -1390,7 +1390,7 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "J/B No.1 GAUGE 15A fuse - back-up light switch feed",
+          "signal": "Back-up sw feed 15A",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -1445,54 +1445,54 @@
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B15 (An Volt 6) - oil pressure signal",
+          "signal": "ECU B15 oil press",
           "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B16 (An Volt 7) - fuel pressure signal",
+          "signal": "ECU B16 fuel press",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B23 (An Volt 8) - coolant pressure signal",
+          "signal": "ECU B23 clnt press",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B6 (Temp 3) - oil temp signal",
+          "signal": "ECU B6 oil temp",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B7 (Temp 4) - charge-pipe air temp signal",
+          "signal": "ECU B7 charge temp",
           "propagate": false
         },
         {
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16p",
-          "signal": "Reverse relay k_rev 86 + CSB3 opto - back-up switch out"
+          "signal": "Reverse +12 V out"
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "ECU B22 (Gnd Out) - return: oil temp, charge temp, oil + coolant press",
+          "signal": "ECU B22 temp/prs ret",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "ECU B22 (Gnd Out) - return: fuel pressure + gearbox speed sensor",
+          "signal": "ECU B22 fuel/VSS ret",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1523,21 +1523,21 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "ECU B9 (Knock 1) - knock sensor signal +",
+          "signal": "ECU B9 knock +",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "ECU B22 (Gnd Out) - knock sensor signal -",
+          "signal": "ECU B22 knock -",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "85",
-          "signal": "ECU B17 (shield ground) - knock cable screen",
+          "signal": "ECU B17 knock screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1545,71 +1545,71 @@
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B18 (Aux 9) - throttle motor +",
+          "signal": "ECU B18 throttle M+",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B26 (Aux 10) - throttle motor -",
+          "signal": "ECU B26 throttle M-",
           "propagate": false
         },
         {
           "id": "c22",
           "designation": "88",
-          "signal": "ECU B17 (shield ground) - throttle motor cable screen",
+          "signal": "ECU B17 thr screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c15",
           "designation": "89",
-          "signal": "ECU B29 (DI 8) - gearbox speed signal",
+          "signal": "ECU B29 gearbox spd",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "LOGIC SW12 switched +12 V - gearbox speed sensor supply",
+          "signal": "Sw +12 V gearbox spd",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "ECU B17 (shield ground) - gearbox speed cable screen",
+          "signal": "ECU B17 VSS screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c13",
           "designation": "92",
-          "signal": "CAN bus H (ST185-CAN) - CAN-Lambda CAN H",
+          "signal": "CAN H to CAN-Lambda",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c14",
           "designation": "93",
-          "signal": "CAN bus L (ST185-CAN) - CAN-Lambda CAN L",
+          "signal": "CAN L to CAN-Lambda",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "CAN bus screen (ST185-CAN) - CAN-Lambda pair screen",
+          "signal": "CAN-Lambda screen",
           "contactPartId": "ct_hdp16p"
         },
         {
           "id": "c3",
           "designation": "95",
-          "signal": "LOGIC LAM 7.5A fuse - CAN-Lambda +12 V",
+          "signal": "CAN-Lambda +12 V",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c4",
           "designation": "96",
-          "signal": "Cabin chassis ground - CAN-Lambda ground",
+          "signal": "CAN-Lambda ground",
           "contactPartId": "ct_hdp12p"
         },
         {
@@ -2329,7 +2329,7 @@
         "y": -360
       },
       "propagate": false,
-      "label": "GAUGE 15A feed splice (CabinPower loom) - from OEM J/B No.3 3B pin 9"
+      "label": "GAUGE 15A feed splice (CabinPower) - OEM J/B No.3 3B pin 9 R-L, fuse in J/B No.1"
     },
     {
       "id": "t_evap_rtn",

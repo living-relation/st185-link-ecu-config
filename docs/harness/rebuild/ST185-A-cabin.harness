@@ -1563,13 +1563,13 @@
         {
           "id": "c48",
           "designation": "1",
-          "signal": "LOGIC INJ 15A fuse - injector +12 V feed",
+          "signal": "Injector +12 V feed",
           "contactPartId": "ct_hdp12p"
         },
         {
           "id": "c49",
           "designation": "2",
-          "signal": "LOGIC COP 15A fuse - ignition coil +12 V feed",
+          "signal": "Coil +12 V feed",
           "contactPartId": "ct_hdp12p"
         },
         {
@@ -1612,20 +1612,20 @@
           "id": "c24",
           "designation": "9",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A8 (Trigger 1) - crank sensor signal",
+          "signal": "ECU A8 crank sig",
           "propagate": false
         },
         {
           "id": "c41",
           "designation": "10",
-          "signal": "ECU A24 (Gnd Out) - crank sensor return",
+          "signal": "ECU A24 crank ret",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c33",
           "designation": "11",
-          "signal": "ECU A7 (shield ground) - crank cable screen",
+          "signal": "ECU A7 crank screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1633,34 +1633,34 @@
           "id": "c4",
           "designation": "12",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A6 (+8V Out) - cam sensor supply",
+          "signal": "ECU A6 cam +8 V",
           "propagate": false
         },
         {
           "id": "c29",
           "designation": "13",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A9 (Trigger 2) - cam sensor signal",
+          "signal": "ECU A9 cam sig",
           "propagate": false
         },
         {
           "id": "c42",
           "designation": "14",
-          "signal": "ECU A24 (Gnd Out) - cam sensor return",
+          "signal": "ECU A24 cam ret",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c34",
           "designation": "15",
-          "signal": "ECU A7 (shield ground) - cam cable screen",
+          "signal": "ECU A7 cam screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c40",
           "designation": "16",
-          "signal": "ECU A32 (+5V Out) - turbo speed sensor supply",
+          "signal": "ECU A32 turbo +5 V",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1668,20 +1668,20 @@
           "id": "c7",
           "designation": "17",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A30 (DI 1) - turbo speed signal",
+          "signal": "ECU A30 turbo sig",
           "propagate": false
         },
         {
           "id": "c43",
           "designation": "18",
-          "signal": "ECU A24 (Gnd Out) - turbo speed sensor return",
+          "signal": "ECU A24 turbo ret",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "19",
-          "signal": "ECU A7 (shield ground) - turbo speed cable screen",
+          "signal": "ECU A7 turbo screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1689,20 +1689,20 @@
           "id": "c5",
           "designation": "20",
           "contactPartId": "ct_hdp16p",
-          "signal": "LOGIC SW12 switched +12 V - boost solenoid + flex sensor",
+          "signal": "Sw +12 V boost/flex",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "21",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A31 (DI 2) - flex fuel signal",
+          "signal": "ECU A31 flex sig",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "22",
-          "signal": "ECU A7 (shield ground) - flex cable screen",
+          "signal": "ECU A7 flex screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1710,48 +1710,48 @@
           "id": "c2",
           "designation": "23",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A32 (+5V Out) - throttle position sensor supply",
+          "signal": "ECU A32 throttle 5V",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "24",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A22 (An Volt 2) - throttle position main",
+          "signal": "ECU A22 throttle 1",
           "propagate": false
         },
         {
           "id": "c22",
           "designation": "25",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A33 (An Volt 3) - throttle position sub",
+          "signal": "ECU A33 throttle 2",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "26",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A24 (Gnd Out) - return: throttle pos, coolant + intake temp",
+          "signal": "ECU A24 temp/thr ret",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "27",
-          "signal": "ECU A7 (shield ground) - throttle sensor cable screen",
+          "signal": "ECU A7 throt screen",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c39",
           "designation": "28",
-          "signal": "ECU A32 (+5V Out) - MAP sensor supply",
+          "signal": "ECU A32 MAP +5 V",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c44",
           "designation": "29",
-          "signal": "ECU A24 (Gnd Out) - return: MAP + flex sensor",
+          "signal": "ECU A24 MAP/flex ret",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1759,90 +1759,90 @@
           "id": "c8",
           "designation": "30",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A17 (An Volt 1) - MAP signal",
+          "signal": "ECU A17 MAP sig",
           "propagate": false
         },
         {
           "id": "c13",
           "designation": "31",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A4 (Inj 1) - injector cyl 1 drive",
+          "signal": "ECU A4 injector 1",
           "propagate": false
         },
         {
           "id": "c14",
           "designation": "32",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A3 (Inj 2) - injector cyl 2 drive",
+          "signal": "ECU A3 injector 2",
           "propagate": false
         },
         {
           "id": "c15",
           "designation": "33",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A2 (Inj 3) - injector cyl 3 drive",
+          "signal": "ECU A2 injector 3",
           "propagate": false
         },
         {
           "id": "c16",
           "designation": "34",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A1 (Inj 4) - injector cyl 4 drive",
+          "signal": "ECU A1 injector 4",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "35",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A13 (Ign 1) - coil cyl 1 trigger",
+          "signal": "ECU A13 coil 1 trig",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "36",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A12 (Ign 2) - coil cyl 2 trigger",
+          "signal": "ECU A12 coil 2 trig",
           "propagate": false
         },
         {
           "id": "c19",
           "designation": "37",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A11 (Ign 3) - coil cyl 3 trigger",
+          "signal": "ECU A11 coil 3 trig",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "38",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A10 (Ign 4) - coil cyl 4 trigger",
+          "signal": "ECU A10 coil 4 trig",
           "propagate": false
         },
         {
           "id": "c23",
           "designation": "39",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A21 (Aux 1) - boost solenoid drive",
+          "signal": "ECU A21 boost sol",
           "propagate": false
         },
         {
           "id": "c25",
           "designation": "40",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A15 (Temp 1) - coolant temp signal",
+          "signal": "ECU A15 coolant temp",
           "propagate": false
         },
         {
           "id": "c26",
           "designation": "41",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A16 (Temp 2) - intake air temp signal",
+          "signal": "ECU A16 intake temp",
           "propagate": false
         },
         {
           "id": "c35",
           "designation": "42",
-          "signal": "LOGIC MRS 7.5A fuse - EHPS pump enable +12 V",
+          "signal": "EHPS enable +12 V",
           "contactPartId": "ct_hdp16p"
         },
         {
@@ -1854,7 +1854,7 @@
         {
           "id": "c36",
           "designation": "44",
-          "signal": "ECU A27 (Aux 7) - EHPS pump speed signal",
+          "signal": "ECU A27 EHPS speed",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1873,7 +1873,7 @@
         {
           "id": "c45",
           "designation": "47",
-          "signal": "ECU A32 (+5V Out) - oil pressure sensor supply",
+          "signal": "ECU A32 oil press 5V",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1892,14 +1892,14 @@
         {
           "id": "c46",
           "designation": "50",
-          "signal": "ECU A32 (+5V Out) - fuel pressure sensor supply",
+          "signal": "ECU A32 fuel prs 5V",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c47",
           "designation": "51",
-          "signal": "ECU A32 (+5V Out) - coolant pressure sensor supply",
+          "signal": "ECU A32 clnt prs 5V",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1930,7 +1930,7 @@
         {
           "id": "c27",
           "designation": "56",
-          "signal": "EPS relay k_eps coil 85 - EHPS pump B5 switches it",
+          "signal": "EPS relay coil 85",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
