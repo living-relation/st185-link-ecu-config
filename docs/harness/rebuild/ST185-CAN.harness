@@ -314,7 +314,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Ground (Brown)",
+          "signal": "Comms port ground",
           "designation": "C1",
           "cavityPlugPartId": "pl_sz20"
         },
@@ -325,13 +325,13 @@
         },
         {
           "id": "c3",
-          "signal": "CAN 1 High (White)",
+          "signal": "CAN 1 High",
           "designation": "C3"
         },
         {
           "id": "c4",
           "designation": "C4",
-          "signal": "CAN 1 Low (Green)",
+          "signal": "CAN 1 Low",
           "propagate": false
         },
         {
@@ -361,11 +361,11 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Lambda 12V"
+          "signal": "Lambda +12V in"
         },
         {
           "id": "c2",
-          "signal": "Lambda GND"
+          "signal": "Lambda ground"
         },
         {
           "id": "c3",
@@ -400,9 +400,10 @@
         "x": 960,
         "y": -810
       },
-      "signal": "CAN -> cluster",
+      "signal": "Cluster CAN stub",
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "Center cluster CAN board (SN65HVD230) CANH + CANL terminals, old meter spot"
     },
     {
       "id": "t_realdash_can",
@@ -416,14 +417,15 @@
         "x": 1110,
         "y": -1350
       },
-      "signal": "CAN -> RealDash Pi",
+      "signal": "Pi CAN stub",
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "RealDash Pi USB-CAN adapter CANH + CANL terminals, center dash (CANable or PCAN USB - TBD at install)"
     },
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "CAN H -> CSB3 c5",
+      "signal": "CAN H to CSB3",
       "width": 390,
       "layoutPosition": {
         "x": 1110,
@@ -433,12 +435,13 @@
         "x": 720,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CSB3 plug pin 5 (HD36-24-33SE, under the center cluster; CSB3) - CSB3 CAN H"
     },
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "CAN L -> CSB3 c6",
+      "signal": "CAN L to CSB3",
       "width": 390,
       "layoutPosition": {
         "x": 1110,
@@ -448,12 +451,13 @@
         "x": 720,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CSB3 plug pin 6 (HD36-24-33SE, under the center cluster; CSB3) - CSB3 CAN L"
     },
     {
       "id": "br_w_lam12",
       "type": "Loose",
-      "signal": "Lambda 12V -> splice LAM12 B",
+      "signal": "Lambda 12V",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -463,12 +467,13 @@
         "x": 2700,
         "y": -60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 95 (firewall connector, RH firewall, engine side; B-engine) - LOGIC BUS2-1 LAM 7.5 A fuse"
     },
     {
       "id": "br_w_lamg",
       "type": "Loose",
-      "signal": "Lambda GND -> splice LAMG B",
+      "signal": "Lambda ground",
       "width": 390,
       "layoutPosition": {
         "x": 1740,
@@ -478,12 +483,13 @@
         "x": 2700,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 96 (firewall connector, RH firewall, engine side; B-engine) - cabin chassis ground"
     },
     {
       "id": "br_wc_h_bh",
       "type": "Loose",
-      "signal": "CAN H -> BH-B 92",
+      "signal": "CAN H to bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -493,12 +499,13 @@
         "x": 1380,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 92 (firewall connector, RH firewall, cabin side; B-cabin) - CAN H to the CAN-Lambda"
     },
     {
       "id": "br_wc_l_bh",
       "type": "Loose",
-      "signal": "CAN L -> BH-B 93",
+      "signal": "CAN L to bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -508,12 +515,13 @@
         "x": 1380,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 93 (firewall connector, RH firewall, cabin side; B-cabin) - CAN L to the CAN-Lambda"
     },
     {
       "id": "br_wc_h_lam",
       "type": "Loose",
-      "signal": "CAN H Lambda -> BH-B 92",
+      "signal": "CAN H from bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 1290,
@@ -523,12 +531,13 @@
         "x": 2040,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 92 (firewall connector, RH firewall, engine side; B-engine) - CAN H from the cabin bus"
     },
     {
       "id": "br_wc_l_lam",
       "type": "Loose",
-      "signal": "CAN L Lambda -> BH-B 93",
+      "signal": "CAN L from bulkhead",
       "width": 390,
       "layoutPosition": {
         "x": 1290,
@@ -538,12 +547,13 @@
         "x": 2040,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 93 (firewall connector, RH firewall, engine side; B-engine) - CAN L from the cabin bus"
     },
     {
       "id": "br_cab_lamcan_sh",
       "type": "Loose",
-      "signal": "Lambda screen -> BH-B 94",
+      "signal": "Lambda run screen",
       "width": 390,
       "layoutPosition": {
         "x": 1290,
@@ -553,12 +563,13 @@
         "x": 2040,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 94 (firewall connector, RH firewall, engine side; B-engine) - CAN-Lambda pair screen"
     },
     {
       "id": "br_cab_canbh_sh",
       "type": "Loose",
-      "signal": "CAN screen -> BH-B 94",
+      "signal": "Bulkhead run screen",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -568,12 +579,13 @@
         "x": 1380,
         "y": 240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead DRB102 pin 94 (firewall connector, RH firewall, cabin side; B-cabin) - CAN pair screen"
     },
     {
       "id": "br_w_shd_can",
       "type": "Loose",
-      "signal": "CAN drain -> splice SHIELD B",
+      "signal": "CAN screen drain",
       "width": 390,
       "layoutPosition": {
         "x": 840,
@@ -583,12 +595,13 @@
         "x": 1380,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Splice SHIELD B at ECU-B pin B17 (screen ground, center dash; B-cabin)"
     },
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "CAN screen -> CSB3 open",
+      "signal": "CSB3 run screen",
       "width": 390,
       "layoutPosition": {
         "x": 1110,
@@ -598,7 +611,8 @@
         "x": 720,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Screen ends open (floats) at the CSB3 plug, under the center cluster (CSB3)"
     },
     {
       "id": "t_cluster_pwr",
@@ -612,9 +626,10 @@
         "x": 960,
         "y": -600
       },
-      "signal": "Dash 12V -> cluster",
+      "signal": "Cluster 12V",
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "Center cluster 12 V-to-5 V buck converter IN+ terminal, old meter spot"
     },
     {
       "id": "t_realdash_pwr",
@@ -628,9 +643,10 @@
         "x": 1110,
         "y": -1200
       },
-      "signal": "Dash 12V -> RealDash Pi",
+      "signal": "Pi 12V",
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "RealDash Pi 12 V-to-5 V supply IN+ terminal, center dash"
     },
     {
       "id": "t_cluster_gnd",
@@ -644,9 +660,10 @@
         "x": 960,
         "y": -690
       },
-      "signal": "Cluster GND -> GND IF",
+      "signal": "Cluster ground",
       "partId": "tp_ring_m6_22_16",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground point IF, instrument panel brace RH (EWD ground point IF, p.42) - cluster lug"
     },
     {
       "id": "t_realdash_gnd",
@@ -660,14 +677,15 @@
         "x": 1110,
         "y": -930
       },
-      "signal": "Pi GND -> GND IF",
+      "signal": "Pi ground",
       "partId": "tp_ring_m6_22_16",
-      "propagate": false
+      "propagate": false,
+      "label": "Ground point IF, instrument panel brace RH (EWD ground point IF, p.42) - Pi lug"
     },
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "Dash 12V -> FB-LOGIC DEV 15A",
+      "signal": "Dash 12V feed",
       "width": 390,
       "layoutPosition": {
         "x": 960,
@@ -677,7 +695,8 @@
         "x": 0,
         "y": 330
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC BUS2-6 DEV 15 A fuse out (glove-box LOGIC box; CabinPower)"
     },
     {
       "id": "t_cluster_gnd_lead",
@@ -691,9 +710,10 @@
         "x": 960,
         "y": -870
       },
-      "signal": "Cluster GND -> ESP32-P4",
+      "signal": "Cluster ground lead",
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "Center cluster 12 V-to-5 V buck converter IN- terminal, old meter spot"
     },
     {
       "id": "t_realdash_gnd_lead",
@@ -707,9 +727,10 @@
         "x": 1110,
         "y": -1470
       },
-      "signal": "Pi GND -> RealDash Pi",
+      "signal": "Pi ground lead",
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "RealDash Pi 12 V-to-5 V supply IN- terminal, center dash"
     }
   ],
   "cables": [
@@ -733,80 +754,6 @@
             "handle": "Splice"
           },
           "twistedWithNext": true,
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_ecu_source_lp1",
-              "schematicPosition": {
-                "x": 450,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_ecu_source_lp2",
-              "schematicPosition": {
-                "x": -60,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_ecu_source_lp3",
-              "schematicPosition": {
-                "x": -60,
-                "y": 90
-              }
-            },
-            {
-              "id": "wc_h_ecu_source_lp4",
-              "schematicPosition": {
-                "x": -30,
-                "y": 90
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_ecu_target_lp1",
-              "schematicPosition": {
-                "x": 450,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_ecu_target_lp2",
-              "schematicPosition": {
-                "x": 450,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_h_ecu_target_lp3",
-              "schematicPosition": {
-                "x": -240,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_h_ecu_target_lp4",
-              "schematicPosition": {
-                "x": -240,
-                "y": -360
-              }
-            },
-            {
-              "id": "wc_h_ecu_target_lp5",
-              "schematicPosition": {
-                "x": 330,
-                "y": -360
-              }
-            },
-            {
-              "id": "wc_h_ecu_target_lp6",
-              "schematicPosition": {
-                "x": 330,
-                "y": -180
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -822,66 +769,6 @@
             "id": "sp_canl",
             "handle": "Splice"
           },
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_ecu_target_lp1",
-              "schematicPosition": {
-                "x": 450,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_ecu_target_lp2",
-              "schematicPosition": {
-                "x": 450,
-                "y": 420
-              }
-            },
-            {
-              "id": "wc_l_ecu_target_lp3",
-              "schematicPosition": {
-                "x": -180,
-                "y": 420
-              }
-            },
-            {
-              "id": "wc_l_ecu_target_lp4",
-              "schematicPosition": {
-                "x": -180,
-                "y": -90
-              }
-            },
-            {
-              "id": "wc_l_ecu_target_lp5",
-              "schematicPosition": {
-                "x": 150,
-                "y": -90
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_ecu_source_lp1",
-              "schematicPosition": {
-                "x": 450,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_ecu_source_lp2",
-              "schematicPosition": {
-                "x": 390,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_ecu_source_lp3",
-              "schematicPosition": {
-                "x": 390,
-                "y": 120
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -894,29 +781,6 @@
           "id": "sp_shield_can",
           "handle": "Splice"
         },
-        "targetLayoutPoints": [
-          {
-            "id": "cab_can_ecu_sh_target_lp1",
-            "schematicPosition": {
-              "x": 540,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_ecu_sh_target_lp2",
-            "schematicPosition": {
-              "x": 540,
-              "y": 240
-            }
-          },
-          {
-            "id": "cab_can_ecu_sh_target_lp3",
-            "schematicPosition": {
-              "x": 510,
-              "y": 240
-            }
-          }
-        ],
         "identColors": [
           "Yellow"
         ]
@@ -942,80 +806,6 @@
             "handle": "Terminal"
           },
           "twistedWithNext": true,
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_csb_target_lp1",
-              "schematicPosition": {
-                "x": 660,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_csb_target_lp2",
-              "schematicPosition": {
-                "x": 660,
-                "y": 60
-              }
-            },
-            {
-              "id": "wc_h_csb_target_lp3",
-              "schematicPosition": {
-                "x": 690,
-                "y": 60
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_csb_source_lp1",
-              "schematicPosition": {
-                "x": 660,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_csb_source_lp2",
-              "schematicPosition": {
-                "x": 600,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_csb_source_lp3",
-              "schematicPosition": {
-                "x": 600,
-                "y": 90
-              }
-            },
-            {
-              "id": "wc_h_csb_source_lp4",
-              "schematicPosition": {
-                "x": 450,
-                "y": 90
-              }
-            },
-            {
-              "id": "wc_h_csb_source_lp5",
-              "schematicPosition": {
-                "x": 450,
-                "y": 60
-              }
-            },
-            {
-              "id": "wc_h_csb_source_lp6",
-              "schematicPosition": {
-                "x": 390,
-                "y": 60
-              }
-            },
-            {
-              "id": "wc_h_csb_source_lp7",
-              "schematicPosition": {
-                "x": 390,
-                "y": -60
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1031,94 +821,6 @@
             "id": "br_wc_l_csb",
             "handle": "Terminal"
           },
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_csb_source_lp1",
-              "schematicPosition": {
-                "x": 660,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_csb_source_lp2",
-              "schematicPosition": {
-                "x": 630,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_csb_source_lp3",
-              "schematicPosition": {
-                "x": 630,
-                "y": 60
-              }
-            },
-            {
-              "id": "wc_l_csb_source_lp4",
-              "schematicPosition": {
-                "x": 540,
-                "y": 60
-              }
-            },
-            {
-              "id": "wc_l_csb_source_lp5",
-              "schematicPosition": {
-                "x": 540,
-                "y": -210
-              }
-            },
-            {
-              "id": "wc_l_csb_source_lp6",
-              "schematicPosition": {
-                "x": 210,
-                "y": -210
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_csb_target_lp1",
-              "schematicPosition": {
-                "x": 750,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_csb_target_lp2",
-              "schematicPosition": {
-                "x": 900,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_csb_target_lp3",
-              "schematicPosition": {
-                "x": 900,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_csb_target_lp4",
-              "schematicPosition": {
-                "x": 1140,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_csb_target_lp5",
-              "schematicPosition": {
-                "x": 1140,
-                "y": 180
-              }
-            },
-            {
-              "id": "wc_l_csb_target_lp6",
-              "schematicPosition": {
-                "x": 1110,
-                "y": 180
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1135,73 +837,6 @@
           "id": "br_cab_cancsb_sh",
           "handle": "Terminal"
         },
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_csb_sh_source_lp1",
-            "schematicPosition": {
-              "x": 750,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_source_lp2",
-            "schematicPosition": {
-              "x": 810,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_source_lp3",
-            "schematicPosition": {
-              "x": 810,
-              "y": 210
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_source_lp4",
-            "schematicPosition": {
-              "x": 480,
-              "y": 210
-            }
-          }
-        ],
-        "targetLayoutPoints": [
-          {
-            "id": "cab_can_csb_sh_target_lp1",
-            "schematicPosition": {
-              "x": 750,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_target_lp2",
-            "schematicPosition": {
-              "x": 750,
-              "y": 450
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_target_lp3",
-            "schematicPosition": {
-              "x": 1260,
-              "y": 450
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_target_lp4",
-            "schematicPosition": {
-              "x": 1260,
-              "y": 120
-            }
-          },
-          {
-            "id": "cab_can_csb_sh_target_lp5",
-            "schematicPosition": {
-              "x": 1110,
-              "y": 120
-            }
-          }
-        ],
         "identColors": [
           "Yellow"
         ]
@@ -1227,80 +862,6 @@
             "handle": "Terminal"
           },
           "twistedWithNext": true,
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_clu_target_lp1",
-              "schematicPosition": {
-                "x": 600,
-                "y": -90
-              }
-            },
-            {
-              "id": "wc_h_clu_target_lp2",
-              "schematicPosition": {
-                "x": 600,
-                "y": -300
-              }
-            },
-            {
-              "id": "wc_h_clu_target_lp3",
-              "schematicPosition": {
-                "x": -150,
-                "y": -300
-              }
-            },
-            {
-              "id": "wc_h_clu_target_lp4",
-              "schematicPosition": {
-                "x": -150,
-                "y": 240
-              }
-            },
-            {
-              "id": "wc_h_clu_target_lp5",
-              "schematicPosition": {
-                "x": -30,
-                "y": 240
-              }
-            },
-            {
-              "id": "wc_h_clu_target_lp6",
-              "schematicPosition": {
-                "x": -30,
-                "y": 270
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_clu_source_lp1",
-              "schematicPosition": {
-                "x": 600,
-                "y": -90
-              }
-            },
-            {
-              "id": "wc_h_clu_source_lp2",
-              "schematicPosition": {
-                "x": 570,
-                "y": -90
-              }
-            },
-            {
-              "id": "wc_h_clu_source_lp3",
-              "schematicPosition": {
-                "x": 570,
-                "y": -150
-              }
-            },
-            {
-              "id": "wc_h_clu_source_lp4",
-              "schematicPosition": {
-                "x": 420,
-                "y": -150
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1316,80 +877,6 @@
             "id": "t_cluster_can",
             "handle": "Terminal"
           },
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_clu_source_lp1",
-              "schematicPosition": {
-                "x": 690,
-                "y": -60
-              }
-            },
-            {
-              "id": "wc_l_clu_source_lp2",
-              "schematicPosition": {
-                "x": 690,
-                "y": -270
-              }
-            },
-            {
-              "id": "wc_l_clu_source_lp3",
-              "schematicPosition": {
-                "x": 150,
-                "y": -270
-              }
-            },
-            {
-              "id": "wc_l_clu_source_lp4",
-              "schematicPosition": {
-                "x": 150,
-                "y": -150
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_clu_target_lp1",
-              "schematicPosition": {
-                "x": 690,
-                "y": -60
-              }
-            },
-            {
-              "id": "wc_l_clu_target_lp2",
-              "schematicPosition": {
-                "x": 750,
-                "y": -60
-              }
-            },
-            {
-              "id": "wc_l_clu_target_lp3",
-              "schematicPosition": {
-                "x": 750,
-                "y": -330
-              }
-            },
-            {
-              "id": "wc_l_clu_target_lp4",
-              "schematicPosition": {
-                "x": -210,
-                "y": -330
-              }
-            },
-            {
-              "id": "wc_l_clu_target_lp5",
-              "schematicPosition": {
-                "x": -210,
-                "y": 270
-              }
-            },
-            {
-              "id": "wc_l_clu_target_lp6",
-              "schematicPosition": {
-                "x": -30,
-                "y": 270
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1402,22 +889,6 @@
           "id": "sp_shield_can",
           "handle": "Splice"
         },
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_clu_sh_source_lp1",
-            "schematicPosition": {
-              "x": 600,
-              "y": -30
-            }
-          },
-          {
-            "id": "cab_can_clu_sh_source_lp2",
-            "schematicPosition": {
-              "x": 510,
-              "y": -30
-            }
-          }
-        ],
         "identColors": [
           "Yellow"
         ]
@@ -1443,59 +914,6 @@
             "handle": "Terminal"
           },
           "twistedWithNext": true,
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_rd_target_lp1",
-              "schematicPosition": {
-                "x": 420,
-                "y": 480
-              }
-            },
-            {
-              "id": "wc_h_rd_target_lp2",
-              "schematicPosition": {
-                "x": 420,
-                "y": 360
-              }
-            },
-            {
-              "id": "wc_h_rd_target_lp3",
-              "schematicPosition": {
-                "x": 390,
-                "y": 360
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_rd_source_lp1",
-              "schematicPosition": {
-                "x": 330,
-                "y": 480
-              }
-            },
-            {
-              "id": "wc_h_rd_source_lp2",
-              "schematicPosition": {
-                "x": -90,
-                "y": 480
-              }
-            },
-            {
-              "id": "wc_h_rd_source_lp3",
-              "schematicPosition": {
-                "x": -90,
-                "y": -60
-              }
-            },
-            {
-              "id": "wc_h_rd_source_lp4",
-              "schematicPosition": {
-                "x": 330,
-                "y": -60
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1511,66 +929,6 @@
             "id": "t_realdash_can",
             "handle": "Terminal"
           },
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_rd_source_lp1",
-              "schematicPosition": {
-                "x": 330,
-                "y": 510
-              }
-            },
-            {
-              "id": "wc_l_rd_source_lp2",
-              "schematicPosition": {
-                "x": -120,
-                "y": 510
-              }
-            },
-            {
-              "id": "wc_l_rd_source_lp3",
-              "schematicPosition": {
-                "x": -120,
-                "y": -120
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_rd_target_lp1",
-              "schematicPosition": {
-                "x": 420,
-                "y": 510
-              }
-            },
-            {
-              "id": "wc_l_rd_target_lp2",
-              "schematicPosition": {
-                "x": 480,
-                "y": 510
-              }
-            },
-            {
-              "id": "wc_l_rd_target_lp3",
-              "schematicPosition": {
-                "x": 480,
-                "y": 390
-              }
-            },
-            {
-              "id": "wc_l_rd_target_lp4",
-              "schematicPosition": {
-                "x": 390,
-                "y": 390
-              }
-            },
-            {
-              "id": "wc_l_rd_target_lp5",
-              "schematicPosition": {
-                "x": 390,
-                "y": 360
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1583,29 +941,6 @@
           "id": "sp_shield_can",
           "handle": "Splice"
         },
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_rd_sh_source_lp1",
-            "schematicPosition": {
-              "x": 420,
-              "y": 540
-            }
-          },
-          {
-            "id": "cab_can_rd_sh_source_lp2",
-            "schematicPosition": {
-              "x": 570,
-              "y": 540
-            }
-          },
-          {
-            "id": "cab_can_rd_sh_source_lp3",
-            "schematicPosition": {
-              "x": 570,
-              "y": 180
-            }
-          }
-        ],
         "identColors": [
           "Yellow"
         ]
@@ -1631,73 +966,6 @@
             "handle": "Terminal"
           },
           "twistedWithNext": true,
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_bh_source_lp1",
-              "schematicPosition": {
-                "x": 1080,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_bh_source_lp2",
-              "schematicPosition": {
-                "x": 1170,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_bh_source_lp3",
-              "schematicPosition": {
-                "x": 1170,
-                "y": -180
-              }
-            },
-            {
-              "id": "wc_h_bh_source_lp4",
-              "schematicPosition": {
-                "x": 390,
-                "y": -180
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_bh_target_lp1",
-              "schematicPosition": {
-                "x": 1080,
-                "y": 300
-              }
-            },
-            {
-              "id": "wc_h_bh_target_lp2",
-              "schematicPosition": {
-                "x": 1080,
-                "y": 270
-              }
-            },
-            {
-              "id": "wc_h_bh_target_lp3",
-              "schematicPosition": {
-                "x": 1230,
-                "y": 270
-              }
-            },
-            {
-              "id": "wc_h_bh_target_lp4",
-              "schematicPosition": {
-                "x": 1230,
-                "y": 60
-              }
-            },
-            {
-              "id": "wc_h_bh_target_lp5",
-              "schematicPosition": {
-                "x": 1350,
-                "y": 60
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1713,87 +981,6 @@
             "id": "br_wc_l_bh",
             "handle": "Terminal"
           },
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_bh_target_lp1",
-              "schematicPosition": {
-                "x": 1080,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_bh_target_lp2",
-              "schematicPosition": {
-                "x": 1080,
-                "y": 390
-              }
-            },
-            {
-              "id": "wc_l_bh_target_lp3",
-              "schematicPosition": {
-                "x": 1290,
-                "y": 390
-              }
-            },
-            {
-              "id": "wc_l_bh_target_lp4",
-              "schematicPosition": {
-                "x": 1290,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_bh_target_lp5",
-              "schematicPosition": {
-                "x": 1350,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_bh_target_lp6",
-              "schematicPosition": {
-                "x": 1350,
-                "y": 180
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_bh_source_lp1",
-              "schematicPosition": {
-                "x": 1080,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_bh_source_lp2",
-              "schematicPosition": {
-                "x": 1200,
-                "y": 330
-              }
-            },
-            {
-              "id": "wc_l_bh_source_lp3",
-              "schematicPosition": {
-                "x": 1200,
-                "y": -240
-              }
-            },
-            {
-              "id": "wc_l_bh_source_lp4",
-              "schematicPosition": {
-                "x": 240,
-                "y": -240
-              }
-            },
-            {
-              "id": "wc_l_bh_source_lp5",
-              "schematicPosition": {
-                "x": 240,
-                "y": -180
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1810,80 +997,6 @@
           "id": "br_cab_canbh_sh",
           "handle": "Terminal"
         },
-        "targetLayoutPoints": [
-          {
-            "id": "cab_can_bh_sh_target_lp1",
-            "schematicPosition": {
-              "x": 990,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_target_lp2",
-            "schematicPosition": {
-              "x": 990,
-              "y": 420
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_target_lp3",
-            "schematicPosition": {
-              "x": 1350,
-              "y": 420
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_target_lp4",
-            "schematicPosition": {
-              "x": 1350,
-              "y": 240
-            }
-          }
-        ],
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_bh_sh_source_lp1",
-            "schematicPosition": {
-              "x": 990,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_source_lp2",
-            "schematicPosition": {
-              "x": 870,
-              "y": 360
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_source_lp3",
-            "schematicPosition": {
-              "x": 870,
-              "y": 240
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_source_lp4",
-            "schematicPosition": {
-              "x": 690,
-              "y": 240
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_source_lp5",
-            "schematicPosition": {
-              "x": 690,
-              "y": 120
-            }
-          },
-          {
-            "id": "cab_can_bh_sh_source_lp6",
-            "schematicPosition": {
-              "x": 570,
-              "y": 120
-            }
-          }
-        ],
         "identColors": [
           "Yellow"
         ]
@@ -1909,80 +1022,6 @@
             "handle": "Splice"
           },
           "twistedWithNext": true,
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_lam_source_lp1",
-              "schematicPosition": {
-                "x": 60,
-                "y": 630
-              }
-            },
-            {
-              "id": "wc_h_lam_source_lp2",
-              "schematicPosition": {
-                "x": 1920,
-                "y": 630
-              }
-            },
-            {
-              "id": "wc_h_lam_source_lp3",
-              "schematicPosition": {
-                "x": 1920,
-                "y": 90
-              }
-            },
-            {
-              "id": "wc_h_lam_source_lp4",
-              "schematicPosition": {
-                "x": 2010,
-                "y": 90
-              }
-            },
-            {
-              "id": "wc_h_lam_source_lp5",
-              "schematicPosition": {
-                "x": 2010,
-                "y": 60
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_lam_target_lp1",
-              "schematicPosition": {
-                "x": 60,
-                "y": 630
-              }
-            },
-            {
-              "id": "wc_h_lam_target_lp2",
-              "schematicPosition": {
-                "x": 60,
-                "y": 570
-              }
-            },
-            {
-              "id": "wc_h_lam_target_lp3",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 570
-              }
-            },
-            {
-              "id": "wc_h_lam_target_lp4",
-              "schematicPosition": {
-                "x": 1860,
-                "y": -90
-              }
-            },
-            {
-              "id": "wc_h_lam_target_lp5",
-              "schematicPosition": {
-                "x": 2490,
-                "y": -90
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -1998,59 +1037,6 @@
             "id": "sp_canl_lam",
             "handle": "Splice"
           },
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_lam_source_lp1",
-              "schematicPosition": {
-                "x": 60,
-                "y": 660
-              }
-            },
-            {
-              "id": "wc_l_lam_source_lp2",
-              "schematicPosition": {
-                "x": 2010,
-                "y": 660
-              }
-            },
-            {
-              "id": "wc_l_lam_source_lp3",
-              "schematicPosition": {
-                "x": 2010,
-                "y": 180
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_lam_target_lp1",
-              "schematicPosition": {
-                "x": -30,
-                "y": 660
-              }
-            },
-            {
-              "id": "wc_l_lam_target_lp2",
-              "schematicPosition": {
-                "x": -30,
-                "y": 750
-              }
-            },
-            {
-              "id": "wc_l_lam_target_lp3",
-              "schematicPosition": {
-                "x": 2460,
-                "y": 750
-              }
-            },
-            {
-              "id": "wc_l_lam_target_lp4",
-              "schematicPosition": {
-                "x": 2460,
-                "y": 60
-              }
-            }
-          ],
           "identColors": [
             "Yellow"
           ]
@@ -2063,43 +1049,6 @@
           "id": "br_cab_lamcan_sh",
           "handle": "Terminal"
         },
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_lam_sh_source_lp1",
-            "schematicPosition": {
-              "x": 60,
-              "y": 690
-            }
-          },
-          {
-            "id": "cab_can_lam_sh_source_lp2",
-            "schematicPosition": {
-              "x": 1950,
-              "y": 690
-            }
-          },
-          {
-            "id": "cab_can_lam_sh_source_lp3",
-            "schematicPosition": {
-              "x": 1950,
-              "y": 150
-            }
-          },
-          {
-            "id": "cab_can_lam_sh_source_lp4",
-            "schematicPosition": {
-              "x": 2010,
-              "y": 150
-            }
-          },
-          {
-            "id": "cab_can_lam_sh_source_lp5",
-            "schematicPosition": {
-              "x": 2010,
-              "y": 120
-            }
-          }
-        ],
         "identColors": [
           "Yellow"
         ]
@@ -2378,7 +1327,8 @@
         "y": -780
       },
       "partId": "spp_solder_generic",
-      "locationId": "bp_930"
+      "locationId": "bp_930",
+      "label": "CAN H join - ECU, CSB3, cluster, Pi, bulkhead"
     },
     {
       "id": "sp_canl",
@@ -2391,7 +1341,8 @@
         "y": -720
       },
       "partId": "spp_solder_generic",
-      "locationId": "bp_930"
+      "locationId": "bp_930",
+      "label": "CAN L join - ECU, CSB3, cluster, Pi, bulkhead"
     },
     {
       "id": "sp_canh_lam",
@@ -2404,7 +1355,8 @@
       "layoutPosition": {
         "x": 1200,
         "y": -480
-      }
+      },
+      "label": "CAN H join - bulkhead, Lambda, 120 ohm end"
     },
     {
       "id": "sp_canl_lam",
@@ -2417,7 +1369,8 @@
       "layoutPosition": {
         "x": 1170,
         "y": -300
-      }
+      },
+      "label": "CAN L join - bulkhead, Lambda, 120 ohm end"
     },
     {
       "id": "sp_shield_can",
@@ -2430,7 +1383,8 @@
       "schematicPosition": {
         "x": 510,
         "y": 150
-      }
+      },
+      "label": "CAN screen join - all CAN pair screens to the drain"
     },
     {
       "id": "sp_dev",
@@ -2443,7 +1397,8 @@
         "y": -780
       },
       "partId": "spp_solder_generic",
-      "locationId": "bp_930"
+      "locationId": "bp_930",
+      "label": "Dash 12 V split - cluster + RealDash Pi, center dash"
     }
   ],
   "resistors": [
@@ -2490,7 +1445,8 @@
       "schematicPosition": {
         "x": 2820,
         "y": 420
-      }
+      },
+      "width": 390
     }
   ],
   "wireParts": [
