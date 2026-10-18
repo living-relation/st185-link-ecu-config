@@ -442,8 +442,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c.get('zones')
               and not (c['kind'].endswith('87a') and c['source'] != 'harness')]
         z0 = z_d - G['h'] - 1.0
-        zs_ = z_t - HO['top_gap']
         for h in hs:
+            zs_ = z_t - S.seat_gap(h['part'], h['kind'])  # fit audit 2026-10-18: seat depth by relay type (spec.SEAT_GAP)
             T = S.TERM[h['part']]
             h['z1'] = round(zs_, 2)
             h['est'] = T['t'] is None or h['part'] in S.HEAD_EST or S.LOCK[h['part']].get('est', False)
@@ -617,7 +617,15 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             lw, ld = RT['leg']
             long_x = (x1_ - x0_) >= (y1_ - y0_)
             d0, d1 = RT['leg_shift'].get(rel, (0.0, 0.0))
-            legs = [((x0_ + lw / 2, (y0_ + y1_) / 2 + d0), -1), ((x1_ - lw / 2, (y0_ + y1_) / 2 + d1), 1)] if long_x else                    [(((x0_ + x1_) / 2 + d0, y0_ + lw / 2), -1), (((x0_ + x1_) / 2 + d1, y1_ - lw / 2), 1)]
+            ext = max(0.0, lw - m) + 0.5   # fit audit 2026-10-18 (+ 0.5: the plate strip past the outer wire slot stays >= 2.0, R127): the leg's inner face on the hole-zone edge (a 2.5 leg in the 2.0 band stood 0.5 inside it;
+            # the turned R1 30 terminal's insulation barrel reached it) - the plate grows by ext on those two ends to carry the leg
+            if ext > 0 and long_x:     # only the two end strips (the wire holes / slots stay open)
+                bo(plate, box(x0_ - ext, y0_, ztop - RT['t'], x0_ + 0.01, y1_, ztop), 'u')
+                bo(plate, box(x1_ - 0.01, y0_, ztop - RT['t'], x1_ + ext, y1_, ztop), 'u')
+            elif ext > 0:
+                bo(plate, box(x0_, y0_ - ext, ztop - RT['t'], x1_, y0_ + 0.01, ztop), 'u')
+                bo(plate, box(x0_, y1_ - 0.01, ztop - RT['t'], x1_, y1_ + ext, ztop), 'u')
+            legs = [((x0_ + m - lw / 2, (y0_ + y1_) / 2 + d0), -1), ((x1_ - m + lw / 2, (y0_ + y1_) / 2 + d1), 1)] if long_x else                    [(((x0_ + x1_) / 2 + d0, y0_ + m - lw / 2), -1), (((x0_ + x1_) / 2 + d1, y1_ - m + lw / 2), 1)]
             for ((lx, ly), sg) in legs:
                 sx_, sy_ = (lw, ld) if long_x else (ld, lw)
                 zt_ = z_d + RT['leg_h']
@@ -872,7 +880,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             report.setdefault('wall_exempt', []).append(dict(part=part, key=key, only=only, box=[round(v, 2) for v in (
                 x0 + sh[0], x1 + sh[0], y0 + sh[1], y1 + sh[1], z0, z1)]))
 
-    def deck_tab(xe, ye, n, z_t, btop, part, sh, standing=None):
+    def deck_tab(xe, ye, n, z_t, btop, part, sh, standing=None, w=None):
         """R146 bar hold-down snap tab (spec.BAR_TAB) at the point (xe, ye) on a bar edge, n = outward axis normal (+-1, 0) / (0, +-1).
         Deck tab: the arm is the pocket wall freed by a U slot `root` deep; standing = (z_floor, s0): a free arm standing on the floor s0
         out from the bar edge (battery block, the bar on its pedestal). The hook reaches `over` past the bar edge, 0.1 over the bar top,
@@ -883,6 +891,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             TB['t'] = TB['t_stand']
             if REV[0] == 7:
                 TB['w'] = TB['w_stand']     # markup 2026-10-17 (Dan 23-06: "make these 2 tabs bigger")
+        if w is not None:
+            TB['w'] = w
         hw = TB['w'] / 2
 
         def bx(sa, sb, ua, ub, za, zb):          # box in (s along n, u along the edge, z)
@@ -944,10 +954,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         blades seat in (l_min) - and solid below."""
         if REV[0] != 7:
             return z_d - 1
-        top = z_t - S.HOLE['top_gap']
-        if any(abs(h['x'] - x) < 1.0 and abs(h['y'] - y) < 1.0 for h in report['terminal_holes'].get(box_name, [])):
-            return top - 0.01
-        return top - l_min
+        for h in report['terminal_holes'].get(box_name, []):
+            if abs(h['x'] - x) < 1.0 and abs(h['y'] - y) < 1.0:
+                return z_t - S.seat_gap(h['part'], h['kind']) - 0.01
+        return z_t - S.HOLE['top_gap'] - l_min
 
     def bend_row(where, awg, path, r_inside, supported, note, room=None):
         od = S.OD[awg]
@@ -1137,7 +1147,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return [('x', y_) for y_ in S.PAN_SNAPS_X]
         return [('x', DIM['D'] * 0.3), ('x', DIM['D'] * 0.7)]
 
-    def belly_pan(L, z_d, faces, exits, pre, sh, rib=None, reliefs=(), walls=()):
+    def belly_pan(L, z_d, faces, exits, pre, sh, rib=None, reliefs=(), walls=(), box_name=None):
         """Rev 5 (Dan: snap-on covers for every live point underneath): a shallow PA12 tray under the open bottom. Its wall
         slides PAN over mm up inside the skirt; 4 tongues catch in pockets in the skirt's inner face. exits = U-notches open
         at the top of the wall, where wires leave: (axis, u, z_bottom, width) - axis 'x' = an end wall (u = y), 'y' = front /
@@ -1230,6 +1240,43 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             report.setdefault('logic_group_walls', []).append([round(v, 2) for v in (wx0, wx1, wy0, wy1, wz)])
         for (ya, yb, depth) in reliefs:   # J2 = B: the +x wall's inner face cut back `depth` over y ya..yb (the 86 wires drop 1 mm from it)
             bo(pan, box(x1 - t - 0.01, ya, PN['z0'] + t, x1 - t + depth, yb, ztop + 1.0), 's')
+        if PLAN7 and box_name:   # fit audit 2026-10-18: a terminal's R120 hole zone (crimped barrels + 0.4) that runs into a pan wall's inner face
+            # cuts that face back to the zone edge over the zone's width - never below HOLE min_wall 2.0 (R73); deeper is reported, not cut
+            mw_ = S.HOLE['min_wall']
+            for c in PLAN7['cavities']:
+                if c['box'] != box_name or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] != 'harness'):
+                    continue
+                zb_ = c['zones'][0]
+                ax0, ax1, ay0, ay1 = c['x'] + zb_[2], c['x'] + zb_[3], c['y'] + zb_[4], c['y'] + zb_[5]
+                for (need, cut_, side) in ((x0 + t - ax0, lambda d_: box(x0 + t - d_, ay0, PN['z0'] + t, x0 + t + 0.01, ay1, ztop + 1.0), '-x'),
+                                           (ax1 - (x1 - t), lambda d_: box(x1 - t - 0.01, ay0, PN['z0'] + t, x1 - t + d_, ay1, ztop + 1.0), '+x'),
+                                           (y0 + t - ay0, lambda d_: box(ax0, y0 + t - d_, PN['z0'] + t, ax1, y0 + t + 0.01, ztop + 1.0), '-y'),
+                                           (ay1 - (y1 - t), lambda d_: box(ax0, y1 - t - 0.01, PN['z0'] + t, ax1, y1 - t + d_, ztop + 1.0), '+y')):
+                    if need <= 0 or (side in ('-x', '+x') and (ay1 < y0 or ay0 > y1)) or (side in ('-y', '+y') and (ax1 < x0 or ax0 > x1)):
+                        continue
+                    if need <= t - mw_:
+                        bo(pan, cut_(need), 's')
+                        report.setdefault('pan_terminal_relief', []).append(dict(box=box_name, cav=c['cav'], wall=side, kind='relief', depth=round(need, 2)))
+                        continue
+                    # deeper than the wall can give: a notch open at the wall top down to 0.5 under the terminal's end (as the JB1 lug-tongue notch);
+                    # the base skirt still closes the outside
+                    zl_ = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['z_t'] - S.seat_gap(c['part'], c['kind']) - (S.TERM[c['part']]['L'] or S.L_EST) - 0.5
+                    nb_ = {'-x': (x0 - 1.0, ay0, x0 + t + 0.01, ay1), '+x': (x1 - t - 0.01, ay0, x1 + 1.0, ay1),
+                           '-y': (ax0, y0 - 1.0, ax1, y0 + t + 0.01), '+y': (ax0, y1 - t - 0.01, ax1, y1 + 1.0)}[side]
+                    zn_ = max(zl_, PN['z0'] + t + 1.0)
+                    bo(pan, box(nb_[0], nb_[1], zn_, nb_[2], nb_[3], ztop + 1.0), 's')
+                    ax_w, sd_w = ('x', -1 if side == '-x' else 1) if side[1] == 'x' else ('y', -1 if side == '-y' else 1)
+                    lo_n, hi_n = (ay0, ay1) if ax_w == 'x' else (ax0, ax1)
+                    for (e_ax, e_u, e_zb, e_wd, e_sd) in exits:    # R127 join: a wall sliver under min_wall to a wire-exit notch is cut away
+                        if e_ax != ax_w or e_sd != sd_w:
+                            continue
+                        for (g0, g1) in ((e_u + e_wd / 2, lo_n), (hi_n, e_u - e_wd / 2)):
+                            if -0.01 <= g1 - g0 < mw_:
+                                jb_ = (nb_[0], g0 - 0.01, nb_[2], g1 + 0.01) if ax_w == 'x' else (g0 - 0.01, nb_[1], g1 + 0.01, nb_[3])
+                                bo(pan, box(jb_[0], jb_[1], max(zn_, e_zb + e_wd / 2), jb_[2], jb_[3], ztop + 1.0), 's')
+                                report.setdefault('pan_exits_joined', []).append(pre + 'terminal %s - exit %.1f' % (c['cav'], e_u))
+                    report.setdefault('pan_terminal_relief', []).append(dict(box=box_name, cav=c['cav'], wall=side, kind='notch', need=round(need, 2),
+                                                                              z=[round(zl_, 2), round(ztop, 2)], width=round(nb_[3] - nb_[1] if side[1] == 'x' else nb_[2] - nb_[0], 2)))
         return comp(pre + 'Pan_PA12_printed', pan, AP['pa12_pan'], MAT['pa'], sh)
 
     def cover(L, D, z_t, z_top, notches, label_list, pre, sh, vents=(), ribs=None, side_vents=(), x0=0.0, y0=0.0, R=None, r=None,
@@ -1614,13 +1661,17 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             # (R101 back up into the deck plate); only near the top, where the relay's 30 cavity comes down into it, the saddle is cut away
             # across its full width from the cavity's lower end up and to min_wall past the cavity's +x wall - no thin wall or sliver left
             # between the curve and the cavity. Under the R1 retainer clip the cut also clears the clip's wire hole by min_wall + clr.
-            c30 = next((c for c in PLAN7['cavities'] if c['box'] == 'POWER' and c['cav'] == 'R%d 30' % (a['i'] + 1)), None) if PLAN7 else None
+            c30 = next((c for c in PLAN7['cavities'] if c['box'] == 'POWER' and c['cav'] == 'R%d 87' % (a['i'] + 1)), None)   # the far blade (real 87) takes the AMI feed (spec.POWER_ROLE_POS) if PLAN7 else None
             if c30:
                 mw = S.HOLE['min_wall']
                 x_cut = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones']) + mw
                 if 'R%d' % (a['i'] + 1) in S.RETAIN.get('POWER', []):
                     x_cut = max(x_cut, c30['x'] + S.retainer_hole(c30['part'], c30['wire_od'])[0] / 2 + mw + S.RETAINER['clr'] + 0.05)
                 z_cut = z_d - S.GUIDE['h'] - 1.0          # the cavity's lower end under the deck (crimp_holes z0)
+                if c30['part'] in S.REAL:                  # R162: the real terminal hangs below the deck - the saddle stays clear of all of it
+                    z_cut = min(z_cut, z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'] - 0.5)
+                    report.setdefault('saddle_vs_terminal', []).append(dict(relay='R%d' % (a['i'] + 1), terminal_end_z=round(z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'], 2),
+                                                                           bend_top_z=round(ccz, 2), straight_wire_mm=round(z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'] - ccz, 2)))
                 x_cav = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones'])
                 if x_cut > ccx - rs - od:
                     # the cut's lower face is the radial plane through the saddle centre and the cavity's lower +x corner: it meets the
@@ -1728,11 +1779,14 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     cuts.append(box(xa_ + tip - hw / math.sqrt(3.0) - 0.05, y1_ - hw, z_d - 1, xb3 - tip + hw / math.sqrt(3.0) + 0.05, y1_ + hw, bz0 + 0.01))
                     report.setdefault('pocket_reliefs', []).append(dict(x=[round(xa_, 2), round(xb3, 2)], y=round(y1_, 2), gap=round(gap, 2)))
         for r in relays:   # Mini ISO cavities, turned 90 deg: (u, v) of the F7 bottom view -> x = cx - v, y = cy + u
-            pins = [(0, 7.65, 11.5, 3.2), (0, -10.25, 11.5, 3.2), (-8.45, -0.25, 2.8, 8.3), (8.45, -0.25, 2.8, 8.3)]
+            P_ = S.RELAY_B_PINS if r['B'] else S.F7_PINS     # fit audit 2026-10-18 (TE V23134 rev 2607 p.3): 30 turned 90 deg to 87, coil line at the maker's offset
+            pins = [P_['30'] + (3.2, 11.5), P_['87'] + (11.5, 3.2), P_['85'] + (2.8, 8.3), P_['86'] + (2.8, 8.3)]
             if r['B']:
-                pins.append((0, S.RELAY_B['v87a'], 8.3, 2.8))
+                pins.append(P_['87a'] + (8.3, 2.8))
                 x7_ = r['cx'] - S.RELAY_B['v87a']     # sweep 2026-10-17: the PA12 between the 87a cavity and the 85 / 86 cavities (pin spacing)
-                exempt(pre + 'Base_PA12_printed', 'relay cavity web', x7_ - 3.0, x7_ + 3.0, r['cy'] - 8.0, r['cy'] + 8.0, z_d - 0.5, z_t + 0.1, sh, only='A')
+                # fit audit 2026-10-18: the web now runs from the turned 30 slot (v +7.65, 11.5 along x) to the 87 slot (v -10.25) - the box covers it
+                exempt(pre + 'Base_PA12_printed', 'relay cavity web', r['cx'] - P_['30'][1] - 3.5, r['cx'] - P_['87'][1] - 1.5, r['cy'] - 8.0, r['cy'] + 8.0,
+                       z_d - 0.5, z_t + 0.1, sh, only='A')
             for (u, v, lx, ly) in pins:
                 zs0 = slot_z0('POWER', r['cx'] - v, r['cy'] + u, z_d, z_t, S.TERM['42281-1']['L'])
                 cuts.append(cbox(r['cx'] - v, r['cy'] + u, zs0, z_t + 1, ly, lx))
@@ -1754,12 +1808,28 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 c_, a_ = deck_tab(xe_, ye_, n_, z_t, btop, pre + 'Base_PA12_printed', sh)
                 cuts += c_
                 tabs_add += a_
+            # card item 13 (Dan 22-59: "the other copper plates and bars ... will just fall out", R157): the NEG bar's rear edge - a snap arm
+            # in every gap between two lug tongues that is >= POCKET wall_min (the arm stands in for the R160 pocket wall at the edge)
+            neg_rings = []
+            ng_ = [(x_, S.LUG_M8['b'] if g_ == '1/0' else R7['small_ring_b']) for (x_, nm, h_, g_) in R7['neg_studs']]
+            for (xa_, ba_), (xc_, bc_) in zip(ng_, ng_[1:]):
+                f0_, f1_ = xa_ + ba_ / 2 + S.POCKET['clr'], xc_ - bc_ / 2 - S.POCKET['clr']
+                if f1_ - f0_ >= S.POCKET['wall_min']:
+                    c_, a_ = deck_tab((f0_ + f1_) / 2, NB['yc'] + hb_, (0, 1), z_t, btop, pre + 'Base_PA12_printed', sh, w=f1_ - f0_)
+                    cuts += c_
+                    neg_rings += c_
+                    tabs_add += a_
         sub_all(deck, cuts)
-        for b_ in strap_arms + tabs_add:
-            bo(deck, b_, 'u')
         if R7:
             for b_ in markup_1017_power(L, D7, z_d, z_t, btop, xb, B_, NB, ami, sh):
+                for r_ in neg_rings:                     # the NEG rear arms' slot rings stay open through the pocket floor / walls
+                    try:
+                        bo(b_, tb.copy(r_), 's')
+                    except RuntimeError:
+                        pass
                 bo(deck, b_, 'u')
+        for b_ in strap_arms + tabs_add:
+            bo(deck, b_, 'u')
         comp(pre + 'Base_PA12_printed', deck, AP['pa12_lt'], MAT['pa'], sh)
         comp(pre + 'Limiter_steel_M6', lims, AP['al'], MAT['ss'], sh)
 
@@ -1961,7 +2031,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     wd = max(lg['d4'], S.OD[awg]) + 1.2
                     zb_ = zc_ - wd / 2
                 pan_exits.append(('x', a['y'], zb_, wd, 1))
-        belly_pan(L, z_d, 'y', pan_exits, pre, sh)
+        belly_pan(L, z_d, 'y', pan_exits, pre, sh, box_name='POWER')
         bend_row('POWER relay terminals (85 / 86 / 87 / 87a), largest %d AWG' % S.RELAY_OUT_AWG, S.RELAY_OUT_AWG,
                  'straight down out of the cavity, one bend into its bundle (rows above)', 3.0 * S.OD[S.RELAY_OUT_AWG], True,
                  'bundles run where no feed wire runs (relays turned 90 deg)')
@@ -2074,6 +2144,13 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             xb_ = v['x1'] if c_ == 'BUS1' else v['x1'] - 0.8
             bo(spine, box(min(xa, spx), v['y0'] - 0.5, lip_z0, max(xb_, spx), v['y1'] + 0.5, lip_z1), 'u')
             exempt(pre + 'Base_PA12_printed', 'strip lip', min(xa, spx) - 0.1, max(xb_, spx) + 0.1, v['y0'] - 0.6, v['y1'] + 0.6, lip_z0 - 0.1, lip_z1 + 0.1, sh)
+        if REV[0] == 7:   # card item 13 (Dan 22-59, R157): the strips rest on the lips (DOWN); a rail on the spine bears on their top edges (UP),
+            # 0 gap; they still slide in along the lips. 0.3 off each strip's lug face (the jumper sleeves come up there).
+            rail_t = 3.71    # fit audit 2026-10-18: 3.4 left a 0.3 powder gap (S6) under the block at z 35.0 - the rail now fuses into it
+            for c_, v in strips.items():
+                xa_, xb3 = (v['x0'] + 0.3, spx) if c_ == 'BUS1' else (spx, v['x1'] - 0.3)
+                bo(spine, box(xa_, v['y0'] - 0.5, s_z1 + S.HOOK_GAP, xb3, v['y1'] + 0.5, s_z1 + S.HOOK_GAP + rail_t), 'u')
+            report.setdefault('strip_rail', dict(z=[s_z1 + S.HOOK_GAP, s_z1 + S.HOOK_GAP + rail_t], gap=S.HOOK_GAP))
         parts.append(spine)
         if REV[0] == 7:   # J4 = B (R94): the printed channel floor across the front (over the Bus 1 feed lug), joined to the spine
             CH = S.CHANNEL
@@ -2094,15 +2171,34 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 cuts.append(cbox(cx + dx, y, zs0, z_t + 1, 3.0, 4.6))
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + dx - 1.5, cx + dx + 1.5, y - 2.3, y + 2.3)])
         for (nm, pn, own, cx, cy, k_) in micro:                 # approximate pattern from TE 1308028; set exactly in detail work
-            for (u, v, lx, ly) in ((0, 8.0, 8.3, 2.6), (0, -8.0, 8.3, 2.6), (-4.5, 0, 2.6, 6.8), (4.5, 0, 2.6, 6.8), (0, 0, 2.6, 4.0)):
-                if REV[0] == 7 and (u, v) == (0, 0) and pn in S.MICRO_NO:
+            MP_ = S.MICRO_PINS             # fit audit 2026-10-18: TE V23074 rev 1119 p.3 pattern; 87a is a 4.8 blade like 85 / 86 (slot 6.8 long)
+            bt_, c2_ = 0.8 + 2 * S.CLR, 2 * S.CLR    # fit audit 2026-10-18: blade slots = blade + R120 clr a side (0.8 x 6.3 / 4.8, TE V23074 p.3): with the
+            # 280919-2 seated 3.2 down (spec.SEAT_GAP) the slots are 3.2 deep, and the old 2.6-wide slots left 1.9 webs between 85 / 87a / 86 (now 2.9)
+            for (u, v, lx, ly) in (MP_['87'] + (6.3 + c2_, bt_), MP_['30'] + (6.3 + c2_, bt_), MP_['85'] + (bt_, 4.8 + c2_), MP_['86'] + (bt_, 4.8 + c2_), MP_['87a'] + (bt_, 4.8 + c2_)):
+                if REV[0] == 7 and (u, v) == MP_['87a'] and pn in S.MICRO_NO:
                     continue            # R127 sweep: a normally-open micro relay has no 87a blade - no slot, solid there
                 zs0 = slot_z0('LOGIC', cx + u, cy + v, z_d, z_t, S.TERM['280919-2']['L'])
-                if (u, v) == (0, 0):
-                    exempt(pre + 'Base_PA12_printed', '87a slot', cx - 4.5, cx + 4.5, cy - 3.4, cy + 3.4, zs0 - 0.1, z_t + 0.1, sh)
+                if (u, v) == MP_['87a']:
+                    exempt(pre + 'Base_PA12_printed', '87a slot', cx - 4.5, cx + 4.5, cy + MP_['87'][1] + 1.9, cy + v + ly / 2 + 0.6, zs0 - 0.1, z_t + 0.1, sh)   # from the 87 cavity edge (joined)
+                    # fit audit 2026-10-18: TE's pitch leaves 1.95 between the 87 receptacle and the 87a blade - the slot runs on into the 87
+                    # cavity (its R121 box zone edge + 0.05) so no 0.56 PA12 sliver stands between them (R127 join; the 87a blade is bare)
+                    c87_ = next((c for c in (PLAN7 or {}).get('cavities', []) if c['box'] == 'LOGIC' and abs(c['x'] - cx) < 0.01
+                                 and abs(c['y'] - (cy + MP_['87'][1])) < 0.01 and c['kind'] == 'micro 87' and c.get('zones')), None)
+                    if c87_:
+                        y87_ = c87_['y'] + max(z_[5] for z_ in c87_['zones'][1:]) - 0.05
+                        cuts.append(box(cx + u - lx / 2, y87_, zs0, cx + u + lx / 2, cy + v - ly / 2 + 0.01, z_t + 1))
+                        report.setdefault('micro_87a_join', []).append([nm, round(cy + v - ly / 2 - y87_, 2)])
                 cuts.append(cbox(cx + u, cy + v, zs0, z_t + 1, lx, ly))
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + u - lx / 2, cx + u + lx / 2, cy + v - ly / 2, cy + v + ly / 2)])
             exempt(pre + 'Base_PA12_printed', 'relay cavity web', cx - 6.0, cx + 6.0, cy - 6.0, cy + 6.0, z_d - 0.5, z_t + 0.1, sh, only='A')
+            if REV[0] == 7:          # fit audit 2026-10-18 (R128): under the deck the web left between the 30 crimp hole and the 87 wire exit is 1.48
+                # (30 and 87 now 8 apart, TE pitch) - a thin strip hanging below the deck plate: cut it (the 2.06 wall in the deck stays)
+                c30_ = next((c for c in (PLAN7 or {}).get('cavities', []) if c['box'] == 'LOGIC' and abs(c['x'] - cx) < 0.01
+                             and abs(c['y'] - (cy + MP_['30'][1])) < 0.01 and c.get('zones')), None)
+                if c30_:
+                    y30_ = c30_['y'] + c30_['zones'][0][5]
+                    cuts.append(box(cx - 5.2, cy + MP_['30'][1] + 2.95, z_d - 4.5, cx + 5.2, cy + MP_['87'][1] - 2.9, z_d - 0.01))   # to the 30 exit edge (y - 5.05)
+                    report.setdefault('micro_underdeck_strip_cut', []).append([nm, round(y30_, 2), round(cy - 2.9, 2)])
         for s_ in studs:                                        # bolt tips pass the spine
             cuts.append(cyl((sx_lo - 1.0, s_['y'], s_['z']), (sx_hi + 1.0, s_['y'], s_['z']), JB['m'] + 1.6))
         if REV[0] == 7:   # R127 sweep: two bolt-tip passes at one y closer than min_wall (Bus 1 low row / Bus 2 high row) become one slot
@@ -2233,8 +2329,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         for (nm, pn, own, cx, cy, k_) in micro:
             if not pn:
                 continue
-            for (u, v, awg, tn) in ((0, -8.0, S.MICRO_LOAD_AWG, '30'), (0, 8.0, S.MICRO_LOAD_AWG, '87'), (0, 0, S.MICRO_LOAD_AWG, '87a'),
-                                    (-4.5, 0, S.COIL_AWG, '85'), (4.5, 0, S.COIL_AWG, '86')):
+            for (u, v, awg, tn) in [S.MICRO_PINS[t_] + (S.COIL_AWG if t_ in ('85', '86') else S.MICRO_LOAD_AWG, t_) for t_ in ('30', '87', '87a', '85', '86')]:
                 if tn == '87a' and pn in S.MICRO_NO:
                     continue                                     # NO relays: no 87a contact
                 if '%s %s' % (nm, tn) in skip or (tn == '87a' and REV[0] == 7):
@@ -2253,7 +2348,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 xm_ = ((la + ln_[round(la, 2)] / 2) + (lb - ln_[round(lb, 2)] / 2)) / 2
                 gw.append((xm_ - GW['t'] / 2, xm_ + GW['t'] / 2, y_front, GW['y1'], GW['z_top']))
             belly_pan(L, z_d, 'x', pan_exits, pre, sh, rib=(S.PAN_RIB['x'][0], S.PAN_RIB['x'][1], S.PAN_RIB['y'][0], S.PAN_RIB['y'][1], S.PAN_RIB['z_top']),
-                      reliefs=[(cy - S.PAN_RELIEF['fwd'], cy + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y], walls=gw)
+                      reliefs=[(cy - S.PAN_RELIEF['fwd'], cy + S.PAN_RELIEF['back'], S.PAN_RELIEF['depth']) for cy in S.MICRO_Y], walls=gw, box_name='LOGIC')
         else:
             belly_pan(L, z_d, 'x', pan_exits, pre, sh)
         bend_row('LOGIC fuse / micro relay receptacles, largest %d AWG' % S.LOGIC_MAX_AWG, S.LOGIC_MAX_AWG, 'straight down out of the cavity, one bend into its bundle (rows above)',
@@ -2512,6 +2607,90 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                                ped=(30.0, tsy - pw, bz0 - 8.0), relay=(rx, yb + 22.0, zf + 40.0), plug=(gcx, yb - H_['plug_to'] + 2, tz0 + 9.0)))
 
     sizes = {'LOGIC': build_logic(), 'POWER': build_power(), 'BATTRELAY': build_relay_block()}
+
+    def place_terminals():
+        """R161 (Dan 2026-10-18, card item 13: "why are there no terminals in the assembly models?" - they were never built; only
+        render_closeups.py drew stand-ins in a scratch design): the maker's own STEP (spec.VENDOR_TERM) of the terminal the wiring plan puts
+        in every cavity, seated: contact end on the seat (deck top - HOLE top_gap, R121), blade width along the cavity's blade axis, the
+        locking lance toward the side its R121 window opens (W lances: both sides, either way round). One component per box and part."""
+        if not PLAN7:
+            return
+        cands = [os.path.join(os.path.dirname(os.path.dirname(SRC)), 'vendor'), S.VENDOR_DIR_MAIN]
+        vdir = next((d for d in cands if os.path.isdir(os.path.join(d, 'te'))), None)    # a worktree's cad/vendor holds only INDEX.md
+        rep_ = report.setdefault('terminals', {'placed': {}, 'missing': []})
+        if vdir is None:
+            rep_['missing'].append('no cad/vendor folder')
+            return
+        src = {}
+        tmp_occ = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+        im = app.importManager
+        for pn, (mk, fn, yb, dn) in S.VENDOR_TERM.items():
+            f = os.path.join(vdir, mk, pn, fn)
+            if not os.path.exists(f):
+                rep_['missing'].append(pn)
+                continue
+            n0 = tmp_occ.component.bRepBodies.count + sum(o.component.bRepBodies.count for o in tmp_occ.component.allOccurrences)
+            im.importToTarget(im.createSTEPImportOptions(f), tmp_occ.component)
+            bl = [b_ for b_ in tmp_occ.component.bRepBodies] + [b_ for o in tmp_occ.component.allOccurrences for b_ in o.component.bRepBodies]
+            src[pn] = [tb.copy(b_) for b_ in bl[n0:]]
+            zmx = max(b_.boundingBox.maxPoint.z for b_ in src[pn]) * 10    # the contact end = the model's top (MCP models stand 0.55 proud of Z 0)
+            mz = adsk.core.Matrix3D.create()
+            mz.translation = V(0, 0, -zmx / 10.0)
+            for b_ in src[pn]:
+                tb.transform(b_, mz)
+            if pn in S.REAL:      # R162: TE's model shows the barrels OPEN - trim them to the crimped envelope the cavity is sized for
+                E_, R_ = S.real_env(pn), S.REAL[pn]
+                bw_, wz_, iz_ = E_['box'][0], R_['wz'][0], R_['iz'][0]
+                env = union_all([box(-20, -20, -wz_, 20, 20, 5), box(-E_['wire'][0], -5, -iz_, E_['wire'][0], E_['wire'][2], -wz_ + 0.01),
+                                 box(-E_['ins'][0], E_['ins'][1] - 0.5, -R_['L'] - 2, E_['ins'][0], E_['ins'][2], -iz_ + 0.01)])
+                keep = []
+                for b_ in src[pn]:
+                    try:
+                        bo(b_, tb.copy(env), 'i')
+                        keep.append(b_)
+                    except RuntimeError:
+                        pass
+                src[pn] = keep
+        tmp_occ.deleteMe()
+        zt = {'LOGIC': S.LOGIC['z_t'], 'POWER': S.POWER['z_t']}
+        by = {}
+        for c in PLAN7['cavities']:
+            if c['box'] not in zt or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] != 'harness'):
+                continue
+            pn = c['part']
+            if pn in S.PLACE_HOLD:
+                rep_.setdefault('held', {})[c['box'] + ' ' + c['cav']] = S.PLACE_HOLD[pn]
+                continue
+            if pn not in src:
+                rep_['missing'].append('%s %s %s' % (c['box'], c['cav'], pn))
+                continue
+            wax = S.BLADE_AXIS[c['kind']]
+            zs, (zb, zl) = c['zones'], (c['zones'][-2], c['zones'][-1])
+            if wax == 'x':      # H axis = y: the window side is where the last zone reaches further out
+                side = 1 if zl[5] > zb[5] + 1e-6 else (-1 if zl[4] < zb[4] - 1e-6 else 1)
+                eW, eH = (1.0, 0.0, 0.0), (0.0, -side, 0.0)      # model +Y (away from the lance) -> -side
+            else:
+                side = 1 if zl[3] > zb[3] + 1e-6 else (-1 if zl[2] < zb[2] - 1e-6 else 1)
+                eW, eH = (0.0, 1.0, 0.0), (-side, 0.0, 0.0)
+            eZ = (0.0, 0.0, 1.0)
+            det = eW[0] * (eH[1] * eZ[2] - eH[2] * eZ[1]) - eW[1] * (eH[0] * eZ[2] - eH[2] * eZ[0]) + eW[2] * (eH[0] * eZ[1] - eH[1] * eZ[0])
+            if det < 0:
+                eW = tuple(-v for v in eW)                       # keep it a rotation (the terminal is symmetric across its blade width)
+            yb = S.REAL[pn]['box'][1] / 2 if pn in S.REAL else S.VENDOR_TERM[pn][2]     # the blade line = the box's Y centre (real_zones uses it)
+            sx_, sy_ = S.PLACE[c['box']]
+            org = (c['x'] + sx_ - eH[0] * yb, c['y'] + sy_ - eH[1] * yb, zt[c['box']] - S.seat_gap(pn, c['kind']))
+            m = adsk.core.Matrix3D.create()
+            m.setWithCoordinateSystem(P(*org), V(*eW), V(*eH), V(*eZ))
+            for b_ in src[pn]:
+                t_ = tb.copy(b_)
+                tb.transform(t_, m)
+                by.setdefault((c['box'], pn), []).append(t_)
+            rep_['placed'][c['box'] + ' ' + c['cav']] = pn
+        for (bx_, pn), bl in by.items():
+            comp(('Power_' if bx_ == 'POWER' else 'Logic_') + 'Terminal_TE_%s' % pn, bl, AP['brass'], MAT['brass'])
+        rep_['count'] = len(rep_['placed'])
+        rep_['source'] = {pn: dict(file='cad/vendor/%s/%s/%s' % (v[0], pn, v[1]), url=S.TE_DOC % (v[3], pn)) for pn, v in S.VENDOR_TERM.items()}
+    place_terminals()
 
     # ------------------------------------------------------------------ checks
     mm = app.measureManager

@@ -25,7 +25,7 @@ OD = dict(S.OD)
 OD[16] = OD.get(16, 2.06)
 METRIC_OD = {53.5: OD['1/0']}            # 1/0 SGX, 53.5 mm2
 MM2 = {20: 0.52, 18: 0.82, 16: 1.31, 14: 2.08, 12: 3.31, 10: 5.26, 8: 8.37, 6: 13.3}
-TERM_RANGE = {'1241388-2': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
+TERM_RANGE = {'1241388-2': (0.5, 1.0), '1241390-1': (1.5, 2.5), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
               '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '62998-2': (5.0, 8.0)}     # mm2, from the parts list / harness part text
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn', 'k_etb': 'k_etb', 'k_acc': 'k_acc', 'k_eps_en': 'k_eps_en', 'k_rev': 'k_rev',
                'heater': 'k_htr', 'k_efi': 'k_efi', 'k_str': 'k_str', 'k_fan': 'k_fan', 'k_fan2': 'k_fan2', 'power': 'k_pwr'}
@@ -59,7 +59,7 @@ def logic_cavities():
             if not pn:
                 continue
             rid = RELAY_NAMES[nm]
-            for (u, v, tn) in ((0, -8.0, '30'), (0, 8.0, '87'), (0, 0, '87a'), (-4.5, 0, '85'), (4.5, 0, '86')):
+            for tn, (u, v) in S.MICRO_PINS.items():
                 cav[(rid, PIN[tn])] = dict(x=cx + u, y=cy + v, lane=('L', cx), kind='micro ' + tn, name=rid)
     return cav
 
@@ -80,9 +80,12 @@ def power_cavities():
     acps_y = S.ACPS_Y
     for r in power_relays():
         cx, cy = r['cx'], r['cy']
-        pins = [('87', cx - 7.65, cy, cy), ('30', cx + 10.25, cy, None), ('85', cx + 0.25, cy - 8.45, cy - 9.0), ('86', cx + 0.25, cy + 8.45, cy + 9.0)]
+        P_ = S.RELAY_B_PINS if r['B'] else S.F7_PINS        # fit audit 2026-10-18: the maker pattern; harness pin -> blade by S.POWER_ROLE_POS
+        pos_ = {'near': (cx - P_['30'][1], cy), 'far': (cx - P_['87'][1], cy)}
+        pins = [('87',) + pos_[S.POWER_ROLE_POS['87']] + (cy,), ('30',) + pos_[S.POWER_ROLE_POS['30']] + (None,),
+                ('85', cx - P_['85'][1], cy + P_['85'][0], cy - 9.0), ('86', cx - P_['86'][1], cy + P_['86'][0], cy + 9.0)]
         if r['B']:
-            pins.append(('87a', cx - S.RELAY_B['v87a'], cy, cy))
+            pins.append(('87a', cx - P_['87a'][1], cy, cy))
         for (tn, x, y, lane) in pins:
             if lane is not None and (abs(lane - acps_y) < 1.0 or abs(lane - (S.AMI_Y0 - 9.0)) < 0.1):
                 lane = acps_y                      # the heater 85 joins the ACPS lane (as the CAD)
@@ -440,14 +443,13 @@ def all_cavities():
     for cx in S.MICRO_COLS:
         for cy in S.MICRO_Y:
             k += 1
-            for (u, v, tn) in ((0, -8.0, '30'), (0, 8.0, '87'), (0, 0, '87a'), (-4.5, 0, '85'), (4.5, 0, '86')):
+            for tn, (u, v) in S.MICRO_PINS.items():
                 out[('LOGIC', 'M%d %s' % (k, tn))] = dict(x=cx + u, y=cy + v, kind='micro ' + tn)
     for i, nm in enumerate(S.IN_RELAY):
         cx = S.F7_X[1] if i % 2 == 0 else S.F7_X[0]
         cy = S.AMI_Y0 + i * S.AMI_PITCH
-        pins = [('87', cx - 7.65, cy), ('30', cx + 10.25, cy), ('85', cx + 0.25, cy - 8.45), ('86', cx + 0.25, cy + 8.45)]
-        if nm == S.RELAY_B['pos']:
-            pins.append(('87a', cx - S.RELAY_B['v87a'], cy))
+        P_ = S.RELAY_B_PINS if nm == S.RELAY_B['pos'] else S.F7_PINS     # the cavities named by the real blade (fit audit 2026-10-18)
+        pins = [(tn, cx - v, cy + u) for tn, (u, v) in P_.items()]
         for (tn, x, y) in pins:
             out[('POWER', 'R%d %s' % (i + 1, tn))] = dict(x=x, y=y, kind='F7 ' + tn, relay=nm)
     out[('POWER', 'ACPS IN')] = dict(x=S.F7_X[0] - 3.0, y=S.ACPS_Y, kind='acps in')

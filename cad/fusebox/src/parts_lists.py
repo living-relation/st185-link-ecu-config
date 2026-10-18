@@ -421,7 +421,7 @@ def build(rev=6):
     for p in sorted(set(p[1] for p in MICRO_USED)):
         k = sum(1 for q in MICRO_USED if q[1] == p)
         who = ', '.join(q[0] for q in MICRO_USED if q[1] == p)
-        desc = {'5-1393292-8': 'Micro Relay A (V23074-A2001-A402) 1 form A, 12 V, diode', '4-1904124-3': 'Micro Relay A (V23074-A1001-A403) 1 form A, 12 V',
+        desc = {'5-1393292-8': 'Micro Relay A (V23074-A2001-A402) 1 form A, 12 V, diode', '4-1904124-3': 'Micro Relay A (V23074-A1001-A403) 1 form C, 12 V, resistor (TE data sheet rev 1119 p.4; was listed as 1 form A)',
                 '4-1904124-2': 'Micro Relay A (V23074-A1001-A402) 1 form A, 12 V, resistor', '6-1419137-4': 'Micro Relay A (V23074-A2001-A403) 1 form C, 25 A, 12 V, diode'}[p]
         L.add(G, 'Relays', 'Micro relay: ' + who, p, 'TE Connectivity', desc, k, url=TE(p),
               checked='TE page; customer drawing V23074-A2001-A402-CD: terminals 1, 2 coil 4.8 x 0.8, 3, 5 load 6.3 x 0.8' if p == '5-1393292-8' else 'TE page; te-on-hand-bom.csv',

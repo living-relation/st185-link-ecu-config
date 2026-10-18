@@ -312,7 +312,11 @@ WALL_EXEMPT = {
                       'strap_fea.py); its slots are 1.0 (> 0.5 S6) and the ledge the lips rest on is between the well and the slot',
 }
 GAP_OPEN = 0.65      # SteveCAD sweep C1 (S6): least opening of a cavity-join bridge - HP MJF needs >= 0.5 between faces (check_printed_solid S6)
-MICRO_NO = ('5-1393292-8', '4-1904124-3', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)
+MICRO_NO = ('5-1393292-8', '4-1904124-2')     # normally-open micro relays: no 87a contact (no 87a blade)
+# Fit audit 2026-10-18: 4-1904124-3 (horn) is V23074-A1001-A403 = 1 form C, resistor (TE Micro Relay A data sheet rev 1119 p.4 part table, te.com
+# page, TE STEP: 5 blades) - it has an 87a blade, so it gets the 87a slot. 5-1393292-8 (V23074-A2001-A402, NOD): the data sheet (p.3 NOD, terminals
+# 1 2 3 5) and TE customer drawing V23074-A2001-A402-CD show 4 blades, but TE's 3D model c-5-1393292-8-o-3d.stp has a 5th at terminal 4 -
+# UNVERIFIED; the box follows the drawings (no slot). Check one on the shelf before printing (OPEN-ITEMS).
 MICRO_POS = [('HEAD LH', '5-1393292-8', 'OWN'), ('HEAD RH', '5-1393292-8', 'OWN'), ('horn', '4-1904124-3', 'OWN'),
              ('k_etb', '4-1904124-2', 'OWN'), ('k_acc', '6-1419137-4', 'OWN'), ('k_eps_en', '6-1419137-4', 'OWN'),
              ('k_rev', '6-1419137-4', 'BUY'), ('SPARE', None, None), ('SPARE', None, None), ('SPARE', None, None)]
@@ -330,7 +334,27 @@ ACPS = ('ACPS', 10)
 # (V23234-A0001-X032): TE lists every V23234 1 form C as Superseded. The pocket below is still the Power Relay B drawing (body 28.5
 # (-1) square x 25.3 (-0.6); 85-86 16.8, 87 7.9 from the 85/86 line, 87a 8.35 from 87, 30-87 17.9): same ISO 7588 Mini pattern, check the
 # F4 A drawing (V23136-A0004-X059-CD) against it at the next Fusion rebuild.
-RELAY_B = dict(body=28.5, h=25.3, pos='heater', v87a=7.65 - 8.35)
+RELAY_B = dict(body=28.5, h=25.3, pos='heater', v87a=-10.25 + 8.35)   # fit audit 2026-10-18: 87a is 8.35 from 87 (the far blade), was from 30
+# ---------- relay pin patterns (fit audit 2026-10-18, Dispatch: "the maker drawings decide the pattern"). Each from the maker drawing, checked on
+# TE's own STEP (cad/vendor/te/<pn>/, cad/vendor/INDEX.md). Until 2026-10-18 the micro pattern was an estimate ("set exactly in detail work") and
+# the Mini ISO pattern had the coil line 1.6 off, the 30 blade turned the wrong way and the 30 / 87 names on the wrong blades.
+# Micro Relay A (TE data sheet V23074 rev 1119 p.3, bottom view; STEPs 4-1904124-2/-3, 5-1393292-8, 6-1419137-4): 30 (terminal 3) 8 from 87
+# (terminal 5), 87 6 from the coil row 85 / 87a / 86 (terminals 2 / 4 / 1, 4.5 apart), all on the relay's long axis; 87 is 11.4 from the body end
+# = the body centre. Coil + is terminal 1 (the NOD / COD diode's cathode side) = 86, at +x; 85 (terminal 2, coil -) at -x. Box (dx, dy) from the
+# relay centre (cx, cy); load blades 6.3 wide across the axis, 85 / 86 / 87a 4.8 wide along it.
+MICRO_PINS = {'30': (0.0, -8.0), '87': (0.0, 0.0), '87a': (0.0, 6.0), '85': (-4.5, 6.0), '86': (4.5, 6.0)}
+# Power Relay F7, Maxi ISO (TE data sheet V23134 rev 2607 p.3, bottom view; STEPs 1-1414147-0, 1-1393304-0): 85 - 86 16.9; 87 8.4 from the coil
+# line, blade along it; 30 9.5 the other side (30 - 87 17.9), blade turned 90 deg; 87 2.7 from the 25.9 body edge. (u, v) in the build's F7 frame:
+# box x = cx - v, y = cy + u. The heater relay (Power Relay F4 A 1-1414687-0, STEP; Power Relay B pattern): 87 7.9 from the coil line (85 - 86
+# 16.8), 87a 8.35 from 87, 30 - 87 17.9.
+F7_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '85': (-8.45, -1.85), '86': (8.45, -1.85)}
+RELAY_B_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '87a': (0.0, RELAY_B['v87a']), '85': (-8.4, -2.35), '86': (8.4, -2.35)}
+# Which harness pin (sot/channels.csv c1 = 30, c4 = 87) lands on which real blade. The box brings every AMI feed up round its saddle into the FAR
+# blade (v -10.25) = the real 87, and takes the harness out of the NEAR blade = the real 30. The F7s are 1 form A (30 - 87 is one switch, either way
+# round): their SoT feed (30) sits on the real 87 - OPEN-ITEMS row: swap the SoT / CabinPower roles or re-route. The heater (1 form C, DECISIONS
+# R163): SoT 87 = the 40 A feed = the far blade, SoT 30 = the blower = the near blade, as on the car (1993 EWD p.215); ST185-CabinPower still draws
+# the feed on c1 (OPEN-ITEMS row), so the map below stays c1 -> far, c4 -> near for every relay until that redraw (then k_htr: c1 near, c4 far).
+POWER_ROLE_POS = {'30': 'far', '87': 'near'}
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
 BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper flat bar stock; machined parts since D6 (Dan 2026-10-16, R76 amended)
 # SteveCAD audit v3 (2026-10-16, Dan's D3 / D6): clearance holes ISO 273 medium, tapped holes modelled at the ISO coarse tap drill,
@@ -418,7 +442,9 @@ def jumper(amps):
 LOGIC = dict(L=83.5 + PEM_GROW, z_d=38.5)                        # R123: 2.0 wider (micro relay columns out, self-locking ledges); rev 7: 2.5 wider (clearance fix; rev 6: 79.0); rev 6: deck 18.5 higher - upper lug barrel end 34.15 + 4 of jumper below the cavity
 LOGIC['z_t'] = LOGIC['z_d'] + TOWER_H['LOGIC']
 STRIP_Z0 = 5.9                                        # strip bottom edge, on the spine lips (pan floor top 4.0)
-SPINE = dict(t=2.2, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
+SPINE = dict(t=3.0, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
+# fit audit 2026-10-18: t 2.2 -> 3.0 - the strip rail (card item 13, 22-59) hangs on the spine, and R127 wants >= 3 mm under a held piece; the
+# strips are 9.2 apart (PEM_GROW), so 3.1 of air stays each side; the M4 bolt-tip passes are cut through the spine as before
 # strip y extents and feeds: BUS1 feed at its front end (lug face, wire out the front), BUS2 feed at its rear end (wire out the rear)
 # J4 = B (Dan, 2026-10-14, DECISIONS R94): the Bus 1 strip starts 3.5 later (8 -> 11.5) and its feed lug sits lower and 3 mm rearward
 # (y 15 / z 22 -> y 18 / z 13), so a band opens in front of the spine where the HL / HR / ETB wires cross under the deck (CHANNEL below).
@@ -580,14 +606,15 @@ REV7_STOCK_BARS = 2   # POS bar 226 + battery block bar 36.5 from bar 1; NEG bar
 # to come back in.
 # Terminal data from the TE product pages, read 2026-10-14 (te.com/en/product-<pn>.html, "Features"): compatible insulation diameter
 # range (mm), terminal material thickness t (mm), product length L (mm). None = not on the TE page: T_EST / L_EST are used and marked est.
-TERM = {
+TERM = {   # L: R161 / R162 - from the TE STEP where we have one (42281-1 19.05 -> 20.18, 280755 / 6 29 -> 28.2, 1241388-2 18.45)
     '880398-2': dict(ins=(2.3, 3.5), t=None, L=26.5, head=(5.6, 4.1), what='2.8 receptacle 1-2.5 mm2 (17-13 AWG), typical 33 A'),
-    '1241388-2': dict(ins=(1.4, 2.1), t=None, L=None, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
-    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=19.05, head=(7.49, 3.45), what='FASTON .250 receptacle 18-14 AWG'),
+    '1241388-2': dict(ins=(1.4, 2.1), t=None, L=18.45, head=(4.4, 4.4), what='MCP 2.8K receptacle 0.5-1 mm2, typical 15 A'),
+    '1241390-1': dict(ins=(2.2, 3.0), t=None, L=18.45, head=(3.1, 4.4), what='MCP 2.8K receptacle 1.5-2.5 mm2, unsealed, tin, typical 22 A'),
+    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=20.18, head=(7.49, 3.45), what='FASTON .250 receptacle 18-14 AWG'),
     '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, 3.0), what='FASTON .187 receptacle 20-15 AWG'),
     '280919-2': dict(ins=(2.31, 3.3), t=0.25, L=16.0, head=(5.6, 2.3), what='FASTIN-FASTON .187 receptacle 20-15 AWG, locking lance'),
-    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=29.0, head=(11.10, 3.80), what='FASTON .375 receptacle 10-7 AWG'),
-    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=29.0, head=(11.10, 3.80), what='FASTON .375 receptacle 12-10 AWG'),
+    '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=28.18, head=(11.10, 3.80), what='FASTON .375 receptacle 10-7 AWG'),
+    '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=28.17, head=(11.10, 3.80), what='FASTON .375 receptacle 12-10 AWG'),
     '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, head=(7.62, 3.2), what='FASTON .250 receptacle 10-8 AWG'),
 }
 # R120 (Dan 2026-10-15, M6): head = the receptacle's widest section (W across the tab, H through it, lance included), max of tolerance,
@@ -599,12 +626,23 @@ HEAD_EST = {'2293255-1', '62998-2', '42281-1', '280919-2'}
 # R121 (2026-10-15): head = the RIGID contact box, the locking lance folded flat (it springs in as it goes through): 42281-1 4.70 over the
 # lance - 1.25 lance (est: the 280755 / 280756 lance height on their TE pages) = 3.45 est; 280755 / 280756 3.80 (the 1.25 lance is LOCK).
 T_EST, L_EST = 0.40, 20.0        # est: metal thickness / length where the TE page gives none
-HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)   # terminal hole (R120): slot = terminal envelope + 0.4 per side; walls >= 2.0
+HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)
+# Fit audit 2026-10-18 (Dispatch rule 3, "each blade lands in its terminal's contact zone"): the receptacle's contact end sits SEAT_GAP under the
+# deck top. With top_gap 1.0 the TE micro relay's 4.8 blades (11.17 long below the relay's feet, TE STEPs 4-1904124-2/-3, 5-1393292-8,
+# 6-1419137-4; data sheet 11.2 +-0.3) went 10.17 into the 280919-2 receptacle, whose contact box is 8.25 long before its wire barrel (TE STEP
+# c-280919-2-m-3d.stp) - the tip ran into the crimp. Every receptacle of a micro relay now sits 3.2 down (one seat plane, so no PA12 sliver is left
+# between a shallow and a deep cavity): the blades go 7.97 into 280919-2 (box 8.25) and 42281-1 (box 10.25). Every other pairing lands inside its
+# box at 1.0 (fit_audit.json). Worst-case blade tolerance against TE's application specs: UNVERIFIED (114-series specs on Dan's download list).
+SEAT_GAP = {'micro': 3.2}       # by cavity kind prefix
+
+
+def seat_gap(part, kind=''):
+    return SEAT_GAP.get(kind.split(' ')[0], HOLE['top_gap'])   # terminal hole (R120): slot = terminal envelope + 0.4 per side; walls >= 2.0
                                                                 # (R73) or the two holes join into one slot (Dan); >= 2 mm deep at the mouth;
                                                                 # receptacle top 1 below the deck top
 # Default terminal of a cavity with no harness wire yet (a spare): the largest wire it takes, so a later wire still fits.
 TERM_DEFAULT = {'fuse in': ('880398-2', 14), 'fuse out': ('880398-2', 14), 'acps in': ('880398-2', 14), 'acps out': ('880398-2', 14),
-                'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('42281-1', 14), 'micro 85': ('280919-2', 18),
+                'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('280919-2', 18), 'micro 85': ('280919-2', 18),
                 'micro 86': ('280919-2', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
 FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on solid material than this is floating (Dan's marks: 5-15 %; the rest >= 76 %)
@@ -659,7 +697,7 @@ def barrel_od(part, wire_od):
 # width (head W) runs along, from the cavity pockets in build_fusion.py (fuse / ACPS blades in the fuse plane; micro 30 / 87 across the
 # relay, 85 / 86 / 87a along it; F7 cavities turned 90 deg).
 BLADE_AXIS = {'fuse in': 'x', 'fuse out': 'x', 'acps in': 'x', 'acps out': 'x', 'micro 30': 'x', 'micro 87': 'x', 'micro 85': 'y',
-              'micro 86': 'y', 'micro 87a': 'y', 'F7 30': 'y', 'F7 87': 'y', 'F7 87a': 'y', 'F7 85': 'x', 'F7 86': 'x'}
+              'micro 86': 'y', 'micro 87a': 'y', 'F7 30': 'x', 'F7 87': 'y', 'F7 87a': 'y', 'F7 85': 'x', 'F7 86': 'x'}   # F7 30 turned 90 deg to 87 (fit audit 2026-10-18)
 
 
 # R120 as Dan confirmed it (2026-10-15): "Hole size = the largest cross-section, seen along the wire's insertion axis, of everything that
@@ -687,6 +725,7 @@ BLADE_AXIS = {'fuse in': 'x', 'fuse out': 'x', 'acps in': 'x', 'acps out': 'x', 
 LOCK = {
     '880398-2': dict(kind='lance', axis='W', out=1.6, tip=9.7, shoulder=3.8, flange=8.6, neck=13.5, est=True),
     '1241388-2': dict(kind='lance', axis='H', out=0.8, tip=6.3, neck=15.0, est=True),
+    '1241390-1': dict(kind='lance', axis='W', out=0.54, tip=5.5, neck=16.0, est=False),
     '42281-1': dict(kind='lance', axis='H', out=1.25, tip=7.37, neck=15.0, est=True),
     '280755-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
     '280756-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
@@ -709,6 +748,9 @@ def _xy(w, h, kind):
 def hole(part, kind):
     """(size x, size y) of the hole (R120): the combined outline of the box, the barrels on the thickest insulation and (880398-2) the
     stop flange, + clr per side, the long side along BLADE_AXIS[kind]. Never from today's wire: that only has to be smaller."""
+    if part in REAL:             # the real terminal: the size of the hole zone (it may sit off the blade line - zones() places it)
+        z_ = real_zones(part, kind)[0]
+        return (z_[3] - z_[2], z_[5] - z_[4])
     (w, h), b, c = TERM[part]['head'], barrel_max(part), 2 * HOLE['clr']
     w = max(w, b, LOCK[part].get('flange', 0.0))
     return _xy(w + c, max(h, b) + c, kind)
@@ -750,6 +792,8 @@ def zones(part, kind, side=1):
     and the R121 lance window from the tip up to the seat: both sides of the blade width for a 'W' lance (880398-2), the `side` of the H
     axis for an 'H' lance (lance_side: the side with the most room, the terminal goes in lance that way). The deck's blade slot above the
     seat, narrower than the box, is the stop the other way."""
+    if part in REAL:
+        return real_zones(part, kind, side)
     L_, (w, h), c = LOCK[part], TERM[part]['head'], 2 * HOLE['clr']
 
     def r(a, b, ea=0.0, eb=0.0):        # a x b (W x H frame) with the H side extended by ea (-) / eb (+), into box x / y
@@ -803,6 +847,11 @@ SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, bos
 # terminals are in; two barbed legs snap into pockets in the cavity collar; its plate stops every terminal on that relay from backing out.
 # Wire holes = the wire there + clr per side (smaller than the crimped insulation barrel it stops; a thicker-wire harness reprints the clip).
 TERM_SWAP = {'2293255-1': '280919-2'}
+# Q1 (held for Dan, 2026-10-18; evidence _research/snapshots/2026-10-18-fusebox-fit/Q1/): the mini fuse sockets keep TE 880398-2 until Dan picks
+# A (880398-2, joined lance windows), B (MCP 2.8K 1241388-2 / 1241390-1 by wire size) or C (wider grid). The 2026-10-18 "clash" was the model
+# turned 90 deg: 880398-2 is a tuning fork (TE drawing 880398 L1) whose tines and 8.21 lances face ACROSS the blade thickness. Until Q1 its
+# STEP is not placed in the assembly (PLACE_HOLD) and the LOGIC fuse rows of the fit audit read HOLD.
+PLACE_HOLD = {'880398-2': 'Q1 (Dan): mini fuse socket terminal not chosen yet'}
 RETAIN = {'POWER': ['R1']}      # relay positions whose terminals are held by a retainer clip (the heater relay k_htr)
 RETAINER = dict(t=2.0, play=0.2, leg=(2.5, 4.0), leg_h=6.0, barb=0.6, barb_h=1.5, clr=CLR, boss=2.0, bear=0.3,
                 leg_shift={'R1': (0.0, 10.5)})   # along the short side, per leg: R1's +x leg clears the heater feed-cable bend saddle (y 38.4-47.6)
@@ -832,3 +881,101 @@ LANE_X = {('LOGIC', 10.5): (6.9, 11.5)}   # Bus 1 output lane: wire edges betwee
 PAN_RELIEF = dict(depth=0.5, fwd=11.0, back=5.0)   # inner face cut back 0.5 (wall 2.5 -> 2.0, the R73 minimum): the base legs sit right outside it at y 21 / 141
 PAN_SNAPS_X = (63.0, 123.0)       # LOGIC belly pan catches on the end walls, clear of the reliefs (rev 7: 0.3 / 0.7 of the depth)
 CHANNEL_CAD_SKIP = {'HL', 'HR', 'ETB', 'HEAD LH 30', 'HEAD LH 86', 'HEAD RH 30', 'HEAD RH 86', 'k_etb 30'}   # CAD tails that are channel wires now
+
+
+# ---------- vendor CAD models (Dan 2026-10-18, DECISIONS R161: "you should use actual official cad models from manufacturer websites or other
+# community shared sites when possible"). The files live in the main checkout's cad/vendor/<maker>/<pn>/ (gitignored, R67); cad/vendor/INDEX.md
+# (committed) lists PN, source URL and file. TE customer view models (te.com "3D STEP" link on each product page, read 2026-10-18): frame =
+# contact (mating) end at Z 0, the wire running down -Z, blade width along X, the locking lance on the -Y side; y_box = the contact box's Y centre
+# (measured on the STEP over its top 4 mm) - the blade line, put on the cavity centre.
+VENDOR_DIR_MAIN = r'C:\projects\active\st185-link-ecu-config\cad\vendor'
+TE_DOC = 'https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=%s&DocType=Customer%%20View%%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=%s'
+VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
+    '880398-2': ('te', 'c-880398-2-t-3d.stp', 2.24, 'CVM_880398-2'),
+    '1241388-2': ('te', 'c-1241388-2-c6-3d.stp', 2.20, '1241388-2'),
+    '1241390-1': ('te', 'c-1241390-1-c6-3d.stp', 2.20, '1241390-1'),
+    '42281-1': ('te', 'c-42281-1-dj-3d.stp', 1.65, 'CVM_42281-1'),
+    '280919-2': ('te', 'c-280919-2-m-3d.stp', 0.85, 'CVM_280919-2'),
+    '280755-4': ('te', 'c-280755-4-l-3d.stp', 1.99, 'CVM_280755-4'),
+    '280756-4': ('te', 'c-280756-4-p-3d.stp', 1.99, 'CVM_280756-4'),
+    '62998-2': ('te', 'c-62998-2-w-3d.stp', 1.43, 'CVM_62998-2'),
+}
+
+
+# R161 / R162 (card item 13, 2026-10-18): the terminal cavities are sized from the REAL terminal - TE's own STEP (spec.VENDOR_TERM) - not from
+# estimates. Measured on each model (sections every 0.5 mm, model frame: contact end Z 0, wire down -Z, blade width X, lance on -Y, box floor
+# Y 0): box W x H (Y 0..H, the blade line at H / 2), lock (W = side lances +-X / H = one lance on -Y: spring-out past the box, tip depth =
+# the deepest section the lance reaches, + 0.1 - checked by interference in the assembly), neck
+# (contact end to the insulation barrel = where the big hole starts, R120), L. The models show the barrels OPEN (uncrimped wings); crimped
+# (R120: the thickest wire / insulation the terminal accepts): wire barrel Y 0 .. d_max + 2 t, insulation barrel Y y_ins .. y_ins + ins_max + 2 t,
+# width = TE application spec crimp width where TE gives one (114-20021 .375 series: wire 4.06 - 4.57, insulation 6.35), else the same as the
+# height. d_max = the stranded conductor diameter at the top of the TE wire range (est: not on the TE pages); t = the metal (TE page, else
+# T_EST). Cross-check 280756-4: 2.95 + 2 x 0.51 = 3.97 high vs TE 114-20021's 3.20 for 6 mm2 - conservative.
+REAL = {   # pn: box (W, H), lock (axis, out, tip) or None, neck, L, wire barrel z (from, to), insulation barrel (z from, y_lo), d_max, spec widths
+    '1241388-2': dict(box=(3.10, 4.40), lock=('W', 0.54, 6.4), neck=16.0, L=18.45, wz=(9.75, 15.75), iz=(16.25, 0.75), d=1.30, ww=None, iw=None, lclr=0.2),
+    '1241390-1': dict(box=(3.10, 4.40), lock=('W', 0.54, 6.4), neck=16.0, L=18.45, wz=(9.75, 15.75), iz=(16.25, 0.55), d=2.00, ww=None, iw=None, lclr=0.2),
+    '42281-1': dict(box=(7.44, 3.30), lock=('H', 1.04, 7.1), neck=16.0, L=20.18, wz=(10.25, 15.75), iz=(16.25, -0.38), d=1.85, ww=None, iw=None),
+    '280919-2': dict(box=(5.60, 2.40), lock=('H', 1.00, 5.1), neck=12.5, L=16.0, wz=(8.25, 12.25), iz=(12.5, -0.40), d=1.60, ww=None, iw=None),
+    '280755-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.18, wz=(16.5, 22.5), iz=(24.5, -0.64), d=4.10, ww=4.57, iw=6.35),
+    '280756-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.17, wz=(16.5, 22.5), iz=(24.5, -0.64), d=2.95, ww=4.06, iw=6.35),
+    '62998-2': dict(box=(7.54, 2.85), lock=None, neck=16.0, L=19.68, wz=(10.5, 14.5), iz=(16.25, -0.51), d=3.70, ww=None, iw=None),
+}
+
+
+# lclr: clearance at the lance's ledge (the box-sized stretch under the window). TE's MCP 2.8K lances spring only 0.54 past the box, so with the
+# R120 0.4 the catch would be 0.14 - under check_terminal_holes LOCK_MIN 0.3; 0.2 there gives 0.34 (the rest of the cavity keeps 0.4).
+LEDGE_CLR = {pn: v['lclr'] for pn, v in REAL.items() if 'lclr' in v}
+for _pn, _r in REAL.items():          # the lock data the gates read = the real terminal's
+    if _r['lock']:
+        LOCK[_pn].update(axis=_r['lock'][0], out=_r['lock'][1], tip=_r['lock'][2], neck=_r['neck'], est=False)
+        LOCK[_pn].pop('shoulder', None)
+    else:
+        LOCK[_pn].update(neck=_r['neck'], est=False)
+
+
+def real_env(pn):
+    """Crimped envelope of the real terminal in the model frame: dict(box, wire, ins) of (half width, y_lo, y_hi) + the blade line yb."""
+    R_, T_ = REAL[pn], TERM[pn]
+    t = T_['t'] if T_['t'] is not None else T_EST
+    W_, H_ = R_['box']
+    hw = H_ if False else None
+    wh = R_['d'] + 2 * t                                    # crimped wire barrel height (from the floor, Y 0)
+    ih = T_['ins'][1] + 2 * t                               # crimped insulation barrel height (from its floor)
+    y_i = R_['iz'][1]
+    return dict(yb=H_ / 2, box=(W_ / 2, 0.0, H_), wire=(max(R_['ww'] or 0.0, wh) / 2, 0.0, wh),
+                ins=(max(R_['iw'] or 0.0, ih) / 2, y_i, y_i + ih))
+
+
+def real_zones(part, kind, side=1):
+    """zones() from the real terminal (R120 / R121 as before, real numbers): from the mouth to the neck everything that passes (box, crimped
+    barrels, the wire behind), the neck to the lance tip the box and the crimped wire barrel (the lance folds flat as it passes, so its ledge
+    stays), the tip to the seat the box + the sprung lance (W: both sides of the blade width; H: the -Y side). Coordinates relative to the cavity
+    centre = the blade line; model +Y -> box H axis * -side (the placement in build_fusion.place_terminals uses the same mapping)."""
+    E, R_, c = real_env(part), REAL[part], HOLE['clr']
+    yb = E['yb']
+
+    def to_box(u0, u1, v0, v1):          # (W range, model-Y range rel. to the blade line) -> (x0, x1, y0, y1)
+        h0, h1 = sorted((-side * v0, -side * v1))
+        if BLADE_AXIS[kind] == 'x':
+            return (u0, u1, h0, h1)
+        return (h0, h1, u0, u1)
+    bw, bl, bh = E['box']
+    ww, wl, wh = E['wire']
+    iw, il, ih = E['ins']
+    u_all = max(bw, ww, iw) + c
+    hole = to_box(-u_all, u_all, min(bl, wl, il) - yb - c, max(bh, wh, ih) - yb + c)
+    cl = R_.get('lclr', c)
+    ax = R_['lock'][0] if R_['lock'] else None
+    u_bx = max(bw + (cl if ax == 'W' else c), ww + c)
+    box_ = to_box(-u_bx, u_bx, bl - yb - (cl if ax == 'H' else c), max(bh, wh) - yb + c)
+    out = [(None, -R_['neck']) + hole]
+    if R_['lock'] is None:
+        return out + [(-R_['neck'], 0.0) + box_]
+    ax, o, tip = R_['lock']
+    if ax == 'W':
+        u_w = max(bw + o + c, ww + c)
+        win = to_box(-u_w, u_w, bl - yb - c, max(bh, wh) - yb + c)
+    else:
+        win = to_box(-u_bx, u_bx, bl - yb - c - o, max(bh, wh) - yb + c)
+    return out + [(-R_['neck'], -tip) + box_, (-tip, 0.0) + win]
+
