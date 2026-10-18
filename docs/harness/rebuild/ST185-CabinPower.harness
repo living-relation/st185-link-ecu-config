@@ -1627,8 +1627,8 @@
         "y": 5460
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 2700
+        "x": 1380,
+        "y": 300
       },
       "partId": "cp_rly_f7_b",
       "width": 390
@@ -1668,8 +1668,8 @@
         "y": -5520
       },
       "schematicPosition": {
-        "x": 5400,
-        "y": 2700
+        "x": 1380,
+        "y": 780
       },
       "partId": "cp_rly_f7_b",
       "width": 390
@@ -1713,8 +1713,8 @@
         "y": 5520
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 3300
+        "x": 1380,
+        "y": 2580
       },
       "partId": "cp_rly_nor",
       "width": 390
@@ -1754,8 +1754,8 @@
         "y": -5640
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 3300
+        "x": 1380,
+        "y": 540
       },
       "partId": "cp_rly_f7_b",
       "width": 390
@@ -1795,8 +1795,8 @@
         "y": 5580
       },
       "schematicPosition": {
-        "x": 5400,
-        "y": 3300
+        "x": 1380,
+        "y": 1020
       },
       "partId": "cp_rly_f7_a",
       "width": 390
@@ -1806,8 +1806,8 @@
       "label": "EHPS RELAY",
       "width": 390,
       "schematicPosition": {
-        "x": 4200,
-        "y": 3900
+        "x": 1380,
+        "y": 1500
       },
       "layoutPosition": {
         "x": -840,
@@ -1883,8 +1883,8 @@
         "y": -4710
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 3900
+        "x": 1380,
+        "y": 3390
       },
       "partId": "cp_rly_micro_co",
       "width": 390
@@ -1931,8 +1931,8 @@
         "y": 5100
       },
       "schematicPosition": {
-        "x": 5400,
-        "y": 3900
+        "x": 1380,
+        "y": 2850
       },
       "partId": "cp_rly_micro_co",
       "width": 390
@@ -1979,8 +1979,8 @@
         "y": 5220
       },
       "schematicPosition": {
-        "x": 6000,
-        "y": 3900
+        "x": 1380,
+        "y": 3120
       },
       "partId": "cp_rly_micro_co",
       "width": 390
@@ -2027,8 +2027,8 @@
         "y": -4770
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 5100
+        "x": 1380,
+        "y": 1770
       },
       "partId": "cp_rly_micro_no_d",
       "width": 390
@@ -2075,8 +2075,8 @@
         "y": -4830
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 5100
+        "x": 1380,
+        "y": 2040
       },
       "partId": "cp_rly_micro_no_d",
       "width": 390
@@ -2123,8 +2123,8 @@
         "y": 5160
       },
       "schematicPosition": {
-        "x": 5400,
-        "y": 5100
+        "x": 1380,
+        "y": 2310
       },
       "partId": "cp_rly_micro_no",
       "width": 390
@@ -2174,8 +2174,8 @@
         "y": -5580
       },
       "schematicPosition": {
-        "x": 6000,
-        "y": 5100
+        "x": 1380,
+        "y": 30
       },
       "partId": "cp_rly_maxi_co",
       "width": 390
@@ -2218,8 +2218,8 @@
         "y": 5640
       },
       "schematicPosition": {
-        "x": 6600,
-        "y": 5100
+        "x": 1380,
+        "y": 1260
       },
       "partId": "cp_rly_f7_a",
       "width": 390
@@ -2323,8 +2323,8 @@
         "y": 5340
       },
       "schematicPosition": {
-        "x": 480,
-        "y": 2700
+        "x": 600,
+        "y": 0
       },
       "partId": "cp_fb_power",
       "width": 390
@@ -2502,8 +2502,8 @@
         "y": -4590
       },
       "schematicPosition": {
-        "x": 1200,
-        "y": 1860
+        "x": 600,
+        "y": 570
       },
       "partId": "cp_fb_logic",
       "width": 390
@@ -2513,821 +2513,821 @@
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
-      "signal": "INJ 12V -> BH-A 1",
       "width": 390,
       "layoutPosition": {
         "x": -1620,
         "y": -4410
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 2880
+        "x": 0,
+        "y": 1200
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead A pin 1 (DRB102, RH firewall) - injector +12 V rail (INJ 15A)"
     },
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
-      "signal": "COP 12V -> BH-A 2",
       "width": 390,
       "layoutPosition": {
         "x": -1410,
         "y": -4230
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 3870
+        "x": 0,
+        "y": 1140
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead A pin 2 (DRB102, RH firewall) - COP coil +12 V rail (COP 15A)"
     },
     {
       "id": "br_w_fb_sw12",
       "type": "Loose",
-      "signal": "SW12 12V -> splice SW12",
       "width": 390,
       "layoutPosition": {
         "x": -1530,
         "y": -4350
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 3720
+        "x": 1980,
+        "y": 1080
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Switched 12 V splice at ECU plug A (A-cabin loom) - ECU +14 V and sensor rail"
     },
     {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
-      "signal": "EHPS enable -> BH-A 42",
       "width": 390,
       "layoutPosition": {
         "x": -1530,
         "y": 4680
       },
       "schematicPosition": {
-        "x": 3660,
-        "y": 0
+        "x": 0,
+        "y": 1440
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead A pin 42 (DRB102, RH firewall) - EHPS pump logic enable (pump pin C1)"
     },
     {
       "id": "br_w_lam12_c",
       "type": "Loose",
-      "signal": "Lambda 12V -> BH-B 95",
       "width": 390,
       "layoutPosition": {
         "x": -1680,
         "y": 4800
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 3600
+        "x": 0,
+        "y": 1080
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead B pin 95 (DRB102, RH firewall) - CAN-Lambda +12 V"
     },
     {
       "id": "br_w_pmu_hl",
       "type": "Loose",
-      "signal": "Head LH 12V -> H1-3",
       "width": 390,
       "layoutPosition": {
         "x": -1740,
         "y": 4860
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 2700
+        "x": 1980,
+        "y": 1890
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH headlight plug H1 pin 3 (loom C, LH front) - headlight LH +12 V (EWD 1993 p.116)"
     },
     {
       "id": "br_w_pmu_hr",
       "type": "Loose",
-      "signal": "Head RH 12V -> H2-3",
       "width": 390,
       "layoutPosition": {
         "x": -1800,
         "y": 4920
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 2760
+        "x": 1980,
+        "y": 2160
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH headlight plug H2 pin 3 (loom C, RH front) - headlight RH +12 V (EWD 1993 p.116)"
     },
     {
       "id": "br_w_pmu_horn",
       "type": "Loose",
-      "signal": "Horn 12V -> splice HORN",
       "width": 390,
       "layoutPosition": {
         "x": -1740,
         "y": -4530
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 2820
+        "x": 1980,
+        "y": 2430
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Horn splice (loom C, front) - horn relay output to horns H3 and H4 pin 1"
     },
     {
       "id": "br_w_pmu_dome",
       "type": "Loose",
-      "signal": "Dome 12V -> JB1 1H-2",
       "width": 390,
       "layoutPosition": {
         "x": -1680,
         "y": -4470
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 2880
+        "x": 0,
+        "y": 780
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1H pin 2 (LH kick), L-Y wire - DOME 20A feed (EWD 1993 p.132)"
     },
     {
       "id": "br_w_pmu_rtr",
       "type": "Loose",
-      "signal": "RTR 12V -> IE1-3",
       "width": 390,
       "layoutPosition": {
         "x": -450,
         "y": 5100
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 2940
+        "x": 0,
+        "y": 240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cowl plug IE1 pin 3 (LH kick), W wire - RTR 30A to retract relay R8 (EWD 1993 p.116)"
     },
     {
       "id": "br_w_acp_1",
       "type": "Loose",
-      "signal": "A/C PSW 12V -> A5-1",
       "width": 390,
       "layoutPosition": {
         "x": -60,
         "y": -4740
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3000
+        "x": 0,
+        "y": 480
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C pressure switch A5 pin 1 (loom C, engine bay) - switch +12 V (1990 EWD p.152)"
     },
     {
       "id": "br_w_pdb_am1",
       "type": "Loose",
-      "signal": "AM1 12V -> IE1-10",
       "width": 390,
       "layoutPosition": {
         "x": -300,
         "y": -4980
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3060
+        "x": 0,
+        "y": 300
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cowl plug IE1 pin 10 (LH kick), W wire - AM1 to ignition switch (EWD p.31)"
     },
     {
       "id": "br_w_pdb_am2",
       "type": "Loose",
-      "signal": "AM2 12V -> IE1-17",
       "width": 390,
       "layoutPosition": {
         "x": -390,
         "y": 5040
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3120
+        "x": 0,
+        "y": 360
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cowl plug IE1 pin 17 (LH kick), B-R wire - AM2 to ignition switch (EWD p.31)"
     },
     {
       "id": "br_w_pdb_jb1",
       "type": "Loose",
-      "signal": "JB1 hot -> JB1 1I-1",
       "width": 390,
       "layoutPosition": {
         "x": -390,
         "y": -5040
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3180
+        "x": 0,
+        "y": 420
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1I pin 1 (LH kick), B wire - J/B 1 main B+ (EWD p.18-19)"
     },
     {
       "id": "br_w_rb4",
       "type": "Loose",
-      "signal": "Blower 12V -> B4-2",
       "width": 390,
       "layoutPosition": {
         "x": -510,
         "y": -5160
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3240
+        "x": 1980,
+        "y": 420
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Blower motor B4 pin 2 (RH kick), B wire - blower +12 V (EWD 1993 p.215-216)"
     },
     {
       "id": "br_w_rb2",
       "type": "Loose",
-      "signal": "P/W 12V -> RB2-1",
       "width": 390,
       "layoutPosition": {
         "x": -450,
         "y": -5100
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3300
+        "x": 1980,
+        "y": 1560
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM old R/B2 relay lead pin 1 (LH kick), W-G wire - power windows (EWD 1993 p.137)"
     },
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "CSB3 12V -> CSB3 c1",
       "width": 390,
       "layoutPosition": {
         "x": -1470,
         "y": 4620
       },
       "schematicPosition": {
-        "x": 1710,
-        "y": 3840
+        "x": 0,
+        "y": 1260
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CSB3 plug pin 1 (CSB3 box under the cluster) - CSB3 +12 V switched"
     },
     {
       "id": "br_w76",
       "type": "Loose",
-      "signal": "EFI coil- -> ECU-A A28",
       "width": 390,
       "layoutPosition": {
         "x": 0,
         "y": 4680
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 2880
+        "x": 1980,
+        "y": 360
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug A pin 28 (Link ECU, center dash) - Aux 6 sinks the EFI relay coil"
     },
     {
       "id": "br_w_fan85",
       "type": "Loose",
-      "signal": "Rad fan coil- -> ECU-A A29",
       "width": 390,
       "layoutPosition": {
         "x": -240,
         "y": -4920
       },
       "schematicPosition": {
-        "x": 5400,
-        "y": 2880
+        "x": 1980,
+        "y": 840
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug A pin 29 (Link ECU, center dash) - Aux 5 sinks the radiator fan relay coil"
     },
     {
       "id": "br_w_fan_pwr",
       "type": "Loose",
-      "signal": "Rad fan 12V -> RAD FAN+ +",
       "width": 390,
       "layoutPosition": {
         "x": -300,
         "y": 4980
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 3930
+        "x": 1980,
+        "y": 960
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Radiator fan plug pin + (loom C, front) - radiator fan +12 V, 8 AWG"
     },
     {
       "id": "br_w81",
       "type": "Loose",
-      "signal": "ETB coil- -> ECU-A A20",
       "width": 390,
       "layoutPosition": {
         "x": 0,
         "y": -4680
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 3510
+        "x": 1980,
+        "y": 2640
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug A pin 20 (Link ECU, center dash) - Aux 2 sinks the ETB relay coil"
     },
     {
       "id": "br_w82",
       "type": "Loose",
-      "signal": "ETB 12V -> ECU-B B5",
       "width": 390,
       "layoutPosition": {
         "x": -60,
         "y": 4740
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 3810
+        "x": 1980,
+        "y": 2700
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug B pin 5 (Link ECU, center dash) - ETB motor supply from the ETB relay"
     },
     {
       "id": "br_w_str85",
       "type": "Loose",
-      "signal": "Start coil- -> ECU-A A26",
       "width": 390,
       "layoutPosition": {
         "x": -630,
         "y": 5280
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 3480
+        "x": 1980,
+        "y": 600
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug A pin 26 (Link ECU, center dash) - Aux 8 sinks the start relay coil"
     },
     {
       "id": "br_w_strl",
       "type": "Loose",
-      "signal": "Starter S -> starter S",
       "width": 390,
       "layoutPosition": {
         "x": -630,
         "y": -5280
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 4590
+        "x": 1980,
+        "y": 660
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Starter solenoid S spade lug (A-engine loom) - start relay output"
     },
     {
       "id": "br_w_fan285",
       "type": "Loose",
-      "signal": "Cond fan coil- -> ECU-B B13",
       "width": 390,
       "layoutPosition": {
         "x": -180,
         "y": -4860
       },
       "schematicPosition": {
-        "x": 5400,
-        "y": 3480
+        "x": 1980,
+        "y": 1140
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug B pin 13 (Link ECU, center dash) - Ign 5 sinks the condenser fan relay coil"
     },
     {
       "id": "br_w_fan2_pwr",
       "type": "Loose",
-      "signal": "Cond fan 12V -> COND FAN+ +",
       "width": 390,
       "layoutPosition": {
         "x": -240,
         "y": 4920
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 4110
+        "x": 1980,
+        "y": 1260
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Condenser fan plug pin + (loom C, front) - condenser fan +12 V, 8 AWG"
     },
     {
       "id": "br_w_eps_trig",
       "type": "Loose",
-      "signal": "EPS EN coil- -> ECU-B B12",
       "width": 390,
       "layoutPosition": {
         "x": -180,
         "y": 4860
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 4110
+        "x": 1980,
+        "y": 2910
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug B pin 12 (Link ECU, center dash) - Ign 6 sinks the EPS enable relay coil"
     },
     {
       "id": "br_w_eps_pwr",
       "type": "Loose",
-      "signal": "EHPS 12V -> EHPS PUMP A-1",
       "width": 390,
       "layoutPosition": {
         "x": -120,
         "y": 4800
       },
       "schematicPosition": {
-        "x": 1260,
-        "y": 4410
+        "x": 1980,
+        "y": 1680
       },
-      "propagate": false
+      "propagate": false,
+      "label": "EHPS pump plug A pin 1 (loom C, engine bay) - pump +12 V power"
     },
     {
       "id": "br_w_acc_trig",
       "type": "Loose",
-      "signal": "A/C coil- -> ECU-B B10",
       "width": 390,
       "layoutPosition": {
         "x": -1410,
         "y": 4560
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 4170
+        "x": 1980,
+        "y": 3450
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug B pin 10 (Link ECU, center dash) - Ign 8 sinks the A/C clutch relay coil"
     },
     {
       "id": "br_w_acc86",
       "type": "Loose",
-      "signal": "A/C coil+ -> splice AC PSW",
       "width": 390,
       "layoutPosition": {
         "x": -1350,
         "y": 4500
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 4230
+        "x": 1980,
+        "y": 3510
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C pressure switch splice (A-cabin loom) - switch A5 pin 4 output to the clutch relay"
     },
     {
       "id": "br_w_acc_clutch",
       "type": "Loose",
-      "signal": "A/C clutch -> A4-4",
       "width": 390,
       "layoutPosition": {
         "x": -1350,
         "y": -4170
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 4110
+        "x": 1980,
+        "y": 3570
       },
-      "propagate": false
+      "propagate": false,
+      "label": "A/C magnet clutch A4 pin 4 (loom C, compressor) - clutch +12 V (1990 EWD p.152)"
     },
     {
       "id": "br_w_start_in",
       "type": "Loose",
-      "signal": "Start req in -> RB4-1",
       "width": 390,
       "layoutPosition": {
         "x": -570,
         "y": 5220
       },
       "schematicPosition": {
-        "x": 3180,
-        "y": 4260
+        "x": 0,
+        "y": 1500
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM starter relay socket R/B4 pin 1, B-W wire - ignition ST1 start request (EWD 1993 p.66)"
     },
     {
       "id": "br_w_start_out",
       "type": "Loose",
-      "signal": "Start req -> ECU-B B30",
       "width": 390,
       "layoutPosition": {
         "x": -570,
         "y": -5220
       },
       "schematicPosition": {
-        "x": 3180,
-        "y": 4200
+        "x": 0,
+        "y": 1560
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug B pin 30 (Link ECU, center dash) - DI 7 start request"
     },
     {
       "id": "t_at_12v",
       "type": "Loose",
-      "signal": "Alarm 12V -> splice AT 12V",
       "width": 390,
       "layoutPosition": {
         "x": -2160,
         "y": -4890
       },
       "schematicPosition": {
-        "x": 1200,
-        "y": 3630
+        "x": 0,
+        "y": 900
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alarm +12 V splice (AntiTheft loom, center dash) - alarm pin 1 constant +12 V"
     },
     {
       "id": "t_at_12v_shk",
       "type": "Loose",
-      "signal": "Shock 12V -> splice 12V SHK",
       "width": 390,
       "layoutPosition": {
         "x": -2220,
         "y": 5280
       },
       "schematicPosition": {
-        "x": 1200,
-        "y": 3750
+        "x": 0,
+        "y": 960
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Shock sensor +12 V splice (AntiTheft loom, ECU area) - shock sensor pin A"
     },
     {
       "id": "t_at_ig",
       "type": "Loose",
-      "signal": "Alarm IG -> splice IG",
       "width": 390,
       "layoutPosition": {
         "x": -2220,
         "y": -4950
       },
       "schematicPosition": {
-        "x": 1200,
-        "y": 3690
+        "x": 0,
+        "y": 1380
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alarm ignition splice (AntiTheft loom, center dash) - alarm pin 3 ignition sense"
     },
     {
       "id": "br_w_dev",
       "type": "Loose",
-      "signal": "Dash 12V -> splice DEV",
       "width": 390,
       "layoutPosition": {
         "x": -1470,
         "y": -4290
       },
       "schematicPosition": {
-        "x": 1200,
-        "y": 3990
+        "x": 0,
+        "y": 1320
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Dash device +12 V splice (CAN loom) - center cluster and RealDash Pi +12 V"
     },
     {
       "id": "br_w_haz",
       "type": "Loose",
-      "signal": "Hazard 12V -> IE1-12",
       "width": 390,
       "layoutPosition": {
         "x": -1620,
         "y": 4740
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3360
+        "x": 1980,
+        "y": 900
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cowl plug IE1 pin 12 (LH kick), W wire - HAZ-HORN feed to flasher (EWD 1993 p.130)"
     },
     {
       "id": "br_w_eps_rly",
       "type": "Loose",
-      "signal": "EHPS coil- -> BH-A 56",
       "width": 390,
       "layoutPosition": {
         "x": -120,
         "y": -4800
       },
       "schematicPosition": {
-        "x": 4200,
-        "y": 4380
+        "x": 1980,
+        "y": 1620
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead A pin 56 (DRB102, RH firewall) - EHPS pump pin B5 grounds the relay coil"
     },
     {
       "id": "br_w_rb2_wl",
       "type": "Loose",
-      "signal": "Door lock 12V -> RB2-2",
       "width": 390,
       "layoutPosition": {
         "x": -510,
         "y": 5160
       },
       "schematicPosition": {
-        "x": 3300,
-        "y": 3420
+        "x": 0,
+        "y": 840
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM old R/B2 relay lead pin 2 (LH kick), W-L wire - door lock + tilt-away (EWD p.137)"
     },
     {
       "id": "fl_oem_jb3_b9",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Gauge 15A -> JB3-3B-9",
       "schematicPosition": {
-        "x": 6000,
-        "y": 4170
+        "x": 1980,
+        "y": 1380
       },
       "layoutPosition": {
         "x": -1950,
         "y": 5040
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B 3 plug 3B pin 9, R-L wire - GAUGE 15A, ignition on (Mitchell 1993 Fig. 16)"
     },
     {
       "id": "br_rev_feed",
       "type": "Loose",
       "width": 390,
-      "signal": "Rev SW feed -> BH-B 62",
       "schematicPosition": {
-        "x": 6000,
-        "y": 4230
+        "x": 1980,
+        "y": 1320
       },
       "layoutPosition": {
         "x": -1290,
         "y": 4440
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Bulkhead B pin 62 (DRB102, RH firewall) - back-up switch B1 pin 2 feed"
     },
     {
       "id": "br_rev_coil",
       "type": "Loose",
       "width": 390,
-      "signal": "Rev coil+ -> splice REV SW",
       "schematicPosition": {
-        "x": 6000,
-        "y": 4290
+        "x": 1980,
+        "y": 3240
       },
       "layoutPosition": {
         "x": -1230,
         "y": -4050
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Reverse switch splice (B-cabin loom) - back-up switch B1 pin 1, +12 V in reverse"
     },
     {
       "id": "br_rl_rev",
       "type": "Loose",
       "width": 390,
-      "signal": "Rev lamps -> splice RL REV",
       "schematicPosition": {
-        "x": 6000,
-        "y": 4350
+        "x": 1980,
+        "y": 3300
       },
       "layoutPosition": {
         "x": -1290,
         "y": -4110
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Back-up lamp splice (RearLights loom, rear) - R11 and R12 pin 4 back-up lamps"
     },
     {
       "id": "t_pdb_gnd_rev",
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "Rev coil- -> POWER NEG M8",
       "schematicPosition": {
-        "x": 6000,
-        "y": 4410
+        "x": 1980,
+        "y": 3180
       },
       "layoutPosition": {
         "x": -2280,
         "y": 5340
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box NEG bar M8 stud (glove box) - reverse relay coil ground"
     },
     {
       "id": "br_alt_s_cp",
       "type": "Loose",
       "width": 390,
-      "signal": "Alt S -> ALT G2 1",
       "schematicPosition": {
-        "x": 1200,
-        "y": 3660
+        "x": 0,
+        "y": 1020
       },
       "layoutPosition": {
         "x": -1230,
         "y": 4380
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Alternator plug G2 pin 1 (engine bay, via loom C) - S battery sense (EWD 1993 p.74-75)"
     },
     {
       "id": "fl_oem_ie1_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Head coil- -> IE1-2",
       "schematicPosition": {
-        "x": 4500,
-        "y": 5430
+        "x": 1980,
+        "y": 1200
       },
       "layoutPosition": {
         "x": -1890,
         "y": -4650
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cowl plug IE1 pin 2 (LH kick), R-Y wire - headlight relay coil line (EWD 1993 p.116)"
     },
     {
       "id": "fl_oem_ie1_c19",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Horn coil- -> IE1-19",
       "schematicPosition": {
-        "x": 5400,
-        "y": 5430
+        "x": 1980,
+        "y": 2370
       },
       "layoutPosition": {
         "x": -1860,
         "y": 4980
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cowl plug IE1 pin 19 (LH kick), G wire - horn switch line (EWD 1993 p.185)"
     },
     {
       "id": "fl_oem_rb4_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Htr coil- -> RB4-1",
       "schematicPosition": {
-        "x": 6000,
-        "y": 5430
+        "x": 1980,
+        "y": 90
       },
       "layoutPosition": {
         "x": -780,
         "y": 5400
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM old R/B4 heater relay lead pin 1 (RH kick), L-W - A/C amp HR (EWD 1993 p.215)"
     },
     {
       "id": "fl_oem_rb4_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Htr coil+ -> RB4-3",
       "schematicPosition": {
-        "x": 6000,
-        "y": 5490
+        "x": 1980,
+        "y": 150
       },
       "layoutPosition": {
         "x": -780,
         "y": -5400
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM old R/B4 heater relay lead pin 3 (RH kick), R-L - coil + feed (EWD 1993 p.215)"
     },
     {
       "id": "fl_oem_rb2_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "PWR coil+ -> RB2-2",
       "schematicPosition": {
-        "x": 6600,
-        "y": 5430
+        "x": 1980,
+        "y": 1500
       },
       "layoutPosition": {
         "x": -720,
         "y": -5340
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM old R/B2 relay lead pin 2 (LH kick), L-Y - GAUGE 15A, ignition on (EWD 1993 p.137)"
     },
     {
       "id": "t_pdb_gnd_pwr",
       "type": "Ring",
       "partId": "tp_ring_m8_22_16",
       "width": 390,
-      "signal": "PWR coil- -> POWER NEG M8",
       "schematicPosition": {
-        "x": 6600,
-        "y": 5490
+        "x": 1980,
+        "y": 1440
       },
       "layoutPosition": {
         "x": -1140,
         "y": -5700
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box NEG bar M8 stud (glove box) - power relay coil ground"
     },
     {
       "id": "t_pdb_gnd_htr",
       "type": "Ring",
       "partId": "tp_ring_m8_16_14",
       "width": 390,
-      "signal": "Htr 87a -> POWER NEG M8",
       "schematicPosition": {
-        "x": 6000,
-        "y": 5550
+        "x": 1980,
+        "y": 210
       },
       "layoutPosition": {
         "x": -1140,
         "y": 5700
       },
-      "propagate": false
+      "propagate": false,
+      "label": "POWER box NEG bar M8 stud (glove box) - heater relay 87a, blower brake"
     },
     {
       "id": "br_fp86",
       "type": "Loose",
-      "signal": "FP coil+ -> BATT K1 86",
       "width": 390,
       "layoutPosition": {
         "x": -1830,
         "y": 90
       },
       "schematicPosition": {
-        "x": 4800,
-        "y": 2700
+        "x": 1980,
+        "y": 1020
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Fuel pump relay K1 pin 86 (trunk relay block, HeavyDC loom) - relay coil + from SW12"
     }
   ],
   "bundles": [
@@ -4058,37 +4058,40 @@
         "y": 60
       },
       "schematicPosition": {
-        "x": 1500,
-        "y": 3480
+        "x": 1140,
+        "y": 990
       },
       "partId": "spp_solder_generic",
-      "locationId": "b_bp_1050"
+      "locationId": "b_bp_1050",
+      "label": "SW12 splice - LOGIC SW12 fuse to the relay coils + and the ECU switched 12 V"
     },
     {
       "id": "sp_rev_gauge",
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1050",
       "schematicPosition": {
-        "x": 5760,
-        "y": 4170
+        "x": 1140,
+        "y": 1170
       },
       "layoutPosition": {
         "x": -1170,
         "y": -60
-      }
+      },
+      "label": "GAUGE 15A splice - J/B 3 feed to reverse relay pin 30 and the back-up switch"
     },
     {
       "id": "sp_head_coil",
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1050",
       "schematicPosition": {
-        "x": 4500,
-        "y": 5370
+        "x": 1140,
+        "y": 1080
       },
       "layoutPosition": {
         "x": -1320,
         "y": 60
-      }
+      },
+      "label": "Headlight coil splice - HEAD LH and RH relay coils to cowl plug IE1 pin 2"
     },
     {
       "id": "sp_htr87",
@@ -4097,11 +4100,12 @@
         "y": 0
       },
       "schematicPosition": {
-        "x": 6450,
-        "y": 5100
+        "x": 1140,
+        "y": 390
       },
       "partId": "spp_te_320238",
-      "locationId": "b_bp_1065"
+      "locationId": "b_bp_1065",
+      "label": "Heater relay output splice (4 AWG) - blower motor + and the ACPS fuse"
     },
     {
       "id": "sp_hz",
@@ -4110,37 +4114,40 @@
         "y": -60
       },
       "schematicPosition": {
-        "x": 1680,
-        "y": 2130
+        "x": 1140,
+        "y": 870
       },
       "partId": "spp_solder_generic",
-      "locationId": "b_bp_1050"
+      "locationId": "b_bp_1050",
+      "label": "HAZ-HORN splice - HZ 15A fuse to the hazard feed and the horn relay"
     },
     {
       "id": "sp_hl",
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1050",
       "schematicPosition": {
-        "x": 1680,
-        "y": 1890
+        "x": 1140,
+        "y": 690
       },
       "layoutPosition": {
         "x": -1170,
         "y": 120
-      }
+      },
+      "label": "HEAD LH splice - HL 15A fuse to HEAD LH relay pins 30 and 86"
     },
     {
       "id": "sp_hr",
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1050",
       "schematicPosition": {
-        "x": 1680,
-        "y": 2010
+        "x": 1140,
+        "y": 780
       },
       "layoutPosition": {
         "x": -1170,
         "y": -120
-      }
+      },
+      "label": "HEAD RH splice - HR 15A fuse to HEAD RH relay pins 30 and 86"
     }
   ],
   "schematicNotes": [
@@ -4148,7 +4155,7 @@
       "id": "n_cabinpower",
       "width": 390,
       "schematicPosition": {
-        "x": 5910,
+        "x": 2520,
         "y": 0
       },
       "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 87, mini fuses BUS1-n / BUS2-n, micro relays M11-M22; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M11, k_hr M12, k_horn M13, k_etb M14, k_acc M15, k_eps_en M21, k_rev M22 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 30. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
@@ -4157,8 +4164,8 @@
       "id": "n_cavity_notes",
       "width": 390,
       "schematicPosition": {
-        "x": 5910,
-        "y": 900
+        "x": 2520,
+        "y": 750
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nLOGIC EFI86 (BUS1-1): ATM-5 relay coil feed, PERMANENT (EFI main relay 86)\nLOGIC MRS IN / MRS (BUS2-12): ATM-7.5 MRS EPS pump logic enable, fed from k_eps_en 87 - this fuse position must NOT pick up the Bus 2 strip (OPEN-ITEMS, CAD detail work)\nLOGIC B30 IN / B30 (BUS2-13): ATM-2 start request, fed from the ignition switch ST1 tap - this fuse position must NOT pick up the Bus 2 strip (same)\nPOWER AMI OUT-6: AMI-60 EPS pump relay 30 (k_eps HCR150, beside the box), Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nEFI Main Relay 85: ACTIVE-LOW Coil - -> Aux 6 / A28 - low-side (Aux 5-8 capable of either; low-side chosen for ECU Hold Power)\nEFI Main Relay 86: Coil + - PERMANENT battery via LOGIC EFI86 5A (must stay live after key-off for Hold Power)\nETB Power Relay 85: ACTIVE-LOW Coil - -> Aux 2 / A20 - LOW-SIDE ONLY (Aux 1-4)\nETB Power Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nRadiator Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nStart Relay 86: Coil + - ignition-switched 12V (EFI main relay 87)\nCondenser Fan Relay (on/off) 85: ACTIVE-LOW Coil - -> Ign 5 / B13 - low-side, no external flywheel diode or suppression (on/off relay; INFERENCE from the G4X help Auxiliary Output Wiring PWM-only diode advice, not a Link statement) - TE 1-1393304-0, plain relay, no diode\nCondenser Fan Relay (on/off) 86: Coil + - ignition-switched 12V (EFI main relay 87)\nMR-S EHPS pump relay k_eps 85: coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27); coil + on SW12 (R22)\nMR-S EHPS pump relay k_eps 30: POWER AMI OUT-6 - Bussmann AMI-60 (60 A, sized 2026-09-28 - sot/channels.csv k_eps c1)\nHeater relay k_htr 87: two wires in one 9.5 receptacle (8 AWG blower + 14 AWG ACPS feed) - receptacle TBD (OPEN-ITEMS)"
     }

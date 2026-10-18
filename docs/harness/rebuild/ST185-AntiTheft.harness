@@ -701,7 +701,6 @@
       "id": "t_at_12v",
       "type": "Loose",
       "width": 390,
-      "signal": "Alarm 12V -> FB-LOGIC ALM 5A",
       "layoutPosition": {
         "x": -1650,
         "y": -180
@@ -710,13 +709,13 @@
         "x": 0,
         "y": 0
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 1 pin 7, ALM 5A fuse (glove box) - alarm +12 V constant"
     },
     {
       "id": "t_at_ig",
       "type": "Loose",
       "width": 390,
-      "signal": "Alarm IG -> FB-LOGIC ALMIG 2A",
       "layoutPosition": {
         "x": -930,
         "y": 90
@@ -725,14 +724,14 @@
         "x": 0,
         "y": 90
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 2 pin 9, ALMIG 2A fuse (glove box) - alarm ignition sense"
     },
     {
       "id": "t_at_gnd",
       "type": "Ring",
       "width": 390,
       "partId": "tp_ring_m6_22_16",
-      "signal": "Alarm GND -> stud M6 A",
       "layoutPosition": {
         "x": -1650,
         "y": -360
@@ -741,13 +740,13 @@
         "x": 1980,
         "y": 0
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Cabin ground stud near the alarm (spot and EWD ID TBD, M6) - alarm + siren ground, ring A"
     },
     {
       "id": "t_at_door",
       "type": "Loose",
       "width": 390,
-      "signal": "Door trig -> door SWs",
       "layoutPosition": {
         "x": -3810,
         "y": -180
@@ -757,13 +756,13 @@
         "y": 180
       },
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "OEM door courtesy switch lead (tap spot and EWD page TBD) - alarm door trigger"
     },
     {
       "id": "t_at_hood",
       "type": "Loose",
       "width": 390,
-      "signal": "Hood trig -> hood pin SW",
       "layoutPosition": {
         "x": 0,
         "y": 0
@@ -773,29 +772,29 @@
         "y": 270
       },
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "Hood pin switch lead (new switch, RH front via loom C, spot TBD) - hood trigger"
     },
     {
       "id": "t_at_trunk",
       "type": "Loose",
-      "width": 150,
-      "signal": "Trunk trig -> trunk pin SW",
+      "width": 390,
       "layoutPosition": {
         "x": -4170,
         "y": -180
       },
       "schematicPosition": {
-        "x": 0,
+        "x": -240,
         "y": 360
       },
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "Trunk pin switch lead (new switch, spot TBD) - alarm trunk trigger"
     },
     {
       "id": "t_at_park",
       "type": "Loose",
       "width": 390,
-      "signal": "Park flash -> park relay",
       "layoutPosition": {
         "x": -2730,
         "y": -360
@@ -805,14 +804,14 @@
         "y": 150
       },
       "partId": "tp_flying_lead",
-      "propagate": false
+      "propagate": false,
+      "label": "Park lamp flash relay lead (cabin relay, part and spot TBD) - alarm park light out"
     },
     {
       "id": "t_at_gnd_b",
       "type": "Ring",
       "width": 390,
       "partId": "tp_ring_m6_22_16",
-      "signal": "Shock/LED GND -> M6 B",
       "layoutPosition": {
         "x": -2010,
         "y": -360
@@ -821,14 +820,14 @@
         "x": 1980,
         "y": 90
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Cabin ground stud near the alarm (spot and EWD ID TBD, M6) - shock + LED ground, ring B"
     },
     {
       "id": "t_at_gnd_c",
       "type": "Ring",
       "width": 390,
       "partId": "tp_ring_m6_22_16",
-      "signal": "Valet GND -> stud M6 C",
       "layoutPosition": {
         "x": -2730,
         "y": -180
@@ -837,13 +836,13 @@
         "x": 1980,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Cabin ground stud near the alarm (spot and EWD ID TBD, M6) - valet switch ground, ring C"
     },
     {
       "id": "t_at_12v_shk",
       "type": "Loose",
       "width": 390,
-      "signal": "Shock 12V -> FB-LOGIC ALMS 2A",
       "layoutPosition": {
         "x": -2010,
         "y": -180
@@ -852,12 +851,12 @@
         "x": 1980,
         "y": 270
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 1 pin 8, ALMS 2A fuse (glove box) - shock sensor +12 V"
     },
     {
       "id": "br_w_at_immob2",
       "type": "Loose",
-      "signal": "Immob out -> ECU-B B27",
       "width": 390,
       "layoutPosition": {
         "x": -3090,
@@ -867,7 +866,8 @@
         "x": 60,
         "y": 510
       },
-      "propagate": false
+      "propagate": false,
+      "label": "ECU plug B pin 27 (Link ECU, center dash) - DI 10 anti-theft input"
     }
   ],
   "bundles": [
@@ -1148,7 +1148,8 @@
         "x": 510,
         "y": 0
       },
-      "locationId": "bp_990"
+      "locationId": "bp_990",
+      "label": "Alarm +12 V splice - LOGIC ALM 5A fuse to alarm pin 1"
     },
     {
       "id": "sp_ig",
@@ -1161,7 +1162,8 @@
         "x": 510,
         "y": 60
       },
-      "locationId": "bp_930"
+      "locationId": "bp_930",
+      "label": "Alarm ignition splice - LOGIC ALMIG 2A fuse to alarm pin 3"
     },
     {
       "id": "sp_door",
@@ -1174,7 +1176,8 @@
         "x": 450,
         "y": 90
       },
-      "locationId": "bp_1110"
+      "locationId": "bp_1110",
+      "label": "Door trigger splice - door courtesy switches to alarm pin 6"
     },
     {
       "id": "sp_hood",
@@ -1187,7 +1190,8 @@
         "x": 510,
         "y": 120
       },
-      "locationId": "bp_270"
+      "locationId": "bp_270",
+      "label": "Hood trigger splice - hood pin switch to alarm pin 7"
     },
     {
       "id": "sp_trunk",
@@ -1200,7 +1204,8 @@
         "x": 510,
         "y": 180
       },
-      "locationId": "bp_1260"
+      "locationId": "bp_1260",
+      "label": "Trunk trigger splice - trunk pin switch to alarm pin 8"
     },
     {
       "id": "sp_park",
@@ -1213,7 +1218,8 @@
         "x": 1170,
         "y": 60
       },
-      "locationId": "bp_1020"
+      "locationId": "bp_1020",
+      "label": "Park flash splice - alarm pin 5 to the park lamp relay"
     },
     {
       "id": "sp_12v_shk",
@@ -1226,7 +1232,8 @@
         "x": 1830,
         "y": 420
       },
-      "locationId": "bp_1110"
+      "locationId": "bp_1110",
+      "label": "Shock sensor +12 V splice - LOGIC ALMS 2A fuse to shock sensor pin A"
     }
   ],
   "schematicNotes": [

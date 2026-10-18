@@ -9,7 +9,6 @@ Rule owner: Daniel (2026-10-03) - see audit_bh_collisions.py and audit_cavity_pa
 import copy
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -435,10 +434,7 @@ def _(d):
 
 
 def _core_points_live(d, extra):
-    """CSB3 taken off CORE_POINTS_PENDING in the sandbox, its core points stripped, then `extra`."""
-    g = os.path.join(d, "docs", "harness", "audit_wire_spacing.py")
-    txt = re.sub(r'"CSB3",\s*|,\s*"CSB3"', "", open(g, encoding="utf-8").read(), count=1)
-    open(g, "w", encoding="utf-8").write(txt)
+    """CSB3 (off CORE_POINTS_PENDING since R156 PR2) with its core points stripped, then `extra`."""
     p, doc = load(d, "CSB3")
     for cb in doc["cables"]:
         for co in cb.get("cores", []) + ([cb["shield"]] if cb.get("shield") else []):
