@@ -413,7 +413,6 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Tail 15A -> JB1 1F-1",
       "schematicPosition": {
         "x": 0,
         "y": 0
@@ -422,14 +421,14 @@
         "x": 0,
         "y": -120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1F pin 1 (LH kick), G wire - TAIL 15A out (EWD 1993 p.112-113)"
     },
     {
       "id": "fl_oem_jb1_1f_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Turn LH -> JB1 1F-3",
       "schematicPosition": {
         "x": 0,
         "y": 60
@@ -438,14 +437,14 @@
         "x": -90,
         "y": -180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1F pin 3 (LH kick), G-B wire - turn LH out (EWD 1993 p.130-131)"
     },
     {
       "id": "fl_oem_jb1_1f_c2",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Turn RH -> JB1 1F-2",
       "schematicPosition": {
         "x": 0,
         "y": 120
@@ -454,14 +453,14 @@
         "x": -60,
         "y": 300
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1F pin 2 (LH kick), G-Y wire - turn RH out (EWD 1993 p.130-131)"
     },
     {
       "id": "fl_oem_s9_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "width": 390,
-      "signal": "Stop feed -> S9-1",
       "schematicPosition": {
         "x": 0,
         "y": 180
@@ -470,13 +469,13 @@
         "x": -150,
         "y": 360
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM stop lamp switch S9 pin 1 (pedal), G-W wire - stop lamp feed (EWD 1993 p.126)"
     },
     {
       "id": "br_rl_rev",
       "type": "Loose",
       "width": 390,
-      "signal": "Rev lamps -> LOGIC M22 87",
       "schematicPosition": {
         "x": 0,
         "y": 240
@@ -485,14 +484,14 @@
         "x": 0,
         "y": 240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Reverse relay M22 pin 87 (LOGIC box, glove box) - back-up lamp +12 V"
     },
     {
       "id": "fl_r11_c1",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Stop LH -> R11-1",
       "schematicPosition": {
         "x": 750,
         "y": 0
@@ -501,14 +500,14 @@
         "x": -720,
         "y": 810
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 1, socket pigtail - stop LH (EWD 1993 p.126)"
     },
     {
       "id": "fl_r11_c2",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Tail LH -> R11-2",
       "schematicPosition": {
         "x": 750,
         "y": 60
@@ -517,14 +516,14 @@
         "x": -720,
         "y": -720
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 2, socket pigtail - tail LH (EWD 1993 p.113)"
     },
     {
       "id": "fl_r11_c3",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Marker LH -> R11-3",
       "schematicPosition": {
         "x": 750,
         "y": 120
@@ -533,14 +532,14 @@
         "x": -780,
         "y": 870
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 3, socket pigtail - rear side marker LH (EWD 1993 p.113)"
     },
     {
       "id": "fl_r11_c4",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Back-up LH -> R11-4",
       "schematicPosition": {
         "x": 750,
         "y": 180
@@ -549,14 +548,14 @@
         "x": -780,
         "y": -780
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 4, socket pigtail - back-up LH (Mitchell 1993 Fig. 16)"
     },
     {
       "id": "fl_r11_c5",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Lamp GND LH -> R11-5",
       "schematicPosition": {
         "x": 750,
         "y": 240
@@ -565,14 +564,14 @@
         "x": -840,
         "y": 930
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 5, socket pigtail - lamp ground LH (EWD 1993 p.113)"
     },
     {
       "id": "fl_r11_c6",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Turn LH -> R11-6",
       "schematicPosition": {
         "x": 750,
         "y": 300
@@ -581,14 +580,14 @@
         "x": -840,
         "y": -840
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 6, socket pigtail - turn LH (EWD 1993 p.130)"
     },
     {
       "id": "fl_r12_c1",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Stop RH -> R12-1",
       "schematicPosition": {
         "x": 750,
         "y": 360
@@ -597,14 +596,14 @@
         "x": -1440,
         "y": 240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 1, socket pigtail - stop RH (EWD 1993 p.126)"
     },
     {
       "id": "fl_r12_c2",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Tail RH -> R12-2",
       "schematicPosition": {
         "x": 750,
         "y": 420
@@ -613,14 +612,14 @@
         "x": -1440,
         "y": -240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 2, socket pigtail - tail RH (EWD 1993 p.113)"
     },
     {
       "id": "fl_r12_c3",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Marker RH -> R12-3",
       "schematicPosition": {
         "x": 750,
         "y": 480
@@ -629,14 +628,14 @@
         "x": -1500,
         "y": 300
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 3, socket pigtail - rear side marker RH (EWD 1993 p.113)"
     },
     {
       "id": "fl_r12_c4",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Back-up RH -> R12-4",
       "schematicPosition": {
         "x": 750,
         "y": 540
@@ -645,14 +644,14 @@
         "x": -1500,
         "y": -300
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 4, socket pigtail - back-up RH (Mitchell 1993 Fig. 16)"
     },
     {
       "id": "fl_r12_c5",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Lamp GND RH -> R12-5",
       "schematicPosition": {
         "x": 750,
         "y": 600
@@ -661,14 +660,14 @@
         "x": -1590,
         "y": 360
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 5, socket pigtail - lamp ground RH (EWD 1993 p.113)"
     },
     {
       "id": "fl_r12_c6",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Turn RH -> R12-6",
       "schematicPosition": {
         "x": 750,
         "y": 660
@@ -677,14 +676,14 @@
         "x": -1590,
         "y": -360
       },
-      "propagate": false
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 6, socket pigtail - turn RH (EWD 1993 p.130)"
     },
     {
       "id": "fl_l1_c1",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Licence + -> L1-1",
       "schematicPosition": {
         "x": 750,
         "y": 720
@@ -693,14 +692,14 @@
         "x": -1080,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Licence plate light L1 pin 1, socket pigtail - licence light + (EWD 1993 p.113)"
     },
     {
       "id": "fl_l1_c2",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "Licence GND -> L1-2",
       "schematicPosition": {
         "x": 750,
         "y": 780
@@ -709,14 +708,14 @@
         "x": -1080,
         "y": -90
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Licence plate light L1 pin 2, socket pigtail - licence light ground (EWD 1993 p.113)"
     },
     {
       "id": "fl_h6_c1",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "HMSL + -> H6-A-1",
       "schematicPosition": {
         "x": 750,
         "y": 840
@@ -725,14 +724,14 @@
         "x": -630,
         "y": 11040
       },
-      "propagate": false
+      "propagate": false,
+      "label": "High-mount stop light H6 plug A pin 1 (hatch spoiler) - HMSL + (EWD 1993 p.126)"
     },
     {
       "id": "fl_h6_c2",
       "type": "Loose",
       "partId": "tp_lamp_pigtail_atum",
       "width": 390,
-      "signal": "HMSL GND -> H6-A-2",
       "schematicPosition": {
         "x": 750,
         "y": 900
@@ -741,14 +740,14 @@
         "x": -720,
         "y": 11100
       },
-      "propagate": false
+      "propagate": false,
+      "label": "High-mount stop light H6 plug A pin 2 (hatch spoiler) - HMSL ground (EWD 1993 p.126)"
     },
     {
       "id": "t_rl_gnd_bl",
       "type": "Ring",
       "partId": "tp_ring_m6_22_16",
       "width": 390,
-      "signal": "Rear GND -> body GND BL",
       "schematicPosition": {
         "x": 750,
         "y": 960
@@ -757,7 +756,8 @@
         "x": -1170,
         "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Ground point BL, back panel center (EWD 1993 p.112) - every rear lamp ground, M6 ring"
     }
   ],
   "bundles": [
@@ -1017,7 +1017,8 @@
       "layoutPosition": {
         "x": -780,
         "y": 60
-      }
+      },
+      "label": "Tail splice - J/B 1 TAIL feed to R11 / R12 pins 2 and 3 and L1"
     },
     {
       "id": "sp_rl_stop",
@@ -1030,7 +1031,8 @@
       "layoutPosition": {
         "x": -360,
         "y": -60
-      }
+      },
+      "label": "Stop splice - S9 stop feed to R11 / R12 pin 1 and the HMSL"
     },
     {
       "id": "sp_rl_rev",
@@ -1043,7 +1045,8 @@
       "layoutPosition": {
         "x": -660,
         "y": 60
-      }
+      },
+      "label": "Back-up splice - reverse relay feed to R11 / R12 pin 4"
     },
     {
       "id": "sp_rl_gnd",
@@ -1056,7 +1059,8 @@
       "layoutPosition": {
         "x": -1140,
         "y": -60
-      }
+      },
+      "label": "Rear ground splice - every rear lamp ground to ground point BL"
     }
   ],
   "schematicNotes": [

@@ -142,7 +142,7 @@
   "connectors": [
     {
       "id": "ix_fuel_p",
-      "label": "IX-FUEL",
+      "label": "IX-FUEL inline to fuel sender (trunk LH)",
       "width": 270,
       "partId": "cp_dt2s",
       "cavities": [
@@ -241,7 +241,6 @@
     {
       "id": "br_fp_pump",
       "type": "Loose",
-      "signal": "Fuel pump 12V -> BATT K1 87",
       "width": 390,
       "layoutPosition": {
         "x": 0,
@@ -251,12 +250,12 @@
         "x": -300,
         "y": 600
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Fuel pump relay K1 pin 87 (HCR150 terminal 5, trunk relay block) - fuel pump +12 V"
     },
     {
       "id": "t_trunk_fp_gnd",
       "type": "Ring",
-      "signal": "FP GND -> trunk stud M6",
       "layoutPosition": {
         "x": 480,
         "y": -900
@@ -267,7 +266,8 @@
       },
       "partId": "tp_ring_m6_12_10",
       "width": 390,
-      "propagate": false
+      "propagate": false,
+      "label": "Ground stud, trunk LH side (EWD ID TBD, M6 assumed) - fuel pump return"
     }
   ],
   "bundles": [

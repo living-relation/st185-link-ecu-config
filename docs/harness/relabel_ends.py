@@ -9,6 +9,7 @@ The spec names one drawing and the new text, nothing else:
      "terminals": {"<terminal id>": "<where this end lands> - <what it is>", ...},
      "splices":   {"<splice id>":   "<what it joins> - <detail>", ...},
      "diodes" / "resistors": {"<id>": "<plain name, e.g. High beam LED>", ...},   (optional)
+     "connectors": {"<connector id>": "<name, what + where, <= 48>"},   (optional)
      "schematic": {"<node id>": {"x": 0, "y": 0, "width": 390}, ...},      (optional, schematic only)
      "notes":     {"<note id>": {"text": "...", "width": 390, "x": 0, "y": 0} | null, ...}  (optional)}
 
@@ -48,8 +49,16 @@ def main(argv):
             if kind == "terminals" and "signal" in t:
                 old = t.pop("signal")
                 pair = rec["terminals"].get(tid)
-                rec["terminals"][tid] = ["", pair[1] if pair and pair[0] == old else old]
+                # pair[0] == "" means an earlier run already kept the long text: never overwrite it
+                rec["terminals"][tid] = ["", pair[1] if pair and pair[0] in (old, "") else old]
                 changes.append("%s signal %r dropped" % (tid, old))
+    for cid, lab in spec.get("connectors", {}).items():     # connector names, R156: up to 48
+        c = by_id[cid]
+        if c.get("label") != lab:
+            changes.append("%s label %r -> %r" % (cid, c.get("label"), lab))
+            pair = rec.setdefault("connectors", {}).setdefault(cid, {}).get("label")
+            rec["connectors"][cid]["label"] = [lab, pair[1] if pair and pair[0] == c.get("label") else c.get("label")]
+            c["label"] = lab
     for nid, pos in spec.get("schematic", {}).items():
         x = by_id[nid]
         new = {"x": pos["x"], "y": pos["y"]}

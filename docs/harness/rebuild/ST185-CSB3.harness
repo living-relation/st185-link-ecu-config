@@ -158,7 +158,7 @@
       ],
       "source": {
         "id": "r_cruise",
-        "handle": "Left"
+        "handle": "Right"
       },
       "target": {
         "id": "sp_cruise_ladder",
@@ -175,7 +175,7 @@
       ],
       "source": {
         "id": "r_cruise",
-        "handle": "Right"
+        "handle": "Left"
       },
       "target": {
         "id": "br_w_cru_5v",
@@ -671,7 +671,7 @@
       ],
       "schematicPosition": {
         "x": 660,
-        "y": 900
+        "y": 720
       },
       "layoutPosition": {
         "x": -600,
@@ -684,196 +684,201 @@
       "id": "fl_cruise_stalk_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Cruise ladder -> C14-5",
       "schematicPosition": {
-        "x": 660,
-        "y": 570
+        "x": 0,
+        "y": 300
       },
       "layoutPosition": {
         "x": -1260,
         "y": -330
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cruise stalk switch C14 pin 5, W wire - cruise ladder (1990 EWD p.116)",
+      "width": 390
     },
     {
       "id": "fl_cruise_stalk_c3",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Cruise MAIN -> C14-15",
       "schematicPosition": {
-        "x": 660,
-        "y": 630
+        "x": 0,
+        "y": 510
       },
       "layoutPosition": {
         "x": -1410,
         "y": -450
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cruise stalk switch C14 pin 15, Y-B wire - cruise MAIN on (1990 EWD p.116)",
+      "width": 390
     },
     {
       "id": "fl_cruise_stalk_c17",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Cruise GND -> C14-17",
       "schematicPosition": {
-        "x": 660,
-        "y": 690
+        "x": 0,
+        "y": 390
       },
       "layoutPosition": {
         "x": -1320,
         "y": -390
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM cruise stalk switch C14 pin 17, BR wire - stalk ground (1990 EWD p.116)",
+      "width": 390
     },
     {
       "id": "fl_clutch_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Clutch SW -> C11-1",
       "schematicPosition": {
-        "x": 660,
-        "y": 420
+        "x": 0,
+        "y": 600
       },
       "layoutPosition": {
         "x": -1950,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM clutch start switch C11 pin 1, B wire - clutch pedal switch (EWD 1993 p.66)",
+      "width": 390
     },
     {
       "id": "fl_brake_sw_c1",
       "type": "Loose",
       "partId": "tp_flying_lead",
-      "signal": "Brake SW -> S9-1",
       "schematicPosition": {
-        "x": 660,
-        "y": 270
+        "x": 0,
+        "y": 810
       },
       "layoutPosition": {
         "x": -2310,
         "y": 60
       },
-      "propagate": false
+      "propagate": false,
+      "label": "OEM stop lamp switch S9 pin 1 (pedal), G-W wire - brake on, +12 V (EWD 1993 p.126)",
+      "width": 390
     },
     {
       "id": "br_w_cru_5v",
       "type": "Loose",
-      "signal": "Cruise +5V -> splice 5V 2",
       "width": 390,
       "layoutPosition": {
         "x": -180,
         "y": -2070
       },
       "schematicPosition": {
-        "x": 60,
-        "y": 60
+        "x": 0,
+        "y": 240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "+5 V sensor splice at ECU plug A (A-cabin loom) - ECU +5 V for the cruise pull-up"
     },
     {
       "id": "br_w_csb12",
       "type": "Loose",
-      "signal": "CSB3 12V -> FB-LOGIC CSB 5A",
       "width": 390,
       "layoutPosition": {
         "x": -240,
         "y": -2130
       },
       "schematicPosition": {
-        "x": 60,
-        "y": 180
+        "x": 0,
+        "y": 30
       },
-      "propagate": false
+      "propagate": false,
+      "label": "LOGIC box Bus 2 pin 5, CSB 5A fuse (glove box) - CSB3 +12 V switched"
     },
     {
       "id": "br_w_csbg",
       "type": "Loose",
-      "signal": "CSB3 GND -> splice CHASSIS",
       "width": 390,
       "layoutPosition": {
         "x": -300,
         "y": -2190
       },
       "schematicPosition": {
-        "x": 60,
+        "x": 0,
         "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Chassis ground splice at ECU plug A (A-cabin loom) - CSB3 ground"
     },
     {
       "id": "br_w_sw7_c",
       "type": "Loose",
-      "signal": "Reverse sig -> splice REV SW",
       "width": 390,
       "layoutPosition": {
         "x": -450,
         "y": -2310
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": -60
+        "x": 0,
+        "y": 870
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Reverse switch splice (B-cabin loom) - back-up switch B1 pin 1, +12 V in reverse"
     },
     {
       "id": "br_w_oil_k",
       "type": "Loose",
-      "signal": "Oil LED sink -> oil diode",
       "width": 390,
       "layoutPosition": {
         "x": -390,
         "y": -2250
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1050
+        "x": 1800,
+        "y": 780
       },
-      "propagate": false
+      "propagate": false,
+      "label": "Oil pressure LED cathode (LED board at the cluster, ClusterLED loom) - CSB3 L4 sink"
     },
     {
       "id": "br_wc_h_csb",
       "type": "Loose",
-      "signal": "CAN H -> splice CANH",
       "width": 390,
       "layoutPosition": {
         "x": -510,
         "y": -2370
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1170
+        "x": 1950,
+        "y": 120
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN H splice (CAN loom) - CAN bus H to ECU, cluster and RealDash"
     },
     {
       "id": "br_wc_l_csb",
       "type": "Loose",
-      "signal": "CAN L -> splice CANL",
       "width": 390,
       "layoutPosition": {
         "x": -600,
         "y": -2430
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1230
+        "x": 1950,
+        "y": 180
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN L splice (CAN loom) - CAN bus L to ECU, cluster and RealDash"
     },
     {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
-      "signal": "CAN screen -> splice SHIELD CAN",
       "width": 390,
       "layoutPosition": {
         "x": -120,
         "y": -2010
       },
       "schematicPosition": {
-        "x": 1380,
-        "y": 1110
+        "x": 1950,
+        "y": 240
       },
-      "propagate": false
+      "propagate": false,
+      "label": "CAN screen splice (CAN loom) - CAN pair screen, drains at ECU; floats at CSB3"
     }
   ],
   "cables": [
@@ -882,7 +887,7 @@
       "partId": "cab_sh_2c",
       "schematicPosition": {
         "x": 1800,
-        "y": 870
+        "y": 120
       },
       "cores": [
         {
@@ -899,67 +904,7 @@
             "id": "br_wc_h_csb",
             "handle": "Terminal"
           },
-          "twistedWithNext": true,
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_h_csb_csb_source_lp1",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 900
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_source_lp2",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 150
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_source_lp3",
-              "schematicPosition": {
-                "x": 1710,
-                "y": 150
-              }
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "id": "wc_h_csb_csb_target_lp1",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 900
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp2",
-              "schematicPosition": {
-                "x": 1920,
-                "y": 900
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp3",
-              "schematicPosition": {
-                "x": 1920,
-                "y": 1140
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp4",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1140
-              }
-            },
-            {
-              "id": "wc_h_csb_csb_target_lp5",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1170
-              }
-            }
-          ]
+          "twistedWithNext": true
         },
         {
           "id": "wc_l_csb_csb",
@@ -974,88 +919,7 @@
           "target": {
             "id": "br_wc_l_csb",
             "handle": "Terminal"
-          },
-          "targetLayoutPoints": [
-            {
-              "id": "wc_l_csb_csb_target_lp1",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 930
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_target_lp2",
-              "schematicPosition": {
-                "x": 1860,
-                "y": 1200
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_target_lp3",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1200
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_target_lp4",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 1230
-              }
-            }
-          ],
-          "sourceLayoutPoints": [
-            {
-              "id": "wc_l_csb_csb_source_lp1",
-              "schematicPosition": {
-                "x": 1770,
-                "y": 930
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp2",
-              "schematicPosition": {
-                "x": 1740,
-                "y": 930
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp3",
-              "schematicPosition": {
-                "x": 1740,
-                "y": 810
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp4",
-              "schematicPosition": {
-                "x": 1800,
-                "y": 810
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp5",
-              "schematicPosition": {
-                "x": 1800,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp6",
-              "schematicPosition": {
-                "x": 1710,
-                "y": 210
-              }
-            },
-            {
-              "id": "wc_l_csb_csb_source_lp7",
-              "schematicPosition": {
-                "x": 1710,
-                "y": 180
-              }
-            }
-          ]
+          }
         }
       ],
       "shield": {
@@ -1067,23 +931,7 @@
         "source": {
           "id": "br_cab_cancsb_sh",
           "handle": "Terminal"
-        },
-        "sourceLayoutPoints": [
-          {
-            "id": "cab_can_csb_csb_sh_source_lp1",
-            "schematicPosition": {
-              "x": 1770,
-              "y": 960
-            }
-          },
-          {
-            "id": "cab_can_csb_csb_sh_source_lp2",
-            "schematicPosition": {
-              "x": 1770,
-              "y": 1110
-            }
-          }
-        ]
+        }
       }
     }
   ],
@@ -1368,24 +1216,26 @@
         "y": 30
       },
       "schematicPosition": {
-        "x": 1170,
-        "y": 300
+        "x": 990,
+        "y": 240
       },
       "partId": "spp_solder_generic",
-      "locationId": "bp_1170"
+      "locationId": "bp_1170",
+      "label": "Cruise ladder splice - stalk pin 5, 1k pull-up and CSB3 A2"
     },
     {
       "id": "sp_csb_gnd",
       "partId": "spp_solder_generic",
       "locationId": "bp_1230",
       "schematicPosition": {
-        "x": 510,
-        "y": 120
+        "x": 1170,
+        "y": 60
       },
       "layoutPosition": {
         "x": -120,
         "y": 30
-      }
+      },
+      "label": "CSB3 ground splice - CSB3 pin 2, opto board COM and stalk ground"
     }
   ],
   "resistors": [
@@ -1398,8 +1248,8 @@
         "y": 30
       },
       "schematicPosition": {
-        "x": 720,
-        "y": 180
+        "x": 600,
+        "y": 240
       }
     }
   ],
@@ -1407,16 +1257,17 @@
     {
       "id": "n_csb3",
       "schematicPosition": {
-        "x": 210,
-        "y": 270
+        "x": 0,
+        "y": 960
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness."
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness.",
+      "width": 390
     },
     {
       "id": "n_cavity_notes",
       "schematicPosition": {
-        "x": 660,
-        "y": 750
+        "x": 0,
+        "y": 1500
       },
       "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nECUMaster CSB3 - Power/CAN/Swi c26: L4 low-side - oil pressure LED sink (CAN 0x643); the wire from this pin to the LED is drawn on ST185-ClusterLED (broken off)",
       "width": 390
