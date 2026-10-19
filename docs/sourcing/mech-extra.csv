@@ -1,0 +1,4 @@
+assembly,item,part_number,maker,description,qty,buy_vs_print,source,note
+DRB102 firewall plate,Firewall plate (machined),ST185-DRB-101,custom (machined),"6061-T6 plate 12.7 mm, 201.0 x 150.0, corners R10, 0.583 kg",1,machine,cad/drb102-plate/DRB102-FIREWALL-PLATE.html,stock plate: no supplier chosen yet
+Billet fuel hanger,Flange FH-101 / strut FH-103 / foot FH-104 / saddle FH-105 (machined),ST185-FH-100,custom (machined),"Billet 6061-T6, one assembly (billet mass in cad/fuel-hanger/fuel-hanger-report.json)",1,machine,cad/fuel-hanger/README.md,stock size and supplier not chosen yet
+Billet fuel hanger,Fuel pump,F90000295,Walbro,In-tank pump the hanger is built for (cad/fuel-hanger/README.md),1,buy,cad/fuel-hanger/README.md,check the car's pump is not already on hand

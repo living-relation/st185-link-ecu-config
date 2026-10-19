@@ -4,6 +4,7 @@ Generated from the 15 `.harness` files in `docs/harness/rebuild/`:
 `A-cabin`, `B-cabin`, `CabinPower`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `HeavyDC`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `RearFuel`, `AntiTheft`, `CSB3`, `RearLights`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
+The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/sourcing/PROJECT-BOM.xlsx`; this file is its harness quantity audit.
 
 ## Short — order these
 
