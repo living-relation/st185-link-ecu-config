@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-100P",
- "pdf_sha": "8c5832f0176c723b",
+ "pdf_sha": "11bfa0e5e6b13dd7",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -93,7 +93,7 @@
    "placed": 8,
    "overlaps": 0,
    "crowded": 0,
-   "crossings": 2,
+   "crossings": 1,
    "hidden": []
   },
   {
@@ -101,7 +101,7 @@
    "placed": 15,
    "overlaps": 0,
    "crowded": 0,
-   "crossings": 1,
+   "crossings": 0,
    "hidden": []
   },
   {

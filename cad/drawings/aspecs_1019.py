@@ -114,7 +114,11 @@ def fb_power():
                    'C-STRAPS: BUILD THEM AS ST185-FB-117 SHEET 2, THEN PUSH EACH STRAIGHT DOWN INTO ITS WELL UNTIL THE HOOKS CLICK OVER THE LIPS.',
                    'TERMINALS GO UP FROM UNDER THE DECK UNTIL THE LANCE CLICKS; TUG THE WIRE TO CHECK (TE 114-2025 3.6, 114-20021 3.7).',
                    'TIE THE HARNESS NO CLOSER THAN 38 mm UNDER THE DECK; NO SHARP BENDS AT THE DECK (TE 114-20021 3.7 C).']
-    sp.update(tol=TOL, rev='Z')
+    st = sp['stage_sheets'][0]          # steps 3 and 4 move 10+ parts each: each gets a full sheet so the balloons spread (R188)
+    nut = _by(it, pn='RS 527-268')['item']
+    st[3]['balloon_base'] = [nut]       # step 4: the parts it adds, plus the top nut (it is only seen here); base parts were ballooned before
+    sp['stage_sheets'] = [st[:2], [st[2]], [st[3]], st[4:]]
+    sp.update(tol=TOL, rev='Z.01')      # Z.01 clerical: step sheets split (Dispatch review 2026-10-19)
     return sp
 
 

@@ -130,8 +130,8 @@
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
-   "rev": "Z",
-   "pdf_sha": "8c5832f0176c723b"
+   "rev": "Z.01",
+   "pdf_sha": "11bfa0e5e6b13dd7"
   },
   "ST185-FB-101": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",
@@ -321,11 +321,10 @@
     "fusebox/rev7/ST185-FB-117_model.step": "33b74928fdf3ff32"
    },
    "ci": {
-    "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
-    "src:drawings/run_fb117.py": "89ffae4e439ec1d9"
+    "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132"
    },
-   "rev": "D",
-   "pdf_sha": "01b6e6dc9d609a2c"
+   "rev": "D.01",
+   "pdf_sha": "e684af510b7c85fd"
   },
   "ST185-FH-100": {
    "pdf": "fuel-hanger/drawings/ST185-FH-100.pdf",

@@ -26,33 +26,7 @@ if os.environ.get('ST185_WORK'):
 os.makedirs('previews', exist_ok=True)
 import specs_1019  # noqa: E402
 import part  # noqa: E402
-import dwg  # noqa: E402
-import numpy as np  # noqa: E402
-
-# OCCT hidden-line removal turns a tiny curved edge seen end-on into a degenerate 2D curve, and the engine's sampling of it
-# runs hundreds of mm off the part (the CNLINKO LP-16 model in the VRC-100 front view: a 0.66 mm edge on the coupling shell
-# drew a 600 mm line and pushed the views to 1:10). A projected line can never leave the part's own projected bounding box,
-# so any line that does is dropped (and counted); nothing inside the box is touched. The engine fix belongs in handbuilt-cad.
-_project = dwg.project
-
-
-def _project_in_box(shape, view, *a, **k):
-    out = _project(shape, view, *a, **k)
-    c, r, u = out[2]
-    b = shape.bounding_box()
-    box = np.array([(x, y, z) for x in (b.min.X, b.max.X) for y in (b.min.Y, b.max.Y) for z in (b.min.Z, b.max.Z)])
-    lo, hi = np.array([(box @ r).min(), (box @ u).min()]) - 1.0, np.array([(box @ r).max(), (box @ u).max()]) + 1.0
-    inside = lambda p: len(p) == 0 or bool(((p >= lo) & (p <= hi)).all())
-    lists = [list(x) for x in (out[0], out[1])] + ([list(out[3])] if len(out) > 3 else [])
-    kept = [[p for p in L if inside(np.asarray(p))] for L in lists]
-    n = sum(len(L) - len(K) for L, K in zip(lists, kept))
-    if n:
-        print('run_1019: dropped %d projected line(s) outside the part box in view %s' % (n, view), flush=True)
-    dwg.LAST_PROJECT_STATS['outside_box_dropped'] = n
-    return (kept[0], kept[1], out[2]) + ((kept[2],) if len(out) > 3 else ())
-
-
-dwg.project = _project_in_box
+# The out-of-box projection filter that lived here (LP-16 HLR artifact) is in the engine since handbuilt-cad #15 (dwg.lines_in_box).
 
 JOB = {'vrc': 'st185_vrc_1015', 'csb3': 'st185_csb3_1015', 'drb': 'st185_drb102_1015', 'fb_power': 'st185_fusebox_1015'}
 keys = sys.argv[1:] or (specs_1019.KEYS + ['asm:' + k for k in JOB])

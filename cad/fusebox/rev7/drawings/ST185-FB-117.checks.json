@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-117",
- "pdf_sha": "01b6e6dc9d609a2c",
+ "pdf_sha": "e684af510b7c85fd",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -40,13 +40,11 @@
   },
   {
    "view": "STEP 4",
-   "placed": 4,
+   "placed": 2,
    "overlaps": 0,
    "crowded": 0,
    "crossings": 0,
-   "hidden": [
-    3
-   ]
+   "hidden": []
   }
  ],
  "not_ballooned": [],
