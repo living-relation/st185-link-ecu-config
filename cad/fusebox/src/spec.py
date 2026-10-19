@@ -320,7 +320,10 @@ WALL_EXEMPT = {
     'lug pocket wall': 'markup 2026-10-17 (Dan 23-18 / 23-27 pockets, R160): attachment only - the PA12 wall between two NEG bus lug tongues is 2.2 '
                        '(3.0 between the tongues, Dan\'s lug rule, less 0.4 clearance each side); it only stops a lug turning while its nut is '
                        'torqued and stands on the raised pocket floor along its whole 26 mm length. One ground node (R135).',
-    'strap snap tab': 'R155 (N14 = B): the snap arm over each copper strap\'s lips has to flex 1.5 to let the strap in (STRAP_TAB, FEA in '
+    'strip snap hook': 'markup 2026-10-18 (Dan: the LOGIC strips must be held by printed tabs, R157 style): the arm over each strip\'s rear '
+                       'end has to flex up 2.4 to let the strip slide in (STRIP_HOLD, 2.25 % < SNAP_EPS); its tooth is a 40 deg wedge '
+                       '(R181 lead-in) with a 0.3 land, and the arm hangs free under the deck between its post and the tooth',
+    'strap snap tab':'R155 (N14 = B): the snap arm over each copper strap\'s lips has to flex 1.5 to let the strap in (STRAP_TAB, FEA in '
                       'strap_fea.py); its slots are 1.0 (> 0.5 S6) and the ledge the lips rest on is between the well and the slot',
 }
 GAP_OPEN = 0.65      # SteveCAD sweep C1 (S6): least opening of a cavity-join bridge - HP MJF needs >= 0.5 between faces (check_printed_solid S6)
@@ -457,6 +460,20 @@ STRIP_Z0 = 5.9                                        # strip bottom edge, on th
 SPINE = dict(t=3.0, lip=3.2, lip_t=0.9)               # printed wall between the strips, lips under both strips (strips slide in from the rear)
 # fit audit 2026-10-18: t 2.2 -> 3.0 - the strip rail (card item 13, 22-59) hangs on the spine, and R127 wants >= 3 mm under a held piece; the
 # strips are 9.2 apart (PEM_GROW), so 3.1 of air stays each side; the M4 bolt-tip passes are cut through the spine as before
+# Dan's drawing markup 2026-10-18 ("LOGIC box bars are still not secured ... must not rely on wires or one end stud, and must not float
+# away from the wall"): each strip is held by the printed base on every side (R157 style), the copper is unchanged.
+#   IN  (seated against the wall): the spine fills the gap to each strip, 0 gap, in a band under the PEM heads and a band over them
+#        (pad_clr round the heads); the heads, bolt tips and feed nut keep the 3.0 spine and its passes between the bands.
+#   OUT: a kerb on the lug face at the bottom edge (kerb_t thick, `catch` up the face, clear of the feed lug) and top lips (lip_t x >= lip_w:
+#        R127 attachment >= 3) between the
+#        jumper sleeves (lip_w wide, sleeve + lip_clr clear), both `gap` off the face (the kerb stops own_clr short of an own-input
+#        wire - MRS / B30 drop down the jumper line and turn along the pan floor); the strips still slide in along the lips from the rear.
+#   DOWN / UP: the lips and the rail (card item 13). FRONT: a stop pad on the J4 channel floor at the strip's front end.
+#   REAR: a snap hook (arm along y, flexes up into the free space under the deck): its tooth drops `catch` behind the strip's rear end once
+#        it has slid in; lead-in `lead` deg from the push direction from lead_z off the catch face (R181), arm t x arm_L for SNAP_EPS.
+#        end_clr: the tooth sits that far behind the nominal strip end (the strip's +-0.5 length); defl_clr: arm underside over the strip top.
+STRIP_HOLD = dict(gap=0.2, kerb_t=2.0, catch=2.0, lip_t=3.0, lip_w=3.0, lip_clr=0.5, sleeve=JLUG['sleeve'], feed_clr=6.5, own_clr=7.5, pad_clr=0.4,
+                  arm_L=20.0, arm_t=2.5, arm_side=0.5, post=4.0, tooth=3.0, end_clr=0.5, defl_clr=0.4, lead=40.0, lead_z=0.3, slot=1.0)
 # strip y extents and feeds: BUS1 feed at its front end (lug face, wire out the front), BUS2 feed at its rear end (wire out the rear)
 # J4 = B (Dan, 2026-10-14, DECISIONS R94): the Bus 1 strip starts 3.5 later (8 -> 11.5) and its feed lug sits lower and 3 mm rearward
 # (y 15 / z 22 -> y 18 / z 13), so a band opens in front of the spine where the HL / HR / ETB wires cross under the deck (CHANNEL below).
