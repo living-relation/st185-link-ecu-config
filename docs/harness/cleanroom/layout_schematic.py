@@ -190,7 +190,7 @@ def _place_notes(doc, notes, attach):
         n["schematicPosition"] = {"x": x, "y": y}
         stacks[x] = y + _note_h(n) + GRID
     free = [n for n in notes.values() if n["id"] not in attach.values()]
-    y = -270
+    y = -960  # above the A/C block
     for n in free:
         n["schematicPosition"] = {"x": X_DEV - 450, "y": y}
         y += _note_h(n) + GRID
