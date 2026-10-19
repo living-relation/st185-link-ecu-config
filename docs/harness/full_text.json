@@ -201,7 +201,7 @@
    ],
    "br_w81": [
     "",
-    "ETB relay M14 pin 85, LOGIC box - ETB relay coil (-) - continues on ST185-CabinPower"
+    "ETB relay M4 pin 85, LOGIC box - ETB relay coil (-) - continues on ST185-CabinPower"
    ],
    "br_w_str85": [
     "",
@@ -217,7 +217,7 @@
    ],
    "br_w_acc86": [
     "",
-    "A/C clutch relay M15 pin 86, LOGIC box - A/C relay coil (+) - continues on ST185-CabinPower"
+    "A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+) - continues on ST185-CabinPower"
    ],
    "br_w_eps_rly": [
     "",
@@ -283,10 +283,6 @@
     "",
     "A/C pressure switch A5 pin 4, engine bay - pressure switch out - continues on ST185-EngineRoom-C"
    ],
-   "br_ac_mg": [
-    "",
-    "A/C compressor A4 pin 3, engine bay - VC coil (unused) - continues on ST185-EngineRoom-C"
-   ],
    "fl_acamp_act": [
     "",
     "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"
@@ -294,10 +290,6 @@
    "fl_acamp_psw": [
     "",
     "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"
-   ],
-   "fl_acamp_mg": [
-    "",
-    "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier"
    ]
   }
  },
@@ -703,8 +695,8 @@
    },
    "k_etb": {
     "label": [
-     "LOGIC M14",
-     "ETB Power Relay (seated in the LOGIC box M14) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+     "LOGIC M4",
+     "ETB Power Relay (seated in the LOGIC box M4) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
     ],
     "cavities": {
      "c1": [
@@ -799,8 +791,8 @@
    },
    "k_acc": {
     "label": [
-     "LOGIC M15",
-     "A/C Clutch Relay (on/off) (seated in the LOGIC box M15) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V"
+     "LOGIC M5",
+     "A/C Clutch Relay (on/off) (seated in the LOGIC box M5) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V"
     ],
     "cavities": {
      "c1": [
@@ -823,8 +815,8 @@
    },
    "k_eps_en": {
     "label": [
-     "LOGIC M21",
-     "EPS Enable Relay (seated in the LOGIC box M21) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+     "LOGIC M6",
+     "EPS Enable Relay (seated in the LOGIC box M6) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
     ],
     "cavities": {
      "c1": [
@@ -847,8 +839,8 @@
    },
    "k_rev": {
     "label": [
-     "LOGIC M22",
-     "Reverse Relay (seated in the LOGIC box M22) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A"
+     "LOGIC M7",
+     "Reverse Relay (seated in the LOGIC box M7) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A"
     ],
     "cavities": {
      "c1": [
@@ -871,8 +863,8 @@
    },
    "k_hl": {
     "label": [
-     "LOGIC M11",
-     "HEAD LH Relay (seated in the LOGIC box M11) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
+     "LOGIC M1",
+     "HEAD LH Relay (seated in the LOGIC box M1) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
     ],
     "cavities": {
      "c1": [
@@ -895,8 +887,8 @@
    },
    "k_hr": {
     "label": [
-     "LOGIC M12",
-     "HEAD RH Relay (seated in the LOGIC box M12) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
+     "LOGIC M2",
+     "HEAD RH Relay (seated in the LOGIC box M2) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
     ],
     "cavities": {
      "c1": [
@@ -919,8 +911,8 @@
    },
    "k_horn": {
     "label": [
-     "LOGIC M13",
-     "Horn Relay (seated in the LOGIC box M13) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19"
+     "LOGIC M3",
+     "Horn Relay (seated in the LOGIC box M3) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19"
     ],
     "cavities": {
      "c1": [
@@ -1060,7 +1052,7 @@
    "fb_logic": {
     "label": [
      "FB-LOGIC",
-     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 30) mini fuse strips, micro relays M11-M22"
+     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 30) mini fuse strips, micro relays M1-M7"
     ],
     "cavities": {
      "b1": [
@@ -1109,7 +1101,7 @@
      ],
      "etb": [
       "ETB 10A",
-      "Bus 1 ATM-10 ETB - ETB power relay k_etb 30 (M14)"
+      "Bus 1 ATM-10 ETB - ETB power relay k_etb 30 (M4)"
      ],
      "lam": [
       "LAM 7.5A",
@@ -1137,11 +1129,11 @@
      ],
      "epsen": [
       "EPSEN 7.5A",
-      "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M21)"
+      "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M6)"
      ],
      "acc": [
       "ACC 10A",
-      "Bus 2 ATM-10 ACC - A/C clutch relay k_acc 30 (M15)"
+      "Bus 2 ATM-10 ACC - A/C clutch relay k_acc 30 (M5)"
      ],
      "almig": [
       "ALMIG 2A",
@@ -2547,17 +2539,9 @@
     "",
     "EWD p.152 A5-1 (V-R in the factory wiring, new wire here) A/C pressure switch +12V (ACPS 5 A, IG) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
    ],
-   "fl_a4_3": [
-    "",
-    "EWD 1990 p.152 A4-3 (Y-B in the factory wiring, new wire here) A/C magnetic clutch <- A18-5 (br_ac_mg) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
-   ],
    "fl_a5_4": [
     "",
     "EWD 1990 p.152 A5-4 (Y-R in the factory wiring, new wire here) A/C pressure switch switched return -> A18-13 (br_ac_psw) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
-   ],
-   "br_ac_mg": [
-    "",
-    "Broken off - continues on ST185-A-cabin: A/C VC control coil A4-3 (not fitted) (fl_a4_3) <- A18-5 (fl_acamp_mg)"
    ],
    "br_ac_psw": [
     "",

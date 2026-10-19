@@ -2059,7 +2059,7 @@
         "y": 3750
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M14 ETB power, pin 87 - ETB +12V out"
+      "label": "LOGIC box (glove box) relay M4 ETB power, pin 87 - ETB +12V out"
     },
     {
       "id": "br_cab_fspur_r",
@@ -2254,7 +2254,7 @@
         "y": 1200
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M21 EPS enable, pin 85 - coil minus"
+      "label": "LOGIC box (glove box) relay M6 EPS enable, pin 85 - coil minus"
     },
     {
       "id": "br_w_acc_trig",
@@ -2269,7 +2269,7 @@
         "y": 1080
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M15 A/C clutch, pin 85 - coil minus"
+      "label": "LOGIC box (glove box) relay M5 A/C clutch, pin 85 - coil minus"
     },
     {
       "id": "br_w_start_in",
@@ -2314,7 +2314,7 @@
         "y": 300
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M22 reverse, pin 86 - coil plus"
+      "label": "LOGIC box (glove box) relay M7 reverse, pin 86 - coil plus"
     },
     {
       "id": "br_rev_feed",

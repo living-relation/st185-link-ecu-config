@@ -24,21 +24,10 @@ OEM_ENDS = {
         old="OEM A/C amplifier, Y-R lead, by the ECU; (EWD 1990 p.152)",
         short="A/C amp A18 pin 13 (1993: A15), behind the glove box. Solder splice onto the factory "
               "Y-R lead. EWD 1990 p.152; locator 1990 p.17."),
-    "fl_acamp_mg": dict(
-        where=A18_WHERE, ref="1990 ST185 EWD p.152; 1992 EWD132U p.218 (A17-5); " + A18_REF,
-        old="OEM A/C amplifier, Y-B lead, by the ECU; (EWD 1990 p.152)",
-        short="A/C amp A18 pin 5 (1993: A15), behind the glove box. Solder splice onto the factory "
-              "Y-B lead (VC coil, not fitted). EWD 1990 p.152; locator 1990 p.17."),
     "br_ac_psw": dict(
         where="A/C pressure switch A5, engine bay; exact spot TBD (no locator figure in the repo)",
         ref="1990 ST185 EWD p.152 (A5 pin 4 Y-R)",
         old="OEM A/C pressure switch, engine bay; (EWD 1990 p.152)",
         short="Runs on in ST185-EngineRoom-C to A/C pressure switch A5 pin 4 (engine bay): new wire "
               "to the switch's own mating plug, plug part TBD. EWD 1990 p.152."),
-    "br_ac_mg": dict(
-        where="A/C compressor A4, engine bay; exact spot TBD (no locator figure in the repo)",
-        ref="1990 ST185 EWD p.152 (A4 pin 3 Y-B)",
-        old="OEM A/C compressor, engine bay; (EWD 1990 p.152)",
-        short="Runs on in ST185-EngineRoom-C to A/C compressor A4 pin 3 (engine bay): new wire to "
-              "the coil's own mating plug, plug part TBD. EWD 1990 p.152."),
 }

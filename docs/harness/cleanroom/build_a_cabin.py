@@ -42,7 +42,7 @@ SPLICES = {
     "sp_5v": "At ECU-A plug - SP-5V-A: +5 V sensor supply",
     "sp_5v_2": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise",
     "sp_8v": "At ECU-A plug - SP-8V: +8 V cam sensor supply",
-    "sp_trig2": "At ECU-A plug - SP-CAM: cam signal + 1.8 k pull-up",
+    "sp_trig2": "At ECU-A plug - SP-CAM: cam signal + 1.8k pull-up to +8V",
     "sp_gndout": "At ECU-A plug - SP-GNDOUT-A: sensor ground",
     "sp_sw12": "At ECU-A plug - SP-SW12: switched +12 V",
     "sp_chassis": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground",
@@ -60,11 +60,11 @@ def _br(label, other):
 
 TERMINALS = {
     "br_w76": _br("EFI main relay R2 pin 85, POWER box - EFI relay coil (-)", "CabinPower"),
-    "br_w81": _br("ETB relay M14 pin 85, LOGIC box - ETB relay coil (-)", "CabinPower"),
+    "br_w81": _br("ETB relay M4 pin 85, LOGIC box - ETB relay coil (-)", "CabinPower"),
     "br_w_str85": _br("Start relay R3 pin 85, POWER box - start relay coil (-)", "CabinPower"),
     "br_w_fan85": _br("Rad fan relay R4 pin 85, POWER box - fan relay coil (-)", "CabinPower"),
     "br_w_fp85": _br("Fuel pump relay K1 pin 85, trunk - fuel pump relay coil (-)", "HeavyDC"),
-    "br_w_acc86": _br("A/C clutch relay M15 pin 86, LOGIC box - A/C relay coil (+)", "CabinPower"),
+    "br_w_acc86": _br("A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+)", "CabinPower"),
     "br_w_eps_rly": _br("EHPS relay pin 85, glove box - EHPS relay coil (-)", "CabinPower"),
     "br_w_fb_sw12": _br("SW12 bus plug pin 2, glove box - switched +12 V feed", "CabinPower"),
     "br_w_inj_pwr_c": _br("LOGIC box fuse INJ 15 A lead - injector +12 V", "CabinPower"),
@@ -81,13 +81,10 @@ TERMINALS = {
     "br_w_cru_5v": _br("Cruise ladder resistor lead, centre console - +5 V cruise", "CSB3"),
     "br_w_csbg": _br("CSB3 ground splice, centre console - CSB3 + opto ground", "CSB3"),
     "br_ac_psw": _br("A/C pressure switch A5 pin 4, engine bay - pressure switch out", "EngineRoom-C"),
-    "br_ac_mg": _br("A/C compressor A4 pin 3, engine bay - VC coil (unused)", "EngineRoom-C"),
     "fl_acamp_act": ("A/C amp A18 pin 11, factory G-Y lead - A/C cancel (ACT)",
                      "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"),
     "fl_acamp_psw": ("A/C amp A18 pin 13, factory Y-R lead - pressure switch in",
                      "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"),
-    "fl_acamp_mg": ("A/C amp A18 pin 5, factory Y-B lead - VC coil out (unused)",
-                    "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier"),
     "chassis_ring": ("Cabin chassis stud M6 at ECU - ECU ground ring", ""),
 }
 
@@ -176,12 +173,12 @@ WIRES = [
     ("w76", ("br_w76", None), ("ecu_a", "A28"), "EFI relay coil (-)"),
     ("w_fan85", ("br_w_fan85", None), ("ecu_a", "A29"), "Rad fan relay (-)"),
     ("w_eps_rly", ("br_w_eps_rly", None), ("bh_a_fw", "56"), "EHPS relay coil (-)"),
-    # A/C (R23): each wire point to point; the one A/C splice is the SoT's sp_ac_psw
+    # A/C (R23): each wire point to point; the one A/C splice is the SoT's sp_ac_psw. The compressor
+    # has no VC coil: the amp pin 5 -> A4 pin 3 wire is gone (Dan 2026-10-19, DECISIONS R205).
     ("w_ac_kill", ("ecu_a", "A18"), ("fl_acamp_act", None), "A/C cancel (ACT)"),
     ("w_ac_psw_in", ("br_ac_psw", None), ("sp_ac_psw", None), "A/C pressure sw out"),
     ("w_ac_psw_sw", ("fl_acamp_psw", None), ("sp_ac_psw", None), "A/C pressure sw out"),
     ("w_acc86", ("sp_ac_psw", None), ("br_w_acc86", None), "A/C clutch relay (+)"),
-    ("w_ac_clutch_mg", ("fl_acamp_mg", None), ("br_ac_mg", None), "A/C VC coil (unused)"),
 ]
 
 # cable cores: cable id -> core id -> (from, to, description)
@@ -233,6 +230,19 @@ END_EXTRA = {
 NODE_NOTES = {
     "n_pedal_length": ("aps", "Pedal branch length is a placeholder: measure at the car."),
 }
+
+# ends of the old drawing that are gone (DECISIONS R205: no VC coil wire)
+REMOVED_ENDS = {"fl_acamp_mg", "br_ac_mg"}
+
+# LOGIC box micro relay slots as the latest fuse-box design names them (DECISIONS R204,
+# cad/fusebox/src/spec.py MICRO_POS): the old drawing's notes used the retired M11-M22 names.
+SLOTS = {"M11": "M1", "M12": "M2", "M13": "M3", "M14": "M4", "M15": "M5", "M21": "M6", "M22": "M7"}
+
+
+def slot_names(text):
+    import re
+    return re.sub(r"(M1[1-5]|M2[12])", lambda m: SLOTS[m.group(1)], text)
+
 
 ROUTING_KEYS = ("layoutPoints", "sourceLayoutPoints", "targetLayoutPoints")
 
@@ -316,6 +326,21 @@ def main():
         s["label"] = SPLICES[s["id"]]
     out["resistors"][0]["label"] = "Cam pull-up 1.8 k to +8 V"
     out["terminals"] = [t for t in out["terminals"] if t["id"] in TERMINALS]
+    # layout legs that ended at a removed end go, and so do branch points left as dead ends
+    live = {c["id"] for k in ("connectors", "terminals", "splices", "resistors") for c in out.get(k, [])}
+    out["bundles"] = [b for b in out["bundles"] if b["sourceId"] in live | {p["id"] for p in out["branchPoints"]}
+                      and b["targetId"] in live | {p["id"] for p in out["branchPoints"]}]
+    while True:
+        deg = {p["id"]: 0 for p in out["branchPoints"]}
+        for b in out["bundles"]:
+            for k in ("sourceId", "targetId"):
+                if b[k] in deg:
+                    deg[b[k]] += 1
+        dead = {k for k, v in deg.items() if v <= 1 and not any(s.get("locationId") == k for s in out["splices"])}
+        if not dead:
+            break
+        out["bundles"] = [b for b in out["bundles"] if b["sourceId"] not in dead and b["targetId"] not in dead]
+        out["branchPoints"] = [p for p in out["branchPoints"] if p["id"] not in dead]
     for t in out["terminals"]:
         t["label"] = TERMINALS[t["id"]][0]  # R156: a wire end has a label and no signal
         t["width"] = 390
@@ -356,9 +381,11 @@ def main():
     for n in geo["schematicNotes"]:
         tid = n["id"][len("n_end_"):] if n["id"].startswith("n_end_") else None
         if tid and tid in TERMINALS:
-            text = OEM_ENDS[tid]["short"] if tid in OEM_ENDS else n["text"]
+            text = OEM_ENDS[tid]["short"] if tid in OEM_ENDS else slot_names(n["text"])
             text = " ".join(x for x in (text, END_EXTRA.get(tid, "")) if x)
             attach[tid] = n["id"]
+        elif tid in REMOVED_ENDS:
+            continue
         elif tid:
             raise SystemExit("old end note %s has no end in this file" % n["id"])
         else:
@@ -371,6 +398,9 @@ def main():
     place(out, attach)
     print("schematic:", metrics(out))
 
+    # a wire part no wire uses any more goes (DECISIONS R44: no unused part definitions)
+    used = {w.get("partId") for w in out["wires"]}
+    out["wireParts"] = [p for p in out["wireParts"] if p["id"] in used]
     write_full_text(out)
     tmp = a.out + ".tmp"
     with open(tmp, "w", encoding="utf-8", newline="\n") as f:

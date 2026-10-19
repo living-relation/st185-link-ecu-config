@@ -1676,7 +1676,7 @@
     },
     {
       "id": "k_etb",
-      "label": "LOGIC M14",
+      "label": "LOGIC M4",
       "cavities": [
         {
           "id": "c1",
@@ -1847,7 +1847,7 @@
     },
     {
       "id": "k_acc",
-      "label": "LOGIC M15",
+      "label": "LOGIC M5",
       "cavities": [
         {
           "id": "c1",
@@ -1891,7 +1891,7 @@
     },
     {
       "id": "k_eps_en",
-      "label": "LOGIC M21",
+      "label": "LOGIC M6",
       "cavities": [
         {
           "id": "c1",
@@ -1939,7 +1939,7 @@
     },
     {
       "id": "k_rev",
-      "label": "LOGIC M22",
+      "label": "LOGIC M7",
       "cavities": [
         {
           "id": "c1",
@@ -1987,7 +1987,7 @@
     },
     {
       "id": "k_hl",
-      "label": "LOGIC M11",
+      "label": "LOGIC M1",
       "cavities": [
         {
           "id": "c1",
@@ -2035,7 +2035,7 @@
     },
     {
       "id": "k_hr",
-      "label": "LOGIC M12",
+      "label": "LOGIC M2",
       "cavities": [
         {
           "id": "c1",
@@ -2083,7 +2083,7 @@
     },
     {
       "id": "k_horn",
-      "label": "LOGIC M13",
+      "label": "LOGIC M3",
       "cavities": [
         {
           "id": "c1",
@@ -3732,7 +3732,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M14 ETB",
+      "endLabel": "M4 ETB",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_14"
@@ -3864,7 +3864,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M15 ACC",
+      "endLabel": "M5 ACC",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_14"
@@ -3969,7 +3969,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M21 EPSEN",
+      "endLabel": "M6 EPSEN",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_14"
@@ -4002,7 +4002,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M22 REV",
+      "endLabel": "M7 REV",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_14"
@@ -4071,7 +4071,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M11 HL",
+      "endLabel": "M1 HL",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_38"
@@ -4086,7 +4086,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M12 HR",
+      "endLabel": "M2 HR",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_38"
@@ -4101,7 +4101,7 @@
         "unit": "mm"
       },
       "separateLabels": true,
-      "endLabel": "M13 HORN",
+      "endLabel": "M3 HORN",
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_14"
@@ -4343,7 +4343,7 @@
         "x": 2520,
         "y": 0
       },
-      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 30, mini fuses BUS1-n / BUS2-n, micro relays M11-M22; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M11, k_hr M12, k_horn M13, k_etb M14, k_acc M15, k_eps_en M21, k_rev M22 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 87. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
+      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 30, mini fuses BUS1-n / BUS2-n, micro relays M1-M7; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M1, k_hr M2, k_horn M3, k_etb M4, k_acc M5, k_eps_en M6, k_rev M7 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 87. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
     },
     {
       "id": "n_cavity_notes",

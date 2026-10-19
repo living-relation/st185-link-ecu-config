@@ -13,8 +13,9 @@
   D5  R29 / R12 / R26  no drawing note that still describes a SolderSleeve or a drawn T-splice,
            a J/B2 landing (except as removed), the PMU, gbx_body, HDP2x bulkheads, powder-coat
            masking or a G4+ reference
+  D6  R203  every splice has a plain name (its `label`): no unnamed splice in any drawing
 
-HARD: D1 (pure-bay harnesses), D2 (zero since 2026-10-12), D3, D4 and D5 (zero since 2026-10-14). SOFT
+HARD: D1 (pure-bay harnesses), D2 (zero since 2026-10-12), D3, D4, D5 (zero since 2026-10-14) and D6 (zero since 2026-10-19). SOFT
 (printed, do not fail): the D1 EngineRoom-C list. A SOFT check moves to HARD the day it first
 reports zero (check_all.py convention) - edit SOFT below.
 
@@ -85,6 +86,9 @@ for loom, d in docs.items():
             s = cv.get("signal") or ""
             if BAD_SIGNAL.search(s):
                 add("D4", "%s: %s %s signal %r (R44: nothing 'not used' / reserved)" % (loom, c["id"], cv["id"], s[:70]))
+    for sp in d.get("splices", []):
+        if not (sp.get("label") or "").strip():
+            add("D6", "%s: splice %s has no name (R203: every splice needs a name)" % (loom, sp.get("id")))
     for n in d.get("schematicNotes", []) + d.get("layoutNotes", []):
         t = n.get("text") or ""
         for rule, rx in BAD_NOTE:

@@ -93,7 +93,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
 | EFI main, ETB, fuel pump | Relays seated in the glove-box fuse box, `ST185-CabinPower.harness` (coil wires on `ST185-A-cabin.harness`) | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | Relay + fuse, LOGIC HL / HR, new wire to headlight H1 / H2 pin 3 | Replaces 15 A HEAD fuses + headlight relay in J/B2 |
-| HAZ-HORN | LOGIC HZ fuse: hazard feed to IE1-12 (cowl side); horn relay (LOGIC M13) to a DT 2-way at each horn H3 / H4 | Replaces 15 A HAZ-HORN and the R/B5 horn relay |
+| HAZ-HORN | LOGIC HZ fuse: hazard feed to IE1-12 (cowl side); horn relay (LOGIC M3) to a DT 2-way at each horn H3 / H4 | Replaces 15 A HAZ-HORN and the R/B5 horn relay |
 | DOME | LOGIC DM fuse only, always-hot, to J/B1 1H-2 (cabin) | Replaces 20 A DOME |
 | Retract motors | POWER RTR (AMI OUT-2) fuse only, to IE1-3 → OEM retract control relay R8 | Replaces 30 A RTR (DECISIONS 38) |
 | Wiper / washer | J/B No.1 WIPER 20A (R61), no relay of ours | The park switch is in the motor F9 (pins 3-4) and the wiper relay is inside the switch C16 (1993 p.148); no fuse-box position (the Option B `wp` spare is gone) |
@@ -210,7 +210,7 @@ Drawn in `ST185-EngineRoom-C` (cabin and bay ends) and `ST185-CabinPower` (fuse 
 |---|---|---|---|---|---|
 | HEAD LH | LOGIC HL 15 A + relay | 14 | H1 pin 3 (headlamp plug) | Bay, LH corner | p.116 |
 | HEAD RH | LOGIC HR 15 A + relay | 14 | H2 pin 3 (headlamp plug) | Bay, RH corner | p.116 |
-| Horns | LOGIC M13 (horn relay 87, HAZ-HORN 15 A) | 14 → splice → 16 each | DT 2-way at H3 and H4, c1 +; c2 16 AWG ground to EA | Bay, front centre | p.185 |
+| Horns | LOGIC M3 (horn relay 87, HAZ-HORN 15 A) | 14 → splice → 16 each | DT 2-way at H3 and H4, c1 +; c2 16 AWG ground to EA | Bay, front centre | p.185 |
 | Hazard | LOGIC HZ 15 A (before the horn relay) | 14 | IE1-12 W | Cabin, left kick | p.130 |
 | DOME | LOGIC DM 20 A | 12 | J/B1 1H-2 | Cabin, left kick | p.132 |
 | RTR | POWER RTR 30 A | 10 | IE1-3 W → R8 pin 3 | Cabin, left kick | p.116 |
@@ -333,7 +333,7 @@ R/B No.2, No.3 and No.4 are removed (Daniel, 2026-10-10): heater and POWER get t
 
 ### 8.1 Circuit map - fuse box rev 5 (2026-10-14)
 
-Which circuit sits where, and why. Positions are the CAD slot map's names (POWER AMI IN-n / OUT-n / R1-R7, LOGIC BUS1-n / BUS2-n / M11-M25, battery block F1 / K1); the CAD page owns the positions, this table owns the circuit facts. Relays from `docs/sourcing/te-on-hand-bom.csv`. Gauges are the drawings' (the CAD page's gauges are placeholders by fuse rating). The "Was" column names the retired Option B position (history).
+Which circuit sits where, and why. Positions are the CAD slot map's names (POWER AMI IN-n / OUT-n / R1-R7, LOGIC BUS1-n / BUS2-n / M1-M10, battery block F1 / K1); the CAD page owns the positions, this table owns the circuit facts. Relays from `docs/sourcing/te-on-hand-bom.csv`. Gauges are the drawings' (the CAD page's gauges are placeholders by fuse rating). The "Was" column names the retired Option B position (history).
 
 | # | Circuit | Was (Option B) | Box | Position | Fuse (A) | Relay | Relay part | AWG | Note |
 |---|---|---|---|---|---|---|---|---|---|
@@ -343,7 +343,7 @@ Which circuit sits where, and why. Positions are the CAD slot map's names (POWER
 | 4 | Fuel pump | MTA-1 MiniVal 2 + micro | battery block (trunk) | F1 + K1 | 40 AMI | k_fp | TE HCR150 1416010-1 (own, the spare) | 10 | Aux 3 A19 (coil -), coil + SW12, both broken off to `ST185-HeavyDC`; fed from the kill switch LOAD side so the switch also stops the pump (R75) |
 | 5 | Blower / heater | MTA-2 MaxiVal + Maxi R1 | POWER | AMI IN-1 + R1 | 40 AMI | heater | TE 1-1414687-0 Power Relay F4 A, 1 form C, NO 40 A (BUY; replaces the superseded 1-1904020-2) | 8 | coil: auto amp HR path; 87a grounds the blower + when off, as the OEM relay did (p.215; 14 AWG to the PDB ground bus - the cavity is a 6.35 FASTON). the 40 A AMI matches the F4 A's 40 A NO |
 | 6 | Starter S | MTA-2 MiniVal 1 + Maxi R2 | POWER | AMI IN-3 + R3 | 30 AMI | k_str | TE 1-1414147-0 (own) | 12 in / 10 out | Aux 8 A26 |
-| 7 | ETB power | MTA-2 MiniVal 2 + micro | LOGIC | BUS1-10 + M14 | 10 | k_etb | TE 4-1904124-2 (own) | 16 | Aux 2 A20 → B5 |
+| 7 | ETB power | MTA-2 MiniVal 2 + micro | LOGIC | BUS1-10 + M4 | 10 | k_etb | TE 4-1904124-2 (own) | 16 | Aux 2 A20 → B5 |
 | 8 | MR-S EPS enable logic (F13) | MTA-2 MiniVal 3 | LOGIC | BUS2-12 | 7.5 | — | — | 18 in / 20 out | fed from k_eps_en 87 - this position must NOT pick up the Bus 2 strip |
 | 9 | Condenser fan | MTA-3 MaxiVal + Maxi R1 | POWER | AMI IN-5 + R5 | 30 AMI | k_fan2 | TE 1-1393304-0 (own; bracket not used) | 8 | Ign 5 B13; plain relay, no diode |
 | 10 | Power windows (ex-R/B2 POWER) | LMI L2 + MTA-3 Maxi R2 | POWER | AMI IN-6 + R6 | 30 AMI | power | TE 1-1393304-0 (own; bracket not used) | 10 | coil: key IG; door lock / tilt-away W-L is LOGIC WL 15 A (R58), not a tap |
@@ -355,9 +355,9 @@ Which circuit sits where, and why. Positions are the CAD slot map's names (POWER
 | 16 | OEM HOT → J/B1 1I-1 | LMI L6 | POWER | AMI OUT-5 | 60 AMI | — | — | 6 |  |
 | 17 | EPS pump → HCR150 30 | LMI L7 | POWER | AMI OUT-6 | 60 AMI | k_eps | TE HCR150 1416010-1 (own) | 8 | coil+ SW12, coil- ← pump B5 (R22); HCR150 beside the POWER box |
 | 18 | Relay-coil perm feed k_efi 86 (F12) | RFRM Bus 1 | LOGIC | BUS1-1 | 5 | — | — | 18 |  |
-| 19 | HEAD LH | RFRM Bus 1 + micro | LOGIC | BUS1-2 + M11 | 15 | HEAD LH | TE 5-1393292-8 (own, diode) | 14 | coil − IE1-2 |
-| 20 | HEAD RH | RFRM Bus 1 + micro | LOGIC | BUS1-3 + M12 | 15 | HEAD RH | TE 5-1393292-8 (own, diode) | 14 |  |
-| 21 | HAZ-HORN (+ horn relay) | RFRM Bus 1 + micro | LOGIC | BUS1-4 + M13 | 15 | horn | TE 4-1904124-3 (own) | 14 | coil − IE1-19 |
+| 19 | HEAD LH | RFRM Bus 1 + micro | LOGIC | BUS1-2 + M1 | 15 | HEAD LH | TE 5-1393292-8 (own, diode) | 14 | coil − IE1-2 |
+| 20 | HEAD RH | RFRM Bus 1 + micro | LOGIC | BUS1-3 + M2 | 15 | HEAD RH | TE 5-1393292-8 (own, diode) | 14 |  |
+| 21 | HAZ-HORN (+ horn relay) | RFRM Bus 1 + micro | LOGIC | BUS1-4 + M3 | 15 | horn | TE 4-1904124-3 (own) | 14 | coil − IE1-19 |
 | 22 | DOME | RFRM Bus 1 | LOGIC | BUS1-5 | 20 | — | — | 12 |  |
 | 23 | Door lock / tilt-away always-hot W-L (R58) | RFRM Bus 1 | LOGIC | BUS1-6 | 15 | — | — | 14 | flying lead into the factory W-L at old R/B2 pin 2 (EngineRoom-C `fl_oem_rb2_wl`) |
 | 24 | Alarm +12V constant | RFRM Bus 1 | LOGIC | BUS1-7 | 5 | — | — | 20 | `ST185-AntiTheft` |
@@ -369,10 +369,10 @@ Which circuit sits where, and why. Positions are the CAD slot map's names (POWER
 | 30 | Injector bank (F11) | RFRM Bus 2 | LOGIC | BUS2-4 | 15 | — | — | 14 trunk / 16 branches |  |
 | 31 | CSB3 | RFRM Bus 2 | LOGIC | BUS2-5 | 5 | — | — | 20 | k_efi rail |
 | 32 | DEV: cluster + RealDash Pi | RFRM Bus 2 | LOGIC | BUS2-6 | 15 | — | — | 16 |  |
-| 33 | k_eps_en contact feed | RFRM Bus 2 + micro | LOGIC | BUS2-7 + M21 | 7.5 | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12; 87 → LOGIC MRS IN (row 8) |
-| 34 | k_acc A/C clutch | RFRM Bus 2 + micro | LOGIC | BUS2-8 + M15 | 10 (verify) | k_acc | TE 6-1419137-4 (own) | 16 | Ign 8 B10; A5 in series |
+| 33 | k_eps_en contact feed | RFRM Bus 2 + micro | LOGIC | BUS2-7 + M6 | 7.5 | k_eps_en | TE 6-1419137-4 (own) | 18 | Ign 6 B12; 87 → LOGIC MRS IN (row 8) |
+| 34 | k_acc A/C clutch | RFRM Bus 2 + micro | LOGIC | BUS2-8 + M5 | 10 (verify) | k_acc | TE 6-1419137-4 (own) | 16 | Ign 8 B10; A5 in series |
 | 35 | Alarm ignition sense | RFRM Bus 2 | LOGIC | BUS2-9 | 2 | — | — | 20 |  |
-| 36 | Reverse lamps (Route 15) | RFRM micro (no fuse) | LOGIC | M22 (no fuse) | — (J/B No.1 GAUGE 15A, R61) | k_rev | TE 6-1419137-4 (BUY) | 16 | 30 from the factory R-L lead at J/B3 3B-9; coil 86 from back-up switch B1 pin 1 (bulkhead B c12), 85 to the PDB ground bus; 87 -> `ST185-RearLights` R11 / R12 pin 4 |
+| 36 | Reverse lamps (Route 15) | RFRM micro (no fuse) | LOGIC | M7 (no fuse) | — (J/B No.1 GAUGE 15A, R61) | k_rev | TE 6-1419137-4 (BUY) | 16 | 30 from the factory R-L lead at J/B3 3B-9; coil 86 from back-up switch B1 pin 1 (bulkhead B c12), 85 to the PDB ground bus; 87 -> `ST185-RearLights` R11 / R12 pin 4 |
 
 Retired with Option B: the ECU permanent +12V (F8, removed 2026-10-12) and the wiper park slot (not used, 2026-10-13: the wiper stays on J/B No.1 WIPER 20A, R61).
 

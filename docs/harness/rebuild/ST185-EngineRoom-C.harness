@@ -66,25 +66,6 @@
   },
   "wires": [
     {
-      "id": "w_ac_mg",
-      "color": "Yellow",
-      "stripeColor": "Black",
-      "source": {
-        "id": "br_ac_mg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "fl_a4_3",
-        "handle": "Terminal"
-      },
-      "partId": "m16_20_40",
-      "identColors": [
-        "White",
-        "Yellow",
-        "White"
-      ]
-    },
-    {
       "id": "w_ac_psw",
       "color": "Yellow",
       "stripeColor": "Red",
@@ -1764,22 +1745,6 @@
       "width": 390
     },
     {
-      "id": "fl_a4_3",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "schematicPosition": {
-        "x": 0,
-        "y": 1710
-      },
-      "layoutPosition": {
-        "x": 6090,
-        "y": -3630
-      },
-      "propagate": false,
-      "label": "A/C compressor A4 pin 3 - VC control coil, not fitted (EWD p.152)",
-      "width": 390
-    },
-    {
       "id": "fl_a5_4",
       "type": "Loose",
       "partId": "tp_flying_lead",
@@ -1794,21 +1759,6 @@
       "propagate": false,
       "label": "A/C pressure switch A5 pin 4 - switched output (EWD p.152)",
       "width": 390
-    },
-    {
-      "id": "br_ac_mg",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 0,
-        "y": 1830
-      },
-      "layoutPosition": {
-        "x": 6090,
-        "y": -3420
-      },
-      "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 5 lead, Y-B (A-cabin) - VC coil drive (EWD p.152)"
     },
     {
       "id": "br_ac_psw",
@@ -1961,7 +1911,7 @@
         "y": 510
       },
       "propagate": false,
-      "label": "LOGIC box relay M11 pin 87 (glove box; CabinPower) - HEAD LH relay out"
+      "label": "LOGIC box relay M1 pin 87 (glove box; CabinPower) - HEAD LH relay out"
     },
     {
       "id": "br_w_pmu_hr",
@@ -1976,7 +1926,7 @@
         "y": 630
       },
       "propagate": false,
-      "label": "LOGIC box relay M12 pin 87 (glove box; CabinPower) - HEAD RH relay out"
+      "label": "LOGIC box relay M2 pin 87 (glove box; CabinPower) - HEAD RH relay out"
     },
     {
       "id": "br_w_pmu_horn",
@@ -1991,7 +1941,7 @@
         "y": 750
       },
       "propagate": false,
-      "label": "LOGIC box relay M13 pin 87 (glove box; CabinPower) - horn relay out"
+      "label": "LOGIC box relay M3 pin 87 (glove box; CabinPower) - horn relay out"
     },
     {
       "id": "br_w_pmu_dome",
@@ -2142,7 +2092,7 @@
         "y": 1590
       },
       "propagate": false,
-      "label": "LOGIC box relay M15 pin 87 (glove box; CabinPower) - A/C clutch relay out"
+      "label": "LOGIC box relay M5 pin 87 (glove box; CabinPower) - A/C clutch relay out"
     },
     {
       "id": "br_w_haz",
@@ -3815,27 +3765,9 @@
       ]
     },
     {
-      "id": "bn_bp_fl_ac_press__fl_a4_3",
-      "sourceId": "bp_fl_ac_press",
-      "targetId": "fl_a4_3",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_fl_ac_press__fl_a5_4",
       "sourceId": "bp_fl_ac_press",
       "targetId": "fl_a5_4",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_fl_ac_press__br_ac_mg",
-      "sourceId": "bp_fl_ac_press",
-      "targetId": "br_ac_mg",
       "length": {
         "value": 50,
         "unit": "mm"
@@ -5078,18 +5010,6 @@
       "color": "Black",
       "gauge": {
         "value": 4,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_40",
-      "partNumber": "M22759/16-20-40",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "stripeColor": "Black",
-      "gauge": {
-        "value": 20,
         "unit": "AWG"
       }
     },

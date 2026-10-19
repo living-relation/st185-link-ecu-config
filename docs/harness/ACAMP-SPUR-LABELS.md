@@ -15,6 +15,10 @@ interchangeable for these circuits. 1990 ST185 book locator for the compressor
 amplifier is **A18**; 1992 Celica EWD132U locator is **A17**. Pin numbers below
 are the same on both except where an assumption is called out.
 
+**2026-10-19 (Dan, DECISIONS R205): the compressor has no VC coil.** `fl_acamp_mg` and `fl_a4_3`
+(the A18-5 to A4-3 wire) are deleted; their rows below are history. The clutch is one wire,
+k_acc (LOGIC M5) pin 87 to A4 pin 4, grounded through the engine.
+
 ## Labels
 
 | Terminal | Land on | Factory colour | Function | Source |

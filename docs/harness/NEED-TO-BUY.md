@@ -9,7 +9,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 90 | 0 | **90** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 88 | 0 | **88** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 58 | 0 | **58** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 56 | 0 | **56** |
 | `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 48 | 0 | **48** |
@@ -296,12 +296,12 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-cabin | 3 |
+| A-cabin | 2 |
 | B-cabin | 2 |
 | CSB3 | 5 |
 | CabinPower | 6 |
 | ClusterLED | 6 |
-| EngineRoom-C | 60 |
+| EngineRoom-C | 59 |
 | RearLights | 20 |
 
 ## Screened cable pieces by owning harness
@@ -433,9 +433,9 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 | `RNF-100-3/16-4-STK` | 70 | 1 |
 | `RNF-100-3/16-6-STK` | 72 | 1 |
 | `RNF-100-3/16-9-STK` | 70 | 1 |
-| `RNF-100-3/32-4-STK` | 690 | 4 |
+| `RNF-100-3/32-4-STK` | 686 | 4 |
 | `RNF-100-3/32-6-STK` | 942 | 6 |
-| `RNF-100-3/32-9-STK` | 488 | 3 |
+| `RNF-100-3/32-9-STK` | 480 | 3 |
 
 ## Covering tubing on bundles (Raychem DR-25)
 

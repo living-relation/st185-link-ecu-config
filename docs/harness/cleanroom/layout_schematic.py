@@ -117,13 +117,11 @@ def place(doc, attach=None):
     put("cab_fspur_fr_ac", X_CAB, 1020)
     put("br_cab_fspur_r", X_DEV - 450, 1050)
     put("br_cab_fspur_fr_sh", X_DEV - 450, 1110)
-    # A/C block, top left: pressure-switch splice with its three ends, and the VC-coil pass-through
+    # A/C block, top left: pressure-switch splice with its three ends
     put("sp_ac_psw", X_TERM - 420, -510)
     put("br_ac_psw", X_TERM - 900, -570)
     put("fl_acamp_psw", X_TERM - 900, -450)
     put("br_w_acc86", X_TERM, -510)
-    put("fl_acamp_mg", X_TERM - 900, -330)
-    put("br_ac_mg", X_TERM, -330)
 
     for k, v in OVERRIDE.items():  # positions found by search() (frozen below), or a trial
         if k in pos:

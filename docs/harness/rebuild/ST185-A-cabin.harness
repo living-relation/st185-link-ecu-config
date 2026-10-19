@@ -1715,25 +1715,6 @@
         "Blue"
       ],
       "partId": "m16_18_42"
-    },
-    {
-      "id": "w_ac_clutch_mg",
-      "source": {
-        "id": "fl_acamp_mg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "br_ac_mg",
-        "handle": "Terminal"
-      },
-      "color": "Yellow",
-      "stripeColor": "Black",
-      "identColors": [
-        "White",
-        "Yellow",
-        "White"
-      ],
-      "partId": "m16_20_40"
     }
   ],
   "connectors": [
@@ -3015,22 +2996,6 @@
       "width": 390
     },
     {
-      "id": "fl_acamp_mg",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "schematicPosition": {
-        "x": -2010,
-        "y": -330
-      },
-      "layoutPosition": {
-        "x": -1020,
-        "y": 750
-      },
-      "propagate": false,
-      "label": "A/C amp A18 pin 5, factory Y-B lead - VC coil out (unused)",
-      "width": 390
-    },
-    {
       "id": "fl_acamp_psw",
       "type": "Loose",
       "partId": "tp_flying_lead",
@@ -3045,21 +3010,6 @@
       "propagate": false,
       "label": "A/C amp A18 pin 13, factory Y-R lead - pressure switch in",
       "width": 390
-    },
-    {
-      "id": "br_ac_mg",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": -1110,
-        "y": -330
-      },
-      "layoutPosition": {
-        "x": -1020,
-        "y": -870
-      },
-      "propagate": false,
-      "label": "A/C compressor A4 pin 3, engine bay - VC coil (unused)"
     },
     {
       "id": "br_ac_psw",
@@ -3360,7 +3310,7 @@
         "y": 600
       },
       "propagate": false,
-      "label": "ETB relay M14 pin 85, LOGIC box - ETB relay coil (-)"
+      "label": "ETB relay M4 pin 85, LOGIC box - ETB relay coil (-)"
     },
     {
       "id": "br_w_str85",
@@ -3390,7 +3340,7 @@
         "y": -510
       },
       "propagate": false,
-      "label": "A/C clutch relay M15 pin 86, LOGIC box - A/C relay coil (+)"
+      "label": "A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+)"
     },
     {
       "id": "br_w_eps_rly",
@@ -4289,15 +4239,6 @@
       }
     },
     {
-      "id": "bn_bp_fl_acamp__fl_acamp_mg",
-      "sourceId": "bp_fl_acamp",
-      "targetId": "fl_acamp_mg",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_fl_acamp__fl_acamp_psw",
       "sourceId": "bp_fl_acamp",
       "targetId": "fl_acamp_psw",
@@ -4308,15 +4249,6 @@
       "partIds": [
         "cov_dr25_316"
       ]
-    },
-    {
-      "id": "bn_bp_fl_acamp__br_ac_mg",
-      "sourceId": "bp_fl_acamp",
-      "targetId": "br_ac_mg",
-      "length": {
-        "value": 20,
-        "unit": "mm"
-      }
     },
     {
       "id": "bn_fl_acamp_psw__br_ac_psw",
@@ -4706,7 +4638,7 @@
         "x": 1710,
         "y": 480
       },
-      "label": "At ECU-A plug - SP-CAM: cam signal + 1.8 k pull-up"
+      "label": "At ECU-A plug - SP-CAM: cam signal + 1.8k pull-up to +8V"
     },
     {
       "id": "sp_5v",
@@ -4857,30 +4789,12 @@
       }
     },
     {
-      "id": "n_end_fl_acamp_mg",
-      "text": "A/C amp A18 pin 5 (1993: A15), behind the glove box. Solder splice onto the factory Y-B lead (VC coil, not fitted). EWD 1990 p.152; locator 1990 p.17.",
-      "width": 270,
-      "schematicPosition": {
-        "x": -2310,
-        "y": -270
-      }
-    },
-    {
       "id": "n_end_fl_acamp_psw",
       "text": "A/C amp A18 pin 13 (1993: A15), behind the glove box. Solder splice onto the factory Y-R lead. EWD 1990 p.152; locator 1990 p.17.",
       "width": 270,
       "schematicPosition": {
         "x": -2310,
         "y": -420
-      }
-    },
-    {
-      "id": "n_end_br_ac_mg",
-      "text": "Runs on in ST185-EngineRoom-C to A/C compressor A4 pin 3 (engine bay): new wire to the coil's own mating plug, plug part TBD. EWD 1990 p.152.",
-      "width": 270,
-      "schematicPosition": {
-        "x": -690,
-        "y": -330
       }
     },
     {
@@ -5207,18 +5121,6 @@
       "manufacturer": "M22759",
       "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Yellow",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_40",
-      "partNumber": "M22759/16-20-40",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "stripeColor": "Black",
       "gauge": {
         "value": 20,
         "unit": "AWG"
