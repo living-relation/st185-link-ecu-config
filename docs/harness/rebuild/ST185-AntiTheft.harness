@@ -491,75 +491,87 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Alarm 12V",
+          "signal": "Alarm +12 V",
           "designation": "1",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "ALARM GND",
+          "signal": "Alarm ground",
           "designation": "2",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "IGNITION SENSE",
+          "signal": "Alarm ignition +12V",
           "designation": "3",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "SIREN +",
+          "signal": "Siren +",
           "designation": "4",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c5",
-          "signal": "PARKING LIGHT OUT",
+          "signal": "Park lamp flash",
           "designation": "5",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c6",
-          "signal": "DOOR TRIGGER IN",
+          "signal": "Door trigger",
           "designation": "6",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c7",
-          "signal": "HOOD PIN IN",
+          "signal": "Hood trigger",
           "designation": "7",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c8",
-          "signal": "TRUNK PIN IN",
+          "signal": "Trunk trigger",
           "designation": "8",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c9",
-          "signal": "IMMOBILISER OUT",
+          "signal": "Anti-theft input",
           "designation": "9",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c10",
-          "signal": "STATUS LED +",
+          "signal": "Status LED +",
           "designation": "10",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c11",
-          "signal": "Valet SW",
+          "signal": "Valet switch",
           "designation": "11",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c12",
-          "signal": "Shock trig in",
+          "signal": "Shock trigger",
           "designation": "12",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -579,20 +591,21 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Shock 12V",
+          "signal": "Shock sensor +12 V",
           "designation": "A",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "SHOCK SNSR GND",
+          "signal": "Shock sensor ground",
           "designation": "B",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c3",
-          "signal": "Shock trig out",
+          "signal": "Shock trigger",
           "designation": "C",
           "contactPartId": "ct_hdp16s",
           "propagate": false
@@ -615,14 +628,14 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Siren 12V",
+          "signal": "Siren +",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "SIREN GND",
+          "signal": "Siren ground",
           "designation": "2",
           "contactPartId": "ct_hdp16s",
           "propagate": false
@@ -652,9 +665,10 @@
         },
         {
           "id": "c2",
-          "signal": "LED cathode",
+          "signal": "Status LED gnd",
           "designation": "2",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -674,16 +688,17 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Valet SW sig",
+          "signal": "Valet switch",
           "designation": "1",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "VALET SW GND",
+          "signal": "Valet switch ground",
           "designation": "2",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -2095,5 +2110,6 @@
       "manufacturer": "TE DEUTSCH"
     }
   ],
-  "cableParts": []
+  "cableParts": [],
+  "mates": []
 }

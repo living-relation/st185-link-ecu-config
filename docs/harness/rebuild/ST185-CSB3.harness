@@ -382,167 +382,158 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "CSB3 12V",
-          "contactPartId": "ct_hdp20s"
+          "signal": "CSB3 +12 V",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "CSB3 GND",
-          "contactPartId": "ct_hdp20s"
+          "signal": "CSB3 ground",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "CSB3 +5V opto",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Opto +5 V",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "CSB3 SGND opto",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Opto out ground",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c5",
-          "signal": "CAN H",
-          "contactPartId": "ct_hdp20s"
+          "signal": "CAN H to CSB3",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c6",
-          "signal": "CAN L",
-          "contactPartId": "ct_hdp20s"
+          "signal": "CAN L to CSB3",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c7",
-          "signal": "A1",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c8",
-          "signal": "A2 cruise ladder",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Cruise ladder",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c9",
-          "signal": "A3",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c10",
-          "signal": "A4",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c11",
-          "signal": "A5",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c12",
-          "signal": "A6",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c13",
-          "signal": "A7",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c14",
-          "signal": "A8",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c15",
-          "signal": "S1",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c16",
-          "signal": "S2",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c17",
-          "signal": "S3 cruise MAIN",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Cruise MAIN on",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c18",
-          "signal": "S4",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c19",
-          "signal": "S5",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c20",
-          "signal": "S6 - Clutch Switch",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Clutch pedal sw",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c21",
-          "signal": "S7 brake",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Brake to CSB3 S7",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c22",
-          "signal": "S8 reverse",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Reverse to CSB3 S8",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c23",
-          "signal": "L1 low-side - spare",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c24",
-          "signal": "L2 low-side - spare",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c25",
-          "signal": "L3 low-side - spare",
           "contactPartId": "ct_hdp20s"
         },
         {
           "id": "c26",
-          "signal": "L4 oil LED sink",
-          "contactPartId": "ct_hdp20s"
+          "signal": "Oil LED sink (CSB3)",
+          "contactPartId": "ct_hdp20s",
+          "propagate": false
         },
         {
           "id": "c27",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c28",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c29",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c30",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c31",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c32",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         },
         {
           "id": "c33",
-          "signal": "spare (size 20)",
           "cavityPlugPartId": "pl_sz20"
         }
       ],
@@ -564,7 +555,7 @@
         {
           "id": "com1",
           "designation": "COM1",
-          "signal": "Opto COM",
+          "signal": "Opto COM ground",
           "propagate": false
         },
         {
@@ -575,13 +566,13 @@
         {
           "id": "i1",
           "designation": "IN1",
-          "signal": "Opto in1 brake",
+          "signal": "Brake on +12 V",
           "propagate": false
         },
         {
           "id": "i2",
           "designation": "IN2",
-          "signal": "Opto in2 reverse",
+          "signal": "Reverse to opto in 2",
           "propagate": false
         },
         {
@@ -617,25 +608,25 @@
         {
           "id": "vcc",
           "designation": "VCC",
-          "signal": "Opto VCC +5V",
+          "signal": "Opto +5 V",
           "propagate": false
         },
         {
           "id": "gnd",
           "designation": "GND",
-          "signal": "Opto GND",
+          "signal": "Opto out ground",
           "propagate": false
         },
         {
           "id": "o1",
           "designation": "OUT1",
-          "signal": "Opto out1 brake",
+          "signal": "Brake to CSB3 S7",
           "propagate": false
         },
         {
           "id": "o2",
           "designation": "OUT2",
-          "signal": "Opto out2 reverse",
+          "signal": "Reverse to CSB3 S8",
           "propagate": false
         },
         {
@@ -1762,5 +1753,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "mates": []
 }

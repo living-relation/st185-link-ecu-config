@@ -961,5 +961,6 @@
       "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
       "id": "tp_ring_m6_22_16"
     }
-  ]
+  ],
+  "mates": []
 }
