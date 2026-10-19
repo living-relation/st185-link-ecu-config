@@ -2,7 +2,7 @@
 """ST185 connector atlas: 11x17 (tabloid) landscape PDF generated from the wire lists.
 
 Every connector of all harnesses (cavity circles, number inside, short signal under it, fill = function)
-plus every OEM junction box / plug / ground point we tap (outline, factory colour, what our wire does, EWD page).
+plus every OEM junction box and plug we tap (real face view, factory wire, our harness wire).
 Nothing is placed by hand: everything comes from docs/harness/wirelist/*-wirelist.csv and *-connectors.csv.
 
   python docs/harness/atlas/build_atlas.py           write ST185-connector-atlas.pdf (+ .inputs.txt)
@@ -15,6 +15,7 @@ count (pin order, not the maker face). The wire lists are the only truth.
 import csv
 import glob
 import hashlib
+import json
 import math
 import os
 import re
@@ -65,6 +66,8 @@ def input_files():
         fs += glob.glob(os.path.join(WL, pat))
     fs.append(os.path.abspath(__file__))
     fs.append(os.path.join(HERE, '..', 'cleanroom', 'drb102_outputs.py'))
+    fs.append(os.path.join(HERE, 'oem-plugs.json'))
+    fs += glob.glob(os.path.join(HERE, 'oem-faces', '*.png'))
     return sorted(fs)
 
 
@@ -119,7 +122,7 @@ def load():
         if m and 'cap' in c['name'].lower() and not c['pins']:
             c['cap_of'] = None
             c['_mate'] = m
-    taps, grounds = [], {}
+    taps = []
     for f in sorted(glob.glob(os.path.join(WL, '*-wirelist.csv'))):
         for r in rd(f):
             for s, o in (('from', 'to'), ('to', 'from')):
@@ -131,13 +134,10 @@ def load():
                         conns[cid]['pins'][pin].append(desc)
                 if t == 'OEM':
                     taps.append(dict(r, side=s, oside=o))
-                if t == 'terminal' and re.search(r'ground (point|stud|bolt)|EWD ground', r[s + '_conn_name'], re.I) \
-                        and 'POWER box' not in r[s + '_conn_name']:
-                    grounds.setdefault(r[s + '_conn_name'], []).append(dict(r, side=s, oside=o))
     for c in conns.values():
         if c.get('_mate'):
             c['cap_of'] = c['_mate']['pins']
-    return conns, order, taps, grounds
+    return conns, order, taps
 
 
 def far_end(r, o):
@@ -315,132 +315,244 @@ def drb_block(conns):
     return w, h, draw, [c['name'] for c in bh]
 
 
-def parse_colour(s):
-    m = re.match(r'([A-Z]{1,2})(?:-([A-Z]{1,2}))?\b', (s or '').strip())
-    return (m.group(1), m.group(2)) if m else (None, None)
-
-
-def oem_chip(pg, x, y, code, w=24.0, h=9.0):
-    base, stripe = parse_colour(code)
-    pg.rect(x, y, w, h, fill=OEMC.get(base, '#cccccc'), lw=0.5)
-    if stripe:
-        pg.rect(x + w * 0.4, y, w * 0.2, h, fill=OEMC.get(stripe, '#cccccc'), line=None, lw=0)
-        pg.rect(x, y, w, h, fill=None, lw=0.5)
-    if not base:
-        pg.text(x + w / 2, y + 6.5, '?', 6, True, '#000000', 'c')
-
-
-OW = 386.0
-
-
-def oem_row(r):
-    """One tap row. Returns (height, draw)."""
-    pin = r['pin']
-    fac = wrap(r['func'], 118, 6.0, 3)
-    ours = [(r['our'], True), (r['far'], False)] + [(l, False) for l in wrap(r['ewd'], 196, 5.6, 3)]
-    ours = [(t, b) for t, b in ours if t]
-    wl = []
-    for t, b in ours:
-        wl += [(l, b) for l in wrap(t, 196, 6.0 if b or t == r['far'] else 5.6, 2, b)]
-    nl = max(len(fac), len(wl), 2)
-    h = nl * 7.0 + 6
-
-    def draw(pg, x, y):
-        pg.rect(x, y, OW - 8, h, fill='#ffffff', lw=0.4)
-        pg.circle(x + 12, y + 11, 7.0, '#ffffff')
-        pg.text(x + 12, y + 13.4, pin[:4], 6.4 if len(pin) <= 2 else 5.0, True, '#000000', 'c')
-        oem_chip(pg, x + 22, y + 6.5, r['colour'])
-        pg.text(x + 34, y + 20.5, (r['colour'] or '?').split(' ')[0][:6], 5.4, True, '#333333', 'c')
-        for i, l in enumerate(fac):
-            pg.text(x + 50, y + 8 + i * 7.0, l, 6.0)
-        pg.line(x + 171, y + 3, x + 171, y + h - 3, '#999999', 0.4)
-        for i, (l, b) in enumerate(wl):
-            pg.text(x + 176, y + 8 + i * 7.0, l, 6.0 if b or l.startswith(('to ', '<-')) else 5.6, b,
-                    '#000000' if b else '#333333')
-    return h, draw
-
-
 def short(s, n=90):
     s = re.sub(r'\s+', ' ', s or '').strip()
     return s if len(s) <= n else s[:n - 3].rstrip() + '...'
 
 
-def tap_row(t, plug_pin=None):
+# ---------------------------------------------------------------- OEM junction box / plug pages (v2)
+OEMD = json.load(open(os.path.join(HERE, 'oem-plugs.json'), encoding='utf-8'))
+PAGE_W, PAGE_H = PW - 2 * MX, PH - TOP - BOT
+OUR = {'Green': '#2e9d4f', 'Red': '#c62828', 'White': '#f4f4f4', 'Black': '#1b1b1b', 'Blue': '#2f6fd6', 'Yellow': '#f2c200',
+       'Orange': '#ee7a00', 'Violet': '#7b3fa0', 'Brown': '#8b5a2b', 'Gray': '#8a8a8a', 'Pink': '#e58fb4'}
+RH = 38.0                       # tap row height
+XF, XPIN, XOEM, XSIG, XDIV, XOUR, XPILL, XHAR = 6.0, 262.0, 282.0, 374.0, 596.0, 604.0, 812.0, 982.0
+FW = 244.0                      # face column width
+BMAX, BWMAX = 190.0, 600.0     # band mode: max face height / width
+FMAX = 120.0                    # face image max height
+
+
+def lum(h):
+    r, g, b = rgb(h)
+    return 0.299 * r + 0.587 * g + 0.114 * b
+
+
+def pill(pg, x, y, base, stripe, label, w, h=22.0, fs=12.0, table=None):
+    """Wire colour pill: base colour with the label inside, stripe colour as a block at the right end."""
+    table = table or OEMC
+    bc = table.get(base, '#cccccc')
+    sw = w * 0.34 if stripe else 0.0
+    pg.rect(x, y, w - sw, h, fill=bc, lw=0.8)
+    if stripe:
+        pg.rect(x + w - sw, y, sw, h, fill=table.get(stripe, '#cccccc'), lw=0.8)
+    pg.text(x + (w - sw) / 2, y + h / 2 + fs * 0.35, label, fs, True, '#ffffff' if lum(bc) < 0.55 else '#000000', 'c')
+
+
+def band_chips(pg, x, y, bands):
+    for i, b in enumerate(bands):
+        pg.rect(x + i * 11, y, 9.0, 22.0, fill=OUR.get(b, '#cccccc'), lw=0.6)
+
+
+def oem_code(s):
+    m = re.match(r'\s*([A-Z]{1,2})(?:-([A-Z]{1,2}))?\b', s or '')
+    return (m.group(1), m.group(2)) if m else (None, None)
+
+
+def tap_row(t):
     s, o = t['side'], t['oside']
     pin = t[s + '_pin'] or ''
     m = re.match(r'(.*?)-(\d+)$', pin)
     plug, p = (m.group(1), m.group(2)) if m else (None, pin)
     if len(p) > 3 or not re.match(r'^[A-Za-z0-9]+$', p):
-        p = (re.match(r'\d+', p) or [None])[0] or '-'
+        p = (re.search(r'\d+', p) or [None])[0] or '-'
     loc = t['oem_location']
     func = loc.split(' - ', 1)[1] if ' - ' in loc else (t[s + '_desc'] or loc)
     func = re.sub(r'^[A-Z]{1,2}(?:-[A-Z]{1,2})?, ', '', func)
     func = re.sub(r'\s*\((?:EWD|1993|1990|1992)[^)]*\)\s*$', '', func).strip()
-    colc = t['oem_wire_colour'] or ''
-    ewd = 'EWD %s' % t['oem_ewd_page'] if t['oem_ewd_page'] else 'EWD page TBD'
-    meth = short(t['oem_method'], 56)
-    gauge = (t['gauge_awg'] + ' AWG ' if t['gauge_awg'] else '') + (t['colour'] or '')
-    return dict(plug=plug, pin=p or '-', colour=colc, func=short(func, 80),
-                our='our %s: %s' % (t['wire_id'], gauge.strip()), far='to ' + short(far_end(t, o), 52) + ' (' + short(t[o + '_desc'] or t['net_name'], 34) + ')',
-                ewd='%s; %s' % (ewd, meth))
+    func = re.sub(r';.*$', '', func).strip()
+    func = re.sub(r'\s*\((?:EWD|1993|1990|1992)[^)]*\)', '', func)
+    func = func.split(' / ')[0].strip()
+    far = t[o + '_conn_name'] or t[o + '_conn']
+    desc = t[o + '_desc'] or t['net_name'] or ''
+    far0 = re.sub(r'\s*\(.*', '', far)
+    fe = '%s pin %s' % (far0, t[o + '_pin']) if t[o + '_type'] == 'connector' else far0
+    return dict(plug=plug, pin=p or '-', ocol=oem_code(t['oem_wire_colour']), func=short(func, 90), wire=t['wire_id'],
+                awg=t['gauge_awg'], desc=short(desc, 70), colour=t['colour'], stripe=t['stripe'],
+                bands=[b for b in (t['ident_bands'] or '').split('-') if b], harness=t['harness'],
+                leg=t['route_branch'] or '', far=short(fe, 44))
 
 
-def oem_blocks_split(title, sub, rows, maxh=640.0):
-    """oem_block, cut into several blocks when the rows would not fit one page."""
-    chunks, cur, h = [], [], 40.0
-    for r in rows:
-        rh = oem_row(r)[0] + 3 + (12 if (not cur or cur[-1]['plug'] != r['plug']) and r['plug'] else 0)
-        if cur and h + rh > maxh:
-            chunks.append(cur)
-            cur, h = [], 40.0
-        cur.append(r)
-        h += rh
-    chunks.append(cur)
-    return [('oem', title, oem_block(title + (' (%d of %d)' % (i + 1, len(chunks)) if len(chunks) > 1 else ''), sub, c))
-            for i, c in enumerate(chunks)]
+def draw_row(pg, x, y, r):
+    pg.rect(x + XPIN - 22, y, PAGE_W - XPIN + 18, RH - 3, fill='#ffffff', lw=0.5)
+    pg.circle(x + XPIN, y + RH / 2 - 1.5, 13.0, '#ffffff', 1.0)
+    pin = r['pin'][:4]
+    pg.text(x + XPIN, y + RH / 2 + 3.4, pin, 13.0 if len(pin) <= 2 else 9.0, True, '#000000', 'c')
+    b, st = r['ocol']
+    pill(pg, x + XOEM, y + 6, b, st, '-'.join(c for c in (b, st) if c) or '?', 84.0)
+    for i, ln in enumerate(wrap(r['func'], 218, 12.0, 2, True)):
+        pg.text(x + XSIG, y + 15 + i * 13.0, ln, 12.0, True)
+    pg.line(x + XDIV - 4, y + 3, x + XDIV - 4, y + RH - 6, '#999999', 0.5)
+    pg.text(x + XOUR, y + 15, '%s  %s' % (r['wire'], (r['awg'] + ' AWG') if r['awg'] else ''), 12.0, True)
+    for ln in wrap(r['desc'], 200, 10.0, 1):
+        pg.text(x + XOUR, y + 28, ln, 10.0, False, '#222222')
+    pill(pg, x + XPILL, y + 6, r['colour'], r['stripe'], '-'.join(c for c in (r['colour'], r['stripe']) if c), 118.0, 22.0, 11.0, OUR)
+    band_chips(pg, x + XPILL + 123, y + 6, r['bands'])
+    pg.text(x + XHAR, y + 14, r['harness'], 12.0, True)
+    leg = r['leg'] or 'toward ' + r['far']
+    for i, ln in enumerate(wrap(leg, 206, 9.5, 2)):
+        pg.text(x + XHAR, y + 25 + i * 10.5, ln, 9.5, False, '#222222' if r['leg'] else '#666666')
 
 
-def oem_block(title, sub, rows):
-    """Junction-box outline with plug groups and tap rows."""
-    plugs = []
-    for r in rows:
-        if r['plug'] not in [p for p, _ in plugs]:
-            plugs.append((r['plug'], []))
-        dict(plugs)[r['plug']].append(r)
-    parts = []
-    h = 38.0
-    for pl, rs in plugs:
-        hh = 12.0 if pl else 0.0
-        items = [oem_row(r) for r in rs]
-        parts.append((pl, hh, items))
-        h += hh + sum(i[0] + 3 for i in items) + 4
-
-    def draw(pg, x, y):
-        pg.rect(x, y, OW, h, fill='#f4f7fb', lw=1.3, r=0.025)
-        pg.rect(x + 4, y + 4, OW - 8, 24, fill='#dfe6f1', lw=0.5)
-        pg.text(x + 8, y + 15, title, 9.5, True)
-        pg.text(x + 8, y + 24, sub, 6.0, False, '#333333')
-        yy = y + 32
-        for pl, hh, items in parts:
-            if pl:
-                pg.text(x + 8, yy + 8, ('Plug ' + pl) if len(pl) <= 3 else pl, 7.2, True, '#14213d')
-                pg.line(x + 8, yy + 10.5, x + OW - 8, yy + 10.5, '#14213d', 0.4)
-                yy += hh
-            for ih, idraw in items:
-                idraw(pg, x + 4, yy)
-                yy += ih + 3
-            yy += 4
-    return OW, h, draw
+def is_band(info):
+    """Wide face views go in a centred band above the rows; narrow ones sit beside them."""
+    p = os.path.join(HERE, info['face']) if info.get('face') else None
+    if not (p and os.path.exists(p)):
+        return False
+    import fitz
+    pm = fitz.Pixmap(p)
+    return pm.width / pm.height > 1.7
 
 
-def oem_blocks(taps, grounds):
-    boxes = [('jb1', 'J/B No.1 junction block', 'left kick panel; factory box KEPT; we splice factory leads of plugs 1F / 1H / 1I; cabin side'),
-             ('ie1', 'IE1 cowl plug', 'left kick panel, cowl side; engine-room main REMOVED, we tap the cowl-side leads'),
-             ('rb2', 'Old R/B No.2 position', 'left kick panel; relay block REMOVED, its factory leads stay in the loom'),
-             ('rb4', 'Old R/B No.4 position', 'right kick panel; relay block REMOVED, its factory leads stay in the loom'),
-             ('jb3', 'J/B No.3 (plug 3B)', 'behind the combination meter; OEM junction block KEPT'),
-             ('ig2', 'IG2 plug', 'under the ECU, cowl side; engine-side wire removed, we tap the cowl-side leads')]
+def face_size(info):
+    """(image width, image height) of the face crop, or None."""
+    p = os.path.join(HERE, info['face']) if info.get('face') else None
+    if not (p and os.path.exists(p)):
+        return None
+    import fitz
+    pm = fitz.Pixmap(p)
+    asp = pm.width / pm.height
+    if is_band(info):
+        h = min(BMAX, BWMAX / asp)
+        return h * asp, h
+    w, h = FW, FW / asp
+    if h > FMAX:
+        w, h = FMAX * asp, FMAX
+    return w, h
 
+
+def note_lines(info):
+    notes = []
+    if info.get('housing_pn') or info.get('terminal_pn'):
+        notes.append('Housing %s / terminal %s' % (info.get('housing_pn') or '-', info.get('terminal_pn') or '-'))
+    else:
+        c = info.get('rm_candidates')
+        notes.append('Housing / terminal PN: not matched' + (
+            '; RM1022E %s housings p.%d-%d (confirm shape)' % (c['text'], c['pages'][0], c['pages'][1]) if c else ''))
+    src = info.get('src') or info
+    if src.get('doc'):
+        notes.append('Source: %s p.%s%s' % (src['doc'], src.get('page'), ' (printed %s)' % src['printed'] if src.get('printed') else ''))
+    return [ln for n in notes for ln in wrap(n, FW, 7.8, 3)]
+
+
+def face_h(info):
+    fs = face_size(info)
+    return 24 + (fs[1] + 5 if fs else 52) + 9 * len(note_lines(info)) + 6
+
+
+def face_band(pg, x, y, info, caption):
+    """Wide face: caption, image and notes centred across the page."""
+    import fitz
+    cx = x + PAGE_W / 2
+    pg.text(cx, y + 15, caption, 14.0, True, '#14213d', 'c')
+    fs = face_size(info)
+    pg.p.insert_image(fitz.Rect(cx - fs[0] / 2, y + 22, cx + fs[0] / 2, y + 22 + fs[1]), filename=os.path.join(HERE, info['face']))
+    pg.rect(cx - fs[0] / 2, y + 22, fs[0], fs[1], fill=None, line='#999999', lw=0.4)
+    yy = y + 22 + fs[1] + 5
+    for ln in note_lines(info):
+        pg.text(cx, yy + 8, ln, 7.8, False, '#333333', 'c')
+        yy += 9
+
+
+def face_col(pg, x, y, info, caption):
+    pg.text(x + XF, y + 14, wrap(caption, FW, 13.0, 1, True)[0], 13.0, True, '#14213d')
+    yy = y + 20
+    fs = face_size(info)
+    if fs:
+        import fitz
+        pg.p.insert_image(fitz.Rect(x + XF, yy, x + XF + fs[0], yy + fs[1]), filename=os.path.join(HERE, info['face']))
+        pg.rect(x + XF, yy, fs[0], fs[1], fill=None, line='#999999', lw=0.4)
+        yy += fs[1] + 5
+    else:
+        pg.rect(x + XF, yy, FW, 46, fill='#f4f4f4', lw=0.6, line='#999999')
+        for i, ln in enumerate(wrap('No connector face view in the repair-manual app (the EWD shows only the part position)', FW - 12, 8.5, 3)):
+            pg.text(x + XF + 6, yy + 13 + i * 10, ln, 8.5, False, '#555555')
+        yy += 52
+    for ln in note_lines(info):
+        pg.text(x + XF, yy + 8, ln, 7.8, False, '#333333')
+        yy += 9
+
+
+def app_url(doc, page):
+    return '%s#open=%s&page=%s' % (OEMD['app_base'], doc, page)
+
+
+HEAD = 100.0
+
+
+def oem_pages(title, sub, doc, page, sections):
+    """A box = centered header + plug sections (face on the left, tap rows on the right); split over pages when full.
+    sections: [(caption, info, rows)]. Returns [('oem', name, (w, h, draw))]."""
+    avail = PAGE_H - HEAD - 8
+    pagesl, cur, used = [], [], 0.0
+    for cap, info, rows in sections:
+        fh = face_h(info)
+        i = 0
+        while True:
+            band = is_band(info)
+            bh = fh if band else 0.0
+            room = avail - used
+            n = int((room - 6 - bh) // RH)
+            if cur and (n < 2 or room < fh + 4 or (len(rows) - i > n and n < 3)):
+                pagesl.append(cur)
+                cur, used, room = [], 0.0, avail
+                n = int((room - 6 - bh) // RH)
+            chunk = rows[i:i + max(n, 1)]
+            h = bh + len(chunk) * RH + 6 if band else max(len(chunk) * RH + 6, fh)
+            cur.append((cap, info, chunk, h, i > 0))
+            used += h + 4
+            i += len(chunk)
+            if i >= len(rows):
+                break
+    if cur:
+        pagesl.append(cur)
+    out = []
+    for pi, secs in enumerate(pagesl):
+        tt = title + (' (%d of %d)' % (pi + 1, len(pagesl)) if len(pagesl) > 1 else '')
+
+        def draw(pg, x, y, secs=secs, tt=tt):
+            import fitz
+            pg.rect(x, y, PAGE_W, PAGE_H, fill='#f4f7fb', lw=1.3, r=0.01)
+            cx = x + PAGE_W / 2
+            pg.text(cx, y + 30, tt, 24.0, True, '#14213d', 'c')
+            pg.text(cx, y + 48, sub, 12.0, False, '#333333', 'c')
+            if doc:
+                u = app_url(doc, page)
+                w = pg.text(cx, y + 64, 'Repair-manual app, location page: ' + u, 10.0, True, '#1a4fd0', 'c')
+                pg.p.insert_link({'kind': fitz.LINK_URI, 'from': fitz.Rect(cx - w / 2, y + 55, cx + w / 2, y + 68), 'uri': u})
+                pg.text(cx, y + 76, 'start the app server first: ' + OEMD['app_launch'], 7.5, False, '#555555', 'c')
+            yy = y + 84
+            for xx, lab in ((XPIN - 12, 'PIN'), (XOEM, 'FACTORY WIRE'), (XSIG, 'FACTORY SIGNAL (FSM / EWD)'),
+                            (XOUR, 'OUR WIRE (as on the harness drawing)'), (XPILL, 'OUR COLOUR'), (XHAR, 'HARNESS  /  LEG TO GRAB')):
+                pg.text(x + xx, yy + 8, lab, 8.5, True, '#555555')
+            yy += 14
+            for cap, info, chunk, h, cont in secs:
+                pg.line(x + 4, yy - 2, x + PAGE_W - 4, yy - 2, '#14213d', 0.8)
+                capt = cap + (' (cont.)' if cont else '')
+                if is_band(info):
+                    face_band(pg, x, yy, info, capt)
+                    ry = yy + face_h(info) + 2
+                else:
+                    face_col(pg, x, yy, info, capt)
+                    ry = yy + 2
+                for r in chunk:
+                    draw_row(pg, x, ry, r)
+                    ry += RH
+                yy += h + 4
+        out.append(('oem', tt, (PAGE_W, PAGE_H, draw)))
+    return out
+
+
+def oem_blocks(taps):
     def box_of(c):
         if re.match(r'J/B( No\.)?\s?1', c):
             return 'jb1'
@@ -453,35 +565,59 @@ def oem_blocks(taps, grounds):
         c = t[t['side'] + '_conn']
         k = box_of(c)
         (groups.setdefault(k, []) if k else dev.setdefault(c, [])).append(t)
+
+    def uniq(rows):
+        seen, out = set(), []
+        for r in rows:
+            key = (r['plug'], r['pin'], r['wire'])
+            if key not in seen:
+                seen.add(key)
+                out.append(r)
+        return out
     out = []
-    for k, title, sub in boxes:
-        rows = [tap_row(t) for t in groups.get(k, [])]
-        if not rows:
+    for k in ('jb1', 'ie1', 'rb2', 'rb4', 'jb3', 'ig2'):
+        if not groups.get(k):
             continue
-        for r in rows:
-            if r['plug'] is None:
-                m = re.search(r'\b(1[A-Z])\b', ' '.join(t['oem_location'] for t in groups[k]))
-                r['plug'] = (m.group(1) if (k == 'jb1' and m) else 'Leads / pins')
+        bx = OEMD['boxes'][k]
+        rows = []
+        for t in groups[k]:
+            r = tap_row(t)
+            txt = ' '.join([t['oem_location'], t[t['side'] + '_conn'], t[t['side'] + '_pin']])
+            if k == 'jb1':
+                m = re.search(r'\b(1[A-I])\b', txt)
+                r['plug'] = r['plug'] or (m.group(1) if m else 'Leads')
+            elif k == 'jb3':
+                r['plug'] = r['plug'] or '3B'
+            elif k == 'rb4':
+                r['plug'] = 'starter' if 'starter' in txt.lower() else 'heater'
+            elif k == 'rb2':
+                r['plug'] = 'RB2'
+            else:
+                r['plug'] = k.upper()
+            rows.append(r)
+        rows = uniq(rows)
         rows.sort(key=lambda r: (r['plug'], int(r['pin']) if r['pin'].isdigit() else 99))
-        out += oem_blocks_split(title, sub, rows)
-    gr = []
-    for name in sorted(grounds):
-        for t in grounds[name]:
-            s, o = t['side'], t['oside']
-            gr.append(dict(plug=re.sub(r'\s*\(.*', '', name)[:46], pin='GND', colour='B',
-                           func=short(re.search(r'\((.*)\)', name).group(1) if '(' in name else name, 60),
-                           our='our %s: %s %s' % (t['wire_id'], t['gauge_awg'] + ' AWG' if t['gauge_awg'] else '', t['colour']),
-                           far='from ' + short(far_end(t, o), 52), ewd='ring terminal on the factory ground / stud'))
-    if gr:
-        out += oem_blocks_split('Body ground points we use', 'factory ground studs and bolts; each gets a ring terminal', gr)
+        secs = []
+        for pl in sorted({r['plug'] for r in rows}):
+            info = OEMD['plugs'].get('%s:%s' % (k, pl)) or {'caption': 'Plug ' + pl}
+            secs.append((info.get('caption', 'Plug ' + pl), info, [r for r in rows if r['plug'] == pl]))
+        out += oem_pages(bx['title'], bx['sub'], bx['doc'], bx['page'], secs)
+    secs = []
     for c in sorted(dev):
-        rows = [tap_row(t) for t in dev[c]]
+        info = dict(OEMD['devices'].get(c, {}))
+        code = info.get('code') or c
+        rows = uniq([dict(tap_row(t), plug=None) for t in dev[c]])
         rows.sort(key=lambda r: int(r['pin']) if r['pin'].isdigit() else 99)
-        for r in rows:
-            r['plug'] = None
         t0 = dev[c][0]
         nm = re.split(r'\s+pin\s|\s*[,;(]', re.sub(r'^OEM\s+', '', t0[t0['side'] + '_conn_name'] or c))[0]
-        out += oem_blocks_split(short(nm, 44), '%s  |  device plug / lead tapped by our harness' % c.replace(' (factory)', ''), rows)
+        title = '%s  %s' % (code, info.get('name') or short(nm, 40))
+        if code == 'C11' and 'clutch' not in c.lower():
+            title = 'C11  (cluster-side plug, code check)'
+        if info.get('doc'):
+            info['src'] = {'doc': info['doc'], 'page': info['page'], 'printed': info['printed']}
+        secs.append((short(title, 60), info, rows))
+    out += oem_pages('OEM device plugs we tap', 'Factory component connectors (the leads stay on the car). Source pages: 1993 EWD wiring routing, in the repair-manual app.',
+                     None, None, secs)
     return out
 
 
@@ -524,7 +660,7 @@ def pack(blocks):
     return pages
 
 
-def build_pages(conns, order, taps, grounds):
+def build_pages(conns, order, taps):
     by_area = {k: [] for k, _ in AREAS}
     drb = drb_block(conns)
     for cid in order:
@@ -536,7 +672,7 @@ def build_pages(conns, order, taps, grounds):
         by_area[area_of(c)].append(('conn', c['name'], conn_block(c, note=short(note, 40))))
     if drb:
         by_area['ecu'].insert(0, ('drb', 'DRB102 bulkhead', drb[:3]))
-    for b in oem_blocks(taps, grounds):
+    for b in oem_blocks(taps):
         by_area['oem'].append(b)
     for k in by_area:   # ECU first, then the rest by size so shelves pack tight
         if k not in ('ecu',):
@@ -567,8 +703,8 @@ def legend(pg):
 
 def render():
     import fitz
-    conns, order, taps, grounds = load()
-    pages = build_pages(conns, order, taps, grounds)
+    conns, order, taps = load()
+    pages = build_pages(conns, order, taps)
     ih = inputs_hash()
     N = len(pages) + 1
     doc = fitz.open()
@@ -576,7 +712,7 @@ def render():
     pg = Pg(doc)
     pg.rect(MX, MX, PW - 2 * MX, PH - BOT - MX - 2, fill=None, lw=1.2)
     pg.text(MX + 14, 60, 'ST185 CELICA - CONNECTOR ATLAS', 26, True)
-    pg.text(MX + 14, 82, 'Every connector of all 15 harnesses, and every OEM junction box / plug / ground point we splice into.', 11, False, '#333333')
+    pg.text(MX + 14, 82, 'Every connector of all 15 harnesses, and every OEM junction box / plug we splice into.', 11, False, '#333333')
     pg.text(MX + 14, 96, 'Generated from docs/harness/wirelist/*.csv by docs/harness/atlas/build_atlas.py. Never edit the PDF; change the wire list and regenerate.', 8.5, False, '#555555')
     init = 'DG'
     p = os.path.join(os.path.expanduser('~'), '.drawing-initials')
@@ -607,8 +743,8 @@ def render():
     pg.text(MX + 14, PH - 118, 'HOW TO READ', 10, True)
     for j, ln in enumerate(['Cavity circle: number inside, short signal label under it, fill = function (legend below). White = spare.',
                             'Connector title: name, maker part number, harness, true cavity count. "mates X" names the other half.',
-                            'OEM boxes: outline of the factory box; each row = factory pin, factory wire colour, what the factory lead does, '
-                            'what our wire does and where it goes, EWD page and splice method.',
+                            'OEM pages: header = factory box + link to its location page in the repair-manual app; left = real plug face view; '
+                            'row = pin, factory wire colour, factory signal (FSM/EWD), then OUR wire, colour, harness and leg to grab.',
                             'Factory wire colours use the Toyota codes: B black, W white, R red, G green, L blue, Y yellow, O orange, BR brown, GR grey, P pink, LG light green; second letter = stripe.']):
         pg.text(MX + 14, PH - 104 + j * 10, ln, 7.6, False, '#222222')
     legend(pg)

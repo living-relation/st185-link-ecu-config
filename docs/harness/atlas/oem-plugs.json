@@ -1,0 +1,488 @@
+{
+ "about": "OEM plug data for the connector atlas. Face views are cropped from the 1993 TIS EWD pages shipped in the st185-celica-repair-manual app (extract_faces.py). Housing/terminal PNs are filled only when matched; rm_candidates points at the Toyota Wire Harness Repair Manual RM1022E housing-shape pages with the same cavity count (shape still to be confirmed by eye). page = PDF page of the circuit file inside the app; printed = number printed on the sheet.",
+ "app_base": "http://127.0.0.1:8765/electrical/index.html",
+ "app_launch": "python celica-manual/build/app.py --server-only --port 8765  (run in C:/projects/active/st185-celica-repair-manual)",
+ "boxes": {
+  "jb1": {
+   "title": "J/B No.1 - LH kick panel junction block",
+   "sub": "Factory box KEPT. We splice the factory leads of plugs 1F / 1H / 1I.",
+   "doc": "tis1993-relay-locations",
+   "page": 3,
+   "printed": 20
+  },
+  "ie1": {
+   "title": "IE1 - engine room main wire to cowl wire joint (LH kick panel)",
+   "sub": "Engine-room main REMOVED. We tap the cowl-side leads of IE1.",
+   "doc": "tis1993-wiring-routing-2",
+   "page": 8,
+   "printed": 43
+  },
+  "rb2": {
+   "title": "R/B No.2 - LH kick panel relay block position",
+   "sub": "Relay block REMOVED; its factory leads stay in the loom.",
+   "doc": "tis1993-relay-locations",
+   "page": 9,
+   "printed": 26
+  },
+  "rb4": {
+   "title": "R/B No.4 - RH kick panel relay block position",
+   "sub": "Relay block REMOVED; its factory leads stay in the loom.",
+   "doc": "tis1993-relay-locations",
+   "page": 10,
+   "printed": 27
+  },
+  "jb3": {
+   "title": "J/B No.3 - behind the combination meter",
+   "sub": "OEM junction block KEPT; we tap plug 3B.",
+   "doc": "tis1993-relay-locations",
+   "page": 8,
+   "printed": 25
+  },
+  "ig2": {
+   "title": "IG2 - engine wire to cowl wire joint (under the ECU)",
+   "sub": "Engine-side wire removed. We tap the cowl-side leads of IG2.",
+   "doc": "tis1993-wiring-routing-2",
+   "page": 8,
+   "printed": 43
+  }
+ },
+ "plugs": {
+  "jb1:1F": {
+   "caption": "1F  (from floor wire, dark gray)",
+   "cavities": 14,
+   "face": "oem-faces/jb1-1F.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 3,
+    "crop_px110": [
+     350,
+     525,
+     520,
+     635
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": {
+    "doc": "refdocs-wire-harness-repair-rm1022e",
+    "pages": [
+     139,
+     143
+    ],
+    "text": "14P female non-waterproof"
+   }
+  },
+  "jb1:1H": {
+   "caption": "1H  (from engine room main wire)",
+   "cavities": 8,
+   "face": "oem-faces/jb1-1H.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 3,
+    "crop_px110": [
+     55,
+     305,
+     205,
+     388
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": {
+    "doc": "refdocs-wire-harness-repair-rm1022e",
+    "pages": [
+     122,
+     124
+    ],
+    "text": "8P female non-waterproof"
+   }
+  },
+  "jb1:1I": {
+   "caption": "1I  (from engine room main wire)",
+   "cavities": 1,
+   "face": "oem-faces/jb1-1I.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 3,
+    "crop_px110": [
+     430,
+     325,
+     625,
+     402
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": {
+    "doc": "refdocs-wire-harness-repair-rm1022e",
+    "pages": [
+     103,
+     104
+    ],
+    "text": "1P female non-waterproof"
+   }
+  },
+  "jb3:3B": {
+   "caption": "3B  (J/B No.3 plug, cowl wire)",
+   "cavities": 16,
+   "face": "oem-faces/jb3-3B.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 8,
+    "crop_px110": [
+     545,
+     290,
+     780,
+     428
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": {
+    "doc": "refdocs-wire-harness-repair-rm1022e",
+    "pages": [
+     146,
+     153
+    ],
+    "text": "16P female non-waterproof"
+   }
+  },
+  "rb2:RB2": {
+   "caption": "Power main relay socket (R/B No.2)",
+   "cavities": 5,
+   "face": "oem-faces/rb2-power-main-relay.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 9,
+    "crop_px110": [
+     385,
+     435,
+     480,
+     548
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": null
+  },
+  "rb4:heater": {
+   "caption": "Heater relay socket (R/B No.4)",
+   "cavities": 5,
+   "face": "oem-faces/rb4-heater-relay.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 10,
+    "crop_px110": [
+     495,
+     300,
+     800,
+     375
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": null
+  },
+  "rb4:starter": {
+   "caption": "Starter relay socket (R/B No.4)",
+   "cavities": 4,
+   "face": "oem-faces/rb4-starter-relay.png",
+   "src": {
+    "doc": "tis1993-relay-locations",
+    "page": 10,
+    "crop_px110": [
+     330,
+     298,
+     450,
+     368
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": null
+  },
+  "ie1:IE1": {
+   "caption": "IE1  (both halves; cowl side = our taps)",
+   "cavities": 20,
+   "face": "oem-faces/ie1.png",
+   "src": {
+    "doc": "tis1993-wiring-routing-2",
+    "page": 8,
+    "crop_px110": [
+     85,
+     355,
+     380,
+     525
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": {
+    "doc": "refdocs-wire-harness-repair-rm1022e",
+    "pages": [
+     161,
+     164
+    ],
+    "text": "20P female non-waterproof"
+   }
+  },
+  "ig2:IG2": {
+   "caption": "IG2  (both halves, dark gray)",
+   "cavities": 20,
+   "face": "oem-faces/ig2.png",
+   "src": {
+    "doc": "tis1993-wiring-routing-2",
+    "page": 8,
+    "crop_px110": [
+     95,
+     765,
+     490,
+     915
+    ]
+   },
+   "housing_pn": null,
+   "terminal_pn": null,
+   "rm_candidates": {
+    "doc": "refdocs-wire-harness-repair-rm1022e",
+    "pages": [
+     161,
+     164
+    ],
+    "text": "20P female non-waterproof"
+   }
+  }
+ },
+ "devices": {
+  "A18 (factory)": {
+   "code": "A18",
+   "name": "A/C Control Assembly",
+   "doc": "tis1993-wiring-routing",
+   "page": 5,
+   "printed": 32,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "A5 (factory)": {
+   "code": "A5",
+   "name": "A/C Pressure SW or Short Pin",
+   "doc": "tis1993-wiring-routing",
+   "page": 1,
+   "printed": 28,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "C11 clutch start switch (1993 code) (factory)": {
+   "code": "C11",
+   "name": "Clutch Start SW",
+   "doc": "tis1993-wiring-routing",
+   "page": 5,
+   "printed": 32,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "Cruise control switch (C14, comb. switch) (factory)": {
+   "code": "C14",
+   "name": "Combination Meter",
+   "doc": "tis1993-wiring-routing",
+   "page": 5,
+   "printed": 32,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "S9 (factory)": {
+   "code": "S9",
+   "name": "Stop Light SW (w/o Cruise Control System) or Stop",
+   "doc": "tis1993-wiring-routing",
+   "page": 6,
+   "printed": 33,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "B4 (factory)": {
+   "code": "B4",
+   "name": "Blower Motor",
+   "doc": "tis1993-wiring-routing",
+   "page": 5,
+   "printed": 32,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "C11 (factory)": {
+   "code": "C11",
+   "name": "Clutch Start SW",
+   "doc": "tis1993-wiring-routing",
+   "page": 5,
+   "printed": 32,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "C12 (factory)": {
+   "code": "C12",
+   "name": "Combination Meter",
+   "doc": "tis1993-wiring-routing",
+   "page": 5,
+   "printed": 32,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "A4 (factory)": {
+   "code": "A4",
+   "name": "A/C Magnetic Clutch and Compressor Sensor",
+   "doc": "tis1993-wiring-routing",
+   "page": 1,
+   "printed": 28,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "H1 (factory)": {
+   "code": "H1",
+   "name": "Headlight LH",
+   "doc": "tis1993-wiring-routing",
+   "page": 2,
+   "printed": 29,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "H2 (factory)": {
+   "code": "H2",
+   "name": "Headlight RH",
+   "doc": "tis1993-wiring-routing",
+   "page": 2,
+   "printed": 29,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "F7 (factory)": {
+   "code": "F7",
+   "name": "Front Turn Signal Light and Clearance Light LH",
+   "doc": "tis1993-wiring-routing",
+   "page": 1,
+   "printed": 28,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "F8 (factory)": {
+   "code": "F8",
+   "name": "Front Turn Signal Light and Clearance Light RH",
+   "doc": "tis1993-wiring-routing",
+   "page": 1,
+   "printed": 28,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "F9 (factory)": {
+   "code": "F9",
+   "name": "Front Wiper Motor",
+   "doc": "tis1993-wiring-routing",
+   "page": 1,
+   "printed": 28,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "R3 (factory)": {
+   "code": "R3",
+   "name": "Retract Motor RH",
+   "doc": "tis1993-wiring-routing",
+   "page": 2,
+   "printed": 29,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "R2 (factory)": {
+   "code": "R2",
+   "name": "Retract Motor LH",
+   "doc": "tis1993-wiring-routing",
+   "page": 2,
+   "printed": 29,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "W1 (factory)": {
+   "code": "W1",
+   "name": "Washer Motor",
+   "doc": "tis1993-wiring-routing",
+   "page": 2,
+   "printed": 29,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "H6 (factory)": {
+   "code": "H6",
+   "name": "High Mount Stop Light",
+   "doc": "tis1993-wiring-routing",
+   "page": 7,
+   "printed": 34,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "R12 (factory)": {
+   "code": "R12",
+   "name": "Rear Combination Light RH",
+   "doc": "tis1993-wiring-routing",
+   "page": 8,
+   "printed": 35,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "R11 (factory)": {
+   "code": "R11",
+   "name": "Rear Combination Light LH",
+   "doc": "tis1993-wiring-routing",
+   "page": 8,
+   "printed": 35,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  },
+  "L1 (factory)": {
+   "code": "L1",
+   "name": "License Plate Light",
+   "doc": "tis1993-wiring-routing",
+   "page": 8,
+   "printed": 35,
+   "face": null,
+   "housing_pn": null,
+   "terminal_pn": null,
+   "note": "No connector face view in the repair-manual app: the 1993 EWD shows only the part position."
+  }
+ }
+}
