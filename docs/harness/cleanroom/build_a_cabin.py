@@ -22,7 +22,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from layout_schematic import place  # noqa: E402
+from layout_schematic import metrics, place  # noqa: E402
 from oem_ends import OEM_ENDS  # noqa: E402
 
 # connector id -> name on the drawing
@@ -369,6 +369,7 @@ def main():
         attach[node] = nid
     out["schematicNotes"] = notes
     place(out, attach)
+    print("schematic:", metrics(out))
 
     write_full_text(out)
     tmp = a.out + ".tmp"
