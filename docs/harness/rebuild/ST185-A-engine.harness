@@ -943,7 +943,8 @@
           "id": "c33",
           "designation": "11",
           "contactPartId": "ct_hdp16s",
-          "signal": "Crank sensor shield"
+          "signal": "Crank sensor shield",
+          "propagate": false
         },
         {
           "id": "c4",
@@ -970,7 +971,8 @@
           "id": "c34",
           "designation": "15",
           "contactPartId": "ct_hdp16s",
-          "signal": "Cam sensor shield"
+          "signal": "Cam sensor shield",
+          "propagate": false
         },
         {
           "id": "c40",
@@ -997,7 +999,8 @@
           "id": "c6",
           "designation": "19",
           "signal": "Turbo speed shield",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -1017,7 +1020,8 @@
           "id": "c10",
           "designation": "22",
           "signal": "Flex fuel shield",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -1051,7 +1055,8 @@
           "id": "c11",
           "designation": "27",
           "signal": "Throttle shield",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c39",
@@ -1155,7 +1160,8 @@
           "id": "c35",
           "designation": "42",
           "signal": "EHPS enable +12 V",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "nc43",
@@ -1167,7 +1173,8 @@
           "id": "c36",
           "designation": "44",
           "signal": "EHPS pump speed",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c37",
@@ -1185,7 +1192,8 @@
           "id": "c45",
           "designation": "47",
           "signal": "+5 V oil pressure",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "nc48",
@@ -1203,13 +1211,15 @@
           "id": "c46",
           "designation": "50",
           "signal": "+5 V fuel pressure",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c47",
           "designation": "51",
           "signal": "+5 V coolant press",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c1",
@@ -1535,21 +1545,24 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+5 V supply",
+          "signal": "+5 V turbo speed",
           "designation": "A",
-          "contactPartId": "ct_dt16s_ni"
+          "contactPartId": "ct_dt16s_ni",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "speed signal out",
+          "signal": "Turbo speed signal",
           "designation": "B",
-          "contactPartId": "ct_dt16s_ni"
+          "contactPartId": "ct_dt16s_ni",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "sensor ground",
+          "signal": "Gnd turbo speed",
           "designation": "C",
-          "contactPartId": "ct_dt16s_ni"
+          "contactPartId": "ct_dt16s_ni",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1569,16 +1582,18 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "sensor ground",
+          "signal": "Gnd MAP sensor",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "+5 V supply"
+          "signal": "+5 V MAP sensor",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "pressure signal out"
+          "signal": "MAP sensor signal",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1598,22 +1613,24 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V supply",
+          "signal": "+12 V flex fuel",
           "contactPartId": "ct_gt150_skt_05",
           "propagate": false,
           "designation": "A"
         },
         {
           "id": "c2",
-          "signal": "sensor ground",
+          "signal": "Gnd flex fuel",
           "contactPartId": "ct_gt150_skt_05",
-          "designation": "B"
+          "designation": "B",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "ethanol/temp signal",
+          "signal": "Flex fuel signal",
           "contactPartId": "ct_gt150_skt_05",
-          "designation": "C"
+          "designation": "C",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1633,13 +1650,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed",
-          "contactPartId": "ct_gt150_skt_16"
+          "signal": "Injector 1 +12 V",
+          "contactPartId": "ct_gt150_skt_16",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "ECU drive (low side)",
-          "contactPartId": "ct_gt150_skt_05"
+          "signal": "Injector 1 drive (-)",
+          "contactPartId": "ct_gt150_skt_05",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1659,14 +1678,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed",
+          "signal": "Injector 2 +12 V",
           "contactPartId": "ct_gt150_skt_16",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "ECU drive (low side)",
-          "contactPartId": "ct_gt150_skt_05"
+          "signal": "Injector 2 drive (-)",
+          "contactPartId": "ct_gt150_skt_05",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1686,14 +1706,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed",
+          "signal": "Injector 3 +12 V",
           "contactPartId": "ct_gt150_skt_16",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "ECU drive (low side)",
-          "contactPartId": "ct_gt150_skt_05"
+          "signal": "Injector 3 drive (-)",
+          "contactPartId": "ct_gt150_skt_05",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1713,14 +1734,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed",
+          "signal": "Injector 4 +12 V",
           "contactPartId": "ct_gt150_skt_16",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "ECU drive (low side)",
-          "contactPartId": "ct_gt150_skt_05"
+          "signal": "Injector 4 drive (-)",
+          "contactPartId": "ct_gt150_skt_05",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1740,18 +1762,21 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed (+B)"
+          "signal": "Coil 1 +12 V",
+          "propagate": false
         },
         {
           "id": "c2"
         },
         {
           "id": "c3",
-          "signal": "IGT trigger from ECU"
+          "signal": "Coil 1 trigger (IGT)",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "ground to eng block"
+          "signal": "Coil 1 ground",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1771,7 +1796,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed (+B)",
+          "signal": "Coil 2 +12 V",
           "propagate": false
         },
         {
@@ -1779,11 +1804,12 @@
         },
         {
           "id": "c3",
-          "signal": "IGT trigger from ECU"
+          "signal": "Coil 2 trigger (IGT)",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "ground to eng block",
+          "signal": "Coil 2 ground",
           "propagate": false
         }
       ],
@@ -1804,7 +1830,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed (+B)",
+          "signal": "Coil 3 +12 V",
           "propagate": false
         },
         {
@@ -1812,11 +1838,12 @@
         },
         {
           "id": "c3",
-          "signal": "IGT trigger from ECU"
+          "signal": "Coil 3 trigger (IGT)",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "ground to eng block",
+          "signal": "Coil 3 ground",
           "propagate": false
         }
       ],
@@ -1837,7 +1864,7 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+12 V feed (+B)",
+          "signal": "Coil 4 +12 V",
           "propagate": false
         },
         {
@@ -1845,11 +1872,12 @@
         },
         {
           "id": "c3",
-          "signal": "IGT trigger from ECU"
+          "signal": "Coil 4 trigger (IGT)",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "ground to eng block",
+          "signal": "Coil 4 ground",
           "propagate": false
         }
       ],
@@ -1871,34 +1899,39 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "motor -",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
+          "signal": "ETB motor -",
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "sensor ground",
+          "signal": "Gnd throttle sensor",
           "contactPartId": "wbsN09tiboovqanDL_xZA",
           "propagate": false
         },
         {
           "id": "c3",
-          "signal": "position sensor +5V",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
+          "signal": "+5 V throttle sensor",
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "motor +",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
+          "signal": "ETB motor +",
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
         },
         {
           "id": "c5",
-          "signal": "position sensor 2",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
+          "signal": "Throttle pos 2 sub",
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
         },
         {
           "id": "c6",
-          "signal": "position sensor 1",
-          "contactPartId": "wbsN09tiboovqanDL_xZA"
+          "signal": "Throttle pos 1 main",
+          "contactPartId": "wbsN09tiboovqanDL_xZA",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1917,13 +1950,15 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "switched +12 V",
-          "contactPartId": "ct_mp150_skt"
+          "signal": "+12 V boost sol",
+          "contactPartId": "ct_mp150_skt",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "ECU drive (low side)",
-          "contactPartId": "ct_mp150_skt"
+          "signal": "Boost solenoid (-)",
+          "contactPartId": "ct_mp150_skt",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1943,11 +1978,13 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "temp signal"
+          "signal": "Coolant temp signal",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "sensor ground"
+          "signal": "Gnd coolant temp",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1967,11 +2004,12 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "temp signal"
+          "signal": "Intake temp signal",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "sensor ground",
+          "signal": "Gnd intake temp",
           "propagate": false
         }
       ],
@@ -1992,11 +2030,13 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "VR signal +"
+          "signal": "Crank sensor signal",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "VR signal -"
+          "signal": "Gnd crank sensor",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -2016,15 +2056,18 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "+8 V supply"
+          "signal": "+8 V to cam sensor",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "Hall signal out"
+          "signal": "Cam sensor signal",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "sensor ground"
+          "signal": "Gnd cam sensor",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -4768,5 +4811,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "mates": []
 }

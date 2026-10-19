@@ -93,13 +93,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VR+ (front left)",
+          "signal": "FL wheel speed +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VR- (front left)",
+          "signal": "FL wheel speed -",
           "propagate": false
         }
       ],
@@ -130,13 +130,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VR+ (front right)",
+          "signal": "FR wheel speed +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VR- (front right)",
+          "signal": "FR wheel speed -",
           "propagate": false
         }
       ],
@@ -227,27 +227,32 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ABS+ FL IN"
+          "signal": "FL wheel speed +",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "ABS- FL IN"
+          "signal": "FL wheel speed -",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "ABS Front SHIELD"
+          "signal": "Front sensor shields",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "ABS+ FR IN"
+          "signal": "FR wheel speed +",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "ABS- FR IN"
+          "signal": "FR wheel speed -",
+          "propagate": false
         }
       ],
       "configurationId": "cfg_vrc_in"
@@ -269,31 +274,31 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V",
+          "signal": "VRC-F +5V",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VRC-F OUT GND",
+          "signal": "VRC-F GND",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "FL out",
+          "signal": "FL conditioned out",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "FR out",
+          "signal": "FR conditioned out",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "screen drain",
+          "signal": "WS-F screen drain",
           "propagate": false
         }
       ],
@@ -1098,5 +1103,7 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "terminals": [],
+  "mates": []
 }
