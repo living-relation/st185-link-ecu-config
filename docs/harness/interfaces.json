@@ -1713,19 +1713,19 @@
     },
     {
       "id": "cab_etbm_be_sh",
-      "reason": "ETB motor screen: bulkhead B c22 to the broken-off end; continues on A-engine as cab_etbm_ae_sh and floats at the ETB - one screen node, grounded only at B17"
+      "reason": "ETB motor screen: bulkhead pin 50 to the broken-off end; continues on A-engine as cab_etbm_ae_sh and floats at the ETB - one screen node, grounded only at B17"
     },
     {
       "id": "cab_lamcan_be_sh",
-      "reason": "CAN-Lambda pair screen: bulkhead B c24 to the broken-off end; continues on CAN as cab_can_lam_sh and floats at the Lambda - grounded only at B17"
+      "reason": "CAN-Lambda pair screen: bulkhead pin 81 to the broken-off end; continues on CAN as cab_can_lam_sh and floats at the Lambda - grounded only at B17"
     },
     {
       "id": "cab_canbh_bc_sh",
-      "reason": "CAN pair screen continuation: broken-off end (from sp_shield_can) to bulkhead B c24 - carries the CAN screen through to the Lambda side, grounded only at B17"
+      "reason": "CAN pair screen continuation: broken-off end (from sp_shield_can) to bulkhead pin 81 - carries the CAN screen through to the Lambda side, grounded only at B17"
     },
     {
       "id": "cab_can_bh_sh",
-      "reason": "CAN pair screen continuation: sp_shield_can to the broken-off end toward bulkhead B c24 - one CAN screen node, grounded only at B17"
+      "reason": "CAN pair screen continuation: sp_shield_can to the broken-off end toward bulkhead pin 81 - one CAN screen node, grounded only at B17"
     },
     {
       "id": "cab_can_csb_sh",
@@ -2016,7 +2016,7 @@
     {
       "id": "BR_W_SW7_C",
       "type": "broken_off",
-      "what": "back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8",
+      "what": "back-up switch B1 pin 1 (bulkhead pin 78, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "ends": [
         {
           "harness": "B-cabin",
@@ -2136,7 +2136,7 @@
     {
       "id": "BR_W_HV_MRS_EN_E",
       "type": "broken_off",
-      "what": "MRS enable, bulkhead A c35",
+      "what": "MRS enable, bulkhead pin 83",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -2151,7 +2151,7 @@
     {
       "id": "BR_W_MRS_E",
       "type": "broken_off",
-      "what": "MRS speed (ECU A27), bulkhead A c36",
+      "what": "MRS speed (ECU A27), bulkhead pin 84",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -2196,7 +2196,7 @@
     {
       "id": "BR_W_LAM12",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V from LOGIC LAM, bulkhead B c3",
+      "what": "CAN-Lambda +12V from LOGIC LAM, bulkhead pin 95",
       "ends": [
         {
           "harness": "B-engine",
@@ -2211,7 +2211,7 @@
     {
       "id": "BR_W_LAMG",
       "type": "broken_off",
-      "what": "CAN-Lambda ground, bulkhead B c4",
+      "what": "CAN-Lambda ground, bulkhead pin 96",
       "ends": [
         {
           "harness": "B-engine",
@@ -2226,7 +2226,7 @@
     {
       "id": "BR_WC_H_BH",
       "type": "broken_off",
-      "what": "CAN H through bulkhead B c13",
+      "what": "CAN H through bulkhead pin 79",
       "ends": [
         {
           "harness": "CAN",
@@ -2241,7 +2241,7 @@
     {
       "id": "BR_WC_L_BH",
       "type": "broken_off",
-      "what": "CAN L through bulkhead B c14",
+      "what": "CAN L through bulkhead pin 80",
       "ends": [
         {
           "harness": "CAN",
@@ -2256,7 +2256,7 @@
     {
       "id": "BR_WC_H_LAM",
       "type": "broken_off",
-      "what": "CAN H from bulkhead B c13 to the Lambda",
+      "what": "CAN H from bulkhead pin 79 to the Lambda",
       "ends": [
         {
           "harness": "CAN",
@@ -2271,7 +2271,7 @@
     {
       "id": "BR_WC_L_LAM",
       "type": "broken_off",
-      "what": "CAN L from bulkhead B c14 to the Lambda",
+      "what": "CAN L from bulkhead pin 80 to the Lambda",
       "ends": [
         {
           "harness": "CAN",
@@ -2286,7 +2286,7 @@
     {
       "id": "BR_W124_E",
       "type": "broken_off",
-      "what": "ETB motor + (Aux 9, B18), bulkhead B c5",
+      "what": "ETB motor + (Aux 9, B18), bulkhead pin 45",
       "ends": [
         {
           "harness": "B-engine",
@@ -2301,7 +2301,7 @@
     {
       "id": "BR_W215_E",
       "type": "broken_off",
-      "what": "ETB motor - (Aux 10, B26), bulkhead B c6",
+      "what": "ETB motor - (Aux 10, B26), bulkhead pin 46",
       "ends": [
         {
           "harness": "B-engine",
@@ -2346,7 +2346,7 @@
     {
       "id": "BR_W_LAM12_C",
       "type": "broken_off",
-      "what": "CAN-Lambda +12V from LOGIC LAM to bulkhead B c3",
+      "what": "CAN-Lambda +12V from LOGIC LAM to bulkhead pin 95",
       "ends": [
         {
           "harness": "CabinPower",
@@ -2361,7 +2361,7 @@
     {
       "id": "BR_W_LAMG_B",
       "type": "broken_off",
-      "what": "CAN-Lambda ground from bulkhead B c4 to cabin chassis ground",
+      "what": "CAN-Lambda ground from bulkhead pin 96 to cabin chassis ground",
       "ends": [
         {
           "harness": "B-cabin",
@@ -2391,7 +2391,7 @@
     {
       "id": "BR_CAB_ETBM_SH",
       "type": "broken_off",
-      "what": "ETB motor cable screen, bulkhead B c22 to the ETB spur (floats at the ETB)",
+      "what": "ETB motor cable screen, bulkhead pin 50 to the ETB spur (floats at the ETB)",
       "ends": [
         {
           "harness": "B-engine",
@@ -2406,7 +2406,7 @@
     {
       "id": "BR_CAB_LAMCAN_SH",
       "type": "broken_off",
-      "what": "CAN-Lambda pair screen, bulkhead B c24 to the Lambda run (floats at the Lambda)",
+      "what": "CAN-Lambda pair screen, bulkhead pin 81 to the Lambda run (floats at the Lambda)",
       "ends": [
         {
           "harness": "B-engine",
@@ -2421,7 +2421,7 @@
     {
       "id": "BR_CAB_CANBH_SH",
       "type": "broken_off",
-      "what": "CAN pair screen, sp_can_sh_bh to bulkhead B c24",
+      "what": "CAN pair screen, sp_can_sh_bh to bulkhead pin 81",
       "ends": [
         {
           "harness": "CAN",
@@ -2751,7 +2751,7 @@
     {
       "id": "BR_W_EPS_RLY",
       "type": "broken_off",
-      "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead pin 85",
       "ends": [
         {
           "harness": "A-cabin",
@@ -2766,7 +2766,7 @@
     {
       "id": "BR_W_EPS_RLY_E",
       "type": "broken_off",
-      "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27",
+      "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead pin 85",
       "ends": [
         {
           "harness": "EngineRoom-C",
@@ -2931,7 +2931,7 @@
     {
       "id": "BR_REV_COIL",
       "type": "broken_off",
-      "what": "back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86",
+      "what": "back-up switch B1 pin 1 (bulkhead pin 78) -> reverse relay k_rev 86",
       "ends": [
         {
           "harness": "B-cabin",
@@ -2946,7 +2946,7 @@
     {
       "id": "BR_REV_FEED",
       "type": "broken_off",
-      "what": "GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2",
+      "what": "GAUGE 15A feed (J/B3 3B-9) -> bulkhead pin 77 -> back-up switch B1 pin 2",
       "ends": [
         {
           "harness": "CabinPower",

@@ -1892,7 +1892,7 @@
         "y": 180
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 42 (RH firewall, engine side; A-engine) - EHPS enable 12 V"
+      "label": "Bulkhead DRB102 pin 83 (RH firewall, engine side; A-engine) - EHPS enable 12 V"
     },
     {
       "id": "br_w_mrs_e",
@@ -1907,7 +1907,7 @@
         "y": 60
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 44 (RH firewall, engine side; A-engine) - ECU A pin 27 speed out"
+      "label": "Bulkhead DRB102 pin 84 (RH firewall, engine side; A-engine) - ECU A pin 27 speed out"
     },
     {
       "id": "br_w_pmu_hl",
@@ -2277,7 +2277,7 @@
         "y": 270
       },
       "propagate": false,
-      "label": "Bulkhead DRB102 pin 56 (RH firewall, engine side; A-engine) - EHPS relay coil 85"
+      "label": "Bulkhead DRB102 pin 85 (RH firewall, engine side; A-engine) - EHPS relay coil 85"
     },
     {
       "id": "br_w_rb2_wl",
@@ -4954,7 +4954,7 @@
     },
     {
       "id": "note_acamp",
-      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier stays FACTORY wiring (TAM not this pass, 2026-09-30).\nPressure switch A5-4 Y-R and clutch A4-3 Y-B land on ST185-ACAmp-Spur\nas flying leads at A/C AMPLIFIER A18 (pins 13 and 5); this loom does\nnot redraw them. New here: only the ACPS +12V feed, a flying lead into\nA5 pin 1 (V-R). TW (A27 here, A25 in the 1993 book) is the water temp sensor in the\ndash on factory wiring; the old Engine-A run via bulkhead A c37/c38 is\ndeleted (DECISIONS S35, 2026-10-14). The ECU's only\nA/C tie is Aux 4 ACT kill, broken off from ST185-A-cabin onto\nST185-ACAmp-Spur as A18-11. Labels: docs/harness/ACAMP-SPUR-LABELS.md.",
+      "text": "A/C IS THE AMPLIFIERS' BUSINESS, NOT THE ECU'S OR THE CSB3'S - and there are TWO\nRead off the factory EWD automatic-A/C pages, saved in ewd-snips:\n  p150  AUTO A/C AMPLIFIER  A32=conn A, A33=conn B, A34=conn C\n        A1 Ambient Temp -> TAM, conn C pin 6, Y-B (via EA1 4, IQ1 1)\n        A27 Water Temp  -> TW,  conn C pin 20, R-G\n  p152  A/C AMPLIFIER A18 - a SEPARATE module\n        A5 Pressure SW  -> A18 pin 13, Y-R (via EB2 2, E10, IJ1 15)\nAmbient sensor -> amplifier stays FACTORY wiring (TAM not this pass, 2026-09-30).\nPressure switch A5-4 Y-R and clutch A4-3 Y-B land on ST185-ACAmp-Spur\nas flying leads at A/C AMPLIFIER A18 (pins 13 and 5); this loom does\nnot redraw them. New here: only the ACPS +12V feed, a flying lead into\nA5 pin 1 (V-R). TW (A27 here, A25 in the 1993 book) is the water temp sensor in the\ndash on factory wiring; the old Engine-A run via bulkhead pin 45/c38 is\ndeleted (DECISIONS S35, 2026-10-14). The ECU's only\nA/C tie is Aux 4 ACT kill, broken off from ST185-A-cabin onto\nST185-ACAmp-Spur as A18-11. Labels: docs/harness/ACAMP-SPUR-LABELS.md.",
       "schematicPosition": {
         "x": 2370,
         "y": 1410
