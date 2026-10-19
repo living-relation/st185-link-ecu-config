@@ -27,6 +27,7 @@ Rules every shop drawing in this repo follows. Decisions are in
 | Assembled views balloon only the primary parts (enclosure, lid). | R193 |
 | Never label a screw that is not in the model; hidden screws go in an exploded view with dotted lines. | R194 |
 | Notes are for a shop machinist: ELI5, short, plain steps. | R195 |
+| Anything physical (a BOM line added / removed / swapped, a dimension, a part moved, a feature) is a model change: model letter bumped and merged first, drawing regenerated after. Only clerical drawing-only changes take .01. | R197 |
 | Models first, drawings last: model-only PRs, then every drawing regenerated in one pass (`regen_pending` in `drawing-models.json` meanwhile). | R196 |
 
 Gates: `cad/check_drawings_current.py` (R183, R196) and `cad/check_drawing_rules.py` (R184 - R196, reads the `<pdf>.checks.json` report the handbuilt-cad engine writes beside every drawing, DRAWING-RULES 24-30), both in `check_all.py`.

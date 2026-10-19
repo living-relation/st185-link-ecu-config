@@ -47,7 +47,7 @@ def csb3():
     ch=load_children('src/st185_csb3_1015/CSB3_assembly.step')
     g=lambda k:[s for n,v in ch.items() if n.startswith(k) for s in v]
     lid=[hw.csk_screw(sx*31.1,sy*31.1,56,3,12,6.9) for sx in(-1,1) for sy in(-1,1)]
-    tab=[hw.pan_screw(sx*20,sy*41.5,6,6,30,12,4.6) for sx in(-1,1) for sy in(-1,1)]
+    # the 4 nylon M6 tab screws are not part of the assembly (Dan, markup 2026-10-18: he may not use them; R197)
     items=[
      dict(item=1,qty=1,pn='ST185-CSB3-101',desc='CSB3 ENCLOSURE BODY',mat='6061-T6 AL, MACHINED',shapes=g('CSB3-Body')),
      dict(item=2,qty=1,pn='ST185-CSB3-102',desc='CSB3 ENCLOSURE LID',mat='6061-T6 AL, MACHINED',shapes=g('CSB3-Lid')),
@@ -60,16 +60,14 @@ def csb3():
      dict(item=9,qty=2,pn='ISO 4026 M8 x 6',desc='FLOOR SEAL SET SCREW, FLAT POINT (R133)',mat='A2 STAINLESS',shapes=g('Set_screws')),
      dict(item=10,qty=1,pn='PARKER N0674-70 2-039',desc='O-RING AS568-039, LID FACE SEAL',mat='NBR 70',shapes=g('ORING')),
      dict(item=11,qty=4,pn='ISO 10642 M3 x 12',desc='LID SCREW, CSK SOCKET HEAD',mat='A2 STAINLESS',shapes=lid),
-     dict(item=12,qty=4,pn='ESSENTRA 50M060100P030',desc='TAB SCREW M6 x 1.0 x 30 PAN HEAD',mat='NYLON 6/6',shapes=tab),
-     dict(item=13,qty=1,pn='TE HD36-24-33SE',desc='HD30 PLUG 33S (HARNESS SIDE)',mat='PURCHASED'),
-     dict(item=14,qty=26,pn='TE 0462-201-2031',desc='SIZE 20 SOLID SOCKET (IN ITEM 13)',mat='PURCHASED'),
-     dict(item=15,qty=7,pn='TE 0413-204-2005',desc='SIZE 20 SEALING PLUG, UNUSED CAVITIES',mat='PURCHASED'),
+     dict(item=12,qty=1,pn='TE HD36-24-33SE',desc='HD30 PLUG 33S (HARNESS SIDE)',mat='PURCHASED'),
+     dict(item=13,qty=26,pn='TE 0462-201-2031',desc='SIZE 20 SOLID SOCKET (IN ITEM 12)',mat='PURCHASED'),
+     dict(item=14,qty=7,pn='TE 0413-204-2005',desc='SIZE 20 SEALING PLUG, UNUSED CAVITIES',mat='PURCHASED'),
     ]
     stages=[[
       dict(no=1,title='SET SCREWS FROM BELOW, LOCK-IN SUPPORTS, CSB3 BOARD',base=[1],move=[(9,(0,0,-22)),(8,(0,0,22)),(3,(0,0,40))]),
       dict(no=2,title='HD34 RECEPTACLE INTO LID',base=[2],move=[(4,(0,0,55))],note='SECURE WITH PANEL NUT (5) + LOCKWASHER (6) FROM UNDERSIDE (NOT SHOWN)'),
       dict(no=3,title='O-RING, LID, LID SCREWS',base=[1,3,8,9],move=[(10,(0,0,22)),(2,(0,0,45)),(4,(0,0,45)),(11,(0,0,75))]),
-      dict(no=4,title='MOUNT TO BRACKET (TAB SCREWS)',base=[1,2,3,4,8,9,10,11],move=[(12,(0,0,28))]),
     ]]
     return dict(open_hide=[2,4,10,11],title='CSB3 ENCLOSURE - ASSEMBLY',pn='ST185-CSB3-100',items=items,stage_sheets=stages,
       source=SRC+'\\\\enclosures\\\\csb3\\\\CSB3_assembly.step',revlog=os.path.join(CAD,'enclosures','csb3','ST185-CSB3-100.REVLOG.md'),
