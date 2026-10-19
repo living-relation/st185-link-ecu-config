@@ -1,99 +1,141 @@
-pn,buy_url,alt_url,unit_usd,price_basis,link_status,note
-0413-204-2005,https://www.te.com/en/product-0413-204-2005.html,,,,te.com page opened 2026-10-19,
-0413-214-1205,https://www.te.com/en/product-0413-214-1205.html,,,,te.com page opened 2026-10-19,
-0462-201-16141,https://www.te.com/en/product-0462-201-16141.html,,,,te.com page opened 2026-10-19,
-0462-201-2031,https://www.te.com/en/product-0462-201-2031.html,,,,te.com page opened 2026-10-19,
-1-1393304-0,https://www.te.com/en/product-1-1393304-0.html,,,,te.com page opened 2026-10-19,
-1-1414147-0,https://www.te.com/en/product-1-1414147-0.html,,,,te.com page opened 2026-10-19,
-1-1414687-0,https://www.te.com/en/product-1-1414687-0.html,,9.00,est,te.com page opened 2026-10-19,
-1-968849-1,https://www.te.com/en/product-1-968849-1.html,,0.25,Mouser qty 1 per TRUSTED-SOURCES 2026-10-18 (TE page distributor panel),te.com page opened 2026-10-19,
-1-968851-1,https://www.te.com/en/product-1-968851-1.html,,0.10,Mouser qty 22+ per TRUSTED-SOURCES 2026-10-18 (TE page distributor panel),te.com page opened 2026-10-19,
-114018-ZZ,https://www.te.com/en/product-114018-ZZ.html,,,,te.com page opened 2026-10-19,
-114019-ZZ,https://www.te.com/en/product-114019-ZZ.html,,,,te.com page opened 2026-10-19,
-12084200,https://waytekwire.com/product/aptiv-12084200-metri-pack-150-series-female,https://www.ebay.de/itm/145990327082,,,"Waytek listing seen 2026-10-19 (100 pc min, 0 stock; Aptiv sheet not checked)",confirm 150 vs 150.2 against Aptiv drawing
-1416010-1,https://www.te.com/en/product-1416010-1.html,,,,te.com page opened 2026-10-19,
-280755-4,https://www.te.com/en/product-280755-4.html,,0.50,est,te.com page opened 2026-10-19,
-280756-4,https://www.te.com/en/product-280756-4.html,,0.40,est,te.com page opened 2026-10-19,
-280919-2,https://www.te.com/en/product-280919-2.html,,,,te.com page opened 2026-10-19,
-281934-2,https://www.te.com/en/product-281934-2.html,,,,from cad/fusebox parts list (R82 checked),
-282080-1,https://www.te.com/en/product-282080-1.html,,,,te.com page opened 2026-10-19,
-282110-1,https://www.te.com/en/product-282110-1.html,,,,from cad/fusebox parts list (R82 checked),
-320238,https://www.te.com/en/product-320238.html,,,,te.com page opened 2026-10-19,
-320554,https://www.te.com/en/product-320554.html,,0.40,est,te.com page opened 2026-10-19,
-320575,https://www.te.com/en/product-320575.html,,,,te.com page opened 2026-10-19,
-36161,https://www.te.com/en/product-36161.html,,0.25,est,te.com page opened 2026-10-19,
-4-1904124-2,https://www.te.com/en/product-4-1904124-2.html,,,,te.com page opened 2026-10-19,
-4-1904124-3,https://www.te.com/en/product-4-1904124-3.html,,,,te.com page opened 2026-10-19,
-42281-1,https://www.te.com/en/product-42281-1.html,,0.10,est,te.com page opened 2026-10-19,
-5-1393292-8,https://www.te.com/en/product-5-1393292-8.html,,,,te.com page opened 2026-10-19,
-53941-1,https://www.te.com/en/product-53941-1.html,,0.37,seen,te.com page opened 2026-10-19,
-6-1419137-4,https://www.te.com/en/product-6-1419137-4.html,,,,te.com page opened 2026-10-19,
-62998-2,https://www.te.com/en/product-62998-2.html,,0.30,est,te.com page opened 2026-10-19,
-94459A140,https://www.mcmaster.com/product/94459A140/,,0.40,est,from cad/fusebox parts list (R82 checked),
-AMI-30,https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-30-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),
-AMI-40,https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-40-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),
-AMI-50,https://waytekwire.com/product/eaton-s-bussmann-series-ami-50-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),
-AMI-60,https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-60-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),
-ATM-10,https://stanion.com/Product/atm10bus,,0.55,est,from cad/fusebox parts list (R82 checked),
-ATM-15,https://www.vanmeterinc.com/catalog/electrical/fuses/automotive-fuses/eaton-atm-15,,0.55,est,from cad/fusebox parts list (R82 checked),
-ATM-2,https://www.standardelectricsupply.com/Bussmann-ATM-2-Automotive-Fuse,,0.55,est,from cad/fusebox parts list (R82 checked),
-ATM-20,https://www.stanion.com/Product/atm20bus,,0.55,est,from cad/fusebox parts list (R82 checked),
-ATM-5,https://www.stanion.com/Product/atm5bus,,0.55,est,from cad/fusebox parts list (R82 checked),
-ATM-7-1/2,https://www.stanion.com/Product/atm71-2bus,,0.55,est,from cad/fusebox parts list (R82 checked),
-Accu HHTPS-M5-8-40-BR-NI,https://accu-components.com/us/threaded-standoffs/464940-HHTPS-M5-8-40-BR-NI,,0.60,est,from cad/fusebox parts list (R82 checked),
-Bopaodao B09Z7NBLDK,https://www.amazon.com/dp/B09Z7NBLDK,,51.99,seen,from cad/fusebox parts list (R82 checked),
-DRB12-102PAE-L018,https://www.te.com/en/product-DRB12-102PAE-L018.html,,,,te.com page opened 2026-10-19,
-DRB16-102SAE-L018,https://www.te.com/en/product-DRB16-102SAE-L018.html,,,,te.com page opened 2026-10-19,
-DRBF-1A,https://www.te.com/en/product-DRBF-1A.html,,,,te.com page opened 2026-10-19,
-DT04-08PA-P021,https://www.te.com/en/product-DT04-08PA-P021.html,,,,te.com page opened 2026-10-19,
-DT04-12PA-P021,https://www.te.com/en/product-DT04-12PA-P021.html,,,,te.com page opened 2026-10-19,
-DT04-2P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT04-2P/6566582,,0.67,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT04-3P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT04-3P/6566583,,0.96,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT04-6P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT04-6P/6566585,,2.34,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT04-6P-CE03,https://www.te.com/en/product-DT04-6P-CE03.html,,2.34,"family price (DT04-6P, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,
-DT06-08SA,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-08SA/6566565,,3.81,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT06-2S,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-2S/6566572,,0.77,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT06-2S-CE05,https://www.te.com/en/product-DT06-2S-CE05.html,,0.77,"family price (DT06-2S, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,
-DT06-3S-CE05,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-3S-CE05/7219768,,2.06,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT06-6S,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-6S/6566575,,2.52,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-DT06-6S-CE05,https://www.digikey.com/en/products/detail/wee/DT06-6S-CE05/29360522,,2.68,"Digi-Key qty 1, 2026-10-19","Digi-Key listing opened 2026-10-19 (reseller ""wee"", not TE direct)",
-DTHD06-1-8S,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DTHD06-1-8S/9554131,,3.48,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-EFC 10S00052,https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters,,0.25,est,from cad/fusebox parts list (R82 checked),
-EFC 10S00056,https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters,,0.30,est,from cad/fusebox parts list (R82 checked),
-Klauke 1R6,https://www.voltus.com/en/klauke-1r6-tube-cable-lug-m6-without-viewing-hole-6-mm.html,,0.55,est,from cad/fusebox parts list (R82 checked),
-Klauke 2R5,https://www.buerklin.com/en/p/klauke/cable-lugs/2r5/07F2065/,,0.70,est,from cad/fusebox parts list (R82 checked),
-Klauke 3R5MS,https://buerklin.com/en/p/klauke/cable-lugs/3r5ms/07F9752,,1.10,est,from cad/fusebox parts list (R82 checked),
-Klauke 6R8,https://www.buerklin.com/en/p/klauke/cable-lugs/6r8/07F2081/,,2.60,est,from cad/fusebox parts list (R82 checked),
-M22759/16-14-2,https://www.awcwire.com/product/m22759_16-14,,1.00,est,from cad/fusebox parts list (R82 checked),
-M22759/16-16-2,https://www.awcwire.com/product/m22759_16-16,,1.00,est,from cad/fusebox parts list (R82 checked),
-M22759/16-18-2,https://www.awcwire.com/product/m22759_16-18,,1.00,est,from cad/fusebox parts list (R82 checked),
-M22759/16-20-2,https://www.awcwire.com/product/m22759_16-20,,1.00,est,from cad/fusebox parts list (R82 checked),
-M22759/16-20-9,https://wingsandwheels.com/tefzel-wire-20-gauge-new.html,https://www.flightstore.com.au/M22759/16-Extruded-ETFE-Tefzel-Wire-20AWG-Per-FT,,,seller page seen 2026-10-19 (per foot),
-MECCANIXITY B0CGJBRNJX,https://www.amazon.com/dp/B0CGJBRNJX,,26.19,seen,from cad/fusebox parts list (R82 checked),
-MECCANIXITY B0CGJC2S1L,https://www.amazon.com/dp/B0CGJC2S1L,,27.19,seen,from cad/fusebox parts list (R82 checked),
-PEM S-M4-2ZI,https://www.pemnet.com/products/product-finder/s-m4-2zi/,,0.25,est,from cad/fusebox parts list (R82 checked),
-PEM SS-M5-2ZI,https://www.pemnet.com/products/product-finder/ss-m5-2zi/,,0.25,est,from cad/fusebox parts list (R82 checked),
-RL9080-301-F1,https://www.digikey.com/en/products/detail/amphenol-technical-products-international/RL9080-301-F1/16271602,,13.43,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-RNF-100-1/8-0-STK,https://www.newark.com/raychem-te-connectivity/rnf-100-1-8-0-stk/heatshrink-3-2mm-black-1-2m/dp/01M8658,,2.55,seen,from cad/fusebox parts list (R82 checked),
-RNF-100-3/32-0-STK,https://www.newark.com/raychem-te-connectivity/rnf-100-3-32-0-stk/heatshrink-2-4mm-black-1-2m/dp/01M8679,,2.83,est,from cad/fusebox parts list (R82 checked),
-RS 190-169,https://ie.rs-online.com/web/p/hex-bolts/0190169,,0.30,est,from cad/fusebox parts list (R82 checked),
-RS 190-276,https://ph.rs-online.com/web/p/hex-bolts/0190276,,0.30,est,from cad/fusebox parts list (R82 checked),
-RS 231-0691,https://se.rs-online.com/web/p/washers/2310691,,0.05,est,from cad/fusebox parts list (R82 checked),
-RS 263-2205,https://ph.rs-online.com/web/p/hex-bolts/2632205,,0.12,est,from cad/fusebox parts list (R82 checked),
-RS 264-6432,https://se.rs-online.com/web/p/products/2646432,,0.07,est,from cad/fusebox parts list (R82 checked),
-RS 287-3915,https://uk.rs-online.com/web/p/hex-bolts/2873915,,0.08,est,from cad/fusebox parts list (R82 checked),
-RS 287-3921,https://th.rs-online.com/web/p/hex-bolts/2873921,,0.10,est,from cad/fusebox parts list (R82 checked),
-RS 287-3962,https://se.rs-online.com/web/p/washers/2873962,,0.05,est,from cad/fusebox parts list (R82 checked),
-RS 484-0098,https://ph.rs-online.com/web/p/hex-bolts/4840098,,0.12,est,from cad/fusebox parts list (R82 checked),
-RS 527-274,https://nl.rs-online.com/web/p/hex-nuts/0527274,,0.06,est,from cad/fusebox parts list (R82 checked),
-RS 530-769,https://hkcn.rs-online.com/web/p/products/530769,,0.08,est,from cad/fusebox parts list (R82 checked),
-RS 797-6068,https://th.rs-online.com/web/p/washers/7976068,,0.05,est,from cad/fusebox parts list (R82 checked),
-SSCF-M3-10-A4,https://accu-components.com/us/metric-cap-head-screws/3975-SSCF-M3-10-A4,,0.50,est,from cad/fusebox parts list (R82 checked),
-W2P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/W2P/6566600,,0.13,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,
-W2S,https://www.te.com/en/product-W2S.html,,0.13,"family price (W2P, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,
-W3P,https://www.te.com/en/product-W3P.html,,0.13,"family price (W2P, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,
-W3S,,,0.13,"family price (W2P, Digi-Key qty 1, 2026-10-19)",,
-WB-51PAL,https://www.te.com/en/product-WB-51PAL.html,,,,te.com page opened 2026-10-19,
-WB-51SAR,https://www.te.com/en/product-WB-51SAR.html,,,,te.com page opened 2026-10-19,
-WM-4S,https://www.te.com/en/product-WM-4S.html,,,,te.com page opened 2026-10-19,
-bolts.co.uk SSPMCA205020,https://bolts.co.uk/m5-x-20mm-socket-set-screw-plain-cup-point-pcp-din-916-a2-stainless-steel-pack-of-25-p-SSPMCA205020,,0.63,seen,from cad/fusebox parts list (R82 checked),
+pn,buy_url,alt_url,unit_usd,price_basis,link_status,note,te_sample
+0413-204-2005,https://www.te.com/en/product-0413-204-2005.html,,,,te.com page opened 2026-10-19,,Y
+0413-214-1205,https://www.te.com/en/product-0413-214-1205.html,,,,te.com page opened 2026-10-19,,Y
+0460-202-2031,,,,,,,Y
+0462-201-16141,https://www.te.com/en/product-0462-201-16141.html,,,,te.com page opened 2026-10-19,,Y
+0462-201-2031,https://www.te.com/en/product-0462-201-2031.html,,,,te.com page opened 2026-10-19,,Y
+1-1393304-0,https://www.te.com/en/product-1-1393304-0.html,,,,te.com page opened 2026-10-19,,Y
+1-1414147-0,https://www.te.com/en/product-1-1414147-0.html,,,,te.com page opened 2026-10-19,,Y
+1-1414687-0,https://www.te.com/en/product-1-1414687-0.html,,9.00,est,te.com page opened 2026-10-19,,
+1-968849-1,https://www.te.com/en/product-1-968849-1.html,,0.25,Mouser qty 1 per TRUSTED-SOURCES 2026-10-18 (TE page distributor panel),te.com page opened 2026-10-19,,Y
+1-968851-1,https://www.te.com/en/product-1-968851-1.html,,0.10,Mouser qty 22+ per TRUSTED-SOURCES 2026-10-18 (TE page distributor panel),te.com page opened 2026-10-19,,Y
+112263-90,,,,,,,Y
+112264-ZZ,,,,,,,Y
+114017,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+114018-ZZ,https://www.te.com/en/product-114018-ZZ.html,,,,te.com page opened 2026-10-19,,
+114019-ZZ,https://www.te.com/en/product-114019-ZZ.html,,,,te.com page opened 2026-10-19,,
+12084200,https://waytekwire.com/product/aptiv-12084200-metri-pack-150-series-female,https://www.ebay.de/itm/145990327082,,,"Waytek listing seen 2026-10-19 (100 pc min, 0 stock; Aptiv sheet not checked)",confirm 150 vs 150.2 against Aptiv drawing,
+1416010-1,https://www.te.com/en/product-1416010-1.html,,,,te.com page opened 2026-10-19,,Y
+280755-4,https://www.te.com/en/product-280755-4.html,,0.50,est,te.com page opened 2026-10-19,,Y
+280756-4,https://www.te.com/en/product-280756-4.html,,0.40,est,te.com page opened 2026-10-19,,Y
+280919-2,https://www.te.com/en/product-280919-2.html,,,,te.com page opened 2026-10-19,,Y
+281934-2,https://www.te.com/en/product-281934-2.html,,,,from cad/fusebox parts list (R82 checked),,Y
+282080-1,https://www.te.com/en/product-282080-1.html,,,,te.com page opened 2026-10-19,,Y
+282110-1,https://www.te.com/en/product-282110-1.html,,,,from cad/fusebox parts list (R82 checked),,Y
+301A011-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+301A022-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+301A028-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+320238,https://www.te.com/en/product-320238.html,,,,te.com page opened 2026-10-19,,Y
+320554,https://www.te.com/en/product-320554.html,,0.40,est,te.com page opened 2026-10-19,,
+320575,https://www.te.com/en/product-320575.html,,,,te.com page opened 2026-10-19,,
+342A012-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+342A024-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+342A034-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+342A048-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+36161,https://www.te.com/en/product-36161.html,,0.25,est,te.com page opened 2026-10-19,,
+382A012-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+382A023-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+382A034-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+4-1904124-2,https://www.te.com/en/product-4-1904124-2.html,,,,te.com page opened 2026-10-19,,Y
+4-1904124-3,https://www.te.com/en/product-4-1904124-3.html,,,,te.com page opened 2026-10-19,,Y
+42281-1,https://www.te.com/en/product-42281-1.html,,0.10,est,te.com page opened 2026-10-19,,Y
+462A023-25-0,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+5-1393292-8,https://www.te.com/en/product-5-1393292-8.html,,,,te.com page opened 2026-10-19,,Y
+53941-1,https://www.te.com/en/product-53941-1.html,,0.37,seen,te.com page opened 2026-10-19,,Y
+6-1419137-4,https://www.te.com/en/product-6-1419137-4.html,,,,te.com page opened 2026-10-19,,Y
+62998-2,https://www.te.com/en/product-62998-2.html,,0.30,est,te.com page opened 2026-10-19,,Y
+94459A140,https://www.mcmaster.com/product/94459A140/,,0.40,est,from cad/fusebox parts list (R82 checked),,
+AMI-30,https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-30-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),,
+AMI-40,https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-40-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),,
+AMI-50,https://waytekwire.com/product/eaton-s-bussmann-series-ami-50-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),,
+AMI-60,https://www.waytekwire.com/product/eaton-s-bussmann-series-ami-60-bolt-down-fuse,,5.30,seen,from cad/fusebox parts list (R82 checked),,
+ATM-10,https://stanion.com/Product/atm10bus,,0.55,est,from cad/fusebox parts list (R82 checked),,
+ATM-15,https://www.vanmeterinc.com/catalog/electrical/fuses/automotive-fuses/eaton-atm-15,,0.55,est,from cad/fusebox parts list (R82 checked),,
+ATM-2,https://www.standardelectricsupply.com/Bussmann-ATM-2-Automotive-Fuse,,0.55,est,from cad/fusebox parts list (R82 checked),,
+ATM-20,https://www.stanion.com/Product/atm20bus,,0.55,est,from cad/fusebox parts list (R82 checked),,
+ATM-5,https://www.stanion.com/Product/atm5bus,,0.55,est,from cad/fusebox parts list (R82 checked),,
+ATM-7-1/2,https://www.stanion.com/Product/atm71-2bus,,0.55,est,from cad/fusebox parts list (R82 checked),,
+Accu HHTPS-M5-8-40-BR-NI,https://accu-components.com/us/threaded-standoffs/464940-HHTPS-M5-8-40-BR-NI,,0.60,est,from cad/fusebox parts list (R82 checked),,
+Bopaodao B09Z7NBLDK,https://www.amazon.com/dp/B09Z7NBLDK,,51.99,seen,from cad/fusebox parts list (R82 checked),,
+DR-25-1-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-1-1/2-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-1/2-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-1/4-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-2-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-3/16-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-3/4-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DR-25-3/8-0-SP,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+DRB12-102PAE-L018,https://www.te.com/en/product-DRB12-102PAE-L018.html,,,,te.com page opened 2026-10-19,,Y
+DRB16-102SAE-L018,https://www.te.com/en/product-DRB16-102SAE-L018.html,,,,te.com page opened 2026-10-19,,
+DRBF-1A,https://www.te.com/en/product-DRBF-1A.html,,,,te.com page opened 2026-10-19,,Y
+DT04-08PA-P021,https://www.te.com/en/product-DT04-08PA-P021.html,,,,te.com page opened 2026-10-19,,
+DT04-12PA-P021,https://www.te.com/en/product-DT04-12PA-P021.html,,,,te.com page opened 2026-10-19,,
+DT04-2P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT04-2P/6566582,,0.67,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+DT04-3P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT04-3P/6566583,,0.96,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+DT04-6P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT04-6P/6566585,,2.34,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+DT04-6P-CE03,https://www.te.com/en/product-DT04-6P-CE03.html,,2.34,"family price (DT04-6P, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,,Y
+DT06-08SA,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-08SA/6566565,,3.81,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+DT06-2S,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-2S/6566572,,0.77,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,
+DT06-2S-CE05,https://www.te.com/en/product-DT06-2S-CE05.html,,0.77,"family price (DT06-2S, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,,Y
+DT06-3S-CE05,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-3S-CE05/7219768,,2.06,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+DT06-6S,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DT06-6S/6566575,,2.52,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,
+DT06-6S-CE05,https://www.digikey.com/en/products/detail/wee/DT06-6S-CE05/29360522,,2.68,"Digi-Key qty 1, 2026-10-19","Digi-Key listing opened 2026-10-19 (reseller ""wee"", not TE direct)",,Y
+DTHD06-1-8S,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/DTHD06-1-8S/9554131,,3.48,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+EFC 10S00052,https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters,,0.25,est,from cad/fusebox parts list (R82 checked),,
+EFC 10S00056,https://efc-intl.com/compare/metal-compression-limiters/standard-solid-knurled-compression-limiters,,0.30,est,from cad/fusebox parts list (R82 checked),,
+HD36-24-33SE,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+Klauke 1R6,https://www.voltus.com/en/klauke-1r6-tube-cable-lug-m6-without-viewing-hole-6-mm.html,,0.55,est,from cad/fusebox parts list (R82 checked),,
+Klauke 2R5,https://www.buerklin.com/en/p/klauke/cable-lugs/2r5/07F2065/,,0.70,est,from cad/fusebox parts list (R82 checked),,
+Klauke 3R5MS,https://buerklin.com/en/p/klauke/cable-lugs/3r5ms/07F9752,,1.10,est,from cad/fusebox parts list (R82 checked),,
+Klauke 6R8,https://www.buerklin.com/en/p/klauke/cable-lugs/6r8/07F2081/,,2.60,est,from cad/fusebox parts list (R82 checked),,
+M22759/16-14-2,https://www.awcwire.com/product/m22759_16-14,,1.00,est,from cad/fusebox parts list (R82 checked),,
+M22759/16-16-2,https://www.awcwire.com/product/m22759_16-16,,1.00,est,from cad/fusebox parts list (R82 checked),,
+M22759/16-18-2,https://www.awcwire.com/product/m22759_16-18,,1.00,est,from cad/fusebox parts list (R82 checked),,
+M22759/16-20-2,https://www.awcwire.com/product/m22759_16-20,,1.00,est,from cad/fusebox parts list (R82 checked),,
+M22759/16-20-9,https://wingsandwheels.com/tefzel-wire-20-gauge-new.html,https://www.flightstore.com.au/M22759/16-Extruded-ETFE-Tefzel-Wire-20AWG-Per-FT,,,seller page seen 2026-10-19 (per foot),,
+MECCANIXITY B0CGJBRNJX,https://www.amazon.com/dp/B0CGJBRNJX,,26.19,seen,from cad/fusebox parts list (R82 checked),,
+MECCANIXITY B0CGJC2S1L,https://www.amazon.com/dp/B0CGJC2S1L,,27.19,seen,from cad/fusebox parts list (R82 checked),,
+PEM S-M4-2ZI,https://www.pemnet.com/products/product-finder/s-m4-2zi/,,0.25,est,from cad/fusebox parts list (R82 checked),,
+PEM SS-M5-2ZI,https://www.pemnet.com/products/product-finder/ss-m5-2zi/,,0.25,est,from cad/fusebox parts list (R82 checked),,
+RL9080-301-F1,https://www.digikey.com/en/products/detail/amphenol-technical-products-international/RL9080-301-F1/16271602,,13.43,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,
+RNF-100-1/4-0-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-1/8-0-STK,,,2.55,seen,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/16-4-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/16-6-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/16-9-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/32-0-STK,,,2.83,est,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/32-4-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/32-6-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/32-9-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/8-4-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RNF-100-3/8-6-STK,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+RS 190-169,https://ie.rs-online.com/web/p/hex-bolts/0190169,,0.30,est,from cad/fusebox parts list (R82 checked),,
+RS 190-276,https://ph.rs-online.com/web/p/hex-bolts/0190276,,0.30,est,from cad/fusebox parts list (R82 checked),,
+RS 231-0691,https://se.rs-online.com/web/p/washers/2310691,,0.05,est,from cad/fusebox parts list (R82 checked),,
+RS 263-2205,https://ph.rs-online.com/web/p/hex-bolts/2632205,,0.12,est,from cad/fusebox parts list (R82 checked),,
+RS 264-6432,https://se.rs-online.com/web/p/products/2646432,,0.07,est,from cad/fusebox parts list (R82 checked),,
+RS 287-3915,https://uk.rs-online.com/web/p/hex-bolts/2873915,,0.08,est,from cad/fusebox parts list (R82 checked),,
+RS 287-3921,https://th.rs-online.com/web/p/hex-bolts/2873921,,0.10,est,from cad/fusebox parts list (R82 checked),,
+RS 287-3962,https://se.rs-online.com/web/p/washers/2873962,,0.05,est,from cad/fusebox parts list (R82 checked),,
+RS 484-0098,https://ph.rs-online.com/web/p/hex-bolts/4840098,,0.12,est,from cad/fusebox parts list (R82 checked),,
+RS 527-274,https://nl.rs-online.com/web/p/hex-nuts/0527274,,0.06,est,from cad/fusebox parts list (R82 checked),,
+RS 530-769,https://hkcn.rs-online.com/web/p/products/530769,,0.08,est,from cad/fusebox parts list (R82 checked),,
+RS 797-6068,https://th.rs-online.com/web/p/washers/7976068,,0.05,est,from cad/fusebox parts list (R82 checked),,
+SSCF-M3-10-A4,https://accu-components.com/us/metric-cap-head-screws/3975-SSCF-M3-10-A4,,0.50,est,from cad/fusebox parts list (R82 checked),,
+TMS-SCE-1/2-2.0-9,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+TMS-SCE-3/16-2.0-9,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+TMS-SCE-3/8-2.0-9,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+V23132-A2001-B200,,,,,404: te.com URL form is not a product page (checked 2026-10-19); find the real page,,
+W2P,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/W2P/6566600,,0.13,"Digi-Key qty 1, 2026-10-19",Digi-Key product page opened 2026-10-19,,Y
+W2S,https://www.te.com/en/product-W2S.html,,0.13,"family price (W2P, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,,Y
+W3P,https://www.te.com/en/product-W3P.html,,0.13,"family price (W2P, Digi-Key qty 1, 2026-10-19)",te.com page opened 2026-10-19,,Y
+W3S,,,0.13,"family price (W2P, Digi-Key qty 1, 2026-10-19)",,,Y
+W6P,,,,,,,Y
+W6S,,,,,,,Y
+W8S,,,,,,,Y
+WB-51PAL,https://www.te.com/en/product-WB-51PAL.html,,,,te.com page opened 2026-10-19,,Y
+WB-51PAR,,,,,,,Y
+WB-51SAR,https://www.te.com/en/product-WB-51SAR.html,,,,te.com page opened 2026-10-19,,Y
+WM-4S,https://www.te.com/en/product-WM-4S.html,,,,te.com page opened 2026-10-19,,Y
+WM-6S,,,,,,,Y
+bolts.co.uk SSPMCA205020,https://bolts.co.uk/m5-x-20mm-socket-set-screw-plain-cup-point-pcp-din-916-a2-stainless-steel-pack-of-25-p-SSPMCA205020,,0.63,seen,from cad/fusebox parts list (R82 checked),,
