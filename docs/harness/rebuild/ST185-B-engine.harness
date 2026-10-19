@@ -830,8 +830,9 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "Back-up sw feed 15A",
-          "contactPartId": "ct_hdp16s"
+          "signal": "Back-up sw +12 V in",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c26",
@@ -885,54 +886,55 @@
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B15 oil press",
+          "signal": "Oil pressure signal",
           "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B16 fuel press",
+          "signal": "Fuel pressure signal",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B23 clnt press",
+          "signal": "Coolant press signal",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B6 oil temp",
+          "signal": "Oil temp signal",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B7 charge temp",
+          "signal": "Charge temp signal",
           "propagate": false
         },
         {
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16s",
-          "signal": "Reverse +12 V out"
+          "signal": "Reverse sw +12 V out",
+          "propagate": false
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "ECU B22 temp/prs ret",
+          "signal": "Gnd oil/clnt/temps",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "ECU B22 fuel/VSS ret",
+          "signal": "Gnd fuel press + VSS",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
@@ -963,90 +965,100 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "ECU B9 knock +",
+          "signal": "Knock sensor signal",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "ECU B22 knock -",
+          "signal": "Knock sensor (-)",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "85",
-          "signal": "ECU B17 knock screen",
-          "contactPartId": "ct_hdp16s"
+          "signal": "Knock sensor shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B18 throttle M+"
+          "signal": "ETB motor +",
+          "propagate": false
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16s",
-          "signal": "ECU B26 throttle M-"
+          "signal": "ETB motor -",
+          "propagate": false
         },
         {
           "id": "c22",
           "designation": "88",
-          "signal": "ECU B17 thr screen",
-          "contactPartId": "ct_hdp16s"
+          "signal": "ETB motor shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c15",
           "designation": "89",
-          "signal": "ECU B29 gearbox spd",
+          "signal": "Gearbox speed signal",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "Sw +12 V gearbox spd",
+          "signal": "+12 V gearbox speed",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "ECU B17 VSS screen",
-          "contactPartId": "ct_hdp16s"
+          "signal": "Gearbox speed shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c13",
           "designation": "92",
           "signal": "CAN H to CAN-Lambda",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c14",
           "designation": "93",
           "signal": "CAN L to CAN-Lambda",
-          "contactPartId": "ct_hdp16s"
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "CAN-Lambda screen",
-          "contactPartId": "ct_hdp16s"
+          "signal": "CAN-Lambda shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "95",
           "signal": "CAN-Lambda +12 V",
-          "contactPartId": "ct_hdp12s"
+          "contactPartId": "ct_hdp12s",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "96",
           "signal": "CAN-Lambda ground",
-          "contactPartId": "ct_hdp12s"
+          "contactPartId": "ct_hdp12s",
+          "propagate": false
         },
         {
           "id": "c1",
@@ -1101,16 +1113,18 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "sensor ground",
+          "signal": "Gnd oil pressure",
           "propagate": false
         },
         {
           "id": "c2",
-          "signal": "+5 V supply"
+          "signal": "+5 V oil pressure",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "pressure signal out"
+          "signal": "Oil pressure signal",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1130,15 +1144,18 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "sensor ground"
+          "signal": "Gnd fuel pressure",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "+5 V supply"
+          "signal": "+5 V fuel pressure",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "pressure signal out"
+          "signal": "Fuel pressure signal",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1158,15 +1175,18 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "sensor ground"
+          "signal": "Gnd coolant press",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "+5 V supply"
+          "signal": "+5 V coolant press",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "pressure signal out"
+          "signal": "Coolant press signal",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1186,11 +1206,12 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "temp signal"
+          "signal": "Oil temp signal",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "sensor ground",
+          "signal": "Gnd oil temp",
           "propagate": false
         }
       ],
@@ -1213,13 +1234,13 @@
           "id": "c1",
           "designation": "1",
           "propagate": false,
-          "signal": "+12 V out in reverse"
+          "signal": "Reverse sw +12 V out"
         },
         {
           "id": "c2",
           "designation": "2",
           "propagate": false,
-          "signal": "+12 V feed GAUGE 15A"
+          "signal": "Back-up sw +12 V in"
         }
       ],
       "layoutPosition": {
@@ -1239,11 +1260,12 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "temp signal"
+          "signal": "Charge temp signal",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "sensor ground",
+          "signal": "Gnd charge temp",
           "propagate": false
         }
       ],
@@ -1274,21 +1296,23 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "switched +12 V",
-          "contactPartId": "ct_toy_ts"
+          "signal": "+12 V gearbox speed",
+          "contactPartId": "ct_toy_ts",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "sensor ground",
+          "signal": "Gnd gearbox speed",
           "contactPartId": "ct_toy_ts",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "speed signal out",
-          "contactPartId": "ct_toy_ts"
+          "signal": "Gearbox speed signal",
+          "contactPartId": "ct_toy_ts",
+          "propagate": false
         }
       ]
     },
@@ -1299,11 +1323,13 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "signal +"
+          "signal": "Knock sensor signal",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "signal -"
+          "signal": "Knock sensor (-)",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -3246,5 +3272,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "mates": []
 }

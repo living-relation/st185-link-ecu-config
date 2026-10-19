@@ -314,7 +314,6 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Comms port ground",
           "designation": "C1",
           "cavityPlugPartId": "pl_sz20"
         },
@@ -325,13 +324,14 @@
         },
         {
           "id": "c3",
-          "signal": "CAN 1 High",
-          "designation": "C3"
+          "signal": "CAN 1 high",
+          "designation": "C3",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "C4",
-          "signal": "CAN 1 Low",
+          "signal": "CAN 1 low",
           "propagate": false
         },
         {
@@ -361,19 +361,23 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "Lambda +12V in"
+          "signal": "CAN-Lambda +12 V",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "Lambda ground"
+          "signal": "CAN-Lambda ground",
+          "propagate": false
         },
         {
           "id": "c3",
-          "signal": "CAN L"
+          "signal": "CAN L to CAN-Lambda",
+          "propagate": false
         },
         {
           "id": "c4",
-          "signal": "CAN H"
+          "signal": "CAN H to CAN-Lambda",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1828,5 +1832,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 20, RED",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "mates": []
 }

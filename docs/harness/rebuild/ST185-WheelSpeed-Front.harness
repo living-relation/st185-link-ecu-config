@@ -66,9 +66,9 @@
   },
   "wires": [
     {
-      "id": "e7gavP",
+      "id": "w_ws_f_shield",
       "source": {
-        "id": "SvhsQx",
+        "id": "sp_ws_f_shield",
         "handle": "Splice"
       },
       "target": {
@@ -357,7 +357,7 @@
           "Blue"
         ],
         "source": {
-          "id": "SvhsQx",
+          "id": "sp_ws_f_shield",
           "handle": "Splice"
         }
       }
@@ -409,7 +409,7 @@
           "Yellow"
         ],
         "source": {
-          "id": "SvhsQx",
+          "id": "sp_ws_f_shield",
           "handle": "Splice"
         }
       }
@@ -619,7 +619,7 @@
   ],
   "splices": [
     {
-      "id": "SvhsQx",
+      "id": "sp_ws_f_shield",
       "schematicPosition": {
         "x": 750,
         "y": 210
