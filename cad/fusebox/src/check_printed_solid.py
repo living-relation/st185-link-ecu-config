@@ -44,7 +44,9 @@ PARTS = {
     'Power_Base_PA12_printed': 'rev7', 'Power_Pan_PA12_printed': 'rev7', 'Power_Cover_PA12_printed': 'rev7',
     'Logic_Base_PA12_printed': 'rev7', 'Logic_Pan_PA12_printed': 'rev7', 'Logic_Cover_PA12_printed': 'rev7',
     'BattRelay_Base_PA12_printed': 'rev7', 'BattRelay_Cover_PA12_printed': 'rev7',
+    'Power_NutHolder_PA12_printed': 'rev7',     # N37 (2026-10-19): the C-strap top-nut holder (one printed file; 14 per box)
 }
+MULTI = {}   # parts printed as several separate pieces in one file (none)
 MAIN = r'C:\projects\active\st185-link-ecu-config'   # heavy files live in the main checkout (AGENTS.md "Project files stay in this repo")
 WALLS = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wall_check.json')
 FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'WALL-FLAGS.md')
@@ -52,7 +54,8 @@ FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'WALL-FLAGS.md')
 # it may only go down, so it stays 0. R151: it counts STRUCTURAL spots; non-structural / questionable ones are flagged, not counted.
 WALL_BASELINE = {n: (0, 0) for n in (
     'Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
-    'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed')}
+    'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed',
+    'Power_NutHolder_PA12_printed')}
 # the spots Dan marked on 2026-10-15 (closeup_c2), world mm boxes that must stay clear: the R1 cavity group under the deck (M1, M5),
 # the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2) - kept in wall_classes.FEATURES (R151), structural
 MARKED = WCL.MARKED
@@ -289,7 +292,8 @@ def main(argv):
         if 'lumps' not in p:
             bad.append('S1 %s: no lump / shell count in the report - re-run build_fusion.build(rev=7)' % name)
             continue
-        ok = p['bodies'] == 1 and p['lumps'] == 1 and p['shells'] == 1
+        n_ = MULTI.get(name, 1)
+        ok = p['bodies'] == n_ and p['lumps'] == n_ and p['shells'] == n_
         (notes if ok else bad).append('S1 %s: %d body, %d lump, %d shell%s' % (name, p['bodies'], p['lumps'], p['shells'],
                                                                                '' if ok else ' - FLOATING PIECE'))
     fs = rep.get('feature_support')
@@ -338,8 +342,8 @@ def main(argv):
             '; exempt label x%d' % g_ex if g_ex else ''))
         nm_ = nonmanifold(tris)
         bad.extend('S2 %s: zero-thickness joint (edge on %d faces) at %s - %s' % (name, n_, a_, b_) for (a_, b_, n_) in nm_[:12])
-        if len(ps) == 1:
-            notes.append('S2 %s: one connected mesh (%d triangles), %d zero-thickness edges' % (name, ps[0][0], len(nm_)))
+        if len(ps) == MULTI.get(name, 1):
+            notes.append('S2 %s: %d connected mesh piece(s) (%d triangles), %d zero-thickness edges' % (name, len(ps), sum(g[0] for g in ps), len(nm_)))
         else:
             bad.append('S2 %s: %d separate pieces - floating: %s' % (name, len(ps), '; '.join(
                 '%d tris at x %.1f..%.1f y %.1f..%.1f z %.1f..%.1f' % (g[0], g[1][0], g[2][0], g[1][1], g[2][1], g[1][2], g[2][2]) for g in ps[1:9])

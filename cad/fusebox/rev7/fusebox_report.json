@@ -11344,7 +11344,7 @@
    0.98
   ],
   [
-   154.5,
+   154.3,
    173.3,
    35.6,
    50.4,
@@ -11353,7 +11353,7 @@
    0.8
   ],
   [
-   154.5,
+   154.3,
    173.3,
    53.6,
    68.4,
@@ -11362,7 +11362,7 @@
    0.8
   ],
   [
-   154.5,
+   154.3,
    173.3,
    71.6,
    86.4,
@@ -11371,7 +11371,7 @@
    0.8
   ],
   [
-   154.5,
+   154.3,
    173.3,
    89.6,
    104.4,
@@ -11380,7 +11380,7 @@
    0.8
   ],
   [
-   154.5,
+   154.3,
    173.3,
    107.6,
    122.4,
@@ -11389,7 +11389,7 @@
    0.8
   ],
   [
-   154.5,
+   154.3,
    173.3,
    125.6,
    140.4,
@@ -11398,7 +11398,7 @@
    0.8
   ],
   [
-   154.5,
+   154.3,
    173.3,
    143.6,
    158.4,
@@ -11683,7 +11683,7 @@
   "z_t": 52.5,
   "numbers": {
    "R_strap_uohm_20C": 24.5,
-   "R_strap_uohm_95C": 31.7,
+   "R_strap_uohm_95C": 31.8,
    "R_old_conductor_uohm_20C": 58.8,
    "joints": {
     "strap": "ear -> strap, strap -> lug: two clamped copper faces, no thread in the path",
@@ -11817,13 +11817,13 @@
     "thread_share_Nm": 2.06,
     "head_share_Nm": 1.98,
     "nut_reaction_Nm": 2.06,
-    "pem_torque_out_Nm": 5.3,
-    "margin": 2.6,
-    "margin_trimmed_top": 2.2,
-    "note": "torque-out = PEM copper data for the steel S type (SS-M5-2, same M5 / code 2 envelope); the CLSS copper figure is not published - first-article check on the drawing"
+    "stud_torque_out_al_Nm": 3.5,
+    "margin_vs_aluminium": 1.7,
+    "note": "lug end: the FHS stud reacts the thread share of the nut torque; PEM publishes no FH / FHS copper figure, so the margin is against its 1.6 mm 5052 aluminium torque-out (softer than C110) - first-article check on the drawing. Top end: the DIN 934 nut is held by the printed holder, the bolt head share goes into the ear"
    }
   },
-  "pem": "CLSS-M5-2",
+  "stud": "FHS-M5-12",
+  "top_nut": "RS 527-268",
   "positions": 14
  },
  "saddle_vs_terminal": [
@@ -12891,8 +12891,8 @@
   "under_deck_ribs": {
    "IN": {
     "x": [
-     78.8,
-     103.5
+     78.9,
+     103.7
     ],
     "ribs": [
      [
@@ -12948,7 +12948,7 @@
    },
    "OUT": {
     "x": [
-     153.5,
+     153.3,
      173.9
     ],
     "ribs": [
@@ -13296,8 +13296,20 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 834.2,
-   "mass_g_pa12": 843.0,
+   "volume_cm3": 833.6,
+   "mass_g_pa12": 842.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Power_NutHolder_PA12_printed": {
+   "size_mm": [
+    15.4,
+    13.6,
+    34.5
+   ],
+   "volume_cm3": 6.7,
+   "mass_g_pa12": 7.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13382,7 +13394,7 @@
  "interference": [],
  "mass_g": {
   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 153.1,
-  "Power_Strap_Out_CuC110_15x3_C": 319.3,
+  "Power_Strap_Out_CuC110_15x3_C": 327.8,
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 295.5,
   "Power_BarNeg_CuC110_25x6p35_L105": 133.0,
   "BattRelay_Bar_Power_CuC110_25x6p35": 49.2,
@@ -13401,6 +13413,8 @@
   "Power_Base_PA12_printed.step",
   "Power_Base_PA12_printed.stl",
   "Power_Strap_Out_CuC110_15x3_C.step",
+  "Power_NutHolder_PA12_printed.step",
+  "Power_NutHolder_PA12_printed.stl",
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
   "Power_BarNeg_CuC110_25x6p35_L105.step",
   "Power_Pan_PA12_printed.step",

@@ -174,15 +174,16 @@ def fusebox(box):
 MAP={
  'POWER':{'Power Base':(['Power_Base'],'ST185-FB-101',None),'Power Pan':(['Power_Pan'],'ST185-FB-102',None),'Power Cover':(['Power_Cover'],'ST185-FB-103',None),
    'Retainer clip':(['Power_Retainer'],'ST185-FB-104','R1 RETAINER CLIP'),'POS bus bar':(['Power_Bar_Power','Power_BarNeg'],'ST185-FB-113/-114','POS BUS BAR L226 + NEG BAR L105'),
-   'Output C-straps':(['Power_Strap_Out'],'ST185-FB-117','OUTPUT C-STRAP 15 x 3 (14 FROM 1 BAR)'),'CLSS-M5-2':(['Power_Nut_PEM'],None,None),
+   'Output C-straps':(['Power_Strap_Out'],'ST185-FB-117','OUTPUT C-STRAP 15 x 3 (14 FROM 1 BAR)'),'FHS-M5-12':(['Power_Stud_PEM'],None,None),
+   'Top-nut holder':(['Power_NutHolder'],None,'TOP-NUT HOLDER, PA12 (1 PER STRAP)'),'RS 527-268':(['Power_Nut_DIN934'],None,'HEX NUT M5 DIN 934, TOP NUT IN ITS HOLDER'),
    'AMI-30':(['Power_Fuse_AMI_orange'],None,None),'AMI-40':(['Power_Fuse_AMI_ltgreen'],None,None),'AMI-50':(['Power_Fuse_AMI_red'],None,None),'AMI-60':(['Power_Fuse_AMI_yellow'],None,None),
    'ATM-10':(['Power_Fuse_ATM'],None,None),'1-1414687-0':(['Power_Relay_TE_PowerB'],None,None),'1-1414147-0':(['Power_Relay_TE_F7'],None,'MAXI ISO F7 RELAY 680 OHM (k_efi/k_str/k_fan)'),
    '1-1393304-0':('same',None,None),'280756-4':(['Power_Terminal_TE_280756'],None,None),'280755-4':(['Power_Terminal_TE_280755'],None,None),
    '87a receptacle':('same',None,None),'42281-1':(['Power_Terminal_TE_42281'],None,None),'62998-2':(['Power_Terminal_TE_62998'],None,None),
    '1-968851-1':(['Power_Terminal_TE_1-968851'],None,None),'1-968849-1':(['Power_Terminal_TE_1-968849'],None,None),
    'Klauke 2R5':(['Power_Lug_Klauke'],None,None),'Klauke 6R8':(['Power_Lug_BusPos','Power_Lug_BusNeg'],None,None),
-   'RS 287-3921':(['Power_LugBolt'],None,'HEX BOLT M5 x 10, LUG (UP INTO THE BOTTOM PEM)'),'RS 263-2205':(['Power_BarBolt'],None,'HEX BOLT M5 x 16 / M8 x 25, BAR STUDS'),
-   'RS 190-276':('same',None,None),'RS 264-6432':(['Power_Nut_Keps'],None,'KEPS NUT M5 / HEX NUT M8, BAR STUDS'),'RS 530-769':('same',None,None),
+   'RS 287-3921':(['Power_EarBolt'],None,'HEX BOLT M5 x 10, EAR (DOWN INTO THE TOP NUT)'),'RS 263-2205':(['Power_BarBolt'],None,'HEX BOLT M5 x 16 / M8 x 25, BAR STUDS'),
+   'RS 190-276':('same',None,None),'RS 264-6432':(['Power_Nut_Keps','Power_LugNut'],None,'KEPS NUT M5 (BAR STUDS + LUG STUDS) / HEX NUT M8'),'RS 530-769':('same',None,None),
    'EFC 10S00056':(['Power_Limiter'],None,None)},
  'LOGIC':{'Logic Base':(['Logic_Base'],'ST185-FB-105',None),'Logic Pan':(['Logic_Pan'],'ST185-FB-106',None),'Logic Cover':(['Logic_Cover'],'ST185-FB-107',None),
    'Logic strips':(['Logic_Strip'],'ST185-FB-115/-116','LOGIC BUS STRIPS BUS1 + BUS2'),'S-M4-2ZI':(['Logic_Nut_PEM_S-M4'],None,None),'SS-M5-2ZI':(['Logic_Nut_PEM_SS-M5'],None,None),
@@ -218,14 +219,11 @@ TERM_NOTES=['TERMINALS GO UP FROM UNDER THE DECK, CONTACT BOX FIRST, UNTIL THE L
 def fb_power():
     items=fusebox('POWER')
     ch=fb_children(); n=max(i['item'] for i in items)
-    for it in items:
-        if it['pn']=='RS 287-3921': it['qty']=14
-    items.append(dict(item=n+1,qty=14,pn='RS 287-3921',desc='HEX BOLT M5 x 10, EAR (DOWN INTO THE TOP PEM)',mat='A2 STAINLESS',
-                      shapes=[s_ for k,v in ch.items() if k.startswith('Power_EarBolt') for s_ in v]))
+    # N37 (2026-10-19): the M5 x 10 row of the parts list is the ear bolt now (the lug end is an FHS stud with a Keps nut)
     plan=[('LIMITERS; BAR BOLTS FROM BELOW',[('EFC',(0,0,-25)),('263-2205',(0,0,-30))]),
-          ('BARS; C-STRAPS STRAIGHT DOWN (NOTE 4)',[('ST185-FB-113',(0,0,40)),('ST185-FB-117',(0,0,45)),('CLSS',(0,0,45))]),
+          ('BARS; C-STRAPS STRAIGHT DOWN (NOTE 4)',[('ST185-FB-113',(0,0,40)),('ST185-FB-117',(0,0,45)),('FHS-M5',(0,0,45)),('TOP-NUT HOLDER',(0,0,45)),('527-268',(0,0,45))]),
           ('TERMINALS, R1 CLIP, LUGS UNDER THE STRAPS',[('280756',(0,0,-30)),('280755',(0,0,-30)),('42281',(0,0,-30)),('62998',(0,0,-30)),
-            ('968851',(0,0,-30)),('968849',(0,0,-30)),('ST185-FB-104',(0,0,-40)),('2R5',(0,0,-40)),('LUG (UP',(0,0,-55))]),
+            ('968851',(0,0,-30)),('968849',(0,0,-30)),('ST185-FB-104',(0,0,-40)),('2R5',(0,0,-40))]),
           ('FUSES, EAR BOLTS, NUTS, LUGS, RELAYS',[('AMI-',(0,0,40)),('ATM',(0,0,40)),('EAR (DOWN',(0,0,60)),('264-6432',(0,0,60)),('6R8',(0,0,45)),('RELAY',(0,0,50))]),
           ('BELLY PAN + COVER',[('ST185-FB-102',(0,0,-50)),('ST185-FB-103',(0,0,70))])]
     st=_stages(items,plan)
@@ -236,7 +234,7 @@ def fb_power():
       revlog=os.path.join(REV7,'ST185-FB-100P.REVLOG.md'),
       notes=['OVERALL DIMENSIONS ONLY (REFERENCE). ITEMS MARKED (NOT SHOWN) ARE NOT MODELED; WIRES/HARNESS OMITTED FOR CLARITY.',
              'RELAY / FASTENER ITEMS THAT SHARE ONE MODEL BODY ARE BALLOONED ON THE FIRST ITEM OF THE GROUP.',
-             'M5 BOLTS 4 N·m MAX (AMI SHEET). C-STRAP: PEM NUTS PRESSED BEFORE INSTALL, SEE FB-117.',
+             'M5 BOLTS AND NUTS 4 N·m MAX (AMI SHEET). C-STRAP: STUD PRESSED AND TOP NUT + HOLDER IN BEFORE INSTALL, SEE FB-117.',
              'C-STRAPS GO STRAIGHT DOWN INTO THEIR WELLS: THE LIPS PUSH THE SNAP HOOKS OUT (40 DEG LEAD-IN) AND THE HOOKS SNAP BACK OVER THE LIP ENDS (R181).']+TERM_NOTES)
 def fb_logic():
     items=fusebox('LOGIC')

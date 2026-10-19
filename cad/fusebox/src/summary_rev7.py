@@ -129,11 +129,11 @@ SN = rep.get('straps', {}).get('numbers', {})
 FEA = json.load(open(os.path.join(D7, 'strap_fea.json'))) if os.path.exists(os.path.join(D7, 'strap_fea.json')) else {}
 if SN:
     A('<li><b>R155 (N14 = B, 2026-10-17): every AMI position is one copper C-strap</b> (ST185-FB-117, 3 x 15 tinned C110, web / bottom leg 14.2): top leg under '
-      'the AMI ear, web down a well in the deck, bottom leg under the deck with the lug bolted palm-up to it; two PEM %s stainless nuts, M5 x 10 bolts at 4 N.m. '
+      'the AMI ear, web down a well in the deck, bottom leg under the deck with the lug bolted palm-up to it; %s; M5 x 10 ear bolt and the lug nut at 4 N.m. '
       'Current: ear -> copper -> lug, no brass and no thread in the path (%.1f uohm, the old pad + standoff %.1f). Held both ways: the lips rest on a printed ledge '
       '(down), a snap hook reaches over them (up) - OUT row the freed skirt, IN row an arm in the deck; 100 N up on the hook: SF %.2f / %.2f (PA12). '
       'The brass standoffs, set screws, crush ribs and LOCTITE 406 (R146) are gone.</li>'
-      % (S.STRAP_PEM['pn'], SN['R_strap_uohm_20C'], SN['R_old_conductor_uohm_20C'], FEA.get('OUT', {}).get('SF', 0), FEA.get('IN', {}).get('SF', 0)))
+      % (S.STRAP_STUD['pn'] + ' stud (lug end) + DIN 934 nut in a printed holder (top end), N37', SN['R_strap_uohm_20C'], SN['R_old_conductor_uohm_20C'], FEA.get('OUT', {}).get('SF', 0), FEA.get('IN', {}).get('SF', 0)))
 A('</ol>')
 A('<h2>R155: the copper C-strap station</h2>')
 for f, cap in (('renders/closeups/r155_strap_half_section_OUT_JB1.png', 'OUT row (JB1 60 A), half-section at the fuse line: ear on copper, web down the well, lug palm-up under the bottom leg; lips on the ledge, snap hook over them.'),
@@ -492,9 +492,9 @@ A('<tr><td>LOGIC strips (2)</td><td>1" x 1/8" tinned (MECCANIXITY B0CGJC2S1L)</t
     S.STRIP_Y['BUS1'][1] - S.STRIP_Y['BUS1'][0], S.STRIP_Y['BUS2'][1] - S.STRIP_Y['BUS2'][0], S.PEM[4]['hole'], S.JROW['z_lo'], S.JROW['z_lo'] + S.JROW['dz'],
     S.PEM[5]['hole'], S.PEM[4]['pn'], S.PEM[5]['pn'], live.get('logic_strip_to_strip_mm', 0)))
 BL = S.strap_blank()
-A('<tr><td>Output C-straps (14, ST185-FB-117)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>blank %.2f mm (%.2f after the trim)</td><td>2 x %.2f +0.08 (PEM %s) at %.1f and %.2f from the top end; '
+A('<tr><td>Output C-straps (14, ST185-FB-117)</td><td>3 x 15 tinned (Bopaodao B09Z7NBLDK)</td><td>blank %.2f mm (%.2f finished, no trim)</td><td>top hole %.1f / lug hole %.1f +0.08 (PEM %s stud) at %.1f and %.2f from the top end; '
   'kerfs + notches beside the 7.0 tongue; edges milled to %.1f from %.2f; bends R%.1f at %.2f / %.2f (drawing)</td></tr>' % (
-    BL['cut_length'], BL['length'], BL['pem_hole'], S.STRAP_PEM['pn'], BL['pem_top'], BL['pem_bottom'], BL['w_low'], BL['low_from'], BL['ri'], BL['bend_centres'][0], BL['bend_centres'][1]))
+    BL['cut_length'], BL['length'], BL['hole_top'], BL['hole_lug'], S.STRAP_STUD['pn'], BL['pem_top'], BL['pem_bottom'], BL['w_low'], BL['low_from'], BL['ri'], BL['bend_centres'][0], BL['bend_centres'][1]))
 A('<tr><td>Battery block pad (1, ST185-FB-112)</td><td>same 3 x 15 bar</td><td>17.5 mm</td><td>one 5.5</td></tr>')
 A('</table></div>')
 

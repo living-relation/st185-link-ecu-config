@@ -40,6 +40,7 @@ RS = {   # RS PRO stock numbers and the listing each was read on
     'M5x16': ('RS 263-2205', 'https://ph.rs-online.com/web/p/hex-bolts/2632205', 'RS PRO stainless hex bolt M5 x 16, DIN 933 (grade not stated on the listing)'),
     'M5set': ('RS 137-809', 'https://uk.rs-online.com/web/p/grub-screws-set-screws/0137809', 'RS PRO A2/304 stainless hex socket set screw M5 x 12, DIN 916'),
     'M5nut': ('RS 264-6432', 'https://se.rs-online.com/web/p/products/2646432', 'RS PRO A2/304 stainless serrated flange hex nut M5, DIN 6923'),
+    'M5nut934': ('RS 527-268', 'https://nz.rs-online.com/web/p/hex-nuts/0527268', 'RS PRO plain stainless hex nut M5, DIN 934, 4 mm high (grade not stated on the listing)'),
     'M8bolt': ('RS 190-276', 'https://ph.rs-online.com/web/p/hex-bolts/0190276', 'RS PRO stainless hex bolt M8 x 25, DIN 933 (grade not stated on the listing)'),
     'M8nut': ('RS 530-769', 'https://hkcn.rs-online.com/web/p/products/530769', 'RS PRO A2/304 stainless hex nut M8, DIN 934'),
     'M8wash': ('RS 797-6068', 'https://th.rs-online.com/web/p/washers/7976068', 'RS PRO stainless plain washer M8, DIN 125A'),
@@ -251,21 +252,27 @@ def build(rev=6):
               'Tinned copper bus bar 3 x 15 x 1000 mm C110: ONE bar makes all %d straps (%.0f mm with 2 mm saw kerf, %.0f spare)'
               % (N_POS, use, 1000 - use), 1, unit=51.99, basis='seen', url='https://www.amazon.com/dp/B09Z7NBLDK',
               checked='summary "Copper" section; seller page 2026-10-14; blank from spec.strap_blank() (K %.2f, ri %.1f)' % (BL['k'], BL['ri']),
-              note='R155: saw the blank, drill the two PEM holes 6.35 (+0.08), saw the two kerfs and notches beside the neck, press the two PEM nuts, '
-                   'trim the top end %.1f, bend 90 deg twice round R%.1f (anneal first if the bar is hard). Edge breaks: drawing note (R138).'
-                   % (S.STRAP['trim'], BL['ri']))
-        L.add(P, 'Copper', 'Self-clinching nut M5, stainless, pressed into each strap (2 per strap: AMI ear bolt + lug bolt)', 'PEM %s' % S.STRAP_PEM['pn'],
-              S.STRAP_PEM['maker'],
-              'Self-clinching nut M5, type CLSS (300-series stainless), shank code 2; mounting hole %.2f +0.08, head %.2f x %.1f, C max 6.33, '
-              'min hole centre to edge %.1f, for sheet HRB 70 / HB 125 or less' % (S.STRAP_PEM['hole'], S.STRAP_PEM['E'], S.STRAP_PEM['T'], S.STRAP_PEM['edge']),
-              2 * N_POS, spare(2 * N_POS), unit=0.45, basis='est', url=S.STRAP_PEM['url'],
-              checked='pemnet.com product page CLSS-M5-2 (stainless, hole 6.35, E 8.64, T 2, edge 7.1, HRB 70 / HB 125) read 2026-10-17; PEM "Performance data '
-                      'for PEM fasteners installed into copper" Rev. 5/22/20 (steel S M5 code 2 in 1.5 mm Cu-ETP: 5.3 N.m torque-out, 1080 N pushout - no CLSS '
-                      'copper figure published); R38 step 4: no TE or approved-supplier clinch nut',
-              note='Dan\'s card: stainless (the LOGIC strip SS-M5-2ZI is zinc steel, not stainless). Press from the head side with a flat punch until the head '
-                   'seats (HAEGER / PEMSERTER or a vise with parallel jaws), heads INSIDE the C. Top nut: the blank is %.1f long at that end while pressing '
-                   '(edge 7.1), then trimmed to 6.5 (the fuse body allows no more). At 4 N.m the nut reacts ~%.1f N.m (thread share): first-article check '
-                   'on the drawing.' % (S.STRAP['trim'], S.strap_numbers({})['bolt']['nut_reaction_Nm']))
+              note='N37 (2026-10-19): saw the blank, drill the top hole %.1f and the lug hole %.1f (+0.08), saw the two kerfs and notches beside the '
+                   'neck, press the FHS stud flush from the inside face, bend 90 deg twice round R%.1f (anneal first if the bar is hard). Nothing is trimmed.'
+                   % (BL['hole_top'], BL['hole_lug'], BL['ri']))
+        SD_ = S.STRAP_STUD
+        L.add(P, 'Copper', "Flush-head self-clinching stud M5 x 12, stainless, pressed into each strap's lug end (lug, flange nut on it)", 'PEM %s' % SD_['pn'],
+              SD_['maker'],
+              'Self-clinching flush-head stud M5 x 12, type FHS (400-series stainless), mounting hole %.1f +0.08, head %.1f flush, min hole centre to '
+              'edge %.1f, for sheet HRB 70 / HB 125 or less' % (SD_['hole'], SD_['H'], SD_['edge']),
+              N_POS, spare(N_POS), unit=0.40, basis='est', url=SD_['url'],
+              checked='PEM Bulletin FH (damlite.pemnet.com/FHS-M5-10_pdf_1.pdf) p. FH-5 (FHS M5: hole 5.0, H 6.5, S 2.7, attached-part hole <= 5.6, '
+                      'edge 7.2, lengths 8 - 35), p. FH-18 (install), p. FH-30 (FHS M5 rec. nut torque 3.2 N.m in steel, torque-out 6.3 steel / 3.5 aluminium); '
+                      'read 2026-10-19; no FH / FHS copper figure published (PEM copper sheet: HFE only); R38 step 4: no TE clinch stud',
+              note='N37 (Dan 2026-10-19, C4 at the lug end; R198 / R199): 7.2 from the bend start and from the leg end. Press from the inside face (head '
+                   'side) with a flat punch until the head is flush; the shank stands 9 out of the outside face - bend 2 needs a die relief for it. At 4 N.m '
+                   'the stud reacts ~%.1f N.m: first-article check on the drawing.' % S.strap_numbers({})['bolt']['nut_reaction_Nm'])
+        hw(L, P, 'Fasteners', 'M5nut934', 'Hex nut M5 DIN 934, top of every strap, held in its printed holder (the AMI ear bolt screws into it)', N_POS,
+           spare(N_POS), 0.18, note='N37 C1 (R199): flats in the holder pocket stop it turning while the ear bolt is torqued; it bears on the copper.')
+        L.add(P, 'Printed', 'Top-nut holder inside each C-strap (N37 C1)', 'Power_NutHolder_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
+              'Column between the strap legs with a hex pocket for the DIN 934 nut; drops through the well with the strap', N_POS, spare(N_POS),
+              unit=round(pr('Power_NutHolder') * 0.10, 2), basis='est', checked='report volume %.1f cm3 (one); %s' % (pr('Power_NutHolder'), PRINT_NOTE),
+              note='Push it into the C from the open side (nut in its pocket) before the strap goes into the box; the well keeps it there.')
     n = {a: sum(1 for _, x in IN_USED + OUT_USED if x == a) for a in (30, 40, 50, 60)}
     for rating in (30, 40, 50, 60):
         L.add(P, 'Fuses', 'AMI bolt-down fuse %d A' % rating, 'AMI-%d' % rating, 'Eaton Bussmann', 'AMI series, 32 VDC, M5 stud ears 9.5 x 0.8 mm', n[rating],
@@ -363,15 +370,15 @@ def build(rev=6):
         hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (lug under each standoff, IN and OUT rows)', N_IN + N_OUT, spare(N_IN + N_OUT), 0.10,
            note='One length for both rows now that every standoff is 40 mm.')
     else:
-        hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (R155: AMI output ear down into the top PEM nut + lug up into the bottom PEM nut, every strap)',
-           2 * N_POS, spare(2 * N_POS), 0.10,
-           note='4 N.m max (AMI sheet), both bolts. Ear bolt: 0.8 ear + 3.0 copper + 2.0 PEM head, 4.2 past it; lug bolt: 2.0 palm + 3.0 copper + 2.0 PEM head, 3 past it.')
+        hw(L, P, 'Fasteners', 'M5x10', 'Hex bolt M5 x 10 (AMI output ear down through the strap into the DIN 934 top nut, every strap)',
+           N_POS, spare(N_POS), 0.10,
+           note='4 N.m max (AMI sheet). 0.8 ear + 3.0 copper + 4.0 nut, 2.2 past it (N37; the lug end is a stud now).')
     hw(L, P, 'Fasteners', 'M5x16', 'Hex bolt M5 x 16 (AMI input stud on the bar, head captured)', N_POS, spare(N_POS), 0.12)
     if not R7:
         hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input + output ears, 2 per position)', 2 * N_POS, spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet).')
     else:
-        hw(L, P, 'Fasteners', 'M5nut', 'Keps nut M5 (AMI input ear on the bar stud, 1 per position; the output ear is bolted into the strap, R155)', N_POS,
-           spare(N_POS), 0.07, note='4 Nm max (AMI sheet).')
+        hw(L, P, 'Fasteners', 'M5nut', "Keps (flange) nut M5: AMI input ear on the bar stud + the lug on each strap's FHS stud (2 per position)", 2 * N_POS,
+           spare(2 * N_POS), 0.07, note='4 Nm max (AMI sheet). Lug end (N37): 2.0 palm + 5.0 nut on the 9 of stud, 2.0 past it; the flange is the washer.')
     if not R7:
         hw(L, P, 'Fasteners', 'M8bolt', 'Hex bolt M8 x 25 (1/0 input stud)', 1, 1, 0.30, note='Rev 5 CAD draws M8 x 20; the nearest stocked stainless length is 25 (RS lists no M8 x 20).')
         hw(L, P, 'Fasteners', 'M8nut', 'Hex nut M8 (1/0 input stud)', 1, 1, 0.08)
