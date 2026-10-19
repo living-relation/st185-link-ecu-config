@@ -1,8 +1,10 @@
 # Source of truth
 
-`channels.csv` is the root of the harness tree and the single wiring source of
-truth (Daniel, 2026-09-25). Every drawing is validated against it, never the
-other way round. `XTREMEX-IO-TABLE.html` is its visual face:
+Since 2026-10-19 (DECISIONS R206) the wiring source of truth is the master wire lists,
+`docs/harness/wirelist/*-wirelist.csv`. `channels.csv` keeps the ECU channel settings (type,
+pull-up, tune / CAN data) and its pin assignments, which `cleanroom/wirelist.py --check`
+compares with the lists both ways. Every drawing is validated against the lists and this file,
+never the other way round. `XTREMEX-IO-TABLE.html` is its visual face:
 `python docs/harness/sync_io_table.py` rewrites the table's generated pin map, and
 `--check` (run by `check_all.py`) fails if any row disagrees with this file.
 
@@ -45,7 +47,7 @@ raw wheel-speed pairs, the fuse box owns the OEM power splices.
 
 - `signal` - one circuit, one name; a bulkhead cavity carrying it must use the
   same name on both halves of the mating pair.
-- `rail` - `P5V`, `P8V`, `GNDOUT`, `GND_ECU`. Shared by many devices, so the
+- `rail` - `P5V`, `P8V`, `GNDOUT_A`, `GNDOUT_B`, `GND_ECU`. Shared by many devices, so the
   same-name rule does not apply cavity by cavity.
 - `screen` - `SHIELD_A` (A7) and `SHIELD_B` (B17). **Drain current only.** No
   signal, no 5V return, no power ground may ever land on these two pins.

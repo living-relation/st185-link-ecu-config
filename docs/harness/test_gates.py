@@ -242,9 +242,9 @@ def unit_cases():
         ("shield drain with shield drain", [D("Screen drain"), D("shield braid")], True),
         ("shield drain with ground", [E("shield", "SHIELD_A"), D("GND")], False),
         ("SHIELD_A with SHIELD_B", [E("shield", "SHIELD_A"), E("shield", "SHIELD_B")], False),
-        ("Gnd Out with ECU power ground", [E("ground", "GNDOUT"), E("ground", "GND_ECU")], False),
+        ("Gnd Out with ECU power ground", [E("ground", "GNDOUT_A"), E("ground", "GND_ECU")], False),
         ("+5V with +8V", [E("+5V", "P5V"), E("+8V", "P8V")], False),
-        ("12V rail with a '12V/8V' supply pin", [E("+12V", "P14V"), D("12V/8V")], True),
+        ("12V rail with a '12V/8V' supply pin", [E("+12V", "SW12"), D("12V/8V")], True),
         ("signal with its pull-up resistor only", [E("signal", "TRIG2_CAM")], True),
     ]
     for name, ends, ok in checks:

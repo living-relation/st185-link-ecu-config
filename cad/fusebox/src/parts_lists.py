@@ -358,7 +358,7 @@ def build(rev=6):
           checked='Accu listing via web search 2026-10-16 (M5 x 40 x 8 AF, female both ends, brass nickel, hole depth 10 mm each end; the page itself refuses scripted reads - re-check on receipt); '
                   'OPEN-5: replaces Essentra 301540040050, whose page would not open, so its thread depth could not be confirmed; no TE part and none of the R38 approved suppliers lists standoffs (step 4)',
           note='B5 (Dan): one 40 mm part number for every standoff: %d IN row + %d OUT row = %d, all drawn 40 mm in CAD rev 6; the LOGIC box has none any more (its feed lugs bolt onto the strips). Sold in 50s.' % (N_IN, N_OUT, n_so)
-               + (' R146 (Dan N5 / N7): each standoff is pressed (vise / arbor press, about 340-510 N) into its 8.5 AF bore past 6 crush ribs, '
+               + (' Before R155 (Dan N5 / N7): each standoff is pressed (vise / arbor press, about 340-510 N) into its 8.5 AF bore past 6 crush ribs, '
                   'from above before its pad, then 2-3 drops of LOCTITE 406 wicked in from the deck underside; it holds itself with the fuse out.' if R7 else ''))
     # fasteners
     if not R7:

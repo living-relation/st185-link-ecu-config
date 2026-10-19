@@ -3,7 +3,7 @@ ECU,Inj 1,ecu_a,a4,INJ1,Injector cyl 1,signal,out,lowside-sat,none,A,set,QSG-IO,
 ECU,Inj 2,ecu_a,a3,INJ2,Injector cyl 2,signal,out,lowside-sat,none,A,set,QSG-IO,1400cc hi-Z sequential
 ECU,Inj 3,ecu_a,a2,INJ3,Injector cyl 3,signal,out,lowside-sat,none,A,set,QSG-IO,1400cc hi-Z sequential
 ECU,Inj 4,ecu_a,a1,INJ4,Injector cyl 4,signal,out,lowside-sat,none,A,set,QSG-IO,1400cc hi-Z sequential
-ECU,14V +,ecu_a,a5,P14V,Main ECU feed,power,in,rail-12v,none,A,set,QSG-IO,0.75mm2; held by EFI main relay on Aux 6
+ECU,14V +,ecu_a,a5,SW12,Main ECU feed,power,in,rail-12v,none,A,set,QSG-IO,0.75mm2; net SW12 (same net as the relay coil feeds): SW12 7.5A fuse behind the EFI main relay (held by Aux 6) joined at sp_a5 with the IG2 wake diode (b28 note)
 ECU,+8V Out,ecu_a,a6,P8V,+8V sensor rail,rail,out,rail-8v,none,A,set,QSG-IO,Cam Hall on Trigger 2 only
 ECU,Shield/Gnd,ecu_a,a7,SHIELD_A,Loom A screen termination,screen,na,screen,none,A,set,QSG-IO,DRAIN ONLY - no signal and no current may land here; do not bridge to SHIELD_A
 ECU,Trigger 1,ecu_a,a8,TRIG1_CRANK,Crank VR,signal,in,vr,none,A,set,QSG-IO,Toyota OEM reluctor on 36-2 wheel
@@ -22,7 +22,7 @@ ECU,Aux 2,ecu_a,a20,AUX2_ETB_RLY,ETB power relay coil,signal,out,lowside-2a,none
 ECU,Aux 1,ecu_a,a21,AUX1_BOOST,Boost solenoid,signal,out,lowside-2a,none,A,set,QSG-IO,Active-low
 ECU,An Volt 2,ecu_a,a22,AV2_TPS_MAIN,ETB TPS main,signal,in,0-5v,none,A,set,QSG-IO,Bosch 74.5mm ETB
 ECU,DI 3,ecu_a,a23,DI3_WSS_FL,Wheel speed front left,signal,in,freq-di,none,A,set,QSG-IO,Square wave from front VRC out c3; raw VR never reaches the ECU
-ECU,Gnd Out,ecu_a,a24,GNDOUT,Sensor return rail,rail,out,gnd,none,A,set,QSG-IO,"Loom A sensor returns; never chassis; never SHIELD; 18 AWG lead (ct_ss10_075) to sp_gndout, tapered to 20 AWG bulkhead pins (Rule 3a)"
+ECU,Gnd Out,ecu_a,a24,GNDOUT_A,Sensor return rail,rail,out,gnd,none,A,set,QSG-IO,"Loom A sensor returns; never chassis; never SHIELD; 18 AWG lead (ct_ss10_075) to sp_gndout, tapered to 20 AWG bulkhead pins (Rule 3a)"
 ECU,Ground,ecu_a,a25,GND_ECU,ECU reference ground,ground,na,gnd,none,A,set,QSG-IO,ECU reference only - not a sensor return
 ECU,Aux 8,ecu_a,a26,AUX8_START_RLY,Start relay coil,signal,out,hilo-2a,int-1k5,A,set,QSG-IO,ECU inhibits in software; no separate cut relay
 ECU,Aux 7,ecu_a,a27,AUX7_MRS_SPD,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,A,set,QSG-IO,MRS wants ~4 pulses/rev 0-5V; scope the high level before adding a 5V pull-up
@@ -54,7 +54,7 @@ ECU,Aux 9,ecu_b,b18,AUX9_ETB_MP,ETB motor +,signal,out,hbridge-4a,none,B,set,QSG
 ECU,DI 6,ecu_b,b19,DI6_WSS_RR,Wheel speed rear right,signal,in,freq-di,none,B,set,QSG-IO,Square wave from rear VRC out c4
 ECU,DI 5,ecu_b,b20,DI5_WSS_RL,Wheel speed rear left,signal,in,freq-di,none,B,set,QSG-IO,Square wave from rear VRC out c3
 ECU,DI 4,ecu_b,b21,DI4_WSS_FR,Wheel speed front right,signal,in,freq-di,none,B,set,QSG-IO,Square wave from front VRC out c4
-ECU,Gnd Out,ecu_b,b22,GNDOUT,Sensor return rail,rail,out,gnd,none,B,set,QSG-IO,"Loom B's own sensor ground: every B sensor, fuel level, knock SIG- and the rear VRC return here; no harness tie to A24 (Daniel 2026-09-28); 18 AWG lead (ct_ss10_075) to sp_gndout_b"
+ECU,Gnd Out,ecu_b,b22,GNDOUT_B,Sensor return rail,rail,out,gnd,none,B,set,QSG-IO,"Loom B's own sensor ground: every B sensor, fuel level, knock SIG- and the rear VRC return here; no harness tie to A24 (Daniel 2026-09-28); 18 AWG lead (ct_ss10_075) to sp_gndout_b"
 ECU,An Volt 8,ecu_b,b23,AV8_CLNT_P,Coolant pressure,signal,in,0-5v,none,B,set,QSG-IO,5V jumpered from A32
 ECU,An Volt 9,ecu_b,b24,AV9_FUEL_LVL,Fuel level sender,signal,in,0-5v,ext-div-to-5v,B,set,QSG-IO,"An Volt has no internal pull-up; 470R to +5V (A32) is the locked buy. OEM sender 3 ohm full / 31.6 half / 110 ohm empty (FSM, DECISIONS S23) gives 0.032 / 0.315 / 0.948 V: PCLink table 0.032 V = 100 %, 0.315 V = 50 %, 0.948 V = 0 %"
 ECU,Ground,ecu_b,b25,GND_ECU,ECU reference ground,ground,na,gnd,none,B,set,QSG-IO,ECU reference only - not a sensor return
@@ -67,7 +67,7 @@ ECU,An Volt 10,ecu_b,b31,AV10_AC_BTN,A/C request button,signal,in,0-5v,ext-div-1
 ECU,An Volt 11,ecu_b,b32,AV11_EVAP_TEMP,Evaporator thermistor,signal,in,ntc,ext-2k2-to-5v,B,set,Daniel-lock-2026-10-10,"Evaporator thermistor A24 element 1-2 (1.5 kohm at 25 C; EWD points fit B about 3824 K: 4852 ohm at 0 C, 2959 ohm at 10 C, 2341 ohm at 15 C - docs/research/AUTO-AC-AMP-OPTIONS.html). Pull-up 2.2 kohm 1 % to +5V (r_evap, B-cabin), return to Gnd Out: sized near the sensor's mid-range resistance over the 0-15 C anti-freeze band, giving 3.44 V at 0 C, 2.87 V at 10 C, 2.58 V at 15 C, 2.03 V at 25 C - steepest where the clutch cycles. Self-heat about 3 mW at 25 C. PCLink: the voltage-to-temperature table in AUTO-AC-AMP-OPTIONS follow-up C; check with an ohmmeter and ice water. Decided by Dispatch 2026-10-14 (DECISIONS S28, OPEN-ITEMS row 41)."
 ECU,An Volt 5,ecu_b,b33,AV5_APS_SUB,APS sub VPA2,signal,in,0-5v,none,B,set,QSG-IO,BRZ pedal pin 3; VC2 = pedal pin 1; GND2 = pedal pin 2
 ECU,Ground,ecu_b,b34,GND_ECU,ECU reference ground,ground,na,gnd,none,B,set,QSG-IO,ECU reference only - not a sensor return
-ECU,Comms 1,ecu_com,c1,COMMS_GND,Comms port ground,ground,na,gnd,none,CAN,set,QSG-comms,
+ECU,Comms 1,ecu_com,c1,,Comms port ground (not wired),nc,na,none,none,CAN,nc,QSG-comms,"Not wired (N48 = B): every CAN node grounds to chassis at its own ground point and the CAN topology docs give no node ground pins"
 ECU,Comms 2,ecu_com,c2,,unused,nc,na,none,none,CAN,nc,QSG-comms,
 ECU,CAN 1 High,ecu_com,c3,CAN1H,CAN 1 high,signal,bidir,can,none,CAN,set,QSG-comms,120R terminator at this end
 ECU,CAN 1 Low,ecu_com,c4,CAN1L,CAN 1 low,signal,bidir,can,none,CAN,set,QSG-comms,120R terminator at this end
@@ -80,7 +80,7 @@ VRC,Front in R,VRC_FRONT_IN_R,+,WSS_FR_P,Front right sensor +,signal,in,vr,none,
 VRC,Front in R,VRC_FRONT_IN_R,-,WSS_FR_N,Front right sensor -,signal,in,vr,none,C,set,harness-WheelSpeed-Front,"Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)"
 VRC,Front in R screen,VRC_FRONT_IN_R,3,SHIELD_A,Front right sensor screen,screen,na,screen,none,C,set,harness-WheelSpeed-Front,Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). Floats at the sensor.
 VRC,Front out,VRC_FRONT_OUT,+5V,P5V,Conditioner supply,rail,in,rail-5v,none,WS,set,harness-WheelSpeed-Front,From sp_5v
-VRC,Front out,VRC_FRONT_OUT,Gnd,GNDOUT,Conditioner ground,rail,in,gnd,none,WS,set,harness-WheelSpeed-Front,From sp_gndout
+VRC,Front out,VRC_FRONT_OUT,Gnd,GNDOUT_A,Conditioner ground,rail,in,gnd,none,WS,set,harness-WheelSpeed-Front,From sp_gndout
 VRC,Front out,VRC_FRONT_OUT,FL,DI3_WSS_FL,Conditioned FL,signal,out,freq-di,none,WS,set,harness-WheelSpeed-Front,To ECU A23
 VRC,Front out,VRC_FRONT_OUT,FR,DI4_WSS_FR,Conditioned FR,signal,out,freq-di,none,WS,set,harness-WheelSpeed-Front,"To ECU B21. Leaves the combined 4-core front-VRC-out cable at the inline connector IX_WS_FRONT (pin 4) and continues as its own short shielded B-cabin spur, drain -> SHIELD_B/B17 (see FR spur screen row below), not the main cable drain. Route 9 rev 3, 2026-10-10."
 VRC,Front out screen,VRC_FRONT_OUT,5,SHIELD_A,Front output cable screen,screen,na,screen,none,WS,set,harness-WheelSpeed-Front,"Main 4-core output cable drain. Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). 3 of the 4 cores (+5V, Gnd, FL) stay on the A side to A7; FR splits off at the inline splice onto its own B-cabin spur with its own drain (next row)."
@@ -91,7 +91,7 @@ VRC,Rear in R,VRC_REAR_IN_R,+,WSS_RR_P,Rear right sensor +,signal,in,vr,none,WS,
 VRC,Rear in R,VRC_REAR_IN_R,-,WSS_RR_N,Rear right sensor -,signal,in,vr,none,WS,set,harness-WheelSpeed-Rear,Raw VR
 VRC,Rear in R screen,VRC_REAR_IN_R,3,SHIELD_B,Rear right sensor screen,screen,na,screen,none,WS,set,harness-WheelSpeed-Rear,Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). Floats at the sensor.
 VRC,Rear out,VRC_REAR_OUT,+5V,P5V,Conditioner supply,rail,in,rail-5v,none,WS,set,harness-WheelSpeed-Rear,From sp_5v
-VRC,Rear out,VRC_REAR_OUT,Gnd,GNDOUT,Conditioner ground,rail,in,gnd,none,WS,set,harness-WheelSpeed-Rear,From sp_gndout
+VRC,Rear out,VRC_REAR_OUT,Gnd,GNDOUT_B,Conditioner ground,rail,in,gnd,none,WS,set,harness-WheelSpeed-Rear,From sp_gndout
 VRC,Rear out,VRC_REAR_OUT,RL,DI5_WSS_RL,Conditioned RL,signal,out,freq-di,none,WS,set,harness-WheelSpeed-Rear,To ECU B20
 VRC,Rear out,VRC_REAR_OUT,RR,DI6_WSS_RR,Conditioned RR,signal,out,freq-di,none,WS,set,harness-WheelSpeed-Rear,To ECU B19
 VRC,Rear out screen,VRC_REAR_OUT,5,SHIELD_B,Rear output cable screen,screen,na,screen,none,WS,set,harness-WheelSpeed-Rear,Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30).

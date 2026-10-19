@@ -924,7 +924,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 x0 + sh[0], x1 + sh[0], y0 + sh[1], y1 + sh[1], z0, z1)]))
 
     def deck_tab(xe, ye, n, z_t, btop, part, sh, standing=None, w=None):
-        """R146 bar hold-down snap tab (spec.BAR_TAB) at the point (xe, ye) on a bar edge, n = outward axis normal (+-1, 0) / (0, +-1).
+        """R155 bar hold-down snap tab (spec.BAR_TAB) at the point (xe, ye) on a bar edge, n = outward axis normal (+-1, 0) / (0, +-1).
         Deck tab: the arm is the pocket wall freed by a U slot `root` deep; standing = (z_floor, s0): a free arm standing on the floor s0
         out from the bar edge (battery block, the bar on its pedestal). The hook reaches `over` past the bar edge, 0.1 over the bar top,
         45 deg lead-in. Returns (cuts, bodies to add)."""
@@ -1843,7 +1843,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             cuts.append(cbox(acps[0] + dx, acps[1], slot_z0('POWER', acps[0] + dx, acps[1], z_d, z_t, S.TERM['1-968851-1']['L']), z_t + 1, *S.MINI_SLOT))
         # rev 6: the OUT-row lugs sit on 40 mm standoffs at the IN-row height, under the skirt: no skirt notches (belly pan exits below)
         tabs_add = []
-        if R7:   # R146 (Dan N5): snap tabs that hold the POS and NEG bars down - the POS bar's front end and its -x edge before the barrier,
+        if R7:   # R155 (Dan N5): snap tabs that hold the POS and NEG bars down - the POS bar's front end and its -x edge before the barrier,
             # the NEG bar's front edge between the studs
             hb_ = B_['w'] / 2
             # markup 2026-10-17 (Dan 23-19 "NEED MORE HOLD DOWN TABS", one per arrow): POS bar both edges at the front end (y 22) and its +x edge
@@ -2656,7 +2656,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return out
 
         rb_tabs = []
-        if REV[0] == 7:   # R146 (Dan N5): snap tabs on both long edges of the bar, between the M6 stud lug and the AMI ear; the bar sits on its
+        if REV[0] == 7:   # R155 (Dan N5): snap tabs on both long edges of the bar, between the M6 stud lug and the AMI ear; the bar sits on its
             # pedestal (1.0 wider each side), so each arm stands free on the floor, BAR_TAB gap off the pedestal
             for sy_ in (-1, 1):
                 c_, a_ = deck_tab(29.0, tsy + sy_ * Bb['w'] / 2, (0, sy_), fl, btop, pre + 'Base_PA12_printed', sh, standing=(fl, 1.0 + S.BAR_TAB['gap']))

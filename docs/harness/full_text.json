@@ -290,6 +290,10 @@
    "fl_acamp_psw": [
     "",
     "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder splice onto the factory Y-R lead at the A/C amplifier"
+   ],
+   "fl_ig2_wake": [
+    "",
+    "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H pin 7 B-O, IG2 -> supply diode -> ECU-A A5 (ECU wake feed) - solder splice onto the factory lead"
    ]
   }
  },

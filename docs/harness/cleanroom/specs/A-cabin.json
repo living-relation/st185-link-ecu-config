@@ -19,16 +19,24 @@
   "sp_5v_2": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise",
   "sp_8v": "At ECU-A plug - SP-8V: +8 V cam sensor supply",
   "sp_trig2": "At ECU-A plug - SP-CAM: cam signal + 1.8k pull-up to +8V",
+  "sp_a5": "At ECU-A plug - SP-A5: ECU main feed (SW12 + IG2 diode)",
   "sp_gndout": "At ECU-A plug - SP-GNDOUT-A: sensor ground",
   "sp_sw12": "At ECU-A plug - SP-SW12: switched +12 V",
   "sp_chassis": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground",
   "sp_shield_a": "6 mm behind ECU-A plug - SP-SHIELD-A: shield drains",
   "sp_ac_psw": "At A/C amp - SP-AC-PSW: A/C pressure switch output"
  },
+ "diodes": {
+  "d_ig2_wake": "IG2 wake diode (1N5822)"
+ },
  "resistors": {
   "cam_pullup": "Cam pull-up 1.8 k to +8 V"
  },
  "terminals": {
+  "fl_ig2_wake": {
+   "label": "J/B No.1 1H pin 7, factory B-O lead - IG2 wake feed tap",
+   "long": "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H pin 7 B-O, IG2 -> supply diode -> ECU-A A5 (ECU wake feed) - solder splice onto the factory lead"
+  },
   "br_w76": {
    "label": "EFI main relay R2 pin 85, POWER box - EFI relay coil (-)",
    "long": "EFI main relay R2 pin 85, POWER box - EFI relay coil (-) - continues on ST185-CabinPower"

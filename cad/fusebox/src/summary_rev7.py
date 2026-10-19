@@ -132,7 +132,7 @@ if SN:
       'the AMI ear, web down a well in the deck, bottom leg under the deck with the lug bolted palm-up to it; %s; M5 x 10 ear bolt and the lug nut at 4 N.m. '
       'Current: ear -> copper -> lug, no brass and no thread in the path (%.1f uohm, the old pad + standoff %.1f). Held both ways: the lips rest on a printed ledge '
       '(down), a snap hook reaches over them (up) - OUT row the freed skirt, IN row an arm in the deck; 100 N up on the hook: SF %.2f / %.2f (PA12). '
-      'The brass standoffs, set screws, crush ribs and LOCTITE 406 (R146) are gone.</li>'
+      'The brass standoffs, set screws, crush ribs and LOCTITE 406 (R155) are gone.</li>'
       % (S.STRAP_STUD['pn'] + ' stud (lug end) + DIN 934 nut in a printed holder (top end), N37', SN['R_strap_uohm_20C'], SN['R_old_conductor_uohm_20C'], FEA.get('OUT', {}).get('SF', 0), FEA.get('IN', {}).get('SF', 0)))
 A('</ol>')
 A('<h2>R155: the copper C-strap station</h2>')

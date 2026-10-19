@@ -1,9 +1,9 @@
 """Master from-to wire list, every harness file (DECISIONS R201: Dan N39 = A, N40 = A).
 
-One row per physical wire, FROM a real pin TO a real pin or a splice node. The CSVs in
-docs/harness/wirelist/ (`<file>-wirelist.csv`) are the git source: this script reads them, checks
-every row AGAINST today's live SoT (channels.csv, interfaces.json, the DRB102 cavity map, the
-fuse-box wiring plan) and writes what follows from them: the `net_id`, `net_name`, `sot_check`
+One row per physical wire, FROM a real pin TO a real pin or a splice node. Since the switch
+(DECISIONS R206) the CSVs in docs/harness/wirelist/ (`<file>-wirelist.csv`) ARE the wiring SoT: this
+script reads them, checks every row against the ECU channel settings (channels.csv, both ways), the
+registry (interfaces.json), the DRB102 cavity map and the fuse-box wiring plan, and writes what follows from them: the `net_id`, `net_name`, `sot_check`
 and `status` columns, the splice, connector and mating tables, the pinouts and the styled
 workbooks, and one combined gap list (GAPS.md). `status` says OK, MISMATCH (the row disagrees
 with the SoT) or SOT GAP (the SoT itself is silent or inconsistent).
@@ -22,8 +22,8 @@ Rules in the format (Dispatch for Dan, 2026-10-19):
 
 Nets are electrical, so they are worked out across all the lists at once: a mated bulkhead or
 inline pin, a bussed plug and a device enclosure's screen join are one node. A file's list is
-gated (fails --check on a MISMATCH, a net finding on its rows or a mate that differs) once Dan
-has approved it (GATED); the others are reported in GAPS.md until their Phase 2 rebuild.
+gated (fails --check on a net finding on its rows or a mate that differs) once Dan has approved it
+(GATED); a MISMATCH against channels.csv fails for every list; the others are reported in GAPS.md.
 
     python docs/harness/cleanroom/wirelist.py            # write
     python docs/harness/cleanroom/wirelist.py --check    # check_all.py gate
@@ -197,9 +197,6 @@ class Ctx:
         self.plan_conns = {e["id"] for w in plan["wires"] for e in w["ends"] if e.get("box")}
         self.plan_kind = {(c["box"], c["cav"]): c["kind"] for c in plan["cavities"]}
         self.fl = {(f["ewd"]["connector"], f["ewd"]["pin"]): f for f in self.reg["flyingLeads"]}
-        self.sot_text = "".join(open(p, encoding="utf-8").read() for p in (
-            os.path.join(REPO, "sot", "channels.csv"), os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"),
-            os.path.join(REPO, "docs", "electrical", "ENGINE-ROOM-POWER-REDISTRIBUTION.md"))) + json.dumps(self.reg)
         # every drawn node: id -> (harness, kind, object)
         self.node = {}
         for h, d in self.raw.items():
@@ -399,11 +396,8 @@ def check_row(ctx, r):
                         conn, pin, "/".join(sorted(g)), r["gauge_awg"]))
         if t in ("resistor", "diode") and pin not in ("1", "2"):
             bad.append("%s %s end has no pin (1 or 2)" % (t, conn))
-        if t == "splice":
-            if conn in ctx.sot_text:
-                ok.append("splice %s named in SoT" % conn)
-            else:
-                gap.append("splice %s is not named in the SoT (drawing only)" % conn)
+        if t == "splice":   # a splice is a node of the wire list: the list is its SoT (R206)
+            ok.append("splice %s: node of the wire list (SoT)" % conn)
         if t == "OEM":
             f = ctx.fl.get((conn.replace(" (factory)", ""), pin))
             if not f:
@@ -413,11 +407,8 @@ def check_row(ctx, r):
                 ok.append("flying lead %s: EWD %s pin %s %s" % (f["id"], ew["connector"], ew["pin"], ew["color"]))
                 if ew["color"] not in r["oem_wire_colour"].split(" / "):
                     bad.append("factory colour: interfaces.json says %s, the row says %s" % (ew["color"], r["oem_wire_colour"]))
-        if t == "terminal":
-            if conn in ctx.sot_text:
-                ok.append("end %s named in SoT" % conn)
-            else:
-                gap.append("end %s (%s) is drawing-only: not named in the SoT" % (conn, r[s + "_conn_name"]))
+        if t == "terminal":   # a ground point, post or device lead is an end row of the list: the list is its SoT (R206)
+            ok.append("end %s: end row of the wire list (SoT)" % conn)
         if t == "?":
             bad.append("end %s floats: not a pin, OEM tap or splice" % conn)
     return ok, bad, gap
@@ -578,13 +569,8 @@ def recommend(what):
         (r"is '(nc|spare)' in channels.csv", "the SoT says the pin is unused: drop the wire, or set the pin in channels.csv (design question)"),
         (r"not in channels.csv", "add the pin to sot/channels.csv or move the wire to the pin the SoT gives"),
         (r"^\(a\)", "give one of the nets a distinct name"),
-        (r"^\(b\) .*P14V at ecu_a A5", "SoT naming, no wiring change: A5 is fed from the SW12 7.5A fuse on Bus 2 behind the EFI main relay "
-                                         "(as drawn and in the approved A-cabin list), which channels.csv calls P14V at A5 and SW12 at "
-                                         "the relay coils. Separate real gap: the IG2 -> supply diode -> A5 wake feed that channels.csv "
-                                         "b28 and DECISIONS table item 38 require is in no drawing or list (Needs Dan)"),
         (r"^\(b\)", "design question: two SoT nets are joined by a wire or splice; split them or merge the SoT nets"),
         (r"^\(c\)", "design question: a supply / screen net has two sources; one must go"),
-        (r"^\(d\) SoT net GNDOUT", "clerical SoT naming: A24 and B22 are two separate sensor-ground nets by design; name them GNDOUT_A / GNDOUT_B"),
         (r"^\(d\) SoT net (CHASSIS|GND)", "none: these are separate leads to chassis ground points; the body joins them"),
         (r"^\(d\)", "check the two parts of this SoT net: either wire them together or give them different SoT net names"),
         (r"^screen", "design question: screens land only on A7 / B17 drain pins (R29 / R30)"),
@@ -669,7 +655,7 @@ def main(check=False):
                           "wires": len(ws), "gauges_awg": "+".join(map(str, gauges)) + (" + shield" if len(gauges) < len(ws) else ""),
                           "combined_cma": cma,
                           "equivalent_awg": next((a for a in sorted(CMA, reverse=True) if CMA[a] >= cma), "") if cma else "",
-                          "sot_check": "named in SoT" if sid in ctx.sot_text else "SOT GAP: not named in the SoT (drawing only)"})
+                          "sot_check": "node of the wire list (SoT)"})
             if not name:
                 gaps.append((h, sid, "splice has no name (R203)", "clerical: name it in the rebuild"))
         add("%s-splices.csv" % h, SPLICE_COLUMNS, srows)
@@ -774,27 +760,15 @@ def main(check=False):
         if r["status"] != "OK":
             what = r["status"].split(": ", 1)[1]
             for part in what.split("; "):
-                m = re.match(r"(splice|end) (\S+) ", part) or re.match(r"()(\S+) pins are drawn without", part)
+                m = re.match(r"()(\S+) pins are drawn without", part)
                 if m and r["status"].startswith("SOT GAP") and m.group(2) in ctx.node:
                     per_item.setdefault((ctx.node[m.group(2)][0], m.group(2), part), []).append(r["wire_id"])
                     continue
                 pin = "%s %s %s" % (r["from_conn"], r["from_pin"], "-> %s %s" % (r["to_conn"], r["to_pin"]))
                 gaps.append((r["harness"], "%s (%s)" % (r["wire_id"], pin.strip()),
                              ("MISMATCH: " if r["status"].startswith("MISMATCH") else "SOT GAP: ") + part, recommend(part)))
-    grouped = {}
     for (h, item, part), wids in per_item.items():
-        if "pins are drawn without" in part or "(OEM" in part and not part.startswith("splice"):
-            gaps.append((h, "%s (wires %s)" % (item, ", ".join(sorted(set(wids)))), "SOT GAP: " + part, recommend(part)))
-        else:  # naming only: one line per file and kind
-            kind = "splices" if part.startswith("splice") else "ends (ground points, posts, device leads)"
-            grouped.setdefault((h, kind), []).append(item)
-    for (h, kind), items in grouped.items():
-        gaps.append((h, ", ".join(sorted(items)), "SOT GAP: %d %s named only in the drawing, not in today's SoT" % (len(items), kind),
-                     "none now: the wire list's splice table and end rows become their SoT at the switch (R201); "
-                     "no SoT edit until Dan approves it"))
-        for n in r["notes"].split("; "):
-            if n.startswith("halves drawn"):
-                gaps.append((r["harness"], r["wire_id"], n, recommend(n)))
+        gaps.append((h, "%s (wires %s)" % (item, ", ".join(sorted(set(wids)))), "SOT GAP: " + part, recommend(part)))
     for what, rids in findings:
         hs = sorted({by_id[i]["harness"] for i in rids}, key=ctx.order.index) or ["-"]
         gaps.append((" / ".join(hs), ", ".join(sorted({by_id[i]["wire_id"] for i in rids}))[:300], "NET " + what, recommend(what)))
@@ -837,10 +811,11 @@ def main(check=False):
     print("net findings: %d; gap list: %d line(s) -> %s" % (len(findings), len(glines), os.path.join(OUT, "GAPS.md")))
     if check:
         bad = list(stale)
-        # a row / mate / coverage finding fails when its file is approved; a net finding when every
-        # file the net touches is (a net shared with a file still in Phase 2 is reported, not gated)
+        # the switch (R206): a list row that disagrees with channels.csv, and a channels.csv pin in use
+        # with no wire, fail for EVERY list. A mate or net finding still fails only when every file it
+        # touches is approved (a file still being rebuilt is reported, not gated)
         bad += ["%s %s: %s" % (g[0], g[1], g[2]) for g in glines
-                if g[2].startswith(("MISMATCH", "mate", "NET")) and all(h in GATED for h in g[0].split(" / "))]
+                if g[2].startswith("MISMATCH") or (g[2].startswith(("mate", "NET")) and all(h in GATED for h in g[0].split(" / ")))]
         for x in bad:
             print("FAIL", x)
         print("wirelist --check: %s" % ("FAIL" if bad else "OK"))

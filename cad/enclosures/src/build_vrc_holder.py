@@ -1,4 +1,4 @@
-"""VRC board holder v2 (Dan M9, DECISIONS R126 - supersedes R108 / K7) built into the existing Fusion document ST185-VRC-Enclosure
+"""VRC board holder v2 (Dan M9, DECISIONS R126 - supersedes the v1 holder / K7) built into the existing Fusion document ST185-VRC-Enclosure
 (R74: no new document). Run inside Fusion (Fusion MCP `fusion_mcp_execute`, featureType script) with
     exec(open(r'<repo>/cad/enclosures/src/build_vrc_holder.py').read(), {'__file__': r'<that path>', 'MODE': 'build'})
 MODE 'build': replaces the board and the holder with
@@ -196,7 +196,7 @@ if MODE == 'build':
     for b in mc.bRepBodies:
         b.appearance = green if 'PCB' in b.name else black
 
-    # ---------------- enclosure (VRC-Body, same document): v2 bosses (R126). The 4 M3 floor bosses of the R108 holder, their tapped
+    # ---------------- enclosure (VRC-Body, same document): v2 bosses (R126). The 4 M3 floor bosses of the v1 holder, their tapped
     # holes and thread are suppressed (kept in the timeline); 2 bosses under the holder screws with the M6 tap drill hole, added once.
     bo_ = occ_named('VRC-Body')[0]
     bc = bo_.component

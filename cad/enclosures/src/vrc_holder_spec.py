@@ -18,7 +18,7 @@ import math
 # ---------- enclosure (read from Fusion ST185-VRC-Enclosure v1, VRC-Body)
 FLOOR_Z, LID_Z = 5.0, 39.0
 CAV_X, CAV_Y, CAV_R = 38.0, 18.0, 7.7
-BOSS_XY, BOSS_TOP, BOSS_D = (14.0, 12.0), 8.0, 7.0      # HISTORY ONLY (unused): the 4 R108 M3 floor bosses, removed by R126 - read from Fusion
+BOSS_XY, BOSS_TOP, BOSS_D = (14.0, 12.0), 8.0, 7.0      # HISTORY ONLY (unused): the 4 v1 M3 floor bosses, removed by R126 - read from Fusion
 # ST185-VRC-Enclosure v11 (SteveCAD sweep C10, 2026-10-17): VRC-Body has no bosses at (+-14, +-12); its tapped holes are the 2 M6 holder bosses
 # (BOSS2_D below: D11 z 5.0 - 12.5, D5.0 tap drill z 1.0 - 12.5) and the 4 lid screw holes (D2.53 tap drill, z 29.5 - 38.74)
 LP16_REAR_X, LP16_AXIS_Z, LP16_REAR_R = 28.9, 21.0, 9.0  # rear envelope ends at x = +-28.9 (cups included), D18 about z 21
@@ -31,7 +31,7 @@ PIN_NET = {1: 'VR1-', 2: 'VR1+', 3: 'VR2+', 4: 'VR2-', 5: 'VDD', 6: 'GND', 7: 'V
 PIN_SQ, HDR_PLASTIC, PIN_BELOW, PIN_TAIL = 0.64, 2.54, 8.5, 1.44
 SO8 = dict(x0=-1.13 - 0.0, x1=4.02, y0=6.14, y1=11.05, h=1.75)   # IC1 body (pad rows at X -1.13 / 4.02, Y 6.69-10.50)
 
-# ---------- holder v2 (Dan M9, 2026-10-15, DECISIONS R126 - supersedes R108's tub / ledge / pin well / wire slots / M3 plate):
+# ---------- holder v2 (Dan M9, 2026-10-15, DECISIONS R126 - supersedes the v1 tub / ledge / pin well / wire slots / M3 plate):
 # "Redesign to be simpler. wires soldered from top of pcb. extrude solid block. cut square recess for the pcb with little tabs to hold
 # it down. add a couple counter sink socket head cap screw holes in the corners of the block to attach it to the enclosure. edit
 # enclosure to have 2 corresponding screw bosses that can be drilled out and tapped for 6mm screws later"
@@ -93,7 +93,7 @@ IN_MAP = {1: 2, 2: 1, 4: 3, 5: 4}      # ABS+ L -> VR1+, ABS- L -> VR1-, ABS+ R 
 OUT_MAP = {1: 5, 2: 6, 3: 8, 4: 7}     # +5V -> VDD, Gnd -> GND, L out -> VR1OUT, R out -> VR2OUT
 # The OUT map crosses over (cups 1 / 2 and 3 / 4 land on pins in the other order), so two OUT wires meet their pin
 # higher up (the exposed pin runs to z 19.46): the best of the 3-level search in the PR, 0.39 mm between wires.
-JOINT_Z = {}   # v1 (R108) only: wires met the pins under the board
+JOINT_Z = {}   # v1 only: wires met the pins under the board
 # v2: height above the board top where each lead turns down onto its pad. The OUT map crosses over, so OUT 1 / OUT 3 pass over the
 # other two: best of a 4-level search per side - 0.94 mm between wires, the 2.54 pad pitch allows 0.97
 # N4: the lead from cup 4 (IN +y, OUT -y: the side of that end's M6 countersink) runs its 6.6+ straight (cup + heat shrink) in toward the

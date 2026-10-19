@@ -1,2 +1,2 @@
 splice_id,name,net_id,net_name,harness,location,method,wires,gauges_awg,combined_cma,equivalent_awg,sot_check
-SvhsQx,Sensor screen join - FL + FR screens to the VRC IN pin 3 drain,ECU-A.A7,"Screen A (ECU A7, SHIELD_A)",WheelSpeed-Front,Sensor screen join,solder splice,3,20 + shield,1022,20,SOT GAP: not named in the SoT (drawing only)
+SvhsQx,Sensor screen join - FL + FR screens to the VRC IN pin 3 drain,ECU-A.A7,"Screen A (ECU A7, SHIELD_A)",WheelSpeed-Front,Sensor screen join,solder splice,3,20 + shield,1022,20,node of the wire list (SoT)

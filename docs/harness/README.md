@@ -3,16 +3,16 @@
 Written 2026-09-22, rewritten 2026-09-27 for the harness redesign. Read this before
 opening any loom.
 
-**The wiring source of truth is `sot/channels.csv`** (every ECU pin and channel).
-The looms below are the physical build and must agree with it; `check_all.py`
-enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
+**The wiring source of truth is the master wire lists `wirelist/*-wirelist.csv`** (R206);
+`sot/channels.csv` keeps the ECU channel settings and is checked against them. The looms below are the physical build, built from the lists
+(`cleanroom/build_harness.py`); `check_all.py` enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
 from Daniel" (R1-R149)** - this file is the file map and the workflow, and restates no rule.
 
 ## The short answer
 
 **`rebuild/` holds the current drawings - edit the looms there. Everything else here is a copy,
 a build product, or history.** The drawings are **not a source of truth** (Daniel,
-2026-10-04): they follow `sot/channels.csv`, and no truth document is generated from them.
+2026-10-04): they follow the wire lists, and no truth document is generated from them.
 
 | Folder / file | What it is | Edit it? |
 |---|---|---|
