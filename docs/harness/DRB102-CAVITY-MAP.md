@@ -73,7 +73,7 @@ each cavity used once, contact/plug size matches this map).
 
 | Size | A spare | B spare |
 |---|---|---|
-| 16 | 6 (52, 53, 57, 58, 59, 61) | 12 (63-70, 79-82) |
+| 16 | 8 (45, 46, 52, 53, 57, 58, 59, 61) | 12 (63-70, 79-82) |
 | 12 | 0 | 12 (3-8, 97-102) |
 | 8 | - | 4 (48, 49, 54, 55) |
 | 4 | - | 2 (43, 60) |
@@ -141,8 +141,8 @@ before buying more (`docs/OPEN-ITEMS.md`).
 | 42 | right (1-51) | 16 | A | c35 | MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) * |
 | 43 | right (1-51) | 4 | B | c52 | spare (size 4) |
 | 44 | right (1-51) | 16 | A | c36 | Aux 7 MRS speed-out (ECU A27) |
-| 45 | right (1-51) | 16 | A | c37 | A/C coolant switch signal -> A/C amplifier TW (not ECU) |
-| 46 | right (1-51) | 16 | A | c38 | A/C coolant switch return -> A/C amplifier |
+| 45 | right (1-51) | 16 | A | c37 | spare (size 16) - was the A/C coolant switch signal, deleted (S35) |
+| 46 | right (1-51) | 16 | A | c38 | spare (size 16) - was the A/C coolant switch return, deleted (S35) |
 | 47 | right (1-51) | 16 | A | c45 | +5V Out to B engine sensors via IX_B_RAIL - oil pressure |
 | 48 | right (1-51) | 8 | B | c48 | spare (size 8) |
 | 49 | right (1-51) | 8 | B | c49 | spare (size 8) |
@@ -152,7 +152,7 @@ before buying more (`docs/OPEN-ITEMS.md`).
 | 53 | left (52-102) | 16 | A | c12 | spare (size 16) |
 | 54 | left (52-102) | 8 | B | c50 | spare (size 8) |
 | 55 | left (52-102) | 8 | B | c51 | spare (size 8) |
-| 56 | left (52-102) | 16 | A | c27 | spare (size 16) |
+| 56 | left (52-102) | 16 | A | c27 | EPS relay coil 85 (R22) - from the MR-S pump B5 |
 | 57 | left (52-102) | 16 | A | c28 | spare (size 16) |
 | 58 | left (52-102) | 16 | A | c30 | spare (size 16) |
 | 59 | left (52-102) | 16 | A | c31 | spare (size 16) |

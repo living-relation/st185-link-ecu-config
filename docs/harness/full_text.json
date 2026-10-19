@@ -1,83 +1,7 @@
 {
  "ST185-A-cabin.harness": {
   "connectors": {
-   "ecu_a": {
-    "cavities": {
-     "a14": [
-      "An Volt 4 APS-M",
-      "An Volt 4 (APS-M)"
-     ],
-     "a17": [
-      "An Volt 1 MAP",
-      "An Volt 1 (MAP)"
-     ],
-     "a18": [
-      "Aux 4 AC Kill",
-      "Aux 4 (AC Kill)"
-     ],
-     "a19": [
-      "Aux 3 FP Rly",
-      "Aux 3 (FP Rly)"
-     ],
-     "a20": [
-      "Aux 2 ETB Rly",
-      "Aux 2 (ETB Rly)"
-     ],
-     "a21": [
-      "Aux 1 Boost",
-      "Aux 1 (Boost)"
-     ],
-     "a22": [
-      "An Volt 2 TPS-M",
-      "An Volt 2 (TPS-M)"
-     ],
-     "a23": [
-      "DI 3 WSS FL",
-      "DI 3 (WSS FL)"
-     ],
-     "a25": [
-      "ECU-A GND",
-      "Ground"
-     ],
-     "a26": [
-      "Aux 8 Start Rly",
-      "Aux 8 (Start Rly)"
-     ],
-     "a27": [
-      "Aux 7 MRS SPD",
-      "Aux 7 (MRS SPD)"
-     ],
-     "a28": [
-      "Aux 6 EFI Hold",
-      "Aux 6 (EFI Hold)"
-     ],
-     "a29": [
-      "Aux 5 Rad Fan",
-      "Aux 5 (Rad Fan)"
-     ],
-     "a30": [
-      "DI 1 Turbo Spd",
-      "DI 1 (Turbo Spd)"
-     ],
-     "a31": [
-      "DI 2 Flex",
-      "DI 2 (Flex)"
-     ],
-     "a33": [
-      "An Volt 3 TPS-S",
-      "An Volt 3 (TPS-S)"
-     ],
-     "a34": [
-      "ECU-A GND",
-      "Ground"
-     ]
-    }
-   },
    "bh_a_fw": {
-    "label": [
-     "BH-A",
-     "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section A wired here"
-    ],
     "cavities": {
      "c48": [
       "Injector +12 V feed",
@@ -87,169 +11,165 @@
       "Coil +12 V feed",
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
+     "c24": [
+      "Crank sensor signal",
+      "ECU-A A8"
+     ],
      "c41": [
-      "ECU A24 crank ret",
+      "Gnd crank sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
      ],
+     "c33": [
+      "Crank sensor shield",
+      "Crank VR screen"
+     ],
+     "c4": [
+      "+8 V to cam sensor",
+      "+8V Out to cam Hall"
+     ],
+     "c29": [
+      "Cam sensor signal",
+      "ECU-A A9"
+     ],
      "c42": [
-      "ECU A24 cam ret",
+      "Gnd cam sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
      ],
+     "c34": [
+      "Cam sensor shield",
+      "Cam Hall screen"
+     ],
      "c40": [
-      "ECU A32 turbo +5 V",
+      "+5 V turbo speed",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
      ],
+     "c7": [
+      "Turbo speed signal",
+      "ECU-A A30"
+     ],
      "c43": [
-      "ECU A24 turbo ret",
+      "Gnd turbo speed",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
      ],
+     "c6": [
+      "Turbo speed shield",
+      "Turbo speed screen"
+     ],
      "c5": [
-      "Sw +12 V boost/flex",
+      "+12 V boost + flex",
       "Switched 12V to engine sensors"
      ],
+     "c9": [
+      "Flex fuel signal",
+      "ECU-A A31"
+     ],
+     "c10": [
+      "Flex fuel shield",
+      "Flex fuel screen"
+     ],
      "c2": [
-      "ECU A32 throttle 5V",
+      "+5 V throttle sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
      ],
+     "c21": [
+      "Throttle pos 1 main",
+      "ECU-A A22"
+     ],
+     "c22": [
+      "Throttle pos 2 sub",
+      "ECU-A A33"
+     ],
      "c3": [
-      "ECU A24 temp/thr ret",
+      "Gnd IAT/TPS/coolant",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
-      "ECU A7 throt screen",
+      "Throttle shield",
       "ETB sensor group screen"
      ],
      "c39": [
-      "ECU A32 MAP +5 V",
+      "+5 V MAP sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
      ],
      "c44": [
-      "ECU A24 MAP/flex ret",
+      "Gnd flex + MAP",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
+     ],
+     "c8": [
+      "MAP sensor signal",
+      "ECU-A A17"
+     ],
+     "c13": [
+      "Injector 1 drive (-)",
+      "ECU-A A4"
+     ],
+     "c14": [
+      "Injector 2 drive (-)",
+      "ECU-A A3"
+     ],
+     "c15": [
+      "Injector 3 drive (-)",
+      "ECU-A A2"
+     ],
+     "c16": [
+      "Injector 4 drive (-)",
+      "ECU-A A1"
+     ],
+     "c17": [
+      "Coil 1 trigger (IGT)",
+      "ECU-A A13"
+     ],
+     "c18": [
+      "Coil 2 trigger (IGT)",
+      "ECU-A A12"
+     ],
+     "c19": [
+      "Coil 3 trigger (IGT)",
+      "ECU-A A11"
+     ],
+     "c20": [
+      "Coil 4 trigger (IGT)",
+      "ECU-A A10"
+     ],
+     "c23": [
+      "Boost solenoid (-)",
+      "ECU-A A21"
+     ],
+     "c25": [
+      "Coolant temp signal",
+      "ECU-A A15"
+     ],
+     "c26": [
+      "Intake temp signal",
+      "ECU-A A16"
      ],
      "c35": [
       "EHPS enable +12 V",
       "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
      ],
      "c36": [
-      "ECU A27 EHPS speed",
+      "EHPS pump speed",
       "Aux 7 MRS speed-out (ECU A27)"
      ],
      "c45": [
-      "ECU A32 oil press 5V",
+      "+5 V oil pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c46": [
-      "ECU A32 fuel prs 5V",
+      "+5 V fuel pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c47": [
-      "ECU A32 clnt prs 5V",
+      "+5 V coolant press",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ],
      "c27": [
-      "EPS relay coil 85",
+      "EHPS relay coil (-)",
       "MR-S pump B5 -> EPS relay k_eps coil- (85)"
-     ],
-     "c24": [
-      "ECU A8 crank sig",
-      "ECU-A A8"
-     ],
-     "c33": [
-      "ECU A7 crank screen",
-      "Crank VR screen"
-     ],
-     "c4": [
-      "ECU A6 cam +8 V",
-      "+8V Out to cam Hall"
-     ],
-     "c29": [
-      "ECU A9 cam sig",
-      "ECU-A A9"
-     ],
-     "c34": [
-      "ECU A7 cam screen",
-      "Cam Hall screen"
-     ],
-     "c7": [
-      "ECU A30 turbo sig",
-      "ECU-A A30"
-     ],
-     "c6": [
-      "ECU A7 turbo screen",
-      "Turbo speed screen"
-     ],
-     "c9": [
-      "ECU A31 flex sig",
-      "ECU-A A31"
-     ],
-     "c10": [
-      "ECU A7 flex screen",
-      "Flex fuel screen"
-     ],
-     "c21": [
-      "ECU A22 throttle 1",
-      "ECU-A A22"
-     ],
-     "c22": [
-      "ECU A33 throttle 2",
-      "ECU-A A33"
-     ],
-     "c8": [
-      "ECU A17 MAP sig",
-      "ECU-A A17"
-     ],
-     "c13": [
-      "ECU A4 injector 1",
-      "ECU-A A4"
-     ],
-     "c14": [
-      "ECU A3 injector 2",
-      "ECU-A A3"
-     ],
-     "c15": [
-      "ECU A2 injector 3",
-      "ECU-A A2"
-     ],
-     "c16": [
-      "ECU A1 injector 4",
-      "ECU-A A1"
-     ],
-     "c17": [
-      "ECU A13 coil 1 trig",
-      "ECU-A A13"
-     ],
-     "c18": [
-      "ECU A12 coil 2 trig",
-      "ECU-A A12"
-     ],
-     "c19": [
-      "ECU A11 coil 3 trig",
-      "ECU-A A11"
-     ],
-     "c20": [
-      "ECU A10 coil 4 trig",
-      "ECU-A A10"
-     ],
-     "c23": [
-      "ECU A21 boost sol",
-      "ECU-A A21"
-     ],
-     "c25": [
-      "ECU A15 coolant temp",
-      "ECU-A A15"
-     ],
-     "c26": [
-      "ECU A16 intake temp",
-      "ECU-A A16"
      ]
     }
    },
    "ix_ws_front_p": {
-    "label": [
-     "IX-WS-F",
-     "WS FRONT spur - 6-way inline mate (IX_WS_FRONT)"
-    ],
     "cavities": {
      "c1": [
       "VRC-F +5V",
@@ -272,132 +192,104 @@
       "Screen drain, combined 4-core cable -> SHIELD_A (A7)"
      ]
     }
-   },
-   "aps": {
-    "label": [
-     "APS",
-     "BRZ e-throttle pedal (APS) - one 6-core shielded cable (cab_aps) to the ECU; screen floats at the pedal, drains at A7 (sp_shield_a); VPA2 core breaks off to ST185-B-cabin B33"
-    ],
-    "cavities": {
-     "c3": [
-      "VPA2 APS-S",
-      "VPA2 APS-S -> ECU-B B33 (br_w39, broken off to ST185-B-cabin)"
-     ],
-     "c6": [
-      "VPA1 APS-M",
-      "VPA1 APS-M -> ECU-A A14"
-     ]
-    }
    }
   },
   "terminals": {
-   "fl_acamp_act": [
-    "",
-    "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"
-   ],
-   "fl_acamp_mg": [
-    "",
-    "EWD 1990 p.152 A18-5 Y-B magnetic clutch -> A4-3 - solder sleeve into the factory Y-B lead at the A/C amplifier"
-   ],
-   "fl_acamp_psw": [
-    "",
-    "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"
-   ],
-   "br_ac_mg": [
-    "",
-    "Broken off - continues on ST185-EngineRoom-C: A/C VC control coil A4-3 (not fitted) <- A18-5 (fl_acamp_mg)"
-   ],
-   "br_ac_psw": [
-    "",
-    "Broken off - continues on ST185-EngineRoom-C: A/C pressure switch A5-4 -> A18-13 (fl_acamp_psw)"
-   ],
-   "chassis_ring": [
-    "",
-    "Chassis Ground Point"
-   ],
-   "br_w_b25": [
-    "",
-    "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis"
-   ],
-   "br_w_b34": [
-    "",
-    "Broken off - continues on ST185-B-cabin: cabin chassis ground splice sp_chassis"
-   ],
-   "br_w_rail_5v_b_c": [
-    "",
-    "Broken off - continues on ST185-B-cabin: +5V from sp_5v at ECU A (crossover a)"
-   ],
-   "br_w_rail_sw12_b_c": [
-    "",
-    "Broken off - continues on ST185-B-cabin: switched 12V from sp_sw12 (cabin)"
-   ],
-   "br_cab_fspur_r": [
-    "",
-    "Broken off - continues on ST185-B-cabin: front wheel-speed FR core to ECU-B B21"
-   ],
-   "br_cab_fspur_fr_sh": [
-    "",
-    "Broken off - continues on ST185-B-cabin: front wheel-speed FR shield to sp_shield_b (B17)"
-   ],
-   "br_w_cru_5v": [
-    "",
-    "Broken off - continues on ST185-CSB3: +5V to the cruise ladder pull-up"
-   ],
-   "br_w_csbg": [
-    "",
-    "Broken off - continues on ST185-CSB3: CSB3 ground to sp_chassis"
-   ],
-   "br_w39": [
-    "",
-    "Broken off - continues on ST185-B-cabin: e-throttle pedal pin 3 (VPA2) -> ECU-B B33"
-   ],
-   "br_w_fb_sw12": [
-    "",
-    "Broken off - continues on ST185-CabinPower: LOGIC SW12 to sp_sw12"
-   ],
-   "br_w_fb_mrs_en": [
-    "",
-    "Broken off - continues on ST185-CabinPower: LOGIC MRS to Bulkhead A 35"
-   ],
-   "br_w_lamg_b": [
-    "",
-    "Broken off - continues on ST185-B-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis"
-   ],
-   "br_w_inj_pwr_c": [
-    "",
-    "Broken off - continues on ST185-CabinPower: LOGIC INJ 15A injector rail from the fuse box to bulkhead A c48 (shared DRB102)"
-   ],
-   "br_w_cop_pwr_c": [
-    "",
-    "Broken off - continues on ST185-CabinPower: LOGIC COP 15A COP rail from the fuse box to bulkhead A c49 (shared DRB102)"
-   ],
    "br_w76": [
     "",
-    "Broken off - continues on ST185-CabinPower: EFI Main Relay 85 (k_efi) <- ECU-A A28"
-   ],
-   "br_w_fp85": [
-    "",
-    "Broken off - continues on ST185-HeavyDC: Fuel Pump Relay 85 (k_fp, battery relay block in the trunk) <- ECU-A A19"
-   ],
-   "br_w_fan85": [
-    "",
-    "Broken off - continues on ST185-CabinPower: Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29"
+    "EFI main relay R2 pin 85, POWER box - EFI relay coil (-) - continues on ST185-CabinPower"
    ],
    "br_w81": [
     "",
-    "Broken off - continues on ST185-CabinPower: ETB Power Relay 85 (k_etb) <- ECU-A A20"
+    "ETB relay M4 pin 85, LOGIC box - ETB relay coil (-) - continues on ST185-CabinPower"
    ],
    "br_w_str85": [
     "",
-    "Broken off - continues on ST185-CabinPower: Start Relay 85 (k_str) <- ECU-A A26"
+    "Start relay R3 pin 85, POWER box - start relay coil (-) - continues on ST185-CabinPower"
+   ],
+   "br_w_fan85": [
+    "",
+    "Rad fan relay R4 pin 85, POWER box - fan relay coil (-) - continues on ST185-CabinPower"
+   ],
+   "br_w_fp85": [
+    "",
+    "Fuel pump relay K1 pin 85, trunk - fuel pump relay coil (-) - continues on ST185-HeavyDC"
    ],
    "br_w_acc86": [
     "",
-    "Broken off - continues on ST185-CabinPower: A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)"
+    "A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+) - continues on ST185-CabinPower"
    ],
    "br_w_eps_rly": [
     "",
-    "Broken off - continues on ST185-CabinPower: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+    "EHPS relay pin 85, glove box - EHPS relay coil (-) - continues on ST185-CabinPower"
+   ],
+   "br_w_fb_sw12": [
+    "",
+    "SW12 bus plug pin 2, glove box - switched +12 V feed - continues on ST185-CabinPower"
+   ],
+   "br_w_inj_pwr_c": [
+    "",
+    "LOGIC box fuse INJ 15 A lead - injector +12 V - continues on ST185-CabinPower"
+   ],
+   "br_w_cop_pwr_c": [
+    "",
+    "LOGIC box fuse COP 15 A lead - coil +12 V - continues on ST185-CabinPower"
+   ],
+   "br_w_fb_mrs_en": [
+    "",
+    "LOGIC box fuse MRS 7.5 A lead - EHPS enable +12 V - continues on ST185-CabinPower"
+   ],
+   "br_w_b25": [
+    "",
+    "ECU-B pin B25 - ECU power ground - continues on ST185-B-cabin"
+   ],
+   "br_w_b34": [
+    "",
+    "ECU-B pin B34 - ECU power ground (2) - continues on ST185-B-cabin"
+   ],
+   "br_w_lamg_b": [
+    "",
+    "Bulkhead pin 96 - CAN-Lambda ground - continues on ST185-B-cabin"
+   ],
+   "br_w_rail_sw12_b_c": [
+    "",
+    "Bulkhead pin 90 - +12 V gearbox speed sensor - continues on ST185-B-cabin"
+   ],
+   "br_w_rail_5v_b_c": [
+    "",
+    "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors - continues on ST185-B-cabin"
+   ],
+   "br_cab_fspur_r": [
+    "",
+    "ECU-B pin B21 - front right wheel speed - continues on ST185-B-cabin"
+   ],
+   "br_cab_fspur_fr_sh": [
+    "",
+    "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield - continues on ST185-B-cabin"
+   ],
+   "br_w39": [
+    "",
+    "ECU-B pin B33 - pedal 2 signal (sub) - continues on ST185-B-cabin"
+   ],
+   "br_w_cru_5v": [
+    "",
+    "Cruise ladder resistor lead, centre console - +5 V cruise - continues on ST185-CSB3"
+   ],
+   "br_w_csbg": [
+    "",
+    "CSB3 ground splice, centre console - CSB3 + opto ground - continues on ST185-CSB3"
+   ],
+   "br_ac_psw": [
+    "",
+    "A/C pressure switch A5 pin 4, engine bay - pressure switch out - continues on ST185-EngineRoom-C"
+   ],
+   "fl_acamp_act": [
+    "",
+    "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder splice onto the factory G-Y lead at the A/C amplifier"
+   ],
+   "fl_acamp_psw": [
+    "",
+    "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder splice onto the factory Y-R lead at the A/C amplifier"
    ]
   }
  },
@@ -639,11 +531,11 @@
   "terminals": {
    "fl_start_req_c1": [
     "",
-    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead"
+    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder splice onto the factory lead"
    ],
    "fl_ign_sw_c1": [
     "",
-    "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead"
+    "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder splice onto the factory lead"
    ],
    "t_ac_btn": [
     "",
@@ -803,8 +695,8 @@
    },
    "k_etb": {
     "label": [
-     "LOGIC M14",
-     "ETB Power Relay (seated in the LOGIC box M14) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+     "LOGIC M4",
+     "ETB Power Relay (seated in the LOGIC box M4) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
     ],
     "cavities": {
      "c1": [
@@ -899,8 +791,8 @@
    },
    "k_acc": {
     "label": [
-     "LOGIC M15",
-     "A/C Clutch Relay (on/off) (seated in the LOGIC box M15) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V"
+     "LOGIC M5",
+     "A/C Clutch Relay (on/off) (seated in the LOGIC box M5) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) gated through the A5 dual pressure switch, not raw switched 12V"
     ],
     "cavities": {
      "c1": [
@@ -923,8 +815,8 @@
    },
    "k_eps_en": {
     "label": [
-     "LOGIC M21",
-     "EPS Enable Relay (seated in the LOGIC box M21) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
+     "LOGIC M6",
+     "EPS Enable Relay (seated in the LOGIC box M6) - ACTIVE-LOW - ECU sinks coil- (85); coil+ (86) switched 12 V"
     ],
     "cavities": {
      "c1": [
@@ -947,8 +839,8 @@
    },
    "k_rev": {
     "label": [
-     "LOGIC M22",
-     "Reverse Relay (seated in the LOGIC box M22) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A"
+     "LOGIC M7",
+     "Reverse Relay (seated in the LOGIC box M7) - coil+ (86) from the back-up switch B1 pin 1 (+12V in R), coil- (85) to ground; contact fed from J/B No.1 GAUGE 15A"
     ],
     "cavities": {
      "c1": [
@@ -971,8 +863,8 @@
    },
    "k_hl": {
     "label": [
-     "LOGIC M11",
-     "HEAD LH Relay (seated in the LOGIC box M11) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
+     "LOGIC M1",
+     "HEAD LH Relay (seated in the LOGIC box M1) - coil+ (86) from its own HEAD LH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
     ],
     "cavities": {
      "c1": [
@@ -995,8 +887,8 @@
    },
    "k_hr": {
     "label": [
-     "LOGIC M12",
-     "HEAD RH Relay (seated in the LOGIC box M12) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
+     "LOGIC M2",
+     "HEAD RH Relay (seated in the LOGIC box M2) - coil+ (86) from its own HEAD RH 15A fuse, coil- (85) grounded by the light control switch via IE1-2"
     ],
     "cavities": {
      "c1": [
@@ -1019,8 +911,8 @@
    },
    "k_horn": {
     "label": [
-     "LOGIC M13",
-     "Horn Relay (seated in the LOGIC box M13) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19"
+     "LOGIC M3",
+     "Horn Relay (seated in the LOGIC box M3) - coil+ (86) from the HAZ-HORN 15A fuse, coil- (85) grounded by the horn switch via IE1-19"
     ],
     "cavities": {
      "c1": [
@@ -1160,7 +1052,7 @@
    "fb_logic": {
     "label": [
      "FB-LOGIC",
-     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 30) mini fuse strips, micro relays M11-M22"
+     "LOGIC box - custom fuse + relay box, glove box inboard (cad/fusebox rev 5, DECISIONS R75): Bus 1 (permanent) and Bus 2 (switched, k_efi 30) mini fuse strips, micro relays M1-M7"
     ],
     "cavities": {
      "b1": [
@@ -1209,7 +1101,7 @@
      ],
      "etb": [
       "ETB 10A",
-      "Bus 1 ATM-10 ETB - ETB power relay k_etb 30 (M14)"
+      "Bus 1 ATM-10 ETB - ETB power relay k_etb 30 (M4)"
      ],
      "lam": [
       "LAM 7.5A",
@@ -1237,11 +1129,11 @@
      ],
      "epsen": [
       "EPSEN 7.5A",
-      "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M21)"
+      "Bus 2 ATM-7.5 EPSEN - EPS enable relay k_eps_en 30 (M6)"
      ],
      "acc": [
       "ACC 10A",
-      "Bus 2 ATM-10 ACC - A/C clutch relay k_acc 30 (M15)"
+      "Bus 2 ATM-10 ACC - A/C clutch relay k_acc 30 (M5)"
      ],
      "almig": [
       "ALMIG 2A",
@@ -1502,43 +1394,43 @@
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
      "c41": [
-      "ECU A24 crank ret",
+      "Gnd crank sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
      ],
      "c42": [
-      "ECU A24 cam ret",
+      "Gnd cam sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
      ],
      "c40": [
-      "ECU A32 turbo +5 V",
+      "+5 V turbo speed",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
      ],
      "c43": [
-      "ECU A24 turbo ret",
+      "Gnd turbo speed",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
      ],
      "c5": [
-      "Sw +12 V boost/flex",
+      "+12 V boost + flex",
       "Switched 12V to engine sensors"
      ],
      "c2": [
-      "ECU A32 throttle 5V",
+      "+5 V throttle sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
      ],
      "c3": [
-      "ECU A24 temp/thr ret",
+      "Gnd IAT/TPS/coolant",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
-      "ECU A7 throt screen",
+      "Throttle shield",
       "ETB sensor group screen"
      ],
      "c39": [
-      "ECU A32 MAP +5 V",
+      "+5 V MAP sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
      ],
      "c44": [
-      "ECU A24 MAP/flex ret",
+      "Gnd flex + MAP",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
@@ -1546,115 +1438,115 @@
       "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
      ],
      "c36": [
-      "ECU A27 EHPS speed",
+      "EHPS pump speed",
       "Aux 7 MRS speed-out (ECU A27)"
      ],
      "c45": [
-      "ECU A32 oil press 5V",
+      "+5 V oil pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c46": [
-      "ECU A32 fuel prs 5V",
+      "+5 V fuel pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c47": [
-      "ECU A32 clnt prs 5V",
+      "+5 V coolant press",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ],
      "c27": [
-      "EPS relay coil 85",
+      "EHPS relay coil (-)",
       "MR-S pump B5 -> EPS relay k_eps coil- (85)"
      ],
      "c24": [
-      "ECU A8 crank sig",
+      "Crank sensor signal",
       "ECU-A A8"
      ],
      "c33": [
-      "ECU A7 crank screen",
+      "Crank sensor shield",
       "Crank VR screen"
      ],
      "c4": [
-      "ECU A6 cam +8 V",
+      "+8 V to cam sensor",
       "+8V Out to cam Hall"
      ],
      "c29": [
-      "ECU A9 cam sig",
+      "Cam sensor signal",
       "ECU-A A9"
      ],
      "c34": [
-      "ECU A7 cam screen",
+      "Cam sensor shield",
       "Cam Hall screen"
      ],
      "c7": [
-      "ECU A30 turbo sig",
+      "Turbo speed signal",
       "ECU-A A30"
      ],
      "c6": [
-      "ECU A7 turbo screen",
+      "Turbo speed shield",
       "Turbo speed screen"
      ],
      "c9": [
-      "ECU A31 flex sig",
+      "Flex fuel signal",
       "ECU-A A31"
      ],
      "c10": [
-      "ECU A7 flex screen",
+      "Flex fuel shield",
       "Flex fuel screen"
      ],
      "c21": [
-      "ECU A22 throttle 1",
+      "Throttle pos 1 main",
       "ECU-A A22"
      ],
      "c22": [
-      "ECU A33 throttle 2",
+      "Throttle pos 2 sub",
       "ECU-A A33"
      ],
      "c8": [
-      "ECU A17 MAP sig",
+      "MAP sensor signal",
       "ECU-A A17"
      ],
      "c13": [
-      "ECU A4 injector 1",
+      "Injector 1 drive (-)",
       "ECU-A A4"
      ],
      "c14": [
-      "ECU A3 injector 2",
+      "Injector 2 drive (-)",
       "ECU-A A3"
      ],
      "c15": [
-      "ECU A2 injector 3",
+      "Injector 3 drive (-)",
       "ECU-A A2"
      ],
      "c16": [
-      "ECU A1 injector 4",
+      "Injector 4 drive (-)",
       "ECU-A A1"
      ],
      "c17": [
-      "ECU A13 coil 1 trig",
+      "Coil 1 trigger (IGT)",
       "ECU-A A13"
      ],
      "c18": [
-      "ECU A12 coil 2 trig",
+      "Coil 2 trigger (IGT)",
       "ECU-A A12"
      ],
      "c19": [
-      "ECU A11 coil 3 trig",
+      "Coil 3 trigger (IGT)",
       "ECU-A A11"
      ],
      "c20": [
-      "ECU A10 coil 4 trig",
+      "Coil 4 trigger (IGT)",
       "ECU-A A10"
      ],
      "c23": [
-      "ECU A21 boost sol",
+      "Boost solenoid (-)",
       "ECU-A A21"
      ],
      "c25": [
-      "ECU A15 coolant temp",
+      "Coolant temp signal",
       "ECU-A A15"
      ],
      "c26": [
-      "ECU A16 intake temp",
+      "Intake temp signal",
       "ECU-A A16"
      ]
     }
@@ -2647,17 +2539,9 @@
     "",
     "EWD p.152 A5-1 (V-R in the factory wiring, new wire here) A/C pressure switch +12V (ACPS 5 A, IG) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
    ],
-   "fl_a4_3": [
-    "",
-    "EWD 1990 p.152 A4-3 (Y-B in the factory wiring, new wire here) A/C magnetic clutch <- A18-5 (br_ac_mg) - new-wire run terminated at the clutch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
-   ],
    "fl_a5_4": [
     "",
     "EWD 1990 p.152 A5-4 (Y-R in the factory wiring, new wire here) A/C pressure switch switched return -> A18-13 (br_ac_psw) - new-wire run terminated at the switch's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
-   ],
-   "br_ac_mg": [
-    "",
-    "Broken off - continues on ST185-A-cabin: A/C VC control coil A4-3 (not fitted) (fl_a4_3) <- A18-5 (fl_acamp_mg)"
    ],
    "br_ac_psw": [
     "",
@@ -3252,27 +3136,27 @@
    ],
    "fl_cl_c11_c2": [
     "",
-    "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c11_c11": [
     "",
-    "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c11_c12": [
     "",
-    "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c1": [
     "",
-    "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c8": [
     "",
-    "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c9": [
     "",
-    "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "br_w_oil_k": [
     "",
@@ -3772,19 +3656,19 @@
   "terminals": {
    "fl_cruise_stalk_c1": [
     "",
-    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead"
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder splice onto the factory lead"
    ],
    "fl_cruise_stalk_c3": [
     "",
-    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead"
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder splice onto the factory lead"
    ],
    "fl_cruise_stalk_c17": [
     "",
-    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead"
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder splice onto the factory lead"
    ],
    "fl_clutch_sw_c1": [
     "",
-    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead"
+    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder splice onto the factory lead"
    ],
    "fl_brake_sw_c1": [
     "",

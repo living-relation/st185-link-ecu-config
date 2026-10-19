@@ -283,7 +283,7 @@
         "pin": "11",
         "color": "G-Y",
         "function": "ACT compressor cancel from ECU Aux 4, ground = kill",
-        "method": "solder sleeve into the factory G-Y ACT lead at the A/C amplifier"
+        "method": "solder splice onto the factory G-Y ACT lead at the A/C amplifier"
       }
     },
     {
@@ -311,7 +311,7 @@
         "pin": "1",
         "color": "B",
         "function": "clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21)",
-        "method": "solder sleeve into the factory lead"
+        "method": "solder splice onto the factory lead"
       }
     },
     {
@@ -325,7 +325,7 @@
         "pin": "5",
         "color": "W (white)",
         "function": "cruise ladder signal (RES/ACC ~68 ohm, SET/COAST ~198 ohm, CANCEL ~418 ohm to ground) -> sp_cruise_ladder -> CSB3 A2; pull-up 1 kohm to +5V, not 10 kohm (S23)",
-        "method": "solder sleeve into the factory lead"
+        "method": "solder splice onto the factory lead"
       }
     },
     {
@@ -339,7 +339,7 @@
         "pin": "15",
         "color": "Y-B (yellow/black)",
         "function": "cruise MAIN ON-OFF: contact to the pin 17 ground when ON -> CSB3 S3; the OEM CC ECU input is A8 (CMS)",
-        "method": "solder sleeve into the factory lead"
+        "method": "solder splice onto the factory lead"
       }
     },
     {
@@ -353,7 +353,7 @@
         "pin": "17",
         "color": "BR (brown)",
         "function": "stalk switch ground: return for the pin 5 ladder and the pin 15 MAIN contact -> sp_csb_gnd -> CSB3 ground (OEM: body ground IE). There are no separate SET / RESUME wires, so CSB3 S4 / S5 are not used (R66, S23)",
-        "method": "solder sleeve into the factory lead"
+        "method": "solder splice onto the factory lead"
       }
     },
     {
@@ -367,7 +367,7 @@
         "pin": "7",
         "color": "B-O",
         "function": "IGN ON (IG2) -> ECU-B B28",
-        "method": "solder sleeve into the factory lead"
+        "method": "solder splice onto the factory lead"
       }
     },
     {
@@ -381,7 +381,7 @@
         "pin": "1",
         "color": "B-W",
         "function": "start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net)",
-        "method": "solder sleeve into the factory lead"
+        "method": "solder splice onto the factory lead"
       }
     },
     {
@@ -563,7 +563,7 @@
         "pin": "2",
         "color": "G-B",
         "function": "Turn L - flasher LH stub",
-        "method": "solder sleeve into the factory lead at the combination meter"
+        "method": "solder splice onto the factory lead at the combination meter"
       }
     },
     {
@@ -577,7 +577,7 @@
         "pin": "11",
         "color": "G-Y",
         "function": "Turn R - flasher RH stub",
-        "method": "solder sleeve into the factory lead at the combination meter"
+        "method": "solder splice onto the factory lead at the combination meter"
       }
     },
     {
@@ -591,7 +591,7 @@
         "pin": "12",
         "color": "R-L",
         "function": "High beam - body residual feed",
-        "method": "solder sleeve into the factory lead at the combination meter"
+        "method": "solder splice onto the factory lead at the combination meter"
       }
     },
     {
@@ -605,7 +605,7 @@
         "pin": "1",
         "color": "R-G",
         "function": "Park brake - grounds via OEM P1 / B2",
-        "method": "solder sleeve into the factory lead at the combination meter"
+        "method": "solder splice onto the factory lead at the combination meter"
       }
     },
     {
@@ -619,7 +619,7 @@
         "pin": "8",
         "color": "Y",
         "function": "Alt L - charge-lamp drive",
-        "method": "solder sleeve into the factory lead at the combination meter"
+        "method": "solder splice onto the factory lead at the combination meter"
       }
     },
     {
@@ -633,35 +633,7 @@
         "pin": "9",
         "color": "B-O",
         "function": "IG +12 - feeds every LED anode",
-        "method": "solder sleeve into the factory lead at the combination meter"
-      }
-    },
-    {
-      "id": "FL_ACAMP_MG",
-      "type": "oem_flying_lead",
-      "harness": "A-cabin",
-      "terminal": "fl_acamp_mg",
-      "ewd": {
-        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.218 A17-5 (ewd-snips/1992-celica-ewd132u-a17-clutch-p218.png)",
-        "connector": "A18",
-        "pin": "5",
-        "color": "Y-B",
-        "function": "variable-displacement control coil (not fitted - Dan's compressor is fixed-displacement mag-clutch) -> A4-3; not the magnetic clutch (that's A4 pin 4, fed via the clutch relay, a different pin)",
-        "method": "solder sleeve into the factory Y-B lead at the A/C amplifier"
-      }
-    },
-    {
-      "id": "FL_A4_3",
-      "type": "oem_flying_lead",
-      "harness": "EngineRoom-C",
-      "terminal": "fl_a4_3",
-      "ewd": {
-        "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U locator A4",
-        "connector": "A4",
-        "pin": "3",
-        "color": "Y-B (factory wiring; new wire here)",
-        "function": "variable-displacement control coil (not fitted) <- A18-5; not the magnetic clutch, which is A4 pin 4, not pin 3",
-        "method": "new-wire run terminated at the device's own mating plug (no factory engine-bay wire reused, Section 39, 2026-10-04); plug part number not yet chosen"
+        "method": "solder splice onto the factory lead at the combination meter"
       }
     },
     {
@@ -689,7 +661,7 @@
         "pin": "13",
         "color": "Y-R",
         "function": "A/C pressure switch in <- A5-4",
-        "method": "solder sleeve into the factory Y-R lead at the A/C amplifier"
+        "method": "solder splice onto the factory Y-R lead at the A/C amplifier"
       }
     },
     {
@@ -2411,21 +2383,6 @@
       ]
     },
     {
-      "id": "BR_AC_MG",
-      "type": "broken_off",
-      "what": "A/C VC control coil A4-3 (not fitted) <- amplifier A18-5 (fl_acamp_mg on A-cabin, fl_a4_3 on EngineRoom-C)",
-      "ends": [
-        {
-          "harness": "A-cabin",
-          "terminal": "br_ac_mg"
-        },
-        {
-          "harness": "EngineRoom-C",
-          "terminal": "br_ac_mg"
-        }
-      ]
-    },
-    {
       "id": "BR_AC_PSW",
       "type": "broken_off",
       "what": "A/C pressure switch A5-4 -> amplifier A18-13 (fl_acamp_psw on A-cabin, fl_a5_4 on EngineRoom-C)",
@@ -2803,7 +2760,7 @@
     {
       "id": "BR_W_EPS_TRIG",
       "type": "broken_off",
-      "what": "EPS enable relay k_eps_en 85 (LOGIC box M21, glove box) <- ECU-B B12",
+      "what": "EPS enable relay k_eps_en 85 (LOGIC box M6, glove box) <- ECU-B B12",
       "ends": [
         {
           "harness": "B-cabin",
@@ -4253,16 +4210,6 @@
           "w_wash_neg"
         ]
       },
-      "ACMG": {
-        "bands": [
-          "White",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w_ac_mg"
-        ]
-      },
       "ACPS": {
         "bands": [
           "Blue",
@@ -4849,7 +4796,8 @@
         "wires": [
           "w38",
           "w_aps_vpa2",
-          "cab_aps_sh"
+          "cab_aps_sh",
+          "cab_aps1_sh"
         ]
       },
       "CRANKC": {
@@ -4881,16 +4829,6 @@
         ],
         "wires": [
           "w_ac_kill"
-        ]
-      },
-      "ACMG": {
-        "bands": [
-          "White",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w_ac_clutch_mg"
         ]
       },
       "FP": {

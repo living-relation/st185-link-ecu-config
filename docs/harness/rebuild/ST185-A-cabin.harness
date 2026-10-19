@@ -5,10 +5,11 @@
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
-    "title": "ST185-A-cabin - ECU connector A cabin loom: ECU-A to bulkhead A, APS, front wheel-speed spur",
-    "drawingNumber": "ST185-A-cabin"
+    "title": "ST185-A-cabin - ECU plug A cabin loom",
+    "drawingNumber": "ST185-A-cabin rev A",
+    "drawnBy": "DG"
   },
-  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-A, BH-A, IX WS-F, APS).",
+  "exportNotes": "Rev A, BY DG: clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv.\nIdent bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-A, BH-A, IX WS-F, APS).",
   "pdfExportSettings": {
     "includeSchematic": true,
     "includeLayout": true,
@@ -65,91 +66,6 @@
     }
   },
   "wires": [
-    {
-      "id": "w16_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a30"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c7"
-      },
-      "color": "Green",
-      "identColors": [
-        "White"
-      ],
-      "partId": "m16_20_5"
-    },
-    {
-      "id": "w26_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a17"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c8"
-      },
-      "color": "White",
-      "identColors": [
-        "White",
-        "White",
-        "White"
-      ],
-      "partId": "m16_20_9"
-    },
-    {
-      "id": "w48_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a31"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c9"
-      },
-      "color": "Green",
-      "identColors": [
-        "White",
-        "Blue"
-      ],
-      "partId": "m16_20_5"
-    },
-    {
-      "id": "w76",
-      "color": "White",
-      "identColors": [
-        "Blue",
-        "Yellow"
-      ],
-      "source": {
-        "id": "br_w76",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a28"
-      },
-      "partId": "m16_18_9"
-    },
-    {
-      "id": "w81",
-      "color": "Gray",
-      "identColors": [
-        "White",
-        "White"
-      ],
-      "source": {
-        "id": "br_w81",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a20"
-      },
-      "partId": "m16_20_8"
-    },
     {
       "id": "w108_c",
       "source": {
@@ -238,7 +154,16 @@
         "Blue",
         "Yellow"
       ],
-      "partId": "m16_20_7"
+      "partId": "m16_20_7",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 1950,
+            "y": 390
+          },
+          "id": "w120_c_rp1"
+        }
+      ]
     },
     {
       "id": "w121_c",
@@ -256,7 +181,16 @@
         "Blue",
         "White"
       ],
-      "partId": "m16_20_7"
+      "partId": "m16_20_7",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 1980,
+            "y": 360
+          },
+          "id": "w121_c_rp1"
+        }
+      ]
     },
     {
       "id": "w122_c",
@@ -274,7 +208,37 @@
         "Yellow",
         "Blue"
       ],
-      "partId": "m16_20_7"
+      "partId": "m16_20_7",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 180,
+            "y": 330
+          },
+          "id": "w122_c_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 660,
+            "y": 330
+          },
+          "id": "w122_c_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 660,
+            "y": 210
+          },
+          "id": "w122_c_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": 2010,
+            "y": 210
+          },
+          "id": "w122_c_rp4"
+        }
+      ]
     },
     {
       "id": "w123_c",
@@ -292,57 +256,37 @@
         "Yellow",
         "Yellow"
       ],
-      "partId": "m16_20_7"
-    },
-    {
-      "id": "w128_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a22"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c21"
-      },
-      "color": "White",
-      "identColors": [
-        "Yellow"
-      ],
-      "partId": "m16_20_9"
-    },
-    {
-      "id": "w129_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a33"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c22"
-      },
-      "color": "White",
-      "identColors": [
-        "Yellow"
-      ],
-      "partId": "m16_20_9"
-    },
-    {
-      "id": "w103_c",
-      "source": {
-        "id": "ecu_a",
-        "handle": "a21"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c23"
-      },
-      "color": "Gray",
-      "identColors": [
-        "Yellow",
-        "Blue",
-        "White"
-      ],
-      "partId": "m16_20_8"
+      "partId": "m16_20_7",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 180,
+            "y": 300
+          },
+          "id": "w123_c_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 1920,
+            "y": 300
+          },
+          "id": "w123_c_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 1920,
+            "y": 210
+          },
+          "id": "w123_c_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": 2040,
+            "y": 210
+          },
+          "id": "w123_c_rp4"
+        }
+      ]
     },
     {
       "id": "w200_c",
@@ -363,6 +307,155 @@
       "partId": "m16_20_6"
     },
     {
+      "id": "w16_c",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a30"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c7"
+      },
+      "color": "Green",
+      "identColors": [
+        "White"
+      ],
+      "partId": "m16_20_5"
+    },
+    {
+      "id": "w48_c",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a31"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c9"
+      },
+      "color": "Green",
+      "identColors": [
+        "White",
+        "Blue"
+      ],
+      "partId": "m16_20_5"
+    },
+    {
+      "id": "w128_c",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a22"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c21"
+      },
+      "color": "White",
+      "identColors": [
+        "Yellow"
+      ],
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 1620,
+            "y": 660
+          },
+          "id": "w128_c_rp1"
+        }
+      ]
+    },
+    {
+      "id": "w129_c",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a33"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c22"
+      },
+      "color": "White",
+      "identColors": [
+        "Yellow"
+      ],
+      "partId": "m16_20_9"
+    },
+    {
+      "id": "w26_c",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a17"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c8"
+      },
+      "color": "White",
+      "identColors": [
+        "White",
+        "White",
+        "White"
+      ],
+      "partId": "m16_20_9",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 180,
+            "y": 510
+          },
+          "id": "w26_c_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 180,
+            "y": 510
+          },
+          "id": "w26_c_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 180,
+            "y": 750
+          },
+          "id": "w26_c_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": 1800,
+            "y": 750
+          },
+          "id": "w26_c_rp4"
+        }
+      ]
+    },
+    {
+      "id": "w103_c",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a21"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c23"
+      },
+      "color": "Gray",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "White"
+      ],
+      "partId": "m16_20_8",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 2070,
+            "y": 630
+          },
+          "id": "w103_c_rp1"
+        }
+      ]
+    },
+    {
       "id": "w201_c",
       "source": {
         "id": "ecu_a",
@@ -378,7 +471,16 @@
         "Yellow",
         "White"
       ],
-      "partId": "m16_20_4"
+      "partId": "m16_20_4",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 2100,
+            "y": 450
+          },
+          "id": "w201_c_rp1"
+        }
+      ]
     },
     {
       "id": "w202_c",
@@ -396,7 +498,16 @@
         "White",
         "Yellow"
       ],
-      "partId": "m16_20_4"
+      "partId": "m16_20_4",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 2130,
+            "y": 480
+          },
+          "id": "w202_c_rp1"
+        }
+      ]
     },
     {
       "id": "w_mrs_c",
@@ -418,56 +529,51 @@
       "partId": "m16_20_8"
     },
     {
-      "id": "w_fp85",
-      "color": "White",
-      "identColors": [
-        "White",
-        "White",
-        "Blue"
-      ],
+      "id": "w_trig2_pin",
       "source": {
-        "id": "br_w_fp85",
-        "handle": "Terminal"
+        "id": "ecu_a",
+        "handle": "a9"
       },
       "target": {
-        "id": "ecu_a",
-        "handle": "a19"
+        "id": "sp_trig2",
+        "handle": "Splice"
       },
-      "partId": "m16_18_9"
-    },
-    {
-      "id": "w_fan85",
-      "color": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
-        "White"
-      ],
-      "source": {
-        "id": "br_w_fan85",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a29"
-      },
-      "partId": "m16_18_9"
-    },
-    {
-      "id": "w_str85",
-      "color": "White",
-      "identColors": [
-        "White",
         "Yellow"
       ],
-      "source": {
-        "id": "br_w_str85",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a26"
-      },
-      "partId": "m16_18_9"
+      "partId": "m16_20_6",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 180,
+            "y": 270
+          },
+          "id": "w_trig2_pin_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 480,
+            "y": 270
+          },
+          "id": "w_trig2_pin_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 480,
+            "y": 330
+          },
+          "id": "w_trig2_pin_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": 600,
+            "y": 330
+          },
+          "id": "w_trig2_pin_rp4"
+        }
+      ]
     },
     {
       "id": "w_cam_sig_c",
@@ -484,70 +590,26 @@
         "Yellow",
         "Yellow"
       ],
-      "partId": "m16_20_6"
-    },
-    {
-      "id": "w_ac_kill",
-      "color": "Gray",
-      "identColors": [
-        "White",
-        "Yellow",
-        "Yellow"
-      ],
-      "source": {
-        "id": "ecu_a",
-        "handle": "a18"
-      },
-      "target": {
-        "id": "fl_acamp_act",
-        "handle": "Terminal"
-      },
-      "partId": "m16_20_8"
-    },
-    {
-      "id": "w_drain_ecu_a",
-      "color": "Black",
-      "identColors": [
-        "White",
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "Blue",
-      "source": {
-        "id": "sp_shield_a",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "ecu_a",
-        "handle": "a7"
-      },
-      "partId": "m16_20_06"
-    },
-    {
-      "id": "w_cam_pullup_8v",
-      "color": "Orange",
-      "identColors": [
-        "Yellow",
-        "Yellow"
-      ],
-      "source": {
-        "id": "sp_8v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "cam_pullup",
-        "handle": "Left"
-      },
-      "partId": "m16_20_39",
-      "stripeColor": "White"
+      "partId": "m16_20_6",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 600,
+            "y": 330
+          },
+          "id": "w_cam_sig_c_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 1290,
+            "y": 330
+          },
+          "id": "w_cam_sig_c_rp2"
+        }
+      ]
     },
     {
       "id": "w_cam_pullup_sig",
-      "color": "Blue",
-      "identColors": [
-        "Yellow",
-        "Yellow"
-      ],
       "source": {
         "id": "cam_pullup",
         "handle": "Right"
@@ -556,140 +618,49 @@
         "id": "sp_trig2",
         "handle": "Splice"
       },
-      "partId": "m16_20_6"
-    },
-    {
-      "id": "w_shc_crank",
-      "color": "Black",
-      "identColors": [
-        "White",
-        "Blue",
-        "White"
-      ],
-      "stripeColor": "Blue",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c33"
-      },
-      "target": {
-        "id": "sp_shield_a",
-        "handle": "Splice"
-      },
-      "partId": "m16_20_06"
-    },
-    {
-      "id": "w_shc_cam",
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow"
-      ],
-      "stripeColor": "Blue",
-      "source": {
-        "id": "bh_a_fw",
-        "handle": "c34"
-      },
-      "target": {
-        "id": "sp_shield_a",
-        "handle": "Splice"
-      },
-      "partId": "m16_20_06"
-    },
-    {
-      "id": "w_trig2_pin",
       "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow"
       ],
-      "source": {
-        "id": "ecu_a",
-        "handle": "a9"
-      },
-      "target": {
-        "id": "sp_trig2",
-        "handle": "Splice"
-      },
       "partId": "m16_20_6"
     },
     {
-      "id": "w_ac_clutch_mg",
+      "id": "w_cam_pullup_8v",
       "source": {
-        "id": "fl_acamp_mg",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "br_ac_mg",
-        "handle": "Terminal"
-      },
-      "color": "Yellow",
-      "identColors": [
-        "White",
-        "Yellow",
-        "White"
-      ],
-      "stripeColor": "Black",
-      "partId": "m16_20_40"
-    },
-    {
-      "id": "w_ac_psw_sw",
-      "source": {
-        "id": "fl_acamp_psw",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_ac_psw",
-        "handle": "Splice"
-      },
-      "color": "Yellow",
-      "identColors": [
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "Red",
-      "partId": "m16_20_42"
-    },
-    {
-      "id": "w78",
-      "color": "Red",
-      "identColors": [
-        "Blue"
-      ],
-      "source": {
-        "id": "sp_sw12",
+        "id": "sp_8v",
         "handle": "Splice"
       },
       "target": {
-        "id": "ecu_a",
-        "handle": "a5"
+        "id": "cam_pullup",
+        "handle": "Left"
       },
-      "partId": "m16_18_2"
-    },
-    {
-      "id": "w67",
       "color": "Orange",
+      "stripeColor": "White",
       "identColors": [
-        "Blue",
-        "Blue"
+        "Yellow",
+        "Yellow"
       ],
-      "source": {
-        "id": "ecu_a",
-        "handle": "a32"
-      },
-      "target": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "partId": "m16_18_3"
+      "partId": "m16_20_39",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 420,
+            "y": 180
+          },
+          "id": "w_cam_pullup_8v_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 420,
+            "y": 270
+          },
+          "id": "w_cam_pullup_8v_rp2"
+        }
+      ]
     },
     {
       "id": "w19",
-      "color": "Orange",
-      "identColors": [
-        "Yellow",
-        "Blue",
-        "Yellow"
-      ],
       "source": {
         "id": "sp_8v",
         "handle": "Splice"
@@ -698,81 +669,83 @@
         "id": "ecu_a",
         "handle": "a6"
       },
+      "color": "Orange",
       "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Yellow"
+      ],
       "partId": "m16_20_39"
     },
     {
-      "id": "w68",
-      "color": "Black",
+      "id": "w_rail_sp_8v_c",
+      "source": {
+        "id": "sp_8v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c4"
+      },
+      "color": "Orange",
+      "stripeColor": "White",
       "identColors": [
         "Yellow",
-        "Yellow",
+        "Blue",
+        "Yellow"
+      ],
+      "partId": "m16_20_39"
+    },
+    {
+      "id": "w67",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a32"
+      },
+      "target": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "color": "Orange",
+      "identColors": [
+        "Blue",
         "Blue"
       ],
-      "source": {
-        "id": "ecu_a",
-        "handle": "a24"
-      },
-      "target": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "partId": "m16_18_09",
-      "stripeColor": "White"
+      "partId": "m16_18_3"
     },
     {
-      "id": "w66",
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "White",
-        "White"
-      ],
+      "id": "w_5v_bha_trunk",
       "source": {
-        "id": "chassis_ring",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_chassis",
+        "id": "sp_5v",
         "handle": "Splice"
       },
-      "partId": "m16_10_0"
-    },
-    {
-      "id": "w70",
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "White",
-        "White"
-      ],
-      "source": {
-        "id": "ecu_a",
-        "handle": "a25"
-      },
       "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
+        "id": "bus_5v_bha_p",
+        "handle": "c1"
       },
-      "partId": "m16_18_0"
-    },
-    {
-      "id": "w_a34",
-      "color": "Black",
+      "color": "Orange",
       "identColors": [
-        "Yellow",
-        "White",
-        "White"
+        "Blue",
+        "Blue"
       ],
-      "source": {
-        "id": "ecu_a",
-        "handle": "a34"
-      },
-      "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      },
-      "partId": "m16_18_0"
+      "partId": "m16_18_3",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": -270,
+            "y": 960
+          },
+          "id": "w_5v_bha_trunk_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": -270,
+            "y": -450
+          },
+          "id": "w_5v_bha_trunk_rp2"
+        }
+      ]
     },
     {
       "id": "w_rail_sp_5v_c",
@@ -790,233 +763,6 @@
         "Blue"
       ],
       "partId": "m16_20_3"
-    },
-    {
-      "id": "w_rail_sp_gndout_c",
-      "source": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c2"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c3"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow",
-        "Blue"
-      ],
-      "partId": "m16_20_09",
-      "stripeColor": "White"
-    },
-    {
-      "id": "w_rail_sp_8v_c",
-      "source": {
-        "id": "sp_8v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c4"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Yellow",
-        "Blue",
-        "Yellow"
-      ],
-      "stripeColor": "White",
-      "partId": "m16_20_39"
-    },
-    {
-      "id": "w_rail_sp_sw12_c",
-      "source": {
-        "id": "sp_sw12",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c5"
-      },
-      "color": "Red",
-      "identColors": [
-        "Blue"
-      ],
-      "partId": "m16_18_2"
-    },
-    {
-      "id": "w_fb_sw12",
-      "color": "Red",
-      "identColors": [
-        "Blue"
-      ],
-      "source": {
-        "id": "br_w_fb_sw12",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_sw12",
-        "handle": "Splice"
-      },
-      "partId": "m16_18_2"
-    },
-    {
-      "id": "w_fb_mrs_en",
-      "color": "Red",
-      "identColors": [
-        "Blue",
-        "White"
-      ],
-      "source": {
-        "id": "br_w_fb_mrs_en",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c35"
-      },
-      "partId": "m16_20_2"
-    },
-    {
-      "id": "w_b25_ac",
-      "source": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_b25",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "White",
-        "White"
-      ],
-      "partId": "m16_18_0"
-    },
-    {
-      "id": "w_b34_ac",
-      "source": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_b34",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "White",
-        "White"
-      ],
-      "partId": "m16_18_0"
-    },
-    {
-      "id": "w_rail_5v_b_c_ac",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_rail_5v_b_c",
-        "handle": "Terminal"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_18_3"
-    },
-    {
-      "id": "w_rail_sw12_b_c_ac",
-      "source": {
-        "id": "sp_sw12",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_rail_sw12_b_c",
-        "handle": "Terminal"
-      },
-      "color": "Red",
-      "identColors": [
-        "Blue"
-      ],
-      "partId": "m16_20_2"
-    },
-    {
-      "id": "w_cru_5v_ac",
-      "source": {
-        "id": "sp_5v_2",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_cru_5v",
-        "handle": "Terminal"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_20_3"
-    },
-    {
-      "id": "w_csbg_ac",
-      "source": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_csbg",
-        "handle": "Terminal"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_20_0"
-    },
-    {
-      "id": "w_5v_bha_trunk",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bus_5v_bha_p",
-        "handle": "c1"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_18_3"
-    },
-    {
-      "id": "w_gnd_bha_trunk",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c1"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "White",
-      "partId": "m16_18_09"
     },
     {
       "id": "w_5v_a_c39",
@@ -1051,82 +797,6 @@
         "Blue"
       ],
       "partId": "m16_20_3"
-    },
-    {
-      "id": "w_gnd_a_c41",
-      "source": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c3"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c41"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "White",
-      "partId": "m16_20_09"
-    },
-    {
-      "id": "w_gnd_a_c42",
-      "source": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c4"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c42"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "White",
-      "partId": "m16_20_09"
-    },
-    {
-      "id": "w_gnd_a_c43",
-      "source": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c5"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c43"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "White",
-      "partId": "m16_20_09"
-    },
-    {
-      "id": "w_gnd_a_c44",
-      "source": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c6"
-      },
-      "target": {
-        "id": "bh_a_fw",
-        "handle": "c44"
-      },
-      "color": "Black",
-      "identColors": [
-        "Yellow",
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "White",
-      "partId": "m16_20_09"
     },
     {
       "id": "w_5v_brail_c45",
@@ -1177,25 +847,16 @@
         "Blue",
         "Blue"
       ],
-      "partId": "m16_20_3"
-    },
-    {
-      "id": "w_lamg_ac",
-      "source": {
-        "id": "br_w_lamg_b",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
-      },
-      "color": "Black",
-      "identColors": [
-        "Blue",
-        "White",
-        "White"
-      ],
-      "partId": "m16_14_0"
+      "partId": "m16_20_3",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 2430,
+            "y": -270
+          },
+          "id": "w_5v_brail_c47_rp1"
+        }
+      ]
     },
     {
       "id": "w_5v_link",
@@ -1212,7 +873,369 @@
         "Blue",
         "Blue"
       ],
+      "partId": "m16_18_3",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": -270,
+            "y": 960
+          },
+          "id": "w_5v_link_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": -270,
+            "y": 300
+          },
+          "id": "w_5v_link_rp2"
+        }
+      ]
+    },
+    {
+      "id": "w_rail_5v_b_c_ac",
+      "source": {
+        "id": "sp_5v",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_rail_5v_b_c",
+        "handle": "Terminal"
+      },
+      "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
       "partId": "m16_18_3"
+    },
+    {
+      "id": "w_cru_5v_ac",
+      "source": {
+        "id": "sp_5v_2",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_cru_5v",
+        "handle": "Terminal"
+      },
+      "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
+      "partId": "m16_20_3",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": -2010,
+            "y": 300
+          },
+          "id": "w_cru_5v_ac_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": -2010,
+            "y": 240
+          },
+          "id": "w_cru_5v_ac_rp2"
+        }
+      ]
+    },
+    {
+      "id": "w68",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a24"
+      },
+      "target": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_18_09"
+    },
+    {
+      "id": "w_gnd_bha_trunk",
+      "source": {
+        "id": "sp_gndout",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bus_gnd_bha_p",
+        "handle": "c1"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_18_09",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": -390,
+            "y": 720
+          },
+          "id": "w_gnd_bha_trunk_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": -390,
+            "y": 1050
+          },
+          "id": "w_gnd_bha_trunk_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 1650,
+            "y": 1050
+          },
+          "id": "w_gnd_bha_trunk_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": 1650,
+            "y": 1110
+          },
+          "id": "w_gnd_bha_trunk_rp4"
+        }
+      ]
+    },
+    {
+      "id": "w_rail_sp_gndout_c",
+      "source": {
+        "id": "bus_gnd_bha_p",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c3"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_09"
+    },
+    {
+      "id": "w_gnd_a_c41",
+      "source": {
+        "id": "bus_gnd_bha_p",
+        "handle": "c3"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c41"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_09"
+    },
+    {
+      "id": "w_gnd_a_c42",
+      "source": {
+        "id": "bus_gnd_bha_p",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c42"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_09"
+    },
+    {
+      "id": "w_gnd_a_c43",
+      "source": {
+        "id": "bus_gnd_bha_p",
+        "handle": "c5"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c43"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_09"
+    },
+    {
+      "id": "w_gnd_a_c44",
+      "source": {
+        "id": "bus_gnd_bha_p",
+        "handle": "c6"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c44"
+      },
+      "color": "Black",
+      "stripeColor": "White",
+      "identColors": [
+        "Yellow",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_09",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 1860,
+            "y": 1260
+          },
+          "id": "w_gnd_a_c44_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 1770,
+            "y": 1260
+          },
+          "id": "w_gnd_a_c44_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 1770,
+            "y": 750
+          },
+          "id": "w_gnd_a_c44_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": 1770,
+            "y": 750
+          },
+          "id": "w_gnd_a_c44_rp4"
+        }
+      ]
+    },
+    {
+      "id": "w_fb_sw12",
+      "source": {
+        "id": "br_w_fb_sw12",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
+      "partId": "m16_18_2",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 480,
+            "y": -150
+          },
+          "id": "w_fb_sw12_rp1"
+        }
+      ]
+    },
+    {
+      "id": "w78",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a5"
+      },
+      "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_rail_sp_sw12_c",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c5"
+      },
+      "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
+      "partId": "m16_18_2"
+    },
+    {
+      "id": "w_rail_sw12_b_c_ac",
+      "source": {
+        "id": "sp_sw12",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_rail_sw12_b_c",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
+      "partId": "m16_20_2",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 480,
+            "y": 90
+          },
+          "id": "w_rail_sw12_b_c_ac_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 480,
+            "y": 90
+          },
+          "id": "w_rail_sw12_b_c_ac_rp2"
+        },
+        {
+          "schematicPosition": {
+            "x": 480,
+            "y": -90
+          },
+          "id": "w_rail_sw12_b_c_ac_rp3"
+        },
+        {
+          "schematicPosition": {
+            "x": -930,
+            "y": -90
+          },
+          "id": "w_rail_sw12_b_c_ac_rp4"
+        }
+      ]
     },
     {
       "id": "w_inj_pwr_ac",
@@ -1251,12 +1274,222 @@
       "partId": "m16_14_2"
     },
     {
-      "id": "w_shc_turbo",
-      "color": "Black",
+      "id": "w_fb_mrs_en",
+      "source": {
+        "id": "br_w_fb_mrs_en",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "bh_a_fw",
+        "handle": "c35"
+      },
+      "color": "Red",
       "identColors": [
+        "Blue",
         "White"
       ],
+      "partId": "m16_20_2"
+    },
+    {
+      "id": "w70",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a25"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
+      "partId": "m16_18_0"
+    },
+    {
+      "id": "w_a34",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a34"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
+      "partId": "m16_18_0",
+      "layoutPoints": [
+        {
+          "schematicPosition": {
+            "x": 0,
+            "y": 1020
+          },
+          "id": "w_a34_rp1"
+        },
+        {
+          "schematicPosition": {
+            "x": 0,
+            "y": 750
+          },
+          "id": "w_a34_rp2"
+        }
+      ]
+    },
+    {
+      "id": "w_b25_ac",
+      "source": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_b25",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
+      "partId": "m16_18_0"
+    },
+    {
+      "id": "w_b34_ac",
+      "source": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_b34",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
+      "partId": "m16_18_0"
+    },
+    {
+      "id": "w_lamg_ac",
+      "source": {
+        "id": "br_w_lamg_b",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
+      ],
+      "partId": "m16_14_0"
+    },
+    {
+      "id": "w_csbg_ac",
+      "source": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_csbg",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Blue",
+        "Blue"
+      ],
+      "partId": "m16_20_0"
+    },
+    {
+      "id": "w66",
+      "source": {
+        "id": "chassis_ring",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_chassis",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "White",
+        "White"
+      ],
+      "partId": "m16_10_0"
+    },
+    {
+      "id": "w_drain_ecu_a",
+      "source": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a7"
+      },
+      "color": "Black",
       "stripeColor": "Blue",
+      "identColors": [
+        "White",
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_06"
+    },
+    {
+      "id": "w_shc_crank",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c33"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "Blue",
+      "identColors": [
+        "White",
+        "Blue",
+        "White"
+      ],
+      "partId": "m16_20_06"
+    },
+    {
+      "id": "w_shc_cam",
+      "source": {
+        "id": "bh_a_fw",
+        "handle": "c34"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "stripeColor": "Blue",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
+      "partId": "m16_20_06"
+    },
+    {
+      "id": "w_shc_turbo",
       "source": {
         "id": "bh_a_fw",
         "handle": "c6"
@@ -1265,16 +1498,15 @@
         "id": "sp_shield_a",
         "handle": "Splice"
       },
+      "color": "Black",
+      "stripeColor": "Blue",
+      "identColors": [
+        "White"
+      ],
       "partId": "m16_20_06"
     },
     {
       "id": "w_shc_flex",
-      "color": "Black",
-      "identColors": [
-        "White",
-        "Blue"
-      ],
-      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c10"
@@ -1283,15 +1515,16 @@
         "id": "sp_shield_a",
         "handle": "Splice"
       },
+      "color": "Black",
+      "stripeColor": "Blue",
+      "identColors": [
+        "White",
+        "Blue"
+      ],
       "partId": "m16_20_06"
     },
     {
       "id": "w_shc_etbs",
-      "color": "Black",
-      "identColors": [
-        "Yellow"
-      ],
-      "stripeColor": "Blue",
       "source": {
         "id": "bh_a_fw",
         "handle": "c11"
@@ -1300,52 +1533,101 @@
         "id": "sp_shield_a",
         "handle": "Splice"
       },
+      "color": "Black",
+      "stripeColor": "Blue",
+      "identColors": [
+        "Yellow"
+      ],
       "partId": "m16_20_06"
     },
     {
-      "id": "w_ac_psw_in",
-      "color": "Yellow",
-      "identColors": [
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "Red",
+      "id": "w_fp85",
       "source": {
-        "id": "br_ac_psw",
+        "id": "br_w_fp85",
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_ac_psw",
-        "handle": "Splice"
+        "id": "ecu_a",
+        "handle": "a19"
       },
-      "partId": "m16_20_42"
+      "color": "White",
+      "identColors": [
+        "White",
+        "White",
+        "Blue"
+      ],
+      "partId": "m16_18_9"
     },
     {
-      "id": "w_acc86",
-      "color": "Yellow",
-      "identColors": [
-        "Yellow",
-        "Blue"
-      ],
-      "stripeColor": "Red",
+      "id": "w81",
       "source": {
-        "id": "sp_ac_psw",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_acc86",
+        "id": "br_w81",
         "handle": "Terminal"
       },
-      "partId": "m16_18_42"
+      "target": {
+        "id": "ecu_a",
+        "handle": "a20"
+      },
+      "color": "Gray",
+      "identColors": [
+        "White",
+        "White"
+      ],
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_str85",
+      "source": {
+        "id": "br_w_str85",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a26"
+      },
+      "color": "White",
+      "identColors": [
+        "White",
+        "Yellow"
+      ],
+      "partId": "m16_18_9"
+    },
+    {
+      "id": "w76",
+      "source": {
+        "id": "br_w76",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a28"
+      },
+      "color": "White",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ],
+      "partId": "m16_18_9"
+    },
+    {
+      "id": "w_fan85",
+      "source": {
+        "id": "br_w_fan85",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a29"
+      },
+      "color": "White",
+      "identColors": [
+        "Yellow",
+        "White"
+      ],
+      "partId": "m16_18_9"
     },
     {
       "id": "w_eps_rly",
-      "color": "Violet",
-      "identColors": [
-        "Blue",
-        "Blue",
-        "Blue"
-      ],
       "source": {
         "id": "br_w_eps_rly",
         "handle": "Terminal"
@@ -1354,209 +1636,320 @@
         "id": "bh_a_fw",
         "handle": "c27"
       },
+      "color": "Violet",
+      "identColors": [
+        "Blue",
+        "Blue",
+        "Blue"
+      ],
       "partId": "m16_18_7"
+    },
+    {
+      "id": "w_ac_kill",
+      "source": {
+        "id": "ecu_a",
+        "handle": "a18"
+      },
+      "target": {
+        "id": "fl_acamp_act",
+        "handle": "Terminal"
+      },
+      "color": "Gray",
+      "identColors": [
+        "White",
+        "Yellow",
+        "Yellow"
+      ],
+      "partId": "m16_20_8"
+    },
+    {
+      "id": "w_ac_psw_in",
+      "source": {
+        "id": "br_ac_psw",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_ac_psw",
+        "handle": "Splice"
+      },
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_42"
+    },
+    {
+      "id": "w_ac_psw_sw",
+      "source": {
+        "id": "fl_acamp_psw",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_ac_psw",
+        "handle": "Splice"
+      },
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_20_42"
+    },
+    {
+      "id": "w_acc86",
+      "source": {
+        "id": "sp_ac_psw",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "br_w_acc86",
+        "handle": "Terminal"
+      },
+      "color": "Yellow",
+      "stripeColor": "Red",
+      "identColors": [
+        "Yellow",
+        "Blue"
+      ],
+      "partId": "m16_18_42"
     }
   ],
   "connectors": [
     {
       "id": "ecu_a",
-      "label": "ECU-A (Link G4X plug A, centre dash)",
-      "width": 210,
+      "label": "ECU-A  Link G4X plug A (centre dash)",
+      "width": 390,
       "partId": "cp_ss34a",
       "cavities": [
         {
           "id": "a1",
-          "signal": "Inj 4",
-          "designation": "A1"
+          "signal": "Injector 4 drive (-)",
+          "designation": "A1",
+          "propagate": false
         },
         {
           "id": "a2",
-          "signal": "Inj 3",
-          "designation": "A2"
+          "signal": "Injector 3 drive (-)",
+          "designation": "A2",
+          "propagate": false
         },
         {
           "id": "a3",
-          "signal": "Inj 2",
-          "designation": "A3"
+          "signal": "Injector 2 drive (-)",
+          "designation": "A3",
+          "propagate": false
         },
         {
           "id": "a4",
-          "signal": "Inj 1",
-          "designation": "A4"
+          "signal": "Injector 1 drive (-)",
+          "designation": "A4",
+          "propagate": false
         },
         {
           "id": "a5",
-          "signal": "+14V",
+          "signal": "ECU main +12 V",
           "designation": "A5",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a6",
-          "signal": "+8V Out",
-          "designation": "A6"
+          "signal": "+8 V sensor supply",
+          "designation": "A6",
+          "propagate": false
         },
         {
           "id": "a7",
-          "signal": "Shield/Gnd",
-          "designation": "A7"
+          "signal": "Shield drain",
+          "designation": "A7",
+          "propagate": false
         },
         {
           "id": "a8",
-          "signal": "Trig 1",
-          "designation": "A8"
+          "signal": "Crank sensor signal",
+          "designation": "A8",
+          "propagate": false
         },
         {
           "id": "a9",
-          "signal": "Trig 2",
-          "designation": "A9"
+          "signal": "Cam sensor signal",
+          "designation": "A9",
+          "propagate": false
         },
         {
           "id": "a10",
-          "signal": "Ign 4",
-          "designation": "A10"
+          "signal": "Coil 4 trigger (IGT)",
+          "designation": "A10",
+          "propagate": false
         },
         {
           "id": "a11",
-          "signal": "Ign 3",
-          "designation": "A11"
+          "signal": "Coil 3 trigger (IGT)",
+          "designation": "A11",
+          "propagate": false
         },
         {
           "id": "a12",
-          "signal": "Ign 2",
-          "designation": "A12"
+          "signal": "Coil 2 trigger (IGT)",
+          "designation": "A12",
+          "propagate": false
         },
         {
           "id": "a13",
-          "signal": "Ign 1",
-          "designation": "A13"
+          "signal": "Coil 1 trigger (IGT)",
+          "designation": "A13",
+          "propagate": false
         },
         {
           "id": "a14",
-          "signal": "An Volt 4 APS-M",
-          "designation": "A14"
+          "signal": "Pedal 1 signal main",
+          "designation": "A14",
+          "propagate": false
         },
         {
           "id": "a15",
-          "signal": "Temp 1 (ECT)",
-          "designation": "A15"
+          "signal": "Coolant temp signal",
+          "designation": "A15",
+          "propagate": false
         },
         {
           "id": "a16",
-          "signal": "Temp 2 (IAT)",
-          "designation": "A16"
+          "signal": "Intake temp signal",
+          "designation": "A16",
+          "propagate": false
         },
         {
           "id": "a17",
-          "signal": "An Volt 1 MAP",
-          "designation": "A17"
+          "signal": "MAP sensor signal",
+          "designation": "A17",
+          "propagate": false
         },
         {
           "id": "a18",
-          "signal": "Aux 4 AC Kill",
-          "designation": "A18"
+          "signal": "A/C cancel (ACT)",
+          "designation": "A18",
+          "propagate": false
         },
         {
           "id": "a19",
-          "signal": "Aux 3 FP Rly",
+          "signal": "Fuel pump relay (-)",
           "designation": "A19",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a20",
-          "signal": "Aux 2 ETB Rly",
-          "designation": "A20"
+          "signal": "ETB relay coil (-)",
+          "designation": "A20",
+          "propagate": false
         },
         {
           "id": "a21",
-          "signal": "Aux 1 Boost",
-          "designation": "A21"
+          "signal": "Boost solenoid (-)",
+          "designation": "A21",
+          "propagate": false
         },
         {
           "id": "a22",
-          "signal": "An Volt 2 TPS-M",
-          "designation": "A22"
+          "signal": "Throttle pos 1 main",
+          "designation": "A22",
+          "propagate": false
         },
         {
           "id": "a23",
-          "signal": "DI 3 WSS FL",
-          "designation": "A23"
+          "signal": "FL conditioned out",
+          "designation": "A23",
+          "propagate": false
         },
         {
           "id": "a24",
-          "signal": "Gnd Out",
+          "signal": "Sensor ground",
           "designation": "A24",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a25",
-          "signal": "ECU-A GND",
+          "signal": "ECU power ground",
           "designation": "A25",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a26",
-          "signal": "Aux 8 Start Rly",
+          "signal": "Start relay coil (-)",
           "designation": "A26",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a27",
-          "signal": "Aux 7 MRS SPD",
-          "designation": "A27"
+          "signal": "EHPS pump speed",
+          "designation": "A27",
+          "propagate": false
         },
         {
           "id": "a28",
-          "signal": "Aux 6 EFI Hold",
+          "signal": "EFI relay coil (-)",
           "designation": "A28",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a29",
-          "signal": "Aux 5 Rad Fan",
+          "signal": "Rad fan relay (-)",
           "designation": "A29",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a30",
-          "signal": "DI 1 Turbo Spd",
-          "designation": "A30"
+          "signal": "Turbo speed signal",
+          "designation": "A30",
+          "propagate": false
         },
         {
           "id": "a31",
-          "signal": "DI 2 Flex",
-          "designation": "A31"
+          "signal": "Flex fuel signal",
+          "designation": "A31",
+          "propagate": false
         },
         {
           "id": "a32",
-          "signal": "+5V Out",
+          "signal": "+5 V sensor supply",
           "designation": "A32",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "a33",
-          "signal": "An Volt 3 TPS-S",
-          "designation": "A33"
+          "signal": "Throttle pos 2 sub",
+          "designation": "A33",
+          "propagate": false
         },
         {
           "id": "a34",
-          "signal": "ECU-A GND",
+          "signal": "ECU power ground",
           "designation": "A34",
           "contactPartId": "ct_ss10_075",
           "propagate": false
         }
       ],
       "layoutPosition": {
-        "x": -1140,
-        "y": 240
+        "x": 1320,
+        "y": 810
       },
       "schematicPosition": {
-        "x": 2310,
+        "x": 0,
         "y": 0
       }
     },
     {
       "id": "bh_a_fw",
-      "label": "BH-A (firewall bulkhead DRB102, RH)",
+      "label": "BULKHEAD  DRB102 receptacle (RH firewall)",
       "width": 390,
       "partId": "cp_drb_recept",
       "cavities": [
@@ -1564,13 +1957,15 @@
           "id": "c48",
           "designation": "1",
           "signal": "Injector +12 V feed",
-          "contactPartId": "ct_hdp12p"
+          "contactPartId": "ct_hdp12p",
+          "propagate": false
         },
         {
           "id": "c49",
           "designation": "2",
           "signal": "Coil +12 V feed",
-          "contactPartId": "ct_hdp12p"
+          "contactPartId": "ct_hdp12p",
+          "propagate": false
         },
         {
           "id": "nc3",
@@ -1612,20 +2007,20 @@
           "id": "c24",
           "designation": "9",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A8 crank sig",
+          "signal": "Crank sensor signal",
           "propagate": false
         },
         {
           "id": "c41",
           "designation": "10",
-          "signal": "ECU A24 crank ret",
+          "signal": "Gnd crank sensor",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c33",
           "designation": "11",
-          "signal": "ECU A7 crank screen",
+          "signal": "Crank sensor shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1633,34 +2028,34 @@
           "id": "c4",
           "designation": "12",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A6 cam +8 V",
+          "signal": "+8 V to cam sensor",
           "propagate": false
         },
         {
           "id": "c29",
           "designation": "13",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A9 cam sig",
+          "signal": "Cam sensor signal",
           "propagate": false
         },
         {
           "id": "c42",
           "designation": "14",
-          "signal": "ECU A24 cam ret",
+          "signal": "Gnd cam sensor",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c34",
           "designation": "15",
-          "signal": "ECU A7 cam screen",
+          "signal": "Cam sensor shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c40",
           "designation": "16",
-          "signal": "ECU A32 turbo +5 V",
+          "signal": "+5 V turbo speed",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1668,20 +2063,20 @@
           "id": "c7",
           "designation": "17",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A30 turbo sig",
+          "signal": "Turbo speed signal",
           "propagate": false
         },
         {
           "id": "c43",
           "designation": "18",
-          "signal": "ECU A24 turbo ret",
+          "signal": "Gnd turbo speed",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "19",
-          "signal": "ECU A7 turbo screen",
+          "signal": "Turbo speed shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1689,20 +2084,20 @@
           "id": "c5",
           "designation": "20",
           "contactPartId": "ct_hdp16p",
-          "signal": "Sw +12 V boost/flex",
+          "signal": "+12 V boost + flex",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "21",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A31 flex sig",
+          "signal": "Flex fuel signal",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "22",
-          "signal": "ECU A7 flex screen",
+          "signal": "Flex fuel shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1710,48 +2105,48 @@
           "id": "c2",
           "designation": "23",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A32 throttle 5V",
+          "signal": "+5 V throttle sensor",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "24",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A22 throttle 1",
+          "signal": "Throttle pos 1 main",
           "propagate": false
         },
         {
           "id": "c22",
           "designation": "25",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A33 throttle 2",
+          "signal": "Throttle pos 2 sub",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "26",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A24 temp/thr ret",
+          "signal": "Gnd IAT/TPS/coolant",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "27",
-          "signal": "ECU A7 throt screen",
+          "signal": "Throttle shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c39",
           "designation": "28",
-          "signal": "ECU A32 MAP +5 V",
+          "signal": "+5 V MAP sensor",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c44",
           "designation": "29",
-          "signal": "ECU A24 MAP/flex ret",
+          "signal": "Gnd flex + MAP",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1759,91 +2154,92 @@
           "id": "c8",
           "designation": "30",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A17 MAP sig",
+          "signal": "MAP sensor signal",
           "propagate": false
         },
         {
           "id": "c13",
           "designation": "31",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A4 injector 1",
+          "signal": "Injector 1 drive (-)",
           "propagate": false
         },
         {
           "id": "c14",
           "designation": "32",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A3 injector 2",
+          "signal": "Injector 2 drive (-)",
           "propagate": false
         },
         {
           "id": "c15",
           "designation": "33",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A2 injector 3",
+          "signal": "Injector 3 drive (-)",
           "propagate": false
         },
         {
           "id": "c16",
           "designation": "34",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A1 injector 4",
+          "signal": "Injector 4 drive (-)",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "35",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A13 coil 1 trig",
+          "signal": "Coil 1 trigger (IGT)",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "36",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A12 coil 2 trig",
+          "signal": "Coil 2 trigger (IGT)",
           "propagate": false
         },
         {
           "id": "c19",
           "designation": "37",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A11 coil 3 trig",
+          "signal": "Coil 3 trigger (IGT)",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "38",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A10 coil 4 trig",
+          "signal": "Coil 4 trigger (IGT)",
           "propagate": false
         },
         {
           "id": "c23",
           "designation": "39",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A21 boost sol",
+          "signal": "Boost solenoid (-)",
           "propagate": false
         },
         {
           "id": "c25",
           "designation": "40",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A15 coolant temp",
+          "signal": "Coolant temp signal",
           "propagate": false
         },
         {
           "id": "c26",
           "designation": "41",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU A16 intake temp",
+          "signal": "Intake temp signal",
           "propagate": false
         },
         {
           "id": "c35",
           "designation": "42",
           "signal": "EHPS enable +12 V",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "nc43",
@@ -1854,7 +2250,7 @@
         {
           "id": "c36",
           "designation": "44",
-          "signal": "ECU A27 EHPS speed",
+          "signal": "EHPS pump speed",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1873,7 +2269,7 @@
         {
           "id": "c45",
           "designation": "47",
-          "signal": "ECU A32 oil press 5V",
+          "signal": "+5 V oil pressure",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1892,14 +2288,14 @@
         {
           "id": "c46",
           "designation": "50",
-          "signal": "ECU A32 fuel prs 5V",
+          "signal": "+5 V fuel pressure",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c47",
           "designation": "51",
-          "signal": "ECU A32 clnt prs 5V",
+          "signal": "+5 V coolant press",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1930,7 +2326,7 @@
         {
           "id": "c27",
           "designation": "56",
-          "signal": "EPS relay coil 85",
+          "signal": "EHPS relay coil (-)",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -2212,17 +2608,18 @@
         }
       ],
       "layoutPosition": {
-        "x": 0,
-        "y": 0
+        "x": 2460,
+        "y": 420
       },
       "schematicPosition": {
-        "x": 1110,
-        "y": 0
-      }
+        "x": 900,
+        "y": 300
+      },
+      "rotated": true
     },
     {
       "id": "ix_ws_front_p",
-      "label": "IX-WS-F inline to front VRC (dash above ECU)",
+      "label": "FRONT WS INLINE  to front VR conditioner",
       "width": 270,
       "partId": "cp_dt06_6s",
       "cavities": [
@@ -2247,7 +2644,8 @@
         {
           "id": "c4",
           "designation": "4",
-          "signal": "FR conditioned out"
+          "signal": "FR conditioned out",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -2263,111 +2661,112 @@
         }
       ],
       "schematicPosition": {
-        "x": 810,
-        "y": 1560
+        "x": -1980,
+        "y": 780
       },
       "layoutPosition": {
-        "x": -1350,
-        "y": 1320
+        "x": 210,
+        "y": 690
       }
     },
     {
       "id": "aps",
-      "label": "APS accelerator pedal plug (driver footwell)",
+      "label": "PEDAL  accelerator pedal sensor",
       "partId": "cp_brz_aps6",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VC2 +5V (sub)",
+          "signal": "+5 V pedal sensor 2",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Ground (GND2, sub)",
+          "signal": "Pedal 2 ground",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "VPA2 APS-S"
+          "signal": "Pedal 2 signal sub",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "VC1 +5V (main)",
+          "signal": "+5 V pedal sensor 1",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Ground (GND1, main)",
+          "signal": "Pedal 1 ground",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "VPA1 APS-M",
+          "signal": "Pedal 1 signal main",
           "propagate": false
         }
       ],
       "layoutPosition": {
-        "x": -780,
-        "y": -150
+        "x": 1530,
+        "y": 240
       },
       "schematicPosition": {
-        "x": 450,
-        "y": 1560
+        "x": -1980,
+        "y": 330
       },
       "width": 270
     },
     {
       "id": "bus_5v_bha_p",
-      "label": "+5 V bus plug DT06-08 (RH firewall, BH-A)",
+      "label": "+5V BUS  DT06-8 plug (by bulkhead)",
       "width": 270,
       "partId": "cp_dt06_08sa",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V sensor supply",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V throttle sensor",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V MAP sensor",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V turbo speed",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V oil pressure",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V fuel pressure",
           "propagate": false
         },
         {
           "id": "c7",
           "designation": "7",
-          "signal": "+5 V bus (A32)",
+          "signal": "+5 V coolant press",
           "propagate": false
         },
         {
@@ -2378,102 +2777,118 @@
         }
       ],
       "layoutPosition": {
-        "x": -120,
-        "y": 60
+        "x": 2250,
+        "y": 540
       },
       "schematicPosition": {
-        "x": 1740,
-        "y": 1980
+        "x": 2460,
+        "y": -480
       }
     },
     {
       "id": "bus_5v_bha_r",
-      "label": "+5 V bussed cap DT04-08 P021 (on plug)",
+      "label": "+5V BUS cap  DT04-8 bussed",
       "width": 270,
       "partId": "cp_dt04_08pa_p021",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c2",
-          "designation": "2"
+          "designation": "2",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c3",
-          "designation": "3"
+          "designation": "3",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c4",
-          "designation": "4"
+          "designation": "4",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c5",
-          "designation": "5"
+          "designation": "5",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c6",
-          "designation": "6"
+          "designation": "6",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c7",
-          "designation": "7"
+          "designation": "7",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         },
         {
           "id": "c8",
-          "designation": "8"
+          "designation": "8",
+          "signal": "+5 V sensor bus",
+          "propagate": false
         }
       ],
       "layoutPosition": {
-        "x": -120,
-        "y": 120
+        "x": 2310,
+        "y": 480
       },
       "schematicPosition": {
-        "x": 1740,
-        "y": 2280
+        "x": 2790,
+        "y": -480
       }
     },
     {
       "id": "bus_gnd_bha_p",
-      "label": "Sensor GND bus plug DT06-08 (RH firewall, BH-A)",
+      "label": "SENSOR GND BUS  DT06-8 plug (by bulkhead)",
       "width": 270,
       "partId": "cp_dt06_08sa",
       "cavities": [
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Sensor GND bus (A24)",
+          "signal": "Sensor ground",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "Sensor GND bus (A24)",
+          "signal": "Gnd IAT/TPS/coolant",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "Sensor GND bus (A24)",
+          "signal": "Gnd crank sensor",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "Sensor GND bus (A24)",
+          "signal": "Gnd cam sensor",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "Sensor GND bus (A24)",
+          "signal": "Gnd turbo speed",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "Sensor GND bus (A24)",
+          "signal": "Gnd flex + MAP",
           "propagate": false
         },
         {
@@ -2490,60 +2905,76 @@
         }
       ],
       "layoutPosition": {
-        "x": -180,
-        "y": 210
+        "x": 2070,
+        "y": 600
       },
       "schematicPosition": {
-        "x": 600,
-        "y": 720
+        "x": 1740,
+        "y": 1080
       }
     },
     {
       "id": "bus_gnd_bha_r",
-      "label": "Sensor GND bussed cap DT04-08 P021 (on plug)",
+      "label": "SENSOR GND BUS cap  DT04-8 bussed",
       "width": 270,
       "partId": "cp_dt04_08pa_p021",
       "cavities": [
         {
           "id": "c1",
-          "designation": "1"
+          "designation": "1",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c2",
-          "designation": "2"
+          "designation": "2",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c3",
-          "designation": "3"
+          "designation": "3",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c4",
-          "designation": "4"
+          "designation": "4",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c5",
-          "designation": "5"
+          "designation": "5",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c6",
-          "designation": "6"
+          "designation": "6",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c7",
-          "designation": "7"
+          "designation": "7",
+          "signal": "Sensor ground bus",
+          "propagate": false
         },
         {
           "id": "c8",
-          "designation": "8"
+          "designation": "8",
+          "signal": "Sensor ground bus",
+          "propagate": false
         }
       ],
       "layoutPosition": {
-        "x": -180,
-        "y": 270
+        "x": 2070,
+        "y": 720
       },
       "schematicPosition": {
-        "x": 600,
-        "y": 1020
+        "x": 2070,
+        "y": 1080
       }
     }
   ],
@@ -2553,406 +2984,378 @@
       "type": "Loose",
       "partId": "tp_flying_lead",
       "schematicPosition": {
-        "x": 4230,
-        "y": 1230
+        "x": -1110,
+        "y": 540
       },
       "layoutPosition": {
-        "x": -1830,
-        "y": -1740
+        "x": -690,
+        "y": -330
       },
       "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 11, G-Y lead, by the ECU - ACT cancel (EWD 1992 p.93)"
-    },
-    {
-      "id": "fl_acamp_mg",
-      "type": "Loose",
-      "partId": "tp_flying_lead",
-      "schematicPosition": {
-        "x": 4230,
-        "y": 1290
-      },
-      "layoutPosition": {
-        "x": -2130,
-        "y": -60
-      },
-      "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 5, Y-B lead, by the ECU - VC coil out (EWD 1990 p.152)"
+      "label": "A/C amp A18 pin 11, factory G-Y lead - A/C cancel (ACT)",
+      "width": 390
     },
     {
       "id": "fl_acamp_psw",
       "type": "Loose",
       "partId": "tp_flying_lead",
       "schematicPosition": {
-        "x": 4230,
-        "y": 1350
+        "x": -2010,
+        "y": -450
       },
       "layoutPosition": {
-        "x": -2130,
-        "y": -6660
+        "x": -1260,
+        "y": 360
       },
       "propagate": false,
-      "label": "OEM A/C amplifier A18 pin 13, Y-R lead, by the ECU - pressure sw in (EWD 1990 p.152)"
-    },
-    {
-      "id": "br_ac_mg",
-      "type": "Loose",
-      "width": 390,
-      "schematicPosition": {
-        "x": 4110,
-        "y": 1410
-      },
-      "layoutPosition": {
-        "x": -2310,
-        "y": -150
-      },
-      "propagate": false,
-      "label": "OEM A/C compressor A4 pin 3, engine bay - VC coil, not fitted (EWD 1990 p.152)"
+      "label": "A/C amp A18 pin 13, factory Y-R lead - pressure switch in",
+      "width": 390
     },
     {
       "id": "br_ac_psw",
       "type": "Loose",
       "width": 390,
       "schematicPosition": {
-        "x": 4110,
-        "y": 1470
+        "x": -2010,
+        "y": -570
       },
       "layoutPosition": {
-        "x": -2130,
-        "y": -6750
+        "x": -1260,
+        "y": 480
       },
       "propagate": false,
-      "label": "OEM A/C pressure switch A5 pin 4, engine bay - switch out (EWD 1990 p.152)"
+      "label": "A/C pressure switch A5 pin 4, engine bay - pressure switch out"
     },
     {
       "id": "chassis_ring",
       "type": "Ring",
       "layoutPosition": {
-        "x": -1230,
-        "y": -90
+        "x": 1320,
+        "y": 420
       },
       "schematicPosition": {
-        "x": 3750,
-        "y": 2700
+        "x": -1110,
+        "y": 1170
       },
       "partId": "tp_ring_m6_12_10",
-      "width": 210,
+      "width": 390,
       "propagate": false,
-      "label": "Ground ring M6 on a cabin chassis stud at the ECU (TBD - EWD ground point ID) - ECU ground"
+      "label": "Cabin chassis stud M6 at ECU - ECU ground ring"
     },
     {
       "id": "br_w_b25",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -2400,
-        "y": 1890
+        "x": -240,
+        "y": 1140
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 2940
+        "x": -1110,
+        "y": 1230
       },
       "propagate": false,
-      "label": "ECU-B plug pin B25 (Link G4X, centre dash) - ECU power ground"
+      "label": "ECU-B pin B25 - ECU power ground"
     },
     {
       "id": "br_w_b34",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -2400,
-        "y": 1650
+        "x": -240,
+        "y": 900
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 2880
+        "x": -1110,
+        "y": 1290
       },
       "propagate": false,
-      "label": "ECU-B plug pin B34 (Link G4X, centre dash) - ECU power ground"
+      "label": "ECU-B pin B34 - ECU power ground (2)"
     },
     {
       "id": "br_w_rail_5v_b_c",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -810,
-        "y": 300
+        "x": 1650,
+        "y": 720
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 2640
+        "x": -1110,
+        "y": 1470
       },
       "propagate": false,
-      "label": "Splice SP-5V-B at the ECU-B plug (B-cabin) - +5V to fuel level, evap, rear WS"
+      "label": "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors"
     },
     {
       "id": "br_w_rail_sw12_b_c",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1830,
-        "y": 1860
+        "x": 120,
+        "y": 1140
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 3660
+        "x": -1110,
+        "y": -90
       },
       "propagate": false,
-      "label": "BH-B pin 90 (firewall bulkhead, RH) - gearbox speed sensor +12V"
+      "label": "Bulkhead pin 90 - +12 V gearbox speed sensor"
     },
     {
       "id": "br_cab_fspur_r",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1290,
-        "y": 1260
+        "x": 30,
+        "y": 630
       },
       "schematicPosition": {
-        "x": 630,
-        "y": 1500
+        "x": -2430,
+        "y": 1050
       },
       "propagate": false,
-      "label": "ECU-B plug pin B21 (Link G4X, centre dash) - DI 4 front RH wheel speed"
+      "label": "ECU-B pin B21 - front right wheel speed"
     },
     {
       "id": "br_cab_fspur_fr_sh",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1230,
-        "y": 1200
+        "x": 210,
+        "y": 930
       },
       "schematicPosition": {
-        "x": 630,
-        "y": 1800
+        "x": -2430,
+        "y": 1110
       },
       "propagate": false,
-      "label": "Splice SP-SHIELD-B at the ECU-B plug (B-cabin) - FR spur screen to ECU-B B17"
+      "label": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield"
     },
     {
       "id": "br_w_cru_5v",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -810,
-        "y": 480
+        "x": 1830,
+        "y": 660
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 2820
+        "x": -2430,
+        "y": 240
       },
       "propagate": false,
-      "label": "Cruise ladder pull-up resistor lead (CSB3 loom, under centre cluster) - +5V"
+      "label": "Cruise ladder resistor lead, centre console - +5 V cruise"
     },
     {
       "id": "br_w_csbg",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -2490,
-        "y": 1950
+        "x": -420,
+        "y": 1200
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 2760
+        "x": -1110,
+        "y": 1410
       },
       "propagate": false,
-      "label": "Splice CSB3 GND (CSB3 loom, under centre cluster) - CSB3 + opto ground"
+      "label": "CSB3 ground splice, centre console - CSB3 + opto ground"
     },
     {
       "id": "br_w39",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -870,
-        "y": -210
+        "x": 1710,
+        "y": 300
       },
       "schematicPosition": {
-        "x": 4710,
-        "y": 60
+        "x": -2070,
+        "y": 600
       },
       "propagate": false,
-      "label": "ECU-B plug pin B33 (Link G4X, centre dash) - pedal sub signal VPA2"
+      "label": "ECU-B pin B33 - pedal 2 signal (sub)"
     },
     {
       "id": "br_w_fb_sw12",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1680,
-        "y": 180
+        "x": 810,
+        "y": 780
       },
       "schematicPosition": {
-        "x": 3570,
-        "y": 2940
+        "x": -1110,
+        "y": -150
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse SW12 7.5A output splice - switched +12V"
+      "label": "SW12 bus plug pin 2, glove box - switched +12 V feed"
     },
     {
       "id": "br_w_fb_mrs_en",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1590,
-        "y": -90
+        "x": 990,
+        "y": 480
       },
       "schematicPosition": {
-        "x": 3570,
-        "y": 3000
+        "x": 4140,
+        "y": -540
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse MRS 7.5A, BUS2 pin 12 - EHPS pump enable"
+      "label": "LOGIC box fuse MRS 7.5 A lead - EHPS enable +12 V"
     },
     {
       "id": "br_w_lamg_b",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -2490,
-        "y": 1590
+        "x": -420,
+        "y": 840
       },
       "schematicPosition": {
-        "x": 3000,
-        "y": 2700
+        "x": -1110,
+        "y": 1350
       },
       "propagate": false,
-      "label": "BH-B pin 96 (firewall bulkhead, RH) - CAN-Lambda ground"
+      "label": "Bulkhead pin 96 - CAN-Lambda ground"
     },
     {
       "id": "br_w_inj_pwr_c",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -210,
-        "y": -210
+        "x": 2070,
+        "y": 240
       },
       "schematicPosition": {
-        "x": 1470,
-        "y": 3090
+        "x": 450,
+        "y": -390
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse INJ 15A, BUS2 pin 4 - injector +12V"
+      "label": "LOGIC box fuse INJ 15 A lead - injector +12 V"
     },
     {
       "id": "br_w_cop_pwr_c",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -120,
-        "y": -150
+        "x": 2250,
+        "y": 300
       },
       "schematicPosition": {
-        "x": 1470,
-        "y": 3150
+        "x": 450,
+        "y": -330
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) fuse COP 15A, BUS2 pin 3 - ignition coil +12V"
+      "label": "LOGIC box fuse COP 15 A lead - coil +12 V"
     },
     {
       "id": "br_w76",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1590,
-        "y": 360
+        "x": -690,
+        "y": 930
       },
       "schematicPosition": {
-        "x": 2130,
-        "y": 1140
+        "x": -1110,
+        "y": 840
       },
       "propagate": false,
-      "label": "POWER box (glove box) relay R2 EFI main, pin 85 - coil minus"
+      "label": "EFI main relay R2 pin 85, POWER box - EFI relay coil (-)"
     },
     {
       "id": "br_w_fp85",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -2310,
-        "y": 360
+        "x": -1350,
+        "y": 930
       },
       "schematicPosition": {
-        "x": 2130,
-        "y": 1260
+        "x": -1110,
+        "y": 570
       },
       "propagate": false,
-      "label": "Battery relay block (trunk) relay K1 fuel pump, pin 85 - coil minus"
+      "label": "Fuel pump relay K1 pin 85, trunk - fuel pump relay coil (-)"
     },
     {
       "id": "br_w_fan85",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -3030,
-        "y": 360
+        "x": -2010,
+        "y": 930
       },
       "schematicPosition": {
-        "x": 2130,
-        "y": 1320
+        "x": -1110,
+        "y": 870
       },
       "propagate": false,
-      "label": "POWER box (glove box) relay R4 radiator fan, pin 85 - coil minus"
+      "label": "Rad fan relay R4 pin 85, POWER box - fan relay coil (-)"
     },
     {
       "id": "br_w81",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1950,
-        "y": 360
+        "x": -1020,
+        "y": 930
       },
       "schematicPosition": {
-        "x": 2130,
-        "y": 1200
+        "x": -1110,
+        "y": 600
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M14 ETB power, pin 85 - coil minus"
+      "label": "ETB relay M4 pin 85, LOGIC box - ETB relay coil (-)"
     },
     {
       "id": "br_w_str85",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -2670,
-        "y": 360
+        "x": -1680,
+        "y": 930
       },
       "schematicPosition": {
-        "x": 2130,
-        "y": 1080
+        "x": -1110,
+        "y": 780
       },
       "propagate": false,
-      "label": "POWER box (glove box) relay R3 start, pin 85 - coil minus"
+      "label": "Start relay R3 pin 85, POWER box - start relay coil (-)"
     },
     {
       "id": "br_w_acc86",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1770,
-        "y": -1680
+        "x": -1380,
+        "y": -900
       },
       "schematicPosition": {
-        "x": 4110,
-        "y": 1530
+        "x": -1110,
+        "y": -510
       },
       "propagate": false,
-      "label": "LOGIC box (glove box) relay M15 A/C clutch, pin 86 - coil plus"
+      "label": "A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+)"
     },
     {
       "id": "br_w_eps_rly",
       "type": "Loose",
       "width": 390,
       "layoutPosition": {
-        "x": -1590,
-        "y": 120
+        "x": 990,
+        "y": 720
       },
       "schematicPosition": {
-        "x": 3570,
-        "y": 3090
+        "x": 2820,
+        "y": 1290
       },
       "propagate": false,
-      "label": "EHPS pump relay (glove box), pin 85 - coil minus"
+      "label": "EHPS relay pin 85, glove box - EHPS relay coil (-)"
     }
   ],
   "cables": [
@@ -2960,8 +3363,8 @@
       "id": "cab_fspur",
       "partId": "cab_55a1831",
       "schematicPosition": {
-        "x": 1080,
-        "y": 3150
+        "x": -1560,
+        "y": 780
       },
       "cores": [
         {
@@ -2978,7 +3381,37 @@
           "target": {
             "id": "sp_5v",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 810
+              },
+              "id": "cab_fspur_5v_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 660
+              },
+              "id": "cab_fspur_5v_t_rp2"
+            },
+            {
+              "schematicPosition": {
+                "x": -270,
+                "y": 660
+              },
+              "id": "cab_fspur_5v_t_rp3"
+            },
+            {
+              "schematicPosition": {
+                "x": -270,
+                "y": 960
+              },
+              "id": "cab_fspur_5v_t_rp4"
+            }
+          ]
         },
         {
           "id": "cab_fspur_gnd",
@@ -2995,7 +3428,23 @@
           "target": {
             "id": "sp_gndout",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1140,
+                "y": 840
+              },
+              "id": "cab_fspur_gnd_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1140,
+                "y": 720
+              },
+              "id": "cab_fspur_gnd_t_rp2"
+            }
+          ]
         },
         {
           "id": "cab_fspur_l",
@@ -3012,7 +3461,37 @@
           "target": {
             "id": "ecu_a",
             "handle": "a23"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 870
+              },
+              "id": "cab_fspur_l_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 930
+              },
+              "id": "cab_fspur_l_t_rp2"
+            },
+            {
+              "schematicPosition": {
+                "x": -90,
+                "y": 930
+              },
+              "id": "cab_fspur_l_t_rp3"
+            },
+            {
+              "schematicPosition": {
+                "x": -90,
+                "y": 690
+              },
+              "id": "cab_fspur_l_t_rp4"
+            }
+          ]
         }
       ],
       "shield": {
@@ -3030,15 +3509,61 @@
         "target": {
           "id": "sp_shield_a",
           "handle": "Splice"
-        }
+        },
+        "targetLayoutPoints": [
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": 900
+            },
+            "id": "cab_fspur_sh_t_rp1"
+          },
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": 1110
+            },
+            "id": "cab_fspur_sh_t_rp2"
+          },
+          {
+            "schematicPosition": {
+              "x": 480,
+              "y": 1110
+            },
+            "id": "cab_fspur_sh_t_rp3"
+          },
+          {
+            "schematicPosition": {
+              "x": 480,
+              "y": 210
+            },
+            "id": "cab_fspur_sh_t_rp4"
+          }
+        ],
+        "sourceLayoutPoints": [
+          {
+            "schematicPosition": {
+              "x": -1680,
+              "y": 900
+            },
+            "id": "cab_fspur_sh_s_rp1"
+          },
+          {
+            "schematicPosition": {
+              "x": -1680,
+              "y": 930
+            },
+            "id": "cab_fspur_sh_s_rp2"
+          }
+        ]
       }
     },
     {
       "id": "cab_fspur_fr_ac",
       "partId": "cab_55a1811",
       "schematicPosition": {
-        "x": 840,
-        "y": 1350
+        "x": -1560,
+        "y": 1020
       },
       "cores": [
         {
@@ -3056,7 +3581,23 @@
           "target": {
             "id": "br_cab_fspur_r",
             "handle": "Terminal"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 1050
+              },
+              "id": "cab_fspur_r_ac_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 900
+              },
+              "id": "cab_fspur_r_ac_s_rp2"
+            }
+          ]
         }
       ],
       "shield": {
@@ -3070,20 +3611,36 @@
         "target": {
           "id": "br_cab_fspur_fr_sh",
           "handle": "Terminal"
-        }
+        },
+        "targetLayoutPoints": [
+          {
+            "schematicPosition": {
+              "x": -2040,
+              "y": 1080
+            },
+            "id": "cab_fspur_fr_sh_ac_t_rp1"
+          },
+          {
+            "schematicPosition": {
+              "x": -2040,
+              "y": 1110
+            },
+            "id": "cab_fspur_fr_sh_ac_t_rp2"
+          }
+        ]
       }
     },
     {
-      "id": "cab_aps",
-      "partId": "cab_sh_6c",
+      "id": "cab_aps1",
+      "partId": "cab_55a1831",
       "schematicPosition": {
-        "x": 0,
-        "y": 1560
+        "x": -1560,
+        "y": 330
       },
       "cores": [
         {
           "id": "w_aps_vc1",
-          "color": "Orange",
+          "color": "Red",
           "identColors": [
             "Blue",
             "Blue"
@@ -3095,11 +3652,57 @@
           "target": {
             "id": "sp_5v_2",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 360
+              },
+              "id": "w_aps_vc1_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 360
+              },
+              "id": "w_aps_vc1_t_rp2"
+            },
+            {
+              "schematicPosition": {
+                "x": -630,
+                "y": 360
+              },
+              "id": "w_aps_vc1_t_rp3"
+            },
+            {
+              "schematicPosition": {
+                "x": -630,
+                "y": 300
+              },
+              "id": "w_aps_vc1_t_rp4"
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -2040,
+                "y": 360
+              },
+              "id": "w_aps_vc1_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -2040,
+                "y": 450
+              },
+              "id": "w_aps_vc1_s_rp2"
+            }
+          ]
         },
         {
           "id": "w40",
-          "color": "Black",
+          "color": "Yellow",
           "identColors": [
             "Yellow",
             "Yellow",
@@ -3112,11 +3715,57 @@
           "target": {
             "id": "sp_gndout",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 390
+              },
+              "id": "w40_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 390
+              },
+              "id": "w40_t_rp2"
+            },
+            {
+              "schematicPosition": {
+                "x": -330,
+                "y": 390
+              },
+              "id": "w40_t_rp3"
+            },
+            {
+              "schematicPosition": {
+                "x": -330,
+                "y": 720
+              },
+              "id": "w40_t_rp4"
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1740,
+                "y": 390
+              },
+              "id": "w40_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1740,
+                "y": 480
+              },
+              "id": "w40_s_rp2"
+            }
+          ]
         },
         {
           "id": "w38",
-          "color": "White",
+          "color": "Blue",
           "identColors": [
             "White",
             "Blue",
@@ -3129,8 +3778,77 @@
           "target": {
             "id": "ecu_a",
             "handle": "a14"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 420
+              },
+              "id": "w38_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 510
+              },
+              "id": "w38_s_rp2"
+            }
+          ]
+        }
+      ],
+      "shield": {
+        "id": "cab_aps1_sh",
+        "color": "Shield",
+        "identColors": [
+          "White",
+          "Blue",
+          "Yellow"
+        ],
+        "target": {
+          "id": "sp_shield_a",
+          "handle": "Splice"
         },
+        "targetLayoutPoints": [
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": 450
+            },
+            "id": "cab_aps1_sh_t_rp1"
+          },
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": -210
+            },
+            "id": "cab_aps1_sh_t_rp2"
+          },
+          {
+            "schematicPosition": {
+              "x": 420,
+              "y": -210
+            },
+            "id": "cab_aps1_sh_t_rp3"
+          },
+          {
+            "schematicPosition": {
+              "x": 420,
+              "y": 210
+            },
+            "id": "cab_aps1_sh_t_rp4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cab_aps2",
+      "partId": "cab_55a1831",
+      "schematicPosition": {
+        "x": -1560,
+        "y": 510
+      },
+      "cores": [
         {
           "id": "w210",
           "color": "Red",
@@ -3145,11 +3863,43 @@
           "target": {
             "id": "sp_5v_2",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1590,
+                "y": 540
+              },
+              "id": "w210_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1590,
+                "y": 300
+              },
+              "id": "w210_t_rp2"
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 540
+              },
+              "id": "w210_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 360
+              },
+              "id": "w210_s_rp2"
+            }
+          ]
         },
         {
           "id": "w_aps_gnd2",
-          "color": "Brown",
+          "color": "Yellow",
           "identColors": [
             "Yellow",
             "Yellow",
@@ -3162,7 +3912,53 @@
           "target": {
             "id": "sp_gndout",
             "handle": "Splice"
-          }
+          },
+          "targetLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 570
+              },
+              "id": "w_aps_gnd2_t_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1440,
+                "y": 510
+              },
+              "id": "w_aps_gnd2_t_rp2"
+            },
+            {
+              "schematicPosition": {
+                "x": -330,
+                "y": 510
+              },
+              "id": "w_aps_gnd2_t_rp3"
+            },
+            {
+              "schematicPosition": {
+                "x": -330,
+                "y": 720
+              },
+              "id": "w_aps_gnd2_t_rp4"
+            }
+          ],
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1740,
+                "y": 570
+              },
+              "id": "w_aps_gnd2_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1740,
+                "y": 390
+              },
+              "id": "w_aps_gnd2_s_rp2"
+            }
+          ]
         },
         {
           "id": "w_aps_vpa2",
@@ -3179,7 +3975,23 @@
           "target": {
             "id": "br_w39",
             "handle": "Terminal"
-          }
+          },
+          "sourceLayoutPoints": [
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 600
+              },
+              "id": "w_aps_vpa2_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 420
+              },
+              "id": "w_aps_vpa2_s_rp2"
+            }
+          ]
         }
       ],
       "shield": {
@@ -3193,7 +4005,37 @@
         "target": {
           "id": "sp_shield_a",
           "handle": "Splice"
-        }
+        },
+        "targetLayoutPoints": [
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": 630
+            },
+            "id": "cab_aps_sh_t_rp1"
+          },
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": -210
+            },
+            "id": "cab_aps_sh_t_rp2"
+          },
+          {
+            "schematicPosition": {
+              "x": 420,
+              "y": -210
+            },
+            "id": "cab_aps_sh_t_rp3"
+          },
+          {
+            "schematicPosition": {
+              "x": 420,
+              "y": 210
+            },
+            "id": "cab_aps_sh_t_rp4"
+          }
+        ]
       }
     }
   ],
@@ -3406,15 +4248,6 @@
       }
     },
     {
-      "id": "bn_bp_fl_acamp__fl_acamp_mg",
-      "sourceId": "bp_fl_acamp",
-      "targetId": "fl_acamp_mg",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_fl_acamp__fl_acamp_psw",
       "sourceId": "bp_fl_acamp",
       "targetId": "fl_acamp_psw",
@@ -3425,15 +4258,6 @@
       "partIds": [
         "cov_dr25_316"
       ]
-    },
-    {
-      "id": "bn_bp_fl_acamp__br_ac_mg",
-      "sourceId": "bp_fl_acamp",
-      "targetId": "br_ac_mg",
-      "length": {
-        "value": 20,
-        "unit": "mm"
-      }
     },
     {
       "id": "bn_fl_acamp_psw__br_ac_psw",
@@ -3687,6 +4511,15 @@
       "partIds": [
         "cov_lbl_38",
         "cov_dr25_34"
+      ],
+      "layoutPoints": [
+        {
+          "id": "bn_bp_840__bh_a_fw_inj_cop_bow",
+          "layoutPosition": {
+            "x": 2340,
+            "y": 450
+          }
+        }
       ]
     },
     {
@@ -3805,128 +4638,128 @@
     {
       "id": "sp_trig2",
       "schematicPosition": {
-        "x": 2160,
-        "y": 0
+        "x": 600,
+        "y": 270
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_960",
       "layoutPosition": {
-        "x": -750,
-        "y": 30
+        "x": 1710,
+        "y": 480
       },
-      "label": "SP-CAM - cam Hall signal + 1.8k pull-up to ECU-A A9"
+      "label": "At ECU-A plug - SP-CAM: cam signal + 1.8k pull-up to +8V"
     },
     {
       "id": "sp_5v",
       "layoutPosition": {
-        "x": -870,
-        "y": 390
+        "x": 1830,
+        "y": 480
       },
       "schematicPosition": {
-        "x": 3480,
-        "y": 2610
+        "x": -330,
+        "y": 960
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
-      "label": "SP-5V-A - ECU-A A32 +5V out to pedal, front WS, bulkhead A, loom B"
+      "label": "At ECU-A plug - SP-5V-A: +5 V sensor supply"
     },
     {
       "id": "sp_shield_a",
       "schematicPosition": {
-        "x": 1620,
-        "y": 0
+        "x": 480,
+        "y": 210
       },
       "layoutPosition": {
-        "x": -1110,
-        "y": 300
+        "x": 1320,
+        "y": 870
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_a",
-      "label": "SP-SHIELD-A - loom A cable drains to ECU-A A7"
+      "label": "6 mm behind ECU-A plug - SP-SHIELD-A: shield drains"
     },
     {
       "id": "sp_8v",
       "layoutPosition": {
-        "x": -870,
-        "y": 450
+        "x": 1770,
+        "y": 540
       },
       "schematicPosition": {
-        "x": 2940,
-        "y": 2700
+        "x": 480,
+        "y": 180
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
-      "label": "SP-8V - ECU-A A6 +8V to cam Hall sensor + pull-up"
+      "label": "At ECU-A plug - SP-8V: +8 V cam sensor supply"
     },
     {
       "id": "sp_sw12",
       "layoutPosition": {
-        "x": -1830,
-        "y": 1710
+        "x": 60,
+        "y": 1080
       },
       "schematicPosition": {
-        "x": 3420,
-        "y": 3750
+        "x": 480,
+        "y": 150
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
-      "label": "SP-SW12 - LOGIC SW12 feed to ECU-A A5, engine sensors, VSS"
+      "label": "At ECU-A plug - SP-SW12: switched +12 V"
     },
     {
       "id": "sp_gndout",
       "layoutPosition": {
-        "x": -2040,
-        "y": 1830
+        "x": -120,
+        "y": 1080
       },
       "schematicPosition": {
-        "x": 4080,
-        "y": 2730
+        "x": -330,
+        "y": 720
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1140",
-      "label": "SP-GNDOUT-A - ECU-A A24 sensor ground to pedal, front WS, bulkhead A"
+      "label": "At ECU-A plug - SP-GNDOUT-A: sensor ground"
     },
     {
       "id": "sp_chassis",
       "layoutPosition": {
-        "x": -2340,
-        "y": 1830
+        "x": -300,
+        "y": 1020
       },
       "schematicPosition": {
-        "x": 3600,
-        "y": 2790
+        "x": -450,
+        "y": 750
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1170",
-      "label": "SP-GND-CHASSIS - ECU A25/A34/B25/B34, CSB3, lambda grounds to ring"
+      "label": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground"
     },
     {
       "id": "sp_5v_2",
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
       "layoutPosition": {
-        "x": -870,
-        "y": 330
+        "x": 1770,
+        "y": 480
       },
       "schematicPosition": {
-        "x": 3450,
-        "y": 2820
+        "x": -630,
+        "y": 300
       },
-      "label": "SP-5V-PEDAL - +5V to pedal VC1/VC2 + cruise ladder"
+      "label": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise"
     },
     {
       "id": "sp_ac_psw",
       "layoutPosition": {
-        "x": -1890,
-        "y": 210
+        "x": -750,
+        "y": -210
       },
       "schematicPosition": {
-        "x": 4230,
-        "y": 1590
+        "x": -1530,
+        "y": -510
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_fl_acamp",
-      "label": "SP-AC-PSW - A/C pressure switch to amplifier + A/C clutch relay coil"
+      "label": "At A/C amp - SP-AC-PSW: A/C pressure switch output"
     }
   ],
   "resistors": [
@@ -3935,53 +4768,259 @@
       "partId": "rp_1k8",
       "locationId": "bp_1050",
       "layoutPosition": {
-        "x": -1590,
-        "y": 420
+        "x": -750,
+        "y": 870
       },
       "schematicPosition": {
-        "x": 510,
+        "x": 540,
         "y": 270
       },
-      "label": "1.8k cam Hall pull-up to +8V"
+      "label": "Cam pull-up 1.8 k to +8 V"
     }
   ],
   "schematicNotes": [
     {
-      "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead DRB102 - firewall (section A) 35: MRS EPS pump logic enable - fuse box LOGIC MRS 7.5A (fed from k_eps_en 87, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nSP-5V-A (splice): +5V at ECU A (A32 lead 18 AWG) - feeds SP-5V-BHA before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to SP-5V-B on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to SP-5V-PEDAL\nSP-5V-PEDAL (splice): +5V cabin loads off SP-5V-A - APS, cruise ladder, VC2 lead (20 AWG each)\nSP-GNDOUT-A (splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds SP-GND-BHA before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)",
-      "schematicPosition": {
-        "x": 4830,
-        "y": 120
-      },
-      "width": 390
-    },
-    {
-      "id": "n_cavity_notes_2",
-      "text": "CAVITY NOTES (cont.)\nSP-SW12 (splice): switched 12V bus - its B-side load (VSS feed on bulkhead B c20) is drawn on ST185-B-cabin (broken off); relay coil+ feeds come from the SW12 splice in the LOGIC box (ST185-CabinPower)\nSP-GND-CHASSIS (splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)\nSP-SHIELD-A (splice): drain T-splice about 6 mm (0.25 in) behind the ECU-A plug (Daniel 2026-10-12). The crank drain is the one crimped into A7 (the wire into A7 is its last few mm); every other loom-A drain (cam, turbo, flex, ETB sensor, APS, front WS spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20/22 AWG - no combined-gauge pigtail, one wire per pin.",
-      "schematicPosition": {
-        "x": 5250,
-        "y": 120
-      },
-      "width": 390
-    },
-    {
-      "id": "n_aps",
-      "text": "APS PEDAL - folded in 2026-10-11 (harness-reconcile pass step 2, \"pedal is one cable in A-cabin\"): ST185-APS-Pedal.harness and its DT06-6S/DT04-6P inline mate (IX_APS) are retired; the BRZ e-throttle pedal's Sumitomo TS 025 plug is wired directly from this file. 5 of 6 pins (VC2, GND2, VC1, GND1, VPA1 -> A14) are ECU-A signals, wired straight from here; the 6th (VPA2 -> ECU-B B33) still breaks off to ST185-B-cabin (its loose end lands on ECU-B B33) since it's a B-letter signal - same crossover as before, just without the intermediate connector. Colours follow the former inline mate's. Run length to the pedal is still a placeholder (was 150 mm pedal-to-inline on APS-Pedal; now pedal-to-dash) - TBD, measure at the car.",
-      "schematicPosition": {
-        "x": 4710,
-        "y": 1050
-      },
-      "width": 390
-    },
-    {
-      "id": "n_drb102",
+      "id": "n_general",
+      "text": "Each table is a pinout: pin, wire, description. A wire has the same description at both ends.\nAn end that says 'on ST185-<file>' is the same wire running on in that loom, not a join.\nEvery shield drain is its own wire. Drains meet only at SP-SHIELD-A, 6 mm behind the ECU-A plug: the crank drain is crimped into A7, the others are soldered onto it.\nSensor ground (ECU A24) never joins chassis ground or loom B sensor ground (ECU B22).\nBulkhead pins marked N/C are section B (see ST185-B-cabin) or spares with a sealing plug.",
       "width": 390,
-      "color": "Orange",
       "schematicPosition": {
-        "x": 510,
-        "y": 330
-      },
-      "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_a_fw is the whole 102-cavity receptacle with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-B-cabin - see ST185-B-cabin (DRB 3-8, 43, 48-49, 54-55, 60, 62-102); their contacts and sealing plugs are counted there."
+        "x": -2430,
+        "y": -960
+      }
+    },
+    {
+      "id": "n_end_fl_acamp_act",
+      "text": "A/C amp A18 pin 11 (1993: A15), behind the glove box. Solder splice onto the factory G-Y lead. EWD 1992 p.93 / p.218; locator 1990 p.17.",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 540
+      }
+    },
+    {
+      "id": "n_end_fl_acamp_psw",
+      "text": "A/C amp A18 pin 13 (1993: A15), behind the glove box. Solder splice onto the factory Y-R lead. EWD 1990 p.152; locator 1990 p.17.",
+      "width": 270,
+      "schematicPosition": {
+        "x": -2310,
+        "y": -420
+      }
+    },
+    {
+      "id": "n_end_br_ac_psw",
+      "text": "Runs on in ST185-EngineRoom-C to A/C pressure switch A5 pin 4 (engine bay): new wire to the switch's own mating plug, plug part TBD. EWD 1990 p.152.",
+      "width": 270,
+      "schematicPosition": {
+        "x": -2310,
+        "y": -570
+      }
+    },
+    {
+      "id": "n_end_chassis_ring",
+      "text": "Ground ring M6 on a cabin chassis stud at the ECU (TBD - EWD ground point ID)",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1170
+      }
+    },
+    {
+      "id": "n_end_br_w_b25",
+      "text": "ECU-B plug pin B25 (Link G4X, centre dash)",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1290
+      }
+    },
+    {
+      "id": "n_end_br_w_b34",
+      "text": "ECU-B plug pin B34 (Link G4X, centre dash)",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1380
+      }
+    },
+    {
+      "id": "n_end_br_w_rail_5v_b_c",
+      "text": "at the ECU-B plug (B-cabin); level, evap, rear WS",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1650
+      }
+    },
+    {
+      "id": "n_end_br_w_rail_sw12_b_c",
+      "text": "(firewall bulkhead, RH); sensor +12V",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": -60
+      }
+    },
+    {
+      "id": "n_end_br_cab_fspur_r",
+      "text": "ECU-B plug pin B21 (Link G4X, centre dash); wheel speed",
+      "width": 270,
+      "schematicPosition": {
+        "x": -2730,
+        "y": 1050
+      }
+    },
+    {
+      "id": "n_end_br_cab_fspur_fr_sh",
+      "text": "at the ECU-B plug (B-cabin); to ECU-B B17",
+      "width": 270,
+      "schematicPosition": {
+        "x": -2730,
+        "y": 1140
+      }
+    },
+    {
+      "id": "n_end_br_w_cru_5v",
+      "text": "Cruise ladder pull-up resistor lead (CSB3 loom, under centre cluster)",
+      "width": 270,
+      "schematicPosition": {
+        "x": -2730,
+        "y": 240
+      }
+    },
+    {
+      "id": "n_end_br_w_csbg",
+      "text": "(CSB3 loom, under centre cluster)",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1560
+      }
+    },
+    {
+      "id": "n_end_br_w39",
+      "text": "ECU-B plug pin B33 (Link G4X, centre dash); VPA2",
+      "width": 270,
+      "schematicPosition": {
+        "x": -2370,
+        "y": 600
+      }
+    },
+    {
+      "id": "n_end_br_w_fb_sw12",
+      "text": "LOGIC box (glove box) fuse SW12 7.5A output splice",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": -150
+      }
+    },
+    {
+      "id": "n_end_br_w_fb_mrs_en",
+      "text": "LOGIC box (glove box) fuse MRS 7.5A Fuse fed from EPS enable relay k_eps_en pin 87 (ignition-switched).",
+      "width": 270,
+      "schematicPosition": {
+        "x": 4560,
+        "y": -540
+      }
+    },
+    {
+      "id": "n_end_br_w_lamg_b",
+      "text": "(firewall bulkhead, RH)",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1470
+      }
+    },
+    {
+      "id": "n_end_br_w_inj_pwr_c",
+      "text": "LOGIC box (glove box) fuse INJ 15A",
+      "width": 270,
+      "schematicPosition": {
+        "x": 150,
+        "y": -390
+      }
+    },
+    {
+      "id": "n_end_br_w_cop_pwr_c",
+      "text": "LOGIC box (glove box) fuse COP 15A",
+      "width": 270,
+      "schematicPosition": {
+        "x": 150,
+        "y": -300
+      }
+    },
+    {
+      "id": "n_end_br_w76",
+      "text": "POWER box (glove box) relay R2 EFI main, pin 85",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 960
+      }
+    },
+    {
+      "id": "n_end_br_w_fp85",
+      "text": "Battery relay block (trunk) relay K1 fuel pump, pin 85",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 690
+      }
+    },
+    {
+      "id": "n_end_br_w_fan85",
+      "text": "POWER box (glove box) relay R4 radiator fan, pin 85",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 1050
+      }
+    },
+    {
+      "id": "n_end_br_w81",
+      "text": "LOGIC box (glove box) relay M14 ETB power, pin 85",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 780
+      }
+    },
+    {
+      "id": "n_end_br_w_str85",
+      "text": "POWER box (glove box) relay R3 start, pin 85",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1410,
+        "y": 870
+      }
+    },
+    {
+      "id": "n_end_br_w_acc86",
+      "text": "LOGIC box (glove box) relay M15 A/C clutch, pin 86",
+      "width": 270,
+      "schematicPosition": {
+        "x": -690,
+        "y": -510
+      }
+    },
+    {
+      "id": "n_end_br_w_eps_rly",
+      "text": "EHPS pump relay (glove box), pin 85",
+      "width": 270,
+      "schematicPosition": {
+        "x": 3240,
+        "y": 1290
+      }
+    },
+    {
+      "id": "n_pedal_length",
+      "text": "Pedal branch length is a placeholder: measure at the car.",
+      "width": 270,
+      "schematicPosition": {
+        "x": -1980,
+        "y": 240
+      }
     }
   ],
   "wireParts": [
@@ -4091,18 +5130,6 @@
       "manufacturer": "M22759",
       "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
       "color": "Yellow",
-      "gauge": {
-        "value": 20,
-        "unit": "AWG"
-      }
-    },
-    {
-      "id": "m16_20_40",
-      "partNumber": "M22759/16-20-40",
-      "manufacturer": "M22759",
-      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
-      "color": "Yellow",
-      "stripeColor": "Black",
       "gauge": {
         "value": 20,
         "unit": "AWG"
@@ -4270,63 +5297,6 @@
   ],
   "cableParts": [
     {
-      "id": "cab_sh_6c",
-      "partNumber": "GENERIC SHLD CABLE 6C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 6 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "White",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Red",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k5",
-          "color": "Brown",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k6",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
-    {
       "id": "cab_55a1831",
       "partNumber": "55A1831-20-2/4/6-9",
       "manufacturer": "TE Connectivity (Raychem)",
@@ -4391,8 +5361,8 @@
     {
       "id": "bp_840",
       "layoutPosition": {
-        "x": -120,
-        "y": -30
+        "x": 2250,
+        "y": 420
       },
       "partIds": [
         "boot_342a034",
@@ -4402,8 +5372,8 @@
     {
       "id": "bp_870",
       "layoutPosition": {
-        "x": -210,
-        "y": -30
+        "x": 2070,
+        "y": 420
       },
       "partIds": [
         "boot_301a028"
@@ -4412,29 +5382,29 @@
     {
       "id": "bp_900",
       "layoutPosition": {
-        "x": -330,
-        "y": -30
+        "x": 1950,
+        "y": 420
       }
     },
     {
       "id": "bp_930",
       "layoutPosition": {
-        "x": -420,
-        "y": -30
+        "x": 1830,
+        "y": 420
       }
     },
     {
       "id": "bp_960",
       "layoutPosition": {
-        "x": -780,
-        "y": -30
+        "x": 1710,
+        "y": 420
       }
     },
     {
       "id": "bp_1020",
       "layoutPosition": {
-        "x": -1230,
-        "y": 270
+        "x": 210,
+        "y": 810
       },
       "partIds": [
         "boot_342a034",
@@ -4444,113 +5414,113 @@
     {
       "id": "bp_1050",
       "layoutPosition": {
-        "x": -1590,
-        "y": 270
+        "x": -690,
+        "y": 810
       }
     },
     {
       "id": "bp_1080",
       "layoutPosition": {
-        "x": -1950,
-        "y": 270
+        "x": -1020,
+        "y": 810
       }
     },
     {
       "id": "bp_1110",
       "layoutPosition": {
-        "x": -2310,
-        "y": 270
+        "x": -1350,
+        "y": 810
       }
     },
     {
       "id": "bp_1140",
       "layoutPosition": {
-        "x": -2670,
-        "y": 270
+        "x": -1680,
+        "y": 810
       }
     },
     {
       "id": "bp_1170",
       "layoutPosition": {
-        "x": -3030,
-        "y": 270
+        "x": -2010,
+        "y": 810
       }
     },
     {
       "id": "bp_fl_acamp",
       "layoutPosition": {
-        "x": -1770,
-        "y": 210
+        "x": -690,
+        "y": -210
       }
     },
     {
       "id": "b_bp_870",
       "layoutPosition": {
-        "x": -450,
-        "y": 390
+        "x": 1950,
+        "y": 540
       }
     },
     {
       "id": "b_bp_900",
       "layoutPosition": {
-        "x": -810,
-        "y": 390
+        "x": 1830,
+        "y": 540
       }
     },
     {
       "id": "b_bp_1020",
       "layoutPosition": {
-        "x": -1230,
-        "y": 0
+        "x": 1320,
+        "y": 600
       }
     },
     {
       "id": "b_bp_1050",
       "layoutPosition": {
-        "x": -1590,
-        "y": 0
+        "x": 990,
+        "y": 600
       }
     },
     {
       "id": "b_bp_1080",
       "layoutPosition": {
-        "x": -1830,
-        "y": 1770
+        "x": 120,
+        "y": 1020
       }
     },
     {
       "id": "b_bp_1110",
       "layoutPosition": {
-        "x": -1950,
-        "y": 1770
+        "x": 0,
+        "y": 1020
       }
     },
     {
       "id": "b_bp_1140",
       "layoutPosition": {
-        "x": -2040,
-        "y": 1770
+        "x": -120,
+        "y": 1020
       }
     },
     {
       "id": "b_bp_1170",
       "layoutPosition": {
-        "x": -2400,
-        "y": 1770
+        "x": -240,
+        "y": 1020
       }
     },
     {
       "id": "bp_at_bh_b_fw",
       "layoutPosition": {
-        "x": -330,
-        "y": 390
+        "x": 2070,
+        "y": 540
       }
     },
     {
       "id": "bp_at_ecu_b",
       "layoutPosition": {
-        "x": -1470,
-        "y": 1770
+        "x": 120,
+        "y": 900
       }
     }
   ],

@@ -172,7 +172,7 @@
 <text x="145.50" y="183.10" font-size="1.70" text-anchor="middle" fill="#333" font-family="Helvetica, Arial, sans-serif">factory lead B-O</text>
 <circle cx="168.00" cy="184.50" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="181.30" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_IGN_SW_C1</text>
-<text x="171.00" y="188.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">solder sleeve into the factory lead</text>
+<text x="171.00" y="188.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">solder splice onto the factory lead</text>
 <text x="227.00" y="182.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ign | 20 AWG | Green (Yellow-Blue-Blue)</text>
 <text x="265.00" y="182.90" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU-B (Link G4X plug B, centre dash) pin B28</text>
 <text x="17.00" y="201.60" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 8</text>

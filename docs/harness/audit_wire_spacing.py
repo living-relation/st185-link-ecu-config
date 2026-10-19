@@ -32,6 +32,7 @@ import sys
 
 import layout_geometry as lg
 import model
+import wire_paths
 
 # loom -> wire ids that may keep routing points. Only wires Dan asks for, after the overall layout
 # is set (R141); empty until he does.
@@ -86,10 +87,47 @@ def _close_run(a, b, limit):
     return run, at
 
 
+def _square_clear(poly, boxes, ends):
+    """True if every stretch is level or upright and none runs through a part it does not end at."""
+    if not poly:
+        return False
+    for p, q in zip(poly, poly[1:]):
+        if abs(q[0] - p[0]) > 0.5 and abs(q[1] - p[1]) > 0.5:
+            return False
+        for nid, (x0, y0, x1, y1) in boxes:
+            if nid in ends:
+                continue
+            if abs(p[1] - q[1]) < 0.5 and y0 + 2 < p[1] < y1 - 2 and min(p[0], q[0]) < x1 - 2 and max(p[0], q[0]) > x0 + 2:
+                return False
+            if abs(p[0] - q[0]) < 0.5 and x0 + 2 < p[0] < x1 - 2 and min(p[1], q[1]) < y1 - 2 and max(p[1], q[1]) > y0 + 2:
+                return False
+    return True
+
+
+def squares(d, ns, boxes, kind, x, k):
+    """DECISIONS R200 (Dan through Dispatch, 2026-10-19: "Routing points are ok to get the last ones
+    square"): routing points are allowed on a line the app would otherwise draw with a diagonal or
+    through a part, when with them it is square and clear. Lifts R141 for exactly those lines."""
+    if kind == "wire":
+        src, tgt = x["source"], x["target"]
+    else:
+        cab = next((cb for cb in d.get("cables", []) for co in cb.get("cores", []) + [cb.get("shield") or {}]
+                    if co is x), None)
+        if cab is None or not x.get("source" if k == "sourceLayoutPoints" else "target"):
+            return False
+        src, tgt = {"id": cab["id"], "handle": x["id"]}, x["source" if k == "sourceLayoutPoints" else "target"]
+    ends = {src["id"], tgt["id"]}
+    return not _square_clear(wire_paths.path(ns, src, tgt, None), boxes, ends) and         _square_clear(wire_paths.path(ns, src, tgt, x[k]), boxes, ends)
+
+
 def check_routing_points(loom, d, pending=False):
     keep = ROUTING_POINTS_ALLOWED.get(loom, set())
     out = []
+    ns = wire_paths.nodes(d)
+    boxes = [(nid, n.box()) for nid, n in ns.items()]
     for kind, xid, x, k in routed(d):
+        if x.get(k) and squares(d, ns, boxes, kind, x, k):
+            continue
         if x.get(k) and xid not in keep and (kind == "wire") != pending:
             out.append("RP1 %s: %s %s carries %d routing point(s) in %s (R141: none unless Dan asks)"
                        % (loom, kind, xid, len(x[k]), k))

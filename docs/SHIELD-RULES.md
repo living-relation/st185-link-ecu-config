@@ -31,7 +31,7 @@ the one trunk screen splice (`sp_shield_can`).
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
-| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur | `sp_shield_a` at `ecu_a` |
+| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur | `sp_shield_a` at `ecu_a`; the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
 | ECU-B B17 | knock, ETB motor, VSS, CAN trunk, rear WS spur, front WS FR spur | `sp_shield_b` at `ecu_b` |
 | CAN trunk drain `w_shd_can` | CAN trunk, ECU port, CSB3, cluster, RealDash, bulkhead / Lambda branches | `sp_shield_can` at the branch point |
 | VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `lp16_vrc_f_in` |

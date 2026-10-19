@@ -485,7 +485,7 @@
         "y": 240
       },
       "propagate": false,
-      "label": "Reverse relay M22 pin 87 (LOGIC box, glove box) - back-up lamp +12 V"
+      "label": "Reverse relay M7 pin 87 (LOGIC box, glove box) - back-up lamp +12 V"
     },
     {
       "id": "fl_r11_c1",

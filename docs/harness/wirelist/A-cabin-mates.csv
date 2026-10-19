@@ -1,0 +1,49 @@
+circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
+INJ1,Injector 1 drive (-) (ECU-A A4),bh_a_fw,31,Injector 1 drive (-),A-engine,bh_a_eng,31,Injector 1 drive (-),OK
+INJ2,Injector 2 drive (-) (ECU-A A3),bh_a_fw,32,Injector 2 drive (-),A-engine,bh_a_eng,32,Injector 2 drive (-),OK
+INJ3,Injector 3 drive (-) (ECU-A A2),bh_a_fw,33,Injector 3 drive (-),A-engine,bh_a_eng,33,Injector 3 drive (-),OK
+INJ4,Injector 4 drive (-) (ECU-A A1),bh_a_fw,34,Injector 4 drive (-),A-engine,bh_a_eng,34,Injector 4 drive (-),OK
+COP1,Coil 1 trigger (IGT) (ECU-A A13),bh_a_fw,35,Coil 1 trigger (IGT),A-engine,bh_a_eng,35,Coil 1 trigger (IGT),OK
+COP2,Coil 2 trigger (IGT) (ECU-A A12),bh_a_fw,36,Coil 2 trigger (IGT),A-engine,bh_a_eng,36,Coil 2 trigger (IGT),OK
+COP3,Coil 3 trigger (IGT) (ECU-A A11),bh_a_fw,37,Coil 3 trigger (IGT),A-engine,bh_a_eng,37,Coil 3 trigger (IGT),OK
+COP4,Coil 4 trigger (IGT) (ECU-A A10),bh_a_fw,38,Coil 4 trigger (IGT),A-engine,bh_a_eng,38,Coil 4 trigger (IGT),OK
+CRANKC,Crank sensor signal (ECU-A A8),bh_a_fw,9,Crank sensor signal,A-engine,bh_a_eng,9,Crank sensor signal,OK
+TURBO,Turbo speed signal (ECU-A A30),bh_a_fw,17,Turbo speed signal,A-engine,bh_a_eng,17,Turbo speed signal,OK
+FLEX,Flex fuel signal (ECU-A A31),bh_a_fw,21,Flex fuel signal,A-engine,bh_a_eng,21,Flex fuel signal,OK
+ETBS,Throttle pos 1 main (ECU-A A22),bh_a_fw,24,Throttle pos 1 main,A-engine,bh_a_eng,24,Throttle pos 1 main,OK
+ETBS,Throttle pos 2 sub (ECU-A A33),bh_a_fw,25,Throttle pos 2 sub,A-engine,bh_a_eng,25,Throttle pos 2 sub,OK
+MAPC,MAP sensor signal (ECU-A A17),bh_a_fw,30,MAP sensor signal,A-engine,bh_a_eng,30,MAP sensor signal,OK
+BOOST,Boost solenoid (-) (ECU-A A21),bh_a_fw,39,Boost solenoid (-),A-engine,bh_a_eng,39,Boost solenoid (-),OK
+ECT,Coolant temp signal (ECU-A A15),bh_a_fw,40,Coolant temp signal,A-engine,bh_a_eng,40,Coolant temp signal,OK
+IATC,Intake temp signal (ECU-A A16),bh_a_fw,41,Intake temp signal,A-engine,bh_a_eng,41,Intake temp signal,OK
+MRSSPD,EHPS pump speed (ECU-A A27),bh_a_fw,44,EHPS pump speed,A-engine,bh_a_eng,44,EHPS pump speed,OK
+CAM,Cam sensor signal (ECU-A A9),bh_a_fw,13,Cam sensor signal,A-engine,bh_a_eng,13,Cam sensor signal,OK
+8V,+8V cam sensor (ECU-A A6),bh_a_fw,12,+8 V to cam sensor,A-engine,bh_a_eng,12,+8 V to cam sensor,OK
+5V,+5V sensor (ECU-A A32),bh_a_fw,23,+5 V throttle sensor,A-engine,bh_a_eng,23,+5 V throttle sensor,OK
+5V,+5V sensor (ECU-A A32),bh_a_fw,28,+5 V MAP sensor,A-engine,bh_a_eng,28,+5 V MAP sensor,OK
+5V,+5V sensor (ECU-A A32),bh_a_fw,16,+5 V turbo speed,A-engine,bh_a_eng,16,+5 V turbo speed,OK
+5V,+5V sensor (ECU-A A32),bh_a_fw,47,+5 V oil pressure,A-engine,bh_a_eng,47,+5 V oil pressure,OK
+5V,+5V sensor (ECU-A A32),bh_a_fw,50,+5 V fuel pressure,A-engine,bh_a_eng,50,+5 V fuel pressure,OK
+5V,+5V sensor (ECU-A A32),bh_a_fw,51,+5 V coolant press,A-engine,bh_a_eng,51,+5 V coolant press,OK
+SGND,Sensor GND (ECU-A A24),bh_a_fw,26,Gnd IAT/TPS/coolant,A-engine,bh_a_eng,26,Gnd IAT/TPS/coolant,OK
+SGND,Sensor GND (ECU-A A24),bh_a_fw,10,Gnd crank sensor,A-engine,bh_a_eng,10,Gnd crank sensor,OK
+SGND,Sensor GND (ECU-A A24),bh_a_fw,14,Gnd cam sensor,A-engine,bh_a_eng,14,Gnd cam sensor,OK
+SGND,Sensor GND (ECU-A A24),bh_a_fw,18,Gnd turbo speed,A-engine,bh_a_eng,18,Gnd turbo speed,OK
+SGND,Sensor GND (ECU-A A24),bh_a_fw,29,Gnd flex + MAP,A-engine,bh_a_eng,29,Gnd flex + MAP,OK
+SW12,+12V switched (LOGIC SW12 bus),bh_a_fw,20,+12 V boost + flex,A-engine,bh_a_eng,20,+12 V boost + flex,OK
+INJ,+12V injectors (LOGIC INJ 15A),bh_a_fw,1,Injector +12 V feed,A-engine,bh_a_eng,1,Injector +12 V feed,OK
+COP,+12V coils (LOGIC COP 15A),bh_a_fw,2,Coil +12 V feed,A-engine,bh_a_eng,2,Coil +12 V feed,OK
+EPSEN,+12V EHPS enable (LOGIC MRS 7.5A),bh_a_fw,42,EHPS enable +12 V,A-engine,bh_a_eng,42,EHPS enable +12 V,OK
+CRANKC,"Screen A (ECU A7, SHIELD_A)",bh_a_fw,11,Crank sensor shield,A-engine,bh_a_eng,11,Crank sensor shield,OK
+CAM,"Screen A (ECU A7, SHIELD_A)",bh_a_fw,15,Cam sensor shield,A-engine,bh_a_eng,15,Cam sensor shield,OK
+TURBO,"Screen A (ECU A7, SHIELD_A)",bh_a_fw,19,Turbo speed shield,A-engine,bh_a_eng,19,Turbo speed shield,OK
+FLEX,"Screen A (ECU A7, SHIELD_A)",bh_a_fw,22,Flex fuel shield,A-engine,bh_a_eng,22,Flex fuel shield,OK
+ETBS,"Screen A (ECU A7, SHIELD_A)",bh_a_fw,27,Throttle shield,A-engine,bh_a_eng,27,Throttle shield,OK
+EPS,EHPS relay coil (-) (bh_a_fw 56),bh_a_fw,56,EHPS relay coil (-),A-engine,bh_a_eng,56,EHPS relay coil (-),OK
+5V,+5V sensor (ECU-A A32),ix_ws_front_p,1,VRC-F +5V,WheelSpeed-Front,ix_ws_front_r,1,VRC-F +5V,OK
+SGND,Sensor GND (ECU-A A24),ix_ws_front_p,2,VRC-F GND,WheelSpeed-Front,ix_ws_front_r,2,VRC-F GND,OK
+WSSF,FL conditioned out (ECU-A A23),ix_ws_front_p,3,FL conditioned out,WheelSpeed-Front,ix_ws_front_r,3,FL conditioned out,OK
+WSSF,"Screen A (ECU A7, SHIELD_A)",ix_ws_front_p,5,WS-F screen drain,WheelSpeed-Front,ix_ws_front_r,5,WS-F screen drain,OK
+WSSF,FR conditioned out (ECU-B B21),ix_ws_front_p,4,FR conditioned out,WheelSpeed-Front,ix_ws_front_r,4,FR conditioned out,OK
+,+5V sensor (ECU-A A32),bus_5v_bha_p,all,bus,A-cabin,bus_5v_bha_r,all,bussed: one net,OK
+,Sensor GND (ECU-A A24),bus_gnd_bha_p,all,bus,A-cabin,bus_gnd_bha_r,all,bussed: one net,OK

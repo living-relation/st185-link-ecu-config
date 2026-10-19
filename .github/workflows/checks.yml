@@ -79,6 +79,9 @@ jobs:
         run: python docs/build-research-hub.py --strict
       - name: Docs gate self-tests (Rows line + --strict)
         run: python .github/scripts/test_docs_gates.py
+      - name: Install openpyxl for the wire-list workbooks (pinned)
+        if: steps.scope.outputs.run == 'true'
+        run: python -m pip install --disable-pip-version-check openpyxl==3.1.5
       - name: Harness gates (check_all.py)
         if: steps.scope.outputs.run == 'true'
         run: python docs/harness/check_all.py
