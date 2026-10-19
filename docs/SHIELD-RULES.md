@@ -4,7 +4,7 @@ The shield rules themselves are **R27-R34** in `docs/harness/redesign/DECISIONS.
 rules from Daniel" (the one rules home; it wins over this file). This file is the inventory
 and the build detail that apply them. The plan doc §6.27 / §6.30-6.32 is history.
 
-**`docs/harness/audit_shields.py` enforces R1, R2, R3, R5 and R6 mechanically, and
+**`docs/harness/audit_shields.py` enforces R1, R2, R3, R5, R6 and S1-S4 (R207) mechanically, and
 `check_all.py` runs it.** If a change breaks one of these rules the build fails.
 That is deliberate: these were settled once and kept getting re-opened because
 nothing checked them.
@@ -27,13 +27,13 @@ splice just to end one screen. Two or more screens on one pin share ONE `GENERIC
 SPLICE` (no covering), placed on the pin's connector through its `locationId`
 (https://docs.harness.design/component/splice), with one `M22759/16-20-06` drain wire to the
 pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into
-the one trunk screen splice (`sp_shield_can`).
+its own named branch splice on the trunk drain (`sp_can_sh_*`, R207; the one exception to "one splice").
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
-| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur | `sp_shield_a` at `ecu_a`; the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
-| ECU-B B17 | knock, ETB motor, VSS, CAN trunk, rear WS spur, front WS FR spur | `sp_shield_b` at `ecu_b` |
-| CAN trunk drain `w_shd_can` | CAN trunk, ECU port, CSB3, cluster, RealDash, bulkhead / Lambda branches | `sp_shield_can` at the branch point |
+| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur, front WS FR spur | `sp_shield_a` at `ecu_a`; the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
+| ECU-B B17 | knock, ETB motor, VSS, rear WS spur | `sp_shield_b` at `ecu_b` |
+| ECU-COMMS C1 (R207) | CAN trunk drain `w_shd_can_trunk` (one wire); CSB3, cluster, RealDash, ECU cable and bulkhead / Lambda branch drains | one named splice per branch, `sp_can_sh_clu` / `_csb` / `_rd` / `_bh`, at that branch point |
 | VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `lp16_vrc_f_in` |
 | VRC rear IN pin 3 | RL and RR sensor cables | `sp_vrc_r_in_sh` at `lp16_vrc_r_in` |
 
@@ -93,15 +93,15 @@ Fallback, if that ever stops being true:
 | cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
 | knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
 | wss FL | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin (one shared splice, S9); fender route, no bulkhead; combined 4-core output screen → `IX_WS_FRONT` c5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
-| wss FR | same VRC-side cable as FL (one shared VRC output screen to A7); FR's own core leaves the shield at `IX_WS_FRONT` (c6 now spare, not a drain) and continues cabin-side as its own short shielded B-cabin spur, floating at the inline end, draining only at **B17** (Route 9 rev 3, 2026-10-10 - supersedes the earlier two-separate-output-cables design) | none — fender for the VRC leg; the B-cabin spur has no bulkhead either |
+| wss FR | same VRC-side cable as FL (one shared VRC output screen to A7); FR's own core leaves the shield at `IX_WS_FRONT` (c6 now spare, not a drain) and continues cabin-side as its own short shielded spur (`cab_fspur_fr_ac`, A-cabin, running on to the ECU-B plug for the FR signal wire), floating at both the inline end and the B end, drained only at `sp_shield_a` → **A7** (R207, 2026-10-19: loom screens never cross; it was B17 since Route 9 rev 3) | none — fender for the VRC leg; the B-cabin spur has no bulkhead either |
 | wss RL, RR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin (one shared splice, S9); no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
 | turbo speed, flex fuel, ETB sensor group (A22/A33) | 3- or 4-core cable (`cab_turbo`, `cab_flex`, `cab_etbs`) floats at the sensor → `bh_a_eng` c6 / c10 / c11 → `bh_a_fw` same → `sp_shield_a` → **A7** | own pin each, bulkhead A c6 / c10 / c11 (DRB 19 / 22 / 27, `docs/harness/DRB102-CAVITY-MAP.md`) |
-| ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | ETB motor: 2-core 18 AWG cable floats at the ETB (A-engine spur `cab_etbm_ae`), broken off to B-engine `cab_etbm_be` → `bh_b_eng` c22 → `bh_b_fw` c22 → `sp_shield_b` → **B17**. VSS: `cab_vss` floats at the VSS → c23 → `sp_shield_b` → B17. CAN-Lambda: `cab_can_lam` floats at the Lambda → `cab_lamcan_be` → c24 → B-cabin `cab_canbh_bc` → the CAN screen splice `sp_shield_can` → B17 (see CAN row). Each drain has its own cavity; the old shared B c1 pigtail plan is dropped | own pin each, bulkhead B c22 / c23 / c24 (DRB 88 / 91 / 94) |
-| CAN trunk + drops (ECU/CSB3/cluster/RealDash) | CAN pair only (H/L); +12V/ground stay plain. Every segment is a 2-core shielded twisted pair (`cab_can_*` in ST185-CAN, `cab_can_csb_csb` in ST185-CSB3); the screens join at `sp_shield_can` and float at every node (ECU port, CSB3, cluster, RealDash, Lambda). One drain `w_shd_can` breaks off to B-cabin `sp_shield_b` → **B17** | none for the cabin drops; the Lambda leg uses bulkhead B c24 (row above) |
+| ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | ETB motor: 2-core 18 AWG cable floats at the ETB (A-engine spur `cab_etbm_ae`), broken off to B-engine `cab_etbm_be` → `bh_b_eng` c22 → `bh_b_fw` c22 → `sp_shield_b` → **B17**. VSS: `cab_vss` floats at the VSS → c23 → `sp_shield_b` → B17. CAN-Lambda: `cab_can_lam` floats at the Lambda → `cab_lamcan_be` → c24 → B-cabin `cab_canbh_bc` → the CAN branch splice `sp_can_sh_bh` → the CAN trunk drain → ECU C1 (R207; see CAN row). Each drain has its own cavity; the old shared B c1 pigtail plan is dropped | own pin each, bulkhead B c22 / c23 / c24 (DRB 88 / 91 / 94) |
+| CAN trunk + drops (ECU/CSB3/cluster/RealDash) | CAN pair only (H/L); +12V/ground stay plain. Every segment is a 2-core shielded twisted pair (`cab_can_*` in ST185-CAN, `cab_can_csb_csb` in ST185-CSB3); each node cable drain splices onto the ONE trunk drain at its own branch (`sp_can_sh_clu`, `_csb`, `_rd`, `_bh`, named "SP-CAN-SH-<node>") and floats at the node (cluster, CSB3, RealDash, Lambda; the ECU cable too). The trunk drain `w_shd_can_trunk` is the only wire on ECU-COMMS **C1** (R207); nothing else shares it | none for the cabin drops; the Lambda leg uses bulkhead B c24 (row above) |
 | APS pedal (VC1/GND1/VPA1, VC2/GND2/VPA2) | one 6-core shielded cable `cab_aps` on A-cabin, pedal to the ECU (2026-10-11, "pedal is one cable in A-cabin"); the screen floats at the pedal and drains at `sp_shield_a` → **A7**. The VPA2 core breaks off near the ECU to B-cabin (`w_aps_vpa2` → `br_w39` → B33, crossover (c)) | none — the pedal and the ECU are both in the cabin |
 
 Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
-`sp_shield_b`. Nothing but a drain lands on A7 or B17. The harness-reconcile pass's redraw list is
+`sp_shield_b`, the CAN screens on C1 through the trunk drain. No screen crosses between loom A and loom B (R207, `audit_shields.py` S3). Nothing but a drain lands on A7, B17 or C1. The harness-reconcile pass's redraw list is
 done: turbo speed, flex fuel, ETB, gearbox VSS and CAN were redrawn as shielded cables
 2026-10-11 (plan §7.3), and the APS pedal as one shielded cable the same day. `docs/harness/audit_shields.py`
 only enforces what IS drawn; it does not

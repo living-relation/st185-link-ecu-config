@@ -1712,14 +1712,6 @@
       "reason": "continuation of cab_fout_sh from inline pin 5 to sp_shield_a (A7)"
     },
     {
-      "id": "cab_fspur_fr_sh",
-      "reason": "continuation of cab_fout_fr_sh from inline pin 6 to sp_shield_b (B17)"
-    },
-    {
-      "id": "cab_fspur_fr_sh_ac",
-      "reason": "A-cabin section of the FR screen: inline pin 6 to the broken-off end; continues on B-cabin as cab_fspur_fr_sh to sp_shield_b (B17)"
-    },
-    {
       "id": "cab_etbm_be_sh",
       "reason": "ETB motor screen: bulkhead B c22 to the broken-off end; continues on A-engine as cab_etbm_ae_sh and floats at the ETB - one screen node, grounded only at B17"
     },
@@ -1973,21 +1965,6 @@
         {
           "harness": "A-cabin",
           "terminal": "br_cab_fspur_r"
-        }
-      ]
-    },
-    {
-      "id": "BR_CAB_FSPUR_FR_SH",
-      "type": "broken_off",
-      "what": "front wheel-speed FR shield",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_cab_fspur_fr_sh"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_cab_fspur_fr_sh"
         }
       ]
     },
@@ -2444,7 +2421,7 @@
     {
       "id": "BR_CAB_CANBH_SH",
       "type": "broken_off",
-      "what": "CAN pair screen, sp_shield_can to bulkhead B c24",
+      "what": "CAN pair screen, sp_can_sh_bh to bulkhead B c24",
       "ends": [
         {
           "harness": "CAN",
@@ -2453,28 +2430,13 @@
         {
           "harness": "B-cabin",
           "terminal": "br_cab_canbh_sh"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_SHD_CAN",
-      "type": "broken_off",
-      "what": "CAN screen drain, sp_shield_can to sp_shield_b (B17)",
-      "ends": [
-        {
-          "harness": "CAN",
-          "terminal": "br_w_shd_can"
-        },
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_shd_can"
         }
       ]
     },
     {
       "id": "BR_CAB_CANCSB_SH",
       "type": "broken_off",
-      "what": "CAN pair screen, sp_shield_can to the CSB3 plug run (floats at CSB3)",
+      "what": "CAN pair screen, sp_can_sh_csb to the CSB3 plug run (floats at CSB3)",
       "ends": [
         {
           "harness": "CAN",
@@ -3992,7 +3954,10 @@
           "wc_term4",
           "wc_h_lam_pin",
           "wc_l_lam_pin",
-          "w_shd_can",
+          "w_shd_can_trunk",
+          "w_shd_can_csb",
+          "w_shd_can_rd",
+          "w_shd_can_bh",
           "wc_h_ecu",
           "wc_l_ecu",
           "cab_can_ecu_sh",
@@ -4915,8 +4880,7 @@
         "wires": [
           "wc_h_bh_bc",
           "wc_l_bh_bc",
-          "cab_canbh_bc_sh",
-          "w_shd_can_bc"
+          "cab_canbh_bc_sh"
         ]
       },
       "REV": {
@@ -5185,8 +5149,7 @@
           "Blue"
         ],
         "wires": [
-          "cab_fspur_r",
-          "cab_fspur_fr_sh"
+          "cab_fspur_r"
         ]
       },
       "APS": {

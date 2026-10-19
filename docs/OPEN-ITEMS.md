@@ -24,7 +24,7 @@ K10 answered the same day; row 56 dismissed by Dan; rows 33, 88, 97 done by merg
 - **Closed: 8** - rows 32 (K9 = A, 200 kPa), 33 (#218), 36 (K10 = A), 56 (dismissed by Dan, in-car fit is not agent scope, R109), 70 (K6 = A, ground point IF), 88 (#222), 97 (#239, K7 = A), 116 (K5, no PDF export).
 - **[G1] wiring sorted to build the harnesses: 8** - rows 27, 44, 89, 98, 107, 113, 121, 123 (parts, the fuse box approval the build needs and its CabinPower follow-up).
 - **[G2] ECU base maps: 6** - rows 22, 23, 67, 68, 69, 93 (bench / PCLink).
-- **[G3] ECU CAN config written + checked: 3** - rows 2, 102, 103 (the config is written; these are the PCLink import and checks).
+- **[G3] ECU CAN config written + checked: 4** - rows 2, 102, 103, 146 (the config is written; these are the PCLink import and checks).
 - **[G4] CSB3 config finished: 1** - row 101.
 - **Parked (out of scope): 10** - rows 9, 26, 62, 117, 119 and setup-time rows 4, 5, 7, 8, 10, moved to "Parked (out of scope)" at the end, not deleted.
 
@@ -34,6 +34,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); the research 
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
+| N51 | Loom A-B crossings | Shield topology (R207) left 4 wires that run between loom A and loom B without a pin assignment forcing it: `w_b25_ac` and `w_b34_ac` (ECU-B power grounds B25 / B34 fed from the A-cabin chassis splice `sp_chassis`), `w_lamg_ac` (CAN-Lambda ground, bulkhead B pin 96, to `sp_chassis`) and `w_rail_sw12_b_c_ac` (SW12 to bulkhead B pin 90 from `sp_sw12` in A-cabin). The other 6 crossings are pin-assignment crossings (+5V, APS VPA2, ETB motor x3, FR wheel-speed signal to B21). | A) give loom B its own ground ring lug on the same ECU stud and its own SW12 tap, so the 4 wires move into B-cabin and CabinPower (more drawing work, no new part); B) keep the 4 as they are (short, at the ECU, no extra wire) | A |
 
 ## Status (2026-10-19)
 
@@ -43,7 +44,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); the research 
 - **Harness plan:** A-cabin rebuilt clean-room and approved (#336). Phase 1 done: master wire lists for all 15 files, combined gap list `docs/harness/wirelist/GAPS.md`, `cleanroom/build_harness.py` (#339; old layout / label / routing-point scripts removed, `build_harness.py --check` gates rebuilt files). Phase 2 (row 144): rebuild the other 14 in four groups - Power (CabinPower, EngineRoom-C, HeavyDC, RearFuel), Loom B + CAN (B-cabin, B-engine, CAN, WheelSpeed-Rear), Loom A engine (A-engine, WheelSpeed-Front), Cabin extras (CSB3, ClusterLED, AntiTheft, RearLights); one SoT writer at a time; each list joins `GATED` when Dan approves its rebuild.
 - **Wire list = the wiring SoT since 2026-10-19 (N39 = A, N47 = A, R206):** wires, pins, splices, ends, mates, nets and factory ends live in `docs/harness/wirelist/*-wirelist.csv`; `sot/channels.csv` keeps the ECU channel settings and is checked against the lists both ways (`wirelist.py --check`, every list). `interfaces.json` is now only the drawing registry (file map, breaks, ident bands, device endpoints, flying-lead terminals); its wire facts are checked against the lists.
 - **CAD drawings:** all 34 drawings current with their models (#330-#338; `cad/check_drawings_current.py`, `cad/check_drawing_rules.py` 34 / 34 pass).
-- **Next question ID:** N50.
+- **Next question ID:** N52.
 
 
 The research hub (`docs/research-hub.html`) reads this section: keep the table and the numbered list in this shape.
@@ -56,7 +57,7 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 | Parts | 7 | Goal 1: the fuse box approval and order (row 107), the pressure sensor plug type (row 130), the LOGIC HL 86 short-segment warning (row 123), DRB sealing plugs (row 44), the LP-16 rear nut (row 98), the CSB3 board maker model (row 141); the CSB3 drawing update (row 125) closed 2026-10-19; the POWER lug bolt torque (row 124) closed 2026-10-17 (R155), the mini fuse pitch (row 135) closed 2026-10-18 (R166), the HEAD relay 5th blade (row 134) closed 2026-10-18 (R170), the shielded cables still generic after R174 (row 140). | glove, dash, rear, trunk |
 | CAN | 1 | Goal 3: the knock warning PCLink checks (row 102; 0x3EE now 10 ms, ECU side only, R98). | dash |
 | RealDash | 0 | Nothing in scope: the RealDash bench checks are parked (R102). | - |
-| Tune-ECU setup-time | 9 | Goals 2-4 on the bench when the ECU and CSB3 arrive: PCLink import and CAN checks (G3), tables and outputs (G2), the CSB3 opto board (G4). CAN config itself is written now (R80). | bay, dash |
+| Tune-ECU setup-time | 10 | Goals 2-4 on the bench when the ECU and CSB3 arrive: PCLink import and CAN checks (G3), tables and outputs (G2), the CSB3 opto board (G4). CAN config itself is written now (R80). | bay, dash |
 | Housekeeping | 0 | Nothing in scope: the tooling chores are parked or closed (R102). | - |
 
 Blocks progress:
@@ -121,6 +122,7 @@ connector + pin and/or the Link XtremeX Quick Start Guide pin label (e.g. "B12 /
 | 101 | CSB3 | [G4] Opto board (DECISIONS S25) before install: (a) 12 V on input 01 / 02 must show S7 / S8 active in Light Client and about 0 V at the CSB3 pin, and inactive (about 5 V) with the input off - the EL814 worst-case CTR is marginal for the 10k pull-up, so check both channels; (b) measure the board outline and mounting holes for its spot at the CSB3. | Daniel | `ST185-CSB3.harness` `opto8`; DECISIONS S25 | Setup-time | CSB3 and the board on the bench. |
 | 93 | ECU | [G2] B30 (DI7) and B28 (DI9), 12 V-active, pull-up OFF, active HIGH (G1-5): (a) measure each line key-off - it must read < 1.0 V (the DI inactive threshold, Link mod on the G4X forum); add a pull-down if it does not; (b) confirm the G4X DI maximum input voltage (charging voltage ~14.4 V) in the PCLink / XtremeX wiring help - no Link document reachable states it. | Daniel | `sot/channels.csv` b30, b28; DECISIONS S24 | Setup-time | ECU on the bench / PCLink help. |
 | 103 | ECU | [G3] Confirm in PCLink (needs the ECU connected - Link's help is not readable without one): the baro parameter name and that a math channel can subtract and add (F1: MAP - Baro + 100); the knock-detect channel and a 0 / 1 flag from knock level vs the Knock Target (row 102); the allowed Transmit Rate range (10 ms for 0x3EE); prove every Multiplier / Divider / Offset with the PCLink test calculator, receive channels 0x3EC / 0x3ED included (a Link mod says G4X treats a CAN value as the displayed value). | Daniel | forums.linkecu.com topics 11701 (CAN stream settings), 16646 (DI thresholds), 24101 (knock level), 7393 (CAN transmit rate, G4+); `link_g4x_can_setup.json` | Setup-time | ECU on the bench / PCLink help. |
+| 146 | ECU | [G3] Confirm in the Link G4X help that comms pin C1 is a shield-safe ECU ground before the CAN screen drain goes on it (R52, DECISIONS R207; `sot/channels.csv` C1). | Daniel | R207 / N50 | Open | The ECU on the bench; the G4X help page for the comms plug (not reachable from here). |
 
 Seeded 2026-10-03 by the repo audit (handoff 2026-10-02, workstreams WS1-WS7). Rows 38-39 moved 2026-10-10 from the
 output/ handoffs removed that day; the rest of that 2026-09-27 tech debt plan was superseded by the harness
@@ -148,13 +150,14 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 
 ## History
 
+- 2026-10-19 - Shield topology (R207; Dan N50 and the shield thread, branch `shield-r207`): ECU-COMMS C1 = the CAN screen drain with one trunk drain wire and a named splice per CAN branch (`sp_can_sh_clu` / `_csb` / `_rd` / `_bh`); the FR wheel-speed spur screen ties at A7 (was B17) and the CAN drain to B17 is gone, so no shield crosses loom A <-> B; `audit_shields.py` S1-S4; wire crossings A <-> B 11 -> 10 rows (screens 2 -> 1); shield wire rows outside the four main looms 2 -> 6 (the CAN trunk drain is four list rows but one wire in the build). Setup-time row 146; Needs Dan N51 for the 4 crossings no pin assignment forces.
 - 2026-10-19 - Phase 2 group 4 (Cabin extras: CSB3, ClusterLED, AntiTheft, RearLights; branch `rebuild-g4-extras`): rebuilt with `build_harness.py`; the opto board pin on B-cabin `w_sw7_c` follows the new IN2 name; all 14 drawings are now rebuilt from their lists (groups 1-4); none added to `GATED`.
 - 2026-10-19 - Phase 2 group 3 (Loom A engine: A-engine, WheelSpeed-Front; branch `rebuild-g3-loomA`): rebuilt with `build_harness.py`; A-cabin / A-engine mating table has 0 DIFFERS rows; flex pins A / B / C drawn; not added to `GATED`.
 - 2026-10-19 - Phase 2 group 2 (Loom B + CAN: B-cabin, B-engine, CAN, WheelSpeed-Rear; branch `rebuild-g2-loomb`): rebuilt with `build_harness.py`; the four app-generated random ids in the wheel-speed files renamed (`SvhsQx` -> `sp_ws_f_shield`, `e7gavP` -> `w_ws_f_shield`, `I6r1ot` -> `sp_ws_r_shield`, `_TXY7m` -> `w_ws_r_shield`, in the lists, both drawings and `interfaces.json`); not added to `GATED`.
 - 2026-10-19 - Phase 2 group 1 (Power: CabinPower, EngineRoom-C, HeavyDC, RearFuel; branch `rebuild-g1-power`): rebuilt with `build_harness.py` (cavity text = the wire description, the fuse name and rating now come from `cad/fusebox/src/spec.py` in the wiring diagrams; the builder keeps each file's line endings, adds a wire part the library has but the drawing lacks, and no longer adds empty `cables`); horn ground gauge 16 AWG filled in; not added to `GATED` (Dan approves at the end).
 - 2026-10-19 - SoT switch (Dispatch task `_research/TASK-sot-switch-and-rebuild.md`, N39 = A, N47 = A; branch `sot-switch-step1`, DECISIONS R206): the wire lists became the wiring SoT; the 4 gap answers applied (IG2 diode wake feed on A-cabin, C1 set nc, `GNDOUT` split into `GNDOUT_A` / `GNDOUT_B` and A5 = `SW12` in `channels.csv`, flex pin letters A / B / C and opto board pins IN1-IN8 / OUT1-OUT8 / COM1 / COM2); drawing-only splice and end names are now SoT; `wirelist.py --check` fails on any list that disagrees with `channels.csv` (and on a `channels.csv` pin in use with no wire); DECISIONS rows R18, R78, R108, R144, R146 removed (superseded), CAD comments repointed.
 - 2026-10-19 - Phase 1 cleanup (branch `wirelist-phase1-cleanup`): `build_harness.py --check` gate (rebuilt files only, layout moves allowed); old layout / label / routing-point / migration scripts removed; DECISIONS R86 and R141 removed (replaced by R202); Dispatch start-here rule; this Status block refreshed; Needs Dan N1 removed (obsolete: every drawing is rebuilt from its wire list and approved one by one). -- Claude Code
-- 2026-10-19 - N49 (repo N46) = B: ECU comms pin C1 'Comms port ground' is set nc in `sot/channels.csv`; every CAN node grounds to chassis at its own ground point and the CAN topology docs give no node ground pins. For Dispatch to confirm.
+- 2026-10-19 - N46 (repo; now N50) = C1 is the CAN screen drain (Dan changed his answer twice: nc, then screen drain): ECU-COMMS C1 = `CAN_SCREEN`, ONE trunk drain wire, every CAN node drain splices onto it at its own branch, nothing else shares it; the C1 comms-ground gap is closed (DECISIONS R207).
 - 2026-10-19 - N48 (repo N45) = A: the IG2 -> supply diode (1N5822) -> A5 wake feed is added to ST185-A-cabin (own tap on the J/B1 1H pin 7 lead, new splice sp_a5 joining the SW12 feed and the diode, circuit IG2WAKE bands White-Yellow-White); the repo questions were renumbered from N45 / N46 because the chat used those numbers for other questions.
 - 2026-10-19 - N44 = A: the master wire list format is locked (R201).
 - 2026-10-19 - N43 = A: keep the factory A/C amplifier; the ECU only switches the clutch (R23).

@@ -198,23 +198,6 @@
       ]
     },
     {
-      "id": "w_shd_can",
-      "color": "Black",
-      "stripeColor": "Blue",
-      "source": {
-        "id": "sp_shield_can",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "br_w_shd_can",
-        "handle": "Terminal"
-      },
-      "partId": "m16_20_06",
-      "identColors": [
-        "Yellow"
-      ]
-    },
-    {
       "id": "w_dev",
       "color": "Red",
       "source": {
@@ -303,6 +286,74 @@
         "Blue",
         "Yellow"
       ]
+    },
+    {
+      "id": "w_shd_can_csb",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "sp_can_sh_clu",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_can_sh_csb",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_shd_can_rd",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "sp_can_sh_csb",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_can_sh_rd",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_shd_can_bh",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "sp_can_sh_clu",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_can_sh_bh",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_shd_can_trunk",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "ecu_com",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "sp_can_sh_clu",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "Yellow"
+      ]
     }
   ],
   "connectors": [
@@ -315,7 +366,8 @@
         {
           "id": "c1",
           "designation": "C1",
-          "cavityPlugPartId": "pl_sz20"
+          "signal": "CAN screen trunk",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -575,21 +627,6 @@
       "label": "Bulkhead DRB102 pin 94 (RH firewall, cabin side; B-cabin) - CAN pair screen"
     },
     {
-      "id": "br_w_shd_can",
-      "type": "Loose",
-      "width": 390,
-      "layoutPosition": {
-        "x": 840,
-        "y": -420
-      },
-      "schematicPosition": {
-        "x": 1380,
-        "y": 120
-      },
-      "propagate": false,
-      "label": "Shield splice at ECU B pin 17 (center dash; B-cabin) - CAN screen drain"
-    },
-    {
       "id": "br_cab_cancsb_sh",
       "type": "Loose",
       "width": 390,
@@ -760,13 +797,13 @@
       "shield": {
         "id": "cab_can_ecu_sh",
         "color": "Shield",
-        "target": {
-          "id": "sp_shield_can",
-          "handle": "Splice"
-        },
         "identColors": [
           "Yellow"
-        ]
+        ],
+        "source": {
+          "id": "sp_can_sh_clu",
+          "handle": "Splice"
+        }
       }
     },
     {
@@ -813,7 +850,7 @@
         "id": "cab_can_csb_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_shield_can",
+          "id": "sp_can_sh_csb",
           "handle": "Splice"
         },
         "target": {
@@ -869,7 +906,7 @@
         "id": "cab_can_clu_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_shield_can",
+          "id": "sp_can_sh_clu",
           "handle": "Splice"
         },
         "identColors": [
@@ -921,7 +958,7 @@
         "id": "cab_can_rd_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_shield_can",
+          "id": "sp_can_sh_rd",
           "handle": "Splice"
         },
         "identColors": [
@@ -973,7 +1010,7 @@
         "id": "cab_can_bh_sh",
         "color": "Shield",
         "source": {
-          "id": "sp_shield_can",
+          "id": "sp_can_sh_bh",
           "handle": "Splice"
         },
         "target": {
@@ -1217,15 +1254,6 @@
       }
     },
     {
-      "id": "bn_bp_840__br_w_shd_can",
-      "sourceId": "bp_840",
-      "targetId": "br_w_shd_can",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_bp_1050__br_cab_cancsb_sh",
       "sourceId": "bp_1050",
       "targetId": "br_cab_cancsb_sh",
@@ -1356,20 +1384,6 @@
       "label": "CAN L join - bulkhead, Lambda, 120 ohm end"
     },
     {
-      "id": "sp_shield_can",
-      "partId": "spp_solder_generic",
-      "locationId": "bp_930",
-      "layoutPosition": {
-        "x": 690,
-        "y": -840
-      },
-      "schematicPosition": {
-        "x": 510,
-        "y": 150
-      },
-      "label": "CAN screen join - all CAN pair screens to the drain"
-    },
-    {
       "id": "sp_dev",
       "schematicPosition": {
         "x": 600,
@@ -1382,6 +1396,62 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_930",
       "label": "Dash 12 V split - cluster + RealDash Pi, center dash"
+    },
+    {
+      "id": "sp_can_sh_clu",
+      "schematicPosition": {
+        "x": 510,
+        "y": 150
+      },
+      "layoutPosition": {
+        "x": 690,
+        "y": -840
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_930",
+      "label": "CAN trunk, cluster branch - SP-CAN-SH-CLU: CAN screen"
+    },
+    {
+      "id": "sp_can_sh_csb",
+      "schematicPosition": {
+        "x": 510,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 960,
+        "y": -1140
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1050",
+      "label": "CAN trunk, CSB3 branch - SP-CAN-SH-CSB: CAN screen"
+    },
+    {
+      "id": "sp_can_sh_rd",
+      "schematicPosition": {
+        "x": 540,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": 1110,
+        "y": -1230
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1050",
+      "label": "CAN trunk, RealDash Pi branch - SP-CAN-SH-RD: CAN screen"
+    },
+    {
+      "id": "sp_can_sh_bh",
+      "schematicPosition": {
+        "x": 510,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": 750,
+        "y": -330
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_840",
+      "label": "CAN trunk, bulkhead B branch - SP-CAN-SH-BH: CAN screen to CAN-Lambda"
     }
   ],
   "resistors": [

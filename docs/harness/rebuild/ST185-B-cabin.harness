@@ -782,23 +782,6 @@
       "partId": "m16_20_06"
     },
     {
-      "id": "w_shd_can_bc",
-      "color": "Black",
-      "identColors": [
-        "Yellow"
-      ],
-      "stripeColor": "Blue",
-      "source": {
-        "id": "br_w_shd_can",
-        "handle": "Terminal"
-      },
-      "target": {
-        "id": "sp_shield_b",
-        "handle": "Splice"
-      },
-      "partId": "m16_20_06"
-    },
-    {
       "id": "w_start_in",
       "color": "Green",
       "identColors": [
@@ -2112,21 +2095,6 @@
       "label": "IX-WS-F pin 4 (inline, dash above the ECU) - front VRC FR wheel-speed out"
     },
     {
-      "id": "br_cab_fspur_fr_sh",
-      "type": "Loose",
-      "width": 390,
-      "layoutPosition": {
-        "x": -1170,
-        "y": 930
-      },
-      "schematicPosition": {
-        "x": 4140,
-        "y": 1680
-      },
-      "propagate": false,
-      "label": "Screen lead trimmed and insulated at IX-WS-F (dash above ECU) - not connected"
-    },
-    {
       "id": "br_w_sw7_c",
       "type": "Loose",
       "width": 390,
@@ -2245,21 +2213,6 @@
       },
       "propagate": false,
       "label": "Splice SHIELD-CAN on the CAN loom (dash trunk) - bulkhead leg screen"
-    },
-    {
-      "id": "br_w_shd_can",
-      "type": "Loose",
-      "width": 390,
-      "layoutPosition": {
-        "x": -330,
-        "y": 1260
-      },
-      "schematicPosition": {
-        "x": 3300,
-        "y": 1260
-      },
-      "propagate": false,
-      "label": "Splice SHIELD-CAN on the CAN loom (dash trunk) - CAN screens drain to B17"
     },
     {
       "id": "br_w_fan285",
@@ -2501,24 +2454,7 @@
             "handle": "b21"
           }
         }
-      ],
-      "shield": {
-        "id": "cab_fspur_fr_sh",
-        "color": "Shield",
-        "identColors": [
-          "White",
-          "Blue",
-          "Blue"
-        ],
-        "source": {
-          "id": "br_cab_fspur_fr_sh",
-          "handle": "Terminal"
-        },
-        "target": {
-          "id": "sp_shield_b",
-          "handle": "Splice"
-        }
-      }
+      ]
     },
     {
       "id": "cab_canbh_bc",
@@ -2983,15 +2919,6 @@
       }
     },
     {
-      "id": "bn_bp_1020__br_cab_fspur_fr_sh",
-      "sourceId": "bp_1020",
-      "targetId": "br_cab_fspur_fr_sh",
-      "length": {
-        "value": 300,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_b_bp_900__br_w39",
       "sourceId": "b_bp_900",
       "targetId": "br_w39",
@@ -3094,15 +3021,6 @@
       "id": "bn_bp_870__br_cab_canbh_sh",
       "sourceId": "bp_870",
       "targetId": "br_cab_canbh_sh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
-      "id": "bn_bp_870__br_w_shd_can",
-      "sourceId": "bp_870",
-      "targetId": "br_w_shd_can",
       "length": {
         "value": 50,
         "unit": "mm"

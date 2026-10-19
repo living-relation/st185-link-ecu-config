@@ -190,7 +190,7 @@ before buying more (`docs/OPEN-ITEMS.md`).
 | 91 | left (52-102) | 16 | B | c23 | Gearbox VSS screen (to B17) |
 | 92 | left (52-102) | 16 | B | c13 | CAN H to Link CAN-Lambda (ST185-CAN) |
 | 93 | left (52-102) | 16 | B | c14 | CAN L to Link CAN-Lambda (ST185-CAN) |
-| 94 | left (52-102) | 16 | B | c24 | CAN-Lambda CAN pair screen (to B17, via the CAN screen splice) |
+| 94 | left (52-102) | 16 | B | c24 | CAN-Lambda CAN pair screen (to ECU C1, via the CAN trunk drain splice SP-CAN-SH-BH) |
 | 95 | left (52-102) | 12 | B | c3 | CAN-Lambda +12V, cabin fuse F5 10A (14 AWG) |
 | 96 | left (52-102) | 12 | B | c4 | CAN-Lambda ground to cabin chassis ground (14 AWG) |
 | 97 | left (52-102) | 12 | B | c1 | spare (size 12) |

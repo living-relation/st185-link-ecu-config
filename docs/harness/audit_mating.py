@@ -37,7 +37,7 @@ REB = os.path.join(HERE, "rebuild")
 SOT = os.path.join(HERE, "..", "..", "sot", "channels.csv")
 PAIRS = {"bh_a_fw": "bh_a_eng", "bh_b_fw": "bh_b_eng"}
 LETTER = {"bh_a_fw": "A", "bh_a_eng": "A", "bh_b_fw": "B", "bh_b_eng": "B"}
-SHIELD = {("ecu_a", "a7"), ("ecu_b", "b17")}
+SHIELD = {("ecu_a", "a7"), ("ecu_b", "b17"), ("ecu_com", "c1")}
 
 with open(SOT, newline="", encoding="utf-8") as f:
     SOTROWS = {(r["conn"], r["pin"]): r for r in csv.DictReader(f) if r["owner"] == "ECU"}

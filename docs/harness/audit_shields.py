@@ -11,6 +11,14 @@ docs/SHIELD-RULES.md holds the inventory.  This script checks the ones a script 
       regular pin (Daniel 2026-10-12, project-wide; the VRC M8 plugs included)
   R5  a screen crossing a bulkhead uses its own pin, wired on BOTH halves
   R2  every screen reaches an ECU shield-ground pin
+  S1  ECU comms pin C1 (the CAN screen drain, R207) carries exactly ONE wire: the trunk drain, a plain
+      drain wire, never a cable screen core
+  S2  the CAN screen net ("Screen CAN") carries CAN-circuit screens and drains only, and every CAN-circuit
+      screen is on that net: nothing else shares the CAN screen, and no CAN screen lands on A7 / B17
+  S3  loom screens never cross: nothing on Screen A is in a loom B file or lands on a B bulkhead / ECU-B
+      pin, nothing on Screen B in a loom A file or on an A pin (R207: no A-B shield bridge)
+  S4  every splice on the CAN screen net is a named branch splice, "SP-CAN-SH-<node>" (R207: each node's
+      drain splices onto the trunk drain at its own branch)
   R6  a cable screen landed at BOTH ends is allowed only where interfaces.json
       lists it in shieldBothEndsOk (drain connected on both the VRC input and
       the VRC output, and screen continuations through an inline interface)
@@ -24,6 +32,7 @@ were found dead-ending in bulkhead A because only the engine half was wired.
 from interfaces.json rather than hardcoded VRC connector ids.
 """
 import collections
+import os
 import sys
 
 import model
@@ -66,6 +75,40 @@ for loom, d in g.docs.items():
 for sid in sorted(BOTH_ENDS_OK):
     if not any(sid == w["id"] for d in g.docs.values() for w, c, s in model.conductors(d) if s):
         bad.append("R6 shieldBothEndsOk lists %s, which is not a screen on any drawing" % sid)
+
+# ---- S1-S4 (R207): read from the master wire lists, which are the wiring SoT (R206)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "cleanroom"))
+import wirelist as WL  # noqa: E402
+
+LOOM = {"A-cabin": "A", "A-engine": "A", "B-cabin": "B", "B-engine": "B"}
+rows = [dict(r, _file=h) for h in LOOM.keys() | {"CAN", "CSB3", "WheelSpeed-Front", "WheelSpeed-Rear"}
+        for r in WL.read_rows(h) if r["wire_id"]]
+c1 = [r for r in rows if any(r[s + "_type"] == "connector" and r[s + "_conn"] == "ecu_com" and r[s + "_pin"] == "C1"
+                             for s in ("from", "to"))]
+if len(c1) != 1:
+    bad.append("S1 ECU-COMMS C1 carries %d wires (must be exactly one, the trunk drain): %s" % (len(c1), ", ".join(r["wire_id"] for r in c1)))
+elif c1[0]["colour"] == "Shield" or c1[0]["cable"]:
+    bad.append("S1 the wire on C1 (%s) must be a plain drain wire, not a cable screen core" % c1[0]["wire_id"])
+CAN_NET = "Screen CAN"
+for r in rows:
+    on_can = r["net_name"].startswith(CAN_NET)
+    if on_can and r["circuit_id"] != "CAN":
+        bad.append("S2 %s/%s is on the CAN screen net but is circuit %s" % (r["_file"], r["wire_id"], r["circuit_id"]))
+    if r["circuit_id"] == "CAN" and r["colour"] == "Shield" and not on_can:
+        bad.append("S2 %s/%s is a CAN screen but sits on %s" % (r["_file"], r["wire_id"], r["net_name"]))
+    for tag, own in (("Screen A", "A"), ("Screen B", "B")):
+        if not r["net_name"].startswith(tag):
+            continue
+        other = "B" if own == "A" else "A"
+        pins = [r[s + "_conn"] for s in ("from", "to") if r[s + "_type"] == "connector"]
+        own_pin = any(c.startswith(("ecu_" + own.lower(), "bh_" + own.lower())) for c in pins)   # a cable drawn on the other loom's file but wired to this loom's pins (the ETB motor) is this loom's
+        if (LOOM.get(r["_file"]) == other and not own_pin) or any(c.startswith(("ecu_" + other.lower(), "bh_" + other.lower())) for c in pins)                 or any(LOOM.get(f) == other for f in r["passes_through"].split(" / ")):
+            bad.append("S3 %s/%s is on %s but belongs to loom %s: the loom screens never cross" % (r["_file"], r["wire_id"], tag, other))
+for h in ("CAN",):
+    for r in WL.read_rows("CAN") + WL.read_rows("B-cabin"):
+        for s_ in ("from", "to"):
+            if r["wire_id"] and r["net_name"].startswith(CAN_NET) and r[s_ + "_type"] == "splice"                     and not r[s_ + "_conn"].startswith("sp_can_sh_"):
+                bad.append("S4 %s lands on splice %s: a CAN screen splice is named sp_can_sh_<node> (SP-CAN-SH-<NODE>)" % (r["wire_id"], r[s_ + "_conn"]))
 
 for line in bad:
     print(line)

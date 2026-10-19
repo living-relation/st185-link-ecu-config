@@ -23,7 +23,7 @@ SOT = os.path.join(HERE, "..", "..", "sot", "channels.csv")
 
 BULKHEAD_MATE = {"bh_a_fw": "bh_a_eng", "bh_a_eng": "bh_a_fw",
                  "bh_b_fw": "bh_b_eng", "bh_b_eng": "bh_b_fw"}
-SHIELD_PINS = {("ecu_a", "a7"): "A", ("ecu_b", "b17"): "B"}
+SHIELD_PINS = {("ecu_a", "a7"): "A", ("ecu_b", "b17"): "B", ("ecu_com", "c1"): "CAN"}
 XREF_PART = "cp_xref"
 # Drains are found by their part, never by colour: M22759/16-20-06, black/blue,
 # used for nothing else (docs/SHIELD-RULES.md).
