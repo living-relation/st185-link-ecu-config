@@ -127,7 +127,9 @@ STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), li
 # top_edge: the AMI fuse body sits 7.0 from the ear stud (AMI c 30, body 16), so the top leg can only reach 6.5 from the top nut - under the
 # 7.1 rule. The rule is about bulging the edge while the nut is pressed in: the blank is cut `trim` long (7.1), the nut pressed, THEN the end
 # trimmed to 6.5 (drawing note); the ligament left round the knurl is 85 % of a 7.1 one. First article: torque check (drawing note).
-STRAP_PEM = dict(pn='CLSS-M5-2', maker='PennEngineering (PEM)', hole=6.35, E=8.64, T=2.0, A=1.38, edge=7.1, top_edge=6.5,
+# C (shank max) / A / E / T: PEM Bulletin CL p. CL-5 (damlite.pemnet.com/CLSS-M5-2_pdf_2.pdf, read 2026-10-18; PEM's STEP sits behind
+# a sign-up form, so the FB-117 model nut is built from this table, R163); D1 = M5 internal thread minor diameter (ISO 965-1).
+STRAP_PEM = dict(pn='CLSS-M5-2', maker='PennEngineering (PEM)', hole=6.35, E=8.64, T=2.0, A=1.38, C=6.33, D1=4.134, edge=7.1, top_edge=6.5,
                  url='https://www.pemnet.com/products/product-finder/clss-m5-2/', copper_torque_out_Nm=5.3, copper_pushout_N=1080)
 # Bolt torque: AMI sheet 4 N.m max on the ear; the lug bolt the same. A nut only reacts the THREAD share of the bolt torque (the head share
 # goes into the ear / palm): K = 0.2, mu 0.15 (thread and head), M5 d2 4.48, head bearing radius 3.3 -> preload F = T / (K d) and
