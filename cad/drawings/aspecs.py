@@ -175,7 +175,7 @@ MAP={
  'POWER':{'Power Base':(['Power_Base'],'ST185-FB-101',None),'Power Pan':(['Power_Pan'],'ST185-FB-102',None),'Power Cover':(['Power_Cover'],'ST185-FB-103',None),
    'Retainer clip':(['Power_Retainer'],'ST185-FB-104','R1 RETAINER CLIP'),'POS bus bar':(['Power_Bar_Power','Power_BarNeg'],'ST185-FB-113/-114','POS BUS BAR L226 + NEG BAR L105'),
    'Output C-straps':(['Power_Strap_Out'],'ST185-FB-117','OUTPUT C-STRAP 15 x 3 (14 FROM 1 BAR)'),'FHS-M5-12':(['Power_Stud_PEM'],None,None),
-   'Top-nut holder':(['Power_NutHolder'],None,'TOP-NUT HOLDER, PA12 (1 PER STRAP)'),'RS 527-268':(['Power_Nut_DIN934'],None,'HEX NUT M5 DIN 934, TOP NUT IN ITS HOLDER'),
+   'Top-nut holder':(['Power_NutHolder'],'ST185-FB-118','C-STRAP TOP-NUT HOLDER, PA12 (1 PER STRAP)'),'RS 527-268':(['Power_Nut_DIN934'],None,'HEX NUT M5 DIN 934, TOP NUT IN ITS HOLDER'),
    'AMI-30':(['Power_Fuse_AMI_orange'],None,None),'AMI-40':(['Power_Fuse_AMI_ltgreen'],None,None),'AMI-50':(['Power_Fuse_AMI_red'],None,None),'AMI-60':(['Power_Fuse_AMI_yellow'],None,None),
    'ATM-10':(['Power_Fuse_ATM'],None,None),'1-1414687-0':(['Power_Relay_TE_PowerB'],None,None),'1-1414147-0':(['Power_Relay_TE_F7'],None,'MAXI ISO F7 RELAY 680 OHM (k_efi/k_str/k_fan)'),
    '1-1393304-0':('same',None,None),'280756-4':(['Power_Terminal_TE_280756'],None,None),'280755-4':(['Power_Terminal_TE_280755'],None,None),

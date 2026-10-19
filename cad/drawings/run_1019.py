@@ -54,7 +54,7 @@ def _project_in_box(shape, view, *a, **k):
 
 dwg.project = _project_in_box
 
-JOB = {'vrc': 'st185_vrc_1015', 'csb3': 'st185_csb3_1015', 'drb': 'st185_drb102_1015'}
+JOB = {'vrc': 'st185_vrc_1015', 'csb3': 'st185_csb3_1015', 'drb': 'st185_drb102_1015', 'fb_power': 'st185_fusebox_1015'}
 keys = sys.argv[1:] or (specs_1019.KEYS + ['asm:' + k for k in JOB])
 for k in keys:
     if k.startswith('asm:'):

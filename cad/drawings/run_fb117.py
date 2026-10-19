@@ -8,7 +8,8 @@ Run in WSL with the handbuilt-cad venv, from the repo root:
 
     ST185_WORK=<work dir> ~/projects/handbuilt-cad/.venv/bin/python cad/drawings/run_fb117.py
 
--> <work>/out/st185_fb117/ST185-FB-117.pdf / .dxf, <work>/previews/ST185-FB-117_sh1.png. Rev log: cad/fusebox/rev7/ST185-FB-117.REVLOG.md.
+-> <work>/out/st185_fb117/ST185-FB-117.pdf / .dxf, <work>/previews/ST185-FB-117_sh1.png / _sh2.png. Sheet 2 (handbuilt-cad DRAWING-RULES 31)
+= 4 install steps: stud pressed in, bent, nut + holder (ST185-FB-118) into the C, dropped into its well in the base (cut down to one well). Rev log: cad/fusebox/rev7/ST185-FB-117.REVLOG.md.
 FB117_MODEL_ONLY=1 writes the two model STEPs only (R196 / R197: models first, drawings after):
   ST185-FB-117_model.step  - the formed strap and its flat blank, each with its PEM FHS-M5-12 flush stud at the lug end (N37, 2026-10-19);
   ST185-FB-117_stages.step - the steps, one named solid per piece: S1 (y 0) blank with the stud below its hole, head side down; S2 (y -40)
@@ -33,6 +34,7 @@ if os.environ.get('ST185_WORK'):
     os.chdir(os.environ['ST185_WORK'])
 os.makedirs('previews', exist_ok=True)
 import specs  # noqa: E402,F401  (title block project / drawn-by)
+from specs_1018 import TOL  # noqa: E402  (tolerance block without the edge-break line, R191)
 import part  # noqa: E402
 from build123d import Box, Compound, Cylinder, Location, Pos, RegularPolygon, export_step, extrude, import_step  # noqa: E402
 
@@ -118,6 +120,17 @@ def blank(x_top, y=0.0, extra=0.0):
     return b
 
 
+def base_at_strap():
+    """The POWER base (FB-101) cut down to the block round the OUT-row JB1 well, in the strap frame (as formed()): sheet 2, step 4."""
+    b = import_step(os.path.join(REV7, 'Power_Base_PA12_printed.step')).solids()[0]
+    px, py = S.PLACE['POWER']
+    y_jb1 = S.AMI_Y0 + [n for n, _a in S.AMI_ROWS['OUT']].index('JB1') * S.AMI_PITCH + py
+    x_out = S.POWER['x_bar'] + S.AMI_IN_OFF + S.AMI['c'] + px
+    b = b.moved(Location((-x_out, -y_jb1, -ST['z_bl'])))
+    keep = Pos(10.0, 0, 15.0) * Box(56.0, 2 * S.AMI_PITCH - 4.0, 60.0)
+    return b.intersect(keep).solids()
+
+
 def named(shape, name):
     shape.label = name
     return shape
@@ -155,7 +168,7 @@ def main():
     xbl0 = ST['lug'] - SD['edge']
     hw, hl = BL['w'] / 2, BL['w_low'] / 2
     sp = dict(project=specs.PROJECT_NAME, drawn=specs.DRAWN_BY, job=JOB, file=mdl, process='machined', single=False, offset=(0, 0, 0),
-              rotate=[], pn='ST185-FB-117', rev='A.01',   # A.01 (R147 clerical): N15 proof-test note
+              rotate=[], pn='ST185-FB-117', rev='D',      # model D (N37, #330); drawing pass 2026-10-19 (R196)
               title='POWER OUTPUT C-STRAP 3 x 15 (FORMED + FLAT BLANK)',
               material='C110 COPPER, TINNED', ordinates=False, overall=False, max_hole_groups=1,
               source='Power_Strap_Out_CuC110_15x3_C.step (Fusion) + flat blank from spec.strap_blank() (build123d)',
@@ -178,18 +191,35 @@ def main():
                   ('lin', 'top', (FX + L, -hl, 0), (FX + L, hl, 0), 'v', 'right'),
                   ('lin', 'top', (FX, -hw, 0), (FX + BL['kerf']['x'][0], -hw, 0), 'h', 'below', {'tier': 3, 'text': '%.2f KERF START' % BL['kerf']['x'][0]}),
               ],
+              tol=TOL,
               notes=[
-                  'C110 TINNED, CUT FROM 3 x 15 BAR (BOPAODAO B09Z7NBLDK). QTY 14 PER CAR (EVERY POWER AMI POSITION; THE IN ROW TURNS IT 180 DEG).',
-                  # N37: the sheet-2 steps and the ELI5 rewrite of these notes come in the drawing pass (R196); numbers kept current here
-                  'BLANK: SAW %.2f LONG, DRILL ⌀%.1f AT THE TOP HOLE AND ⌀%.1f +0.08/0 AT THE LUG HOLE (PEM %s); 2X KERF 0.5 WIDE AT 3.5 - 4.0 '
-                  'EACH SIDE OF CL, %.2f TO %.2f, THEN NOTCH 3.5 - 7.5 TO %.2f; MILL / FILE BOTH EDGES TO %.1f FROM %.2f TO THE BOTTOM END.'
-                  % (BL['cut_length'], BL['hole_top'], BL['hole_lug'], SD['pn'], BL['kerf']['x'][0], BL['kerf']['x'][1], BL['notch']['x'][1], BL['w_low'], BL['low_from']),
-                  'PRESS THE STUD INTO THE LUG HOLE FROM THE INSIDE FACE UNTIL THE HEAD IS FLUSH.',
-                  'BEND 2X 90 DEG ROUND R%.1f INSIDE, BEND CL %.2f AND %.2f FROM THE TOP END (K %.2f, %.2f PER BEND); BEND 1 ON THE TONGUE ONLY, LIPS STAY '
-                  'FLAT. CHECK THE FIRST PART.' % (ST['ri'], BL['bend_centres'][0], BL['bend_centres'][1], BL['k'], BL['bend_allowance']),
-                  'FIRST ARTICLE: ONE SAMPLE STRAP, M5 FLANGE NUT ON THE STUD AT 6 N.m (1.5 x 4 N.m); STUD MUST NOT TURN OR PUSH OUT; SCRAP IT. '
-                  'BREAK EDGES 0.2-0.4 (R138), KEEP TIN ON CLAMP FACES.',
-              ])
+                  'C110 TINNED COPPER FROM 3 x 15 BAR (BOPAODAO B09Z7NBLDK). 14 PER CAR. KEEP THE TIN ON THE CLAMP FACES.',
+                  'SAW %.2f LONG. DRILL ⌀%.1f AT THE TOP HOLE, ⌀%.1f +0.08/0 AT THE LUG HOLE.' % (BL['cut_length'], BL['hole_top'], BL['hole_lug']),
+                  'SLOTS 0.5 WIDE, 3.5 - 4.0 EACH SIDE OF CENTRE, %.2f TO %.2f; NOTCH 3.5 - 7.5 TO %.2f; FILE TO %.1f WIDE FROM %.2f TO THE END.'
+                  % (BL['kerf']['x'][0], BL['kerf']['x'][1], BL['notch']['x'][1], BL['w_low'], BL['low_from']),
+                  'PRESS THE PEM %s STUD IN FROM THE INSIDE FACE UNTIL ITS HEAD IS FLUSH. NOTHING IS TRIMMED.' % SD['pn'],
+                  'BEND 2 x 90 DEG, R%.1f INSIDE, AT %.2f AND %.2f FROM THE TOP END; BEND 1 ON THE TONGUE ONLY. CHECK THE FIRST PART.'
+                  % (ST['ri'], BL['bend_centres'][0], BL['bend_centres'][1]),
+                  'FIRST PART: M5 FLANGE NUT ON THE STUD AT 6 N·m; THE STUD MUST NOT TURN OR PUSH OUT. SCRAP THAT PART. ASSEMBLY: SHEET 2.',
+              ],
+              stage_items=[
+                  dict(item=1, pn='ST185-FB-117', desc='C-STRAP', shapes=[formed()]),
+                  dict(item=2, pn='PEM ' + SD['pn'], desc='FLUSH STUD', shapes=[formed_stud()]),
+                  dict(item=3, pn='RS 527-268', desc='HEX NUT M5 DIN 934', shapes=[top_nut()]),
+                  dict(item=4, pn='ST185-FB-118', desc='TOP-NUT HOLDER', shapes=[holder()]),
+                  dict(item=5, pn='ST185-FB-101', desc='POWER BOX BASE (PART)', shapes=base_at_strap()),
+              ],
+              stage_sheets=[[
+                  dict(no=1, title='PRESS THE STUD IN FROM THE INSIDE FACE', subtitle='FLAT BLANK, EXPLODED (NOT TO SCALE)',
+                       custom=[(1, flat(), (0, 0, 0)), (2, flat_stud(FX), (0, 0, -15.0))]),
+                  dict(no=2, title='STUD FLUSH, THEN BEND 2 x 90 DEG', subtitle='NOTHING IS TRIMMED (NOT TO SCALE)',
+                       custom=[(1, formed(), (0, 0, 0)), (2, formed_stud(), (0, 0, 0))]),
+                  dict(no=3, title='NUT INTO THE HOLDER, HOLDER INTO THE C', subtitle='EXPLODED (NOT TO SCALE)', base=[1, 2],
+                       custom=[(4, holder(), (-25.0, 0, 0)), (3, top_nut(), (-25.0, 0, 15.0))]),
+                  dict(no=4, title='DROP THE STRAP STRAIGHT DOWN INTO ITS WELL', subtitle='EXPLODED, BASE CUT DOWN TO ONE WELL (NOT TO SCALE)',
+                       base=[5], custom=[(1, formed(), (0, 0, 70.0)), (2, formed_stud(), (0, 0, 70.0)), (3, top_nut(), (0, 0, 70.0)),
+                                         (4, holder(), (0, 0, 70.0))]),
+              ]])
     os.makedirs('out/' + JOB, exist_ok=True)
     stats = part.make_part(sp, 'out/%s/ST185-FB-117.pdf' % JOB, 'out/%s/ST185-FB-117.dxf' % JOB, 'previews/ST185-FB-117')
     print('OK', stats)

@@ -228,23 +228,24 @@
  },
  "fusebox-rev7-power": {
   "png": "cad/fusebox/rev7/trimetric-power.png",
-  "solids": 20,
-  "part_types": 7,
+  "solids": 21,
+  "part_types": 8,
   "extent_mm": [
    218.2,
    307.0,
    81.8
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792362223,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792362223,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792362223,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792362223,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792362223,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Retainer_R1_PA12_printed.step": 1792362223,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": 1792362223
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": 1792385120,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1792385120,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Base_PA12_printed.step": 1792385120,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Cover_PA12_printed.step": 1792385121,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_NutHolder_PA12_printed.step": 1792385121,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Pan_PA12_printed.step": 1792385121,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Retainer_R1_PA12_printed.step": 1792385121,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": 1792385121
   },
-  "rendered": "2026-10-18"
+  "rendered": "2026-10-19"
  },
  "package-rev6": {
   "png": "cad/fusebox/package-rev6.png",

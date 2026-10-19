@@ -35,9 +35,7 @@ MANIFEST = os.path.join(CAD, 'drawing-models.json')
 ENGINE_RULES = '2026-10-18'
 
 # issued before the 2026-10-18 rules; regenerated in the drawing pass that follows the model PRs (R196)
-PENDING = {
-    'ST185-FB-100P', 'ST185-FB-117',
-}
+PENDING = set()     # every drawing regenerated to these rules (2026-10-19)
 
 BANNED = [
     ('R184 envelope model', re.compile(r'\bENVELOPE', re.I)),
