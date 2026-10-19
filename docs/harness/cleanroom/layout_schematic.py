@@ -1,61 +1,61 @@
-"""Schematic positions for the clean-room A-cabin build: one hand-set table, 30-unit grid.
+"""Schematic positions for the clean-room A-cabin build (Dan 2026-10-19, CORRECTION).
 
-Reading order, left to right: cabin devices (relays, pedal, wheel-speed inline, ECU-B) ->
-ECU-A -> splices / sensor buses -> bulkhead -> LOGIC fuse box. Each device sits level with
-the ECU-A pins it is wired to, so a wire is short and the two tables it joins face each other.
+The schematic roughly follows the layout view: nodes are sorted by their layout x into
+columns (front of car on the right, as in the layout), and each column is stacked in layout-y
+order with clear space, so every pinout table has room. The two ends of a wire are NOT placed
+together; the same description at both ends says where a wire goes.
 """
+GRID = 30
+COL_BREAK = 240   # a layout-x jump larger than this starts a new column
+COL_GAP = 240     # clear space between columns (wires run here)
+ROW_GAP = 90      # clear space between stacked nodes
+TOP = 210         # below the read-me note
 
-POS = {
-    # connectors (top-left corner)
-    "ecu_a": (0, 0, 390),
-    "bh_a_fw": (1890, -270, 390),
-    "bus_5v_bha_p": (1140, 840, 270),
-    "bus_5v_bha_r": (1140, 1140, 270),
-    "bus_gnd_bha_p": (1140, 1470, 270),
-    "bus_gnd_bha_r": (1140, 1770, 270),
-    "fb_logic": (2700, -270, 270),
-    "k_eps": (2700, 1320, 270),
-    "k_fp": (-900, 480, 270),
-    "k_etb": (-900, 690, 270),
-    "k_str": (-900, 900, 270),
-    "k_efi": (-900, 1080, 270),
-    "k_fan": (-900, 1260, 270),
-    "aps": (-1260, -90, 270),
-    "ix_ws_front_p": (-1260, 180, 270),
-    "ecu_b": (-2400, -210, 270),
-    "bus_sw12_p": (-900, -480, 270),
-    "k_acc": (-1500, 1080, 270),
-    # terminals
-    "fl_acamp_act": (-900, 420, 390),
-    "fl_ac_psw": (-2040, 1170, 390),
-    "chassis_ring": (-900, 1500, 390),
-    "x_sp_5v_b": (690, 1230, 390),
-    "x_r_cruise": (-900, -630, 390),
-    "x_sp_csb_gnd": (-900, 1560, 390),
-    "x_sp_shield_b": (-2400, 900, 390),
-    # splices, resistor, cables (30 x 30 / 60 wide)
-    "sp_sw12": (-300, -150, None),
-    "sp_8v": (720, 180, None),
-    "cam_pullup": (840, 240, None),
-    "sp_trig2": (1020, 270, None),
-    "sp_shield_a": (720, -90, None),
-    "sp_gndout": (720, 720, None),
-    "sp_chassis": (-300, 1110, None),
-    "sp_5v": (720, 960, None),
-    "sp_5v_2": (-450, -390, None),
-    "cab_aps": (-690, -90, None),
-    "cab_fspur": (-690, 180, None),
-    "cab_fspur_fr_ac": (-1620, 300, None),
-}
+
+def _size(kind, el):
+    if kind == "connectors":
+        return el.get("width", 150), GRID + GRID * len(el["cavities"])
+    if kind == "terminals":
+        return el.get("width", 150), GRID
+    if kind == "cables":
+        return 60, GRID + GRID * (len(el["cores"]) + bool(el.get("shield")))
+    return GRID, GRID  # splice, resistor
 
 
 def place(doc):
-    for coll in ("connectors", "terminals", "splices", "resistors", "cables"):
-        for el in doc.get(coll, []):
-            x, y, w = POS[el["id"]]
-            el["schematicPosition"] = {"x": x, "y": y}
-            if w:
-                el["width"] = w
+    by_id = {}
+    for kind in ("connectors", "terminals", "splices", "resistors"):
+        for el in doc.get(kind, []):
+            by_id[el["id"]] = (kind, el)
+    # a cable sits right after the connector its cores leave from
+    cable_after = {}
+    for cb in doc.get("cables", []):
+        src = next(c["source"]["id"] for c in cb["cores"] if c.get("source"))
+        cable_after.setdefault(src, []).append(cb)
+
+    order = sorted(by_id.values(), key=lambda ke: (ke[1]["layoutPosition"]["x"], ke[1]["layoutPosition"]["y"]))
+    columns, start = [], None
+    for kind, el in order:
+        x = el["layoutPosition"]["x"]
+        if start is None or x - start > COL_BREAK:
+            columns.append([])
+            start = x
+        columns[-1].append((kind, el))
+
+    cx = 0
+    for col in columns:
+        col.sort(key=lambda ke: ke[1]["layoutPosition"]["y"])
+        stack = []
+        for kind, el in col:
+            stack.append((kind, el))
+            stack += [("cables", cb) for cb in cable_after.get(el["id"], [])]
+        width = max(_size(k, e)[0] for k, e in stack)
+        y = TOP
+        for kind, el in stack:
+            w, h = _size(kind, el)
+            el["schematicPosition"] = {"x": cx, "y": y}
             el.pop("rotated", None)
-            if coll in ("splices", "resistors", "terminals", "connectors") and "layoutPosition" not in el:
-                el["layoutPosition"] = {"x": x, "y": y}
+            y += h + ROW_GAP
+            y = GRID * -(-y // GRID)
+        cx += width + COL_GAP
+        cx = GRID * -(-cx // GRID)
