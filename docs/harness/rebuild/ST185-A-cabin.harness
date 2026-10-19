@@ -4008,7 +4008,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "bp_fl_acamp",
-      "label": "At A/C amp - A/C pressure switch joint"
+      "label": "At A/C amp - SP-AC-PSW: A/C pressure switch output"
     }
   ],
   "resistors": [

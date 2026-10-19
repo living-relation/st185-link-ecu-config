@@ -59,7 +59,7 @@ NETS = {"sp_5v": "Sensor +5 V (ECU A32)", "sp_5v_2": "Sensor +5 V (ECU A32)",
         "sp_8v": "Cam +8 V (ECU A6)", "sp_trig2": "Cam signal (ECU A9)",
         "sp_gndout": "Sensor ground A (ECU A24)", "sp_sw12": "Switched +12 V (SW12)",
         "sp_chassis": "ECU power ground", "sp_shield_a": "Shield drain A (ECU A7)",
-        "sp_ac_psw": "A/C pressure switch out",
+        "sp_ac_psw": "A/C pressure-switched relay coil +",
         "bus_5v_bha_p": "Sensor +5 V (ECU A32)", "bus_gnd_bha_p": "Sensor ground A (ECU A24)"}
 # Net sources (Dispatch net rule): the one pin each supply / ground / screen net comes from.
 # key = endpoint key (node_key); value = (net_id, net_name, kind)
@@ -74,7 +74,7 @@ SOURCES = {
     ("pin", "fb_logic", "BUS2-4"): ("LOGIC.BUS2-4", "+12V injectors (LOGIC INJ 15A)", "supply"),
     ("pin", "fb_logic", "BUS2-3"): ("LOGIC.BUS2-3", "+12V coils (LOGIC COP 15A)", "supply"),
     ("pin", "fb_logic", "BUS2-12"): ("LOGIC.BUS2-12", "+12V EHPS enable (LOGIC MRS 7.5A)", "supply"),
-    ("term", "fl_a5_4"): ("A5.4", "A/C pressure switch out (A5 pin 4)", "supply"),
+    ("pin", "A5 (factory)", "4"): ("A5.4", "A/C pressure-switched relay coil +", "supply"),
 }
 SCREEN_PINS = {("ecu_a", "A7"), ("ecu_b", "B17")}
 BUS_CAP = {"bus_5v_bha_p": "bus_5v_bha_r", "bus_gnd_bha_p": "bus_gnd_bha_r"}
@@ -208,6 +208,7 @@ def main():
                 for w in c["wires"]}
     breaks = {e["terminal"]: br for br in reg["breaks"] for e in br["ends"] if e["harness"] == LOOM}
     fleads = {f["terminal"]: f for f in reg["flyingLeads"] if f["harness"] == LOOM}
+    fleads_all = {(f["harness"], f["terminal"]): f for f in reg["flyingLeads"]}
     sot_text = "".join(open(p, encoding="utf-8").read() for p in (
         os.path.join(REPO, "sot", "channels.csv"), os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"))) + json.dumps(reg)
     circuit_of = {w: name for name, c in reg["identBands"].get(LOOM, {}).items()
@@ -238,6 +239,11 @@ def main():
                         cav = next(x for x in cn["cavities"] if x["id"] == o["handle"])
                         return dict(type="connector", conn=cn["id"], name=cn.get("label", cn["id"]),
                                     pin=cav.get("designation", ""), harness=h), c["id"], br["id"]
+                    fl = fleads_all.get((h, o["id"]))
+                    if fl:  # the far end is a tap into factory wiring: an OEM end
+                        ew = fl["ewd"]
+                        return dict(type="OEM", conn="%s (factory)" % ew["connector"], name="OEM %s, factory %s lead" % (
+                            ew["connector"], ew["color"].split(" ")[0]), pin=ew["pin"], harness=h, ewd=ew), c["id"], br["id"]
                     kind = "splice" if o.get("handle") == "Splice" else "resistor" if o.get("handle") in ("Left", "Right") else "terminal"
                     return dict(type=kind, conn=o["id"], name="%s %s on %s" % (kind, o["id"], h), pin="",
                                 harness=h), c["id"], br["id"]
@@ -259,6 +265,9 @@ def main():
         if node in breaks:
             e, half, brid = far_end(node)
             extra["through"] = (e["harness"], half)
+            if e.get("ewd"):
+                extra.setdefault("oems", []).append(e["ewd"])
+                checks.append("flying lead on %s: EWD %s pin %s %s" % (e["harness"], e["ewd"]["connector"], e["ewd"]["pin"], e["ewd"]["color"]))
             checks.append("break %s (other drawn half %s on %s)" % (brid, half, e["harness"]))
             if e["conn"] in ("k_efi", "k_str", "k_fan", "k_etb", "k_acc", "k_eps", "k_fp"):
                 checks.append("relay pin from the %s drawing (no channels.csv row)" % e["harness"])
@@ -273,7 +282,7 @@ def main():
             return e
         if node in fleads:
             ew = fleads[node]["ewd"]
-            extra["oem"] = ew
+            extra.setdefault("oems", []).append(ew)
             checks.append("flying lead %s: EWD %s pin %s %s" % (fleads[node]["id"], ew["connector"], ew["pin"], ew["color"]))
             return dict(type="OEM", conn="%s (factory)" % ew["connector"], name="OEM A/C amplifier",
                         pin=ew["pin"], harness=LOOM)
@@ -328,7 +337,10 @@ def main():
                 through = h
             notes.append(("owner proposed: longer half" if mine and theirs else "owner TBD: a half has no length estimate") +
                          " (drawn today as %s on %s, %s mm; %s on %s, %s mm)" % (wid, LOOM, mine or "?", half, h, theirs or "?"))
-        oem = extra.get("oem") or {}
+        oems = extra.get("oems") or []
+        for e in ends:  # nothing floats: every end is a real pin, an OEM tap, a splice or a part
+            if e["type"] in ("?", "terminal") and e["conn"] != "chassis_ring":
+                bad.append("end %s (%s) floats: not a pin, OEM tap or splice" % (e["conn"], e["type"]))
         rows.append({
             "circuit_id": circuit_of.get(wid, ""), "wire_id": wid, "harness": owner, "passes_through": through,
             "from_type": ends[0]["type"], "from_conn": ends[0]["conn"], "from_conn_name": ends[0]["name"],
@@ -339,7 +351,9 @@ def main():
             "splice": next((n for n in (f[0], t[0]) if n in SPLICES), ""), "cable": cable,
             "gauge_awg": gauge, "colour": w.get("color", ""), "stripe": w.get("stripeColor", ""),
             "ident_bands": "-".join(w.get("identColors", [])),
-            "oem_wire_colour": oem.get("color", ""), "oem_ewd_page": oem.get("page", ""), "oem_method": oem.get("method", ""),
+            "oem_wire_colour": " / ".join(o.get("color", "") for o in oems),
+            "oem_ewd_page": " / ".join(o.get("page", "") for o in oems),
+            "oem_method": " / ".join(o.get("method", "") for o in oems),
             "route_branch": branch((f[0], t[0])), "est_length_mm": est.get((LOOM, wid), ""),
             "sot_check": "; ".join(checks),
             "status": ("MISMATCH: " + "; ".join(bad)) if bad else ("SOT GAP: " + "; ".join(gap)) if gap else "OK",

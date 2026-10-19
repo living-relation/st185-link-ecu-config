@@ -46,7 +46,7 @@ SPLICES = {
     "sp_sw12": "At ECU-A plug - switched +12 V joint",
     "sp_chassis": "At ECU-A plug - ECU power ground joint",
     "sp_shield_a": "At ECU-A plug - shield drain joint",
-    "sp_ac_psw": "At A/C amp - A/C pressure switch joint",
+    "sp_ac_psw": "At A/C amp - SP-AC-PSW: A/C pressure switch output",
 }
 
 # wire ends that are not connectors -> (label on the drawing "<where it lands> - <what it is>",
