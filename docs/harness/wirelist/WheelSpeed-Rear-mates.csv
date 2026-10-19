@@ -1,0 +1,6 @@
+circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
+VRC_R_5V,+5V sensor (ECU-A A32),ix_ws_rear_r,1,VRC-R +5V,B-cabin,ix_ws_rear_p,1,VRC-R +5V,OK
+VRC_R_GND,Sensor GND B (ECU-B B22),ix_ws_rear_r,2,VRC-R GND,B-cabin,ix_ws_rear_p,2,VRC-R GND,OK
+WSS_RL,Rear left wheel spd (ECU-B B20),ix_ws_rear_r,3,Rear left wheel spd,B-cabin,ix_ws_rear_p,3,Rear left wheel spd,OK
+WSS_RR,Rear right wheel spd (ECU-B B19),ix_ws_rear_r,4,Rear right wheel spd,B-cabin,ix_ws_rear_p,4,Rear right wheel spd,OK
+VRC_R_DRAIN,"Screen B (ECU B17, SHIELD_B)",ix_ws_rear_r,5,WS-R screen drain,B-cabin,ix_ws_rear_p,5,WS-R screen drain,OK

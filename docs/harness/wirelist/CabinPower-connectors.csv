@@ -1,0 +1,19 @@
+conn_id,name,harness,part_number,cavities,mates_with,note
+k_efi,POWER R2,CabinPower,1-1414147-0,4,,
+k_fan,POWER R4,CabinPower,1-1414147-0,4,,
+k_etb,LOGIC M4,CabinPower,4-1904124-2,5,,
+k_str,POWER R3,CabinPower,1-1414147-0,4,,
+k_fan2,POWER R5,CabinPower,1-1393304-0,4,,
+k_eps,EHPS RELAY,CabinPower,V23132-A2001-B200,5,,
+k_acc,LOGIC M5,CabinPower,6-1419137-4,5,,
+k_eps_en,LOGIC M6,CabinPower,6-1419137-4,5,,
+k_rev,LOGIC M7,CabinPower,6-1419137-4,5,,
+k_hl,LOGIC M1,CabinPower,5-1393292-8,5,,
+k_hr,LOGIC M2,CabinPower,5-1393292-8,5,,
+k_horn,LOGIC M3,CabinPower,4-1904124-3,5,,
+k_htr,POWER R1,CabinPower,1-1414687-0,5,,
+k_pwr,POWER R6,CabinPower,1-1393304-0,4,,
+fb_power,FB-POWER,CabinPower,ST185-FB-POWER rev 7,14,,
+fb_logic,FB-LOGIC,CabinPower,ST185-FB-LOGIC rev 5,25,,
+bus_sw12_p,"SW12 bus plug DT06-12 (glove box, by LOGIC box)",CabinPower,DT06-12SA,12,bus_sw12_r,bussed DT plug (R169): every live pin is one net
+bus_sw12_r,SW12 bussed cap DT04-12 P021 (on plug),CabinPower,DT04-12PA-P021,12,bus_sw12_p,"bussed cap: all cavities bussed, one net; no wire rows"

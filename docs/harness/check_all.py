@@ -68,7 +68,7 @@ untouched and CI can trust it. After a harness change, regenerate locally:
 
     python docs/harness/buylist.py
     python docs/harness/buildlist.py
-    python docs/harness/cleanroom/wirelist.py     (the A-cabin master wire list, R201)
+    python docs/harness/cleanroom/wirelist.py     (the master wire lists + GAPS.md, R201)
 
 (no flag, or --write, writes the file) and commit the results with the drawing.
 

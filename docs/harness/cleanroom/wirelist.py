@@ -1,9 +1,12 @@
-"""Master from-to wire list, A-cabin pilot (DECISIONS R201: Dan N39 = A, N40 = A).
+"""Master from-to wire list, every harness file (DECISIONS R201: Dan N39 = A, N40 = A).
 
-One row per physical wire, FROM a real pin TO a real pin or a splice node, in a format that can
-later hold every harness file. Today's SoT stays live (channels.csv, interfaces.json, the DRB102
-cavity map, the fuse-box wiring plan): every row is checked AGAINST it, and `status` says OK,
-MISMATCH (row disagrees with the SoT) or SOT GAP (the SoT itself is silent or inconsistent).
+One row per physical wire, FROM a real pin TO a real pin or a splice node. The CSVs in
+docs/harness/wirelist/ (`<file>-wirelist.csv`) are the git source: this script reads them, checks
+every row AGAINST today's live SoT (channels.csv, interfaces.json, the DRB102 cavity map, the
+fuse-box wiring plan) and writes what follows from them: the `net_id`, `net_name`, `sot_check`
+and `status` columns, the splice, connector and mating tables, the pinouts and the styled
+workbooks, and one combined gap list (GAPS.md). `status` says OK, MISMATCH (the row disagrees
+with the SoT) or SOT GAP (the SoT itself is silent or inconsistent).
 
 Rules in the format (Dispatch for Dan, 2026-10-19):
   - splice = its own node (ID, plain name, net); every wire into it is its own row; splice table
@@ -17,11 +20,13 @@ Rules in the format (Dispatch for Dan, 2026-10-19):
   - factory ends are endpoints of type OEM with the factory wire colour, EWD page and method;
     only our new wire is a row (flying-lead rule, R11 / R117)
 
-Outputs (pilot, untracked) in <main checkout>/_research/harness-cleanroom/:
-  A-cabin-wirelist.csv, A-cabin-splices.csv, A-cabin-connectors.csv, A-cabin-mates.csv,
-  A-cabin-pinouts.md
+Nets are electrical, so they are worked out across all the lists at once: a mated bulkhead or
+inline pin, a bussed plug and a device enclosure's screen join are one node. A file's list is
+gated (fails --check on a MISMATCH, a net finding on its rows or a mate that differs) once Dan
+has approved it (GATED); the others are reported in GAPS.md until their Phase 2 rebuild.
 
-    python docs/harness/cleanroom/wirelist.py
+    python docs/harness/cleanroom/wirelist.py            # write
+    python docs/harness/cleanroom/wirelist.py --check    # check_all.py gate
 """
 import csv
 import io
@@ -36,12 +41,12 @@ REPO = os.path.dirname(os.path.dirname(HARNESS))
 sys.path.insert(0, HERE)
 sys.path.insert(0, HARNESS)
 import model  # noqa: E402
-from build_a_cabin import CABLES, CONNECTORS, SPLICES, WIRES  # noqa: E402
-from oem_ends import OEM_ENDS  # noqa: E402
 import wirelist_xlsx as X  # noqa: E402
 
 OUT = os.path.join(HARNESS, "wirelist")   # tracked: the CSVs are the git source (R201, Dan N44 = A)
-LOOM = "A-cabin"
+# Lists Dan has approved: a MISMATCH, mate or coverage finding on them fails --check, and so does a
+# net finding whose files are all approved (R201 pilot). The others are reported in GAPS.md.
+GATED = {"A-cabin"}
 
 COLUMNS = ["circuit_id", "wire_id", "harness", "passes_through",
            "from_type", "from_conn", "from_conn_name", "from_pin", "from_desc", "from_note",
@@ -49,81 +54,380 @@ COLUMNS = ["circuit_id", "wire_id", "harness", "passes_through",
            "net_id", "net_name", "splice", "cable", "gauge_awg", "colour", "stripe", "ident_bands",
            "oem_location", "oem_wire_colour", "oem_ewd_page", "oem_method",
            "route_branch", "est_length_mm", "sot_check", "status", "notes"]
+COMPUTED = ("net_id", "net_name", "sot_check", "status")   # written by this script, never by hand
 SPLICE_COLUMNS = ["splice_id", "name", "net_id", "net_name", "harness", "location", "method", "wires",
                   "gauges_awg", "combined_cma", "equivalent_awg", "sot_check"]
 CONN_COLUMNS = ["conn_id", "name", "harness", "part_number", "cavities", "mates_with", "note"]
 MATE_COLUMNS = ["circuit_id", "net_name", "this_conn", "this_pin", "this_desc", "mate_harness", "mate_conn",
                 "mate_pin", "mate_desc", "check"]
+GAP_COLUMNS = ["file", "wire / pin", "what is wrong", "recommended answer"]
+CMA = {22: 642, 20: 1022, 18: 1624, 16: 2583, 14: 4107, 12: 6530, 10: 10380, 8: 16510, 6: 26240, 4: 41740,
+       2: 66360, 0: 105600}
 
-NETS = {"sp_5v": "Sensor +5 V (ECU A32)", "sp_5v_2": "Sensor +5 V (ECU A32)",
-        "sp_8v": "Cam +8 V (ECU A6)", "sp_trig2": "Cam signal (ECU A9)",
-        "sp_gndout": "Sensor ground A (ECU A24)", "sp_sw12": "Switched +12 V (SW12)",
-        "sp_chassis": "ECU power ground", "sp_shield_a": "Shield drain A (ECU A7)",
-        "sp_ac_psw": "A/C pressure-switched relay coil +",
-        "bus_5v_bha_p": "Sensor +5 V (ECU A32)", "bus_gnd_bha_p": "Sensor ground A (ECU A24)"}
-# Net sources (Dispatch net rule): the one pin each supply / ground / screen net comes from.
-# key = endpoint key (node_key); value = (net_id, net_name, kind)
-SOURCES = {
-    ("pin", "ecu_a", "A32"): ("ECU-A.A32", "+5V sensor (ECU-A A32)", "supply"),
-    ("pin", "ecu_a", "A6"): ("ECU-A.A6", "+8V cam sensor (ECU-A A6)", "supply"),
-    ("pin", "ecu_a", "A24"): ("ECU-A.A24", "Sensor GND (ECU-A A24)", "ground"),
-    ("pin", "ecu_a", "A7"): ("ECU-A.A7", "Screen A (ECU A7, SHIELD_A)", "screen"),
-    ("splice", "sp_shield_b"): ("ECU-B.B17", "Screen B (ECU B17, SHIELD_B)", "screen"),
-    ("term", "chassis_ring"): ("STUD.M6-ECU", "Chassis GND (cabin stud M6 at ECU)", "ground"),
-    ("pin", "bus_sw12_p", "2"): ("LOGIC.SW12", "+12V switched (LOGIC SW12 bus)", "supply"),
-    ("pin", "fb_logic", "BUS2-4"): ("LOGIC.BUS2-4", "+12V injectors (LOGIC INJ 15A)", "supply"),
-    ("pin", "fb_logic", "BUS2-3"): ("LOGIC.BUS2-3", "+12V coils (LOGIC COP 15A)", "supply"),
-    ("pin", "fb_logic", "BUS2-12"): ("LOGIC.BUS2-12", "+12V EHPS enable (LOGIC MRS 7.5A)", "supply"),
-    ("pin", "A5 (factory)", "4"): ("A5.4", "A/C pressure-switched relay coil +", "supply"),
+# The DRB102 bulkhead is ONE connector drawn on four files (DRB102-CAVITY-MAP.md): receptacle on
+# the cabin files, plug on the engine files; the letter is the section each file wires.
+DRB102 = {"bh_a_fw": "A", "bh_b_fw": "B", "bh_a_eng": "A", "bh_b_eng": "B"}
+DRB_RECEPT, DRB_PLUG = ("bh_a_fw", "bh_b_fw"), ("bh_a_eng", "bh_b_eng")
+ECU = {"ecu_a": "ECU-A", "ecu_b": "ECU-B", "ecu_com": "ECU-COMMS"}
+SCREEN_PINS = {("ecu_a", "A7"): "A", ("ecu_b", "B17"): "B"}
+
+# Readable names of the nets whose source is a fixed pin (R201: the name names the source).
+# Any other source gets a generic name from its pin (see Ctx.source).
+NET_NAMES = {
+    "ECU-A.A32": "+5V sensor (ECU-A A32)", "ECU-A.A6": "+8V cam sensor (ECU-A A6)",
+    "ECU-A.A24": "Sensor GND (ECU-A A24)", "ECU-B.B22": "Sensor GND B (ECU-B B22)",
+    "ECU-A.A7": "Screen A (ECU A7, SHIELD_A)", "ECU-B.B17": "Screen B (ECU B17, SHIELD_B)",
+    "LOGIC.BUS2-2": "+12V switched (LOGIC SW12 bus)", "LOGIC.BUS2-4": "+12V injectors (LOGIC INJ 15A)",
+    "LOGIC.BUS2-3": "+12V coils (LOGIC COP 15A)", "LOGIC.BUS2-12": "+12V EHPS enable (LOGIC MRS 7.5A)",
 }
-SCREEN_PINS = {("ecu_a", "A7"), ("ecu_b", "B17")}
-BUS_CAP = {"bus_5v_bha_p": "bus_5v_bha_r", "bus_gnd_bha_p": "bus_gnd_bha_r"}
-# connectors whose other half is in another drawing: (harness, connector)
-MATES = {"bh_a_fw": ("A-engine", "bh_a_eng"), "ix_ws_front_p": ("WheelSpeed-Front", "ix_ws_front_r")}
-CMA = {22: 642, 20: 1022, 18: 1624, 16: 2583, 14: 4107, 12: 6530, 10: 10380, 8: 16510, 6: 26240, 4: 41740}
-
-# route branch of an A-cabin end (Route 5, approved 2026-10-14). Names, not bundle ids.
-BRANCH = [
-    (("bh_a_fw", "bus_5v_bha_p", "bus_gnd_bha_p"), "trunk ECU-A to bulkhead (RH firewall)"),
-    (("aps",), "pedal branch (driver footwell)"),
-    (("ix_ws_front_p", "br_cab_fspur_r", "br_cab_fspur_fr_sh"), "dash branch (front WS inline)"),
-    (("fl_acamp_act", "fl_acamp_psw", "fl_acamp_mg", "br_ac_psw", "br_ac_mg", "br_w_acc86", "sp_ac_psw"),
-     "A/C amp branch (behind dash)"),
-    (("br_w76", "br_w81", "br_w_str85", "br_w_fan85", "br_w_eps_rly", "br_w_fb_sw12", "br_w_inj_pwr_c",
-      "br_w_cop_pwr_c", "br_w_fb_mrs_en", "br_w_fp85"), "glove-box branch (POWER / LOGIC boxes)"),
-    (("br_w_b25", "br_w_b34", "br_w_rail_5v_b_c", "br_w39", "br_w_lamg_b", "br_w_rail_sw12_b_c"),
-     "to ECU-B plug (beside ECU-A)"),
-    (("br_w_cru_5v", "br_w_csbg"), "CSB3 branch (centre console)"),
-    (("chassis_ring",), "ground stud at ECU"),
-    (("ecu_a", "cam_pullup") + tuple(SPLICES), "at ECU-A plug"),
-]
-
-
-# Per-wire build facts that lived only in the old drawing's big note blocks (2026-10-19).
-ROW_NOTES = {
-    "w_drain_ecu_a": "build (R30): the crank drain is the one crimped into A7; the other drains are soldered onto it 6 mm behind the plug",
-    "w_shc_crank": "build (R30): this drain is the one crimped into A7",
-    "cab_aps1": "pedal branch length is a placeholder: measure at the car (OPEN-ITEMS row 143)",
-    "cab_aps2": "pedal branch length is a placeholder: measure at the car (OPEN-ITEMS row 143)",
-    "w_fb_mrs_en": "fuse fed from EPS enable relay k_eps_en pin 87 (ignition-switched)",
+# Drawn device connector -> its heading in docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md, whose
+# pin table (pin | name) is the device pin SoT. Devices whose pin numbers the reference does not
+# give are not listed (their pins cannot be checked yet).
+DEVICE_REF = {"map": "MAP", "fuelp": "Fuel pressure", "oilp": "Oil pressure", "clntp": "Coolant pressure",
+              "flex": "Flex fuel", "vss": "Gearbox VSS"}
+# Sources the SoT tables cannot show: a factory switch output, a battery post.
+FIXED_SOURCES = {
+    ("oem", "A5 (factory)", "4"): ("A5.4", "A/C pressure-switched relay coil +", "supply"),
+    ("term", "Ground ring M6, cabin chassis stud at ECU"): ("STUD.M6-ECU", "Chassis GND (cabin stud M6 at ECU)", "stud"),
 }
 
 
-def branch(nodes):
-    names = []
-    for n in nodes:
-        for ids, name in BRANCH:
-            if n in ids and name not in names:
-                names.append(name)
-    if len(names) > 1 and "at ECU-A plug" in names:
-        names.remove("at ECU-A plug")
-    return " / ".join(names)
+def csv_path(h):
+    return os.path.join(OUT, "%s-wirelist.csv" % h)
 
 
-def assign_nets(rows, sot_pin, drb):
-    """Electrical nets from the wire list itself: the union of every row's two ends (a splice and a
-    bussed plug are one node, a resistor splits). Each net gets net_id (its source pin) and a
-    unique readable net_name. Returns the findings of checks (a)-(d) and the screen checks."""
+def read_rows(h):
+    with open(csv_path(h), encoding="utf-8", newline="") as f:
+        return [dict({k: "" for k in COLUMNS}, **r) for r in csv.DictReader(f)]
+
+
+def write_rows(h, rows):
+    with open(csv_path(h), "w", encoding="utf-8", newline="\n") as f:
+        f.write(csv_text(rows, COLUMNS))
+
+
+def csv_text(rows, cols):
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, cols, extrasaction="ignore", lineterminator="\n")
+    w.writeheader()
+    w.writerows(rows)
+    return buf.getvalue()
+
+
+def pin_key(p):
+    m = re.match(r"([A-Za-z +/-]*?)(\d+)(.*)", p or "")
+    return (m.group(1), int(m.group(2)), m.group(3)) if m else (p or "", 0, "")
+
+
+def drb_map():
+    """DRB102 cavity number -> (section, section cavity, use)."""
+    drb = {}
+    with open(os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"), encoding="utf-8") as f:
+        for line in f:
+            m = re.match(r"\| (\d+) \| [^|]+\| (\d+) \| ([AB]) \| (c\d+) \| (.+) \|\s*$", line)
+            if m:
+                drb[m.group(1)] = (m.group(3), m.group(4), m.group(5).strip())
+    return drb
+
+
+def device_pins():
+    """heading -> {pin: name} from the device reference's pin tables (rows with a pin number)."""
+    out, head = {}, None
+    with open(os.path.join(REPO, "docs", "devices", "SENSOR-AND-ACTUATOR-REFERENCE.md"), encoding="utf-8") as f:
+        for line in f:
+            m = re.match(r"\*\*(.+?)\*\*", line)
+            if m:
+                head = m.group(1)
+                continue
+            m = re.match(r"\| ([0-9A-Z]{1,2}) \| (.+?) \|\s*$", line)
+            if m and head:
+                out.setdefault(head, {})[m.group(1)] = m.group(2)
+    return out
+
+
+def role(text):
+    t = (text or "").lower()
+    if re.search(r"5v|5 v|supply|vcc|12v|12 v|\+8v|ig \+", t):
+        return "supply"
+    if re.search(r"gnd|ground|low reference|return", t):
+        return "ground"
+    return "signal"
+
+
+def pin_names(connector):
+    """The wire-list pin of each cavity: its designation, or its position when it has none; a
+    designation used twice on one connector (opto board in / out 01-08) gives way to the cavity id."""
+    des = [cav.get("designation") or str(i + 1) for i, cav in enumerate(connector["cavities"])]
+    return [cav["id"] if des.count(d) > 1 else d for cav, d in zip(connector["cavities"], des)]
+
+
+# Parts whose cavity is a stud, post or single heavy contact: several lugs on one is normal.
+STUD_PART = re.compile(r"STUD|POST|BUS ZONE|SWITCH, BATTERY|RADLOK|BLOCK, RELAY AND FUSE", re.I)
+
+
+def load_json(p):
+    with open(p, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def short(text):
+    return re.split(r"  | - ", text or "")[0].strip()
+
+
+class Ctx:
+    """Everything the checks read: the live SoT, plus the drawings for labels / part numbers."""
+
+    def __init__(self):
+        self.reg = model.registry()
+        self.files = model.harness_files(self.reg)
+        self.order = list(self.files)
+        self.raw = {h: load_json(os.path.join(HARNESS, "rebuild", fn)) for h, fn in self.files.items()}
+        self.sot = model.sot_rows()
+        self.sot_pin = {(r["conn"], r["pin"].lower()): r for r in self.sot}
+        self.sot_conn = {}
+        for r in self.sot:
+            self.sot_conn.setdefault(r["conn"], []).append(r)
+        self.drb = drb_map()
+        plan = load_json(os.path.join(REPO, "cad", "fusebox", "rev7", "wiring_plan.json"))
+        self.plan_end = {}
+        for w in plan["wires"]:
+            for e in w["ends"]:
+                self.plan_end.setdefault((e["id"], e["des"]), []).append(w)
+        # parts seated in a box (an end with a box): the box design decides their connections (R204)
+        self.plan_conns = {e["id"] for w in plan["wires"] for e in w["ends"] if e.get("box")}
+        self.plan_kind = {(c["box"], c["cav"]): c["kind"] for c in plan["cavities"]}
+        self.fl = {(f["ewd"]["connector"], f["ewd"]["pin"]): f for f in self.reg["flyingLeads"]}
+        self.sot_text = "".join(open(p, encoding="utf-8").read() for p in (
+            os.path.join(REPO, "sot", "channels.csv"), os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"),
+            os.path.join(REPO, "docs", "electrical", "ENGINE-ROOM-POWER-REDISTRIBUTION.md"))) + json.dumps(self.reg)
+        # every drawn node: id -> (harness, kind, object)
+        self.node = {}
+        for h, d in self.raw.items():
+            for k in ("connectors", "splices", "resistors", "diodes", "terminals"):
+                for x in d.get(k, []):
+                    self.node.setdefault(x["id"], (h, k, x))
+        self.parts = {h: model.parts(d) for h, d in self.raw.items()}
+        self.cav = {}   # (conn, designation) -> cavity, (conn, cavity id) -> designation
+        self.des = {}
+        for h, d in self.raw.items():
+            for c in d.get("connectors", []):
+                for x, des in zip(c["cavities"], pin_names(c)):
+                    self.cav[(c["id"], des)] = x
+                    self.des[(c["id"], x["id"])] = des
+        self.studs = {c["id"] for h, d in self.raw.items() for c in d.get("connectors", [])
+                      if STUD_PART.search((self.parts[h].get(c.get("partId")) or {}).get("description", ""))}
+        self.dup_des = {c["id"]: sorted({x for x in [cv.get("designation") for cv in c["cavities"]] if x and
+                                         [cv.get("designation") for cv in c["cavities"]].count(x) > 1})
+                        for d in self.raw.values() for c in d.get("connectors", [])}
+        self.bus = {b["plug"]: b for b in self.reg["bussedSplices"]["buses"]}
+        self.cap = {b["receptacle"]: b for b in self.reg["bussedSplices"]["buses"]}
+        # mated pairs: conn -> (mate conn, mate harness, kind)
+        self.mate = {}
+        for ix in self.reg["interfaces"]:
+            a, b = ix["halves"]
+            self.mate[a["connector"]] = (b["connector"], b["harness"], "inline DT pair (%s)" % ix["id"])
+            self.mate[b["connector"]] = (a["connector"], a["harness"], "inline DT pair (%s)" % ix["id"])
+        self.ix_pins = {}
+        for ix in self.reg["interfaces"]:
+            for h in ix["halves"]:
+                for cid, text in ix["pins"].items():
+                    self.ix_pins[(h["connector"], self.des.get((h["connector"], cid), cid))] = (ix["id"], text)
+        for h, d in self.raw.items():
+            for m in d.get("mates", []):
+                s, t = m["sourceId"], m["targetId"]
+                if s in self.bus or t in self.bus:
+                    continue
+                self.mate[s] = (t, h, "mated pair in this file (%s)" % m["id"])
+                self.mate[t] = (s, h, "mated pair in this file (%s)" % m["id"])
+        self.canon = {}  # conn -> the one electrical node name its pins share with the mate
+        for c, (m, _, _) in self.mate.items():
+            self.canon[c] = min(c, m)
+        for c in DRB102:
+            self.canon[c] = "DRB102"
+        self.enc = []    # pairs of pin keys a device enclosure joins inside
+        for e in self.reg["enclosures"]:
+            ks = []
+            for s in e["screen"]:
+                conn, cav = s.split(".")
+                ks.append(self.pin_node(conn, self.des.get((conn, cav), cav)))
+            self.enc.append(ks)
+        self.endpoint = {}  # (conn, designation) -> [(endpoint id, role)]; a shared screen pin has two
+        for ep in self.reg["endpoints"]:
+            if ep.get("connector"):
+                for role, cav in ep["pins"].items():
+                    self.endpoint.setdefault((ep["connector"], self.des.get((ep["connector"], cav), cav)), []).append((ep["id"], role))
+        self.device_pins = device_pins()
+        self.relay_out = {}  # (relay conn, pin) whose channels.csv row says "out": a supply source
+        for r in self.sot:
+            if r["conn"].startswith("k_") and r["dir"] == "out":
+                self.relay_out[(r["conn"], r["channel"].split()[-1])] = r
+
+    def pin_node(self, conn, pin):
+        if conn in self.bus:
+            return ("bus", conn)
+        return ("pin", self.canon.get(conn, conn), pin)
+
+    def key(self, r, s):
+        """The electrical node of one row end."""
+        t, conn, pin = r[s + "_type"], r[s + "_conn"], r[s + "_pin"]
+        if not conn:
+            return None
+        if t == "connector":
+            return self.pin_node(conn, pin)
+        if t == "splice":
+            return ("splice", conn)
+        if t in ("resistor", "diode"):
+            return ("res", conn, pin)
+        if t == "OEM":
+            return ("oem", conn, pin)
+        if t == "cable screen":
+            return ("screen", conn)
+        # lugs on one stud share it (the stud is the node); a pinned end (a device header) is per pin
+        return ("term", r[s + "_conn_name"], pin) if pin else ("term", r[s + "_conn_name"])
+
+    def sot_row(self, conn, pin):
+        """channels.csv row of a connector pin: by pin, by the channel's pin number (relays,
+        'Coil 85'), or through a device endpoint (VRC plugs)."""
+        r = self.sot_pin.get((conn, pin.lower())) or self.sot_pin.get((conn, pin.lower().replace("-", "")))
+        if r:
+            return r
+        for x in self.sot_conn.get(conn, []):
+            if x["channel"].split()[-1] == pin:
+                return x
+        for eid, role in self.endpoint.get((conn, pin), []):
+            for x in self.sot_conn.get(eid, []):
+                if x["pin"] == role or (role == "screen" and x["class"] == "screen"):
+                    return x
+        return None
+
+    def sot_rows_at(self, conn, pin):
+        """Every channels.csv row a connector pin carries (a shared screen pin carries two)."""
+        out = [self.sot_row(conn, pin)] if conn in self.sot_conn or conn in ECU else []
+        for eid, role in self.endpoint.get((conn, pin), []):
+            out += [x for x in self.sot_conn.get(eid, []) if x["pin"] == role or (role == "screen" and x["class"] == "screen")]
+        return [x for x in out if x]
+
+    def source(self, k, r, s):
+        """(net_id, net_name, kind) when this end is where a supply / ground / screen net comes from."""
+        if k in FIXED_SOURCES:
+            return FIXED_SOURCES[k]
+        t, conn, pin = r[s + "_type"], r[s + "_conn"], r[s + "_pin"]
+        if t == "connector" and conn in ECU:
+            row = self.sot_pin.get((conn, pin.lower()))
+            if row and row["class"] in ("rail", "screen") and row["dir"] in ("out", "na"):
+                nid = "%s.%s" % (ECU[conn], pin)
+                kind = "screen" if row["class"] == "screen" else "ground" if row["type"] == "gnd" else "supply"
+                return nid, NET_NAMES.get(nid, "%s (%s %s)" % (row["label"], ECU[conn], pin)), kind
+        if t == "connector" and conn in ("fb_logic", "fb_power", "fb_batt"):
+            box = {"fb_logic": "LOGIC", "fb_power": "POWER", "fb_batt": "BATT"}[conn]
+            if self.plan_kind.get((box, pin)) in ("fuse out", "acps out") or re.match(r"AMI (IN|OUT)-\d|FP ", pin):
+                nid = "%s.%s" % (box, pin)
+                fuse = (self.cav.get((conn, pin)) or {}).get("signal") or pin
+                return nid, NET_NAMES.get(nid, "+12V %s (%s %s)" % (fuse, box, pin)), "supply"
+        if t == "connector" and (conn, pin) in self.relay_out:
+            nid = "%s.%s" % (conn, pin)
+            return nid, NET_NAMES.get(nid, "%s (%s %s)" % (self.relay_out[(conn, pin)]["label"], conn, pin)), "supply"
+        if t == "terminal":
+            name = r[s + "_conn_name"]
+            low = name.lower()
+            if "battery positive" in low:
+                return "BATT+", "Battery + (%s)" % name, "supply"
+            if re.search(r"ground|negative|neg bar|\bgnd\b", low) and "signal" not in low:
+                return "GND." + conn, "Chassis GND (%s)" % name, "stud"
+        return None
+
+
+def check_row(ctx, r):
+    """Row-level checks against the SoT: (checks, mismatches, gaps)."""
+    ok, bad, gap = [], [], []
+    for s in ("from", "to"):
+        t, conn, pin = r[s + "_type"], r[s + "_conn"], r[s + "_pin"]
+        if t == "connector" and conn in ECU:
+            row = ctx.sot_pin.get((conn, pin.lower()))
+            if not row:
+                bad.append("%s %s not in channels.csv" % (conn, pin))
+            elif row["class"] in ("nc", "spare"):
+                bad.append("%s %s is '%s' in channels.csv (%s)" % (conn, pin, row["class"], row["label"]))
+            else:
+                ok.append("channels.csv %s %s %s (%s)" % (conn, pin, row["channel"], row["net"] or "-"))
+        elif t == "connector" and (conn in ctx.sot_conn or (conn, pin) in ctx.endpoint):
+            row = ctx.sot_row(conn, pin)
+            if row:
+                ok.append("channels.csv %s %s %s (%s)" % (row["conn"], row["pin"], row["channel"], row["net"] or "-"))
+            elif conn in ctx.sot_conn:
+                bad.append("%s pin %s is not in channels.csv (it lists %s)" % (
+                    conn, pin, ", ".join(x["channel"] for x in ctx.sot_conn[conn])))
+        if t == "connector" and conn in DEVICE_REF:
+            head = next((k for k in ctx.device_pins if k.startswith(DEVICE_REF[conn])), None)
+            table = ctx.device_pins.get(head, {})
+            want = table.get(pin)
+            if want is None and table and pin.isdigit() and all(k.isalpha() for k in table):
+                want = table.get("ABCDEFGH"[int(pin) - 1])
+                if want:
+                    gap.append("%s pins are drawn without the device's pin letters (reference: %s)" % (
+                        conn, ", ".join(sorted(table))))
+            if want is None:
+                bad.append("%s pin %s is not in the device reference (%s)" % (conn, pin, head))
+            else:
+                ok.append("device ref %s pin %s '%s'" % (head, pin, want))
+                kind = r.get("_kind")
+                if kind in ("supply", "ground", "signal") and role(want) != kind:
+                    bad.append("%s pin %s is '%s' in the device reference but the wire is on a %s net (%s)" % (
+                        conn, pin, want, kind, r["net_name"]))
+        if t == "connector" and conn in DRB102:
+            sec, cavid, use = ctx.drb.get(pin, ("?", "?", "?"))
+            ok.append("DRB102 %s = section %s %s '%s'" % (pin, sec, cavid, use[:50]))
+            if sec == "?":
+                bad.append("DRB102 has no cavity %s" % pin)
+            elif sec != DRB102[conn]:
+                bad.append("DRB102 %s is section %s, drawn on the section %s half (%s)" % (pin, sec, DRB102[conn], conn))
+            if use.lower().startswith("spare"):
+                gap.append("DRB102 map says cavity %s is '%s' but a wire lands on it" % (pin, use))
+        if t == "connector" and conn in ctx.plan_conns:
+            ws = ctx.plan_end.get((conn, pin))
+            if not ws:
+                bad.append("fuse-box plan (rev7 wiring_plan.json) has no wire at %s %s" % (conn, pin))
+            else:
+                g = {str(w.get("gauge")) for w in ws}
+                ok.append("fuse-box plan %s %s (%s AWG)" % (conn, pin, "/".join(sorted(g))))
+                bands = {"-".join(w.get("bands") or []) for w in ws}
+                if r["ident_bands"] and r["ident_bands"] not in bands:
+                    bad.append("fuse-box plan wire at %s %s is %s (bands %s), not this wire (bands %s)" % (
+                        conn, pin, "/".join(w["wire"] for w in ws), "/".join(sorted(bands)), r["ident_bands"]))
+                if r["gauge_awg"] and r["gauge_awg"] not in g:
+                    bad.append("fuse-box plan wires %s %s in %s AWG, the row says %s AWG" % (
+                        conn, pin, "/".join(sorted(g)), r["gauge_awg"]))
+        if t in ("resistor", "diode") and pin not in ("1", "2"):
+            bad.append("%s %s end has no pin (1 or 2)" % (t, conn))
+        if t == "splice":
+            if conn in ctx.sot_text:
+                ok.append("splice %s named in SoT" % conn)
+            else:
+                gap.append("splice %s is not named in the SoT (drawing only)" % conn)
+        if t == "OEM":
+            f = ctx.fl.get((conn.replace(" (factory)", ""), pin))
+            if not f:
+                gap.append("factory end %s pin %s is not an interfaces.json flying lead (no EWD record)" % (conn, pin))
+            else:
+                ew = f["ewd"]
+                ok.append("flying lead %s: EWD %s pin %s %s" % (f["id"], ew["connector"], ew["pin"], ew["color"]))
+                if ew["color"] not in r["oem_wire_colour"].split(" / "):
+                    bad.append("factory colour: interfaces.json says %s, the row says %s" % (ew["color"], r["oem_wire_colour"]))
+        if t == "terminal":
+            if conn in ctx.sot_text:
+                ok.append("end %s named in SoT" % conn)
+            else:
+                gap.append("end %s (%s) is drawing-only: not named in the SoT" % (conn, r[s + "_conn_name"]))
+        if t == "?":
+            bad.append("end %s floats: not a pin, OEM tap or splice" % conn)
+    return ok, bad, gap
+
+
+def assign_nets(ctx, rows):
+    """Electrical nets over every list: the union of every wire row's two ends (a splice, a bussed
+    plug, a mated pin and an enclosure screen join are one node; a resistor splits). Sets net_id /
+    net_name on every row; returns [(finding, [row ids])] for checks (a)-(d) and the screens, and
+    the per-row net mismatches (bulkhead / inline pin uses that name an ECU pin)."""
     parent = {}
 
     def find(k):
@@ -133,393 +437,410 @@ def assign_nets(rows, sot_pin, drb):
             k = parent[k]
         return k
 
+    def join(a, b):
+        parent[find(a)] = find(b)
+
     for r in rows:
+        r["_keys"] = [ctx.key(r, s) for s in ("from", "to")]
         ks = [k for k in r["_keys"] if k]
         for k in ks:
             find(k)
         if len(ks) == 2 and r["wire_id"]:
-            parent[find(ks[0])] = find(ks[1])
+            join(*ks)
+    for a, b in ctx.enc:
+        if a in parent or b in parent:
+            join(a, b)
     comp = {}
     for k in list(parent):
         comp.setdefault(find(k), set()).add(k)
-    bad, naming = [], {}
+    members = {}
+    for r in rows:
+        ks = [k for k in r["_keys"] if k]
+        if ks:
+            members.setdefault(find(ks[0]), []).append(r)
+    findings, row_bad = [], {}
+
+    def ids(rs):
+        return [r["_id"] for r in rs]
+
+    naming = {}
     for root, keys in comp.items():
-        src = [SOURCES[k] for k in keys if k in SOURCES]
-        if len(src) > 1:  # (c) one source per supply / ground / screen net
-            bad.append("(c) one net has %d sources: %s" % (len(src), ", ".join(x[0] for x in src)))
+        rs = members.get(root, [])
+        wired = [r for r in rs if r["wire_id"]]
+        src = {}
+        for r in rs:
+            for s, k in zip(("from", "to"), r["_keys"]):
+                x = k and ctx.source(k, r, s)
+                if x:
+                    src[x[0]] = x
+        real = [x for x in src.values() if x[2] != "stud"]
+        studs = sorted(x for x in src.values() if x[2] == "stud")
+        if len(real) > 1:  # (c) one source per supply / ground / screen net
+            findings.append(("(c) one net has %d sources: %s" % (len(real), ", ".join(sorted(x[0] for x in real))), ids(wired)))
         pins = sorted(k for k in keys if k[0] == "pin")
-        if src:
-            nid, name, kind = src[0]
-        else:  # a signal net: id = its ECU pin (or first pin), named by its wire
-            rr = [r for r in rows if r["wire_id"] and set(r["_keys"]) & keys]
-            ecu = [k for k in pins if k[1] in ("ecu_a", "ecu_b")]
-            k0 = (ecu or pins or sorted(keys))[0]
-            nid = ".".join(str(x) for x in k0[1:]).replace("ecu_a", "ECU-A").replace("ecu_b", "ECU-B")
-            name = "%s (%s)" % (rr[0]["from_desc"], nid.replace(".", " ")) if rr else "spare (%s)" % nid.replace(".", " ")
-            kind = "signal" if rr else "spare"
+        ecu = [k for k in pins if k[1] in ECU]
+        if real:
+            nid, name, kind = sorted(real)[0]
+        elif studs:
+            nid, name, kind = studs[0][0], studs[0][1], "ground"
+        else:
+            k0 = (ecu or pins or sorted(keys, key=str))[0]
+            nid = ".".join(str(x) for x in k0[1:])
+            for c, n in ECU.items():
+                nid = nid.replace(c + ".", n + ".")
+            name = "%s (%s)" % (wired[0]["from_desc"], nid.replace(".", " ")) if wired else "spare (%s)" % nid.replace(".", " ")
+            kind = "signal" if wired else "spare"
         # (b) one splice / bus never joins two SoT nets
-        sot_nets = {sot_pin[(k[1], k[2].lower())]["net"] for k in pins
-                    if (k[1], k[2].lower()) in sot_pin and sot_pin[(k[1], k[2].lower())]["net"]}
+        sot_nets = {}
+        for k in pins:
+            conn = next((r[s + "_conn"] for r in rs for s, kk in zip(("from", "to"), r["_keys"]) if kk == k), None)
+            row = conn and ctx.sot_row(conn, k[2])
+            if row and row["net"]:
+                sot_nets.setdefault(row["net"], set()).add("%s %s" % (conn, k[2]))
         if len(sot_nets) > 1:
-            bad.append("(b) net %s joins SoT nets %s" % (name, sorted(sot_nets)))
-        # screen nets: only screen / drain pins, never a supply or ground source
+            findings.append(("(b) net %s joins SoT nets %s" % (name, "; ".join(
+                "%s at %s" % (n, ", ".join(sorted(p))) for n, p in sorted(sot_nets.items()))), ids(wired)))
+        # screens: only screen / drain pins, never a supply or ground source
+        screen_pins = [k for k in pins if (k[1], k[2]) in SCREEN_PINS]
         if kind == "screen":
             for k in pins:
-                ok = (k[1], k[2]) in SCREEN_PINS or (k[1] == "ix_ws_front_p" and k[2] == "5") or \
-                    (k[1] == "bh_a_fw" and "screen" in drb.get(k[2], ("", "", ""))[2].lower())
-                if not ok:
-                    bad.append("screen: %s lands on non-screen pin %s %s" % (name, k[1], k[2]))
-            if any(SOURCES[k][2] != "screen" for k in keys if k in SOURCES):
-                bad.append("screen: %s touches a supply / ground net" % name)
+                conn = next((r[s + "_conn"] for r in rs for s, kk in zip(("from", "to"), r["_keys"]) if kk == k), k[1])
+                row = ctx.sot_row(conn, k[2])
+                use = ctx.drb.get(k[2], ("", "", ""))[2].lower() if k[1] == "DRB102" else ""
+                ixt = (ctx.ix_pins.get((conn, k[2])) or ("", ""))[1].lower()
+                if not ((k[1], k[2]) in SCREEN_PINS or (row and row["class"] == "screen") or "screen" in use
+                        or "shield" in use or "drain" in ixt or "screen" in ixt):
+                    findings.append(("screen: %s lands on non-screen pin %s %s" % (name, conn, k[2]), ids(wired)))
+            if any(x[2] not in ("screen",) for x in src.values()):
+                findings.append(("screen: %s touches a supply / ground net" % name, ids(wired)))
+            if len({SCREEN_PINS[(k[1], k[2])] for k in screen_pins}) > 1:
+                findings.append(("screen: Screen A and Screen B meet", ids(wired)))
         else:
-            for k in pins:
-                if (k[1], k[2]) in SCREEN_PINS:
-                    bad.append("screen: %s (not a screen net) lands on %s %s" % (name, k[1], k[2]))
+            for k in screen_pins:
+                findings.append(("screen: %s (not a screen net) lands on %s %s" % (name, k[1], k[2]), ids(wired)))
+        # a bulkhead / inline pin whose SoT use names an ECU pin must be on that pin's net
+        ecu_on = {"%s %s" % (ECU[k[1]][-1], k[2]) for k in ecu}
+        for r in wired:
+            for s in ("from", "to"):
+                conn, pin = r[s + "_conn"], r[s + "_pin"]
+                named = []
+                if conn in DRB102:
+                    m = re.match(r"ECU-([AB]) ([AB]\d+)", ctx.drb.get(pin, ("", "", ""))[2])
+                    if m:
+                        named.append(("DRB102 %s" % pin, m.group(1), m.group(2)))
+                if (conn, pin) in ctx.ix_pins:
+                    ixid, text = ctx.ix_pins[(conn, pin)]
+                    for m in re.finditer(r"->\s*(?:SHIELD_[AB]\s*)?([AB])(\d{1,2})\b", text):
+                        named.append(("%s pin %s" % (ixid, pin), m.group(1), m.group(1) + m.group(2)))
+                for where, letter, p in named:
+                    if "%s %s" % (letter, p) not in ecu_on:
+                        row_bad.setdefault(r["_id"], []).append(
+                            "%s is for ECU-%s %s but this net reaches %s" % (where, letter, p, ", ".join(sorted(ecu_on)) or "no ECU pin"))
         if kind != "spare":
             naming.setdefault(name, set()).add(root)
-        for r in rows:
-            if set(r["_keys"]) & keys:
-                r["net_id"], r["net_name"] = nid, name
+        for r in rs:
+            r["net_id"], r["net_name"] = nid, name
+        if kind != "spare":
+            for r in rs:
+                r["_kind"] = kind
     for name, roots in naming.items():  # (a) one name, one net
         if len(roots) > 1:
-            bad.append("(a) net name %r is used by %d unconnected nets" % (name, len(roots)))
+            findings.append(("(a) net name %r is used by %d unconnected nets" % (name, len(roots)),
+                             [r["_id"] for root in roots for r in members.get(root, []) if r["wire_id"]]))
     sot_seen = {}
-    for root, keys in comp.items():  # (d) one SoT supply / ground / screen net split in two here
-        for k in keys:
-            r = sot_pin.get((k[1], k[2].lower())) if k[0] == "pin" else None
-            if r and r["net"] and r["class"] in ("rail", "ground", "power", "screen"):
-                sot_seen.setdefault(r["net"], set()).add(root)
+    for root, keys in comp.items():  # (d) one SoT supply / ground / screen net split in two
+        for r in members.get(root, []):
+            for s, k in zip(("from", "to"), r["_keys"]):
+                if k and k[0] == "pin":
+                    row = ctx.sot_row(r[s + "_conn"], r[s + "_pin"])
+                    if row and row["net"] and row["class"] in ("rail", "ground", "power", "screen"):
+                        sot_seen.setdefault(row["net"], {}).setdefault(root, set()).add("%s %s" % (r[s + "_conn"], r[s + "_pin"]))
     for net, roots in sot_seen.items():
         if len(roots) > 1:
-            bad.append("(d) SoT net %s is on %d unconnected nets in this loom" % (net, len(roots)))
-    return bad
+            parts = ["{%s}" % ", ".join(sorted(p)) for p in roots.values()]
+            findings.append(("(d) SoT net %s is on %d unconnected nets: %s" % (net, len(roots), " / ".join(sorted(parts))),
+                             [r["_id"] for root in roots for r in members.get(root, []) if r["wire_id"]]))
+    return findings, row_bad
 
 
-def load_json(p):
-    with open(p, encoding="utf-8") as f:
-        return json.load(f)
+def recommend(what):
+    """The plain recommended answer for each kind of gap (GAPS.md)."""
+    rules = [
+        (r"is not named in the SoT \(drawing only\)", "clerical: name the splice in sot/channels.csv notes or interfaces.json when its file is rebuilt (R203)"),
+        (r"end \S+ \(OEM", "add the factory tap to interfaces.json flyingLeads (EWD page, connector, pin, colour, method; TBD where the EWD is not read yet)"),
+        (r"is drawing-only", "clerical: name this end in interfaces.json (endpoints / a ground-point list) or ENGINE-ROOM-POWER-REDISTRIBUTION.md"),
+        (r"not an interfaces.json flying lead", "add the tap to interfaces.json flyingLeads with its EWD page, pin, colour and method (TBD where the EWD is not read yet)"),
+        (r"DRB102 map says cavity", "fix the DRB102-CAVITY-MAP.md table row to name what the wire is"),
+        (r"fuse-box plan .* has no wire", "fuse-box design decides (R204): move the wire to the cavity the rev7 plan gives, or add it to the plan"),
+        (r"has \d+ wires", "one wire per cavity: move one wire to its own pin (or splice them first if the SoT says they share a net)"),
+        (r"fuse-box plan wire at", "fuse-box design decides (R204): this cavity belongs to another wire in the rev7 plan"),
+        (r"fuse-box plan wires", "fuse-box design decides (R204): use the plan's gauge"),
+        (r"is '(nc|spare)' in channels.csv", "the SoT says the pin is unused: drop the wire, or set the pin in channels.csv (design question)"),
+        (r"not in channels.csv", "add the pin to sot/channels.csv or move the wire to the pin the SoT gives"),
+        (r"^\(a\)", "give one of the nets a distinct name"),
+        (r"^\(b\) .*P14V at ecu_a A5", "SoT naming, no wiring change: A5 is fed from the SW12 7.5A fuse on Bus 2 behind the EFI main relay "
+                                         "(as drawn and in the approved A-cabin list), which channels.csv calls P14V at A5 and SW12 at "
+                                         "the relay coils. Separate real gap: the IG2 -> supply diode -> A5 wake feed that channels.csv "
+                                         "b28 and DECISIONS table item 38 require is in no drawing or list (Needs Dan)"),
+        (r"^\(b\)", "design question: two SoT nets are joined by a wire or splice; split them or merge the SoT nets"),
+        (r"^\(c\)", "design question: a supply / screen net has two sources; one must go"),
+        (r"^\(d\) SoT net GNDOUT", "clerical SoT naming: A24 and B22 are two separate sensor-ground nets by design; name them GNDOUT_A / GNDOUT_B"),
+        (r"^\(d\) SoT net (CHASSIS|GND)", "none: these are separate leads to chassis ground points; the body joins them"),
+        (r"^\(d\)", "check the two parts of this SoT net: either wire them together or give them different SoT net names"),
+        (r"^screen", "design question: screens land only on A7 / B17 drain pins (R29 / R30)"),
+        (r"is for ECU-", "the pin's SoT use and the wire disagree: re-check the bulkhead / inline pin"),
+        (r"halves drawn with different gauges", "clerical: one gauge for the whole wire (the larger), set in the rebuild"),
+        (r"halves drawn in different colours", "clerical: one colour for the whole wire, set in the rebuild"),
+        (r"mate", "wire the other half of the pin, or mark this one spare"),
+        (r"section", "move the wire to a cavity of this file's section (DRB102-CAVITY-MAP.md)"),
+        (r"drawn without the device's pin letters", "clerical: give the drawn cavities the device's pin letters in the rebuild"),
+        (r"in the device reference but the wire", "the drawn pin and the device's datasheet pin disagree: re-pin to the reference"),
+        (r"not in the device reference", "add the device's pin table to SENSOR-AND-ACTUATOR-REFERENCE.md (from its datasheet)"),
+        (r"factory colour", "re-check the EWD colour; fix interfaces.json or the row"),
+        (r"channels.csv \(it lists", "fix the pin to one channels.csv lists for this part"),
+    ]
+    for pat, ans in rules:
+        if re.search(pat, what):
+            return ans
+    return "check against the SoT"
 
 
 def main(check=False):
-    reg = model.registry()
-    docs = model.docs(reg)          # with the gates' long text (full_text.json)
-    files = model.harness_files(reg)
-    raw = {h: load_json(os.path.join(HARNESS, "rebuild", fn)) for h, fn in files.items()}  # as drawn
-    cab = docs[LOOM]
-    sot_pin = {(r["conn"], r["pin"]): r for r in model.sot_rows()}
-    drb = {}
-    with open(os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"), encoding="utf-8") as f:
-        for line in f:
-            m = re.match(r"\| (\d+) \| [^|]+\| (\d+) \| ([AB]) \| (c\d+) \| (.+) \|\s*$", line)
-            if m:
-                drb[m.group(1)] = (m.group(3), m.group(4), m.group(5).strip())
-    fuse_cav = {w: (c["box"], c["cav"])
-                for c in load_json(os.path.join(REPO, "cad", "fusebox", "rev7", "wiring_plan.json"))["cavities"]
-                for w in c["wires"]}
-    breaks = {e["terminal"]: br for br in reg["breaks"] for e in br["ends"] if e["harness"] == LOOM}
-    fleads = {f["terminal"]: f for f in reg["flyingLeads"] if f["harness"] == LOOM}
-    fleads_all = {(f["harness"], f["terminal"]): f for f in reg["flyingLeads"]}
-    sot_text = "".join(open(p, encoding="utf-8").read() for p in (
-        os.path.join(REPO, "sot", "channels.csv"), os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"))) + json.dumps(reg)
-    circuit_of = {w: name for name, c in reg["identBands"].get(LOOM, {}).items()
-                  if isinstance(c, dict) for w in c.get("wires", [])}
-    with open(os.path.join(HARNESS, "HARNESS-BUILD-LIST.csv"), encoding="utf-8") as f:
-        est = {(r["File"], r["Wire"]): r["Est mm"] for r in csv.DictReader(f)}
-
-    end_note = {n["id"][len("n_end_"):]: n["text"] for n in raw[LOOM].get("schematicNotes", [])
-                if n["id"].startswith("n_end_")}  # the note drawn next to each wire end
-    parts = model.parts(cab)
-    cond = {c["id"]: c for c, _, _ in model.conductors(cab)}
-    label = {c["id"]: c.get("label", c["id"]).split("  ")[0] for c in raw[LOOM]["connectors"]}
-    core_gauge = {}
-    for cb in cab.get("cables", []):
-        cores = (parts.get(cb.get("partId")) or {}).get("cores") or []
-        for i, core in enumerate(cb["cores"]):
-            core_gauge[core["id"]] = ((cores[i] if i < len(cores) else {}).get("gauge") or {}).get("value", "")
-
-    def far_end(term):
-        """Break end on A-cabin -> the real pin the wire lands on in the other file."""
-        br = breaks[term]
-        other = next(e for e in br["ends"] if e["harness"] != LOOM)
-        h, d = other["harness"], raw[other["harness"]]
-        for c, _, _ in model.conductors(d):
-            for a, b in (("source", "target"), ("target", "source")):
-                if (c.get(a) or {}).get("id") == other["terminal"] and c.get(b):
-                    o = c[b]
-                    cn = next((x for x in d.get("connectors", []) if x["id"] == o["id"]), None)
-                    if cn:
-                        cav = next(x for x in cn["cavities"] if x["id"] == o["handle"])
-                        return dict(type="connector", conn=cn["id"], name=cn.get("label", cn["id"]),
-                                    pin=cav.get("designation", ""), harness=h), c["id"], br["id"]
-                    fl = fleads_all.get((h, o["id"]))
-                    if fl:  # the far end is a tap into factory wiring: an OEM end
-                        ew = fl["ewd"]
-                        return dict(type="OEM", conn="%s (factory)" % ew["connector"], name="OEM %s, factory %s lead" % (
-                            ew["connector"], ew["color"].split(" ")[0]), pin=ew["pin"], harness=h, ewd=ew), c["id"], br["id"]
-                    kind = "splice" if o.get("handle") == "Splice" else "resistor" if o.get("handle") in ("Left", "Right") else "terminal"
-                    return dict(type=kind, conn=o["id"], name="%s %s on %s" % (kind, o["id"], h), pin="",
-                                harness=h), c["id"], br["id"]
-        return dict(type="?", conn="?", name="?", pin="", harness=h), "?", br["id"]
-
-    rows, splice_wires = [], {}
-
-    def endpoint(node, pin, gauge, wid, checks, bad, gap, extra):
-        if node in CONNECTORS:
-            return dict(type="connector", conn=node, name=label[node], pin=pin, harness=LOOM)
-        if node in SPLICES:
-            splice_wires.setdefault(node, []).append((wid, gauge))
-            if node in sot_text:
-                checks.append("splice %s named in SoT" % node)
-            else:
-                gap.append("splice %s is not named in the SoT (drawing only)" % node)
-            return dict(type="splice", conn=node, name="splice %s (%s)" % (node, SPLICES[node].split(" - ")[1]),
-                        pin="", harness=LOOM)
-        if node in breaks:
-            e, half, brid = far_end(node)
-            extra["through"] = (e["harness"], half)
-            if e.get("ewd"):
-                extra.setdefault("oems", []).append(e["ewd"])
-                checks.append("flying lead on %s: EWD %s pin %s %s" % (e["harness"], e["ewd"]["connector"], e["ewd"]["pin"], e["ewd"]["color"]))
-            checks.append("break %s (other drawn half %s on %s)" % (brid, half, e["harness"]))
-            if e["conn"] in ("k_efi", "k_str", "k_fan", "k_etb", "k_acc", "k_eps", "k_fp"):
-                checks.append("relay pin from the %s drawing (no channels.csv row)" % e["harness"])
-            if half in fuse_cav:
-                box, cav = fuse_cav[half]
-                checks.append("fuse-box plan %s %s" % (box, cav))
-                if cav.split(" ")[-1] != e["pin"].split("-")[-1] and cav != e["pin"]:
-                    bad.append("fuse-box plan says %s %s, drawing says %s" % (box, cav, e["pin"]))
-                slot = cav.split(" ")[0]
-                if " " in cav and slot not in re.findall(r"[A-Z]+\d+", e["name"]):
-                    gap.append("relay slot: fuse-box plan %s %s, %s drawing says '%s'" % (box, slot, e["harness"], e["name"]))
-            return e
-        if node in fleads:
-            ew = fleads[node]["ewd"]
-            extra.setdefault("oems", []).append(ew)
-            checks.append("flying lead %s: EWD %s pin %s %s" % (fleads[node]["id"], ew["connector"], ew["pin"], ew["color"]))
-            return dict(type="OEM", conn="%s (factory)" % ew["connector"], name="OEM A/C amplifier",
-                        pin=ew["pin"], harness=LOOM)
-        if node == "cam_pullup":
-            checks.append("channels.csv a9 pull-up ext-1k8-to-8v")
-            return dict(type="resistor", conn="cam_pullup", name="Cam pull-up 1.8 k", pin="1" if pin == "Left" else "2", harness=LOOM)
-        if node.startswith("screen:"):
-            return dict(type="cable screen", conn=node[7:], name="cable screen (one end only)", pin="", harness=LOOM)
-        return dict(type="terminal", conn=node, name="Ground ring M6, cabin chassis stud at ECU", pin="", harness=LOOM)
-
-    def node_key(e):
-        if e["type"] == "splice":
-            return ("splice", e["conn"])
-        if e["conn"] in BUS_CAP:  # a bussed plug is one node: every live pin is the bus
-            return ("bus", e["conn"])
-        if e["type"] == "resistor":
-            return ("res", e["conn"], e["pin"])
-        if e["type"] == "cable screen":
-            return ("screen", e["conn"])
-        if e["type"] == "terminal":
-            return ("term", e["conn"])
-        return ("pin", e["conn"], e["pin"])
-
-    def add(wid, f, t, desc, cable=""):
-        w = cond[wid]
-        gauge = ((parts.get(w.get("partId")) or {}).get("gauge") or {}).get("value", "") or core_gauge.get(wid, "")
-        checks, bad, gap, extra = [], [], [], {}
-        ends = [endpoint(n, p, gauge, wid, checks, bad, gap, extra) for n, p in (f, t)]
-        for e in ends:  # ECU pins against channels.csv
-            if e["conn"] in ("ecu_a", "ecu_b"):
-                r = sot_pin.get((e["conn"], e["pin"].lower()))
-                if r:
-                    checks.append("channels.csv %s %s %s (%s)" % (e["conn"], e["pin"], r["channel"], r["net"] or "-"))
-                else:
-                    bad.append("%s %s not in channels.csv" % (e["conn"], e["pin"]))
-        ecu_pins = [e["pin"] for e in ends if e["conn"] == "ecu_a"]
-        for e in ends:  # bulkhead cavities against the DRB102 map
-            if e["conn"] in ("bh_a_fw", "bh_b_fw"):
-                sec, cavid, use = drb.get(e["pin"], ("?", "?", "?"))
-                checks.append("DRB102 %s = section %s %s '%s'" % (e["pin"], sec, cavid, use[:50]))
-                if ecu_pins and use.startswith("ECU-A") and use != "ECU-A " + ecu_pins[0]:
-                    bad.append("DRB102 %s is '%s' but the wire is from ECU-A %s" % (e["pin"], use, ecu_pins[0]))
-                if use.startswith("spare"):
-                    gap.append("DRB102 map table row %s says spare; its own note and R22 put the EPS relay coil there" % e["pin"])
-        owner, through, notes = LOOM, "", [x for x in [ROW_NOTES.get(wid, ""), ROW_NOTES.get(cable, "")] if x]
-        if "through" in extra:  # N40 2: one row, owned by the longer half's file
-            h, half = extra["through"]
-            mine, theirs = est.get((LOOM, wid), ""), est.get((h, half), "")
-            if mine and theirs and float(theirs) > float(mine):
-                owner, through = h, LOOM
-            else:
-                through = h
-            notes.append(("owner proposed: longer half" if mine and theirs else "owner TBD: a half has no length estimate") +
-                         " (drawn today as %s on %s, %s mm; %s on %s, %s mm)" % (wid, LOOM, mine or "?", half, h, theirs or "?"))
-        oems = extra.get("oems") or []
-        for e in ends:  # nothing floats: every end is a real pin, an OEM tap, a splice or a part
-            if e["type"] in ("?", "terminal") and e["conn"] != "chassis_ring":
-                bad.append("end %s (%s) floats: not a pin, OEM tap or splice" % (e["conn"], e["type"]))
-        rows.append({
-            "circuit_id": circuit_of.get(wid, ""), "wire_id": wid, "harness": owner, "passes_through": through,
-            "from_type": ends[0]["type"], "from_conn": ends[0]["conn"], "from_conn_name": ends[0]["name"],
-            "from_pin": ends[0]["pin"], "from_desc": desc,
-            "to_type": ends[1]["type"], "to_conn": ends[1]["conn"], "to_conn_name": ends[1]["name"],
-            "to_pin": ends[1]["pin"], "to_desc": desc,
-            "net_id": "", "net_name": "", "_keys": [node_key(e) for e in ends],
-            "splice": next((n for n in (f[0], t[0]) if n in SPLICES), ""), "cable": cable,
-            "gauge_awg": gauge, "colour": w.get("color", ""), "stripe": w.get("stripeColor", ""),
-            "ident_bands": "-".join(w.get("identColors", [])),
-            "from_note": end_note.get(f[0], ""), "to_note": end_note.get(t[0], ""),
-            "oem_location": " / ".join(OEM_ENDS[n]["where"] for n in (f[0], t[0]) if n in OEM_ENDS),
-            "oem_wire_colour": " / ".join(o.get("color", "") for o in oems),
-            "oem_ewd_page": " / ".join(o.get("page", "") + ("; " + OEM_ENDS[n]["ref"] if n in OEM_ENDS else "")
-                                       for o, n in zip(oems, [n for n in (f[0], t[0]) if n in fleads or n in breaks and n in OEM_ENDS])),
-            "oem_method": " / ".join(o.get("method", "") for o in oems),
-            "route_branch": branch((f[0], t[0])), "est_length_mm": est.get((LOOM, wid), ""),
-            "sot_check": "; ".join(checks),
-            "status": ("MISMATCH: " + "; ".join(bad)) if bad else ("SOT GAP: " + "; ".join(gap)) if gap else "OK",
-            "notes": "; ".join(notes)})
-
-    for wid, f, t, desc in WIRES:
-        add(wid, f, t, desc)
-    for cid, cores in CABLES.items():
-        for core, (f, t, desc) in cores.items():
-            add(core, f or ("screen:" + cid, None), t, desc, cable=cid)
-            if f is None:
-                rows[-1]["colour"] = "Shield"
-                rows[-1]["notes"] = "; ".join(x for x in ("screen floats at the far end", rows[-1]["notes"]) if x)
-
-    # unused cavities on this loom's own connectors: "spare, sealing plug" rows with no wire
-    wired = {(r[s + "_conn"], r[s + "_pin"]) for r in rows for s in ("from", "to")}
-    for c in raw[LOOM]["connectors"]:
-        if c["id"] in BUS_CAP.values():
-            continue
-        for i, cav in enumerate(c["cavities"]):
-            des = cav.get("designation", str(i + 1))
-            if (c["id"], des) in wired:
-                continue
-            if c["id"] == "bh_a_fw" and drb.get(des, ("B",))[0] != "A":
-                continue  # section B of the shared DRB102 is B-cabin's
-            rows.append(dict({k: "" for k in COLUMNS}, harness=LOOM, from_type="connector", from_conn=c["id"],
-                             from_conn_name=label[c["id"]], from_pin=des, from_desc="spare, sealing plug",
-                             _keys=[("bus", c["id"]) if c["id"] in BUS_CAP else ("pin", c["id"], des)], status="OK",
-                             sot_check=("DRB102 %s = '%s'" % (des, drb[des][2])) if c["id"] == "bh_a_fw" else ""))
-
-    net_findings = assign_nets(rows, sot_pin, drb)
-
-    files, sheets = {}, []
-
-    def write(name, cols, data):
-        buf = io.StringIO()
-        w = csv.DictWriter(buf, cols, extrasaction="ignore", lineterminator="\n")
-        w.writeheader()
-        w.writerows(data)
-        files[name] = buf.getvalue()
-        sheets.append((name.split("-")[-1].split(".")[0].capitalize(), cols, data,
-                       "WL" + name.split("-")[-1].split(".")[0].capitalize()))
-
-    write("A-cabin-wirelist.csv", COLUMNS, rows)
-
-    # splices
-    spl = {s["id"]: s for s in cab["splices"]}
-    srows = []
-    for sid, name in SPLICES.items():
-        ws = splice_wires.get(sid, [])
-        gauges = [int(g) for _, g in ws if g]
-        cma = sum(CMA.get(g, 0) for g in gauges)
-        loc = spl[sid].get("locationId", "")
-        net = next((r for r in rows if ("splice", sid) in r["_keys"]), {})
-        srows.append({"splice_id": sid, "name": name, "net_id": net.get("net_id", ""),
-                      "net_name": net.get("net_name", ""), "harness": LOOM,
-                      "location": name.split(" - ")[0] + (" (layout node %s)" % loc if loc else ""),
-                      "method": (parts.get(spl[sid].get("partId")) or {}).get("description", "solder splice")[:60],
-                      "wires": len(ws), "gauges_awg": "+".join(map(str, gauges)) + (" + shield" if len(gauges) < len(ws) else ""),
-                      "combined_cma": cma,
-                      "equivalent_awg": next((a for a in sorted(CMA, reverse=True) if CMA[a] >= cma), "") if cma else "",
-                      "sot_check": "named in SoT" if sid in sot_text else "SOT GAP: not named in the SoT (drawing only)"})
-    write("A-cabin-splices.csv", SPLICE_COLUMNS, srows)
-
-    # connectors (this loom's own), with what each mates with
-    cparts = model.parts(raw[LOOM])
-    crows = []
-    for c in raw[LOOM]["connectors"]:
-        mate, note = "", ""
-        if c["id"] in BUS_CAP:
-            mate, note = BUS_CAP[c["id"]], "bussed DT plug (R169): every live pin is one net"
-        elif c["id"] in BUS_CAP.values():
-            mate = next(k for k, v in BUS_CAP.items() if v == c["id"])
-            note = "bussed cap: all cavities bussed, one net; no wire rows"
-        elif c["id"] in MATES:
-            mate = "%s on %s" % (MATES[c["id"]][1], MATES[c["id"]][0])
-            note = "shared DRB102 (section A here, section B on B-cabin)" if c["id"] == "bh_a_fw" else "inline DT pair"
-        crows.append({"conn_id": c["id"], "name": label[c["id"]], "harness": LOOM,
-                      "part_number": (cparts.get(c.get("partId")) or {}).get("partNumber", ""),
-                      "cavities": len(c["cavities"]), "mates_with": mate, "note": note})
-    write("A-cabin-connectors.csv", CONN_COLUMNS, crows)
-
-    # mating table (N40 1): this half's pin vs the other drawing's pin, same circuit and description
-    mrows = []
-    for cid, (h, other) in MATES.items():
-        oc = next(x for x in raw[h]["connectors"] if x["id"] == other)
-        ocav = {x.get("designation"): x for x in oc["cavities"]}
-        for r in rows:
+    ctx = Ctx()
+    lists = {h: read_rows(h) for h in ctx.order if os.path.exists(csv_path(h))}
+    rows = []
+    for h, rs in lists.items():
+        for i, r in enumerate(rs):
+            r["_file"], r["_id"] = h, "%s:%d" % (h, i)
+            rows.append(r)
+    findings, row_bad = assign_nets(ctx, rows)
+    # one wire per cavity: two wire rows on the same pin of the same connector is a collision
+    at = {}
+    for r in rows:
+        if r["wire_id"]:
             for s in ("from", "to"):
-                if r[s + "_conn"] == cid and r["wire_id"]:
-                    o = ocav.get(r[s + "_pin"]) or {}
-                    ok = not o.get("notConnected") and o.get("signal") == r[s + "_desc"]
-                    mrows.append({"circuit_id": r["circuit_id"], "net_name": r["net_name"], "this_conn": cid, "this_pin": r[s + "_pin"],
-                                  "this_desc": r[s + "_desc"], "mate_harness": h, "mate_conn": other,
-                                  "mate_pin": r[s + "_pin"], "mate_desc": o.get("signal", "(N/C)" if o.get("notConnected") else ""),
-                                  "check": "OK" if ok else "DIFFERS"})
-    for plug, cap in BUS_CAP.items():
-        mrows.append({"circuit_id": "", "net_name": next(r["net_name"] for r in rows if ("bus", plug) in r["_keys"]),
-                      "this_conn": plug, "this_pin": "all", "this_desc": "bus",
-                      "mate_harness": LOOM, "mate_conn": cap, "mate_pin": "all", "mate_desc": "bussed: one net",
-                      "check": "OK"})
-    write("A-cabin-mates.csv", MATE_COLUMNS, mrows)
+                if r[s + "_type"] == "connector" and r[s + "_conn"] not in ctx.bus and r[s + "_conn"] not in ctx.studs:
+                    at.setdefault((r[s + "_conn"], r[s + "_pin"]), []).append(r)
+    for (conn, pin), rs in at.items():
+        if len(rs) > 1:
+            for r in rs:
+                row_bad.setdefault(r["_id"], []).append("%s pin %s has %d wires: %s" % (
+                    conn, pin, len(rs), ", ".join(x["wire_id"] for x in rs)))
+    for r in rows:
+        if not r["wire_id"]:
+            r["status"] = r["status"] or "OK"
+            if r["from_conn"] in DRB102:
+                r["sot_check"] = "DRB102 %s = '%s'" % (r["from_pin"], ctx.drb.get(r["from_pin"], ("", "", "?"))[2])
+            continue
+        ok, bad, gap = check_row(ctx, r)
+        bad += row_bad.get(r["_id"], [])
+        r["sot_check"] = "; ".join(ok)
+        r["status"] = ("MISMATCH: " + "; ".join(bad)) if bad else ("SOT GAP: " + "; ".join(gap)) if gap else "OK"
+    by_id = {r["_id"]: r for r in rows}
 
-    # pinouts, derived from the wire list
-    def pkey(p):
-        m = re.match(r"([A-Za-z]*)(\d+)(.*)", p or "")
-        return (m.group(1), int(m.group(2)), m.group(3)) if m else (p or "", 0, "")
-    f = io.StringIO()
-    pin_sheets = []
-    if True:
-        f.write("# A-cabin pinouts (derived from A-cabin-wirelist.csv)\n\n"
+    files, books, gaps = {}, {}, []
+    for h in ctx.order:
+        if h not in lists:
+            continue
+        mine = lists[h]
+        here = {c["id"] for k in ("connectors", "splices") for c in ctx.raw[h].get(k, [])}
+        touching = [r for r in rows if r["from_conn"] in here or r["to_conn"] in here]
+        sheets = []
+
+        def add(name, cols, data):
+            files[name] = csv_text(data, cols)
+            sheets.append((name.split("-")[-1].split(".")[0].capitalize(), cols, data,
+                           "WL" + name.split("-")[-1].split(".")[0].capitalize()))
+
+        add("%s-wirelist.csv" % h, COLUMNS, mine)
+        # splices drawn on this file; every row into one, from any list
+        srows = []
+        for s in ctx.raw[h].get("splices", []):
+            sid = s["id"]
+            ws = [r for r in rows if r["wire_id"] and sid in (r["from_conn"], r["to_conn"])]
+            gauges = [int(r["gauge_awg"]) for r in ws if r["gauge_awg"].isdigit()]
+            cma = sum(CMA.get(g, 0) for g in gauges)
+            loc = s.get("locationId", "")
+            name = s.get("label") or ""
+            srows.append({"splice_id": sid, "name": name, "net_id": ws[0]["net_id"] if ws else "",
+                          "net_name": ws[0]["net_name"] if ws else "", "harness": h,
+                          "location": name.split(" - ")[0] + (" (layout node %s)" % loc if loc else ""),
+                          "method": (ctx.parts[h].get(s.get("partId")) or {}).get("description", "solder splice")[:60],
+                          "wires": len(ws), "gauges_awg": "+".join(map(str, gauges)) + (" + shield" if len(gauges) < len(ws) else ""),
+                          "combined_cma": cma,
+                          "equivalent_awg": next((a for a in sorted(CMA, reverse=True) if CMA[a] >= cma), "") if cma else "",
+                          "sot_check": "named in SoT" if sid in ctx.sot_text else "SOT GAP: not named in the SoT (drawing only)"})
+            if not name:
+                gaps.append((h, sid, "splice has no name (R203)", "clerical: name it in the rebuild"))
+        add("%s-splices.csv" % h, SPLICE_COLUMNS, srows)
+        # this file's connectors, with what each mates with
+        crows = []
+        for c in ctx.raw[h].get("connectors", []):
+            mate, note = "", ""
+            if c["id"] in ctx.bus:
+                mate, note = ctx.bus[c["id"]]["receptacle"], "bussed DT plug (R169): every live pin is one net"
+            elif c["id"] in ctx.cap:
+                mate, note = ctx.cap[c["id"]]["plug"], "bussed cap: all cavities bussed, one net; no wire rows"
+            elif c["id"] in DRB102:
+                other = [x for x in (DRB_PLUG if c["id"] in DRB_RECEPT else DRB_RECEPT) if x[3:4] == c["id"][3:4]][0]
+                mate = "%s on %s" % (other, ctx.node[other][0])
+                own = {"A": "B", "B": "A"}[DRB102[c["id"]]]
+                note = "shared DRB102 (section %s here, section %s on %s)" % (
+                    DRB102[c["id"]], own, ctx.node[next(x for x in DRB102 if x != c["id"] and
+                                                        (x in DRB_RECEPT) == (c["id"] in DRB_RECEPT))][0])
+            elif c["id"] in ctx.mate:
+                m, mh, kind = ctx.mate[c["id"]]
+                mate, note = "%s on %s" % (m, mh), kind.split(" (")[0]
+            crows.append({"conn_id": c["id"], "name": short(c.get("label", c["id"])), "harness": h,
+                          "part_number": (ctx.parts[h].get(c.get("partId")) or {}).get("partNumber", ""),
+                          "cavities": len(c["cavities"]), "mates_with": mate, "note": note})
+        add("%s-connectors.csv" % h, CONN_COLUMNS, crows)
+        for c in ctx.raw[h].get("connectors", []):
+            if ctx.dup_des.get(c["id"]):
+                gaps.append((h, c["id"], "cavity designations repeat on one connector (%s): the list uses the cavity ids" %
+                             ", ".join(ctx.dup_des[c["id"]]), "clerical: give every cavity its own designation in the rebuild "
+                             "(e.g. IN1-IN8 / OUT1-OUT8)"))
+        # mating table (N40 1): this half's pin vs the other half's pin, same circuit and description
+        mrows = []
+        for c in ctx.raw[h].get("connectors", []):
+            cid = c["id"]
+            if cid in DRB102:
+                others = DRB_PLUG if cid in DRB_RECEPT else DRB_RECEPT
+            elif cid in ctx.mate:
+                others = (ctx.mate[cid][0],)
+            else:
+                others = ()
+            if not others:
+                continue
+            for r in rows:
+                for s in ("from", "to"):
+                    if r[s + "_conn"] != cid or not r["wire_id"]:
+                        continue
+                    pin = r[s + "_pin"]
+                    o = [(x, oo) for x in rows if x["wire_id"] for oo in ("from", "to")
+                         if x[oo + "_conn"] in others and x[oo + "_pin"] == pin]
+                    oc = o[0][0][o[0][1] + "_conn"] if o else others[0]
+                    odesc = o[0][0][o[0][1] + "_desc"] if o else "(not wired)"
+                    good = bool(o) and odesc == r[s + "_desc"]
+                    mrows.append({"circuit_id": r["circuit_id"], "net_name": r["net_name"], "this_conn": cid, "this_pin": pin,
+                                  "this_desc": r[s + "_desc"], "mate_harness": ctx.node[oc][0], "mate_conn": oc,
+                                  "mate_pin": pin, "mate_desc": odesc, "check": "OK" if good else "DIFFERS"})
+                    if not good:
+                        gaps.append((h, "%s %s (%s)" % (cid, pin, r["wire_id"]),
+                                     "mate %s pin %s: %s" % (oc, pin, "not wired" if not o else "description differs: %r vs %r" % (r[s + "_desc"], odesc)),
+                                     recommend("mate")))
+        for plug in [c["id"] for c in ctx.raw[h].get("connectors", []) if c["id"] in ctx.bus]:
+            net = next((r["net_name"] for r in rows if ("bus", plug) in r["_keys"]), "")
+            mrows.append({"circuit_id": "", "net_name": net, "this_conn": plug, "this_pin": "all", "this_desc": "bus",
+                          "mate_harness": h, "mate_conn": ctx.bus[plug]["receptacle"], "mate_pin": "all",
+                          "mate_desc": "bussed: one net", "check": "OK"})
+        add("%s-mates.csv" % h, MATE_COLUMNS, mrows)
+        # pinouts, derived from the wire lists
+        f = io.StringIO()
+        pin_sheets = []
+        f.write("# %s pinouts (derived from the master wire list)\n\n"
                 "Generated by `docs/harness/cleanroom/wirelist.py`. Pin | wire | description | other end. "
-                "Spare pins say \"spare, sealing plug\". The bulkhead lists section A only (section B is B-cabin's).\n")
+                "Spare pins say \"spare\". A shared DRB102 lists this file's section only.\n" % h)
         for c in crows:
             lst = []
-            for r in rows:
+            for r in touching + [x for x in mine if not x["wire_id"]]:
                 for s, o in (("from", "to"), ("to", "from")):
-                    if r[s + "_conn"] == c["conn_id"]:
+                    if r[s + "_conn"] == c["conn_id"] and (r["wire_id"] or s == "from") and \
+                            (r["_file"] == h or r["wire_id"]):
                         oth = (r[o + "_conn_name"] + (" pin " + r[o + "_pin"] if r[o + "_pin"] else "")) if r[o + "_conn"] else ""
                         lst.append((r[s + "_pin"], r["wire_id"], r[s + "_desc"], oth))
+            if c["conn_id"] in DRB102:
+                lst = [x for x in lst if ctx.drb.get(x[0], ("?",))[0] == DRB102[c["conn_id"]]]
+            lst = sorted(dict.fromkeys(lst), key=lambda x: (pin_key(x[0]), x[1]))
             f.write("\n## %s (`%s`)\n\n" % (c["name"], c["conn_id"]))
             if c["mates_with"]:
                 f.write("Mates with `%s`%s.\n\n" % (c["mates_with"], (" - " + c["note"]) if c["note"] else ""))
             if not lst:
-                f.write("No wire rows (%s).\n" % c["note"])
+                f.write("No wire rows (%s).\n" % (c["note"] or "nothing wired"))
                 continue
             f.write("| Pin | Wire | Description | Other end |\n|---|---|---|---|\n")
-            lst = sorted(lst, key=lambda x: pkey(x[0]))
             for pin, wid, desc, oth in lst:
                 f.write("| %s | %s | %s | %s |\n" % (pin, wid, desc, oth))
             pin_sheets.append(("%s (%s)" % (c["name"], c["conn_id"]),
                                [{"Pin": a, "Wire": b, "Description": cc, "Other end": d} for a, b, cc, d in lst]))
-    files["A-cabin-pinouts.md"] = f.getvalue()
-    books = {"A-cabin-wirelist.xlsx": X.wirelist_workbook(sheets), "A-cabin-pinouts.xlsx": X.pinout_workbook(pin_sheets)}
-    stale = sync(files, books, check)
+        files["%s-pinouts.md" % h] = f.getvalue()
+        books["%s-wirelist.xlsx" % h] = X.wirelist_workbook(sheets)
+        if pin_sheets:  # a file with no connectors (all splices / flying leads) has no pinout sheets
+            books["%s-pinouts.xlsx" % h] = X.pinout_workbook(pin_sheets)
 
-    print("net checks: %d finding(s)" % len(net_findings))
-    for x in net_findings:
-        print("  NET", x)
-    n = lambda k: sum(r["status"].startswith(k) for r in rows)  # noqa: E731
-    print("wire list: %d rows (%d wires, %d spare pins), %d splices, %d connectors, %d mate rows (%d differ); "
-          "%d mismatch(es), %d SoT gap row(s) -> %s" % (
-              len(rows), sum(bool(r["wire_id"]) for r in rows), sum(not r["wire_id"] for r in rows), len(srows),
-              len(crows), len(mrows), sum(m["check"] != "OK" for m in mrows), n("MISMATCH"), n("SOT GAP"), OUT))
+    # the ONE combined gap list across every file
+    per_item = {}  # a gap about one end (a splice, a terminal) is one line, however many wires reach it
     for r in rows:
         if r["status"] != "OK":
-            print("  ", r["wire_id"], r["status"][:150])
+            what = r["status"].split(": ", 1)[1]
+            for part in what.split("; "):
+                m = re.match(r"(splice|end) (\S+) ", part) or re.match(r"()(\S+) pins are drawn without", part)
+                if m and r["status"].startswith("SOT GAP") and m.group(2) in ctx.node:
+                    per_item.setdefault((ctx.node[m.group(2)][0], m.group(2), part), []).append(r["wire_id"])
+                    continue
+                pin = "%s %s %s" % (r["from_conn"], r["from_pin"], "-> %s %s" % (r["to_conn"], r["to_pin"]))
+                gaps.append((r["harness"], "%s (%s)" % (r["wire_id"], pin.strip()),
+                             ("MISMATCH: " if r["status"].startswith("MISMATCH") else "SOT GAP: ") + part, recommend(part)))
+    grouped = {}
+    for (h, item, part), wids in per_item.items():
+        if "pins are drawn without" in part or "(OEM" in part and not part.startswith("splice"):
+            gaps.append((h, "%s (wires %s)" % (item, ", ".join(sorted(set(wids)))), "SOT GAP: " + part, recommend(part)))
+        else:  # naming only: one line per file and kind
+            kind = "splices" if part.startswith("splice") else "ends (ground points, posts, device leads)"
+            grouped.setdefault((h, kind), []).append(item)
+    for (h, kind), items in grouped.items():
+        gaps.append((h, ", ".join(sorted(items)), "SOT GAP: %d %s named only in the drawing, not in today's SoT" % (len(items), kind),
+                     "none now: the wire list's splice table and end rows become their SoT at the switch (R201); "
+                     "no SoT edit until Dan approves it"))
+        for n in r["notes"].split("; "):
+            if n.startswith("halves drawn"):
+                gaps.append((r["harness"], r["wire_id"], n, recommend(n)))
+    for what, rids in findings:
+        hs = sorted({by_id[i]["harness"] for i in rids}, key=ctx.order.index) or ["-"]
+        gaps.append((" / ".join(hs), ", ".join(sorted({by_id[i]["wire_id"] for i in rids}))[:300], "NET " + what, recommend(what)))
+    # coverage: every channels.csv pin in use on a drawn part has a wire in some list
+    used = {(r[s + "_conn"], r[s + "_pin"]) for r in rows if r["wire_id"] for s in ("from", "to")}
+    for x in ctx.sot:
+        if x["class"] in ("nc", "spare") or x["status"] != "set" or x["conn"] not in ctx.node and                 x["conn"] not in {e[0] for v in ctx.endpoint.values() for e in v}:
+            continue
+        hit = [k for k in used if any(y is x for y in ctx.sot_rows_at(*k))]
+        if not hit:
+            owner = ctx.node.get(x["conn"], (next((ctx.node[c][0] for (c, _), v in ctx.endpoint.items()
+                                                   if any(e[0] == x["conn"] for e in v)), "?"),))[0]
+            gaps.append((owner, "%s %s" % (x["conn"], x["pin"]),
+                         "MISMATCH: channels.csv %s %s '%s' (%s) is in use but no list has a wire on it" % (
+                             x["conn"], x["pin"], x["label"], x["channel"]),
+                         "add the wire the SoT gives, or set the pin nc in channels.csv (design question)"))
+    seen, glines = set(), []
+    for g in gaps:
+        if g not in seen:
+            seen.add(g)
+            glines.append(g)
+    glines.sort(key=lambda g: (ctx.order.index(g[0].split(" / ")[0]) if g[0].split(" / ")[0] in ctx.order else 99, g[2], g[1]))
+    gm = io.StringIO()
+    gm.write("# Master wire list - gap list (all files)\n\n"
+             "Generated by `docs/harness/cleanroom/wirelist.py` from `*-wirelist.csv`. One line per gap: "
+             "the file, the wire / pin, what is wrong against the live SoT, and the recommended answer. "
+             "Real design questions go to Dan through Dispatch (`docs/OPEN-ITEMS.md` Needs Dan); this list "
+             "is regenerated, never hand-edited.\n\n%d gap(s).\n\n| File | Wire / pin | What is wrong | Recommended answer |\n"
+             "|---|---|---|---|\n" % len(glines))
+    for g in glines:
+        gm.write("| %s |\n" % " | ".join(x.replace("|", "/") for x in g))
+    files["GAPS.md"] = gm.getvalue()
+
+    stale = sync(files, books, check)
+    n = lambda rs, k: sum(r["status"].startswith(k) for r in rs)  # noqa: E731
+    for h, rs in lists.items():
+        print("%-17s %4d rows (%3d wires, %3d spare), %3d mismatch(es), %3d SoT gap row(s)%s" % (
+            h, len(rs), sum(bool(r["wire_id"]) for r in rs), sum(not r["wire_id"] for r in rs),
+            n(rs, "MISMATCH"), n(rs, "SOT GAP"), "  [gated]" if h in GATED else ""))
+    print("net findings: %d; gap list: %d line(s) -> %s" % (len(findings), len(glines), os.path.join(OUT, "GAPS.md")))
     if check:
-        bad = stale + ["%s %s" % (r["wire_id"], r["status"]) for r in rows if r["status"].startswith("MISMATCH")]
-        bad += ["NET " + x for x in net_findings] + ["mate %s %s differs" % (m["this_conn"], m["this_pin"])
-                                                       for m in mrows if m["check"] != "OK"]
+        bad = list(stale)
+        # a row / mate / coverage finding fails when its file is approved; a net finding when every
+        # file the net touches is (a net shared with a file still in Phase 2 is reported, not gated)
+        bad += ["%s %s: %s" % (g[0], g[1], g[2]) for g in glines
+                if g[2].startswith(("MISMATCH", "mate", "NET")) and all(h in GATED for h in g[0].split(" / "))]
         for x in bad:
             print("FAIL", x)
         print("wirelist --check: %s" % ("FAIL" if bad else "OK"))

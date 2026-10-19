@@ -1,0 +1,3 @@
+circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
+FLVL,Fuel level signal (ECU-B B24),ix_fuel_p,1,Fuel level signal,B-cabin,ix_fuel_r,1,Fuel level signal,OK
+FLVL,Sensor GND B (ECU-B B22),ix_fuel_p,2,Fuel level ground,B-cabin,ix_fuel_r,2,Fuel level ground,OK
