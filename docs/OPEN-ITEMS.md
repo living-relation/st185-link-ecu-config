@@ -34,11 +34,19 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); the research 
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| N1 | Harness drawings review | Review and approve all 15 `.harness` drawings as they stand now: every wire end carries the R156 end label saying where it lands (#294-#300), and the R123 TE 280919-2 is on the 14 micro relay 85 / 86 ends. Open them in the desktop app from `docs/harness/rebuild/`. Replaces M7 (the review was paused for #264). | A) approve all 15 as they are; B) approve with markup on the drawings listed | A |
 | N45 | ECU wake feed | The SoT says the ECU's 14V+ (A5) is fed from IG2 through a supply diode, with DI 9 (B28) tapped ahead of the diode and Aux 6 (A28) holding the EFI main relay (`sot/channels.csv` b28 note, DECISIONS table item 38). No drawing and no wire list has that IG2 -> diode -> A5 wire (A5 is only fed from the SW12 7.5A fuse behind the EFI relay, and that relay's coil needs A28, i.e. a running ECU). Found by the Phase 1 master wire list check. | A) add it: one wire from the IG2 tap at the left kick (the B28 tap, J/B1 1H-7) through an inline diode to A5, drawn on B-cabin, diode part picked by st185-pick-parts; B) the ECU wakes another way (say which) and the b28 note is corrected | A |
 | N46 | CAN comms ground | `sot/channels.csv` sets ECU comms pin C1 'Comms port ground' (class ground, set), the CAN drawing shows it, but no wire lands on it in any drawing or list. | A) add one short 20 AWG wire from C1 to the ECU power ground splice beside the ECU plug (sp_chassis, A-cabin); B) leave C1 empty and set it nc in channels.csv (every CAN node already grounds to chassis) | B |
 
-## Status (2026-10-15)
+## Status (2026-10-19)
+
+**Current state (2026-10-19) - a new chat starts here, then Needs Dan, then History.** Every session updates its own rows and this block in its own PR.
+
+- **Goals (R102):** G1 wiring sorted to build - in progress (harness rebuild from the wire lists, fuse box approval row 107); G2 ECU base maps - seeds in `tune/`, the rest waits for the ECU on the bench; G3 ECU CAN config - written and parity-checked (R80), PCLink import and checks wait for the ECU (rows 2, 102, 103); G4 CSB3 config - written, bench checks wait for the CSB3 (row 101).
+- **Harness plan:** A-cabin rebuilt clean-room and approved (#336). Phase 1 done: master wire lists for all 15 files, combined gap list `docs/harness/wirelist/GAPS.md`, `cleanroom/build_harness.py` (#339; old layout / label / routing-point scripts removed, `build_harness.py --check` gates rebuilt files). Phase 2 (row 144): rebuild the other 14 in four groups - Power (CabinPower, EngineRoom-C, HeavyDC, RearFuel), Loom B + CAN (B-cabin, B-engine, CAN, WheelSpeed-Rear), Loom A engine (A-engine, WheelSpeed-Front), Cabin extras (CSB3, ClusterLED, AntiTheft, RearLights); one SoT writer at a time; each list joins `GATED` when Dan approves its rebuild.
+- **Wire list = future SoT (N39 = A, R201):** the lists are checked against `sot/channels.csv`, `interfaces.json` and the cavity / fuse-box maps, which stay the live SoT until Dan says switch.
+- **CAD drawings:** all 34 drawings current with their models (#330-#338; `cad/check_drawings_current.py`, `cad/check_drawing_rules.py` 34 / 34 pass).
+- **Next question ID:** N47.
+
 
 The research hub (`docs/research-hub.html`) reads this section: keep the table and the numbered list in this shape.
 Car zones (the glow on the hub's car outline when a bucket is tapped or hovered; `-` = none) use these ids: `bay` engine bay, `firewall` firewall / bulkheads, `dash` dash / cabin front (CSB3, ECU spot, VRC boxes, clusters), `glove` glove box (fuse box), `floor` cabin floor / sills, `rear` rear / hatch, `trunk` trunk (battery, kill switch). Picked from the open rows: wiring rows span bay (EngineRoom-C), firewall (bulkheads), dash, glove (CabinPower), floor (A/B-cabin runs) and rear (RearLights); parts rows are the glove-box bus bar and MTA, the dash VRC box and optoisolator, and rear lamp plugs; CAN and RealDash rows are the dash clusters and CSB3; setup-time rows are the ECU and its bay outputs.
@@ -55,7 +63,7 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 
 Blocks progress:
 
-1. Row 107 - the fuse box CAD rev 6 has every part real (R82, R85) and waits for Daniel's approval and the parts / copper order; the harness follow-ups (row 113) follow from it.
+1. Row 107 - the fuse box CAD rev 7 has every part real and waits for Daniel's approval and the parts / copper order; the harness follow-ups (row 113) follow from it.
 
 | # | Area | Item | Owner | Source | Status | What unblocks it |
 |---|---|---|---|---|---|---|
@@ -141,6 +149,18 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 
 ## History
 
+- 2026-10-19 - Phase 1 cleanup (branch `wirelist-phase1-cleanup`): `build_harness.py --check` gate (rebuilt files only, layout moves allowed); old layout / label / routing-point / migration scripts removed; DECISIONS R86 and R141 removed (replaced by R202); Dispatch start-here rule; this Status block refreshed; Needs Dan N1 removed (obsolete: every drawing is rebuilt from its wire list and approved one by one). -- Claude Code
+- 2026-10-19 - N46 (open): ECU comms pin C1 ground set in the SoT but wired nowhere - in Needs Dan.
+- 2026-10-19 - N45 (open): IG2 -> supply diode -> A5 ECU wake wire missing from every drawing and list - in Needs Dan.
+- 2026-10-19 - N44 = A: the master wire list format is locked (R201).
+- 2026-10-19 - N43 = A: keep the factory A/C amplifier; the ECU only switches the clutch (R23).
+- 2026-10-19 - N42 = B: revision triangles accumulate on the sheet (R200).
+- 2026-10-19 - N41 = B: drawing initials DG; DRAWN is Rev A's person, BY is the requester, never an agent (R200).
+- 2026-10-19 - N40 = A: a wire through a connector is two rows sharing a circuit id; through two files with no connector, one row owned by the longer half (R201).
+- 2026-10-19 - N39 = A: a master from-to wire list becomes the single wiring SoT; old files stay live until Dan says switch (R201).
+- 2026-10-19 - N38: no record in the repo (Dispatch to fill in).
+- 2026-10-19 - N37: C-strap lug end = PEM FHS-M5-12 flush stud; top end a DIN 934 nut in a printed holder (C1) (R199).
+- 2026-10-18 - N36 = A: the C-strap's lug-end PEM hole moves clear of the bend (R198).
 - 2026-10-19 - Master wire lists, Phase 1 (Dan: "lets move forward"; branch `wirelist-all-phase1`, DECISIONS R201 applied note; row 144 opened, Needs Dan N45 / N46 added): `docs/harness/wirelist/` now holds a list for all 15 files (639 rows: 484 wires, 155 spare cavities), every row checked against the live SoT, nets across all lists, one generated gap list `GAPS.md` (29 lines: 0 row mismatches; 2 SoT net-naming findings; 1 SoT pin with no wire, N46; 4 factory taps with no EWD record; 1 device drawn without its pin letters; 1 connector with repeated pin names; 20 lines of splices / ground points named only in drawings). Clerical fixes made: the cluster and RealDash Pi CAN drops each get their own CANH / CANL pin (one terminal held both), the A-cabin cruise +5 V row names its resistor pin, five A-cabin rows moved to the file that owns them (CabinPower, B-cabin). New `cleanroom/build_harness.py` (rebuilds ST185-A-cabin byte for byte; dry-run builds of the other 14 keep every wire end) replaces `build_a_cabin.py`; no `.harness` file changed. Found and sent to Dan: the IG2 -> diode -> A5 ECU wake wire the SoT requires is in no drawing (N45). -- Claude Code
 - 2026-10-19 - Dispatch review of the drawing PNGs: FB-117 D.01 (sheet 2 step 4: the built strap as one balloon on a visible part), FB-100P Z.01 (install steps 3 and 4 each on a full sheet); the LP-16 projection fault fixed in the engine (handbuilt-cad #15, `dwg.lines_in_box`; VRC-100 renders pixel-identical), so the st185 workaround is gone; row 125 closed, row 141 added (CSB3 board waits on a maker model); LOGIC trimetric re-rendered. -- Claude Code
 - 2026-10-19 - C-strap drawings after #330 (R199; Dispatch, branch `drawings/c-strap-regen`): ST185-FB-117 D (plain shop notes; sheet 2 = 4 install steps: stud pressed in, bent, nut + holder into the C, dropped into its well; model D has nothing to trim, so no trim step), new ST185-FB-118 A for the top-nut holder (next number after -117), ST185-FB-100P Z with label sheets for every fuse, relay and the 48 harness wire ends (R189 / R190, `fb_labels.power_*` from spec.py + wiring_plan.json). All 34 drawings now pass the R184 - R197 gate; nothing pending. -- Claude Code

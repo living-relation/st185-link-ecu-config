@@ -5,7 +5,7 @@ The real snapshot is the app's own export: harness.design desktop, Main Menu > E
 Schematic page (https://docs.harness.design/feature/export#pdf). That export is GUI-only, so this
 renderer exists for agents and CI that cannot drive the app. It is NOT an app export: node faces
 are simplified (id, part label, cavity rows) and wire colours are this renderer's own (DECISIONS
-R86 c): one darker display colour per circuit (interfaces.json identBands) or, for a harness not
+): one darker display colour per circuit (interfaces.json identBands) or, for a harness not
 yet banded, per electrical net, so parallel circuits are told apart. The insulation colour is in
 the app and the build list. Ident bands (identColors, R87) are drawn at both wire ends. Wires
 follow the app's own paths (`wire_paths.py`), 3 units wide.
@@ -24,7 +24,7 @@ import wire_paths
 
 
 
-# display colours (our choice, R86 c): dark, far apart, none of them the light ident band colours
+# display colours (our choice): dark, far apart, none of them the light ident band colours
 DISPLAY = [(20, 60, 160), (170, 25, 25), (20, 120, 50), (110, 35, 150), (150, 80, 10), (0, 115, 125),
            (200, 90, 0), (95, 100, 20), (165, 20, 110), (60, 60, 60), (40, 100, 200), (120, 20, 40),
            (0, 90, 70), (80, 50, 130), (140, 110, 0), (30, 30, 90)]

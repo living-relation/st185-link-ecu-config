@@ -1,8 +1,8 @@
 # Claude Dispatch rules (ST185)
 
-**Scope: ONLY for Claude Dispatch** (the orchestrator chat that starts and watches sessions). Code sessions and other agents ignore this file and follow `AGENTS.md`.
+**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by reading `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md`, newest rows first. Rows marked 'superseded by Rxxx' are not followed. Take all project context from the repo, not from older handoff files. No question to Dan before both are read.
 
-A new Dispatch chat reads, in order: this file, DECISIONS 'Binding rules from Daniel', `%USERPROFILE%\.claude\working-memory\st185-link-ecu-config\INDEX.md` (shared project working memory), then the newest `_research\DISPATCH-HANDOFF-*.md`. No question to Dan before all four are read.
+**Scope: ONLY for Claude Dispatch** (the orchestrator chat that starts and watches sessions). Code sessions and other agents ignore this file and follow `AGENTS.md`.
 
 ## Talking to Dan
 - Max one page. Very simple words (ELI5), bullets. No reasoning, no tool/process details.

@@ -1,19 +1,19 @@
-"""Wire routing points and layout spacing. Schematic (Daniel, 2026-10-16, DECISIONS R141): no wire
-routing points unless he asks - harness.design auto-routes every wire. Layout (Daniel, 2026-10-15,
+"""Wire routing points and layout spacing. Schematic (DECISIONS R202): no wire routing points unless
+Dan asks or the app would draw the wire diagonal / through a part - harness.design auto-routes the rest. Layout (Daniel, 2026-10-15,
 DECISIONS R107): "no overlaps or hidden wires. parallel runs need space between them unless they
 terminate at the same connector or device".
 
     python docs/harness/audit_wire_spacing.py [--all] [loom ...]
 
   RP1 SCHEMATIC: a wire carries routing points (`layoutPoints`, the white crosses the app shows on
-      hover) and is not on ROUTING_POINTS_ALLOWED. Strip them with
-      `python docs/harness/strip_routing_points.py --write`. Bundle layout points are not routing
+      hover), is not on ROUTING_POINTS_ALLOWED and does not square a diagonal (R202). Remove them in
+      the app, or rebuild from the wire list. Bundle layout points are not routing
       points of a wire and are not checked here. A cable core or shield keeps its routing points
       in `sourceLayoutPoints` / `targetLayoutPoints` (the legs from the cable to each end, v1.2
       schema); those are routing points too (G2 / G3 found them 2026-10-17) and count the same,
       except in the drawings still on CORE_POINTS_PENDING.
 
-  W1  RETIRED 2026-10-16 (R141 replaces R86): it held hand-placed right-angle wire paths 3 line
+  W1  RETIRED 2026-10-16: it held hand-placed right-angle wire paths 3 line
       widths apart; the app's auto-routing is preferred now. `route_wires.py`, which wrote those
       paths, is deleted (git history).
 
@@ -24,7 +24,7 @@ terminate at the same connector or device".
       not compared. Two bundles that only share a branch point split there: they are compared only
       for lying on top of each other (same line, sharing a stretch).
 
-Re-place the layout with `python docs/harness/layout_tree.py <loom> --write`; then check.
+Move layout parts in the desktop app (Dan) and re-check.
 Exit 1 on any finding. Prints the first 15 findings per loom unless --all.
 """
 import math
@@ -35,7 +35,7 @@ import model
 import wire_paths
 
 # loom -> wire ids that may keep routing points. Only wires Dan asks for, after the overall layout
-# is set (R141); empty until he does.
+# is set (R202); empty until he does.
 ROUTING_POINTS_ALLOWED = {}
 # Drawings whose cable cores / shields still carry routing points: listed, not failed, until the
 # group relabelling that drawing (DECISIONS R156 split) strips them. Only ever shrinks.
@@ -107,7 +107,7 @@ def _square_clear(poly, boxes, ends):
 def squares(d, ns, boxes, kind, x, k):
     """DECISIONS R200 (Dan through Dispatch, 2026-10-19: "Routing points are ok to get the last ones
     square"): routing points are allowed on a line the app would otherwise draw with a diagonal or
-    through a part, when with them it is square and clear. Lifts R141 for exactly those lines."""
+    through a part, when with them it is square and clear (R202)."""
     if kind == "wire":
         src, tgt = x["source"], x["target"]
     else:
@@ -129,7 +129,7 @@ def check_routing_points(loom, d, pending=False):
         if x.get(k) and squares(d, ns, boxes, kind, x, k):
             continue
         if x.get(k) and xid not in keep and (kind == "wire") != pending:
-            out.append("RP1 %s: %s %s carries %d routing point(s) in %s (R141: none unless Dan asks)"
+            out.append("RP1 %s: %s %s carries %d routing point(s) in %s (R202: none unless Dan asks or it squares a diagonal)"
                        % (loom, kind, xid, len(x[k]), k))
     return out
 
