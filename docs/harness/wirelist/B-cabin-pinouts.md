@@ -52,7 +52,7 @@ Mates with `bh_b_eng on B-engine` - shared DRB102 (section B here, section A on 
 | 91 | w_shc_vss | Gearbox speed shield | splice sp_shield_b (SP-SHIELD-B) |
 | 92 | wc_h_bh_bc | CAN H to CAN-Lambda | splice sp_canh (CAN H join) |
 | 93 | wc_l_bh_bc | CAN L to CAN-Lambda | splice sp_canl (CAN L join) |
-| 94 | cab_canbh_bc_sh | CAN-Lambda shield | splice sp_shield_can (CAN screen join) |
+| 94 | cab_canbh_bc_sh | CAN-Lambda shield | splice sp_can_sh_bh (SP-CAN-SH-BH) |
 | 95 | w_lam12_cp | CAN-Lambda +12 V | FB-LOGIC pin BUS2-1 |
 | 96 | w_lamg_ac | CAN-Lambda ground | splice sp_chassis (SP-GND-CHASSIS: ECU power ground) |
 | 97 |  | spare, sealing plug |  |

@@ -69,7 +69,7 @@ CMA = {22: 642, 20: 1022, 18: 1624, 16: 2583, 14: 4107, 12: 6530, 10: 10380, 8: 
 DRB102 = {"bh_a_fw": "A", "bh_b_fw": "B", "bh_a_eng": "A", "bh_b_eng": "B"}
 DRB_RECEPT, DRB_PLUG = ("bh_a_fw", "bh_b_fw"), ("bh_a_eng", "bh_b_eng")
 ECU = {"ecu_a": "ECU-A", "ecu_b": "ECU-B", "ecu_com": "ECU-COMMS"}
-SCREEN_PINS = {("ecu_a", "A7"): "A", ("ecu_b", "B17"): "B"}
+SCREEN_PINS = {("ecu_a", "A7"): "A", ("ecu_b", "B17"): "B", ("ecu_com", "C1"): "CAN"}
 
 # Readable names of the nets whose source is a fixed pin (R201: the name names the source).
 # Any other source gets a generic name from its pin (see Ctx.source).
@@ -77,6 +77,7 @@ NET_NAMES = {
     "ECU-A.A32": "+5V sensor (ECU-A A32)", "ECU-A.A6": "+8V cam sensor (ECU-A A6)",
     "ECU-A.A24": "Sensor GND (ECU-A A24)", "ECU-B.B22": "Sensor GND B (ECU-B B22)",
     "ECU-A.A7": "Screen A (ECU A7, SHIELD_A)", "ECU-B.B17": "Screen B (ECU B17, SHIELD_B)",
+    "ECU-COMMS.C1": "Screen CAN (ECU C1, CAN_SCREEN)",
     "LOGIC.BUS2-2": "+12V switched (LOGIC SW12 bus)", "LOGIC.BUS2-4": "+12V injectors (LOGIC INJ 15A)",
     "LOGIC.BUS2-3": "+12V coils (LOGIC COP 15A)", "LOGIC.BUS2-12": "+12V EHPS enable (LOGIC MRS 7.5A)",
 }
@@ -505,7 +506,7 @@ def assign_nets(ctx, rows):
             if any(x[2] not in ("screen",) for x in src.values()):
                 findings.append(("screen: %s touches a supply / ground net" % name, ids(wired)))
             if len({SCREEN_PINS[(k[1], k[2])] for k in screen_pins}) > 1:
-                findings.append(("screen: Screen A and Screen B meet", ids(wired)))
+                findings.append(("screen: two screen nets meet (A, B and CAN never touch)", ids(wired)))
         else:
             for k in screen_pins:
                 findings.append(("screen: %s (not a screen net) lands on %s %s" % (name, k[1], k[2]), ids(wired)))
@@ -573,7 +574,7 @@ def recommend(what):
         (r"^\(c\)", "design question: a supply / screen net has two sources; one must go"),
         (r"^\(d\) SoT net (CHASSIS|GND)", "none: these are separate leads to chassis ground points; the body joins them"),
         (r"^\(d\)", "check the two parts of this SoT net: either wire them together or give them different SoT net names"),
-        (r"^screen", "design question: screens land only on A7 / B17 drain pins (R29 / R30)"),
+        (r"^screen", "design question: screens land only on A7 / B17 / C1 drain pins (R29 / R30 / R207)"),
         (r"is for ECU-", "the pin's SoT use and the wire disagree: re-check the bulkhead / inline pin"),
         (r"halves drawn with different gauges", "clerical: one gauge for the whole wire (the larger), set in the rebuild"),
         (r"halves drawn in different colours", "clerical: one colour for the whole wire, set in the rebuild"),

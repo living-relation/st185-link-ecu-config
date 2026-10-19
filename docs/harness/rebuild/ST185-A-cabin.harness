@@ -3168,21 +3168,6 @@
       "label": "ECU-B pin B21 - front right wheel speed"
     },
     {
-      "id": "br_cab_fspur_fr_sh",
-      "type": "Loose",
-      "width": 390,
-      "layoutPosition": {
-        "x": 210,
-        "y": 930
-      },
-      "schematicPosition": {
-        "x": -2430,
-        "y": 1110
-      },
-      "propagate": false,
-      "label": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield"
-    },
-    {
       "id": "br_w_cru_5v",
       "type": "Loose",
       "width": 390,
@@ -3675,25 +3660,9 @@
           "Blue"
         ],
         "target": {
-          "id": "br_cab_fspur_fr_sh",
-          "handle": "Terminal"
-        },
-        "targetLayoutPoints": [
-          {
-            "schematicPosition": {
-              "x": -2040,
-              "y": 1080
-            },
-            "id": "cab_fspur_fr_sh_ac_t_rp1"
-          },
-          {
-            "schematicPosition": {
-              "x": -2040,
-              "y": 1110
-            },
-            "id": "cab_fspur_fr_sh_ac_t_rp2"
-          }
-        ]
+          "id": "sp_shield_a",
+          "handle": "Splice"
+        }
       }
     },
     {
@@ -4488,15 +4457,6 @@
       }
     },
     {
-      "id": "bn_bp_1020__br_cab_fspur_fr_sh",
-      "sourceId": "bp_1020",
-      "targetId": "br_cab_fspur_fr_sh",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "bn_b_bp_900__br_w_cru_5v",
       "sourceId": "b_bp_900",
       "targetId": "br_w_cru_5v",
@@ -4956,15 +4916,6 @@
       "schematicPosition": {
         "x": -2730,
         "y": 1050
-      }
-    },
-    {
-      "id": "n_end_br_cab_fspur_fr_sh",
-      "text": "at the ECU-B plug (B-cabin); to ECU-B B17",
-      "width": 270,
-      "schematicPosition": {
-        "x": -2730,
-        "y": 1140
       }
     },
     {

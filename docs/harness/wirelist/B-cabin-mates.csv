@@ -20,7 +20,7 @@ CAN,CAN L to CAN-Lambda (ECU-COMMS C4),bh_b_fw,93,CAN L to CAN-Lambda,B-engine,b
 SGND,Sensor GND B (ECU-B B22),bh_b_fw,77,Gnd oil/clnt/temps,B-engine,bh_b_eng,77,Gnd oil/clnt/temps,OK
 SGND,Sensor GND B (ECU-B B22),bh_b_fw,78,Gnd fuel press + VSS,B-engine,bh_b_eng,78,Gnd fuel press + VSS,OK
 REV,Back-up sw +12 V in (DRB102 62),bh_b_fw,62,Back-up sw +12 V in,B-engine,bh_b_eng,62,Back-up sw +12 V in,OK
-CAN,"Screen B (ECU B17, SHIELD_B)",bh_b_fw,94,CAN-Lambda shield,B-engine,bh_b_eng,94,CAN-Lambda shield,OK
+CAN,"Screen CAN (ECU C1, CAN_SCREEN)",bh_b_fw,94,CAN-Lambda shield,B-engine,bh_b_eng,94,CAN-Lambda shield,OK
 LAM,+12V CAN-Lambda +12 V (LOGIC BUS2-1),bh_b_fw,95,CAN-Lambda +12 V,B-engine,bh_b_eng,95,CAN-Lambda +12 V,OK
 FLVL,Fuel level signal (ECU-B B24),ix_fuel_r,1,Fuel level signal,RearFuel,ix_fuel_p,1,Fuel level signal,OK
 SGND,Sensor GND B (ECU-B B22),ix_fuel_r,2,Fuel level ground,RearFuel,ix_fuel_p,2,Fuel level ground,OK
