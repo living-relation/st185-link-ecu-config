@@ -35,7 +35,7 @@ Mates with `ix_ws_rear_p on B-cabin` - inline DT pair.
 |---|---|---|---|
 | 1 | cab_rl_p | RL wheel speed + | WSS RL pin 1 |
 | 2 | cab_rl_n | RL wheel speed - | WSS RL pin 2 |
-| 3 | _TXY7m | Rear sensor shields | splice I6r1ot (Sensor screen join) |
+| 3 | w_ws_r_shield | Rear sensor shields | splice sp_ws_r_shield (Sensor screen join) |
 | 4 | cab_rr_p | RR wheel speed + | WSS RR pin 1 |
 | 5 | cab_rr_n | RR wheel speed - | WSS RR pin 2 |
 

@@ -300,50 +300,78 @@
  "ST185-B-cabin.harness": {
   "connectors": {
    "bh_b_fw": {
-    "label": [
-     "BH-B",
-     "Bulkhead DRB102 - firewall receptacle (DRB12-102PAE-L018 + DRBF-1A), all 102 cavities; section B wired here"
-    ],
     "cavities": {
      "c25": [
-      "Back-up sw feed 15A",
+      "Back-up sw +12 V in",
       "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
      ],
+     "c7": [
+      "Oil pressure signal",
+      "ECU-B B15"
+     ],
+     "c8": [
+      "Fuel pressure signal",
+      "ECU-B B16"
+     ],
+     "c9": [
+      "Coolant press signal",
+      "ECU-B B23"
+     ],
+     "c10": [
+      "Oil temp signal",
+      "ECU-B B6"
+     ],
+     "c11": [
+      "Charge temp signal",
+      "ECU-B B7"
+     ],
      "c12": [
-      "Reverse +12 V out",
+      "Reverse sw +12 V out",
       "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
      ],
      "c19": [
-      "ECU B22 temp/prs ret",
+      "Gnd oil/clnt/temps",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
      ],
      "c21": [
-      "ECU B22 fuel/VSS ret",
+      "Gnd fuel press + VSS",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
      ],
      "c16": [
-      "ECU B9 knock +",
+      "Knock sensor signal",
       "Knock 1 SIG+ (ECU B9)"
      ],
      "c17": [
-      "ECU B22 knock -",
+      "Knock sensor (-)",
       "Knock 1 SIG- (to Gnd Out B22)"
      ],
+     "c18": [
+      "Knock sensor shield",
+      "Knock 1 screen"
+     ],
      "c5": [
-      "ECU B18 throttle M+",
+      "ETB motor +",
       "ETB motor + (Aux 9, B18)"
      ],
      "c6": [
-      "ECU B26 throttle M-",
+      "ETB motor -",
       "ETB motor - (Aux 10, B26)"
      ],
+     "c22": [
+      "ETB motor shield",
+      "ETB motor screen"
+     ],
      "c15": [
-      "ECU B29 gearbox spd",
+      "Gearbox speed signal",
       "Gearbox VSS signal (ECU B29, DI 8)"
      ],
      "c20": [
-      "Sw +12 V gearbox spd",
+      "+12 V gearbox speed",
       "Switched 12V to gearbox VSS (from sp_sw12)"
+     ],
+     "c23": [
+      "Gearbox speed shield",
+      "Gearbox VSS screen"
      ],
      "c13": [
       "CAN H to CAN-Lambda",
@@ -354,7 +382,7 @@
       "CAN L to Link CAN-Lambda (ST185-CAN)"
      ],
      "c24": [
-      "CAN-Lambda screen",
+      "CAN-Lambda shield",
       "CAN-Lambda CAN pair screen"
      ],
      "c3": [
@@ -364,38 +392,6 @@
      "c4": [
       "CAN-Lambda ground",
       "CAN-Lambda ground to cabin chassis ground (14 AWG)"
-     ],
-     "c7": [
-      "ECU B15 oil press",
-      "ECU-B B15"
-     ],
-     "c8": [
-      "ECU B16 fuel press",
-      "ECU-B B16"
-     ],
-     "c9": [
-      "ECU B23 clnt press",
-      "ECU-B B23"
-     ],
-     "c10": [
-      "ECU B6 oil temp",
-      "ECU-B B6"
-     ],
-     "c11": [
-      "ECU B7 charge temp",
-      "ECU-B B7"
-     ],
-     "c18": [
-      "ECU B17 knock screen",
-      "Knock 1 screen"
-     ],
-     "c22": [
-      "ECU B17 thr screen",
-      "ETB motor screen"
-     ],
-     "c23": [
-      "ECU B17 VSS screen",
-      "Gearbox VSS screen"
      ]
     }
    },
@@ -488,10 +484,6 @@
     }
    },
    "ix_fuel_r": {
-    "label": [
-     "IX-FUEL",
-     "Fuel level - 2-way inline to Rear Fuel harness (IX_FUEL_LVL)"
-    ],
     "cavities": {
      "c1": [
       "Fuel level signal",
@@ -504,10 +496,6 @@
     }
    },
    "ix_ws_rear_p": {
-    "label": [
-     "IX-WS-R",
-     "WS REAR spur - 6-way inline mate (IX_WS_REAR)"
-    ],
     "cavities": {
      "c1": [
       "VRC-R +5V",
@@ -518,11 +506,11 @@
       "Gnd Out - VRC rear ground"
      ],
      "c3": [
-      "RL conditioned out",
+      "Rear left wheel spd",
       "RL conditioned out -> ECU-B B20 (DI 5)"
      ],
      "c4": [
-      "RR conditioned out",
+      "Rear right wheel spd",
       "RR conditioned out -> ECU-B B19 (DI 6)"
      ],
      "c5": [
@@ -1938,50 +1926,78 @@
  "ST185-B-engine.harness": {
   "connectors": {
    "bh_b_eng": {
-    "label": [
-     "Bulkhead BH-B (DRB102, RH firewall)",
-     "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section B wired here"
-    ],
     "cavities": {
      "c25": [
-      "Back-up sw feed 15A",
+      "Back-up sw +12 V in",
       "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
      ],
+     "c7": [
+      "Oil pressure signal",
+      "ECU-B B15"
+     ],
+     "c8": [
+      "Fuel pressure signal",
+      "ECU-B B16"
+     ],
+     "c9": [
+      "Coolant press signal",
+      "ECU-B B23"
+     ],
+     "c10": [
+      "Oil temp signal",
+      "ECU-B B6"
+     ],
+     "c11": [
+      "Charge temp signal",
+      "ECU-B B7"
+     ],
      "c12": [
-      "Reverse +12 V out",
+      "Reverse sw +12 V out",
       "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
      ],
      "c19": [
-      "ECU B22 temp/prs ret",
+      "Gnd oil/clnt/temps",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
      ],
      "c21": [
-      "ECU B22 fuel/VSS ret",
+      "Gnd fuel press + VSS",
       "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
      ],
      "c16": [
-      "ECU B9 knock +",
+      "Knock sensor signal",
       "Knock 1 SIG+ (ECU B9)"
      ],
      "c17": [
-      "ECU B22 knock -",
+      "Knock sensor (-)",
       "Knock 1 SIG- (to Gnd Out B22)"
      ],
+     "c18": [
+      "Knock sensor shield",
+      "Knock 1 screen"
+     ],
      "c5": [
-      "ECU B18 throttle M+",
+      "ETB motor +",
       "ETB motor + (Aux 9, B18)"
      ],
      "c6": [
-      "ECU B26 throttle M-",
+      "ETB motor -",
       "ETB motor - (Aux 10, B26)"
      ],
+     "c22": [
+      "ETB motor shield",
+      "ETB motor screen"
+     ],
      "c15": [
-      "ECU B29 gearbox spd",
+      "Gearbox speed signal",
       "Gearbox VSS signal (ECU B29, DI 8)"
      ],
      "c20": [
-      "Sw +12 V gearbox spd",
+      "+12 V gearbox speed",
       "Switched 12V to gearbox VSS (from sp_sw12)"
+     ],
+     "c23": [
+      "Gearbox speed shield",
+      "Gearbox VSS screen"
      ],
      "c13": [
       "CAN H to CAN-Lambda",
@@ -1992,7 +2008,7 @@
       "CAN L to Link CAN-Lambda (ST185-CAN)"
      ],
      "c24": [
-      "CAN-Lambda screen",
+      "CAN-Lambda shield",
       "CAN-Lambda CAN pair screen"
      ],
      "c3": [
@@ -2002,38 +2018,6 @@
      "c4": [
       "CAN-Lambda ground",
       "CAN-Lambda ground to cabin chassis ground (14 AWG)"
-     ],
-     "c7": [
-      "ECU B15 oil press",
-      "ECU-B B15"
-     ],
-     "c8": [
-      "ECU B16 fuel press",
-      "ECU-B B16"
-     ],
-     "c9": [
-      "ECU B23 clnt press",
-      "ECU-B B23"
-     ],
-     "c10": [
-      "ECU B6 oil temp",
-      "ECU-B B6"
-     ],
-     "c11": [
-      "ECU B7 charge temp",
-      "ECU-B B7"
-     ],
-     "c18": [
-      "ECU B17 knock screen",
-      "Knock 1 screen"
-     ],
-     "c22": [
-      "ECU B17 thr screen",
-      "ETB motor screen"
-     ],
-     "c23": [
-      "ECU B17 VSS screen",
-      "Gearbox VSS screen"
      ]
     }
    },
@@ -2182,10 +2166,6 @@
     }
    },
    "ix_brail_p": {
-    "label": [
-     "IX-B-RAIL inline socket, +5 V from A-engine",
-     "B sensor +5V - 6-way inline mate from ST185-A-engine (IX_B_RAIL)"
-    ],
     "cavities": {
      "c1": [
       "+5 V oil pressure",
@@ -3183,10 +3163,6 @@
     ]
    },
    "ix_ws_rear_r": {
-    "label": [
-     "IX-WS-R",
-     "WS REAR OUT - 6-way inline to ECU spur (IX_WS_REAR)"
-    ],
     "cavities": {
      "c1": [
       "VRC-R +5V",
@@ -3197,11 +3173,11 @@
       "Gnd Out - VRC rear ground"
      ],
      "c3": [
-      "RL conditioned out",
+      "Rear left wheel spd",
       "RL conditioned out -> ECU-B B20 (DI 5)"
      ],
      "c4": [
-      "RR conditioned out",
+      "Rear right wheel spd",
       "RR conditioned out -> ECU-B B19 (DI 6)"
      ],
      "c5": [

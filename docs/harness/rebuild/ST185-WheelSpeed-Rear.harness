@@ -66,9 +66,9 @@
   },
   "wires": [
     {
-      "id": "_TXY7m",
+      "id": "w_ws_r_shield",
       "source": {
-        "id": "I6r1ot",
+        "id": "sp_ws_r_shield",
         "handle": "Splice"
       },
       "target": {
@@ -94,13 +94,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VR+ (rear left)",
+          "signal": "RL wheel speed +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VR- (rear left)",
+          "signal": "RL wheel speed -",
           "propagate": false
         }
       ],
@@ -122,13 +122,13 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VR+ (rear right)",
+          "signal": "RR wheel speed +",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VR- (rear right)",
+          "signal": "RR wheel speed -",
           "propagate": false
         }
       ],
@@ -162,13 +162,13 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL conditioned out",
+          "signal": "Rear left wheel spd",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR conditioned out",
+          "signal": "Rear right wheel spd",
           "propagate": false
         },
         {
@@ -210,27 +210,32 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "ABS+ RL IN"
+          "signal": "RL wheel speed +",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "ABS- RL IN"
+          "signal": "RL wheel speed -",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "ABS Rear SHIELD"
+          "signal": "Rear sensor shields",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "ABS+ RR IN"
+          "signal": "RR wheel speed +",
+          "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "ABS- RR IN"
+          "signal": "RR wheel speed -",
+          "propagate": false
         }
       ],
       "configurationId": "cfg_vrc_in"
@@ -252,31 +257,31 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "+5V",
+          "signal": "VRC-R +5V",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "VRC-R OUT GND",
+          "signal": "VRC-R GND",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL out",
+          "signal": "Rear left wheel spd",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR out",
+          "signal": "Rear right wheel spd",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "screen drain",
+          "signal": "WS-R screen drain",
           "propagate": false
         }
       ],
@@ -331,7 +336,7 @@
           "White"
         ],
         "source": {
-          "id": "I6r1ot",
+          "id": "sp_ws_r_shield",
           "handle": "Splice"
         }
       }
@@ -386,7 +391,7 @@
           "Blue"
         ],
         "source": {
-          "id": "I6r1ot",
+          "id": "sp_ws_r_shield",
           "handle": "Splice"
         }
       }
@@ -581,7 +586,7 @@
   ],
   "splices": [
     {
-      "id": "I6r1ot",
+      "id": "sp_ws_r_shield",
       "schematicPosition": {
         "x": 780,
         "y": 210
@@ -1015,5 +1020,7 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "terminals": [],
+  "mates": []
 }

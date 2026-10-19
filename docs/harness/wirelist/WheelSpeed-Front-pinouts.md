@@ -35,7 +35,7 @@ Mates with `ix_ws_front_p on A-cabin` - inline DT pair.
 |---|---|---|---|
 | 1 | cab_fl_p | FL wheel speed + | WSS FL pin 1 |
 | 2 | cab_fl_n | FL wheel speed - | WSS FL pin 2 |
-| 3 | e7gavP | Front sensor shields | splice SvhsQx (Sensor screen join) |
+| 3 | w_ws_f_shield | Front sensor shields | splice sp_ws_f_shield (Sensor screen join) |
 | 4 | cab_fr_p | FR wheel speed + | WSS FR pin 1 |
 | 5 | cab_fr_n | FR wheel speed - | WSS FR pin 2 |
 

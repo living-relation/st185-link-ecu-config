@@ -4386,7 +4386,7 @@
           "White"
         ],
         "wires": [
-          "e7gavP",
+          "w_ws_f_shield",
           "cab_fout_sh"
         ]
       },
@@ -4439,7 +4439,7 @@
           "Yellow"
         ],
         "wires": [
-          "_TXY7m",
+          "w_ws_r_shield",
           "cab_rout_sh"
         ]
       },

@@ -1390,8 +1390,9 @@
         {
           "id": "c25",
           "designation": "62",
-          "signal": "Back-up sw feed 15A",
-          "contactPartId": "ct_hdp16p"
+          "signal": "Back-up sw +12 V in",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c26",
@@ -1445,54 +1446,55 @@
           "id": "c7",
           "designation": "71",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B15 oil press",
+          "signal": "Oil pressure signal",
           "propagate": false
         },
         {
           "id": "c8",
           "designation": "72",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B16 fuel press",
+          "signal": "Fuel pressure signal",
           "propagate": false
         },
         {
           "id": "c9",
           "designation": "73",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B23 clnt press",
+          "signal": "Coolant press signal",
           "propagate": false
         },
         {
           "id": "c10",
           "designation": "74",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B6 oil temp",
+          "signal": "Oil temp signal",
           "propagate": false
         },
         {
           "id": "c11",
           "designation": "75",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B7 charge temp",
+          "signal": "Charge temp signal",
           "propagate": false
         },
         {
           "id": "c12",
           "designation": "76",
           "contactPartId": "ct_hdp16p",
-          "signal": "Reverse +12 V out"
+          "signal": "Reverse sw +12 V out",
+          "propagate": false
         },
         {
           "id": "c19",
           "designation": "77",
-          "signal": "ECU B22 temp/prs ret",
+          "signal": "Gnd oil/clnt/temps",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c21",
           "designation": "78",
-          "signal": "ECU B22 fuel/VSS ret",
+          "signal": "Gnd fuel press + VSS",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1523,21 +1525,21 @@
         {
           "id": "c16",
           "designation": "83",
-          "signal": "ECU B9 knock +",
+          "signal": "Knock sensor signal",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c17",
           "designation": "84",
-          "signal": "ECU B22 knock -",
+          "signal": "Knock sensor (-)",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c18",
           "designation": "85",
-          "signal": "ECU B17 knock screen",
+          "signal": "Knock sensor shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1545,40 +1547,41 @@
           "id": "c5",
           "designation": "86",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B18 throttle M+",
+          "signal": "ETB motor +",
           "propagate": false
         },
         {
           "id": "c6",
           "designation": "87",
           "contactPartId": "ct_hdp16p",
-          "signal": "ECU B26 throttle M-",
+          "signal": "ETB motor -",
           "propagate": false
         },
         {
           "id": "c22",
           "designation": "88",
-          "signal": "ECU B17 thr screen",
+          "signal": "ETB motor shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c15",
           "designation": "89",
-          "signal": "ECU B29 gearbox spd",
+          "signal": "Gearbox speed signal",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
         {
           "id": "c20",
           "designation": "90",
-          "signal": "Sw +12 V gearbox spd",
-          "contactPartId": "ct_hdp16p"
+          "signal": "+12 V gearbox speed",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c23",
           "designation": "91",
-          "signal": "ECU B17 VSS screen",
+          "signal": "Gearbox speed shield",
           "contactPartId": "ct_hdp16p",
           "propagate": false
         },
@@ -1586,31 +1589,36 @@
           "id": "c13",
           "designation": "92",
           "signal": "CAN H to CAN-Lambda",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c14",
           "designation": "93",
           "signal": "CAN L to CAN-Lambda",
-          "contactPartId": "ct_hdp16p"
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c24",
           "designation": "94",
-          "signal": "CAN-Lambda screen",
-          "contactPartId": "ct_hdp16p"
+          "signal": "CAN-Lambda shield",
+          "contactPartId": "ct_hdp16p",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "95",
           "signal": "CAN-Lambda +12 V",
-          "contactPartId": "ct_hdp12p"
+          "contactPartId": "ct_hdp12p",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "96",
           "signal": "CAN-Lambda ground",
-          "contactPartId": "ct_hdp12p"
+          "contactPartId": "ct_hdp12p",
+          "propagate": false
         },
         {
           "id": "c1",
@@ -1682,35 +1690,39 @@
         },
         {
           "id": "b5",
-          "signal": "V-Ethrottle In",
+          "signal": "ETB motor +12 V",
           "designation": "B5",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b6",
-          "signal": "Temp 3 (Oil T)",
-          "designation": "B6"
+          "signal": "Oil temp signal",
+          "designation": "B6",
+          "propagate": false
         },
         {
           "id": "b7",
-          "signal": "Temp 4 (Chg IAT)",
-          "designation": "B7"
+          "signal": "Charge temp signal",
+          "designation": "B7",
+          "propagate": false
         },
         {
           "id": "b8",
-          "signal": "Knock 2 (spare)",
           "designation": "B8"
         },
         {
           "id": "b9",
-          "signal": "Knock 1",
-          "designation": "B9"
+          "signal": "Knock sensor signal",
+          "designation": "B9",
+          "propagate": false
         },
         {
           "id": "b10",
-          "signal": "Ign 8 A/C Clutch Rly",
+          "signal": "A/C clutch relay (-)",
           "designation": "B10",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b11",
@@ -1718,15 +1730,17 @@
         },
         {
           "id": "b12",
-          "signal": "Ign 6 EPS En",
+          "signal": "EPS enable relay (-)",
           "designation": "B12",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b13",
-          "signal": "Ign 5 2nd Fan",
+          "signal": "Cond fan relay (-)",
           "designation": "B13",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b14",
@@ -1734,108 +1748,128 @@
         },
         {
           "id": "b15",
-          "signal": "An Volt 6 Oil P",
-          "designation": "B15"
+          "signal": "Oil pressure signal",
+          "designation": "B15",
+          "propagate": false
         },
         {
           "id": "b16",
-          "signal": "An Volt 7 Fuel P",
-          "designation": "B16"
+          "signal": "Fuel pressure signal",
+          "designation": "B16",
+          "propagate": false
         },
         {
           "id": "b17",
-          "signal": "Shield/Gnd",
-          "designation": "B17"
+          "signal": "Shield drain B",
+          "designation": "B17",
+          "propagate": false
         },
         {
           "id": "b18",
-          "signal": "Aux 9 ETB M+",
+          "signal": "ETB motor +",
           "designation": "B18",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b19",
-          "signal": "DI 6 WSS RR",
-          "designation": "B19"
+          "signal": "Rear right wheel spd",
+          "designation": "B19",
+          "propagate": false
         },
         {
           "id": "b20",
-          "signal": "DI 5 WSS RL",
-          "designation": "B20"
+          "signal": "Rear left wheel spd",
+          "designation": "B20",
+          "propagate": false
         },
         {
           "id": "b21",
-          "signal": "DI 4 WSS FR",
-          "designation": "B21"
+          "signal": "FR conditioned out",
+          "designation": "B21",
+          "propagate": false
         },
         {
           "id": "b22",
-          "signal": "Gnd Out",
+          "signal": "Sensor ground B",
           "designation": "B22",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b23",
-          "signal": "An Volt 8 Clnt P",
-          "designation": "B23"
+          "signal": "Coolant press signal",
+          "designation": "B23",
+          "propagate": false
         },
         {
           "id": "b24",
-          "signal": "An Volt 9 Fuel Lvl",
-          "designation": "B24"
+          "signal": "Fuel level signal",
+          "designation": "B24",
+          "propagate": false
         },
         {
           "id": "b25",
-          "signal": "ECU-B GND",
+          "signal": "ECU power ground",
           "designation": "B25",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b26",
-          "signal": "Aux 10 ETB M-",
+          "signal": "ETB motor -",
           "designation": "B26",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         },
         {
           "id": "b27",
-          "signal": "DI 10 Anti-Theft",
-          "designation": "B27"
+          "signal": "Anti-theft input",
+          "designation": "B27",
+          "propagate": false
         },
         {
           "id": "b28",
           "designation": "B28",
-          "signal": "DI 9 Ignition Switch"
+          "signal": "Ignition sw sense",
+          "propagate": false
         },
         {
           "id": "b29",
           "designation": "B29",
-          "signal": "DI 8 VSS"
+          "signal": "Gearbox speed signal",
+          "propagate": false
         },
         {
           "id": "b30",
-          "signal": "DI 7 Start Req",
-          "designation": "B30"
+          "signal": "Start request",
+          "designation": "B30",
+          "propagate": false
         },
         {
           "id": "b31",
           "designation": "B31",
-          "signal": "An Volt 10 A/C Btn"
+          "signal": "A/C request button",
+          "propagate": false
         },
         {
           "id": "b32",
           "designation": "B32",
-          "signal": "An Volt 11 Evap Temp"
+          "signal": "Evap temp signal",
+          "propagate": false
         },
         {
           "id": "b33",
-          "signal": "An Volt 5 APS-S",
-          "designation": "B33"
+          "signal": "Pedal 2 signal sub",
+          "designation": "B33",
+          "propagate": false
         },
         {
           "id": "b34",
-          "signal": "ECU-B GND",
+          "signal": "ECU power ground",
           "designation": "B34",
-          "contactPartId": "ct_ss10_075"
+          "contactPartId": "ct_ss10_075",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1884,7 +1918,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "VRC-R +5V"
+          "signal": "VRC-R +5V",
+          "propagate": false
         },
         {
           "id": "c2",
@@ -1895,13 +1930,13 @@
         {
           "id": "c3",
           "designation": "3",
-          "signal": "RL conditioned out",
+          "signal": "Rear left wheel spd",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "RR conditioned out",
+          "signal": "Rear right wheel spd",
           "propagate": false
         },
         {
@@ -4329,5 +4364,6 @@
       "description": "FLANGE, MOUNTING, DRB 102/128 SERIES",
       "manufacturer": "TE DEUTSCH"
     }
-  ]
+  ],
+  "mates": []
 }
