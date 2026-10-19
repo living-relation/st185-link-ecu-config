@@ -457,6 +457,12 @@
   },
   "ST185-FB-100L": {
    "reason": "R196 model-only PR: base T (strip hold-downs); drawing regenerated in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-117": {
+   "reason": "R196 / R197 model-only PR: PEM nuts + stages model (strap B); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-100P": {
+   "reason": "R196 model-only PR: FB-117 strap B (PEM nuts in the strap model); drawing regenerated in the markup 2026-10-18 pass"
   }
  }
 }

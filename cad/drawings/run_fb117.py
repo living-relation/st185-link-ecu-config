@@ -9,7 +9,13 @@ Run in WSL with the handbuilt-cad venv, from the repo root:
     ST185_WORK=<work dir> ~/projects/handbuilt-cad/.venv/bin/python cad/drawings/run_fb117.py
 
 -> <work>/out/st185_fb117/ST185-FB-117.pdf / .dxf, <work>/previews/ST185-FB-117_sh1.png. Rev log: cad/fusebox/rev7/ST185-FB-117.REVLOG.md.
-Claude Code, 2026-10-17.
+FB117_MODEL_ONLY=1 writes the two model STEPs only (R196 / R197: models first, drawings after):
+  ST185-FB-117_model.step  - the formed strap and its flat blank, each with its 2 PEM CLSS-M5-2 nuts pressed (heads inside the C);
+  ST185-FB-117_stages.step - how the nuts go in, one named solid per piece (Dan's drawing markup 2026-10-18): row 1 (y 0) the blank as
+      cut with the nuts beside their holes, head down (step 1); row 2 (y -40) both nuts pressed, the 0.6 trim piece its own solid
+      'TRIM_OFFCUT' (step 2); row 3 (y -80) trimmed, ready to bend (step 3).
+The nut is built from PEM Bulletin CL p. CL-5 (spec.STRAP_PEM: head E x T, shank C x A, M5 bore D1) - PEM's STEP needs a sign-up (R163).
+Claude Code, 2026-10-17; nuts + stages 2026-10-18.
 """
 import os
 import shutil
@@ -67,13 +73,65 @@ def flat():
     return b
 
 
-def main():
-    f, b = formed(), flat()
+def pem(x, y, z_face, head_down=True):
+    """PEM CLSS-M5-2 pressed into a strap face at z_face: head (E x T) on the face, shank (C x A) into the copper, M5 bore."""
+    s = -1 if head_down else 1                         # the side the head is on
+    head = Pos(x, y, z_face + s * PM['T'] / 2) * Cylinder(PM['E'] / 2, PM['T'])
+    shank = Pos(x, y, z_face - s * PM['A'] / 2) * Cylinder(PM['C'] / 2, PM['A'])
+    n = head + shank
+    return n - Pos(x, y, z_face) * Cylinder(PM['D1'] / 2, 2 * (PM['T'] + PM['A']) + 2)
+
+
+def flat_nuts(x_top, y=0.0, drop=0.0):
+    """The 2 nuts on a flat blank whose finished top end is at x_top (heads on the underside = the inside of the C); drop = gap below."""
+    return [pem(x_top + xh, y, -drop) for xh in (BL['pem_top'], BL['pem_bottom'])]
+
+
+def formed_nuts():
+    """Nuts on the formed strap (strap frame): top nut under the top leg at the ear stud, lug nut on the bottom leg, heads inside the C."""
+    zt = S.POWER['bar_top'] - ST['z_bl']
+    return [pem(0.0, 0.0, zt - ST['t'], head_down=True), pem(ST['lug'], 0.0, ST['t'], head_down=False)]
+
+
+def blank(x_top, y=0.0, extra=0.0):
+    """flat() moved to (x_top, y); extra = length left on at the top end (the as-cut blank)."""
+    b = flat().moved(Location((x_top - FX, y, 0)))
+    if extra:
+        b += Pos(x_top - extra / 2, y, BL['t'] / 2) * Box(extra, BL['w'], BL['t'])
+    return b
+
+
+def named(shape, name):
+    shape.label = name
+    return shape
+
+
+def model_steps():
+    """Write ST185-FB-117_model.step and ST185-FB-117_stages.step into <work>/src/st185_fb117 and beside the Fusion STEP."""
     src = os.path.join('src', JOB)
     os.makedirs(src, exist_ok=True)
+    tr = ST['trim']
+    parts = [named(formed(), 'STRAP_FORMED')] + [named(n, 'PEM_%s_FORMED_%d' % (PM['pn'], i + 1)) for i, n in enumerate(formed_nuts())]
+    parts += [named(flat(), 'BLANK_FINISHED')] + [named(n, 'PEM_%s_FLAT_%d' % (PM['pn'], i + 1)) for i, n in enumerate(flat_nuts(FX))]
     mdl = os.path.join(src, 'ST185-FB-117_model.step')
-    export_step(Compound([f, b]), mdl)
-    shutil.copy(mdl, os.path.join(REV7, 'ST185-FB-117_model.step'))
+    export_step(Compound(children=parts, label='ST185-FB-117'), mdl)
+    st = [named(blank(FX, 0.0, tr), 'S1_BLANK_AS_CUT')]
+    st += [named(n, 'S1_PEM_%d_LOOSE' % (i + 1)) for i, n in enumerate(flat_nuts(FX, 0.0, drop=10.0))]
+    st += [named(blank(FX, -40.0), 'S2_BLANK'), named(Pos(FX - tr / 2, -40.0, BL['t'] / 2) * Box(tr, BL['w'], BL['t']), 'S2_TRIM_OFFCUT')]
+    st += [named(n, 'S2_PEM_%d_PRESSED' % (i + 1)) for i, n in enumerate(flat_nuts(FX, -40.0))]
+    st += [named(blank(FX, -80.0), 'S3_BLANK_TRIMMED')] + [named(n, 'S3_PEM_%d' % (i + 1)) for i, n in enumerate(flat_nuts(FX, -80.0))]
+    stg = os.path.join(src, 'ST185-FB-117_stages.step')
+    export_step(Compound(children=st, label='ST185-FB-117 stages'), stg)
+    for f in (mdl, stg):
+        shutil.copy(f, os.path.join(REV7, os.path.basename(f)))
+    return mdl, stg
+
+
+def main():
+    mdl, stg = model_steps()
+    if os.environ.get('FB117_MODEL_ONLY'):
+        print('model only:', mdl, stg)
+        return
     x0, L = -ST['top_in'], BL['length']
     zt = S.POWER['bar_top'] - ST['z_bl']            # top of the top leg in the strap frame (40.5)
     xwo, xlip = ST['web'][1], ST['web'][1] + ST['lip']
