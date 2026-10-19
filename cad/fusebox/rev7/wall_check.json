@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 845.4,
+   "volume_cm3": 834.1,
    "bounds": [
     128.0,
     341.8,
@@ -38,13 +38,13 @@
   "Power_Pan_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 156.7,
+   "volume_cm3": 157.0,
    "bounds": [
     163.45,
     337.05,
     2.25,
     240.75,
-    0.58,
+    1.5,
     36.0
    ],
    "exempt": {
