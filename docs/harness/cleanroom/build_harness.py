@@ -16,7 +16,11 @@ from docs/harness/cleanroom/specs/<harness>.json when it exists, else from the d
 nodes and wires no row uses are dropped (R44). Title block initials: %USERPROFILE%\\.drawing-initials
 (R200); with no file and no terminal the build stops.
 
---check builds in memory and says whether the drawing already matches the list (no write).
+--check (no file: every rebuilt file in wirelist.GATED - the check_all.py gate) rebuilds in memory on
+top of the committed drawing and fails if what the list owns differs: wire ends, colours, stripes,
+ident bands, wire parts, cavity texts, labels, end notes, title block. Positions, the layout view,
+routing points and the schema version are not compared, so Dan's in-app layout moves and the app's
+revision bump pass (R116); any other edit to a rebuilt drawing fails until the list says it.
 """
 import argparse
 import copy
@@ -31,7 +35,47 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, HARNESS)
 import model  # noqa: E402
 import wirelist as WL  # noqa: E402
-from extract_wirelist import Drawings  # noqa: E402
+
+
+class Drawings:
+    """The drawn halves of every wire across the files: a broken-off pair (interfaces.json
+    `breaks`) is one physical wire drawn in two (or more) files."""
+
+    def __init__(self):
+        self.reg = model.registry()
+        self.files = model.harness_files(self.reg)
+        self.brk = model.break_ends(self.reg)
+        self.cond, self.at = {}, {}
+        for h, fn in self.files.items():
+            for c, cable, scr in model.conductors(load(os.path.join(HARNESS, "rebuild", fn))):
+                self.cond[(h, c["id"])] = c
+                for side in ("source", "target"):
+                    e = c.get(side) or {}
+                    if e.get("id"):
+                        self.at.setdefault((h, e["id"]), []).append((c["id"], side))
+
+    def other_half(self, h, term):
+        br = next(b for b in self.reg["breaks"] if b["id"] == self.brk[(h, term)])
+        o = next(e for e in br["ends"] if (e["harness"], e["terminal"]) != (h, term))
+        hits = self.at.get((o["harness"], o["terminal"]), [])
+        if len(hits) != 1:
+            raise SystemExit("break %s: %d conductors at %s on %s" % (br["id"], len(hits), o["terminal"], o["harness"]))
+        return o["harness"], hits[0][0], hits[0][1]
+
+    def chain(self, h, cid):
+        """[(file, conductor id)] of every drawn half of the wire `cid` on `h`, in order."""
+        halves = [(h, cid)]
+        for side in ("source", "target"):
+            hh, cc, sd, seen = h, cid, side, []
+            while True:
+                e = self.cond[(hh, cc)].get(sd) or {}
+                if not (e.get("id") and (hh, e["id"]) in self.brk):
+                    break
+                hh, cc, sd2 = self.other_half(hh, e["id"])
+                seen.append((hh, cc))
+                sd = "target" if sd2 == "source" else "source"
+            halves = (seen[::-1] + halves) if side == "source" else (halves + seen)
+        return halves
 
 FULL_TEXT = os.path.join(HARNESS, "full_text.json")
 
@@ -83,7 +127,7 @@ def build(h, geo, spec, who):
     halves = {}   # row wire id -> this file's drawn halves (a wire can leave and come back)
     for cid in conductors:
         if (h, cid) in dw.cond:
-            for hh, x in dw.chain(h, cid)[0]:
+            for hh, x in dw.chain(h, cid):
                 halves.setdefault(x, [])
                 if cid not in halves[x]:
                     halves[x].append(cid)
@@ -288,16 +332,79 @@ def full_text(h, out, spec):
     return ft
 
 
+def owned(d):
+    """What the wire list and spec own in a drawing - the part the gate compares. Positions, the
+    layout view (bundles, branch points), routing points, note widths, part definitions and the
+    schema version are NOT in it: Dan's layout moves in the desktop app and the app's own save /
+    revision bump (R116) pass, and the builder keeps them (it starts from the committed file)."""
+    conds = {}
+    for c, cable, scr in model.conductors(d):
+        conds[c["id"]] = [cable, (c.get("source") or {}).get("id"), (c.get("source") or {}).get("handle"),
+                          (c.get("target") or {}).get("id"), (c.get("target") or {}).get("handle"),
+                          c.get("color"), c.get("stripeColor"), c.get("identColors"), c.get("partId")]
+    out = {"conductors": conds,
+           "connectors": {c["id"]: {"label": c.get("label"), "cavities": {
+               x["id"]: [x.get("signal"), x.get("propagate"), x.get("notConnected")] for x in c["cavities"]}}
+               for c in d.get("connectors", [])},
+           "notes": {n["id"]: n.get("text") for n in d.get("schematicNotes", [])},
+           "title": [d.get("titleBlock", {}).get(k) for k in ("title", "drawingNumber", "drawnBy")],
+           "exportNotes": (d.get("exportNotes") or "").split(chr(10))[0]}
+    for k in ("splices", "resistors", "diodes", "terminals"):
+        out[k] = {x["id"]: x.get("label") for x in d.get(k, [])}
+    return out
+
+
+def diff(a, b, path=""):
+    if isinstance(a, dict) and isinstance(b, dict):
+        out = []
+        for k in sorted(set(a) | set(b), key=str):
+            out += diff(a.get(k), b.get(k), "%s/%s" % (path, k)) if k in a and k in b else                 ["%s/%s %s" % (path, k, "added" if k in b else "removed")]
+        return out
+    return [] if a == b else ["%s: %r -> %r" % (path, a, b)]
+
+
+def check(names):
+    """The gate: every rebuilt (GATED) file, rebuilt in memory from its list on top of its committed
+    self, must own the same content as the committed file."""
+    bad = []
+    for h in names:
+        path = os.path.join(HARNESS, "rebuild", model.harness_files()[h])
+        committed = load(path)
+        sp_path = os.path.join(HERE, "specs", "%s.json" % h)
+        spec = load(sp_path) if os.path.exists(sp_path) else {}
+        # no initials asked here: DRAWN comes from the committed file and BY from the spec (a blank
+        # one shows up as a difference); CI has no initials file and needs none (R200)
+        out, problems = build(h, committed, spec, "")
+        d = diff(owned(committed), owned(out)) + ["PROBLEM " + p for p in problems]
+        ft = full_text(h, out, spec)
+        if json.dumps(ft, indent=1, ensure_ascii=False) + chr(10) != open(FULL_TEXT, encoding="utf-8").read():
+            d.append("full_text.json is not what the list gives")
+        print("%s: %s" % (h, "matches its wire list" if not d else "%d difference(s) from its wire list" % len(d)))
+        for x in d[:20]:
+            print("   ", x)
+        bad += d
+    return bad
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("harness")
+    ap.add_argument("harness", nargs="?")
     ap.add_argument("--geometry")
     ap.add_argument("--out")
     ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
     files = model.harness_files()
+    if a.check and not a.harness:   # the check_all.py gate: every rebuilt file
+        pending = [h for h in files if h not in WL.GATED]
+        bad = check([h for h in files if h in WL.GATED])
+        print("pending (not rebuilt yet, not gated): %s" % ", ".join(pending))
+        print("build_harness --check: %s" % ("FAIL - a rebuilt drawing was edited outside its wire list: change the "
+                                             "list (or spec) and rebuild, never the drawing" if bad else "OK"))
+        return 1 if bad else 0
     if a.harness not in files:
         raise SystemExit("unknown harness %s (one of: %s)" % (a.harness, ", ".join(files)))
+    if a.check:
+        return 1 if check([a.harness]) else 0
     path = os.path.join(HARNESS, "rebuild", files[a.harness])
     geo = load(a.geometry or path)
     sp_path = os.path.join(HERE, "specs", "%s.json" % a.harness)
@@ -305,21 +412,14 @@ def main():
     out, problems = build(a.harness, geo, spec, initials() if spec.get("rev") else "")
     for p in problems:
         print("PROBLEM", p)
-    text = json.dumps(out, indent=2, ensure_ascii=False) + "\n"
-    ft = full_text(a.harness, out, spec)
-    ft_text = json.dumps(ft, indent=1, ensure_ascii=False) + "\n"
-    if a.check:
-        same = open(a.out or path, encoding="utf-8").read() == text
-        ft_same = open(FULL_TEXT, encoding="utf-8").read() == ft_text
-        print("%s: drawing %s the wire list; full_text.json %s" % (
-            a.harness, "matches" if same else "DIFFERS from", "current" if ft_same else "DIFFERS"))
-        return 0 if same and ft_same and not problems else 1
     if problems:
         raise SystemExit("not written: %d problem(s)" % len(problems))
+    text = json.dumps(out, indent=2, ensure_ascii=False) + chr(10)
+    ft_text = json.dumps(full_text(a.harness, out, spec), indent=1, ensure_ascii=False) + chr(10)
     target = a.out or path
     for p, t in ((target, text), (FULL_TEXT, ft_text)):
         tmp = p + ".tmp"
-        with open(tmp, "w", encoding="utf-8", newline="\n") as f:
+        with open(tmp, "w", encoding="utf-8", newline=chr(10)) as f:
             f.write(t)
         os.replace(tmp, p)
     print("wrote %s: %d wires, %d cable conductors, %d connectors, %d splices, %d wire ends" % (

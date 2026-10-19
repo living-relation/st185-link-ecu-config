@@ -35,8 +35,8 @@ What it runs, in order - every one in HARD is a hard gate:
   audit_drawing_rules.py   signals (one propagating per net, terminals never, no empty wired
                            cavity), 30-unit grid, bundle lengths, layout left to right, no overlaps
   audit_wire_spacing.py    W2: layout bundles 30 apart unless they end at the same connector / device
-                           (R107); RP1: no wire routing points unless Dan allow-lists the wire (DECISIONS
-                           R141, which retired R86's W1 and route_wires.py; strip_routing_points.py)
+                           (R107); RP1: no wire routing points unless Dan allow-lists the wire or it squares
+                           a diagonal (DECISIONS R202)
   audit_ident_bands.py     ident bands (DECISIONS R87): palette, one code per circuit per drawing, one code
                            per circuit name everywhere, both sections of a break on one circuit
   audit_dan_rules.py       Daniel's text-level rules (DECISIONS R11, R26, R29, R35, R44): bay
@@ -53,8 +53,8 @@ What it runs, in order - every one in HARD is a hard gate:
                            findings waiting on Dan are listed in PENDING_DAN and do not fail.
   audit_layout.py          layout view (DECISIONS R107, R140 front right): no node or label on another,
                            no bundle through a node or label (Y5: nor along its own end's label), no
-                           bundle on top of another, no lone long diagonal. Re-place with layout_tree.py (one straight tree) or
-                           layout_trunk.py (keeps a bent trunk); snapshot render_layout.py.
+                           bundle on top of another, no lone long diagonal. Layout moves are Dan's, in the app;
+                           snapshot render_layout.py.
   audit_destinations.py    wire-end labels (DECISIONS R156): every terminal / splice labelled with where
                            that end lands, both ends of a wire differ, no "->" tail, bare pin code or
                            internal id, notes wide (L1-L5); connector names <= 48, signals <= 20, no
@@ -88,6 +88,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
         ["audit_bundle_topology.py"],   # R154: bundle shape follows the route, no empty / copied legs
         ["cleanroom/wirelist.py", "--check"],   # R201: the master wire list (CSV + styled .xlsx) is current, matches the SoT, nets clean
+        ["cleanroom/build_harness.py", "--check"],   # R201: a rebuilt drawing (wirelist.GATED) is what its wire list builds; layout moves allowed
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
         ["../../cad/fusebox/src/check_terminal_holes.py"],     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
@@ -98,7 +99,7 @@ SOFT = [["../build/wiring-diagrams/build_wiring_diagrams.py", "--check"]]   # R1
 # 2026-10-15: audit_destinations started HARD (Dan: "I need the destination to be clear and list
 # the actual destination of that wire"); all 15 drawings shortened in the same PR.
 # 2026-10-15: audit_layout went HARD (R107) - all 15 drawings report zero after the G2
-# drawings (A-engine, B-engine, CAN, EngineRoom-C) were re-placed with layout_trunk.py.
+# drawings (A-engine, B-engine, CAN, EngineRoom-C) were re-placed (layout scripts removed 2026-10-19).
 # 2026-10-15: audit_export_sheet.py (R88 PDF export package) retired - Dan dropped the PDF
 # export step (K5); the .harness files in the repo are the deliverable.
 # 2026-10-14: check_route_drawings went HARD - its last finding (Route 1 Fig. 4, an EWD

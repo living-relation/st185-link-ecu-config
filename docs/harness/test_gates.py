@@ -187,7 +187,7 @@ def _(d):
         designate(d, loom, half, "c25", "97")
 
 
-@case("R141: a wire given one routing point (RP1)", "audit_wire_spacing.py", 1)
+@case("R202: a wire given one routing point (RP1)", "audit_wire_spacing.py", 1)
 def _(d):
     p, doc = load(d, "CabinPower")
     w = doc["wires"][0]
@@ -195,7 +195,7 @@ def _(d):
     save(p, doc)
 
 
-@case("R141: bundle layout points are not wire routing points (RP1 allows)", "audit_wire_spacing.py", 0)
+@case("R202: bundle layout points are not wire routing points (RP1 allows)", "audit_wire_spacing.py", 0)
 def _(d):
     p, doc = load(d, "WheelSpeed-Rear")
     assert any(b.get("layoutPoints") for b in doc["bundles"])    # Dan kept these 13
@@ -654,12 +654,12 @@ def _core_points_live(d, extra):
     save(p, doc)
 
 
-@case("R141 RP1: cable cores stripped, drawing off the pending list", "audit_wire_spacing.py", 0)
+@case("R202 RP1: cable cores stripped, drawing off the pending list", "audit_wire_spacing.py", 0)
 def _(d):
     _core_points_live(d, lambda doc: None)
 
 
-@case("R141 RP1: a routing point on a cable core leg", "audit_wire_spacing.py", 1)
+@case("R202 RP1: a routing point on a cable core leg", "audit_wire_spacing.py", 1)
 def _(d):
     _core_points_live(d, lambda doc: doc["cables"][0]["cores"][0].update(
         targetLayoutPoints=[{"id": "lp_t_core", "schematicPosition": {"x": 0, "y": 0}}]))
