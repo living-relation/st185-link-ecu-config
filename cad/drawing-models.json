@@ -441,5 +441,19 @@
    "rev": "D",
    "pdf_sha": "3b4ba03fd5df2394"
   }
+ },
+ "regen_pending": {
+  "ST185-VRC-101": {
+   "reason": "R196 model-only PR: LP-16 double-D cutouts (body E); drawing regenerated in the markup 2026-10-18 pass"
+  },
+  "ST185-VRC-100": {
+   "reason": "R196 model-only PR: body E (LP-16 double-D cutouts); drawing regenerated in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-105": {
+   "reason": "R196 model-only PR: LOGIC strip hold-downs (base T); drawing regenerated in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-100L": {
+   "reason": "R196 model-only PR: base T (strip hold-downs); drawing regenerated in the markup 2026-10-18 pass"
+  }
  }
 }
