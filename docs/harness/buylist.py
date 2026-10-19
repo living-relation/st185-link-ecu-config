@@ -288,6 +288,7 @@ out = ["# Harness — need to buy",
  "`" + "`, `".join(x[6:-8] for x in F) + "`.",
  "On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.",
  "Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.",
+ "The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/sourcing/PROJECT-BOM.xlsx`; this file is its harness quantity audit.",
  "", "## Short — order these", "",
  "| Part number | Mfr | Description | Need | Have | **Buy** |", "|---|---|---|---:|---:|---:|"]
 for r in sorted(rows_buy, key=lambda x: -x[5]):
