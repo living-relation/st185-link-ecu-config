@@ -1,0 +1,14 @@
+{
+ "pn": "ST185-FB-102",
+ "pdf_sha": "5a9a8167497adfca",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "PA12, POWDER-BED PRINTED (SLS / MJF). PRINT FROM THE STEP MODEL.",
+  "SIZES ON THIS SHEET ARE FOR CHECKING ONLY (OVERALL SIZE). THE 3D MODEL DEFINES EVERY OTHER FEATURE."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "ok": true,
+ "tangent_lines_trimetric": 26
+}

@@ -1,0 +1,14 @@
+{
+ "pn": "ST185-FB-114",
+ "pdf_sha": "bebf9739c1960338",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "C110 COPPER, TINNED. CUT FROM 1\" x 1/4\" TINNED C110 FLAT BAR (MECCANIXITY B0CGJBRNJX).",
+  "SAW TO LENGTH, DRILL. DEBURR EVERY HOLE AND EDGE. DO NOT REMOVE THE TIN FROM THE CONTACT FACES."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "ok": true,
+ "tangent_lines_trimetric": 0
+}

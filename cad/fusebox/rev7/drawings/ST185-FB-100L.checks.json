@@ -1,0 +1,127 @@
+{
+ "pn": "ST185-FB-100L",
+ "pdf_sha": "2f4177c14f497de2",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "OVERALL SIZES ARE FOR REFERENCE.",
+  "PARTS THAT SHARE ONE MODEL (THE MICRO RELAYS, LUGS, JUMPER WIRES) ARE BALLOONED ON THE FIRST ITEM OF THEIR GROUP.",
+  "USE THE M5 x 10 FEED BOLT, NOT A SHORTER ONE: ITS TIP GOES 1.7 INTO THE SPINE AND LOCKS THE STRIP.",
+  "SHEET 2: WHAT EACH FUSE AND RELAY FEEDS. SHEETS 3 AND 4: THE HARNESS WIRE AT EACH TERMINAL, NAMED AS ON THE HARNESS DRAWINGS.",
+  "TERMINALS GO IN FROM UNDER THE DECK, CONTACT BOX FIRST, UNTIL THE LANCE CLICKS. PULL THE WIRE BACK GENTLY TO CHECK IT HOLDS (TE 114-2025 3.6, 114-20021 3.7).",
+  "KEEP HARNESS TIES AT LEAST 38 mm BELOW THE DECK, AND DO NOT BEND THE WIRES HARD TO ONE SIDE AT THE DECK (TE 114-20021 3.7 C)."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "balloon_views": [
+  {
+   "view": "TRIMETRIC VIEW",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "TRIMETRIC - COVER REMOVED",
+   "placed": 1,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [
+    4
+   ]
+  },
+  {
+   "view": "LABELS 1",
+   "placed": 28,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 8,
+   "hidden": [],
+   "labels": 0
+  },
+  {
+   "view": "LABELS 2",
+   "placed": 0,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [],
+   "labels": 23
+  },
+  {
+   "view": "LABELS 3",
+   "placed": 0,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [],
+   "labels": 28
+  },
+  {
+   "view": "STEP 1",
+   "placed": 3,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 2",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "view": "STEP 3",
+   "placed": 4,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 4",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 5",
+   "placed": 4,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 6",
+   "placed": 6,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [
+    9
+   ]
+  },
+  {
+   "view": "STEP 7",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  }
+ ],
+ "not_ballooned": [],
+ "ok": true
+}

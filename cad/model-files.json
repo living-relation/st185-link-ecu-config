@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-18",
+ "generated": "2026-10-19",
  "files": {
   "cad/drb102-plate": [
    "DRB102-firewall-plate-assembly.step",
@@ -196,6 +196,7 @@
    "Power_Retainer_R1_PA12_printed.stl",
    "Power_Strap_Out_CuC110_15x3_C.step",
    "ST185-FB-117_model.step",
+   "ST185-FB-117_stages.step",
    "ST185_fusebox_rev7.f3d",
    "ST185_fusebox_rev7_assembly.step"
   ],
@@ -258,6 +259,18 @@
   ],
   "cad/vendor/te/880398-2": [
    "c-880398-2-t-3d.stp"
+  ],
+  "cad/vendor/te/DRB12-102PAE-L018": [
+   "c-drb12-102pae-l018-99-3d.stp"
+  ],
+  "cad/vendor/te/DRB16-102SAE-L018": [
+   "c-drb16-102sae-l018-99-3d.stp"
+  ],
+  "cad/vendor/te/DRBF-1A": [
+   "c-drbf-1a-99-3d.stp"
+  ],
+  "cad/vendor/te/HD34-24-33PE": [
+   "c-hd34-24-33pe-a-3d.stp"
   ],
   "cad/fusebox/rev7/print": [
    "ST185_R1_retainer_clip_PA12.step",
