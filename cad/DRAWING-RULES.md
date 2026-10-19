@@ -15,4 +15,18 @@ Rules every shop drawing in this repo follows. Decisions are in
 | Minimum wall thickness applies to structural / critical features only; anything questionable is flagged for Dan. | R151 |
 | Model files are STEP only; STL only as a print-job file for a printed part. | R152 |
 | Every model says what made it (`MADE-WITH.md` + register column). | R149 |
-| Edges the CAD can't break cleanly are a drawing note, not modelled. | R138 |
+| No notes about things that are not in the model: no edge-break notes (also out of the tolerance block), nothing "not modelled". Replaces R138's drawing note. | R191 |
+| Bought parts come from the real maker STEP (`cad/vendor/`), never an envelope model; no note says "envelope". | R184 |
+| No pin / socket gender notes: gender belongs to the connector shell installed. | R185 |
+| A balloon only where its part is clearly visible, its leader on that part; hidden parts are ballooned in an exploded or alternate view. | R186 |
+| Tangent edges show in every trimetric view. | R187 |
+| Balloons never overlap or crowd. | R188 |
+| Fuse boxes: every fuse and relay has a note label beside its balloon naming its circuit or device (from the SoT). | R189 |
+| Every harness wire landing on a fuse box carries its harness-drawing wire-end label (R156). | R190 |
+| Change notes (what was fixed, markup dates, R / PR numbers) go in the rev log, never in NOTES. | R192 |
+| Assembled views balloon only the primary parts (enclosure, lid). | R193 |
+| Never label a screw that is not in the model; hidden screws go in an exploded view with dotted lines. | R194 |
+| Notes are for a shop machinist: ELI5, short, plain steps. | R195 |
+| Models first, drawings last: model-only PRs, then every drawing regenerated in one pass (`regen_pending` in `drawing-models.json` meanwhile). | R196 |
+
+Gates: `cad/check_drawings_current.py` (R183, R196) and `cad/check_drawing_rules.py` (R184 - R196, reads the `<pdf>.checks.json` report the handbuilt-cad engine writes beside every drawing, DRAWING-RULES 24-30), both in `check_all.py`.

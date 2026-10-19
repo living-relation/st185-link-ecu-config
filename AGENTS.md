@@ -16,7 +16,7 @@ maintainer something the rules already answer.
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R183).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> (R1-R196).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Three rules, all non-optional:
@@ -173,6 +173,7 @@ python docs/harness/check_all.py          # harness gates; --check mode, never w
 python docs/harness/audit_wire_spacing.py # no wire routing points RP1 (R141), layout spacing W2 (R107)
 python docs/harness/audit_layout.py      # layout view: front right, true top view (R140, R153), overlaps / hidden bundles / own labels (R107); re-place: layout_tree.py / layout_trunk.py
 python cad/check_drawings_current.py     # R183: every drawing matches its model (also in check_all.py); --update <pn> after regenerating
+python cad/check_drawing_rules.py        # R184-R196: balloons, tangent edges, banned notes, from each drawing's <pn>.checks.json (also in check_all.py)
 python bench/check_parity.py              # CAN contract parity
 python tune/scripts/validate_tune.py      # tune seed tables (needs PyYAML)
 python .github/scripts/check_doc_duplicates.py   # copied .md passages (warn-only)
