@@ -141,7 +141,7 @@ def main():
             if node in CONNECTORS:
                 ends.append([node, conn_label[node].split("  ")[0], pin])
             elif node in SPLICES:
-                ends.append([node, SPLICES[node].split(" - ")[1], ""])
+                ends.append([node, "splice %s (%s)" % (node, SPLICES[node].split(" - ")[1]), ""])
                 splice_wires.setdefault(node, []).append((wid, gauge))
                 checks.append("splice %s named in SoT" % node if node in sot_text else "")
                 if node not in sot_text:
