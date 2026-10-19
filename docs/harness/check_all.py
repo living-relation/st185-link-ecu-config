@@ -88,6 +88,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
         ["audit_bundle_topology.py"],   # R154: bundle shape follows the route, no empty / copied legs
         ["cleanroom/wirelist.py", "--check"],   # R201: the master wire list (CSV + styled .xlsx) is current, matches the SoT, nets clean
+        ["atlas/build_atlas.py", "--check"],   # connector atlas PDF is current against the wire lists
         ["cleanroom/build_harness.py", "--check"],   # R201: a rebuilt drawing (wirelist.GATED) is what its wire list builds; layout moves allowed
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
