@@ -207,7 +207,11 @@ CABLES = {
     },
 }
 
+# Dan N41 = B: DRAWN = initials of the person on Rev A (never changes); a rev's BY = initials of
+# whoever asked for that change, never an agent name. On ST185 both are always DG.
+DRAWN = "DG"
 REV = "A"
+REV_BY = "DG"
 REV_NOTE = "clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv."
 
 # The ONE general notes block: build notes a builder needs, plain words, at most five.
@@ -274,8 +278,8 @@ def main():
     geo = load(a.geometry)
     out = copy.deepcopy(geo)  # parts, layout view, settings; everything below is rewritten
     out["titleBlock"] = dict(geo["titleBlock"], title="ST185-A-cabin - ECU plug A cabin loom",
-                             drawingNumber="ST185-A-cabin rev %s" % REV)
-    out["exportNotes"] = "Rev %s: %s\n%s" % (REV, REV_NOTE, geo.get("exportNotes", ""))
+                             drawingNumber="ST185-A-cabin rev %s" % REV, drawnBy=DRAWN)
+    out["exportNotes"] = "Rev %s, BY %s: %s\n%s" % (REV, REV_BY, REV_NOTE, geo.get("exportNotes", ""))
 
     # every (node, pin) -> description, from the wire table
     text = {}

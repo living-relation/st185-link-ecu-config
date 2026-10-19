@@ -6,9 +6,10 @@
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
     "title": "ST185-A-cabin - ECU plug A cabin loom",
-    "drawingNumber": "ST185-A-cabin rev A"
+    "drawingNumber": "ST185-A-cabin rev A",
+    "drawnBy": "DG"
   },
-  "exportNotes": "Rev A: clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv.\nIdent bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-A, BH-A, IX WS-F, APS).",
+  "exportNotes": "Rev A, BY DG: clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv.\nIdent bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-A, BH-A, IX WS-F, APS).",
   "pdfExportSettings": {
     "includeSchematic": true,
     "includeLayout": true,
