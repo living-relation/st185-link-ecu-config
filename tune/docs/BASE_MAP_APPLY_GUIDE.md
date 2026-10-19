@@ -11,8 +11,7 @@ Safe startup tune — starts, idles, drives gently. Not optimized for peak perfo
 1. Load a conservative Link G4X **startup map** (Toyota / 4-cyl turbo class if available).
 2. Engine constants: 2189 cc, 8.5 CR, firing order, high-impedance (saturated) injectors.
 3. Import `link_g4x_can_setup.lcs`.
-4. Pins per `XTREMEX-IO-TABLE.html` — the authoritative I/O source (`io_assignments.yaml` and
-   `SENSOR_WIRING.md` were excluded on import; see `tune/README.md` Provenance).
+4. Pins per the wire lists (`docs/harness/wirelist/`) and `sot/channels.csv`.
 5. Triggers per `TRIGGER_COP_SETUP.md` (36-2 + cam sync).
 6. **Loose** protection limits from `tune/limits.yaml` → `ecu_limits` (startup only).
 7. Features as needed for operation: gear on CAN, A/C shed, basic idle — not full race TC/blip polish unless time allows.

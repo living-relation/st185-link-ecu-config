@@ -33,12 +33,13 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `link_g4x_realdash.xml` | RealDash CAN **channel-description** XML v2 — the 3 ECU→RealDash frames (0x3EF–0x3F1) plus the gear byte of 0x3EB (reverse-camera switch), valid/importable, BigEndian, with bit-decoded warnings and named `ST185:` inputs. |
 | `CANBUS-ENCODE-DECODE-REFERENCE.html` | Pointer page only: links to the cluster repo's encode/decode reference and its `main/canbus.c`. No cluster file is copied into this repo; `bench/check_parity.py` reads the cluster source read-only in CI. |
 | `REALDASH-LAYOUT.md` | RealDash **dashboard layout design** — buildable spec for the **single-page** blue/chrome 800x480 engineering dash (4x4 tile grid + strobing warning strip; no media page). Binds to `link_g4x_realdash.xml`. |
-| `sot/channels.csv` | **Wiring source of truth** — every ECU pin and channel, and the conditioner / A/C amp / power owners. New pin facts go here first. |
+| `docs/harness/wirelist/*-wirelist.csv` | **Wiring source of truth** (DECISIONS R206) — every wire, pin, splice, end, mate and net. New wiring facts go here first. |
+| `sot/channels.csv` | The ECU channel settings (type, pull-up, tune / CAN data) and ECU pin assignments, checked against the wire lists both ways. |
 | `XTREMEX-IO-TABLE.html` | Visual face of `sot/channels.csv`: channel plan, pin budget, and a generated pin map of every ECU pin. `docs/harness/sync_io_table.py --check` fails if it disagrees with the CSV. Open in a browser. |
 | `docs/harness/rebuild/*.harness` | **The physical harnesses, one per file** (harness.design v1.2, DECISIONS R111; ownership in docs/harness/interfaces.json) — what gets built. See `docs/harness/README.md`. |
-| `docs/harness/check_all.py` | Runs every harness gate (SoT, IO table, lint, mating, shields, pin names, buy/build lists). Must pass before every commit. |
-| `docs/harness/HARNESS-BUILD-LIST.csv` / `NEED-TO-BUY.md` | Generated per-wire build list and buy list. Never hand-edit — regenerate with `docs/harness/buildlist.py` / `buylist.py`; `check_all.py` fails if they are stale. |
-| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Splice table with factory EWD snips: where every ex-J/B2 / R/B load lands now that the OEM engine-bay boxes are removed (R12, §5.4). How power and ground re-enter the OEM engine-room, cowl and dash looms after the battery and fuse box leave the bay. |
+| `docs/harness/check_all.py` | Runs every harness gate (SoT, IO table, lint, mating, shields, pin names, wire lists, buy list). Must pass before every commit. |
+| `docs/harness/NEED-TO-BUY.md` | Generated buy list. Never hand-edit — regenerate with `docs/harness/buylist.py`; `check_all.py` fails if they are stale. |
+| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | OEM landing facts with factory EWD snips: where every ex-J/B2 / R/B load lands now that the OEM engine-bay boxes are removed (R12, §5.4). The wire lists own the wiring. |
 | `ECUMASTER_SWITCHBOARD_SETUP.md` | Step-by-step ECUMaster CAN Switch Board V3 configuration guide. |
 | `CAN-BUS-MASTER-DESIGN.md` | Architecture, PCLink User Streams, fault tolerance, 5-node topology. |
 | `CAN-BUS-ID-ALLOCATION-TABLE.md` | Master ID allocation table — all byte layouts, sections A–E. |
@@ -48,7 +49,6 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `tune/tables/` | PCLink table seeds — VE (93 + E85), ignition base, injector dead time. Conservative placeholders, not dyno data. See `tune/README.md`. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `docs/harness/redesign/DECISIONS.md` | Decision record and **the one home for every binding rule Daniel has set** (section "Binding rules from Daniel"). |
-| `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` | Dated harness decision history (2026-09-12 to 2026-10-11). Not a rules home: where its §6 disagrees with `DECISIONS.md` it is history. |
 | `docs/research-hub.html` | Index of everything under `docs/` plus interactive parts tables (on-hand BOM, harness buy list, enclosure BOMs). Open in any browser. The "Regenerate research hub" Action runs `python docs/build-research-hub.py` on PRs that touch `docs/**` and commits the HTML on `main` only — do not commit the HTML yourself. |
 
 ## Import Checklist (PCLink, when ECU is available)
@@ -63,15 +63,9 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
    0x3ED / 0x3EC selections, re-broadcast by the ECU. The ECU **receives** 0x3EC/0x3ED (Daniel,
    2026-10-03) - set up the two receive channels at the end of the `.lcs` (DLC 1, byte 0 = index).
 
-## Known Fixes vs. Previous Version
+## Scale forms
 
-Scales in this table are **decode** form (as in the `.lcs`): value = raw × Scale + Offset.
-
-| Frame | Parameter | File | Old Scale | Correct Scale | Effect of Bug |
-|---|---|---|---|---|---|
-| 0x3EF | Lambda Target | `.lcs` | 1000 | **0.001** | Transmitted value was always 0 (truncated) |
-| 0x3F1 | Accel X/Y/Z | `.lcs` | 10 | **0.1** | Transmitted value was always 0 (truncated) |
-| 0x3F0 | Turbo Speed | `.json` (encode form) | 1000 | **0.001** | Documentation only (2026-10-03) — the JSON had the decode value in an encode-form file; wire bytes never changed |
+Scales in the `.lcs` are **decode** form: value = raw × Scale + Offset.
 
 `link_g4x_can_setup.json` holds the same fields in **encode** form (e.g. Lambda Target scale 1000 there
 = 0.001 here). `bench/check_parity.py` checks the two agree.

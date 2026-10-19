@@ -1,6 +1,6 @@
 # Claude Dispatch rules (ST185)
 
-**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by reading `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md`, newest rows first. Rows marked 'superseded by Rxxx' are not followed. Take all project context from the repo, not from older handoff files. No question to Dan before both are read.
+**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by reading `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md`, newest rows first. A contradicted row is deleted, never marked superseded (R211). Take all project context from the repo, not from older handoff files. No question to Dan before both are read.
 
 **Scope: ONLY for Claude Dispatch** (the orchestrator chat that starts and watches sessions). Code sessions and other agents ignore this file and follow `AGENTS.md`.
 
@@ -41,6 +41,8 @@
 - After answers and finished runs, make sure OPEN-ITEMS (incl. Needs Dan), DECISIONS and the research hub are updated.
 - Who updates the hub: GitHub rebuilds the page on every merge; each session updates OPEN-ITEMS / DECISIONS in its ship step; Dispatch refreshes the Needs-Dan rows and the sessions strip (`docs/status/hub.json`, via a code session) after every Dan answer and at least every few check-ins.
 - Every new Dan rule goes into DECISIONS "Binding rules from Daniel" the same day (Dispatch-only rules go in this file).
+- No stale documents (R211): a task card that creates a new document or SoT says to find and consolidate or delete every older doc on the same subject in the same PR; nothing is archived. Check every session's PR for it.
+- ECU pins (R212): a task card that touches a circuit with a wire on an ECU pin says to check it against the Link G4X Quick Start Guide first; a mismatch is a stop, ask here.
 
 ## Facts to remember
 - Opening a `.harness` file in the desktop app bumps its revision even with no edits. Judge edits by content diff only.

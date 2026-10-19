@@ -197,7 +197,7 @@ The CSB3 rotary channels are a separate set of inputs available to the ECU for o
 
 The ECU commands CSB3 low-side outputs via ID 0x643, sent as a 50 ms periodic PCLink CAN TX stream (the
 bytes only change when an output changes; the manual sets no required rate). The cluster does NOT
-transmit 0x643. The ECU is the sole transmitter (decided 2026-06-14, `CAN-BUS-MASTER-DESIGN.md` §9).
+transmit 0x643. The ECU is the sole transmitter (decided 2026-06-14, `CAN-BUS-MASTER-DESIGN.md` §8).
 
 Layout per the CSB3 manual v2.1 §6 (DLC ≥ 4, one **byte** per output, not bits) — same as
 `switchboard_frames.json` and `CAN-BUS-ID-ALLOCATION-TABLE.md` §5:

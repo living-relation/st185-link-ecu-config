@@ -19,7 +19,7 @@ maintainer something the rules already answer.
 > (R1-R197).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
-> Three rules, all non-optional:
+> Four rules, all non-optional:
 >
 > 1. **Wiring** — a change to one wiring document is not done until it is checked against
 >    the source-of-truth chain and **every other wiring surface**, including ones you did
@@ -33,6 +33,11 @@ maintainer something the rules already answer.
 > 3. **ECU looms** — follow the ECU connector letter: A pins → `ST185-A-cabin` → bulkhead A
 >    → `ST185-A-engine`, B the same. Crossovers (a) +5V / Gnd Out, (b) ETB A20 / B5,
 >    (c) APS A14 / B33 only. Gate: `docs/harness/validate_bulkhead_letter.py`.
+> 4. **ECU pins (DECISIONS R212)** — every circuit with a wire on an ECU pin (Link G4X plugs A / B / C) is
+>    checked against the Link G4X Quick Start Guide: the pin function, what it may connect to (power, ECU
+>    ground -> battery negative, Gnd Out -> sensor returns only, shield, inputs / outputs), the current limits and
+>    the wire gauge. Any mismatch is a stop. Copy: `docs/vendor/XtremeXQuickstartGuide.pdf` (local, gitignored);
+>    tracked extract: `sot/channels.csv` (`QSG-IO`). `wirelist.py --check` reports class violations in `GAPS.md`.
 >
 > Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
 >
@@ -99,17 +104,10 @@ and runs as a HARD gate in `check_all.py`, since it's a test, not a skill.
 - Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
-- Engine-room power splice table (where every ex-J/B2 / R/B load lands, §5.4; the OEM engine-bay boxes are removed, R12): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`.
+- OEM landing facts for the ex-J/B2 / R/B loads (§5.4; the OEM engine-bay boxes are removed, R12): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`. The wire lists own the wiring.
 - Wiring SoT (R206): the wire lists `docs/harness/wirelist/*-wirelist.csv` (every wire, pin, splice, end, mate, net, factory end). `sot/channels.csv` = ECU channel settings, checked against the lists both ways. Visual face of `channels.csv`: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
 - The harness drawings - **not a source of truth** (Daniel, 2026-10-04; since R206 they are built from the wire lists; never generate truth docs from them): `docs/harness/rebuild/*.harness` (15 files, one physical harness per file; wires between files are drawn broken off in both; the four ECU looms split by connector letter 2026-09-28; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
 - Every binding wiring / parts / drawing rule: `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel". Reconcile procedure: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter detail: Rule 3.
-
-## Board / progress snapshot
-- Claude progress board is a **stale artifact** (last updated 2026-09-01). Do not treat it as SoT.
-- `docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` is the dated decision history (its §6 was
-  the build-rule log until 2026-10-12). It is **not a rules home any more**: the binding rules
-  are `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel", and where §6 disagrees
-  with them the plan doc is history.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
 This repo defines only one side of the CAN bus (ECU, RealDash, switchboard). The
@@ -201,6 +199,7 @@ python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.
 ## Working Rules
 - Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, `switchboard_frames.json`, the `.lcs`, the RealDash XML, the sender UI and `CAN-BUS-ID-ALLOCATION-TABLE.md` — `python bench/check_parity.py` must pass.
 - Open items live in one table: `docs/OPEN-ITEMS.md`.
+- **No stale documents (DECISIONS R211).** When you create a new document or define a new SoT, find every older document covering the same thing in the same PR, then consolidate its still-valid content into the new one or delete it. Nothing is archived, bannered "superseded" or kept "for reference"; git history is the archive. Gate: `docs/harness/audit_doc_claims.py`.
 - `docs/dispatch/DISPATCH-RULES.md` is for Claude Dispatch only; other agents ignore it.
 - Dispatch-launched sessions: no AskUserQuestion pickers; ask in plain text.
 - harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v1.2 `.harness` / `.harnesslib` - the files follow the desktop app's current schema, DECISIONS R111), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
@@ -280,7 +279,6 @@ One dashboard: the **research hub**, `docs/research-hub.html`, generated by `doc
 | File | Owner | Rule |
 |---|---|---|
 | `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** (Its "Project status" section is described under **Dashboard** above.) Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. PRs that touch `docs/**` (or the workflow) run the generator as a check and attach the HTML artifact. The bot commits the file to `main` only, after those changes merge. Committing it locally is what causes the rebase conflicts. |
-| `docs/harness/HARNESS-BUILD-LIST.csv` | `docs/harness/buildlist.py` | Commit it, but always regenerate - never hand-edit, never hand-merge. |
 | `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
 
 `.gitattributes` marks them `linguist-generated` and gives `research-hub.html`

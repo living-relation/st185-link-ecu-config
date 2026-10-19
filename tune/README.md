@@ -3,8 +3,7 @@
 PCLink table seeds and machine-readable engine constants for the ST185 5S-GTE build.
 
 This directory covers **engine calibration only**. It is not an I/O or wiring source — see
-`XTREMEX-IO-TABLE.html`, which is authoritative for channel assignment per
-`docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §1.
+the wire lists in `docs/harness/wirelist/` and `sot/channels.csv`.
 
 ## Files
 
@@ -94,8 +93,8 @@ the last column. Resolve this before any high-RPM running.
 **Not imported from the source repo**, as FuryX-specific or repo-meta: `io_assignments.yaml`,
 `docs/references/` (FuryX quickstart PDF, dealer HTML, quickstart notes), the I/O docs
 (`SENSOR_WIRING.md`, `IO_BUDGET.md`, `PWM_OUTPUTS.md`), the agent/session handoff docs, and
-`package_ecu.ps1` (a zip packager for the old standalone repo). `XTREMEX-IO-TABLE.html` is
-authoritative for all channel assignment.
+`package_ecu.ps1` (a zip packager for the old standalone repo). Channel assignment is the wire lists
+and `sot/channels.csv`.
 
 **Channel references were corrected on import.** `docs/ENGINE_SPEC.md` carried FuryX assignments
 inline — flex fuel moved DI5 → DI2 (C13), reverse moved DI10 → switchboard/CAN (C16), and the

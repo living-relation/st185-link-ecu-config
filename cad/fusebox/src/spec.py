@@ -511,7 +511,7 @@ PLACE = {'LOGIC': (0.0, 0.0), 'POWER': (160.0, 0.0), 'BATTRELAY': (0.0, -175.0)}
 
 # ---------- wires at every lug / stud / terminal
 OD = {'1/0': 13.6, 6: 6.43, 8: 5.13, 10: 3.61, 12: 2.97, 14: 2.41, 16: 2.06, 18: 1.85, 20: 1.57}
-# AWG per AMI position (ENGINE-ROOM-POWER-REDISTRIBUTION 8.1 slot map; a fuse-to-relay jumper takes the relay-in gauge)
+# AWG per AMI position (the CabinPower wire list; a fuse-to-relay jumper takes the relay-in gauge)
 AMI_AWG = {'HTR': 8, 'EFI': 12, 'STR': 12, 'FAN': 8, 'FAN2': 8, 'PWR': 10,
            'BUS1': 8, 'RTR': 10, 'AM1': 8, 'AM2': 10, 'JB1': 6, 'EPS': 8}
 RELAY_OUT_AWG = 8      # largest wire on any Mini ISO terminal (fan 87, heater 87): bends below the deck

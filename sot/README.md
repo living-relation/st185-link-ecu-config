@@ -1,7 +1,7 @@
-# Source of truth
+# ECU channel settings (`sot/channels.csv`)
 
-Since 2026-10-19 (DECISIONS R206) the wiring source of truth is the master wire lists,
-`docs/harness/wirelist/*-wirelist.csv`. `channels.csv` keeps the ECU channel settings (type,
+The wiring source of truth is the master wire lists,
+`docs/harness/wirelist/*-wirelist.csv` (DECISIONS R206). `channels.csv` keeps the ECU channel settings (type,
 pull-up, tune / CAN data) and its pin assignments, which `cleanroom/wirelist.py --check`
 compares with the lists both ways. Every drawing is validated against the lists and this file,
 never the other way round. `XTREMEX-IO-TABLE.html` is its visual face:
@@ -53,9 +53,8 @@ raw wheel-speed pairs, the fuse box owns the OEM power splices.
   signal, no 5V return, no power ground may ever land on these two pins.
 - `spare` / `nc` - a drawing that wires one of these fails the gate.
 
-## TBD means TBD
+## Unknown means TBD
 
-Two rows are `tbd` (the A/C amp's ambient-sensor return and the heater-core
-thermistor (TW) return). They stay blank until a document says otherwise - do not invent a pin
-number to make a drawing look finished. ACT is A18 pin 11 (1992 EWD132U A17-11;
-assumption documented in `docs/harness/ACAMP-SPUR-LABELS.md`).
+An unknown pin stays blank (status `tbd`, none today) until a document says otherwise - do not invent a pin
+number to make a drawing look finished. ACT is A18 pin 11 (1992 EWD132U A17-11; the assumption is in
+`docs/harness/ACAMP-SPUR-LABELS.md`).

@@ -33,16 +33,14 @@ page is the build brief for the session that runs it.
 - `switchboard_frames.json` `ecu_receive` + `link_g4x_can_setup.lcs`: CSB3 bit -> ECU VDI
   (e.g. 0x642 byte 4 bit 6 -> VDI7). `bench/frames.py` encodes / decodes frames: reuse it.
 - `cad/fusebox/src/spec.py`: fuse labels and amps (`MINI_COLS`, `AMI_ROWS`), relay types.
-- `docs/harness/HARNESS-BUILD-LIST.csv`: 572 wires, 570 with AWG, **only 300 with a length**.
-- `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`: load -> fuse path; **most load
-  currents are TBD**.
+- `docs/harness/wirelist/*-wirelist.csv`: every wire with its AWG and `est_length_mm` (the wiring SoT, R206); the load -> fuse path is the CabinPower list plus `cad/fusebox/rev7/wiring_plan.json`; **most load currents are TBD**.
 
 ## Deliverables
 
 1. `docs/harness/trace_circuits.py` - the tracer (a test, lives in the repo).
 2. `docs/harness/circuits.yaml` - loads in amps (datasheet / estimated, see R89), ECU / CSB3
    logic rules, the circuit list.
-3. `docs/harness/CIRCUIT-TRACE.md` - generated report, `--check` mode like `buylist.py`.
+3. `docs/harness/CIRCUIT-TRACE.md` - generated report, `--check` mode like `wirelist.py`.
 4. `check_all.py` entry, **SOFT** first, HARD the day it reads zero (the standing gate rule);
    self-tests in `test_gates.py` (a loop that passes, an open, an oversized fuse, a floating
    input - each must give the right finding).
