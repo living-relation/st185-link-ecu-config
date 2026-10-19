@@ -5,16 +5,18 @@
    "pdf": "enclosures/csb3/ST185-CSB3-100.pdf",
    "revlog": "enclosures/csb3/ST185-CSB3-100.REVLOG.md",
    "steps": {
-    "enclosures/csb3/CSB3_assembly.step": "99511a76628a2f9a",
+    "enclosures/csb3/CSB3_assembly.step": "1d1ffbdcc082b4b2",
     "enclosures/csb3/CSB3_part_CSB3-Body.step": "f97e8932817c442b",
-    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "08900ebfc8f2266a"
+    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "4b9be98e04cf5064"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
-    "src:enclosures/src/csb3_lockin.py": "2f8e024fcd5f40e9"
+    "src:enclosures/src/csb3_lockin.py": "2f8e024fcd5f40e9",
+    "src:enclosures/src/real_connectors.py": "d0198444fe374cf2",
+    "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "D",
-   "pdf_sha": "5c2438543d01703d"
+   "rev": "F",
+   "pdf_sha": "c10bb6b10cc25c0b"
   },
   "ST185-CSB3-101": {
    "pdf": "enclosures/csb3/ST185-CSB3-101.pdf",
@@ -33,26 +35,28 @@
    "pdf": "enclosures/csb3/ST185-CSB3-102.pdf",
    "revlog": "enclosures/csb3/ST185-CSB3-102.REVLOG.md",
    "steps": {
-    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "08900ebfc8f2266a"
+    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "4b9be98e04cf5064"
    },
    "ci": {
-    "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
+    "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
+    "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "C.01",
-   "pdf_sha": "824ad1eb469f855d"
+   "rev": "D",
+   "pdf_sha": "39d253d2859fb2b2"
   },
   "ST185-DRB-100": {
    "pdf": "drb102-plate/ST185-DRB-100.pdf",
    "revlog": "drb102-plate/ST185-DRB-100.REVLOG.md",
    "steps": {
-    "drb102-plate/DRB102-firewall-plate-assembly.step": "e10d0b1a01c72ad3",
+    "drb102-plate/DRB102-firewall-plate-assembly.step": "e4c15e244193452c",
     "drb102-plate/DRB102-firewall-plate.step": "131ce5533069e237"
    },
    "ci": {
-    "src:drb102-plate/build_DRB102_plate.py": "9de87a17ee686f97"
+    "src:drb102-plate/build_DRB102_plate.py": "9de87a17ee686f97",
+    "src:drb102-plate/build_DRB102_assembly.py": "d3b45a9de718210a"
    },
-   "rev": "C",
-   "pdf_sha": "d33683cce40ead73"
+   "rev": "D",
+   "pdf_sha": "1dc384e29fd7449d"
   },
   "ST185-DRB-101": {
    "pdf": "drb102-plate/ST185-DRB-101.pdf",
@@ -63,8 +67,8 @@
    "ci": {
     "src:drb102-plate/build_DRB102_plate.py": "9de87a17ee686f97"
    },
-   "rev": "C",
-   "pdf_sha": "f8e27610b82ad66b"
+   "rev": "C.01",
+   "pdf_sha": "494ad6b315f381ee"
   },
   "ST185-FB-100B": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100B.pdf",
@@ -131,13 +135,13 @@
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",
    "revlog": "fusebox/rev7/ST185-FB-101.REVLOG.md",
    "steps": {
-    "fusebox/rev7/Power_Base_PA12_printed.step": "ad47201f4e6ebd6d"
+    "fusebox/rev7/Power_Base_PA12_printed.step": "040ceb361825a257"
    },
    "ci": {
-    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "8e5faf74e4c995a0"
+    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "4e6272f379df5538"
    },
-   "rev": "W",
-   "pdf_sha": "873244834757fb93"
+   "rev": "X",
+   "pdf_sha": "ac90663f8c8074f6"
   },
   "ST185-FB-102": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-102.pdf",
@@ -391,30 +395,32 @@
    "pdf": "enclosures/vrc/ST185-VRC-100.pdf",
    "revlog": "enclosures/vrc/ST185-VRC-100.REVLOG.md",
    "steps": {
-    "enclosures/vrc/VRC_assembly.step": "d8af0cb6dcab856a",
-    "enclosures/vrc/VRC_part_VRC-Body.step": "dd1a5f92f49a209c",
+    "enclosures/vrc/VRC_assembly.step": "e785a61871bf5ea1",
+    "enclosures/vrc/VRC_part_VRC-Body.step": "4b8f75db0d4294b7",
     "enclosures/vrc/VRC_part_VRC-Lid.step": "85b3d80bfbef3556",
     "enclosures/vrc/print/ST185_VRC_board_holder_PA12.step": "1fff3af2a4a4e26d"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
     "src:enclosures/src/build_vrc_holder.py": "9eaaf1dc8ef29a34",
-    "src:enclosures/src/vrc_holder_spec.py": "397e0b8e9fb22cb6"
+    "src:enclosures/src/vrc_holder_spec.py": "397e0b8e9fb22cb6",
+    "src:enclosures/src/real_connectors.py": "d0198444fe374cf2",
+    "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "E",
-   "pdf_sha": "4193db0b9ee07f73"
+   "rev": "G",
+   "pdf_sha": "37115c6cd64a2b62"
   },
   "ST185-VRC-101": {
    "pdf": "enclosures/vrc/ST185-VRC-101.pdf",
    "revlog": "enclosures/vrc/ST185-VRC-101.REVLOG.md",
    "steps": {
-    "enclosures/vrc/VRC_part_VRC-Body.step": "dd1a5f92f49a209c"
+    "enclosures/vrc/VRC_part_VRC-Body.step": "4b8f75db0d4294b7"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
    },
-   "rev": "D",
-   "pdf_sha": "b609dbdd6b3c1cfd"
+   "rev": "E",
+   "pdf_sha": "e199b9fe7eda055b"
   },
   "ST185-VRC-102": {
    "pdf": "enclosures/vrc/ST185-VRC-102.pdf",
@@ -425,8 +431,8 @@
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
    },
-   "rev": "A",
-   "pdf_sha": "b76998a82b65a8c2"
+   "rev": "A.01",
+   "pdf_sha": "4a3ecac581a54857"
   },
   "ST185-VRC-103": {
    "pdf": "enclosures/vrc/ST185-VRC-103.pdf",
@@ -438,34 +444,16 @@
     "src:enclosures/src/build_vrc_holder.py": "9eaaf1dc8ef29a34",
     "src:enclosures/src/vrc_holder_spec.py": "397e0b8e9fb22cb6"
    },
-   "rev": "D",
-   "pdf_sha": "3b4ba03fd5df2394"
+   "rev": "D.01",
+   "pdf_sha": "dece73558541570d"
   }
  },
  "regen_pending": {
-  "ST185-CSB3-100": {
-   "reason": "R196 model-only PRs: assembly BOM rev E (nylon tab screws removed); rev F real TE HD34-24-33PE model (R184) + lid D; drawing regenerated in the R196 pass"
-  },
-  "ST185-VRC-101": {
-   "reason": "R196 model-only PR: LP-16 double-D cutouts (body E); drawing regenerated in the markup 2026-10-18 pass"
-  },
-  "ST185-VRC-100": {
-   "reason": "R196 model-only PRs: body E (LP-16 double-D cutouts); rev G real CNLINKO LP-16 models (R184); drawing regenerated in the R196 pass"
-  },
   "ST185-FB-117": {
    "reason": "R196 / R197 model-only PRs: stud + top-nut holder (D, N37); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
   },
   "ST185-FB-100P": {
    "reason": "R196 model-only PRs: FB-117 D, FB-101 X, holder + stud + nuts in the BOM (N37); drawing in the markup 2026-10-18 pass"
-  },
-  "ST185-FB-101": {
-   "reason": "R196 model-only PRs: wells for the longer strap leg (W N36, X N37); drawing in the markup 2026-10-18 pass"
-  },
-  "ST185-CSB3-102": {
-   "reason": "R196 model-only PR: lid D (D43.08 x 0.2 flat relief at the HD34 flange seat, real HD34 model fit); drawing regenerated in the R196 pass"
-  },
-  "ST185-DRB-100": {
-   "reason": "R196 model-only PR: rev D real TE DRB12 / DRBF-1A / DRB16 models (R184); drawing regenerated in the R196 pass"
   }
  }
 }
