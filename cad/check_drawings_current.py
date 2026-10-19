@@ -26,6 +26,10 @@ Checks (check mode, the default; nothing is written):
     python cad/check_drawings_current.py --update PN [PN]   # after regenerating drawings: record rev, PDF and model fingerprints
     python cad/check_drawings_current.py --update-all
 
+A model-only PR (R196: models first, drawings regenerated after all model PRs merge) lists each drawing it leaves behind in the
+manifest's "regen_pending": {"<pn>": {"reason": "..."}}; that drawing's D2 letter / D4 / D5 failures are then reported as pending.
+An entry whose model has not moved on fails (P2); --update takes the drawing off the list.
+
 --update refuses a model change without a new letter (R147: a model change bumps the letter) and a changed PDF without a new rev
 (a drawing-only change is a clerical .NN) unless --same-rev (a re-render with no content change, e.g. the date). A new drawing: add its
 entry to drawing-models.json by hand (pdf, revlog, steps paths, ci sources), then --update it.
@@ -185,7 +189,7 @@ def check(man=None, reg=None, quiet=False):
     man = man if man is not None else load_manifest()
     reg = reg if reg is not None else register()
     D = man['drawings']
-    fails, skipped, n_step = [], 0, 0
+    fails, skipped, n_step, nostep = [], 0, 0, set()
     for pn in sorted(set(reg) - set(D)):
         fails.append('D1 %s: in cad/DRAWING-REVS.md but not in cad/drawing-models.json (add its models, then --update %s)' % (pn, pn))
     for pn in sorted(set(D) - set(reg)):
@@ -227,6 +231,7 @@ def check(man=None, reg=None, quiet=False):
             p = find_step(rel)
             if p is None:
                 skipped += 1
+                nostep.add(pn)
                 continue
             n_step += 1
             if step_fp(p) != fp:
@@ -235,9 +240,34 @@ def check(man=None, reg=None, quiet=False):
             t = pdf_text(pdf)
             if t is not None and (pn not in t or not re.search(r'(?<![A-Z0-9.])%s(?![A-Z0-9])' % re.escape(rev), t)):
                 fails.append('D6 %s: the PDF does not show %s rev %s' % (pn, pn, rev))
+    # R196: a model-only PR may leave a drawing for the regeneration pass. Its "model moved on" failures (a newer rev-log letter,
+    # changed model fingerprints) are then reported as pending, not failed; everything else is still checked.
+    pending = man.get('regen_pending', {})
+    deferrable = re.compile(r'^(?:D2 (\S+): drawing rev .* but the model is at|D4 (\S+):|D5 (\S+):)')
+    kept, pend, hit = [], [], set()
+    for f in fails:
+        m = deferrable.match(f)
+        pn_ = next((g for g in m.groups() if g), None) if m else None
+        if pn_ in pending:
+            pend.append(f)
+            hit.add(pn_)
+        else:
+            kept.append(f)
+    for pn, why in sorted(pending.items()):
+        if pn not in D:
+            kept.append('P1 %s: regen_pending names a drawing that is not in cad/drawing-models.json' % pn)
+        elif not (isinstance(why, dict) and str(why.get('reason', '')).strip()):
+            kept.append('P1 %s: regen_pending entry needs a reason ({"reason": "..."})' % pn)
+        elif pn not in hit and pn not in nostep:   # a STEP-only change cannot be seen where the STEP files are not on disk (CI)
+            kept.append('P2 %s: regen_pending but its model has not moved on - take it off regen_pending' % pn)
+    fails = kept
     if not quiet:
         print('drawings vs models (R183, R147-R152): %d drawings, %d model STEP fingerprints checked%s'
               % (len(D), n_step, ', %d STEP files not on this disk (CI: tracked fingerprints only)' % skipped if skipped else ''))
+        if pending:
+            print('regen pending (R196: model-only PRs first, drawings regenerated after): %s' % ', '.join(sorted(pending)))
+            for f in pend:
+                print('   pending: ' + f)
     return fails
 
 
@@ -282,7 +312,10 @@ def update(pns, same_rev=False):
             errs.append('%s: the PDF does not show %s rev %s - regenerate it' % (pn, pn, new['rev']))
             continue
         D[pn] = new
+        man.get('regen_pending', {}).pop(pn, None)    # regenerated: no longer waiting (R196)
         print('updated %s rev %s%s' % (pn, new['rev'], ' (model changed)' if model_changed and e.get('pdf_sha') else ''))
+    if 'regen_pending' in man and not man['regen_pending']:
+        del man['regen_pending']
     with open(MANIFEST, 'w', encoding='utf-8', newline='\n') as f:
         json.dump(man, f, indent=1, sort_keys=False)
         f.write('\n')

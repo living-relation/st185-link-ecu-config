@@ -253,6 +253,56 @@ def unit_cases():
     out += fusebox_mesh_cases()
     out += wall_class_cases()
     out += drawing_model_cases()
+    out += drawing_rule_cases()
+    return out
+
+
+def drawing_rule_cases():
+    """R184 - R196 gate cad/check_drawing_rules.py on a sandbox drawing and its engine check report: a clean report passes; a missing
+    or stale report, an engine rule failure, a banned note and a stale PENDING entry fail; a pending drawing is reported only."""
+    sys.path.insert(0, os.path.join(ROOT, "cad"))
+    import importlib
+    import check_drawing_rules as G
+    importlib.reload(G)
+    out = []
+
+    def run(name, want, rep=None, pdf=b"%PDF fake", pending=False, man_sha=None):
+        d = tempfile.mkdtemp(prefix="dwgr_")
+        try:
+            os.makedirs(os.path.join(d, "m"))
+            open(os.path.join(d, "m", "ST185-T-101.pdf"), "wb").write(pdf)
+            ps = G.sha(pdf)
+            json.dump({"drawings": {"ST185-T-101": {"pdf": "m/ST185-T-101.pdf", "pdf_sha": man_sha or ps}}},
+                      open(os.path.join(d, "drawing-models.json"), "w"))
+            if rep is not None:
+                r = dict(pn="ST185-T-101", pdf_sha=ps, engine_rules="2026-10-18", tangent_edges_in_pictorial=True, ok=True,
+                         notes=["TORQUE THE 4 LID SCREWS EVENLY, CRISS-CROSS."], tol_block="DIMENSIONS ARE IN MILLIMETERS",
+                         balloon_views=[], not_ballooned=[])
+                r.update(rep)
+                json.dump(r, open(os.path.join(d, "m", "ST185-T-101.checks.json"), "w"))
+            G.CAD, G.MANIFEST = d, os.path.join(d, "drawing-models.json")
+            G.PENDING = {"ST185-T-101"} if pending else set()
+            got = G.check(quiet=True)          # True = the gate passes
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+        out.append(("R184-R196 " + name, want, got))
+
+    run("clean report passes", True, rep={})
+    run("no report fails", False)
+    run("report for another PDF fails", False, rep={}, man_sha="0000000000000000")
+    run("old engine fails", False, rep={"engine_rules": "2026-10-17"})
+    run("no tangent edges fails (R187)", False, rep={"tangent_edges_in_pictorial": False})
+    run("hidden part never ballooned fails (R186)", False, rep={"ok": False, "not_ballooned": ["5"]})
+    run("overlapping balloons fail (R188)", False,
+        rep={"ok": False, "balloon_views": [dict(view="TRIMETRIC VIEW", placed=9, overlaps=1, crowded=0, hidden=[])]})
+    run("envelope note fails (R184)", False, rep={"notes": ["CONNECTOR BODIES ARE ENVELOPE MODELS."]})
+    run("pin / socket note fails (R185)", False, rep={"notes": ["PINS (7) ON BOX SIDE; SOCKETS (14) ON HARNESS SO LIVE 12V IS SHROUDED."]})
+    run("edge-break line in the tolerance block fails (R191)", False, rep={"tol_block": "BREAK SHARP EDGES 0.2-0.4"})
+    run("markup / rule-number note fails (R192)", False, rep={"notes": ["MARKUP 2026-10-17 (R157 - R160): HOOKS BEAR ON THE COPPER."]})
+    run("a bend radius is not a rule number", True, rep={"notes": ["BEND 2X 90 DEG, R1.0 INSIDE (R1.0)."]})
+    run("pending drawing with a failing report is reported only", True, rep={"notes": ["MARKUP 2026-10-17."]}, pending=True)
+    run("pending drawing with no report is reported only", True, pending=True)
+    run("stale PENDING entry fails", False, rep={}, pending=True)
     return out
 
 
@@ -346,6 +396,21 @@ def drawing_model_cases():
     case_("a registered drawing missing from the manifest", False,
           lambda d, c, g: rewrite(c, "DRAWING-REVS.md", open(g.REGISTER).read() + "| T2 | ST185-T-102 | m | A | d | c | e | `x.pdf` |\n"))
 
+    def pending(g, entry=None):   # R196: a model-only PR leaves the drawing for the regeneration pass
+        m = json.load(open(g.MANIFEST))
+        m["regen_pending"] = {"ST185-T-101": entry if entry is not None else {"reason": "model-only PR, drawings regenerated after"}}
+        json.dump(m, open(g.MANIFEST, "w"))
+
+    case_("R196 model changed + new letter, drawing on regen_pending", True,
+          lambda d, c, g: (report(c, vol=846.0), rewrite(c, "m/T-101.REVLOG.md", open(os.path.join(c, "m", "T-101.REVLOG.md")).read()
+                                                          + "| W | x | C | 18/10/26 |\n"), pending(g)))
+    case_("R196 STEP changed, drawing on regen_pending", True,
+          lambda d, c, g: (step(c, b"#1=CARTESIAN_POINT('',(1.,0.,0.));"), pending(g)))
+    case_("R196 regen_pending entry without a reason", False, lambda d, c, g: (report(c, vol=846.0), pending(g, {})))
+    case_("R196 regen_pending but the model did not change (stale entry)", False, lambda d, c, g: pending(g))
+    case_("R196 regen_pending does not excuse a hand-edited PDF", False,
+          lambda d, c, g: (report(c, vol=846.0), pending(g), rewrite(c, "m/ST185-T-101.pdf", b"%PDF hand-edited", "wb")))
+
     def upd(name, want, change):
         d, cad, g = baseline()
         try:
@@ -362,6 +427,14 @@ def drawing_model_cases():
         lambda d, c, g: rewrite(c, "m/ST185-T-101.pdf", b"%PDF new notes", "wb"))
     upd("drawing changed with a clerical V.01: accepted", True,
         lambda d, c, g: (rewrite(c, "m/ST185-T-101.pdf", b"%PDF new notes", "wb"), set_rev(c, g, "V.01", man="V")))
+
+    d, cad, g = baseline()            # R196: --update after the regeneration takes the drawing off regen_pending
+    try:
+        report(cad, vol=846.0); set_rev(cad, g, "W", man="V", revlog=("A", "U", "V", "W")); pending(g)
+        ok = g.update(["ST185-T-101"]) == 0 and "regen_pending" not in json.load(open(g.MANIFEST)) and not g.check(quiet=True)
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+    out.append(("R196 --update clears regen_pending", True, ok))
     return out
 
 

@@ -4,7 +4,7 @@ Job specs and run scripts for the st185 shop drawings. The drawing engine itself
 
 - **Every model change regenerates its drawing in the same PR, and a wrong drawing is fixed in the model** (DECISIONS R183). After a drawing is regenerated and copied beside its model: `python cad/check_drawings_current.py --update <part no> ...` (records the rev, the PDF and the model fingerprints in `cad/drawing-models.json`; it refuses a model change without a new letter). The gate runs in `check_all.py`.
 - **Drawings are NOT auto-updating** (Daniel's rule). They are generated from exported STEP files and have no link to the Fusion models. After any model change, re-export the STEP and re-run the drawing script; check the rev block.
-- Edge breaks are not modeled; they are a drawing note (GEN_M in specs.py).
+- Edge breaks: no drawing note any more (DECISIONS R191 replaces R138); give machined specs a `tol` block without the edge-break line. Dan's drawing rules R184 - R196 (balloons, tangent edges, labels, notes) and the gate `cad/check_drawing_rules.py`: `cad/DRAWING-RULES.md`. The engine writes `<pn>.checks.json` beside each PDF; copy it beside the PDF in `cad/` with the PDF.
 - Run: make a work dir containing `src/<job>/<file>.step` (copy or symlink the repo's `cad/...` STEP files; never edit the repo from here), then:
   `ST185_WORK=<work dir> HANDBUILT_CAD=~/projects/handbuilt-cad ~/projects/handbuilt-cad/.venv/bin/python cad/drawings/run_one.py csb3_body` -> `out/<job>/<PN>.pdf/.dxf`, `previews/<PN>_shN.png`.
 - `run_asm.py <key>` = an assembly drawing from `aspecs.py` (`fb_power`, `fb_logic`, `fb_br`, `vrc`, `csb3`, `drb`, `fuel_hanger`; DECISIONS R182), work dir as above with `src/st185_fusebox_1015/`, `src/csv/` and the enclosure / DRB assembly STEPs.
