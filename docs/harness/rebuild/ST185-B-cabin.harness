@@ -75,14 +75,13 @@
         "id": "sp_gnd_bhb",
         "handle": "Splice"
       },
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Blue",
         "Yellow",
         "White"
       ],
-      "partId": "m16_20_09",
-      "stripeColor": "White"
+      "partId": "m16_20_09"
     },
     {
       "id": "w29_c",
@@ -200,7 +199,7 @@
         "id": "bh_b_fw",
         "handle": "c61"
       },
-      "color": "Yellow",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -218,7 +217,7 @@
         "id": "bh_b_fw",
         "handle": "c59"
       },
-      "color": "Yellow",
+      "color": "White",
       "identColors": [
         "Blue",
         "White",
@@ -236,7 +235,7 @@
         "id": "bh_b_fw",
         "handle": "c71"
       },
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -254,16 +253,15 @@
         "id": "br_w_sw7_c",
         "handle": "Terminal"
       },
-      "color": "Red",
+      "color": "Yellow",
       "identColors": [
         "White"
       ],
-      "partId": "m16_16_20",
-      "stripeColor": "Black"
+      "partId": "m16_16_20"
     },
     {
       "id": "w_start",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Yellow",
@@ -281,7 +279,7 @@
     },
     {
       "id": "w_fan285",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "White",
         "Blue"
@@ -316,7 +314,7 @@
     },
     {
       "id": "w_ign",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Yellow",
         "Blue",
@@ -372,7 +370,7 @@
     },
     {
       "id": "w_vss_sig_c",
-      "color": "Green",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow"
@@ -420,12 +418,11 @@
         "id": "ecu_b",
         "handle": "b5"
       },
-      "stripeColor": "White",
       "partId": "m16_18_29"
     },
     {
       "id": "w69",
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -439,12 +436,11 @@
         "id": "sp_gndout_b",
         "handle": "Splice"
       },
-      "partId": "m16_18_09",
-      "stripeColor": "White"
+      "partId": "m16_18_09"
     },
     {
       "id": "w45",
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -458,7 +454,6 @@
         "id": "sp_gndout_b",
         "handle": "Splice"
       },
-      "stripeColor": "White",
       "partId": "m16_20_09"
     },
     {
@@ -566,7 +561,7 @@
     },
     {
       "id": "w_eps_trig",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "White"
@@ -583,7 +578,7 @@
     },
     {
       "id": "w_acc_trig",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Blue"
@@ -600,7 +595,7 @@
     },
     {
       "id": "w_ac_btn",
-      "color": "Gray",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Blue",
@@ -618,7 +613,7 @@
     },
     {
       "id": "w_evap_temp",
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -644,7 +639,7 @@
         "id": "br_w_at_immob2",
         "handle": "Terminal"
       },
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Blue",
@@ -662,13 +657,12 @@
         "id": "sp_gnd_bhb",
         "handle": "Splice"
       },
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
         "Blue"
       ],
-      "stripeColor": "White",
       "partId": "m16_18_09"
     },
     {
@@ -681,13 +675,12 @@
         "id": "bh_b_fw",
         "handle": "c29"
       },
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
         "Blue"
       ],
-      "stripeColor": "White",
       "partId": "m16_20_09"
     },
     {
@@ -700,13 +693,12 @@
         "id": "bh_b_fw",
         "handle": "c15"
       },
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
         "Blue"
       ],
-      "stripeColor": "White",
       "partId": "m16_20_09"
     },
     {
@@ -783,7 +775,7 @@
     },
     {
       "id": "w_start_in",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Yellow",
@@ -809,11 +801,10 @@
         "id": "sp_rev_sw",
         "handle": "Splice"
       },
-      "color": "Red",
+      "color": "Yellow",
       "identColors": [
         "White"
       ],
-      "stripeColor": "Black",
       "partId": "m16_16_20"
     },
     {
@@ -830,7 +821,6 @@
       "identColors": [
         "White"
       ],
-      "stripeColor": "Black",
       "partId": "m16_16_20"
     },
     {
@@ -847,12 +837,11 @@
       "identColors": [
         "White"
       ],
-      "stripeColor": "Blue",
       "partId": "m16_16_26"
     },
     {
       "id": "w_ac_btn_in",
-      "color": "Gray",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Blue",
@@ -870,7 +859,7 @@
     },
     {
       "id": "w_ac_btn_hi",
-      "color": "Gray",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Blue",
@@ -888,7 +877,7 @@
     },
     {
       "id": "w_ac_btn_lo",
-      "color": "Gray",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Blue",
@@ -906,7 +895,7 @@
     },
     {
       "id": "w_ac_btn_gnd",
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Blue",
         "Blue",
@@ -920,12 +909,11 @@
         "id": "sp_gndout_b",
         "handle": "Splice"
       },
-      "partId": "m16_20_09",
-      "stripeColor": "White"
+      "partId": "m16_20_09"
     },
     {
       "id": "w_evap_sig",
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -943,7 +931,7 @@
     },
     {
       "id": "w_evap_pu",
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -979,7 +967,7 @@
     },
     {
       "id": "w_evap_rtn",
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -993,8 +981,7 @@
         "id": "sp_gndout_b",
         "handle": "Splice"
       },
-      "partId": "m16_20_09",
-      "stripeColor": "White"
+      "partId": "m16_20_09"
     },
     {
       "id": "w_shd_b_wsr",

@@ -10,7 +10,7 @@
 <line x1="123.00" y1="60.00" x2="168.00" y2="60.00" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,60.00 262.00,60.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,60.00 262.00,60.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,60.00 262.00,60.00" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,60.00 262.00,60.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="73.00" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="74.60" width="9.00" height="3.40" rx="0.00" fill="#2e9d4f" stroke="#14213d" stroke-width="0.25"/>
 <rect x="42.78" y="74.60" width="1.44" height="3.40" rx="0.00" fill="#f2c200" stroke="none" stroke-width="0.00"/>
@@ -19,7 +19,7 @@
 <line x1="123.00" y1="76.50" x2="168.00" y2="76.50" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,76.50 262.00,76.50" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,76.50 262.00,76.50" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,76.50 262.00,76.50" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,76.50 262.00,76.50" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="89.50" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="91.10" width="9.00" height="3.40" rx="0.00" fill="#2e9d4f" stroke="#14213d" stroke-width="0.25"/>
 <rect x="42.78" y="91.10" width="1.44" height="3.40" rx="0.00" fill="#1b1b1b" stroke="none" stroke-width="0.00"/>
@@ -28,7 +28,7 @@
 <line x1="123.00" y1="93.00" x2="168.00" y2="93.00" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,93.00 262.00,93.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,93.00 262.00,93.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,93.00 262.00,93.00" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,93.00 262.00,93.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="107.50" width="108.00" height="7.00" rx="0.00" fill="#dfe6f1" stroke="#14213d" stroke-width="0.35"/>
 <rect x="15.00" y="115.00" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="116.60" width="9.00" height="3.40" rx="0.00" fill="#2f6fd6" stroke="#14213d" stroke-width="0.25"/>
@@ -47,21 +47,21 @@
 <line x1="123.00" y1="135.00" x2="168.00" y2="135.00" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,135.00 262.00,135.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,135.00 262.00,135.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,135.00 262.00,135.00" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,135.00 262.00,135.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="148.00" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="149.60" width="9.00" height="3.40" rx="0.00" fill="#2f6fd6" stroke="#14213d" stroke-width="0.25"/>
 <line x1="123.00" y1="151.50" x2="168.00" y2="151.50" stroke="#2f6fd6" stroke-width="1.10"/>
 <line x1="123.00" y1="151.50" x2="168.00" y2="151.50" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,151.50 262.00,151.50" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,151.50 262.00,151.50" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,151.50 262.00,151.50" fill="none" stroke="#2f6fd6" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,151.50 262.00,151.50" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="164.50" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="166.10" width="9.00" height="3.40" rx="0.00" fill="#2e9d4f" stroke="#14213d" stroke-width="0.25"/>
 <line x1="123.00" y1="168.00" x2="168.00" y2="168.00" stroke="#2e9d4f" stroke-width="1.10"/>
 <line x1="123.00" y1="168.00" x2="168.00" y2="168.00" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,168.00 262.00,168.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,168.00 262.00,168.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,168.00 262.00,168.00" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,168.00 262.00,168.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="181.00" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="182.60" width="9.00" height="3.40" rx="0.00" fill="#1b1b1b" stroke="#14213d" stroke-width="0.25"/>
 <rect x="42.78" y="182.60" width="1.44" height="3.40" rx="0.00" fill="#ee7a00" stroke="none" stroke-width="0.00"/>
@@ -70,7 +70,7 @@
 <line x1="123.00" y1="184.50" x2="168.00" y2="184.50" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,184.50 262.00,184.50" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,184.50 262.00,184.50" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,184.50 262.00,184.50" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,184.50 262.00,184.50" fill="none" stroke="#f2c200" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="197.50" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="199.10" width="9.00" height="3.40" rx="0.00" fill="#1b1b1b" stroke="#14213d" stroke-width="0.25"/>
 <rect x="42.78" y="199.10" width="1.44" height="3.40" rx="0.00" fill="#ee7a00" stroke="none" stroke-width="0.00"/>
@@ -79,7 +79,7 @@
 <line x1="123.00" y1="201.00" x2="168.00" y2="201.00" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,201.00 262.00,201.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,201.00 262.00,201.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,201.00 262.00,201.00" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,201.00 262.00,201.00" fill="none" stroke="#f2c200" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="214.00" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="215.60" width="9.00" height="3.40" rx="0.00" fill="#2e9d4f" stroke="#14213d" stroke-width="0.25"/>
 <rect x="42.78" y="215.60" width="1.44" height="3.40" rx="0.00" fill="#f2c200" stroke="none" stroke-width="0.00"/>
@@ -88,7 +88,7 @@
 <line x1="123.00" y1="217.50" x2="168.00" y2="217.50" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,217.50 262.00,217.50" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,217.50 262.00,217.50" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,217.50 262.00,217.50" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,217.50 262.00,217.50" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <rect x="15.00" y="232.00" width="108.00" height="7.00" rx="0.00" fill="#dfe6f1" stroke="#14213d" stroke-width="0.35"/>
 <rect x="15.00" y="239.50" width="108.00" height="15.50" rx="0.00" fill="#ffffff" stroke="#14213d" stroke-width="0.30"/>
 <rect x="39.00" y="241.10" width="9.00" height="3.40" rx="0.00" fill="#1b1b1b" stroke="#14213d" stroke-width="0.25"/>
@@ -96,7 +96,7 @@
 <line x1="123.00" y1="243.00" x2="168.00" y2="243.00" stroke="#111" stroke-width="0.25"/>
 <polyline points="168.00,243.00 262.00,243.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="168.00,243.00 262.00,243.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="168.00,243.00 262.00,243.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="168.00,243.00 262.00,243.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <text x="10.00" y="12.00" font-size="4.60" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">J/B NO.1 - LEFT KICK PANEL</text>
 <text x="10.00" y="19.00" font-size="2.30" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">OEM junction block, KEPT (DECISIONS R12 / R61). We splice into the factory leads of three plugs: 1I (always-hot), 1H, 1F. Cabin side of the lead, left kick panel (EWD 1993 p.18-19, p.46, p.62).</text>
 <text x="17.00" y="53.80" font-size="2.70" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">J/B No.1 plug 1F</text>
@@ -109,7 +109,7 @@
 <text x="171.00" y="56.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1F_C1</text>
 <text x="171.00" y="64.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1F-1 lead at J/B1 (cabin side, left kick; the rear floor</text>
 <text x="171.00" y="66.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">wire is missing, R55)</text>
-<text x="227.00" y="58.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rl_tail | 16 AWG | Green (Blue)</text>
+<text x="227.00" y="58.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rl_tail | 16 AWG | Red (Blue)</text>
 <text x="265.00" y="58.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Tail splice - J/B 1 TAIL feed to R11 / R12 pins 2 and 3 and L1</text>
 <text x="17.00" y="77.10" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 2</text>
 <text x="50.00" y="77.10" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">G-Y</text>
@@ -120,7 +120,7 @@
 <text x="171.00" y="73.30" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1F_C2</text>
 <text x="171.00" y="80.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1F-2 lead at J/B1 (cabin side, left kick; the rear floor</text>
 <text x="171.00" y="83.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">wire is missing, R55)</text>
-<text x="227.00" y="74.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rl_turn_r | 18 AWG | Green (Blue-White)</text>
+<text x="227.00" y="74.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rl_turn_r | 18 AWG | Red (Blue-White)</text>
 <text x="265.00" y="74.90" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; RH rear lamp R12 pin 6, socket pigtail - turn RH (EWD 1993 p.130)</text>
 <text x="17.00" y="93.60" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 3</text>
 <text x="50.00" y="93.60" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">G-B</text>
@@ -131,7 +131,7 @@
 <text x="171.00" y="89.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1F_C3</text>
 <text x="171.00" y="97.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1F-3 lead at J/B1 (cabin side, left kick; the rear floor</text>
 <text x="171.00" y="99.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">wire is missing, R55)</text>
-<text x="227.00" y="91.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rl_turn_l | 18 AWG | Green (Blue-Yellow)</text>
+<text x="227.00" y="91.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rl_turn_l | 18 AWG | Red (Blue-Yellow)</text>
 <text x="265.00" y="91.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; LH rear lamp R11 pin 6, socket pigtail - turn LH (EWD 1993 p.130)</text>
 <text x="17.00" y="112.30" font-size="2.70" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">J/B No.1 plug 1H</text>
 <text x="17.00" y="119.10" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 2</text>
@@ -152,7 +152,7 @@
 <circle cx="168.00" cy="135.00" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="131.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1H_C4</text>
 <text x="171.00" y="139.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1H-4 lead at J/B1 (cabin side; engine-room main removed)</text>
-<text x="227.00" y="133.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_turn_f7 | 18 AWG | Green (Blue-Yellow-Yellow)</text>
+<text x="227.00" y="133.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_turn_f7 | 18 AWG | Red (Blue-Yellow-Yellow)</text>
 <text x="265.00" y="133.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; LH front turn / clearance lamp F7 pin 3 - turn + (EWD p.130)</text>
 <text x="17.00" y="152.10" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 5</text>
 <text x="50.00" y="152.10" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">L</text>
@@ -162,7 +162,7 @@
 <circle cx="168.00" cy="151.50" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="148.30" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1H_C5</text>
 <text x="171.00" y="155.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1H-5 lead at J/B1 (cabin side; engine-room main removed)</text>
-<text x="227.00" y="149.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_wip_b | 14 AWG | Blue (Blue-Yellow)</text>
+<text x="227.00" y="149.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_wip_b | 14 AWG | Red (Blue-Yellow)</text>
 <text x="265.00" y="149.90" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Front wiper motor F9 pin 4 (cowl, driver side) - +B (EWD p.148)</text>
 <text x="17.00" y="168.60" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 6</text>
 <text x="50.00" y="168.60" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">G</text>
@@ -172,7 +172,7 @@
 <circle cx="168.00" cy="168.00" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="164.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1H_C6</text>
 <text x="171.00" y="172.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1H-6 lead at J/B1 (cabin side; engine-room main removed)</text>
-<text x="227.00" y="166.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_clr | 16 AWG | Green (White)</text>
+<text x="227.00" y="166.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_clr | 16 AWG | Red (White)</text>
 <text x="265.00" y="166.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Clearance feed split - F7 LH + F8 RH</text>
 <text x="17.00" y="185.10" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 7</text>
 <text x="50.00" y="185.10" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">B-O</text>
@@ -182,7 +182,7 @@
 <circle cx="168.00" cy="184.50" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="181.30" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_IGN_SW_C1</text>
 <text x="171.00" y="188.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">solder splice onto the factory lead</text>
-<text x="227.00" y="182.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ign | 20 AWG | Green (Yellow-Blue-Blue)</text>
+<text x="227.00" y="182.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ign | 20 AWG | Yellow (Yellow-Blue-Blue)</text>
 <text x="265.00" y="182.90" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU-B (Link G4X plug B, centre dash) pin B28</text>
 <text x="17.00" y="201.60" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 7</text>
 <text x="50.00" y="201.60" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">B-O</text>
@@ -192,7 +192,7 @@
 <circle cx="168.00" cy="201.00" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="197.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_IG2_WAKE_C1</text>
 <text x="171.00" y="205.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">solder splice onto the factory lead</text>
-<text x="227.00" y="199.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ig2_in | 20 AWG | Green (White-Yellow-White)</text>
+<text x="227.00" y="199.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ig2_in | 20 AWG | Yellow (White-Yellow-White)</text>
 <text x="265.00" y="199.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; pin Left</text>
 <text x="17.00" y="218.10" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 8</text>
 <text x="50.00" y="218.10" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">G-Y</text>
@@ -202,7 +202,7 @@
 <circle cx="168.00" cy="217.50" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="214.30" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1H_C8</text>
 <text x="171.00" y="221.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">crimp butt splice into the factory 1H-8 lead at J/B1 (cabin side; engine-room main removed)</text>
-<text x="227.00" y="215.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_turn_f8 | 18 AWG | Green (Blue-Yellow-Yellow)</text>
+<text x="227.00" y="215.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_turn_f8 | 18 AWG | Red (Blue-Yellow-Yellow)</text>
 <text x="265.00" y="215.90" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; RH front turn / clearance lamp F8 pin 3 - turn + (EWD p.130)</text>
 <text x="17.00" y="236.80" font-size="2.70" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">J/B No.1 plug 1I</text>
 <text x="17.00" y="243.60" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 1</text>
@@ -213,7 +213,7 @@
 <circle cx="168.00" cy="243.00" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="239.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_OEM_JB1_1I_C1</text>
 <text x="171.00" y="247.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">heavy crimp butt splice into the factory 1I-1 lead</text>
-<text x="227.00" y="241.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_jb1 | 6 AWG | White</text>
+<text x="227.00" y="241.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_jb1 | 6 AWG | Red</text>
 <text x="265.00" y="241.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; POWER box AMI OUT pin 5 (glove box; CabinPower) - J/B1 60 A fuse out</text>
 <text x="12.00" y="38.00" font-size="2.00" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">OEM box: only the plugs / cavities we splice are drawn</text>
 <text x="10.00" y="264.50" font-size="1.90" text-anchor="start" fill="#555" font-family="Helvetica, Arial, sans-serif">Generated by docs/build/wiring-diagrams/build_wiring_diagrams.py from docs/harness/interfaces.json (flyingLeads); wire facts from the looms. Every cavity not shown stays factory.</text>

@@ -414,7 +414,7 @@
     },
     {
       "id": "w_acp_1_cp",
-      "color": "Violet",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Yellow",
@@ -432,7 +432,7 @@
     },
     {
       "id": "w_pdb_am1_cp",
-      "color": "White",
+      "color": "Red",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -450,7 +450,7 @@
     },
     {
       "id": "w_pdb_am2_cp",
-      "color": "Brown",
+      "color": "Red",
       "identColors": [
         "Yellow",
         "White",
@@ -468,7 +468,7 @@
     },
     {
       "id": "w_pdb_jb1_cp",
-      "color": "White",
+      "color": "Red",
       "source": {
         "id": "fb_power",
         "handle": "out5"
@@ -664,7 +664,7 @@
     },
     {
       "id": "w81_cp",
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "White",
         "White"
@@ -707,7 +707,6 @@
       },
       "color": "Red",
       "partId": "m16_18_29",
-      "stripeColor": "White",
       "identColors": [
         "White",
         "White"
@@ -765,7 +764,7 @@
     },
     {
       "id": "w_fan285_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "White",
         "Blue"
@@ -831,7 +830,7 @@
     },
     {
       "id": "w_eps_trig_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "White"
@@ -866,7 +865,7 @@
     },
     {
       "id": "w_acc_trig_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Blue"
@@ -883,8 +882,7 @@
     },
     {
       "id": "w_acc86_cp",
-      "color": "Yellow",
-      "stripeColor": "Red",
+      "color": "Red",
       "identColors": [
         "Yellow",
         "Blue"
@@ -918,7 +916,7 @@
     },
     {
       "id": "w_start_in_cp",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Yellow",
@@ -936,7 +934,7 @@
     },
     {
       "id": "w_start_cp",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "Yellow",
@@ -990,7 +988,7 @@
     },
     {
       "id": "w_at_ig_tie_cp",
-      "color": "Gray",
+      "color": "Red",
       "identColors": [
         "White",
         "Blue",
@@ -1110,7 +1108,7 @@
     },
     {
       "id": "w_eps_rly_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -1155,7 +1153,6 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "stripeColor": "Blue",
       "identColors": [
         "White"
       ],
@@ -1172,7 +1169,6 @@
         "handle": "c1"
       },
       "color": "Red",
-      "stripeColor": "Blue",
       "identColors": [
         "White"
       ],
@@ -1189,7 +1185,6 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "stripeColor": "Blue",
       "identColors": [
         "White"
       ],
@@ -1206,7 +1201,6 @@
         "handle": "c3"
       },
       "color": "Red",
-      "stripeColor": "Black",
       "identColors": [
         "White"
       ],
@@ -1222,7 +1216,7 @@
         "id": "t_pdb_gnd_rev",
         "handle": "Terminal"
       },
-      "color": "Black",
+      "color": "White",
       "identColors": [
         "White"
       ],
@@ -1239,7 +1233,6 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "stripeColor": "Black",
       "identColors": [
         "White"
       ],
@@ -1319,7 +1312,7 @@
     },
     {
       "id": "w_hl_85_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -1391,7 +1384,7 @@
     },
     {
       "id": "w_hr_85_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -1409,7 +1402,7 @@
     },
     {
       "id": "w_head_coil_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -1461,7 +1454,7 @@
     },
     {
       "id": "w_horn_85_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue"
@@ -1510,7 +1503,7 @@
     },
     {
       "id": "w_htr_85_cp",
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Yellow"
       ],
@@ -1543,7 +1536,7 @@
     },
     {
       "id": "w_pwr_85_cp",
-      "color": "Black",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow"

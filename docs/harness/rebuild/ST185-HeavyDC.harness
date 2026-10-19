@@ -236,7 +236,7 @@
         "id": "br_alt_l",
         "handle": "Terminal"
       },
-      "color": "Yellow",
+      "color": "White",
       "partId": "m16_20_4",
       "identColors": [
         "Blue",
@@ -300,7 +300,7 @@
     },
     {
       "id": "w_fp_feed",
-      "color": "Red",
+      "color": "White",
       "source": {
         "id": "kill_sw",
         "handle": "c2"

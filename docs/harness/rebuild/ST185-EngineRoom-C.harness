@@ -68,7 +68,6 @@
     {
       "id": "w_ac_psw",
       "color": "Yellow",
-      "stripeColor": "Red",
       "source": {
         "id": "br_ac_psw",
         "handle": "Terminal"
@@ -137,7 +136,7 @@
     },
     {
       "id": "w_pdb_jb1",
-      "color": "White",
+      "color": "Red",
       "source": {
         "id": "br_w_pdb_jb1",
         "handle": "Terminal"
@@ -150,7 +149,7 @@
     },
     {
       "id": "w_pdb_am1",
-      "color": "White",
+      "color": "Red",
       "source": {
         "id": "br_w_pdb_am1",
         "handle": "Terminal"
@@ -168,7 +167,7 @@
     },
     {
       "id": "w_pdb_am2",
-      "color": "Brown",
+      "color": "Red",
       "source": {
         "id": "br_w_pdb_am2",
         "handle": "Terminal"
@@ -370,7 +369,7 @@
         "id": "mrs_eps",
         "handle": "b2"
       },
-      "color": "Gray",
+      "color": "White",
       "partId": "m16_20_8",
       "identColors": [
         "Yellow",
@@ -397,7 +396,7 @@
     },
     {
       "id": "w_acp_1",
-      "color": "Violet",
+      "color": "Yellow",
       "source": {
         "id": "br_w_acp_1",
         "handle": "Terminal"
@@ -606,7 +605,7 @@
     },
     {
       "id": "w_eps_rly_e",
-      "color": "Violet",
+      "color": "White",
       "source": {
         "id": "br_w_eps_rly_e",
         "handle": "Terminal"
@@ -650,7 +649,7 @@
         "id": "sp_clr",
         "handle": "Splice"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "White"
@@ -666,7 +665,7 @@
         "id": "fl_f7_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "White"
@@ -682,7 +681,7 @@
         "id": "fl_f8_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "White"
@@ -698,8 +697,7 @@
         "id": "fl_f7_c3",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Black",
+      "color": "Red",
       "partId": "m16_18_50",
       "identColors": [
         "Blue",
@@ -717,8 +715,7 @@
         "id": "fl_f8_c3",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Red",
       "partId": "m16_18_54",
       "identColors": [
         "Blue",
@@ -736,8 +733,7 @@
         "id": "t_gnd_eb_f7",
         "handle": "Terminal"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "White"
@@ -753,8 +749,7 @@
         "id": "t_gnd_ea_f8",
         "handle": "Terminal"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "White"
@@ -771,7 +766,6 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "stripeColor": "White",
       "partId": "m16_16_29",
       "identColors": [
         "White",
@@ -789,7 +783,6 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "stripeColor": "White",
       "partId": "m16_16_29",
       "identColors": [
         "White",
@@ -807,7 +800,6 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "stripeColor": "White",
       "partId": "m16_14_29",
       "identColors": [
         "White",
@@ -825,7 +817,6 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "stripeColor": "Blue",
       "partId": "m16_16_26",
       "identColors": [
         "White",
@@ -843,7 +834,6 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "stripeColor": "Blue",
       "partId": "m16_16_26",
       "identColors": [
         "White",
@@ -861,7 +851,6 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "stripeColor": "Blue",
       "partId": "m16_14_26",
       "identColors": [
         "White",
@@ -878,7 +867,7 @@
         "id": "sp_rtr_r2_4",
         "handle": "Splice"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_12_5",
       "identColors": [
         "Blue"
@@ -894,7 +883,7 @@
         "id": "fl_r2_c4",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -910,8 +899,7 @@
         "id": "fl_r2_c2",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Orange",
+      "color": "Red",
       "partId": "m16_16_53",
       "identColors": [
         "Blue"
@@ -927,8 +915,7 @@
         "id": "fl_r3_c2",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Black",
+      "color": "Red",
       "partId": "m16_16_50",
       "identColors": [
         "Blue"
@@ -944,8 +931,7 @@
         "id": "sp_rtr_r3_4",
         "handle": "Splice"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Red",
       "partId": "m16_12_54",
       "identColors": [
         "Blue"
@@ -961,8 +947,7 @@
         "id": "fl_r3_c4",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Red",
       "partId": "m16_16_54",
       "identColors": [
         "Blue"
@@ -978,8 +963,7 @@
         "id": "sp_rtr_close",
         "handle": "Splice"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Yellow",
       "partId": "m16_18_54",
       "identColors": [
         "Blue"
@@ -995,8 +979,7 @@
         "id": "fl_r2_c3",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Yellow",
       "partId": "m16_18_54",
       "identColors": [
         "Blue"
@@ -1012,8 +995,7 @@
         "id": "fl_r3_c3",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Yellow",
       "partId": "m16_18_54",
       "identColors": [
         "Blue"
@@ -1029,8 +1011,7 @@
         "id": "sp_rtr_open",
         "handle": "Splice"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Yellow",
       "partId": "m16_18_59",
       "identColors": [
         "Blue"
@@ -1046,8 +1027,7 @@
         "id": "fl_r2_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Yellow",
       "partId": "m16_18_59",
       "identColors": [
         "Blue"
@@ -1063,8 +1043,7 @@
         "id": "fl_r3_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Yellow",
       "partId": "m16_18_59",
       "identColors": [
         "Blue"
@@ -1080,8 +1059,7 @@
         "id": "sp_rtr_gnd_r2",
         "handle": "Splice"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Blue"
@@ -1097,8 +1075,7 @@
         "id": "t_gnd_eb_rtr",
         "handle": "Terminal"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_12_90",
       "identColors": [
         "Blue"
@@ -1114,8 +1091,7 @@
         "id": "sp_rtr_gnd_r3",
         "handle": "Splice"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Blue"
@@ -1131,8 +1107,7 @@
         "id": "t_gnd_eb_rtr",
         "handle": "Terminal"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_12_90",
       "identColors": [
         "Blue"
@@ -1148,7 +1123,7 @@
         "id": "fl_f9_c4",
         "handle": "Terminal"
       },
-      "color": "Blue",
+      "color": "Red",
       "partId": "m16_14_6",
       "identColors": [
         "Blue",
@@ -1165,8 +1140,7 @@
         "id": "fl_f9_c1",
         "handle": "Terminal"
       },
-      "color": "Blue",
-      "stripeColor": "Orange",
+      "color": "Red",
       "partId": "m16_14_63",
       "identColors": [
         "Blue",
@@ -1183,8 +1157,7 @@
         "id": "fl_f9_c2",
         "handle": "Terminal"
       },
-      "color": "Blue",
-      "stripeColor": "Black",
+      "color": "Red",
       "partId": "m16_14_60",
       "identColors": [
         "Blue",
@@ -1201,8 +1174,7 @@
         "id": "fl_oem_ie1_c6",
         "handle": "Terminal"
       },
-      "color": "Blue",
-      "stripeColor": "White",
+      "color": "Yellow",
       "partId": "m16_14_69",
       "identColors": [
         "Blue",
@@ -1219,7 +1191,7 @@
         "id": "fl_w1_c2",
         "handle": "Terminal"
       },
-      "color": "Blue",
+      "color": "Red",
       "partId": "m16_14_6",
       "identColors": [
         "Blue",
@@ -1237,8 +1209,7 @@
         "id": "fl_w1_cowl_c1",
         "handle": "Terminal"
       },
-      "color": "Blue",
-      "stripeColor": "Red",
+      "color": "Red",
       "partId": "m16_14_62",
       "identColors": [
         "Blue",
@@ -1292,7 +1263,7 @@
         "id": "fl_oem_ig2_c16",
         "handle": "Terminal"
       },
-      "color": "Yellow",
+      "color": "White",
       "partId": "m16_20_4",
       "identColors": [
         "Blue",

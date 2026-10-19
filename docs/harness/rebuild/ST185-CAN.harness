@@ -67,7 +67,7 @@
   "wires": [
     {
       "id": "wc_term1",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "r_term_ecu",
         "handle": "Left"
@@ -99,7 +99,7 @@
     },
     {
       "id": "wc_term3",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "r_term_end",
         "handle": "Left"
@@ -131,7 +131,7 @@
     },
     {
       "id": "wc_h_lam_pin",
-      "color": "White",
+      "color": "Green",
       "source": {
         "id": "sp_canh_lam",
         "handle": "Splice"

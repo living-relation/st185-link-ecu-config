@@ -75,7 +75,7 @@
         "id": "sp_rl_tail",
         "handle": "Splice"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -91,7 +91,7 @@
         "id": "fl_r11_c2",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -107,7 +107,7 @@
         "id": "fl_r11_c3",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -123,7 +123,7 @@
         "id": "fl_r12_c2",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -139,7 +139,7 @@
         "id": "fl_r12_c3",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -155,7 +155,7 @@
         "id": "fl_l1_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
+      "color": "Red",
       "partId": "m16_16_5",
       "identColors": [
         "Blue"
@@ -171,8 +171,7 @@
         "id": "sp_rl_stop",
         "handle": "Splice"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Red",
       "partId": "m16_16_59",
       "identColors": [
         "Blue",
@@ -189,8 +188,7 @@
         "id": "fl_r11_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Red",
       "partId": "m16_16_59",
       "identColors": [
         "Blue",
@@ -207,8 +205,7 @@
         "id": "fl_r12_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Red",
       "partId": "m16_16_59",
       "identColors": [
         "Blue",
@@ -225,8 +222,7 @@
         "id": "fl_h6_c1",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "White",
+      "color": "Red",
       "partId": "m16_16_59",
       "identColors": [
         "Blue",
@@ -243,8 +239,7 @@
         "id": "fl_r11_c6",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Black",
+      "color": "Red",
       "partId": "m16_18_50",
       "identColors": [
         "Blue",
@@ -261,8 +256,7 @@
         "id": "fl_r12_c6",
         "handle": "Terminal"
       },
-      "color": "Green",
-      "stripeColor": "Yellow",
+      "color": "Red",
       "partId": "m16_18_54",
       "identColors": [
         "Blue",
@@ -280,7 +274,6 @@
         "handle": "Splice"
       },
       "color": "Red",
-      "stripeColor": "Black",
       "partId": "m16_16_20",
       "identColors": [
         "White"
@@ -297,7 +290,6 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "stripeColor": "Black",
       "partId": "m16_16_20",
       "identColors": [
         "White"
@@ -314,7 +306,6 @@
         "handle": "Terminal"
       },
       "color": "Red",
-      "stripeColor": "Black",
       "partId": "m16_16_20",
       "identColors": [
         "White"
@@ -330,8 +321,7 @@
         "id": "sp_rl_gnd",
         "handle": "Splice"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Yellow"
@@ -347,8 +337,7 @@
         "id": "sp_rl_gnd",
         "handle": "Splice"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Yellow"
@@ -364,8 +353,7 @@
         "id": "sp_rl_gnd",
         "handle": "Splice"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Yellow"
@@ -381,8 +369,7 @@
         "id": "sp_rl_gnd",
         "handle": "Splice"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Yellow"
@@ -398,8 +385,7 @@
         "id": "t_rl_gnd_bl",
         "handle": "Terminal"
       },
-      "color": "White",
-      "stripeColor": "Black",
+      "color": "Black",
       "partId": "m16_16_90",
       "identColors": [
         "Yellow"
