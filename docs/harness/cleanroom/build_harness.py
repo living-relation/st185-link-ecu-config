@@ -372,7 +372,9 @@ def check(names):
         committed = load(path)
         sp_path = os.path.join(HERE, "specs", "%s.json" % h)
         spec = load(sp_path) if os.path.exists(sp_path) else {}
-        out, problems = build(h, committed, spec, initials() if spec.get("rev") else "")
+        # no initials asked here: DRAWN comes from the committed file and BY from the spec (a blank
+        # one shows up as a difference); CI has no initials file and needs none (R200)
+        out, problems = build(h, committed, spec, "")
         d = diff(owned(committed), owned(out)) + ["PROBLEM " + p for p in problems]
         ft = full_text(h, out, spec)
         if json.dumps(ft, indent=1, ensure_ascii=False) + chr(10) != open(FULL_TEXT, encoding="utf-8").read():
