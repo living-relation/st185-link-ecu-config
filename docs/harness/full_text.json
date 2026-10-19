@@ -1402,43 +1402,43 @@
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
      "c41": [
-      "ECU A24 crank ret",
+      "Gnd crank sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
      ],
      "c42": [
-      "ECU A24 cam ret",
+      "Gnd cam sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
      ],
      "c40": [
-      "ECU A32 turbo +5 V",
+      "+5 V turbo speed",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
      ],
      "c43": [
-      "ECU A24 turbo ret",
+      "Gnd turbo speed",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
      ],
      "c5": [
-      "Sw +12 V boost/flex",
+      "+12 V boost + flex",
       "Switched 12V to engine sensors"
      ],
      "c2": [
-      "ECU A32 throttle 5V",
+      "+5 V throttle sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
      ],
      "c3": [
-      "ECU A24 temp/thr ret",
+      "Gnd IAT/TPS/coolant",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
      ],
      "c11": [
-      "ECU A7 throt screen",
+      "Throttle shield",
       "ETB sensor group screen"
      ],
      "c39": [
-      "ECU A32 MAP +5 V",
+      "+5 V MAP sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
      ],
      "c44": [
-      "ECU A24 MAP/flex ret",
+      "Gnd flex + MAP",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
      ],
      "c35": [
@@ -1446,115 +1446,115 @@
       "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
      ],
      "c36": [
-      "ECU A27 EHPS speed",
+      "EHPS pump speed",
       "Aux 7 MRS speed-out (ECU A27)"
      ],
      "c45": [
-      "ECU A32 oil press 5V",
+      "+5 V oil pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
      ],
      "c46": [
-      "ECU A32 fuel prs 5V",
+      "+5 V fuel pressure",
       "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
      ],
      "c47": [
-      "ECU A32 clnt prs 5V",
+      "+5 V coolant press",
       "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
      ],
      "c27": [
-      "EPS relay coil 85",
+      "EHPS relay coil (-)",
       "MR-S pump B5 -> EPS relay k_eps coil- (85)"
      ],
      "c24": [
-      "ECU A8 crank sig",
+      "Crank sensor signal",
       "ECU-A A8"
      ],
      "c33": [
-      "ECU A7 crank screen",
+      "Crank sensor shield",
       "Crank VR screen"
      ],
      "c4": [
-      "ECU A6 cam +8 V",
+      "+8 V to cam sensor",
       "+8V Out to cam Hall"
      ],
      "c29": [
-      "ECU A9 cam sig",
+      "Cam sensor signal",
       "ECU-A A9"
      ],
      "c34": [
-      "ECU A7 cam screen",
+      "Cam sensor shield",
       "Cam Hall screen"
      ],
      "c7": [
-      "ECU A30 turbo sig",
+      "Turbo speed signal",
       "ECU-A A30"
      ],
      "c6": [
-      "ECU A7 turbo screen",
+      "Turbo speed shield",
       "Turbo speed screen"
      ],
      "c9": [
-      "ECU A31 flex sig",
+      "Flex fuel signal",
       "ECU-A A31"
      ],
      "c10": [
-      "ECU A7 flex screen",
+      "Flex fuel shield",
       "Flex fuel screen"
      ],
      "c21": [
-      "ECU A22 throttle 1",
+      "Throttle pos 1 main",
       "ECU-A A22"
      ],
      "c22": [
-      "ECU A33 throttle 2",
+      "Throttle pos 2 sub",
       "ECU-A A33"
      ],
      "c8": [
-      "ECU A17 MAP sig",
+      "MAP sensor signal",
       "ECU-A A17"
      ],
      "c13": [
-      "ECU A4 injector 1",
+      "Injector 1 drive (-)",
       "ECU-A A4"
      ],
      "c14": [
-      "ECU A3 injector 2",
+      "Injector 2 drive (-)",
       "ECU-A A3"
      ],
      "c15": [
-      "ECU A2 injector 3",
+      "Injector 3 drive (-)",
       "ECU-A A2"
      ],
      "c16": [
-      "ECU A1 injector 4",
+      "Injector 4 drive (-)",
       "ECU-A A1"
      ],
      "c17": [
-      "ECU A13 coil 1 trig",
+      "Coil 1 trigger (IGT)",
       "ECU-A A13"
      ],
      "c18": [
-      "ECU A12 coil 2 trig",
+      "Coil 2 trigger (IGT)",
       "ECU-A A12"
      ],
      "c19": [
-      "ECU A11 coil 3 trig",
+      "Coil 3 trigger (IGT)",
       "ECU-A A11"
      ],
      "c20": [
-      "ECU A10 coil 4 trig",
+      "Coil 4 trigger (IGT)",
       "ECU-A A10"
      ],
      "c23": [
-      "ECU A21 boost sol",
+      "Boost solenoid (-)",
       "ECU-A A21"
      ],
      "c25": [
-      "ECU A15 coolant temp",
+      "Coolant temp signal",
       "ECU-A A15"
      ],
      "c26": [
-      "ECU A16 intake temp",
+      "Intake temp signal",
       "ECU-A A16"
      ]
     }
