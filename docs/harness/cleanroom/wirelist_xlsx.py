@@ -5,8 +5,8 @@ workbooks are generated from the same rows and checked for staleness by `wirelis
   A-cabin-wirelist.xlsx  sheets Wires, Splices, Connectors, Mates
   A-cabin-pinouts.xlsx   one sheet per connector: Pin | Wire | Description | Other end
 
-Every sheet: filters on the header, header row frozen (wire list also freezes the ID column), bold
-12 pt header with a thick dark underline, 80% zoom, landscape fit-to-width, long text wrapped. Columns are grouped into sets (id, FROM, TO, net, wire spec, notes / OEM); each set
+Row 1 of the wire-list sheets is a coloured group-title row (ID, FROM, TO, NET, WIRE, OEM / NOTES);
+columns are shown grouped (the CSV keeps its own order). Row 2: filters, bold 12 pt header with a thick dark underline, 80% zoom, landscape fit-to-width, long text wrapped. Columns are grouped into sets (id, FROM, TO, net, wire spec, notes / OEM); each set
 has its own colour family, with a light and a darker tint on alternate rows, so neighbouring
 sets - FROM and TO above all - read apart at a glance.
 """
@@ -15,19 +15,24 @@ from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.properties import PageSetupProperties
 
-STYLE_VERSION = "wirelist-xlsx v2"
+STYLE_VERSION = "wirelist-xlsx v3"
 ZOOM = 80
 BODY_PT, HEAD_PT = 10, 12
 
-# set -> (header tint, light row, lighter row). FROM is blue, TO is green: never confused.
+# set -> (group title fill, light row, lighter row), taken from Dan's styled reference workbook
+# (_research/A-cabin-wirelist-styled-REFERENCE.xlsx). FROM is blue, TO is green: never confused.
 PALETTE = {
-    "id":   ("BFBFBF", "EDEDED", "F8F8F8"),
-    "from": ("9DC3E6", "DDEBF7", "EEF5FB"),
-    "to":   ("A9D18E", "E2F0D9", "F1F8EC"),
-    "net":  ("B4A7D6", "E4DFF0", "F1EEF8"),
-    "spec": ("F4B183", "FBE5D6", "FDF2EA"),
-    "note": ("D6C79A", "F2EBD3", "F9F5E8"),
+    "id":   ("5B4FA0", "E7E6F7", "F3F2FB"),
+    "from": ("2F5F9E", "C9DDF5", "E4EEFA"),
+    "to":   ("2E7D32", "CDEBCB", "E6F5E5"),
+    "net":  ("B26B00", "F7E3C6", "FBF1E3"),
+    "spec": ("A33A3A", "F5D3D3", "FAE9E9"),
+    "note": ("595959", "E0E0E0", "F0F0F0"),
 }
+LABEL = {"id": "ID", "from": "FROM", "to": "TO", "net": "NET", "spec": "WIRE", "note": "OEM / NOTES"}
+ORDER = ["id", "from", "to", "net", "spec", "note"]
+# column order inside a group where it differs from the CSV (the CSV itself is never reordered)
+WIRE_FIRST = ["gauge_awg", "colour", "stripe", "ident_bands", "part_number", "est_length_mm", "route_branch", "method"]
 WIDE = {"from_conn_name": 24, "to_conn_name": 24, "from_desc": 30, "to_desc": 30, "net_name": 32,
         "from_note": 36, "to_note": 36, "oem_location": 36, "oem_ewd_page": 36, "oem_method": 36,
         "route_branch": 34, "sot_check": 45, "status": 30, "notes": 45, "name": 36, "note": 45,
@@ -52,7 +57,8 @@ def column_sets(cols):
         elif c in ("net_id", "net_name", "splice", "cable", "net", "wires", "gauges_awg", "combined_cma",
                    "equivalent_awg", "mates_with", "cavities"):
             out[c] = "net"
-        elif c in ("gauge_awg", "colour", "stripe", "ident_bands", "part_number", "method"):
+        elif c in ("gauge_awg", "colour", "stripe", "ident_bands", "part_number", "method",
+                   "est_length_mm", "route_branch"):
             out[c] = "spec"
         elif c in ("circuit_id", "wire_id", "harness", "passes_through", "splice_id", "conn_id", "Pin", "Wire",
                    "name"):
@@ -69,27 +75,40 @@ def _width(c, rows):
     return max(8, min(LONGEST, longest + 3))
 
 
-def _sheet(wb, title, cols, rows, title_text=None):
-    """Optional bold title row above the table (pinout sheets); header, banding, group borders."""
-    ws = wb.create_sheet(title[:31])
-    top = 1
-    if title_text:
-        ws.cell(row=1, column=1, value=title_text).font = Font(bold=True, size=14)
-        ws.row_dimensions[1].height = 24
-        top = 2
+def ordered(cols):
+    """Columns grouped ID, FROM, TO, NET, WIRE, OEM / NOTES; stable within a group (WIRE as WIRE_FIRST)."""
     sets = column_sets(cols)
+    key = lambda c: (ORDER.index(sets[c]), WIRE_FIRST.index(c) if c in WIRE_FIRST else 99, cols.index(c))  # noqa: E731
+    return sorted(cols, key=key)
+
+
+def _sheet(wb, title, cols, rows, title_text=None, groups=True):
+    """Row 1: coloured group titles (wire list) or a bold table title (pinouts); row 2: header."""
+    ws = wb.create_sheet(title[:31])
+    cols = ordered(cols)
+    sets = column_sets(cols)
+    top = 2
     for j, c in enumerate(cols, 1):
         ws.cell(row=top, column=j, value=c)
     for i, r in enumerate(rows, top + 1):
         for j, c in enumerate(cols, 1):
             ws.cell(row=i, column=j, value=_value(r.get(c, "")))
+    if title_text:
+        ws.cell(row=1, column=1, value=title_text).font = Font(bold=True, size=14)
+        ws.row_dimensions[1].height = 24
     for j, c in enumerate(cols, 1):
-        hdr, light, lighter = PALETTE[sets[c]]
+        title_fill, light, lighter = PALETTE[sets[c]]
         starts_group = j > 1 and sets[cols[j - 2]] != sets[c]
         left = GROUP if starts_group else None
+        if groups:
+            g = ws.cell(row=1, column=j, value=LABEL[sets[c]])
+            g.fill = PatternFill("solid", start_color=title_fill)
+            g.font = Font(bold=True, size=HEAD_PT, color="FFFFFF")
+            g.alignment = Alignment(horizontal="left", vertical="center")
+            g.border = Border(left=left)
         cell = ws.cell(row=top, column=j)
-        cell.fill = PatternFill("solid", start_color=hdr)
-        cell.font = Font(bold=True, size=HEAD_PT, color="1F1F1F")
+        cell.fill = PatternFill("solid", start_color=light)
+        cell.font = Font(bold=True, size=HEAD_PT)
         cell.alignment = Alignment(vertical="center", wrap_text=True)
         cell.border = Border(bottom=DARK, left=left)
         for i in range(top + 1, len(rows) + top + 1):
@@ -100,7 +119,7 @@ def _sheet(wb, title, cols, rows, title_text=None):
             x.alignment = Alignment(vertical="top", wrap_text=c in WRAP)
         ws.column_dimensions[get_column_letter(j)].width = _width(c, rows)
     ws.row_dimensions[top].height = 22
-    ws.freeze_panes = ws.cell(row=top + 1, column=2 if "wire_id" in cols or "Pin" in cols else 1)
+    ws.freeze_panes = "C3" if "wire_id" in cols else "A3"
     ws.auto_filter.ref = "A%d:%s%d" % (top, get_column_letter(len(cols)), max(top + 1, len(rows) + top))
     ws.sheet_view.zoomScale = ZOOM
     ws.sheet_view.zoomScaleNormal = ZOOM
@@ -108,7 +127,7 @@ def _sheet(wb, title, cols, rows, title_text=None):
     ws.page_setup.fitToWidth = 1
     ws.page_setup.fitToHeight = 0
     ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
-    ws.print_title_rows = "%d:%d" % (top, top)
+    ws.print_title_rows = "1:2"
     return ws
 
 
@@ -124,7 +143,7 @@ def wirelist_workbook(tables):
     wb.remove(wb.active)
     wb.properties.description = STYLE_VERSION
     for title, cols, rows, name in tables:
-        _sheet(wb, title, cols, rows)
+        _sheet(wb, "Wire list" if title == "Wirelist" else title, cols, rows)
     return wb
 
 
@@ -139,7 +158,7 @@ def pinout_workbook(pinouts):
         while t in used:
             t = t[:28] + "_%d" % i
         used.add(t)
-        _sheet(wb, t, ["Pin", "Wire", "Description", "Other end"], rows, title_text=title)
+        _sheet(wb, t, ["Pin", "Wire", "Description", "Other end"], rows, title_text=title, groups=False)
     return wb
 
 

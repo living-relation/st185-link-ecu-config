@@ -499,7 +499,7 @@ def main(check=False):
             lst = sorted(lst, key=lambda x: pkey(x[0]))
             for pin, wid, desc, oth in lst:
                 f.write("| %s | %s | %s | %s |\n" % (pin, wid, desc, oth))
-            pin_sheets.append(("%s %s" % (c["name"], c["conn_id"]),
+            pin_sheets.append(("%s (%s)" % (c["name"], c["conn_id"]),
                                [{"Pin": a, "Wire": b, "Description": cc, "Other end": d} for a, b, cc, d in lst]))
     files["A-cabin-pinouts.md"] = f.getvalue()
     books = {"A-cabin-wirelist.xlsx": X.wirelist_workbook(sheets), "A-cabin-pinouts.xlsx": X.pinout_workbook(pin_sheets)}
