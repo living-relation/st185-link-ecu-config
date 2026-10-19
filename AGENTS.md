@@ -19,7 +19,7 @@ maintainer something the rules already answer.
 > (R1-R197).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
-> Four rules, all non-optional:
+> Five rules, all non-optional:
 >
 > 1. **Wiring** — a change to one wiring document is not done until it is checked against
 >    the source-of-truth chain and **every other wiring surface**, including ones you did
@@ -34,10 +34,17 @@ maintainer something the rules already answer.
 >    → `ST185-A-engine`, B the same. Crossovers (a) +5V / Gnd Out, (b) ETB A20 / B5,
 >    (c) APS A14 / B33 only. Gate: `docs/harness/validate_bulkhead_letter.py`.
 > 4. **ECU pins (DECISIONS R212)** — every circuit with a wire on an ECU pin (Link G4X plugs A / B / C) is
->    checked against the Link G4X Quick Start Guide: the pin function, what it may connect to (power, ECU
->    ground -> battery negative, Gnd Out -> sensor returns only, shield, inputs / outputs), the current limits and
->    the wire gauge. Any mismatch is a stop. Copy: `docs/vendor/XtremeXQuickstartGuide.pdf` (local, gitignored);
->    tracked extract: `sot/channels.csv` (`QSG-IO`). `wirelist.py --check` reports class violations in `GAPS.md`.
+>    checked against the Link G4X Quick Start Guide **and the G4X plug-in (wire-in) guides** (the plug-in guide wins
+>    for special circuits and pin modes): pin function and mode, what it may connect to, current limits, wire gauge.
+>    Any mismatch is a stop. Copies (local, gitignored `docs/vendor/`): the QSG and the two plug-in ECU
+>    *specification* PDFs; the plug-in wire-in guides and the PCLink wiring manual are missing. Tracked extract:
+>    `sot/channels.csv` (`QSG-IO`).
+> 5. **Grounds (R213 / R216 / R217)** — ECU power ground -> battery-negative bar in the POWER box only; PCBs, CAN
+>    nodes, LEDs -> battery-negative bus, never chassis; sensors -> Gnd Out only; high-current loads may use chassis;
+>    shields -> drains only; CAN nodes take +12 V and ground with the CAN trunk. **Loom A-B (R218):** only the +5 V
+>    sensor supply crosses between an A file and a B file. **Relays (R219):** an ECU output driving a relay is
+>    low-side, ECU pin -> coil 85, coil 86 -> fused +12 V. All gated by `cleanroom/ecu_rules.py` (`wirelist.py --check`);
+>    known violations are listed in `ecu_rules.PENDING` until the wiring fix removes them.
 >
 > Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
 >

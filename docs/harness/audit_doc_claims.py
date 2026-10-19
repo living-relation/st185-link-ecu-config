@@ -4,8 +4,10 @@ one is consolidated into it or deleted - never archived, bannered "superseded" o
   C1  no tracked file lives in an archive-style folder (archive / old / legacy / superseded / deprecated)
   C2  no document outside the keep list says it IS a source of truth (the keep list owns that claim)
   C3  no document opens (first 15 lines) with a superseded / historical / archived / kept-for-reference banner
+  C4  no document names a repo file under docs/ or sot/ that no longer exists (a removed SoT or doc that older
+      text still points at); DECISIONS and OPEN-ITEMS history are exempt
 
-HARD: all three. Exit 1 on any finding.
+HARD: all four. Exit 1 on any finding.
 """
 import os
 import re
@@ -31,6 +33,10 @@ BANNER = re.compile(r"\bsupersed(ed|es)\b|\bhistorical\b|history only|\barchived
 ARCHIVE_DIR = re.compile(r"(^|/)(archive|archived|old|legacy|superseded|deprecated)(/|$)", re.I)
 
 
+PATH_REF = re.compile(r"(?<![\w/.-])((?:docs|sot)/[\w./-]*[\w-]\.(?:md|html|csv|json|py|xlsx|txt))")
+HISTORY = ("docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md")
+
+
 def main():
     files = subprocess.check_output(["git", "ls-files"], cwd=REPO, text=True, encoding="utf-8").split("\n")
     bad = []
@@ -49,6 +55,11 @@ def main():
             for n, line in enumerate(text.split("\n"), 1):
                 if IS_SOT.search(line) and not NEGATED.search(line):
                     bad.append("C2 %s:%d: claims to be a source of truth: %s" % (f, n, line.strip()[:110]))
+        if f not in HISTORY and not f.startswith("docs/harness/rebuild/"):
+            for m in sorted(set(PATH_REF.findall(text))):
+                if "*" in m or "<" in m or m.startswith("docs/vendor/") or os.path.exists(os.path.join(REPO, m)):
+                    continue            # docs/vendor is gitignored (local-only vendor PDFs)
+                bad.append("C4 %s: names %s, which does not exist" % (f, m))
         head = "\n".join(text.split("\n")[:15])
         m = BANNER.search(head)
         if m and f not in ("docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md", "docs/dispatch/DISPATCH-RULES.md"):
