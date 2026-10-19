@@ -36,7 +36,7 @@ ENGINE_RULES = '2026-10-18'
 
 # issued before the 2026-10-18 rules; regenerated in the drawing pass that follows the model PRs (R196)
 PENDING = {
-    'ST185-CSB3-100', 'ST185-DRB-100', 'ST185-DRB-101', 'ST185-FB-100P', 'ST185-FB-117', 'ST185-VRC-100', 'ST185-VRC-101', 'ST185-VRC-102', 'ST185-VRC-103',
+    'ST185-FB-100P', 'ST185-FB-117',
 }
 
 BANNED = [

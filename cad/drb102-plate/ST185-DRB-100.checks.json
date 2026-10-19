@@ -1,0 +1,48 @@
+{
+ "pn": "ST185-DRB-100",
+ "pdf_sha": "1dc384e29fd7449d",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "THE PLATE BOLTS TO THE FIREWALL WITH 10 M5 SCREWS INTO ITS TAPPED HOLES.",
+  "FLANGE SCREWS: 2.26-2.82 N\u00b7m (20-25 IN-LB). JACKSCREW: TURN IT WITH AN M8 HEX SOCKET TO 3.38-3.95 N\u00b7m (30-35 IN-LB)."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "balloon_views": [
+  {
+   "view": "TRIMETRIC VIEW",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 1",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 2",
+   "placed": 3,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 3",
+   "placed": 1,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  }
+ ],
+ "not_ballooned": [],
+ "ok": true
+}
