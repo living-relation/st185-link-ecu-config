@@ -5,34 +5,40 @@ workbooks are generated from the same rows and checked for staleness by `wirelis
   A-cabin-wirelist.xlsx  sheets Wires, Splices, Connectors, Mates
   A-cabin-pinouts.xlsx   one sheet per connector: Pin | Wire | Description | Other end
 
-Every sheet is an Excel Table (filters on, banded rows), header row frozen, widths set, long
-text wrapped. Columns are grouped into sets (id, FROM, TO, net, wire spec, notes / OEM); each set
+Every sheet: filters on the header, header row frozen (wire list also freezes the ID column), bold
+12 pt header with a thick dark underline, 80% zoom, landscape fit-to-width, long text wrapped. Columns are grouped into sets (id, FROM, TO, net, wire spec, notes / OEM); each set
 has its own colour family, with a light and a darker tint on alternate rows, so neighbouring
 sets - FROM and TO above all - read apart at a glance.
 """
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
-from openpyxl.worksheet.table import Table, TableStyleInfo
+from openpyxl.worksheet.properties import PageSetupProperties
 
-STYLE_VERSION = "wirelist-xlsx v1"
+STYLE_VERSION = "wirelist-xlsx v2"
+ZOOM = 80
+BODY_PT, HEAD_PT = 10, 12
 
-# set -> (header fill, light row, darker row). FROM is blue, TO is orange: never confused.
+# set -> (header tint, light row, lighter row). FROM is blue, TO is green: never confused.
 PALETTE = {
-    "id":   ("44546A", "F2F2F2", "E0E0E0"),
-    "from": ("1F4E79", "DDEBF7", "BDD7EE"),
-    "to":   ("C55A11", "FCE4D6", "F8CBAD"),
-    "net":  ("375623", "E2EFDA", "C6E0B4"),
-    "spec": ("5B2C6F", "EDE1F2", "D9C3E3"),
-    "note": ("7F6000", "FFF2CC", "FFE699"),
+    "id":   ("BFBFBF", "EDEDED", "F8F8F8"),
+    "from": ("9DC3E6", "DDEBF7", "EEF5FB"),
+    "to":   ("A9D18E", "E2F0D9", "F1F8EC"),
+    "net":  ("B4A7D6", "E4DFF0", "F1EEF8"),
+    "spec": ("F4B183", "FBE5D6", "FDF2EA"),
+    "note": ("D6C79A", "F2EBD3", "F9F5E8"),
 }
-WIDE = {"from_conn_name": 30, "to_conn_name": 30, "from_desc": 26, "to_desc": 26, "net_name": 32,
-        "from_note": 40, "to_note": 40, "oem_location": 40, "oem_ewd_page": 44, "oem_method": 40,
-        "route_branch": 32, "sot_check": 60, "status": 30, "notes": 50, "name": 40, "note": 50,
-        "Description": 30, "Other end": 44, "location": 34, "method": 34, "this_desc": 26, "mate_desc": 26}
-WRAP = {"from_note", "to_note", "oem_location", "oem_ewd_page", "oem_method", "sot_check", "status",
-        "notes", "note", "Other end", "route_branch"}
-THIN = Side(style="thin", color="FFFFFF")
+WIDE = {"from_conn_name": 24, "to_conn_name": 24, "from_desc": 30, "to_desc": 30, "net_name": 32,
+        "from_note": 36, "to_note": 36, "oem_location": 36, "oem_ewd_page": 36, "oem_method": 36,
+        "route_branch": 34, "sot_check": 45, "status": 30, "notes": 45, "name": 36, "note": 45,
+        "Description": 34, "Other end": 40, "location": 34, "method": 34, "this_desc": 30, "mate_desc": 30}
+WRAP = {"from_conn_name", "to_conn_name", "from_desc", "to_desc", "net_name", "from_note", "to_note",
+        "oem_location", "oem_ewd_page", "oem_method", "sot_check", "status", "notes", "note", "name",
+        "Description", "Other end", "route_branch", "location", "method", "this_desc", "mate_desc"}
+HAIR = Side(style="hair", color="A6A6A6")
+GROUP = Side(style="thin", color="404040")
+DARK = Side(style="thick", color="1F1F1F")
+LONGEST = 45  # autofit cap for columns not listed in WIDE
 
 
 def column_sets(cols):
@@ -56,29 +62,53 @@ def column_sets(cols):
     return out
 
 
-def _sheet(wb, title, cols, rows, table_name):
+def _width(c, rows):
+    if c in WIDE:
+        return WIDE[c]
+    longest = max([len(c)] + [len(str(r.get(c, ""))) for r in rows])
+    return max(8, min(LONGEST, longest + 3))
+
+
+def _sheet(wb, title, cols, rows, title_text=None):
+    """Optional bold title row above the table (pinout sheets); header, banding, group borders."""
     ws = wb.create_sheet(title[:31])
+    top = 1
+    if title_text:
+        ws.cell(row=1, column=1, value=title_text).font = Font(bold=True, size=14)
+        ws.row_dimensions[1].height = 24
+        top = 2
     sets = column_sets(cols)
-    ws.append(cols)
-    for r in rows:
-        ws.append([_value(r.get(c, "")) for c in cols])
     for j, c in enumerate(cols, 1):
-        hdr, light, dark = PALETTE[sets[c]]
-        cell = ws.cell(row=1, column=j)
+        ws.cell(row=top, column=j, value=c)
+    for i, r in enumerate(rows, top + 1):
+        for j, c in enumerate(cols, 1):
+            ws.cell(row=i, column=j, value=_value(r.get(c, "")))
+    for j, c in enumerate(cols, 1):
+        hdr, light, lighter = PALETTE[sets[c]]
+        starts_group = j > 1 and sets[cols[j - 2]] != sets[c]
+        left = GROUP if starts_group else None
+        cell = ws.cell(row=top, column=j)
         cell.fill = PatternFill("solid", start_color=hdr)
-        cell.font = Font(bold=True, color="FFFFFF")
+        cell.font = Font(bold=True, size=HEAD_PT, color="1F1F1F")
         cell.alignment = Alignment(vertical="center", wrap_text=True)
-        for i in range(2, len(rows) + 2):
+        cell.border = Border(bottom=DARK, left=left)
+        for i in range(top + 1, len(rows) + top + 1):
             x = ws.cell(row=i, column=j)
-            x.fill = PatternFill("solid", start_color=light if i % 2 == 0 else dark)
-            x.border = Border(left=THIN, right=THIN)
+            x.fill = PatternFill("solid", start_color=light if (i - top) % 2 else lighter)
+            x.font = Font(size=BODY_PT)
+            x.border = Border(left=left, bottom=HAIR)
             x.alignment = Alignment(vertical="top", wrap_text=c in WRAP)
-        ws.column_dimensions[get_column_letter(j)].width = WIDE.get(c, max(10, min(22, len(c) + 3)))
-    ws.freeze_panes = "A2"
-    ref = "A1:%s%d" % (get_column_letter(len(cols)), max(2, len(rows) + 1))
-    t = Table(displayName=table_name, ref=ref)
-    t.tableStyleInfo = TableStyleInfo(name="TableStyleLight1", showRowStripes=True, showColumnStripes=False)
-    ws.add_table(t)
+        ws.column_dimensions[get_column_letter(j)].width = _width(c, rows)
+    ws.row_dimensions[top].height = 22
+    ws.freeze_panes = ws.cell(row=top + 1, column=2 if "wire_id" in cols or "Pin" in cols else 1)
+    ws.auto_filter.ref = "A%d:%s%d" % (top, get_column_letter(len(cols)), max(top + 1, len(rows) + top))
+    ws.sheet_view.zoomScale = ZOOM
+    ws.sheet_view.zoomScaleNormal = ZOOM
+    ws.page_setup.orientation = "landscape"
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 0
+    ws.sheet_properties.pageSetUpPr = PageSetupProperties(fitToPage=True)
+    ws.print_title_rows = "%d:%d" % (top, top)
     return ws
 
 
@@ -94,7 +124,7 @@ def wirelist_workbook(tables):
     wb.remove(wb.active)
     wb.properties.description = STYLE_VERSION
     for title, cols, rows, name in tables:
-        _sheet(wb, title, cols, rows, name)
+        _sheet(wb, title, cols, rows)
     return wb
 
 
@@ -109,7 +139,7 @@ def pinout_workbook(pinouts):
         while t in used:
             t = t[:28] + "_%d" % i
         used.add(t)
-        _sheet(wb, t, ["Pin", "Wire", "Description", "Other end"], rows, "Pinout%d" % (i + 1))
+        _sheet(wb, t, ["Pin", "Wire", "Description", "Other end"], rows, title_text=title)
     return wb
 
 
