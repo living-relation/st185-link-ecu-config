@@ -102,22 +102,22 @@ def case(name, gate, expect):
 
 @case("two injector signals crimped into one bulkhead pin", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "A-engine", "w109_e", "bh_a_eng", "c13")
+    add_copy(d, "A-engine", "w109_e", "bh_a_eng", "c21")   # INJ1's cavity (R208 map)
 
 
 @case("injector signal + injector 12V feed in one pin", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "A-engine", "w_inj_pwr_e_ae", "bh_a_eng", "c13")
+    add_copy(d, "A-engine", "w_inj_pwr_e_ae", "bh_a_eng", "c21")
 
 
 @case("two sensor grounds crimped into one ground pin (direct form)", "audit_bh_collisions.py", 0)
 def _(d):
-    add_copy(d, "A-engine", "w17", "bh_a_eng", "c42")
+    add_copy(d, "A-engine", "w17", "bh_a_eng", "c65")   # the cam sensor ground cavity
 
 
 @case("ground + switched 12V in one pin", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "B-engine", "w_vss_12v", "bh_b_eng", "c19")
+    add_copy(d, "B-engine", "w_vss_12v", "bh_b_eng", "c29")   # a B ground cavity
 
 
 @case("pigtail + splice: +5V bus plug (bussed DT, R169) also fed from ECU +8V Out", "audit_bh_collisions.py", 1)
@@ -134,15 +134,15 @@ def _(d):
 
 @case("one ECU signal fanned out to 2 devices, cavity NOT labelled splice", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "A-engine", "w109_e", "bh_a_eng", "c14", extra_target=None)
-    add_copy(d, "A-engine", "w108_e", "bh_a_eng", "c14")
+    add_copy(d, "A-engine", "w109_e", "bh_a_eng", "c22", extra_target=None)
+    add_copy(d, "A-engine", "w108_e", "bh_a_eng", "c22")
 
 
 @case("same fan-out, cavity labelled 'splice' on both halves", "audit_bh_collisions.py", 0)
 def _(d):
-    add_copy(d, "A-engine", "w108_e", "bh_a_eng", "c14")
+    add_copy(d, "A-engine", "w108_e", "bh_a_eng", "c22")
     for loom, half in (("A-engine", "bh_a_eng"), ("A-cabin", "bh_a_fw")):
-        label(d, loom, half, "c14", "INJ2 (splice)")
+        label(d, loom, half, "c22", "INJ2 (splice)")
 
 
 @case("4 x 18 AWG grounds direct in one size-16 pin: sharing OK ...", "audit_bh_collisions.py", 0)
@@ -152,7 +152,7 @@ def _(d):
                              "description": "t", "color": "Black", "gauge": {"value": 18, "unit": "AWG"}})
     save(p, doc)
     for i in range(3):
-        add_copy(d, "A-engine", "w17", "bh_a_eng", "c43", gauge_part="wp_18_t")
+        add_copy(d, "A-engine", "w17", "bh_a_eng", "c56", gauge_part="wp_18_t")
     p, doc = load(d, "A-engine")
     for w in doc["wires"]:
         if w["id"] == "w17":
@@ -174,17 +174,17 @@ def designate(d, loom, conn, cav, num):
     save(p, doc)
 
 
-@case("DRB102: B spare moved onto A's crank cavity 9, both halves (M8 collision)", "audit_mating.py", 1)
+@case("DRB102: a B spare moved onto the crank signal cavity 74, both halves (M8 collision)", "audit_mating.py", 1)
 def _(d):
     for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
-        designate(d, loom, half, "c25", "9")
+        designate(d, loom, half, "c97", "74")
 
 
 @case("DRB102: size-12 plug put in a size-16 cavity (M8 size)", "audit_mating.py", 1)
 def _(d):
     for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
-        designate(d, loom, half, "c1", "62")
-        designate(d, loom, half, "c25", "97")
+        designate(d, loom, half, "c97", "82")      # the size-12 plug sits on a size-16 number ...
+        designate(d, loom, half, "c82", "97")      # ... and the size-16 plug on a size-12 number
 
 
 @case("R202: a wire given one routing point (RP1)", "audit_wire_spacing.py", 1)

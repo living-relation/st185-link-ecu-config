@@ -1,7 +1,8 @@
 """ECU looms follow the ECU connector letter, and no harness is drawn inside another
 (docs/RECONCILIATION-RULES.md Rule 3).
 
-ECU connector A -> cabin A -> bulkhead A -> engine A; connector B the same. A pin's
+ECU connector A -> cabin A -> bulkhead A -> engine A; connector B the same. "Bulkhead A / B" is the LOOM whose file draws
+the connector (bh_a_* / bh_b_*), checked by ownership, never a cavity section: the cavities are assigned by device (R208). A pin's
 letter is its conn column in sot/channels.csv. A device's letter is the set of
 signal-class ECU pins its cavities reach through splices, bulkheads, inline interfaces
 and broken-off pairs (rails, grounds and screens do not give a device a letter).
@@ -39,7 +40,7 @@ The allow-list is the rule's crossovers and nothing else:
       its B33 leg (conductor w_aps_vpa2) is the one allowed A-file wire reaching a
       B-letter device cavity, and still breaks off to B-cabin in the usual way (L6)
 The injector (RFRM INJ) and COP (RFRM COP) rails are not a crossover: they cross on the
-A side, bulkhead A c48 / c49 of the shared DRB102 (IX_RAIL_A retired 2026-09-29;
+A side, on loom A's bulkhead connector bh_a_* (cavity numbers: DRB102-CAVITY-MAP.md, generated, R208; IX_RAIL_A retired 2026-09-29;
 crossover (d) retired, Daniel 2026-09-28).
 
 Exit 1 on any finding.

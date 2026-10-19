@@ -192,7 +192,7 @@ power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the me
     A22/A33 sensors) is engine-bay wiring.
   - The injector rail (LOGIC INJ 15 A) and COP rail (LOGIC COP 15 A) are **not** a crossover:
     non-ECU power follows its device's ECU signal letter, so they cross on the A side, on
-    bulkhead A c48 / c49 of the shared DRB102 (`docs/harness/DRB102-CAVITY-MAP.md`). The
+    loom A's bulkhead connector (cavity numbers in the generated `docs/harness/DRB102-CAVITY-MAP.md`, R208). The
     earlier `IX_RAIL_A` DTP pass-through is retired (2026-09-29). Crossover (d) is retired
     (Daniel, 2026-09-28; `docs/harness/redesign/DECISIONS.md` Q-RAIL).
 - **Splice sizing:** rule **R36** (combined gauge, Wire Barn calculator; not for drains, R30).

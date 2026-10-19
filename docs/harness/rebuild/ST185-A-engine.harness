@@ -69,7 +69,7 @@
       "id": "w26_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c8"
+        "handle": "c17"
       },
       "target": {
         "id": "map",
@@ -86,7 +86,7 @@
       "id": "w108_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c13"
+        "handle": "c21"
       },
       "target": {
         "id": "inj1",
@@ -104,7 +104,7 @@
       "id": "w109_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c14"
+        "handle": "c22"
       },
       "target": {
         "id": "inj2",
@@ -122,7 +122,7 @@
       "id": "w110_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c15"
+        "handle": "c23"
       },
       "target": {
         "id": "inj3",
@@ -140,7 +140,7 @@
       "id": "w111_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c16"
+        "handle": "c24"
       },
       "target": {
         "id": "inj4",
@@ -158,7 +158,7 @@
       "id": "w120_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c17"
+        "handle": "c9"
       },
       "target": {
         "id": "cop1",
@@ -176,7 +176,7 @@
       "id": "w121_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c18"
+        "handle": "c10"
       },
       "target": {
         "id": "cop2",
@@ -194,7 +194,7 @@
       "id": "w122_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c19"
+        "handle": "c11"
       },
       "target": {
         "id": "cop3",
@@ -212,7 +212,7 @@
       "id": "w123_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c20"
+        "handle": "c12"
       },
       "target": {
         "id": "cop4",
@@ -230,7 +230,7 @@
       "id": "w103_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c23"
+        "handle": "c58"
       },
       "target": {
         "id": "boost",
@@ -248,7 +248,7 @@
       "id": "w201_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c25"
+        "handle": "c70"
       },
       "target": {
         "id": "ect",
@@ -266,7 +266,7 @@
       "id": "w202_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c26"
+        "handle": "c33"
       },
       "target": {
         "id": "iat",
@@ -301,7 +301,7 @@
       "color": "Orange",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c39"
+        "handle": "c16"
       },
       "target": {
         "id": "map",
@@ -318,7 +318,7 @@
       "color": "Black",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c41"
+        "handle": "c75"
       },
       "target": {
         "id": "crank",
@@ -374,7 +374,7 @@
       "color": "Black",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c42"
+        "handle": "c65"
       },
       "target": {
         "id": "cam",
@@ -481,7 +481,7 @@
       "id": "w_rail_sp_gndout_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c3"
+        "handle": "c34"
       },
       "target": {
         "id": "sp_gndout_eng",
@@ -499,7 +499,7 @@
       "id": "w_rail_sp_8v_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c4"
+        "handle": "c63"
       },
       "target": {
         "id": "cam",
@@ -518,7 +518,7 @@
       "id": "w_rail_sp_sw12_e",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c5"
+        "handle": "c30"
       },
       "target": {
         "id": "sp_sw12_eng",
@@ -569,7 +569,7 @@
       "id": "w_hv_mrs_en_e_ae",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c35"
+        "handle": "c83"
       },
       "target": {
         "id": "br_w_hv_mrs_en_e",
@@ -586,7 +586,7 @@
       "id": "w_mrs_e_ae",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c36"
+        "handle": "c84"
       },
       "target": {
         "id": "br_w_mrs_e",
@@ -748,7 +748,7 @@
       "id": "w_inj_pwr_e_ae",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c48"
+        "handle": "c2"
       },
       "target": {
         "id": "sp_inj_eng",
@@ -766,7 +766,7 @@
       "id": "w_cop_pwr_e_ae",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c49"
+        "handle": "c1"
       },
       "target": {
         "id": "sp_cop_eng",
@@ -784,7 +784,7 @@
       "id": "w_gnd_a_e_c44",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c44"
+        "handle": "c18"
       },
       "target": {
         "id": "sp_gndout_eng2",
@@ -802,7 +802,7 @@
       "id": "w_5v_brail_e_c45",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c45"
+        "handle": "c27"
       },
       "target": {
         "id": "ix_brail_s",
@@ -819,7 +819,7 @@
       "id": "w_5v_brail_e_c46",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c46"
+        "handle": "c13"
       },
       "target": {
         "id": "ix_brail_s",
@@ -836,7 +836,7 @@
       "id": "w_5v_brail_e_c47",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c47"
+        "handle": "c25"
       },
       "target": {
         "id": "ix_brail_s",
@@ -853,7 +853,7 @@
       "id": "w_eps_rly_ae",
       "source": {
         "id": "bh_a_eng",
-        "handle": "c27"
+        "handle": "c85"
       },
       "target": {
         "id": "br_w_eps_rly_e",
@@ -876,399 +876,388 @@
       "partId": "cp_drb_plug",
       "cavities": [
         {
-          "id": "c48",
+          "id": "c1",
           "designation": "1",
-          "signal": "Injector +12 V feed",
-          "contactPartId": "ct_hdp12s",
-          "propagate": false
-        },
-        {
-          "id": "c49",
-          "designation": "2",
           "signal": "Coil +12 V feed",
           "contactPartId": "ct_hdp12s",
           "propagate": false
         },
         {
-          "id": "nc3",
-          "designation": "3",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc4",
-          "designation": "4",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc5",
-          "designation": "5",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc6",
-          "designation": "6",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc7",
-          "designation": "7",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc8",
-          "designation": "8",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c24",
-          "designation": "9",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Crank sensor signal",
-          "propagate": false
-        },
-        {
-          "id": "c41",
-          "designation": "10",
-          "signal": "Gnd crank sensor",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c33",
-          "designation": "11",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Crank sensor shield",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "12",
-          "contactPartId": "ct_hdp16s",
-          "signal": "+8 V to cam sensor",
-          "propagate": false
-        },
-        {
-          "id": "c29",
-          "designation": "13",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Cam sensor signal",
-          "propagate": false
-        },
-        {
-          "id": "c42",
-          "designation": "14",
-          "signal": "Gnd cam sensor",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c34",
-          "designation": "15",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Cam sensor shield",
-          "propagate": false
-        },
-        {
-          "id": "c40",
-          "designation": "16",
-          "signal": "+5 V turbo speed",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c7",
-          "designation": "17",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Turbo speed signal",
-          "propagate": false
-        },
-        {
-          "id": "c43",
-          "designation": "18",
-          "signal": "Gnd turbo speed",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "19",
-          "signal": "Turbo speed shield",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "20",
-          "contactPartId": "ct_hdp16s",
-          "signal": "+12 V boost + flex",
-          "propagate": false
-        },
-        {
-          "id": "c9",
-          "designation": "21",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Flex fuel signal",
-          "propagate": false
-        },
-        {
-          "id": "c10",
-          "designation": "22",
-          "signal": "Flex fuel shield",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
           "id": "c2",
-          "designation": "23",
-          "contactPartId": "ct_hdp16s",
-          "signal": "+5 V throttle sensor",
-          "propagate": false
-        },
-        {
-          "id": "c21",
-          "designation": "24",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Throttle pos 1 main",
-          "propagate": false
-        },
-        {
-          "id": "c22",
-          "designation": "25",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Throttle pos 2 sub",
+          "designation": "2",
+          "signal": "Injector +12 V feed",
+          "contactPartId": "ct_hdp12s",
           "propagate": false
         },
         {
           "id": "c3",
-          "designation": "26",
+          "designation": "3",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "cavityPlugPartId": "pl_sz12",
+          "notConnected": true
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "Coil 1 trigger (IGT)",
           "contactPartId": "ct_hdp16s",
-          "signal": "Gnd IAT/TPS/coolant",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "Coil 2 trigger (IGT)",
+          "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
           "id": "c11",
-          "designation": "27",
-          "signal": "Throttle shield",
+          "designation": "11",
+          "signal": "Coil 3 trigger (IGT)",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
-          "id": "c39",
-          "designation": "28",
-          "signal": "+5 V MAP sensor",
+          "id": "c12",
+          "designation": "12",
+          "signal": "Coil 4 trigger (IGT)",
           "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c44",
-          "designation": "29",
-          "signal": "Gnd flex + MAP",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c8",
-          "designation": "30",
-          "contactPartId": "ct_hdp16s",
-          "signal": "MAP sensor signal",
           "propagate": false
         },
         {
           "id": "c13",
-          "designation": "31",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Injector 1 drive (-)",
-          "propagate": false
-        },
-        {
-          "id": "c14",
-          "designation": "32",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Injector 2 drive (-)",
-          "propagate": false
-        },
-        {
-          "id": "c15",
-          "designation": "33",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Injector 3 drive (-)",
-          "propagate": false
-        },
-        {
-          "id": "c16",
-          "designation": "34",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Injector 4 drive (-)",
-          "propagate": false
-        },
-        {
-          "id": "c17",
-          "designation": "35",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Coil 1 trigger (IGT)",
-          "propagate": false
-        },
-        {
-          "id": "c18",
-          "designation": "36",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Coil 2 trigger (IGT)",
-          "propagate": false
-        },
-        {
-          "id": "c19",
-          "designation": "37",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Coil 3 trigger (IGT)",
-          "propagate": false
-        },
-        {
-          "id": "c20",
-          "designation": "38",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Coil 4 trigger (IGT)",
-          "propagate": false
-        },
-        {
-          "id": "c23",
-          "designation": "39",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Boost solenoid (-)",
-          "propagate": false
-        },
-        {
-          "id": "c25",
-          "designation": "40",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Coolant temp signal",
-          "propagate": false
-        },
-        {
-          "id": "c26",
-          "designation": "41",
-          "contactPartId": "ct_hdp16s",
-          "signal": "Intake temp signal",
-          "propagate": false
-        },
-        {
-          "id": "c35",
-          "designation": "42",
-          "signal": "EHPS enable +12 V",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "nc43",
-          "designation": "43",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c36",
-          "designation": "44",
-          "signal": "EHPS pump speed",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "c37",
-          "designation": "45",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c38",
-          "designation": "46",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c45",
-          "designation": "47",
-          "signal": "+5 V oil pressure",
-          "contactPartId": "ct_hdp16s",
-          "propagate": false
-        },
-        {
-          "id": "nc48",
-          "designation": "48",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc49",
-          "designation": "49",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "c46",
-          "designation": "50",
+          "designation": "13",
           "signal": "+5 V fuel pressure",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
-          "id": "c47",
-          "designation": "51",
+          "id": "nc14",
+          "designation": "14",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc15",
+          "designation": "15",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c16",
+          "designation": "16",
+          "signal": "+5 V MAP sensor",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c17",
+          "designation": "17",
+          "signal": "MAP sensor signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c18",
+          "designation": "18",
+          "signal": "Gnd flex + MAP",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c19",
+          "designation": "19",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c20",
+          "designation": "20",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c21",
+          "designation": "21",
+          "signal": "Injector 1 drive (-)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c22",
+          "designation": "22",
+          "signal": "Injector 2 drive (-)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c23",
+          "designation": "23",
+          "signal": "Injector 3 drive (-)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c24",
+          "designation": "24",
+          "signal": "Injector 4 drive (-)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c25",
+          "designation": "25",
           "signal": "+5 V coolant press",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
-          "id": "c1",
-          "designation": "52",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "c12",
-          "designation": "53",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
-        },
-        {
-          "id": "nc54",
-          "designation": "54",
-          "notConnected": true,
-          "cavityPlugPartId": null
-        },
-        {
-          "id": "nc55",
-          "designation": "55",
+          "id": "nc26",
+          "designation": "26",
           "notConnected": true,
           "cavityPlugPartId": null
         },
         {
           "id": "c27",
-          "designation": "56",
-          "signal": "EHPS relay coil (-)",
+          "designation": "27",
+          "signal": "+5 V oil pressure",
           "contactPartId": "ct_hdp16s",
           "propagate": false
         },
         {
-          "id": "c28",
-          "designation": "57",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
+          "id": "nc28",
+          "designation": "28",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc29",
+          "designation": "29",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
           "id": "c30",
-          "designation": "58",
+          "designation": "30",
+          "signal": "+12 V boost + flex",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c31",
+          "designation": "31",
+          "signal": "Flex fuel signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c32",
+          "designation": "32",
+          "signal": "Flex fuel shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c33",
+          "designation": "33",
+          "signal": "Intake temp signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c34",
+          "designation": "34",
+          "signal": "Gnd IAT/TPS/coolant",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c35",
+          "designation": "35",
           "cavityPlugPartId": "pl_sz16",
           "notConnected": true
         },
         {
-          "id": "c31",
-          "designation": "59",
+          "id": "c36",
+          "designation": "36",
           "cavityPlugPartId": "pl_sz16",
           "notConnected": true
+        },
+        {
+          "id": "c37",
+          "designation": "37",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c38",
+          "designation": "38",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c39",
+          "designation": "39",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c40",
+          "designation": "40",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        },
+        {
+          "id": "c41",
+          "designation": "41",
+          "signal": "+5 V throttle sensor",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c42",
+          "designation": "42",
+          "signal": "Throttle pos 1 main",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c43",
+          "designation": "43",
+          "cavityPlugPartId": "pl_sz4",
+          "notConnected": true
+        },
+        {
+          "id": "c44",
+          "designation": "44",
+          "signal": "Throttle pos 2 sub",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "nc45",
+          "designation": "45",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc46",
+          "designation": "46",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c47",
+          "designation": "47",
+          "signal": "Throttle shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c48",
+          "designation": "48",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "c49",
+          "designation": "49",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "nc50",
+          "designation": "50",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "nc51",
+          "designation": "51",
+          "notConnected": true,
+          "cavityPlugPartId": null
+        },
+        {
+          "id": "c52",
+          "designation": "52",
+          "signal": "+5 V turbo speed",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c53",
+          "designation": "53",
+          "signal": "Turbo speed signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c54",
+          "designation": "54",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "c55",
+          "designation": "55",
+          "cavityPlugPartId": "pl_sz8",
+          "notConnected": true
+        },
+        {
+          "id": "c56",
+          "designation": "56",
+          "signal": "Gnd turbo speed",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c57",
+          "designation": "57",
+          "signal": "Turbo speed shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "c58",
+          "designation": "58",
+          "signal": "Boost solenoid (-)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
+        },
+        {
+          "id": "nc59",
+          "designation": "59",
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
           "id": "nc60",
@@ -1277,10 +1266,10 @@
           "cavityPlugPartId": null
         },
         {
-          "id": "c32",
+          "id": "nc61",
           "designation": "61",
-          "cavityPlugPartId": "pl_sz16",
-          "notConnected": true
+          "notConnected": true,
+          "cavityPlugPartId": null
         },
         {
           "id": "nc62",
@@ -1289,28 +1278,32 @@
           "cavityPlugPartId": null
         },
         {
-          "id": "nc63",
+          "id": "c63",
           "designation": "63",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "+8 V to cam sensor",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc64",
+          "id": "c64",
           "designation": "64",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Cam sensor signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc65",
+          "id": "c65",
           "designation": "65",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Gnd cam sensor",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc66",
+          "id": "c66",
           "designation": "66",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Cam sensor shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "nc67",
@@ -1331,10 +1324,11 @@
           "cavityPlugPartId": null
         },
         {
-          "id": "nc70",
+          "id": "c70",
           "designation": "70",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Coolant temp signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "nc71",
@@ -1355,22 +1349,25 @@
           "cavityPlugPartId": null
         },
         {
-          "id": "nc74",
+          "id": "c74",
           "designation": "74",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Crank sensor signal",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc75",
+          "id": "c75",
           "designation": "75",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Gnd crank sensor",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc76",
+          "id": "c76",
           "designation": "76",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "Crank sensor shield",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
           "id": "nc77",
@@ -1409,76 +1406,79 @@
           "cavityPlugPartId": null
         },
         {
-          "id": "nc83",
+          "id": "c83",
           "designation": "83",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "EHPS enable +12 V",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc84",
+          "id": "c84",
           "designation": "84",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "EHPS pump speed",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc85",
+          "id": "c85",
           "designation": "85",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "signal": "EHPS relay coil (-)",
+          "contactPartId": "ct_hdp16s",
+          "propagate": false
         },
         {
-          "id": "nc86",
+          "id": "c86",
           "designation": "86",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc87",
+          "id": "c87",
           "designation": "87",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc88",
+          "id": "c88",
           "designation": "88",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc89",
+          "id": "c89",
           "designation": "89",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc90",
+          "id": "c90",
           "designation": "90",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc91",
+          "id": "c91",
           "designation": "91",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc92",
+          "id": "c92",
           "designation": "92",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc93",
+          "id": "c93",
           "designation": "93",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
-          "id": "nc94",
+          "id": "c94",
           "designation": "94",
-          "notConnected": true,
-          "cavityPlugPartId": null
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
         },
         {
           "id": "nc95",
@@ -2224,7 +2224,7 @@
         "y": -120
       },
       "propagate": false,
-      "label": "BH-B pin 86 (bulkhead B, RH firewall, on B-engine) - ECU B18 throttle motor +"
+      "label": "BH-B pin 45 (bulkhead B, RH firewall, on B-engine) - ECU B18 throttle motor +"
     },
     {
       "id": "br_w215_e",
@@ -2239,7 +2239,7 @@
         "y": 3180
       },
       "propagate": false,
-      "label": "BH-B pin 87 (bulkhead B, RH firewall, on B-engine) - ECU B26 throttle motor -"
+      "label": "BH-B pin 46 (bulkhead B, RH firewall, on B-engine) - ECU B26 throttle motor -"
     },
     {
       "id": "br_cab_etbm_sh",
@@ -2254,7 +2254,7 @@
         "y": 3240
       },
       "propagate": false,
-      "label": "BH-B pin 88 (bulkhead B, on B-engine) - throttle motor cable screen to ECU B17"
+      "label": "BH-B pin 50 (bulkhead B, on B-engine) - throttle motor cable screen to ECU B17"
     },
     {
       "id": "br_w_eps_rly_e",
@@ -2286,7 +2286,7 @@
           "color": "White",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c24"
+            "handle": "c74"
           },
           "target": {
             "id": "crank",
@@ -2303,7 +2303,7 @@
         "color": "Shield",
         "source": {
           "id": "bh_a_eng",
-          "handle": "c33"
+          "handle": "c76"
         },
         "identColors": [
           "Yellow",
@@ -2324,7 +2324,7 @@
           "color": "White",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c29"
+            "handle": "c64"
           },
           "target": {
             "id": "cam",
@@ -2341,7 +2341,7 @@
         "color": "Shield",
         "source": {
           "id": "bh_a_eng",
-          "handle": "c34"
+          "handle": "c66"
         },
         "identColors": [
           "Yellow",
@@ -2362,7 +2362,7 @@
           "color": "Red",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c40"
+            "handle": "c52"
           },
           "target": {
             "id": "turbospd",
@@ -2377,7 +2377,7 @@
           "color": "Yellow",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c43"
+            "handle": "c56"
           },
           "target": {
             "id": "turbospd",
@@ -2392,7 +2392,7 @@
           "color": "Blue",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c7"
+            "handle": "c53"
           },
           "target": {
             "id": "turbospd",
@@ -2408,7 +2408,7 @@
         "color": "Shield",
         "source": {
           "id": "bh_a_eng",
-          "handle": "c6"
+          "handle": "c57"
         },
         "identColors": [
           "White"
@@ -2459,7 +2459,7 @@
           "color": "Blue",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c9"
+            "handle": "c31"
           },
           "target": {
             "id": "flex",
@@ -2476,7 +2476,7 @@
         "color": "Shield",
         "source": {
           "id": "bh_a_eng",
-          "handle": "c10"
+          "handle": "c32"
         },
         "identColors": [
           "White",
@@ -2497,7 +2497,7 @@
           "color": "Red",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c2"
+            "handle": "c41"
           },
           "target": {
             "id": "etb",
@@ -2527,7 +2527,7 @@
           "color": "Green",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c21"
+            "handle": "c42"
           },
           "target": {
             "id": "etb",
@@ -2542,7 +2542,7 @@
           "color": "Blue",
           "source": {
             "id": "bh_a_eng",
-            "handle": "c22"
+            "handle": "c44"
           },
           "target": {
             "id": "etb",
@@ -2558,7 +2558,7 @@
         "color": "Shield",
         "source": {
           "id": "bh_a_eng",
-          "handle": "c11"
+          "handle": "c47"
         },
         "identColors": [
           "Yellow"
@@ -3326,7 +3326,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "be_660",
-      "label": "Switched +12 V splice - BH-A pin 20 to boost solenoid and flex sensor"
+      "label": "Switched +12 V splice - BH-A pin 30 to boost solenoid and flex sensor"
     },
     {
       "id": "sp_gndout_eng",
@@ -3340,7 +3340,7 @@
       },
       "partId": "spp_crimp_14_10",
       "locationId": "be_660",
-      "label": "Sensor return splice - BH-A pin 26 (ECU A24) to coolant temp, intake temp, throttle"
+      "label": "Sensor return splice - BH-A pin 34 (ECU A24) to coolant temp, intake temp, throttle"
     },
     {
       "id": "sp_chassis_eng",
@@ -3367,7 +3367,7 @@
         "y": 1530
       },
       "partId": "spp_solder_generic",
-      "label": "Injector +12 V splice - BH-A pin 1 (LOGIC INJ 15A) to injectors 1-4"
+      "label": "Injector +12 V splice - BH-A pin 2 (LOGIC INJ 15A) to injectors 1-4"
     },
     {
       "id": "sp_cop_eng",
@@ -3380,7 +3380,7 @@
         "y": 930
       },
       "partId": "spp_solder_generic",
-      "label": "Coil +12 V splice - BH-A pin 2 (LOGIC COP 15A) to coils 1-4"
+      "label": "Coil +12 V splice - BH-A pin 1 (LOGIC COP 15A) to coils 1-4"
     },
     {
       "id": "sp_gndout_eng2",
@@ -3394,13 +3394,13 @@
         "x": 930,
         "y": 2100
       },
-      "label": "Sensor return splice - BH-A pin 29 (ECU A24) to MAP and flex sensor"
+      "label": "Sensor return splice - BH-A pin 18 (ECU A24) to MAP and flex sensor"
     }
   ],
   "schematicNotes": [
     {
       "id": "n_cavity_notes",
-      "text": "BULKHEAD BH-A NOTES\nBH-A pin 42: EHPS pump enable, +12 V from the LOGIC MRS 7.5 A fuse (fed by the EPS enable relay pin 87, ignition-switched). Moved from bulkhead B 2026-09-28 because the pump ECU signal (A27) is on connector A. The wire to the pump (plug C pin 1) is drawn on ST185-EngineRoom-C.\nBH-A pin 44: ECU A27 (Aux 7) speed pulse to the EHPS pump plug B pin 2, drawn on ST185-EngineRoom-C.\nBH-A pin 56: EHPS pump plug B pin 5 switches the EPS relay coil pin 85 (glove box) to ground (DECISIONS R22).",
+      "text": "BULKHEAD BH-A NOTES\nBH-A pin 83: EHPS pump enable, +12 V from the LOGIC MRS 7.5 A fuse (fed by the EPS enable relay pin 87, ignition-switched). Moved from bulkhead B 2026-09-28 because the pump ECU signal (A27) is on connector A. The wire to the pump (plug C pin 1) is drawn on ST185-EngineRoom-C.\nBH-A pin 84: ECU A27 (Aux 7) speed pulse to the EHPS pump plug B pin 2, drawn on ST185-EngineRoom-C.\nBH-A pin 85: EHPS pump plug B pin 5 switches the EPS relay coil pin 85 (glove box) to ground (DECISIONS R22).",
       "schematicPosition": {
         "x": 510,
         "y": 180
@@ -4809,6 +4809,24 @@
       "id": "pl_sz16",
       "partNumber": "114017",
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz12",
+      "partNumber": "0413-214-1205",
+      "description": "PLUG, SEALING, CAVITY, SIZE 12, YELLOW",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz4",
+      "partNumber": "114019-ZZ",
+      "description": "PLUG, SEALING, CAVITY, SIZE 4, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "pl_sz8",
+      "partNumber": "114018-ZZ",
+      "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
       "manufacturer": "TE DEUTSCH"
     }
   ],

@@ -2,172 +2,7 @@
  "ST185-A-cabin.harness": {
   "connectors": {
    "bh_a_fw": {
-    "cavities": {
-     "c48": [
-      "Injector +12 V feed",
-      "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
-     ],
-     "c49": [
-      "Coil +12 V feed",
-      "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
-     ],
-     "c24": [
-      "Crank sensor signal",
-      "ECU-A A8"
-     ],
-     "c41": [
-      "Gnd crank sensor",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
-     ],
-     "c33": [
-      "Crank sensor shield",
-      "Crank VR screen"
-     ],
-     "c4": [
-      "+8 V to cam sensor",
-      "+8V Out to cam Hall"
-     ],
-     "c29": [
-      "Cam sensor signal",
-      "ECU-A A9"
-     ],
-     "c42": [
-      "Gnd cam sensor",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
-     ],
-     "c34": [
-      "Cam sensor shield",
-      "Cam Hall screen"
-     ],
-     "c40": [
-      "+5 V turbo speed",
-      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
-     ],
-     "c7": [
-      "Turbo speed signal",
-      "ECU-A A30"
-     ],
-     "c43": [
-      "Gnd turbo speed",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
-     ],
-     "c6": [
-      "Turbo speed shield",
-      "Turbo speed screen"
-     ],
-     "c5": [
-      "+12 V boost + flex",
-      "Switched 12V to engine sensors"
-     ],
-     "c9": [
-      "Flex fuel signal",
-      "ECU-A A31"
-     ],
-     "c10": [
-      "Flex fuel shield",
-      "Flex fuel screen"
-     ],
-     "c2": [
-      "+5 V throttle sensor",
-      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
-     ],
-     "c21": [
-      "Throttle pos 1 main",
-      "ECU-A A22"
-     ],
-     "c22": [
-      "Throttle pos 2 sub",
-      "ECU-A A33"
-     ],
-     "c3": [
-      "Gnd IAT/TPS/coolant",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
-     ],
-     "c11": [
-      "Throttle shield",
-      "ETB sensor group screen"
-     ],
-     "c39": [
-      "+5 V MAP sensor",
-      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
-     ],
-     "c44": [
-      "Gnd flex + MAP",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
-     ],
-     "c8": [
-      "MAP sensor signal",
-      "ECU-A A17"
-     ],
-     "c13": [
-      "Injector 1 drive (-)",
-      "ECU-A A4"
-     ],
-     "c14": [
-      "Injector 2 drive (-)",
-      "ECU-A A3"
-     ],
-     "c15": [
-      "Injector 3 drive (-)",
-      "ECU-A A2"
-     ],
-     "c16": [
-      "Injector 4 drive (-)",
-      "ECU-A A1"
-     ],
-     "c17": [
-      "Coil 1 trigger (IGT)",
-      "ECU-A A13"
-     ],
-     "c18": [
-      "Coil 2 trigger (IGT)",
-      "ECU-A A12"
-     ],
-     "c19": [
-      "Coil 3 trigger (IGT)",
-      "ECU-A A11"
-     ],
-     "c20": [
-      "Coil 4 trigger (IGT)",
-      "ECU-A A10"
-     ],
-     "c23": [
-      "Boost solenoid (-)",
-      "ECU-A A21"
-     ],
-     "c25": [
-      "Coolant temp signal",
-      "ECU-A A15"
-     ],
-     "c26": [
-      "Intake temp signal",
-      "ECU-A A16"
-     ],
-     "c35": [
-      "EHPS enable +12 V",
-      "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
-     ],
-     "c36": [
-      "EHPS pump speed",
-      "Aux 7 MRS speed-out (ECU A27)"
-     ],
-     "c45": [
-      "+5 V oil pressure",
-      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
-     ],
-     "c46": [
-      "+5 V fuel pressure",
-      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
-     ],
-     "c47": [
-      "+5 V coolant press",
-      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
-     ],
-     "c27": [
-      "EHPS relay coil (-)",
-      "MR-S pump B5 -> EPS relay k_eps coil- (85)"
-     ]
-    }
+    "cavities": {}
    },
    "ix_ws_front_p": {
     "cavities": {
@@ -300,100 +135,7 @@
  "ST185-B-cabin.harness": {
   "connectors": {
    "bh_b_fw": {
-    "cavities": {
-     "c25": [
-      "Back-up sw +12 V in",
-      "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
-     ],
-     "c7": [
-      "Oil pressure signal",
-      "ECU-B B15"
-     ],
-     "c8": [
-      "Fuel pressure signal",
-      "ECU-B B16"
-     ],
-     "c9": [
-      "Coolant press signal",
-      "ECU-B B23"
-     ],
-     "c10": [
-      "Oil temp signal",
-      "ECU-B B6"
-     ],
-     "c11": [
-      "Charge temp signal",
-      "ECU-B B7"
-     ],
-     "c12": [
-      "Reverse sw +12 V out",
-      "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
-     ],
-     "c19": [
-      "Gnd oil/clnt/temps",
-      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
-     ],
-     "c21": [
-      "Gnd fuel press + VSS",
-      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
-     ],
-     "c16": [
-      "Knock sensor signal",
-      "Knock 1 SIG+ (ECU B9)"
-     ],
-     "c17": [
-      "Knock sensor (-)",
-      "Knock 1 SIG- (to Gnd Out B22)"
-     ],
-     "c18": [
-      "Knock sensor shield",
-      "Knock 1 screen"
-     ],
-     "c5": [
-      "ETB motor +",
-      "ETB motor + (Aux 9, B18)"
-     ],
-     "c6": [
-      "ETB motor -",
-      "ETB motor - (Aux 10, B26)"
-     ],
-     "c22": [
-      "ETB motor shield",
-      "ETB motor screen"
-     ],
-     "c15": [
-      "Gearbox speed signal",
-      "Gearbox VSS signal (ECU B29, DI 8)"
-     ],
-     "c20": [
-      "+12 V gearbox speed",
-      "Switched 12V to gearbox VSS (from sp_sw12)"
-     ],
-     "c23": [
-      "Gearbox speed shield",
-      "Gearbox VSS screen"
-     ],
-     "c13": [
-      "CAN H to CAN-Lambda",
-      "CAN H to Link CAN-Lambda (ST185-CAN)"
-     ],
-     "c14": [
-      "CAN L to CAN-Lambda",
-      "CAN L to Link CAN-Lambda (ST185-CAN)"
-     ],
-     "c24": [
-      "CAN-Lambda shield",
-      "CAN-Lambda CAN pair screen"
-     ],
-     "c3": [
-      "CAN-Lambda +12 V",
-      "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
-     ],
-     "c4": [
-      "CAN-Lambda ground",
-      "CAN-Lambda ground to cabin chassis ground (14 AWG)"
-     ]
-    }
+    "cavities": {}
    },
    "ecu_b": {
     "cavities": {
@@ -567,7 +309,7 @@
    ],
    "br_w_sw7_c": [
     "",
-    "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8"
+    "Broken off - continues on ST185-CSB3: back-up switch B1 pin 1 (bulkhead pin 78, sp_rev_sw) -> opto IN2 -> CSB3 S8"
    ],
    "br_w39": [
     "",
@@ -579,23 +321,23 @@
    ],
    "br_wc_h_bh": [
     "",
-    "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead B c13"
+    "Broken off - continues on ST185-CAN: CAN H from the CAN bus splice to bulkhead pin 79"
    ],
    "br_wc_l_bh": [
     "",
-    "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead B c14"
+    "Broken off - continues on ST185-CAN: CAN L from the CAN bus splice to bulkhead pin 80"
    ],
    "br_w_lam12_c": [
     "",
-    "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3"
+    "Broken off - continues on ST185-CabinPower: CAN-Lambda +12V from LOGIC LAM to bulkhead pin 95"
    ],
    "br_w_lamg_b": [
     "",
-    "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead B c4 to cabin chassis ground sp_chassis"
+    "Broken off - continues on ST185-A-cabin: CAN-Lambda ground from bulkhead pin 96 to cabin chassis ground sp_chassis"
    ],
    "br_cab_canbh_sh": [
     "",
-    "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead B c24"
+    "Broken off - screen comes in from ST185-CAN: CAN pair screen from sp_shield_can to bulkhead pin 81"
    ],
    "br_w_shd_can": [
     "",
@@ -623,11 +365,11 @@
    ],
    "br_rev_coil": [
     "",
-    "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86"
+    "Broken off - continues on ST185-CabinPower: back-up switch B1 pin 1 (bulkhead pin 78) -> reverse relay k_rev 86"
    ],
    "br_rev_feed": [
     "",
-    "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2"
+    "Broken off - continues on ST185-CabinPower: GAUGE 15A feed (J/B3 3B-9) -> bulkhead pin 77 -> back-up switch B1 pin 2"
    ],
    "t_evap_rtn": [
     "",
@@ -769,7 +511,7 @@
      ],
      "c2": [
       "EHPS coil-",
-      "Coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead A c27)"
+      "Coil - <- MR-S pump B5 (br_w_eps_rly, bulkhead pin 85)"
      ],
      "c3": [
       "EHPS coil+",
@@ -845,7 +587,7 @@
      ],
      "c3": [
       "Rev coil+",
-      "Coil + <- back-up switch B1 pin 1, +12V in reverse (bulkhead B c12, br_rev_coil)"
+      "Coil + <- back-up switch B1 pin 1, +12V in reverse (bulkhead pin 78, br_rev_coil)"
      ],
      "c4": [
       "Rev 12V out",
@@ -1153,11 +895,11 @@
   "terminals": {
    "br_w_inj_pwr_c": [
     "",
-    "Broken off - continues on ST185-A-cabin: LOGIC INJ 15A injector rail to bulkhead A c48 (shared DRB102)"
+    "Broken off - continues on ST185-A-cabin: LOGIC INJ 15A injector rail to bulkhead pin 2 (shared DRB102)"
    ],
    "br_w_cop_pwr_c": [
     "",
-    "Broken off - continues on ST185-A-cabin: LOGIC COP 15A COP rail to bulkhead A c49 (shared DRB102)"
+    "Broken off - continues on ST185-A-cabin: LOGIC COP 15A COP rail to bulkhead pin 1 (shared DRB102)"
    ],
    "br_w_fb_sw12": [
     "",
@@ -1169,7 +911,7 @@
    ],
    "br_w_lam12_c": [
     "",
-    "Broken off - continues on ST185-B-cabin: CAN-Lambda +12V from LOGIC LAM to bulkhead B c3"
+    "Broken off - continues on ST185-B-cabin: CAN-Lambda +12V from LOGIC LAM to bulkhead pin 95"
    ],
    "br_w_pmu_hl": [
     "",
@@ -1305,7 +1047,7 @@
    ],
    "br_w_eps_rly": [
     "",
-    "Broken off - continues on ST185-A-cabin: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+    "Broken off - continues on ST185-A-cabin: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead pin 85"
    ],
    "br_w_rb2_wl": [
     "",
@@ -1317,11 +1059,11 @@
    ],
    "br_rev_feed": [
     "",
-    "Broken off - continues on ST185-B-cabin: GAUGE 15A feed (J/B3 3B-9) -> bulkhead B c25 -> back-up switch B1 pin 2"
+    "Broken off - continues on ST185-B-cabin: GAUGE 15A feed (J/B3 3B-9) -> bulkhead pin 77 -> back-up switch B1 pin 2"
    ],
    "br_rev_coil": [
     "",
-    "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12) -> reverse relay k_rev 86"
+    "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead pin 78) -> reverse relay k_rev 86"
    ],
    "br_rl_rev": [
     "",
@@ -1372,172 +1114,7 @@
  "ST185-A-engine.harness": {
   "connectors": {
    "bh_a_eng": {
-    "cavities": {
-     "c48": [
-      "Injector +12 V feed",
-      "Switched 12V - INJECTOR power feed, fuse LOGIC INJ 15A (14 AWG)"
-     ],
-     "c49": [
-      "Coil +12 V feed",
-      "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
-     ],
-     "c24": [
-      "Crank sensor signal",
-      "ECU-A A8"
-     ],
-     "c41": [
-      "Gnd crank sensor",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
-     ],
-     "c33": [
-      "Crank sensor shield",
-      "Crank VR screen"
-     ],
-     "c4": [
-      "+8 V to cam sensor",
-      "+8V Out to cam Hall"
-     ],
-     "c29": [
-      "Cam sensor signal",
-      "ECU-A A9"
-     ],
-     "c42": [
-      "Gnd cam sensor",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
-     ],
-     "c34": [
-      "Cam sensor shield",
-      "Cam Hall screen"
-     ],
-     "c40": [
-      "+5 V turbo speed",
-      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
-     ],
-     "c7": [
-      "Turbo speed signal",
-      "ECU-A A30"
-     ],
-     "c43": [
-      "Gnd turbo speed",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
-     ],
-     "c6": [
-      "Turbo speed shield",
-      "Turbo speed screen"
-     ],
-     "c5": [
-      "+12 V boost + flex",
-      "Switched 12V to engine sensors"
-     ],
-     "c9": [
-      "Flex fuel signal",
-      "ECU-A A31"
-     ],
-     "c10": [
-      "Flex fuel shield",
-      "Flex fuel screen"
-     ],
-     "c2": [
-      "+5 V throttle sensor",
-      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
-     ],
-     "c21": [
-      "Throttle pos 1 main",
-      "ECU-A A22"
-     ],
-     "c22": [
-      "Throttle pos 2 sub",
-      "ECU-A A33"
-     ],
-     "c3": [
-      "Gnd IAT/TPS/coolant",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - IAT / ETB / ECT branch"
-     ],
-     "c11": [
-      "Throttle shield",
-      "ETB sensor group screen"
-     ],
-     "c39": [
-      "+5 V MAP sensor",
-      "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - MAP"
-     ],
-     "c44": [
-      "Gnd flex + MAP",
-      "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
-     ],
-     "c8": [
-      "MAP sensor signal",
-      "ECU-A A17"
-     ],
-     "c13": [
-      "Injector 1 drive (-)",
-      "ECU-A A4"
-     ],
-     "c14": [
-      "Injector 2 drive (-)",
-      "ECU-A A3"
-     ],
-     "c15": [
-      "Injector 3 drive (-)",
-      "ECU-A A2"
-     ],
-     "c16": [
-      "Injector 4 drive (-)",
-      "ECU-A A1"
-     ],
-     "c17": [
-      "Coil 1 trigger (IGT)",
-      "ECU-A A13"
-     ],
-     "c18": [
-      "Coil 2 trigger (IGT)",
-      "ECU-A A12"
-     ],
-     "c19": [
-      "Coil 3 trigger (IGT)",
-      "ECU-A A11"
-     ],
-     "c20": [
-      "Coil 4 trigger (IGT)",
-      "ECU-A A10"
-     ],
-     "c23": [
-      "Boost solenoid (-)",
-      "ECU-A A21"
-     ],
-     "c25": [
-      "Coolant temp signal",
-      "ECU-A A15"
-     ],
-     "c26": [
-      "Intake temp signal",
-      "ECU-A A16"
-     ],
-     "c35": [
-      "EHPS enable +12 V",
-      "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
-     ],
-     "c36": [
-      "EHPS pump speed",
-      "Aux 7 MRS speed-out (ECU A27)"
-     ],
-     "c45": [
-      "+5 V oil pressure",
-      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
-     ],
-     "c46": [
-      "+5 V fuel pressure",
-      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
-     ],
-     "c47": [
-      "+5 V coolant press",
-      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
-     ],
-     "c27": [
-      "EHPS relay coil (-)",
-      "MR-S pump B5 -> EPS relay k_eps coil- (85)"
-     ]
-    }
+    "cavities": {}
    },
    "turbospd": {
     "label": [
@@ -1887,11 +1464,11 @@
    ],
    "br_w_hv_mrs_en_e": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead A c35"
+    "Broken off - continues on ST185-EngineRoom-C: MRS enable, bulkhead pin 83"
    ],
    "br_w_mrs_e": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead A c36"
+    "Broken off - continues on ST185-EngineRoom-C: MRS speed (ECU A27), bulkhead pin 84"
    ],
    "br_w_strl": [
     "",
@@ -1899,119 +1476,26 @@
    ],
    "br_w124_e": [
     "",
-    "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead B c5"
+    "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor + (Aux 9, B18), bulkhead pin 45"
    ],
    "br_w215_e": [
     "",
-    "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead B c6"
+    "Broken off - spur comes in from ST185-B-engine (bulkhead B): ETB motor - (Aux 10, B26), bulkhead pin 46"
    ],
    "br_cab_etbm_sh": [
     "",
-    "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead B c22"
+    "Broken off - screen comes in from ST185-B-engine: ETB motor cable screen, bulkhead pin 50"
    ],
    "br_w_eps_rly_e": [
     "",
-    "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+    "Broken off - continues on ST185-EngineRoom-C: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead pin 85"
    ]
   }
  },
  "ST185-B-engine.harness": {
   "connectors": {
    "bh_b_eng": {
-    "cavities": {
-     "c25": [
-      "Back-up sw +12 V in",
-      "Back-up switch B1 pin 2 feed <- J/B No.1 GAUGE 15A (J/B3 3B-9 R-L)"
-     ],
-     "c7": [
-      "Oil pressure signal",
-      "ECU-B B15"
-     ],
-     "c8": [
-      "Fuel pressure signal",
-      "ECU-B B16"
-     ],
-     "c9": [
-      "Coolant press signal",
-      "ECU-B B23"
-     ],
-     "c10": [
-      "Oil temp signal",
-      "ECU-B B6"
-     ],
-     "c11": [
-      "Charge temp signal",
-      "ECU-B B7"
-     ],
-     "c12": [
-      "Reverse sw +12 V out",
-      "Back-up switch B1 pin 1 out (+12V in reverse) -> reverse relay k_rev 86 + opto IN2 (CSB3 S8)"
-     ],
-     "c19": [
-      "Gnd oil/clnt/temps",
-      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - oil temp / charge-pipe IAT / oil / coolant pressure branch"
-     ],
-     "c21": [
-      "Gnd fuel press + VSS",
-      "Gnd Out (ECU B22) to B engine sensors (bulkhead splice sp_gnd_bhb, 20 AWG) - fuel pressure / VSS branch"
-     ],
-     "c16": [
-      "Knock sensor signal",
-      "Knock 1 SIG+ (ECU B9)"
-     ],
-     "c17": [
-      "Knock sensor (-)",
-      "Knock 1 SIG- (to Gnd Out B22)"
-     ],
-     "c18": [
-      "Knock sensor shield",
-      "Knock 1 screen"
-     ],
-     "c5": [
-      "ETB motor +",
-      "ETB motor + (Aux 9, B18)"
-     ],
-     "c6": [
-      "ETB motor -",
-      "ETB motor - (Aux 10, B26)"
-     ],
-     "c22": [
-      "ETB motor shield",
-      "ETB motor screen"
-     ],
-     "c15": [
-      "Gearbox speed signal",
-      "Gearbox VSS signal (ECU B29, DI 8)"
-     ],
-     "c20": [
-      "+12 V gearbox speed",
-      "Switched 12V to gearbox VSS (from sp_sw12)"
-     ],
-     "c23": [
-      "Gearbox speed shield",
-      "Gearbox VSS screen"
-     ],
-     "c13": [
-      "CAN H to CAN-Lambda",
-      "CAN H to Link CAN-Lambda (ST185-CAN)"
-     ],
-     "c14": [
-      "CAN L to CAN-Lambda",
-      "CAN L to Link CAN-Lambda (ST185-CAN)"
-     ],
-     "c24": [
-      "CAN-Lambda shield",
-      "CAN-Lambda CAN pair screen"
-     ],
-     "c3": [
-      "CAN-Lambda +12 V",
-      "CAN-Lambda +12V, LOGIC LAM 7.5A (14 AWG)"
-     ],
-     "c4": [
-      "CAN-Lambda ground",
-      "CAN-Lambda ground to cabin chassis ground (14 AWG)"
-     ]
-    }
+    "cavities": {}
    },
    "oilp": {
     "label": [
@@ -2133,7 +1617,7 @@
      ],
      "c3": [
       "speed signal out",
-      "SP1 speed output (pin 3) -> bulkhead B c15 *"
+      "SP1 speed output (pin 3) -> bulkhead pin 68 *"
      ],
      "c2": [
       "sensor ground",
@@ -2177,35 +1661,35 @@
   "terminals": {
    "br_w124_e": [
     "",
-    "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead B c5"
+    "Broken off - spur continues on ST185-A-engine: ETB motor + (Aux 9, B18), bulkhead pin 45"
    ],
    "br_w215_e": [
     "",
-    "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead B c6"
+    "Broken off - spur continues on ST185-A-engine: ETB motor - (Aux 10, B26), bulkhead pin 46"
    ],
    "br_wc_h_lam": [
     "",
-    "Broken off - continues on ST185-CAN: CAN H from bulkhead B c13 to the Lambda"
+    "Broken off - continues on ST185-CAN: CAN H from bulkhead pin 79 to the Lambda"
    ],
    "br_wc_l_lam": [
     "",
-    "Broken off - continues on ST185-CAN: CAN L from bulkhead B c14 to the Lambda"
+    "Broken off - continues on ST185-CAN: CAN L from bulkhead pin 80 to the Lambda"
    ],
    "br_w_lam12": [
     "",
-    "Broken off - continues on ST185-CAN: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3"
+    "Broken off - continues on ST185-CAN: CAN-Lambda +12V from LOGIC LAM, bulkhead pin 95"
    ],
    "br_w_lamg": [
     "",
-    "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead B c4"
+    "Broken off - continues on ST185-CAN: CAN-Lambda ground to cabin chassis ground, bulkhead pin 96"
    ],
    "br_cab_etbm_sh": [
     "",
-    "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead B c22"
+    "Broken off - screen continues on ST185-A-engine: ETB motor cable screen from bulkhead pin 50"
    ],
    "br_cab_lamcan_sh": [
     "",
-    "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead B c24"
+    "Broken off - screen continues on ST185-CAN: CAN-Lambda pair screen from bulkhead pin 81"
    ]
   }
  },
@@ -2267,35 +1751,35 @@
    ],
    "br_w_lam12": [
     "",
-    "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead B c3"
+    "Broken off - continues on ST185-B-engine: CAN-Lambda +12V from LOGIC LAM, bulkhead pin 95"
    ],
    "br_w_lamg": [
     "",
-    "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead B c4"
+    "Broken off - continues on ST185-B-engine: CAN-Lambda ground to cabin chassis ground, bulkhead pin 96"
    ],
    "br_wc_h_bh": [
     "",
-    "Broken off - continues on ST185-B-cabin: CAN H through bulkhead B c13"
+    "Broken off - continues on ST185-B-cabin: CAN H through bulkhead pin 79"
    ],
    "br_wc_l_bh": [
     "",
-    "Broken off - continues on ST185-B-cabin: CAN L through bulkhead B c14"
+    "Broken off - continues on ST185-B-cabin: CAN L through bulkhead pin 80"
    ],
    "br_wc_h_lam": [
     "",
-    "Broken off - continues on ST185-B-engine: CAN H from bulkhead B c13 to the Lambda"
+    "Broken off - continues on ST185-B-engine: CAN H from bulkhead pin 79 to the Lambda"
    ],
    "br_wc_l_lam": [
     "",
-    "Broken off - continues on ST185-B-engine: CAN L from bulkhead B c14 to the Lambda"
+    "Broken off - continues on ST185-B-engine: CAN L from bulkhead pin 80 to the Lambda"
    ],
    "br_cab_lamcan_sh": [
     "",
-    "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead B c24"
+    "Broken off - screen comes in from ST185-B-engine: CAN-Lambda pair screen, bulkhead pin 81"
    ],
    "br_cab_canbh_sh": [
     "",
-    "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead B c24"
+    "Broken off - screen continues on ST185-B-cabin: CAN pair screen to bulkhead pin 81"
    ],
    "br_w_shd_can": [
     "",
@@ -2549,11 +2033,11 @@
    ],
    "br_w_hv_mrs_en_e": [
     "",
-    "Broken off - continues on ST185-A-engine: MRS enable, bulkhead A c35"
+    "Broken off - continues on ST185-A-engine: MRS enable, bulkhead pin 83"
    ],
    "br_w_mrs_e": [
     "",
-    "Broken off - continues on ST185-A-engine: MRS speed (ECU A27), bulkhead A c36"
+    "Broken off - continues on ST185-A-engine: MRS speed (ECU A27), bulkhead pin 84"
    ],
    "br_w_pmu_hl": [
     "",
@@ -2649,7 +2133,7 @@
    ],
    "br_w_eps_rly_e": [
     "",
-    "Broken off - continues on ST185-A-engine: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead A c27"
+    "Broken off - continues on ST185-A-engine: EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead pin 85"
    ],
    "br_w_rb2_wl": [
     "",
@@ -3652,7 +3136,7 @@
    ],
    "br_w_sw7_c": [
     "",
-    "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead B c12, sp_rev_sw) -> opto IN2 -> CSB3 S8"
+    "Broken off - continues on ST185-B-cabin: back-up switch B1 pin 1 (bulkhead pin 78, sp_rev_sw) -> opto IN2 -> CSB3 S8"
    ],
    "br_w_oil_k": [
     "",

@@ -1,5 +1,5 @@
 conn_id,name,harness,part_number,cavities,mates_with,note
-bh_b_eng,"Bulkhead BH-B (DRB102, RH firewall)",B-engine,DRB16-102SAE-L018,102,bh_b_fw on B-cabin,"shared DRB102 (section B here, section A on A-engine)"
+bh_b_eng,"Bulkhead BH-B (DRB102, RH firewall)",B-engine,DRB16-102SAE-L018,102,bh_b_fw on B-cabin,"shared DRB102 (loom B wires here, loom A wires on A-engine)"
 oilp,"Oil pressure sensor (sensor block, LH firewall)",B-engine,12110293,3,,
 fuelp,"Fuel pressure sensor (sensor block, LH firewall)",B-engine,12110293,3,,
 clntp,"Coolant pressure sensor (rear of block, LH)",B-engine,12110293,3,,
