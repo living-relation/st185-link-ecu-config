@@ -290,7 +290,7 @@
    "where": "POWER AMI IN HTR (40A) -> heater terminal 30",
    "awg": "8",
    "od": 5.13,
-   "path": "straight 1 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 5 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 15.4,
    "rule": "3 x OD, supported",
@@ -301,7 +301,7 @@
    "where": "POWER AMI IN EFI (30A) -> k_efi terminal 30",
    "awg": "12",
    "od": 2.97,
-   "path": "straight 32 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 35 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 8.9,
    "rule": "3 x OD, supported",
@@ -312,7 +312,7 @@
    "where": "POWER AMI IN STR (30A) -> k_str terminal 30",
    "awg": "12",
    "od": 2.97,
-   "path": "straight 3 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 6 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 8.9,
    "rule": "3 x OD, supported",
@@ -323,7 +323,7 @@
    "where": "POWER AMI IN FAN (40A) -> k_fan terminal 30",
    "awg": "8",
    "od": 5.13,
-   "path": "straight 30 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 34 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 15.4,
    "rule": "3 x OD, supported",
@@ -334,7 +334,7 @@
    "where": "POWER AMI IN FAN2 (30A) -> k_fan2 terminal 30",
    "awg": "8",
    "od": 5.13,
-   "path": "straight 1 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 5 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 15.4,
    "rule": "3 x OD, supported",
@@ -345,7 +345,7 @@
    "where": "POWER AMI IN PWR (30A) -> power terminal 30",
    "awg": "10",
    "od": 3.61,
-   "path": "straight 31 mm, then 90 deg up round the printed saddle into the cavity",
+   "path": "straight 35 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
    "need": 10.8,
    "rule": "3 x OD, supported",
@@ -11344,7 +11344,7 @@
    0.98
   ],
   [
-   157.85,
+   154.5,
    173.3,
    35.6,
    50.4,
@@ -11353,7 +11353,7 @@
    0.8
   ],
   [
-   157.85,
+   154.5,
    173.3,
    53.6,
    68.4,
@@ -11362,7 +11362,7 @@
    0.8
   ],
   [
-   157.85,
+   154.5,
    173.3,
    71.6,
    86.4,
@@ -11371,7 +11371,7 @@
    0.8
   ],
   [
-   157.85,
+   154.5,
    173.3,
    89.6,
    104.4,
@@ -11380,7 +11380,7 @@
    0.8
   ],
   [
-   157.85,
+   154.5,
    173.3,
    107.6,
    122.4,
@@ -11389,7 +11389,7 @@
    0.8
   ],
   [
-   157.85,
+   154.5,
    173.3,
    125.6,
    140.4,
@@ -11398,7 +11398,7 @@
    0.8
   ],
   [
-   157.85,
+   154.5,
    173.3,
    143.6,
    158.4,
@@ -11682,8 +11682,8 @@
   "z_d": 32.0,
   "z_t": 52.5,
   "numbers": {
-   "R_strap_uohm_20C": 23.1,
-   "R_strap_uohm_95C": 30.0,
+   "R_strap_uohm_20C": 24.5,
+   "R_strap_uohm_95C": 31.7,
    "R_old_conductor_uohm_20C": 58.8,
    "joints": {
     "strap": "ear -> strap, strap -> lug: two clamped copper faces, no thread in the path",
@@ -11693,7 +11693,7 @@
     "HTR": {
      "amps": 40,
      "awg": 8,
-     "strap_W": 0.048,
+     "strap_W": 0.051,
      "old_conductor_W": 0.108,
      "strap_W_per_m": 0.84,
      "neck_W_per_m": 1.7,
@@ -11703,7 +11703,7 @@
     "EFI": {
      "amps": 30,
      "awg": 12,
-     "strap_W": 0.027,
+     "strap_W": 0.029,
      "old_conductor_W": 0.061,
      "strap_W_per_m": 0.47,
      "neck_W_per_m": 0.95,
@@ -11713,7 +11713,7 @@
     "STR": {
      "amps": 30,
      "awg": 12,
-     "strap_W": 0.027,
+     "strap_W": 0.029,
      "old_conductor_W": 0.061,
      "strap_W_per_m": 0.47,
      "neck_W_per_m": 0.95,
@@ -11723,7 +11723,7 @@
     "FAN": {
      "amps": 40,
      "awg": 8,
-     "strap_W": 0.048,
+     "strap_W": 0.051,
      "old_conductor_W": 0.108,
      "strap_W_per_m": 0.84,
      "neck_W_per_m": 1.7,
@@ -11733,7 +11733,7 @@
     "FAN2": {
      "amps": 30,
      "awg": 8,
-     "strap_W": 0.027,
+     "strap_W": 0.029,
      "old_conductor_W": 0.061,
      "strap_W_per_m": 0.47,
      "neck_W_per_m": 0.95,
@@ -11743,7 +11743,7 @@
     "PWR": {
      "amps": 30,
      "awg": 10,
-     "strap_W": 0.027,
+     "strap_W": 0.029,
      "old_conductor_W": 0.061,
      "strap_W_per_m": 0.47,
      "neck_W_per_m": 0.95,
@@ -11753,7 +11753,7 @@
     "BUS1": {
      "amps": 50,
      "awg": 8,
-     "strap_W": 0.075,
+     "strap_W": 0.079,
      "old_conductor_W": 0.169,
      "strap_W_per_m": 1.31,
      "neck_W_per_m": 2.65,
@@ -11763,7 +11763,7 @@
     "RTR": {
      "amps": 30,
      "awg": 10,
-     "strap_W": 0.027,
+     "strap_W": 0.029,
      "old_conductor_W": 0.061,
      "strap_W_per_m": 0.47,
      "neck_W_per_m": 0.95,
@@ -11773,7 +11773,7 @@
     "AM1": {
      "amps": 40,
      "awg": 8,
-     "strap_W": 0.048,
+     "strap_W": 0.051,
      "old_conductor_W": 0.108,
      "strap_W_per_m": 0.84,
      "neck_W_per_m": 1.7,
@@ -11783,7 +11783,7 @@
     "AM2": {
      "amps": 30,
      "awg": 10,
-     "strap_W": 0.027,
+     "strap_W": 0.029,
      "old_conductor_W": 0.061,
      "strap_W_per_m": 0.47,
      "neck_W_per_m": 0.95,
@@ -11793,7 +11793,7 @@
     "JB1": {
      "amps": 60,
      "awg": 6,
-     "strap_W": 0.108,
+     "strap_W": 0.114,
      "old_conductor_W": 0.243,
      "strap_W_per_m": 1.88,
      "neck_W_per_m": 3.82,
@@ -11803,7 +11803,7 @@
     "EPS": {
      "amps": 60,
      "awg": 8,
-     "strap_W": 0.108,
+     "strap_W": 0.114,
      "old_conductor_W": 0.243,
      "strap_W_per_m": 1.88,
      "neck_W_per_m": 3.82,
@@ -12891,8 +12891,8 @@
   "under_deck_ribs": {
    "IN": {
     "x": [
-     75.45,
-     100.15
+     78.8,
+     103.5
     ],
     "ribs": [
      [
@@ -12948,7 +12948,7 @@
    },
    "OUT": {
     "x": [
-     156.85,
+     153.5,
      173.9
     ],
     "ribs": [
@@ -13049,9 +13049,6 @@
    ]
   }
  },
- "pan_floor_pads": [
-  "Power_x 115.0"
- ],
  "battrelay": {
   "hcr150_model": "cad/vendor/te/1416010-1/c-1416010-1-a-3d.stp"
  },
@@ -13299,8 +13296,8 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 845.5,
-   "mass_g_pa12": 854.0,
+   "volume_cm3": 834.2,
+   "mass_g_pa12": 843.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13309,10 +13306,10 @@
    "size_mm": [
     173.6,
     238.5,
-    35.4
+    34.5
    ],
-   "volume_cm3": 156.7,
-   "mass_g_pa12": 158.0,
+   "volume_cm3": 157.0,
+   "mass_g_pa12": 159.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13385,7 +13382,7 @@
  "interference": [],
  "mass_g": {
   "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 153.1,
-  "Power_Strap_Out_CuC110_15x3_C": 301.4,
+  "Power_Strap_Out_CuC110_15x3_C": 319.3,
   "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 295.5,
   "Power_BarNeg_CuC110_25x6p35_L105": 133.0,
   "BattRelay_Bar_Power_CuC110_25x6p35": 49.2,

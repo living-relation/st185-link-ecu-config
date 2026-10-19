@@ -459,10 +459,16 @@
    "reason": "R196 model-only PR: base T (strip hold-downs); drawing regenerated in the markup 2026-10-18 pass"
   },
   "ST185-FB-117": {
-   "reason": "R196 / R197 model-only PR: PEM nuts + stages model (strap B); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
+   "reason": "R196 / R197 model-only PRs: PEM nuts + stages model (B), lug PEM clear of the bend (C, N36 = A); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
   },
   "ST185-FB-100P": {
-   "reason": "R196 model-only PR: FB-117 strap B (PEM nuts in the strap model); drawing regenerated in the markup 2026-10-18 pass"
+   "reason": "R196 model-only PRs: FB-117 strap B / C, FB-101 base W, FB-102 pan H; drawing regenerated in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-101": {
+   "reason": "R196 model-only PR: strap wells for the longer C-strap leg (N36 = A, base W); drawing regenerated in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-102": {
+   "reason": "R196 model-only PR: lug tongue notch follows the moved lugs (N36 = A, pan H); drawing regenerated in the markup 2026-10-18 pass"
   }
  }
 }

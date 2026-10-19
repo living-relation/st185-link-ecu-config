@@ -108,11 +108,12 @@ PA12 = dict(E=1700.0, sy=48.0, nu=0.39)
 # (web inboard of the output stud, lug pointing -x to its relay saddle). Concept: _research/snapshots/2026-10-17-N14/B (concept B), with
 # the edge distances below fixed for the real nuts.
 #   stock: 3 x 15 tinned C110 (STOCK['pad'], Bopaodao B09Z7NBLDK, the old pad stock); ri inside bend radius (annealed C110 <= 1 t)
-#   x offsets from the output stud x_out, + = the web side: web 5.25 .. 8.25, lug bolt 0.5 (bottom PEM 7.1 from the bottom leg end; its
-#   head clears the web by 0.43); ledge: the printed ledge runs on this far past the lip ends to the hook slot (the ledge band is then
+#   x offsets from the output stud x_out, + = the web side: web 5.25 .. 8.25, lug bolt -2.85 (Dan N36 = A, 2026-10-18: the bottom PEM is
+#   7.1 from the start of the inside bend - PEM Tech Sheet C/L To Edge rev 4/19: a nut near a bend sits outside the bend radius on flat
+#   sheet, Min. Dist. Hole C/L to Edge from the bend; was 0.5, its head ran 0.57 into the R1 bend - and 7.1 from the bottom leg end); ledge: the printed ledge runs on this far past the lip ends to the hook slot (the ledge band is then
 #   3.6 thick: R127 >= 3 for the DOWN stop, which on the OUT row stands over the belly-pan groove)
 #   z: top leg = bar_top - t .. bar_top (the old pad), bottom leg z_bl .. z_bl + t, lug palm top = z_bl
-STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), lip=2.0, ledge=1.9, neck=7.0, slit=6.0, z_bl=14.0, lug=0.5,
+STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), lip=2.0, ledge=1.9, neck=7.0, slit=6.0, z_bl=14.0, lug=-2.85,
              clr=0.3, trim=0.6, kerf=0.5, k=0.33)
 # w_low: below the top leg (web and bottom leg) the strap is milled / filed to 14.2 (= 2 x the PEM edge 7.1), so the PA12 wall between two
 # neighbouring wells is 18 - 14.2 - 2 x 0.3 = 3.2 (R127 >= 3; at 15 wide it was 2.4); the top leg, the lips and the AMI ear face stay 15.
