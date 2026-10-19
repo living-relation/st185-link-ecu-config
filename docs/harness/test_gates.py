@@ -266,14 +266,18 @@ def drawing_rule_cases():
     importlib.reload(G)
     out = []
 
-    def run(name, want, rep=None, pdf=b"%PDF fake", pending=False, man_sha=None):
+    def run(name, want, rep=None, pdf=b"%PDF fake", pending=False, man_sha=None, rows=(("A", "DG"), ("B", "DG")), text=None, rev=None, exempt=None):
         d = tempfile.mkdtemp(prefix="dwgr_")
         try:
             os.makedirs(os.path.join(d, "m"))
             open(os.path.join(d, "m", "ST185-T-101.pdf"), "wb").write(pdf)
             ps = G.sha(pdf)
-            json.dump({"drawings": {"ST185-T-101": {"pdf": "m/ST185-T-101.pdf", "pdf_sha": man_sha or ps}}},
+            json.dump({"drawings": {"ST185-T-101": {"pdf": "m/ST185-T-101.pdf", "pdf_sha": man_sha or ps,
+                                                    "revlog": "m/ST185-T-101.REVLOG.md",
+                                                    **({"rev": rev} if rev else {})}}},
                       open(os.path.join(d, "drawing-models.json"), "w"))
+            open(os.path.join(d, "m", "ST185-T-101.REVLOG.md"), "w").write(
+                "| Rev | Description | By | Date |\n|---|---|---|---|\n" + "".join("| %s | x | %s | 19/10/26 |\n" % r for r in rows))
             if rep is not None:
                 r = dict(pn="ST185-T-101", pdf_sha=ps, engine_rules="2026-10-18", tangent_edges_in_pictorial=True, ok=True,
                          notes=["TORQUE THE 4 LID SCREWS EVENLY, CRISS-CROSS."], tol_block="DIMENSIONS ARE IN MILLIMETERS",
@@ -281,7 +285,10 @@ def drawing_rule_cases():
                 r.update(rep)
                 json.dump(r, open(os.path.join(d, "m", "ST185-T-101.checks.json"), "w"))
             G.CAD, G.MANIFEST = d, os.path.join(d, "drawing-models.json")
+            if exempt:
+                json.dump({"exempt_through": exempt}, open(os.path.join(d, "rev-marks.json"), "w"))
             G.PENDING = {"ST185-T-101"} if pending else set()
+            G.sheet1_text = lambda _pdf: text      # None = no pypdf / unreadable PDF: the title-block check is skipped
             got = G.check(quiet=True)          # True = the gate passes
         finally:
             shutil.rmtree(d, ignore_errors=True)
@@ -303,6 +310,26 @@ def drawing_rule_cases():
     run("pending drawing with a failing report is reported only", True, rep={"notes": ["MARKUP 2026-10-17."]}, pending=True)
     run("pending drawing with no report is reported only", True, pending=True)
     run("stale PENDING entry fails", False, rep={}, pending=True)
+    # R200: DRAWN = Rev A BY, every BY a person's initials, never an agent / tool name or blank
+    for bad in ("Claude", "SteveCAD", "Grok", "Fairsolid", "unknown", "SC", "", "D"):
+        run("agent / blank BY %r fails (R200)" % bad, False, rep={}, rows=(("A", "DG"), ("B", bad)))
+    run("agent on Rev A fails (R200)", False, rep={}, rows=(("A", "Claude"), ("B", "DG")))
+    run("no Rev A row fails (R200)", False, rep={}, rows=(("B", "DG"),))
+    run("other person's initials pass (R200)", True, rep={}, rows=(("A", "DG"), ("B", "JD")))
+    run("title block DRAWN = Rev A passes (R200)", True, rep={}, text="x\nDRAWN\nDG\nSOURCE\n")
+    run("title block DRAWN other than Rev A fails (R200)", False, rep={}, text="x\nDRAWN\nSteveCAD\nSOURCE\n")
+    run("no DRAWN in the PDF fails (R200)", False, rep={}, text="nothing here")
+    # R200 revision triangles: a full letter made after 2026-10-19 has at least one; older letters, Rev A and clerical revs are exempt
+    run("new full letter without a triangle fails (R200)", False, rep={}, rev="C")
+    run("new full letter with a triangle passes (R200)", True, rep={"rev_marks": {"C": 1}}, rev="C")
+    run("clerical rev of a new letter still needs that letter's triangle (R200)", False, rep={}, rev="C.01")
+    run("clerical rev with the letter's triangle passes (R200)", True, rep={"rev_marks": {"C": 2}}, rev="C.01")
+    run("only an older letter's triangle does not count (R200)", False, rep={"rev_marks": {"B": 3}}, rev="C")
+    run("letter made before the rule is exempt (R200)", True, rep={}, rev="D.01", exempt={"ST185-T-101": "D"})
+    run("next letter after the exempt one needs a triangle (R200)", False, rep={}, rev="E", exempt={"ST185-T-101": "D"})
+    run("Rev A needs no triangle (R200)", True, rep={}, rev="A")
+    run("a declared triangle that could not be placed fails (R200)", False,
+        rep={"rev_marks": {"A": 0}, "rev_marks_unplaced": [{"rev": "A", "item": 5, "why": "no free spot"}]}, rev="A")
     return out
 
 

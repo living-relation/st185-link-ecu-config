@@ -148,7 +148,7 @@ for _k,_s in PARTS.items():
         _s['notes']=[n.replace('(OVERALL SIZE AND MAJOR HOLES)','(OVERALL SIZE)') for n in _s.get('notes',[])]
 
 # Title block (the handbuilt-cad engine defaults to a neutral "PROJECT" / "-"; st185 sets its own)
-PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'; DRAWN_BY='SteveCAD'
+PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'
 for _v in list(globals().values()):
     if isinstance(_v,dict) and _v and all(isinstance(x,dict) and 'pn' in x for x in _v.values()):
-        for _p in _v.values(): _p.setdefault('project',PROJECT_NAME); _p.setdefault('drawn',DRAWN_BY)
+        for _p in _v.values(): _p.setdefault('project',PROJECT_NAME)

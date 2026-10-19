@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-117",
- "pdf_sha": "e684af510b7c85fd",
+ "pdf_sha": "b570450c762b1d7d",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -49,5 +49,8 @@
  ],
  "not_ballooned": [],
  "ok": true,
- "tangent_lines_trimetric": 4
+ "tangent_lines_trimetric": 4,
+ "rev_marks": {},
+ "rev_marks_unplaced": [],
+ "rev_marks_accumulate": true
 }

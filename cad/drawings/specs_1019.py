@@ -59,7 +59,7 @@ PARTS['fb_nut_holder'] = dict(
     title='POWER BOX - C-STRAP TOP-NUT HOLDER', pn='ST185-FB-118', material='PA12 (SLS / MJF)',
     source='C:\\projects\\active\\st185-link-ecu-config\\cad\\fusebox\\rev7\\Power_NutHolder_PA12_printed.step',
     max_hole_groups=0, tol=TOL, rev='A', revlog=_os.path.join(_C, 'fusebox', 'rev7', 'ST185-FB-118.REVLOG.md'),
-    project=PARTS['fb_power_base']['project'], drawn=PARTS['fb_power_base']['drawn'],
+    project=PARTS['fb_power_base']['project'],
     notes=PRINTED + ["QTY 14 PER CAR (ONE IN EVERY C-STRAP, ST185-FB-117).",
                      "PUSH A DIN 934 M5 NUT (RS 527-268) INTO THE HEX POCKET, FLATS LINED UP WITH THE POCKET. "
                      "THEN SLIDE THE HOLDER INTO THE OPEN SIDE OF THE C UNTIL IT SITS ON BOTH LEGS AND THE WEB."])

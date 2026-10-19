@@ -29,5 +29,9 @@ Rules every shop drawing in this repo follows. Decisions are in
 | Notes are for a shop machinist: ELI5, short, plain steps. | R195 |
 | Anything physical (a BOM line added / removed / swapped, a dimension, a part moved, a feature) is a model change: model letter bumped and merged first, drawing regenerated after. Only clerical drawing-only changes take .01. | R197 |
 | Models first, drawings last: model-only PRs, then every drawing regenerated in one pass (`regen_pending` in `drawing-models.json` meanwhile). | R196 |
+| DRAWN (title block) = the initials on Rev A of that drawing, never changed. Rev-log BY = the initials of the person who requested that change, never an agent or tool name (no Claude, SteveCAD, Grok, Fairsolid, unknown, blank). Always DG for this project. One per-computer file `%USERPROFILE%\.drawing-initials` (env `DRAWING_INITIALS`); missing = a person is asked once, an agent stops. | R200 (Dan N41 = B, 2026-10-19) |
 
-Gates: `cad/check_drawings_current.py` (R183, R196) and `cad/check_drawing_rules.py` (R184 - R196, reads the `<pdf>.checks.json` report the handbuilt-cad engine writes beside every drawing, DRAWING-RULES 24-30), both in `check_all.py`.
+| .01 clerical revs never appear in the REVISIONS table (full letters only; .01 is tracked in git); the title-block REV still shows e.g. D.01. | R200 (Dan via Dispatch 2026-10-19) |
+| Every full-letter rev made from 2026-10-19 on puts its letter in a triangle next to each changed item (and the BOM row of a changed part number); old triangles stay on later revs (N42 = B). Declared in `spec['rev_marks']` or `<pn>.REVMARKS.json` beside the rev log; gate K5; revs before today exempt (`cad/rev-marks.json`). | R200 (Dan N42 = B) |
+
+Gates: `cad/check_drawings_current.py` (R183, R196) and `cad/check_drawing_rules.py` (R184 - R196 and the R200 initials check K4, reads the `<pdf>.checks.json` report the handbuilt-cad engine writes beside every drawing, DRAWING-RULES 24-30), both in `check_all.py`.

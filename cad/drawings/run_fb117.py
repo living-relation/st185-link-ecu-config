@@ -167,7 +167,7 @@ def main():
     xwo, xlip = ST['web'][1], ST['web'][1] + ST['lip']
     xbl0 = ST['lug'] - SD['edge']
     hw, hl = BL['w'] / 2, BL['w_low'] / 2
-    sp = dict(project=specs.PROJECT_NAME, drawn=specs.DRAWN_BY, job=JOB, file=mdl, process='machined', single=False, offset=(0, 0, 0),
+    sp = dict(project=specs.PROJECT_NAME, job=JOB, file=mdl, process='machined', single=False, offset=(0, 0, 0),
               rotate=[], pn='ST185-FB-117', rev='D.01',   # D.01 clerical: sheet 2 step 4 balloons (Dispatch review 2026-10-19)
               title='POWER OUTPUT C-STRAP 3 x 15 (FORMED + FLAT BLANK)',
               material='C110 COPPER, TINNED', ordinates=False, overall=False, max_hole_groups=1,
