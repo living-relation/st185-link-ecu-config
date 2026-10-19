@@ -23,6 +23,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from layout_schematic import place  # noqa: E402
+from oem_ends import OEM_ENDS  # noqa: E402
 
 # connector id -> name on the drawing
 CONNECTORS = {
@@ -315,14 +316,27 @@ def main():
                 core["source"] = end(f)
             core["target"] = end(t)
 
-    # schematic: the old generator's notes go; positions follow the layout view
-    out["schematicNotes"] = [{
-        "id": "n_read_me",
-        "text": "Each table is a pinout: pin | description. The same description is at both "
-                "ends of a wire. 'To ... / From ... - on ST185-<file>' = the wire carries on in "
-                "that loom. Bulkhead N/C pins: section B, see ST185-B-cabin, or spare.",
-        "schematicPosition": {"x": 0, "y": 0}, "width": 390}]
-    place(out)
+    # schematic notes: a read-me, then EVERY note of the old drawing carried over (Dan
+    # 2026-10-19: OEM ends keep their notes, no locator note dropped). An end note sits next to
+    # its wire end; a factory end's note says where the tap is, the EWD page, colour and method.
+    notes = [{"id": "n_read_me",
+              "text": "Each table is a pinout: pin | description. The same description is at both "
+                      "ends of a wire. 'To ... / From ... - on ST185-<file>' = the wire carries on in "
+                      "that loom. Bulkhead N/C pins: section B, see ST185-B-cabin, or spare.",
+              "width": 390}]
+    attach = {}
+    for n in geo["schematicNotes"]:
+        tid = n["id"][len("n_end_"):] if n["id"].startswith("n_end_") else None
+        if tid and tid in TERMINALS:
+            text = OEM_ENDS[tid]["short"] if tid in OEM_ENDS else n["text"]
+            attach[tid] = n["id"]
+        elif tid:
+            raise SystemExit("old end note %s has no end in this file" % n["id"])
+        else:
+            text = n["text"]  # general notes, word for word
+        notes.append({"id": n["id"], "text": text, "width": 390 if len(text) > 200 else 270})
+    out["schematicNotes"] = notes
+    place(out, attach)
 
     write_full_text(out)
     tmp = a.out + ".tmp"

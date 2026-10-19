@@ -36,6 +36,7 @@ sys.path.insert(0, HERE)
 sys.path.insert(0, HARNESS)
 import model  # noqa: E402
 from build_a_cabin import CABLES, CONNECTORS, SPLICES, WIRES  # noqa: E402
+from oem_ends import OEM_ENDS  # noqa: E402
 
 MAIN = REPO  # a worktree sits in <main>/.claude/worktrees/<name>; outputs go to the main checkout
 while os.path.basename(os.path.dirname(MAIN)) == "worktrees":
@@ -47,7 +48,7 @@ COLUMNS = ["circuit_id", "wire_id", "harness", "passes_through",
            "from_type", "from_conn", "from_conn_name", "from_pin", "from_desc",
            "to_type", "to_conn", "to_conn_name", "to_pin", "to_desc",
            "net_id", "net_name", "splice", "cable", "gauge_awg", "colour", "stripe", "ident_bands",
-           "oem_wire_colour", "oem_ewd_page", "oem_method",
+           "from_note", "to_note", "oem_location", "oem_wire_colour", "oem_ewd_page", "oem_method",
            "route_branch", "est_length_mm", "sot_check", "status", "notes"]
 SPLICE_COLUMNS = ["splice_id", "name", "net_id", "net_name", "harness", "location", "method", "wires",
                   "gauges_awg", "combined_cma", "equivalent_awg", "sot_check"]
@@ -216,6 +217,8 @@ def main():
     with open(os.path.join(HARNESS, "HARNESS-BUILD-LIST.csv"), encoding="utf-8") as f:
         est = {(r["File"], r["Wire"]): r["Est mm"] for r in csv.DictReader(f)}
 
+    end_note = {n["id"][len("n_end_"):]: n["text"] for n in raw[LOOM].get("schematicNotes", [])
+                if n["id"].startswith("n_end_")}  # the note drawn next to each wire end
     parts = model.parts(cab)
     cond = {c["id"]: c for c, _, _ in model.conductors(cab)}
     label = {c["id"]: c.get("label", c["id"]).split("  ")[0] for c in raw[LOOM]["connectors"]}
@@ -351,8 +354,11 @@ def main():
             "splice": next((n for n in (f[0], t[0]) if n in SPLICES), ""), "cable": cable,
             "gauge_awg": gauge, "colour": w.get("color", ""), "stripe": w.get("stripeColor", ""),
             "ident_bands": "-".join(w.get("identColors", [])),
+            "from_note": end_note.get(f[0], ""), "to_note": end_note.get(t[0], ""),
+            "oem_location": " / ".join(OEM_ENDS[n]["where"] for n in (f[0], t[0]) if n in OEM_ENDS),
             "oem_wire_colour": " / ".join(o.get("color", "") for o in oems),
-            "oem_ewd_page": " / ".join(o.get("page", "") for o in oems),
+            "oem_ewd_page": " / ".join(o.get("page", "") + ("; " + OEM_ENDS[n]["ref"] if n in OEM_ENDS else "")
+                                       for o, n in zip(oems, [n for n in (f[0], t[0]) if n in fleads or n in breaks and n in OEM_ENDS])),
             "oem_method": " / ".join(o.get("method", "") for o in oems),
             "route_branch": branch((f[0], t[0])), "est_length_mm": est.get((LOOM, wid), ""),
             "sot_check": "; ".join(checks),

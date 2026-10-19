@@ -22,7 +22,16 @@ def _size(kind, el):
     return GRID, GRID  # splice, resistor
 
 
-def place(doc):
+def _note_h(note):
+    per_line = max(1, note["width"] // 7)  # about 7 px a character
+    lines = sum(-(-max(len(p), 1) // per_line) for p in note["text"].split("\n"))
+    return GRID * -(-(lines * 18 + 20) // GRID)
+
+
+def place(doc, attach=None):
+    """attach: node id -> note id drawn just right of that node."""
+    attach = attach or {}
+    notes = {n["id"]: n for n in doc.get("schematicNotes", [])}
     by_id = {}
     for kind in ("connectors", "terminals", "splices", "resistors"):
         for el in doc.get(kind, []):
@@ -49,13 +58,27 @@ def place(doc):
         for kind, el in col:
             stack.append((kind, el))
             stack += [("cables", cb) for cb in cable_after.get(el["id"], [])]
-        width = max(_size(k, e)[0] for k, e in stack)
+        def full_w(k, e):
+            n = notes.get(attach.get(e["id"]))
+            return _size(k, e)[0] + ((GRID + n["width"]) if n else 0)
+        width = max(full_w(k, e) for k, e in stack)
         y = TOP
         for kind, el in stack:
             w, h = _size(kind, el)
             el["schematicPosition"] = {"x": cx, "y": y}
             el.pop("rotated", None)
+            n = notes.get(attach.get(el["id"]))
+            if n:
+                n["schematicPosition"] = {"x": cx + w + GRID, "y": y}
+                h = max(h, _note_h(n))
             y += h + ROW_GAP
             y = GRID * -(-y // GRID)
         cx += width + COL_GAP
         cx = GRID * -(-cx // GRID)
+    # free notes (not tied to an end): a column of their own, left of everything
+    free = [n for n in notes.values() if n["id"] not in attach.values()]
+    y = 0
+    for n in free:
+        n["schematicPosition"] = {"x": -(390 + COL_GAP), "y": y}
+        y += _note_h(n) + ROW_GAP
+        y = GRID * -(-y // GRID)
