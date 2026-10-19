@@ -104,7 +104,8 @@ BRANCH = [
 ROW_NOTES = {
     "w_drain_ecu_a": "build (R30): the crank drain is the one crimped into A7; the other drains are soldered onto it 6 mm behind the plug",
     "w_shc_crank": "build (R30): this drain is the one crimped into A7",
-    "cab_aps": "pedal branch length is a placeholder: measure at the car",
+    "cab_aps1": "pedal branch length is a placeholder: measure at the car (OPEN-ITEMS row 143)",
+    "cab_aps2": "pedal branch length is a placeholder: measure at the car (OPEN-ITEMS row 143)",
     "w_fb_mrs_en": "fuse fed from EPS enable relay k_eps_en pin 87 (ignition-switched)",
 }
 

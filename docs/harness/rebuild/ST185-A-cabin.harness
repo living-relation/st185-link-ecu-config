@@ -3171,7 +3171,7 @@
         "y": 300
       },
       "schematicPosition": {
-        "x": -1980,
+        "x": -2070,
         "y": 600
       },
       "propagate": false,
@@ -3388,28 +3388,28 @@
                 "x": -1440,
                 "y": 810
               },
-              "id": "cab_fspur_5v_rp1"
+              "id": "cab_fspur_5v_t_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1440,
-                "y": 930
+                "y": 660
               },
-              "id": "cab_fspur_5v_rp2"
+              "id": "cab_fspur_5v_t_rp2"
             },
             {
               "schematicPosition": {
-                "x": -390,
-                "y": 930
+                "x": -270,
+                "y": 660
               },
-              "id": "cab_fspur_5v_rp3"
+              "id": "cab_fspur_5v_t_rp3"
             },
             {
               "schematicPosition": {
-                "x": -390,
+                "x": -270,
                 "y": 960
               },
-              "id": "cab_fspur_5v_rp4"
+              "id": "cab_fspur_5v_t_rp4"
             }
           ]
         },
@@ -3432,31 +3432,17 @@
           "targetLayoutPoints": [
             {
               "schematicPosition": {
-                "x": -1560,
+                "x": -1140,
                 "y": 840
               },
-              "id": "cab_fspur_gnd_rp1"
+              "id": "cab_fspur_gnd_t_rp1"
             },
             {
               "schematicPosition": {
-                "x": -1560,
-                "y": 840
+                "x": -1140,
+                "y": 720
               },
-              "id": "cab_fspur_gnd_rp2"
-            },
-            {
-              "schematicPosition": {
-                "x": -1560,
-                "y": 660
-              },
-              "id": "cab_fspur_gnd_rp3"
-            },
-            {
-              "schematicPosition": {
-                "x": -330,
-                "y": 660
-              },
-              "id": "cab_fspur_gnd_rp4"
+              "id": "cab_fspur_gnd_t_rp2"
             }
           ]
         },
@@ -3482,28 +3468,28 @@
                 "x": -1440,
                 "y": 870
               },
-              "id": "cab_fspur_l_rp1"
+              "id": "cab_fspur_l_t_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1440,
-                "y": 510
+                "y": 930
               },
-              "id": "cab_fspur_l_rp2"
+              "id": "cab_fspur_l_t_rp2"
             },
             {
               "schematicPosition": {
                 "x": -90,
-                "y": 510
+                "y": 930
               },
-              "id": "cab_fspur_l_rp3"
+              "id": "cab_fspur_l_t_rp3"
             },
             {
               "schematicPosition": {
                 "x": -90,
                 "y": 690
               },
-              "id": "cab_fspur_l_rp4"
+              "id": "cab_fspur_l_t_rp4"
             }
           ]
         }
@@ -3530,28 +3516,28 @@
               "x": -1440,
               "y": 900
             },
-            "id": "cab_fspur_sh_rp1"
+            "id": "cab_fspur_sh_t_rp1"
           },
           {
             "schematicPosition": {
               "x": -1440,
               "y": 1110
             },
-            "id": "cab_fspur_sh_rp2"
+            "id": "cab_fspur_sh_t_rp2"
           },
           {
             "schematicPosition": {
               "x": 480,
               "y": 1110
             },
-            "id": "cab_fspur_sh_rp3"
+            "id": "cab_fspur_sh_t_rp3"
           },
           {
             "schematicPosition": {
               "x": 480,
               "y": 210
             },
-            "id": "cab_fspur_sh_rp4"
+            "id": "cab_fspur_sh_t_rp4"
           }
         ],
         "sourceLayoutPoints": [
@@ -3560,14 +3546,14 @@
               "x": -1680,
               "y": 900
             },
-            "id": "cab_fspur_sh_rp1"
+            "id": "cab_fspur_sh_s_rp1"
           },
           {
             "schematicPosition": {
               "x": -1680,
               "y": 930
             },
-            "id": "cab_fspur_sh_rp2"
+            "id": "cab_fspur_sh_s_rp2"
           }
         ]
       }
@@ -3602,14 +3588,14 @@
                 "x": -1680,
                 "y": 1050
               },
-              "id": "cab_fspur_r_ac_rp1"
+              "id": "cab_fspur_r_ac_s_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1680,
                 "y": 900
               },
-              "id": "cab_fspur_r_ac_rp2"
+              "id": "cab_fspur_r_ac_s_rp2"
             }
           ]
         }
@@ -3632,21 +3618,21 @@
               "x": -2040,
               "y": 1080
             },
-            "id": "cab_fspur_fr_sh_ac_rp1"
+            "id": "cab_fspur_fr_sh_ac_t_rp1"
           },
           {
             "schematicPosition": {
               "x": -2040,
               "y": 1110
             },
-            "id": "cab_fspur_fr_sh_ac_rp2"
+            "id": "cab_fspur_fr_sh_ac_t_rp2"
           }
         ]
       }
     },
     {
-      "id": "cab_aps",
-      "partId": "cab_sh_6c",
+      "id": "cab_aps1",
+      "partId": "cab_55a1831",
       "schematicPosition": {
         "x": -1560,
         "y": 330
@@ -3654,7 +3640,7 @@
       "cores": [
         {
           "id": "w_aps_vc1",
-          "color": "Orange",
+          "color": "Red",
           "identColors": [
             "Blue",
             "Blue"
@@ -3673,50 +3659,50 @@
                 "x": -1440,
                 "y": 360
               },
-              "id": "w_aps_vc1_rp1"
+              "id": "w_aps_vc1_t_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1440,
                 "y": 360
               },
-              "id": "w_aps_vc1_rp2"
+              "id": "w_aps_vc1_t_rp2"
             },
             {
               "schematicPosition": {
                 "x": -630,
                 "y": 360
               },
-              "id": "w_aps_vc1_rp3"
+              "id": "w_aps_vc1_t_rp3"
             },
             {
               "schematicPosition": {
                 "x": -630,
                 "y": 300
               },
-              "id": "w_aps_vc1_rp4"
+              "id": "w_aps_vc1_t_rp4"
             }
           ],
           "sourceLayoutPoints": [
             {
               "schematicPosition": {
-                "x": -1680,
+                "x": -2040,
                 "y": 360
               },
-              "id": "w_aps_vc1_rp1"
+              "id": "w_aps_vc1_s_rp1"
             },
             {
               "schematicPosition": {
-                "x": -1680,
+                "x": -2040,
                 "y": 450
               },
-              "id": "w_aps_vc1_rp2"
+              "id": "w_aps_vc1_s_rp2"
             }
           ]
         },
         {
           "id": "w40",
-          "color": "Black",
+          "color": "Yellow",
           "identColors": [
             "Yellow",
             "Yellow",
@@ -3736,50 +3722,50 @@
                 "x": -1440,
                 "y": 390
               },
-              "id": "w40_rp1"
+              "id": "w40_t_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1440,
                 "y": 390
               },
-              "id": "w40_rp2"
+              "id": "w40_t_rp2"
             },
             {
               "schematicPosition": {
                 "x": -330,
                 "y": 390
               },
-              "id": "w40_rp3"
+              "id": "w40_t_rp3"
             },
             {
               "schematicPosition": {
                 "x": -330,
                 "y": 720
               },
-              "id": "w40_rp4"
+              "id": "w40_t_rp4"
             }
           ],
           "sourceLayoutPoints": [
             {
               "schematicPosition": {
-                "x": -1620,
+                "x": -1740,
                 "y": 390
               },
-              "id": "w40_rp1"
+              "id": "w40_s_rp1"
             },
             {
               "schematicPosition": {
-                "x": -1620,
+                "x": -1740,
                 "y": 480
               },
-              "id": "w40_rp2"
+              "id": "w40_s_rp2"
             }
           ]
         },
         {
           "id": "w38",
-          "color": "White",
+          "color": "Blue",
           "identColors": [
             "White",
             "Blue",
@@ -3796,20 +3782,73 @@
           "sourceLayoutPoints": [
             {
               "schematicPosition": {
-                "x": -1440,
+                "x": -1680,
                 "y": 420
               },
-              "id": "w38_rp1"
+              "id": "w38_s_rp1"
             },
             {
               "schematicPosition": {
-                "x": -1440,
+                "x": -1680,
                 "y": 510
               },
-              "id": "w38_rp2"
+              "id": "w38_s_rp2"
             }
           ]
+        }
+      ],
+      "shield": {
+        "id": "cab_aps1_sh",
+        "color": "Shield",
+        "identColors": [
+          "White",
+          "Blue",
+          "Yellow"
+        ],
+        "target": {
+          "id": "sp_shield_a",
+          "handle": "Splice"
         },
+        "targetLayoutPoints": [
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": 450
+            },
+            "id": "cab_aps1_sh_t_rp1"
+          },
+          {
+            "schematicPosition": {
+              "x": -1440,
+              "y": -210
+            },
+            "id": "cab_aps1_sh_t_rp2"
+          },
+          {
+            "schematicPosition": {
+              "x": 420,
+              "y": -210
+            },
+            "id": "cab_aps1_sh_t_rp3"
+          },
+          {
+            "schematicPosition": {
+              "x": 420,
+              "y": 210
+            },
+            "id": "cab_aps1_sh_t_rp4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cab_aps2",
+      "partId": "cab_55a1831",
+      "schematicPosition": {
+        "x": -1560,
+        "y": 510
+      },
+      "cores": [
         {
           "id": "w210",
           "color": "Red",
@@ -3829,52 +3868,38 @@
             {
               "schematicPosition": {
                 "x": -1590,
-                "y": 450
+                "y": 540
               },
-              "id": "w210_rp1"
+              "id": "w210_t_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1590,
                 "y": 300
               },
-              "id": "w210_rp2"
+              "id": "w210_t_rp2"
             }
           ],
           "sourceLayoutPoints": [
             {
               "schematicPosition": {
-                "x": -1620,
-                "y": 450
+                "x": -1680,
+                "y": 540
               },
-              "id": "w210_rp1"
+              "id": "w210_s_rp1"
             },
             {
               "schematicPosition": {
-                "x": -1620,
-                "y": 450
-              },
-              "id": "w210_rp2"
-            },
-            {
-              "schematicPosition": {
-                "x": -1650,
-                "y": 450
-              },
-              "id": "w210_rp3"
-            },
-            {
-              "schematicPosition": {
-                "x": -1650,
+                "x": -1680,
                 "y": 360
               },
-              "id": "w210_rp4"
+              "id": "w210_s_rp2"
             }
           ]
         },
         {
           "id": "w_aps_gnd2",
-          "color": "Brown",
+          "color": "Yellow",
           "identColors": [
             "Yellow",
             "Yellow",
@@ -3892,46 +3917,46 @@
             {
               "schematicPosition": {
                 "x": -1440,
-                "y": 480
+                "y": 570
               },
-              "id": "w_aps_gnd2_rp1"
+              "id": "w_aps_gnd2_t_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1440,
-                "y": 480
+                "y": 510
               },
-              "id": "w_aps_gnd2_rp2"
+              "id": "w_aps_gnd2_t_rp2"
             },
             {
               "schematicPosition": {
                 "x": -330,
-                "y": 480
+                "y": 510
               },
-              "id": "w_aps_gnd2_rp3"
+              "id": "w_aps_gnd2_t_rp3"
             },
             {
               "schematicPosition": {
                 "x": -330,
                 "y": 720
               },
-              "id": "w_aps_gnd2_rp4"
+              "id": "w_aps_gnd2_t_rp4"
             }
           ],
           "sourceLayoutPoints": [
             {
               "schematicPosition": {
                 "x": -1740,
-                "y": 480
+                "y": 570
               },
-              "id": "w_aps_gnd2_rp1"
+              "id": "w_aps_gnd2_s_rp1"
             },
             {
               "schematicPosition": {
                 "x": -1740,
                 "y": 390
               },
-              "id": "w_aps_gnd2_rp2"
+              "id": "w_aps_gnd2_s_rp2"
             }
           ]
         },
@@ -3954,33 +3979,17 @@
           "sourceLayoutPoints": [
             {
               "schematicPosition": {
-                "x": -2040,
-                "y": 510
-              },
-              "id": "w_aps_vpa2_rp1"
-            },
-            {
-              "schematicPosition": {
-                "x": -2040,
-                "y": 420
-              },
-              "id": "w_aps_vpa2_rp2"
-            }
-          ],
-          "targetLayoutPoints": [
-            {
-              "schematicPosition": {
-                "x": -1620,
-                "y": 510
-              },
-              "id": "w_aps_vpa2_rp1"
-            },
-            {
-              "schematicPosition": {
-                "x": -1620,
+                "x": -1680,
                 "y": 600
               },
-              "id": "w_aps_vpa2_rp2"
+              "id": "w_aps_vpa2_s_rp1"
+            },
+            {
+              "schematicPosition": {
+                "x": -1680,
+                "y": 420
+              },
+              "id": "w_aps_vpa2_s_rp2"
             }
           ]
         }
@@ -4001,30 +4010,30 @@
           {
             "schematicPosition": {
               "x": -1440,
-              "y": 540
+              "y": 630
             },
-            "id": "cab_aps_sh_rp1"
+            "id": "cab_aps_sh_t_rp1"
           },
           {
             "schematicPosition": {
               "x": -1440,
-              "y": -180
+              "y": -210
             },
-            "id": "cab_aps_sh_rp2"
+            "id": "cab_aps_sh_t_rp2"
           },
           {
             "schematicPosition": {
               "x": 420,
-              "y": -180
+              "y": -210
             },
-            "id": "cab_aps_sh_rp3"
+            "id": "cab_aps_sh_t_rp3"
           },
           {
             "schematicPosition": {
               "x": 420,
               "y": 210
             },
-            "id": "cab_aps_sh_rp4"
+            "id": "cab_aps_sh_t_rp4"
           }
         ]
       }
@@ -4892,7 +4901,7 @@
       "text": "ECU-B plug pin B33 (Link G4X, centre dash); VPA2",
       "width": 270,
       "schematicPosition": {
-        "x": -2280,
+        "x": -2370,
         "y": 600
       }
     },
@@ -5287,63 +5296,6 @@
     }
   ],
   "cableParts": [
-    {
-      "id": "cab_sh_6c",
-      "partNumber": "GENERIC SHLD CABLE 6C 20AWG",
-      "manufacturer": "generic",
-      "description": "CABLE, SHIELDED, 6 CONDUCTOR, 20 AWG, FOIL + TINNED COPPER BRAID, JACKETED",
-      "cores": [
-        {
-          "id": "k1",
-          "color": "Orange",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k2",
-          "color": "Black",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k3",
-          "color": "White",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k4",
-          "color": "Red",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k5",
-          "color": "Brown",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        },
-        {
-          "id": "k6",
-          "color": "Blue",
-          "gauge": {
-            "value": 20,
-            "unit": "AWG"
-          }
-        }
-      ],
-      "shielded": true
-    },
     {
       "id": "cab_55a1831",
       "partNumber": "55A1831-20-2/4/6-9",

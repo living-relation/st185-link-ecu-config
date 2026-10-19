@@ -285,11 +285,11 @@
    ],
    "fl_acamp_act": [
     "",
-    "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"
+    "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder splice onto the factory G-Y lead at the A/C amplifier"
    ],
    "fl_acamp_psw": [
     "",
-    "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"
+    "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder splice onto the factory Y-R lead at the A/C amplifier"
    ]
   }
  },
@@ -531,11 +531,11 @@
   "terminals": {
    "fl_start_req_c1": [
     "",
-    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder sleeve into the factory lead"
+    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) R/B No.4 starter relay socket lead (block removed, R12; ST1 from I13 pin 7)-1 B-W start request -> ECU-B B30 (pin 1 = coil side; pin 2 is the same B-W ST1 net) - solder splice onto the factory lead"
    ],
    "fl_ign_sw_c1": [
     "",
-    "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder sleeve into the factory lead"
+    "EWD 1993 TIS EWD p.62 (Power Source) J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5)-7 B-O IGN ON (IG2) -> ECU-B B28 - solder splice onto the factory lead"
    ],
    "t_ac_btn": [
     "",
@@ -3136,27 +3136,27 @@
    ],
    "fl_cl_c11_c2": [
     "",
-    "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-2 G-B Turn L - flasher LH stub - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c11_c11": [
     "",
-    "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-11 G-Y Turn R - flasher RH stub - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c11_c12": [
     "",
-    "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C13 (B)) C11-12 R-L High beam - body residual feed - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c1": [
     "",
-    "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD 1993 p.206 (1993 code C14 (C)) C12-1 R-G Park brake - grounds via OEM P1 / B2 - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c8": [
     "",
-    "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD p.52 C12-8 Y Alt L - charge-lamp drive - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "fl_cl_c12_c9": [
     "",
-    "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder sleeve into the factory lead on the dash-harness side of the meter connector"
+    "EWD p.52 C12-9 B-O IG +12 - feeds every LED anode - solder splice onto the factory lead on the dash-harness side of the meter connector"
    ],
    "br_w_oil_k": [
     "",
@@ -3656,19 +3656,19 @@
   "terminals": {
    "fl_cruise_stalk_c1": [
     "",
-    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder sleeve into the factory lead"
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 5 W - ladder to ground (RES/ACC ~68, SET/COAST ~198, CANCEL ~418 ohm) -> sp_cruise_ladder -> CSB3 A2 - solder splice onto the factory lead"
    ],
    "fl_cruise_stalk_c3": [
     "",
-    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder sleeve into the factory lead"
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 15 Y-B - MAIN on/off, contact to the pin 17 ground when ON -> CSB3 S3 - solder splice onto the factory lead"
    ],
    "fl_cruise_stalk_c17": [
     "",
-    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder sleeve into the factory lead"
+    "EWD 1990 p.116 / 1993 Mitchell p.98-99 Cruise control switch C14 (comb. switch) pin 17 BR - stalk switch ground -> sp_csb_gnd (CSB3 ground) - solder splice onto the factory lead"
    ],
    "fl_clutch_sw_c1": [
     "",
-    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder sleeve into the factory lead"
+    "EWD 1993 TIS EWD p.66 (Starting and Ignition, All-Trac) C11 clutch start switch (1993 code)-1 B clutch switch signal -> CSB3 S6 (switch closes with the pedal down; pin 2 W-B is its own ground to IG, so pin 1 reads ground-active; the old starter-relay coil lead, no clutch-start interlock R21) - solder splice onto the factory lead"
    ],
    "fl_brake_sw_c1": [
     "",

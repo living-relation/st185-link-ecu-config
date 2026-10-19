@@ -82,9 +82,9 @@ TERMINALS = {
     "br_w_csbg": _br("CSB3 ground splice, centre console - CSB3 + opto ground", "CSB3"),
     "br_ac_psw": _br("A/C pressure switch A5 pin 4, engine bay - pressure switch out", "EngineRoom-C"),
     "fl_acamp_act": ("A/C amp A18 pin 11, factory G-Y lead - A/C cancel (ACT)",
-                     "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder sleeve into the factory G-Y lead at the A/C amplifier"),
+                     "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder splice onto the factory G-Y lead at the A/C amplifier"),
     "fl_acamp_psw": ("A/C amp A18 pin 13, factory Y-R lead - pressure switch in",
-                     "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder sleeve into the factory Y-R lead at the A/C amplifier"),
+                     "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder splice onto the factory Y-R lead at the A/C amplifier"),
     "chassis_ring": ("Cabin chassis stud M6 at ECU - ECU ground ring", ""),
 }
 
@@ -183,14 +183,19 @@ WIRES = [
 
 # cable cores: cable id -> core id -> (from, to, description)
 CABLES = {
-    "cab_aps": {
+    # Pedal: one TE Spec 55 3-core 20 AWG cable per pedal sensor (55A1831-20-2/4/6-9, the R174
+    # part); TE's 6-core 20 AWG 55A1861-20-MST6-9CS2275 is obsolete (te.com, 2026-10-19).
+    "cab_aps1": {
         "w_aps_vc1": (("aps", "4"), ("sp_5v_2", None), "+5 V pedal sensor 1"),
         "w40": (("aps", "5"), ("sp_gndout", None), "Pedal 1 ground"),
         "w38": (("aps", "6"), ("ecu_a", "A14"), "Pedal 1 signal main"),
+        "cab_aps1_sh": (None, ("sp_shield_a", None), "Pedal 1 cable shield"),
+    },
+    "cab_aps2": {
         "w210": (("aps", "1"), ("sp_5v_2", None), "+5 V pedal sensor 2"),
         "w_aps_gnd2": (("aps", "2"), ("sp_gndout", None), "Pedal 2 ground"),
         "w_aps_vpa2": (("aps", "3"), ("br_w39", None), "Pedal 2 signal sub"),
-        "cab_aps_sh": (None, ("sp_shield_a", None), "Pedal cable shield"),
+        "cab_aps_sh": (None, ("sp_shield_a", None), "Pedal 2 cable shield"),
     },
     "cab_fspur": {
         "cab_fspur_5v": (("ix_ws_front_p", "1"), ("sp_5v", None), WS_5V),
@@ -245,6 +250,23 @@ def slot_names(text):
 
 
 ROUTING_KEYS = ("layoutPoints", "sourceLayoutPoints", "targetLayoutPoints")
+
+
+def split_pedal_cable(out):
+    """The old 6-core pedal cable becomes two TE 3-core cables, one per pedal sensor; core colours
+    follow the cable part (red, yellow, blue), ident bands stay with their wire."""
+    old = next(c for c in out["cables"] if c["id"] == "cab_aps")
+    cores = {c["id"]: c for c in old["cores"]}
+    part = next(p for p in out["cableParts"] if p["id"] == "cab_55a1831")
+    new = []
+    for cid in ("cab_aps1", "cab_aps2"):
+        ids = [k for k in CABLES[cid] if not k.endswith("_sh")]
+        sh_id = next(k for k in CABLES[cid] if k.endswith("_sh"))
+        cb = {"id": cid, "partId": "cab_55a1831", "schematicPosition": dict(old["schematicPosition"]),
+              "cores": [dict(cores[k], color=part["cores"][i]["color"]) for i, k in enumerate(ids)],
+              "shield": dict(old["shield"], id=sh_id)}
+        new.append(cb)
+    out["cables"] = [c for c in out["cables"] if c["id"] != "cab_aps"] + new
 
 
 def load(path):
@@ -362,6 +384,7 @@ def main():
         w = {"id": wid, "source": end(f), "target": end(t)}
         w.update({k: gw[wid][k] for k in ("color", "stripeColor", "identColors", "partId") if k in gw[wid]})
         out["wires"].append(w)
+    split_pedal_cable(out)
     for cb in out["cables"]:
         for core in cb["cores"] + ([cb["shield"]] if cb.get("shield") else []):
             f, t, _ = CABLES[cb["id"]][core["id"]]
@@ -401,6 +424,8 @@ def main():
     # a wire part no wire uses any more goes (DECISIONS R44: no unused part definitions)
     used = {w.get("partId") for w in out["wires"]}
     out["wireParts"] = [p for p in out["wireParts"] if p["id"] in used]
+    used = {c.get("partId") for c in out["cables"]}
+    out["cableParts"] = [p for p in out["cableParts"] if p["id"] in used]
     write_full_text(out)
     tmp = a.out + ".tmp"
     with open(tmp, "w", encoding="utf-8", newline="\n") as f:

@@ -108,9 +108,10 @@ def place(doc, attach=None):
     put("br_w_rail_5v_b_c", X_TERM, 1470)
     # pedal and front WS inline, far left, with their cables between them and the ECU
     put("aps", X_DEV, 330)
-    put("cab_aps", X_CAB, 330)
+    put("cab_aps1", X_CAB, 330)
+    put("cab_aps2", X_CAB, 510)
     put("sp_5v_2", X_SPL - 300, 300)
-    put("br_w39", X_DEV, 600)
+    put("br_w39", X_DEV - 90, 600)
     put("br_w_cru_5v", X_DEV - 450, 240)
     put("ix_ws_front_p", X_DEV, 780)
     put("cab_fspur", X_CAB, 780)
@@ -368,7 +369,8 @@ def route(doc):
             if sc is not None and (best is None or sc < best):
                 best, best_pts = sc, pts
         if best_pts:
-            owner[key] = [dict(_pt(*p), id="%s_rp%d" % (owner["id"], i + 1)) for i, p in enumerate(best_pts)]
+            leg = {"sourceLayoutPoints": "_s", "targetLayoutPoints": "_t"}.get(key, "")
+            owner[key] = [dict(_pt(*p), id="%s%s_rp%d" % (owner["id"], leg, i + 1)) for i, p in enumerate(best_pts)]
         done.append((n, wp.path(ns, s, t, owner.get(key))))
 
 

@@ -311,8 +311,7 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 | Harness | Cable | Pieces |
 |---|---|---:|
 | A-cabin | `55A1811-20-9-9CS2275` | 1 |
-| A-cabin | `55A1831-20-2/4/6-9` | 1 |
-| A-cabin | `GENERIC SHLD CABLE 6C 20AWG` | 1 |
+| A-cabin | `55A1831-20-2/4/6-9` | 3 |
 | A-engine | `55A1811-20-9-9CS2275` | 2 |
 | A-engine | `55A1831-20-2/4/6-9` | 2 |
 | A-engine | `55A1841-20-2/4/5/6-9` | 1 |
@@ -433,9 +432,9 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 | `RNF-100-3/16-4-STK` | 70 | 1 |
 | `RNF-100-3/16-6-STK` | 72 | 1 |
 | `RNF-100-3/16-9-STK` | 70 | 1 |
-| `RNF-100-3/32-4-STK` | 686 | 4 |
-| `RNF-100-3/32-6-STK` | 942 | 6 |
-| `RNF-100-3/32-9-STK` | 480 | 3 |
+| `RNF-100-3/32-4-STK` | 688 | 4 |
+| `RNF-100-3/32-6-STK` | 944 | 6 |
+| `RNF-100-3/32-9-STK` | 482 | 3 |
 
 ## Covering tubing on bundles (Raychem DR-25)
 
