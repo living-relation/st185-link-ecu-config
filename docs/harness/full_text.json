@@ -3297,10 +3297,6 @@
  "ST185-RearFuel.harness": {
   "connectors": {
    "ix_fuel_p": {
-    "label": [
-     "IX-FUEL inline to fuel sender (trunk LH)",
-     "Fuel level - 2-way inline mate (IX_FUEL_LVL)"
-    ],
     "cavities": {
      "c1": [
       "Fuel level signal",

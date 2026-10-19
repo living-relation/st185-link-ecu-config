@@ -104,17 +104,20 @@ def fuse_list(ents):
         m = re.match(r'(BUS[12])-(\d+)( IN)?$', c['designation'])
         if m:
             sig = c.get('signal') or ''
-            mm = re.search(r'ATM-([\d.]+) (\w+)', sig)
+            # the fuse name and rating are the fuse box design's (spec.MINI_COLS; BUSn-k = the k-th position, R204 / R206):
+            # the harness cavity says what the wire is, not which fuse sits there
+            col = S.MINI_COLS[m.group(1)][1]
+            nm, a = col[int(m.group(2)) - 1] if int(m.group(2)) <= len(col) else (None, None)
             res['LOGIC'].append(dict(cav=c['id'], des=c['designation'], bus=m.group(1), n=int(m.group(2)), is_in=bool(m.group(3)),
-                                     amps=mm.group(1) if mm else None, name=mm.group(2) if mm else None, sig=sig))
+                                     amps=a, name=nm, sig=sig))
     pw = ents[('CabinPower', 'fb_power')][1]
     for c in pw['cavities']:
         m = re.match(r'AMI (IN|OUT)-(\d+)$', c['designation'])
         if m:
-            mm = re.match(r'AMI-(\d+) (\w+)', c.get('signal') or '')
+            row = S.AMI_ROWS[m.group(1)]
+            nm, a = row[int(m.group(2)) - 1] if int(m.group(2)) <= len(row) else (None, None)
             res['POWER_' + m.group(1)].append(dict(cav=c['id'], des=c['designation'], n=int(m.group(2)),
-                                                  amps=mm.group(1) if mm else None, name=mm.group(2) if mm else None,
-                                                  sig=c.get('signal') or ''))
+                                                  amps=a, name=nm, sig=c.get('signal') or ''))
     for k in res:
         res[k].sort(key=lambda r: (r.get('n', 0), r.get('is_in', False)))
     return res

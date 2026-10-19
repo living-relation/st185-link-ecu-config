@@ -19,7 +19,7 @@ VSS,"Screen B (ECU B17, SHIELD_B)",bh_b_eng,91,Gearbox speed shield,B-cabin,bh_b
 CAN,CAN H to CAN-Lambda (ECU-COMMS C3),bh_b_eng,92,CAN H to CAN-Lambda,B-cabin,bh_b_fw,92,CAN H to CAN-Lambda,OK
 CAN,CAN L to CAN-Lambda (ECU-COMMS C4),bh_b_eng,93,CAN L to CAN-Lambda,B-cabin,bh_b_fw,93,CAN L to CAN-Lambda,OK
 CAN,"Screen B (ECU B17, SHIELD_B)",bh_b_eng,94,CAN-Lambda shield,B-cabin,bh_b_fw,94,CAN-Lambda shield,OK
-LAM,+12V LAM 7.5A (LOGIC BUS2-1),bh_b_eng,95,CAN-Lambda +12 V,B-cabin,bh_b_fw,95,CAN-Lambda +12 V,OK
+LAM,+12V CAN-Lambda +12 V (LOGIC BUS2-1),bh_b_eng,95,CAN-Lambda +12 V,B-cabin,bh_b_fw,95,CAN-Lambda +12 V,OK
 VSS,Gearbox speed signal (ECU-B B29),bh_b_eng,89,Gearbox speed signal,B-cabin,bh_b_fw,89,Gearbox speed signal,OK
 LAM,Chassis GND (cabin stud M6 at ECU),bh_b_eng,96,CAN-Lambda ground,B-cabin,bh_b_fw,96,CAN-Lambda ground,OK
 5V,+5V sensor (ECU-A A32),ix_brail_p,1,+5 V oil pressure,A-engine,ix_brail_s,1,+5 V oil pressure,OK
