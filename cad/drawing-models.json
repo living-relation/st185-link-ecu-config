@@ -441,5 +441,10 @@
    "rev": "D",
    "pdf_sha": "3b4ba03fd5df2394"
   }
+ },
+ "regen_pending": {
+  "ST185-CSB3-100": {
+   "reason": "model-only PR: assembly BOM rev E (nylon tab screws removed); drawing regenerated in the R196 pass"
+  }
  }
 }
