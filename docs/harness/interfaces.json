@@ -1756,7 +1756,7 @@
         "c2": "sp_gndout_b",
         "c3": "ecu_b.b20",
         "c4": "ecu_b.b19",
-        "c5": "sp_shield_b"
+        "c5": "sp_shield_b_wsr"
       }
     },
     "front": {
@@ -1782,7 +1782,7 @@
         "c2": "sp_gndout",
         "c3": "ecu_a.a23",
         "c4": "ecu_b.b21",
-        "c5": "sp_shield_a"
+        "c5": "sp_shield_a_wsf"
       }
     }
   },
@@ -4809,7 +4809,9 @@
           "Blue"
         ],
         "wires": [
-          "w_drain_ecu_a"
+          "w_drain_ecu_a",
+          "w_shd_a_aps",
+          "w_shd_a_wsf"
         ]
       },
       "ACKILL": {
@@ -5169,7 +5171,8 @@
           "Blue"
         ],
         "wires": [
-          "w_drain_ecu_b"
+          "w_drain_ecu_b",
+          "w_shd_b_wsr"
         ]
       }
     },

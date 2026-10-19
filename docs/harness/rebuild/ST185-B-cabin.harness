@@ -995,6 +995,25 @@
       },
       "partId": "m16_20_09",
       "stripeColor": "White"
+    },
+    {
+      "id": "w_shd_b_wsr",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "sp_shield_b_wsr",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_shield_b",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "White",
+        "Yellow",
+        "Blue"
+      ]
     }
   ],
   "connectors": [
@@ -2424,7 +2443,7 @@
           "handle": "c5"
         },
         "target": {
-          "id": "sp_shield_b",
+          "id": "sp_shield_b_wsr",
           "handle": "Splice"
         }
       }
@@ -3193,6 +3212,20 @@
         "y": 540
       },
       "label": "SP-EVAP - evap thermistor + 2.2k pull-up to ECU-B B32"
+    },
+    {
+      "id": "sp_shield_b_wsr",
+      "schematicPosition": {
+        "x": 3720,
+        "y": 810
+      },
+      "layoutPosition": {
+        "x": -1140,
+        "y": 720
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1020",
+      "label": "At the rear WS inline - SP-SHIELD-B-WSR: rear wheel-speed drains"
     }
   ],
   "resistors": [

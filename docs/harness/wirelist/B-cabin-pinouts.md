@@ -120,5 +120,5 @@ Mates with `ix_ws_rear_r on WheelSpeed-Rear` - inline DT pair.
 | 2 | cab_rspur_gnd | VRC-R GND | splice sp_gndout_b (SP-GNDOUT-B) |
 | 3 | cab_rspur_l | Rear left wheel spd | ECU-B (Link G4X plug B, centre dash) pin B20 |
 | 4 | cab_rspur_r | Rear right wheel spd | ECU-B (Link G4X plug B, centre dash) pin B19 |
-| 5 | cab_rspur_sh | WS-R screen drain | splice sp_shield_b (SP-SHIELD-B) |
+| 5 | cab_rspur_sh | WS-R screen drain | splice sp_shield_b_wsr (SP-SHIELD-B-WSR) |
 | 6 |  | spare, sealing plug |  |

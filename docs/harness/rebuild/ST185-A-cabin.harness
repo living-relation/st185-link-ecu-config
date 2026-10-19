@@ -1765,6 +1765,44 @@
         "Blue"
       ],
       "partId": "m16_18_2"
+    },
+    {
+      "id": "w_shd_a_aps",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "sp_shield_a_aps",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "White",
+        "Yellow",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_shd_a_wsf",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "source": {
+        "id": "sp_shield_a_wsf",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "sp_shield_a",
+        "handle": "Splice"
+      },
+      "partId": "m16_20_06",
+      "identColors": [
+        "White",
+        "Yellow",
+        "Blue"
+      ]
     }
   ],
   "connectors": [
@@ -3558,39 +3596,9 @@
           "handle": "c5"
         },
         "target": {
-          "id": "sp_shield_a",
+          "id": "sp_shield_a_wsf",
           "handle": "Splice"
         },
-        "targetLayoutPoints": [
-          {
-            "schematicPosition": {
-              "x": -1440,
-              "y": 900
-            },
-            "id": "cab_fspur_sh_t_rp1"
-          },
-          {
-            "schematicPosition": {
-              "x": -1440,
-              "y": 1110
-            },
-            "id": "cab_fspur_sh_t_rp2"
-          },
-          {
-            "schematicPosition": {
-              "x": 480,
-              "y": 1110
-            },
-            "id": "cab_fspur_sh_t_rp3"
-          },
-          {
-            "schematicPosition": {
-              "x": 480,
-              "y": 210
-            },
-            "id": "cab_fspur_sh_t_rp4"
-          }
-        ],
         "sourceLayoutPoints": [
           {
             "schematicPosition": {
@@ -3660,7 +3668,7 @@
           "Blue"
         ],
         "target": {
-          "id": "sp_shield_a",
+          "id": "sp_shield_a_wsf",
           "handle": "Splice"
         }
       }
@@ -3841,39 +3849,9 @@
           "Yellow"
         ],
         "target": {
-          "id": "sp_shield_a",
+          "id": "sp_shield_a_aps",
           "handle": "Splice"
-        },
-        "targetLayoutPoints": [
-          {
-            "schematicPosition": {
-              "x": -1440,
-              "y": 450
-            },
-            "id": "cab_aps1_sh_t_rp1"
-          },
-          {
-            "schematicPosition": {
-              "x": -1440,
-              "y": -210
-            },
-            "id": "cab_aps1_sh_t_rp2"
-          },
-          {
-            "schematicPosition": {
-              "x": 420,
-              "y": -210
-            },
-            "id": "cab_aps1_sh_t_rp3"
-          },
-          {
-            "schematicPosition": {
-              "x": 420,
-              "y": 210
-            },
-            "id": "cab_aps1_sh_t_rp4"
-          }
-        ]
+        }
       }
     },
     {
@@ -4038,39 +4016,9 @@
           "Yellow"
         ],
         "target": {
-          "id": "sp_shield_a",
+          "id": "sp_shield_a_aps",
           "handle": "Splice"
-        },
-        "targetLayoutPoints": [
-          {
-            "schematicPosition": {
-              "x": -1440,
-              "y": 630
-            },
-            "id": "cab_aps_sh_t_rp1"
-          },
-          {
-            "schematicPosition": {
-              "x": -1440,
-              "y": -210
-            },
-            "id": "cab_aps_sh_t_rp2"
-          },
-          {
-            "schematicPosition": {
-              "x": 420,
-              "y": -210
-            },
-            "id": "cab_aps_sh_t_rp3"
-          },
-          {
-            "schematicPosition": {
-              "x": 420,
-              "y": 210
-            },
-            "id": "cab_aps_sh_t_rp4"
-          }
-        ]
+        }
       }
     }
   ],
@@ -4809,6 +4757,34 @@
         "y": 1050
       },
       "label": "At ECU-A plug - SP-A5: ECU main feed (SW12 + IG2 diode)"
+    },
+    {
+      "id": "sp_shield_a_aps",
+      "schematicPosition": {
+        "x": 1200,
+        "y": -60
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": 690
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_960",
+      "label": "At the pedal branch - SP-SHIELD-A-APS: pedal drains"
+    },
+    {
+      "id": "sp_shield_a_wsf",
+      "schematicPosition": {
+        "x": 1200,
+        "y": -120
+      },
+      "layoutPosition": {
+        "x": 540,
+        "y": 1080
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "bp_1020",
+      "label": "At the front WS inline - SP-SHIELD-A-WSF: front wheel-speed drains"
     }
   ],
   "resistors": [
