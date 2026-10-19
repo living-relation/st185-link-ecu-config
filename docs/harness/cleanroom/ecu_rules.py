@@ -1,4 +1,4 @@
-"""ECU-pin, ground-class and loom-crossing rules for the master wire lists (DECISIONS R212-R219).
+"""ECU-pin, ground-class and relay rules for the master wire lists (DECISIONS R212-R219 (no R218)).
 
 Called by wirelist.py with the loaded rows. Each finding is a dict: rule, key, harness, item, text.
 wirelist.py turns the findings into GAPS.md lines and, in --check, FAILS on any finding that is not in
@@ -12,7 +12,6 @@ entry that no longer violates, so the list can only shrink.
   R213  ground classes: ECU power ground and low-voltage electronics (PCBs, CAN nodes, LEDs, cruise ladder)
         -> battery-negative bus, never chassis; sensors -> Gnd Out only; high-current loads may use chassis
   R216  the ECU power grounds (A25 A34 B25 B34) share one splice with nothing else (N55); same check as R212
-  R218  only the +5 V sensor supply may run between an A-letter file and a B-letter file
   R219  an ECU output that drives a relay is a low-side output (QSG: Aux 1-4 low side only, Aux 5-8 high / low
         selectable): it goes to coil pin 85, and coil pin 86 goes to a fused +12 V source
 """
@@ -163,23 +162,6 @@ def _owner(ctx, conn):
     return n[0] if n else None
 
 
-def _crossings(ctx, rows):
-    """R218: a row owned by an A file with an end in a B file (or the reverse) must be the +5 V sensor supply."""
-    out = []
-    for r in rows:
-        if not r["wire_id"]:
-            continue
-        files = {r["harness"]} | {_owner(ctx, r[s + "_conn"]) for s in ("from", "to")}
-        files.discard(None)
-        if files & A_FILES and files & B_FILES:
-            if re.match(r"\+5V sensor", r["net_name"] or ""):
-                continue
-            out.append(dict(rule="R218", key=r["wire_id"], harness=r["harness"],
-                            item="%s (%s %s -> %s %s)" % (r["wire_id"], r["from_conn"], r["from_pin"], r["to_conn"], r["to_pin"]),
-                            text="runs between loom A and loom B (%s); only the +5 V sensor supply may (net: %s)" % (
-                                "/".join(sorted(files)), r["net_name"] or "?")))
-    return out
-
 
 def _relays(ctx, rows, ECU):
     """R219: ECU output -> relay coil pin 85 (low-side); coil pin 86 fed from a fused +12 V source."""
@@ -216,7 +198,7 @@ def _relays(ctx, rows, ECU):
     return out
 
 
-# Known violations waiting for the wiring fix (OPEN-ITEMS N55 / N56 and the loom A-B rule R218). Format: "rule:key".
+# Known violations waiting for the wiring fix (OPEN-ITEMS N55 / N56). Format: "rule:key".
 # The fix session deletes an entry when it fixes the wire; --check fails on any finding not listed here and on any
 # entry listed here that no longer violates.
 PENDING = {
@@ -234,15 +216,6 @@ PENDING = {
     "R213:w_tl_k",
     "R213:w_tr_k",
     "R216:GND_ECU",
-    "R218:cab_etbm_ae_sh",
-    "R218:cab_fspur_r_ac",
-    "R218:w124_e_ae",
-    "R218:w215_e_ae",
-    "R218:w_aps_vpa2",
-    "R218:w_b25_ac",
-    "R218:w_b34_ac",
-    "R218:w_lamg_ac",
-    "R218:w_rail_sw12_b_c_ac",
 }
 
 
@@ -250,7 +223,6 @@ def findings(ctx, rows, ECU):
     out = []
     out += _qsg(ctx, rows, ECU)
     out += _ground_classes(ctx, rows, ECU)
-    out += _crossings(ctx, rows)
     out += _relays(ctx, rows, ECU)
     for f in out:
         f["id"] = "%s:%s" % (f["rule"], f["key"])

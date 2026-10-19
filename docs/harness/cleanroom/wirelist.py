@@ -25,7 +25,7 @@ inline pin, a bussed plug and a device enclosure's screen join are one node. A f
 gated (fails --check on a net finding on its rows or a mate that differs) once Dan has approved it
 (GATED); a MISMATCH against channels.csv fails for every list; the others are reported in GAPS.md. Every ECU-pin
 wire is also followed to its far ends and checked against the pin's Quick Start Guide class (DECISIONS R212);
-those findings (`ecu_rules.py`: R212 QSG classes, R213 ground classes, R216 ECU ground, R218 loom A-B crossings,
+those findings (`ecu_rules.py`: R212 QSG classes, R213 ground classes, R216 ECU ground,
 R219 relay drive) fail --check unless listed in ecu_rules.PENDING, the known violations waiting for the wiring fix.
 
     python docs/harness/cleanroom/wirelist.py            # write
@@ -790,7 +790,7 @@ def main(check=False):
                          "MISMATCH: channels.csv %s %s '%s' (%s) is in use but no list has a wire on it" % (
                              x["conn"], x["pin"], x["label"], x["channel"]),
                          "add the wire the SoT gives, or set the pin nc in channels.csv (design question)"))
-    # ECU-pin / ground-class / loom-crossing / relay rules (R212-R219): ecu_rules.py; --check fails on any finding
+    # ECU-pin / ground-class / relay rules (R212-R219): ecu_rules.py; --check fails on any finding
     # that is not in ecu_rules.PENDING (the known violations waiting for the wiring fix)
     rule_findings = ecu_rules.findings(ctx, rows, ECU)
     for f in rule_findings:
