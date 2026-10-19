@@ -26,7 +26,7 @@ Both forms are accepted and checked the same way, per HALF of a bulkhead cavity:
 
 Class of each thing behind the pin:
   ECU pin       from sot/channels.csv (net CAN1H/CAN1L -> CAN H/L, class screen -> shield,
-                class ground or net GNDOUT -> ground, P5V/P8V -> +5V/+8V, class power ->
+                class ground or net GNDOUT_A / GNDOUT_B -> ground, P5V/P8V -> +5V/+8V, class power ->
                 +12V, class signal -> signal)
   device pin    from its label text; a label naming two supplies ("12V/8V") accepts either
   continues     another bulkhead hole, an inline interface pin or a broken-off end is the
@@ -62,7 +62,7 @@ def ecu_kind(r):
         return "CAN L"
     if r["class"] == "screen":
         return "shield"
-    if r["class"] == "ground" or r["net"] == "GNDOUT":
+    if r["class"] == "ground" or r["net"] in ("GNDOUT_A", "GNDOUT_B"):
         return "ground"
     if r["net"] == "P5V":
         return "+5V"

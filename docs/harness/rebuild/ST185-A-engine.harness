@@ -1600,17 +1600,20 @@
           "id": "c1",
           "signal": "+12 V supply",
           "contactPartId": "ct_gt150_skt_05",
-          "propagate": false
+          "propagate": false,
+          "designation": "A"
         },
         {
           "id": "c2",
           "signal": "sensor ground",
-          "contactPartId": "ct_gt150_skt_05"
+          "contactPartId": "ct_gt150_skt_05",
+          "designation": "B"
         },
         {
           "id": "c3",
           "signal": "ethanol/temp signal",
-          "contactPartId": "ct_gt150_skt_05"
+          "contactPartId": "ct_gt150_skt_05",
+          "designation": "C"
         }
       ],
       "layoutPosition": {

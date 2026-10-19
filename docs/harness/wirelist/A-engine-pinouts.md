@@ -22,7 +22,7 @@ Mates with `bh_a_fw on A-cabin` - shared DRB102 (section A here, section B on B-
 | 18 | w17 | Gnd turbo speed | Turbo speed sensor pin C |
 | 19 | cab_turbo_sh | Turbo speed shield | cable screen (one end only) |
 | 20 | w_rail_sp_sw12_e | +12 V boost + flex | splice sp_sw12_eng (Switched +12 V splice) |
-| 21 | w48_e | Flex fuel signal | Flex fuel sensor (fuel return line) pin 3 |
+| 21 | w48_e | Flex fuel signal | Flex fuel sensor (fuel return line) pin C |
 | 22 | cab_flex_sh | Flex fuel shield | cable screen (one end only) |
 | 23 | w126 | +5 V throttle sensor | Throttle body (Bosch ETB) pin 3 |
 | 24 | w128_e | Throttle pos 1 main | Throttle body (Bosch ETB) pin 6 |
@@ -78,9 +78,9 @@ Mates with `bh_a_fw on A-cabin` - shared DRB102 (section A here, section B on B-
 
 | Pin | Wire | Description | Other end |
 |---|---|---|---|
-| 1 | w217 | +12 V flex fuel | splice sp_sw12_eng (Switched +12 V splice) |
-| 2 | w47 | Gnd flex fuel | splice sp_gndout_eng2 (Sensor return splice) |
-| 3 | w48_e | Flex fuel signal | Bulkhead BH-A (DRB102, RH firewall) pin 21 |
+| A | w217 | +12 V flex fuel | splice sp_sw12_eng (Switched +12 V splice) |
+| B | w47 | Gnd flex fuel | splice sp_gndout_eng2 (Sensor return splice) |
+| C | w48_e | Flex fuel signal | Bulkhead BH-A (DRB102, RH firewall) pin 21 |
 
 ## Injector cyl 1 (`inj1`)
 

@@ -23,8 +23,9 @@ edit. They must all agree. A change that leaves two documents disagreeing is not
 ### Source-of-truth chain
 
 ```
-sot/channels.csv             ECU pin and channel SoT
+docs/harness/wirelist/*-wirelist.csv   wiring SoT since R206: every wire, pin, splice, end, mate, net
       |
+      +-- sot/channels.csv             ECU channel settings; wirelist.py --check compares its pins both ways
       +-- docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md
       |     device pin, pin name, whether that device gets a shield
       +-- XTREMEX-IO-TABLE.html        visual face; sync_io_table.py --check gates it
@@ -33,12 +34,12 @@ sot/channels.csv             ECU pin and channel SoT
               +-- harness.design app copy   mirror - never edit as source
 ```
 
-New ECU pin facts go into `sot/channels.csv` **first** (Daniel, 2026-09-25), then the IO
-table and the looms follow. Device pin, pin name, and whether that device gets a
+New wiring facts go into the wire list row **first** (R206; before the switch: `sot/channels.csv`, Daniel 2026-09-25), then `channels.csv`
+(ECU channel settings and pin), the IO table and the looms follow. Device pin, pin name, and whether that device gets a
 shield go into `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`. One shield flag
 per device or sensor, not per connector pin and not per wire. Which ECU pin a
-device wire lands on is owned by the ECU. If anything disagrees with the CSV on
-an ECU pin, the other thing is wrong and gets corrected - never the reverse.
+device wire lands on is owned by the ECU. If anything disagrees with the wire list on
+a pin, the other thing is wrong and gets corrected - never the reverse.
 `python docs/harness/check_all.py` enforces the whole chain and must pass before
 every commit.
 
@@ -46,7 +47,8 @@ every commit.
 
 | Surface | Role |
 |---|---|
-| `sot/channels.csv` | ECU pin/channel SoT |
+| `docs/harness/wirelist/*-wirelist.csv` | Wiring SoT (R206) |
+| `sot/channels.csv` | ECU channel settings; pins checked against the lists |
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, whether that device gets a shield (one flag per device, never per pin or wire) |
 | `XTREMEX-IO-TABLE.html` | Visual face of the ECU SoT, with a generated pin map |
 | `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: the A-pin relay coil wires (broken off to the box), the BRZ APS pedal connector (Rule 3 crossover c), front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |

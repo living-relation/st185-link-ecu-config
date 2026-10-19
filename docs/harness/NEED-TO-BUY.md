@@ -9,8 +9,8 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 
 | Part number | Mfr | Description | Need | Have | **Buy** |
 |---|---|---|---:|---:|---:|
-| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 88 | 0 | **88** |
-| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 58 | 0 | **58** |
+| `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 89 | 0 | **89** |
+| `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 59 | 0 | **59** |
 | `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 56 | 0 | **56** |
 | `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 48 | 0 | **48** |
 | `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 36 | 0 | **36** |
@@ -123,6 +123,7 @@ Regenerate with `docs/harness/buylist.py` after any harness change — do not ha
 | `1-1414687-0` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `10k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 10 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
+| `1N5822` | STMicroelectronics | DIODE, SCHOTTKY, RECTIFIER, 40 V, 3 A, DO-201AD AXIAL | 1 | 0 | **1** |
 | `1k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
 | `2.2k 1/4W 1%` | generic | RESISTOR, FIXED, METAL FILM, 2.2 KOHM, 1 PCT, 1/4 W | 1 | 0 | **1** |
 | `3.9k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 3.9 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -296,7 +297,7 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-cabin | 2 |
+| A-cabin | 3 |
 | B-cabin | 2 |
 | CSB3 | 5 |
 | CabinPower | 6 |
@@ -432,9 +433,9 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 | `RNF-100-3/16-4-STK` | 70 | 1 |
 | `RNF-100-3/16-6-STK` | 72 | 1 |
 | `RNF-100-3/16-9-STK` | 70 | 1 |
-| `RNF-100-3/32-4-STK` | 688 | 4 |
-| `RNF-100-3/32-6-STK` | 944 | 6 |
-| `RNF-100-3/32-9-STK` | 482 | 3 |
+| `RNF-100-3/32-4-STK` | 690 | 4 |
+| `RNF-100-3/32-6-STK` | 948 | 6 |
+| `RNF-100-3/32-9-STK` | 486 | 3 |
 
 ## Covering tubing on bundles (Raychem DR-25)
 

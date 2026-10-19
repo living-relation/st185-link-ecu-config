@@ -36,7 +36,7 @@ def rows():
 def colour(r):
     if r["class"] in ("spare", "nc"):
         return "tbd"
-    if r["class"] in ("ground", "screen") or r["net"] == "GNDOUT":
+    if r["class"] in ("ground", "screen") or r["net"] in ("GNDOUT_A", "GNDOUT_B"):
         return "gnd"
     if r["class"] in ("power", "rail"):
         return "pwr"

@@ -98,7 +98,7 @@ SETSCREW = dict(l=20.0, in_so=9.5)
 # 1.82 MPa. Used by the snap-tab checks below.
 PA12 = dict(E=1700.0, sy=48.0, nu=0.39)
 
-# ---------- POWER outputs: copper C-strap per AMI position (N14 = B, Dan 2026-10-17: "do B"; DECISIONS R155 supersedes R146 / R144)
+# ---------- POWER outputs: copper C-strap per AMI position (N14 = B, Dan 2026-10-17: "do B"; DECISIONS R155 supersedes the standoff and collar rules)
 # Every POWER position - the 6 outputs, the 6 relay feeds (IN row, Dispatch 2026-10-17: "C-strap on all 12") and the 2 spares - is ONE bent
 # copper strap instead of pad + 40 mm brass standoff + set screw: top leg under the AMI ear, web down through a well in the deck, bottom
 # leg under the deck with the lug bolted palm-UP against its underside. Current runs ear -> copper -> lug on clamped flat copper faces only:
@@ -336,7 +336,7 @@ WALL_EXEMPT = {
     'strip lip': 'LOGIC spine lips the bus strips slide in on (from the rear): 0.9 thick (spec.SPINE lip_t, z 4.6 - 5.5), 0.4 under the strip '
                  'and 0.6 over the belly-pan floor (z 4.0); thicker raises the strips (every stud row and PEM edge distance moves) or closes '
                  'the pan gap. Re-measured 2026-10-17 (SteveCAD sweep C7): the lips are this feature - the solid PA12 over the strips is not it',
-    'bar snap tab': 'R146 / R155 (Dan N5: printed tabs that hold the bars down): the snap arm (2.2 thick) has to flex to let the bar in, and its hook '
+    'bar snap tab': 'R155 (Dan N5: printed tabs that hold the bars down): the snap arm (2.2 thick) has to flex to let the bar in, and its hook '
                     '(1.6) carries no load but the bar\'s own lift; walls, slots and the arm are sized for MJF (slots 1.0 > 0.5 S6)',
     'lug pocket wall': 'markup 2026-10-17 (Dan 23-18 / 23-27 pockets, R160): attachment only - the PA12 wall between two NEG bus lug tongues is 2.2 '
                        '(3.0 between the tongues, Dan\'s lug rule, less 0.4 clearance each side); it only stops a lug turning while its nut is '
@@ -586,7 +586,7 @@ STOCK = {
          'https://www.amazon.com/dp/B09Z7KJV65', 'One strip per piece; 3.0 thick (0.2 thinner - the lugs sit 0.2 further from their jumpers, fine).'),
     ]),
 }
-READY_MADE = ('Bussmann LMI (AMI modules on a common bus bar, B109-7046-x)', 'The only ready-made AMI bus found. It is R18 Option B, which R70 replaced: '
+READY_MADE = ('Bussmann LMI (AMI modules on a common bus bar, B109-7046-x)', 'The only ready-made AMI bus found. It is the old cabin fuse box Option B, which R70 replaced: '
               '25 mm per position (vs 18 here) and its own housings, so it does not fit the printed boxes.')
 
 # ---------- rev 7 (Dan's E2 = A, 2026-10-14, "make a separate new version so I can see it"): NO separate glove-box bus bar and NO

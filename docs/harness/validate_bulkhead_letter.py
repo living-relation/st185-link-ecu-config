@@ -54,7 +54,7 @@ BH_LETTER = {"bh_a_fw": "A", "bh_a_eng": "A", "bh_b_fw": "B", "bh_b_eng": "B"}
 WALK = ("SP", "BH", "IX", "BRK")
 
 ALLOW = {
-    "a": {"nets": {"P5V", "GNDOUT"}},
+    "a": {"nets": {"P5V", "GNDOUT_A"}},
     "b": {"conductors": {"w124_e_ae", "w215_e_ae"}},
     "c": {"conductors": {"w_aps_vpa2"}},
 }

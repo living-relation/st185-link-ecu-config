@@ -1166,8 +1166,8 @@
         "handle": "Splice"
       },
       "target": {
-        "id": "ecu_a",
-        "handle": "a5"
+        "id": "sp_a5",
+        "handle": "Splice"
       },
       "color": "Red",
       "identColors": [
@@ -1715,6 +1715,56 @@
         "Blue"
       ],
       "partId": "m16_18_42"
+    },
+    {
+      "id": "w_ig2_in",
+      "source": {
+        "id": "fl_ig2_wake",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "d_ig2_wake",
+        "handle": "Left"
+      },
+      "color": "Green",
+      "identColors": [
+        "White",
+        "Yellow",
+        "White"
+      ],
+      "partId": "m16_20_5"
+    },
+    {
+      "id": "w_ig2_diode",
+      "source": {
+        "id": "d_ig2_wake",
+        "handle": "Right"
+      },
+      "target": {
+        "id": "sp_a5",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
+      "partId": "m16_20_2"
+    },
+    {
+      "id": "w_a5_pin",
+      "source": {
+        "id": "sp_a5",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "ecu_a",
+        "handle": "a5"
+      },
+      "color": "Red",
+      "identColors": [
+        "Blue"
+      ],
+      "partId": "m16_18_2"
     }
   ],
   "connectors": [
@@ -3356,6 +3406,22 @@
       },
       "propagate": false,
       "label": "EHPS relay pin 85, glove box - EHPS relay coil (-)"
+    },
+    {
+      "id": "fl_ig2_wake",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "schematicPosition": {
+        "x": -1110,
+        "y": -330
+      },
+      "layoutPosition": {
+        "x": -1350,
+        "y": 570
+      },
+      "propagate": false,
+      "label": "J/B No.1 1H pin 7, factory B-O lead - IG2 wake feed tap",
+      "width": 390
     }
   ],
   "cables": [
@@ -4632,6 +4698,15 @@
         "cov_lbl_38",
         "cov_dr25_14"
       ]
+    },
+    {
+      "id": "bn_bp_1110__fl_ig2_wake",
+      "sourceId": "bp_1110",
+      "targetId": "fl_ig2_wake",
+      "length": {
+        "value": 900,
+        "unit": "mm"
+      }
     }
   ],
   "splices": [
@@ -4760,6 +4835,20 @@
       "partId": "spp_solder_generic",
       "locationId": "bp_fl_acamp",
       "label": "At A/C amp - SP-AC-PSW: A/C pressure switch output"
+    },
+    {
+      "id": "sp_a5",
+      "schematicPosition": {
+        "x": 600,
+        "y": 90
+      },
+      "partId": "spp_solder_generic",
+      "locationId": "b_bp_1080",
+      "layoutPosition": {
+        "x": 210,
+        "y": 1050
+      },
+      "label": "At ECU-A plug - SP-A5: ECU main feed (SW12 + IG2 diode)"
     }
   ],
   "resistors": [
@@ -6090,6 +6179,31 @@
       "id": "m_bus_gnd_bha",
       "sourceId": "bus_gnd_bha_p",
       "targetId": "bus_gnd_bha_r"
+    }
+  ],
+  "diodeParts": [
+    {
+      "id": "dp_1n5822",
+      "partNumber": "1N5822",
+      "manufacturer": "STMicroelectronics",
+      "description": "DIODE, SCHOTTKY, RECTIFIER, 40 V, 3 A, DO-201AD AXIAL"
+    }
+  ],
+  "diodes": [
+    {
+      "id": "d_ig2_wake",
+      "partId": "dp_1n5822",
+      "anodeOnRight": false,
+      "schematicPosition": {
+        "x": 600,
+        "y": 30
+      },
+      "layoutPosition": {
+        "x": 270,
+        "y": 1110
+      },
+      "locationId": "b_bp_1080",
+      "label": "IG2 wake diode (1N5822)"
     }
   ]
 }

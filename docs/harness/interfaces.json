@@ -1671,6 +1671,20 @@
         "function": "power main relay coil+ (GAUGE 15A, ignition on) -> k_pwr 86 (R/B2 removed)",
         "method": "crimp butt splice into the factory cowl-side L-Y lead at the left kick"
       }
+    },
+    {
+      "id": "FL_IG2_WAKE_C1",
+      "type": "oem_flying_lead",
+      "harness": "A-cabin",
+      "terminal": "fl_ig2_wake",
+      "ewd": {
+        "page": "1993 TIS EWD p.62 (Power Source)",
+        "connector": "J/B No.1 1H (output of the 7.5A IGN fuse, fed from I13 IG2 pin 9 B-O via 1A-5), ECU wake tap",
+        "pin": "7",
+        "color": "B-O",
+        "function": "IG2 -> supply diode -> ECU-A A5 (ECU wake feed, channels.csv b28 note, DECISIONS item 38)",
+        "method": "solder splice onto the factory lead"
+      }
     }
   ],
   "realConnectors": [
@@ -4449,12 +4463,24 @@
       }
     },
     "A-cabin": {
+      "IG2WAKE": {
+        "bands": [
+          "White",
+          "Yellow",
+          "White"
+        ],
+        "wires": [
+          "w_ig2_in"
+        ]
+      },
       "SW12": {
         "bands": [
           "Blue"
         ],
         "wires": [
           "w78",
+          "w_ig2_diode",
+          "w_a5_pin",
           "w_rail_sp_sw12_c",
           "w_fb_sw12",
           "w_rail_sw12_b_c_ac"

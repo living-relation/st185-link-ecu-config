@@ -80,7 +80,7 @@ for k in ('fb_strip1','fb_strip2'):
 PARTS['fb_power_base']['notes']=PARTS['fb_power_base']['notes']+[
   "VERIFIED 2026-10-17: R145 SLITS FILLED (NO GAP < 0.5, S6).",
   "OUTPUTS (R155, N14 = B): 14 WELLS FOR THE COPPER C-STRAPS (ST185-FB-117); THE LIPS REST ON THE LEDGE (DOWN STOP), A SNAP HOOK REACHES OVER "
-  "THE LIPS (UP STOP) - OUT ROW: THE FREED SKIRT, IN ROW: AN ARM CUT FREE IN THE DECK. NO STANDOFFS, CRUSH RIBS OR ADHESIVE (R146 SUPERSEDED)."]
+  "THE LIPS (UP STOP) - OUT ROW: THE FREED SKIRT, IN ROW: AN ARM CUT FREE IN THE DECK. NO STANDOFFS, CRUSH RIBS OR ADHESIVE (R155)."]
 # N14 = B (R155): the POWER outputs are copper C-straps (ST185-FB-117, run_fb117.py); the output pad drawing is the battery block pad only
 _p=PARTS['fb_pad']
 _p['file']=src('st185_fusebox_1017','BattRelay_Pad_Out_CuC110_15x3.step')

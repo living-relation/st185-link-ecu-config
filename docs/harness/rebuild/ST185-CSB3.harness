@@ -563,55 +563,55 @@
       "cavities": [
         {
           "id": "com1",
-          "designation": "COM",
+          "designation": "COM1",
           "signal": "Opto COM",
           "propagate": false
         },
         {
           "id": "com2",
-          "designation": "COM",
+          "designation": "COM2",
           "notConnected": true
         },
         {
           "id": "i1",
-          "designation": "01",
+          "designation": "IN1",
           "signal": "Opto in1 brake",
           "propagate": false
         },
         {
           "id": "i2",
-          "designation": "02",
+          "designation": "IN2",
           "signal": "Opto in2 reverse",
           "propagate": false
         },
         {
           "id": "i3",
-          "designation": "03",
+          "designation": "IN3",
           "notConnected": true
         },
         {
           "id": "i4",
-          "designation": "04",
+          "designation": "IN4",
           "notConnected": true
         },
         {
           "id": "i5",
-          "designation": "05",
+          "designation": "IN5",
           "notConnected": true
         },
         {
           "id": "i6",
-          "designation": "06",
+          "designation": "IN6",
           "notConnected": true
         },
         {
           "id": "i7",
-          "designation": "07",
+          "designation": "IN7",
           "notConnected": true
         },
         {
           "id": "i8",
-          "designation": "08",
+          "designation": "IN8",
           "notConnected": true
         },
         {
@@ -628,44 +628,44 @@
         },
         {
           "id": "o1",
-          "designation": "01",
+          "designation": "OUT1",
           "signal": "Opto out1 brake",
           "propagate": false
         },
         {
           "id": "o2",
-          "designation": "02",
+          "designation": "OUT2",
           "signal": "Opto out2 reverse",
           "propagate": false
         },
         {
           "id": "o3",
-          "designation": "03",
+          "designation": "OUT3",
           "notConnected": true
         },
         {
           "id": "o4",
-          "designation": "04",
+          "designation": "OUT4",
           "notConnected": true
         },
         {
           "id": "o5",
-          "designation": "05",
+          "designation": "OUT5",
           "notConnected": true
         },
         {
           "id": "o6",
-          "designation": "06",
+          "designation": "OUT6",
           "notConnected": true
         },
         {
           "id": "o7",
-          "designation": "07",
+          "designation": "OUT7",
           "notConnected": true
         },
         {
           "id": "o8",
-          "designation": "08",
+          "designation": "OUT8",
           "notConnected": true
         }
       ],

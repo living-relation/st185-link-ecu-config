@@ -985,6 +985,12 @@
       "partNumber": "(LED board indicator - 12 V, resistor on board)",
       "manufacturer": "LED board",
       "description": "DIODE, LIGHT EMITTING, INDICATOR, 12 V"
+    },
+    {
+      "id": "dp_1n5822",
+      "partNumber": "1N5822",
+      "manufacturer": "STMicroelectronics",
+      "description": "DIODE, SCHOTTKY, RECTIFIER, 40 V, 3 A, DO-201AD AXIAL"
     }
   ],
   "spliceParts": [
