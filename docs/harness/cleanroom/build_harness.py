@@ -219,7 +219,8 @@ def build(h, geo, spec, who):
         cb["cores"] = [c for c in cb["cores"] if c["id"] in keep]
         if cb.get("shield") and cb["shield"]["id"] not in keep:
             cb.pop("shield")
-    out["cables"] = [cb for cb in out.get("cables", []) if cb["cores"] or cb.get("shield")]
+    if "cables" in out:
+        out["cables"] = [cb for cb in out["cables"] if cb["cores"] or cb.get("shield")]
 
     # connectors: label + one description per wired pin, nothing on unwired pins
     labels = spec.get("connectors", {})
@@ -296,9 +297,13 @@ def build(h, geo, spec, who):
 
     # parts no wire / cable uses any more go (R44)
     used_p = {w.get("partId") for w in out["wires"]}
-    out["wireParts"] = [p for p in out.get("wireParts", []) if p["id"] in used_p]
+    have = {p["id"] for p in out.get("wireParts", [])}
+    lib = {p["id"]: p for p in load(os.path.join(HARNESS, "rebuild", "ST185.harnesslib")).get("wireParts", [])}
+    out["wireParts"] = out.get("wireParts", []) + [copy.deepcopy(lib[i]) for i in sorted(used_p - have) if i in lib]   # the library is the master (R39)
+    out["wireParts"] = [p for p in out["wireParts"] if p["id"] in used_p]
     used_p = {c.get("partId") for c in out.get("cables", [])}
-    out["cableParts"] = [p for p in out.get("cableParts", []) if p["id"] in used_p]
+    if "cableParts" in out:
+        out["cableParts"] = [p for p in out["cableParts"] if p["id"] in used_p]
     return out, problems
 
 
@@ -419,7 +424,8 @@ def main():
     target = a.out or path
     for p, t in ((target, text), (FULL_TEXT, ft_text)):
         tmp = p + ".tmp"
-        with open(tmp, "w", encoding="utf-8", newline=chr(10)) as f:
+        crlf = os.path.exists(p) and b"\r\n" in open(p, "rb").read(4096)   # keep the file's own line ending: no whole-file diffs
+        with open(tmp, "w", encoding="utf-8", newline=chr(13) + chr(10) if crlf else chr(10)) as f:
             f.write(t)
         os.replace(tmp, p)
     print("wrote %s: %d wires, %d cable conductors, %d connectors, %d splices, %d wire ends" % (

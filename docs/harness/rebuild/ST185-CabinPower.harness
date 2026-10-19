@@ -1600,26 +1600,30 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "EFI 12V in",
-          "contactPartId": "ct_f7_load"
+          "signal": "EFI relay feed",
+          "contactPartId": "ct_f7_load",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "EFI coil-",
-          "contactPartId": "ct_faston63"
+          "signal": "EFI relay coil (-)",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "EFI coil+",
-          "contactPartId": "ct_faston63"
+          "signal": "EFI relay coil+",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c1",
           "designation": "30",
-          "signal": "EFI 12V out",
-          "contactPartId": "ct_f7_load"
+          "signal": "LOGIC Bus 2 feed",
+          "contactPartId": "ct_f7_load",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1640,27 +1644,30 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Rad fan 12V in",
-          "contactPartId": "ct_faston95_8"
+          "signal": "Rad fan relay feed",
+          "contactPartId": "ct_faston95_8",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Rad fan coil-",
-          "contactPartId": "ct_faston63"
+          "signal": "Rad fan relay (-)",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Rad fan coil+",
+          "signal": "Rad fan rly coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Rad fan 12V out",
-          "contactPartId": "ct_faston95_8"
+          "signal": "Rad fan +12 V",
+          "contactPartId": "ct_faston95_8",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1681,27 +1688,30 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "ETB 12V in",
-          "contactPartId": "ct_faston63"
+          "signal": "ETB relay +12 V in",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "ETB coil-",
-          "contactPartId": "ct_fastin48"
+          "signal": "ETB relay coil (-)",
+          "contactPartId": "ct_fastin48",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "ETB coil+",
+          "signal": "ETB relay coil+",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "ETB 12V out",
-          "contactPartId": "ct_faston63"
+          "signal": "ETB motor +12 V",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -1726,27 +1736,30 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Start 12V in",
-          "contactPartId": "ct_f7_load"
+          "signal": "Start relay feed",
+          "contactPartId": "ct_f7_load",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Start coil-",
-          "contactPartId": "ct_faston63"
+          "signal": "Start relay coil (-)",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Start coil+",
+          "signal": "Start relay coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Start 12V out",
-          "contactPartId": "ct_f7_load"
+          "signal": "Starter solenoid S",
+          "contactPartId": "ct_f7_load",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1767,27 +1780,30 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Cond fan 12V in",
-          "contactPartId": "ct_faston95_8"
+          "signal": "Cond fan relay feed",
+          "contactPartId": "ct_faston95_8",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Cond fan coil-",
-          "contactPartId": "ct_faston63"
+          "signal": "Cond fan relay (-)",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Cond fan coil+",
+          "signal": "Cond fan rly coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Cond fan 12V out",
-          "contactPartId": "ct_faston95_8"
+          "signal": "Cond fan +12 V",
+          "contactPartId": "ct_faston95_8",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -1817,26 +1833,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "EHPS 12V in",
+          "signal": "EHPS relay feed",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "EHPS coil-",
+          "signal": "EHPS relay coil (-)",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "EHPS coil+",
-          "contactPartId": "ct_ss15"
+          "signal": "EHPS relay coil+",
+          "contactPartId": "ct_ss15",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "EHPS 12V out"
+          "signal": "EHPS pump +12 V",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -1852,26 +1870,30 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "A/C 12V in",
-          "contactPartId": "ct_faston63"
+          "signal": "A/C clutch +12 V in",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "A/C coil-",
-          "contactPartId": "ct_fastin48"
+          "signal": "A/C clutch relay (-)",
+          "contactPartId": "ct_fastin48",
+          "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "A/C coil+",
-          "contactPartId": "ct_fastin48"
+          "signal": "A/C clutch relay (+)",
+          "contactPartId": "ct_fastin48",
+          "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "A/C 12V out",
-          "contactPartId": "ct_faston63"
+          "signal": "A/C clutch +12 V",
+          "contactPartId": "ct_faston63",
+          "propagate": false
         },
         {
           "id": "c5",
@@ -1896,28 +1918,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "EPS EN 12V in",
+          "signal": "EPS enable +12 V in",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "EPS EN coil-",
+          "signal": "EPS enable relay (-)",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "EPS EN coil+",
+          "signal": "EPS enable coil+",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "EPS EN 12V out",
+          "signal": "EPS enable out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -1944,28 +1966,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Rev 12V in",
+          "signal": "Reverse relay feed",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Rev coil-",
+          "signal": "Reverse relay coil-",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Rev coil+",
+          "signal": "Reverse relay coil+",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Rev 12V out",
+          "signal": "Back-up lamps +12 V",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -1992,28 +2014,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Head LH 12V in",
+          "signal": "Head LH relay feed",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Head LH coil-",
+          "signal": "Head LH coil (-)",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Head LH coil+",
+          "signal": "Head LH relay coil+",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Head LH 12V out",
+          "signal": "Head LH +12 V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -2040,28 +2062,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Head RH 12V in",
+          "signal": "Head RH relay feed",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Head RH coil-",
+          "signal": "Head RH coil (-)",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Head RH coil+",
+          "signal": "Head RH relay coil+",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Head RH 12V out",
+          "signal": "Head RH +12 V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -2088,28 +2110,28 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Horn 12V in",
+          "signal": "Horn relay feed",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Horn coil-",
+          "signal": "Horn relay coil (-)",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Horn coil+",
+          "signal": "Horn relay coil+",
           "contactPartId": "ct_fastin48",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Horn 12V out",
+          "signal": "Horn +12 V out",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
@@ -2136,35 +2158,35 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Htr 12V in",
+          "signal": "Heater relay feed",
           "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Htr coil-",
+          "signal": "Heater relay coil-",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Htr coil+",
+          "signal": "Heater relay coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Htr 12V out",
+          "signal": "Heater relay out",
           "contactPartId": "ct_faston63_8",
           "propagate": false
         },
         {
           "id": "c5",
           "designation": "87a",
-          "signal": "Htr 87a",
+          "signal": "Heater relay NC gnd",
           "contactPartId": "ct_faston63",
           "propagate": false
         }
@@ -2187,28 +2209,28 @@
         {
           "id": "c4",
           "designation": "87",
-          "signal": "PWR 12V in",
+          "signal": "Power relay feed",
           "contactPartId": "ct_f7_load",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "PWR coil-",
+          "signal": "Power relay coil-",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "PWR coil+",
+          "signal": "Power relay coil+",
           "contactPartId": "ct_faston63",
           "propagate": false
         },
         {
           "id": "c1",
           "designation": "30",
-          "signal": "PWR 12V out",
+          "signal": "Power window feed",
           "contactPartId": "ct_f7_load",
           "propagate": false
         }
@@ -2231,89 +2253,89 @@
         {
           "id": "in1",
           "designation": "AMI IN-1",
-          "signal": "HTR 40A",
+          "signal": "Heater relay feed",
           "propagate": false
         },
         {
           "id": "in2",
           "designation": "AMI IN-2",
-          "signal": "EFI 30A",
+          "signal": "EFI relay feed",
           "propagate": false,
           "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in3",
           "designation": "AMI IN-3",
-          "signal": "STR 30A",
+          "signal": "Start relay feed",
           "propagate": false,
           "contactPartId": "ct_ring_m5_12"
         },
         {
           "id": "in4",
           "designation": "AMI IN-4",
-          "signal": "FAN 40A",
+          "signal": "Rad fan relay feed",
           "propagate": false
         },
         {
           "id": "in5",
           "designation": "AMI IN-5",
-          "signal": "FAN2 30A",
+          "signal": "Cond fan relay feed",
           "propagate": false
         },
         {
           "id": "in6",
           "designation": "AMI IN-6",
-          "signal": "PWR 30A",
+          "signal": "Power relay feed",
           "propagate": false
         },
         {
           "id": "out1",
           "designation": "AMI OUT-1",
-          "signal": "BUS1 50A",
+          "signal": "LOGIC Bus 1 feed",
           "propagate": false
         },
         {
           "id": "out2",
           "designation": "AMI OUT-2",
-          "signal": "RTR 30A",
+          "signal": "Retract relay feed",
           "propagate": false
         },
         {
           "id": "out3",
           "designation": "AMI OUT-3",
-          "signal": "AM1 40A",
+          "signal": "AM1 feed to IE1",
           "propagate": false
         },
         {
           "id": "out4",
           "designation": "AMI OUT-4",
-          "signal": "AM2 30A",
+          "signal": "AM2 feed to IE1",
           "propagate": false
         },
         {
           "id": "out5",
           "designation": "AMI OUT-5",
-          "signal": "JB1 60A",
+          "signal": "J/B1 main feed",
           "propagate": false,
           "contactPartId": "ct_klauke_3r5"
         },
         {
           "id": "out6",
           "designation": "AMI OUT-6",
-          "signal": "EPS 60A",
+          "signal": "EHPS relay feed",
           "propagate": false
         },
         {
           "id": "acps_in",
           "designation": "ACPS IN",
-          "signal": "ACPS in",
+          "signal": "ACPS fuse feed",
           "propagate": false,
           "contactPartId": "ct_mcp28_968851"
         },
         {
           "id": "acps",
           "designation": "ACPS",
-          "signal": "ACPS 10A",
+          "signal": "A/C press sw feed",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         }
@@ -2336,163 +2358,163 @@
         {
           "id": "b1",
           "designation": "BUS1",
-          "signal": "Bus 1 in",
+          "signal": "LOGIC Bus 1 feed",
           "propagate": false,
           "contactPartId": "ct_klauke_2r5"
         },
         {
           "id": "b2",
           "designation": "BUS2",
-          "signal": "Bus 2 in",
+          "signal": "LOGIC Bus 2 feed",
           "propagate": false,
           "contactPartId": "ct_klauke_2r5"
         },
         {
           "id": "efi86",
           "designation": "BUS1-1",
-          "signal": "EFI86 5A",
+          "signal": "EFI relay coil+",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "hl",
           "designation": "BUS1-2",
-          "signal": "HL 15A",
+          "signal": "Head LH +12 V feed",
           "propagate": false
         },
         {
           "id": "hr",
           "designation": "BUS1-3",
-          "signal": "HR 15A",
+          "signal": "Head RH +12 V feed",
           "propagate": false
         },
         {
           "id": "hz",
           "designation": "BUS1-4",
-          "signal": "HZ 15A",
+          "signal": "Haz-horn +12 V feed",
           "propagate": false
         },
         {
           "id": "dm",
           "designation": "BUS1-5",
-          "signal": "DM 20A",
+          "signal": "DOME feed to J/B1",
           "propagate": false
         },
         {
           "id": "wl",
           "designation": "BUS1-6",
-          "signal": "WL 15A",
+          "signal": "Door lock feed",
           "propagate": false
         },
         {
           "id": "alm",
           "designation": "BUS1-7",
-          "signal": "ALM 5A",
+          "signal": "Alarm +12 V",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "alms",
           "designation": "BUS1-8",
-          "signal": "ALMS 2A",
+          "signal": "Shock sensor +12 V",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "alts",
           "designation": "BUS1-9",
-          "signal": "ALTS 2A",
+          "signal": "Alt S battery sense",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "etb",
           "designation": "BUS1-10",
-          "signal": "ETB 10A",
+          "signal": "ETB relay +12 V in",
           "propagate": false
         },
         {
           "id": "lam",
           "designation": "BUS2-1",
-          "signal": "LAM 7.5A",
+          "signal": "CAN-Lambda +12 V",
           "propagate": false
         },
         {
           "id": "sw12",
           "designation": "BUS2-2",
-          "signal": "SW12 7.5A",
+          "signal": "Switched +12 V feed",
           "propagate": false
         },
         {
           "id": "cop",
           "designation": "BUS2-3",
-          "signal": "COP 15A",
+          "signal": "Coil +12 V feed",
           "propagate": false
         },
         {
           "id": "inj",
           "designation": "BUS2-4",
-          "signal": "INJ 15A",
+          "signal": "Injector +12 V feed",
           "propagate": false
         },
         {
           "id": "csb",
           "designation": "BUS2-5",
-          "signal": "CSB 5A",
+          "signal": "CSB3 +12 V",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "dev",
           "designation": "BUS2-6",
-          "signal": "DEV 15A",
+          "signal": "Dash devices +12 V",
           "propagate": false
         },
         {
           "id": "epsen",
           "designation": "BUS2-7",
-          "signal": "EPSEN 7.5A",
+          "signal": "EPS enable +12 V in",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "acc",
           "designation": "BUS2-8",
-          "signal": "ACC 10A",
+          "signal": "A/C clutch +12 V in",
           "propagate": false
         },
         {
           "id": "almig",
           "designation": "BUS2-9",
-          "signal": "ALMIG 2A",
+          "signal": "Alarm ignition +12V",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "mrsin",
           "designation": "BUS2-12 IN",
-          "signal": "MRS in",
+          "signal": "EPS enable out",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "mrs",
           "designation": "BUS2-12",
-          "signal": "MRS 7.5A",
+          "signal": "EHPS enable +12 V",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "b30in",
           "designation": "BUS2-13 IN",
-          "signal": "B30 in",
+          "signal": "Start sw ST1 feed",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         },
         {
           "id": "b30",
           "designation": "BUS2-13",
-          "signal": "B30 2A",
+          "signal": "Start request",
           "propagate": false,
           "contactPartId": "ct_mcp28_968849"
         }
@@ -2517,63 +2539,63 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "SW12 +12 V bus",
+          "signal": "Switched +12 V feed",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "SW12 +12 V bus",
+          "signal": "Switched +12 V feed",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c3",
           "designation": "3",
-          "signal": "SW12 +12 V bus",
+          "signal": "Fuel pump rly coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c4",
           "designation": "4",
-          "signal": "SW12 +12 V bus",
+          "signal": "Rad fan rly coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c5",
           "designation": "5",
-          "signal": "SW12 +12 V bus",
+          "signal": "ETB relay coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c6",
           "designation": "6",
-          "signal": "SW12 +12 V bus",
+          "signal": "Start relay coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c7",
           "designation": "7",
-          "signal": "SW12 +12 V bus",
+          "signal": "Cond fan rly coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c8",
           "designation": "8",
-          "signal": "SW12 +12 V bus",
+          "signal": "EHPS relay coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },
         {
           "id": "c9",
           "designation": "9",
-          "signal": "SW12 +12 V bus",
+          "signal": "EPS enable coil+",
           "propagate": false,
           "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2"
         },

@@ -404,7 +404,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "RADLOK + cabin side",
+          "signal": "Starter feed (H3)",
           "propagate": false
         }
       ],
@@ -426,7 +426,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "RADLOK + bay side"
+          "signal": "Starter feed (H3)",
+          "propagate": false
         }
       ],
       "partId": "cp_rl_red_eng"
@@ -447,7 +448,7 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "RADLOK - cabin side",
+          "signal": "Engine ground (H6a)",
           "propagate": false
         }
       ],
@@ -469,7 +470,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "RADLOK - bay side"
+          "signal": "Engine ground (H6a)",
+          "propagate": false
         }
       ],
       "partId": "cp_rl_blk_eng"
@@ -490,7 +492,8 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "Jump post stud"
+          "signal": "Jump post feed",
+          "propagate": false
         }
       ],
       "partId": "cp_jump"
@@ -541,28 +544,28 @@
         {
           "id": "c1",
           "designation": "MAIN 1",
-          "signal": "Main pole in, batt+",
+          "signal": "Battery + main",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
         {
           "id": "c2",
           "designation": "MAIN 2",
-          "signal": "Main pole out, load",
+          "signal": "Battery + to POWER",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
         {
           "id": "c3",
           "designation": "ALT 1",
-          "signal": "2nd pole in, alt IG",
+          "signal": "Alt IG to kill sw",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         },
         {
           "id": "c4",
           "designation": "ALT 2",
-          "signal": "2nd pole out, alt IG",
+          "signal": "Alt IG excite",
           "propagate": false,
           "contactPartId": "ct_lug_stud"
         }
@@ -583,13 +586,13 @@
         {
           "id": "in",
           "designation": "BATT +",
-          "signal": "M6 feed stud",
+          "signal": "Battery relay box +",
           "propagate": false
         },
         {
           "id": "fp",
           "designation": "FP 40A",
-          "signal": "FP 40A fuse out",
+          "signal": "Fuel pump rly feed",
           "propagate": false,
           "contactPartId": "ct_klauke_2r5"
         }
@@ -612,27 +615,27 @@
         {
           "id": "c1",
           "designation": "30",
-          "signal": "Relay 30 fused 12V",
+          "signal": "Fuel pump rly feed",
           "propagate": false
         },
         {
           "id": "c2",
           "designation": "85",
-          "signal": "Coil- ECU drive",
+          "signal": "Fuel pump relay (-)",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c3",
           "designation": "86",
-          "signal": "Coil+ SW12",
+          "signal": "Fuel pump rly coil+",
           "contactPartId": "ct_ss15",
           "propagate": false
         },
         {
           "id": "c4",
           "designation": "87",
-          "signal": "Relay 87 pump 12V",
+          "signal": "Fuel pump +12 V",
           "propagate": false
         },
         {

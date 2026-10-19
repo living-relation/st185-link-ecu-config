@@ -185,12 +185,14 @@
         {
           "id": "c1",
           "designation": "1",
-          "signal": "SIG"
+          "signal": "Fuel level signal",
+          "propagate": false
         },
         {
           "id": "c2",
           "designation": "2",
-          "signal": "FUEL LVL GND"
+          "signal": "Fuel level ground",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -218,11 +220,13 @@
       "cavities": [
         {
           "id": "c1",
-          "signal": "FUEL PUMP 12V"
+          "signal": "Fuel pump +12 V",
+          "propagate": false
         },
         {
           "id": "c2",
-          "signal": "FUEL PUMP GND"
+          "signal": "Fuel pump ground",
+          "propagate": false
         }
       ],
       "layoutPosition": {
@@ -664,5 +668,6 @@
       "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
       "id": "pl_sz16"
     }
-  ]
+  ],
+  "mates": []
 }
