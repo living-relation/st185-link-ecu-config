@@ -71,17 +71,17 @@
  },
  "drb102-plate": {
   "png": "cad/drb102-plate/trimetric.png",
-  "solids": 11,
+  "solids": 12,
   "part_types": 8,
   "extent_mm": [
    280.0,
    220.0,
-   259.4
+   242.2
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/drb102-plate/DRB102-firewall-plate-assembly.step": 1792209652
+   "C:/projects/active/st185-link-ecu-config/cad/drb102-plate/DRB102-firewall-plate-assembly.step": 1792386730
   },
-  "rendered": "2026-10-17"
+  "rendered": "2026-10-19"
  },
  "enclosure-csb3": {
   "png": "cad/enclosures/csb3/trimetric.png",
@@ -93,23 +93,23 @@
    86.2
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792194987
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792386665
   },
-  "rendered": "2026-10-16"
+  "rendered": "2026-10-19"
  },
  "enclosure-vrc": {
   "png": "cad/enclosures/vrc/trimetric.png",
   "solids": 10,
-  "part_types": 7,
+  "part_types": 9,
   "extent_mm": [
-   117.2,
+   181.3,
    74.0,
    45.0
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792159222
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792386627
   },
-  "rendered": "2026-10-16"
+  "rendered": "2026-10-19"
  },
  "enclosure-vrc-holder": {
   "png": "cad/enclosures/vrc/trimetric-holder.png",
@@ -249,34 +249,34 @@
  "package-rev6": {
   "png": "cad/fusebox/package-rev6.png",
   "solids": 535,
-  "part_types": 84,
+  "part_types": 86,
   "extent_mm": [
-   549.2,
+   613.3,
    579.5,
    89.9
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step": 1791931593,
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792194987,
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792159222,
+   "C:/projects/active/st185-link-ecu-config/cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step": 1792123052,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792386665,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792386627,
    "C:/projects/active/st185-link-ecu-config/cad/fusebox/ST185_fusebox_rev6_assembly.step": 1792012597
   },
-  "rendered": "2026-10-16"
+  "rendered": "2026-10-19"
  },
  "package-rev7": {
   "png": "cad/fusebox/rev7/package-rev7.png",
-  "solids": 617,
-  "part_types": 86,
+  "solids": 631,
+  "part_types": 91,
   "extent_mm": [
-   549.2,
+   613.3,
    454.8,
    89.9
   ],
   "sources": {
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792194987,
-   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792159222,
-   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792362223
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/csb3/CSB3_assembly.step": 1792386665,
+   "C:/projects/active/st185-link-ecu-config/cad/enclosures/vrc/VRC_assembly.step": 1792386627,
+   "C:/projects/active/st185-link-ecu-config/cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step": 1792385122
   },
-  "rendered": "2026-10-18"
+  "rendered": "2026-10-19"
  }
 }

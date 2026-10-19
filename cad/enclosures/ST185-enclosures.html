@@ -38,7 +38,7 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 </div>
 <div class="card scroll"><table>
 <tr><th>Size</th><td>90 x 50 x 45 mm closed (body 39 + lid 6); 74 mm across the tabs</td></tr>
-<tr><th>Inside</th><td>76 x 36 x 34 mm. The holder block (z 5-15) stays under the sockets' solder cups (z 17-25) and clears their rear envelope by 0.23 mm; the leads cross over it to the board top with 3 x OD bends (R126).</td></tr>
+<tr><th>Inside</th><td>76 x 36 x 34 mm. The holder block (z 5-15) stays under the sockets' solder cups (z 17-25) and clears the CNLINKO socket model by 4.7 mm (R184, 2026-10-19); the leads cross over it to the board top with 3 x OD bends (R126).</td></tr>
 <tr><th>Walls</th><td>7 mm; at each socket a D30 counterbore inside leaves a 3.5 mm panel (LP-16 max 4.5)</td></tr>
 <tr><th>Cutout</th><td>D18.5 +0.2/0 with 16.5 +0.2/0 across the flat, flat up (CNLINKO drawing LP-16-xxxSX-02-1xxx rev A1)</td></tr>
 <tr><th>Weight</th><td>About 290 g (body + lid, 6061 at 2.70 g/cm3)</td></tr>
@@ -133,9 +133,9 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 
 <h2>Files</h2>
 <div class="card"><ul>
-<li><code>vrc\</code>: ST185-VRC-Enclosure.f3d, VRC_assembly.step, VRC_part_*.step (body, lid, O-ring, socket envelopes, board holder + its STL, the VR board), drawing PDF/SVG, renders</li>
+<li><code>vrc\</code>: ST185-VRC-Enclosure.f3d, VRC_assembly.step, VRC_part_*.step (body, lid, O-ring, LP-16 sockets, board holder + its STL, the VR board), drawing PDF/SVG, renders</li>
 <li><code>csb3\</code>: ST185-CSB3-Enclosure.f3d, CSB3_assembly.step, CSB3_part_*.step, drawing PDF/SVG, renders</li>
-<li>Connector, board and socket bodies in the assemblies are simple envelopes for fit checks, not maker CAD.</li>
+<li>The HD34 and LP-16 connector bodies are the makers' own models (R184, <code>src/real_connectors.py</code> + <code>src/fusion_real_connectors.py</code>, 2026-10-19). The CSB3 board is still a block from the ECUMaster manual (no ECUMaster CAD).</li>
 <li>Sources and working notes: PLAN-notes.md</li>
 </ul></div>
 </main></body></html>
