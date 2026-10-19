@@ -161,7 +161,7 @@ Primary engine-protection alarms (knock, cuts, primary oil pressure, over-temp) 
 4. **Top strip** per section 4; bind each chip to its bit input; strobe the caution/alarm chips.
 5. **4x4 grid** per section 5 — Numerical gauges for values, Bar gauges for progress bars, Text/enum
    for Cruise and A/C. Apply the section 3 theme and the section 5 bands.
-6. **Save** the `.rd`. Keep `link_g4x_realdash.xml` as the source of truth for input names.
+6. **Save** the `.rd`. Input names come from `link_g4x_realdash.xml`; do not rename them in the `.rd`.
 
 ---
 

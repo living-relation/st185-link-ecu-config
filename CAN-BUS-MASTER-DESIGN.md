@@ -2,8 +2,6 @@
 
 **Companion document:** `CAN-BUS-ID-ALLOCATION-TABLE.md` contains the byte-level layout for every ID referenced here. Read the two together — this document covers *architecture and configuration*; the allocation table covers *wire format*.
 
-This document supersedes the bus-topology, ingestion, and fault-handling assumptions in **"CAN Bus Configuration for Link ECU.docx"** (see §8, Corrections).
-
 ---
 
 ## 1. Overview & Scope
@@ -57,7 +55,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
   - 0x640: Analog Inputs 1-4 (raw mV, 0-5000)
   - 0x641: Analog Inputs 5-8 (raw mV, 0-5000)
   - 0x642: Rotaries 1-8 (nibble-packed), SW_MASK (8 switches), AS_MASK (8 analog-states), LS_MASK (4 low-side outputs), heartbeat byte
-- **Input frame** (Base+3 = 0x643): low-side output control (L1-L4), source = **ECU** (decided 2026-06-14, §9). Outputs unused / LED-only for now. Sent as a 50 ms periodic PCLink TX stream; bytes change only when an output changes.
+- **Input frame** (Base+3 = 0x643): low-side output control (L1-L4), source = **ECU** (decided 2026-06-14, §8). Outputs unused / LED-only for now. Sent as a 50 ms periodic PCLink TX stream; bytes change only when an output changes.
 
 ### SW_MASK assignment (0x642 byte4)
 
@@ -155,25 +153,7 @@ Two independent layers protect against switchboard communication loss:
 
 ---
 
-## 8. Corrections to "CAN Bus Configuration for Link ECU.docx"
-
-These were identified during reconciliation and are documented in full (with byte-level resolution) in `CAN-BUS-ID-ALLOCATION-TABLE.md` §7. Summary:
-
-### Conflict A — ID collision
-The docx's proposed 0x3E8 (multiplexed Generic Dash) and 0x3E9-0x3EC ("Custom Stream 1-4", little-endian) collide with the immutable, coded-complete firmware streams on those same IDs (BigEndian, non-multiplexed Custom; 0x3EE absent from the docx entirely). **Resolution:** the docx's useful payloads are re-homed to new IDs **0x3EF-0x3F1**, using the existing BigEndian/Custom convention.
-
-### Conflict B — Bidirectional vs. listen-only
-The docx assumes the cluster is a passive/listen-only CAN node. The coded firmware (`canbus.h`) configures `TWAI_MODE_NORMAL` (bidirectional) and actively transmits 0x3EC/0x3ED on confirmed button press. **Resolution:** the cluster is a full bus participant — it transmits 0x3EC/0x3ED to the ECU. But a CAN ID has a single transmitter, so the cluster does not inject into the ECU-owned 0x3EF, and RealDash shares no CAN traffic with the cluster directly. The ECU receives 0x3EC/0x3ED and echoes the selected boost map / TC setting to RealDash in 0x3EF bytes 5 / 3.
-
-### Conflict C — "Generic Dash" format assumption
-The docx assumes Link's standard multiplexed "Generic Dash" stream type on 0x3E8. The coded firmware uses Link's **"Custom" stream type** with bespoke BigEndian layouts (per `CANBUS-LINK-G4X-CONFIG.md`, Global CAN Settings: Stream type = Custom, Byte order = Big endian). **Resolution:** all new streams (0x3EF-0x3F1) follow the same Custom/BigEndian convention.
-
-### Additional correction — single shared bus requirement (not in docx)
-The docx does not address the ECUMaster switchboard's bus segment or speed at all. This design requires the switchboard to share the ECU/cluster's 1 Mbit/s bus (reconfigured from its 500 kbps default) so that PCLink's User Stream ingestion (§5) can function. This is a net-new requirement introduced by this design, not a correction of an existing docx claim.
-
----
-
-## 9. Decision — 0x643 Control Source = ECU (RESOLVED 2026-06-14)
+## 8. Decision — 0x643 Control Source = ECU (RESOLVED 2026-06-14)
 
 0x643 (switchboard low-side output control, INPUT) needs a transmitter. Two candidates:
 
@@ -186,7 +166,7 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 
 ---
 
-## 10. Summary — Action Items for Task #9
+## 9. Summary — Action Items for Task #9
 
 | # | Action | Owner |
 |---|---|---|
@@ -195,6 +175,6 @@ The docx does not address the ECUMaster switchboard's bus segment or speed at al
 | 3 | User Stream 2 (0x642 byte4 bits 2, 5-7 → VDI3, VDI6-8) and the 0x640 Cruise Stalk mV channel — **written** in the `.lcs` receive channels (2026-10-14, R80); imported with the `.lcs`. User Stream 1 (cabin temp → GP Temp1) is retired, see §5 | PCLink config |
 | 4 | PCLink receive timeouts (200ms) on 0x640/0x642 with fail-safe value 0 — **written** in the `.lcs` (`Timeout="200"`) | PCLink config |
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
-| 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §9 — outputs unused/LED-only, low priority | PCLink config (deferred) |
+| 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §8 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
 | 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |

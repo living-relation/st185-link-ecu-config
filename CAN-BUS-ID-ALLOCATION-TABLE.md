@@ -224,32 +224,7 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 
 ---
 
-## 7. Conflicts A/B/C — Documentation & Resolution
-
-### Conflict A — CAN ID collision (docx vs. coded firmware)
-**Docx proposal:** 0x3E8 as a multiplexed "Link Generic Dash" stream, plus 0x3E9–0x3EC as "Custom Stream 1-4" (little-endian).
-
-**Actual coded firmware:** 0x3E8/0x3E9/0x3EA/0x3EB are non-multiplexed **Custom/BigEndian** streams (Engine Fast / Speed-Press-Ign / Lambda / Gear-Fuel) per `link_g4x_can_setup.lcs`; 0x3EC is the cluster's boost-map-selection TX (cluster→ECU); 0x3EE (Engine Protect) is entirely absent from the docx's table.
-
-**Resolution:** The docx's 0x3E8–0x3EC architecture **cannot be implemented as written** — it collides with immutable, coded-complete firmware. Its useful payloads (fuel temp, engine load%, TC intervention%, coolant pressure, ethanol%, charge-pipe IAT, cabin temp, turbo speed, accel XYZ, trigger error count, AC/cruise/flat-shift/radiator-fan status) are **re-homed to 0x3EF–0x3F1** (Section E above), all BigEndian/Custom to match the existing convention.
-
-### Conflict B — Bidirectional vs. listen-only
-**Docx assumption:** the ESP32 cluster is "completely passive" / listen-only on the CAN bus.
-
-**Actual coded firmware:** `canbus.h` configures `TWAI_MODE_NORMAL` (bidirectional) and exposes `canbus_tx_selection()`, actively used for 0x3EC and 0x3ED.
-
-**Resolution:** The cluster is a full bus participant — it transmits 0x3EC/0x3ED to the ECU. But a CAN ID has exactly one transmitter, so the cluster does **not** inject into the ECU-owned 0x3EF, and RealDash never reads cluster frames directly (no cluster↔RealDash crossover). The ECU receives 0x3EC/0x3ED and **echoes** the selected boost map / TC setting to RealDash in 0x3EF bytes 5 / 3.
-
-### Conflict C — "Generic Dash" format assumption
-**Docx assumption:** the ESP32 expects Link's standard multiplexed "Generic Dash" format on 0x3E8.
-
-**Actual coded firmware:** uses Link's **"Custom" stream type** with bespoke BigEndian byte layouts (see Section A), not the generic multiplexed dash format.
-
-**Resolution:** All new streams (0x3EF–0x3F1) follow the **Custom/BigEndian** convention already established, for consistency with the existing decoder in `canbus.c`.
-
----
-
-## 8. Summary of New Allocations (for Task #9)
+## 7. Summary of New Allocations (for Task #9)
 
 | Action | Detail |
 |---|---|

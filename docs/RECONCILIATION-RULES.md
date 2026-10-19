@@ -43,6 +43,13 @@ a pin, the other thing is wrong and gets corrected - never the reverse.
 `python docs/harness/check_all.py` enforces the whole chain and must pass before
 every commit.
 
+### ECU pins: check the Quick Start Guide (R212)
+
+A wire on an ECU pin (plugs A / B / C) is also checked against the Link G4X Quick Start Guide: pin function,
+what the pin may connect to, current limits, wire gauge. `cleanroom/wirelist.py --check` reports any far end the
+pin's class does not allow (ground -> ECU ground pins and battery negative, Gnd Out -> sensor returns, shield -> drains,
++5 V / +8 V -> sensor supplies, power -> fused +12 V) in `GAPS.md`.
+
 ### Every wiring surface that must agree
 
 | Surface | Role |
@@ -65,8 +72,7 @@ every commit.
 | `docs/harness/rebuild/ST185-ClusterLED.harness` | Cluster warning LEDs |
 | `docs/harness/rebuild/ST185-AntiTheft.harness` | Anti-theft |
 | `docs/harness/rebuild/ST185-RearLights.harness` | Rear lights: J/B No.1 / S9 feeds to the rear lamps, reverse from `k_rev` |
-| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | Cabin landing table for every ex-J/B2 / R/B load (§5.4), fuse-box slot map (§8.1) |
-| `docs/harness/HARNESS-BUILD-LIST.csv` | Generated - re-run `buildlist.py` |
+| `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md` | OEM landing facts and EWD citations for every ex-J/B2 / R/B load (§5.4); the wire lists own the wiring |
 | `docs/harness/NEED-TO-BUY.md` | Generated - re-run `buylist.py` |
 | `docs/harness/redesign/DECISIONS.md` | The binding rules (R1-R132) and the dated decisions |
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |

@@ -44,7 +44,8 @@ What it runs, in order - every one in HARD is a hard gate:
                            numbers, no "not used" / "reserved" cavity signals, no stale notes;
                            only its D1 EngineRoom-C list is SOFT inside the script (printed)
   buylist.py --check       buy list is current, and the shared-connector consistency check
-  buildlist.py --check     per-wire build list is current
+  audit_doc_claims.py      no stale documents (DECISIONS R211): no archive folders, no doc outside the keep list
+                           claiming to be a source of truth, no superseded / historical banner
   check_route_drawings.py  the approved route drawings in routes/ (red route lines unfilled,
                            no broken attributes, a top view after every figure, no
                            overlapping markers in one figure)
@@ -67,7 +68,6 @@ if the committed file is stale, but never write. So check_all.py leaves the tree
 untouched and CI can trust it. After a harness change, regenerate locally:
 
     python docs/harness/buylist.py
-    python docs/harness/buildlist.py
     python docs/harness/cleanroom/wirelist.py     (the master wire lists + GAPS.md, R201)
 
 (no flag, or --write, writes the file) and commit the results with the drawing.
@@ -84,9 +84,8 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
-        ["audit_dan_rules.py"], ["buylist.py", "--check"], ["../sourcing/build_project_bom.py", "--check"],   # the ONE project BOM / shopping list is current
-       
-        ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
+        ["audit_dan_rules.py"], ["audit_doc_claims.py"], ["buylist.py", "--check"], ["../sourcing/build_project_bom.py", "--check"],   # the ONE project BOM / shopping list is current
+        ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
         ["audit_bundle_topology.py"],   # R154: bundle shape follows the route, no empty / copied legs
         ["cleanroom/wirelist.py", "--check"],   # R201: the master wire list (CSV + styled .xlsx) is current, matches the SoT, nets clean
         ["atlas/build_atlas.py", "--check"],   # connector atlas PDF is current against the wire lists

@@ -22,7 +22,7 @@ a PC that has RealDash installed and a real GPU-backed desktop**. Everything the
   the screenshot->click automation loop, the CAN channel import, the exact tile-by-tile dashboard
   spec (positions, colors, bindings, thresholds), build procedure, validation, delivery, plus an
   appendix of findings. **Start here.** Sections 3 and 4 (the CAN contract and the dashboard spec)
-  are the authoritative source of truth and are unchanged from the original package.
+  are the dashboard contract.
 - `CREDENTIALS.md` - My RealDash account login (subscription active, 0/3 devices). Requested for
   this handoff; keep private.
 - `FINDINGS.md` - why this must run on a GPU-backed PC (the software-OpenGL-ES deadlock diagnosis),

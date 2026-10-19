@@ -23,7 +23,9 @@ Rules in the format (Dispatch for Dan, 2026-10-19):
 Nets are electrical, so they are worked out across all the lists at once: a mated bulkhead or
 inline pin, a bussed plug and a device enclosure's screen join are one node. A file's list is
 gated (fails --check on a net finding on its rows or a mate that differs) once Dan has approved it
-(GATED); a MISMATCH against channels.csv fails for every list; the others are reported in GAPS.md.
+(GATED); a MISMATCH against channels.csv fails for every list; the others are reported in GAPS.md. Every ECU-pin
+wire is also followed to its far ends and checked against the pin's Quick Start Guide class (DECISIONS R212);
+that finding is reported in GAPS.md and does not fail yet.
 
     python docs/harness/cleanroom/wirelist.py            # write
     python docs/harness/cleanroom/wirelist.py --check    # check_all.py gate
@@ -555,6 +557,73 @@ def assign_nets(ctx, rows):
     return findings, row_bad
 
 
+# Link G4X Quick Start Guide classes (DECISIONS R212): what each ECU pin may connect to. The QSG pin
+# names are the "QSG-IO" source in channels.csv, so the class comes from the pin's channels.csv row.
+QSG_ENDS = {   # class key -> (what the far ends may be, regex over the far end's description)
+    "ground": ("ECU ground pins and battery negative", None),
+    "gndout": ("sensor returns", re.compile(r"gnd|ground|return|rtn|\(-\)", re.I)),
+    "screen": ("shield drains", re.compile(r"shield|screen|drain", re.I)),
+    "rail": ("sensor supply pins", re.compile(r"\+?\s?[58]\s?V|sensor|cam|pedal|cruise|supply", re.I)),
+    "power": ("fused +12 V", re.compile(r"\+12|12\s?V|ECU main|diode|fuse", re.I)),
+}
+
+
+def qsg_gaps(ctx, rows):
+    """Each ECU pin's wires are followed through splices to the real ends they reach; an end the pin's QSG class
+    does not allow is a gap (reported, not failed, until the N55 / N56 wiring fix lands)."""
+    wires = [r for r in rows if r["wire_id"]]
+    seen_pins, out, done = set(), [], set()
+    for r in wires:
+        for s, o in (("from", "to"), ("to", "from")):
+            conn, pin = r[s + "_conn"], r[s + "_pin"]
+            if r[s + "_type"] != "connector" or conn not in ECU or (conn, pin) in seen_pins:
+                continue
+            seen_pins.add((conn, pin))
+            sr = ctx.sot_row(conn, pin)
+            if not sr or sr["class"] not in ("ground", "rail", "screen", "power"):
+                continue
+            kind = "gndout" if sr["net"].startswith("GNDOUT") else sr["class"]
+            # walk the splices this wire reaches; collect the real (non-splice) ends on them
+            todo, nodes, ends = [r], set(), []
+            visited = {id(r)}
+            while todo:
+                w = todo.pop()
+                for e in ("from", "to"):
+                    if w[e + "_type"] == "splice":
+                        if w[e + "_conn"] in nodes:
+                            continue
+                        nodes.add(w[e + "_conn"])
+                        for x in wires:
+                            if id(x) not in visited and w[e + "_conn"] in (x["from_conn"], x["to_conn"]):
+                                visited.add(id(x))
+                                todo.append(x)
+                    elif not (w is r and e == s):
+                        ends.append((w, e))
+            bad = []
+            for w, e in ends:
+                desc, t, c, p = w[e + "_desc"], w[e + "_type"], w[e + "_conn"], w[e + "_pin"]
+                ok_row = ctx.sot_row(c, p) if t == "connector" and c in ECU else None
+                if kind == "ground":
+                    name = w[e + "_conn_name"].lower()
+                    ok = (ok_row and ok_row["class"] == "ground") or (t == "terminal" and re.search(r"battery neg|neg bar|battery -", name))
+                elif ok_row:
+                    ok = ok_row["net"] == sr["net"] or ok_row["class"] == sr["class"]
+                else:
+                    ok = bool(QSG_ENDS[kind][1].search(desc)) and not re.search(r"chassis|battery", w[e + "_conn_name"], re.I)
+                if not ok:
+                    bad.append("%s %s %s (%s)" % (w["harness"], c, p, desc[:40]))
+            if bad and (kind, frozenset(nodes)) not in done:
+                done.add((kind, frozenset(nodes)))
+                pins = sorted({"%s %s" % (x[s2 + "_conn"], x[s2 + "_pin"]) for x in wires for s2 in ("from", "to")
+                               if x[s2 + "_type"] == "connector" and x[s2 + "_conn"] in ECU and x[s2 + "_conn"] + x[s2 + "_pin"] and
+                               (ctx.sot_row(x[s2 + "_conn"], x[s2 + "_pin"]) or {}).get("net") == sr["net"]})
+                out.append((r["harness"], "%s (%s; first wire %s)" % (sr["net"], ", ".join(pins), r["wire_id"]),
+                            "QSG: a %s pin may reach only %s; it also reaches %s" % (
+                                kind, QSG_ENDS[kind][0], "; ".join(sorted(set(bad))[:6]) + (" ..." if len(set(bad)) > 6 else "")),
+                            "wiring fix follows OPEN-ITEMS N55 / N56 (ECU ground to battery negative); not fixed in the lists yet"))
+    return out
+
+
 def recommend(what):
     """The plain recommended answer for each kind of gap (GAPS.md)."""
     rules = [
@@ -786,6 +855,7 @@ def main(check=False):
                          "MISMATCH: channels.csv %s %s '%s' (%s) is in use but no list has a wire on it" % (
                              x["conn"], x["pin"], x["label"], x["channel"]),
                          "add the wire the SoT gives, or set the pin nc in channels.csv (design question)"))
+    gaps += qsg_gaps(ctx, rows)   # R214: every ECU-pin wire against the QSG class (report only)
     seen, glines = set(), []
     for g in gaps:
         if g not in seen:

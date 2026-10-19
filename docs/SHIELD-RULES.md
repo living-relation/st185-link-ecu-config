@@ -1,8 +1,8 @@
 # ST185 shield rules — settled, do not re-ask
 
 The shield rules themselves are **R27-R34** in `docs/harness/redesign/DECISIONS.md` "Binding
-rules from Daniel" (the one rules home; it wins over this file). This file is the inventory
-and the build detail that apply them. The plan doc §6.27 / §6.30-6.32 is history.
+rules from Daniel" (the one rules home; it wins over this file). This file is the build detail
+that applies them (the shield pins and cavities are in the wire lists).
 
 **`docs/harness/audit_shields.py` enforces R1, R2, R3, R5, R6 and S1-S4 (R207) mechanically, and
 `check_all.py` runs it.** If a change breaks one of these rules the build fails.
@@ -56,61 +56,17 @@ bulkhead pin, wired on both halves, never on a shell. Do not invent break points
 wheel-speed sensors have **two wires**: no third conductor, no shield connection at the
 sensor.
 
-## Bulkhead pass-through (Daniel, 2026-10-01, narrowed)
+## Bulkhead pass-through (Daniel, 2026-10-01)
 
-**This is the governing wording for firewall screens.** It limits the older
-§6.32 "every shield gets its own bulkhead passthrough pin" wording: that
-allocation applies only where this rule requires a bulkhead pin.
+Only a signal that already passes through both firewall bulkhead halves must carry its shield
+through both halves on matching pins. That shield floats at the sensor, must not stop on either
+half, and terminates at the ECU shield pin. Every such shield gets its own bulkhead cavity (the
+pin list is the wire lists, `DRB102-pin-table.csv`). Once the bulkhead connectors are installed
+they are straight-through, so a shield is not required to float at the bulkhead.
 
-Only a signal that already passes through both firewall bulkhead halves must
-carry its shield through both halves on matching pins. That shield floats at
-the sensor, must not stop on either half, and terminates at the ECU or at the
-destination device. Once the bulkhead connectors are installed they are
-straight-through, so a shield is not required to float at the bulkhead.
-
-## §6.32 — bulkhead pin allocation, in priority order
-
-**Limited by "Bulkhead pass-through (Daniel, 2026-10-01, narrowed)" above —
-that is the governing wording.**
-
-**First choice: every shield gets its own bulkhead passthrough pin.** Allocate
-that way whenever the pins exist. There are 16 free pairs on bulkhead A and 11 on
-B, so first choice applies for through-bulkhead screens required by the
-narrowing.
-
-Fallback, if that ever stops being true:
-
-1. Critical sensors keep a dedicated shield pin — crank and cam first, then knock.
-2. Everything else shares one passthrough, then splits back out on the far side.
-   Shields may be spliced together when the bulkhead runs out of pins.
-3. All terminate together at the ECU shield grounds, however they crossed.
-
-## Shield inventory
-
-| Shield | Route | Bulkhead pin |
-|---|---|---|
-| crank | cable floats at the sensor → `bh_a_eng` c33 → `bh_a_fw` c33 → `sp_shield_a` → **ECU-A A7** | own pin, bulkhead A |
-| cam | same, c34 → `sp_shield_a` → **A7** | own pin, bulkhead A |
-| knock 1 | cable floats at the sensor → `bh_b_eng` c18 → `bh_b_fw` c18 → `sp_shield_b` → **ECU-B B17** (knock is pin B9, loom B) | own pin, bulkhead B |
-| wss FL | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin (one shared splice, S9); fender route, no bulkhead; combined 4-core output screen → `IX_WS_FRONT` c5 → `sp_shield_a` → A7 | none — fender; inline pin 5 |
-| wss FR | same VRC-side cable as FL (one shared VRC output screen to A7); FR's own core leaves the shield at `IX_WS_FRONT` (c6 now spare, not a drain) and continues cabin-side as its own short shielded spur (`cab_fspur_fr_ac`, A-cabin, running on to the ECU-B plug for the FR signal wire), floating at both the inline end and the B end, drained only at `sp_shield_a` → **A7** (R207, 2026-10-19: loom screens never cross; it was B17 since Route 9 rev 3) | none — fender for the VRC leg; the B-cabin spur has no bulkhead either |
-| wss RL, RR | drain connected on both the VRC input and the VRC output; ABS input drains splice together and terminate on a single pin (one shared splice, S9); no bulkhead; output screen → `IX_WS_REAR` pin 5 → `sp_shield_b` → B17 | none — grommet; inline pin 5 |
-| turbo speed, flex fuel, ETB sensor group (A22/A33) | 3- or 4-core cable (`cab_turbo`, `cab_flex`, `cab_etbs`) floats at the sensor → its own `bh_a_eng` pin → the same `bh_a_fw` pin → `sp_shield_a` → **A7** | own pin each, next to its device's wires (R207, R208; numbers in the generated `docs/harness/DRB102-CAVITY-MAP.md`) |
-| ETB motor group (B18/B26), gearbox VSS, CAN-Lambda pair | ETB motor: 2-core 18 AWG cable floats at the ETB (A-engine spur `cab_etbm_ae`), broken off to B-engine `cab_etbm_be` → its own `bh_b_eng` pin → the same `bh_b_fw` pin → `sp_shield_b` → **B17**. VSS: `cab_vss` floats at the VSS → its own bulkhead pin → `sp_shield_b` → B17. CAN-Lambda: `cab_can_lam` floats at the Lambda → `cab_lamcan_be` → its own bulkhead pin → B-cabin `cab_canbh_bc` → the CAN branch splice `sp_can_sh_bh` → the CAN trunk drain → ECU C1 (R207; see CAN row). Each drain has its own cavity; the old shared B c1 pigtail plan is dropped | own pin each, next to its device's wires (R208 map) |
-| CAN trunk + drops (ECU/CSB3/cluster/RealDash) | CAN pair only (H/L); +12V/ground stay plain. Every segment is a 2-core shielded twisted pair (`cab_can_*` in ST185-CAN, `cab_can_csb_csb` in ST185-CSB3); each node cable drain splices onto the ONE trunk drain at its own branch (`sp_can_sh_clu`, `_csb`, `_rd`, `_bh`, named "SP-CAN-SH-<node>") and floats at the node (cluster, CSB3, RealDash, Lambda; the ECU cable too). The trunk drain `w_shd_can_trunk` is the only wire on ECU-COMMS **C1** (R207); nothing else shares it | none for the cabin drops; the Lambda leg uses its own bulkhead pin (row above) |
-| APS pedal (VC1/GND1/VPA1, VC2/GND2/VPA2) | one 6-core shielded cable `cab_aps` on A-cabin, pedal to the ECU (2026-10-11, "pedal is one cable in A-cabin"); the screen floats at the pedal and drains at `sp_shield_a` → **A7**. The VPA2 core breaks off near the ECU to B-cabin (`w_aps_vpa2` → `br_w39` → B33, crossover (c)) | none — the pedal and the ECU are both in the cabin |
-
-Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through
-`sp_shield_b`, the CAN screens on C1 through the trunk drain. No screen crosses between loom A and loom B (R207, `audit_shields.py` S3). Nothing but a drain lands on A7, B17 or C1. The harness-reconcile pass's redraw list is
-done: turbo speed, flex fuel, ETB, gearbox VSS and CAN were redrawn as shielded cables
-2026-10-11 (plan §7.3), and the APS pedal as one shielded cable the same day. `docs/harness/audit_shields.py`
-only enforces what IS drawn; it does not
-yet flag these as failing because the device-level "Shield: yes" flags in
-`docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` aren't cross-checked against the
-drawings (`docs/OPEN-ITEMS.md` row 31).
-
-`bh_a_fw` c1 / `bh_a_eng` c1 used to be a single shared drain. **Retired
-2026-09-22** when §6.32 first choice was finally applied. Both are spare.
+Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through `sp_shield_b`,
+the CAN screens on C1 through the trunk drain. No screen crosses between loom A and loom B
+(R207, `audit_shields.py` S3). Nothing but a drain lands on A7, B17 or C1.
 
 ## VR conditioner boxes (R31, R34)
 
@@ -124,12 +80,10 @@ the two drain pins each box joins (`<plug>.<pin>`).
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
 two non-shielded 5-pin CNLINKO LP-16 plugs (`LP-16-J05PE-02-001`, S8 / R34 / S16). Nothing bonds to the case
 and no shell carries the screen (R33): the box is not part of the shield path, the PCB sits
-on nylon standoffs and grounds through the output cable only, and the box mounts on nylon
-hardware. There is no bare-metal landing to mask before powder coat. (The 2026-09-20 plan
-§6.30 "enclosure is part of the screen" design is superseded; `docs/enclosures/` still
-describes it - OPEN-ITEMS row 75.)
+in a printed holder (S26) and grounds through the output cable only, and the box mounts on nylon
+hardware. There is no bare-metal landing to mask before powder coat.
 
-## §6.31 — ABS routing
+## ABS routing
 
 | Pair | Runs with |
 |---|---|

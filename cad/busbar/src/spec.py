@@ -11,7 +11,7 @@ Catalog sources (no guessed dims):
           2R8   10 mm2 M8   b 15  l 25  d4 7.0   d2 8.5    -> 8 AWG (8.4 mm2) MTA-3 feed
   Ferrule - Weidmueller H50,0/25 (1988780000): 50 mm2, contact length 25, collar dia 13 (design B set-screw ports).
   Bolts - ISO 4017 hex head, A2-70: M10 s=16 k=6.4, M8 s=13 k=5.3.
-Wire gauges per connection from st185-link-ecu-config (read-only): ENGINE-ROOM-POWER-REDISTRIBUTION.md 5.1 / 8.1,
+Wire gauges per connection from st185-link-ecu-config (read-only): ENGINE-ROOM-POWER-REDISTRIBUTION.md 5.1 and the wire lists,
   ST185-EngineRoom-C.harness (pdb c1/c2/c8, t_gnd_id/ig = GENERIC LUG M10 50MM2),
   ST185-CabinPower.harness (t_pdb_lmi_b / mta1 / mta2 = M8 4 AWG, t_pdb_mta3 = M8 8 AWG, batt_ring = M8 4 AWG LMI-A).
 """

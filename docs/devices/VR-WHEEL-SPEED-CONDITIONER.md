@@ -11,36 +11,16 @@ Two dual-channel boards cover all four wheels.
 
 ---
 
-## Purchased — settled 2026-09-06
+## The boards
 
-**2 × Dual VR Conditioner (NCV1124), Speeduino compatible** — $24.99 each, order #11139.
-Four channels total, one board per axle. No build required; this section is kept only
-so the choice is traceable.
-
-### Why the NCV1124 is the better chip here
-
-The board uses an **ON Semiconductor NCV1124**, not the MAX9926 originally specced.
-That swap is an improvement for this application:
-
-| | NCV1124 | MAX9926 |
-|---|---|---|
-| Input threshold | **±160 mV typical** (135–185 mV), fixed, set by an internal reference | Adaptive peak threshold |
-| Channels | 2 | 2 |
-| Supply | 5 V (4.5–5.5 V) | 5 V |
-| Input clamps | ±250 V on the sensor side with 22 kΩ series resistors | lower |
-| Max frequency | 1.8 MHz, 680 kHz with clamps active | lower |
-
-The number that matters is the threshold. The ECU's digital input arms somewhere
-around **1.5–1.8 V**; the NCV1124 arms at **0.16 V**. That is roughly a tenfold
-improvement in sensitivity, which is precisely the low-speed dropout being solved.
-
-Adaptive thresholding is the MAX9926's advantage, and it matters most on crank and
-cam signals where amplitude swings hugely between cranking and redline. For wheel
-speed a fixed low threshold is the simpler and more predictable answer.
+**2 x Dual VR Conditioner (NCV1124), Speeduino compatible**, one board per axle, four channels total. The
+**ON Semiconductor NCV1124** has a fixed input threshold of **+-160 mV typical** (135-185 mV) against the
+ECU digital input's roughly 1.5-1.8 V, which is what removes the low-speed dropout. Supply 5 V (4.5-5.5 V);
+22 kOhm series input resistors give +-250 V clamp headroom; 1.8 MHz maximum frequency (680 kHz with clamps active).
 
 ### Setup notes for these boards
 
-- **Supply 5 V**, from the external supply, not the ECU's A32.
+- **Supply 5 V from the ECU +5V Out (A32)** (DECISIONS S4 counts the two boards in the A32 load).
 - **Ground the board to ECU sensor ground (Gnd Out, A24 or B22)**, not chassis.
   A chassis ground reintroduces the offset the differential input exists to reject.
 - **Series input resistors are 22 kΩ** on the NCV1124 reference design, which is what
@@ -53,7 +33,7 @@ speed a fixed low threshold is the simpler and more predictable answer.
   connector.
 - Screen path: the drain is connected on both the VRC input and the VRC output.
   The ABS input drains splice together and terminate on a single pin. See
-  `docs/SHIELD-RULES.md` §6.30. Do not mark a shield on each wire. Do not
+  `docs/SHIELD-RULES.md`. Do not mark a shield on each wire. Do not
   record a separate shell flag.
 
 ## Wiring into the car
@@ -64,7 +44,7 @@ speed a fixed low threshold is the simpler and more predictable answer.
 | Channel 2 out | Wheel speed FR | DI 4 · B21 |
 | Channel 3 out | Wheel speed RL | DI 5 · B20 |
 | Channel 4 out | Wheel speed RR | DI 6 · B19 |
-| 5 V in | External 5 V supply | not the ECU's A32 |
+| 5 V in | ECU +5V Out | A32 |
 | Ground | ECU sensor ground | Gnd Out · A24 or B22 |
 
 Grounding the conditioner to **sensor ground rather than chassis** keeps the

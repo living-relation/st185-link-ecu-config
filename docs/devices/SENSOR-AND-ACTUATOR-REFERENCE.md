@@ -61,9 +61,7 @@ Shield: yes
 | 5 | GND1 |
 | 6 | VPA1 APS-M |
 
-All six pins live in the **Signal** file, supplies included, per
-`docs/HARNESS-CONSOLIDATION-AND-LAYOUT-PLAN.md` §6.11. (An earlier revision put pins
-1/2/4/5 in Power; that was reversed.)
+All six pins are one connector on `ST185-A-cabin`, supplies included (wire list `docs/harness/wirelist/A-cabin-wirelist.csv`).
 
 Pin 6 is the full-range track. If the sub track saturates before full pedal travel, that
 percentage must go into PCLink's `APS (Sub) 100%` — otherwise the ECU throws a permanent
@@ -422,7 +420,7 @@ not need this change - only the cam one is wrong.
 ## VR conditioner (NCV1124 dual boards)
 
 Write-up: `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. Pins below are the
-conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md` §6.30.
+conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md`.
 
 Shield: yes
 

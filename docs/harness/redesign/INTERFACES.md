@@ -40,9 +40,8 @@ harness.design JSON.
   or any `cp_xref` dummy left on a drawing; L7 fails an element drawn on two files.
 - `inFileMates` — connector pairs mated inside one drawing (the pedal's DT06-6S / DT04-6P); the
   graph joins them cavity by cavity.
-- `references` — retired (empty); kept for `validate_ownership.py` O4.
 - `realConnectors` — connectors the build physically plugs into that are not flying-lead
-  candidates (today only the CSB3 plug; the J/B2 dummy headers were removed 2026-10-12, S15).
+  candidates (today only the CSB3 plug).
 - `shieldBothEndsOk` — screens allowed a landing at both ends, each with its reason. Only screen
   continuations through an inline interface or a VRC enclosure belong here.
 - `wheelSpeed` — the front/rear specification `validate_wheel_speed.py` checks.
@@ -51,7 +50,7 @@ harness.design JSON.
 
 - Every conductor id is unique across all drawings (one owner per physical section).
 - A connector drawn with a real part on more than one drawing has exactly one copy not
-  `excludeFromBom` (legacy shared drawings only; new harnesses draw a thing once).
+  `excludeFromBom`.
 - Every inline interface has two halves on two different harnesses, the same cavity set, the
   same signal text per cavity, and every pin either wired on both halves or plugged on both.
 - A conductor never crosses from one harness to another except through a declared interface,

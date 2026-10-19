@@ -244,7 +244,7 @@ html.append('''<h2>Engineering notes (all versions)</h2><div class="card"><ul>
 <li>Check the wire-exit openings (W&times;H, etched on each cover) against your cable insulation OD.</li>
 </ul></div>
 <p class="mut">Sources: Klauke "Tubular cable lugs, Cu, standard type" (R series); Weidm&uuml;ller H50,0/25 datasheet 1988780000; ISO 4017 / 4032 / 7089 / 7380, DIN 6796; IEC 60664-1;
-st185-link-ecu-config ENGINE-ROOM-POWER-REDISTRIBUTION.md &sect;5.1/&sect;8.1 and the harness files. Scripts: <code>src\\</code> (<code>spec.py</code> = every dimension; <code>build_fusion.py</code>, <code>drawings.py</code>, <code>summary_html.py</code>).</p>
+st185-link-ecu-config ENGINE-ROOM-POWER-REDISTRIBUTION.md &sect;5.1 and the wire lists and the harness files. Scripts: <code>src\\</code> (<code>spec.py</code> = every dimension; <code>build_fusion.py</code>, <code>drawings.py</code>, <code>summary_html.py</code>).</p>
 </main></body></html>''')
 
 out = os.path.join(ROOT, "ST185-busbar-designs.html")

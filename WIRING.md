@@ -1,7 +1,7 @@
 # TrackCluster — Wiring & Pinout (physical install)
 
 **ECU Superseal pinout** (Link G4X XtremeX Connector A/B) lives in
-[`sot/channels.csv`](sot/channels.csv) — the ECU pin source of truth — and its
+[`sot/channels.csv`](sot/channels.csv) — the ECU channel settings, checked against the wire lists — and its
 visual face [`XTREMEX-IO-TABLE.html`](XTREMEX-IO-TABLE.html). This file covers only the **shared CAN bus**: the ECU's CAN
 interface and every node hanging off it.
 
