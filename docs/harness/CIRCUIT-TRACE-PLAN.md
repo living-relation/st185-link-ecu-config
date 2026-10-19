@@ -37,10 +37,10 @@ page is the build brief for the session that runs it.
 
 ## Deliverables
 
-1. `docs/harness/trace_circuits.py` - the tracer (a test, lives in the repo).
+1. `trace_circuits.py` (planned, in `docs/harness/`) - the tracer (a test, lives in the repo).
 2. `docs/harness/circuits.yaml` - loads in amps (datasheet / estimated, see R89), ECU / CSB3
    logic rules, the circuit list.
-3. `docs/harness/CIRCUIT-TRACE.md` - generated report, `--check` mode like `wirelist.py`.
+3. `CIRCUIT-TRACE.md` (planned, in `docs/harness/`) - generated report, `--check` mode like `wirelist.py`.
 4. `check_all.py` entry, **SOFT** first, HARD the day it reads zero (the standing gate rule);
    self-tests in `test_gates.py` (a loop that passes, an open, an oversized fuse, a floating
    input - each must give the right finding).
@@ -98,7 +98,7 @@ A signal circuit adds a **logic leg**: input pin -> threshold / pull-up -> (CSB3
 
 ## Report
 
-`docs/harness/CIRCUIT-TRACE.md`: one table row per circuit (ID, name, T1-T9 pass / fail /
+`CIRCUIT-TRACE.md`: one table row per circuit (ID, name, T1-T9 pass / fail /
 est, worst finding), then a readable trace per circuit, both states:
 
 ```

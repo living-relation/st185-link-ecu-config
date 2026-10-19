@@ -43,12 +43,14 @@ a pin, the other thing is wrong and gets corrected - never the reverse.
 `python docs/harness/check_all.py` enforces the whole chain and must pass before
 every commit.
 
-### ECU pins: check the Quick Start Guide (R212)
+### ECU pins: check the Quick Start Guide and the plug-in guides (R212)
 
-A wire on an ECU pin (plugs A / B / C) is also checked against the Link G4X Quick Start Guide: pin function,
-what the pin may connect to, current limits, wire gauge. `cleanroom/wirelist.py --check` reports any far end the
-pin's class does not allow (ground -> ECU ground pins and battery negative, Gnd Out -> sensor returns, shield -> drains,
-+5 V / +8 V -> sensor supplies, power -> fused +12 V) in `GAPS.md`.
+A wire on an ECU pin (plugs A / B / C) is also checked against the Link G4X Quick Start Guide and the G4X plug-in
+(wire-in) guides (the plug-in guide wins for special circuits and pin modes): pin function and mode, what the pin
+may connect to, current limits, wire gauge. `cleanroom/ecu_rules.py`, run by `cleanroom/wirelist.py --check`, fails
+on any far end the pin's class does not allow (R212), any ground that breaks the ground classes (R213, R216), any
+wire between loom A and loom B other than the +5 V sensor supply (R218) and any relay driven the wrong way (R219);
+known violations waiting for the wiring fix are in `ecu_rules.PENDING`.
 
 ### Every wiring surface that must agree
 
