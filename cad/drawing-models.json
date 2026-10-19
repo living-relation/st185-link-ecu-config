@@ -110,26 +110,28 @@
    "pdf": "fusebox/rev7/drawings/ST185-FB-100P.pdf",
    "revlog": "fusebox/rev7/ST185-FB-100P.REVLOG.md",
    "steps": {
-    "fusebox/rev7/Power_Base_PA12_printed.step": "3bff8c618a3f33f5",
-    "fusebox/rev7/Power_Pan_PA12_printed.step": "5ff74c9db2bc8fad",
+    "fusebox/rev7/Power_Base_PA12_printed.step": "040ceb361825a257",
+    "fusebox/rev7/Power_Pan_PA12_printed.step": "fb94d8140026d810",
     "fusebox/rev7/Power_Cover_PA12_printed.step": "e7218a78f95b23cc",
     "fusebox/rev7/Power_Retainer_R1_PA12_printed.step": "db7b6b8c1ff9c77a",
     "fusebox/rev7/Power_BarNeg_CuC110_25x6p35_L105.step": "31adb2d813a35969",
     "fusebox/rev7/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": "49a088679f1ee81b",
-    "fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": "e69bcf01425a459d",
-    "fusebox/rev7/ST185-FB-117_model.step": "5cc315aa3c8f7a2a"
+    "fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": "a44c3e2fc138e42c",
+    "fusebox/rev7/ST185-FB-117_model.step": "33b74928fdf3ff32",
+    "fusebox/rev7/Power_NutHolder_PA12_printed.step": "8d0f0470dc567121"
    },
    "ci": {
-    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "e58ddcd7f74a7e82",
-    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "084a52222080a4f6",
+    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "4e6272f379df5538",
+    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "d5b53a9d6ceb13b7",
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Cover_PA12_printed": "28378e9202d36f3c",
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Retainer_R1_PA12_printed": "c8970f4bc9485ee7",
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_BarNeg_CuC110_25x6p35_L105": "2d260a611cf2195a",
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": "32d258988577cf3d",
-    "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "72e0a22357b5e9b8"
+    "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
+    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
-   "rev": "W",
-   "pdf_sha": "515d9287724906ff"
+   "rev": "Z",
+   "pdf_sha": "8c5832f0176c723b"
   },
   "ST185-FB-101": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",
@@ -315,14 +317,15 @@
    "pdf": "fusebox/rev7/drawings/ST185-FB-117.pdf",
    "revlog": "fusebox/rev7/ST185-FB-117.REVLOG.md",
    "steps": {
-    "fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": "e69bcf01425a459d",
-    "fusebox/rev7/ST185-FB-117_model.step": "5cc315aa3c8f7a2a"
+    "fusebox/rev7/Power_Strap_Out_CuC110_15x3_C.step": "a44c3e2fc138e42c",
+    "fusebox/rev7/ST185-FB-117_model.step": "33b74928fdf3ff32"
    },
    "ci": {
-    "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "72e0a22357b5e9b8"
+    "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
+    "src:drawings/run_fb117.py": "89ffae4e439ec1d9"
    },
-   "rev": "A.01",
-   "pdf_sha": "10e0049204dbad8c"
+   "rev": "D",
+   "pdf_sha": "01b6e6dc9d609a2c"
   },
   "ST185-FH-100": {
    "pdf": "fuel-hanger/drawings/ST185-FH-100.pdf",
@@ -446,14 +449,18 @@
    },
    "rev": "D.01",
    "pdf_sha": "dece73558541570d"
-  }
- },
- "regen_pending": {
-  "ST185-FB-117": {
-   "reason": "R196 / R197 model-only PRs: stud + top-nut holder (D, N37); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
   },
-  "ST185-FB-100P": {
-   "reason": "R196 model-only PRs: FB-117 D, FB-101 X, holder + stud + nuts in the BOM (N37); drawing in the markup 2026-10-18 pass"
+  "ST185-FB-118": {
+   "pdf": "fusebox/rev7/drawings/ST185-FB-118.pdf",
+   "revlog": "fusebox/rev7/ST185-FB-118.REVLOG.md",
+   "steps": {
+    "fusebox/rev7/Power_NutHolder_PA12_printed.step": "8d0f0470dc567121"
+   },
+   "ci": {
+    "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
+   },
+   "rev": "A",
+   "pdf_sha": "d445c885f07a9717"
   }
  }
 }

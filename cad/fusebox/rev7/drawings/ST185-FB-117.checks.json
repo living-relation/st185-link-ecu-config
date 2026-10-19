@@ -1,0 +1,55 @@
+{
+ "pn": "ST185-FB-117",
+ "pdf_sha": "01b6e6dc9d609a2c",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "C110 TINNED COPPER FROM 3 x 15 BAR (BOPAODAO B09Z7NBLDK). 14 PER CAR. KEEP THE TIN ON THE CLAMP FACES.",
+  "SAW 63.90 LONG. DRILL \u23005.5 AT THE TOP HOLE, \u23005.0 +0.08/0 AT THE LUG HOLE.",
+  "SLOTS 0.5 WIDE, 3.5 - 4.0 EACH SIDE OF CENTRE, 10.75 TO 16.75; NOTCH 3.5 - 7.5 TO 18.88; FILE TO 14.2 WIDE FROM 18.88 TO THE END.",
+  "PRESS THE PEM FHS-M5-12 STUD IN FROM THE INSIDE FACE UNTIL ITS HEAD IS FLUSH. NOTHING IS TRIMMED.",
+  "BEND 2 x 90 DEG, R1.0 INSIDE, AT 12.31 AND 47.94 FROM THE TOP END; BEND 1 ON THE TONGUE ONLY. CHECK THE FIRST PART.",
+  "FIRST PART: M5 FLANGE NUT ON THE STUD AT 6 N\u00b7m; THE STUD MUST NOT TURN OR PUSH OUT. SCRAP THAT PART. ASSEMBLY: SHEET 2."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "balloon_views": [
+  {
+   "view": "STEP 1",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 2",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 3",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 4",
+   "placed": 4,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [
+    3
+   ]
+  }
+ ],
+ "not_ballooned": [],
+ "ok": true,
+ "tangent_lines_trimetric": 4
+}

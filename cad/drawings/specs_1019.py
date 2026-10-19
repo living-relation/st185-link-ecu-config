@@ -51,3 +51,16 @@ import os as _os
 _C = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
 PARTS['drb_plate']['revlog'] = _os.path.join(_C, 'drb102-plate', 'ST185-DRB-101.REVLOG.md')
 PARTS['vrc_holder']['revlog'] = _os.path.join(_C, 'enclosures', 'vrc', 'ST185-VRC-103.REVLOG.md')
+
+# ---- C-strap set (Dispatch 2026-10-19, after #330 / R199): the new top-nut holder drawing. Number: the next FB number after -117
+# (the C-strap itself took -117 rather than the never-used -110, N14 = B), so ST185-FB-118.
+PARTS['fb_nut_holder'] = dict(
+    job='st185_fusebox_1017', file='src/st185_fusebox_1017/Power_NutHolder_PA12_printed.step', process='printed',
+    title='POWER BOX - C-STRAP TOP-NUT HOLDER', pn='ST185-FB-118', material='PA12 (SLS / MJF)',
+    source='C:\\projects\\active\\st185-link-ecu-config\\cad\\fusebox\\rev7\\Power_NutHolder_PA12_printed.step',
+    max_hole_groups=0, tol=TOL, rev='A', revlog=_os.path.join(_C, 'fusebox', 'rev7', 'ST185-FB-118.REVLOG.md'),
+    project=PARTS['fb_power_base']['project'], drawn=PARTS['fb_power_base']['drawn'],
+    notes=PRINTED + ["QTY 14 PER CAR (ONE IN EVERY C-STRAP, ST185-FB-117).",
+                     "PUSH A DIN 934 M5 NUT (RS 527-268) INTO THE HEX POCKET, FLATS LINED UP WITH THE POCKET. "
+                     "THEN SLIDE THE HOLDER INTO THE OPEN SIDE OF THE C UNTIL IT SITS ON BOTH LEGS AND THE WEB."])
+KEYS.append('fb_nut_holder')
