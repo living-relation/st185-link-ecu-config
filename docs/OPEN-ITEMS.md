@@ -26,7 +26,7 @@ K10 answered the same day; row 56 dismissed by Dan; rows 33, 88, 97 done by merg
 - **[G2] ECU base maps: 6** - rows 22, 23, 67, 68, 69, 93 (bench / PCLink).
 - **[G3] ECU CAN config written + checked: 4** - rows 2, 102, 103, 146 (the config is written; these are the PCLink import and checks).
 - **[G4] CSB3 config finished: 1** - row 101.
-- **Parked (out of scope): 10** - rows 9, 26, 62, 117, 119 and setup-time rows 4, 5, 7, 8, 10, moved to "Parked (out of scope)" at the end, not deleted.
+- **Parked (out of scope): 11** - rows 9, 26, 62, 117, 119, 147 and setup-time rows 4, 5, 7, 8, 10, moved to "Parked (out of scope)" at the end, not deleted.
 
 ## Needs Dan
 
@@ -147,6 +147,7 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 | 7 | CAN | [Parked] Switchboard L1-L4 (0x643) outputs are unused; ECU TX stream not set up. | Daniel | `ECUMASTER_SWITCHBOARD_SETUP.md:244` | Deferred (low priority) | Only when an LED/output is actually added (CAN-BUS-MASTER-DESIGN.md section 9); then the 0x643 TX stream goes into the CAN config straight away (R80). |
 | 8 | RealDash | [Parked] Two different `.rd` files claim to be the delivered build: root `st185_dash.rd` (39,548 B) vs `rd-build/realdash-root/st185_dash.rd` (99,648 B); BUILD-NOTES says both are the same 39,248 B file. | Daniel | `rd-build/README.md:53`, `rd-build/BUILD-NOTES.md:6` | Open | Check which file is on the Pi; mark the other as history in rd-build/README.md. |
 | 10 | RealDash | [Parked] Dashboard not yet validated against real CAN frames (bench/Pi last mile). | Daniel | `rd-build/BUILD-NOTES.md:47` | Open | Bench run with the sender app RealDash profile or `can_bench.py full-realdash`. |
+| 147 | Harness | [Parked] Connector atlas: real face views and physical pin positions for every connector. Walk through each connector with Dan later; until then non-DRB connectors are numbered grids (Dan 2026-10-19). | Daniel | `docs/harness/atlas/` | Parked (later) | A walk-through of each connector with Dan. |
 
 ## History
 
