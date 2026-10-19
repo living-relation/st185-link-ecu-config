@@ -1,0 +1,69 @@
+{
+ "pn": "ST185-FB-100B",
+ "pdf_sha": "0da7dd9d5582297a",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "OVERALL SIZES ARE FOR REFERENCE.",
+  "PARTS THAT SHARE ONE MODEL (LUGS, NUTS, BOLTS, LIMITERS) ARE BALLOONED ON THE FIRST ITEM OF THEIR GROUP.",
+  "BAR AND PAD: PUSH EACH ONE DOWN PAST THE SNAP HOOKS UNTIL IT CLICKS, THEN BOLT IT.",
+  "SHEET 2: WHAT THE FUSE AND RELAY FEED, AND THE HARNESS WIRE AT EACH CONNECTION, NAMED AS ON THE HARNESS DRAWINGS."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "balloon_views": [
+  {
+   "view": "TRIMETRIC VIEW",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "TRIMETRIC - COVER REMOVED",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "LABELS 1",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [],
+   "labels": 6
+  },
+  {
+   "view": "STEP 1",
+   "placed": 4,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "STEP 2",
+   "placed": 6,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": [
+    17
+   ]
+  },
+  {
+   "view": "STEP 3",
+   "placed": 2,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  }
+ ],
+ "not_ballooned": [],
+ "ok": true
+}

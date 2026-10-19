@@ -1,0 +1,16 @@
+{
+ "pn": "ST185-FH-101",
+ "pdf_sha": "6db66ccb87c6fa6e",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "6061-T6 ALUMINUM BILLET. FLANGE AND LUG ARE ONE PIECE.",
+  "13 THROUGH HOLES ONLY: NOTHING ELSE CUTS INTO THE SEALING FACE.",
+  "SPOT FACES: Ra 1.6, FLAT. THE INSIDE CORNER WHERE THE LUG MEETS THE FLANGE IS R3.",
+  "MACHINE IN 3 SETUPS: TANK FACE, OUTSIDE FACE, THEN THE SIDE (THE \u23006.6 HOLE)."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "ok": true,
+ "tangent_lines_trimetric": 4
+}

@@ -1,0 +1,33 @@
+{
+ "pn": "ST185-FH-100",
+ "pdf_sha": "e9b3f8a38a762775",
+ "engine_rules": "2026-10-18",
+ "tangent_edges_in_pictorial": true,
+ "dotted_explode_lines": true,
+ "notes": [
+  "SHOWN AS INSTALLED (FLANGE ON TOP). OVERALL SIZES ARE FOR REFERENCE.",
+  "ORDER: 1) FIT THE TANK BULKHEAD NUTS. 2) BOLT THE STRUT TO THE FLANGE LUG (ITEM 9). 3) SCREW THE FOOT (ITEM 3) ON WITH 2 ITEM 6 SCREWS AND MEDIUM THREADLOCKER. 4) PUSH THE PUMP INTO THE FOOT.",
+  "SADDLE (ITEM 4): PUSH IT TOWARD THE STRUT SO ITS TAB SITS ON THE STRUT SIDE FACE, THEN TIGHTEN THE 2 ITEM 5 SCREWS TO 2 N\u00b7m WITH LOCTITE 243. THE BAND CLAMP (ITEM 7) GOES IN THE SADDLE CHANNEL."
+ ],
+ "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
+ "balloon_views": [
+  {
+   "view": "TRIMETRIC VIEW",
+   "placed": 5,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  },
+  {
+   "view": "EXPLODED VIEW - SCREWS PULLED OUT",
+   "placed": 3,
+   "overlaps": 0,
+   "crowded": 0,
+   "crossings": 0,
+   "hidden": []
+  }
+ ],
+ "not_ballooned": [],
+ "ok": true
+}
