@@ -1372,10 +1372,6 @@
  "ST185-A-engine.harness": {
   "connectors": {
    "bh_a_eng": {
-    "label": [
-     "Bulkhead BH-A (DRB102, RH firewall)",
-     "Bulkhead DRB102 - engine plug (DRB16-102SAE-L018), all 102 cavities; section A wired here"
-    ],
     "cavities": {
      "c48": [
       "Injector +12 V feed",
@@ -1385,29 +1381,73 @@
       "Coil +12 V feed",
       "Switched 12V - COP / ignition coil power feed, fuse LOGIC COP 15A (14 AWG)"
      ],
+     "c24": [
+      "Crank sensor signal",
+      "ECU-A A8"
+     ],
      "c41": [
       "Gnd crank sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - crank"
+     ],
+     "c33": [
+      "Crank sensor shield",
+      "Crank VR screen"
+     ],
+     "c4": [
+      "+8 V to cam sensor",
+      "+8V Out to cam Hall"
+     ],
+     "c29": [
+      "Cam sensor signal",
+      "ECU-A A9"
      ],
      "c42": [
       "Gnd cam sensor",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - cam"
      ],
+     "c34": [
+      "Cam sensor shield",
+      "Cam Hall screen"
+     ],
      "c40": [
       "+5 V turbo speed",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - turbo speed"
+     ],
+     "c7": [
+      "Turbo speed signal",
+      "ECU-A A30"
      ],
      "c43": [
       "Gnd turbo speed",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - turbo speed"
      ],
+     "c6": [
+      "Turbo speed shield",
+      "Turbo speed screen"
+     ],
      "c5": [
       "+12 V boost + flex",
       "Switched 12V to engine sensors"
      ],
+     "c9": [
+      "Flex fuel signal",
+      "ECU-A A31"
+     ],
+     "c10": [
+      "Flex fuel shield",
+      "Flex fuel screen"
+     ],
      "c2": [
       "+5 V throttle sensor",
       "+5V Out to engine sensors (+5 V bus plug bus_5v_bha_p, 20 AWG) - ETB"
+     ],
+     "c21": [
+      "Throttle pos 1 main",
+      "ECU-A A22"
+     ],
+     "c22": [
+      "Throttle pos 2 sub",
+      "ECU-A A33"
      ],
      "c3": [
       "Gnd IAT/TPS/coolant",
@@ -1424,74 +1464,6 @@
      "c44": [
       "Gnd flex + MAP",
       "Gnd Out to engine sensors (sensor GND bus plug bus_gnd_bha_p, 20 AWG) - flex / MAP branch"
-     ],
-     "c35": [
-      "EHPS enable +12 V",
-      "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
-     ],
-     "c36": [
-      "EHPS pump speed",
-      "Aux 7 MRS speed-out (ECU A27)"
-     ],
-     "c45": [
-      "+5 V oil pressure",
-      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
-     ],
-     "c46": [
-      "+5 V fuel pressure",
-      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
-     ],
-     "c47": [
-      "+5 V coolant press",
-      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
-     ],
-     "c27": [
-      "EHPS relay coil (-)",
-      "MR-S pump B5 -> EPS relay k_eps coil- (85)"
-     ],
-     "c24": [
-      "Crank sensor signal",
-      "ECU-A A8"
-     ],
-     "c33": [
-      "Crank sensor shield",
-      "Crank VR screen"
-     ],
-     "c4": [
-      "+8 V to cam sensor",
-      "+8V Out to cam Hall"
-     ],
-     "c29": [
-      "Cam sensor signal",
-      "ECU-A A9"
-     ],
-     "c34": [
-      "Cam sensor shield",
-      "Cam Hall screen"
-     ],
-     "c7": [
-      "Turbo speed signal",
-      "ECU-A A30"
-     ],
-     "c6": [
-      "Turbo speed shield",
-      "Turbo speed screen"
-     ],
-     "c9": [
-      "Flex fuel signal",
-      "ECU-A A31"
-     ],
-     "c10": [
-      "Flex fuel shield",
-      "Flex fuel screen"
-     ],
-     "c21": [
-      "Throttle pos 1 main",
-      "ECU-A A22"
-     ],
-     "c22": [
-      "Throttle pos 2 sub",
-      "ECU-A A33"
      ],
      "c8": [
       "MAP sensor signal",
@@ -1540,6 +1512,30 @@
      "c26": [
       "Intake temp signal",
       "ECU-A A16"
+     ],
+     "c35": [
+      "EHPS enable +12 V",
+      "MRS EPS pump logic enable (fuse box LOGIC MRS, 7.5A) *"
+     ],
+     "c36": [
+      "EHPS pump speed",
+      "Aux 7 MRS speed-out (ECU A27)"
+     ],
+     "c45": [
+      "+5 V oil pressure",
+      "+5V Out to B engine sensors via IX_B_RAIL - oil pressure"
+     ],
+     "c46": [
+      "+5 V fuel pressure",
+      "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure"
+     ],
+     "c47": [
+      "+5 V coolant press",
+      "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
+     ],
+     "c27": [
+      "EHPS relay coil (-)",
+      "MR-S pump B5 -> EPS relay k_eps coil- (85)"
      ]
     }
    },
@@ -1864,10 +1860,6 @@
     }
    },
    "ix_brail_s": {
-    "label": [
-     "IX-B-RAIL inline plug, +5 V to B-engine",
-     "B sensor +5V - 6-way inline to ST185-B-engine (IX_B_RAIL)"
-    ],
     "cavities": {
      "c1": [
       "+5 V oil pressure",
@@ -3222,10 +3214,6 @@
     ]
    },
    "ix_ws_front_r": {
-    "label": [
-     "IX-WS-F",
-     "WS FRONT OUT - 6-way inline to ECU spur (IX_WS_FRONT)"
-    ],
     "cavities": {
      "c1": [
       "VRC-F +5V",
