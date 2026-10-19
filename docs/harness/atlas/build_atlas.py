@@ -64,6 +64,7 @@ def input_files():
     for pat in ('*-wirelist.csv', '*-connectors.csv', '*-mates.csv'):
         fs += glob.glob(os.path.join(WL, pat))
     fs.append(os.path.abspath(__file__))
+    fs.append(os.path.join(HERE, '..', 'cleanroom', 'drb102_outputs.py'))
     return sorted(fs)
 
 
@@ -219,8 +220,8 @@ def wrap(s, width, fs, maxl=3, bold=False):
     return lines
 
 
-def cavity(pg, cx, cy, label, fn, r=9.0, desc='', pitch=54.0, nlines=3):
-    fill = FILL[fn]
+def cavity(pg, cx, cy, label, fn, r=9.0, desc='', pitch=54.0, nlines=3, fill=None):
+    fill = fill or FILL[fn]
     short = len(label) <= 3
     if short:
         pg.circle(cx, cy, r, fill)
@@ -279,33 +280,36 @@ def conn_block(c, descs=None, note=''):
 
 
 def drb_block(conns):
+    """The DRB102 insert face. Cavity data, function kinds, colours, sizes and short labels come from the
+    master generator (cleanroom/drb102_outputs.py) so this face is the same as DRB102-bulkhead-map.png."""
     bh = [c for c in conns.values() if c['n'] == 102 and c['part_number'].upper().startswith('DRB1')]
     if not bh:
         return None
-    descs = {}
-    for c in sorted(bh, key=lambda c: ('eng' in c['conn_id'], c['conn_id'])):
-        for p, ds in c['pins'].items():
-            descs.setdefault(p, ds)
-    dx, dy = 56.0, 47.0
+    sys.path.insert(0, os.path.join(HERE, '..', 'cleanroom'))
+    import drb102_outputs as D
+    lists = {os.path.basename(f)[:-len('-wirelist.csv')]: rd(f) for f in sorted(glob.glob(os.path.join(WL, '*-wirelist.csv')))}
+    rows = {r['cavity']: r for r in D.table(lists)}
+    dx, dy = 90.0, 53.0
     w, h = 12 * dx + 40, 12 * dy + 58
+    rad = {k: v * 0.46 for k, v in D.RADIUS.items()}
 
     def draw(pg, x, y):
         pg.rect(x, y, w, h, fill='#fbfcfe', lw=0.8, r=0.01)
-        pg.text(x + 8, y + 15, 'DRB102 firewall bulkhead - insert face (TE drawing view)', 11.0, True)
+        pg.text(x + 8, y + 15, 'DRB102 firewall bulkhead - insert face (TE drawing view) - same face as DRB102-bulkhead-map.png', 11.0, True)
         pg.text(x + 8, y + 26, 'DRB12-102PAE (cabin) / DRB16-102SAE (engine bay)  |  harnesses: %s  |  circle size = contact size (4 > 8 > 12 > 16)'
                 % ', '.join(sorted({c['harness'] for c in bh})), 6.5, False, '#444444')
         pg.text(x + 3 * dx + 20, y + 40, 'Left wedgelock half (52-102)', 8, True, '#333333', 'c')
         pg.text(x + 9 * dx + 20, y + 40, 'Right wedgelock half (1-51)', 8, True, '#333333', 'c')
         x0, y0 = x + 20 + dx / 2, y + 48
-        for ci, col in enumerate(COLS):
+        for ci, col in enumerate(D.COLS):
             off = (12 - len(col)) / 2.0
             for ri, pin in enumerate(col):
                 if pin is None:
                     continue
-                d = ' / '.join(descs.get(str(pin), []))
-                f = fn_of(d)
-                cavity(pg, x0 + ci * dx, y0 + 12 + (off + ri) * dy, str(pin), f,
-                       RAD[SIZE.get(pin, 16)], '' if f == 'spare' else d, dx, 3)
+                r = rows[pin]
+                k = r['kind']
+                cavity(pg, x0 + ci * dx, y0 + 12 + (off + ri) * dy, str(pin), 'sig' if k in ('spare', 'signal') else 'gnd',
+                       rad[r['size']], '' if k == 'spare' else r['short'], dx, 3, fill='#' + D.FILL[k])
         xs = x + 20 + 6 * dx
         pg.line(xs, y + 46, xs, y + h - 6, '#555555', 0.8, '[3 3] 0')
     return w, h, draw, [c['name'] for c in bh]
@@ -570,7 +574,7 @@ def render():
     doc = fitz.open()
     # page 1: title block + index
     pg = Pg(doc)
-    pg.rect(MX, MX, PW - 2 * MX, PH - MX - 6, fill=None, lw=1.2)
+    pg.rect(MX, MX, PW - 2 * MX, PH - BOT - MX - 2, fill=None, lw=1.2)
     pg.text(MX + 14, 60, 'ST185 CELICA - CONNECTOR ATLAS', 26, True)
     pg.text(MX + 14, 82, 'Every connector of all 15 harnesses, and every OEM junction box / plug / ground point we splice into.', 11, False, '#333333')
     pg.text(MX + 14, 96, 'Generated from docs/harness/wirelist/*.csv by docs/harness/atlas/build_atlas.py. Never edit the PDF; change the wire list and regenerate.', 8.5, False, '#555555')
