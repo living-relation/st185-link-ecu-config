@@ -46,13 +46,13 @@ LOOM = "A-cabin"
 COLUMNS = ["circuit_id", "wire_id", "harness", "passes_through",
            "from_type", "from_conn", "from_conn_name", "from_pin", "from_desc",
            "to_type", "to_conn", "to_conn_name", "to_pin", "to_desc",
-           "net", "splice", "cable", "gauge_awg", "colour", "stripe", "ident_bands",
+           "net_id", "net_name", "splice", "cable", "gauge_awg", "colour", "stripe", "ident_bands",
            "oem_wire_colour", "oem_ewd_page", "oem_method",
            "route_branch", "est_length_mm", "sot_check", "status", "notes"]
-SPLICE_COLUMNS = ["splice_id", "name", "net", "harness", "location", "method", "wires",
+SPLICE_COLUMNS = ["splice_id", "name", "net_id", "net_name", "harness", "location", "method", "wires",
                   "gauges_awg", "combined_cma", "equivalent_awg", "sot_check"]
 CONN_COLUMNS = ["conn_id", "name", "harness", "part_number", "cavities", "mates_with", "note"]
-MATE_COLUMNS = ["circuit_id", "this_conn", "this_pin", "this_desc", "mate_harness", "mate_conn",
+MATE_COLUMNS = ["circuit_id", "net_name", "this_conn", "this_pin", "this_desc", "mate_harness", "mate_conn",
                 "mate_pin", "mate_desc", "check"]
 
 NETS = {"sp_5v": "Sensor +5 V (ECU A32)", "sp_5v_2": "Sensor +5 V (ECU A32)",
@@ -61,6 +61,22 @@ NETS = {"sp_5v": "Sensor +5 V (ECU A32)", "sp_5v_2": "Sensor +5 V (ECU A32)",
         "sp_chassis": "ECU power ground", "sp_shield_a": "Shield drain A (ECU A7)",
         "sp_ac_psw": "A/C pressure switch out",
         "bus_5v_bha_p": "Sensor +5 V (ECU A32)", "bus_gnd_bha_p": "Sensor ground A (ECU A24)"}
+# Net sources (Dispatch net rule): the one pin each supply / ground / screen net comes from.
+# key = endpoint key (node_key); value = (net_id, net_name, kind)
+SOURCES = {
+    ("pin", "ecu_a", "A32"): ("ECU-A.A32", "+5V sensor (ECU-A A32)", "supply"),
+    ("pin", "ecu_a", "A6"): ("ECU-A.A6", "+8V cam sensor (ECU-A A6)", "supply"),
+    ("pin", "ecu_a", "A24"): ("ECU-A.A24", "Sensor GND (ECU-A A24)", "ground"),
+    ("pin", "ecu_a", "A7"): ("ECU-A.A7", "Screen A (ECU A7, SHIELD_A)", "screen"),
+    ("splice", "sp_shield_b"): ("ECU-B.B17", "Screen B (ECU B17, SHIELD_B)", "screen"),
+    ("term", "chassis_ring"): ("STUD.M6-ECU", "Chassis GND (cabin stud M6 at ECU)", "ground"),
+    ("pin", "bus_sw12_p", "2"): ("LOGIC.SW12", "+12V switched (LOGIC SW12 bus)", "supply"),
+    ("pin", "fb_logic", "BUS2-4"): ("LOGIC.BUS2-4", "+12V injectors (LOGIC INJ 15A)", "supply"),
+    ("pin", "fb_logic", "BUS2-3"): ("LOGIC.BUS2-3", "+12V coils (LOGIC COP 15A)", "supply"),
+    ("pin", "fb_logic", "BUS2-12"): ("LOGIC.BUS2-12", "+12V EHPS enable (LOGIC MRS 7.5A)", "supply"),
+    ("term", "fl_a5_4"): ("A5.4", "A/C pressure switch out (A5 pin 4)", "supply"),
+}
+SCREEN_PINS = {("ecu_a", "A7"), ("ecu_b", "B17")}
 BUS_CAP = {"bus_5v_bha_p": "bus_5v_bha_r", "bus_gnd_bha_p": "bus_gnd_bha_r"}
 # connectors whose other half is in another drawing: (harness, connector)
 MATES = {"bh_a_fw": ("A-engine", "bh_a_eng"), "ix_ws_front_p": ("WheelSpeed-Front", "ix_ws_front_r")}
@@ -92,6 +108,81 @@ def branch(nodes):
     if len(names) > 1 and "at ECU-A plug" in names:
         names.remove("at ECU-A plug")
     return " / ".join(names)
+
+
+def assign_nets(rows, sot_pin, drb):
+    """Electrical nets from the wire list itself: the union of every row's two ends (a splice and a
+    bussed plug are one node, a resistor splits). Each net gets net_id (its source pin) and a
+    unique readable net_name. Returns the findings of checks (a)-(d) and the screen checks."""
+    parent = {}
+
+    def find(k):
+        parent.setdefault(k, k)
+        while parent[k] != k:
+            parent[k] = parent[parent[k]]
+            k = parent[k]
+        return k
+
+    for r in rows:
+        ks = [k for k in r["_keys"] if k]
+        for k in ks:
+            find(k)
+        if len(ks) == 2 and r["wire_id"]:
+            parent[find(ks[0])] = find(ks[1])
+    comp = {}
+    for k in list(parent):
+        comp.setdefault(find(k), set()).add(k)
+    bad, naming = [], {}
+    for root, keys in comp.items():
+        src = [SOURCES[k] for k in keys if k in SOURCES]
+        if len(src) > 1:  # (c) one source per supply / ground / screen net
+            bad.append("(c) one net has %d sources: %s" % (len(src), ", ".join(x[0] for x in src)))
+        pins = sorted(k for k in keys if k[0] == "pin")
+        if src:
+            nid, name, kind = src[0]
+        else:  # a signal net: id = its ECU pin (or first pin), named by its wire
+            rr = [r for r in rows if r["wire_id"] and set(r["_keys"]) & keys]
+            ecu = [k for k in pins if k[1] in ("ecu_a", "ecu_b")]
+            k0 = (ecu or pins or sorted(keys))[0]
+            nid = ".".join(str(x) for x in k0[1:]).replace("ecu_a", "ECU-A").replace("ecu_b", "ECU-B")
+            name = "%s (%s)" % (rr[0]["from_desc"], nid.replace(".", " ")) if rr else "spare (%s)" % nid.replace(".", " ")
+            kind = "signal" if rr else "spare"
+        # (b) one splice / bus never joins two SoT nets
+        sot_nets = {sot_pin[(k[1], k[2].lower())]["net"] for k in pins
+                    if (k[1], k[2].lower()) in sot_pin and sot_pin[(k[1], k[2].lower())]["net"]}
+        if len(sot_nets) > 1:
+            bad.append("(b) net %s joins SoT nets %s" % (name, sorted(sot_nets)))
+        # screen nets: only screen / drain pins, never a supply or ground source
+        if kind == "screen":
+            for k in pins:
+                ok = (k[1], k[2]) in SCREEN_PINS or (k[1] == "ix_ws_front_p" and k[2] == "5") or \
+                    (k[1] == "bh_a_fw" and "screen" in drb.get(k[2], ("", "", ""))[2].lower())
+                if not ok:
+                    bad.append("screen: %s lands on non-screen pin %s %s" % (name, k[1], k[2]))
+            if any(SOURCES[k][2] != "screen" for k in keys if k in SOURCES):
+                bad.append("screen: %s touches a supply / ground net" % name)
+        else:
+            for k in pins:
+                if (k[1], k[2]) in SCREEN_PINS:
+                    bad.append("screen: %s (not a screen net) lands on %s %s" % (name, k[1], k[2]))
+        if kind != "spare":
+            naming.setdefault(name, set()).add(root)
+        for r in rows:
+            if set(r["_keys"]) & keys:
+                r["net_id"], r["net_name"] = nid, name
+    for name, roots in naming.items():  # (a) one name, one net
+        if len(roots) > 1:
+            bad.append("(a) net name %r is used by %d unconnected nets" % (name, len(roots)))
+    sot_seen = {}
+    for root, keys in comp.items():  # (d) one SoT supply / ground / screen net split in two here
+        for k in keys:
+            r = sot_pin.get((k[1], k[2].lower())) if k[0] == "pin" else None
+            if r and r["net"] and r["class"] in ("rail", "ground", "power", "screen"):
+                sot_seen.setdefault(r["net"], set()).add(root)
+    for net, roots in sot_seen.items():
+        if len(roots) > 1:
+            bad.append("(d) SoT net %s is on %d unconnected nets in this loom" % (net, len(roots)))
+    return bad
 
 
 def load_json(p):
@@ -193,6 +284,19 @@ def main():
             return dict(type="cable screen", conn=node[7:], name="cable screen (one end only)", pin="", harness=LOOM)
         return dict(type="terminal", conn=node, name="Ground ring M6, cabin chassis stud at ECU", pin="", harness=LOOM)
 
+    def node_key(e):
+        if e["type"] == "splice":
+            return ("splice", e["conn"])
+        if e["conn"] in BUS_CAP:  # a bussed plug is one node: every live pin is the bus
+            return ("bus", e["conn"])
+        if e["type"] == "resistor":
+            return ("res", e["conn"], e["pin"])
+        if e["type"] == "cable screen":
+            return ("screen", e["conn"])
+        if e["type"] == "terminal":
+            return ("term", e["conn"])
+        return ("pin", e["conn"], e["pin"])
+
     def add(wid, f, t, desc, cable=""):
         w = cond[wid]
         gauge = ((parts.get(w.get("partId")) or {}).get("gauge") or {}).get("value", "") or core_gauge.get(wid, "")
@@ -214,10 +318,6 @@ def main():
                     bad.append("DRB102 %s is '%s' but the wire is from ECU-A %s" % (e["pin"], use, ecu_pins[0]))
                 if use.startswith("spare"):
                     gap.append("DRB102 map table row %s says spare; its own note and R22 put the EPS relay coil there" % e["pin"])
-        net = next((NETS[n] for n in (f[0], t[0]) if n in NETS), desc)
-        for n in (f[0], t[0]):  # bussed DT plugs: every wire on the plug carries the bus net
-            if n in BUS_CAP and net != NETS[n]:
-                bad.append("wire on %s has net '%s', bus net is '%s'" % (n, net, NETS[n]))
         owner, through, notes = LOOM, "", []
         if "through" in extra:  # N40 2: one row, owned by the longer half's file
             h, half = extra["through"]
@@ -235,7 +335,8 @@ def main():
             "from_pin": ends[0]["pin"], "from_desc": desc,
             "to_type": ends[1]["type"], "to_conn": ends[1]["conn"], "to_conn_name": ends[1]["name"],
             "to_pin": ends[1]["pin"], "to_desc": desc,
-            "net": net, "splice": next((n for n in (f[0], t[0]) if n in SPLICES), ""), "cable": cable,
+            "net_id": "", "net_name": "", "_keys": [node_key(e) for e in ends],
+            "splice": next((n for n in (f[0], t[0]) if n in SPLICES), ""), "cable": cable,
             "gauge_awg": gauge, "colour": w.get("color", ""), "stripe": w.get("stripeColor", ""),
             "ident_bands": "-".join(w.get("identColors", [])),
             "oem_wire_colour": oem.get("color", ""), "oem_ewd_page": oem.get("page", ""), "oem_method": oem.get("method", ""),
@@ -266,14 +367,16 @@ def main():
                 continue  # section B of the shared DRB102 is B-cabin's
             rows.append(dict({k: "" for k in COLUMNS}, harness=LOOM, from_type="connector", from_conn=c["id"],
                              from_conn_name=label[c["id"]], from_pin=des, from_desc="spare, sealing plug",
-                             net=NETS.get(c["id"], ""), status="OK",
+                             _keys=[("bus", c["id"]) if c["id"] in BUS_CAP else ("pin", c["id"], des)], status="OK",
                              sot_check=("DRB102 %s = '%s'" % (des, drb[des][2])) if c["id"] == "bh_a_fw" else ""))
+
+    net_findings = assign_nets(rows, sot_pin, drb)
 
     os.makedirs(OUT, exist_ok=True)
 
     def write(name, cols, data):
         with open(os.path.join(OUT, name), "w", newline="", encoding="utf-8") as f:
-            w = csv.DictWriter(f, cols)
+            w = csv.DictWriter(f, cols, extrasaction="ignore")
             w.writeheader()
             w.writerows(data)
 
@@ -287,7 +390,9 @@ def main():
         gauges = [int(g) for _, g in ws if g]
         cma = sum(CMA.get(g, 0) for g in gauges)
         loc = spl[sid].get("locationId", "")
-        srows.append({"splice_id": sid, "name": name, "net": NETS[sid], "harness": LOOM,
+        net = next((r for r in rows if ("splice", sid) in r["_keys"]), {})
+        srows.append({"splice_id": sid, "name": name, "net_id": net.get("net_id", ""),
+                      "net_name": net.get("net_name", ""), "harness": LOOM,
                       "location": name.split(" - ")[0] + (" (layout node %s)" % loc if loc else ""),
                       "method": (parts.get(spl[sid].get("partId")) or {}).get("description", "solder splice")[:60],
                       "wires": len(ws), "gauges_awg": "+".join(map(str, gauges)) + (" + shield" if len(gauges) < len(ws) else ""),
@@ -302,7 +407,7 @@ def main():
     for c in raw[LOOM]["connectors"]:
         mate, note = "", ""
         if c["id"] in BUS_CAP:
-            mate, note = BUS_CAP[c["id"]], "bussed DT plug (R169): every live pin is net '%s'" % NETS[c["id"]]
+            mate, note = BUS_CAP[c["id"]], "bussed DT plug (R169): every live pin is one net"
         elif c["id"] in BUS_CAP.values():
             mate = next(k for k, v in BUS_CAP.items() if v == c["id"])
             note = "bussed cap: all cavities bussed, one net; no wire rows"
@@ -324,12 +429,13 @@ def main():
                 if r[s + "_conn"] == cid and r["wire_id"]:
                     o = ocav.get(r[s + "_pin"]) or {}
                     ok = not o.get("notConnected") and o.get("signal") == r[s + "_desc"]
-                    mrows.append({"circuit_id": r["circuit_id"], "this_conn": cid, "this_pin": r[s + "_pin"],
+                    mrows.append({"circuit_id": r["circuit_id"], "net_name": r["net_name"], "this_conn": cid, "this_pin": r[s + "_pin"],
                                   "this_desc": r[s + "_desc"], "mate_harness": h, "mate_conn": other,
                                   "mate_pin": r[s + "_pin"], "mate_desc": o.get("signal", "(N/C)" if o.get("notConnected") else ""),
                                   "check": "OK" if ok else "DIFFERS"})
     for plug, cap in BUS_CAP.items():
-        mrows.append({"circuit_id": "", "this_conn": plug, "this_pin": "all", "this_desc": NETS[plug],
+        mrows.append({"circuit_id": "", "net_name": next(r["net_name"] for r in rows if ("bus", plug) in r["_keys"]),
+                      "this_conn": plug, "this_pin": "all", "this_desc": "bus",
                       "mate_harness": LOOM, "mate_conn": cap, "mate_pin": "all", "mate_desc": "bussed: one net",
                       "check": "OK"})
     write("A-cabin-mates.csv", MATE_COLUMNS, mrows)
@@ -359,6 +465,9 @@ def main():
             for pin, wid, desc, oth in sorted(lst, key=lambda x: pkey(x[0])):
                 f.write("| %s | %s | %s | %s |\n" % (pin, wid, desc, oth))
 
+    print("net checks: %d finding(s)" % len(net_findings))
+    for x in net_findings:
+        print("  NET", x)
     n = lambda k: sum(r["status"].startswith(k) for r in rows)  # noqa: E731
     print("wire list: %d rows (%d wires, %d spare pins), %d splices, %d connectors, %d mate rows (%d differ); "
           "%d mismatch(es), %d SoT gap row(s) -> %s" % (
