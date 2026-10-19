@@ -41,8 +41,7 @@ maintainer something the rules already answer.
 >    `sot/channels.csv` (`QSG-IO`).
 > 5. **Grounds (R213 / R216 / R217)** — ECU power ground -> battery-negative bar in the POWER box only; PCBs, CAN
 >    nodes, LEDs -> battery-negative bus, never chassis; sensors -> Gnd Out only; high-current loads may use chassis;
->    shields -> drains only; CAN nodes take +12 V and ground with the CAN trunk. **Loom A-B (R218):** only the +5 V
->    sensor supply crosses between an A file and a B file. **Relays (R219):** an ECU output driving a relay is
+>    shields -> drains only; CAN nodes take +12 V and ground with the CAN trunk. **Relays (R219):** an ECU output driving a relay is
 >    low-side, ECU pin -> coil 85, coil 86 -> fused +12 V. All gated by `cleanroom/ecu_rules.py` (`wirelist.py --check`);
 >    known violations are listed in `ecu_rules.PENDING` until the wiring fix removes them.
 >

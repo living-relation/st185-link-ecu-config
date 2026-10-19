@@ -49,7 +49,7 @@ A wire on an ECU pin (plugs A / B / C) is also checked against the Link G4X Quic
 (wire-in) guides (the plug-in guide wins for special circuits and pin modes): pin function and mode, what the pin
 may connect to, current limits, wire gauge. `cleanroom/ecu_rules.py`, run by `cleanroom/wirelist.py --check`, fails
 on any far end the pin's class does not allow (R212), any ground that breaks the ground classes (R213, R216), any
-wire between loom A and loom B other than the +5 V sensor supply (R218) and any relay driven the wrong way (R219);
+relay driven the wrong way (R219);
 known violations waiting for the wiring fix are in `ecu_rules.PENDING`.
 
 ### Every wiring surface that must agree
