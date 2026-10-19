@@ -107,7 +107,7 @@ Mates with `ix_ws_front_r on WheelSpeed-Front` - inline DT pair.
 | 2 | cab_fspur_gnd | VRC-F GND | splice sp_gndout (SP-GNDOUT-A: sensor ground) |
 | 3 | cab_fspur_l | FL conditioned out | ECU-A pin A23 |
 | 4 | cab_fspur_r_ac | FR conditioned out | ECU-B (Link G4X plug B, centre dash) pin B21 |
-| 5 | cab_fspur_sh | WS-F screen drain | splice sp_shield_a (SP-SHIELD-A: shield drains) |
+| 5 | cab_fspur_sh | WS-F screen drain | splice sp_shield_a_wsf (SP-SHIELD-A-WSF) |
 | 6 |  | spare, sealing plug |  |
 
 ## PEDAL (`aps`)

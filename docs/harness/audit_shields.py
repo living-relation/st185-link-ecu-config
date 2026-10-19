@@ -19,6 +19,11 @@ docs/SHIELD-RULES.md holds the inventory.  This script checks the ones a script 
       pin, nothing on Screen B in a loom A file or on an A pin (R207: no A-B shield bridge)
   S4  every splice on the CAN screen net is a named branch splice, "SP-CAN-SH-<node>" (R207: each node's
       drain splices onto the trunk drain at its own branch)
+  S5  a cabin-side external component (pedal, wheel-speed spur / VRC output) joins the loom shield trunk
+      at its own named splice sitting where its signal wires join the main loom (the first branch point
+      on the way to the ECU), not at the ECU plug (R207). Devices that come through a bulkhead are exempt:
+      each drain keeps its own bulkhead pin and runs straight to the splice at the ECU plug (so there is
+      no shield splice in the engine bay, and no bulkhead pin shared); the CAN nodes are S4
   R6  a cable screen landed at BOTH ends is allowed only where interfaces.json
       lists it in shieldBothEndsOk (drain connected on both the VRC input and
       the VRC output, and screen continuations through an inline interface)
@@ -109,6 +114,54 @@ for h in ("CAN",):
         for s_ in ("from", "to"):
             if r["wire_id"] and r["net_name"].startswith(CAN_NET) and r[s_ + "_type"] == "splice"                     and not r[s_ + "_conn"].startswith("sp_can_sh_"):
                 bad.append("S4 %s lands on splice %s: a CAN screen splice is named sp_can_sh_<node> (SP-CAN-SH-<NODE>)" % (r["wire_id"], r[s_ + "_conn"]))
+
+import heapq  # noqa: E402
+
+
+def _junction(d, dev, ecu):
+    """The first node with 3+ bundles on the shortest bundle path from device node `dev` to `ecu`."""
+    adj = collections.defaultdict(list)
+    for b in d.get("bundles", []):
+        n = (b.get("length") or {}).get("value") or 0
+        adj[b["sourceId"]].append((b["targetId"], n))
+        adj[b["targetId"]].append((b["sourceId"], n))
+    dist, prev, pq = {dev: 0}, {}, [(0, dev)]
+    while pq:
+        dd, u = heapq.heappop(pq)
+        if dd > dist.get(u, 1e18):
+            continue
+        for v, n in adj[u]:
+            if dd + n < dist.get(v, 1e18):
+                dist[v], prev[v] = dd + n, u
+                heapq.heappush(pq, (dd + n, v))
+    if ecu not in dist:
+        return None
+    path = [ecu]
+    while path[-1] != dev:
+        path.append(prev[path[-1]])
+    return next((n for n in path[::-1][1:] if len(adj[n]) >= 3), None)
+
+
+for loom, ecu in (("A-cabin", "ecu_a"), ("B-cabin", "ecu_b")):
+    d = g.docs[loom]
+    loc = {x["id"]: x.get("locationId") or x["id"] for x in d.get("splices", [])}
+    mine = [r for r in rows if r["_file"] == loom]
+    for r in mine:
+        if not r["net_name"].startswith(("Screen A", "Screen B")):
+            continue
+        sig = [x for x in mine if x["circuit_id"] == r["circuit_id"] and not x["net_name"].startswith("Screen")]
+        ends = {x[s_ + "_conn"] for x in sig for s_ in ("from", "to") if x[s_ + "_type"] == "connector"}
+        if not sig or any(c.startswith("bh_") for c in ends):
+            continue      # no signal wires here, or a bulkhead device: own pin, straight to the ECU splice
+        dev = [c for c in ends if not c.startswith("ecu_")]
+        for s_ in ("from", "to"):
+            sid = r[s_ + "_conn"]
+            if r[s_ + "_type"] != "splice" or sid not in loc or len(dev) != 1:
+                continue
+            j = _junction(d, dev[0], ecu)
+            if j and loc[sid] != j:
+                bad.append("S5 %s/%s drain joins at %s (%s) but %s's signal wires join the main loom at %s"
+                           % (loom, r["wire_id"], sid, loc[sid], dev[0], j))
 
 for line in bad:
     print(line)
