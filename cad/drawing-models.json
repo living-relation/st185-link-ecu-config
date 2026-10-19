@@ -444,13 +444,13 @@
  },
  "regen_pending": {
   "ST185-CSB3-100": {
-   "reason": "model-only PR: assembly BOM rev E (nylon tab screws removed); drawing regenerated in the R196 pass"
+   "reason": "R196 model-only PRs: assembly BOM rev E (nylon tab screws removed); rev F real TE HD34-24-33PE model (R184) + lid D; drawing regenerated in the R196 pass"
   },
   "ST185-VRC-101": {
    "reason": "R196 model-only PR: LP-16 double-D cutouts (body E); drawing regenerated in the markup 2026-10-18 pass"
   },
   "ST185-VRC-100": {
-   "reason": "R196 model-only PR: body E (LP-16 double-D cutouts); drawing regenerated in the markup 2026-10-18 pass"
+   "reason": "R196 model-only PRs: body E (LP-16 double-D cutouts); rev G real CNLINKO LP-16 models (R184); drawing regenerated in the R196 pass"
   },
   "ST185-FB-117": {
    "reason": "R196 / R197 model-only PRs: stud + top-nut holder (D, N37); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
@@ -460,6 +460,12 @@
   },
   "ST185-FB-101": {
    "reason": "R196 model-only PRs: wells for the longer strap leg (W N36, X N37); drawing in the markup 2026-10-18 pass"
+  },
+  "ST185-CSB3-102": {
+   "reason": "R196 model-only PR: lid D (D43.08 x 0.2 flat relief at the HD34 flange seat, real HD34 model fit); drawing regenerated in the R196 pass"
+  },
+  "ST185-DRB-100": {
+   "reason": "R196 model-only PR: rev D real TE DRB12 / DRBF-1A / DRB16 models (R184); drawing regenerated in the R196 pass"
   }
  }
 }

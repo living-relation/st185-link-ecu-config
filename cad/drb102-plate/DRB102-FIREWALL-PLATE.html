@@ -79,8 +79,9 @@ table{border-collapse:collapse;width:100%;margin:6px 0}td,th{border:1px solid #c
 
 <h2>9. Gaps and things to check</h2>
 <table>
-<tr class=warn><td>Not on TE drawings</td><td>Plug M8 hex protrusion length, mated stack height vs panel, flange boss depth for screw length. The envelopes in the assembly start at the panel faces (conservative). Check against a real part or TE's 3D models (linked on the product pages).</td></tr>
-<tr class=warn><td>Key notch position</td><td>Drawn as R4.32 centered on the cutout's bottom edge, read from the drawing geometry (only the radius is dimensioned). Confirm against the DRBF-1A key before cutting.</td></tr>
+<tr><td>Mated stack (TE 3D models, 2026-10-19)</td><td>The assembly STEP now holds TE's own receptacle, flange and plug models (<code>build_DRB102_assembly.py</code>, R184), no overlap with the plate, O-ring, firewall or screw heads. Flange seal bead on the web's cabin face (1.65 left to squeeze flat); receptacle back end 50.6 into the cabin from the firewall face; plug jackscrew M8 hex end 41.6 from the firewall face (28.9 past the plate's engine face); plug 4.0 clear of the pocket walls, 4.3 over the flange screw heads.</td></tr>
+<tr class=warn><td>Not on TE drawings</td><td>Flange boss depth for the screw length (TE's flange model has no clear pilot-hole depth). Check on the part.</td></tr>
+<tr><td>Key notch position</td><td>Drawn as R4.32 centered on the cutout's bottom edge, read from the drawing geometry (only the radius is dimensioned). TE's DRBF-1A model passes through the cutout and the notch with no overlap, even pressed fully home (2026-10-19).</td></tr>
 <tr class=warn><td>Fit on the car</td><td>Plate is 201 × 150. Measure the ST185 firewall area and the engine-side room: plug 45 mm + socket and harness bend.</td></tr>
 <tr class=warn><td>Firewall thickness</td><td>Modeled as 1.0 mm reference only. Measure it to set M5 screw length.</td></tr></table>
 </body></html>

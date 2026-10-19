@@ -146,7 +146,7 @@
    "CSB3_part_CSB3-Body.step",
    "CSB3_part_CSB3-Lid.step",
    "CSB3_part_ECUMaster_CSB3_manual_v2.1_p.4.step",
-   "CSB3_part_HD34-24-33PE_envelope_from_TE_CVM_model.step",
+   "CSB3_part_HD34-24-33PE.step",
    "CSB3_part_Lock-in_supports_Cat_8847_L10_x2.step",
    "CSB3_part_ORING-AS568-039.step",
    "CSB3_part_Set_screws_M8x1.25x6_ISO_4026_x2.step",
@@ -155,8 +155,8 @@
   "cad/enclosures/vrc": [
    "ST185-VRC-Enclosure.f3d",
    "VRC_assembly.step",
-   "VRC_part_LP16-IN_LP-16-C05SX-02-101_envelope.step",
-   "VRC_part_LP16-OUT_LP-16-C05SX-02-101_envelope.step",
+   "VRC_part_LP16-IN_LP-16-C05SX-02-101.step",
+   "VRC_part_LP16-OUT_LP-16-C05SX-02-101.step",
    "VRC_part_ORING-AS568-039.step",
    "VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step",
    "VRC_part_VRC-Board-Holder.step",
@@ -190,6 +190,8 @@
    "Power_Base_PA12_printed.stl",
    "Power_Cover_PA12_printed.step",
    "Power_Cover_PA12_printed.stl",
+   "Power_NutHolder_PA12_printed.step",
+   "Power_NutHolder_PA12_printed.stl",
    "Power_Pan_PA12_printed.step",
    "Power_Pan_PA12_printed.stl",
    "Power_Retainer_R1_PA12_printed.step",
@@ -199,6 +201,9 @@
    "ST185-FB-117_stages.step",
    "ST185_fusebox_rev7.f3d",
    "ST185_fusebox_rev7_assembly.step"
+  ],
+  "cad/vendor/cnlinko/LP-16-C05SX-02-101": [
+   "LP-16-C05SX-02-101.step"
   ],
   "cad/vendor/eaton/AMI": [
    "AMI_bolt-in_built-from-Bussmann-AMI-ds-p34.step"

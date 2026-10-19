@@ -107,10 +107,10 @@ def drb():
     g=lambda k:[s for n,v in ch.items() if n.startswith(k) for s in v]
     items=[
      dict(item=1,qty=1,pn='ST185-DRB-101',desc='DRB102 FIREWALL PLATE',mat='6061-T6 AL, MACHINED',shapes=g('plate_6061')),
-     dict(item=2,qty=1,pn='TE DRB12-102PXE-L018',desc='DEUTSCH DRB RECEPTACLE (ENVELOPE)',mat='PURCHASED',shapes=g('recept_DRB12')),
-     dict(item=3,qty=1,pn='TE DRBF-1A',desc='DRB FLANGE (ENVELOPE)',mat='PURCHASED',shapes=g('flange_DRBF1A')),
-     dict(item=4,qty=1,pn='TE DRB16-102SXE-L018',desc='DEUTSCH DRB PLUG, ENGINE HARNESS (ENVELOPE)',mat='PURCHASED',shapes=g('plug_DRB16')),
-     dict(item=5,qty=4,pn='TE (WITH ITEM 3)',desc='FLANGE SCREWS, ⌀6.35 HOLES (HEADS SHOWN)',mat='PURCHASED',shapes=g('te_screw_heads')),
+     dict(item=2,qty=1,pn='TE DRB12-102PAE-L018',desc='DEUTSCH DRB RECEPTACLE, 102 WAY, CABIN SIDE',mat='PURCHASED',shapes=g('TE_DRB12')),
+     dict(item=3,qty=1,pn='TE DRBF-1A',desc='DRB INTERFACE FLANGE',mat='PURCHASED',shapes=g('TE_DRBF')),
+     dict(item=4,qty=1,pn='TE DRB16-102SAE-L018',desc='DEUTSCH DRB PLUG, 102 WAY, ENGINE HARNESS',mat='PURCHASED',shapes=g('TE_DRB16')),
+     dict(item=5,qty=4,pn='#10-14 PLASTITE 48',desc='FLANGE SCREW, PAN HEAD, THREAD-FORMING (HEADS SHOWN)',mat='PURCHASED',shapes=g('te_screw_heads')),
      dict(item=6,qty=1,pn='AS568-261',desc='O-RING, FIREWALL FACE SEAL (0.139 CORD)',mat='NBR 70',shapes=g('oring')),
     ]
     stages=[[

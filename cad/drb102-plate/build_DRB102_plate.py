@@ -76,6 +76,8 @@ print('plate valid',plate_s.isValid(),'solids',len(p.solids().vals()),'vol cm3',
 cq.exporters.export(p,os.path.join(OUT,'DRB102-firewall-plate.step'))
 
 # ---------- envelopes ----------
+# Clearance boxes for the checks below. The repo's DRB102-firewall-plate-assembly.step is NOT this file's assembly any more: run
+# build_DRB102_assembly.py on this output, which swaps these boxes for TE's own models (R184, 2026-10-19).
 env={}
 env['plug_DRB16']=rrect(TE['plg_w'],TE['plg_h'],TE['plg_r'],TE['plg_d'],WEB)
 env['socket_keepout']=cq.Workplane("XY").workplane(offset=WEB+TE['plg_d']).circle(12.5).extrude(150)

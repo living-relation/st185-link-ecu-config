@@ -173,21 +173,21 @@ From the STEP / STL headers (`FILE_NAME` originating system), the build scripts 
 | busbar/design-B/B_REF_MountScrew_ISO7380_M6x16_A2.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
 | busbar/design-B/B_SetScrew_ISO4029_M8x12_A2.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
 | busbar/design-B/ST185_busbar_B.f3d | Fusion 360 |  |
-| drb102-plate/DRB102-firewall-plate-assembly.step | CadQuery |  |
+| drb102-plate/DRB102-firewall-plate-assembly.step | CadQuery + build123d | TE connector models placed by `build_DRB102_assembly.py` (R184). |
 | drb102-plate/DRB102-firewall-plate.step | CadQuery |  |
 | enclosures/csb3/CSB3_assembly.step | Fusion 360 |  |
 | enclosures/csb3/CSB3_part_CSB3-Body.step | Fusion 360 |  |
 | enclosures/csb3/CSB3_part_CSB3-Lid.step | Fusion 360 |  |
 | enclosures/csb3/CSB3_part_ECUMaster_CSB3_manual_v2.1_p.4.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
-| enclosures/csb3/CSB3_part_HD34-24-33PE_envelope_from_TE_CVM_model.step | Fusion 360 | Purchased / reference part. Envelope from the TE CVM model (file name); original geometry source unconfirmed. |
+| enclosures/csb3/CSB3_part_HD34-24-33PE.step | build123d | Purchased part: TE's own model, placed by `real_connectors.py` (R184). |
 | enclosures/csb3/CSB3_part_Lock-in_supports_Cat_8847_L10_x2.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
 | enclosures/csb3/CSB3_part_ORING-AS568-039.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
 | enclosures/csb3/CSB3_part_Set_screws_M8x1.25x6_ISO_4026_x2.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
 | enclosures/csb3/ST185-CSB3-Enclosure.f3d | Fusion 360 |  |
 | enclosures/vrc/ST185-VRC-Enclosure.f3d | Fusion 360 |  |
 | enclosures/vrc/VRC_assembly.step | Fusion 360 |  |
-| enclosures/vrc/VRC_part_LP16-IN_LP-16-C05SX-02-101_envelope.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
-| enclosures/vrc/VRC_part_LP16-OUT_LP-16-C05SX-02-101_envelope.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
+| enclosures/vrc/VRC_part_LP16-IN_LP-16-C05SX-02-101.step | build123d | Purchased part: the CNLINKO model, placed by `real_connectors.py` (jam nut on the wall's inside face) (R184). |
+| enclosures/vrc/VRC_part_LP16-OUT_LP-16-C05SX-02-101.step | build123d | Purchased part: the CNLINKO model, placed by `real_connectors.py` (jam nut on the wall's inside face) (R184). |
 | enclosures/vrc/VRC_part_ORING-AS568-039.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
 | enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step | Fusion 360 | Purchased / reference part. Board shape from the OpenLogicEFI KiCad file (`cad/enclosures/PLAN-notes.md`); how it got into Fusion is unconfirmed. |
 | enclosures/vrc/VRC_part_VRC-Board-Holder.step | Fusion 360 |  |
