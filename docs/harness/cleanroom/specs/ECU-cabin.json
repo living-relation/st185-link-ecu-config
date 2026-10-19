@@ -1,12 +1,12 @@
 {
  "_doc": "Drawing facts for build_harness.py that the wire list does not hold (labels, title, notes). Wires, pins, descriptions, colours, ident bands and end notes come from the wire list.",
- "title": "ST185-A-cabin - ECU plug A cabin loom",
+ "title": "ST185-ECU-cabin - ECU harness, cabin side (ECU plugs A, B, C to the bulkhead)",
  "rev": "A",
  "rev_by": "DG",
- "rev_note": "clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv.",
+ "rev_note": "loom A and loom B merged into one ECU harness (Dan 2026-10-19, DECISIONS R220); built from the master wire list (R201).",
  "connectors": {
   "ecu_a": "ECU-A  Link G4X plug A (centre dash)",
-  "bh_a_fw": "BULKHEAD  DRB102 receptacle (RH firewall)",
+  "bh_fw": "BULKHEAD  DRB102 receptacle (RH firewall)",
   "aps": "PEDAL  accelerator pedal sensor",
   "ix_ws_front_p": "FRONT WS INLINE  to front VR conditioner",
   "bus_5v_bha_p": "+5V BUS  DT06-8 plug (by bulkhead)",
@@ -83,35 +83,35 @@
   },
   "br_w_b25": {
    "label": "ECU-B pin B25 - ECU power ground",
-   "long": "ECU-B pin B25 - ECU power ground - continues on ST185-B-cabin"
+   "long": "ECU-B pin B25 - ECU power ground - continues on ST185-ECU-cabin"
   },
   "br_w_b34": {
    "label": "ECU-B pin B34 - ECU power ground (2)",
-   "long": "ECU-B pin B34 - ECU power ground (2) - continues on ST185-B-cabin"
+   "long": "ECU-B pin B34 - ECU power ground (2) - continues on ST185-ECU-cabin"
   },
   "br_w_lamg_b": {
    "label": "Bulkhead pin 96 - CAN-Lambda ground",
-   "long": "Bulkhead pin 96 - CAN-Lambda ground - continues on ST185-B-cabin"
+   "long": "Bulkhead pin 96 - CAN-Lambda ground - continues on ST185-ECU-cabin"
   },
   "br_w_rail_sw12_b_c": {
    "label": "Bulkhead pin 90 - +12 V gearbox speed sensor",
-   "long": "Bulkhead pin 90 - +12 V gearbox speed sensor - continues on ST185-B-cabin"
+   "long": "Bulkhead pin 90 - +12 V gearbox speed sensor - continues on ST185-ECU-cabin"
   },
   "br_w_rail_5v_b_c": {
    "label": "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors",
-   "long": "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors - continues on ST185-B-cabin"
+   "long": "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors - continues on ST185-ECU-cabin"
   },
   "br_cab_fspur_r": {
    "label": "ECU-B pin B21 - front right wheel speed",
-   "long": "ECU-B pin B21 - front right wheel speed - continues on ST185-B-cabin"
+   "long": "ECU-B pin B21 - front right wheel speed - continues on ST185-ECU-cabin"
   },
   "br_cab_fspur_fr_sh": {
    "label": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield",
-   "long": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield - continues on ST185-B-cabin"
+   "long": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield - continues on ST185-ECU-cabin"
   },
   "br_w39": {
    "label": "ECU-B pin B33 - pedal 2 signal (sub)",
-   "long": "ECU-B pin B33 - pedal 2 signal (sub) - continues on ST185-B-cabin"
+   "long": "ECU-B pin B33 - pedal 2 signal (sub) - continues on ST185-ECU-cabin"
   },
   "br_w_cru_5v": {
    "label": "Cruise ladder resistor lead, centre console - +5 V cruise",
@@ -148,7 +148,7 @@
   "An end that says 'on ST185-<file>' is the same wire running on in that loom, not a join.",
   "Every shield drain is its own wire. Drains meet only at SP-SHIELD-A, 6 mm behind the ECU-A plug: the crank drain is crimped into A7, the others are soldered onto it.",
   "Sensor ground (ECU A24) never joins chassis ground or loom B sensor ground (ECU B22).",
-  "Bulkhead pins marked N/C are section B (see ST185-B-cabin) or spares with a sealing plug."
+  "Bulkhead pins marked N/C are section B (see ST185-ECU-cabin) or spares with a sealing plug."
  ],
  "node_notes": {
   "n_pedal_length": {

@@ -15,7 +15,7 @@ Mechanical signs that a drawing's bundle tree was bent to fit the drawing instea
 Whether a bundle runs WITH the right neighbours (H5 joining H4 at the firewall) is judged against
 the route figure by eye; this gate catches the shapes that cannot be right on any route.
 
-    python docs/harness/audit_bundle_topology.py [A-cabin | ST185-A-cabin ...]
+    python docs/harness/audit_bundle_topology.py [CabinPower | ST185-CabinPower ...]
 """
 import collections
 import heapq
@@ -118,7 +118,7 @@ def check(loom, d):
             continue
         used.update(p[0])
     pair = collections.defaultdict(set)      # parallel bundles between the same two nodes (a
-    for b in d.get("bundles", []):           # labelled sub-group, e.g. A-cabin's INJ COP) count
+    for b in d.get("bundles", []):           # labelled sub-group, e.g. the old A-cabin's INJ COP) count
         pair[frozenset((b["sourceId"], b["targetId"]))].add(b["id"])   # as one
     for b in d.get("bundles", []):
         if not pair[frozenset((b["sourceId"], b["targetId"]))] & used:

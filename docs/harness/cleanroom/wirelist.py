@@ -50,7 +50,7 @@ import ecu_rules  # noqa: E402
 OUT = os.path.join(HARNESS, "wirelist")   # tracked: the CSVs are the git source (R201, Dan N44 = A)
 # Lists Dan has approved: a MISMATCH, mate or coverage finding on them fails --check, and so does a
 # net finding whose files are all approved (R201 pilot). The others are reported in GAPS.md.
-GATED = {"A-cabin"}
+GATED = {"ECU-cabin"}
 
 COLUMNS = ["circuit_id", "wire_id", "harness", "passes_through",
            "from_type", "from_conn", "from_conn_name", "from_pin", "from_desc", "from_note",
@@ -68,10 +68,9 @@ GAP_COLUMNS = ["file", "wire / pin", "what is wrong", "recommended answer"]
 CMA = {22: 642, 20: 1022, 18: 1624, 16: 2583, 14: 4107, 12: 6530, 10: 10380, 8: 16510, 6: 26240, 4: 41740,
        2: 66360, 0: 105600}
 
-# The DRB102 bulkhead is ONE connector drawn on four files (DRB102-CAVITY-MAP.md): receptacle on
-# the cabin files, plug on the engine files; the letter is the ECU loom each file wires (cavity placement ignores it, R208).
-DRB102 = {"bh_a_fw": "A", "bh_b_fw": "B", "bh_a_eng": "A", "bh_b_eng": "B"}
-DRB_RECEPT, DRB_PLUG = ("bh_a_fw", "bh_b_fw"), ("bh_a_eng", "bh_b_eng")
+# The DRB102 bulkhead is ONE connector (DRB102-CAVITY-MAP.md): the receptacle on ECU-cabin, the plug on ECU-engine.
+DRB102 = {"bh_fw": "cabin", "bh_eng": "engine"}
+DRB_RECEPT, DRB_PLUG = ("bh_fw",), ("bh_eng",)
 ECU = {"ecu_a": "ECU-A", "ecu_b": "ECU-B", "ecu_com": "ECU-COMMS"}
 SCREEN_PINS = {("ecu_a", "A7"): "A", ("ecu_b", "B17"): "B", ("ecu_com", "C1"): "CAN"}
 
@@ -125,13 +124,13 @@ def pin_key(p):
 
 
 def drb_map():
-    """DRB102 cavity number -> (loom, cavity id, use), from the generated map (bulkhead_assign.py, R208)."""
+    """DRB102 cavity number -> (cavity id, use), from the generated map (bulkhead_assign.py, R208)."""
     drb = {}
     with open(os.path.join(HARNESS, "DRB102-CAVITY-MAP.md"), encoding="utf-8") as f:
         for line in f:
-            m = re.match(r"\| (\d+) \| [^|]+\| (\d+) \| ([AB]) \| (c\d+) \| (.+) \|\s*$", line)
+            m = re.match(r"\| (\d+) \| [^|]+\| (\d+) \| (c\d+) \| (.+) \|\s*$", line)
             if m:
-                drb[m.group(1)] = (m.group(3), m.group(4), m.group(5).strip())
+                drb[m.group(1)] = (m.group(3), m.group(4).strip())
     return drb
 
 
@@ -377,12 +376,10 @@ def check_row(ctx, r):
                     bad.append("%s pin %s is '%s' in the device reference but the wire is on a %s net (%s)" % (
                         conn, pin, want, kind, r["net_name"]))
         if t == "connector" and conn in DRB102:
-            sec, cavid, use = ctx.drb.get(pin, ("?", "?", "?"))
-            ok.append("DRB102 %s = loom %s %s '%s'" % (pin, sec, cavid, use[:50]))
-            if sec == "?":
+            cavid, use = ctx.drb.get(pin, ("?", "?"))
+            ok.append("DRB102 %s = %s '%s'" % (pin, cavid, use[:50]))
+            if cavid == "?":
                 bad.append("DRB102 has no cavity %s" % pin)
-            elif sec != DRB102[conn]:
-                bad.append("DRB102 %s is loom %s's cavity in the map, drawn on loom %s's connector (%s)" % (pin, sec, DRB102[conn], conn))
             if use.lower().startswith("spare"):
                 gap.append("DRB102 map says cavity %s is '%s' but a wire lands on it" % (pin, use))
         if t == "connector" and conn in ctx.plan_conns:
@@ -502,7 +499,7 @@ def assign_nets(ctx, rows):
             for k in pins:
                 conn = next((r[s + "_conn"] for r in rs for s, kk in zip(("from", "to"), r["_keys"]) if kk == k), k[1])
                 row = ctx.sot_row(conn, k[2])
-                use = ctx.drb.get(k[2], ("", "", ""))[2].lower() if k[1] == "DRB102" else ""
+                use = ctx.drb.get(k[2], ("", ""))[1].lower() if k[1] == "DRB102" else ""
                 ixt = (ctx.ix_pins.get((conn, k[2])) or ("", ""))[1].lower()
                 if not ((k[1], k[2]) in SCREEN_PINS or (row and row["class"] == "screen") or "screen" in use
                         or "shield" in use or "drain" in ixt or "screen" in ixt):
@@ -521,7 +518,7 @@ def assign_nets(ctx, rows):
                 conn, pin = r[s + "_conn"], r[s + "_pin"]
                 named = []
                 if conn in DRB102:
-                    m = re.match(r"ECU-([AB]) ([AB]\d+)", ctx.drb.get(pin, ("", "", ""))[2])
+                    m = re.match(r"ECU-([AB]) ([AB]\d+)", ctx.drb.get(pin, ("", ""))[1])
                     if m:
                         named.append(("DRB102 %s" % pin, m.group(1), m.group(2)))
                 if (conn, pin) in ctx.ix_pins:
@@ -621,7 +618,7 @@ def main(check=False):
         if not r["wire_id"]:
             r["status"] = r["status"] or "OK"
             if r["from_conn"] in DRB102:
-                r["sot_check"] = "DRB102 %s = '%s'" % (r["from_pin"], ctx.drb.get(r["from_pin"], ("", "", "?"))[2])
+                r["sot_check"] = "DRB102 %s = '%s'" % (r["from_pin"], ctx.drb.get(r["from_pin"], ("", "?"))[1])
             continue
         ok, bad, gap = check_row(ctx, r)
         bad += row_bad.get(r["_id"], [])
@@ -673,12 +670,9 @@ def main(check=False):
             elif c["id"] in ctx.cap:
                 mate, note = ctx.cap[c["id"]]["plug"], "bussed cap: all cavities bussed, one net; no wire rows"
             elif c["id"] in DRB102:
-                other = [x for x in (DRB_PLUG if c["id"] in DRB_RECEPT else DRB_RECEPT) if x[3:4] == c["id"][3:4]][0]
+                other = (DRB_PLUG if c["id"] in DRB_RECEPT else DRB_RECEPT)[0]
                 mate = "%s on %s" % (other, ctx.node[other][0])
-                own = {"A": "B", "B": "A"}[DRB102[c["id"]]]
-                note = "shared DRB102 (loom %s wires here, loom %s wires on %s)" % (
-                    DRB102[c["id"]], own, ctx.node[next(x for x in DRB102 if x != c["id"] and
-                                                        (x in DRB_RECEPT) == (c["id"] in DRB_RECEPT))][0])
+                note = "DRB102 bulkhead, %s half" % DRB102[c["id"]]
             elif c["id"] in ctx.mate:
                 m, mh, kind = ctx.mate[c["id"]]
                 mate, note = "%s on %s" % (m, mh), kind.split(" (")[0]
@@ -731,7 +725,7 @@ def main(check=False):
         pin_sheets = []
         f.write("# %s pinouts (derived from the master wire list)\n\n"
                 "Generated by `docs/harness/cleanroom/wirelist.py`. Pin | wire | description | other end. "
-                "Spare pins say \"spare\". A shared DRB102 lists this file's loom only.\n" % h)
+                "Spare pins say \"spare\".\n" % h)
         for c in crows:
             lst = []
             for r in touching + [x for x in mine if not x["wire_id"]]:
@@ -740,8 +734,6 @@ def main(check=False):
                             (r["_file"] == h or r["wire_id"]):
                         oth = (r[o + "_conn_name"] + (" pin " + r[o + "_pin"] if r[o + "_pin"] else "")) if r[o + "_conn"] else ""
                         lst.append((r[s + "_pin"], r["wire_id"], r[s + "_desc"], oth))
-            if c["conn_id"] in DRB102:
-                lst = [x for x in lst if ctx.drb.get(x[0], ("?",))[0] == DRB102[c["conn_id"]]]
             lst = sorted(dict.fromkeys(lst), key=lambda x: (pin_key(x[0]), x[1]))
             f.write("\n## %s (`%s`)\n\n" % (c["name"], c["conn_id"]))
             if c["mates_with"]:

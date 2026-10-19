@@ -1,15 +1,13 @@
-"""Bulkhead mating check - A cabin mates A engine, B cabin mates B engine.
+"""Bulkhead mating check - the cabin half (ECU-cabin) mates the engine half (ECU-engine).
 
     python docs/harness/audit_mating.py
 
-Every loom is its own drawing, so nothing in harness.design joins the two halves
-of a bulkhead. This script does. For each bulkhead cavity it traces the cabin-side
-conductor back to the ECU pin it serves (through splices, one net at a time) and
+The two sides of the DRB102 are separate drawings, so nothing in harness.design joins
+the two halves of the bulkhead. This script does. For each bulkhead cavity it traces the
+cabin-side conductor back to the ECU pin it serves (through splices, one net at a time) and
 checks, against sot/channels.csv:
 
   M1  a cavity used on one half is used on the other half too (no dead ends).
-  M2  a signal crosses on the bulkhead of its own loom: an ECU pin whose SoT
-      loom is A crosses on bulkhead A, loom B on bulkhead B.
   M5  one cavity, one ECU signal: a cavity never reaches two different
       signal-class ECU pins.
   M6  loom C has no bulkhead: the front wheel-speed drops (fender sub-loom of
@@ -20,13 +18,11 @@ checks, against sot/channels.csv:
       bulkhead cavity's `designation` is its real DRB102 cavity number, the same
       on both halves of its bulkhead; A and B together use each of the 102
       physical cavities exactly once; and the contact or sealing plug in each
-      cavity is the size TE's drawing gives that cavity. Only live cavities count here:
-      each drawing shows all 102 and marks the other section's cavities N/C
-      (audit_shared_connectors.py checks those).
+      cavity is the size TE's drawing gives that cavity.
 
-Shared rails (+5V, +8V, Gnd Out) are exempt from M2: loom B has no +5V pin, so
-it borrows A32 by design. Pin *names* across each mating pair are checked by
-audit_pin_names.py (rule 2); this file checks what the pins are wired to.
+Since loom A and B became one harness (DECISIONS R220) there is no loom-letter check (the old
+M2). Pin *names* across the mating pair are checked by audit_pin_names.py (rule 2); this file
+checks what the pins are wired to.
 """
 import collections, csv, glob, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -35,8 +31,8 @@ import model  # full_text: long label / signal text (full_text.json)
 HERE = os.path.dirname(os.path.abspath(__file__))
 REB = os.path.join(HERE, "rebuild")
 SOT = os.path.join(HERE, "..", "..", "sot", "channels.csv")
-PAIRS = {"bh_a_fw": "bh_a_eng", "bh_b_fw": "bh_b_eng"}
-LETTER = {"bh_a_fw": "A", "bh_a_eng": "A", "bh_b_fw": "B", "bh_b_eng": "B"}
+PAIRS = {"bh_fw": "bh_eng"}
+LETTER = {"bh_fw": "cabin", "bh_eng": "engine"}   # the two halves of the DRB102
 SHIELD = {("ecu_a", "a7"), ("ecu_b", "b17"), ("ecu_com", "c1")}
 
 with open(SOT, newline="", encoding="utf-8") as f:
@@ -131,9 +127,8 @@ for fw, eng in PAIRS.items():
 # M2 / M5 - trace cabin halves back to ECU pins
 for loom, g in graphs.items():
     for n in list(g):
-        if n[0] != "C" or n[1] not in ("bh_a_fw", "bh_b_fw"):
+        if n[0] != "C" or n[1] not in PAIRS:
             continue
-        letter = LETTER[n[1]]
         pins = reach(g, n)
         sig = set()
         for k in pins:
@@ -144,10 +139,6 @@ for loom, g in graphs.items():
                 continue
             if r["class"] == "signal":
                 sig.add(k)
-                if r["loom"] in ("A", "B") and r["loom"] != letter:
-                    bad.append("M2 %s: %s %s carries %s (%s.%s, loom %s) - it must cross "
-                               "on bulkhead %s" % (loom, n[1], n[2], r["net"], k[0], k[1],
-                                                   r["loom"], r["loom"]))
         if len(sig) > 1:
             bad.append("M5 %s: %s %s reaches %d signal pins: %s"
                        % (loom, n[1], n[2], len(sig), ", ".join("%s.%s" % k for k in sorted(sig))))
@@ -192,7 +183,7 @@ for (nid, cav), looms in sorted(cav_owner.items()):
 # M8 - DRB102 physical cavity map. Cavity sizes from TE customer drawing
 # DRB12-102PXE-L018 rev C3 (insert face): size 12 = 1-8 and 95-102, size 8 = 48, 49,
 # 54, 55, size 4 = 43 and 60, size 16 = the other 80. Two wedgelock halves, 1-51 and
-# 52-102. bh_a_* and bh_b_* each draw all 102; A / B are sections (ECU letter), not wedgelock halves.
+# 52-102. bh_fw (cabin) and bh_eng (engine) each draw all 102.
 DRB_SIZE = {n: 16 for n in range(1, 103)}
 DRB_SIZE.update({n: 12 for n in list(range(1, 9)) + list(range(95, 103))})
 DRB_SIZE.update({48: 8, 49: 8, 54: 8, 55: 8, 43: 4, 60: 4})
@@ -206,8 +197,6 @@ for path in sorted(glob.glob(os.path.join(REB, "*.harness"))):
             continue
         m = desig.setdefault(cn["id"], {})
         for cv in cn.get("cavities", []):
-            if cv.get("notConnected") and not cv.get("cavityPlugPartId"):
-                continue          # the other section's cavity, live on the other loom (audit_shared_connectors.py)
             num = str(cv.get("designation", ""))
             if not num.isdigit() or int(num) not in DRB_SIZE:
                 bad.append("M8 %s %s designation %r is not a DRB102 cavity number (1-102)"
@@ -222,12 +211,12 @@ for fw, eng in PAIRS.items():
     if desig.get(fw) != desig.get(eng):
         diff = sorted(set(desig.get(fw, {}).items()) ^ set(desig.get(eng, {}).items()))
         bad.append("M8 %s and %s disagree on the cavity map: %s" % (fw, eng, diff[:6]))
-phys = collections.Counter(desig.get("bh_a_fw", {}).values())
-phys.update(desig.get("bh_b_fw", {}).values())
+phys = collections.Counter(desig.get("bh_fw", {}).values())
 for n in sorted(DRB_SIZE):
     if phys[n] != 1:
-        bad.append("M8 DRB102 cavity %d is used %d times across bulkheads A and B (must be 1)"
+        bad.append("M8 DRB102 cavity %d is drawn %d times on the bulkhead (must be 1)"
                    % (n, phys[n]))
+
 
 for line in bad:
     print(line)

@@ -913,7 +913,7 @@
         "y": 1380
       },
       "propagate": false,
-      "label": "ECU A pin 19 (Link ECU, center dash; A-cabin) - fuel pump relay drive"
+      "label": "ECU A pin 19 (Link ECU, center dash; ECU-cabin) - fuel pump relay drive"
     },
     {
       "id": "br_fp86",
@@ -1283,7 +1283,7 @@
         "x": 0,
         "y": 780
       },
-      "text": "BATTERY RELAY BLOCK (DECISIONS R75, Z4; cad/fusebox rev 5, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107)): trunk, passenger side, between the rear wall and the battery. Kill switch MAIN 2 (LOAD) -> 10 AWG -> M6 stud on the block's copper bar -> AMI-40 FP -> one straight 10 AWG jumper -> HCR150 k_fp terminal 3; terminal 5 -> fuel pump (wire on ST185-RearFuel). Fed from the LOAD side, so the kill switch also stops the pump. Coil plug (Superseal 1.5, 282080-1): coil - from ECU A19 (ST185-A-cabin) and coil + from LOGIC SW12 (ST185-CabinPower) arrive broken off. The kill-switch stud carries the 1/0 H1 lug and the 10 AWG feed lug. Bundle lengths are estimates - measure at install."
+      "text": "BATTERY RELAY BLOCK (DECISIONS R75, Z4; cad/fusebox rev 5, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107)): trunk, passenger side, between the rear wall and the battery. Kill switch MAIN 2 (LOAD) -> 10 AWG -> M6 stud on the block's copper bar -> AMI-40 FP -> one straight 10 AWG jumper -> HCR150 k_fp terminal 3; terminal 5 -> fuel pump (wire on ST185-RearFuel). Fed from the LOAD side, so the kill switch also stops the pump. Coil plug (Superseal 1.5, 282080-1): coil - from ECU A19 (ST185-ECU-cabin) and coil + from LOGIC SW12 (ST185-CabinPower) arrive broken off. The kill-switch stud carries the 1/0 H1 lug and the 10 AWG feed lug. Bundle lengths are estimates - measure at install."
     },
     {
       "id": "n_heavy",

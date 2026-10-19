@@ -21,9 +21,10 @@ and branch ends as the route's top view) is judged against the route figure by e
 right is gated by audit_drawing_rules.py L1. The routes carry no bundle lengths, so lengths are not
 compared here - a bundle keeps its own `length`.
 
-HARD in check_all.py since 2026-10-15 (every drawing at zero).
+HARD in check_all.py since 2026-10-15 (every drawing at zero). A harness our own generator draws
+(interfaces.json "drawing": "own", DECISIONS R220) has no app layout and is skipped.
 
-    python docs/harness/audit_layout.py [A-cabin | ST185-A-cabin | ST185-A-cabin.harness ...]
+    python docs/harness/audit_layout.py [CabinPower | ST185-CabinPower | ST185-CabinPower.harness ...]
 
 A name that matches no drawing is an error (exit 2), never a silent pass.
 """
@@ -87,8 +88,9 @@ if __name__ == "__main__":
         print("audit_layout: no drawing named %s (looms: %s)" % (", ".join(unknown), ", ".join(docs)))
         sys.exit(2)
     bad = []
+    own = model.own_drawn()   # drawn by our own generator, not on the app canvas (R220)
     for loom, d in docs.items():
-        if not want or loom in want:
+        if (not want or loom in want) and loom not in own:
             bad += check(loom, d)
     for line in bad:
         print(line)

@@ -24,7 +24,7 @@ import model
 
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rebuild")
 SHIELD_PINS = {("ecu_a", "a7"), ("ecu_b", "b17"), ("ecu_com", "c1")}
-PAIRS = {"bh_a_fw": "bh_a_eng", "bh_b_fw": "bh_b_eng"}
+PAIRS = {"bh_fw": "bh_eng"}
 
 docs = {os.path.basename(f)[6:-8]: model.full_text(json.load(open(f, encoding="utf-8")), f)
         for f in sorted(glob.glob(os.path.join(R, "*.harness")))}

@@ -17,9 +17,6 @@ entry that no longer violates, so the list can only shrink.
 """
 import re
 
-A_FILES = {"A-cabin", "A-engine"}
-B_FILES = {"B-cabin", "B-engine"}
-
 # --- R212: far-end rules per QSG class -------------------------------------------------------------------
 QSG_ENDS = {
     "ground": ("ECU ground pins and battery negative", None),

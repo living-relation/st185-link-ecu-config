@@ -39,7 +39,7 @@ import sys
 
 import model
 
-BH = {"bh_a_fw", "bh_a_eng", "bh_b_fw", "bh_b_eng"}
+BH = {"bh_fw", "bh_eng"}   # the DRB102: cabin receptacle, engine plug
 KIND_TEXT = (("shield", re.compile(r"shield|screen|drain|braid", re.I)),
              ("CAN H", re.compile(r"\bCAN\s?-?\s?H(igh)?\b|\bCAN\d?H\b", re.I)),
              ("CAN L", re.compile(r"\bCAN\s?-?\s?L(ow)?\b|\bCAN\d?L\b", re.I)),

@@ -762,7 +762,7 @@
         "y": 240
       },
       "propagate": false,
-      "label": "+5 V sensor splice at ECU plug A (A-cabin loom) - ECU +5 V for the cruise pull-up"
+      "label": "+5 V sensor splice at ECU plug A (ECU-cabin loom) - ECU +5 V for the cruise pull-up"
     },
     {
       "id": "br_w_csb12",
@@ -792,7 +792,7 @@
         "y": 120
       },
       "propagate": false,
-      "label": "Chassis ground splice at ECU plug A (A-cabin loom) - CSB3 ground"
+      "label": "Chassis ground splice at ECU plug A (ECU-cabin loom) - CSB3 ground"
     },
     {
       "id": "br_w_sw7_c",
@@ -807,7 +807,7 @@
         "y": 870
       },
       "propagate": false,
-      "label": "Reverse switch splice (B-cabin loom) - back-up switch B1 pin 1, +12 V in reverse"
+      "label": "Reverse switch splice (ECU-cabin loom) - back-up switch B1 pin 1, +12 V in reverse"
     },
     {
       "id": "br_w_oil_k",
@@ -1284,7 +1284,7 @@
         "x": 0,
         "y": 960
       },
-      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-A-cabin; the reverse switch output from ST185-B-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness.",
+      "text": "ECUMASTER CSB3 HARNESS - the CSB3 plug (HD36-24-33SE) and its switch inputs: cruise stalk (C14: pin 5 W ladder -> A2 with a 1k pull-up to +5V, pin 15 Y-B MAIN -> S3, pin 17 BR ground; no separate SET / RESUME wires, so S4 / S5 are spare - DECISIONS S23, R66), clutch and brake switches, and ONE 8-channel optocoupler board inline at the plug (Dan's on-hand board, 2026-10-13, C10-C13): brake (S9, +12V-active) -> input 01 -> output 01 -> S7 and reverse (B1, +12V-active) -> input 02 -> output 02 -> S8, both ground-active inputs (R56). Input COM to ground; the board's own 4.7k input resistors set the LED current. Output VCC from the CSB3 +5V (c3), never 12V: the board's 10k pull-ups go to VCC and the CSB3 S inputs are 'switched to ground' with no 12V rating (CSB3 manual v2.1 pp.3-5). Output GND to SGND (c4). Channels 03-08 not connected. Its +12V, ground and +5V wires come in broken off from ST185-ECU-cabin; the reverse switch output from ST185-ECU-cabin, the oil LED sink from ST185-ClusterLED and CAN H/L from ST185-CAN all arrive broken off with a note. Non-ECU harness.",
       "width": 390
     },
     {

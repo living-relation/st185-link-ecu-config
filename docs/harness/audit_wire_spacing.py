@@ -26,6 +26,7 @@ terminate at the same connector or device".
 
 Move layout parts in the desktop app (Dan) and re-check.
 Exit 1 on any finding. Prints the first 15 findings per loom unless --all.
+A harness our own generator draws (interfaces.json "drawing": "own", DECISIONS R220) has no app canvas and is skipped.
 """
 import math
 import sys
@@ -167,8 +168,9 @@ def main(argv):
     show_all = "--all" in argv
     only = [a for a in argv if not a.startswith("-")]
     total = 0
+    own = model.own_drawn()   # drawn by our own generator, not on the app canvas (R220)
     for loom, d in model.docs().items():
-        if only and loom not in only:
+        if (only and loom not in only) or loom in own:
             continue
         bad = check_routing_points(loom, d) + check_layout(loom, d)
         if loom not in CORE_POINTS_PENDING:

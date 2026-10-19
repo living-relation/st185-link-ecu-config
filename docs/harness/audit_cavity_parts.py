@@ -44,7 +44,7 @@ print("%d cavities double-booked." % tot)
 # half; a cavity wired in NO loom gets a sealing plug. Found 11 wired cavities
 # (knock c16-c18, VSS c15, screens c33/c34, MRS c36, MRS enable A c35) carrying
 # plugs and 10 spares carrying contacts - the buy list was counting both wrong.
-BH = ("bh_a_fw", "bh_a_eng", "bh_b_fw", "bh_b_eng")
+BH = ("bh_fw", "bh_eng")
 used = collections.defaultdict(set)
 docs = {os.path.basename(f)[6:-8]: _model.full_text(json.load(open(f, encoding="utf-8")), f)
         for f in sorted(glob.glob(os.path.join(R, "*.harness")))}

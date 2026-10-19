@@ -319,10 +319,7 @@ def full_text(h, out, spec):
     for ix in reg["interfaces"]:
         a, b = ix["halves"]
         mates[a["connector"]], mates[b["connector"]] = (b["harness"], b["connector"]), (a["harness"], a["connector"])
-    for c in WL.DRB_RECEPT + WL.DRB_PLUG:
-        letter = c[3]
-        other = "bh_%s_eng" % letter if c in WL.DRB_RECEPT else "bh_%s_fw" % letter
-        mates[c] = ({"bh_a_fw": "A-cabin", "bh_b_fw": "B-cabin", "bh_a_eng": "A-engine", "bh_b_eng": "B-engine"}[other], other)
+    mates["bh_fw"], mates["bh_eng"] = ("ECU-engine", "bh_eng"), ("ECU-cabin", "bh_fw")   # the DRB102's two halves
     for c in out.get("connectors", []):
         if c["id"] not in mates or c["id"] not in rec.get("connectors", {}):
             continue

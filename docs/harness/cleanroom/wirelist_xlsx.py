@@ -2,8 +2,8 @@
 between rows, and between to/from column sets also"). The CSVs are the git source; these
 workbooks are generated from the same rows and checked for staleness by `wirelist.py --check`.
 
-  A-cabin-wirelist.xlsx  sheets Wires, Splices, Connectors, Mates
-  A-cabin-pinouts.xlsx   one sheet per connector: Pin | Wire | Description | Other end
+  ECU-cabin-wirelist.xlsx  sheets Wires, Splices, Connectors, Mates
+  ECU-cabin-pinouts.xlsx   one sheet per connector: Pin | Wire | Description | Other end
 
 Row 1 of the wire-list sheets is a coloured group-title row (ID, FROM, TO, NET, WIRE, OEM / NOTES);
 columns are shown grouped (the CSV keeps its own order). Row 2: filters, bold 12 pt header with a thick dark underline, 80% zoom, landscape fit-to-width, long text wrapped. Columns are grouped into sets (id, FROM, TO, net, wire spec, notes / OEM); each set

@@ -695,7 +695,7 @@
 <text x="96.50" y="228.30" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w76_cp | 18 AWG | White (Blue-Yellow)</text>
 <text x="96.50" y="230.90" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug A pin 28 (Link ECU, center dash) - Aux 6 sinks the EFI relay coil</text>
 <text x="96.50" y="54.50" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_strl_ac | 10 AWG | Red (White-Yellow)</text>
-<text x="96.50" y="57.10" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Starter solenoid S spade lug (A-engine loom) - start relay output</text>
+<text x="96.50" y="57.10" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Starter solenoid S spade lug (ECU-engine loom) - start relay output</text>
 <text x="96.50" y="63.30" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_str85_cp | 18 AWG | White (White-Yellow)</text>
 <text x="96.50" y="65.90" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug A pin 26 (Link ECU, center dash) - Aux 8 sinks the start relay coil</text>
 <text x="96.50" y="72.10" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_k_str_86_cp | 18 AWG | Red (Blue)</text>
@@ -809,7 +809,7 @@
 <text x="314.00" y="412.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rev_30_cp | 16 AWG | Red (White)</text>
 <text x="314.00" y="414.90" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; GAUGE 15A splice - J/B 3 feed to reverse relay pin 30 and the back-up switch</text>
 <text x="314.00" y="428.60" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rev_86_cp | 16 AWG | Red (White)</text>
-<text x="314.00" y="431.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Reverse switch splice (B-cabin loom) - back-up switch B1 pin 1, +12 V in</text>
+<text x="314.00" y="431.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Reverse switch splice (ECU-cabin loom) - back-up switch B1 pin 1, +12 V in</text>
 <text x="314.00" y="433.80" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">reverse</text>
 <text x="314.00" y="438.70" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_rev_87_cp | 16 AWG | Red (White)</text>
 <text x="314.00" y="441.30" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Back-up lamp splice (RearLights loom, rear) - R11 and R12 pin 4 back-up lamps</text>
@@ -825,7 +825,7 @@
 <text x="314.00" y="504.40" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug B pin 10 (Link ECU, center dash) - Ign 8 sinks the A/C clutch relay</text>
 <text x="314.00" y="507.00" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">coil</text>
 <text x="314.00" y="510.60" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc86_cp | 18 AWG | Red (Yellow-Blue)</text>
-<text x="314.00" y="513.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; A/C pressure switch splice (A-cabin loom) - switch A5 pin 4 output to the</text>
+<text x="314.00" y="513.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; A/C pressure switch splice (ECU-cabin loom) - switch A5 pin 4 output to the</text>
 <text x="314.00" y="515.80" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">clutch relay</text>
 <text x="314.00" y="520.70" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc_clutch_cp | 16 AWG | Red (Yellow-Blue)</text>
 <text x="314.00" y="523.30" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; A/C magnet clutch A4 pin 4 (loom C, compressor) - clutch +12 V (1990 EWD p.152)</text>
@@ -835,7 +835,7 @@
 <text x="314.00" y="549.10" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_k_eps_en_86_cp | 18 AWG | Red (Blue)</text>
 <text x="314.00" y="551.70" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; SW12 bus plug DT06-12 (glove box, by LOGIC box) pin 9</text>
 <text x="96.50" y="740.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fp85_h | 18 AWG | White (White-White-Blue)</text>
-<text x="96.50" y="743.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU A pin 19 (Link ECU, center dash; A-cabin) - fuel pump relay drive</text>
+<text x="96.50" y="743.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU A pin 19 (Link ECU, center dash; ECU-cabin) - fuel pump relay drive</text>
 <text x="96.50" y="749.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fp86_h | 18 AWG | Red (Blue)</text>
 <text x="96.50" y="752.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; SW12 splice after LOGIC Bus 2 pin 2 (glove box; CabinPower) - switched 12 V</text>
 <text x="314.00" y="726.90" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fp87_h | 10 AWG | Red (White-White-Blue)</text>

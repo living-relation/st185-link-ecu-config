@@ -21,8 +21,7 @@ REB = os.path.join(HERE, "rebuild")
 REGISTRY = os.path.join(HERE, "interfaces.json")
 SOT = os.path.join(HERE, "..", "..", "sot", "channels.csv")
 
-BULKHEAD_MATE = {"bh_a_fw": "bh_a_eng", "bh_a_eng": "bh_a_fw",
-                 "bh_b_fw": "bh_b_eng", "bh_b_eng": "bh_b_fw"}
+BULKHEAD_MATE = {"bh_fw": "bh_eng", "bh_eng": "bh_fw"}   # the DRB102: cabin receptacle, engine plug
 SHIELD_PINS = {("ecu_a", "a7"): "A", ("ecu_b", "b17"): "B", ("ecu_com", "c1"): "CAN"}
 XREF_PART = "cp_xref"
 # Drains are found by their part, never by colour: M22759/16-20-06, black/blue,
@@ -84,6 +83,15 @@ def full_text(d, fn):
 
 def docs(reg=None):
     return collections.OrderedDict((k, load(fn)) for k, fn in harness_files(reg).items())
+
+
+def own_drawn(reg=None):
+    """Harnesses whose schematic and layout are drawn by our own generator, not in the harness.design app
+    (interfaces.json `"drawing": "own"`, DECISIONS R220). Their .harness file still holds the parts, cavities
+    and wires every data gate reads; only the app-canvas geometry gates (layout direction, overlaps, spacing,
+    routing points) skip them."""
+    reg = reg or registry()
+    return {k for k, v in reg["harnesses"].items() if v.get("drawing") == "own"}
 
 
 def sot_rows():

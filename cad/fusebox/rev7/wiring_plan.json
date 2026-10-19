@@ -3174,7 +3174,7 @@
      "box": "LOGIC",
      "part": "280919-2",
      "des": "86",
-     "sig": "Coil + <- A5 dual pressure switch pin 4 (via A-cabin sp_ac_psw, br_w_acc86) - hardware cut",
+     "sig": "Coil + <- A5 dual pressure switch pin 4 (via ECU-cabin sp_ac_psw, br_w_acc86) - hardware cut",
      "at": {
       "x": 64.05,
       "y": 147.0,

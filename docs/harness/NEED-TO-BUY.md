@@ -1,7 +1,7 @@
 # Harness — need to buy
 
-Generated from the 15 `.harness` files in `docs/harness/rebuild/`:
-`A-cabin`, `B-cabin`, `CabinPower`, `A-engine`, `B-engine`, `CAN`, `EngineRoom-C`, `HeavyDC`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `RearFuel`, `AntiTheft`, `CSB3`, `RearLights`.
+Generated from the 13 `.harness` files in `docs/harness/rebuild/`:
+`ECU-cabin`, `CabinPower`, `ECU-engine`, `CAN`, `EngineRoom-C`, `HeavyDC`, `ClusterLED`, `WheelSpeed-Rear`, `WheelSpeed-Front`, `RearFuel`, `AntiTheft`, `CSB3`, `RearLights`.
 On-hand comes from `TE_BOM_with_screenshots.xlsx` plus the three TE invoices in Drive.
 Regenerate with `docs/harness/buylist.py` after any harness change — do not hand-edit.
 The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/sourcing/PROJECT-BOM.xlsx`; this file is its harness quantity audit.
@@ -12,10 +12,10 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 |---|---|---|---:|---:|---:|
 | `GENERIC FLYING LEAD` | generic | TERMINAL, FLYING LEAD | 89 | 0 | **89** |
 | `GENERIC SOLDER SPLICE` | generic | SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER | 65 | 0 | **65** |
-| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 56 | 0 | **56** |
+| `114017` | TE DEUTSCH | PLUG, SEALING, CAVITY, SIZE 16, WHITE | 50 | 0 | **50** |
 | `TMS-SCE-3/8-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 48 | 0 | **48** |
-| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 36 | 0 | **36** |
 | `RS 264-6432` | RS PRO | RS PRO A2/304 STAINLESS SERRATED FLANGE HEX NUT M5, DIN 6923 | 34 | 0 | **34** |
+| `TMS-SCE-3/16-2.0-9` | TE Connectivity (Raychem) | MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 4.8 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT | 34 | 0 | **34** |
 | `0462-201-2031` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 20, GOLD, 20 AWG, 7.5 A | 33 | 0 | **33** |
 | `0462-201-16141` | TE DEUTSCH | CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A | 41 | 12 | **29** |
 | `1-968849-1` | TE Connectivity | TERMINAL, RECEPTACLE, AMP MCP 2.8, TAB 2.8 X 0.8 MM, PRE-TIN, LOCKING LANCE, UNSEALED, 0.5-1.0 MM2 (20-18 AWG) | 27 | 0 | **27** |
@@ -64,6 +64,7 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 | `RNF-100-3/32-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 6 | 0 | **6** |
 | `DR-25-1/2-0-SP` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 12.7 MM EXPANDED ID, 6.4 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C | 5 | 0 | **5** |
 | `DT04-2P` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 2 POS, PIN CONTACTS, N SEAL, GRAY | 5 | 0 | **5** |
+| `RNF-100-3/32-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 5 | 0 | **5** |
 | `W2P` | TE DEUTSCH | WEDGELOCK, DT, 2-WAY RECEPTACLE | 5 | 0 | **5** |
 | `12110293` | Aptiv | CONNECTOR, PLUG, METRI-PACK 150.2, 3 POS, SEALED, SOCKET CONTACTS | 4 | 0 | **4** |
 | `12191819` | Aptiv | CONTACT, SOCKET, CRIMP, GT 150, TIN, SEALED, 18-16 AWG, CABLE OD 1.70-2.25 MM | 4 | 0 | **4** |
@@ -81,7 +82,6 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 | `Klauke 1R6` | Klauke | TINNED COPPER TUBULAR RING LUG, 6 MM2, M6 STUD, HOLE 6.5, 27.5 LONG | 4 | 0 | **4** |
 | `LP-16-J05PE-02-001` | CNLINKO | CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH | 4 | 0 | **4** |
 | `PEM SS-M5-2ZI` | PennEngineering (PEM) | SELF-CLINCHING NUT M5, TYPE SS, SHANK CODE 2, ZINC-PLATED STEEL; MOUNTING HOLE 6.35 +0.08, HEAD 8.64 X 2.0, MIN SHEET 1.4, MIN HOLE CENTRE TO EDGE 7.1, FOR SHEET HRB 80 / HB 150 OR LESS | 4 | 0 | **4** |
-| `RNF-100-3/32-4-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 4 | 0 | **4** |
 | `RNF-100-3/8-6-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM | 4 | 0 | **4** |
 | `RS 190-169` | RS PRO | RS PRO STAINLESS (A4 / 316) HEX BOLT M6 X 16, DIN 933 | 4 | 0 | **4** |
 | `RS 287-3962` | RS PRO | RS PRO A2/304 STAINLESS PLAIN WASHER M6, BS 4320C | 4 | 0 | **4** |
@@ -94,8 +94,6 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 | `GENERIC LUG M8 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M8 STUD, ADHESIVE HEATSHRINK | 3 | 0 | **3** |
 | `GENERIC RING M6 12-10` | generic | TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG | 3 | 0 | **3** |
 | `RNF-100-3/32-9-STK` | TE Connectivity (Raychem) | TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK | 3 | 0 | **3** |
-| `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 3 | 0 | **3** |
-| `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 3 | 0 | **3** |
 | `120R 1/4W` | Generic | RESISTOR, FIXED, METAL FILM, 120 OHM, 1 PCT, 1/4 W | 2 | 0 | **2** |
 | `301A022-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, T, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 13.2/6.9 MM SUPPLIED / RECOVERED, -75 TO 150 C | 2 | 0 | **2** |
 | `301A028-25-0` | TE Connectivity (Raychem) | TRANSITION, MOULDED, HEAT SHRINK, T, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 20/10.2 MM SUPPLIED / RECOVERED, -75 TO 150 C | 2 | 0 | **2** |
@@ -120,6 +118,8 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 | `RS 797-6068` | RS PRO | RS PRO STAINLESS PLAIN WASHER M8, DIN 125A | 2 | 0 | **2** |
 | `V23132-A2001-B200` | TE Connectivity | RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS | 2 | 0 | **2** |
 | `W3S` | Deutsch | WEDGELOCK, DT, 3 POS, PLUG | 2 | 0 | **2** |
+| `W6P` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY RECEPTACLE | 2 | 0 | **2** |
+| `W6S` | TE DEUTSCH | WEDGELOCK, DT, 6-WAY PLUG | 2 | 0 | **2** |
 | `W8S` | TE DEUTSCH | WEDGELOCK, DT, 8 POS, PLUG | 2 | 0 | **2** |
 | `1-1414687-0` | TE Connectivity | RELAY, PLUG-IN, MINI ISO, TE POWER RELAY F4 A V23136-A0004-X059, 1 FORM C, NO 40 A / NC 30 A AT 85 C, 12 VDC COIL 90 OHM, 680 OHM PARALLEL RESISTOR | 1 | 0 | **1** |
 | `1.8k 1/4W` | generic | RESISTOR, FIXED, METAL FILM, 1.8 KOHM, 5 PCT, 1/4 W | 1 | 0 | **1** |
@@ -150,10 +150,8 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 | `DRBF-1A` | TE DEUTSCH | FLANGE, MOUNTING, DRB 102/128 SERIES | 1 | 0 | **1** |
 | `DT04-12PA-P021` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED 1 X 12, NICKEL PINS MOULDED IN, 13 A PER PIN, 78 A BUS, WEDGELOCK INCLUDED, GRAY | 1 | 0 | **1** |
 | `DT04-3P` | TE DEUTSCH | CONN RECP DT 3-WAY PIN SEALED | 1 | 0 | **1** |
-| `DT04-6P-CE03` | TE DEUTSCH | CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, E SEAL, INSUL 1.35-3.05 MM, END CAP, BLACK | 1 | 0 | **1** |
 | `DT06-2S` | TE DEUTSCH | CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, N SEAL, GRAY | 3 | 2 | **1** |
 | `DT06-3S-CE05` | TE Connectivity DEUTSCH | CONNECTOR, PLUG, DT, 3 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK | 1 | 0 | **1** |
-| `DT06-6S-CE05` | TE DEUTSCH | CONNECTOR, PLUG, DT, 6 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK | 1 | 0 | **1** |
 | `GENERIC LUG M10 4AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 4 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M10 8AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M10 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
 | `GENERIC LUG M8 2AWG` | generic | TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK | 1 | 0 | **1** |
@@ -203,9 +201,9 @@ The ONE shopping list (mechanical + harness, on hand, to buy, links) is `docs/so
 
 | Part number | Description | Need | Have |
 |---|---|---:|---:|
-| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 98 | 130 |
+| `0460-202-1631` | CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 95 | 130 |
 | `0460-220-1231` | CONTACT, PIN, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
-| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 94 | 118 |
+| `0462-201-1631` | CONTACT, SOCKET, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A | 91 | 118 |
 | `0462-203-08141` | CONTACT, SOCKET, SOLID, SIZE 8, NICKEL, 8-10 AWG, 60 A | 4 | 9 |
 | `0462-210-1231` | CONTACT, SOCKET, SOLID, SIZE 12, GOLD, 12-14 AWG, 25 A | 4 | 20 |
 | `1 928 403 874` | CONNECTOR, PLUG, BOSCH COMPACT 1.1A, 2 POS, SOCKET CONTACTS | 1 | 1 |
@@ -275,8 +273,8 @@ plug is counted in the file that owns it, N/C cavities never.
 
 | Group | Drawn as | Counted in |
 |---|---|---|
-| `drb102_plug` | bh_a_eng, bh_b_eng | `bh_a_eng` |
-| `drb102_recept` | bh_a_fw, bh_b_fw | `bh_a_fw` |
+| `drb102_plug` | bh_eng | `bh_eng` |
+| `drb102_recept` | bh_fw | `bh_fw` |
 
 ## Inline interfaces - one connector pair per harness boundary
 
@@ -285,10 +283,9 @@ mating half). Contacts and wedgelocks come from each half's part configuration a
 
 | Interface | Family | Source half | Receiving half |
 |---|---|---|---|
-| `IX_WS_REAR` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_rear_r` on WheelSpeed-Rear | `ix_ws_rear_p` on B-cabin |
-| `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on A-cabin |
-| `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on B-cabin | `ix_fuel_p` on RearFuel |
-| `IX_B_RAIL` | Deutsch DT 6-way (DT06-6S / DT04-6P) | `ix_brail_s` on A-engine | `ix_brail_p` on B-engine |
+| `IX_WS_REAR` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_rear_r` on WheelSpeed-Rear | `ix_ws_rear_p` on ECU-cabin |
+| `IX_WS_FRONT` | Deutsch DT 6-way (DT04-6P / DT06-6S) | `ix_ws_front_r` on WheelSpeed-Front | `ix_ws_front_p` on ECU-cabin |
+| `IX_FUEL_LVL` | Deutsch DT 2-way (DT04-2P / DT06-2S) | `ix_fuel_r` on ECU-cabin | `ix_fuel_p` on RearFuel |
 
 ## OEM flying leads - splice material only, no OEM housing
 
@@ -298,11 +295,10 @@ is in `interfaces.json` and in the build list's EWD column.
 
 | Harness | Flying leads |
 |---|---:|
-| A-cabin | 3 |
-| B-cabin | 2 |
 | CSB3 | 5 |
 | CabinPower | 6 |
 | ClusterLED | 6 |
+| ECU-cabin | 5 |
 | EngineRoom-C | 59 |
 | RearLights | 20 |
 
@@ -312,21 +308,18 @@ Cut lengths are in the build list (`Est mm`). Device endpoints (VRC) claim no co
 
 | Harness | Cable | Pieces |
 |---|---|---:|
-| A-cabin | `55A1811-20-9-9CS2275` | 1 |
-| A-cabin | `55A1831-20-2/4/6-9` | 3 |
-| A-engine | `55A1811-20-9-9CS2275` | 2 |
-| A-engine | `55A1831-20-2/4/6-9` | 2 |
-| A-engine | `55A1841-20-2/4/5/6-9` | 1 |
-| A-engine | `GENERIC SHLD CABLE 2C 18AWG` | 1 |
-| B-cabin | `55A1811-20-9-9CS2275` | 1 |
-| B-cabin | `55A1841-20-2/4/5/6-9` | 1 |
-| B-cabin | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
-| B-engine | `55A1821-20-6/9-9` | 1 |
-| B-engine | `55A1831-20-2/4/6-9` | 1 |
-| B-engine | `GENERIC SHLD CABLE 2C 18AWG` | 1 |
-| B-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
 | CAN | `GENERIC SHLD CABLE 2C TP 20AWG` | 6 |
 | CSB3 | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
+| ECU-cabin | `55A1811-20-9-9CS2275` | 1 |
+| ECU-cabin | `55A1831-20-2/4/6-9` | 3 |
+| ECU-cabin | `55A1841-20-2/4/5/6-9` | 1 |
+| ECU-cabin | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
+| ECU-engine | `55A1811-20-9-9CS2275` | 2 |
+| ECU-engine | `55A1821-20-6/9-9` | 1 |
+| ECU-engine | `55A1831-20-2/4/6-9` | 3 |
+| ECU-engine | `55A1841-20-2/4/5/6-9` | 1 |
+| ECU-engine | `GENERIC SHLD CABLE 2C 18AWG` | 1 |
+| ECU-engine | `GENERIC SHLD CABLE 2C TP 20AWG` | 1 |
 | WheelSpeed-Front | `55A1821-20-6/9-9` | 2 |
 | WheelSpeed-Front | `55A1841-20-2/4/5/6-9` | 1 |
 | WheelSpeed-Rear | `55A1821-20-6/9-9` | 2 |
@@ -431,12 +424,12 @@ Counted from each wire's `identColors`: one 6 mm band per colour at BOTH ends of
 
 | Part number | Bands | Sticks |
 |---|---:|---:|
-| `RNF-100-3/16-4-STK` | 70 | 1 |
+| `RNF-100-3/16-4-STK` | 72 | 1 |
 | `RNF-100-3/16-6-STK` | 72 | 1 |
-| `RNF-100-3/16-9-STK` | 70 | 1 |
-| `RNF-100-3/32-4-STK` | 700 | 4 |
-| `RNF-100-3/32-6-STK` | 950 | 6 |
-| `RNF-100-3/32-9-STK` | 490 | 3 |
+| `RNF-100-3/16-9-STK` | 68 | 1 |
+| `RNF-100-3/32-4-STK` | 734 | 5 |
+| `RNF-100-3/32-6-STK` | 994 | 6 |
+| `RNF-100-3/32-9-STK` | 502 | 3 |
 
 ## Covering tubing on bundles (Raychem DR-25)
 
@@ -451,6 +444,6 @@ Boots on branch points are counted one per listed id.
 | `DR-25-1/2-0-SP` | 4370 | 5 |
 | `DR-25-1/4-0-SP` | 12330 | 14 |
 | `DR-25-2-0-SP` | 380 | 1 |
-| `DR-25-3/16-0-SP` | 9510 | 11 |
+| `DR-25-3/16-0-SP` | 9310 | 11 |
 | `DR-25-3/4-0-SP` | 2855 | 4 |
 | `DR-25-3/8-0-SP` | 11100 | 13 |

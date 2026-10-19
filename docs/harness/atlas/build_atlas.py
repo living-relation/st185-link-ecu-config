@@ -632,7 +632,7 @@ def area_of(c):
         return 'ecu'
     if h in ('CabinPower', 'HeavyDC'):
         return 'fuse'
-    if h in ('A-engine', 'B-engine', 'EngineRoom-C', 'WheelSpeed-Front'):
+    if h in ('ECU-engine', 'EngineRoom-C', 'WheelSpeed-Front'):
         return 'engine'
     if h in ('RearFuel', 'RearLights', 'WheelSpeed-Rear'):
         return 'rear'

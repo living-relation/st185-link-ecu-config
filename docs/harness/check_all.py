@@ -81,7 +81,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["validate_ownership.py"], ["validate_interfaces.py"], ["validate_wheel_speed.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_logic_gauge.py"], ["audit_shields.py"],
-        ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
+        ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_breaks.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["audit_doc_claims.py"], ["buylist.py", "--check"], ["../sourcing/build_project_bom.py", "--check"],   # the ONE project BOM / shopping list is current

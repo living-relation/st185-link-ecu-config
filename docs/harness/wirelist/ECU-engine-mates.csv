@@ -1,0 +1,65 @@
+circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
+INJ,+12V injectors (LOGIC INJ 15A),bh_eng,2,Injector +12 V feed,ECU-cabin,bh_fw,2,Injector +12 V feed,OK
+COP,+12V coils (LOGIC COP 15A),bh_eng,1,Coil +12 V feed,ECU-cabin,bh_fw,1,Coil +12 V feed,OK
+CRANK,Crank sensor signal (ECU-A A8),bh_eng,74,Crank sensor signal,ECU-cabin,bh_fw,74,Crank sensor signal,OK
+CRANK,Sensor GND (ECU-A A24),bh_eng,75,Gnd crank sensor,ECU-cabin,bh_fw,75,Gnd crank sensor,OK
+CRANK,"Screen A (ECU A7, SHIELD_A)",bh_eng,76,Crank sensor shield,ECU-cabin,bh_fw,76,Crank sensor shield,OK
+8V,+8V cam sensor (ECU-A A6),bh_eng,63,+8 V to cam sensor,ECU-cabin,bh_fw,63,+8 V to cam sensor,OK
+CAM,Cam sensor signal (ECU-A A9),bh_eng,64,Cam sensor signal,ECU-cabin,bh_fw,64,Cam sensor signal,OK
+CAM,Sensor GND (ECU-A A24),bh_eng,65,Gnd cam sensor,ECU-cabin,bh_fw,65,Gnd cam sensor,OK
+CAM,"Screen A (ECU A7, SHIELD_A)",bh_eng,66,Cam sensor shield,ECU-cabin,bh_fw,66,Cam sensor shield,OK
+TURBO,+5V sensor (ECU-A A32),bh_eng,52,+5 V turbo speed,ECU-cabin,bh_fw,52,+5 V turbo speed,OK
+TURBO,Turbo speed signal (ECU-A A30),bh_eng,53,Turbo speed signal,ECU-cabin,bh_fw,53,Turbo speed signal,OK
+TURBO,Sensor GND (ECU-A A24),bh_eng,56,Gnd turbo speed,ECU-cabin,bh_fw,56,Gnd turbo speed,OK
+TURBO,"Screen A (ECU A7, SHIELD_A)",bh_eng,57,Turbo speed shield,ECU-cabin,bh_fw,57,Turbo speed shield,OK
+SW12,+12V switched (LOGIC SW12 bus),bh_eng,30,+12 V boost + flex,ECU-cabin,bh_fw,30,+12 V boost + flex,OK
+FLEX,Flex fuel signal (ECU-A A31),bh_eng,31,Flex fuel signal,ECU-cabin,bh_fw,31,Flex fuel signal,OK
+FLEX,"Screen A (ECU A7, SHIELD_A)",bh_eng,32,Flex fuel shield,ECU-cabin,bh_fw,32,Flex fuel shield,OK
+ETBS,+5V sensor (ECU-A A32),bh_eng,41,+5 V throttle sensor,ECU-cabin,bh_fw,41,+5 V throttle sensor,OK
+ETBS,Throttle pos 1 main (ECU-A A22),bh_eng,42,Throttle pos 1 main,ECU-cabin,bh_fw,42,Throttle pos 1 main,OK
+ETBS,Throttle pos 2 sub (ECU-A A33),bh_eng,44,Throttle pos 2 sub,ECU-cabin,bh_fw,44,Throttle pos 2 sub,OK
+GNDOUT,Sensor GND (ECU-A A24),bh_eng,34,Gnd IAT/TPS/coolant,ECU-cabin,bh_fw,34,Gnd IAT/TPS/coolant,OK
+ETBS,"Screen A (ECU A7, SHIELD_A)",bh_eng,47,Throttle shield,ECU-cabin,bh_fw,47,Throttle shield,OK
+MAP,+5V sensor (ECU-A A32),bh_eng,16,+5 V MAP sensor,ECU-cabin,bh_fw,16,+5 V MAP sensor,OK
+GNDOUT,Sensor GND (ECU-A A24),bh_eng,18,Gnd flex + MAP,ECU-cabin,bh_fw,18,Gnd flex + MAP,OK
+MAP,MAP sensor signal (ECU-A A17),bh_eng,17,MAP sensor signal,ECU-cabin,bh_fw,17,MAP sensor signal,OK
+INJ1,Injector 1 drive (-) (ECU-A A4),bh_eng,21,Injector 1 drive (-),ECU-cabin,bh_fw,21,Injector 1 drive (-),OK
+INJ2,Injector 2 drive (-) (ECU-A A3),bh_eng,22,Injector 2 drive (-),ECU-cabin,bh_fw,22,Injector 2 drive (-),OK
+INJ3,Injector 3 drive (-) (ECU-A A2),bh_eng,23,Injector 3 drive (-),ECU-cabin,bh_fw,23,Injector 3 drive (-),OK
+INJ4,Injector 4 drive (-) (ECU-A A1),bh_eng,24,Injector 4 drive (-),ECU-cabin,bh_fw,24,Injector 4 drive (-),OK
+COP1,Coil 1 trigger (IGT) (ECU-A A13),bh_eng,9,Coil 1 trigger (IGT),ECU-cabin,bh_fw,9,Coil 1 trigger (IGT),OK
+COP2,Coil 2 trigger (IGT) (ECU-A A12),bh_eng,10,Coil 2 trigger (IGT),ECU-cabin,bh_fw,10,Coil 2 trigger (IGT),OK
+COP3,Coil 3 trigger (IGT) (ECU-A A11),bh_eng,11,Coil 3 trigger (IGT),ECU-cabin,bh_fw,11,Coil 3 trigger (IGT),OK
+COP4,Coil 4 trigger (IGT) (ECU-A A10),bh_eng,12,Coil 4 trigger (IGT),ECU-cabin,bh_fw,12,Coil 4 trigger (IGT),OK
+BOOST,Boost solenoid (-) (ECU-A A21),bh_eng,58,Boost solenoid (-),ECU-cabin,bh_fw,58,Boost solenoid (-),OK
+ECT,Coolant temp signal (ECU-A A15),bh_eng,70,Coolant temp signal,ECU-cabin,bh_fw,70,Coolant temp signal,OK
+IAT,Intake temp signal (ECU-A A16),bh_eng,33,Intake temp signal,ECU-cabin,bh_fw,33,Intake temp signal,OK
+5V,+5V sensor (ECU-A A32),bh_eng,27,+5 V oil pressure,ECU-cabin,bh_fw,27,+5 V oil pressure,OK
+5V,+5V sensor (ECU-A A32),bh_eng,13,+5 V fuel pressure,ECU-cabin,bh_fw,13,+5 V fuel pressure,OK
+5V,+5V sensor (ECU-A A32),bh_eng,25,+5 V coolant press,ECU-cabin,bh_fw,25,+5 V coolant press,OK
+ETBM,ETB motor + (ECU-B B18),bh_eng,45,ETB motor +,ECU-cabin,bh_fw,45,ETB motor +,OK
+ETBM,ETB motor - (ECU-B B26),bh_eng,46,ETB motor -,ECU-cabin,bh_fw,46,ETB motor -,OK
+ETBM,"Screen B (ECU B17, SHIELD_B)",bh_eng,50,ETB motor shield,ECU-cabin,bh_fw,50,ETB motor shield,OK
+REV,Back-up sw +12 V in (DRB102 77),bh_eng,77,Back-up sw +12 V in,ECU-cabin,bh_fw,77,Back-up sw +12 V in,OK
+OILP,Oil pressure signal (ECU-B B15),bh_eng,28,Oil pressure signal,ECU-cabin,bh_fw,28,Oil pressure signal,OK
+FUELP,Fuel pressure signal (ECU-B B16),bh_eng,14,Fuel pressure signal,ECU-cabin,bh_fw,14,Fuel pressure signal,OK
+CLNTP,Coolant press signal (ECU-B B23),bh_eng,26,Coolant press signal,ECU-cabin,bh_fw,26,Coolant press signal,OK
+OILT,Oil temp signal (ECU-B B6),bh_eng,61,Oil temp signal,ECU-cabin,bh_fw,61,Oil temp signal,OK
+CPIAT,Charge temp signal (ECU-B B7),bh_eng,59,Charge temp signal,ECU-cabin,bh_fw,59,Charge temp signal,OK
+REV,Reverse sw +12 V out (DRB102 78),bh_eng,78,Reverse sw +12 V out,ECU-cabin,bh_fw,78,Reverse sw +12 V out,OK
+GNDOUT,Sensor GND B (ECU-B B22),bh_eng,29,Gnd oil/clnt/temps,ECU-cabin,bh_fw,29,Gnd oil/clnt/temps,OK
+GNDOUT,Sensor GND B (ECU-B B22),bh_eng,15,Gnd fuel press + VSS,ECU-cabin,bh_fw,15,Gnd fuel press + VSS,OK
+KNOCK1,Knock sensor signal (ECU-B B9),bh_eng,71,Knock sensor signal,ECU-cabin,bh_fw,71,Knock sensor signal,OK
+KNOCK1,Sensor GND B (ECU-B B22),bh_eng,72,Knock sensor (-),ECU-cabin,bh_fw,72,Knock sensor (-),OK
+KNOCK1,"Screen B (ECU B17, SHIELD_B)",bh_eng,73,Knock sensor shield,ECU-cabin,bh_fw,73,Knock sensor shield,OK
+SW12,+12V switched (LOGIC SW12 bus),bh_eng,67,+12 V gearbox speed,ECU-cabin,bh_fw,67,+12 V gearbox speed,OK
+VSS,"Screen B (ECU B17, SHIELD_B)",bh_eng,69,Gearbox speed shield,ECU-cabin,bh_fw,69,Gearbox speed shield,OK
+CAN,CAN H to CAN-Lambda (ECU-COMMS C3),bh_eng,79,CAN H to CAN-Lambda,ECU-cabin,bh_fw,79,CAN H to CAN-Lambda,OK
+CAN,CAN L to CAN-Lambda (ECU-COMMS C4),bh_eng,80,CAN L to CAN-Lambda,ECU-cabin,bh_fw,80,CAN L to CAN-Lambda,OK
+CAN,"Screen CAN (ECU C1, CAN_SCREEN)",bh_eng,81,CAN-Lambda shield,ECU-cabin,bh_fw,81,CAN-Lambda shield,OK
+LAM,+12V CAN-Lambda +12 V (LOGIC BUS2-1),bh_eng,95,CAN-Lambda +12 V,ECU-cabin,bh_fw,95,CAN-Lambda +12 V,OK
+VSS,Gearbox speed signal (ECU-B B29),bh_eng,68,Gearbox speed signal,ECU-cabin,bh_fw,68,Gearbox speed signal,OK
+LAM,Chassis GND (cabin stud M6 at ECU),bh_eng,96,CAN-Lambda ground,ECU-cabin,bh_fw,96,CAN-Lambda ground,OK
+EPSEN,+12V EHPS enable (LOGIC MRS 7.5A),bh_eng,83,EHPS enable +12 V,ECU-cabin,bh_fw,83,EHPS enable +12 V,OK
+MRS,EHPS pump speed (ECU-A A27),bh_eng,84,EHPS pump speed,ECU-cabin,bh_fw,84,EHPS pump speed,OK
+EPS,EHPS relay coil (-) (DRB102 85),bh_eng,85,EHPS relay coil (-),ECU-cabin,bh_fw,85,EHPS relay coil (-),OK
