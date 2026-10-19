@@ -291,7 +291,7 @@ def fuel_hanger():
         if it['shapes'] is None: it.pop('shapes')
     return dict(title='FUEL HANGER - ASSEMBLY',pn='ST185-FH-100',items=items,revlog=os.path.join(FHD,'ST185-FH-100.REVLOG.md'),
       file=J+'fuel-hanger-assembly.step',source='st185-link-ecu-config\\cad\\fuel-hanger\\fuel-hanger-assembly.step',
-      project='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION',drawn='SteveCAD',
+      project='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION',
       notes=['MADE-WITH: build123d (cad/fuel-hanger). SHOWN AS INSTALLED. OVERALL DIMS ONLY (REF). FITTINGS PER FH-101, NOT SHOWN.',
              'ORDER: BULKHEAD NUTS, THEN STRUT TO FLANGE LUG (ITEM 9); FOOT (ITEM 3) WITH 2X ITEM 6 + MEDIUM THREADLOCKER; PUMP INTO THE FOOT.',
              'SADDLE (ITEM 4): PUSH TOWARD THE STRUT SO THE TAB BEARS ON THE STRUT SIDE FACE, THEN 2X ITEM 5 AT 2 N·m + LOCTITE 243. BAND CLAMP (ITEM 7) IN THE SADDLE CHANNEL.',
@@ -299,12 +299,12 @@ def fuel_hanger():
 ASM.update(fuel_hanger=fuel_hanger)
 
 # Title block (the handbuilt-cad engine defaults to a neutral "PROJECT" / "-"; st185 sets its own)
-PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'; DRAWN_BY='SteveCAD'
+PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'
 for _v in list(globals().values()):
     if isinstance(_v,dict) and _v and all(isinstance(x,dict) and 'pn' in x for x in _v.values()):
-        for _p in _v.values(): _p.setdefault('project',PROJECT_NAME); _p.setdefault('drawn',DRAWN_BY)
+        for _p in _v.values(): _p.setdefault('project',PROJECT_NAME)
 def _titled(f):          # ASM holds functions: put the st185 title block on what they return
     def g():
-        d=f(); d.setdefault('project',PROJECT_NAME); d.setdefault('drawn',DRAWN_BY); return d
+        d=f(); d.setdefault('project',PROJECT_NAME); return d
     return g
 ASM={k:_titled(f) for k,f in ASM.items()}

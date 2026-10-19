@@ -10,7 +10,7 @@ def src(job,f): return f'src/{job}/{f}'
 NOTE_BREAK_BILLET="EDGE BREAKS ARE NOT MODELLED ON THIS PART (R138): BREAK ALL SHARP EDGES 0.2-0.4 UNLESS NOTED; DO NOT BREAK O-RING GROOVE EDGES OR SEALING FACE."
 # ---------------- CSB3 body (Fusion v4, R133) ----------------
 b=PARTS['csb3_body']; b.update(job='st185_csb3_1017',file=src('st185_csb3_1017','CSB3_part_CSB3-Body.step'),rev='C',
-  revs=[('B','REV B ISSUE (SteveCAD audit v3)','2026-10-15','SC'),('C','R133 LOCK-IN SUPPORTS + M8 SEAL HOLES (#274)',TODAY,'SC')])
+  revs=[('B','REV B ISSUE (SteveCAD audit v3)','2026-10-15','DG'),('C','R133 LOCK-IN SUPPORTS + M8 SEAL HOLES (#274)',TODAY,'DG')])
 b['threads']={2.5:('M3x0.5',0.5),6.8:('M8x1.25',1.25)}
 b['thread_depth']={6.8:4.32}
 b.pop('boss_note',None)
@@ -27,7 +27,7 @@ _unused=[
   "M8 THREAD: THREAD MILL OR BOTTOMING TAP FROM BELOW - A THROUGH TAP CANNOT PASS THE ⌀6.5 RELIEF.",
   NOTE_BREAK_BILLET, GEN_M[1]]
 PARTS['csb3_lid'].update(job='st185_csb3_1017',file=src('st185_csb3_1017','CSB3_part_CSB3-Lid.step'),rev='C',
-  revs=[('C','REISSUE WITH BODY REV C (LID UNCHANGED)',TODAY,'SC')])
+  revs=[('C','REISSUE WITH BODY REV C (LID UNCHANGED)',TODAY,'DG')])
 # ---------------- VRC board holder (printed, no drawing yet) ----------------
 h=PARTS['vrc_holder']; h.update(job='st185_vrc_1017',file=src('st185_vrc_1017','ST185_VRC_board_holder_PA12.step'),rev='A')
 h['notes']=[n.replace('M6 x 12','M6 x 14 (LEMU 2990806014, 9.0 THREAD = 1.5xD)') for n in h['notes']]
@@ -54,7 +54,7 @@ vl['notes']=["MATERIAL: 6061-T6 ALUMINUM. STOCK: 8 x 95 x 55 PLATE (FACE BOTH SI
   "EDGE BREAKS NOT MODELLED (R138): BREAK SHARP EDGES 0.2-0.4 EXCEPT THE SEALING FACE."]
 # ---------------- DRB102 plate (CadQuery, #275: M5 tapped through, chamfers kept) ----------------
 d=PARTS['drb_plate']; d.update(job='st185_drb102_1017',file=src('st185_drb102_1017','DRB102-firewall-plate.step'),rev='C',
-  revs=[('B','REV B ISSUE','2026-10-15','SC'),('C','M5 TAPPED THRU (#275), GROOVE 4.75',TODAY,'SC')])
+  revs=[('B','REV B ISSUE','2026-10-15','DG'),('C','M5 TAPPED THRU (#275), GROOVE 4.75',TODAY,'DG')])
 d['threads']={4.2:('M5x0.8',0.8)}; d.pop('thread_depth',None)
 d['skip_radii']=[16.75,12.0]
 d['details'][0]['dims']=[('lin',(-88.08,0,12.7),(-83.33,0,12.7),'h',6,'4.75'),('lin',(-83.33,0,10.06),(-83.33,0,12.7),'v',8,'2.64'),
@@ -165,7 +165,7 @@ for _k,_n in FB_REL.items(): REV_LETTER[_k]=(SEQ[_n-1],'FIRST ISSUE. MODEL REV %
 # REV_LETTER['fb_pad'] was ('B.01', clerical, N14 = B); Dan's markup 2026-10-17 changed the pad model (25.4 x 3.2): rev C from the release count
 for _k in ORDER:
     _l,_d=REV_LETTER[_k]
-    PARTS[_k]['rev']=_l; PARTS[_k]['revs']=[(_l,_d,TODAY,'SC')]
+    PARTS[_k]['rev']=_l; PARTS[_k]['revs']=[(_l,_d,TODAY,'DG')]
 # N14 = B (R155, 2026-10-17): the fuse box drawings read the full rev history from <part no>.REVLOG.md beside the model in cad/fusebox/rev7
 _REV7=_os.path.normpath(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)),'..','fusebox','rev7'))
 for _k in ORDER:
@@ -185,7 +185,7 @@ PARTS['vrc_body']=_fix_slot(PARTS['vrc_body'])   # VRC slots are 6.6 x 10 too (F
 PARTS['csb3_body']['section']=dict(slot='front',origin=(0,13.5,0),label='A-A')
 
 # Title block (the handbuilt-cad engine defaults to a neutral "PROJECT" / "-"; st185 sets its own)
-PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'; DRAWN_BY='SteveCAD'
+PROJECT_NAME='ST185 CELICA GT-FOUR  -  LINK ECU CONVERSION'
 for _v in list(globals().values()):
     if isinstance(_v,dict) and _v and all(isinstance(x,dict) and 'pn' in x for x in _v.values()):
-        for _p in _v.values(): _p.setdefault('project',PROJECT_NAME); _p.setdefault('drawn',DRAWN_BY)
+        for _p in _v.values(): _p.setdefault('project',PROJECT_NAME)

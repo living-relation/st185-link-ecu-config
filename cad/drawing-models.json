@@ -15,8 +15,8 @@
     "src:enclosures/src/real_connectors.py": "d0198444fe374cf2",
     "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "F",
-   "pdf_sha": "c10bb6b10cc25c0b"
+   "rev": "F.01",
+   "pdf_sha": "960d1b652e6f441e"
   },
   "ST185-CSB3-101": {
    "pdf": "enclosures/csb3/ST185-CSB3-101.pdf",
@@ -28,8 +28,8 @@
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
     "src:enclosures/src/csb3_lockin.py": "2f8e024fcd5f40e9"
    },
-   "rev": "C.01",
-   "pdf_sha": "4b08c8ed3dfe989b"
+   "rev": "C.02",
+   "pdf_sha": "4addbb2d51d39786"
   },
   "ST185-CSB3-102": {
    "pdf": "enclosures/csb3/ST185-CSB3-102.pdf",
@@ -41,8 +41,8 @@
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
     "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "D",
-   "pdf_sha": "39d253d2859fb2b2"
+   "rev": "D.01",
+   "pdf_sha": "0112888b7260d92a"
   },
   "ST185-DRB-100": {
    "pdf": "drb102-plate/ST185-DRB-100.pdf",
@@ -55,8 +55,8 @@
     "src:drb102-plate/build_DRB102_plate.py": "9de87a17ee686f97",
     "src:drb102-plate/build_DRB102_assembly.py": "d3b45a9de718210a"
    },
-   "rev": "D",
-   "pdf_sha": "1dc384e29fd7449d"
+   "rev": "D.01",
+   "pdf_sha": "2a9c8d4585aeeb76"
   },
   "ST185-DRB-101": {
    "pdf": "drb102-plate/ST185-DRB-101.pdf",
@@ -67,8 +67,8 @@
    "ci": {
     "src:drb102-plate/build_DRB102_plate.py": "9de87a17ee686f97"
    },
-   "rev": "C.01",
-   "pdf_sha": "494ad6b315f381ee"
+   "rev": "C.02",
+   "pdf_sha": "5b1905e0620075f6"
   },
   "ST185-FB-100B": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100B.pdf",
@@ -85,8 +85,8 @@
     "report:fusebox/rev7/fusebox_report.json#mass_g#BattRelay_Bar_Power_CuC110_25x6p35": "fa3969d8f63fc4a5",
     "report:fusebox/rev7/fusebox_report.json#mass_g#BattRelay_Pad_Out_CuC110_25p4x3p2": "80b8062fef2cf5ac"
    },
-   "rev": "N.01",
-   "pdf_sha": "0da7dd9d5582297a"
+   "rev": "N.02",
+   "pdf_sha": "3b33bef5039d11fc"
   },
   "ST185-FB-100L": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100L.pdf",
@@ -103,8 +103,8 @@
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Logic_Cover_PA12_printed": "24f63b35a3ee2c2e",
     "report:fusebox/rev7/fusebox_report.json#mass_g#Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": "62589853cbe97d21"
    },
-   "rev": "V",
-   "pdf_sha": "2f4177c14f497de2"
+   "rev": "V.01",
+   "pdf_sha": "e7ff5ffdcac95f1f"
   },
   "ST185-FB-100P": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100P.pdf",
@@ -130,8 +130,8 @@
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
-   "rev": "Z.01",
-   "pdf_sha": "11bfa0e5e6b13dd7"
+   "rev": "Z.02",
+   "pdf_sha": "18566873a58a10ec"
   },
   "ST185-FB-101": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",
@@ -142,8 +142,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "4e6272f379df5538"
    },
-   "rev": "X",
-   "pdf_sha": "ac90663f8c8074f6"
+   "rev": "X.01",
+   "pdf_sha": "352384b38b39264d"
   },
   "ST185-FB-102": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-102.pdf",
@@ -154,8 +154,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "d5b53a9d6ceb13b7"
    },
-   "rev": "H",
-   "pdf_sha": "5a9a8167497adfca"
+   "rev": "H.01",
+   "pdf_sha": "d69cf286300ef824"
   },
   "ST185-FB-103": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-103.pdf",
@@ -166,8 +166,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Cover_PA12_printed": "28378e9202d36f3c"
    },
-   "rev": "G.01",
-   "pdf_sha": "0f2bf00e3c0e9ab3"
+   "rev": "G.02",
+   "pdf_sha": "caa50f46b578f1cc"
   },
   "ST185-FB-104": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-104.pdf",
@@ -178,8 +178,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_Retainer_R1_PA12_printed": "c8970f4bc9485ee7"
    },
-   "rev": "E.01",
-   "pdf_sha": "bf88be0b9cc80249"
+   "rev": "E.02",
+   "pdf_sha": "41ed433c338f3ade"
   },
   "ST185-FB-105": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-105.pdf",
@@ -190,8 +190,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Logic_Base_PA12_printed": "2c58103a2831f093"
    },
-   "rev": "T",
-   "pdf_sha": "22af86d39b999fb6"
+   "rev": "T.01",
+   "pdf_sha": "e2969eebb0b5cb95"
   },
   "ST185-FB-106": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-106.pdf",
@@ -202,8 +202,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Logic_Pan_PA12_printed": "ffda1853c01b396f"
    },
-   "rev": "H.01",
-   "pdf_sha": "309209ca5b92f751"
+   "rev": "H.02",
+   "pdf_sha": "386bc4c96d95f4e4"
   },
   "ST185-FB-107": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-107.pdf",
@@ -214,8 +214,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Logic_Cover_PA12_printed": "24f63b35a3ee2c2e"
    },
-   "rev": "K.01",
-   "pdf_sha": "5820b1696264907e"
+   "rev": "K.02",
+   "pdf_sha": "4167b979cd061830"
   },
   "ST185-FB-108": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-108.pdf",
@@ -226,8 +226,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#BattRelay_Base_PA12_printed": "c3c4bd01fa659983"
    },
-   "rev": "J.01",
-   "pdf_sha": "cf340339b8f8ab39"
+   "rev": "J.02",
+   "pdf_sha": "27d7a22830f86919"
   },
   "ST185-FB-109": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-109.pdf",
@@ -238,8 +238,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#BattRelay_Cover_PA12_printed": "b16c48df9b7aa080"
    },
-   "rev": "G.01",
-   "pdf_sha": "c2dd709160d15c5d"
+   "rev": "G.02",
+   "pdf_sha": "567732bf81111702"
   },
   "ST185-FB-111": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-111.pdf",
@@ -250,8 +250,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#BattRelay_Bar_Power_CuC110_25x6p35": "fa3969d8f63fc4a5"
    },
-   "rev": "C.01",
-   "pdf_sha": "30b1497106e204b5"
+   "rev": "C.02",
+   "pdf_sha": "a7e61d15b5744017"
   },
   "ST185-FB-112": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-112.pdf",
@@ -262,8 +262,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#BattRelay_Pad_Out_CuC110_25p4x3p2": "80b8062fef2cf5ac"
    },
-   "rev": "C.01",
-   "pdf_sha": "a15df819eb24a6bb"
+   "rev": "C.02",
+   "pdf_sha": "b15aed154a75b3f8"
   },
   "ST185-FB-113": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-113.pdf",
@@ -274,8 +274,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_BarNeg_CuC110_25x6p35_L105": "2d260a611cf2195a"
    },
-   "rev": "C.01",
-   "pdf_sha": "42380975f47a902b"
+   "rev": "C.02",
+   "pdf_sha": "b3824c27b83dd6e7"
   },
   "ST185-FB-114": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-114.pdf",
@@ -286,8 +286,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": "32d258988577cf3d"
    },
-   "rev": "B.01",
-   "pdf_sha": "bebf9739c1960338"
+   "rev": "B.02",
+   "pdf_sha": "55d695cae80322ae"
   },
   "ST185-FB-115": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-115.pdf",
@@ -298,8 +298,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": "62589853cbe97d21"
    },
-   "rev": "E.01",
-   "pdf_sha": "96639c9eb4bdb2e8"
+   "rev": "E.02",
+   "pdf_sha": "0210da5458d6b3cb"
   },
   "ST185-FB-116": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-116.pdf",
@@ -310,8 +310,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": "62589853cbe97d21"
    },
-   "rev": "E.01",
-   "pdf_sha": "738f2e62cd2d64cc"
+   "rev": "E.02",
+   "pdf_sha": "c9ebab00cfbf0a7f"
   },
   "ST185-FB-117": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-117.pdf",
@@ -323,8 +323,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132"
    },
-   "rev": "D.01",
-   "pdf_sha": "e684af510b7c85fd"
+   "rev": "D.02",
+   "pdf_sha": "b570450c762b1d7d"
   },
   "ST185-FH-100": {
    "pdf": "fuel-hanger/drawings/ST185-FH-100.pdf",
@@ -342,8 +342,8 @@
     "report:fuel-hanger/holder-report.json#parts#foot": "34b0c99001e1dcd4",
     "report:fuel-hanger/holder-report.json#parts#saddle": "ab27b52b2c7ffc05"
    },
-   "rev": "K.01",
-   "pdf_sha": "e9b3f8a38a762775"
+   "rev": "K.02",
+   "pdf_sha": "fe97e2b8bae20063"
   },
   "ST185-FH-101": {
    "pdf": "fuel-hanger/drawings/ST185-FH-101.pdf",
@@ -354,8 +354,8 @@
    "ci": {
     "report:fuel-hanger/fuel-hanger-report.json#parts#flange": "83085fd7f724031a"
    },
-   "rev": "G.01",
-   "pdf_sha": "6db66ccb87c6fa6e"
+   "rev": "G.02",
+   "pdf_sha": "c67f50e5072b6b8d"
   },
   "ST185-FH-103": {
    "pdf": "fuel-hanger/drawings/ST185-FH-103.pdf",
@@ -366,8 +366,8 @@
    "ci": {
     "report:fuel-hanger/holder-report.json#parts#strut": "ea34ebe15c586cb9"
    },
-   "rev": "F.01",
-   "pdf_sha": "4e9e911e915ea72e"
+   "rev": "F.02",
+   "pdf_sha": "8e6ea50f8efd83b7"
   },
   "ST185-FH-104": {
    "pdf": "fuel-hanger/drawings/ST185-FH-104.pdf",
@@ -378,8 +378,8 @@
    "ci": {
     "report:fuel-hanger/holder-report.json#parts#foot": "34b0c99001e1dcd4"
    },
-   "rev": "E.01",
-   "pdf_sha": "9a5eb33fcff2d310"
+   "rev": "E.02",
+   "pdf_sha": "d62fa2e0e47d6430"
   },
   "ST185-FH-105": {
    "pdf": "fuel-hanger/drawings/ST185-FH-105.pdf",
@@ -390,8 +390,8 @@
    "ci": {
     "report:fuel-hanger/holder-report.json#parts#saddle": "ab27b52b2c7ffc05"
    },
-   "rev": "D.01",
-   "pdf_sha": "f83534da18e9cb44"
+   "rev": "D.02",
+   "pdf_sha": "5f5fe2b57f6cd629"
   },
   "ST185-VRC-100": {
    "pdf": "enclosures/vrc/ST185-VRC-100.pdf",
@@ -409,8 +409,8 @@
     "src:enclosures/src/real_connectors.py": "d0198444fe374cf2",
     "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "G",
-   "pdf_sha": "37115c6cd64a2b62"
+   "rev": "G.01",
+   "pdf_sha": "5417430955f4e4ab"
   },
   "ST185-VRC-101": {
    "pdf": "enclosures/vrc/ST185-VRC-101.pdf",
@@ -421,8 +421,8 @@
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
    },
-   "rev": "E",
-   "pdf_sha": "e199b9fe7eda055b"
+   "rev": "E.01",
+   "pdf_sha": "dfe358f9606c2464"
   },
   "ST185-VRC-102": {
    "pdf": "enclosures/vrc/ST185-VRC-102.pdf",
@@ -433,8 +433,8 @@
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
    },
-   "rev": "A.01",
-   "pdf_sha": "4a3ecac581a54857"
+   "rev": "A.02",
+   "pdf_sha": "7ff9486464dc7eb1"
   },
   "ST185-VRC-103": {
    "pdf": "enclosures/vrc/ST185-VRC-103.pdf",
@@ -446,8 +446,8 @@
     "src:enclosures/src/build_vrc_holder.py": "9eaaf1dc8ef29a34",
     "src:enclosures/src/vrc_holder_spec.py": "397e0b8e9fb22cb6"
    },
-   "rev": "D.01",
-   "pdf_sha": "dece73558541570d"
+   "rev": "D.02",
+   "pdf_sha": "8c8df119a3aee995"
   },
   "ST185-FB-118": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-118.pdf",
@@ -458,8 +458,8 @@
    "ci": {
     "report:fusebox/rev7/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
-   "rev": "A",
-   "pdf_sha": "d445c885f07a9717"
+   "rev": "A.01",
+   "pdf_sha": "263e9bbd3dd97c83"
   }
  }
 }
