@@ -999,348 +999,7 @@
    }
   ]
  },
- "callouts": {
-  "fusebox_render_routing_power.png": [
-   [
-    1,
-    825.9,
-    335.6,
-    "harness bundles to the inboard edge"
-   ],
-   [
-    2,
-    1042.5,
-    405.9,
-    "relay feed: lug under its copper strap"
-   ],
-   [
-    3,
-    957.2,
-    352.5,
-    "feed bends up R16 into terminal 30"
-   ],
-   [
-    4,
-    1185.9,
-    506.2,
-    "OUT lug under its copper strap"
-   ],
-   [
-    5,
-    1286.2,
-    528.8,
-    "OUT cables straight out the end"
-   ],
-   [
-    6,
-    1148.4,
-    489.4,
-    "1/0 battery feed in"
-   ],
-   [
-    7,
-    609.4,
-    457.5,
-    "NEG bus: grounds straight out the rear"
-   ]
-  ],
-  "fusebox_render_routing_logic.png": [
-   [
-    1,
-    849.4,
-    469.7,
-    "Bus 1 fuse wires"
-   ],
-   [
-    2,
-    969.4,
-    507.2,
-    "Bus 2 fuse wires"
-   ],
-   [
-    3,
-    1065.9,
-    483.8,
-    "micro relay wires, inboard column"
-   ],
-   [
-    4,
-    1128.8,
-    503.4,
-    "micro relay wires, outboard column"
-   ],
-   [
-    5,
-    1141.9,
-    378.8,
-    "all leave the front edge"
-   ],
-   [
-    6,
-    888.8,
-    389.1,
-    "fuse input jumpers drop straight into their lugs"
-   ],
-   [
-    7,
-    885.9,
-    420.9,
-    "bus strips on edge, printed spine between"
-   ],
-   [
-    8,
-    1046.2,
-    308.4,
-    "Bus 1 feed in at the front"
-   ],
-   [
-    9,
-    627.2,
-    690.9,
-    "Bus 2 feed in at the rear"
-   ]
-  ],
-  "fusebox_power_explode.png": [
-   [
-    1,
-    913.1,
-    101.2,
-    "cover (snaps on, 4 tongues)"
-   ],
-   [
-    2,
-    868.1,
-    238.1,
-    "relays plug in from the top"
-   ],
-   [
-    3,
-    985.3,
-    305.6,
-    "AMI fuses on the studs"
-   ],
-   [
-    4,
-    886.9,
-    261.6,
-    "Keps nuts, 4 Nm max"
-   ],
-   [
-    5,
-    973.1,
-    246.6,
-    "M5 x 10 ear bolts into the strap PEM nuts"
-   ],
-   [
-    6,
-    950.6,
-    371.2,
-    "copper bar 25 x 6.35"
-   ],
-   [
-    7,
-    967.5,
-    399.4,
-    "copper C-straps 15 x 3 (14), PEM nuts pressed in"
-   ],
-   [
-    8,
-    897.2,
-    463.1,
-    "base (deck on 4 angular legs)"
-   ],
-   [
-    9,
-    886.9,
-    479.1,
-    "bar bolts up from below"
-   ],
-   [
-    11,
-    973.1,
-    657.2,
-    "cable lugs"
-   ],
-   [
-    12,
-    973.1,
-    657.2,
-    "M5 x 10 lug bolts"
-   ],
-   [
-    13,
-    913.1,
-    706.9,
-    "belly pan (snaps on)"
-   ]
-  ],
-  "fusebox_power_step1.png": [
-   [
-    1,
-    1113.8,
-    198.8,
-    "lay the bar in its pocket"
-   ],
-   [
-    2,
-    1181.2,
-    294.4,
-    "drop the 14 copper straps into their wells (PEM nuts already pressed in): the lips rest on the ledge, the hook snaps over them"
-   ],
-   [
-    3,
-    855.9,
-    490.3,
-    "bar bolts up through the hex head pockets"
-   ],
-   [
-    6,
-    900.0,
-    457.5,
-    "base, right way up"
-   ]
-  ],
-  "fusebox_power_step2.png": [
-   [
-    1,
-    770.6,
-    395.6,
-    "crimp, push each terminal up into its cavity (wire side)"
-   ],
-   [
-    2,
-    963.8,
-    482.8,
-    "relay feed lug palm-up under its strap (M5 x 10 into the PEM nut)"
-   ],
-   [
-    3,
-    897.2,
-    413.4,
-    "feed round its saddle into terminal 30"
-   ],
-   [
-    4,
-    1072.5,
-    567.2,
-    "OUT lug palm-up under its strap (M5 x 10)"
-   ],
-   [
-    5,
-    706.9,
-    414.4,
-    "tie the bundles; they leave the inboard end"
-   ]
-  ],
-  "fusebox_power_step3.png": [
-   [
-    1,
-    1083.8,
-    330.0,
-    "AMI fuses on the studs"
-   ],
-   [
-    2,
-    836.2,
-    289.7,
-    "Keps nuts on the bar studs, M5 x 10 ear bolts into the straps: 4 Nm max"
-   ],
-   [
-    3,
-    790.3,
-    331.9,
-    "relays plug in"
-   ],
-   [
-    4,
-    854.1,
-    415.3,
-    "ACPS mini fuse"
-   ],
-   [
-    5,
-    985.3,
-    332.8,
-    "1/0 lug on the M8 stud"
-   ]
-  ],
-  "fusebox_power_step4.png": [
-   [
-    1,
-    901.9,
-    614.1,
-    "belly pan snaps up into the skirt"
-   ],
-   [
-    2,
-    901.9,
-    181.9,
-    "cover snaps down over the deck"
-   ],
-   [
-    3,
-    960.0,
-    614.1,
-    "M6 through each foot (4), steel limiter"
-   ]
-  ],
-  "fusebox_logic_explode.png": [
-   [
-    1,
-    900.0,
-    104.1,
-    "cover (snaps on)"
-   ],
-   [
-    2,
-    936.6,
-    232.5,
-    "micro relays"
-   ],
-   [
-    3,
-    908.4,
-    302.8,
-    "mini fuses"
-   ],
-   [
-    4,
-    900.0,
-    458.4,
-    "base: deck, cavity towers, spine between the strips"
-   ],
-   [
-    5,
-    893.4,
-    584.1,
-    "Bus 1 / Bus 2 strips on edge, slide in from the rear"
-   ],
-   [
-    6,
-    895.3,
-    580.3,
-    "input jumper lugs, TE PIDG 53941-1"
-   ],
-   [
-    7,
-    895.3,
-    589.7,
-    "M4 x 8 + spring washer into the PEM nut in the strip"
-   ],
-   [
-    8,
-    893.4,
-    591.6,
-    "feed lugs, M5 x 10 into the strip"
-   ],
-   [
-    9,
-    900.0,
-    702.2,
-    "belly pan (snaps on)"
-   ]
-  ]
- },
+ "callouts": {},
  "standoffs": {
   "LOGIC": {
    "feed": null,
@@ -7032,6 +6691,58 @@
   },
   {
    "part": "Logic_Base_PA12_printed",
+   "key": "strip lip",
+   "only": null,
+   "box": [
+    17.9,
+    28.1,
+    25.0,
+    124.6,
+    4.5,
+    5.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip snap hook",
+   "only": null,
+   "box": [
+    19.4,
+    24.2,
+    124.2,
+    148.8,
+    29.0,
+    38.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip lip",
+   "only": null,
+   "box": [
+    27.9,
+    38.1,
+    20.5,
+    108.45,
+    4.5,
+    5.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip snap hook",
+   "only": null,
+   "box": [
+    31.8,
+    36.6,
+    140.3,
+    164.9,
+    29.0,
+    38.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
    "key": "seat lip",
    "only": null,
    "box": [
@@ -10704,6 +10415,204 @@
   ],
   "gap": 0.0
  },
+ "strip_hold": {
+  "BUS1": {
+   "pads_z": [
+    [
+     5.5,
+     8.28
+    ],
+    [
+     22.13,
+     31.3
+    ]
+   ],
+   "kerb": {
+    "x": [
+     18.0,
+     20.0
+    ],
+    "y": [
+     [
+      25.1,
+      124.5
+     ]
+    ],
+    "z": [
+     4.6,
+     7.9
+    ]
+   },
+   "top_lips_y": [
+    [
+     17.02,
+     23.02
+    ],
+    [
+     34.85,
+     37.9
+    ],
+    [
+     44.2,
+     47.25
+    ],
+    [
+     53.55,
+     56.6
+    ],
+    [
+     62.9,
+     65.95
+    ],
+    [
+     72.25,
+     75.3
+    ],
+    [
+     81.6,
+     84.65
+    ],
+    [
+     90.95,
+     94.0
+    ],
+    [
+     100.3,
+     103.35
+    ],
+    [
+     109.65,
+     112.7
+    ],
+    [
+     119.0,
+     123.0
+    ]
+   ],
+   "front_stop": {
+    "y": 11.5,
+    "z": [
+     16.95,
+     18.95
+    ]
+   },
+   "rear_hook": {
+    "catch_y": 124.5,
+    "tooth_z": [
+     29.3,
+     31.7
+    ],
+    "arm_mm": 20.0,
+    "t": 2.5,
+    "w": 4.2,
+    "deflection_mm": 2.4,
+    "strain_pct": 2.25,
+    "limit_pct": 2.6,
+    "lift_room": 4.3,
+    "push_N": 8.4
+   }
+  },
+  "BUS2": {
+   "pads_z": [
+    [
+     5.5,
+     8.28
+    ],
+    [
+     22.13,
+     31.3
+    ]
+   ],
+   "kerb": {
+    "x": [
+     36.0,
+     38.0
+    ],
+    "y": [
+     [
+      20.6,
+      108.35
+     ]
+    ],
+    "z": [
+     4.6,
+     7.9
+    ]
+   },
+   "top_lips_y": [
+    [
+     21.83,
+     27.83
+    ],
+    [
+     34.85,
+     37.9
+    ],
+    [
+     44.2,
+     47.25
+    ],
+    [
+     53.55,
+     56.6
+    ],
+    [
+     62.9,
+     65.95
+    ],
+    [
+     72.25,
+     75.3
+    ],
+    [
+     81.6,
+     84.65
+    ],
+    [
+     90.95,
+     94.0
+    ],
+    [
+     100.3,
+     103.35
+    ],
+    [
+     109.65,
+     112.7
+    ],
+    [
+     119.0,
+     122.05
+    ],
+    [
+     130.72,
+     136.72
+    ]
+   ],
+   "front_stop": {
+    "y": 21.1,
+    "z": [
+     16.95,
+     18.95
+    ]
+   },
+   "rear_hook": {
+    "catch_y": 140.6,
+    "tooth_z": [
+     29.3,
+     31.7
+    ],
+    "arm_mm": 20.0,
+    "t": 2.5,
+    "w": 4.2,
+    "deflection_mm": 2.4,
+    "strain_pct": 2.25,
+    "limit_pct": 2.6,
+    "lift_room": 4.3,
+    "push_N": 8.4
+   }
+  }
+ },
  "cavity_islands_cut": {
   "LOGIC": [],
   "POWER": []
@@ -13342,8 +13251,8 @@
     183.6,
     60.5
    ],
-   "volume_cm3": 395.9,
-   "mass_g_pa12": 400.0,
+   "volume_cm3": 408.0,
+   "mass_g_pa12": 412.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13509,9 +13418,5 @@
   "BattRelay_Cover_PA12_printed.stl",
   "ST185_fusebox_rev7_assembly.step",
   "ST185_fusebox_rev7.f3d"
- ],
- "image_size": [
-  1800,
-  835
  ]
 }
