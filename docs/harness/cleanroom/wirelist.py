@@ -100,6 +100,15 @@ BRANCH = [
 ]
 
 
+# Per-wire build facts that lived only in the old drawing's big note blocks (2026-10-19).
+ROW_NOTES = {
+    "w_drain_ecu_a": "build (R30): the crank drain is the one crimped into A7; the other drains are soldered onto it 6 mm behind the plug",
+    "w_shc_crank": "build (R30): this drain is the one crimped into A7",
+    "cab_aps": "pedal branch length is a placeholder: measure at the car",
+    "w_fb_mrs_en": "fuse fed from EPS enable relay k_eps_en pin 87 (ignition-switched)",
+}
+
+
 def branch(nodes):
     names = []
     for n in nodes:
@@ -330,7 +339,7 @@ def main():
                     bad.append("DRB102 %s is '%s' but the wire is from ECU-A %s" % (e["pin"], use, ecu_pins[0]))
                 if use.startswith("spare"):
                     gap.append("DRB102 map table row %s says spare; its own note and R22 put the EPS relay coil there" % e["pin"])
-        owner, through, notes = LOOM, "", []
+        owner, through, notes = LOOM, "", [x for x in [ROW_NOTES.get(wid, ""), ROW_NOTES.get(cable, "")] if x]
         if "through" in extra:  # N40 2: one row, owned by the longer half's file
             h, half = extra["through"]
             mine, theirs = est.get((LOOM, wid), ""), est.get((h, half), "")

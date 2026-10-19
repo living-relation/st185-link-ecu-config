@@ -5,10 +5,10 @@
   "lengthUnit": "mm",
   "titleBlock": {
     "company": "ST185 Celica (living-relation)",
-    "title": "ST185-A-cabin - ECU connector A cabin loom: ECU-A to bulkhead A, APS, front wheel-speed spur",
-    "drawingNumber": "ST185-A-cabin"
+    "title": "ST185-A-cabin - ECU plug A cabin loom",
+    "drawingNumber": "ST185-A-cabin rev A"
   },
-  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-A, BH-A, IX WS-F, APS).",
+  "exportNotes": "Rev A: clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv.\nIdent bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each connector bundle end (ECU-A, BH-A, IX WS-F, APS).",
   "pdfExportSettings": {
     "includeSchematic": true,
     "includeLayout": true,
@@ -2857,7 +2857,7 @@
       },
       "schematicPosition": {
         "x": 7440,
-        "y": 510
+        "y": 540
       },
       "propagate": false,
       "label": "SW12 bus plug pin 2, glove box - switched +12 V feed"
@@ -3022,7 +3022,7 @@
       },
       "schematicPosition": {
         "x": 7440,
-        "y": 360
+        "y": 390
       },
       "propagate": false,
       "label": "EHPS relay pin 85, glove box - EHPS relay coil (-)"
@@ -3896,7 +3896,7 @@
         "x": 1710,
         "y": 480
       },
-      "label": "At ECU-A plug - cam signal + pull-up joint"
+      "label": "At ECU-A plug - SP-CAM: cam signal + 1.8 k pull-up"
     },
     {
       "id": "sp_5v",
@@ -3910,7 +3910,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
-      "label": "At ECU-A plug - +5 V sensor supply joint"
+      "label": "At ECU-A plug - SP-5V-A: +5 V sensor supply"
     },
     {
       "id": "sp_shield_a",
@@ -3924,7 +3924,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_a",
-      "label": "At ECU-A plug - shield drain joint"
+      "label": "6 mm behind ECU-A plug - SP-SHIELD-A: shield drains"
     },
     {
       "id": "sp_8v",
@@ -3938,7 +3938,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
-      "label": "At ECU-A plug - +8 V cam supply joint"
+      "label": "At ECU-A plug - SP-8V: +8 V cam sensor supply"
     },
     {
       "id": "sp_sw12",
@@ -3952,7 +3952,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
-      "label": "At ECU-A plug - switched +12 V joint"
+      "label": "At ECU-A plug - SP-SW12: switched +12 V"
     },
     {
       "id": "sp_gndout",
@@ -3966,7 +3966,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1140",
-      "label": "At ECU-A plug - sensor ground joint"
+      "label": "At ECU-A plug - SP-GNDOUT-A: sensor ground"
     },
     {
       "id": "sp_chassis",
@@ -3980,7 +3980,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1170",
-      "label": "At ECU-A plug - ECU power ground joint"
+      "label": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground"
     },
     {
       "id": "sp_5v_2",
@@ -3994,7 +3994,7 @@
         "x": 9300,
         "y": 480
       },
-      "label": "At ECU-A plug - +5 V pedal + cruise joint"
+      "label": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise"
     },
     {
       "id": "sp_ac_psw",
@@ -4029,48 +4029,12 @@
   ],
   "schematicNotes": [
     {
-      "id": "n_read_me",
-      "text": "Each table is a pinout: pin | description. The same description is at both ends of a wire. 'To ... / From ... - on ST185-<file>' = the wire carries on in that loom. Bulkhead N/C pins: section B, see ST185-B-cabin, or spare.",
+      "id": "n_general",
+      "text": "Each table is a pinout: pin, wire, description. A wire has the same description at both ends.\nAn end that says 'on ST185-<file>' is the same wire running on in that loom, not a join.\nEvery shield drain is its own wire. Drains meet only at SP-SHIELD-A, 6 mm behind the ECU-A plug: the crank drain is crimped into A7, the others are soldered onto it.\nSensor ground (ECU A24) never joins chassis ground or loom B sensor ground (ECU B22).\nBulkhead pins marked N/C are section B (see ST185-B-cabin) or spares with a sealing plug.",
       "width": 390,
       "schematicPosition": {
         "x": -630,
         "y": 0
-      }
-    },
-    {
-      "id": "n_cavity_notes",
-      "text": "CAVITY NOTES - full text of the signals marked * on this drawing\nBulkhead DRB102 - firewall (section A) 35: MRS EPS pump logic enable - fuse box LOGIC MRS 7.5A (fed from k_eps_en 87, ignition-switched); moved from bulkhead B c14 2026-09-28 (the pump's ECU signal is A27)\nSP-5V-A (splice): +5V at ECU A (A32 lead 18 AWG) - feeds SP-5V-BHA before bulkhead A (c2, c39, c40 at 20 AWG), an 18 AWG trunk to SP-5V-B on ST185-B-cabin (broken off), crossover (a), and an 18 AWG link to SP-5V-PEDAL\nSP-5V-PEDAL (splice): +5V cabin loads off SP-5V-A - APS, cruise ladder, VC2 lead (20 AWG each)\nSP-GNDOUT-A (splice): Gnd Out at ECU A (A24 lead 18 AWG) - feeds SP-GND-BHA before bulkhead A (c3, c41-c44 at 20 AWG) for the A loads only; loom B's sensors return to their own Gnd Out, ECU B22 (no A24-B22 tie in the harness)",
-      "width": 390,
-      "schematicPosition": {
-        "x": -630,
-        "y": 210
-      }
-    },
-    {
-      "id": "n_cavity_notes_2",
-      "text": "CAVITY NOTES (cont.)\nSP-SW12 (splice): switched 12V bus - its B-side load (VSS feed on bulkhead B c20) is drawn on ST185-B-cabin (broken off); relay coil+ feeds come from the SW12 splice in the LOGIC box (ST185-CabinPower)\nSP-GND-CHASSIS (splice): cabin chassis ground - ECU-B B25/B34 join it on ST185-B-cabin (broken off)\nSP-SHIELD-A (splice): drain T-splice about 6 mm (0.25 in) behind the ECU-A plug (Daniel 2026-10-12). The crank drain is the one crimped into A7 (the wire into A7 is its last few mm); every other loom-A drain (cam, turbo, flex, ETB sensor, APS, front WS spur) is soldered onto it where 6 mm of its insulation is cut away. Drains stay 20/22 AWG - no combined-gauge pigtail, one wire per pin.",
-      "width": 390,
-      "schematicPosition": {
-        "x": -630,
-        "y": 630
-      }
-    },
-    {
-      "id": "n_aps",
-      "text": "APS PEDAL - folded in 2026-10-11 (harness-reconcile pass step 2, \"pedal is one cable in A-cabin\"): ST185-APS-Pedal.harness and its DT06-6S/DT04-6P inline mate (IX_APS) are retired; the BRZ e-throttle pedal's Sumitomo TS 025 plug is wired directly from this file. 5 of 6 pins (VC2, GND2, VC1, GND1, VPA1 -> A14) are ECU-A signals, wired straight from here; the 6th (VPA2 -> ECU-B B33) still breaks off to ST185-B-cabin (its loose end lands on ECU-B B33) since it's a B-letter signal - same crossover as before, just without the intermediate connector. Colours follow the former inline mate's. Run length to the pedal is still a placeholder (was 150 mm pedal-to-inline on APS-Pedal; now pedal-to-dash) - TBD, measure at the car.",
-      "width": 390,
-      "schematicPosition": {
-        "x": -630,
-        "y": 1020
-      }
-    },
-    {
-      "id": "n_drb102",
-      "text": "BULKHEAD = ONE DRB102 CONNECTOR (Daniel 2026-10-12, shared-connector rule). bh_a_fw is the whole 102-cavity receptacle with TE's cavity numbers. A and B are only our names for its sections. Cavities marked N/C here are wired on ST185-B-cabin - see ST185-B-cabin (DRB 3-8, 43, 48-49, 54-55, 60, 62-102); their contacts and sealing plugs are counted there.",
-      "width": 390,
-      "schematicPosition": {
-        "x": -630,
-        "y": 1410
       }
     },
     {
@@ -4214,12 +4178,12 @@
       "width": 270,
       "schematicPosition": {
         "x": 7860,
-        "y": 510
+        "y": 540
       }
     },
     {
       "id": "n_end_br_w_fb_mrs_en",
-      "text": "LOGIC box (glove box) fuse MRS 7.5A",
+      "text": "LOGIC box (glove box) fuse MRS 7.5A Fuse fed from EPS enable relay k_eps_en pin 87 (ignition-switched).",
       "width": 270,
       "schematicPosition": {
         "x": 7860,
@@ -4313,7 +4277,16 @@
       "width": 270,
       "schematicPosition": {
         "x": 7860,
-        "y": 360
+        "y": 390
+      }
+    },
+    {
+      "id": "n_pedal_length",
+      "text": "Pedal branch length is a placeholder: measure at the car.",
+      "width": 270,
+      "schematicPosition": {
+        "x": 8670,
+        "y": 210
       }
     }
   ],

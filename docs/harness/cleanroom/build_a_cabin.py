@@ -39,14 +39,14 @@ CONNECTORS = {
 
 # splices the SoT names (interfaces.json / channels.csv notes) -> "<where> - <what it joins>"
 SPLICES = {
-    "sp_5v": "At ECU-A plug - +5 V sensor supply joint",
-    "sp_5v_2": "At ECU-A plug - +5 V pedal + cruise joint",
-    "sp_8v": "At ECU-A plug - +8 V cam supply joint",
-    "sp_trig2": "At ECU-A plug - cam signal + pull-up joint",
-    "sp_gndout": "At ECU-A plug - sensor ground joint",
-    "sp_sw12": "At ECU-A plug - switched +12 V joint",
-    "sp_chassis": "At ECU-A plug - ECU power ground joint",
-    "sp_shield_a": "At ECU-A plug - shield drain joint",
+    "sp_5v": "At ECU-A plug - SP-5V-A: +5 V sensor supply",
+    "sp_5v_2": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise",
+    "sp_8v": "At ECU-A plug - SP-8V: +8 V cam sensor supply",
+    "sp_trig2": "At ECU-A plug - SP-CAM: cam signal + 1.8 k pull-up",
+    "sp_gndout": "At ECU-A plug - SP-GNDOUT-A: sensor ground",
+    "sp_sw12": "At ECU-A plug - SP-SW12: switched +12 V",
+    "sp_chassis": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground",
+    "sp_shield_a": "6 mm behind ECU-A plug - SP-SHIELD-A: shield drains",
     "sp_ac_psw": "At A/C amp - SP-AC-PSW: A/C pressure switch output",
 }
 
@@ -207,6 +207,29 @@ CABLES = {
     },
 }
 
+REV = "A"
+REV_NOTE = "clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv."
+
+# The ONE general notes block: build notes a builder needs, plain words, at most five.
+GENERAL_NOTES = [
+    "Each table is a pinout: pin, wire, description. A wire has the same description at both ends.",
+    "An end that says 'on ST185-<file>' is the same wire running on in that loom, not a join.",
+    "Every shield drain is its own wire. Drains meet only at SP-SHIELD-A, 6 mm behind the ECU-A "
+    "plug: the crank drain is crimped into A7, the others are soldered onto it.",
+    "Sensor ground (ECU A24) never joins chassis ground or loom B sensor ground (ECU B22).",
+    "Bulkhead pins marked N/C are section B (see ST185-B-cabin) or spares with a sealing plug.",
+]
+
+# Per-wire facts from the old big note blocks, added to that wire's end note.
+END_EXTRA = {
+    "br_w_fb_mrs_en": "Fuse fed from EPS enable relay k_eps_en pin 87 (ignition-switched).",
+}
+
+# Notes tied to a connector (drawn beside its table).
+NODE_NOTES = {
+    "n_pedal_length": ("aps", "Pedal branch length is a placeholder: measure at the car."),
+}
+
 ROUTING_KEYS = ("layoutPoints", "sourceLayoutPoints", "targetLayoutPoints")
 
 
@@ -250,6 +273,9 @@ def main():
     a = ap.parse_args()
     geo = load(a.geometry)
     out = copy.deepcopy(geo)  # parts, layout view, settings; everything below is rewritten
+    out["titleBlock"] = dict(geo["titleBlock"], title="ST185-A-cabin - ECU plug A cabin loom",
+                             drawingNumber="ST185-A-cabin rev %s" % REV)
+    out["exportNotes"] = "Rev %s: %s\n%s" % (REV, REV_NOTE, geo.get("exportNotes", ""))
 
     # every (node, pin) -> description, from the wire table
     text = {}
@@ -319,22 +345,24 @@ def main():
     # schematic notes: a read-me, then EVERY note of the old drawing carried over (Dan
     # 2026-10-19: OEM ends keep their notes, no locator note dropped). An end note sits next to
     # its wire end; a factory end's note says where the tap is, the EWD page, colour and method.
-    notes = [{"id": "n_read_me",
-              "text": "Each table is a pinout: pin | description. The same description is at both "
-                      "ends of a wire. 'To ... / From ... - on ST185-<file>' = the wire carries on in "
-                      "that loom. Bulkhead N/C pins: section B, see ST185-B-cabin, or spare.",
-              "width": 390}]
+    # Drawing rules (Dispatch for Dan 2026-10-19): ONE short general block of build notes; a
+    # per-wire fact sits in that wire's end note; history lives in DECISIONS / git, never here.
+    notes = [{"id": "n_general", "text": "\n".join(GENERAL_NOTES), "width": 390}]
     attach = {}
     for n in geo["schematicNotes"]:
         tid = n["id"][len("n_end_"):] if n["id"].startswith("n_end_") else None
         if tid and tid in TERMINALS:
             text = OEM_ENDS[tid]["short"] if tid in OEM_ENDS else n["text"]
+            text = " ".join(x for x in (text, END_EXTRA.get(tid, "")) if x)
             attach[tid] = n["id"]
         elif tid:
             raise SystemExit("old end note %s has no end in this file" % n["id"])
         else:
-            text = n["text"]  # general notes, word for word
+            continue  # the old big blocks: their facts are in GENERAL_NOTES, END_EXTRA or the docs
         notes.append({"id": n["id"], "text": text, "width": 390 if len(text) > 200 else 270})
+    for nid, (node, text) in NODE_NOTES.items():
+        notes.append({"id": nid, "text": text, "width": 270})
+        attach[node] = nid
     out["schematicNotes"] = notes
     place(out, attach)
 
