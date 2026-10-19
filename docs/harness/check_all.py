@@ -68,6 +68,7 @@ untouched and CI can trust it. After a harness change, regenerate locally:
 
     python docs/harness/buylist.py
     python docs/harness/buildlist.py
+    python docs/harness/cleanroom/wirelist.py     (the A-cabin master wire list, R201)
 
 (no flag, or --write, writes the file) and commit the results with the drawing.
 
@@ -86,6 +87,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_dan_rules.py"], ["buylist.py", "--check"],
         ["buildlist.py", "--check"], ["check_route_drawings.py"], ["audit_layout.py"], ["audit_destinations.py"],
         ["audit_bundle_topology.py"],   # R154: bundle shape follows the route, no empty / copied legs
+        ["cleanroom/wirelist.py", "--check"],   # R201: the master wire list (CSV + styled .xlsx) is current, matches the SoT, nets clean
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
         ["../../cad/fusebox/src/check_terminal_holes.py"],     # Dan's J2 = B (R94): crimp-sized terminal holes, walls >= 2 mm
