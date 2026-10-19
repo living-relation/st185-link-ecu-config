@@ -127,7 +127,7 @@ def base_at_strap():
     y_jb1 = S.AMI_Y0 + [n for n, _a in S.AMI_ROWS['OUT']].index('JB1') * S.AMI_PITCH + py
     x_out = S.POWER['x_bar'] + S.AMI_IN_OFF + S.AMI['c'] + px
     b = b.moved(Location((-x_out, -y_jb1, -ST['z_bl'])))
-    keep = Pos(10.0, 0, 15.0) * Box(56.0, 2 * S.AMI_PITCH - 4.0, 60.0)
+    keep = Pos(10.0, 0, 5.0) * Box(56.0, 2 * S.AMI_PITCH - 4.0, 40.0)     # the well, below the deck top
     return b.intersect(keep).solids()
 
 
@@ -168,7 +168,7 @@ def main():
     xbl0 = ST['lug'] - SD['edge']
     hw, hl = BL['w'] / 2, BL['w_low'] / 2
     sp = dict(project=specs.PROJECT_NAME, drawn=specs.DRAWN_BY, job=JOB, file=mdl, process='machined', single=False, offset=(0, 0, 0),
-              rotate=[], pn='ST185-FB-117', rev='D',      # model D (N37, #330); drawing pass 2026-10-19 (R196)
+              rotate=[], pn='ST185-FB-117', rev='D.01',   # D.01 clerical: sheet 2 step 4 balloons (Dispatch review 2026-10-19)
               title='POWER OUTPUT C-STRAP 3 x 15 (FORMED + FLAT BLANK)',
               material='C110 COPPER, TINNED', ordinates=False, overall=False, max_hole_groups=1,
               source='Power_Strap_Out_CuC110_15x3_C.step (Fusion) + flat blank from spec.strap_blank() (build123d)',
@@ -216,9 +216,10 @@ def main():
                        custom=[(1, formed(), (0, 0, 0)), (2, formed_stud(), (0, 0, 0))]),
                   dict(no=3, title='NUT INTO THE HOLDER, HOLDER INTO THE C', subtitle='EXPLODED (NOT TO SCALE)', base=[1, 2],
                        custom=[(4, holder(), (-25.0, 0, 0)), (3, top_nut(), (-25.0, 0, 15.0))]),
-                  dict(no=4, title='DROP THE STRAP STRAIGHT DOWN INTO ITS WELL', subtitle='EXPLODED, BASE CUT DOWN TO ONE WELL (NOT TO SCALE)',
-                       base=[5], custom=[(1, formed(), (0, 0, 70.0)), (2, formed_stud(), (0, 0, 70.0)), (3, top_nut(), (0, 0, 70.0)),
-                                         (4, holder(), (0, 0, 70.0))]),
+                  dict(no=4, title='DROP THE BUILT STRAP STRAIGHT DOWN INTO ITS WELL', subtitle='BASE CUT DOWN TO ONE WELL (NOT TO SCALE)',
+                       # the strap goes in as the unit built in steps 1-3: its stud, nut and holder ride with item 1 (one balloon, R188)
+                       base=[5], custom=[(1, formed(), (0, 0, 50.0)), (1, formed_stud(), (0, 0, 50.0)), (1, top_nut(), (0, 0, 50.0)),
+                                         (1, holder(), (0, 0, 50.0))]),
               ]])
     os.makedirs('out/' + JOB, exist_ok=True)
     stats = part.make_part(sp, 'out/%s/ST185-FB-117.pdf' % JOB, 'out/%s/ST185-FB-117.dxf' % JOB, 'previews/ST185-FB-117')
