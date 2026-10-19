@@ -803,7 +803,19 @@ def main(check=False):
         gm.write("| %s |\n" % " | ".join(x.replace("|", "/") for x in g))
     files["GAPS.md"] = gm.getvalue()
 
+    import drb102_outputs as D   # the DRB102 pin table (csv + xlsx) and the insert-face map (png), R208
+    d_rows = D.table(lists)
+    d_text = D.csv_text(d_rows)
+    files["DRB102-pin-table.csv"] = d_text
+    books["DRB102-pin-table.xlsx"] = D.workbook(d_text)
     stale = sync(files, books, check)
+    png = os.path.join(OUT, "DRB102-bulkhead-map.png")
+    want = D.digest(d_text)
+    if D.png_digest(png) != want:
+        stale.append("DRB102-bulkhead-map.png")
+        if not check:
+            D.render(d_rows, png, want)
+            print("updated: DRB102-bulkhead-map.png")
     n = lambda rs, k: sum(r["status"].startswith(k) for r in rs)  # noqa: E731
     for h, rs in lists.items():
         print("%-17s %4d rows (%3d wires, %3d spare), %3d mismatch(es), %3d SoT gap row(s)%s" % (
