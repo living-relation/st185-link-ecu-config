@@ -1,0 +1,5 @@
+splice_id,name,net_id,net_name,harness,location,method,wires,gauges_awg,combined_cma,equivalent_awg,sot_check
+sp_rl_tail,Tail splice - J/B 1 TAIL feed to R11 / R12 pins 2 and 3 and L1,J/B1 (factory).1F-1,Tail lamp feed (J/B1 (factory) 1F-1),RearLights,Tail splice (layout node bp_rl_rear),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",6,16+16+16+16+16+16,15498,8,named in SoT
+sp_rl_stop,Stop splice - S9 stop feed to R11 / R12 pin 1 and the HMSL,opto8.i1,Brake on +12 V (opto8 i1),RearLights,Stop splice (layout node bp_rl_hatch),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",4,16+16+16+16,10332,10,named in SoT
+sp_rl_rev,Back-up splice - reverse relay feed to R11 / R12 pin 4,k_rev.87,Reverse relay out to the back-up lamps (k_rev 87),RearLights,Back-up splice (layout node bp_rl_rear),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",3,16+16+16,7749,10,named in SoT
+sp_rl_gnd,Rear ground splice - every rear lamp ground to ground point BL,GND.t_rl_gnd_bl,"Chassis GND (Ground point BL, back panel center (EWD 1993 p.112))",RearLights,Rear ground splice (layout node bp_rl_center),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",5,16+16+16+16+16,12915,8,named in SoT

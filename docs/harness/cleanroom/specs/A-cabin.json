@@ -1,0 +1,151 @@
+{
+ "_doc": "Drawing facts for build_harness.py that the wire list does not hold (labels, title, notes). Wires, pins, descriptions, colours, ident bands and end notes come from the wire list.",
+ "title": "ST185-A-cabin - ECU plug A cabin loom",
+ "rev": "A",
+ "rev_by": "DG",
+ "rev_note": "clean-room rebuild from the master wire list (DECISIONS R201); pins as sot/channels.csv.",
+ "connectors": {
+  "ecu_a": "ECU-A  Link G4X plug A (centre dash)",
+  "bh_a_fw": "BULKHEAD  DRB102 receptacle (RH firewall)",
+  "aps": "PEDAL  accelerator pedal sensor",
+  "ix_ws_front_p": "FRONT WS INLINE  to front VR conditioner",
+  "bus_5v_bha_p": "+5V BUS  DT06-8 plug (by bulkhead)",
+  "bus_5v_bha_r": "+5V BUS cap  DT04-8 bussed",
+  "bus_gnd_bha_p": "SENSOR GND BUS  DT06-8 plug (by bulkhead)",
+  "bus_gnd_bha_r": "SENSOR GND BUS cap  DT04-8 bussed"
+ },
+ "splices": {
+  "sp_5v": "At ECU-A plug - SP-5V-A: +5 V sensor supply",
+  "sp_5v_2": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise",
+  "sp_8v": "At ECU-A plug - SP-8V: +8 V cam sensor supply",
+  "sp_trig2": "At ECU-A plug - SP-CAM: cam signal + 1.8k pull-up to +8V",
+  "sp_gndout": "At ECU-A plug - SP-GNDOUT-A: sensor ground",
+  "sp_sw12": "At ECU-A plug - SP-SW12: switched +12 V",
+  "sp_chassis": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground",
+  "sp_shield_a": "6 mm behind ECU-A plug - SP-SHIELD-A: shield drains",
+  "sp_ac_psw": "At A/C amp - SP-AC-PSW: A/C pressure switch output"
+ },
+ "resistors": {
+  "cam_pullup": "Cam pull-up 1.8 k to +8 V"
+ },
+ "terminals": {
+  "br_w76": {
+   "label": "EFI main relay R2 pin 85, POWER box - EFI relay coil (-)",
+   "long": "EFI main relay R2 pin 85, POWER box - EFI relay coil (-) - continues on ST185-CabinPower"
+  },
+  "br_w81": {
+   "label": "ETB relay M4 pin 85, LOGIC box - ETB relay coil (-)",
+   "long": "ETB relay M4 pin 85, LOGIC box - ETB relay coil (-) - continues on ST185-CabinPower"
+  },
+  "br_w_str85": {
+   "label": "Start relay R3 pin 85, POWER box - start relay coil (-)",
+   "long": "Start relay R3 pin 85, POWER box - start relay coil (-) - continues on ST185-CabinPower"
+  },
+  "br_w_fan85": {
+   "label": "Rad fan relay R4 pin 85, POWER box - fan relay coil (-)",
+   "long": "Rad fan relay R4 pin 85, POWER box - fan relay coil (-) - continues on ST185-CabinPower"
+  },
+  "br_w_fp85": {
+   "label": "Fuel pump relay K1 pin 85, trunk - fuel pump relay coil (-)",
+   "long": "Fuel pump relay K1 pin 85, trunk - fuel pump relay coil (-) - continues on ST185-HeavyDC"
+  },
+  "br_w_acc86": {
+   "label": "A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+)",
+   "long": "A/C clutch relay M5 pin 86, LOGIC box - A/C relay coil (+) - continues on ST185-CabinPower"
+  },
+  "br_w_eps_rly": {
+   "label": "EHPS relay pin 85, glove box - EHPS relay coil (-)",
+   "long": "EHPS relay pin 85, glove box - EHPS relay coil (-) - continues on ST185-CabinPower"
+  },
+  "br_w_fb_sw12": {
+   "label": "SW12 bus plug pin 2, glove box - switched +12 V feed",
+   "long": "SW12 bus plug pin 2, glove box - switched +12 V feed - continues on ST185-CabinPower"
+  },
+  "br_w_inj_pwr_c": {
+   "label": "LOGIC box fuse INJ 15 A lead - injector +12 V",
+   "long": "LOGIC box fuse INJ 15 A lead - injector +12 V - continues on ST185-CabinPower"
+  },
+  "br_w_cop_pwr_c": {
+   "label": "LOGIC box fuse COP 15 A lead - coil +12 V",
+   "long": "LOGIC box fuse COP 15 A lead - coil +12 V - continues on ST185-CabinPower"
+  },
+  "br_w_fb_mrs_en": {
+   "label": "LOGIC box fuse MRS 7.5 A lead - EHPS enable +12 V",
+   "long": "LOGIC box fuse MRS 7.5 A lead - EHPS enable +12 V - continues on ST185-CabinPower"
+  },
+  "br_w_b25": {
+   "label": "ECU-B pin B25 - ECU power ground",
+   "long": "ECU-B pin B25 - ECU power ground - continues on ST185-B-cabin"
+  },
+  "br_w_b34": {
+   "label": "ECU-B pin B34 - ECU power ground (2)",
+   "long": "ECU-B pin B34 - ECU power ground (2) - continues on ST185-B-cabin"
+  },
+  "br_w_lamg_b": {
+   "label": "Bulkhead pin 96 - CAN-Lambda ground",
+   "long": "Bulkhead pin 96 - CAN-Lambda ground - continues on ST185-B-cabin"
+  },
+  "br_w_rail_sw12_b_c": {
+   "label": "Bulkhead pin 90 - +12 V gearbox speed sensor",
+   "long": "Bulkhead pin 90 - +12 V gearbox speed sensor - continues on ST185-B-cabin"
+  },
+  "br_w_rail_5v_b_c": {
+   "label": "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors",
+   "long": "Splice SP-5V-B at ECU-B plug - +5 V loom B sensors - continues on ST185-B-cabin"
+  },
+  "br_cab_fspur_r": {
+   "label": "ECU-B pin B21 - front right wheel speed",
+   "long": "ECU-B pin B21 - front right wheel speed - continues on ST185-B-cabin"
+  },
+  "br_cab_fspur_fr_sh": {
+   "label": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield",
+   "long": "Splice SP-SHIELD-B at ECU-B plug - FR wheel speed shield - continues on ST185-B-cabin"
+  },
+  "br_w39": {
+   "label": "ECU-B pin B33 - pedal 2 signal (sub)",
+   "long": "ECU-B pin B33 - pedal 2 signal (sub) - continues on ST185-B-cabin"
+  },
+  "br_w_cru_5v": {
+   "label": "Cruise ladder resistor lead, centre console - +5 V cruise",
+   "long": "Cruise ladder resistor lead, centre console - +5 V cruise - continues on ST185-CSB3"
+  },
+  "br_w_csbg": {
+   "label": "CSB3 ground splice, centre console - CSB3 + opto ground",
+   "long": "CSB3 ground splice, centre console - CSB3 + opto ground - continues on ST185-CSB3"
+  },
+  "br_ac_psw": {
+   "label": "A/C pressure switch A5 pin 4, engine bay - pressure switch out",
+   "long": "A/C pressure switch A5 pin 4, engine bay - pressure switch out - continues on ST185-EngineRoom-C"
+  },
+  "fl_acamp_act": {
+   "label": "A/C amp A18 pin 11, factory G-Y lead - A/C cancel (ACT)",
+   "long": "EWD 1992 EWD132U p.93/p.218 A18-11 G-Y ACT compressor cancel (1990 book locator A18; pin from 1992 A17-11) <- ECU Aux 4, ground = kill - solder splice onto the factory G-Y lead at the A/C amplifier"
+  },
+  "fl_acamp_psw": {
+   "label": "A/C amp A18 pin 13, factory Y-R lead - pressure switch in",
+   "long": "EWD 1990 p.152 A18-13 Y-R A/C pressure switch in <- A5-4 - solder splice onto the factory Y-R lead at the A/C amplifier"
+  },
+  "chassis_ring": {
+   "label": "Cabin chassis stud M6 at ECU - ECU ground ring",
+   "long": ""
+  }
+ },
+ "terminal_width": 390,
+ "bus_caps": {
+  "bus_5v_bha_r": "+5 V sensor bus",
+  "bus_gnd_bha_r": "Sensor ground bus"
+ },
+ "general_notes": [
+  "Each table is a pinout: pin, wire, description. A wire has the same description at both ends.",
+  "An end that says 'on ST185-<file>' is the same wire running on in that loom, not a join.",
+  "Every shield drain is its own wire. Drains meet only at SP-SHIELD-A, 6 mm behind the ECU-A plug: the crank drain is crimped into A7, the others are soldered onto it.",
+  "Sensor ground (ECU A24) never joins chassis ground or loom B sensor ground (ECU B22).",
+  "Bulkhead pins marked N/C are section B (see ST185-B-cabin) or spares with a sealing plug."
+ ],
+ "node_notes": {
+  "n_pedal_length": {
+   "node": "aps",
+   "text": "Pedal branch length is a placeholder: measure at the car."
+  }
+ }
+}

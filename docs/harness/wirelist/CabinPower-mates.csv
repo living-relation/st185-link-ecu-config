@@ -1,0 +1,2 @@
+circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
+,+12V switched (LOGIC SW12 bus),bus_sw12_p,all,bus,CabinPower,bus_sw12_r,all,bussed: one net,OK

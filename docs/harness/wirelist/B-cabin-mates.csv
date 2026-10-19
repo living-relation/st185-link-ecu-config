@@ -1,0 +1,31 @@
+circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
+SW12,+12V switched (LOGIC SW12 bus),bh_b_fw,90,+12 V gearbox speed,B-engine,bh_b_eng,90,+12 V gearbox speed,OK
+LAM,Chassis GND (cabin stud M6 at ECU),bh_b_fw,96,CAN-Lambda ground,B-engine,bh_b_eng,96,CAN-Lambda ground,OK
+REV,Reverse sw +12 V out (DRB102 76),bh_b_fw,76,Reverse sw +12 V out,B-engine,bh_b_eng,76,Reverse sw +12 V out,OK
+KNOCK,Sensor GND B (ECU-B B22),bh_b_fw,84,Knock sensor (-),B-engine,bh_b_eng,84,Knock sensor (-),OK
+KNOCK,"Screen B (ECU B17, SHIELD_B)",bh_b_fw,85,Knock sensor shield,B-engine,bh_b_eng,85,Knock sensor shield,OK
+ETBM,"Screen B (ECU B17, SHIELD_B)",bh_b_fw,88,ETB motor shield,B-engine,bh_b_eng,88,ETB motor shield,OK
+VSS,Gearbox speed signal (ECU-B B29),bh_b_fw,89,Gearbox speed signal,B-engine,bh_b_eng,89,Gearbox speed signal,OK
+VSS,"Screen B (ECU B17, SHIELD_B)",bh_b_fw,91,Gearbox speed shield,B-engine,bh_b_eng,91,Gearbox speed shield,OK
+OILT,Oil temp signal (ECU-B B6),bh_b_fw,74,Oil temp signal,B-engine,bh_b_eng,74,Oil temp signal,OK
+CIAT,Charge temp signal (ECU-B B7),bh_b_fw,75,Charge temp signal,B-engine,bh_b_eng,75,Charge temp signal,OK
+KNOCK,Knock sensor signal (ECU-B B9),bh_b_fw,83,Knock sensor signal,B-engine,bh_b_eng,83,Knock sensor signal,OK
+OILPC,Oil pressure signal (ECU-B B15),bh_b_fw,71,Oil pressure signal,B-engine,bh_b_eng,71,Oil pressure signal,OK
+FUELP,Fuel pressure signal (ECU-B B16),bh_b_fw,72,Fuel pressure signal,B-engine,bh_b_eng,72,Fuel pressure signal,OK
+ETBM,ETB motor + (ECU-B B18),bh_b_fw,86,ETB motor +,B-engine,bh_b_eng,86,ETB motor +,OK
+CLNTP,Coolant press signal (ECU-B B23),bh_b_fw,73,Coolant press signal,B-engine,bh_b_eng,73,Coolant press signal,OK
+ETBM,ETB motor - (ECU-B B26),bh_b_fw,87,ETB motor -,B-engine,bh_b_eng,87,ETB motor -,OK
+CAN,CAN H to CAN-Lambda (ECU-COMMS C3),bh_b_fw,92,CAN H to CAN-Lambda,B-engine,bh_b_eng,92,CAN H to CAN-Lambda,OK
+CAN,CAN L to CAN-Lambda (ECU-COMMS C4),bh_b_fw,93,CAN L to CAN-Lambda,B-engine,bh_b_eng,93,CAN L to CAN-Lambda,OK
+SGND,Sensor GND B (ECU-B B22),bh_b_fw,77,Gnd oil/clnt/temps,B-engine,bh_b_eng,77,Gnd oil/clnt/temps,OK
+SGND,Sensor GND B (ECU-B B22),bh_b_fw,78,Gnd fuel press + VSS,B-engine,bh_b_eng,78,Gnd fuel press + VSS,OK
+REV,Back-up sw +12 V in (DRB102 62),bh_b_fw,62,Back-up sw +12 V in,B-engine,bh_b_eng,62,Back-up sw +12 V in,OK
+CAN,"Screen B (ECU B17, SHIELD_B)",bh_b_fw,94,CAN-Lambda shield,B-engine,bh_b_eng,94,CAN-Lambda shield,OK
+LAM,+12V LAM 7.5A (LOGIC BUS2-1),bh_b_fw,95,CAN-Lambda +12 V,B-engine,bh_b_eng,95,CAN-Lambda +12 V,OK
+FLVL,Fuel level signal (ECU-B B24),ix_fuel_r,1,Fuel level signal,RearFuel,ix_fuel_p,1,Fuel level signal,OK
+SGND,Sensor GND B (ECU-B B22),ix_fuel_r,2,Fuel level ground,RearFuel,ix_fuel_p,2,Fuel level ground,OK
+5V,+5V sensor (ECU-A A32),ix_ws_rear_p,1,VRC-R +5V,WheelSpeed-Rear,ix_ws_rear_r,1,VRC-R +5V,OK
+SGND,Sensor GND B (ECU-B B22),ix_ws_rear_p,2,VRC-R GND,WheelSpeed-Rear,ix_ws_rear_r,2,VRC-R GND,OK
+WSSR,Rear left wheel spd (ECU-B B20),ix_ws_rear_p,3,Rear left wheel spd,WheelSpeed-Rear,ix_ws_rear_r,3,Rear left wheel spd,OK
+WSSR,Rear right wheel spd (ECU-B B19),ix_ws_rear_p,4,Rear right wheel spd,WheelSpeed-Rear,ix_ws_rear_r,4,Rear right wheel spd,OK
+WSSR,"Screen B (ECU B17, SHIELD_B)",ix_ws_rear_p,5,WS-R screen drain,WheelSpeed-Rear,ix_ws_rear_r,5,WS-R screen drain,OK

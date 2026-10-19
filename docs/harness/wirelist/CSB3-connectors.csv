@@ -1,0 +1,3 @@
+conn_id,name,harness,part_number,cavities,mates_with,note
+csb3io,CSB3,CSB3,HD36-24-33SE,33,,
+opto8,OPTO8,CSB3,"(Dan's on-hand board - generic 8-ch EL814 optocoupler isolation module, no maker part number)",20,,

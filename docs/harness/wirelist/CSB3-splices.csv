@@ -1,0 +1,3 @@
+splice_id,name,net_id,net_name,harness,location,method,wires,gauges_awg,combined_cma,equivalent_awg,sot_check
+sp_cruise_ladder,"Cruise ladder splice - stalk pin 5, 1k pull-up and CSB3 A2",csb3io.8,Cruise ladder (csb3io 8),CSB3,Cruise ladder splice (layout node bp_1170),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",3,20+20+20,3066,14,named in SoT
+sp_csb_gnd,"CSB3 ground splice - CSB3 pin 2, opto board COM and stalk ground",STUD.M6-ECU,Chassis GND (cabin stud M6 at ECU),CSB3,CSB3 ground splice (layout node bp_1230),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",4,20+20+20+20,4088,14,named in SoT
