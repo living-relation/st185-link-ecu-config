@@ -2125,6 +2125,86 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         return dict(L=L, D=D7, H=z_top, z_d=z_d, z_t=z_t, cover_top=z_top, feet=feet, relays=relays, ami=ami, acps=acps,
                     in_y=(R7['pos_studs'][0][0] if R7 else S.IN_STUD_Y))
 
+    def strip_hold(strips, studs, own_in, spine, parts, spx, s_z0, s_z1, lip_z0, lip_z1, rail_t, z_d, pre, sh):
+        """Dan's drawing markup 2026-10-18 (spec.STRIP_HOLD): each LOGIC strip is held by the printed base on every side, nothing
+        rests on a wire or the feed bolt. IN: spine pads, 0 gap, under and over the PEM heads. OUT: a kerb at the bottom of the lug
+        face and lips over its top edge between the jumper sleeves. FRONT: a stop pad on the J4 channel floor. REAR: a snap hook
+        whose tooth drops behind the strip's rear end once it has slid in (R157 strain, R181 lead-in). Pads, kerbs and lips are
+        unioned onto the spine; the stop pads and hooks are added to parts."""
+        SH, part = S.STRIP_HOLD, pre + 'Base_PA12_printed'
+        out = report.setdefault('strip_hold', {})
+        for c_, v in strips.items():
+            sd, face = v['sd'], v['face']
+            inner, o_ = face + sd * S.STRIP['t'], -sd          # o_: outward from the lug face
+            f_ = S.FEED[c_]
+            r_ = dict()
+            # IN - pads between the strip's inner face and the spine, clear of every PEM head (M4 studs, M5 feed)
+            hz = [(s_['z'] - S.PEM[4]['E'] / 2, s_['z'] + S.PEM[4]['E'] / 2) for s_ in studs if s_['col'] == c_]
+            hz.append((f_['z'] - S.PEM[5]['E'] / 2, f_['z'] + S.PEM[5]['E'] / 2))
+            lo_top, hi_bot = min(a for a, b in hz) - SH['pad_clr'], max(b for a, b in hz) + SH['pad_clr']
+            xa, xb = sorted((inner, spx))
+            y_end = v['y1'] - SH['slot']
+            for (za, zb) in ((lip_z1 - 0.01, lo_top), (hi_bot, s_z1 + 0.01)):
+                bo(spine, box(xa, v['y0'] - 0.5, za, xb, y_end, zb), 'u')
+            r_['pads_z'] = [[round(lip_z1, 2), round(lo_top, 2)], [round(hi_bot, 2), round(s_z1, 2)]]
+            # OUT, bottom - kerb on the lug face, clear of the feed lug (its end of the strip)
+            # the jumper line is clear only between the sleeves and the own-input wires (MRS / B30 drop down it to the pan floor)
+            ys = sorted([s_['y'] for s_ in studs if s_['col'] == c_] + [y_ for (cc_, y_) in own_in if cc_ == c_])
+            hw = SH['sleeve'] / 2 + SH['lip_clr']
+            yk = (f_['y'] + SH['feed_clr'], v['y1'] + 0.5) if f_['y'] - v['y0'] < v['y1'] - f_['y'] else (v['y0'] - 0.5, f_['y'] - SH['feed_clr'])
+            segs, a_ = [], yk[0]
+            for (cc_, y_) in sorted(own_in, key=lambda q: q[1]):
+                if cc_ == c_ and yk[0] < y_ + SH['own_clr'] and y_ - SH['own_clr'] < yk[1]:     # the wire turns along the floor there
+                    segs.append((a_, y_ - SH['own_clr']))
+                    a_ = max(a_, y_ + SH['own_clr'])
+            segs.append((a_, yk[1]))
+            kx = sorted((face + o_ * SH['gap'], face + o_ * (SH['gap'] + SH['kerb_t'])))
+            lx = sorted((face + o_ * SH['gap'] + o_ * 0.01, face - o_ * 0.81))    # the lip runs out under the strip's last 0.8 to the kerb
+            r_['kerb'] = dict(x=[round(kx[0], 2), round(kx[1], 2)], y=[], z=[round(lip_z0, 2), round(s_z0 + SH['catch'], 2)])
+            for (ka, kb) in segs:
+                if kb - ka < SH['lip_w']:
+                    continue
+                bo(spine, box(kx[0], ka, lip_z0, kx[1], kb, s_z0 + SH['catch']), 'u')
+                bo(spine, box(lx[0], ka, lip_z0, lx[1], kb, lip_z1), 'u')
+                exempt(part, 'strip lip', min(kx[0], spx) - 0.1, max(kx[1], spx) + 0.1, ka - 0.1, kb + 0.1, lip_z0 - 0.1, lip_z1 + 0.1, sh)   # the whole lip, kerb to spine
+                r_['kerb']['y'].append([round(ka, 2), round(kb, 2)])
+            # OUT, top - lips over the top edge in the gaps between the jumper sleeves, bridged over the strip into the rail
+            gaps = [(v['y0'], ys[0] - hw)] + [(a + hw, b - hw) for a, b in zip(ys, ys[1:])] + [(ys[-1] + hw, y_end)]
+            lips = []
+            for (ga, gb) in gaps:
+                if gb - ga < SH['lip_w']:
+                    continue
+                w_ = min(gb - ga, 2 * SH['lip_w'])
+                ya_, yb_ = (ga + gb - w_) / 2, (ga + gb + w_) / 2
+                lx0 = sorted((face + o_ * SH['gap'], face + o_ * (SH['gap'] + SH['lip_t'])))
+                bo(spine, box(lx0[0], ya_, s_z1 - SH['catch'], lx0[1], yb_, s_z1 + rail_t), 'u')
+                br = sorted((face + o_ * (SH['gap'] + SH['lip_t']), face - o_ * 0.31))
+                bo(spine, box(br[0], ya_, s_z1, br[1], yb_, s_z1 + rail_t), 'u')
+                lips.append([round(ya_, 2), round(yb_, 2)])
+            r_['top_lips_y'] = lips
+            # FRONT - stop pad on the channel floor, 0 gap to the strip's front end
+            fl0, fl1 = S.CHANNEL['floor']
+            fx_ = sorted((face - o_ * 0.5, inner))     # 0.5 in from the lug face: the feed lug palm comes down to the strip's front end there
+            parts.append(box(fx_[0], v['y0'] - 1.5, fl0, fx_[1], v['y0'], fl1))
+            r_['front_stop'] = dict(y=v['y0'], z=[fl0, fl1])
+            # REAR - snap hook: arm along +y from the tooth to a post that hangs from the deck block, flexes up (free space to z_d)
+            yc, za_, zt_ = v['y1'] + SH['end_clr'], s_z1 + SH['defl_clr'], s_z1 - SH['catch']
+            ax0, ax1 = v['x0'] - SH['arm_side'], v['x1'] + SH['arm_side']
+            yr = yc + SH['arm_L']
+            arm = box(ax0, yc, za_, ax1, yr + 0.01, za_ + SH['arm_t'])
+            tooth = box(ax0, yc, zt_, ax1, yc + SH['tooth'], za_ + 0.01)
+            # R181: lead-in SH['lead'] deg from the push direction (-y), from lead_z behind the catch face, spanning catch + defl_clr
+            half_cut(tooth, (0.0, yc + SH['lead_z'], zt_), (0.0, math.tan(math.radians(SH['lead'])), -1.0))
+            bo(arm, tooth, 'u')
+            bo(arm, box(ax0, yr, za_, ax1, yr + SH['post'], z_d + 0.01), 'u')
+            parts.append(arm)
+            d_, t_, L_ = SH['catch'] + SH['defl_clr'], SH['arm_t'], SH['arm_L']
+            exempt(part, 'strip snap hook', ax0 - 0.3, ax1 + 0.3, yc - 0.3, yr + SH['post'] + 0.3, zt_ - 0.3, z_d + 0.1, sh)
+            r_['rear_hook'] = dict(catch_y=round(yc, 2), tooth_z=[round(zt_, 2), round(za_, 2)], arm_mm=L_, t=t_, w=round(ax1 - ax0, 2),
+                                   deflection_mm=d_, strain_pct=round(150 * t_ * d_ / L_ ** 2, 2), limit_pct=S.SNAP_EPS,
+                                   lift_room=round(z_d - (za_ + t_), 2), push_N=round(3 * S.PA12['E'] * (ax1 - ax0) * t_ ** 3 / 12 * d_ / L_ ** 3, 1))
+            out[c_] = r_
+
     # ================================================================== LOGIC box
     def build_logic():
         """Rev 6 (C4): the mini fuses stay; every fuse input is a 14 AWG jumper - TE 880398-2 receptacle in the input cavity,
@@ -2195,10 +2275,14 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         if REV[0] == 7:   # card item 13 (Dan 22-59, R157): the strips rest on the lips (DOWN); a rail on the spine bears on their top edges (UP),
             # 0 gap; they still slide in along the lips. 0.3 off each strip's lug face (the jumper sleeves come up there).
             rail_t = 3.71    # fit audit 2026-10-18: 3.4 left a 0.3 powder gap (S6) under the block at z 35.0 - the rail now fuses into it
+            SH = S.STRIP_HOLD
             for c_, v in strips.items():
                 xa_, xb3 = (v['x0'] + 0.3, spx) if c_ == 'BUS1' else (spx, v['x1'] - 0.3)
-                bo(spine, box(xa_, v['y0'] - 0.5, s_z1 + S.HOOK_GAP, xb3, v['y1'] + 0.5, s_z1 + S.HOOK_GAP + rail_t), 'u')
+                # markup 2026-10-18: the rail stops a slot short of the strip's rear end, where the rear snap hook takes over
+                bo(spine, box(xa_, v['y0'] - 0.5, s_z1 + S.HOOK_GAP, xb3, v['y1'] - SH['slot'], s_z1 + S.HOOK_GAP + rail_t), 'u')
             report.setdefault('strip_rail', dict(z=[s_z1 + S.HOOK_GAP, s_z1 + S.HOOK_GAP + rail_t], gap=S.HOOK_GAP))
+            own_in = [(c_, y_) for (c_, nm_, a_, x_, y_, n_, i_) in mini if a_ and not S.mini_stud(c_, i_)]   # MRS / B30: own harness input down the jumper line
+            strip_hold(strips, studs, own_in, spine, parts, spx, s_z0, s_z1, lip_z0, lip_z1, rail_t, z_d, pre, sh)
         parts.append(spine)
         if REV[0] == 7:   # J4 = B (R94): the printed channel floor across the front (over the Bus 1 feed lug), joined to the spine
             CH = S.CHANNEL
