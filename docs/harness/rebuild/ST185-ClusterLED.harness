@@ -98,7 +98,7 @@
     },
     {
       "id": "w_tl_a",
-      "color": "Green",
+      "color": "Red",
       "identColors": [
         "Blue",
         "Blue"
@@ -132,7 +132,7 @@
     },
     {
       "id": "w_tr_a",
-      "color": "Green",
+      "color": "Red",
       "identColors": [
         "Blue",
         "White"
@@ -199,7 +199,7 @@
     },
     {
       "id": "w_pk_k",
-      "color": "Red",
+      "color": "Yellow",
       "identColors": [
         "White"
       ],
@@ -211,12 +211,11 @@
         "id": "fl_cl_c12_c1",
         "handle": "Terminal"
       },
-      "stripeColor": "Green",
       "partId": "m16_20_25"
     },
     {
       "id": "w_chg_a",
-      "color": "Black",
+      "color": "Red",
       "identColors": [
         "Blue"
       ],
@@ -228,12 +227,11 @@
         "id": "d_chg",
         "handle": "Left"
       },
-      "stripeColor": "Orange",
       "partId": "m16_20_03"
     },
     {
       "id": "w_chg_k",
-      "color": "Yellow",
+      "color": "White",
       "identColors": [
         "Blue"
       ],
@@ -283,12 +281,11 @@
     },
     {
       "id": "w_ig_tap",
-      "color": "Black",
+      "color": "Red",
       "identColors": [
         "Yellow",
         "Yellow"
       ],
-      "stripeColor": "Orange",
       "source": {
         "id": "fl_cl_c12_c9",
         "handle": "Terminal"

@@ -76,7 +76,7 @@
         "id": "bh_a_fw",
         "handle": "c21"
       },
-      "color": "Brown",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -94,7 +94,7 @@
         "id": "bh_a_fw",
         "handle": "c22"
       },
-      "color": "Brown",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -112,7 +112,7 @@
         "id": "bh_a_fw",
         "handle": "c23"
       },
-      "color": "Brown",
+      "color": "White",
       "identColors": [
         "Yellow",
         "White",
@@ -130,7 +130,7 @@
         "id": "bh_a_fw",
         "handle": "c24"
       },
-      "color": "Brown",
+      "color": "White",
       "identColors": [
         "Yellow",
         "White",
@@ -148,7 +148,7 @@
         "id": "bh_a_fw",
         "handle": "c9"
       },
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -166,7 +166,7 @@
         "id": "bh_a_fw",
         "handle": "c10"
       },
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -184,7 +184,7 @@
         "id": "bh_a_fw",
         "handle": "c11"
       },
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -202,7 +202,7 @@
         "id": "bh_a_fw",
         "handle": "c12"
       },
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -220,7 +220,7 @@
         "id": "bh_a_fw",
         "handle": "c74"
       },
-      "color": "Blue",
+      "color": "White",
       "identColors": [
         "White",
         "Blue",
@@ -238,7 +238,7 @@
         "id": "bh_a_fw",
         "handle": "c53"
       },
-      "color": "Green",
+      "color": "White",
       "identColors": [
         "White"
       ],
@@ -254,7 +254,7 @@
         "id": "bh_a_fw",
         "handle": "c31"
       },
-      "color": "Green",
+      "color": "White",
       "identColors": [
         "White",
         "Blue"
@@ -321,7 +321,7 @@
         "id": "bh_a_fw",
         "handle": "c58"
       },
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Blue",
@@ -339,7 +339,7 @@
         "id": "bh_a_fw",
         "handle": "c70"
       },
-      "color": "Yellow",
+      "color": "White",
       "identColors": [
         "Blue",
         "Yellow",
@@ -357,7 +357,7 @@
         "id": "bh_a_fw",
         "handle": "c33"
       },
-      "color": "Yellow",
+      "color": "White",
       "identColors": [
         "White",
         "White",
@@ -375,7 +375,7 @@
         "id": "bh_a_fw",
         "handle": "c84"
       },
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -394,7 +394,7 @@
         "id": "sp_trig2",
         "handle": "Splice"
       },
-      "color": "Blue",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow"
@@ -441,7 +441,7 @@
         "id": "bh_a_fw",
         "handle": "c64"
       },
-      "color": "Blue",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow"
@@ -458,7 +458,7 @@
         "id": "sp_trig2",
         "handle": "Splice"
       },
-      "color": "Blue",
+      "color": "White",
       "identColors": [
         "Yellow",
         "Yellow"
@@ -476,7 +476,6 @@
         "handle": "Left"
       },
       "color": "Orange",
-      "stripeColor": "White",
       "identColors": [
         "Yellow",
         "Yellow"
@@ -510,7 +509,6 @@
         "handle": "a6"
       },
       "color": "Orange",
-      "stripeColor": "White",
       "identColors": [
         "Yellow",
         "Blue",
@@ -529,7 +527,6 @@
         "handle": "c63"
       },
       "color": "Orange",
-      "stripeColor": "White",
       "identColors": [
         "Yellow",
         "Blue",
@@ -782,8 +779,7 @@
         "id": "sp_gndout",
         "handle": "Splice"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -801,8 +797,7 @@
         "id": "bus_gnd_bha_p",
         "handle": "c1"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -850,8 +845,7 @@
         "id": "bh_a_fw",
         "handle": "c34"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -869,8 +863,7 @@
         "id": "bh_a_fw",
         "handle": "c75"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -888,8 +881,7 @@
         "id": "bh_a_fw",
         "handle": "c65"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -907,8 +899,7 @@
         "id": "bh_a_fw",
         "handle": "c56"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -926,8 +917,7 @@
         "id": "bh_a_fw",
         "handle": "c18"
       },
-      "color": "Black",
-      "stripeColor": "White",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Yellow",
@@ -1369,7 +1359,7 @@
         "id": "ecu_a",
         "handle": "a20"
       },
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "White",
         "White"
@@ -1437,7 +1427,7 @@
         "id": "bh_a_fw",
         "handle": "c85"
       },
-      "color": "Violet",
+      "color": "White",
       "identColors": [
         "Blue",
         "Blue",
@@ -1455,7 +1445,7 @@
         "id": "fl_acamp_act",
         "handle": "Terminal"
       },
-      "color": "Gray",
+      "color": "White",
       "identColors": [
         "White",
         "Yellow",
@@ -1474,7 +1464,6 @@
         "handle": "Splice"
       },
       "color": "Yellow",
-      "stripeColor": "Red",
       "identColors": [
         "Yellow",
         "Blue"
@@ -1492,7 +1481,6 @@
         "handle": "Splice"
       },
       "color": "Yellow",
-      "stripeColor": "Red",
       "identColors": [
         "Yellow",
         "Blue"
@@ -1509,8 +1497,7 @@
         "id": "br_w_acc86",
         "handle": "Terminal"
       },
-      "color": "Yellow",
-      "stripeColor": "Red",
+      "color": "Red",
       "identColors": [
         "Yellow",
         "Blue"
@@ -1527,7 +1514,7 @@
         "id": "d_ig2_wake",
         "handle": "Left"
       },
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "White",
         "Yellow",

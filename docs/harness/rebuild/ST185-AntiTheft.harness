@@ -85,7 +85,7 @@
     },
     {
       "id": "w_at_ig",
-      "color": "Gray",
+      "color": "Red",
       "partId": "m16_20_8",
       "source": {
         "id": "sp_ig",
@@ -103,7 +103,7 @@
     },
     {
       "id": "w_at_siren",
-      "color": "Brown",
+      "color": "Red",
       "partId": "m16_20_1",
       "source": {
         "id": "alarm",
@@ -136,7 +136,7 @@
     },
     {
       "id": "w_at_door",
-      "color": "Green",
+      "color": "Yellow",
       "partId": "m16_20_5",
       "source": {
         "id": "sp_door",
@@ -153,7 +153,7 @@
     },
     {
       "id": "w_at_hood",
-      "color": "Green",
+      "color": "Yellow",
       "partId": "m16_20_5",
       "source": {
         "id": "sp_hood",
@@ -170,7 +170,7 @@
     },
     {
       "id": "w_at_trunk",
-      "color": "Green",
+      "color": "Yellow",
       "partId": "m16_20_5",
       "source": {
         "id": "sp_trunk",
@@ -187,7 +187,7 @@
     },
     {
       "id": "w_at_led",
-      "color": "Orange",
+      "color": "Red",
       "partId": "m16_20_3",
       "source": {
         "id": "alarm",
@@ -203,7 +203,7 @@
     },
     {
       "id": "w_at_valet",
-      "color": "White",
+      "color": "Yellow",
       "partId": "m16_20_9",
       "source": {
         "id": "alarm",
@@ -219,7 +219,7 @@
     },
     {
       "id": "w_at_shk_sig",
-      "color": "Blue",
+      "color": "White",
       "partId": "m16_20_6",
       "source": {
         "id": "shock",
@@ -339,7 +339,7 @@
     },
     {
       "id": "w_at_immob2",
-      "color": "Violet",
+      "color": "White",
       "partId": "m16_20_7",
       "source": {
         "id": "alarm",
@@ -375,7 +375,7 @@
     },
     {
       "id": "w_at_ig_tie",
-      "color": "Gray",
+      "color": "Red",
       "partId": "m16_20_8",
       "source": {
         "id": "t_at_ig",
@@ -393,7 +393,7 @@
     },
     {
       "id": "w_at_door_tie",
-      "color": "Green",
+      "color": "Yellow",
       "partId": "m16_20_5",
       "source": {
         "id": "t_at_door",
@@ -411,7 +411,7 @@
     },
     {
       "id": "w_at_hood_tie",
-      "color": "Green",
+      "color": "Yellow",
       "partId": "m16_20_5",
       "source": {
         "id": "t_at_hood",
@@ -429,7 +429,7 @@
     },
     {
       "id": "w_at_trunk_tie",
-      "color": "Green",
+      "color": "Yellow",
       "partId": "m16_20_5",
       "source": {
         "id": "t_at_trunk",

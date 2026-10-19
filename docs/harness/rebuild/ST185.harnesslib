@@ -746,6 +746,72 @@
         "value": 12,
         "unit": "AWG"
       }
+    },
+    {
+      "id": "m16_6_2",
+      "partNumber": "M22759/16-6-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 6 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 6,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_10_9",
+      "partNumber": "M22759/16-10-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_14_4",
+      "partNumber": "M22759/16-14-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 14 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 14,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_4",
+      "partNumber": "M22759/16-16-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_6",
+      "partNumber": "M22759/16-18-6",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Blue",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_4",
+      "partNumber": "M22759/16-18-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
     }
   ],
   "cableParts": [

@@ -67,7 +67,7 @@
   "wires": [
     {
       "id": "w_an2",
-      "color": "White",
+      "color": "Yellow",
       "identColors": [
         "Blue"
       ],
@@ -83,7 +83,7 @@
     },
     {
       "id": "w_sw2",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue"
       ],
@@ -99,7 +99,7 @@
     },
     {
       "id": "w_cru_gnd",
-      "color": "Black",
+      "color": "Blue",
       "identColors": [
         "Yellow",
         "Blue",
@@ -117,7 +117,7 @@
     },
     {
       "id": "w_sw5",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Yellow",
         "Yellow"
@@ -134,7 +134,7 @@
     },
     {
       "id": "w_sw6",
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "White"
@@ -147,12 +147,11 @@
         "id": "opto8",
         "handle": "i1"
       },
-      "partId": "m16_16_59",
-      "stripeColor": "White"
+      "partId": "m16_16_59"
     },
     {
       "id": "w_cru_sig",
-      "color": "White",
+      "color": "Yellow",
       "identColors": [
         "Blue"
       ],
@@ -185,7 +184,7 @@
     },
     {
       "id": "w_cru_ladder_out",
-      "color": "White",
+      "color": "Yellow",
       "identColors": [
         "Blue"
       ],
@@ -245,12 +244,11 @@
         "id": "opto8",
         "handle": "i2"
       },
-      "color": "Red",
+      "color": "Yellow",
       "identColors": [
         "White"
       ],
-      "partId": "m16_16_20",
-      "stripeColor": "Black"
+      "partId": "m16_16_20"
     },
     {
       "id": "w_oil_k_csb",
@@ -315,7 +313,7 @@
         "id": "csb3io",
         "handle": "c21"
       },
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "Blue",
         "White"
@@ -332,7 +330,7 @@
         "id": "csb3io",
         "handle": "c22"
       },
-      "color": "Green",
+      "color": "Yellow",
       "identColors": [
         "White"
       ],

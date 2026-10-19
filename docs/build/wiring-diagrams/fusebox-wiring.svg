@@ -216,7 +216,7 @@
 <polyline points="154.00,163.00 190.00,163.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,163.00 117.00,163.00 117.00,301.00 204.00,301.00 204.00,311.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,163.00 117.00,163.00 117.00,301.00 204.00,301.00 204.00,311.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="122.00,163.00 117.00,163.00 117.00,301.00 204.00,301.00 204.00,311.00" fill="none" stroke="#1b1b1b" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="122.00,163.00 117.00,163.00 117.00,301.00 204.00,301.00 204.00,311.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="154.00,204.80 159.00,204.80 159.00,305.00 182.00,305.00 182.00,311.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="154.00,204.80 159.00,204.80 159.00,305.00 182.00,305.00 182.00,311.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="154.00,204.80 159.00,204.80 159.00,305.00 182.00,305.00 182.00,311.00" fill="none" stroke="#1b1b1b" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -225,7 +225,7 @@
 <polyline points="122.00,187.20 98.00,187.20" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,196.00 98.00,196.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,196.00 98.00,196.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="122.00,196.00 98.00,196.00" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="122.00,196.00 98.00,196.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,204.80 98.00,204.80" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,204.80 98.00,204.80" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,204.80 98.00,204.80" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -255,7 +255,7 @@
 <polyline points="122.00,121.20 98.00,121.20" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,130.00 98.00,130.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,130.00 98.00,130.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="122.00,130.00 98.00,130.00" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="122.00,130.00 98.00,130.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,138.80 98.00,138.80" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,138.80 98.00,138.80" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,138.80 98.00,138.80" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -270,13 +270,13 @@
 <polyline points="264.00,64.00 312.00,64.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,97.00 312.00,97.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,97.00 312.00,97.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="264.00,97.00 312.00,97.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="264.00,97.00 312.00,97.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,130.00 312.00,130.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,130.00 312.00,130.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="264.00,130.00 312.00,130.00" fill="none" stroke="#8b5a2b" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="264.00,130.00 312.00,130.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,163.00 312.00,163.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,163.00 312.00,163.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="264.00,163.00 312.00,163.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="264.00,163.00 312.00,163.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,196.00 312.00,196.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,196.00 312.00,196.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="264.00,196.00 312.00,196.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -285,7 +285,7 @@
 <polyline points="186.00,262.00 98.00,262.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="218.00,262.00 312.00,262.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="218.00,262.00 312.00,262.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="218.00,262.00 312.00,262.00" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="218.00,262.00 312.00,262.00" fill="none" stroke="#f2c200" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="266.00,282.50 271.00,282.50 271.00,272.00 312.00,272.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="266.00,282.50 271.00,282.50 271.00,272.00 312.00,272.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="266.00,282.50 271.00,282.50 271.00,272.00 312.00,272.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -391,31 +391,31 @@
 <polyline points="176.00,576.60 98.00,576.60" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,645.50 312.00,645.50" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,645.50 312.00,645.50" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="248.00,645.50 312.00,645.50" fill="none" stroke="#8a8a8a" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="248.00,645.50 312.00,645.50" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,574.80 312.00,574.80" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,574.80 312.00,574.80" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,574.80 312.00,574.80" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,669.50 312.00,669.50" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,669.50 312.00,669.50" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="248.00,669.50 312.00,669.50" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="248.00,669.50 312.00,669.50" fill="none" stroke="#f2c200" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,660.70 312.00,660.70" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="248.00,660.70 312.00,660.70" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="248.00,660.70 312.00,660.70" fill="none" stroke="#2e9d4f" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="248.00,660.70 312.00,660.70" fill="none" stroke="#f2c200" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,428.60 98.00,428.60" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,428.60 98.00,428.60" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="110.00,428.60 98.00,428.60" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="110.00,428.60 98.00,428.60" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,437.40 98.00,437.40" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,437.40 98.00,437.40" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,437.40 98.00,437.40" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,463.60 98.00,463.60" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,463.60 98.00,463.60" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="110.00,463.60 98.00,463.60" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="110.00,463.60 98.00,463.60" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,472.40 98.00,472.40" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,472.40 98.00,472.40" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,472.40 98.00,472.40" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,495.00 98.00,495.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,495.00 98.00,495.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="110.00,495.00 98.00,495.00" fill="none" stroke="#8a8a8a" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="110.00,495.00 98.00,495.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,503.80 98.00,503.80" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,503.80 98.00,503.80" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="110.00,503.80 98.00,503.80" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -436,7 +436,7 @@
 <polyline points="304.00,458.40 312.00,458.40" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,467.20 312.00,467.20" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,467.20 312.00,467.20" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="304.00,467.20 312.00,467.20" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="304.00,467.20 312.00,467.20" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,476.00 312.00,476.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,476.00 312.00,476.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,476.00 312.00,476.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -445,16 +445,16 @@
 <polyline points="304.00,484.80 312.00,484.80" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,503.80 312.00,503.80" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,503.80 312.00,503.80" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="304.00,503.80 312.00,503.80" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="304.00,503.80 312.00,503.80" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,512.60 312.00,512.60" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,512.60 312.00,512.60" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="304.00,512.60 312.00,512.60" fill="none" stroke="#f2c200" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="304.00,512.60 312.00,512.60" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,521.40 312.00,521.40" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,521.40 312.00,521.40" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,521.40 312.00,521.40" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,541.00 312.00,541.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,541.00 312.00,541.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="304.00,541.00 312.00,541.00" fill="none" stroke="#7b3fa0" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="304.00,541.00 312.00,541.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,549.80 312.00,549.80" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,549.80 312.00,549.80" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,549.80 312.00,549.80" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -472,7 +472,7 @@
 <polyline points="282.00,727.60 312.00,727.60" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="132.00,727.60 98.00,727.60" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="132.00,727.60 98.00,727.60" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="132.00,727.60 98.00,727.60" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="132.00,727.60 98.00,727.60" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,220.20 114.00,220.20 114.00,373.00 218.00,373.00 218.00,503.60" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,220.20 114.00,220.20 114.00,373.00 218.00,373.00 218.00,503.60" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="122.00,220.20 114.00,220.20 114.00,373.00 218.00,373.00 218.00,503.60" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -484,7 +484,7 @@
 <polyline points="264.00,229.00 273.00,229.00 273.00,365.00 206.00,365.00 206.00,397.00" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,421.80 307.00,421.80 307.00,332.00 240.00,332.00 240.00,325.00" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="304.00,421.80 307.00,421.80 307.00,332.00 240.00,332.00 240.00,325.00" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
-<polyline points="304.00,421.80 307.00,421.80 307.00,332.00 240.00,332.00 240.00,325.00" fill="none" stroke="#1b1b1b" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
+<polyline points="304.00,421.80 307.00,421.80 307.00,332.00 240.00,332.00 240.00,325.00" fill="none" stroke="#f8f8f8" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="104.00,784.60 118.00,784.60" fill="none" stroke="#ffffff" stroke-width="2.25" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="104.00,784.60 118.00,784.60" fill="none" stroke="#111" stroke-width="1.10" stroke-linejoin="round" stroke-linecap="butt"/>
 <polyline points="104.00,784.60 118.00,784.60" fill="none" stroke="#c62828" stroke-width="0.65" stroke-linejoin="round" stroke-linecap="butt"/>
@@ -686,7 +686,7 @@
 <text x="107.00" y="707.00" font-size="2.10" text-anchor="start" fill="#334" font-family="Helvetica, Arial, sans-serif">trunk, passenger side between the rear wall and the battery - fuel pump relay and its fuse (rev 7)</text>
 <text x="96.50" y="186.50" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_htr_30_cp | 8 AWG | Red (Yellow)</text>
 <text x="96.50" y="189.10" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Heater relay output splice (4 AWG) - blower motor + and the ACPS fuse</text>
-<text x="96.50" y="194.00" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_htr_85_cp | 18 AWG | Violet (Yellow)</text>
+<text x="96.50" y="194.00" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_htr_85_cp | 18 AWG | White (Yellow)</text>
 <text x="96.50" y="196.60" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM old R/B4 heater relay lead pin 1 (RH kick), L-W - A/C amp HR (EWD 1993</text>
 <text x="96.50" y="199.20" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">p.215)</text>
 <text x="96.50" y="202.80" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_htr_86_cp | 18 AWG | Red (Yellow)</text>
@@ -709,7 +709,7 @@
 <text x="96.50" y="107.70" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; SW12 bus plug DT06-12 (glove box, by LOGIC box) pin 4</text>
 <text x="96.50" y="120.50" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fan2_pwr_bc | 8 AWG | Red (White-Blue)</text>
 <text x="96.50" y="123.10" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Condenser fan plug pin + (loom C, front) - condenser fan +12 V, 8 AWG</text>
-<text x="96.50" y="128.00" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fan285_cp | 18 AWG | Violet (White-Blue)</text>
+<text x="96.50" y="128.00" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fan285_cp | 18 AWG | White (White-Blue)</text>
 <text x="96.50" y="130.60" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug B pin 13 (Link ECU, center dash) - Ign 5 sinks the condenser fan relay</text>
 <text x="96.50" y="133.20" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">coil</text>
 <text x="96.50" y="138.10" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_k_fan2_86_cp | 18 AWG | Red (Blue)</text>
@@ -723,18 +723,18 @@
 <text x="314.00" y="62.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pmu_rtr_cp | 10 AWG | Red (Yellow-Yellow-Yellow)</text>
 <text x="314.00" y="64.60" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM cowl plug IE1 pin 3 (LH kick), W wire - RTR 30A to retract relay R8 (EWD</text>
 <text x="314.00" y="67.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">1993 p.116)</text>
-<text x="314.00" y="96.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_am1_cp | 8 AWG | White (Yellow-Yellow-White)</text>
+<text x="314.00" y="96.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_am1_cp | 8 AWG | Red (Yellow-Yellow-White)</text>
 <text x="314.00" y="98.90" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM cowl plug IE1 pin 10 (LH kick), W wire - AM1 to ignition switch (EWD p.31)</text>
-<text x="314.00" y="128.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_am2_cp | 10 AWG | Brown (Yellow-White-Blue)</text>
+<text x="314.00" y="128.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_am2_cp | 10 AWG | Red (Yellow-White-Blue)</text>
 <text x="314.00" y="130.60" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM cowl plug IE1 pin 17 (LH kick), B-R wire - AM2 to ignition switch (EWD</text>
 <text x="314.00" y="133.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">p.31)</text>
-<text x="314.00" y="162.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_jb1_cp | 6 AWG | White</text>
+<text x="314.00" y="162.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pdb_jb1_cp | 6 AWG | Red</text>
 <text x="314.00" y="164.90" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM J/B 1 plug 1I pin 1 (LH kick), B wire - J/B 1 main B+ (EWD p.18-19)</text>
 <text x="314.00" y="195.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fb_k_eps_30_ac | 8 AWG | Red (Blue-Blue-Blue)</text>
 <text x="314.00" y="197.90" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; MR-S EHPS pump relay (HCR150, glove box, beside the POWER box) pin 30</text>
 <text x="96.50" y="261.30" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_htr_acps | 14 AWG | Red (Yellow)</text>
 <text x="96.50" y="263.90" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Heater relay output splice (4 AWG) - blower motor + and the ACPS fuse</text>
-<text x="314.00" y="260.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acp_1_cp | 18 AWG | Violet (Blue-Yellow-White)</text>
+<text x="314.00" y="260.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acp_1_cp | 18 AWG | Yellow (Blue-Yellow-White)</text>
 <text x="314.00" y="262.60" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; A/C pressure switch A5 pin 1 (loom C, engine bay) - switch +12 V (1990 EWD</text>
 <text x="314.00" y="265.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">p.152)</text>
 <text x="314.00" y="270.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_h1_pdb | 53.5 mm2 | Red</text>
@@ -780,27 +780,27 @@
 <text x="96.50" y="574.60" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_alt_s_cp | 20 AWG | White (White-Blue-Yellow)</text>
 <text x="96.50" y="577.20" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Alternator plug G2 pin 1 (engine bay, via loom C) - S battery sense (EWD 1993</text>
 <text x="96.50" y="579.80" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">p.74-75)</text>
-<text x="314.00" y="643.50" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_at_ig_tie_cp | 20 AWG | Gray (White-Blue-Blue)</text>
+<text x="314.00" y="643.50" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_at_ig_tie_cp | 20 AWG | Red (White-Blue-Blue)</text>
 <text x="314.00" y="646.10" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Alarm ignition splice (AntiTheft loom, center dash) - alarm pin 3 ignition</text>
 <text x="314.00" y="648.70" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">sense</text>
 <text x="314.00" y="574.10" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fb_mrs_en_cp | 20 AWG | Red (Blue-White)</text>
 <text x="314.00" y="576.70" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Bulkhead A pin 42 (DRB102, RH firewall) - EHPS pump logic enable (pump pin C1)</text>
-<text x="314.00" y="668.80" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_start_cp | 20 AWG | Green (Blue-Yellow-Yellow)</text>
+<text x="314.00" y="668.80" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_start_cp | 20 AWG | Yellow (Blue-Yellow-Yellow)</text>
 <text x="314.00" y="671.40" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug B pin 30 (Link ECU, center dash) - DI 7 start request</text>
-<text x="314.00" y="658.70" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_start_in_cp | 20 AWG | Green (Blue-Yellow-Yellow)</text>
+<text x="314.00" y="658.70" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_start_in_cp | 20 AWG | Yellow (Blue-Yellow-Yellow)</text>
 <text x="314.00" y="661.30" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM starter relay socket R/B4 pin 1, B-W wire - ignition ST1 start request (EWD</text>
 <text x="314.00" y="663.90" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">1993 p.66)</text>
-<text x="96.50" y="427.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_hl_85_cp | 18 AWG | Violet (Blue-Yellow-Blue)</text>
+<text x="96.50" y="427.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_hl_85_cp | 18 AWG | White (Blue-Yellow-Blue)</text>
 <text x="96.50" y="430.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Headlight coil splice - HEAD LH and RH relay coils to cowl plug IE1 pin 2</text>
 <text x="96.50" y="435.40" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pmu_hl_cp | 14 AWG | Red (Blue-Blue-Yellow)</text>
 <text x="96.50" y="438.00" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; LH headlight plug H1 pin 3 (loom C, LH front) - headlight LH +12 V (EWD 1993</text>
 <text x="96.50" y="440.60" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">p.116)</text>
-<text x="96.50" y="462.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_hr_85_cp | 18 AWG | Violet (Blue-Yellow-Blue)</text>
+<text x="96.50" y="462.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_hr_85_cp | 18 AWG | White (Blue-Yellow-Blue)</text>
 <text x="96.50" y="465.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Headlight coil splice - HEAD LH and RH relay coils to cowl plug IE1 pin 2</text>
 <text x="96.50" y="470.40" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pmu_hr_cp | 14 AWG | Red (Blue-Blue-White)</text>
 <text x="96.50" y="473.00" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; RH headlight plug H2 pin 3 (loom C, RH front) - headlight RH +12 V (EWD 1993</text>
 <text x="96.50" y="475.60" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">p.116)</text>
-<text x="96.50" y="494.30" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w81_cp | 20 AWG | Gray (White-White)</text>
+<text x="96.50" y="494.30" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w81_cp | 20 AWG | White (White-White)</text>
 <text x="96.50" y="496.90" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug A pin 20 (Link ECU, center dash) - Aux 2 sinks the ETB relay coil</text>
 <text x="96.50" y="503.10" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_k_etb_86_cp | 20 AWG | Red (Blue)</text>
 <text x="96.50" y="505.70" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; SW12 bus plug DT06-12 (glove box, by LOGIC box) pin 5</text>
@@ -815,21 +815,21 @@
 <text x="314.00" y="441.30" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Back-up lamp splice (RearLights loom, rear) - R11 and R12 pin 4 back-up lamps</text>
 <text x="314.00" y="457.70" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_horn_30_cp | 16 AWG | Red (Blue-Blue)</text>
 <text x="314.00" y="460.30" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; HAZ-HORN splice - HZ 15A fuse to the hazard feed and the horn relay</text>
-<text x="314.00" y="466.50" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_horn_85_cp | 18 AWG | Violet (Blue-Blue)</text>
+<text x="314.00" y="466.50" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_horn_85_cp | 18 AWG | White (Blue-Blue)</text>
 <text x="314.00" y="469.10" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; OEM cowl plug IE1 pin 19 (LH kick), G wire - horn switch line (EWD 1993 p.185)</text>
 <text x="314.00" y="475.30" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_horn_86_cp | 16 AWG | Red (Blue-Blue)</text>
 <text x="314.00" y="477.90" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; HAZ-HORN splice - HZ 15A fuse to the hazard feed and the horn relay</text>
 <text x="314.00" y="484.10" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pmu_horn_cp | 14 AWG | Red (Blue-Blue)</text>
 <text x="314.00" y="486.70" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Horn splice (loom C, front) - horn relay output to horns H3 and H4 pin 1</text>
-<text x="314.00" y="501.80" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc_trig_cp | 18 AWG | Violet (Yellow-Blue)</text>
+<text x="314.00" y="501.80" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc_trig_cp | 18 AWG | White (Yellow-Blue)</text>
 <text x="314.00" y="504.40" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug B pin 10 (Link ECU, center dash) - Ign 8 sinks the A/C clutch relay</text>
 <text x="314.00" y="507.00" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">coil</text>
-<text x="314.00" y="510.60" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc86_cp | 18 AWG | Yellow (Yellow-Blue)</text>
+<text x="314.00" y="510.60" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc86_cp | 18 AWG | Red (Yellow-Blue)</text>
 <text x="314.00" y="513.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; A/C pressure switch splice (A-cabin loom) - switch A5 pin 4 output to the</text>
 <text x="314.00" y="515.80" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">clutch relay</text>
 <text x="314.00" y="520.70" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_acc_clutch_cp | 16 AWG | Red (Yellow-Blue)</text>
 <text x="314.00" y="523.30" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; A/C magnet clutch A4 pin 4 (loom C, compressor) - clutch +12 V (1990 EWD p.152)</text>
-<text x="314.00" y="539.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_eps_trig_cp | 18 AWG | Violet (Blue-White)</text>
+<text x="314.00" y="539.00" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_eps_trig_cp | 18 AWG | White (Blue-White)</text>
 <text x="314.00" y="541.60" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU plug B pin 12 (Link ECU, center dash) - Ign 6 sinks the EPS enable relay</text>
 <text x="314.00" y="544.20" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">coil</text>
 <text x="314.00" y="549.10" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_k_eps_en_86_cp | 18 AWG | Red (Blue)</text>
@@ -840,7 +840,7 @@
 <text x="96.50" y="752.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; SW12 splice after LOGIC Bus 2 pin 2 (glove box; CabinPower) - switched 12 V</text>
 <text x="314.00" y="726.90" font-size="2.35" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fp87_h | 10 AWG | Red (White-White-Blue)</text>
 <text x="314.00" y="729.50" font-size="2.15" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Fuel pump plug pin 1 (in the tank; RearFuel) - pump +12 V</text>
-<text x="96.50" y="726.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fp_feed | 10 AWG | Red (White-White-Blue)</text>
+<text x="96.50" y="726.90" font-size="2.35" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_fp_feed | 10 AWG | White (White-White-Blue)</text>
 <text x="96.50" y="729.50" font-size="2.15" text-anchor="end" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; Kill switch pin MAIN 2</text>
 <text x="172.00" y="192.80" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_htr_87_cp</text>
 <text x="172.00" y="194.80" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif">8 AWG Red (Yellow)</text>
@@ -855,7 +855,7 @@
 <text x="172.00" y="159.80" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pwr_87_cp</text>
 <text x="172.00" y="161.80" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif">10 AWG Red (Yellow-Yellow)</text>
 <text x="168.50" y="298.50" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_pwr_85_cp</text>
-<text x="168.50" y="300.50" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif">18 AWG Black (Yellow-Yellow)</text>
+<text x="168.50" y="300.50" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif">18 AWG White (Yellow-Yellow)</text>
 <text x="157.60" y="150.00" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 157.60 150.00)">w_htr_87a_cp</text>
 <text x="161.30" y="150.00" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 161.30 150.00)">14 AWG Black (Yellow)</text>
 <text x="162.00" y="429.10" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_hl_cp</text>
@@ -887,7 +887,7 @@
 <text x="236.00" y="362.40" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_hc_fb</text>
 <text x="236.00" y="364.40" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif">8 AWG Red (White-Blue-White)</text>
 <text x="305.60" y="416.90" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 305.60 416.90)">w_rev_85_cp</text>
-<text x="309.30" y="416.90" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 309.30 416.90)">20 AWG Black (White)</text>
+<text x="309.30" y="416.90" font-size="1.70" text-anchor="middle" fill="#222" font-family="Helvetica, Arial, sans-serif" transform="rotate(-90 309.30 416.90)">20 AWG White (White)</text>
 <text x="104.00" y="779.60" font-size="2.80" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">How to read</text>
 <text x="121.00" y="785.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">one wire, drawn in its insulation colour; the label is "wire id | gauge | colour (ident bands)"</text>
 <text x="104.00" y="790.60" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">A line that crosses another with a gap does not connect to it. A dot is a pin or stud. The brown bar is a copper bus bar / strip.</text>
