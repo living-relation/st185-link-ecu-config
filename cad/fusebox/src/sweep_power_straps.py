@@ -1,5 +1,6 @@
 """R181 insertion sweep of the POWER C-straps (ST185-FB-117) straight down into their wells, after Dan's N36 = A (2026-10-18:
-the lug-end PEM nut moved 3.35 from the bend, so the bottom leg and the well are 3.35 longer). The strap with its 2 PEM nuts comes
+the lug end moved away from the bend, so the bottom leg and the well are longer) and N37 (2026-10-19: lug end = PEM FHS-M5-12 flush
+stud, top end = DIN 934 nut in the printed holder inside the C). The strap with its stud, top nut and holder (it goes in as one) comes
 down from 45 mm above its seat in 1.0 mm steps (0.1 within 6 mm of the hook and of the seat); the rigid base (everything but the
 strap's own snap hook: its arm and the hook head over the lip ends) must never be hit, and the least OUTWARD shift of the hook that
 clears the strap is recorded - it must grow smoothly (no step over 0.25 per 0.1 mm), stay within the hook's design deflection, and be
@@ -41,7 +42,7 @@ def ovl(a, b):
 
 
 straps = [b for o in occ.values() if o.component.name.startswith(P0) for b in o.bRepBodies]
-nuts = [b for o in occ.values() if o.component.name.startswith('Power_Nut_PEM') for b in o.bRepBodies]
+nuts = [b for o in occ.values() if o.component.name.startswith(('Power_Stud_PEM', 'Power_Nut_DIN934', 'Power_NutHolder')) for b in o.bRepBodies]
 out = {}
 for tab in [t for t in rep['strap_tabs'] if t['name'] in names]:
     y = tab['y']
@@ -51,7 +52,7 @@ for tab in [t for t in rep['strap_tabs'] if t['name'] in names]:
     mov = tb.copy(st)
     for n in nuts:
         nb = n.boundingBox
-        if abs((nb.minPoint.y + nb.maxPoint.y) * 5 - y) < 1 and sx0 - 5 < nb.minPoint.x * 10 < sx1 + 5:
+        if abs((nb.minPoint.y + nb.maxPoint.y) * 5 - y) < 1 and sx0 - 5 < (nb.minPoint.x + nb.maxPoint.x) * 5 < sx1 + 5:
             tb.booleanOperation(mov, tb.copy(n), BT.UnionBooleanType)
     a0, a1 = tab['arm']
     out_s = -1.0 if (a0 + a1) / 2 < (sx0 + sx1) / 2 else 1.0           # outward = away from the strap

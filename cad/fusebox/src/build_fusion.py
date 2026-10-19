@@ -1617,10 +1617,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 a['x_lug'] = xo_ + s_ * ST['lug']
                 a['lz'] = ST['z_bl'] - LUG['t']                  # palm underside (LUG_M5 / LUG_6AWG palms are both 2.0)
                 a['g'] = dict(x_tl0=xo_ - s_ * ST['top_in'], x_wi=xo_ + s_ * ST['web'][0], x_wo=xo_ + s_ * ST['web'][1],
-                              x_lip=xo_ + s_ * (ST['web'][1] + ST['lip']), x_bl0=a['x_lug'] - s_ * S.STRAP_PEM['edge'], ro=ST['ri'] + ST['t'])
+                              x_lip=xo_ + s_ * (ST['web'][1] + ST['lip']), x_bl0=a['x_lug'] - s_ * S.STRAP_STUD['edge'], ro=ST['ri'] + ST['t'])
             report['straps'] = dict(z_bl=ST['z_bl'], lug_palm_underside=ST['z_bl'] - LUG['t'], top=(btop - ST['t'], btop), z_d=z_d, z_t=z_t,
                                     numbers=S.strap_numbers({a['name']: (a['amps'], S.AMI_AWG[a['name']]) for a in ami if a['amps']}),
-                                    pem=S.STRAP_PEM['pn'], positions=len(ami))
+                                    stud=S.STRAP_STUD['pn'], top_nut=S.STRAP_TOP_NUT['pn'], positions=len(ami))
         else:
             for a in ami:
                 a['x_lug'] = a['x_out']
@@ -1922,19 +1922,38 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 bo(body, xb(xc_, g['x_wo'] + s_ * 1.0, zn_ - ST['slit'], zt_ + 1, ya_, yb_), 's')
                 ya_, yb_ = sorted((y_ + sy_ * (ST['neck'] / 2 + ST['kerf']), y_ + sy_ * w_ / 2))     # the lip, a saw kerf off the tongue
                 bo(body, xb(xc_, g['x_lip'], zn_, zt_, ya_, yb_), 'u')
-            bo(body, cylz(a['x_out'], y_, zn_ - 1, zt_ + 1, S.STRAP_PEM['hole']), 's')
-            bo(body, cylz(a['x_lug'], y_, zb_ - 1, zb_ + t_ + 1, S.STRAP_PEM['hole']), 's')
+            bo(body, cylz(a['x_out'], y_, zn_ - 1, zt_ + 1, S.STRAP_TOP_NUT['hole_top']), 's')   # N37: clearance hole, the nut is in the holder
+            bo(body, cylz(a['x_lug'], y_, zb_ - 1, zb_ + t_ + 1, S.STRAP_STUD['hole']), 's')      # N37: FHS stud mounting hole
             return body
 
-        def pem_nut(x, y, z_face, down):
-            """PEM CLSS-M5-2: head E x T on the face away from the clamped part (shank flush in the copper, not drawn); M5 bore."""
-            PM = S.STRAP_PEM
-            z0, z1 = (z_face - PM['T'], z_face) if down else (z_face, z_face + PM['T'])
-            return bo(cylz(x, y, z0, z1, PM['E']), cylz(x, y, z0 - 1, z1 + 1, 5.0), 's')
+        def nut_holder(a):
+            """N37 C1: PA12 column inside the C under the top leg - hex pocket for the DIN 934 top nut (flats +-x, nut on the copper),
+            bolt bore below it, a pad against the web below the slit; clear of both R1 bends by bend_clr; inside the bottom-leg footprint."""
+            NH, TN = S.NUT_HOLDER, S.STRAP_TOP_NUT
+            s_, xo_, y_ = a['sgn'], a['x_out'], a['y']
+            zn_, ztop_ = btop - ST['t'], ST['z_bl'] + ST['t']
+            x_bend = xo_ + s_ * (ST['web'][0] - ST['ri'] - NH['bend_clr'])     # stay off the bend radius
+            xo_open = NH['x_open'] if NH['x_open'] is not None else S.STRAP_STUD['edge'] - ST['lug']   # to the bottom-leg end
+            xs = sorted((xo_ - s_ * xo_open, x_bend))
+            col = box(xs[0], y_ - NH['y_half'], ztop_, xs[1], y_ + NH['y_half'], zn_)
+            xw = sorted((xo_ - s_ * xo_open, xo_ + s_ * ST['web'][0]))       # web pad, touching the web inner face
+            bo(col, box(xw[0], y_ - NH['y_half'], NH['web_z'][0], xw[1], y_ + NH['y_half'], NH['web_z'][1]), 'u')
+            bo(col, hexz(xo_, y_, zn_ - TN['m'] - NH['clr'], zn_ + 1, TN['s'] + 2 * NH['clr'], 90), 's')
+            bo(col, cylz(xo_, y_, zn_ - TN['m'] - NH['bore_below'], zn_, NH['bore']), 's')
+            xb_ = sorted((xo_, x_bend + s_ * 1.0))    # the bore runs out through the bend-side face as a slot: no 1.2 sliver beside it (R127)
+            bo(col, box(xb_[0], y_ - NH['bore'] / 2, zn_ - TN['m'] - NH['bore_below'], xb_[1], y_ + NH['bore'] / 2, zn_), 's')
+            return col
         if R7:
             comp(pre + 'Strap_Out_%s_15x3_C' % BM['name'], [strap_body(a) for a in ami], AP['tin'], MAT['cu'], sh)   # edge breaks: a drawing note (R138)
-            comp(pre + 'Nut_PEM_%s' % S.STRAP_PEM['pn'], [pem_nut(a['x_out'], a['y'], btop - ST['t'], True) for a in ami]
-                 + [pem_nut(a['x_lug'], a['y'], ST['z_bl'] + ST['t'], False) for a in ami], AP['al'], MAT['ss'], sh)
+            SD = S.STRAP_STUD                 # N37 C4: flush head in the bottom leg's inside face (in the copper, not drawn), shank down
+            comp(pre + 'Stud_PEM_%s' % SD['pn'], [cylz(a['x_lug'], a['y'], ST['z_bl'] + ST['t'] - SD['L'], ST['z_bl'], SD['d']) for a in ami],
+                 AP['al'], MAT['ss'], sh)
+            comp(pre + 'Nut_DIN934_M5_top', [bo(hexz(a['x_out'], a['y'], btop - ST['t'] - S.STRAP_TOP_NUT['m'], btop - ST['t'], S.STRAP_TOP_NUT['s'], 90),
+                                                cylz(a['x_out'], a['y'], btop - ST['t'] - S.STRAP_TOP_NUT['m'] - 1, btop - ST['t'] + 1, 5.0), 's')
+                                             for a in ami], AP['al'], MAT['ss'], sh)
+            hl_ = [nut_holder(a) for a in ami]          # one printed file (the first station's holder); the other 13 are copies of it in the assembly
+            comp(pre + 'NutHolder_PA12_printed', hl_[0], AP['pa12'], MAT['pa'], sh)
+            comp(pre + 'NutHolder_PA12_copies', hl_[1:], AP['pa12'], MAT['pa'], sh)
         edge_break(comp(pre + ('Bar_Power_%s_25x6p35%s' % (BM['name'], '_POS_bus_L226' if R7 else '')), bar, AP['tin'], MAT['cu'], sh))
         if R7:            # NEG bar: same 1" x 1/4" stock on flat, M8 holes
             nbar = box(NB['x0'], NB['yc'] - B_['w'] / 2, bz0, NB['x1'], NB['yc'] + B_['w'] / 2, btop)
@@ -1949,14 +1968,20 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                                                                       for a in ami], AP['brass'], MAT['brass'], sh)       # rev 6 (B5): one 40 mm standoff, both rows
             comp(pre + 'SetScrew_ISO4026_A2', [cylz(a['x_out'], a['y'], pz0 - S.SETSCREW['in_so'], pz0 - S.SETSCREW['in_so'] + S.SETSCREW['l'], 5.0) for a in ami],
                  AP['al'], MAT['ss'], sh)
-        else:             # R155: M5 x 10 down through the AMI ear into the top PEM nut (fused positions)
+        else:             # R155 / N37: M5 x 10 down through the AMI ear and the strap into the DIN 934 nut in its holder (fused positions)
             comp(pre + 'EarBolt_ISO4017_A2', [union_all([hexz(a['x_out'], a['y'], z_ear, z_ear + HD[5]['k'], HD[5]['af']),
                                                          cylz(a['x_out'], a['y'], z_ear - 10.0, z_ear, 5.0)]) for a in ami if a['amps']], AP['al'], MAT['ss'], sh)
         comp(pre + 'BarBolt_ISO4017_A2', [union_all([hexz(bx_, by_, bz0 - HD[m]['k'], bz0, HD[m]['af']), cylz(bx_, by_, bz0, bz0 + S.BOLT_L[m], float(m))])
                                           for (bx_, by_, m) in bar_bolts], AP['al'], MAT['ss'], sh)
-        comp(pre + 'LugBolt_ISO4017_A2', [union_all([hexz(a['x_lug'], a['y'], a['lz'] - HD[5]['k'], a['lz'], HD[5]['af']),
-                                                     cylz(a['x_lug'], a['y'], a['lz'], a['lz'] + 10.0, 5.0)])
-                                          for a in ami if a['amps']], AP['al'], MAT['ss'], sh)      # M5 x 10 both rows (R155: up into the bottom PEM nut)
+        if not R7:
+            comp(pre + 'LugBolt_ISO4017_A2', [union_all([hexz(a['x_lug'], a['y'], a['lz'] - HD[5]['k'], a['lz'], HD[5]['af']),
+                                                         cylz(a['x_lug'], a['y'], a['lz'], a['lz'] + 10.0, 5.0)])
+                                              for a in ami if a['amps']], AP['al'], MAT['ss'], sh)
+        else:             # N37 C4: the lug goes on the FHS stud from below, DIN 6923 flange nut under the palm (the flange is the washer)
+            comp(pre + 'LugNut_DIN6923_M5', [bo(union_all([hexz(a['x_lug'], a['y'], a['lz'] - S.M5_NUT['h'], a['lz'] - 1.2, S.M5_NUT['af']),
+                                                           cylz(a['x_lug'], a['y'], a['lz'] - 1.2, a['lz'], S.M5_FLANGE_D)]),
+                                                 cylz(a['x_lug'], a['y'], a['lz'] - S.M5_NUT['h'] - 1, a['lz'] + 1, 5.0), 's') for a in ami if a['amps']],
+                 AP['al'], MAT['ss'], sh)
         nuts = [hexz(a['x_in'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
         if not R7:
             nuts += [hexz(a['x_out'], a['y'], z_ear, z_ear + S.M5_NUT['h'], S.M5_NUT['af']) for a in ami]
@@ -2882,12 +2907,12 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         'battrelay_bar_to_pad_mm': dist(bodies('BattRelay_Bar_')[0], bodies('BattRelay_Pad_')[0]),
         'battrelay_relay_lug_to_lug_mm': dist(rb_lugs[2], rb_lugs[3]),
         'pan_to_nearest_live_power_mm': min(dist(bodies('Power_Pan_')[0], b) for b in bodies('Power_LugBolt_') + bodies('Power_Lug_') + so
-                                            + bodies('Power_Strap_') + bodies('Power_Nut_PEM_')),
+                                            + bodies('Power_Strap_') + bodies('Power_Stud_PEM_') + bodies('Power_LugNut_')),
     }
     if so:
         report['live_clearance']['standoff_to_standoff_min_mm'] = min(dist(s1, s2) for i_, s1 in enumerate(so) for s2 in so[i_ + 1:])
     else:   # R155: every live part of one strap station (strap, PEM nuts, ear / lug bolts, lug) against the next station's (Dan's 3 mm)
-        st_live = bodies('Power_Strap_') + bodies('Power_Nut_PEM_') + bodies('Power_EarBolt_') + bodies('Power_LugBolt_') + lug_bs
+        st_live = bodies('Power_Strap_') + bodies('Power_Stud_PEM_') + bodies('Power_Nut_DIN934') + bodies('Power_EarBolt_') + bodies('Power_LugNut_') + lug_bs
         yc_ = lambda b_: (b_.boundingBox.minPoint.y + b_.boundingBox.maxPoint.y) * 5
         xs_ = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5 > (S.PLACE['POWER'][0] + S.POWER['x_bar'])
         stn = lambda b_: (xs_(b_), int(round((yc_(b_) - S.PLACE['POWER'][1] - S.AMI_Y0) / S.AMI_PITCH)))

@@ -108,13 +108,13 @@ PA12 = dict(E=1700.0, sy=48.0, nu=0.39)
 # (web inboard of the output stud, lug pointing -x to its relay saddle). Concept: _research/snapshots/2026-10-17-N14/B (concept B), with
 # the edge distances below fixed for the real nuts.
 #   stock: 3 x 15 tinned C110 (STOCK['pad'], Bopaodao B09Z7NBLDK, the old pad stock); ri inside bend radius (annealed C110 <= 1 t)
-#   x offsets from the output stud x_out, + = the web side: web 5.25 .. 8.25, lug bolt -2.85 (Dan N36 = A, 2026-10-18: the bottom PEM is
-#   7.1 from the start of the inside bend - PEM Tech Sheet C/L To Edge rev 4/19: a nut near a bend sits outside the bend radius on flat
+#   x offsets from the output stud x_out, + = the web side: web 5.25 .. 8.25, lug stud -2.95 (N37 / C4 2026-10-19: the PEM FHS-M5-12 flush stud
+#   needs 7.2 to the bend start and to the leg end, STRAP_STUD; N36 = A had put the CLSS nut at -2.85, 7.1 from the start of the inside bend - PEM Tech Sheet C/L To Edge rev 4/19: a nut near a bend sits outside the bend radius on flat
 #   sheet, Min. Dist. Hole C/L to Edge from the bend; was 0.5, its head ran 0.57 into the R1 bend - and 7.1 from the bottom leg end); ledge: the printed ledge runs on this far past the lip ends to the hook slot (the ledge band is then
 #   3.6 thick: R127 >= 3 for the DOWN stop, which on the OUT row stands over the belly-pan groove)
 #   z: top leg = bar_top - t .. bar_top (the old pad), bottom leg z_bl .. z_bl + t, lug palm top = z_bl
-STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), lip=2.0, ledge=1.9, neck=7.0, slit=6.0, z_bl=14.0, lug=-2.85,
-             clr=0.3, trim=0.6, kerf=0.5, k=0.33)
+STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), lip=2.0, ledge=1.9, neck=7.0, slit=6.0, z_bl=14.0, lug=-2.95,
+             clr=0.3, trim=0.0, kerf=0.5, k=0.33)
 # w_low: below the top leg (web and bottom leg) the strap is milled / filed to 14.2 (= 2 x the PEM edge 7.1), so the PA12 wall between two
 # neighbouring wells is 18 - 14.2 - 2 x 0.3 = 3.2 (R127 >= 3; at 15 wide it was 2.4); the top leg, the lips and the AMI ear face stay 15.
 # trim: the top leg is cut 0.6 long, its top PEM pressed, then trimmed (see STRAP_PEM 'top_edge'). kerf: the saw cut either side of the
@@ -132,6 +132,24 @@ STRAP = dict(t=3.0, w=15.0, w_low=14.2, ri=1.0, top_in=6.5, web=(5.25, 8.25), li
 # a sign-up form, so the FB-117 model nut is built from this table, R163); D1 = M5 internal thread minor diameter (ISO 965-1).
 STRAP_PEM = dict(pn='CLSS-M5-2', maker='PennEngineering (PEM)', hole=6.35, E=8.64, T=2.0, A=1.38, C=6.33, D1=4.134, edge=7.1, top_edge=6.5,
                  url='https://www.pemnet.com/products/product-finder/clss-m5-2/', copper_torque_out_Nm=5.3, copper_pushout_N=1080)
+# STRAP_PEM is history (R155 - N36): Dan N37 (2026-10-19) - "flush pem stud ... for both ends", then "if the stud does not work I will choose C1".
+# Lug end = PEM FHS-M5-12 flush-head stud (passes every PEM check below); top (AMI ear) end = C1, a plain DIN 934 nut in a printed holder
+# inside the C (x_open None = to the bottom-leg end, so the well's end wall leaves it 0.3 of travel), because the stud there is 4.25 from its bend and 6.5 from the trimmed end, under PEM's 7.2 (R198).
+# STRAP_STUD: PEM Bulletin FH (damlite.pemnet.com/FHS-M5-10_pdf_1.pdf, read 2026-10-19) p. FH-5: FHS = 400-series stainless, for sheet
+# HRB 70 / HB 125 or less; M5 min sheet 1.0, hole 5.0 +0.08, head H 6.5 +-0.4 (flush), unthreaded S 2.7 max, max hole in attached parts 5.6,
+# min hole C/L to edge 7.2; lengths 8 - 35. p. FH-18: stud through the hole from the punch side into the anvil, squeeze the head flush.
+# p. FH-30: M5 FHS rec. nut torque 3.2 N.m (1.5 steel) / 2.5 (1.6 aluminium), torque-out 6.3 / 3.5 N.m; no copper figure (PEM copper sheet:
+# HFE only). L 12 = 3.0 copper + 2.0 lug palm + 5.0 flange nut + 2.0 (2.5 pitches) past it; tip 1.0 over the belly-pan floor (z 4.0).
+STRAP_STUD = dict(pn='FHS-M5-12', maker='PennEngineering (PEM)', hole=5.0, H=6.5, L=12.0, S=2.7, attach_max=5.6, edge=7.2, d=5.0,
+                  url='https://www.pemnet.com/products/product-finder/fhs-m5-12/', rec_torque_Nm=3.2, torque_out_al_Nm=3.5, torque_out_steel_Nm=6.3)
+# C1 top nut: RS PRO M5 plain stainless hex nut DIN 934, RS 527-268 (nz.rs-online.com page read 2026-10-19: M5, stainless, plain, height 4 mm,
+# DIN 934; grade not stated). DIN 934 M5: s 8.0, e 8.79 min, m 4.0. Flats face +-x so the nut stays 0.25 clear of the R1 top bend (corners in y).
+STRAP_TOP_NUT = dict(pn='RS 527-268', std='DIN 934', s=8.0, e=8.79, m=4.0, hole_top=5.5,
+                     url='https://nz.rs-online.com/web/p/hex-nuts/0527268')
+# C1 holder (PA12, one per strap): a column between the legs inside the C, top face against the top leg underside (the nut seats in a hex
+# pocket there, clr per side, and bears on the copper), bottom face on the bottom leg, a web pad against the web below the slit; it stays
+# inside the bottom-leg footprint so it drops through the well with the strap, and the well's end wall keeps it in once the strap is home.
+NUT_HOLDER = dict(x_open=None, bend_clr=0.3, y_half=6.8, clr=0.15, bore=5.5, bore_below=2.8, web_z=(20.0, 44.0))   # bore: the M5 x 10 ear bolt tip is at z 45.3, 0.75 over the bore floor; it ends over the web pad
 # Bolt torque: AMI sheet 4 N.m max on the ear; the lug bolt the same. A nut only reacts the THREAD share of the bolt torque (the head share
 # goes into the ear / palm): K = 0.2, mu 0.15 (thread and head), M5 d2 4.48, head bearing radius 3.3 -> preload F = T / (K d) and
 # T_thread = F d2 / 2 (p / (pi d2) + 1.155 mu). See strap_numbers().
@@ -166,13 +184,13 @@ def strap_blank():
     ba = math.pi / 2 * (st['ri'] + st['k'] * st['t'])
     top = (st['web'][1] - ro) + st['top_in']                       # top-leg end -> first bend tangent
     web = (POWER['bar_top'] - ro) - (st['z_bl'] + ro)               # web between the bend tangents
-    bot = (st['web'][1] - ro) - (st['lug'] - STRAP_PEM['edge'])     # second bend tangent -> bottom-leg end
+    bot = (st['web'][1] - ro) - (st['lug'] - STRAP_STUD['edge'])    # second bend tangent -> bottom-leg end (stud 7.2 from it)
     L = top + ba + web + ba + bot
     lip_end = top + (st['web'][1] + st['lip'] - (st['web'][1] - ro))           # the lips carry on flat past the first bend start
     neck_end = top + ba + (st['slit'] - (ro - st['t']))                          # the tongue is neck wide this far (model: slit under the leg)
     return dict(w=st['w'], w_low=st['w_low'], low_from=round(neck_end, 2), t=st['t'], length=round(L, 2), cut_length=round(L + st['trim'], 2), bend_allowance=round(ba, 3), ri=st['ri'], k=st['k'],
                 straights=(round(top, 2), round(web, 2), round(bot, 2)), bend_centres=(round(top + ba / 2, 2), round(top + ba + web + ba / 2, 2)),
-                pem_top=st['top_in'], pem_bottom=round(L - STRAP_PEM['edge'], 2), pem_hole=STRAP_PEM['hole'],
+                pem_top=st['top_in'], pem_bottom=round(L - STRAP_STUD['edge'], 2), hole_top=STRAP_TOP_NUT['hole_top'], hole_lug=STRAP_STUD['hole'],
                 kerf=dict(y=(st['neck'] / 2, st['neck'] / 2 + st['kerf']), x=(round(top, 2), round(lip_end, 2))),
                 notch=dict(y=(st['neck'] / 2, st['w'] / 2), x=(round(lip_end, 2), round(neck_end, 2))))
 
@@ -216,11 +234,11 @@ def strap_numbers(amps_awg, t_hot=85.0):
                             old='ear -> pad, pad -> brass, brass -> lug (3) + the set-screw thread in parallel'),
                 per_position=rows,
                 bolt=dict(T_Nm=B['T'], preload_N=round(F), thread_share_Nm=round(t_thread, 2), head_share_Nm=round(t_head, 2),
-                          nut_reaction_Nm=round(t_thread, 2), pem_torque_out_Nm=STRAP_PEM['copper_torque_out_Nm'],
-                          margin=round(STRAP_PEM['copper_torque_out_Nm'] / t_thread, 1),
-                          margin_trimmed_top=round(0.85 * STRAP_PEM['copper_torque_out_Nm'] / t_thread, 1),
-                          note='torque-out = PEM copper data for the steel S type (SS-M5-2, same M5 / code 2 envelope); the CLSS copper figure is not '
-                               'published - first-article check on the drawing'))
+                          nut_reaction_Nm=round(t_thread, 2), stud_torque_out_al_Nm=STRAP_STUD['torque_out_al_Nm'],
+                          margin_vs_aluminium=round(STRAP_STUD['torque_out_al_Nm'] / t_thread, 1),
+                          note='lug end: the FHS stud reacts the thread share of the nut torque; PEM publishes no FH / FHS copper figure, so the margin '
+                               'is against its 1.6 mm 5052 aluminium torque-out (softer than C110) - first-article check on the drawing. Top end: the '
+                               'DIN 934 nut is held by the printed holder, the bolt head share goes into the ear'))
 # Bar hold-down tabs (Dan N5: "add printed tabs that hold the bars down"): a snap arm cut free of the deck by a slot all round (`slot`), `t` thick,
 # `w` wide, rooted `root` under the deck top; its hook reaches `over` past the bar edge (inside the 0.3 edge break) with a 45 deg lead-in, the
 # underside square. The bar pushes the arm out by over + CLR on the way in. Battery block: the bar sits on its pedestal, so the arm stands
@@ -397,6 +415,7 @@ LUG_M5 = dict(b=12.0, l=22.0, tip=6.0, t=2.0, d4=7.0)
 LUG_M8 = dict(b=20.0, l=47.0, tip=10.0, t=3.0, d4=14.0)
 IN_STUD_Y = 22.0     # 1/0 input stud on the POWER bar
 M5_NUT = dict(af=8.0, h=5.0)    # DIN 6923 M5 flange nut, m = 5.0 (F06: was drawn 4.0)
+M5_FLANGE_D = 11.8             # DIN 6923 M5 flange diameter dc max (N37: the lug-end nut, its flange is the washer)
 BOLT_L = {5: 16.0, 8: 25.0}     # bar bolts up through the bar from their printed hex pocket: M5 x 16, M8 x 25 (parts lists)
 M8_NUT = dict(af=13.0, h=6.5)
 

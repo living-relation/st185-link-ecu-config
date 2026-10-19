@@ -45,7 +45,7 @@ SHELLS = ('_Cover_', '_Pan_', '_Retainer_')
 FUSEBOX = 'cad/fusebox/rev7'
 PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
-         'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed']
+         'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']
 
 
 def section(m, axis, c):

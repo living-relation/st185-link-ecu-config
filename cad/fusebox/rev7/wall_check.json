@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 834.1,
+   "volume_cm3": 833.5,
    "bounds": [
     128.0,
     341.8,
@@ -221,6 +221,24 @@
     "cover snap tongue": 4
    },
    "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "Power_NutHolder_PA12_printed": {
+   "allowed": [],
+   "attach_checked": true,
+   "volume_cm3": 6.7,
+   "bounds": [
+    247.0,
+    262.4,
+    36.2,
+    49.8,
+    17.0,
+    51.5
+   ],
+   "exempt": {},
+   "attach_skin": 1,
    "walls": [],
    "attach": [],
    "flagged": 0

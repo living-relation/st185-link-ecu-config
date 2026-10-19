@@ -453,10 +453,13 @@
    "reason": "R196 model-only PR: body E (LP-16 double-D cutouts); drawing regenerated in the markup 2026-10-18 pass"
   },
   "ST185-FB-117": {
-   "reason": "R196 / R197 model-only PRs: PEM nuts + stages model (B), lug PEM clear of the bend (C, N36 = A); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
+   "reason": "R196 / R197 model-only PRs: stud + top-nut holder (D, N37); drawing (new views + ELI5 notes) in the markup 2026-10-18 pass"
   },
   "ST185-FB-100P": {
-   "reason": "R196 model-only PRs: FB-117 strap B / C, FB-101 base W, FB-102 pan H; drawing regenerated in the markup 2026-10-18 pass"
+   "reason": "R196 model-only PRs: FB-117 D, FB-101 X, holder + stud + nuts in the BOM (N37); drawing in the markup 2026-10-18 pass"
+  },
+  "ST185-FB-101": {
+   "reason": "R196 model-only PRs: wells for the longer strap leg (W N36, X N37); drawing in the markup 2026-10-18 pass"
   }
  }
 }
