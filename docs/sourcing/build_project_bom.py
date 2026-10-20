@@ -4,8 +4,8 @@
   python docs/sourcing/build_project_bom.py --check    fail if the committed CSV / xlsx is stale (check_all.py)
 
 Inputs, all in git: docs/harness/MASTER-wirelist.csv (every housing, accessory, contact, plug, lug, cable, wire and ident
-band; R221), the drawing sets' layouts (DR-25 tubing) and, for harnesses not drawn yet, their frozen harness.design files
-(coverings, boots, labels), cad/fusebox/fusebox-parts-*.csv, docs/enclosures/*-bom.csv,
+band; R221), the drawing sets' layouts (DR-25 tubing), docs/sourcing/harness-parts.csv (maker and description of each
+harness part; fixed_qty = boots and labels counted from the retired harness.design files), cad/fusebox/fusebox-parts-*.csv, docs/enclosures/*-bom.csv,
 docs/sourcing/mech-extra.csv (machined parts / pump), docs/sourcing/te-on-hand-bom.csv (on hand),
 docs/sourcing/bom-links.csv (hand-kept buy links, prices, link status, te_sample = Y when te.com shows "Get free samples" for that exact TE PN; sample_other = "<maker> <PN>" of a validated drop-in equivalent whose maker offers free samples; both feed the "Free sample" column).
 Nothing is typed in twice: edit the source, rerun. A line with no validated link goes on the To do sheet."""
@@ -13,7 +13,6 @@ import collections
 import csv
 import glob
 import io
-import json
 import math
 import os
 import re
@@ -91,11 +90,11 @@ def add(section, assembly, pn, maker, desc, need, have, unit="ea", notes="", kin
 # Every housing, accessory, contact, sealing plug, lug, resistor / diode, cable and wire is read from
 # docs/harness/MASTER-wirelist.csv. Fuse-box ends (the POWER / LOGIC boxes, their relays, the battery relay block) are
 # the fuse-box parts lists' (Mechanical section). Ident bands come from the master's ident_bands; covering tubing from a
-# drawing set's layout (docs/harness/tools/<set>.layout.json, DR-25 per segment) and, for a harness not in a drawing set
-# yet, from its frozen harness.design file (docs/harness/rebuild/, bundle coverings, boots, labels).
+# drawing set's layout (docs/harness/tools/<set>.layout.json, DR-25 per segment); boots and labels from the fixed_qty of
+# docs/sourcing/harness-parts.csv (counted from the harness.design files when they were retired, R225).
 MASTER = rd(P("docs", "harness", "MASTER-wirelist.csv"))
-LIBF = P("docs", "harness", "rebuild", "ST185.harnesslib")
-LIBP = {q["partNumber"]: q for k, v in json.load(open(LIBF, encoding="utf-8")).items() if k.endswith("Parts") for q in v}
+PARTS = rd(P("docs", "sourcing", "harness-parts.csv"))
+LIBP = {q["part_number"]: q for q in PARTS}
 BOX = re.compile(r"^(LOGIC|POWER|POWER-STUDS|BATT-RELAY-BLOCK|K-)")
 NOT_PN = re.compile(r"^(TBD|INTEGRAL|none|solder|screw terminal|flying lead|crimp splice|factory)", re.I)
 H_NEED, H_TBD = collections.Counter(), collections.Counter()
@@ -149,9 +148,7 @@ for r in MASTER:
 TUBE_MM = collections.Counter()
 sys.path.insert(0, P("docs", "harness", "tools"))
 import build_drawings as BD   # noqa: E402  (the drawing sets and their DR-25 per segment)
-drawn = set()
 for s in BD.own_harnesses():
-    drawn |= set(BD.set_harnesses(s))
     H = BD.Harness(s)
     seg = collections.Counter()
     sq = collections.Counter()
@@ -165,25 +162,9 @@ for s in BD.own_harnesses():
         k = tuple(sorted((a, b)))
         if seg[k]:
             TUBE_MM[BD.dr25_for(1.2 * math.sqrt(sq[k])) + "-SP"] += mm
-REB = P("docs", "harness", "rebuild")
-for fn in sorted(glob.glob(os.path.join(REB, "*.harness"))):
-    h = os.path.basename(fn)[6:-8]
-    d = json.load(open(fn, encoding="utf-8"))
-    parts = {q["id"]: q for k in d if k.endswith("Parts") for q in d[k]}
-    for b in d.get("bundles", []):
-        for pid in b.get("partIds", []):
-            q = parts.get(pid)
-            if not q:
-                continue
-            if q.get("isFixedLength") is False:
-                if h not in drawn:
-                    TUBE_MM[q["partNumber"]] += (b.get("length") or {}).get("value", 0) or 0
-            else:
-                H_NEED[q["partNumber"]] += 1
-    for n in d.get("branchPoints", []):
-        for pid in n.get("partIds", []):
-            if pid in parts:
-                H_NEED[parts[pid]["partNumber"]] += 1
+for q in PARTS:
+    if q["fixed_qty"]:
+        H_NEED[q["part_number"]] += int(q["fixed_qty"])
 
 
 def lib_desc(pn):

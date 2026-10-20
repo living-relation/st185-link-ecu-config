@@ -18,7 +18,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOC_EXT = (".md", ".html", ".txt")
 SKIP = ("docs/research-hub.html", "docs/status/")
 SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-study/", "docs/5sgte-project-data/", "docs/harness/routes/",
-             "docs/vendor/", "docs/harness/rebuild/")
+             "docs/vendor/")
 # The keep list (R211) and the docs that state the chain of sources; only these may call something a source of truth.
 KEEP = {
     "AGENTS.md", "README.md", "XTREMEX-IO-TABLE.html", "sot/README.md",
@@ -54,7 +54,7 @@ def main():
             for n, line in enumerate(text.split("\n"), 1):
                 if IS_SOT.search(line) and not NEGATED.search(line):
                     bad.append("C2 %s:%d: claims to be a source of truth: %s" % (f, n, line.strip()[:110]))
-        if f not in HISTORY and not f.startswith("docs/harness/rebuild/"):
+        if f not in HISTORY:
             for m in sorted(set(PATH_REF.findall(text))):
                 if "*" in m or "<" in m or m.startswith("docs/vendor/") or os.path.exists(os.path.join(REPO, m)):
                     continue            # docs/vendor is gitignored (local-only vendor PDFs)

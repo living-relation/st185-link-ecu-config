@@ -49,7 +49,7 @@ REPO = os.path.dirname(os.path.dirname(HARNESS))
 MASTER = os.path.join(HARNESS, "MASTER-wirelist.csv")
 CHANNELS = os.path.join(REPO, "sot", "channels.csv")
 PLAN = os.path.join(REPO, "cad", "fusebox", "rev7", "wiring_plan.json")
-LIB = os.path.join(HARNESS, "rebuild", "ST185.harnesslib")
+PARTS = os.path.join(REPO, "docs", "sourcing", "harness-parts.csv")   # maker, description (AWG range) per part
 IO_TABLE = os.path.join(REPO, "XTREMEX-IO-TABLE.html")
 ROUTES = os.path.join(HARNESS, "routes")
 
@@ -335,14 +335,10 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
         for p in sorted(wired[a] - wired[b], key=lambda x: (len(x), x)):
             fail("M1", "%s pin %s is wired, %s pin %s is not" % (a, p, b, p))
     lib_awg = {}
-    if lib:
-        for k, v in lib.items():
-            if k.endswith("Parts"):
-                for p in v:
-                    m = re.search(r"(\d{1,2})-(\d{1,2}) AWG", p.get("description", ""))
-                    if m and p.get("partNumber"):
-                        lo, hi = sorted((int(m.group(1)), int(m.group(2))))
-                        lib_awg[p["partNumber"]] = (lo, hi)
+    for p in lib or []:
+        m = re.search(r"(\d{1,2})-(\d{1,2}) AWG", p["description"])
+        if m and p["part_number"]:
+            lib_awg[p["part_number"]] = tuple(sorted((int(m.group(1)), int(m.group(2)))))
     for r in rows:
         for s, o in ends(r):
             eid, pin = r[s + "_id"], r[s + "_pin"]
@@ -528,7 +524,7 @@ def load_all():
     head, rows = read_csv(MASTER)
     ch_head, channels = read_csv(CHANNELS)
     plan = json.load(open(PLAN, encoding="utf-8")) if os.path.exists(PLAN) else None
-    lib = json.load(open(LIB, encoding="utf-8")) if os.path.exists(LIB) else None
+    lib = read_csv(PARTS)[1] if os.path.exists(PARTS) else None
     try:
         tracked = subprocess.run(["git", "ls-files", "docs/harness"], cwd=REPO, capture_output=True, text=True).stdout.split()
     except OSError:

@@ -15,6 +15,10 @@ sys.path.insert(0, HERE)
 import spec as S
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 REB = os.path.join(REPO, 'docs', 'harness', 'rebuild')
+if not os.path.isdir(REB):
+    raise SystemExit('wiring_sim.py reads the harness.design files, retired 2026-10-20 (R225; OPEN-ITEMS row 153): repoint it to '
+                     'docs/harness/MASTER-wirelist.csv at the next fuse-box CAD job; until then cad/fusebox/rev7/wiring_plan.json '
+                     'is the frozen wire plan.')
 _FULL = json.load(open(os.path.join(REB, 'full_text.json'), encoding='utf-8'))
 
 

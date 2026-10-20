@@ -231,7 +231,7 @@ The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK
 
 Exactly two 120Ω termination resistors go on the bus — one at each physical end. **Settled
 (2026-09-27): the two ends are the ECU and the Link CAN-Lambda**, as drawn in
-`docs/harness/rebuild/ST185-CAN.harness` (`r_term_ecu`, `r_term_end`). See the topology bullets in
+`docs/harness/MASTER-wirelist.csv` (harness `CAN`, resistors `R-TERM-ECU` and `R-TERM-END`). See the topology bullets in
 `CAN-BUS-MASTER-DESIGN.md` §2 and §7.
 
 | Node | Position | Termination |

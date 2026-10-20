@@ -56,7 +56,6 @@ violations waiting for the wiring fix are listed in its `PENDING`.
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, shield flag per device |
 | `XTREMEX-IO-TABLE.html` | Visual face of `channels.csv`, with a generated pin map |
 | `docs/harness/drawings/` | Generated drawing sets (re-run `tools/build_drawings.py`, never edit the PDF) |
-| `docs/harness/rebuild/*.harness` | Frozen harness.design drawings of the harnesses the generator does not draw yet (not a source) |
 | `docs/harness/routes/` | Dan's approved routes; a drawing's path follows its route |
 | `cad/fusebox/` | The fuse-box design (slot map `rev7/wiring_plan.json`, R204) |
 | `docs/sourcing/PROJECT-BOM.csv` | Generated - re-run `build_project_bom.py` |
