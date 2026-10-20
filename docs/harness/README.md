@@ -42,6 +42,8 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 
 ## The 13 harnesses
 
+The ECU harness (`ECU-cabin`, `ECU-engine`) is drawn by our own generator, not in the app (DECISIONS R220): `drawings/build_drawings.py` writes its layout, schematic and pinout sheets from the wire list (`drawings/<harness>/ST185-<harness>-drawings.pdf` + `-pinout.xlsx`); its physical tree is `drawings/<harness>.layout.json`, its rev log `drawings/<harness>.revs.json`.
+
 Each file is one physical harness that gets built. Shared nets may cross a boundary; a
 physical section of copper, a connector or a BOM line has one owner.
 

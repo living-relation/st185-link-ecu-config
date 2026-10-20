@@ -56,6 +56,8 @@ What it runs, in order - every one in HARD is a hard gate:
                            no bundle through a node or label (Y5: nor along its own end's label), no
                            bundle on top of another, no lone long diagonal. Layout moves are Dan's, in the app;
                            snapshot render_layout.py.
+  drawings/build_drawings.py --check  our own drawing sets (R220: the ECU harness) are current against the wire
+                           list, layout spec and rev log; every wire end sits on the layout tree; rev BY is a person (R200)
   audit_destinations.py    wire-end labels (DECISIONS R156): every terminal / splice labelled with where
                            that end lands, both ends of a wire differ, no "->" tail, bare pin code or
                            internal id, notes wide (L1-L5); connector names <= 48, signals <= 20, no
@@ -89,6 +91,7 @@ HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["audit_bundle_topology.py"],   # R154: bundle shape follows the route, no empty / copied legs
         ["cleanroom/wirelist.py", "--check"],   # R201: the master wire list (CSV + styled .xlsx) is current, matches the SoT, nets clean
         ["atlas/build_atlas.py", "--check"],   # connector atlas PDF is current against the wire lists
+        ["drawings/build_drawings.py", "--check"],   # R220: our own ECU harness drawings are current, every wire end on the layout
         ["cleanroom/build_harness.py", "--check"],   # R201: a rebuilt drawing (wirelist.GATED) is what its wire list builds; layout moves allowed
         ["../../cad/fusebox/src/parts_lists.py", "--check"],   # DECISIONS R82: every fuse box part is real and buyable
         ["../../cad/fusebox/src/check_clearance.py"],          # Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
