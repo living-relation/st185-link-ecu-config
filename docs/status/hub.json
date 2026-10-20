@@ -1,11 +1,11 @@
 {
-  "updated": "2026-10-15",
+  "updated": "2026-10-20",
   "looms": {
     "approved_on": "2026-10-14",
     "approval_ref": "DECISIONS R90 (re-review after #264: R124 / R125 names, R123 terminal swap - Needs Dan N1)",
     "needs_reapproval": [
-      "ECU-cabin",
-      "ECU-engine",
+      "AB-cabin",
+      "AB-engine",
       "AntiTheft",
       "CAN",
       "CSB3",
@@ -19,11 +19,5 @@
       "WheelSpeed-Rear"
     ]
   },
-  "sessions": [
-    {
-      "name": "ST185 M6 sleeves + hole rule",
-      "task": "Fuse box strength fixes from Dan's markup",
-      "state": "running"
-    }
-  ]
+  "sessions": []
 }

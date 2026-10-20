@@ -13,6 +13,9 @@ maintainer something the rules already answer.
 > (4) CSB3 config finished. Do not add to-dos outside these four; open a new `docs/OPEN-ITEMS.md`
 > row only for a blocker of one of them.
 
+> **Freeze (DECISIONS R224, Dan 2026-10-20):** no new rule, script, gate, doc, drawing format or feature until the
+> bloat cut is done (`docs/OPEN-ITEMS.md` rows 151-155). Work only the cut and Goal 1 blockers.
+
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
@@ -33,7 +36,8 @@ maintainer something the rules already answer.
 > 3. **ECU harness (DECISIONS R220)** — loom A and loom B are ONE harness, `AB`: `AB-cabin`
 >    (ECU plugs A, B, C → the cabin half of the DRB102) and `AB-engine` (the engine half →
 >    the engine devices). The letters A / B / C are the ECU's plug names; ECU pins never move.
->    Drawn by our own generator (`docs/harness/tools/build_drawings.py`), not the harness.design app.
+>    Its drawing becomes ONE harness.design file built from the master (DECISIONS R225, never hand-edited,
+>    read back against the master); until it exists the generator sets in `docs/harness/drawings/` stay frozen.
 > 4. **ECU pins (DECISIONS R212)** — every circuit with a wire on an ECU pin (Link G4X plugs A / B / C) is
 >    checked against the Link G4X Quick Start Guide **and the G4X plug-in (wire-in) guides** (the plug-in guide wins
 >    for special circuits and pin modes): pin function and mode, what it may connect to, current limits, wire gauge.
