@@ -8,7 +8,7 @@ how to apply them and which surfaces must agree. Where the two disagree, `DECISI
 
 Three rules. Rules 1 and 2 exist because this project has repeatedly drifted: a change
 landed in one document and its siblings silently disagreed for weeks. Rule 3 is how the
-ECU looms are divided, and this file owns its wording.
+ECU harness is split into files, and this file owns its wording.
 
 ---
 
@@ -60,12 +60,10 @@ known violations waiting for the wiring fix are in `ecu_rules.PENDING`.
 | `sot/channels.csv` | ECU channel settings; pins checked against the lists |
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, whether that device gets a shield (one flag per device, never per pin or wire) |
 | `XTREMEX-IO-TABLE.html` | Visual face of the ECU SoT, with a generated pin map |
-| `docs/harness/rebuild/ST185-A-cabin.harness` | ECU connector A to cabin bulkhead A: the A-pin relay coil wires (broken off to the box), the BRZ APS pedal connector (Rule 3 crossover c), front wheel-speed spur, the +5V / Gnd Out splices (Rule 3) |
-| `docs/harness/rebuild/ST185-B-cabin.harness` | ECU connector B to cabin bulkhead B: the B-pin relay coil wires (broken off to the box), fuel level branch, rear wheel-speed spur, the APS B33 leg broken off from A-cabin (Rule 3 crossover c) |
+| `docs/harness/rebuild/ST185-ECU-cabin.harness` | The ECU harness, cabin side (Rule 3): ECU plugs A, B, C to the cabin half of the DRB102 bulkhead, the relay coil wires (broken off to the box), the APS pedal, the wheel-speed spurs, fuel level, the ECU splice point; drawn by our own generator, the file is its parts / cavity data |
 | `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box POWER + LOGIC fuse boxes (DECISIONS R75, CAD rev 5) with the ECU-switched relays seated in them (all but `k_fp`), battery feed (non-ECU) |
 | `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
-| `docs/harness/rebuild/ST185-A-engine.harness` | Bulkhead A engine half to every A-letter engine device (Rule 3) |
-| `docs/harness/rebuild/ST185-B-engine.harness` | Bulkhead B engine half to every B-letter engine device, ETB motor (Rule 3) |
+| `docs/harness/rebuild/ST185-ECU-engine.harness` | The ECU harness, engine side (Rule 3): the engine half of the DRB102 to every engine device the ECU drives or reads, the ETB included |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |
 | `docs/harness/rebuild/ST185-WheelSpeed-Front.harness` / `-Rear.harness` | Wheel-speed Y harnesses to VRC endpoints and `IX_WS_FRONT` / `IX_WS_REAR` |
@@ -80,10 +78,9 @@ known violations waiting for the wiring fix are in `ecu_rules.PENDING`.
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by the audits |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |
 
-The four ECU loom files follow the ECU connector letter (Rule 3). Per **bulkhead**, every
-cavity on the bulkhead A cabin half mates the same cavity on the bulkhead A engine half,
-same for B. `audit_mating.py`, `audit_pin_names.py` and `validate_bulkhead_letter.py`
-check that.
+The ECU harness is two files, cabin and engine (Rule 3). Every cavity on the bulkhead's cabin
+half mates the same cavity on its engine half. `audit_mating.py`, `audit_pin_names.py` and
+`validate_breaks.py` check that.
 
 The frozen pre-split baseline and `verify_rebuild.py` were retired on 2026-09-27;
 `verify_connectivity.py` replaced them. Dated audit notes and one-shot fix scripts
@@ -94,7 +91,7 @@ Generated files are never hand-edited — re-run their script.
 ### No factory engine-bay wire is reused
 
 Rule **R11** in `DECISIONS.md` (Daniel, 2026-10-04 / 2026-10-12). Applied here: an
-`oem_flying_lead` on an engine-bay harness (`EngineRoom-C`, `A-engine`, `B-engine`,
+`oem_flying_lead` on an engine-bay harness (`EngineRoom-C`, `ECU-engine`,
 `HeavyDC`) is a new-wire run to the device's own plug, never a splice into a factory lead;
 `audit_dan_rules.py` D1 checks the registered method text.
 
@@ -154,87 +151,51 @@ down as an open item — never left silent.
 
 ---
 
-## Rule 3 — ECU looms follow the ECU connector letter
+## Rule 3 — the ECU harness: one cabin file, one engine file
 
-**Daniel, 2026-09-28.** Binding; it overrides the handoff's "Rule 10 A = signal / B =
-power", redesign decision D3 and Phase 7 of `docs/harness/redesign/`, and the merged
-`ST185-ECU-Cabin` drawing (retired).
+**Daniel, 2026-10-19 (DECISIONS R220): loom A and loom B are one harness** - "they both come from
+the same bulkhead". It replaces the 2026-09-28 connector-letter split (four files, crossovers a-c).
 
-- **ECU connector A → cabin firewall A → engine firewall A → engine bay.** Connector B the
-  same, on bulkhead B.
-- **Exactly four ECU harness files:** `ST185-A-cabin`, `ST185-B-cabin`, `ST185-A-engine`,
-  `ST185-B-engine`. A wire's letter is the ECU pin's `conn` column in `sot/channels.csv`.
-- **Non-ECU wires** (fused 12V, relay outputs, grounds) follow the bulkhead of the ECU
-  signal of the device they serve.
-- **The only crossovers:**
-  - **(a)** +5V sensor supply (A32) splices in the **cabin** at ECU A and feeds both
-    letters (ECU B has no +5V). Sensor ground is **not** shared across letters: loom A's
-    sensors return to Gnd Out A24, loom B's to its own Gnd Out B22, with no A24-B22 tie in
-    the harness (Daniel, 2026-09-28: never splice A-owned sensor ground into the B looms
-    while ECU B has its own).
-    **Tapered distribution (Daniel, 2026-09-28):** the ECU pin leads (A32, A24, B22) are
-    18 AWG (the largest the Superseal 1.0 contact takes); 18 AWG trunks run from the ECU
-    splices to a splice just before cabin bulkhead A (`sp_5v_bha` / `sp_gnd_bha`, each built as a
-    bussed DT pair since DECISIONS R169) and to the
-    loom B splices `sp_5v_b` (+5V trunk from A) and `sp_gndout_b` (B22 lead) with
-    `sp_gnd_bhb` before bulkhead B; each rail then crosses on several 20 AWG bulkhead
-    pins (A: c2, c39, c40 +5V; c3, c41-c44 Gnd. B: c17 knock return, c19, c21 Gnd) that run
-    straight to one device or to a small engine-side branch splice. Every splice is a
-    generic soldered splice point, except the bussed DT splices of DECISIONS R169. The B-engine sensors' +5V crosses on bulkhead A
-    c45-c47 and runs as a short A-engine spur to the DT 6-way inline pair `IX_B_RAIL`
-    (DT06-6S on A-engine, DT04-6P on B-engine, c4-c6 spare), one +5V pin per pressure
-    sensor (Daniel, 2026-09-28). Bulkhead cavities and spares follow the real DRB102
-    cavity map, `docs/harness/DRB102-CAVITY-MAP.md` (from TE's drawing, 2026-10-11; gate
-    `audit_mating.py` M8): A has 7 size-16 spares plus 3 shield-drain cavities
-    (c6, c10, c11); B has 13 size-16, 12 size-12, 4 size-8 and 2 size-4 spares plus 3
-    shield-drain cavities (c22-c24). The old HDP20-era "bulkhead B has no size-16/20
-    spare" limit is gone; every shield drain gets its own cavity.
-  - **(b)** ETB: relay trigger on A20, H-bridge supply on B5 (by ECU pin design).
-  - **(c)** APS pedal: channel 1 on A14, channel 2 on B33 (by ECU pin design). All pedal
-    wiring stays in the cabin: the BRZ e-throttle pedal connector itself is drawn on
-    `ST185-A-cabin` (folded in from the retired `ST185-APS-Pedal` 2026-10-11, "pedal is
-    one cable in A-cabin") - 5 of 6 pins wire straight from there; only the B33 leg
-    (conductor `w_aps_vpa2`) breaks off to `ST185-B-cabin`, the one allow-listed A-file
-    wire reaching a B-letter device cavity (`docs/harness/validate_bulkhead_letter.py`
-    `ALLOW["c"]`). The throttle **body** (A20 relay trigger, B5 supply, B18/B26 motor,
-    A22/A33 sensors) is engine-bay wiring.
-  - The injector rail (LOGIC INJ 15 A) and COP rail (LOGIC COP 15 A) are **not** a crossover:
-    non-ECU power follows its device's ECU signal letter, so they cross on the A side, on
-    loom A's bulkhead connector (cavity numbers in the generated `docs/harness/DRB102-CAVITY-MAP.md`, R208). The
-    earlier `IX_RAIL_A` DTP pass-through is retired (2026-09-29). Crossover (d) is retired
-    (Daniel, 2026-09-28; `docs/harness/redesign/DECISIONS.md` Q-RAIL).
+- **Two ECU harness files:** `ST185-ECU-cabin` (ECU plugs A, B and C to the cabin half of the
+  DRB102 bulkhead, plus every cabin branch) and `ST185-ECU-engine` (the engine half of the
+  bulkhead to every engine device the ECU drives or reads, the throttle body included). The
+  letters A / B / C are the ECU's own plug names and stay on the pins; the ECU pin assignments
+  never move (APS, wheel / vehicle speed and ETB pins are fixed by the G4X plug-in guide).
+- **One bulkhead connector per side:** the receptacle `bh_fw` on ECU-cabin, the plug `bh_eng` on
+  ECU-engine; cavities are assigned by device (R208, `docs/harness/DRB102-CAVITY-MAP.md`,
+  generated by `cleanroom/bulkhead_assign.py`).
+- **The ECU splice point:** every cabin power, ground and rail splice sits at one place by the
+  ECU plugs. +5 V (A32) is two bussed DT plugs `BUS-5V` (12-way) and `BUS-5V-2` (8-way, linked);
+  Gnd Out A24 and B22 are their own 12-way bussed DT plugs `BUS-GNDOUT-A` / `BUS-GNDOUT-B` (the
+  two sensor grounds stay separate: no A24-B22 tie); +8 V, switched 12 V, the ECU A5 feed and the
+  ECU power ground are soldered splices there (R169 parts: `DT06-12SA` / `DT04-12PA-P021`,
+  `DT06-08SA` / `DT04-08PA-P021`, 13 A per pin). The ECU power ground splice joins A25, A34,
+  B25, B34 only and runs one wire to the POWER box battery-negative bar (R216).
 - **Splice sizing:** rule **R36** (combined gauge, Wire Barn calculator; not for drains, R30).
   Gate: `audit_cavity_parts.py` K3.
 - **Connector substitution:** rule **R8** (complete matching set, datasheet part numbers). The
   pair is registered as an inline interface in `docs/harness/interfaces.json` and counted on
   the buy list.
-- **ETB body (engine bay):** the B18 / B26 motor wires leave `ST185-B-engine` as a short spur
-  right after bulkhead B, drawn broken off with a note; `ST185-A-engine` shows them broken
-  off coming in from B-engine and takes them into the A trunk, under the sheathing, right
-  after bulkhead A, to the throttle body drawn there.
-- **No harness is drawn inside another** (all power and ECU harnesses). A wire that runs
-  between two harness files is drawn **broken off in both**, each section ending at a noted
-  terminal that names the other file; a device is drawn once. Where that will not resolve,
-  put a connector pair where the wire leaves one harness and enters the other, with a note
-  in both files naming the other. Non-ECU wires that follow a device's bulkhead obey the
-  same rule. No cross-reference dummies. The pairs are registered in
-  `docs/harness/interfaces.json` "breaks"; `validate_bulkhead_letter.py` L6 / L7 enforce
-  them.
-- The ECUMaster CSB3 plug and its switch inputs are their own non-ECU harness,
-  `ST185-CSB3` (keeps `ST185-A-cabin` under the harness.design 100-connection limit).
-- The glove-box POWER + LOGIC fuse boxes (DECISIONS R75, CAD rev 5) and the battery feed ring
-  are the non-ECU harness `ST185-CabinPower` (Daniel, 2026-09-28, same reason). The fuel pump
-  relay `k_fp` sits in the battery relay block in the trunk, drawn in `ST185-HeavyDC`; the pump
-  run is `ST185-RearFuel`. The boxes live in that file only; every other file reaches it through broken-off pairs. The ECU-switched
-  relays sit in the boxes and are drawn there; their ECU coil (85) wires stay on the ECU loom of
-  the pin's letter (`ST185-A-cabin` / `ST185-B-cabin`) and break off to the box (2026-10-11, OPEN-ITEMS row 45).
+- **No harness is drawn inside another.** A wire that runs between two harness files is drawn
+  **broken off in both**, each section ending at a noted terminal that names the other file; a
+  device is drawn once. Where that will not resolve, a connector pair where the wire leaves one
+  harness and enters the other, noted in both. No cross-reference dummies. The pairs are
+  registered in `docs/harness/interfaces.json` "breaks"; `validate_breaks.py` L6 / L7 enforce them.
+- **Drawings:** the two ECU harness files are drawn by our own generator from the wire list
+  (`"drawing": "own"` in `interfaces.json`, R220), not in the harness.design app, so the app's
+  100-connection limit (R69) does not apply to them. Their `.harness` files stay as the parts /
+  cavity data every data gate reads; the app-canvas geometry gates skip them.
+- The ECUMaster CSB3 plug and its switch inputs are their own non-ECU harness, `ST185-CSB3`.
+- The glove-box POWER + LOGIC fuse boxes and the battery feed ring are the non-ECU harness
+  `ST185-CabinPower`. The fuel pump relay `k_fp` sits in the battery relay block in the trunk,
+  drawn in `ST185-HeavyDC`; the pump run is `ST185-RearFuel`. The boxes live in that file only;
+  every other file reaches it through broken-off pairs. The ECU-switched relays sit in the boxes
+  and are drawn there; their ECU coil (85) wires stay on `ST185-ECU-cabin` and break off to the box.
 - Every other loom stays as it is: `EngineRoom-C`, `CAN`, `ClusterLED`, `AntiTheft`,
-  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`, `RearLights` (added 2026-10-13). `ACAmp-Spur` and `APS-Pedal` were
-  retired 2026-10-11 - their non-ECU content folded into `A-cabin` (and, for the A/C
-  device-side leads, `EngineRoom-C`); crossover (c) above covers what crosses letters.
+  `WheelSpeed-Front` / `-Rear`, `RearFuel`, `HeavyDC`, `RearLights`.
 
-**Enforced by** `docs/harness/validate_bulkhead_letter.py`, a hard gate in `check_all.py`.
-Its allow-list is (a)-(c) and nothing else.
+**Enforced by** `docs/harness/validate_breaks.py` (E1 / E2: ECU-pin and bulkhead wires live on the
+ECU harness files; L6 / L7: breaks and one element per drawing), a hard gate in `check_all.py`.
 
 ---
 

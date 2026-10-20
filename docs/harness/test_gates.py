@@ -122,7 +122,7 @@ def _(d):
 
 @case("pigtail + splice: +5V bus plug (bussed DT, R169) also fed from ECU +8V Out", "audit_bh_collisions.py", 1)
 def _(d):
-    add_wire(d, "ECU-cabin", "w_t_8v_into_5v", {"id": "bus_5v_bha_p", "handle": "c8"},
+    add_wire(d, "ECU-cabin", "w_t_8v_into_5v", {"id": "bus_5v2_p", "handle": "c8"},
              {"id": "ecu_a", "handle": "a6"})
 
 

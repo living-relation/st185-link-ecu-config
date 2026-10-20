@@ -3,12 +3,9 @@
 The one firewall bulkhead is a Deutsch DRB 102-way: `DRB12-102PAE-L018` receptacle (cabin,
 pin contacts) + `DRB16-102SAE-L018` plug (engine, socket contacts) + `DRBF-1A` flange. It is ONE
 102-position connector (Daniel, 2026-10-12, DECISIONS S10). Every drawing that uses it shows
-the whole connector - all 102 cavities with TE's numbers: the receptacle `bh_a_fw` on
-`ST185-A-cabin` and `bh_b_fw` on `ST185-B-cabin`, the plug `bh_a_eng` on `ST185-A-engine` and
-`bh_b_eng` on `ST185-B-engine`. "A" and "B" in the connector ids are the ECU loom whose file draws and
-wires the cavity (the ECU letter rule, R1); they are NOT cavity sections (R208): each drawing wires its own
-loom's cavities, whichever they are, and marks the other loom's cavities N/C ("see ST185-<other>").
-This file says which loom owns each cavity.
+the whole connector - all 102 cavities with TE's numbers: the receptacle `bh_fw` on
+`ST185-ECU-cabin` and the plug `bh_eng` on `ST185-ECU-engine` (loom A and B are one harness, DECISIONS R220).
+The cavities are assigned by device, not by section (R208).
 
 Resolved 2026-10-11 (Claude Code) from TE's own customer drawing, closing `OPEN-ITEMS` row 42.
 Nothing here is provisional.

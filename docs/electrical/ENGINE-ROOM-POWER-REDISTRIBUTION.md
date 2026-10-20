@@ -4,7 +4,7 @@
 
 OEM landing facts and factory citations; the wire lists own the wiring (DECISIONS R206). Pin facts come from the 1990 ST185 All-Trac EWD (the All-Trac-specific book) cross-checked against the 1992 Celica EWD132U (covers ST185, year-adjacent to 1993). The 1993 bound book is EWD160U; the freely available PDF of that number is the FWD AT180/ST184 book, so it is **not** used as All-Trac pin authority.
 
-Factory snips live in `docs/electrical/ewd-snips/`. The drawing is `docs/harness/rebuild/ST185-EngineRoom-C.harness`. The fuse box is in `docs/harness/rebuild/ST185-CabinPower.harness`. Cabin ECU power stays in `docs/harness/rebuild/ST185-A-cabin.harness` (A-triggered relays) and `ST185-B-cabin.harness` (condenser fan relay).
+Factory snips live in `docs/electrical/ewd-snips/`. The drawing is `docs/harness/rebuild/ST185-EngineRoom-C.harness`. The fuse box is in `docs/harness/rebuild/ST185-CabinPower.harness`. Cabin ECU power stays in `docs/harness/rebuild/ST185-ECU-cabin.harness` (the ECU relay coil wires).
 
 ---
 
@@ -46,7 +46,7 @@ Rule: **one source per load** — never two paths feeding the same circuit.
 | 170 A alternator B+ (Dan 2026-10-18, DECISIONS R161 / R162) | 2 AWG to starter B+, does not recross | Heavy cable. Protected by a fusible link or inline fuse / breaker at the trunk battery or near the cabin fuse box, never at the starter (Daniel 2026-09-28): Littelfuse `880014175` (sealed MEGA SN, 175 A MEGA, 131 A continuous) on H3 at the POWER box ALT/STR stud, sizing in DECISIONS S40 |
 | MRS EPS pump | `k_eps` HCR 150 in the glove box beside the fuse box (moved from the engine bay 2026-09-28; drawn on `ST185-CabinPower` since 2026-10-11), POWER AMI OUT-6 Bussmann AMI-60 (was LMI L7, HCFB H4 before that), 8 AWG feed (sized 2026-09-28, `sot/channels.csv` k_eps c1) | Too big for a micro relay |
 | Uprated rad / condenser fans | `k_fan` / `k_fan2`, fuse sized to the fan's peak | Coils from Aux 5 / Ign 5 |
-| EFI main, ETB, fuel pump | Relays seated in the glove-box fuse box, `ST185-CabinPower.harness` (coil wires on `ST185-A-cabin.harness`) | Hold-power and Link's published ETB circuit |
+| EFI main, ETB, fuel pump | Relays seated in the glove-box fuse box, `ST185-CabinPower.harness` (coil wires on `ST185-ECU-cabin.harness`) | Hold-power and Link's published ETB circuit |
 | HEAD LH / HEAD RH | Relay + fuse, LOGIC HL / HR, new wire to headlight H1 / H2 pin 3 | Replaces 15 A HEAD fuses + headlight relay in J/B2 |
 | HAZ-HORN | LOGIC HZ fuse: hazard feed to IE1-12 (cowl side); horn relay (LOGIC M3) to a DT 2-way at each horn H3 / H4 | Replaces 15 A HAZ-HORN and the R/B5 horn relay |
 | DOME | LOGIC DM fuse only, always-hot, to J/B1 1H-2 (cabin) | Replaces 20 A DOME |
@@ -230,7 +230,7 @@ Routed with the OEM engine-room main. Passenger fender / ABS trough for EPS; cor
 | C7 | Rad fan GND | 8 AWG | Fan → EA | |
 | C8 | Condenser fan 12 V | 8 AWG | `k_fan2` 87 → core support | New DT 2-way |
 | C9 | Condenser fan GND | 8 AWG | Fan → EA | |
-| C10 | A/C compressor VC control coil (not fitted; the clutch is A4 pin 4 from `k_acc`) | — | **ST185-EngineRoom-C** flying lead `fl_a4_3` (device side; A18-5 amplifier side is on ST185-A-cabin, `br_ac_mg` break), not a numbered loom-C circuit | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
+| C10 | A/C compressor VC control coil (not fitted; the clutch is A4 pin 4 from `k_acc`) | — | **ST185-EngineRoom-C** flying lead `fl_a4_3` (device side; A18-5 amplifier side is on ST185-ECU-cabin, `br_ac_mg` break), not a numbered loom-C circuit | Not on A/B; `docs/harness/ACAMP-SPUR-LABELS.md` |
 
 Wiper, washer, headlights, turn, park and horns are new harness C wire too (§5.4 and Route 2); none of the OEM engine-room loom stays.
 

@@ -1,7 +1,7 @@
 # A/C amplifier leads: pins, colours and sources
 
 The amplifier-side leads (`fl_acamp_tw`, `fl_acamp_sg`, `fl_acamp_act`, `fl_acamp_psw`) are drawn on
-`ST185-A-cabin`; the pressure-switch device lead (`fl_a5_4`) is on `ST185-EngineRoom-C`, crossing between the two
+`ST185-ECU-cabin`; the pressure-switch device lead (`fl_a5_4`) is on `ST185-EngineRoom-C`, crossing between the two
 files as the broken-off pair `BR_AC_PSW` (`docs/harness/interfaces.json`). The compressor has no VC coil (Dan,
 DECISIONS R205): the clutch is one wire, `k_acc` (LOGIC M5) pin 87 to A4 pin 4, grounded through the engine. No OEM A/C
 housings are in either file. Solar sensor is not drawn. Ambient (TAM; return on the TW_RTN common) is not drawn.
@@ -26,7 +26,7 @@ Heater-core thermistor (TW) leads:
 | `fl_acamp_tw` | AUTO A/C AMPLIFIER **A34 pin 20** | R-G | TW - heater-core water temp thermistor (dash, on the heater housing), not an engine coolant switch | 1990 p.150 (`1990-st185-autoac-amplifier-p150.png`); **corrected 2026-10-04** per 1993 TIS EWD p.211 and Mitchell component locations |
 | `fl_acamp_sg` | A34 return **TBD** | TBD | TW return (thermistor, not a switch) | 1990 p.150 does not show the return pin — do not invent |
 
-Kill copper: ECU-A A18 Aux 4 (Gray 20 AWG) wires straight to `fl_acamp_act`, both on `ST185-A-cabin` now (no break needed since the kill switch output and the amplifier lead are in the same file). Factory ACT colour is G-Y; splice the Gray lead into that G-Y at A18-11.
+Kill copper: ECU-A A18 Aux 4 (Gray 20 AWG) wires straight to `fl_acamp_act`, both on `ST185-ECU-cabin` now (no break needed since the kill switch output and the amplifier lead are in the same file). Factory ACT colour is G-Y; splice the Gray lead into that G-Y at A18-11.
 
 `fl_a5_4` is a new-wire run terminated at the pressure switch's own mating plug, not solder-sleeved into factory
 wire (no factory engine-bay wire reused, R11); the plug part number is not yet chosen.
