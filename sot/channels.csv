@@ -81,7 +81,7 @@ VRC,Front in R,VRC_F_IN,5,Front right sensor -,signal,in,vr,none,set,harness-Whe
 VRC,Front out,VRC_F_OUT,1,Conditioner supply,rail,in,rail-5v,none,set,harness-WheelSpeed-Front,From sp_5v
 VRC,Front out,VRC_F_OUT,2,Conditioner ground,rail,in,gnd,none,set,harness-WheelSpeed-Front,From sp_gndout
 VRC,Front out,VRC_F_OUT,4,Conditioned FL,signal,out,freq-di,none,set,harness-WheelSpeed-Front,To ECU A23
-VRC,Front out,VRC_F_OUT,5,Conditioned FR,signal,out,freq-di,none,set,harness-WheelSpeed-Front,"To ECU B21. Leaves the combined 4-core front-VRC-out cable at the inline connector IX_WS_FRONT (pin 4) and continues as its own short shielded ECU-cabin spur, drain -> SHIELD_B/B17 (see FR spur screen row below), not the main cable drain. Route 9 rev 3, 2026-10-10."
+VRC,Front out,VRC_F_OUT,5,Conditioned FR,signal,out,freq-di,none,set,harness-WheelSpeed-Front,"To ECU B21. Leaves the combined 4-core front-VRC-out cable at the inline connector IX_WS_FRONT (pin 4) and continues as its own short shielded ECU-cabin spur, drain ties at the A end (SP-SHIELD-A-WSF, ECU A7; DECISIONS R207), not the main cable drain. Route 9 rev 3, 2026-10-10."
 VRC,SCREEN,VRC_F_OUT,3,Front output cable screen,screen,na,screen,none,set,harness-WheelSpeed-Front,"Main 4-core output cable drain. Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). 3 of the 4 cores (+5V, Gnd, FL) stay on the A side to A7; FR splits off at the inline splice onto its own ECU-cabin spur with its own drain (next row)."
 VRC,Rear in L,VRC_R_IN,1,Rear left sensor +,signal,in,vr,none,set,harness-WheelSpeed-Rear,Raw VR
 VRC,Rear in L,VRC_R_IN,2,Rear left sensor -,signal,in,vr,none,set,harness-WheelSpeed-Rear,Raw VR

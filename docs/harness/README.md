@@ -35,8 +35,9 @@ tools still read from them moves out (OPEN-ITEMS row 149).
 
 ## Factory wiring facts (OEM ends)
 
-- Pin authority for OEM ends: the 1990 ST185 All-Trac EWD (the All-Trac book), cross-checked against the 1992 Celica
-  EWD132U. The public PDF labelled EWD160U (1993) is the FWD AT180 / ST184 book: never use its pin numbers. The 1993 TIS
-  EWD pages are in the `st185-celica-repair-manual` repo. Factory snips: `docs/electrical/ewd-snips/`.
+- Pin authority for OEM ends: the 1993 ST185 EWD (Dan 2026-10-20, DECISIONS R16): the 1993 TIS EWD pages in the
+  `st185-celica-repair-manual` repo. The 1990 ST185 All-Trac book and the 1992 Celica EWD132U are reading aids only; an
+  end still sourced from them is re-checked against 1993 (`docs/OPEN-ITEMS.md` row 156). The public PDF labelled EWD160U
+  is the FWD AT180 / ST184 book: never use its pin numbers. Factory snips: `docs/electrical/ewd-snips/`.
 - Before first power-up, with the battery isolated: ohmmeter from each cabin landing (J/B1, IE1, the old R/B2 / R/B4
   leads, blower, ignition switch) to its named load.
