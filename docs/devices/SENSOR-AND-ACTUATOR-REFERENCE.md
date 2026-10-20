@@ -61,7 +61,7 @@ Shield: yes
 | 5 | GND1 |
 | 6 | VPA1 APS-M |
 
-All six pins are one connector on `ST185-ECU-cabin`, supplies included (wire list `docs/harness/wirelist/ECU-cabin-wirelist.csv`).
+All six pins are one connector on `AB-cabin`, supplies included (`docs/harness/MASTER-wirelist.csv`).
 
 Pin 6 is the full-range track. If the sub track saturates before full pedal travel, that
 percentage must go into PCLink's `APS (Sub) 100%` — otherwise the ECU throws a permanent

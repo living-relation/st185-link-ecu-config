@@ -1,2 +1,0 @@
-splice_id,name,net_id,net_name,harness,location,method,wires,gauges_awg,combined_cma,equivalent_awg,sot_check
-sp_ws_r_shield,Sensor screen join - RL + RR screens to the VRC IN pin 3 drain,ECU-B.B17,"Screen B (ECU B17, SHIELD_B)",WheelSpeed-Rear,Sensor screen join,solder splice,3,20 + shield,1022,20,node of the wire list (SoT)

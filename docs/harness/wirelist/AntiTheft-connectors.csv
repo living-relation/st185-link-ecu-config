@@ -1,6 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-alarm,ALARM,AntiTheft,DT06-12SA,12,,
-shock,SHOCK SNSR,AntiTheft,DT06-3S,3,,
-siren,SIREN,AntiTheft,DT06-2S-CE05,2,,
-led_sts,STATUS LED,AntiTheft,DT06-2S,2,,
-valet,VALET SW,AntiTheft,DT06-2S,2,,

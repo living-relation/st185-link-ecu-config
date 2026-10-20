@@ -1,9 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-pdb,POWER BUS,EngineRoom-C,ST185-FB-POWER rev 7 BUS ZONE,3,,
-rad_fan,RAD FAN+,EngineRoom-C,DTHD06-1-8S,1,,
-fan2,COND FAN+,EngineRoom-C,DTHD06-1-8S,1,,
-mrs_eps,EHPS PUMP,EngineRoom-C,MR-S ZZW30 EHPS pump - A 90980-12068 / B 90980-10897 / C 90980-10942,10,,
-rad_fan_g,RAD FAN-,EngineRoom-C,DTHD06-1-8S,1,,
-fan2_g,COND FAN-,EngineRoom-C,DTHD06-1-8S,1,,
-horn_lh,HORN LH,EngineRoom-C,DT06-2S-CE05,2,,
-horn_rh,HORN RH,EngineRoom-C,DT06-2S-CE05,2,,

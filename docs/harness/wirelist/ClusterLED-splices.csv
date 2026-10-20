@@ -1,3 +1,0 @@
-splice_id,name,net_id,net_name,harness,location,method,wires,gauges_awg,combined_cma,equivalent_awg,sot_check
-sp_led_gnd,"LED ground splice - turn LH, turn RH and high beam LED returns to the LH kick stud",GND.t_led_gnd,"Chassis GND (Ground stud, LH kick panel (EWD ground point ID))",ClusterLED,LED ground splice (layout node bp_990),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",4,20+20+20+20,4088,14,node of the wire list (SoT)
-sp_led_12v,"LED +12 V splice - IG +12 V from C12 pin 9 to the park brake, charge and oil LEDs",C12 (factory).9,LED IG +12 V (C12 (factory) 9),ClusterLED,LED +12 V splice (layout node bp_990),"SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",4,20+20+20+20,4088,14,node of the wire list (SoT)

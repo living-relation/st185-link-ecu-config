@@ -68,7 +68,7 @@ jobs:
           data, _ = json.JSONDecoder().raw_decode(html[start:])
           tables = (data.get('parts') or {}).get('tables') or {}
           assert data.get('topics'), 'hub has no topics'
-          assert 'buy' in tables, 'hub is missing the NEED-TO-BUY table'
+          assert 'buy' in tables, 'hub is missing the harness buy table'
           print('topics', len(data['topics']), 'tables', sorted(tables))
           "
       - name: Upload preview HTML

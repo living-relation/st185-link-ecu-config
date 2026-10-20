@@ -13,11 +13,29 @@ import json, glob, os, re, math, sys, collections
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import spec as S
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), '..', 'docs', 'harness'))
-from model import full_text    # noqa: E402
-
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 REB = os.path.join(REPO, 'docs', 'harness', 'rebuild')
+_FULL = json.load(open(os.path.join(REB, 'full_text.json'), encoding='utf-8'))
+
+
+def full_text(d, fn):
+    """R124: the frozen drawings carry short names; put back the long ones (rebuild/full_text.json) this matcher reads."""
+    rec = _FULL.get(os.path.basename(fn))
+    if not rec:
+        return d
+    for c in d.get('connectors', []):
+        r = rec['connectors'].get(c['id'], {})
+        if r.get('label') and (c.get('label') or '') == r['label'][0]:
+            c['label'] = r['label'][1]
+        for x in c.get('cavities', []):
+            p = r.get('cavities', {}).get(x['id'])
+            if p and (x.get('signal') or '') == p[0]:
+                x['signal'] = p[1]
+    for t in d.get('terminals', []):
+        p = rec['terminals'].get(t['id'])
+        if p and (t.get('signal') or '') == p[0]:
+            t['signal'] = p[1]
+    return d
 OUT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_plan.json')
 CAD_REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
 
