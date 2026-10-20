@@ -63,6 +63,7 @@ known violations waiting for the wiring fix are in `ecu_rules.PENDING`.
 | `docs/harness/rebuild/ST185-ECU-cabin.harness` | The ECU harness, cabin side (Rule 3): ECU plugs A, B, C to the cabin half of the DRB102 bulkhead, the relay coil wires (broken off to the box), the APS pedal, the wheel-speed spurs, fuel level, the ECU splice point; drawn by our own generator, the file is its parts / cavity data |
 | `docs/harness/rebuild/ST185-CabinPower.harness` | Glove-box POWER + LOGIC fuse boxes (DECISIONS R75, CAD rev 5) with the ECU-switched relays seated in them (all but `k_fp`), battery feed (non-ECU) |
 | `docs/harness/rebuild/ST185-CSB3.harness` | ECUMaster CSB3 plug and switch inputs (non-ECU) |
+| `docs/harness/drawings/` | Our own drawing sets of the ECU harness (R220), generated from the wire list; the layout spec (`<harness>.layout.json`) is the physical tree and segment lengths - re-run `build_drawings.py`, never edit the PDF |
 | `docs/harness/rebuild/ST185-ECU-engine.harness` | The ECU harness, engine side (Rule 3): the engine half of the DRB102 to every engine device the ECU drives or reads, the ETB included |
 | `docs/harness/rebuild/ST185-CAN.harness` | CAN backbone - the only drawing with CAN H/L |
 | `docs/harness/rebuild/ST185-EngineRoom-C.harness` | Loom C engine room, no bulkhead |

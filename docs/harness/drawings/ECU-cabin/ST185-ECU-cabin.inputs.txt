@@ -1,0 +1,2 @@
+e35ac24c1ccc8060
+# inputs digest of the ECU-cabin drawing set (13 sheets); re-run build_drawings.py ECU-cabin after a list or layout change
