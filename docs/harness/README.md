@@ -28,8 +28,10 @@ Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails
 ## Harnesses in the master
 
 `AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
-`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `RearLights`, `WheelSpeed-Front`, `WheelSpeed-Rear`. Drawn by the generator
-today: `AB-cabin` (pilot). The rest keep their frozen `rebuild/` file until their drawing set exists.
+`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `RearLights`, `WheelSpeed-Front`, `WheelSpeed-Rear`. All 13 are drawn by
+the generator as ONE drawing set, `ST185-harness` (`drawings/ST185-harness-schematic.pdf`, `-layout.pdf`, `-pinout.pdf`;
+layout tree `tools/ST185-harness.layout.json`). The frozen `rebuild/` files stay only until the part data the BOM and the
+tools still read from them moves out (OPEN-ITEMS row 149).
 
 ## Factory wiring facts (OEM ends)
 

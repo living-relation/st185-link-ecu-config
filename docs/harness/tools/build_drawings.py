@@ -378,7 +378,7 @@ def title_block(S, H, sheet_no, sheets, what, dwg=""):
     S.text(x0 + 4, yb + 12, S.fit(H.revs["title"], TB_W - 8, 9, "hebo"), 9, "hebo")
     S.text(x0 + 4, yb + 22, S.fit(what, TB_W - 8, 6.5), 6.5)
     S.line([(x0, yb + 27), (PW - M, yb + 27)], width=0.5)
-    cells = [("DRAWING NO.", "ST185-%s%s" % (H.h, dwg), 110), ("REV", cur["rev"], 30), ("SHEET", "%d OF %d" % (sheet_no, sheets), 52),
+    cells = [("DRAWING NO.", "%s%s" % (H.h if H.h.startswith("ST185-") else "ST185-" + H.h, dwg), 110), ("REV", cur["rev"], 30), ("SHEET", "%d OF %d" % (sheet_no, sheets), 52),
              ("SIZE", "%d x %d mm" % (round(PW / 72 * 25.4), round(PH / 72 * 25.4)), 64), ("DRAWN", revs[0]["by"], 34),
              ("DATE", cur["date"], 82)]
     x = x0
@@ -520,6 +520,7 @@ GROUPS = [("bulkhead", "THROUGH THE BULKHEAD - every wire that lands on the DRB1
           ("power", "ECU SPLICE POINT - power, grounds and sensor rails (bussed DT plugs, soldered splices, NEG bar)"),
           ("cabin", "CABIN BRANCHES - pedal, wheel-speed inlines, fuel level, A/C, IG2 / start taps, relay coils, other harnesses"),
           ("shield", "SHIELD DRAINS - screens to A7 / B17 (R207), CAN screen to the CAN trunk")]
+AB = ("AB-cabin", "AB-engine")   # the ECU harness (R220): its cabin wires are drawn by job, its engine wires as one panel
 ROW_H = 8.6
 HEAD_H = 19.0
 GAP_B = 7.0
@@ -537,6 +538,10 @@ def set_page(w, h, title_block=True):
 
 
 def group_of(H, r):
+    """The schematic panel of a wire: the ECU harness's cabin wires by job (GROUPS), every other harness one panel each
+    (`h:<harness>`, titled from the layout's `panel_titles`)."""
+    if r["harness"] not in AB[:1]:
+        return "h:" + r["harness"]
     ends = [(r[s + "_type"], r[s + "_conn"]) for s in ("from", "to")]
     if r["colour"] == "Shield" or r["circuit_id"] == "SHLD" or (re.search(r"screen|shield|drain", r["from_desc"] + r["to_desc"], re.I)
                                                                and r["colour"] in ("Black", "Shield")):
@@ -669,7 +674,7 @@ def schematic_sheet(S, H, title, i, n, rows, with_legend=True):
     cx0, cx1 = lx0 + LW + LANE, rx0 - LANE
     step = min(4.0, (cx1 - cx0) / (ntr["C"] + 1)) if ntr["C"] else 4.0
     for ch, r, a, z, ya, yz, t in jobs:
-        dashed = "[3 2] 0" if r["harness"] != H.h else None
+        dashed = "[3 2] 0" if r["harness"] not in H.set else None
         col = WIRE_RGB.get(r["colour"], INK)
         width = 0.55 if r["colour"] != "Shield" else 0.45
         if ch == "C":
@@ -707,7 +712,7 @@ def wire_label(S, r, x, y, w=LANE - 6):
 def order_key(H, key):
     k = H.kind(key)
     rank = {"ecu": 0, "bus": 1, "splice": 2, "part": 3, "conn": 4, "term": 5, "oem": 6, "screen": 7}.get(k, 8)
-    if key == ("connector", "DRB102-CABIN"):
+    if key in (("connector", "DRB102-CABIN"), ("connector", "DRB102-ENGINE")):
         rank = 3.5
     return (rank, key[1])
 
@@ -945,7 +950,10 @@ def schematic_big(doc, fitz, H):
     """Each job group drawn whole as one panel (a temporary page), then the panels placed in columns on ONE sheet."""
     panels = []
     tmp = fitz.open()
-    for g, title in GROUPS:
+    titles = H.layout.get("panel_titles", {})
+    order = list(GROUPS) + [("h:" + h, titles.get(h, "ST185-%s - every wire of this harness" % h).upper())
+                            for h in [x for x in AB if x != AB[0]] + sorted({r["harness"] for r in H.wires} - set(AB))]
+    for g, title in order:
         rows = [r for r in H.wires if group_of(H, r) == g]
         if not rows:
             continue

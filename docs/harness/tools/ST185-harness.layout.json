@@ -1,0 +1,1683 @@
+{
+ "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: Routes 3 and 4, each bulkhead-to-device path = the master est_length_mm) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the cabin tree, B+ stud on the heavy-cable tree); harness C joins the engine tree at the MR-S pump; they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "nodes": {
+  "ECU": {
+   "xy": [
+    52,
+    46
+   ],
+   "label": "ECU plugs A / B (centre dash, factory ECM spot)",
+   "end": true,
+   "short": "ECU plugs A / B",
+   "lab": "left"
+  },
+  "SP": {
+   "xy": [
+    56,
+    36
+   ],
+   "label": "ECU splice point (bussed DT plugs + soldered splices)",
+   "end": true,
+   "short": "ECU splice point",
+   "lab": "left"
+  },
+  "BP_AC": {
+   "xy": [
+    59,
+    28
+   ],
+   "label": "A/C branch",
+   "short": "A/C branch point",
+   "lab": "left"
+  },
+  "BP_GB": {
+   "xy": [
+    62,
+    20
+   ],
+   "label": "glove-box branch",
+   "short": "glove-box branch point",
+   "lab": "left"
+  },
+  "BH": {
+   "xy": [
+    90,
+    26
+   ],
+   "label": "DRB102 bulkhead, cabin half (RH firewall)",
+   "end": true,
+   "short": "Bulkhead (DRB102, RH firewall)",
+   "lab": "left"
+  },
+  "GB": {
+   "xy": [
+    44,
+    12
+   ],
+   "label": "Glove box: POWER + LOGIC boxes (every cabin fuse and relay), NEG bar, SW12 bus, blower lead",
+   "end": true,
+   "short": "Glove box: POWER + LOGIC boxes, NEG bar"
+  },
+  "RHKICK": {
+   "xy": [
+    30,
+    4
+   ],
+   "label": "RH kick panel (old R/B No.4 spot): ST1 / heater taps, ground IG",
+   "short": "RH kick panel (old R/B4, ground IG)",
+   "lab": "below",
+   "end": true
+  },
+  "RHSILL": {
+   "xy": [
+    8,
+    4
+   ],
+   "label": "RH sill, rear end (the run turns across the trunk)",
+   "short": "RH sill, rear",
+   "lab": "below"
+  },
+  "FUEL": {
+   "xy": [
+    2,
+    60
+   ],
+   "label": "Trunk LH: IX-FUEL inline to the fuel sender",
+   "end": true,
+   "short": "Trunk LH: IX-FUEL inline",
+   "lab": "above"
+  },
+  "ACAMP": {
+   "xy": [
+    84,
+    31
+   ],
+   "label": "A/C amplifier (A18) taps",
+   "end": true,
+   "short": "A/C amplifier taps"
+  },
+  "EVAP": {
+   "xy": [
+    72,
+    40
+   ],
+   "label": "Evaporator case: thermistor A24 leads",
+   "end": true,
+   "short": "Evaporator thermistor"
+  },
+  "BP_DASH": {
+   "xy": [
+    56,
+    54
+   ],
+   "label": "dash branch",
+   "short": "dash branch point",
+   "lab": "left"
+  },
+  "DASH": {
+   "xy": [
+    72,
+    58
+   ],
+   "label": "Mid-dash above the ECU: front + rear WS inlines, A/C switch lead",
+   "end": true,
+   "short": "Mid-dash: WS inlines, A/C switch"
+  },
+  "BP_COL": {
+   "xy": [
+    60,
+    68
+   ],
+   "label": "pedal / column branch",
+   "short": "pedal / column branch point",
+   "lab": "left"
+  },
+  "PEDAL": {
+   "xy": [
+    90,
+    80
+   ],
+   "label": "Accelerator pedal (driver footwell)",
+   "end": true,
+   "short": "Accelerator pedal"
+  },
+  "JB1": {
+   "xy": [
+    40,
+    96
+   ],
+   "label": "J/B No.1 + cowl plug IE1, LH kick panel: IG2 / tail / turn taps, door switch lead, ground ID (Routes 2, 7, 15)",
+   "end": true,
+   "short": "J/B No.1 + IE1, LH kick"
+  },
+  "ALARM": {
+   "xy": [
+    44,
+    62
+   ],
+   "label": "Anti-theft unit (centre dash, left of the ECU)",
+   "end": true,
+   "short": "Anti-theft unit"
+  },
+  "CSB3": {
+   "xy": [
+    22,
+    38
+   ],
+   "label": "Centre console: CSB3 under the centre cluster, its switch inputs and opto board; alarm status LED (Routes 12, 14)",
+   "end": true,
+   "short": "Centre console: CSB3, status LED"
+  },
+  "CANJ": {
+   "xy": [
+    38,
+    52
+   ],
+   "label": "CAN trunk at the ECU: CAN H / L joins, ECU 120 ohm end (Route 8)",
+   "end": true,
+   "short": "CAN joins at the ECU"
+  },
+  "BH_ENG": {
+   "xy": [
+    94,
+    26
+   ],
+   "label": "DRB102 bulkhead, engine half (RH firewall)",
+   "end": true,
+   "short": "Bulkhead (DRB102, engine half)",
+   "lab": "below"
+  },
+  "BP_ENG_A1": {
+   "xy": [
+    98,
+    32
+   ],
+   "label": "A trunk branch point FP1 (just off the bulkhead, passenger side; Route 3 point 3)",
+   "short": "FP1 branch point (A)",
+   "lab": "left"
+  },
+  "BP_ENG_A2": {
+   "xy": [
+    107,
+    40
+   ],
+   "label": "A trunk branch point FP2 (top of the head, centre; Route 3 point 4)",
+   "short": "FP2 branch point (A)"
+  },
+  "BP_ENG_A3": {
+   "xy": [
+    110,
+    82
+   ],
+   "label": "A trunk branch point FP3 (driver side of the head; Route 3 point 5)",
+   "short": "FP3 branch point (A)"
+  },
+  "CRANK": {
+   "xy": [
+    120,
+    6
+   ],
+   "label": "Crank VR sensor (Dan's 'crank below' spot; Route 3 point 6)",
+   "end": true,
+   "short": "Crank sensor",
+   "lab": "below"
+  },
+  "MRS": {
+   "xy": [
+    133,
+    14
+   ],
+   "label": "MR-S EHPS pump plugs B / C (pump at the old ABS block spot; Route 3 point 7)",
+   "end": true,
+   "short": "MR-S EHPS pump",
+   "lab": "left"
+  },
+  "MAP": {
+   "xy": [
+    104,
+    35
+   ],
+   "label": "MAP sensor (Route 3 point 9)",
+   "end": true,
+   "short": "MAP",
+   "lab": "below"
+  },
+  "IAT": {
+   "xy": [
+    102,
+    47
+   ],
+   "label": "IAT sensor, intake manifold (Route 3 point 8)",
+   "end": true,
+   "short": "IAT (manifold)",
+   "lab": "left"
+  },
+  "ETB": {
+   "xy": [
+    97,
+    78
+   ],
+   "label": "Bosch 74.5 mm ETB (Route 3 point 10)",
+   "end": true,
+   "short": "ETB",
+   "lab": "left"
+  },
+  "FLEX": {
+   "xy": [
+    104,
+    94
+   ],
+   "label": "Flex fuel sensor (driver side, top; Route 3 point 12)",
+   "end": true,
+   "short": "Flex fuel"
+  },
+  "CAM": {
+   "xy": [
+    114,
+    32
+   ],
+   "label": "Cam Hall sensor (centre of the head, behind the COP row; Route 3 point 11)",
+   "end": true,
+   "short": "Cam sensor"
+  },
+  "INJ4": {
+   "xy": [
+    102,
+    74
+   ],
+   "label": "Injector 4 (injector row enters at cyl 4; Route 3 point 13)",
+   "end": true,
+   "short": "Injector 4",
+   "lab": "left"
+  },
+  "INJ3": {
+   "xy": [
+    102,
+    66
+   ],
+   "label": "Injector 3",
+   "end": true,
+   "short": "Injector 3",
+   "lab": "left"
+  },
+  "INJ2": {
+   "xy": [
+    102,
+    60
+   ],
+   "label": "Injector 2",
+   "end": true,
+   "short": "Injector 2",
+   "lab": "left"
+  },
+  "INJ1": {
+   "xy": [
+    102,
+    54
+   ],
+   "label": "Injector 1",
+   "end": true,
+   "short": "Injector 1",
+   "lab": "left"
+  },
+  "COIL4": {
+   "xy": [
+    118,
+    72
+   ],
+   "label": "COP 4 (coil row enters at cyl 4; Route 3 point 14)",
+   "end": true,
+   "short": "COP 4"
+  },
+  "COIL3": {
+   "xy": [
+    118,
+    64
+   ],
+   "label": "COP 3",
+   "end": true,
+   "short": "COP 3"
+  },
+  "COIL2": {
+   "xy": [
+    118,
+    58
+   ],
+   "label": "COP 2",
+   "end": true,
+   "short": "COP 2"
+  },
+  "COIL1": {
+   "xy": [
+    118,
+    52
+   ],
+   "label": "COP 1",
+   "end": true,
+   "short": "COP 1"
+  },
+  "ENG_BLOCK": {
+   "xy": [
+    112,
+    50
+   ],
+   "label": "Engine block ground stud (RADLOK engine ground H6; Route 1 point 5)",
+   "end": true,
+   "short": "Engine block ground stud",
+   "lab": "below"
+  },
+  "TURBO": {
+   "xy": [
+    114,
+    90
+   ],
+   "label": "Turbo speed sensor (Route 3 point 17)",
+   "end": true,
+   "short": "Turbo speed"
+  },
+  "BOOST": {
+   "xy": [
+    122,
+    96
+   ],
+   "label": "Boost control solenoid (Route 3 point 16)",
+   "end": true,
+   "short": "Boost solenoid"
+  },
+  "ECT": {
+   "xy": [
+    126,
+    86
+   ],
+   "label": "ECT sensor (Route 3 point 15)",
+   "end": true,
+   "short": "ECT"
+  },
+  "BP_ENG_B0": {
+   "xy": [
+    96,
+    16
+   ],
+   "label": "B trunk branch point FP0 (passenger leg; Route 4 point 3)",
+   "short": "FP0 branch point (B)",
+   "lab": "left"
+  },
+  "LAMJ": {
+   "xy": [
+    101,
+    10
+   ],
+   "label": "CAN-Lambda joins: CAN H / L, +12 V and ground splices (240 mm from the bulkhead)",
+   "end": true,
+   "short": "CAN-Lambda splices",
+   "lab": "below"
+  },
+  "LAMBDA": {
+   "xy": [
+    108,
+    3
+   ],
+   "label": "Link CAN-Lambda controller (wideband O2; Route 4 point 8)",
+   "end": true,
+   "short": "CAN-Lambda",
+   "lab": "below"
+  },
+  "OILT": {
+   "xy": [
+    108,
+    18
+   ],
+   "label": "Oil temp sender (Route 4 point 7)",
+   "end": true,
+   "short": "Oil temp"
+  },
+  "BP_ENG_B1": {
+   "xy": [
+    94,
+    44
+   ],
+   "label": "B trunk branch point FP1 (rear of block, centre; Route 4 point 4)",
+   "short": "FP1 branch point (B)",
+   "lab": "left"
+  },
+  "KNOCK": {
+   "xy": [
+    98,
+    38
+   ],
+   "label": "Knock sensor 1 (factory K1 leader; Route 4 point 9)",
+   "end": true,
+   "short": "Knock 1",
+   "lab": "below"
+  },
+  "BP_ENG_B2": {
+   "xy": [
+    94,
+    64
+   ],
+   "label": "B trunk branch point FP2 (rear of block, driver side; Route 4 point 5)",
+   "short": "FP2 branch point (B)",
+   "lab": "left"
+  },
+  "FUELP": {
+   "xy": [
+    97,
+    60
+   ],
+   "label": "Fuel pressure sensor (Route 4 point 10)",
+   "end": true,
+   "short": "Fuel pressure",
+   "lab": "below"
+  },
+  "OILP": {
+   "xy": [
+    97,
+    70
+   ],
+   "label": "Oil pressure sensor (Route 4 point 12)",
+   "end": true,
+   "short": "Oil pressure",
+   "lab": "above"
+  },
+  "CLNTP": {
+   "xy": [
+    97,
+    82
+   ],
+   "label": "Coolant pressure sensor (rear of block, driver side; Route 4 point 11)",
+   "end": true,
+   "short": "Coolant pressure",
+   "lab": "left"
+  },
+  "BP_ENG_B3": {
+   "xy": [
+    95,
+    90
+   ],
+   "label": "B trunk branch point FP3 (driver side, low; Route 4 point 6)",
+   "short": "FP3 branch point (B)",
+   "lab": "left"
+  },
+  "CHIAT": {
+   "xy": [
+    97,
+    99
+   ],
+   "label": "Charge-pipe IAT sensor (Route 4 point 13)",
+   "end": true,
+   "short": "Charge-pipe IAT",
+   "lab": "above"
+  },
+  "VSS": {
+   "xy": [
+    110,
+    100
+   ],
+   "label": "Gearbox VSS (spot estimated in Route 4, point 14)",
+   "end": true,
+   "short": "Gearbox VSS",
+   "lab": "above"
+  },
+  "REVSW": {
+   "xy": [
+    119,
+    100
+   ],
+   "label": "Back-up (reverse) switch B1 on the transaxle - spot TBD (not on Route 4)",
+   "end": true,
+   "short": "Reverse switch (TBD spot)",
+   "lab": "above"
+  },
+  "FW_STR": {
+   "xy": [
+    91,
+    8
+   ],
+   "label": "RH firewall: RADLOK pair, cabin side, and the starter S wire pass - spot TBD (Route 1 point 1)",
+   "short": "RADLOK pair (cabin side) + starter S pass",
+   "lab": "below",
+   "end": true
+  },
+  "STARTER": {
+   "xy": [
+    126,
+    60
+   ],
+   "label": "Starter solenoid S (50) post (starter: lower-middle of the engine; Route 1 point 2)",
+   "end": true,
+   "short": "Starter S post"
+  },
+  "CLUSTER": {
+   "xy": [
+    24,
+    80
+   ],
+   "label": "Centre cluster (old meter spot): LED board on the meter plugs C11 / C12, cluster CAN board + buck, J/B No.3 behind it (Routes 8, 13)",
+   "end": true,
+   "short": "Centre cluster (old meter spot)",
+   "lab": "left"
+  },
+  "PI": {
+   "xy": [
+    32,
+    68
+   ],
+   "label": "RealDash Pi + USB-CAN adapter, centre dash, and the dash 12 V split (Route 8)",
+   "end": true,
+   "short": "RealDash Pi (centre dash)",
+   "lab": "left"
+  },
+  "COLUMN": {
+   "xy": [
+    76,
+    94
+   ],
+   "label": "Steering column: cruise stalk C14 flying leads (Route 12, spot approximate)",
+   "end": true,
+   "short": "Steering column: cruise stalk",
+   "lab": "above"
+  },
+  "VALET": {
+   "xy": [
+    48,
+    78
+   ],
+   "label": "Valet / program switch lead, under the carpet to the driver-side carpet centre, service coil (Route 14)",
+   "end": true,
+   "short": "Valet switch (driver carpet)"
+  },
+  "RFG": {
+   "xy": [
+    84,
+    3
+   ],
+   "label": "Existing factory RH fender grommet, RH front inner fender corner: harness C, alarm siren + hood pin, alternator IG / L / S (Routes 1, 2, 14)",
+   "end": true,
+   "short": "RH fender grommet (factory)",
+   "lab": "below"
+  },
+  "RFP": {
+   "xy": [
+    66,
+    1
+   ],
+   "label": "RH fender pass-through by the strut tower: FR wheel-speed plug (Route 9 rev 2)",
+   "end": true,
+   "short": "RH fender pass-through: FR sensor",
+   "lab": "below"
+  },
+  "LFP": {
+   "xy": [
+    84,
+    99
+   ],
+   "label": "LH fender pass-through by the strut tower, driver kick: FL wheel-speed plug; wiper feed out to the cowl (Routes 2, 9)",
+   "end": true,
+   "short": "LH fender pass-through: FL sensor",
+   "lab": "above"
+  },
+  "WIPER": {
+   "xy": [
+    90,
+    93
+   ],
+   "label": "Front wiper motor F9, under the cowl, driver side (Route 2 point 18)",
+   "end": true,
+   "short": "Wiper motor F9",
+   "lab": "left"
+  },
+  "LHSILL": {
+   "xy": [
+    10,
+    98
+   ],
+   "label": "LH sill, rear end: under the rear seat (rear wheel-speed legs meet; rear-light run turns to the quarter panel; Routes 10, 15)",
+   "short": "LH sill, rear (under rear seat)",
+   "lab": "below"
+  },
+  "RLJ": {
+   "xy": [
+    -10,
+    86
+   ],
+   "label": "LH quarter panel centre (OEM joint BP1): rear-light splices (Route 15)",
+   "end": true,
+   "short": "LH quarter: rear-light splices",
+   "lab": "left"
+  },
+  "R11": {
+   "xy": [
+    -18,
+    94
+   ],
+   "label": "LH rear lamp R11 (socket pigtails)",
+   "end": true,
+   "short": "LH rear lamp R11",
+   "lab": "above"
+  },
+  "RPANEL": {
+   "xy": [
+    -18,
+    52
+   ],
+   "label": "Rear panel centre: licence lamp L1, ground point BL, trunk pin switch (Routes 14, 15)",
+   "end": true,
+   "short": "Rear panel centre: L1, ground BL",
+   "lab": "left"
+  },
+  "HATCH": {
+   "xy": [
+    -6,
+    46
+   ],
+   "label": "High-mount stop light H6 (hatch spoiler)",
+   "end": true,
+   "short": "High-mount stop H6",
+   "lab": "below"
+  },
+  "R12": {
+   "xy": [
+    -18,
+    14
+   ],
+   "label": "RH rear lamp R12 (socket pigtails)",
+   "end": true,
+   "short": "RH rear lamp R12",
+   "lab": "below"
+  },
+  "WSRL": {
+   "xy": [
+    2,
+    92
+   ],
+   "label": "RL ABS sensor plug (rear left; Route 10)",
+   "end": true,
+   "short": "RL wheel-speed sensor",
+   "lab": "left"
+  },
+  "WSRR": {
+   "xy": [
+    0,
+    24
+   ],
+   "label": "RR ABS sensor plug (rear right; its cable crosses under the rear seat to the LH sill, Route 10)",
+   "end": true,
+   "short": "RR wheel-speed sensor",
+   "lab": "left"
+  },
+  "TANK": {
+   "xy": [
+    -8,
+    68
+   ],
+   "label": "Fuel tank: fuel pump and the level sender (DT 2-way), trunk LH ground stud (Route 11 rev 2)",
+   "end": true,
+   "short": "Fuel tank: pump + level sender",
+   "lab": "left"
+  },
+  "BATT": {
+   "xy": [
+    -16,
+    6
+   ],
+   "label": "Trunk RH rear corner: battery, kill switch, battery relay block (FP 40 A fuse + fuel pump relay K-FP) (Route 1 points 1, 4)",
+   "end": true,
+   "short": "Trunk RH: battery, kill sw, relay block",
+   "lab": "above"
+  },
+  "C_FEND": {
+   "xy": [
+    118,
+    1
+   ],
+   "label": "Harness C: down the RH inner fender (A/C branch, EPS pump) (Route 2 rev 12)",
+   "short": "RH inner fender run (harness C)"
+  },
+  "ACC": {
+   "xy": [
+    124,
+    12
+   ],
+   "label": "A/C compressor A4 clutch lead + dual pressure switch A5 (Route 2 point 7)",
+   "end": true,
+   "short": "A/C compressor + pressure switch",
+   "lab": "below"
+  },
+  "C_RHC": {
+   "xy": [
+    140,
+    4
+   ],
+   "label": "RH front corner: headlamp H2, turn / clearance F8, retract motor R3, washer W1, hood pin, ground EA (Route 2 point 15)",
+   "end": true,
+   "short": "RH front corner",
+   "lab": "left"
+  },
+  "FANC": {
+   "xy": [
+    140,
+    24
+   ],
+   "label": "Condenser fan (own connector; first stop on the fan branch, Route 2 point 9)",
+   "end": true,
+   "short": "Condenser fan",
+   "lab": "left"
+  },
+  "FANR": {
+   "xy": [
+    140,
+    36
+   ],
+   "label": "Radiator fan (own connector; end of the fan branch, Route 2 point 10)",
+   "end": true,
+   "short": "Radiator fan",
+   "lab": "left"
+  },
+  "C_FRONT": {
+   "xy": [
+    140,
+    50
+   ],
+   "label": "Core support, front centre: horn split, both horns (DT 2-way each), headlamp / retract / clearance return joins (Route 2 points 8, 17)",
+   "end": true,
+   "short": "Front centre: horns, return joins",
+   "lab": "left"
+  },
+  "C_LHC": {
+   "xy": [
+    140,
+    98
+   ],
+   "label": "LH front corner: headlamp H1, turn / clearance F7, retract motor R2, ground EB (Route 2 point 16)",
+   "end": true,
+   "short": "LH front corner",
+   "lab": "left"
+  },
+  "SIREN": {
+   "xy": [
+    92,
+    50
+   ],
+   "label": "Alarm siren: centre of the firewall behind the engine, leads through the RH fender grommet (Route 14)",
+   "end": true,
+   "short": "Alarm siren",
+   "lab": "left"
+  },
+  "ALT": {
+   "xy": [
+    100,
+    22
+   ],
+   "label": "Alternator G2 round 3-pin plug (IG / L / S, through the RH fender grommet) - rear RH of the engine under the bulkhead (Route 1 point 3)",
+   "end": true,
+   "short": "Alternator plug (IG / L / S)",
+   "lab": "below"
+  },
+  "RL_ENG": {
+   "xy": [
+    93,
+    12
+   ],
+   "label": "RADLOK + / - pair, engine side (RH firewall) (Route 1 point 1)",
+   "end": true,
+   "short": "RADLOK pair (engine side)",
+   "lab": "below"
+  },
+  "ALT_B": {
+   "xy": [
+    106,
+    26
+   ],
+   "label": "Alternator B+ stud, rear RH of the engine (Route 1 point 3)",
+   "end": true,
+   "short": "Alternator B+ stud",
+   "lab": "below"
+  },
+  "STARTER_B": {
+   "xy": [
+    128,
+    68
+   ],
+   "label": "Starter B+ stud (H4, H5, H8 lugs) (Route 1 point 2)",
+   "end": true,
+   "short": "Starter B+ stud"
+  },
+  "JUMP": {
+   "xy": [
+    134,
+    80
+   ],
+   "label": "Engine-bay jump post (Route 1 point 6, proposed spot)",
+   "end": true,
+   "short": "Jump post"
+  }
+ },
+ "segments": [
+  [
+   "ECU",
+   "SP",
+   110
+  ],
+  [
+   "SP",
+   "BP_AC",
+   110
+  ],
+  [
+   "BP_AC",
+   "BP_GB",
+   110
+  ],
+  [
+   "BP_GB",
+   "BH",
+   100
+  ],
+  [
+   "BP_GB",
+   "GB",
+   150
+  ],
+  [
+   "GB",
+   "RHKICK",
+   250
+  ],
+  [
+   "RHKICK",
+   "RHSILL",
+   1600
+  ],
+  [
+   "RHSILL",
+   "FUEL",
+   400
+  ],
+  [
+   "BP_AC",
+   "ACAMP",
+   400
+  ],
+  [
+   "BP_AC",
+   "EVAP",
+   450
+  ],
+  [
+   "ECU",
+   "BP_DASH",
+   30
+  ],
+  [
+   "BP_DASH",
+   "DASH",
+   300
+  ],
+  [
+   "BP_DASH",
+   "BP_COL",
+   220
+  ],
+  [
+   "BP_COL",
+   "PEDAL",
+   640
+  ],
+  [
+   "BP_COL",
+   "JB1",
+   650
+  ],
+  [
+   "BP_DASH",
+   "ALARM",
+   150
+  ],
+  [
+   "ECU",
+   "CSB3",
+   370
+  ],
+  [
+   "ECU",
+   "CANJ",
+   50
+  ],
+  [
+   "BH_ENG",
+   "BP_ENG_A1",
+   100
+  ],
+  [
+   "BP_ENG_A1",
+   "CRANK",
+   1410
+  ],
+  [
+   "BP_ENG_A1",
+   "MRS",
+   1360
+  ],
+  [
+   "BP_ENG_A1",
+   "BP_ENG_A2",
+   200
+  ],
+  [
+   "BP_ENG_A2",
+   "MAP",
+   130
+  ],
+  [
+   "BP_ENG_A2",
+   "IAT",
+   400
+  ],
+  [
+   "BP_ENG_A2",
+   "ETB",
+   430
+  ],
+  [
+   "BP_ENG_A2",
+   "FLEX",
+   230
+  ],
+  [
+   "BP_ENG_A2",
+   "CAM",
+   850
+  ],
+  [
+   "BP_ENG_A2",
+   "INJ4",
+   160
+  ],
+  [
+   "INJ4",
+   "INJ3",
+   180
+  ],
+  [
+   "INJ3",
+   "INJ2",
+   380
+  ],
+  [
+   "INJ2",
+   "INJ1",
+   170
+  ],
+  [
+   "BP_ENG_A2",
+   "COIL4",
+   100
+  ],
+  [
+   "COIL4",
+   "COIL3",
+   160
+  ],
+  [
+   "COIL3",
+   "COIL2",
+   180
+  ],
+  [
+   "COIL2",
+   "COIL1",
+   180
+  ],
+  [
+   "BP_ENG_A2",
+   "ENG_BLOCK",
+   300
+  ],
+  [
+   "BP_ENG_A2",
+   "BP_ENG_A3",
+   450
+  ],
+  [
+   "BP_ENG_A3",
+   "TURBO",
+   150
+  ],
+  [
+   "BP_ENG_A3",
+   "BOOST",
+   280
+  ],
+  [
+   "BP_ENG_A3",
+   "ECT",
+   700
+  ],
+  [
+   "BH_ENG",
+   "BP_ENG_B0",
+   150
+  ],
+  [
+   "BP_ENG_B0",
+   "LAMJ",
+   90
+  ],
+  [
+   "LAMJ",
+   "LAMBDA",
+   150
+  ],
+  [
+   "BP_ENG_B0",
+   "OILT",
+   960
+  ],
+  [
+   "BH_ENG",
+   "BP_ENG_B1",
+   200
+  ],
+  [
+   "BP_ENG_B1",
+   "KNOCK",
+   1260
+  ],
+  [
+   "BP_ENG_B1",
+   "BP_ENG_B2",
+   200
+  ],
+  [
+   "BP_ENG_B2",
+   "FUELP",
+   30
+  ],
+  [
+   "BP_ENG_B2",
+   "OILP",
+   580
+  ],
+  [
+   "BP_ENG_B2",
+   "CLNTP",
+   1020
+  ],
+  [
+   "BP_ENG_B2",
+   "BP_ENG_B3",
+   300
+  ],
+  [
+   "BP_ENG_B3",
+   "CHIAT",
+   360
+  ],
+  [
+   "BP_ENG_B3",
+   "VSS",
+   680
+  ],
+  [
+   "BP_ENG_B3",
+   "REVSW",
+   880
+  ],
+  [
+   "GB",
+   "FW_STR",
+   400
+  ],
+  [
+   "FW_STR",
+   "STARTER",
+   2470
+  ],
+  [
+   "CANJ",
+   "CLUSTER",
+   400
+  ],
+  [
+   "CANJ",
+   "PI",
+   250
+  ],
+  [
+   "BP_COL",
+   "COLUMN",
+   400
+  ],
+  [
+   "ALARM",
+   "VALET",
+   250
+  ],
+  [
+   "GB",
+   "RFG",
+   300
+  ],
+  [
+   "RFG",
+   "C_FEND",
+   600
+  ],
+  [
+   "C_FEND",
+   "ACC",
+   250
+  ],
+  [
+   "C_FEND",
+   "MRS",
+   400
+  ],
+  [
+   "C_FEND",
+   "C_RHC",
+   500
+  ],
+  [
+   "C_RHC",
+   "FANC",
+   300
+  ],
+  [
+   "FANC",
+   "FANR",
+   300
+  ],
+  [
+   "C_RHC",
+   "C_FRONT",
+   700
+  ],
+  [
+   "C_FRONT",
+   "C_LHC",
+   700
+  ],
+  [
+   "RFG",
+   "SIREN",
+   500
+  ],
+  [
+   "RFG",
+   "ALT",
+   400
+  ],
+  [
+   "RHKICK",
+   "RFP",
+   300
+  ],
+  [
+   "JB1",
+   "LFP",
+   300
+  ],
+  [
+   "LFP",
+   "WIPER",
+   300
+  ],
+  [
+   "JB1",
+   "LHSILL",
+   1800
+  ],
+  [
+   "LHSILL",
+   "RLJ",
+   800
+  ],
+  [
+   "RLJ",
+   "R11",
+   300
+  ],
+  [
+   "RLJ",
+   "RPANEL",
+   600
+  ],
+  [
+   "RPANEL",
+   "R12",
+   600
+  ],
+  [
+   "RPANEL",
+   "HATCH",
+   400
+  ],
+  [
+   "LHSILL",
+   "WSRL",
+   400
+  ],
+  [
+   "LHSILL",
+   "WSRR",
+   1300
+  ],
+  [
+   "FUEL",
+   "TANK",
+   300
+  ],
+  [
+   "RHSILL",
+   "BATT",
+   600
+  ],
+  [
+   "RL_ENG",
+   "ENG_BLOCK",
+   690
+  ],
+  [
+   "RL_ENG",
+   "STARTER_B",
+   1500
+  ],
+  [
+   "ALT_B",
+   "RL_ENG",
+   300
+  ],
+  [
+   "STARTER_B",
+   "JUMP",
+   210
+  ]
+ ],
+ "end_allowance_mm": 100,
+ "place": {
+  "ECU-A": "ECU",
+  "ECU-B": "ECU",
+  "SP-SHIELD-A": "ECU",
+  "SP-SHIELD-B": "ECU",
+  "BUS-5V": "SP",
+  "BUS-5V-2": "SP",
+  "BUS-GNDOUT-A": "SP",
+  "BUS-GNDOUT-B": "SP",
+  "SP-8V": "SP",
+  "SP-SW12": "SP",
+  "SP-A5": "SP",
+  "SP-GND-ECU": "SP",
+  "D-IG2-WAKE": "SP",
+  "SP-CAM": "SP",
+  "R-CAM-PULLUP": "SP",
+  "SP-FUEL-LVL": "SP",
+  "R-FUELLVL": "SP",
+  "SP-EVAP": "SP",
+  "R-EVAP": "SP",
+  "SP-AC-BTN": "SP",
+  "R-AC-BTN-HI": "SP",
+  "R-AC-BTN-LO": "SP",
+  "SP-REV": "SP",
+  "DRB102-CABIN": "BH",
+  "POWER-NEG-BAR": "GB",
+  "K-EFI": "GB",
+  "K-STR": "GB",
+  "K-FAN": "GB",
+  "K-FAN2": "GB",
+  "K-EPS": "GB",
+  "K-ETB": "GB",
+  "K-ACC": "GB",
+  "K-EPS-EN": "GB",
+  "K-REV": "GB",
+  "LOGIC": "GB",
+  "BUS-SW12": "GB",
+  "SP-REV-GAUGE": "GB",
+  "K-FP": "BATT",
+  "IX-FUEL-P": "FUEL",
+  "SP-AC-PSW": "ACAMP",
+  "T-EVAP-TEMP": "EVAP",
+  "T-EVAP-RTN": "EVAP",
+  "IX-WS-F-S": "DASH",
+  "IX-WS-R-S": "DASH",
+  "CAB-FSPUR-FR-AC": "DASH",
+  "T-AC-BTN": "DASH",
+  "SP-SHIELD-A-WSF": "BP_DASH",
+  "SP-SHIELD-B-WSR": "BP_DASH",
+  "APS-PEDAL": "PEDAL",
+  "CAB-APS1": "PEDAL",
+  "CAB-APS2": "PEDAL",
+  "SP-SHIELD-A-APS": "BP_COL",
+  "ALARM": "ALARM",
+  "R-CRUISE": "CSB3",
+  "SP-CSB-GND": "CSB3",
+  "OPTO-8": "CSB3",
+  "SP-CANH": "CANJ",
+  "SP-CANL": "CANJ",
+  "SP-CAN-SH-BH": "CANJ",
+  "DRB102-ENGINE": "BH_ENG",
+  "CRANK": "CRANK",
+  "CAB-CRANK": "CRANK",
+  "MRS-B": "MRS",
+  "MRS-C": "MRS",
+  "MAP": "MAP",
+  "IAT": "IAT",
+  "ETB": "ETB",
+  "CAB-ETBS": "ETB",
+  "CAB-ETBM-AE": "ETB",
+  "FLEX": "FLEX",
+  "CAB-FLEX": "FLEX",
+  "CAM": "CAM",
+  "CAB-CAM": "CAM",
+  "INJ-1": "INJ1",
+  "INJ-2": "INJ2",
+  "INJ-3": "INJ3",
+  "INJ-4": "INJ4",
+  "COIL-1": "COIL1",
+  "COIL-2": "COIL2",
+  "COIL-3": "COIL3",
+  "COIL-4": "COIL4",
+  "SP-INJ-ENG": "BP_ENG_A2",
+  "SP-COP-ENG": "BP_ENG_A2",
+  "SP-CHASSIS-ENG": "BP_ENG_A2",
+  "SP-SW12-ENG": "BP_ENG_A2",
+  "SP-GNDOUT-ENG": "BP_ENG_A2",
+  "SP-GNDOUT-ENG2": "BP_ENG_A2",
+  "ENG-GND-RING": "ENG_BLOCK",
+  "TURBO-SPD": "TURBO",
+  "CAB-TURBO": "TURBO",
+  "BOOST-SOL": "BOOST",
+  "ECT": "ECT",
+  "SP-CANH-LAM": "LAMJ",
+  "SP-CANL-LAM": "LAMJ",
+  "CAB-CAN-LAM": "LAMJ",
+  "SP-LAM12-B": "LAMJ",
+  "SP-LAMG-B": "LAMJ",
+  "CAN-LAMBDA": "LAMBDA",
+  "OIL-T": "OILT",
+  "KNOCK-1": "KNOCK",
+  "CAB-KNOCK1": "KNOCK",
+  "SP-GNDOUT-B-ENG": "BP_ENG_B2",
+  "SP-GNDOUT-B-ENG2": "BP_ENG_B2",
+  "SP-GNDOUT-B-ENG3": "BP_ENG_B2",
+  "FUEL-P": "FUELP",
+  "OIL-P": "OILP",
+  "CLNT-P": "CLNTP",
+  "CHARGE-IAT": "CHIAT",
+  "VSS": "VSS",
+  "CAB-VSS": "VSS",
+  "REV-SW": "REVSW",
+  "STARTER-TRIGGER": "STARTER",
+  "POWER": "GB",
+  "POWER-STUDS": "GB",
+  "K-HTR": "GB",
+  "K-PWR": "GB",
+  "K-HL": "GB",
+  "K-HR": "GB",
+  "K-HORN": "GB",
+  "SP-HL": "GB",
+  "SP-HR": "GB",
+  "SP-HZ": "GB",
+  "SP-HEAD-COIL": "GB",
+  "SP-HTR87": "GB",
+  "SP-AT-12V": "ALARM",
+  "SP-12V-SHK": "ALARM",
+  "SP-IG": "ALARM",
+  "SP-DEV": "PI",
+  "SP-HORN": "C_FRONT",
+  "SP-RL-REV": "RLJ",
+  "MRS-A": "MRS",
+  "ALT-PLUG": "ALT",
+  "FAN-COND": "FANC",
+  "FAN-COND-GND": "FANC",
+  "FAN-RAD": "FANR",
+  "FAN-RAD-GND": "FANR",
+  "GND-EA": "C_RHC",
+  "GND-EB": "C_LHC",
+  "GND-ID": "JB1",
+  "GND-IG": "RHKICK",
+  "HORN-LH": "C_FRONT",
+  "HORN-RH": "C_FRONT",
+  "T-ENG-BLOCK-2": "ENG_BLOCK",
+  "T-ENG-BLOCK-3": "ENG_BLOCK",
+  "SP-HL-HIGH": "C_FRONT",
+  "SP-HL-LOW": "C_FRONT",
+  "SP-RTR-CLOSE": "C_FRONT",
+  "SP-RTR-OPEN": "C_FRONT",
+  "SP-CLR": "C_FRONT",
+  "SP-RTR-R3-4": "C_RHC",
+  "SP-RTR-GND-R3": "C_RHC",
+  "SP-RTR-R2-4": "C_LHC",
+  "SP-RTR-GND-R2": "C_LHC",
+  "BATT-RELAY-BLOCK": "BATT",
+  "KILL-SW": "BATT",
+  "BATT-POS": "BATT",
+  "T-TRUNK-NEG": "BATT",
+  "RADLOK-POS-CAB": "FW_STR",
+  "RADLOK-NEG-CAB": "FW_STR",
+  "RADLOK-POS-ENG": "RL_ENG",
+  "RADLOK-NEG-ENG": "RL_ENG",
+  "T-ENG-BLOCK": "ENG_BLOCK",
+  "T-STARTER-B": "STARTER_B",
+  "T-STARTER-B-2": "STARTER_B",
+  "T-STARTER-B-3": "STARTER_B",
+  "T-ALT-B": "ALT_B",
+  "JUMP-POST": "JUMP",
+  "CSB3": "CSB3",
+  "SP-CRUISE-LADDER": "CSB3",
+  "ECU-C": "ECU",
+  "CAB-CAN-ECU": "ECU",
+  "R-TERM-ECU": "CANJ",
+  "R-TERM-END": "LAMJ",
+  "SP-CAN-SH-CLU": "CLUSTER",
+  "CAB-CAN-CLU": "CLUSTER",
+  "T-CLUSTER-CAN": "CLUSTER",
+  "T-CLUSTER-PWR": "CLUSTER",
+  "T-CLUSTER-GND-LEAD": "CLUSTER",
+  "T-REALDASH-CAN": "PI",
+  "T-REALDASH-PWR": "PI",
+  "T-REALDASH-GND-LEAD": "PI",
+  "SP-CAN-SH-RD": "PI",
+  "CAB-CAN-RD": "PI",
+  "SP-CAN-SH-CSB": "CSB3",
+  "CAB-CAN-CSB-CSB": "CSB3",
+  "T-AT-GND": "ALARM",
+  "T-AT-GND-B": "ALARM",
+  "T-AT-GND-C": "ALARM",
+  "SHOCK-SENSOR": "ALARM",
+  "SIREN": "SIREN",
+  "STATUS-LED": "CSB3",
+  "VALET-SW": "VALET",
+  "SP-PARK": "ALARM",
+  "SP-DOOR": "ALARM",
+  "SP-HOOD": "ALARM",
+  "SP-TRUNK": "ALARM",
+  "T-AT-PARK": "JB1",
+  "T-AT-DOOR": "JB1",
+  "T-AT-HOOD": "C_RHC",
+  "T-AT-TRUNK": "RPANEL",
+  "SP-RL-GND": "RLJ",
+  "SP-RL-TAIL": "RLJ",
+  "SP-RL-STOP": "RLJ",
+  "T-RL-GND-BL": "RPANEL",
+  "D-TL": "CLUSTER",
+  "D-TR": "CLUSTER",
+  "D-HB": "CLUSTER",
+  "D-CHG": "CLUSTER",
+  "D-OIL": "CLUSTER",
+  "D-PK": "CLUSTER",
+  "SP-LED-12V": "CLUSTER",
+  "SP-LED-GND": "CLUSTER",
+  "VRC-R-IN": "DASH",
+  "VRC-R-OUT": "DASH",
+  "IX-WS-R-P": "DASH",
+  "SP-WS-R-SHIELD": "DASH",
+  "CAB-RL": "DASH",
+  "CAB-RR": "DASH",
+  "WSS-RL": "WSRL",
+  "WSS-RR": "WSRR",
+  "VRC-F-IN": "DASH",
+  "VRC-F-OUT": "DASH",
+  "IX-WS-F-P": "DASH",
+  "SP-WS-F-SHIELD": "DASH",
+  "CAB-FL": "DASH",
+  "CAB-FR": "DASH",
+  "WSS-FL": "LFP",
+  "WSS-FR": "RFP",
+  "FUEL-PUMP": "TANK",
+  "T-TRUNK-FP-GND": "TANK",
+  "IX-FUEL-S": "FUEL",
+  "FUEL-LEVEL": "TANK"
+ },
+ "place_oem": [
+  [
+   "clutch start switch",
+   "PEDAL"
+  ],
+  [
+   "stop lamp switch S9",
+   "PEDAL"
+  ],
+  [
+   "cruise stalk",
+   "COLUMN"
+  ],
+  [
+   "cluster plug C1",
+   "CLUSTER"
+  ],
+  [
+   "J/B 3 plug",
+   "CLUSTER"
+  ],
+  [
+   "A/C pressure switch A5",
+   "ACC"
+  ],
+  [
+   "A/C compressor A4",
+   "ACC"
+  ],
+  [
+   "cowl lead (firewall, cabin side)",
+   "RFG"
+  ],
+  [
+   "Washer motor W1",
+   "C_RHC"
+  ],
+  [
+   "LH headlamp H1",
+   "C_LHC"
+  ],
+  [
+   "LH front turn",
+   "C_LHC"
+  ],
+  [
+   "LH retract motor",
+   "C_LHC"
+  ],
+  [
+   "RH headlamp H2",
+   "C_RHC"
+  ],
+  [
+   "RH front turn",
+   "C_RHC"
+  ],
+  [
+   "RH retract motor",
+   "C_RHC"
+  ],
+  [
+   "Front wiper motor F9",
+   "WIPER"
+  ],
+  [
+   "High-mount stop light H6",
+   "HATCH"
+  ],
+  [
+   "LH rear lamp R11",
+   "R11"
+  ],
+  [
+   "RH rear lamp R12",
+   "R12"
+  ],
+  [
+   "Licence plate light L1",
+   "RPANEL"
+  ],
+  [
+   "IG2 OEM IG2",
+   "ECU"
+  ],
+  [
+   "blower motor B4",
+   "GB"
+  ],
+  [
+   "RB4 ",
+   "RHKICK"
+  ],
+  [
+   "RB2 ",
+   "JB1"
+  ],
+  [
+   "IE1 ",
+   "JB1"
+  ],
+  [
+   "J/B No.1",
+   "JB1"
+  ],
+  [
+   "J/B 1 plug",
+   "JB1"
+  ],
+  [
+   "A18",
+   "ACAMP"
+  ],
+  [
+   "A5 ",
+   "ACAMP"
+  ],
+  [
+   "R/B No.4",
+   "RHKICK"
+  ]
+ ],
+ "harnesses": [
+  "AB-cabin",
+  "AB-engine",
+  "CabinPower",
+  "EngineRoom-C",
+  "HeavyDC",
+  "CAN",
+  "CSB3",
+  "AntiTheft",
+  "ClusterLED",
+  "WheelSpeed-Front",
+  "WheelSpeed-Rear",
+  "RearLights",
+  "RearFuel"
+ ],
+ "panel_titles": {
+  "AB-engine": "ENGINE BAY - DRB102 ENGINE HALF TO EVERY ENGINE DEVICE (ECU HARNESS)",
+  "CabinPower": "CABIN POWER - POWER + LOGIC BOXES TO EVERY CABIN FEED, RELAY COIL AND OEM TAP",
+  "EngineRoom-C": "HARNESS C - GLOVE BOX OUT THROUGH THE RH FENDER: FANS, HORNS, LIGHTS, RETRACTS, A/C, EPS",
+  "HeavyDC": "HEAVY DC - BATTERY, KILL SWITCH, RADLOK PAIR, STARTER, ALTERNATOR, FUEL PUMP RELAY BLOCK",
+  "CAN": "CAN TRUNK - ECU, CSB3, CLUSTER, REALDASH PI, BULKHEAD, CAN-LAMBDA",
+  "CSB3": "CSB3 - SWITCH INPUTS, CRUISE LADDER, OPTO BOARD",
+  "AntiTheft": "ANTI-THEFT - ALARM MODULE, SIREN, TRIGGERS, STATUS LED",
+  "ClusterLED": "CLUSTER LEDS - LED BOARD ON THE METER PLUGS C11 / C12",
+  "WheelSpeed-Front": "FRONT WHEEL SPEED - FL / FR SENSORS TO THE FRONT VRC",
+  "WheelSpeed-Rear": "REAR WHEEL SPEED - RL / RR SENSORS TO THE REAR VRC",
+  "RearLights": "REAR LIGHTS - TAIL, STOP, HIGH-MOUNT, REVERSE, TURN, LICENCE",
+  "RearFuel": "REAR FUEL - FUEL PUMP AND LEVEL SENDER"
+ }
+}
