@@ -36,8 +36,8 @@ maintainer something the rules already answer.
 > 3. **ECU harness (DECISIONS R220)** — loom A and loom B are ONE harness, `AB`: `AB-cabin`
 >    (ECU plugs A, B, C → the cabin half of the DRB102) and `AB-engine` (the engine half →
 >    the engine devices). The letters A / B / C are the ECU's plug names; ECU pins never move.
->    Its drawing becomes ONE harness.design file built from the master (DECISIONS R225, never hand-edited,
->    read back against the master); until it exists the generator sets in `docs/harness/drawings/` stay frozen.
+>    Drawn by our own generator (`docs/harness/tools/build_drawings.py`) as ONE drawing set with every harness,
+>    `ST185-harness` (DECISIONS R225): never hand-edited, read back against the master; no harness.design.
 > 4. **ECU pins (DECISIONS R212)** — every circuit with a wire on an ECU pin (Link G4X plugs A / B / C) is
 >    checked against the Link G4X Quick Start Guide **and the G4X plug-in (wire-in) guides** (the plug-in guide wins
 >    for special circuits and pin modes): pin function and mode, what it may connect to, current limits, wire gauge.
