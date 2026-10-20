@@ -223,7 +223,7 @@ resistor is needed.
 > Cross-checked against the Waveshare ESP32-P4-WIFI6-Touch-LCD-XC schematic: all
 > of these GPIOs (and 3V3, 5V, GND) are routed to the **J8** 40-pin header. The
 > schematic text does not give exact pin positions, so only **5V (pin 2)** and
-> **GND (pin 39)** have confirmed pin numbers (from `WIRING.md`). Locate the rest
+> **GND (pin 39)** have confirmed pin numbers (from the cluster repo's `PINOUT.md`). Locate the rest
 > by the bare GPIO number printed next to each pin on the header.
 
 ---

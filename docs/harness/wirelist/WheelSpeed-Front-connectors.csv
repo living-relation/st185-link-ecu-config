@@ -1,6 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-wss_fl,WSS FL,WheelSpeed-Front,DT06-2S-CE05,2,,
-wss_fr,WSS FR,WheelSpeed-Front,DT06-2S-CE05,2,,
-ix_ws_front_r,IX-WS-F,WheelSpeed-Front,DT04-6P,6,ix_ws_front_p on ECU-cabin,inline DT pair
-lp16_vrc_f_in,VRC-F IN,WheelSpeed-Front,LP-16-J05PE-02-001,5,,
-lp16_vrc_f_out,VRC-F OUT,WheelSpeed-Front,LP-16-J05PE-02-001,5,,

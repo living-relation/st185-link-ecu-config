@@ -1,9 +1,0 @@
-circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
-BAT,Starter feed (H3) (pdb ALT/STR),rl_pos_fw,1,Starter feed (H3),HeavyDC,rl_pos_eng,1,Starter feed (H3),OK
-BAT,Starter feed (H3) (pdb ALT/STR),rl_pos_fw,1,Starter feed (H3),HeavyDC,rl_pos_eng,1,Starter feed (H3),OK
-BAT,Starter feed (H3) (pdb ALT/STR),rl_pos_eng,1,Starter feed (H3),HeavyDC,rl_pos_fw,1,Starter feed (H3),OK
-BAT,Starter feed (H3) (pdb ALT/STR),rl_pos_eng,1,Starter feed (H3),HeavyDC,rl_pos_fw,1,Starter feed (H3),OK
-BATN,"Chassis GND (Engine block ground stud, lug 1 (Route 1 point 5))",rl_neg_fw,1,Engine ground (H6a),HeavyDC,rl_neg_eng,1,Engine ground (H6a),OK
-BATN,"Chassis GND (Engine block ground stud, lug 1 (Route 1 point 5))",rl_neg_fw,1,Engine ground (H6a),HeavyDC,rl_neg_eng,1,Engine ground (H6a),OK
-BATN,"Chassis GND (Engine block ground stud, lug 1 (Route 1 point 5))",rl_neg_eng,1,Engine ground (H6a),HeavyDC,rl_neg_fw,1,Engine ground (H6a),OK
-BATN,"Chassis GND (Engine block ground stud, lug 1 (Route 1 point 5))",rl_neg_eng,1,Engine ground (H6a),HeavyDC,rl_neg_fw,1,Engine ground (H6a),OK

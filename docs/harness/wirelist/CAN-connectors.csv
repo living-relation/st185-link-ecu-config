@@ -1,3 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-ecu_com,ECU COMMS,CAN,DTM06-6S,6,,
-lambda,CAN-LAMBDA,CAN,DTM06-4S,4,,

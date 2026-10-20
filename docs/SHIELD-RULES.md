@@ -2,10 +2,10 @@
 
 The shield rules themselves are **R27-R34** in `docs/harness/redesign/DECISIONS.md` "Binding
 rules from Daniel" (the one rules home; it wins over this file). This file is the build detail
-that applies them (the shield pins and cavities are in the wire lists).
+that applies them (the shield pins and cavities are in `docs/harness/MASTER-wirelist.csv`).
 
-**`docs/harness/audit_shields.py` enforces R1, R2, R3, R5, R6 and S1-S4 (R207) mechanically, and
-`check_all.py` runs it.** If a change breaks one of these rules the build fails.
+**`docs/harness/tools/check_wiring.py` S1-S3 enforces the drain and floating-screen rules (R207) mechanically, and
+`tools/check_all.py` runs it.** If a change breaks one of these rules the build fails.
 That is deliberate: these were settled once and kept getting re-opened because
 nothing checked them.
 
@@ -17,8 +17,7 @@ quick install manual).
 ## No connector shells (R33)
 
 Every drain lands on a regular pin; no shell, backshell or shielding plate ever carries a
-screen (the VRC LP-16 plugs included). `lint_v09.py` rejects any connector `shell`;
-`audit_shields.py` R3 rejects any screen on a shell.
+screen (the VRC LP-16 plugs included); the master has no shell pins, so a screen can only land on a numbered pin.
 
 ## Shared drain pin: one splice (R29, R30, R32)
 
@@ -27,19 +26,18 @@ splice just to end one screen. Two or more screens on one pin share ONE `GENERIC
 SPLICE` (no covering), placed on the pin's connector through its `locationId`
 (https://docs.harness.design/component/splice), with one `M22759/16-20-06` drain wire to the
 pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into
-its own named branch splice on the trunk drain (`sp_can_sh_*`, R207; the one exception to "one splice").
+its own named branch splice on the trunk drain (`SP-CAN-SH-*`, R207; the one exception to "one splice").
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
-| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur, front WS FR spur | `sp_shield_a` at `ecu_a`; the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
-| ECU-B B17 | knock, ETB motor, VSS, rear WS spur | `sp_shield_b` at `ecu_b` |
+| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur, front WS FR spur | `SP-SHIELD-A` at `ECU-A`; the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
+| ECU-B B17 | knock, ETB motor, VSS, rear WS spur | `SP-SHIELD-B` at `ECU-B` |
 | ECU-COMMS C1 (R207) | CAN trunk drain `w_shd_can_trunk` (one wire); CSB3, cluster, RealDash, ECU cable and bulkhead / Lambda branch drains | one named splice per branch, `sp_can_sh_clu` / `_csb` / `_rd` / `_bh`, at that branch point |
 | VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `lp16_vrc_f_in` |
 | VRC rear IN pin 3 | RL and RR sensor cables | `sp_vrc_r_in_sh` at `lp16_vrc_r_in` |
 
 Every bulkhead drain has its own cavity, so no bulkhead cavity needs a shared splice.
-Gate: `validate_wheel_speed.py` W3 (each VRC harness has exactly one splice, which both sensor
-screens share); `audit_shields.py` for the rest.
+Both sensor screens of a VRC share its input plug pin 3 (Dan's design); `check_wiring.py` S2 / S3 for the rest.
 
 ## Vocabulary (Daniel)
 
@@ -61,21 +59,21 @@ sensor.
 Only a signal that already passes through both firewall bulkhead halves must carry its shield
 through both halves on matching pins. That shield floats at the sensor, must not stop on either
 half, and terminates at the ECU shield pin. Every such shield gets its own bulkhead cavity (the
-pin list is the wire lists, `DRB102-pin-table.csv`). Once the bulkhead connectors are installed
+pin list is the master wire list). Once the bulkhead connectors are installed
 they are straight-through, so a shield is not required to float at the bulkhead.
 
-Loom A screens land on A7 through `sp_shield_a`, loom B screens on B17 through `sp_shield_b`,
+Loom A screens land on A7 through `SP-SHIELD-A`, loom B screens on B17 through `SP-SHIELD-B`,
 the CAN screens on C1 through the trunk drain. No screen crosses between loom A and loom B
-(R207, `audit_shields.py` S3). Nothing but a drain lands on A7, B17 or C1.
+(R207, `check_wiring.py` S3). Nothing but a drain lands on A7, B17 or C1.
 
 ## VR conditioner boxes (R31, R34)
 
 The VRC device gets one shield flag. The sensor cables' screens and the output cable's screen
 are one continuous path: sensor (floats) -> IN plug pin 3 (one splice, R29) -> wire inside the
-box -> OUT plug pin 5 -> output cable screen -> `IX_WS_*` c5 -> `sp_shield_a` / `sp_shield_b`
--> **A7** (front) / **B17** (rear). `audit_shields.py` R6 reads the both-end VRC screens from
-`shieldBothEndsOk` in `docs/harness/interfaces.json`; `interfaces.json` "enclosures" names
-the two drain pins each box joins (`<plug>.<pin>`).
+box -> OUT plug pin 3 -> output cable screen -> the `IX-WS-*` pair -> the shield splice -> **A7** (front) / **B17**
+(rear). The plugs are `VRC-F-IN` / `VRC-F-OUT` and `VRC-R-IN` / `VRC-R-OUT`: input 1 left +, 2 left -, 3 both screens,
+4 right +, 5 right -; output 1 +5 V, 2 Gnd Out, 3 screen, 4 left out, 5 right out. `check_wiring.py` treats IN 3 to OUT 3
+as one path through the box.
 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in
 two non-shielded 5-pin CNLINKO LP-16 plugs (`LP-16-J05PE-02-001`, S8 / R34 / S16). Nothing bonds to the case

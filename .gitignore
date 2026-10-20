@@ -10,7 +10,6 @@ __pycache__/
 *.pyc
 .venv/
 build/
-!docs/build/
 dist/
 *.spec
 
@@ -51,3 +50,6 @@ cad/fusebox/rev7/renders/closeups/raw/
 # Vendor CAD models and maker documents: local only, index tracked (R67, R162)
 cad/vendor/**
 !cad/vendor/INDEX.md
+
+# generated drawing views (xlsx pinout, thumbnails): local only, never committed (R221)
+docs/harness/out/

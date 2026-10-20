@@ -1,6 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-wss_rl,WSS RL,WheelSpeed-Rear,DT06-2S-CE05,2,,
-wss_rr,WSS RR,WheelSpeed-Rear,DT06-2S-CE05,2,,
-ix_ws_rear_r,IX-WS-R,WheelSpeed-Rear,DT04-6P,6,ix_ws_rear_p on ECU-cabin,inline DT pair
-lp16_vrc_r_in,VRC-R IN,WheelSpeed-Rear,LP-16-J05PE-02-001,5,,
-lp16_vrc_r_out,VRC-R OUT,WheelSpeed-Rear,LP-16-J05PE-02-001,5,,

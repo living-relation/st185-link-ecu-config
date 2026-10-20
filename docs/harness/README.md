@@ -1,174 +1,40 @@
-# Harness files - which one is current
+# Harness and wiring - what is in this folder
 
-Written 2026-09-22, rewritten 2026-09-27 for the harness redesign. Read this before
-opening any loom.
+**The ONE wiring source of truth is `MASTER-wirelist.csv`** (DECISIONS R221): one row per wire, FROM end to TO end, for
+every harness. `sot/channels.csv` keeps only the ECU channel settings and is checked against it. Every rule Daniel has set
+is in `redesign/DECISIONS.md` "Binding rules from Daniel"; this page restates none of them.
 
-**The wiring source of truth is the master wire lists `wirelist/*-wirelist.csv`** (R206);
-`sot/channels.csv` keeps the ECU channel settings and is checked against them. The looms below are the physical build, built from the lists
-(`cleanroom/build_harness.py`); `check_all.py` enforces that. **Every rule for drawing them is in `redesign/DECISIONS.md` "Binding rules
-from Daniel" (R1-R149)** - this file is the file map and the workflow, and restates no rule.
-
-## The short answer
-
-**`rebuild/` holds the current drawings - edit the looms there. Everything else here is a copy,
-a build product, or history.** The drawings are **not a source of truth** (Daniel,
-2026-10-04): they follow the wire lists, and no truth document is generated from them.
-
-| Folder / file | What it is | Edit it? |
+| Path | What it is | Edit it? |
 |---|---|---|
-| **`rebuild/`** | The 15 current harnesses. Human-readable JSON, what git diffs, what matches harness.design | **Yes - edit the drawings here** (not a source of truth) |
-| **`routes/`** | Dan's approved route drawing for each harness (one HTML per route, current version only; git history keeps the revisions). A drawing's path must match its route. Lint: `check_route_drawings.py` (HARD gate) | Only from Dan's markup (`st185-apply-route-markup`) |
-| **`interfaces.json`** | Who owns what: physical harness per file, inline interface pairs, VRC endpoints, OEM flying leads with EWD locators, broken-off pairs. harness.design rejects unknown keys, so this cannot live in the drawings | **Yes - with the drawings** |
-| `rebuild/ST185.harnesslib` | The harness.design local part library (same JSON as a `.harness`, part arrays only), kept next to the drawings so the desktop app links it from the folder it opens. Every part the drawings use, equal to the drawing; update it in the same PR as any part change | **Yes - with the drawings** (gate `check_harnesslib.py`) |
-| `redesign/` | Decision record, implementation plan, interface convention | Decisions only by agreement |
+| `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
+| `drawings/` | generated: each drawing set's PDF (`<set>-drawings.pdf`) and the DRB102 insert-face map | No - re-run the generator |
+| `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
+| `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
+| `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
+| `rebuild/` | the frozen harness.design files and part library (`ST185.harnesslib`) of the harnesses the generator does not draw yet; `full_text.json` puts back their long names for `cad/fusebox/src/wiring_sim.py`. Deleted once the generator draws every harness | No (frozen) |
+| `redesign/DECISIONS.md` | every binding rule | Only for a new Dan rule |
 
-## Open in the desktop app
+Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails land in `out/` (gitignored).
 
-Dan edits the drawings in the harness.design **desktop app**, which opens the files and reloads live
-(https://docs.harness.design/feature/desktop). Cloud copies exist too (K11 = A, DECISIONS R110, 2026-10-15; IDs in `interfaces.json` `cloud`), but the repo files are the master: Dan opens them directly.
+## Change the wiring
 
-- **Open the files** in `docs/harness/rebuild/` (File > Open..., or double-click a `.harness`). The app opens one file at a time, watches it and reloads saved changes at once; `min/` no longer exists.
-- **Link the part library once:** Preferences > Part Libraries > Link existing > `rebuild/ST185.harnesslib`. The library wins on part data; it is committed with the drawings.
-- **Flow:** edit in the app (it saves the file itself), then run `python docs/harness/check_all.py`, commit the drawing and any `.harnesslib` change together.
-- **Wire routes (DECISIONS R202):** no wire carries routing points (`layoutPoints`, the white crosses on hover) unless Dan asks or the app would draw it diagonal / through a part; the app auto-routes the rest (gate `audit_wire_spacing.py` RP1).
-- **Rebuilt drawings (DECISIONS R201):** a drawing on `cleanroom/wirelist.py` `GATED` is built from its master wire list (`docs/harness/wirelist/<file>-wirelist.csv`) by `python docs/harness/cleanroom/build_harness.py <file>`; change the list, then rebuild - never the drawing's wires, pins or texts. Dan's layout moves in the app are kept. Gate `build_harness.py --check` (in `check_all.py`). Snapshot: the app's own Main Menu > Export > PDF (Schematic page). Agents, who cannot drive the app, use the fallback PNG `python docs/harness/render_schematic.py rebuild/<file>.harness out.png` (the app's wire paths, `wire_paths.py`; one dark display colour per circuit - its own colours, not the insulation; ident bands at both ends).
-- **Layout view (DECISIONS R107):** the Layout tab is an overhead view of the harness that follows its approved route (front of the car RIGHT (R140), a true top view: driver side up, passenger side down (R153)), with no node, label or bundle on top of another and no bundle along its own end's label (labels show to the right of their node). Layout moves are made in the desktop app; the scripts that re-placed layouts were removed 2026-10-19 (git history). Gate `audit_layout.py` (HARD in `check_all.py`). Fallback PNG: `python docs/harness/render_layout.py rebuild/<file>.harness out.png` (straight bundles, estimated label sizes - look at the Layout tab in the app).
-- **Ident bands and wire labels (DECISIONS R87 - the scheme lives there):** every wire carries its circuit's band code in `identColors` (Blue / Yellow / White, 1-4 bands, same code both ends); the circuit list per harness is `interfaces.json` "identBands"; a bundle that ends at a connector carries an `endLabel` and a TMS-SCE marker. Gate `audit_ident_bands.py`.
-- **No PDF export step (DECISIONS R88, amended 2026-10-15, K5).** The `.harness` files in this folder are the deliverable: Dan opens them in the desktop app at the build. The files keep their ident bands, end labels, title block and notes; the `pdfExportSettings` saved in them stay but nothing checks or needs them. A note too long for the drawing: widen it, then split it into the gaps, then move the long text to `HARNESS-NOTES.md` (one section per drawing) and leave a short pointer note (DECISIONS R92).
-- **Agents pause while Dan edits.** The version saved to disk wins: if the app has unsaved edits when an agent saves, the app's edits are discarded. An agent never rewrites a file Dan has open with unsaved changes. The gates read the JSON, not its whitespace, so the app's own formatting never fails CI.
-- **File format (DECISIONS R111):** every file here is the app's current schema, v1.2; `lint_v09.py` fails any other version, so the app never rewrites a file on open. Read a part configuration through `model.cfg_accessories` / `cfg_default`, never its raw keys.
-- Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
-- Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
+1. Edit the rows in `MASTER-wirelist.csv` (pins exactly as the maker numbers them; a part number not confirmed by a maker
+   document is `TBD`, never guessed).
+2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell).
+3. `python docs/harness/tools/build_drawings.py <set>` for a drawing set that holds the harness, and
+   `python docs/sourcing/build_project_bom.py` for the shopping list.
+4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
 
-## The 13 harnesses
+## Harnesses in the master
 
-The ECU harness (`ECU-cabin`, `ECU-engine`) is drawn by our own generator, not in the app (DECISIONS R220): `drawings/build_drawings.py` writes its layout, schematic and pinout sheets from the wire list (`drawings/<harness>/ST185-<harness>-drawings.pdf` + `-pinout.xlsx`); its physical tree is `drawings/<harness>.layout.json`, its rev log `drawings/<harness>.revs.json`.
+`AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
+`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `RearLights`, `WheelSpeed-Front`, `WheelSpeed-Rear`. Drawn by the generator
+today: `AB-cabin` (pilot). The rest keep their frozen `rebuild/` file until their drawing set exists.
 
-Each file is one physical harness that gets built. Shared nets may cross a boundary; a
-physical section of copper, a connector or a BOM line has one owner.
+## Factory wiring facts (OEM ends)
 
-| File | Harness | Scope |
-|---|---|---|
-| `ST185-ECU-cabin.harness` | ECU harness, cabin side (R220) | ECU plugs A, B and C, the cabin half of the DRB102 bulkhead, the ECU splice point (bussed DT plugs `BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`; +8V, switched 12V, A5 feed and the ECU ground splices), the relay coil wires (relays are in the box, CabinPower), the BRZ APS pedal, the A/C amplifier's cabin-side flying leads (the A4 / A5 device-side ends are on EngineRoom-C), both wheel-speed spurs, fuel level, A/C button and evaporator inputs, the NEG bar ground lugs. Drawn by our own generator (`"drawing": "own"`); the file is its parts / cavity data |
-| `ST185-CabinPower.harness` | Cabin power (non-ECU) | the two glove-box fuse + relay boxes (DECISIONS R75, `cad/fusebox` rev 5: POWER box `fb_power`, LOGIC box `fb_logic`) with the ECU-switched relays seated in them (all but `k_fp`, which is in the battery relay block on `ST185-HeavyDC`), battery feed ring; the ECU coil wires, splices, CSB3, CAN (DEV), AntiTheft and EngineRoom-C ends arrive broken off |
-| `ST185-HeavyDC.harness` | Heavy DC (Route 1) | trunk battery, RADLOK firewall pair, starter, 170 A alternator B+, engine-bay jump post, engine block ground, the battery relay block (fuel pump relay `k_fp` + its AMI-40, fed from the kill switch LOAD side, DECISIONS R75); hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) |
-| `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder, the 8-channel brake / reverse optocoupler board inline at the plug (DECISIONS S17, S25); power, ground, reverse, LED and CAN wires arrive broken off |
-| `ST185-ECU-engine.harness` | ECU harness, engine side (R220) | the engine half of the DRB102 to every engine device the ECU drives or reads, the throttle body included. Drawn by our own generator |
-| `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
-| `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB (battery, RADLOK and ground studs; the fuse box is on CabinPower), EPS, the ex-J/B2 / R/B loads (headlamp and horn feeds to the device plugs; cabin-side landings at J/B1 / IE1 / blower / window feed as flying leads); the A4/A5 A/C device-side flying leads (VC coil - not fitted - and pressure switch, folded in from ST185-ACAmp-Spur 2026-10-11, new-wire runs, no factory engine-bay wire reused) |
-| `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
-| `ST185-WheelSpeed-Rear.harness` | Rear wheel speed | one Y harness: RL/RR drops to the rear VRC endpoints, output to `IX_WS_REAR` |
-| `ST185-RearFuel.harness` | Rear Fuel | fuel level sender behind `IX_FUEL_LVL`; the fuel pump and its ground, fed broken off from `k_fp` on HeavyDC |
-| `ST185-ClusterLED.harness` | Cluster warning LEDs | LED loom; C11/C12 taps are flying leads |
-| `ST185-AntiTheft.harness` | Anti-theft | cabin |
-| `ST185-RearLights.harness` | Rear lights (Route 15) | J/B No.1 1F tail / turn and S9 stop flying leads, reverse feed broken off from `k_rev` (CabinPower), R11 / R12 rear combination lamps, L1 license light, H6 high-mount stop light (hatch), one rear ground BL |
-
-The ECU harness is ONE harness in two files, cabin and engine (`../RECONCILIATION-RULES.md` Rule 3,
-DECISIONS R220); `validate_breaks.py` keeps ECU-pin and bulkhead wires on those files, and `audit_mating.py`
-checks every cabin cavity mates the same engine cavity.
-
-The only center-cluster portion in this repo is the CAN node, plus power and
-ground to the cluster. Interior cluster wiring lives only in
-`center-cluster-esp32-p4`. Do not add interior cluster circuits here.
-`ST185-CAN` ends at its CAN-drop terminal.
-
-The fuse box lives only in `ST185-CabinPower` (slot map: the fuse-box design `cad/fusebox/rev7/wiring_plan.json`, R204).
-Loom C's old `gbx_body` glove-box body block and the fused AM1 / AM2 / OEM HOT
-outputs moved there; EngineRoom-C keeps the cabin-side OEM ends (IE1, J/B1, the leads at the old R/B2 / R/B4
-spots, A/C pressure switch; J/B2 and the R/Bs themselves are removed, R12) and reaches the box through broken-off pairs.
-
-## Boundaries
-
-How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
-
-- **Inline interface** - a real connector pair, one half per harness, same cavity text
-  on both. The three today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way) and `IX_FUEL_LVL`
-  (DT 2-way).
-- **Broken-off wire** - a wire that runs between two harness files is drawn in both, each
-  section ending at a `Loose` terminal (`br_<wire>`) whose note names the other file. The
-  pairs are `interfaces.json` "breaks"; no device is drawn on two files and there are no
-  cross-reference dummies (Rule 3, `validate_breaks.py` L6 / L7).
-- **Bulkhead** - one shared Deutsch DRB102 (`DRB12-102PAE-L018` receptacle / `DRB16-102SAE-L018`
-  plug + `DRBF-1A` flange), one 102-position connector: the receptacle `bh_fw` on ECU-cabin, the plug
-  `bh_eng` on ECU-engine, cavities assigned by device (R208). Real cavity numbers, sizes and
-  spares: `DRB102-CAVITY-MAP.md` (gate `audit_mating.py` M8).
-- **Shared connectors** - rule R10: drawn whole in every file, the other file's cavities N/C
-  (https://docs.harness.design/component/connector) with a "see ST185-<other file>" note.
-  Register the connector in `interfaces.json` "physicalPartGroups"; gate
-  `audit_shared_connectors.py`. Today the only shared connector is the DRB102 bulkhead.
-- **OEM flying lead** - a `Loose` terminal whose text is the EWD locator. No OEM housing
-  is ever modelled or bought.
-- **Device endpoint** - the VRCs are not drawn; each lead ends at a labelled `Loose`
-  terminal (`VRC_REAR_IN_L +`).
-
-## The pipeline
-
-```
-sot/channels.csv             <- pin SoT; new pin facts go here first
-rebuild/*.harness            <- edit the harnesses here
-interfaces.json              <- and the ownership facts with them
-  |
-  +-- check_all.py             runs every gate below, in order, all hard
-        validate_sot.py            drawings vs the SoT
-        sync_io_table.py --check   XTREMEX-IO-TABLE.html vs the SoT
-        lint_v09.py                schema and references
-        validate_ownership.py      every file registered; one owner per conductor and part
-        validate_interfaces.py     inline interfaces are matched real pairs
-        validate_wheel_speed.py    front/rear Y harnesses, interfaces, spurs
-        verify_connectivity.py     every SoT signal pin reaches a device across boundaries
-        validate_oem_endpoints.py  OEM points are flying leads with EWD locators
-        audit_cavity_parts.py      contact or plug, never both
-        audit_shields.py           docs/SHIELD-RULES.md
-        audit_pin_names.py         drains only on A7/B17; one name per mating cavity
-        audit_mating.py            every cabin cavity mates the same engine cavity
-        validate_breaks.py         ECU-pin / bulkhead wires on the ECU harness files; breaks; one element per drawing
-        audit_bulkhead_pairs.py    no one-sided bulkhead cavity
-        audit_bh_collisions.py     no two circuits on one cavity half
-        audit_wire_spacing.py      no wire routing points unless allow-listed or squaring a diagonal (RP1, R202);
-                                   layout bundles 30 apart unless they end at the same connector / device (R107)
-        audit_ident_bands.py       ident band codes: palette, one code per circuit, both sections of a break agree (R87)
-        audit_destinations.py      wire-end labels: where each end lands, ends differ, no "->" / pin codes (R156; R124, R125)
-        buylist.py                 writes NEED-TO-BUY.md
-```
-
-Use it before every commit:
-
-```
-python docs/harness/check_all.py
-```
-
-`run_pipeline.bat` runs the same thing. `sync_io_table.py` without `--check` rewrites
-the generated pin map in the IO table after a CSV change. `model.py` is the shared
-reader: it loads the registry and builds one electrical graph across every harness
-(bulkhead halves, interface halves, cross-references and VRC enclosures each collapse
-to one node). It also puts back the long label / signal text the drawings no longer
-carry (`full_text.json`, DECISIONS R124), so the gates read the full text while the app shows
-short destinations. `python docs/harness/audit_destinations.py --table ECU-cabin ecu_a` prints a
-connector's Destination column (add `--raw` for the long text); `--ends <loom>` prints both
-printed ends of every wire.
-
-## Parts - how the gates count them
-
-The parts rules are R38 (never guess a part number), R39 (library is the master), R44 / R49
-(clean drawings, no unused parts), R48 (descriptions name the part) and R35 (wire part
-numbers) in `redesign/DECISIONS.md`. The counting mechanics the gates apply:
-
-1. A cavity holds a contact or a sealing plug, never both; a cavity wired in *any* harness
-   gets a contact (`audit_cavity_parts.py`, `validate_interfaces.py`).
-2. A connector drawn on more than one harness carries the same part everywhere and is counted
-   on exactly one copy (`validate_ownership.py` O3, `buylist.py`).
-3. A `br_` broken-off terminal has no part; each wire section is counted on its own harness.
-
-Adding up the parts lists off the individual drawings by hand will over-order.
-`NEED-TO-BUY.md` is the only correct total.
-
-## Versioning
-
-Files are not version-numbered. Git is the version history, and one folder means
-one generation:
-
-- a new generation replaces the old one in place; git history keeps the old one
-  (there is no in-repo `archive/` any more - Daniel, 2026-10-13; an old copy or older revision of a
-  `.harness` is removed or replaced without asking and listed in the PR under "Retired", R46)
-- nothing is ever copied sideways into the same folder with a suffix
-- `-v2`, `-new`, `-final`, `-copy` in a filename is a bug, not a version
+- Pin authority for OEM ends: the 1990 ST185 All-Trac EWD (the All-Trac book), cross-checked against the 1992 Celica
+  EWD132U. The public PDF labelled EWD160U (1993) is the FWD AT180 / ST184 book: never use its pin numbers. The 1993 TIS
+  EWD pages are in the `st185-celica-repair-manual` repo. Factory snips: `docs/electrical/ewd-snips/`.
+- Before first power-up, with the battery isolated: ohmmeter from each cabin landing (J/B1, IE1, the old R/B2 / R/B4
+  leads, blower, ignition switch) to its named load.

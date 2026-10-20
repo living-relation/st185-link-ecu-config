@@ -1,4 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-ix_fuel_p,IX-FUEL inline to fuel sender (trunk LH),RearFuel,DT06-2S,2,ix_fuel_r on ECU-cabin,inline DT pair
-fuellvl,FUEL LVL,RearFuel,DT04-2P,2,,
-fuelpump,FUEL PUMP,RearFuel,(pump pigtail - Walbro F90000295),2,,

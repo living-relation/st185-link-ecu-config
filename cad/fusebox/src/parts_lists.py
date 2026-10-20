@@ -4,7 +4,7 @@ Writes three CSVs next to the summary page and returns the rows for summary_html
     cad/fusebox/fusebox-parts-power.csv     POWER box (glove box)
     cad/fusebox/fusebox-parts-logic.csv     LOGIC box (glove box)
     cad/fusebox/fusebox-parts-battrelay.csv battery relay block (trunk)
-docs/harness/buylist.py reads the BUY lines of these three files (the repo buy list, docs/harness/NEED-TO-BUY.md).
+docs/sourcing/build_project_bom.py reads these three files (the ONE project BOM, Mechanical section).
 
 Counts come from spec.py (fuse slots, relay positions, wire gauges) and fusebox_report.json (printed volumes), so a
 change to the boxes changes the lists. Every part number is checked against a maker sheet; the 'checked' column says

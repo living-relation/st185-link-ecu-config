@@ -23,17 +23,17 @@ maintainer something the rules already answer.
 >
 > 1. **Wiring** — a change to one wiring document is not done until it is checked against
 >    the source-of-truth chain and **every other wiring surface**, including ones you did
->    not edit. The wire lists (`docs/harness/wirelist/*-wirelist.csv`, DECISIONS R206) are the
->    wiring source of truth; `sot/channels.csv` keeps the ECU channel settings and is checked
->    against them; `XTREMEX-IO-TABLE.html` is its visual face. The `.harness` looms are
->    drawings built from the lists, not a source of truth.
+>    not edit. ONE file, `docs/harness/MASTER-wirelist.csv` (DECISIONS R221), is the wiring
+>    source of truth; `sot/channels.csv` keeps only the ECU channel settings and is checked
+>    against it; `XTREMEX-IO-TABLE.html` is its visual face. Drawings and the BOM are generated
+>    from the master; no script ever writes the master or `channels.csv`.
 > 2. **CAN** — a change on any device must be reconciled against **all** of them: Link ECU,
 >    center cluster, RealDash, ECUMaster CSB3. This crosses repo boundaries. The cluster
 >    firmware is frozen and outranks everything; on conflict, the other device changes.
-> 3. **ECU harness (DECISIONS R220)** — loom A and loom B are ONE harness: `ST185-ECU-cabin`
->    (ECU plugs A, B, C → the cabin half of the DRB102) and `ST185-ECU-engine` (the engine half →
+> 3. **ECU harness (DECISIONS R220)** — loom A and loom B are ONE harness, `AB`: `AB-cabin`
+>    (ECU plugs A, B, C → the cabin half of the DRB102) and `AB-engine` (the engine half →
 >    the engine devices). The letters A / B / C are the ECU's plug names; ECU pins never move.
->    Both are drawn by our own generator, not the harness.design app. Gate: `docs/harness/validate_breaks.py`.
+>    Drawn by our own generator (`docs/harness/tools/build_drawings.py`), not the harness.design app.
 > 4. **ECU pins (DECISIONS R212)** — every circuit with a wire on an ECU pin (Link G4X plugs A / B / C) is
 >    checked against the Link G4X Quick Start Guide **and the G4X plug-in (wire-in) guides** (the plug-in guide wins
 >    for special circuits and pin modes): pin function and mode, what it may connect to, current limits, wire gauge.
@@ -43,8 +43,8 @@ maintainer something the rules already answer.
 > 5. **Grounds (R213 / R216 / R217)** — ECU power ground -> battery-negative bar in the POWER box only; PCBs, CAN
 >    nodes, LEDs -> battery-negative bus, never chassis; sensors -> Gnd Out only; high-current loads may use chassis;
 >    shields -> drains only; CAN nodes take +12 V and ground with the CAN trunk. **Relays (R219):** an ECU output driving a relay is
->    low-side, ECU pin -> coil 85, coil 86 -> fused +12 V. All gated by `cleanroom/ecu_rules.py` (`wirelist.py --check`);
->    known violations are listed in `ecu_rules.PENDING` until the wiring fix removes them.
+>    low-side, ECU pin -> coil 85, coil 86 -> fused +12 V. All gated by `docs/harness/tools/check_wiring.py`;
+>    known violations are listed in its `PENDING` until the wiring fix removes them.
 >
 > Link CAN-Lambda is on CAN bus 1. CAN bus 2 is unused and its ECU pins are free.
 >
@@ -67,25 +67,22 @@ maintainer something the rules already answer.
 - **Bench tooling**: `bench/can_bench.py`, `bench/frames.py`, `bench/requirements.txt`, `BENCH-TEST.md`.
 - **Desktop sender app**: `apps/trackcluster-can-sender/app.py`, `apps/trackcluster-can-sender/ui/index.html`, `apps/trackcluster-can-sender/BUILD.md`, `apps/trackcluster-can-sender/requirements.txt`.
 - **Automation assets**: `rd-build/tools/automation_helper.py`, `rd-build/tools/SETUP.md`, `rd-build/PLAN.md`, `rd-build/FINDINGS.md`.
-- **Wiring SoT**: `sot/channels.csv` (every ECU pin and channel). `XTREMEX-IO-TABLE.html` is its visual face. `WIRING.md` covers the cluster boards and the 5-node CAN topology.
-- **Harness / electrical**: `docs/harness/rebuild/*.harness` - drawings, **not a source of truth** (Daniel, 2026-10-04: they follow `sot/channels.csv`; never generate truth docs from them) (one physical harness per file, ownership in `docs/harness/interfaces.json`; see `docs/harness/README.md`), gate `python docs/harness/check_all.py`. The ECU harness is one harness in two files, `ST185-ECU-cabin` / `ST185-ECU-engine` (DECISIONS R220) - canonical rule `docs/RECONCILIATION-RULES.md` Rule 3, gate `validate_breaks.py`; `docs/SHIELD-RULES.md`, `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`. Drawing notes too long for the frame: `docs/harness/HARNESS-NOTES.md` (DECISIONS R92). Circuit tracer (end-to-end trace of every circuit with simulated ECU / CSB3 / CAN logic, both states): approved plan `docs/harness/CIRCUIT-TRACE-PLAN.md`, DECISIONS R89, built only when all 13 drawings are final (OPEN-ITEMS row 117).
-- **Master wire list = the wiring SoT (DECISIONS R201 / R206; all 13 files, ECU-cabin gated)**: `docs/harness/wirelist/` - one row per wire FROM pin TO pin, nets, splices, mates, pinouts, plus `GAPS.md` (the one combined gap list, generated), `DRB102-pin-table.csv` / `.xlsx` and `DRB102-bulkhead-map.png` (the bulkhead pin table and insert-face map, R208); `<file>-wirelist.csv` is the git source, `.xlsx` are styled views. `docs/harness/cleanroom/wirelist.py` checks every row against the SoT and writes the rest (gate `--check` in `check_all.py`: a list row that disagrees with `channels.csv`, or a `channels.csv` pin in use with no wire, fails for EVERY list; mates and nets fail on approved lists, `GATED`); `build_harness.py <file>` builds a drawing from its list plus `cleanroom/specs/<file>.json` (labels, title, notes; geometry kept from the drawing); the one-time drawing-to-list migration and the old layout / label / routing-point scripts were removed 2026-10-19 (git history); `build_harness.py --check` (in `check_all.py`) fails if a rebuilt drawing (`GATED`) differs from what its list builds, except layout moves. Since the switch (R206) the list owns every wire, pin, splice, end, mate, net and factory end; `sot/channels.csv` keeps the ECU channel settings, `interfaces.json` is only the drawing registry, the cavity maps are physical part data. To change wiring: edit the list row, run `cleanroom/wirelist.py`, then `build_harness.py <file>`, then `check_all.py`.
-- **Own harness drawings (DECISIONS R220)**: `docs/harness/drawings/build_drawings.py` draws the harnesses marked `"drawing": "own"` in `interfaces.json` (today `ECU-cabin`; `ECU-engine` waits for its layout spec) straight from the wire list - one 11x17 PDF set per harness (`docs/harness/drawings/<harness>/ST185-<harness>-drawings.pdf`: a top-view layout with segment lengths / wire counts / DR-25 sizes, schematic sheets with pinout tables and point-to-point wires, and ONE combined pinout table) plus `ST185-<harness>-pinout.xlsx` and the hub thumbnail. Hand-kept inputs: `<harness>.layout.json` (the physical tree: node positions, segment lengths, where every end sits) and `<harness>.revs.json` (rev log, R200 initials). `--check` (in `check_all.py`) fails when a set is stale or a wire end is not on the layout. To change one: edit the wire list (or the layout / rev log), then run the script.
+- **Wiring SoT (DECISIONS R221)**: ONE file, `docs/harness/MASTER-wirelist.csv` - one row per wire FROM end TO end (or spare cavity), every harness: connector ID, name, maker housing PN, pin as the maker numbers it, terminal PN, wire, ident bands, OEM locator; nets = splice names only; power ends labelled by their real source (relay, then fuse). An unconfirmed part is `TBD`, never guessed (`check_wiring.py --tbd` lists them). `sot/channels.csv` = ECU channel settings only; `XTREMEX-IO-TABLE.html` its visual face. The one gate: `docs/harness/tools/check_wiring.py` (in `tools/check_all.py`; `--self-test` in CI). Folder map: `docs/harness/README.md`.
+- **Harness drawings**: `docs/harness/tools/build_drawings.py` draws a drawing set (one or more harnesses from the master: `tools/<set>.layout.json` physical tree + `tools/<set>.revs.json` rev log) into `docs/harness/drawings/<set>-drawings.pdf`, plus the DRB102 insert-face map `docs/harness/drawings/DRB102-bulkhead-map.png`; the pinout `.xlsx` and thumbnail go to the gitignored `docs/harness/out/`. `--check` (in `tools/check_all.py`) fails when a set is stale. Harnesses not drawn by it yet keep their frozen harness.design file in `docs/harness/rebuild/` (not a source of truth; deleted once every harness is drawn). `docs/SHIELD-RULES.md`; ECU harness: `docs/RECONCILIATION-RULES.md` Rule 3. Circuit tracer (R89): OPEN-ITEMS row 117.
 - **Engine calibration**: `tune/engine_constants.yaml`, `tune/limits.yaml`, `tune/tables/*.csv`, `tune/docs/`, `tune/scripts/` (incl. `validate_tune.py`), `tune/README.md` — PCLink seeds only; not an I/O or CAN source. `FUEL-SYSTEM.md` is fuel hardware reference, not CAN.
 - **Project files stay in this repo** (DECISIONS R67): nothing for ST185 goes in the `C:\projects` root, `_scratch`, `_tools`, `C:\projects\cad` or `inbox`. CAD: the one `cad/` tree, by part - `cad/busbar/` (five designs + `src/`), `cad/fusebox/`, `cad/enclosures/` (VRC, CSB3), `cad/drb102-plate/`, `cad/fuel-hanger/` (build123d); newest version of each model only. Research / pick pages: `docs/research/` (latest per topic). Status page: the hub's "Project status" section (see **Dashboard** below). An in-flight handoff: `output/` (deleted when done). Heavy CAD (every STEP, STL and Fusion `.f3d`, plus the busbar drawing PDFs) is gitignored and kept in the same `cad/` folder of the main checkout. Fusion allows only 10 editable documents (DECISIONS R74): reuse the part's existing document, never make throwaway ones, and list finished documents for Dan to set read-only. Local-only working files and vendor downloads: `_research/` (untracked).
 - **Other docs/**: `docs/devices/`, `docs/enclosures/`, `docs/sourcing/`, `docs/procedures/`, `docs/intercooler-turbo-study/`, `docs/5sgte-project-data/` (research), `docs/research-hub.html` (generated, see below).
 - **CAD index**: `cad/README.md` - the ONE list of every CAD model (summary page, local STEP/STL/f3d paths, Fusion link, external fuel hanger); a new model gets a row in the same PR (DECISIONS R77). Its `Selected for build` column (yes on the one version of each item being built, no on the rest) is the ONLY place the build choice lives; the hub shows the selected set first and folds the rest into "Superseded / alternatives - not used"; flip the flags in the same PR that picks a new rev.
 - **CAD trimetrics + power package** (DECISIONS R83 / R84): every CAD model has a tracked trimetric PNG beside it (`cad/<model>/trimetric*.png`), rendered headless from its STEP by `cad/render_trimetric.py` (sources and dates in `cad/trimetrics.json`). A new or changed model re-renders its trimetric in the same PR. The power distribution package (POWER + LOGIC boxes, battery relay block, bus bar B rev3, VRC + CSB3 enclosures) is always shown as one package: `cad/README.md` "Power distribution package" table. Render (WSL, repo root): `~/projects/handbuilt-cad/.venv/bin/python cad/render_trimetric.py --src /mnt/c/projects/active/st185-link-ecu-config [--only <id>]`.
 - **Repo hygiene**: `tools/hygiene.ps1` (`-WhatIf` = dry run) - fetch --prune, fast-forward main, remove merged worktrees + local branches nobody is in, delete empty leftover folders (DECISIONS R118); sessions never remove their own worktree, Dispatch runs it on every wake. Every PR body needs a `Rows: <n>, <n>` / `Rows: none` line.
-- **Assembly wiring diagrams** (R180): `docs/build/wiring-diagrams/` - generated block diagram of the POWER box, LOGIC box and battery relay block, plus one sheet per OEM box we splice into (J/B No.1, IE1, old R/B No.2 / No.4, J/B No.3, IG2, kick-panel grounds). `python docs/build/wiring-diagrams/build_wiring_diagrams.py` regenerates it; `MISMATCHES.md` lists SoT-vs-loom disagreements.
-- **Project BOM + shopping list (Dan 2026-10-19)**: `docs/sourcing/PROJECT-BOM.xlsx` (+ `PROJECT-BOM.csv` source) - ONE file, two sections (Mechanical assemblies, Wire harness), on hand / to buy / buy links / Needs Dan sheet. Generated by `docs/sourcing/build_project_bom.py` from `NEED-TO-BUY.md`, the wire lists, `cad/fusebox/fusebox-parts-*.csv`, `docs/enclosures/*-bom.csv`, `docs/sourcing/mech-extra.csv`, `te-on-hand-bom.csv` and the hand-kept `docs/sourcing/bom-links.csv`; stale check in `check_all.py`. Never hand-edit the CSV / xlsx.
+- **Project BOM + shopping list (Dan 2026-10-19)**: `docs/sourcing/PROJECT-BOM.xlsx` (+ `PROJECT-BOM.csv` source) - ONE file, two sections (Mechanical assemblies, Wire harness), on hand / to buy / buy links / Needs Dan sheet. Generated by `docs/sourcing/build_project_bom.py` from `docs/harness/MASTER-wirelist.csv` (every harness part, wire and band), the drawing sets' layouts, `cad/fusebox/fusebox-parts-*.csv`, `docs/enclosures/*-bom.csv`, `docs/sourcing/mech-extra.csv`, `te-on-hand-bom.csv` and the hand-kept `docs/sourcing/bom-links.csv`; stale check in `tools/check_all.py`. Never hand-edit the CSV / xlsx.
 - **Project tracker**: `docs/OPEN-ITEMS.md` - THE one tracker: every unresolved item (owner, source, what unblocks it) plus the dated project history. Decisions and every binding rule live in `docs/harness/redesign/DECISIONS.md` ("Binding rules from Daniel" is the rules home).
-- **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); lint `docs/harness/check_route_drawings.py`.
+- **Route drawings**: `docs/harness/routes/` - Dan's approved route for each harness (one HTML per route, current version only); linted by `check_wiring.py` R1.
 - **Handoffs**: none kept. A finished handoff is deleted; open work goes into `docs/OPEN-ITEMS.md` (`output/` is for a handoff in flight only).
 - **Agent ecosystem**: `.claude/skills/` (4 repo skills: `run-can-bench-scenarios`, `update-can-frame-contract`, `maintain-realdash-xml-mapping`, `extend-trackcluster-can-sender` - CAN/bench; see **Skills** below for the 5 global ST185 skills), `.claude/rules/` + `.cursor/rules/` (thin pointers to the rule owners - `DECISIONS.md`, `RECONCILIATION-RULES.md`, this file's Working Rules - never copies), `.claude/settings.json` (permission allow-list), `.cursor/environment.json` + `.cursor/install.sh` (Cursor Cloud bootstrap), `.githooks/` (pre-commit refuses `docs/research-hub.html`). No agent hooks are configured.
 
 ## Drawing initials (DECISIONS R200)
-DRAWN (title block) is the person on Rev A of that drawing and never changes; every rev-log BY is the person who **requested** that change; never an agent or tool name (no Claude, SteveCAD, Grok, Fairsolid, unknown, blank). For this project both are always `DG`. The initials live in ONE per-computer file, `%USERPROFILE%\.drawing-initials` (one line; env `DRAWING_INITIALS` overrides; inside WSL the Windows profile's file is read). Every drawing tool reads it: the handbuilt-cad drawing engine (title block + rev rows, DRAWING-RULES 32), the st185 drawing scripts (`cad/drawings/`), and the future harness PDF rev stamper. A person at a terminal is asked once and it is saved; **an agent with no terminal and no file STOPS** - ask Dispatch / Dan for the requester's initials, never default or invent a name. Gate: `cad/check_drawing_rules.py` K4 (in `check_all.py`). Also R200: .01 clerical revs are not rows in the drawing's REVISIONS table (git history only; title-block REV still shows e.g. D.01), and every full-letter rev made from 2026-10-19 on puts its letter in a triangle next to each changed item and BOM row (old triangles stay, N42 = B): declare them in `rev_marks` / `<pn>.REVMARKS.json` beside the rev log (handbuilt-cad `drawing/revmarks.py`, DRAWING-RULES 33); gate K5, exempt letters in `cad/rev-marks.json`. The `.harness` looms keep their current titleBlock `drawnBy` until they are rebuilt (the clean-room harness session owns A-cabin); when you rebuild one, set `drawnBy` and every revision BY from the same file.
+DRAWN (title block) is the person on Rev A of that drawing and never changes; every rev-log BY is the person who **requested** that change; never an agent or tool name (no Claude, SteveCAD, Grok, Fairsolid, unknown, blank). For this project both are always `DG`. The initials live in ONE per-computer file, `%USERPROFILE%\.drawing-initials` (one line; env `DRAWING_INITIALS` overrides; inside WSL the Windows profile's file is read). Every drawing tool reads it: the handbuilt-cad drawing engine (title block + rev rows, DRAWING-RULES 32), the st185 drawing scripts (`cad/drawings/`), and the future harness PDF rev stamper. A person at a terminal is asked once and it is saved; **an agent with no terminal and no file STOPS** - ask Dispatch / Dan for the requester's initials, never default or invent a name. Gate: `cad/check_drawing_rules.py` K4 (in `check_all.py`). Also R200: .01 clerical revs are not rows in the drawing's REVISIONS table (git history only; title-block REV still shows e.g. D.01), and every full-letter rev made from 2026-10-19 on puts its letter in a triangle next to each changed item and BOM row (old triangles stay, N42 = B): declare them in `rev_marks` / `<pn>.REVMARKS.json` beside the rev log (handbuilt-cad `drawing/revmarks.py`, DRAWING-RULES 33); gate K5, exempt letters in `cad/rev-marks.json`. The generator's drawing sets (`docs/harness/tools/<set>.revs.json`) take DRAWN and every rev BY from the same file.
 
 ## Skills
 Five skills for this project are saved **globally** (user-level, not in this repo) at
@@ -94,13 +91,13 @@ with other projects, and scoped by their own description to this repo. Their bod
 not copied here; this is a pointer only.
 
 - [`st185-apply-route-markup`](C:\Users\danie\.claude\skills\st185-apply-route-markup\SKILL.md) - redraw a route drawing in `docs/harness/routes/` from Dan's markup and add its top view (drawing-only).
-- [`st185-build-harness-from-sot`](C:\Users\danie\.claude\skills\st185-build-harness-from-sot\SKILL.md) - build/check one `docs/harness/rebuild/*.harness` file against the SoT, never the reverse.
-- [`st185-change-sot`](C:\Users\danie\.claude\skills\st185-change-sot\SKILL.md) - edit `sot/channels.csv` / `docs/harness/interfaces.json` and run the required check sequence, then list downstream harness files to redraw.
+- [`st185-build-harness-from-sot`](C:\Users\danie\.claude\skills\st185-build-harness-from-sot\SKILL.md) - build/check a harness drawing from the SoT, never the reverse (now: edit `docs/harness/MASTER-wirelist.csv`, run `check_wiring.py` and `build_drawings.py`).
+- [`st185-change-sot`](C:\Users\danie\.claude\skills\st185-change-sot\SKILL.md) - change the wiring SoT (now `docs/harness/MASTER-wirelist.csv`, plus `sot/channels.csv` for ECU settings) and run the check sequence (`python tools/check_all.py`).
 - [`st185-pick-parts`](C:\Users\danie\.claude\skills\st185-pick-parts\SKILL.md) - pick real part numbers in the on-hand-then-TE sourcing order; never guess a part number.
 - [`st185-ship-change`](C:\Users\danie\.claude\skills\st185-ship-change\SKILL.md) - PR a finished change to protected `main`, squash-merge, clean up the worktree/branch.
 
-The route-drawing lint they call, `docs/harness/check_route_drawings.py`, lives in this repo
-and runs as a HARD gate in `check_all.py`, since it's a test, not a skill.
+The route-drawing lint lives in `docs/harness/tools/check_wiring.py` (R1) and runs as a HARD gate in
+`tools/check_all.py`, since it's a test, not a skill.
 
 ## Scope
 - This repo is CAN configuration + bench/tooling for ST185 TrackCluster.
@@ -112,9 +109,8 @@ and runs as a HARD gate in `check_all.py`, since it's a test, not a skill.
 - Architecture and allocation: `CAN-BUS-ID-ALLOCATION-TABLE.md`, `CAN-BUS-MASTER-DESIGN.md`, `CANBUS-LINK-G4X-CONFIG.md`.
 - Bench behavior: `bench/frames.py`, `bench/can_bench.py`, `BENCH-TEST.md`.
 - RealDash channel definitions: `link_g4x_realdash.xml`.
-- OEM landing facts for the ex-J/B2 / R/B loads (§5.4; the OEM engine-bay boxes are removed, R12): `docs/electrical/ENGINE-ROOM-POWER-REDISTRIBUTION.md`. The wire lists own the wiring.
-- Wiring SoT (R206): the wire lists `docs/harness/wirelist/*-wirelist.csv` (every wire, pin, splice, end, mate, net, factory end). `sot/channels.csv` = ECU channel settings, checked against the lists both ways. Visual face of `channels.csv`: `XTREMEX-IO-TABLE.html` (gated by `docs/harness/sync_io_table.py --check`).
-- The harness drawings - **not a source of truth** (Daniel, 2026-10-04; since R206 they are built from the wire lists; never generate truth docs from them): `docs/harness/rebuild/*.harness` (13 files, one physical harness per file; wires between files are drawn broken off in both; the ECU harness is `ECU-cabin` + `ECU-engine` since R220, drawn by our own generator; `docs/harness/README.md`). Ownership/interfaces: `docs/harness/interfaces.json`, `docs/harness/redesign/`. Gate: `python docs/harness/check_all.py`.
+- Wiring SoT (R221): ONE file, `docs/harness/MASTER-wirelist.csv` (every wire, pin, splice, end, mate, spare, factory end, of every harness). `sot/channels.csv` = ECU channel settings, checked against the master both ways. Visual face of `channels.csv`: `XTREMEX-IO-TABLE.html`. Gate: `python docs/harness/tools/check_wiring.py`.
+- The harness drawings are generated, **not a source of truth**: `docs/harness/drawings/` (from `tools/build_drawings.py`) and, until the generator draws every harness, the frozen `docs/harness/rebuild/*.harness` files.
 - Every binding wiring / parts / drawing rule: `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel". Reconcile procedure: `docs/RECONCILIATION-RULES.md` Rule 1; ECU loom letter detail: Rule 3.
 
 ## Related Repos (mandatory for CAN bus / wiring work)
@@ -130,8 +126,8 @@ before making changes:
   its `CANBUS-ENCODE-DECODE-REFERENCE.html` (https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) is the readable reference derived from it —
   link to it, never copy cluster files here; the pointer page in this repo is `CANBUS-ENCODE-DECODE-REFERENCE.html`.
 - Its `sdkconfig` and `main/Kconfig.projbuild` define the
-  cluster's TWAI GPIO pinout and transceiver wiring — see `WIRING.md` and
-  `CAN-BUS-MASTER-DESIGN.md` in this repo for how it fits the 5-node topology.
+  cluster's TWAI GPIO pinout and transceiver wiring — see `CAN-BUS-MASTER-DESIGN.md` §2
+  in this repo for how it fits the 5-node topology.
 - Do not introduce a CAN ID, frame layout, or wiring change here that the cluster
   firmware doesn't already decode/expect — the cluster is not being modified as
   part of work in this repo.
@@ -182,9 +178,8 @@ $env:TC_DEVICE='realdash'; python apps/trackcluster-can-sender/app.py
 
 ### Quick checks
 ```bash
-python docs/harness/check_all.py          # harness gates; --check mode, never writes
-python docs/harness/audit_wire_spacing.py # routing points only where a wire squares a diagonal RP1 (R202), layout spacing W2 (R107)
-python docs/harness/audit_layout.py      # layout view: front right, true top view (R140, R153), overlaps / hidden bundles / own labels (R107); layout moves are Dan's, in the app
+python tools/check_all.py                 # every repo gate; --check mode, never writes
+python docs/harness/tools/check_wiring.py # the ONE wiring check (R221); --tbd lists unconfirmed parts, --self-test proves the checks
 python cad/check_drawings_current.py     # R183: every drawing matches its model (also in check_all.py); --update <pn> after regenerating
 python cad/check_drawing_rules.py        # R184-R196: balloons, tangent edges, banned notes, from each drawing's <pn>.checks.json (also in check_all.py)
 python bench/check_parity.py              # CAN contract parity
@@ -198,25 +193,19 @@ python rd-build/tools/automation_helper.py screenshot rd-build/rd_screen.png
 
 ### Route-drawing lint
 The approved route drawings are `docs/harness/routes/` (current version only; git history is
-the revision record). `check_all.py` runs the lint as a HARD gate; by hand:
-```bash
-python docs/harness/check_route_drawings.py                      # all routes
-python docs/harness/check_route_drawings.py docs/harness/routes/ROUTE-5-A-CABIN.html
-```
+the revision record). `docs/harness/tools/check_wiring.py` lints them (R1) as part of the wiring check.
 
 ## Working Rules
 - Keep CAN changes synchronized across `bench/frames.py`, `link_g4x_can_setup.json`, `switchboard_frames.json`, the `.lcs`, the RealDash XML, the sender UI and `CAN-BUS-ID-ALLOCATION-TABLE.md` — `python bench/check_parity.py` must pass.
 - Open items live in one table: `docs/OPEN-ITEMS.md`.
-- **No stale documents (DECISIONS R211).** When you create a new document or define a new SoT, find every older document covering the same thing in the same PR, then consolidate its still-valid content into the new one or delete it. Nothing is archived, bannered "superseded" or kept "for reference"; git history is the archive. Gate: `docs/harness/audit_doc_claims.py`.
+- **No stale documents (DECISIONS R211).** When you create a new document or define a new SoT, find every older document covering the same thing in the same PR, then consolidate its still-valid content into the new one or delete it. Nothing is archived, bannered "superseded" or kept "for reference"; git history is the archive. Gate: `tools/check_doc_claims.py`.
 - `docs/dispatch/DISPATCH-RULES.md` is for Claude Dispatch only; other agents ignore it.
 - Dispatch-launched sessions: no AskUserQuestion pickers; ask in plain text.
-- harness.design format / how-to: read its docs, never guess, and cite the page in the PR when it drives a format choice - https://docs.harness.design/feature/local-files/json-format (v1.2 `.harness` / `.harnesslib` - the files follow the desktop app's current schema, DECISIONS R111), https://docs.harness.design/feature/part-libraries, https://docs.harness.design/feature/desktop, https://docs.harness.design/feature/pinouts, https://docs.harness.design/files/harness/editing-guide.md.
-- Dan edits the looms in the harness.design desktop app on the files in `docs/harness/rebuild/` (live files, no upload step; `docs/harness/README.md` "Open in the desktop app"); agents pause while he edits, the saved file wins. Drawing conventions: global skill `harness-design`; harness.design docs win.
-- No wire routing points (the white crosses on hover) unless Dan asks or the app would draw the wire diagonal / through a part (DECISIONS R202); harness.design auto-routes the rest (the drawings keep the real insulation colours). Gate `docs/harness/audit_wire_spacing.py` RP1 (in `check_all.py`). A rebuilt drawing is built from its wire list only: `python docs/harness/cleanroom/build_harness.py <file>`; gate `build_harness.py --check` (R201). Bundle layout points are not routing points (Dan kept 13). Path model of the app's routing: `docs/harness/wire_paths.py`. Snapshots: the app's Export > PDF; agents' fallback PNG `docs/harness/render_schematic.py`.
-- Layout views have the front of the car on the RIGHT, a true top view: driver side up, passenger side down (DECISIONS R140, R153; replaces R107(a)); a bundle never runs along its own end's label (labels show to the right of their node; `audit_layout.py` Y5).
-- Every wire carries its circuit's ident bands (`identColors`, Blue / Yellow / White) and bundles ending at a connector carry a printed end label (DECISIONS R87; circuits in `docs/harness/interfaces.json` "identBands"; gate `docs/harness/audit_ident_bands.py`, in `check_all.py`). The band code goes at every end of the circuit.
-- The deliverable for each harness is its `.harness` file in `docs/harness/rebuild/` (DECISIONS R88, amended 2026-10-15, K5): ident bands, end labels, title block and notes stay; there is no PDF export step and no gate for it (`pdfExportSettings` stays in the files, unchecked).
-- The part library is the master (Daniel, 2026-10-12): change a part in `docs/harness/rebuild/ST185.harnesslib` FIRST, then copy it into the drawings, in the same PR; any difference between a drawing's part and the library fails, no exceptions (gate `docs/harness/check_harnesslib.py`, in `check_all.py`; `--add-missing` copies new parts).
+- harness.design (only for the frozen `docs/harness/rebuild/` files until the generator draws every harness): read its docs, never guess - https://docs.harness.design/feature/local-files/json-format (v1.2, DECISIONS R111).
+- Layout views have the front of the car on the RIGHT, a true top view: driver side up, passenger side down (DECISIONS R140, R153); the generator's layout sheet follows it.
+- Every wire carries its circuit's ident bands (`ident_bands` in the master: Blue / Yellow / White, 1-4 bands, DECISIONS R87; gate `check_wiring.py` B1). The band code goes at every end of the circuit.
+- The deliverable for each harness is its generated drawing set in `docs/harness/drawings/` (R221; until a harness has one, its frozen `.harness` file).
+- Part data: `docs/harness/rebuild/ST185.harnesslib` stays the part library (descriptions, AWG ranges) the BOM and `check_wiring.py` read, until the generator draws every harness.
 - Keep `ST185:` names in `link_g4x_realdash.xml` unchanged unless migration is explicitly requested (renames break `.rd` gauge bindings).
 - RealDash frame scope is the documented ECU streams `0x3EF`-`0x3F1` plus one approved exception (2026-09-04): the gear byte of `0x3EB` (`ST185: Gear`) for the reverse-camera auto-switch - see the CAN scope note in `REALDASH-LAYOUT.md` and the SCOPE note in the XML. Do not widen it to other `0x3E8`-`0x3EE` bytes without updating both.
 - Keep conversion parity between the XML formulas and `bench/frames.py` scaling, and warning-bit mapping parity (`startbit`) between XML and the `bench/frames.py` bit constants.
@@ -276,7 +265,7 @@ silently alter how this project is worked on.
 One dashboard: the **research hub**, `docs/research-hub.html`, generated by `docs/build-research-hub.py` and committed only by the "Regenerate research hub" Action (see **Generated files** below). **Online (GitHub Pages, serves `/docs` from `main`): https://living-relation.github.io/st185-link-ecu-config/research-hub.html** Its top section, **Project status**, is for Dan on his phone or PC: open questions, his open items, route and CAD approval status, the CAD models gallery (trimetric + true local file paths, R83), the power distribution package (R84), recent merged PRs, build time. The old claude.ai live dashboard (`tools/dashboard/`) was deleted 2026-10-14 (retired).
 
 - Open questions for Dan: the "Needs Dan" table in `docs/OPEN-ITEMS.md` (ID like M6, topic, question, options, recommended; DECISIONS R119), the only place they live and the hub's "Needs Dan" box reads it (`docs/needs_dan.py`). Dispatch keeps the rows current on every check-in; delete a row once answered. Dan answers in the Dispatch chat with the ID and letter. IDs run A1..A9, B1..B9 ... Z9, then wrap to A1 (DECISIONS R115).
-- Board at the top of the hub (2026-10-15): needs-Dan box, four goal bars (done / tagged rows in `docs/OPEN-ITEMS.md`, tags `[G1]`-`[G4]`; closed tagged rows stay in the tracker so the bars keep their "done" count), 15 loom tiles, and a "Now" strip. Hand-kept input: `docs/status/hub.json` (loom approval date + `needs_reapproval` list, running sessions; Dispatch edits it by PR). Loom thumbnails are `docs/harness/thumbs/*.png`, made by `render_layout.py` (fallback renderer, not an app export) at `--scale 0.25` then shrunk to 360 px; re-render one when its loom changes.
+- Board at the top of the hub (2026-10-15): needs-Dan box, four goal bars (done / tagged rows in `docs/OPEN-ITEMS.md`, tags `[G1]`-`[G4]`; closed tagged rows stay in the tracker so the bars keep their "done" count), one tile per harness in the master wire list (wire count; links to its drawing set, or its frozen file), and a "Now" strip. Hand-kept input: `docs/status/hub.json` (loom approval date + `needs_reapproval` list, running sessions; Dispatch edits it by PR).
 - Grok CAD jobs (DECISIONS R106): `docs/status/grok-jobs.json`, hand-kept by PR like the questions; fairsolid CAD jobs go to the Grok bot as a handoff zip and get an entry there (id, title, goal, status queued / sent / returned / accepted, zip, date, notes). The hub's "Grok CAD jobs" section renders it.
 - Everything else is read at build time: `docs/OPEN-ITEMS.md` (keep its table format: leading ID cell, owner in column 4, status in column 6), the status box on each `docs/harness/routes/ROUTE-*.html`, the table in `cad/README.md`, and `git log`. A change that moves or renames any of these also needs `docs/build-research-hub.py` checked.
 - CAD file locations: the page's CAD table comes from `cad/README.md` plus `cad/model-files.json` (the list of STEP/STL/f3d files, refreshed whenever `python docs/build-research-hub.py` runs on a PC that has the heavy files - commit it with the change; also lists the newest `revN` of the Fairsolid fuel hanger). A model file with no README row, an unnamed `.f3d`, or a stale hanger rev shows a warning on the page and on stderr.
@@ -287,7 +276,7 @@ One dashboard: the **research hub**, `docs/research-hub.html`, generated by `doc
 | File | Owner | Rule |
 |---|---|---|
 | `docs/research-hub.html` | **The "Regenerate research hub" Action** | **Never commit it.** (Its "Project status" section is described under **Dashboard** above.) Run `docs/build-research-hub.py` locally to preview, then `git checkout -- docs/research-hub.html` before you commit. PRs that touch `docs/**` (or the workflow) run the generator as a check and attach the HTML artifact. The bot commits the file to `main` only, after those changes merge. Committing it locally is what causes the rebase conflicts. |
-| `docs/harness/NEED-TO-BUY.md` | `docs/harness/buylist.py` | Same. |
+| `docs/sourcing/PROJECT-BOM.csv` / `.xlsx`, `docs/harness/drawings/*` | `build_project_bom.py`, `docs/harness/tools/build_drawings.py` | Never hand-edit; re-run the generator. |
 
 `.gitattributes` marks them `linguist-generated` and gives `research-hub.html`
 `merge=ours`. Enable the driver and the pre-commit hook once per clone:
@@ -300,4 +289,4 @@ If you still land in a conflict on one of these, do not resolve it by hand. Take
 side, re-run the generator, and stage the result.
 
 ## Wiring audit
-- `python docs/harness/check_all.py` is the wiring audit. The 2026-09-18 conflict sheet is retired (git history); its bh_c questions are settled (bulkhead C deleted).
+- `python docs/harness/tools/check_wiring.py` is the wiring audit (`python tools/check_all.py` runs it with every other gate).
