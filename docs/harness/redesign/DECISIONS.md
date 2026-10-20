@@ -3,11 +3,12 @@
 **Repo:** `st185-link-ecu-config`  
 **Status:** The decision record. Open work and project history are in `docs/OPEN-ITEMS.md`.
 
-## Binding rules B1-B30 - DRAFT for Dan's review (R226)
+## Binding rules B1-B30 (R226)
 
-**Draft, not in force yet.** Until Dan approves this page, "Binding rules from Daniel" below stays the rule set (R226).
-Once he approves: this page replaces it, the old R-rows, S-rows and the 2026-09-28 audit table are deleted (git
-history keeps their full text), and the retire map under the rules stays for good so every old citation still resolves.
+**In force: Dan approved this page on 2026-10-20 (#377).** It replaces "Binding rules from Daniel" below, which is
+retired and only waits for the follow-up PR that deletes the old R-rows, S-rows and the 2026-09-28 audit table (git
+history keeps their full text). The retire map under the rules stays for good so every old citation still resolves.
+Each rule gets trimmed to 2 lines or less in a later PR (Dan 2026-10-20); the substance stays.
 At most 30 rules: adding one means merging or removing one (R226). Newest ruling won wherever two old rows disagreed.
 A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Needs Dan N61.
 
@@ -496,7 +497,10 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 
 ## Binding rules from Daniel
 
-**This section is the one home for every rule Daniel has set** (consolidated 2026-10-12 from his
+**RETIRED 2026-10-20: B1-B30 at the top of this file replace this section (Dan approved #377). It stays only until
+the follow-up PR deletes it; where it and B1-B30 differ, B1-B30 win.** Former text:
+
+**This section was the one home for every rule Daniel has set** (consolidated 2026-10-12 from his
 Dispatch notes; most of these were never written into the repo before, which is how stale docs
 survived). One dated line per rule, newest ruling wins. `AGENTS.md`, the per-tool rule files
 (`.claude/rules/`, `.cursor/rules/`), `docs/harness/README.md`, `sot/README.md` and the global
