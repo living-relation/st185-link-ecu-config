@@ -34,7 +34,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); the research 
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| N61 | A/C control | Dan voided the N43 version of R23 (2026-10-20: keeping the factory amp while the Link drives the clutch relay and also grounds ACT, with the pressure switch on both, contradicts itself). Two real choices remain, and they depend on the EWD (1993) inputs and outputs of the compressor A/C amp (A15 in the 1993 book, A18 in 1990) and on the XtremeX's free pins: replacing the amp moves all of its inputs and outputs to the Link. Research (EWD pin table, free pins, how the repo got here) is in progress. | A) the Link replaces the compressor amp (its inputs and outputs move to the Link; the auto amp keeps the blower and temps); B) keep both amps, the Link only grounds the amp's ACT pin at high load, boost or full throttle | after the EWD check |
+| N61 | A/C control | Dan voided the N43 version of R23 (2026-10-20: keeping the factory amp while the Link drives the clutch relay and also grounds ACT, with the pressure switch on both, contradicts itself). Two real choices remain, and they depend on the EWD (1993) inputs and outputs of the compressor A/C amp (A15 in the 1993 book, A18 in 1990) and on the XtremeX's free pins: replacing the amp moves all of its inputs and outputs to the Link. Research (EWD pin table, free pins, how the repo got here) is in progress; the A below is provisional until it lands. | A) the Link replaces the compressor amp (its inputs and outputs move to the Link; the auto amp keeps the blower and temps); B) keep both amps, the Link only grounds the amp's ACT pin at high load, boost or full throttle | A |
 
 ## Status (2026-10-20)
 
