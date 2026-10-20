@@ -18,8 +18,8 @@ maintainer something the rules already answer.
 
 > ## Before any wiring or CAN change — binding on every agent
 >
-> **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules from Daniel"
-> (R1-R226).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
+> **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules B1-B30"
+> (old R-numbers resolve through its retire map).** It is the ONE home for every rule Daniel has set (harness split, OEM wiring,
 > shields, wire and parts, drawing conventions, CAN routing, setup time); nothing else in
 > this repo restates them. Then read **`docs/RECONCILIATION-RULES.md`** for the procedure.
 > Five rules, all non-optional:
