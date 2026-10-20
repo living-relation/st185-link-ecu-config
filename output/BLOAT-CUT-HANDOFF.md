@@ -1,11 +1,11 @@
 # Bloat-cut plan and handoff (R224 steps 4-6 + memory cleanup)
 
 **Status (2026-10-20, updated as steps land):** plan approved by Dan. Step 0 merged (#376). Step 1: B1-B30 + retire map
-approved by Dan and merged (#377); the old rule rows deleted and every pointer moved to "Binding rules B1-B30" (#PR1);
-the trim of each rule to 2 lines or less is draft PR #PR2. Step 2 (read-back check, row 154): merged (#378).
+approved by Dan and merged (#377); the old rule rows deleted and every pointer moved to "Binding rules B1-B30" (#384);
+the trim of each rule to 2 lines or less goes in a draft PR on branch `dan_/rules-trim`. Step 2 (read-back check, row 154): merged (#378).
 Step 3 (`rebuild/` deleted, row 153): merged (#379). Step 4 (dead scripts, row 152): merged (#380; Dan had 11 RealDash helpers and the fuse-box CAD inputs restored in #383). Step 5: done (memory
 pruned; the PC skill copies recycled after a diff against the claude.ai copies; AGENTS.md "Skills" points to the account).
-Left: Dan's review of draft PR #PR2 (row 151).
+Left: Dan's review of the draft PR on branch `dan_/rules-trim` (row 151).
 Delete this file once every step, Dan's step-1 approval included, is done (open work goes into `docs/OPEN-ITEMS.md`).
 
 ## Context
@@ -39,7 +39,7 @@ can read fast, with a one-page rule set, one read-back check, and no dead files.
 - Write them as the new "Binding rules" section at the top of `DECISIONS.md`, plus a retire list
   (every old R-number -> the new rule number it merged into, or "dropped").
 - The PR does not delete the old rules. It **waits for Dan's review** (not auto-merged).
-- After Dan approves (done 2026-10-20, #PR1): delete the old R-lines and S-rows, and repoint
+- After Dan approves (done 2026-10-20, #384): delete the old R-lines and S-rows, and repoint
   `AGENTS.md` (its cut to about 80 lines is still open), `.claude/rules/*`, `.cursor/rules/*`,
   `docs/RECONCILIATION-RULES.md`, `docs/SHIELD-RULES.md`, `docs/dispatch/DISPATCH-RULES.md`.
   Then merge and sync.
