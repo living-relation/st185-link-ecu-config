@@ -4,7 +4,7 @@
 A drawing set is one or more harnesses of docs/harness/MASTER-wirelist.csv drawn as one: its layout spec
 `tools/<set>.layout.json` names them (`"harnesses": [...]`) and holds the physical tree; `tools/<set>.revs.json` is its rev
 log. Combining one more harness later = add it to `harnesses` (and its branches to the tree), then re-run. It writes, to
-docs/harness/drawings/, `<set>-drawings.pdf`: THREE big sheets (Dan, 2026-10-19: "one big sheet for the schematics one big
+docs/harness/drawings/, THREE single-page PDFs `<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf` (Dan, 2026-10-19: "one big sheet for the schematics one big
 sheet for the layout view and one big sheet for the pinout tables just by themselves"). Each sheet is sized to what it holds
 and grows as harnesses join the set; nothing is split across sheets; each has its own title block and rev log.
 
@@ -31,6 +31,7 @@ rev log; the scripts never write into the master.
 """
 import collections
 import csv
+import glob
 import hashlib
 import io
 import json
@@ -114,8 +115,13 @@ def rows_for(h, rows=None):
     return out
 
 
+SHEETS = [("schematic", "SCH", "Schematic - every wire, grouped by job"),
+          ("layout", "LAY", "Layout - top view, segment lengths, wire counts, DR-25 sizes"),
+          ("pinout", "PIN", "Pinout tables - every pin of every connector, bus, splice and end")]
+
+
 def paths(h):
-    return {"dir": DRAWINGS, "pdf": os.path.join(DRAWINGS, "%s-drawings.pdf" % h),
+    return {"dir": DRAWINGS, "pdfs": [os.path.join(DRAWINGS, "%s-%s.pdf" % (h, k)) for k, _, _ in SHEETS],
             "xlsx": os.path.join(OUT, "%s-pinout.xlsx" % h), "thumb": os.path.join(OUT, "%s-thumb.png" % h),
             "layout": os.path.join(HERE, "%s.layout.json" % h), "revs": os.path.join(HERE, "%s.revs.json" % h)}
 
@@ -298,9 +304,15 @@ def check(h):
     for rv in revs:
         if not rv.get("by", "").strip() or AGENT.search(rv.get("by", "")):
             bad.append("rev %s BY %r is blank or an agent name (R200: the requester's initials)" % (rv.get("rev"), rv.get("by")))
-    want, have = digest(h), pdf_digest(H.p["pdf"])
-    if have != want:
-        bad.append("drawing set is stale (inputs %s, made from %s): run build_drawings.py %s" % (want, have or "none", h))
+    want = digest(h)
+    for p in H.p["pdfs"]:
+        have = pdf_digest(p)
+        if have != want:
+            bad.append("%s is stale (inputs %s, made from %s): run build_drawings.py %s"
+                       % (os.path.basename(p), want, have or "none", h))
+    for p in glob.glob(os.path.join(DRAWINGS, "%s-*.pdf" % h)):
+        if p not in H.p["pdfs"]:
+            bad.append("%s is not one of the three sheets of the set (delete it)" % os.path.basename(p))
     return bad
 
 
@@ -342,7 +354,7 @@ class Sheet:
         self.page.draw_circle((x, y), r, color=color, fill=color)
 
 
-def title_block(S, H, sheet_no, sheets, what):
+def title_block(S, H, sheet_no, sheets, what, dwg=""):
     revs = H.revs["revs"]
     cur = revs[-1]
     x0, y0 = PW - M - TB_W, PH - M - TB_H
@@ -366,7 +378,7 @@ def title_block(S, H, sheet_no, sheets, what):
     S.text(x0 + 4, yb + 12, S.fit(H.revs["title"], TB_W - 8, 9, "hebo"), 9, "hebo")
     S.text(x0 + 4, yb + 22, S.fit(what, TB_W - 8, 6.5), 6.5)
     S.line([(x0, yb + 27), (PW - M, yb + 27)], width=0.5)
-    cells = [("DRAWING NO.", "ST185-%s" % H.h, 110), ("REV", cur["rev"], 30), ("SHEET", "%d OF %d" % (sheet_no, sheets), 52),
+    cells = [("DRAWING NO.", "ST185-%s%s" % (H.h, dwg), 110), ("REV", cur["rev"], 30), ("SHEET", "%d OF %d" % (sheet_no, sheets), 52),
              ("SIZE", "%d x %d mm" % (round(PW / 72 * 25.4), round(PH / 72 * 25.4)), 64), ("DRAWN", revs[0]["by"], 34),
              ("DATE", cur["date"], 82)]
     x = x0
@@ -986,28 +998,32 @@ def build(h):
     doc = fitz.open()
     # each sheet is finished (title block included) before the next page is made: PyMuPDF page handles go stale
     S = schematic_big(doc, fitz, H)
-    title_block(S, H, 1, 3, "Schematic - every wire, grouped by job")
+    title_block(S, H, 1, 1, SHEETS[0][2], "-" + SHEETS[0][1])
     set_page(*layout_size(H))
     S = Sheet(doc, fitz)
     layout_sheet(S, H)
-    title_block(S, H, 2, 3, "Layout - top view, segment lengths, wire counts, DR-25 sizes")
+    title_block(S, H, 1, 1, SHEETS[1][2], "-" + SHEETS[1][1])
     tables = pinout_tables(H, prow)
     cols, w, hh = pinout_size(tables)
     set_page(w, hh)
     S = Sheet(doc, fitz)
     pinout_sheet(S, tables, cols)
-    title_block(S, H, 3, 3, "Pinout tables - every pin of every connector, bus, splice and end")
-    doc.set_metadata({"title": H.revs["title"], "author": H.revs["revs"][0]["by"], "subject": H.revs["subtitle"],
-                      "keywords": "inputs %s" % digest(h), "creator": "build_drawings.py", "producer": "PyMuPDF",
-                      "creationDate": "", "modDate": ""})
-    doc.save(H.p["pdf"], garbage=3, deflate=True)
+    title_block(S, H, 1, 1, SHEETS[2][2], "-" + SHEETS[2][1])
+    # three separate drawings, one page each (Dan: one big sheet per view)
+    for i, (k, code, what) in enumerate(SHEETS):
+        one = fitz.open()
+        one.insert_pdf(doc, from_page=i, to_page=i)
+        one.set_metadata({"title": "%s - %s" % (H.revs["title"], what), "author": H.revs["revs"][0]["by"],
+                          "subject": H.revs["subtitle"], "keywords": "inputs %s" % digest(h), "creator": "build_drawings.py",
+                          "producer": "PyMuPDF", "creationDate": "", "modDate": ""})
+        one.save(H.p["pdfs"][i], garbage=3, deflate=True)
     # hub thumbnail: the layout sheet, 360 px wide (as the loom tiles)
     lay = doc[1]
     pix = lay.get_pixmap(matrix=fitz.Matrix(360 / lay.rect.width, 360 / lay.rect.width))
     os.makedirs(OUT, exist_ok=True)
     pix.save(H.p["thumb"])
     write_xlsx(H, prow, H.p["xlsx"])
-    print("wrote %s (3 sheets: %s), %s, %s" % (os.path.relpath(H.p["pdf"], REPO),
+    print("wrote %s (%s), %s, %s" % (", ".join(os.path.relpath(p, REPO) for p in H.p["pdfs"]),
                                                ", ".join("%d x %d mm" % (round(p.rect.width / 72 * 25.4), round(p.rect.height / 72 * 25.4))
                                                          for p in doc),
                                                os.path.relpath(H.p["xlsx"], REPO), os.path.relpath(H.p["thumb"], REPO)))
