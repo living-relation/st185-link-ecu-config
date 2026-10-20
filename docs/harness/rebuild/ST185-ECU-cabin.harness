@@ -561,8 +561,8 @@
         "handle": "a32"
       },
       "target": {
-        "id": "sp_5v",
-        "handle": "Splice"
+        "id": "bus_5v_p",
+        "handle": "c1"
       },
       "color": "Orange",
       "identColors": [
@@ -572,42 +572,9 @@
       "partId": "m16_18_3"
     },
     {
-      "id": "w_5v_bha_trunk",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bus_5v_bha_p",
-        "handle": "c1"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_18_3",
-      "layoutPoints": [
-        {
-          "schematicPosition": {
-            "x": -270,
-            "y": 960
-          },
-          "id": "w_5v_bha_trunk_rp1"
-        },
-        {
-          "schematicPosition": {
-            "x": -270,
-            "y": -450
-          },
-          "id": "w_5v_bha_trunk_rp2"
-        }
-      ]
-    },
-    {
       "id": "w_rail_sp_5v_c",
       "source": {
-        "id": "bus_5v_bha_p",
+        "id": "bus_5v_p",
         "handle": "c2"
       },
       "target": {
@@ -624,7 +591,7 @@
     {
       "id": "w_5v_a_c39",
       "source": {
-        "id": "bus_5v_bha_p",
+        "id": "bus_5v_p",
         "handle": "c3"
       },
       "target": {
@@ -641,7 +608,7 @@
     {
       "id": "w_5v_a_c40",
       "source": {
-        "id": "bus_5v_bha_p",
+        "id": "bus_5v_p",
         "handle": "c4"
       },
       "target": {
@@ -658,7 +625,7 @@
     {
       "id": "w_5v_brail_c45",
       "source": {
-        "id": "bus_5v_bha_p",
+        "id": "bus_5v_p",
         "handle": "c5"
       },
       "target": {
@@ -675,7 +642,7 @@
     {
       "id": "w_5v_brail_c46",
       "source": {
-        "id": "bus_5v_bha_p",
+        "id": "bus_5v_p",
         "handle": "c6"
       },
       "target": {
@@ -692,7 +659,7 @@
     {
       "id": "w_5v_brail_c47",
       "source": {
-        "id": "bus_5v_bha_p",
+        "id": "bus_5v_p",
         "handle": "c7"
       },
       "target": {
@@ -707,60 +674,10 @@
       "partId": "m16_20_3"
     },
     {
-      "id": "w_5v_link",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_5v_2",
-        "handle": "Splice"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_18_3",
-      "layoutPoints": [
-        {
-          "schematicPosition": {
-            "x": -270,
-            "y": 960
-          },
-          "id": "w_5v_link_rp1"
-        },
-        {
-          "schematicPosition": {
-            "x": -270,
-            "y": 300
-          },
-          "id": "w_5v_link_rp2"
-        }
-      ]
-    },
-    {
-      "id": "w_rail_5v_b_c_ac",
-      "source": {
-        "id": "sp_5v",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_5v_b",
-        "handle": "Splice"
-      },
-      "color": "Orange",
-      "identColors": [
-        "Blue",
-        "Blue"
-      ],
-      "partId": "m16_18_3"
-    },
-    {
       "id": "w_cru_5v_ac",
       "source": {
-        "id": "sp_5v_2",
-        "handle": "Splice"
+        "id": "bus_5v2_p",
+        "handle": "c2"
       },
       "target": {
         "id": "br_w_cru_5v",
@@ -796,8 +713,8 @@
         "handle": "a24"
       },
       "target": {
-        "id": "sp_gndout",
-        "handle": "Splice"
+        "id": "bus_gnd_a_p",
+        "handle": "c1"
       },
       "color": "Blue",
       "identColors": [
@@ -807,56 +724,9 @@
       "partId": "m16_18_09"
     },
     {
-      "id": "w_gnd_bha_trunk",
-      "source": {
-        "id": "sp_gndout",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "bus_gnd_bha_p",
-        "handle": "c1"
-      },
-      "color": "Blue",
-      "identColors": [
-        "Yellow",
-        "Yellow"
-      ],
-      "partId": "m16_18_09",
-      "layoutPoints": [
-        {
-          "schematicPosition": {
-            "x": -390,
-            "y": 720
-          },
-          "id": "w_gnd_bha_trunk_rp1"
-        },
-        {
-          "schematicPosition": {
-            "x": -390,
-            "y": 1050
-          },
-          "id": "w_gnd_bha_trunk_rp2"
-        },
-        {
-          "schematicPosition": {
-            "x": 1650,
-            "y": 1050
-          },
-          "id": "w_gnd_bha_trunk_rp3"
-        },
-        {
-          "schematicPosition": {
-            "x": 1650,
-            "y": 1110
-          },
-          "id": "w_gnd_bha_trunk_rp4"
-        }
-      ]
-    },
-    {
       "id": "w_rail_sp_gndout_c",
       "source": {
-        "id": "bus_gnd_bha_p",
+        "id": "bus_gnd_a_p",
         "handle": "c2"
       },
       "target": {
@@ -873,7 +743,7 @@
     {
       "id": "w_gnd_a_c41",
       "source": {
-        "id": "bus_gnd_bha_p",
+        "id": "bus_gnd_a_p",
         "handle": "c3"
       },
       "target": {
@@ -890,7 +760,7 @@
     {
       "id": "w_gnd_a_c42",
       "source": {
-        "id": "bus_gnd_bha_p",
+        "id": "bus_gnd_a_p",
         "handle": "c4"
       },
       "target": {
@@ -907,7 +777,7 @@
     {
       "id": "w_gnd_a_c43",
       "source": {
-        "id": "bus_gnd_bha_p",
+        "id": "bus_gnd_a_p",
         "handle": "c5"
       },
       "target": {
@@ -924,7 +794,7 @@
     {
       "id": "w_gnd_a_c44",
       "source": {
-        "id": "bus_gnd_bha_p",
+        "id": "bus_gnd_a_p",
         "handle": "c6"
       },
       "target": {
@@ -1101,7 +971,7 @@
         "handle": "a25"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_gnd_ecu",
         "handle": "Splice"
       },
       "color": "Black",
@@ -1119,7 +989,7 @@
         "handle": "a34"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_gnd_ecu",
         "handle": "Splice"
       },
       "color": "Black",
@@ -1149,7 +1019,7 @@
     {
       "id": "w_b25_ac",
       "source": {
-        "id": "sp_chassis",
+        "id": "sp_gnd_ecu",
         "handle": "Splice"
       },
       "target": {
@@ -1167,7 +1037,7 @@
     {
       "id": "w_b34_ac",
       "source": {
-        "id": "sp_chassis",
+        "id": "sp_gnd_ecu",
         "handle": "Splice"
       },
       "target": {
@@ -1189,8 +1059,8 @@
         "handle": "c96"
       },
       "target": {
-        "id": "sp_chassis",
-        "handle": "Splice"
+        "id": "t_negbar_lam",
+        "handle": "Terminal"
       },
       "color": "Black",
       "identColors": [
@@ -1203,8 +1073,8 @@
     {
       "id": "w_csbg_ac",
       "source": {
-        "id": "sp_chassis",
-        "handle": "Splice"
+        "id": "t_negbar_csb",
+        "handle": "Terminal"
       },
       "target": {
         "id": "br_w_csbg",
@@ -1221,11 +1091,11 @@
     {
       "id": "w66",
       "source": {
-        "id": "chassis_ring",
+        "id": "t_negbar_ecu",
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_chassis",
+        "id": "sp_gnd_ecu",
         "handle": "Splice"
       },
       "color": "Black",
@@ -1621,8 +1491,8 @@
         "handle": "c72"
       },
       "target": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c6"
       },
       "color": "Blue",
       "identColors": [
@@ -1720,8 +1590,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "sp_5v_b",
-        "handle": "Splice"
+        "id": "bus_5v2_p",
+        "handle": "c4"
       },
       "partId": "m16_20_3"
     },
@@ -1974,8 +1844,8 @@
         "handle": "b22"
       },
       "target": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c1"
       },
       "partId": "m16_18_09"
     },
@@ -1991,8 +1861,8 @@
         "handle": "c2"
       },
       "target": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c2"
       },
       "partId": "m16_20_09"
     },
@@ -2121,27 +1991,10 @@
       "partId": "m16_20_7"
     },
     {
-      "id": "w_gnd_bhb_trunk",
-      "source": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
-      },
-      "target": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
-      },
-      "color": "Blue",
-      "identColors": [
-        "Yellow",
-        "Yellow"
-      ],
-      "partId": "m16_18_09"
-    },
-    {
       "id": "w_gnd_b_c19",
       "source": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c7"
       },
       "target": {
         "id": "bh_fw",
@@ -2157,8 +2010,8 @@
     {
       "id": "w_gnd_b_c21",
       "source": {
-        "id": "sp_gnd_bhb",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c8"
       },
       "target": {
         "id": "bh_fw",
@@ -2360,8 +2213,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c4"
       },
       "partId": "m16_20_09"
     },
@@ -2414,8 +2267,8 @@
         "handle": "Right"
       },
       "target": {
-        "id": "sp_5v_b",
-        "handle": "Splice"
+        "id": "bus_5v2_p",
+        "handle": "c3"
       },
       "partId": "m16_20_3"
     },
@@ -2431,8 +2284,8 @@
         "handle": "Terminal"
       },
       "target": {
-        "id": "sp_gndout_b",
-        "handle": "Splice"
+        "id": "bus_gnd_b_p",
+        "handle": "c5"
       },
       "partId": "m16_20_09"
     },
@@ -2454,6 +2307,23 @@
         "White",
         "Blue"
       ]
+    },
+    {
+      "id": "w_5v_bus_link",
+      "source": {
+        "id": "bus_5v_p",
+        "handle": "c12"
+      },
+      "target": {
+        "id": "bus_5v2_p",
+        "handle": "c1"
+      },
+      "color": "Orange",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ],
+      "partId": "m16_20_3"
     }
   ],
   "connectors": [
@@ -3484,262 +3354,6 @@
       "width": 270
     },
     {
-      "id": "bus_5v_bha_p",
-      "label": "+5V BUS  DT06-8 plug (by bulkhead)",
-      "width": 270,
-      "partId": "cp_dt06_08sa",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+5 V sensor supply",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "+5 V throttle sensor",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "+5 V MAP sensor",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "+5 V turbo speed",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "+5 V oil pressure",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "+5 V fuel pressure",
-          "propagate": false
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "signal": "+5 V coolant press",
-          "propagate": false
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2250,
-        "y": 540
-      },
-      "schematicPosition": {
-        "x": 2460,
-        "y": -480
-      }
-    },
-    {
-      "id": "bus_5v_bha_r",
-      "label": "+5V BUS cap  DT04-8 bussed",
-      "width": 270,
-      "partId": "cp_dt04_08pa_p021",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "signal": "+5 V sensor bus",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 2310,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": 2790,
-        "y": -480
-      }
-    },
-    {
-      "id": "bus_gnd_bha_p",
-      "label": "SENSOR GND BUS  DT06-8 plug (by bulkhead)",
-      "width": 270,
-      "partId": "cp_dt06_08sa",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Sensor ground",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Gnd IAT/TPS/coolant",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "Gnd crank sensor",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "Gnd cam sensor",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "Gnd turbo speed",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "Gnd flex + MAP",
-          "propagate": false
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "notConnected": true,
-          "cavityPlugPartId": "pl_sz16"
-        }
-      ],
-      "layoutPosition": {
-        "x": 2070,
-        "y": 600
-      },
-      "schematicPosition": {
-        "x": 1740,
-        "y": 1080
-      }
-    },
-    {
-      "id": "bus_gnd_bha_r",
-      "label": "SENSOR GND BUS cap  DT04-8 bussed",
-      "width": 270,
-      "partId": "cp_dt04_08pa_p021",
-      "cavities": [
-        {
-          "id": "c1",
-          "designation": "1",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c2",
-          "designation": "2",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c3",
-          "designation": "3",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c4",
-          "designation": "4",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c5",
-          "designation": "5",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c6",
-          "designation": "6",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c7",
-          "designation": "7",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        },
-        {
-          "id": "c8",
-          "designation": "8",
-          "signal": "Sensor ground bus",
-          "propagate": false
-        }
-      ],
-      "layoutPosition": {
-        "x": 2070,
-        "y": 720
-      },
-      "schematicPosition": {
-        "x": 2070,
-        "y": 1080
-      }
-    },
-    {
       "id": "ecu_b",
       "label": "ECU-B (Link G4X plug B, centre dash)",
       "width": 270,
@@ -4033,6 +3647,695 @@
         "x": -1320,
         "y": 3090
       }
+    },
+    {
+      "id": "bus_5v_p",
+      "label": "BUS-5V  DT06-12 plug (ECU splice point)",
+      "width": 270,
+      "partId": "cp_dt06_12sa",
+      "layoutPosition": {
+        "x": 600,
+        "y": -900
+      },
+      "schematicPosition": {
+        "x": 600,
+        "y": -900
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V from ECU A32",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V throttle sensor",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V MAP sensor",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V turbo speed",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V oil pressure",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V fuel pressure",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V coolant press",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V pedal sensor 1",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V pedal sensor 2",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V front VRC",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V rear VRC",
+          "propagate": false
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V to BUS-5V-2",
+          "propagate": false
+        }
+      ]
+    },
+    {
+      "id": "bus_5v_r",
+      "label": "BUS-5V cap  DT04-12 bussed",
+      "width": 270,
+      "partId": "cp_dt04_12pa_p021",
+      "layoutPosition": {
+        "x": 600,
+        "y": -840
+      },
+      "schematicPosition": {
+        "x": 600,
+        "y": -480
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "+5V bus",
+          "propagate": false
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "+5V bus",
+          "propagate": false
+        }
+      ]
+    },
+    {
+      "id": "bus_5v2_p",
+      "label": "BUS-5V-2  DT06-8 plug (ECU splice point)",
+      "width": 270,
+      "partId": "cp_dt06_08sa",
+      "layoutPosition": {
+        "x": 930,
+        "y": -900
+      },
+      "schematicPosition": {
+        "x": 930,
+        "y": -900
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V from BUS-5V",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V cruise ladder",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V evap pull-up",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "+5 V fuel lvl pullup",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        }
+      ]
+    },
+    {
+      "id": "bus_5v2_r",
+      "label": "BUS-5V-2 cap  DT04-8 bussed",
+      "width": 270,
+      "partId": "cp_dt04_08pa_p021",
+      "layoutPosition": {
+        "x": 930,
+        "y": -840
+      },
+      "schematicPosition": {
+        "x": 930,
+        "y": -480
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "+5V bus 2",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "+5V bus 2",
+          "propagate": false
+        }
+      ]
+    },
+    {
+      "id": "bus_gnd_a_p",
+      "label": "BUS-GNDOUT-A  DT06-12 plug (ECU splice point)",
+      "width": 270,
+      "partId": "cp_dt06_12sa",
+      "layoutPosition": {
+        "x": 1260,
+        "y": -900
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": -900
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Sensor gnd from A24",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd IAT/TPS/coolant",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd crank sensor",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd cam sensor",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd turbo speed",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd flex + MAP",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Pedal 1 ground",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Pedal 2 ground",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Front VRC ground",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        }
+      ]
+    },
+    {
+      "id": "bus_gnd_a_r",
+      "label": "BUS-GNDOUT-A cap  DT04-12 bussed",
+      "width": 270,
+      "partId": "cp_dt04_12pa_p021",
+      "layoutPosition": {
+        "x": 1260,
+        "y": -840
+      },
+      "schematicPosition": {
+        "x": 1260,
+        "y": -480
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "GNDOUT-A bus",
+          "propagate": false
+        }
+      ]
+    },
+    {
+      "id": "bus_gnd_b_p",
+      "label": "BUS-GNDOUT-B  DT06-12 plug (ECU splice point)",
+      "width": 270,
+      "partId": "cp_dt06_12sa",
+      "layoutPosition": {
+        "x": 1590,
+        "y": -900
+      },
+      "schematicPosition": {
+        "x": 1590,
+        "y": -900
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Sensor gnd from B22",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Fuel level ground",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Rear VRC ground",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "A/C btn divider gnd",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Evap thermistor gnd",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Knock sensor (-)",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd oil/clnt/temps",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "contactPartId": "l5UlOB1lt6BfYQ7Ey3Ck2",
+          "signal": "Gnd fuel press + VSS",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "notConnected": true,
+          "cavityPlugPartId": "F6dRxdC4XlgPgmxZh_zyn"
+        }
+      ]
+    },
+    {
+      "id": "bus_gnd_b_r",
+      "label": "BUS-GNDOUT-B cap  DT04-12 bussed",
+      "width": 270,
+      "partId": "cp_dt04_12pa_p021",
+      "layoutPosition": {
+        "x": 1590,
+        "y": -840
+      },
+      "schematicPosition": {
+        "x": 1590,
+        "y": -480
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c7",
+          "designation": "7",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c8",
+          "designation": "8",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c9",
+          "designation": "9",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c10",
+          "designation": "10",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c11",
+          "designation": "11",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        },
+        {
+          "id": "c12",
+          "designation": "12",
+          "signal": "GNDOUT-B bus",
+          "propagate": false
+        }
+      ]
     }
   ],
   "terminals": [
@@ -4082,22 +4385,6 @@
       },
       "propagate": false,
       "label": "A/C pressure switch A5 pin 4, engine bay - pressure switch out"
-    },
-    {
-      "id": "chassis_ring",
-      "type": "Ring",
-      "layoutPosition": {
-        "x": 1320,
-        "y": 420
-      },
-      "schematicPosition": {
-        "x": -1110,
-        "y": 1170
-      },
-      "partId": "tp_ring_m6_12_10",
-      "width": 390,
-      "propagate": false,
-      "label": "Cabin chassis stud M6 at ECU - ECU ground ring"
     },
     {
       "id": "br_w_cru_5v",
@@ -4591,6 +4878,54 @@
       },
       "propagate": false,
       "label": "OEM evaporator thermistor A24 pin 2, at the evap case - return (TBD - EWD page)"
+    },
+    {
+      "id": "t_negbar_ecu",
+      "type": "Ring",
+      "partId": "tp_ring_m8_12_10",
+      "width": 390,
+      "propagate": false,
+      "label": "POWER box NEG bar M8 stud - ECU power ground (A25 A34 B25 B34)",
+      "schematicPosition": {
+        "x": 2400,
+        "y": -900
+      },
+      "layoutPosition": {
+        "x": 2400,
+        "y": -900
+      }
+    },
+    {
+      "id": "t_negbar_lam",
+      "type": "Ring",
+      "partId": "tp_ring_m8_16_14",
+      "width": 390,
+      "propagate": false,
+      "label": "POWER box NEG bar M8 stud - CAN-Lambda ground",
+      "schematicPosition": {
+        "x": 2400,
+        "y": -840
+      },
+      "layoutPosition": {
+        "x": 2400,
+        "y": -840
+      }
+    },
+    {
+      "id": "t_negbar_csb",
+      "type": "Ring",
+      "partId": "tp_ring_m8_22_16",
+      "width": 390,
+      "propagate": false,
+      "label": "POWER box NEG bar M8 stud - CSB3 + opto + cruise ground",
+      "schematicPosition": {
+        "x": 2400,
+        "y": -780
+      },
+      "layoutPosition": {
+        "x": 2400,
+        "y": -780
+      }
     }
   ],
   "cables": [
@@ -4614,8 +4949,8 @@
             "handle": "c1"
           },
           "target": {
-            "id": "sp_5v",
-            "handle": "Splice"
+            "id": "bus_5v_p",
+            "handle": "c10"
           },
           "targetLayoutPoints": [
             {
@@ -4660,8 +4995,8 @@
             "handle": "c2"
           },
           "target": {
-            "id": "sp_gndout",
-            "handle": "Splice"
+            "id": "bus_gnd_a_p",
+            "handle": "c9"
           },
           "targetLayoutPoints": [
             {
@@ -4838,8 +5173,8 @@
             "handle": "c4"
           },
           "target": {
-            "id": "sp_5v_2",
-            "handle": "Splice"
+            "id": "bus_5v_p",
+            "handle": "c8"
           },
           "targetLayoutPoints": [
             {
@@ -4900,8 +5235,8 @@
             "handle": "c5"
           },
           "target": {
-            "id": "sp_gndout",
-            "handle": "Splice"
+            "id": "bus_gnd_a_p",
+            "handle": "c7"
           },
           "targetLayoutPoints": [
             {
@@ -5018,8 +5353,8 @@
             "handle": "c1"
           },
           "target": {
-            "id": "sp_5v_2",
-            "handle": "Splice"
+            "id": "bus_5v_p",
+            "handle": "c9"
           },
           "targetLayoutPoints": [
             {
@@ -5066,8 +5401,8 @@
             "handle": "c2"
           },
           "target": {
-            "id": "sp_gndout",
-            "handle": "Splice"
+            "id": "bus_gnd_a_p",
+            "handle": "c8"
           },
           "targetLayoutPoints": [
             {
@@ -5184,8 +5519,8 @@
             "handle": "c1"
           },
           "target": {
-            "id": "sp_5v_b",
-            "handle": "Splice"
+            "id": "bus_5v_p",
+            "handle": "c11"
           }
         },
         {
@@ -5200,8 +5535,8 @@
             "handle": "c2"
           },
           "target": {
-            "id": "sp_gndout_b",
-            "handle": "Splice"
+            "id": "bus_gnd_b_p",
+            "handle": "c3"
           }
         },
         {
@@ -5634,15 +5969,6 @@
       ]
     },
     {
-      "id": "b_bn_bp_1020__chassis_ring",
-      "sourceId": "b_bp_1020",
-      "targetId": "chassis_ring",
-      "length": {
-        "value": 450,
-        "unit": "mm"
-      }
-    },
-    {
       "id": "b_bn_bp_1080__ecu_b",
       "sourceId": "b_bp_1080",
       "targetId": "bp_at_ecu_b",
@@ -5808,36 +6134,6 @@
         "value": 50,
         "unit": "mm"
       }
-    },
-    {
-      "id": "bn_bp_840__bus_5v_bha_p",
-      "sourceId": "bp_840",
-      "targetId": "bus_5v_bha_p",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      },
-      "separateLabels": true,
-      "endLabel": "5V BUS",
-      "partIds": [
-        "cov_lbl_38",
-        "cov_dr25_14"
-      ]
-    },
-    {
-      "id": "bn_bp_840__bus_gnd_bha_p",
-      "sourceId": "bp_840",
-      "targetId": "bus_gnd_bha_p",
-      "length": {
-        "value": 50,
-        "unit": "mm"
-      },
-      "separateLabels": true,
-      "endLabel": "SGND BUS",
-      "partIds": [
-        "cov_lbl_38",
-        "cov_dr25_14"
-      ]
     },
     {
       "id": "bn_bp_1110__fl_ig2_wake",
@@ -6365,21 +6661,7 @@
         "x": 1710,
         "y": 480
       },
-      "label": "At ECU-A plug - SP-CAM: cam signal + 1.8k pull-up to +8V"
-    },
-    {
-      "id": "sp_5v",
-      "layoutPosition": {
-        "x": 1830,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": -330,
-        "y": 960
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_900",
-      "label": "At ECU-A plug - SP-5V-A: +5 V sensor supply"
+      "label": "At the ECU plugs - SP-CAM: cam signal + 1.8k pull-up to +8V"
     },
     {
       "id": "sp_shield_a",
@@ -6393,7 +6675,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_a",
-      "label": "6 mm behind ECU-A plug - SP-SHIELD-A: shield drains"
+      "label": "6 mm behind the ECU-A plug - SP-SHIELD-A: drains to A7"
     },
     {
       "id": "sp_8v",
@@ -6407,7 +6689,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_900",
-      "label": "At ECU-A plug - SP-8V: +8 V cam sensor supply"
+      "label": "ECU splice point - SP-8V: +8 V cam sensor supply (ECU A6)"
     },
     {
       "id": "sp_sw12",
@@ -6421,24 +6703,10 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1080",
-      "label": "At ECU-A plug - SP-SW12: switched +12 V"
+      "label": "ECU splice point - SP-SW12: switched +12 V (LOGIC SW12)"
     },
     {
-      "id": "sp_gndout",
-      "layoutPosition": {
-        "x": -120,
-        "y": 1080
-      },
-      "schematicPosition": {
-        "x": -330,
-        "y": 720
-      },
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1140",
-      "label": "At ECU-A plug - SP-GNDOUT-A: sensor ground"
-    },
-    {
-      "id": "sp_chassis",
+      "id": "sp_gnd_ecu",
       "layoutPosition": {
         "x": -300,
         "y": 1020
@@ -6449,21 +6717,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "b_bp_1170",
-      "label": "At ECU-A plug - SP-GND-CHASSIS: ECU power ground"
-    },
-    {
-      "id": "sp_5v_2",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_900",
-      "layoutPosition": {
-        "x": 1770,
-        "y": 480
-      },
-      "schematicPosition": {
-        "x": -630,
-        "y": 300
-      },
-      "label": "At ECU-A plug - SP-5V-PEDAL: +5 V to pedal + cruise"
+      "label": "ECU splice point - SP-GND-ECU: ECU power ground (A25 A34 B25 B34) to the NEG bar"
     },
     {
       "id": "sp_ac_psw",
@@ -6491,7 +6745,7 @@
         "x": 210,
         "y": 1050
       },
-      "label": "At ECU-A plug - SP-A5: ECU main feed (SW12 + IG2 diode)"
+      "label": "ECU splice point - SP-A5: ECU main feed (SW12 + IG2 diode)"
     },
     {
       "id": "sp_shield_a_aps",
@@ -6547,49 +6801,7 @@
       },
       "partId": "spp_solder_generic",
       "locationId": "ecu_b",
-      "label": "SP-SHIELD-B - loom B cable drains to ECU-B B17"
-    },
-    {
-      "id": "sp_5v_b",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1080_b",
-      "layoutPosition": {
-        "x": -1680,
-        "y": 1980
-      },
-      "schematicPosition": {
-        "x": 2400,
-        "y": 4770
-      },
-      "label": "SP-5V-B - +5V from loom A to fuel level, evap, rear WS"
-    },
-    {
-      "id": "sp_gndout_b",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_1080_b",
-      "layoutPosition": {
-        "x": -1680,
-        "y": 1860
-      },
-      "schematicPosition": {
-        "x": 2400,
-        "y": 4920
-      },
-      "label": "SP-GNDOUT-B - ECU-B B22 sensor ground to fuel, A/C, evap, rear WS, bulkhead B"
-    },
-    {
-      "id": "sp_gnd_bhb",
-      "partId": "spp_solder_generic",
-      "locationId": "b_bp_870_b",
-      "layoutPosition": {
-        "x": -120,
-        "y": 1860
-      },
-      "schematicPosition": {
-        "x": 3000,
-        "y": 4890
-      },
-      "label": "SP-GND-BHB - sensor ground to bulkhead B (knock, ECU-engine sensors)"
+      "label": "6 mm behind the ECU-B plug - SP-SHIELD-B: drains to B17"
     },
     {
       "id": "sp_rev_sw",
@@ -6758,15 +6970,6 @@
       }
     },
     {
-      "id": "n_end_chassis_ring",
-      "text": "Ground ring M6 on a cabin chassis stud at the ECU (TBD - EWD ground point ID)",
-      "width": 270,
-      "schematicPosition": {
-        "x": -1410,
-        "y": 1170
-      }
-    },
-    {
       "id": "n_end_br_w_cru_5v",
       "text": "Cruise ladder pull-up resistor lead (CSB3 loom, under centre cluster)",
       "width": 270,
@@ -6882,6 +7085,21 @@
         "x": 3240,
         "y": 1290
       }
+    },
+    {
+      "id": "n_end_t_negbar_ecu",
+      "text": "M8 ring lug on the POWER box battery-negative bar (R216): the ECU grounds only, nothing else",
+      "width": 270
+    },
+    {
+      "id": "n_end_t_negbar_lam",
+      "text": "M8 ring lug on the POWER box battery-negative bar (R213: a CAN node never on chassis or the ECU ground)",
+      "width": 270
+    },
+    {
+      "id": "n_end_t_negbar_csb",
+      "text": "M8 ring lug on the POWER box battery-negative bar (R213: CSB3, opto board and cruise ladder never on chassis or the ECU ground)",
+      "width": 270
     },
     {
       "id": "n_pedal_length",
@@ -8074,8 +8292,8 @@
       "manufacturer": "generic"
     },
     {
-      "id": "tp_ring_m6_12_10",
-      "size": "M6",
+      "id": "tp_ring_m8_12_10",
+      "size": "M8",
       "type": "Ring",
       "maxGauge": {
         "unit": "AWG",
@@ -8085,8 +8303,40 @@
         "unit": "AWG",
         "value": 12
       },
-      "partNumber": "GENERIC RING M6 12-10",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 12-10 AWG",
+      "partNumber": "GENERIC RING M8 12-10",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 12-10 AWG",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_ring_m8_16_14",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 14
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "partNumber": "320575",
+      "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED",
+      "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "tp_ring_m8_22_16",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M8 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 22-16 AWG",
       "manufacturer": "generic"
     }
   ],
@@ -8308,6 +8558,146 @@
         }
       ],
       "numberOfCavities": 34
+    },
+    {
+      "id": "cp_dt06_12sa",
+      "url": "https://www.te.com/usa-en/product-DT06-12SA.html",
+      "color": "Gray",
+      "image": {
+        "url": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-high-res.png",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/content/dam/te-com/catalog/part/0DT/061/2SA/DT06-12SA-t1.jpg/jcr:content/renditions/product-details.png"
+      },
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-12",
+        "name": "DT 12-way",
+        "pins": [
+          {
+            "x": -11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": 4.56,
+            "size": 3.5
+          },
+          {
+            "x": 11.125,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": 2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -2.225,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -6.675,
+            "y": -4.56,
+            "size": 3.5
+          },
+          {
+            "x": -11.125,
+            "y": -4.56,
+            "size": 3.5
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 32.3,
+          "height": 18.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "x": 16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "x": -16.15,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 8
+            }
+          },
+          {
+            "y": -9.35,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 3,
+              "height": 2
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "partNumber": "DT06-12SA",
+      "description": "CONNECTOR, PLUG, DT, 12 POS, SOCKET CONTACTS, N SEAL, KEY A, GRAY",
+      "manufacturer": "TE Connectivity DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg12",
+          "accessories": [
+            {
+              "id": "cfg12-1",
+              "type": "LockPart",
+              "partId": "lp_w12s"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 12
+    },
+    {
+      "id": "cp_dt04_12pa_p021",
+      "url": "https://www.te.com/en/product-DT04-12PA-P021.html",
+      "color": "Gray",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-12PA-P021",
+      "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED 1 X 12, NICKEL PINS MOULDED IN, 13 A PER PIN, 78 A BUS, WEDGELOCK INCLUDED, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "numberOfCavities": 12
     }
   ],
   "lockParts": [
@@ -8334,6 +8724,12 @@
       "partNumber": "W2P",
       "description": "WEDGELOCK, DT, 2-WAY RECEPTACLE",
       "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w12s",
+      "partNumber": "W12S",
+      "description": "WEDGELOCK, DT, 12 POS, PLUG",
+      "manufacturer": "Deutsch (TE Connectivity)"
     }
   ],
   "cavityPlugParts": [
@@ -8360,6 +8756,12 @@
       "partNumber": "114018-ZZ",
       "description": "PLUG, SEALING, CAVITY, SIZE 8, WHITE",
       "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "F6dRxdC4XlgPgmxZh_zyn",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
     }
   ],
   "mountParts": [
@@ -8372,14 +8774,24 @@
   ],
   "mates": [
     {
-      "id": "m_bus_5v_bha",
-      "sourceId": "bus_5v_bha_p",
-      "targetId": "bus_5v_bha_r"
+      "id": "m_bus_5v",
+      "sourceId": "bus_5v_p",
+      "targetId": "bus_5v_r"
     },
     {
-      "id": "m_bus_gnd_bha",
-      "sourceId": "bus_gnd_bha_p",
-      "targetId": "bus_gnd_bha_r"
+      "id": "m_bus_5v2",
+      "sourceId": "bus_5v2_p",
+      "targetId": "bus_5v2_r"
+    },
+    {
+      "id": "m_bus_gnd_a",
+      "sourceId": "bus_gnd_a_p",
+      "targetId": "bus_gnd_a_r"
+    },
+    {
+      "id": "m_bus_gnd_b",
+      "sourceId": "bus_gnd_b_p",
+      "targetId": "bus_gnd_b_r"
     }
   ],
   "diodeParts": [

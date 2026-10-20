@@ -59,7 +59,7 @@ CAN,CAN L to CAN-Lambda (ECU-COMMS C4),bh_eng,80,CAN L to CAN-Lambda,ECU-cabin,b
 CAN,"Screen CAN (ECU C1, CAN_SCREEN)",bh_eng,81,CAN-Lambda shield,ECU-cabin,bh_fw,81,CAN-Lambda shield,OK
 LAM,+12V CAN-Lambda +12 V (LOGIC BUS2-1),bh_eng,95,CAN-Lambda +12 V,ECU-cabin,bh_fw,95,CAN-Lambda +12 V,OK
 VSS,Gearbox speed signal (ECU-B B29),bh_eng,68,Gearbox speed signal,ECU-cabin,bh_fw,68,Gearbox speed signal,OK
-LAM,Chassis GND (cabin stud M6 at ECU),bh_eng,96,CAN-Lambda ground,ECU-cabin,bh_fw,96,CAN-Lambda ground,OK
+LAM,Chassis GND (POWER box NEG bar M8 stud (glove box)),bh_eng,96,CAN-Lambda ground,ECU-cabin,bh_fw,96,CAN-Lambda ground,OK
 EPSEN,+12V EHPS enable (LOGIC MRS 7.5A),bh_eng,83,EHPS enable +12 V,ECU-cabin,bh_fw,83,EHPS enable +12 V,OK
 MRS,EHPS pump speed (ECU-A A27),bh_eng,84,EHPS pump speed,ECU-cabin,bh_fw,84,EHPS pump speed,OK
 EPS,EHPS relay coil (-) (DRB102 85),bh_eng,85,EHPS relay coil (-),ECU-cabin,bh_fw,85,EHPS relay coil (-),OK

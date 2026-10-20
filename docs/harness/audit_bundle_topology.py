@@ -13,7 +13,8 @@ Mechanical signs that a drawing's bundle tree was bent to fit the drawing instea
       harness to get from one end to the other)
 
 Whether a bundle runs WITH the right neighbours (H5 joining H4 at the firewall) is judged against
-the route figure by eye; this gate catches the shapes that cannot be right on any route.
+the route figure by eye; this gate catches the shapes that cannot be right on any route. A harness
+our own generator draws (interfaces.json "drawing": "own", DECISIONS R220) has no app bundles to check.
 
     python docs/harness/audit_bundle_topology.py [CabinPower | ST185-CabinPower ...]
 """
@@ -144,7 +145,8 @@ def check(loom, d):
 def main(argv):
     files = model.harness_files()
     want = [a for a in argv if not a.startswith("--")]
-    looms = sorted(files) if not want else []
+    own = model.own_drawn()   # drawn by our own generator, not as app bundles (R220): its layout tree has its own check
+    looms = sorted(set(files) - own) if not want else []
     for w in want:
         k = w.replace("ST185-", "").replace(".harness", "")
         if k not in files:

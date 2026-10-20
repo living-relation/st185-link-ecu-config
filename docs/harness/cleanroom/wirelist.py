@@ -484,13 +484,17 @@ def assign_nets(ctx, rows):
             name = "%s (%s)" % (wired[0]["from_desc"], nid.replace(".", " ")) if wired else "spare (%s)" % nid.replace(".", " ")
             kind = "signal" if wired else "spare"
         # (b) one splice / bus never joins two SoT nets
-        sot_nets = {}
+        sot_nets, classes = {}, set()
         for k in pins:
             conn = next((r[s + "_conn"] for r in rs for s, kk in zip(("from", "to"), r["_keys"]) if kk == k), None)
             row = conn and ctx.sot_row(conn, k[2])
             if row and row["net"]:
                 sot_nets.setdefault(row["net"], set()).add("%s %s" % (conn, k[2]))
-        if len(sot_nets) > 1:
+                classes.add(row["class"])
+        # ground nets that meet only at a ground stud / the battery-negative bar are meant to (R213 / R216: the bar is
+        # battery negative, each ground keeps its own lug on it)
+        at_stud = bool(studs) and classes <= {"ground"}
+        if len(sot_nets) > 1 and not at_stud:
             findings.append(("(b) net %s joins SoT nets %s" % (name, "; ".join(
                 "%s at %s" % (n, ", ".join(sorted(p))) for n, p in sorted(sot_nets.items()))), ids(wired)))
         # screens: only screen / drain pins, never a supply or ground source

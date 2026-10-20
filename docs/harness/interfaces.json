@@ -1716,8 +1716,8 @@
       ],
       "spurHarness": "ECU-cabin",
       "spur": {
-        "c1": "sp_5v_b",
-        "c2": "sp_gndout_b",
+        "c1": "bus_5v_p.c11",
+        "c2": "bus_gnd_b_p.c3",
         "c3": "ecu_b.b20",
         "c4": "ecu_b.b19",
         "c5": "sp_shield_b_wsr"
@@ -1742,8 +1742,8 @@
       ],
       "spurHarness": "ECU-cabin",
       "spur": {
-        "c1": "sp_5v",
-        "c2": "sp_gndout",
+        "c1": "bus_5v_p.c10",
+        "c2": "bus_gnd_a_p.c9",
         "c3": "ecu_a.a23",
         "c4": "ecu_b.b21",
         "c5": "sp_shield_a_wsf"
@@ -1890,7 +1890,7 @@
     {
       "id": "BR_W_CSBG",
       "type": "broken_off",
-      "what": "CSB3 ground to sp_chassis",
+      "what": "CSB3 + opto + cruise ground from the POWER box NEG bar (R213 / R217)",
       "ends": [
         {
           "harness": "CSB3",
@@ -3943,7 +3943,7 @@
       },
       "5V": {
         "bands": ["Blue", "Blue"],
-        "wires": ["cab_fspur_5v", "cab_rspur_5v", "w210", "w67", "w_5v_a_c39", "w_5v_a_c40", "w_5v_bha_trunk", "w_5v_brail_c45", "w_5v_brail_c46", "w_5v_brail_c47", "w_5v_link", "w_aps_vc1", "w_cru_5v_ac", "w_rail_5v_b_c_ac", "w_rail_sp_5v_c"]
+        "wires": ["cab_fspur_5v", "cab_rspur_5v", "w210", "w67", "w_5v_a_c39", "w_5v_a_c40", "w_5v_brail_c45", "w_5v_brail_c46", "w_5v_brail_c47", "w_aps_vc1", "w_cru_5v_ac", "w_rail_sp_5v_c", "w_5v_bus_link"]
       },
       "EFI": {
         "bands": ["Blue", "Yellow"],
@@ -4027,7 +4027,7 @@
       },
       "SGND": {
         "bands": ["Yellow", "Yellow"],
-        "wires": ["cab_fspur_gnd", "cab_rspur_gnd", "w40", "w45", "w68", "w69", "w_aps_gnd2", "w_evap_rtn", "w_gnd_a_c41", "w_gnd_a_c42", "w_gnd_a_c43", "w_gnd_a_c44", "w_gnd_b_c19", "w_gnd_b_c21", "w_gnd_bha_trunk", "w_gnd_bhb_trunk", "w_rail_sp_gndout_c"]
+        "wires": ["cab_fspur_gnd", "cab_rspur_gnd", "w40", "w45", "w68", "w69", "w_aps_gnd2", "w_evap_rtn", "w_gnd_a_c41", "w_gnd_a_c42", "w_gnd_a_c43", "w_gnd_a_c44", "w_gnd_b_c19", "w_gnd_b_c21", "w_rail_sp_gndout_c"]
       },
       "INJ1": {
         "bands": ["Blue", "Blue", "White", "Yellow"],
@@ -4621,19 +4621,21 @@
         "receptacle": "bus_sw12_r",
         "mate": "m_bus_sw12"
       },
+      {"harness": "ECU-cabin", "splice": "sp_bus_5v", "plug": "bus_5v_p", "receptacle": "bus_5v_r", "mate": "m_bus_5v"},
+      {"harness": "ECU-cabin", "splice": "sp_bus_5v2", "plug": "bus_5v2_p", "receptacle": "bus_5v2_r", "mate": "m_bus_5v2"},
       {
         "harness": "ECU-cabin",
-        "splice": "sp_5v_bha",
-        "plug": "bus_5v_bha_p",
-        "receptacle": "bus_5v_bha_r",
-        "mate": "m_bus_5v_bha"
+        "splice": "sp_bus_gnd_a",
+        "plug": "bus_gnd_a_p",
+        "receptacle": "bus_gnd_a_r",
+        "mate": "m_bus_gnd_a"
       },
       {
         "harness": "ECU-cabin",
-        "splice": "sp_gnd_bha",
-        "plug": "bus_gnd_bha_p",
-        "receptacle": "bus_gnd_bha_r",
-        "mate": "m_bus_gnd_bha"
+        "splice": "sp_bus_gnd_b",
+        "plug": "bus_gnd_b_p",
+        "receptacle": "bus_gnd_b_r",
+        "mate": "m_bus_gnd_b"
       }
     ]
   }

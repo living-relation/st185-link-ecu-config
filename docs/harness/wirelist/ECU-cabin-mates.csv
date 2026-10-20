@@ -33,7 +33,7 @@ SGND,Sensor GND (ECU-A A24),bh_fw,18,Gnd flex + MAP,ECU-engine,bh_eng,18,Gnd fle
 SW12,+12V switched (LOGIC SW12 bus),bh_fw,30,+12 V boost + flex,ECU-engine,bh_eng,30,+12 V boost + flex,OK
 SW12,+12V switched (LOGIC SW12 bus),bh_fw,67,+12 V gearbox speed,ECU-engine,bh_eng,67,+12 V gearbox speed,OK
 EPSEN,+12V EHPS enable (LOGIC MRS 7.5A),bh_fw,83,EHPS enable +12 V,ECU-engine,bh_eng,83,EHPS enable +12 V,OK
-LAM,Chassis GND (cabin stud M6 at ECU),bh_fw,96,CAN-Lambda ground,ECU-engine,bh_eng,96,CAN-Lambda ground,OK
+LAM,Chassis GND (POWER box NEG bar M8 stud (glove box)),bh_fw,96,CAN-Lambda ground,ECU-engine,bh_eng,96,CAN-Lambda ground,OK
 CRANKC,"Screen A (ECU A7, SHIELD_A)",bh_fw,76,Crank sensor shield,ECU-engine,bh_eng,76,Crank sensor shield,OK
 CAM,"Screen A (ECU A7, SHIELD_A)",bh_fw,66,Cam sensor shield,ECU-engine,bh_eng,66,Cam sensor shield,OK
 TURBO,"Screen A (ECU A7, SHIELD_A)",bh_fw,57,Turbo speed shield,ECU-engine,bh_eng,57,Turbo speed shield,OK
@@ -75,5 +75,7 @@ SGND,Sensor GND B (ECU-B B22),ix_ws_rear_p,2,VRC-R GND,WheelSpeed-Rear,ix_ws_rea
 WSSR,Rear left wheel spd (ECU-B B20),ix_ws_rear_p,3,Rear left wheel spd,WheelSpeed-Rear,ix_ws_rear_r,3,Rear left wheel spd,OK
 WSSR,Rear right wheel spd (ECU-B B19),ix_ws_rear_p,4,Rear right wheel spd,WheelSpeed-Rear,ix_ws_rear_r,4,Rear right wheel spd,OK
 WSSR,"Screen B (ECU B17, SHIELD_B)",ix_ws_rear_p,5,WS-R screen drain,WheelSpeed-Rear,ix_ws_rear_r,5,WS-R screen drain,OK
-,+5V sensor (ECU-A A32),bus_5v_bha_p,all,bus,ECU-cabin,bus_5v_bha_r,all,bussed: one net,OK
-,Sensor GND (ECU-A A24),bus_gnd_bha_p,all,bus,ECU-cabin,bus_gnd_bha_r,all,bussed: one net,OK
+,+5V sensor (ECU-A A32),bus_5v_p,all,bus,ECU-cabin,bus_5v_r,all,bussed: one net,OK
+,+5V sensor (ECU-A A32),bus_5v2_p,all,bus,ECU-cabin,bus_5v2_r,all,bussed: one net,OK
+,Sensor GND (ECU-A A24),bus_gnd_a_p,all,bus,ECU-cabin,bus_gnd_a_r,all,bussed: one net,OK
+,Sensor GND B (ECU-B B22),bus_gnd_b_p,all,bus,ECU-cabin,bus_gnd_b_r,all,bussed: one net,OK

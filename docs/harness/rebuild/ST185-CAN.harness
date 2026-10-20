@@ -685,9 +685,9 @@
         "x": 960,
         "y": -690
       },
-      "partId": "tp_ring_m6_22_16",
+      "partId": "tp_ring_m8_16_14",
       "propagate": false,
-      "label": "Ground point IF, I/P brace RH (EWD ground point IF, p.42) - cluster ground"
+      "label": "POWER box NEG bar M8 stud (glove box) - cluster ground"
     },
     {
       "id": "t_realdash_gnd",
@@ -701,9 +701,9 @@
         "x": 1110,
         "y": -930
       },
-      "partId": "tp_ring_m6_22_16",
+      "partId": "tp_ring_m8_16_14",
       "propagate": false,
-      "label": "Ground point IF, I/P brace RH (EWD ground point IF, p.42) - Pi ground"
+      "label": "POWER box NEG bar M8 stud (glove box) - Pi ground"
     },
     {
       "id": "br_w_dev",
@@ -1509,6 +1509,16 @@
         "x": 2700,
         "y": -360
       }
+    },
+    {
+      "id": "n_end_t_cluster_gnd",
+      "text": "M8 ring lug on the POWER box battery-negative bar (R213 / R217: a CAN node never on chassis); runs with the CAN trunk to the ECU, then with the ECU harness to the glove box",
+      "width": 270
+    },
+    {
+      "id": "n_end_t_realdash_gnd",
+      "text": "M8 ring lug on the POWER box battery-negative bar (R213 / R217: a CAN node never on chassis); runs with the CAN trunk to the ECU, then with the ECU harness to the glove box",
+      "width": 270
     }
   ],
   "wireParts": [
@@ -1799,20 +1809,20 @@
       "manufacturer": "generic"
     },
     {
-      "id": "tp_ring_m6_22_16",
-      "size": "M6",
+      "id": "tp_ring_m8_16_14",
+      "size": "M8",
       "type": "Ring",
       "maxGauge": {
         "unit": "AWG",
-        "value": 16
+        "value": 14
       },
       "minGauge": {
         "unit": "AWG",
-        "value": 22
+        "value": 16
       },
-      "partNumber": "GENERIC RING M6 22-16",
-      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
-      "manufacturer": "generic"
+      "partNumber": "320575",
+      "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED",
+      "manufacturer": "TE Connectivity"
     }
   ],
   "connectorParts": [

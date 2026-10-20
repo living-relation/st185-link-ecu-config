@@ -1689,11 +1689,11 @@
    ],
    "t_cluster_gnd": [
     "",
-    "Factory ground IF (I/P brace RH, 1993 EWD p.42) - cluster ground, check at build"
+    "POWER box NEG bar M8 stud (glove box) - cluster ground (R213 / R217)"
    ],
    "t_realdash_gnd": [
     "",
-    "Factory ground IF (I/P brace RH, 1993 EWD p.42) - RealDash Pi ground, check at build"
+    "POWER box NEG bar M8 stud (glove box) - RealDash Pi ground (R213 / R217)"
    ],
    "br_w_dev": [
     "",

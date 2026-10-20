@@ -203,16 +203,9 @@ PENDING = {
     "R213:w_at_gnd_b1",
     "R213:w_at_gnd_b2",
     "R213:w_at_gnd_c1",
-    "R213:w_cru_gnd",
-    "R213:w_csbg",
-    "R213:w_gnd_clu",
-    "R213:w_gnd_rd",
     "R213:w_hb_k",
-    "R213:w_lamg_ac",
-    "R213:w_opto_inc",
     "R213:w_tl_k",
     "R213:w_tr_k",
-    "R216:GND_ECU",
 }
 
 
