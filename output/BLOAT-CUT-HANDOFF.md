@@ -1,8 +1,11 @@
 # Bloat-cut plan and handoff (R224 steps 4-6 + memory cleanup)
 
-**Status (2026-10-20):** plan approved by Dan. Step 0 is in flight in this PR (this file + the
-AGENTS.md range fix). Steps 1-5 are not started; the next agent starts at step 1. Delete this file
-once step 5 is done (open work goes into `docs/OPEN-ITEMS.md`).
+**Status (2026-10-20, updated as steps land):** plan approved by Dan. Step 0 merged (#376). Step 1: draft PR #377
+(B1-B30 + retire map; B-prefix confirmed by Dan, the page waits for his review; the deletion commit follows his OK).
+Step 2 (read-back check, row 154): merged (#378). Step 3 (`rebuild/` deleted, row 153): merged (#379).
+Step 4 (dead scripts, row 152): the `dan_/bloat-4-scripts` PR. Step 5: done (memory pruned; the PC skill copies recycled after a
+diff against the claude.ai copies; AGENTS.md "Skills" points to the account). Left: Dan's review of #377, then its deletion commit.
+Delete this file once every step, Dan's step-1 approval included, is done (open work goes into `docs/OPEN-ITEMS.md`).
 
 ## Context
 Dan (R224, 2026-10-20): "Too many scripts and rules." The project has 216 R-rules, 116 `.py`

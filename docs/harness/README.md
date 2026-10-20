@@ -11,7 +11,6 @@ is in `redesign/DECISIONS.md` "Binding rules from Daniel"; this page restates no
 | `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
-| `rebuild/` | the frozen harness.design files and part library (`ST185.harnesslib`) of the harnesses the generator does not draw yet; `full_text.json` puts back their long names for `cad/fusebox/src/wiring_sim.py`. Deleted once the generator draws every harness | No (frozen) |
 | `redesign/DECISIONS.md` | every binding rule | Only for a new Dan rule |
 
 Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails land in `out/` (gitignored).
@@ -30,8 +29,8 @@ Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails
 `AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
 `CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `RearLights`, `WheelSpeed-Front`, `WheelSpeed-Rear`. All 13 are drawn by
 the generator as ONE drawing set, `ST185-harness` (`drawings/ST185-harness-schematic.pdf`, `-layout.pdf`, `-pinout.pdf`;
-layout tree `tools/ST185-harness.layout.json`). The frozen `rebuild/` files stay only until the part data the BOM and the
-tools still read from them moves out (OPEN-ITEMS row 149).
+layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AWG ranges) the BOM and the check read:
+`docs/sourcing/harness-parts.csv`.
 
 ## Factory wiring facts (OEM ends)
 
