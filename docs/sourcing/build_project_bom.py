@@ -7,7 +7,7 @@ Inputs, all in git: docs/harness/MASTER-wirelist.csv (every housing, accessory, 
 band; R221), the drawing sets' layouts (DR-25 tubing) and, for harnesses not drawn yet, their frozen harness.design files
 (coverings, boots, labels), cad/fusebox/fusebox-parts-*.csv, docs/enclosures/*-bom.csv,
 docs/sourcing/mech-extra.csv (machined parts / pump), docs/sourcing/te-on-hand-bom.csv (on hand),
-docs/sourcing/bom-links.csv (hand-kept buy links, prices, link status, te_sample = Y when te.com shows "Get free samples" for that exact TE PN; blank otherwise).
+docs/sourcing/bom-links.csv (hand-kept buy links, prices, link status, te_sample = Y when te.com shows "Get free samples" for that exact TE PN; sample_other = "<maker> <PN>" of a validated drop-in equivalent whose maker offers free samples; both feed the "Free sample" column).
 Nothing is typed in twice: edit the source, rerun. A line with no validated link goes on the To do sheet."""
 import collections
 import csv
@@ -33,10 +33,10 @@ UNPRICED = re.compile(r"^(TMS-SCE-|RNF-100-[0-9/]+-(4|6|9)-STK$)")
 ALIAS = {"2R5": "Klauke 2R5"}   # buylist name -> bom-links name
 MARGIN = 1.15
 FT_PER_M = 3.28084
-COLS = ["section", "assembly", "part_number", "maker", "te_sample", "description", "qty_needed", "unit", "qty_on_hand", "qty_to_buy",
+COLS = ["section", "assembly", "part_number", "maker", "free_sample", "description", "qty_needed", "unit", "qty_on_hand", "qty_to_buy",
         "unit_price_usd", "line_total_usd", "buy_link", "alt_cheaper_link", "price_basis", "link_status", "notes"]
 NUMCOLS = ("qty_needed", "qty_on_hand", "qty_to_buy", "unit_price_usd", "line_total_usd")
-HEAD = {"te_sample": "TE sample"}   # xlsx header labels; the CSV keeps the column names
+HEAD = {"free_sample": "Free sample"}   # xlsx header labels; the CSV keeps the column names
 SECTIONS = ("Mechanical assemblies", "Wire harness")
 
 
@@ -79,7 +79,7 @@ def add(section, assembly, pn, maker, desc, need, have, unit="ea", notes="", kin
         price, basis = 0.0, "not priced (Dan)"
     elif not link:
         status = L.get("link_status") or "NO LINK"
-    rows.append(dict(section=section, assembly=assembly, part_number=pn, maker=maker, te_sample="✓" if L.get("te_sample") == "Y" else "",
+    rows.append(dict(section=section, assembly=assembly, part_number=pn, maker=maker, free_sample="✓ TE" if L.get("te_sample") == "Y" else ("✓ " + L["sample_other"] if L.get("sample_other") else ""),
                      description=desc, qty_needed=need,
                      unit=unit, qty_on_hand=have, qty_to_buy=buy, unit_price_usd="" if price is None else "%.2f" % price,
                      line_total_usd="" if price is None or not buy else "%.2f" % (price * buy), buy_link=link,
@@ -289,7 +289,7 @@ def write_xlsx(path):
     wb.remove(wb.active)
     hair, thick = Side(style="hair", color="A6A6A6"), Side(style="thick", color="1F1F1F")
     band = (PatternFill("solid", fgColor="E7E6F7"), PatternFill("solid", fgColor="F3F2FB"))
-    widths = dict(te_sample=7, section=14, assembly=22, part_number=24, maker=18, description=60, qty_needed=9, unit=6, qty_on_hand=9,
+    widths = dict(free_sample=14, section=14, assembly=22, part_number=24, maker=18, description=60, qty_needed=9, unit=6, qty_on_hand=9,
                   qty_to_buy=9, unit_price_usd=10, line_total_usd=10, buy_link=48, alt_cheaper_link=40, price_basis=11,
                   link_status=30, notes=40)
 
