@@ -1251,7 +1251,7 @@ def load_looms(hub: dict) -> list[dict]:
     out = []
     for h in sorted(wires):
         state = "redo" if h in redo or "ST185-" + h in redo else ("approved" if cfg.get("approved_on") else "drawn")
-        sets = [p for p in (DOCS / "harness" / "drawings").glob("*-drawings.pdf") if p.name.split("-drawings")[0] in h]
+        sets = [p for p in (DOCS / "harness" / "drawings").glob("*-schematic.pdf") if p.name.split("-schematic")[0] in h]
         href = f"harness/drawings/{sets[0].name}" if sets else (
             f"harness/rebuild/ST185-{h}.harness" if (DOCS / "harness" / "rebuild" / f"ST185-{h}.harness").is_file()
             else "harness/MASTER-wirelist.csv")
