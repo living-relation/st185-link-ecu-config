@@ -1,7 +1,7 @@
 # ST185 shield rules — settled, do not re-ask
 
-The shield rules themselves are **R27-R34** in `docs/harness/redesign/DECISIONS.md` "Binding
-rules from Daniel" (the one rules home; it wins over this file). This file is the build detail
+The shield rules themselves are **B14** in `docs/harness/redesign/DECISIONS.md` "Binding
+rules B1-B30" (the one rules home; it wins over this file). This file is the build detail
 that applies them (the shield pins and cavities are in `docs/harness/MASTER-wirelist.csv`).
 
 **`docs/harness/tools/check_wiring.py` S1-S3 enforces the drain and floating-screen rules (R207) mechanically, and
