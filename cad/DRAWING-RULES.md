@@ -15,6 +15,7 @@ Rules every shop drawing in this repo follows. Decisions are in
 | Minimum wall thickness applies to structural / critical features only; anything questionable is flagged for Dan. | R151 |
 | Model files are STEP only; STL only as a print-job file for a printed part. | R152 |
 | Every model says what made it (`MADE-WITH.md` + register column). | R149 |
+| Every fabricated assembly has its model and an assembly drawing, reissued with its parts. | R182 (DECISIONS B23) |
 | No notes about things that are not in the model: no edge-break notes (also out of the tolerance block), nothing "not modelled". Replaces R138's drawing note. | R191 |
 | Bought parts come from the real maker STEP (`cad/vendor/`), never an envelope model; no note says "envelope". | R184 |
 | No pin / socket gender notes: gender belongs to the connector shell installed. | R185 |

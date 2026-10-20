@@ -4,6 +4,13 @@ The shield rules themselves are **B14** in `docs/harness/redesign/DECISIONS.md` 
 rules B1-B30" (the one rules home; it wins over this file). This file is the build detail
 that applies them (the shield pins and cavities are in `docs/harness/MASTER-wirelist.csv`).
 
+**B14 detail.** Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, flex
+fuel, gearbox VSS, ETB, APS pedal, the CAN-Lambda run and every CAN pair; injectors and coils get none. A drain is its own
+`M22759/16-20-06` wire, found by its part, never its colour; no connector shell, no solder sleeve. A cabin device that
+joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead
+pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one
+OUT plug; its board is isolated from the case.
+
 **`docs/harness/tools/check_wiring.py` S1-S3 enforces the drain and floating-screen rules (R207) mechanically, and
 `tools/check_all.py` runs it.** If a change breaks one of these rules the build fails.
 That is deliberate: these were settled once and kept getting re-opened because

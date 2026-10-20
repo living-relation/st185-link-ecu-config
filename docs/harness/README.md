@@ -2,7 +2,8 @@
 
 **The ONE wiring source of truth is `MASTER-wirelist.csv`** (DECISIONS R221): one row per wire, FROM end to TO end, for
 every harness. `sot/channels.csv` keeps only the ECU channel settings and is checked against it. Every rule Daniel has set
-is in `redesign/DECISIONS.md` "Binding rules B1-B30"; this page restates none of them.
+is in `redesign/DECISIONS.md` "Binding rules B1-B30"; this page restates none of them (it holds the factory-wiring detail
+that B9 points to).
 
 | Path | What it is | Edit it? |
 |---|---|---|
@@ -34,6 +35,19 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
 
 ## Factory wiring facts (OEM ends)
 
+- What stays and what goes (DECISIONS B1 / B9, surgical rewire, Dan 2026-10-20):
+  - **Kept OEM:** cowl, instrument panel, floor, door, seat, console and luggage room wires; cabin J/B No.1 and No.3 (what
+    a kept J/B feeds stays fed from it: fuse, relay, pin); the Engine Room Main Wire outer loop (headlights, turn and
+    clearance lamps, horns, fans, washer); the rear lights; both A/C amps (A15 and the auto A/C amp A31 / A32, A23); the
+    four wheel speed sensors (they feed the Link). Every branch of a kept harness that runs into the engine area is cut
+    and its job moves into the new engine harness.
+  - **Removed (never a circuit source):** the Engine Wire; J/B No.2, R/B No.2-5 and the A/C clutch relay box; the OEM
+    engine ECU and igniter; every SRS crash sensor and SRS computer; the ABS computer and the ABS actuator (solenoid
+    module). Each wire that crossed from a removed part into a kept harness gets one row in the master: cut and cap,
+    reuse, or re-feed (B5).
+  - **New wire:** the engine harness (Link to every engine sensor and actuator), the fuel pump circuit, one dash feed
+    for the cluster, LEDs and RealDash Pi (bypassing the dash wiring), CAN, the alarm add-on, and power taps.
+  - Kept OEM ground points (where a high-current load may ground, B10): EA (M8 studs), EB, EC, ID, IE / IF, IG.
 - Pin authority for OEM ends: the 1993 ST185 EWD (Dan 2026-10-20, DECISIONS R16): the 1993 TIS EWD pages in the
   `st185-celica-repair-manual` repo. The 1990 ST185 All-Trac book and the 1992 Celica EWD132U are reading aids only; an
   end still sourced from them is re-checked against 1993 (`docs/OPEN-ITEMS.md` row 156). The public PDF labelled EWD160U

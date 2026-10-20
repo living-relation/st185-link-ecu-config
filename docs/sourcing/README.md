@@ -14,6 +14,8 @@ Binding on every part choice in this project.
 
 Every spec read off a non-maker listing is validated against the maker's sheet first; the non-maker short list and the
 validation rules are in `TRUSTED-SOURCES.md` (DECISIONS R167).
+A number with no maker sheet, official model or measurement behind it is marked UNVERIFIED. A part description describes
+the part, never its use. In the BOM, labels and ident bands are not priced (DECISIONS B21).
 
 Never spec a new connector family without checking step 1 first. This project
 already owns HDP20, HD30, Deutsch DT, SuperSeal and AMP MCP hardware.

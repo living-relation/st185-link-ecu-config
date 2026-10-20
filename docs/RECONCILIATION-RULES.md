@@ -135,13 +135,16 @@ bulkhead". It replaces the 2026-09-28 connector-letter split.
   branch) and `AB-engine` (the engine half of the bulkhead to every engine device the ECU drives or reads, the throttle body
   included). The letters A / B / C are the ECU's own plug names and stay on the pins; the ECU pin assignments never move.
 - **One bulkhead connector per side:** `DRB102-CABIN` and `DRB102-ENGINE` (TE drawing DRB12-102PXE-L018), cavities assigned
-  by device (R208); the map is generated, `docs/harness/drawings/DRB102-bulkhead-map.png`.
+  by device (R208); the map is generated, `docs/harness/drawings/DRB102-bulkhead-map.png`. The DRB102 (DECISIONS B7) is one
+  102-position bulkhead, accepted on its ratings: cavities grouped by device in route order, a circuit uses the same cavity
+  number on both sides, one cavity carries one net, and the contact size must take the wire's gauge and current.
 - **The ECU splice point:** every cabin power, ground and rail splice sits at one place by the ECU plugs. +5 V (A32) is two
   bussed DT plugs `BUS-5V` (12-way) and `BUS-5V-2` (8-way, linked); Gnd Out A24 and B22 are their own 12-way bussed DT plugs
   `BUS-GNDOUT-A` / `BUS-GNDOUT-B` (no A24-B22 tie); +8 V, switched 12 V, the ECU A5 feed and the ECU power ground are
   soldered splices there (R169 parts: `DT06-12SA` / `DT04-12PA-P021`, `DT06-08SA` / `DT04-08PA-P021`, 13 A per pin). The ECU
   power ground splice joins A25, A34, B25, B34 only and runs one wire to the POWER box battery-negative bar (R216).
-- **Splice sizing:** rule **R36** (combined gauge; not for drains, R30). **Connector substitution:** rule **R8**.
+- **Splice sizing (B12):** by the combined gauge it joins; not for drains. **Bulkhead substitution (B7):** only a
+  complete matching set from the maker's datasheet.
 - A wire belongs to the one harness that carries it (`harness` column); `passes_through` names any harness it runs
   through. Mating halves (DRB102, the inline `IX-` pairs) are checked cavity for cavity by `check_wiring.py` M1.
 - Every other harness keeps its own name: `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`, `CSB3`, `ClusterLED`,

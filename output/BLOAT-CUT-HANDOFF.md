@@ -2,10 +2,10 @@
 
 **Status (2026-10-20, updated as steps land):** plan approved by Dan. Step 0 merged (#376). Step 1: B1-B30 + retire map
 approved by Dan and merged (#377); the old rule rows deleted and every pointer moved to "Binding rules B1-B30" (#384);
-the trim of each rule to 2 lines or less goes in a draft PR on branch `dan_/rules-trim`. Step 2 (read-back check, row 154): merged (#378).
+each rule trimmed to 2 lines or less (#385). Step 2 (read-back check, row 154): merged (#378).
 Step 3 (`rebuild/` deleted, row 153): merged (#379). Step 4 (dead scripts, row 152): merged (#380; Dan had 11 RealDash helpers and the fuse-box CAD inputs restored in #383). Step 5: done (memory
 pruned; the PC skill copies recycled after a diff against the claude.ai copies; AGENTS.md "Skills" points to the account).
-Left: Dan's review of the draft PR on branch `dan_/rules-trim` (row 151).
+Left: the `AGENTS.md` cut to about 80 lines (row 151).
 Delete this file once every step, Dan's step-1 approval included, is done (open work goes into `docs/OPEN-ITEMS.md`).
 
 ## Context
