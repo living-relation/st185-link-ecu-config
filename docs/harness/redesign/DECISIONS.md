@@ -1,4 +1,4 @@
-# ST185 Harness Redesign â€” Decision Record
+# ST185 Harness Redesign - Decision Record
 
 **Repo:** `st185-link-ecu-config`  
 **Status:** The decision record. Open work and project history are in `docs/OPEN-ITEMS.md`.
@@ -44,8 +44,11 @@ A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Need
 - **B6 ONE drawing set, read back.** Every harness is drawn in ONE drawing set, `ST185-harness`, by our own generator
   `docs/harness/tools/build_drawings.py`: schematic, layout and pinout sheets from the master, never edited by hand,
   never a source. A change goes into the master first, then the set is regenerated. The read-back check compares every
-  wire on the sheets with the master (both ends, connector, pin, gauge, colour, ident bands); any difference fails. No
-  harness.design. Wire list and pinout come first; the schematic layout does not chase perfection.
+  wire on the sheets with the master (both ends, connector, pin, gauge, colour, ident bands); any difference fails.
+  harness.design is allowed only as an optional consumer: one wiring table per harness (13), generated from the master as
+  a committed CSV (never hand-edited, checked by its generator's `--check`), with the .xlsx made on demand for
+  harness.design import - built right after the bloat cut (OPEN-ITEMS row 158); the master stays the only source of
+  truth. Wire list and pinout come first; the schematic layout does not chase perfection.
 - **B7 The ECU harness and the bulkhead.** Loom A and loom B are ONE ECU harness: `AB-cabin` (ECU plugs A, B, C to the
   cabin half of the DRB102) and `AB-engine` (the engine half to every engine device). A, B and C are the ECU's plug names
   and ECU pins never move. The DRB102 is one 102-position bulkhead, accepted on its ratings; its cavities are grouped by
@@ -210,7 +213,7 @@ A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Need
   the dated history. The research hub (`docs/research-hub.html`) is generated and committed only by its bot; keep it and
   the tracker fresh, short and visual. Generated files (the hub, `docs/harness/drawings/`, the project BOM) are never
   hand-edited - re-run their generator.
-- **B30 Past decisions.** The dated rows that stood here before (R1-R226, S1-S40, the 2026-09-28 audit B1 / B2) are
+- **B30 Past decisions.** The dated rows that stood here before (R1-R226, S1-S40, the 2026-09-28 audit rows 1-2) are
   retired into the map below; git history of this file keeps their full text. What they decided lives in the file they
   changed: wiring in the master, ECU settings in `sot/channels.csv`, CAN in the CAN files, CAD in the `cad/` specs and
   rev logs. Reversing an applied decision is a question for Dan, never a silent edit.
@@ -446,7 +449,7 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 | R222 | B4 | |
 | R223 | B30 | gearbox VSS on switched 12 V, DI 8 pull-up ON: applied; the facts live in the file it changed; Link check open in OPEN-ITEMS |
 | R224 | B2 | the ONE drawing set and read-back: B6 |
-| R225 | B6 | |
+| R225 | B6 | amended by Dan 2026-10-20: harness.design only as an optional consumer of generated per-harness tables |
 | R226 | B2 | this page |
 | S1 | B18 |  |
 | S2 | B18 |  |
@@ -488,8 +491,8 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 | S38 | B30 | applied; the facts live in the file it changed |
 | S39 | - | removed before R226 (git history) |
 | S40 | B11 |  |
-| Audit B1 (2026-09-28 table) | B17 | CAN-Lambda bulkhead pins: B30 |
-| Audit B2 (2026-09-28 table) | B7 | DRB102 accepted on its ratings |
+| Audit row 1 (2026-09-28 table) | B17 | CAN-Lambda bulkhead pins: B30 |
+| Audit row 2 (2026-09-28 table) | B7 | DRB102 accepted on its ratings |
 
 ## Binding rules from Daniel
 
