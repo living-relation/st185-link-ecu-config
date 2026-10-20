@@ -39,7 +39,7 @@ drawing that is not in PENDING_R156, D4 is replaced by:
       (Dan: "make notes wider!!"; 390 is the widest NodeWidth the v1.2 schema allows)
 
 Run from anywhere:  python docs/harness/audit_destinations.py
-Sample table:       python docs/harness/audit_destinations.py --table A-cabin ecu_a
+Sample table:       python docs/harness/audit_destinations.py --table ECU-cabin ecu_a
 Wire ends:          python docs/harness/audit_destinations.py --ends ClusterLED  (both printed ends of every wire)
 (--raw on either shows the long text the drawings carried before.)
 """

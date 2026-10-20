@@ -2,30 +2,20 @@
   "_doc": "Interface and ownership registry for docs/harness/rebuild/. Convention: redesign/INTERFACES.md. harness.design rejects unknown keys, so this metadata cannot live in the .harness files. \"cloud\" = the harness.design cloud copy uploaded 2026-10-15 (K11 = A) so Dispatch can push updates later; the repo file stays the master.",
   "_scope": "The only center-cluster portion in this repo is the CAN node, plus power and ground to the cluster. Interior cluster wiring lives only in center-cluster-esp32-p4. Do not add interior cluster circuits here. ST185-CAN ends at its CAN-drop terminal t_cluster_can.",
   "harnesses": {
-    "A-cabin": {
-      "file": "ST185-A-cabin.harness",
-      "cloud": {"id": "K5L8", "title": "ST185-A-cabin 2026-10-15", "url": "https://app.harness.design/K5L8"},
-      "physical": "ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-pin relay coil (85) wires, broken off to the relays seated in the fuse box (ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A"
-    },
-    "B-cabin": {
-      "file": "ST185-B-cabin.harness",
-      "cloud": {"id": "BRPo", "title": "ST185-B-cabin 2026-10-15", "url": "https://app.harness.design/BRPo"},
-      "physical": "ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, the B-pin relay coil (85) wires (k_fan2 / k_eps_en / k_acc in the fuse box, ST185-CabinPower), fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V"
+    "ECU-cabin": {
+      "file": "ST185-ECU-cabin.harness",
+      "physical": "ECU harness, cabin side (Dan 2026-10-19: loom A and B are one harness): ECU plugs A, B and C to the cabin half of the DRB102 bulkhead, with every cabin branch. Was: ECU connector A to cabin firewall A: ECU-A, cabin half of bulkhead A, the A-pin relay coil (85) wires, broken off to the relays seated in the fuse box (ST185-CabinPower), APS, CSB3 plug, front wheel-speed spur (FL), A/C coolant switch branch, +5V / Gnd Out / +8V / switched-12V splices at ECU A / ECU connector B to cabin firewall B: ECU-B, cabin half of bulkhead B, the B-pin relay coil (85) wires (k_fan2 / k_eps_en / k_acc in the fuse box, ST185-CabinPower), fuel level branch, rear wheel-speed spur, front wheel-speed FR core, the B legs of +5V / Gnd Out / switched 12V",
+      "drawing": "own"
     },
     "CabinPower": {
       "file": "ST185-CabinPower.harness",
       "cloud": {"id": "N5Y8", "title": "ST185-CabinPower 2026-10-15", "url": "https://app.harness.design/N5Y8"},
-      "physical": "Cabin power (non-ECU): the two glove-box fuse + relay boxes (DECISIONS R75, cad/fusebox rev 7) - POWER box (tinned copper + bar that is the AMI bar, no 1/0 link cable, AMI IN relay feeds, AMI OUT, Mini ISO relays k_htr / k_efi / k_str / k_fan / k_fan2 / k_pwr, ACPS fuse) and LOGIC box (Bus 1 / Bus 2 mini fuses, micro relays k_hl / k_hr / k_horn / k_etb / k_acc / k_eps_en / k_rev), k_eps HCR150 beside them, battery feed ring; ECU coil wires from A-cabin / B-cabin and the A-cabin, B-cabin, A-engine, CSB3, CAN, AntiTheft, RearLights, HeavyDC and EngineRoom-C ends arrive broken off"
+      "physical": "Cabin power (non-ECU): the two glove-box fuse + relay boxes (DECISIONS R75, cad/fusebox rev 7) - POWER box (tinned copper + bar that is the AMI bar, no 1/0 link cable, AMI IN relay feeds, AMI OUT, Mini ISO relays k_htr / k_efi / k_str / k_fan / k_fan2 / k_pwr, ACPS fuse) and LOGIC box (Bus 1 / Bus 2 mini fuses, micro relays k_hl / k_hr / k_horn / k_etb / k_acc / k_eps_en / k_rev), k_eps HCR150 beside them, battery feed ring; ECU coil wires from ECU-cabin and the ECU-cabin, ECU-cabin, ECU-engine, CSB3, CAN, AntiTheft, RearLights, HeavyDC and EngineRoom-C ends arrive broken off"
     },
-    "A-engine": {
-      "file": "ST185-A-engine.harness",
-      "cloud": {"id": "GQM5", "title": "ST185-A-engine 2026-10-15", "url": "https://app.harness.design/GQM5"},
-      "physical": "Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A"
-    },
-    "B-engine": {
-      "file": "ST185-B-engine.harness",
-      "cloud": {"id": "A96j", "title": "ST185-B-engine 2026-10-15", "url": "https://app.harness.design/A96j"},
-      "physical": "Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor"
+    "ECU-engine": {
+      "file": "ST185-ECU-engine.harness",
+      "physical": "ECU harness, engine side (Dan 2026-10-19: loom A and B are one harness): the engine half of the DRB102 bulkhead to every engine device the ECU drives or reads. Was: Engine harness behind bulkhead A - every engine device whose ECU signal is on connector A / Engine harness behind bulkhead B - every engine device whose ECU signal is on connector B, and the ETB motor",
+      "drawing": "own"
     },
     "CAN": {
       "file": "ST185-CAN.harness",
@@ -40,7 +30,7 @@
     "HeavyDC": {
       "file": "ST185-HeavyDC.harness",
       "cloud": {"id": "v9Qn", "title": "ST185-HeavyDC 2026-10-15", "url": "https://app.harness.design/v9Qn"},
-      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 170 A alternator B+ (2 AWG behind a 175 A fuse, DECISIONS R161 / R162), engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the POWER box bus zone (breaks H1/H2/H3/H6a) - the POWER box bus zone itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from A-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
+      "physical": "Heavy DC chain (Route 1) - trunk battery, RADLOK firewall pair, starter, 170 A alternator B+ (2 AWG behind a 175 A fuse, DECISIONS R161 / R162), engine-bay jump post, engine block ground. Hands off to EngineRoom-C at the POWER box bus zone (breaks H1/H2/H3/H6a) - the POWER box bus zone itself, and everything else it feeds (cabin fuse block, glove-box body block, OEM hot, AM1/AM2), stays on EngineRoom-C. Also the battery relay block in the trunk (DECISIONS R75, passenger side between the rear wall and the battery): fed from the kill switch LOAD side, AMI-40 FP fuse and the fuel pump relay k_fp (HCR150); its coil wires arrive broken off from ECU-cabin (A19) and CabinPower (SW12), its output breaks off to RearFuel."
     },
     "ClusterLED": {
       "file": "ST185-ClusterLED.harness",
@@ -98,7 +88,7 @@
           "role": "source"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "connector": "ix_ws_rear_p",
           "role": "receiving"
         }
@@ -112,7 +102,7 @@
         "c1": "+5V",
         "c2": "Gnd Out",
         "c3": "FL out -> A23",
-        "c4": "FR out -> B21. Leaves the shield at this inline connector - continues cabin-side as its own short shielded spur on A-cabin/B-cabin, own drain, not drawn here.",
+        "c4": "FR out -> B21. Leaves the shield at this inline connector - continues cabin-side as its own short shielded spur on ECU-cabin, own drain, not drawn here.",
         "c5": "drain, combined 4-core cable -> SHIELD_A A7",
         "c6": "spare, plugged. Was the FR cable's own drain when FL/FR were two separate output cables - superseded 2026-10-10, Route 9 rev 3."
       },
@@ -123,7 +113,7 @@
           "role": "source"
         },
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "connector": "ix_ws_front_p",
           "role": "receiving"
         }
@@ -139,35 +129,13 @@
       },
       "halves": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "connector": "ix_fuel_r",
           "role": "source"
         },
         {
           "harness": "RearFuel",
           "connector": "ix_fuel_p",
-          "role": "receiving"
-        }
-      ]
-    },
-    {
-      "id": "IX_B_RAIL",
-      "type": "inline_interface",
-      "family": "Deutsch DT 6-way (DT06-6S / DT04-6P)",
-      "pins": {
-        "c1": "+5V Out to B engine sensors via IX_B_RAIL - oil pressure",
-        "c2": "+5V Out to B engine sensors via IX_B_RAIL - fuel pressure",
-        "c3": "+5V Out to B engine sensors via IX_B_RAIL - coolant pressure"
-      },
-      "halves": [
-        {
-          "harness": "A-engine",
-          "connector": "ix_brail_s",
-          "role": "source"
-        },
-        {
-          "harness": "B-engine",
-          "connector": "ix_brail_p",
           "role": "receiving"
         }
       ]
@@ -275,7 +243,7 @@
     {
       "id": "FL_ACAMP_ACT",
       "type": "oem_flying_lead",
-      "harness": "A-cabin",
+      "harness": "ECU-cabin",
       "terminal": "fl_acamp_act",
       "ewd": {
         "page": "1992 Celica EWD132U p.93 and p.218 (docs/electrical/ewd-snips/1992-celica-ewd132u-a17-act-p093.png, 1992-celica-ewd132u-a17-clutch-p218.png); 1990 ST185 book locator A18",
@@ -359,7 +327,7 @@
     {
       "id": "FL_IGN_SW_C1",
       "type": "oem_flying_lead",
-      "harness": "B-cabin",
+      "harness": "ECU-cabin",
       "terminal": "fl_ign_sw_c1",
       "ewd": {
         "page": "1993 TIS EWD p.62 (Power Source)",
@@ -373,7 +341,7 @@
     {
       "id": "FL_START_REQ_C1",
       "type": "oem_flying_lead",
-      "harness": "B-cabin",
+      "harness": "ECU-cabin",
       "terminal": "fl_start_req_c1",
       "ewd": {
         "page": "1993 TIS EWD p.66 (Starting and Ignition, All-Trac)",
@@ -653,7 +621,7 @@
     {
       "id": "FL_ACAMP_PSW",
       "type": "oem_flying_lead",
-      "harness": "A-cabin",
+      "harness": "ECU-cabin",
       "terminal": "fl_acamp_psw",
       "ewd": {
         "page": "1990 ST185 EWD p.152 (docs/electrical/ewd-snips/1990-st185-autoac-pressure-clutch-p152.png); 1992 EWD132U p.219 A17-13 (ewd-snips/1992-celica-ewd132u-a17-pressure-p219.png)",
@@ -1675,7 +1643,7 @@
     {
       "id": "FL_IG2_WAKE_C1",
       "type": "oem_flying_lead",
-      "harness": "A-cabin",
+      "harness": "ECU-cabin",
       "terminal": "fl_ig2_wake",
       "ewd": {
         "page": "1993 TIS EWD p.62 (Power Source)",
@@ -1712,10 +1680,6 @@
       "reason": "continuation of cab_fout_sh from inline pin 5 to sp_shield_a (A7)"
     },
     {
-      "id": "cab_etbm_be_sh",
-      "reason": "ETB motor screen: bulkhead pin 50 to the broken-off end; continues on A-engine as cab_etbm_ae_sh and floats at the ETB - one screen node, grounded only at B17"
-    },
-    {
       "id": "cab_lamcan_be_sh",
       "reason": "CAN-Lambda pair screen: bulkhead pin 81 to the broken-off end; continues on CAN as cab_can_lam_sh and floats at the Lambda - grounded only at B17"
     },
@@ -1750,10 +1714,10 @@
           "screenFromEnclosure": true
         }
       ],
-      "spurHarness": "B-cabin",
+      "spurHarness": "ECU-cabin",
       "spur": {
-        "c1": "sp_5v_b",
-        "c2": "sp_gndout_b",
+        "c1": "bus_5v_p.c11",
+        "c2": "bus_gnd_b_p.c3",
         "c3": "ecu_b.b20",
         "c4": "ecu_b.b19",
         "c5": "sp_shield_b_wsr"
@@ -1776,10 +1740,10 @@
           "screenFromEnclosure": true
         }
       ],
-      "spurHarness": "A-cabin",
+      "spurHarness": "ECU-cabin",
       "spur": {
-        "c1": "sp_5v",
-        "c2": "sp_gndout",
+        "c1": "bus_5v_p.c10",
+        "c2": "bus_gnd_a_p.c9",
         "c3": "ecu_a.a23",
         "c4": "ecu_b.b21",
         "c5": "sp_shield_a_wsf"
@@ -1849,72 +1813,12 @@
       ]
     },
     {
-      "id": "BR_W_B25",
-      "type": "broken_off",
-      "what": "cabin chassis ground splice sp_chassis",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_b25"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_b25"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_B34",
-      "type": "broken_off",
-      "what": "cabin chassis ground splice sp_chassis",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_b34"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_b34"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_RAIL_5V_B_C",
-      "type": "broken_off",
-      "what": "+5V trunk (18 AWG) from sp_5v at ECU A to the loom B splice sp_5v_b (crossover a)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_rail_5v_b_c"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_rail_5v_b_c"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_RAIL_SW12_B_C",
-      "type": "broken_off",
-      "what": "switched 12V from sp_sw12 (cabin)",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_rail_sw12_b_c"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_rail_sw12_b_c"
-        }
-      ]
-    },
-    {
       "id": "BR_W82",
       "type": "broken_off",
       "what": "ETB relay 87 to ECU-B B5 (crossover b)",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w82"
         },
         {
@@ -1926,10 +1830,10 @@
     {
       "id": "BR_W_INJ_PWR_C",
       "type": "broken_off",
-      "what": "LOGIC INJ 15A injector rail to bulkhead A firewall (bh_a_fw c48, shared DRB102)",
+      "what": "LOGIC INJ 15A injector rail to bulkhead A firewall (bh_fw c48, shared DRB102)",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_inj_pwr_c"
         },
         {
@@ -1941,30 +1845,15 @@
     {
       "id": "BR_W_COP_PWR_C",
       "type": "broken_off",
-      "what": "LOGIC COP 15A COP rail to bulkhead A firewall (bh_a_fw c49, shared DRB102)",
+      "what": "LOGIC COP 15A COP rail to bulkhead A firewall (bh_fw c49, shared DRB102)",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_cop_pwr_c"
         },
         {
           "harness": "CabinPower",
           "terminal": "br_w_cop_pwr_c"
-        }
-      ]
-    },
-    {
-      "id": "BR_CAB_FSPUR_R",
-      "type": "broken_off",
-      "what": "front wheel-speed FR core",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_cab_fspur_r"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_cab_fspur_r"
         }
       ]
     },
@@ -1978,7 +1867,7 @@
           "terminal": "br_w_cru_5v"
         },
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_cru_5v"
         }
       ]
@@ -2001,14 +1890,14 @@
     {
       "id": "BR_W_CSBG",
       "type": "broken_off",
-      "what": "CSB3 ground to sp_chassis",
+      "what": "CSB3 + opto + cruise ground from the POWER box NEG bar (R213 / R217)",
       "ends": [
         {
           "harness": "CSB3",
           "terminal": "br_w_csbg"
         },
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_csbg"
         }
       ]
@@ -2019,7 +1908,7 @@
       "what": "back-up switch B1 pin 1 (bulkhead pin 78, sp_rev_sw) -> opto IN2 -> CSB3 S8",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_sw7_c"
         },
         {
@@ -2070,21 +1959,6 @@
         {
           "harness": "CSB3",
           "terminal": "br_wc_l_csb"
-        }
-      ]
-    },
-    {
-      "id": "BR_W39",
-      "type": "broken_off",
-      "what": "e-throttle pedal pin 3 (VPA2) -> ECU-B B33",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w39"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w39"
         }
       ]
     },
@@ -2143,7 +2017,7 @@
           "terminal": "br_w_hv_mrs_en_e"
         },
         {
-          "harness": "A-engine",
+          "harness": "ECU-engine",
           "terminal": "br_w_hv_mrs_en_e"
         }
       ]
@@ -2158,7 +2032,7 @@
           "terminal": "br_w_mrs_e"
         },
         {
-          "harness": "A-engine",
+          "harness": "ECU-engine",
           "terminal": "br_w_mrs_e"
         }
       ]
@@ -2173,7 +2047,7 @@
           "terminal": "br_w_at_immob2"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_at_immob2"
         }
       ]
@@ -2184,7 +2058,7 @@
       "what": "start relay 30 to the starter S terminal",
       "ends": [
         {
-          "harness": "A-engine",
+          "harness": "ECU-engine",
           "terminal": "br_w_strl"
         },
         {
@@ -2199,7 +2073,7 @@
       "what": "CAN-Lambda +12V from LOGIC LAM, bulkhead pin 95",
       "ends": [
         {
-          "harness": "B-engine",
+          "harness": "ECU-engine",
           "terminal": "br_w_lam12"
         },
         {
@@ -2214,7 +2088,7 @@
       "what": "CAN-Lambda ground, bulkhead pin 96",
       "ends": [
         {
-          "harness": "B-engine",
+          "harness": "ECU-engine",
           "terminal": "br_w_lamg"
         },
         {
@@ -2233,7 +2107,7 @@
           "terminal": "br_wc_h_bh"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_wc_h_bh"
         }
       ]
@@ -2248,7 +2122,7 @@
           "terminal": "br_wc_l_bh"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_wc_l_bh"
         }
       ]
@@ -2263,7 +2137,7 @@
           "terminal": "br_wc_h_lam"
         },
         {
-          "harness": "B-engine",
+          "harness": "ECU-engine",
           "terminal": "br_wc_h_lam"
         }
       ]
@@ -2278,38 +2152,8 @@
           "terminal": "br_wc_l_lam"
         },
         {
-          "harness": "B-engine",
+          "harness": "ECU-engine",
           "terminal": "br_wc_l_lam"
-        }
-      ]
-    },
-    {
-      "id": "BR_W124_E",
-      "type": "broken_off",
-      "what": "ETB motor + (Aux 9, B18), bulkhead pin 45",
-      "ends": [
-        {
-          "harness": "B-engine",
-          "terminal": "br_w124_e"
-        },
-        {
-          "harness": "A-engine",
-          "terminal": "br_w124_e"
-        }
-      ]
-    },
-    {
-      "id": "BR_W215_E",
-      "type": "broken_off",
-      "what": "ETB motor - (Aux 10, B26), bulkhead pin 46",
-      "ends": [
-        {
-          "harness": "B-engine",
-          "terminal": "br_w215_e"
-        },
-        {
-          "harness": "A-engine",
-          "terminal": "br_w215_e"
         }
       ]
     },
@@ -2319,7 +2163,7 @@
       "what": "LOGIC SW12 to sp_sw12",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_fb_sw12"
         },
         {
@@ -2334,7 +2178,7 @@
       "what": "LOGIC MRS to Bulkhead A 35",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_fb_mrs_en"
         },
         {
@@ -2353,33 +2197,18 @@
           "terminal": "br_w_lam12_c"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_lam12_c"
-        }
-      ]
-    },
-    {
-      "id": "BR_W_LAMG_B",
-      "type": "broken_off",
-      "what": "CAN-Lambda ground from bulkhead pin 96 to cabin chassis ground",
-      "ends": [
-        {
-          "harness": "B-cabin",
-          "terminal": "br_w_lamg_b"
-        },
-        {
-          "harness": "A-cabin",
-          "terminal": "br_w_lamg_b"
         }
       ]
     },
     {
       "id": "BR_AC_PSW",
       "type": "broken_off",
-      "what": "A/C pressure switch A5-4 -> amplifier A18-13 (fl_acamp_psw on A-cabin, fl_a5_4 on EngineRoom-C)",
+      "what": "A/C pressure switch A5-4 -> amplifier A18-13 (fl_acamp_psw on ECU-cabin, fl_a5_4 on EngineRoom-C)",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_ac_psw"
         },
         {
@@ -2389,27 +2218,12 @@
       ]
     },
     {
-      "id": "BR_CAB_ETBM_SH",
-      "type": "broken_off",
-      "what": "ETB motor cable screen, bulkhead pin 50 to the ETB spur (floats at the ETB)",
-      "ends": [
-        {
-          "harness": "B-engine",
-          "terminal": "br_cab_etbm_sh"
-        },
-        {
-          "harness": "A-engine",
-          "terminal": "br_cab_etbm_sh"
-        }
-      ]
-    },
-    {
       "id": "BR_CAB_LAMCAN_SH",
       "type": "broken_off",
       "what": "CAN-Lambda pair screen, bulkhead pin 81 to the Lambda run (floats at the Lambda)",
       "ends": [
         {
-          "harness": "B-engine",
+          "harness": "ECU-engine",
           "terminal": "br_cab_lamcan_sh"
         },
         {
@@ -2428,7 +2242,7 @@
           "terminal": "br_cab_canbh_sh"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_cab_canbh_sh"
         }
       ]
@@ -2649,7 +2463,7 @@
       "what": "EFI Main Relay 85 (k_efi) <- ECU-A A28",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w76"
         },
         {
@@ -2664,7 +2478,7 @@
       "what": "Fuel Pump Relay 85 (k_fp, battery relay block) <- ECU-A A19",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_fp85"
         },
         {
@@ -2679,7 +2493,7 @@
       "what": "Radiator Fan Relay (on/off) 85 (k_fan) <- ECU-A A29",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_fan85"
         },
         {
@@ -2694,7 +2508,7 @@
       "what": "ETB Power Relay 85 (k_etb) <- ECU-A A20",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w81"
         },
         {
@@ -2709,7 +2523,7 @@
       "what": "Start Relay 85 (k_str) <- ECU-A A26",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_str85"
         },
         {
@@ -2724,7 +2538,7 @@
       "what": "Condenser Fan Relay (on/off, diode) 85 (k_fan2) <- ECU-B B13",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_fan285"
         },
         {
@@ -2739,7 +2553,7 @@
       "what": "EPS enable relay k_eps_en 85 (LOGIC box M6, glove box) <- ECU-B B12",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_eps_trig"
         },
         {
@@ -2754,7 +2568,7 @@
       "what": "EPS relay k_eps coil- (85) <- MR-S pump B5, bulkhead pin 85",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_eps_rly"
         },
         {
@@ -2773,7 +2587,7 @@
           "terminal": "br_w_eps_rly_e"
         },
         {
-          "harness": "A-engine",
+          "harness": "ECU-engine",
           "terminal": "br_w_eps_rly_e"
         }
       ]
@@ -2784,7 +2598,7 @@
       "what": "A/C Clutch Relay (on/off) 85 (k_acc) <- ECU-B B10",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_acc_trig"
         },
         {
@@ -2799,7 +2613,7 @@
       "what": "A/C dual pressure switch A5-4 (switched, via sp_ac_psw) -> A/C Clutch Relay 86 (k_acc c3)",
       "ends": [
         {
-          "harness": "A-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_acc86"
         },
         {
@@ -2829,7 +2643,7 @@
       "what": "Ignition switch ST1 tap (fl_start_req_c1) -> LOGIC B30 IN",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_start_in"
         },
         {
@@ -2848,7 +2662,7 @@
           "terminal": "br_w_start_out"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_w_start_out"
         }
       ]
@@ -2934,7 +2748,7 @@
       "what": "back-up switch B1 pin 1 (bulkhead pin 78) -> reverse relay k_rev 86",
       "ends": [
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_rev_coil"
         },
         {
@@ -2953,7 +2767,7 @@
           "terminal": "br_rev_feed"
         },
         {
-          "harness": "B-cabin",
+          "harness": "ECU-cabin",
           "terminal": "br_rev_feed"
         }
       ]
@@ -3080,26 +2894,12 @@
     }
   ],
   "physicalPartGroups": {
-    "_doc": "Connector ids in different harness files that are the SAME physical connector (the DRB102 bulkhead: receptacle on A-cabin + B-cabin, plug on A-engine + B-engine). Each file draws the whole connector and marks the other files' cavities N/C (audit_shared_connectors.py). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
+    "_doc": "Connector ids in different harness files that are the SAME physical connector (the DRB102 bulkhead: receptacle on ECU-cabin + ECU-cabin, plug on ECU-engine + ECU-engine). Each file draws the whole connector and marks the other files' cavities N/C (audit_shared_connectors.py). buylist.py counts the housing and its configuration hardware once per group. Lives here because harness.design rejects unknown connector keys.",
     "drb102_recept": [
-      {
-        "harness": "A-cabin",
-        "connector": "bh_a_fw"
-      },
-      {
-        "harness": "B-cabin",
-        "connector": "bh_b_fw"
-      }
+      {"harness": "ECU-cabin", "connector": "bh_fw"}
     ],
     "drb102_plug": [
-      {
-        "harness": "A-engine",
-        "connector": "bh_a_eng"
-      },
-      {
-        "harness": "B-engine",
-        "connector": "bh_b_eng"
-      }
+      {"harness": "ECU-engine", "connector": "bh_eng"}
     ]
   },
   "identBands": {
@@ -3481,465 +3281,162 @@
         ]
       }
     },
-    "A-engine": {
+    "ECU-engine": {
       "ETBS": {
-        "bands": [
-          "Yellow"
-        ],
-        "wires": [
-          "w126",
-          "w127",
-          "w128_e",
-          "w129_e",
-          "cab_etbs_sh"
-        ]
+        "bands": ["Blue", "Blue", "White"],
+        "wires": ["w126", "w127", "w128_e", "w129_e", "cab_etbs_sh"]
       },
       "TURBO": {
-        "bands": [
-          "White"
-        ],
-        "wires": [
-          "w218",
-          "w17",
-          "w16_e",
-          "cab_turbo_sh"
-        ]
+        "bands": ["Yellow", "Blue", "White"],
+        "wires": ["w218", "w17", "w16_e", "cab_turbo_sh"]
       },
       "SW12": {
-        "bands": [
-          "Blue"
-        ],
-        "wires": [
-          "w_rail_sp_sw12_e",
-          "w219",
-          "w217"
-        ]
+        "bands": ["Blue"],
+        "wires": ["w217", "w219", "w_rail_sp_sw12_e", "w_vss_12v"]
       },
       "5V": {
-        "bands": [
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_5v_brail_e_c45",
-          "w_5v_brail_e_c46",
-          "w_5v_brail_e_c47"
-        ]
+        "bands": ["Blue", "Blue"],
+        "wires": ["w_5v_brail_e_c45", "w_5v_brail_e_c46", "w_5v_brail_e_c47"]
       },
       "CAM": {
-        "bands": [
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "cab_cam_c2",
-          "cab_cam_sh",
-          "w24"
-        ]
+        "bands": ["Blue", "Blue", "Yellow"],
+        "wires": ["cab_cam_c2", "cab_cam_sh", "w24"]
       },
       "CRANK": {
-        "bands": [
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "cab_crank_c1",
-          "cab_crank_sh",
-          "w2"
-        ]
+        "bands": ["Yellow", "Blue"],
+        "wires": ["cab_crank_c1", "cab_crank_sh", "w2"]
       },
       "ETBM": {
-        "bands": [
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w124_e_ae",
-          "w215_e_ae",
-          "cab_etbm_ae_sh"
-        ]
+        "bands": ["Blue", "Yellow", "White"],
+        "wires": ["cab_etbm_ae_sh", "w124_e_ae", "w215_e_ae"]
       },
       "FLEX": {
-        "bands": [
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w47",
-          "w48_e",
-          "cab_flex_sh"
-        ]
+        "bands": ["Yellow", "Yellow", "Yellow"],
+        "wires": ["w47", "w48_e", "cab_flex_sh"]
       },
       "MAP": {
-        "bands": [
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w26_e",
-          "w206",
-          "w27"
-        ]
+        "bands": ["Yellow", "White"],
+        "wires": ["w26_e", "w206", "w27"]
       },
       "GNDOUT": {
-        "bands": [
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_rail_sp_gndout_e",
-          "w_gnd_a_e_c44"
-        ]
+        "bands": ["Blue", "Yellow"],
+        "wires": ["w_gnd_a_e_c44", "w_gnd_b_e_c19", "w_gnd_b_e_c21", "w_rail_gnd_b_e", "w_rail_sp_gndout_e"]
       },
       "EPSEN": {
-        "bands": [
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w_hv_mrs_en_e_ae"
-        ]
+        "bands": ["Blue", "White"],
+        "wires": ["w_hv_mrs_en_e_ae"]
       },
       "STR": {
-        "bands": [
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w_strl"
-        ]
+        "bands": ["White", "Yellow"],
+        "wires": ["w_strl"]
       },
       "COP": {
-        "bands": [
-          "Blue",
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w_cop_pwr_e_ae",
-          "w112",
-          "w113",
-          "w114",
-          "w115"
-        ]
+        "bands": ["Blue", "White", "Yellow"],
+        "wires": ["w_cop_pwr_e_ae", "w112", "w113", "w114", "w115"]
       },
       "INJ": {
-        "bands": [
-          "Blue",
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w_inj_pwr_e_ae",
-          "w211",
-          "w212",
-          "w213",
-          "w214"
-        ]
+        "bands": ["Blue", "White", "Blue"],
+        "wires": ["w_inj_pwr_e_ae", "w211", "w212", "w213", "w214"]
       },
       "COP1": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w120_e",
-          "w_cop1g"
-        ]
+        "bands": ["White", "Yellow", "Yellow"],
+        "wires": ["w120_e", "w_cop1g"]
       },
       "COP2": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w121_e",
-          "w_cop2g"
-        ]
+        "bands": ["White", "Yellow", "White"],
+        "wires": ["w121_e", "w_cop2g"]
       },
       "COP3": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w122_e",
-          "w_cop3g"
-        ]
+        "bands": ["White", "White", "Yellow"],
+        "wires": ["w122_e", "w_cop3g"]
       },
       "COP4": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w123_e",
-          "w_cop4g"
-        ]
+        "bands": ["White", "White", "White"],
+        "wires": ["w123_e", "w_cop4g"]
       },
       "ECT": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w201_e",
-          "w4"
-        ]
+        "bands": ["Blue", "Blue", "Blue", "Blue"],
+        "wires": ["w201_e", "w4"]
       },
       "IAT": {
-        "bands": [
-          "Blue",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w202_e",
-          "w6"
-        ]
+        "bands": ["White", "White"],
+        "wires": ["w202_e", "w6"]
       },
       "8V": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w_rail_sp_8v_e"
-        ]
+        "bands": ["White", "Blue", "White"],
+        "wires": ["w_rail_sp_8v_e"]
       },
       "BOOST": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w103_e"
-        ]
+        "bands": ["Blue", "Blue", "Yellow", "White"],
+        "wires": ["w103_e"]
       },
       "EGND": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_eng_gnd"
-        ]
+        "bands": ["Blue", "Yellow", "Yellow"],
+        "wires": ["w_eng_gnd"]
       },
       "EPS": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_eps_rly_ae"
-        ]
+        "bands": ["Blue", "Blue", "Blue"],
+        "wires": ["w_eps_rly_ae"]
       },
       "INJ1": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w108_e"
-        ]
+        "bands": ["Blue", "Blue", "White", "Yellow"],
+        "wires": ["w108_e"]
       },
       "INJ2": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w109_e"
-        ]
+        "bands": ["Blue", "Blue", "White", "White"],
+        "wires": ["w109_e"]
       },
       "INJ3": {
-        "bands": [
-          "Yellow",
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w110_e"
-        ]
+        "bands": ["Blue", "Yellow", "Blue", "Blue"],
+        "wires": ["w110_e"]
       },
       "INJ4": {
-        "bands": [
-          "Yellow",
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w111_e"
-        ]
+        "bands": ["Blue", "Yellow", "Blue", "Yellow"],
+        "wires": ["w111_e"]
       },
       "MRS": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_mrs_e_ae"
-        ]
-      }
-    },
-    "B-engine": {
+        "bands": ["Yellow", "Blue", "Blue"],
+        "wires": ["w_mrs_e_ae"]
+      },
       "CAN": {
-        "bands": [
-          "Yellow"
-        ],
-        "wires": [
-          "wc_h_lam_be",
-          "wc_l_lam_be",
-          "cab_lamcan_be_sh"
-        ]
+        "bands": ["Yellow"],
+        "wires": ["wc_h_lam_be", "wc_l_lam_be", "cab_lamcan_be_sh"]
       },
       "REV": {
-        "bands": [
-          "White"
-        ],
-        "wires": [
-          "w_sw7_e",
-          "w_rev_feed_e"
-        ]
-      },
-      "SW12": {
-        "bands": [
-          "Blue"
-        ],
-        "wires": [
-          "w_vss_12v"
-        ]
-      },
-      "5V": {
-        "bands": [
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w207",
-          "w208",
-          "w209"
-        ]
-      },
-      "ETBM": {
-        "bands": [
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w124_e",
-          "w215_e",
-          "cab_etbm_be_sh"
-        ]
-      },
-      "GNDOUT": {
-        "bands": [
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_rail_gnd_b_e",
-          "w_gnd_b_e_c21",
-          "w_gnd_b_e_c19"
-        ]
+        "bands": ["White"],
+        "wires": ["w_sw7_e", "w_rev_feed_e"]
       },
       "KNOCK1": {
-        "bands": [
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "cab_knock1_c1",
-          "cab_knock1_c2",
-          "cab_knock1_sh"
-        ]
+        "bands": ["Yellow", "Yellow"],
+        "wires": ["cab_knock1_c1", "cab_knock1_c2", "cab_knock1_sh"]
       },
       "VSS": {
-        "bands": [
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w_vss_gnd",
-          "w_vss_sig_e",
-          "cab_vss_sh"
-        ]
+        "bands": ["Yellow", "White", "Yellow"],
+        "wires": ["w_vss_gnd", "w_vss_sig_e", "cab_vss_sh"]
       },
       "CLNTP": {
-        "bands": [
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w35_e",
-          "w36"
-        ]
+        "bands": ["White", "Yellow", "Blue"],
+        "wires": ["w35_e", "w36"]
       },
       "CPIAT": {
-        "bands": [
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w204_e",
-          "w10"
-        ]
+        "bands": ["White", "Blue"],
+        "wires": ["w204_e", "w10"]
       },
       "FUELP": {
-        "bands": [
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w32_e",
-          "w33"
-        ]
+        "bands": ["Blue", "Blue", "Blue", "Yellow"],
+        "wires": ["w32_e", "w33"]
       },
       "OILP": {
-        "bands": [
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w29_e",
-          "w30"
-        ]
+        "bands": ["Blue", "Yellow", "Blue"],
+        "wires": ["w29_e", "w30"]
       },
       "LAM": {
-        "bands": [
-          "Blue",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w_lam12_be14",
-          "w_lam12_be",
-          "w_lamg_be14",
-          "w_lamg_be"
-        ]
+        "bands": ["Blue", "White", "White"],
+        "wires": ["w_lam12_be14", "w_lam12_be", "w_lamg_be14", "w_lamg_be"]
       },
       "OILT": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w203_e",
-          "w8"
-        ]
+        "bands": ["Blue", "Blue", "Yellow", "Blue"],
+        "wires": ["w203_e", "w8"]
       }
     },
     "CAN": {
@@ -4427,753 +3924,238 @@
         ]
       }
     },
-    "A-cabin": {
+    "ECU-cabin": {
       "IG2WAKE": {
-        "bands": [
-          "White",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w_ig2_in"
-        ]
+        "bands": ["Blue", "Yellow", "Yellow", "White"],
+        "wires": ["w_ig2_in"]
       },
       "SW12": {
-        "bands": [
-          "Blue"
-        ],
-        "wires": [
-          "w78",
-          "w_ig2_diode",
-          "w_a5_pin",
-          "w_rail_sp_sw12_c",
-          "w_fb_sw12",
-          "w_rail_sw12_b_c_ac"
-        ]
+        "bands": ["Blue"],
+        "wires": ["w78", "w_a5_pin", "w_fb_sw12", "w_ig2_diode", "w_rail_sp_sw12_c", "w_rail_sw12_b_c_ac"]
       },
       "ETBS": {
-        "bands": [
-          "Yellow"
-        ],
-        "wires": [
-          "w128_c",
-          "w129_c",
-          "w_shc_etbs"
-        ]
+        "bands": ["Blue", "Blue", "White"],
+        "wires": ["w128_c", "w129_c", "w_shc_etbs"]
       },
       "TURBO": {
-        "bands": [
-          "White"
-        ],
-        "wires": [
-          "w16_c",
-          "w_shc_turbo"
-        ]
+        "bands": ["Yellow", "Blue", "White"],
+        "wires": ["w16_c", "w_shc_turbo"]
       },
       "5V": {
-        "bands": [
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w67",
-          "w_rail_sp_5v_c",
-          "w_rail_5v_b_c_ac",
-          "w_cru_5v_ac",
-          "w_5v_bha_trunk",
-          "w_5v_a_c39",
-          "w_5v_a_c40",
-          "w_5v_brail_c45",
-          "w_5v_brail_c46",
-          "w_5v_brail_c47",
-          "w_5v_link",
-          "cab_fspur_5v",
-          "w_aps_vc1",
-          "w210"
-        ]
+        "bands": ["Blue", "Blue"],
+        "wires": ["cab_fspur_5v", "cab_rspur_5v", "w210", "w67", "w_5v_a_c39", "w_5v_a_c40", "w_5v_brail_c45", "w_5v_brail_c46", "w_5v_brail_c47", "w_aps_vc1", "w_cru_5v_ac", "w_rail_sp_5v_c", "w_5v_bus_link"]
       },
       "EFI": {
-        "bands": [
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w76"
-        ]
+        "bands": ["Blue", "Yellow"],
+        "wires": ["w76"]
       },
       "EPSEN": {
-        "bands": [
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w_fb_mrs_en"
-        ]
+        "bands": ["Blue", "White"],
+        "wires": ["w_eps_trig", "w_fb_mrs_en"]
       },
       "ACC": {
-        "bands": [
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_ac_psw_sw",
-          "w_ac_psw_in",
-          "w_acc86"
-        ]
+        "bands": ["Yellow", "Blue"],
+        "wires": ["w_ac_psw_in", "w_ac_psw_sw", "w_acc86", "w_acc_trig"]
       },
       "CAM": {
-        "bands": [
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w_cam_sig_c",
-          "w_trig2_pin",
-          "w_cam_pullup_sig",
-          "w_cam_pullup_8v",
-          "w_shc_cam"
-        ]
+        "bands": ["Blue", "Blue", "Yellow"],
+        "wires": ["w_cam_sig_c", "w_trig2_pin", "w_cam_pullup_sig", "w_cam_pullup_8v", "w_shc_cam"]
       },
       "FAN": {
-        "bands": [
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w_fan85"
-        ]
+        "bands": ["Yellow", "White"],
+        "wires": ["w_fan85"]
       },
       "FLEX": {
-        "bands": [
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w48_c",
-          "w_shc_flex"
-        ]
+        "bands": ["Yellow", "Yellow", "Yellow"],
+        "wires": ["w48_c", "w_shc_flex"]
       },
       "STR": {
-        "bands": [
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w_str85"
-        ]
+        "bands": ["White", "Yellow"],
+        "wires": ["w_str85"]
       },
       "ETB": {
-        "bands": [
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w81"
-        ]
+        "bands": ["White", "White"],
+        "wires": ["w81", "w82"]
       },
       "EPS": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_eps_rly"
-        ]
+        "bands": ["Blue", "Blue", "Blue"],
+        "wires": ["w_eps_rly"]
       },
       "COP1": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w120_c"
-        ]
+        "bands": ["White", "Yellow", "Yellow"],
+        "wires": ["w120_c"]
       },
       "COP2": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w121_c"
-        ]
+        "bands": ["White", "Yellow", "White"],
+        "wires": ["w121_c"]
       },
       "COP3": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w122_c"
-        ]
+        "bands": ["White", "White", "Yellow"],
+        "wires": ["w122_c"]
       },
       "COP4": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w123_c"
-        ]
+        "bands": ["White", "White", "White"],
+        "wires": ["w123_c"]
       },
       "ECT": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w201_c"
-        ]
+        "bands": ["Blue", "Blue", "Blue", "Blue"],
+        "wires": ["w201_c"]
       },
       "INJ": {
-        "bands": [
-          "Blue",
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w_inj_pwr_ac"
-        ]
+        "bands": ["Blue", "White", "Blue"],
+        "wires": ["w_inj_pwr_ac"]
       },
       "COP": {
-        "bands": [
-          "Blue",
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w_cop_pwr_ac"
-        ]
+        "bands": ["Blue", "White", "Yellow"],
+        "wires": ["w_cop_pwr_ac"]
       },
       "LAM": {
-        "bands": [
-          "Blue",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w_lamg_ac"
-        ]
+        "bands": ["Blue", "White", "White"],
+        "wires": ["w_lam12_bc", "w_lamg_ac"]
       },
       "CSB": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_csbg_ac"
-        ]
+        "bands": ["Yellow", "Blue", "Blue"],
+        "wires": ["w_csbg_ac"]
       },
       "8V": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w19",
-          "w_rail_sp_8v_c"
-        ]
+        "bands": ["White", "Blue", "White"],
+        "wires": ["w19", "w_rail_sp_8v_c"]
       },
       "BOOST": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w103_c"
-        ]
+        "bands": ["Blue", "Blue", "Yellow", "White"],
+        "wires": ["w103_c"]
       },
       "SGND": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w68",
-          "w_rail_sp_gndout_c",
-          "w_gnd_bha_trunk",
-          "w_gnd_a_c41",
-          "w_gnd_a_c42",
-          "w_gnd_a_c43",
-          "w_gnd_a_c44",
-          "cab_fspur_gnd",
-          "w40",
-          "w_aps_gnd2"
-        ]
+        "bands": ["Yellow", "Yellow"],
+        "wires": ["cab_fspur_gnd", "cab_rspur_gnd", "w40", "w45", "w68", "w69", "w_aps_gnd2", "w_evap_rtn", "w_gnd_a_c41", "w_gnd_a_c42", "w_gnd_a_c43", "w_gnd_a_c44", "w_gnd_b_c19", "w_gnd_b_c21", "w_rail_sp_gndout_c"]
       },
       "INJ1": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w108_c"
-        ]
+        "bands": ["Blue", "Blue", "White", "Yellow"],
+        "wires": ["w108_c"]
       },
       "INJ2": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w109_c"
-        ]
+        "bands": ["Blue", "Blue", "White", "White"],
+        "wires": ["w109_c"]
       },
       "INJ3": {
-        "bands": [
-          "Yellow",
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w110_c"
-        ]
+        "bands": ["Blue", "Yellow", "Blue", "Blue"],
+        "wires": ["w110_c"]
       },
       "INJ4": {
-        "bands": [
-          "Yellow",
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w111_c"
-        ]
+        "bands": ["Blue", "Yellow", "Blue", "Yellow"],
+        "wires": ["w111_c"]
       },
       "GND": {
-        "bands": [
-          "Yellow",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w66",
-          "w70",
-          "w_a34",
-          "w_b25_ac",
-          "w_b34_ac"
-        ]
+        "bands": ["Yellow", "Yellow", "White"],
+        "wires": ["w66", "w70", "w_a34", "w_b25_ac", "w_b34_ac"]
       },
       "WSSF": {
-        "bands": [
-          "White",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "cab_fspur_l",
-          "cab_fspur_sh",
-          "cab_fspur_r_ac",
-          "cab_fspur_fr_sh_ac"
-        ]
+        "bands": ["White", "Blue", "Yellow"],
+        "wires": ["cab_fspur_fr_sh_ac", "cab_fspur_l", "cab_fspur_r_ac", "cab_fspur_sh"]
       },
       "APS": {
-        "bands": [
-          "White",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w38",
-          "w_aps_vpa2",
-          "cab_aps_sh",
-          "cab_aps1_sh"
-        ]
+        "bands": ["Yellow", "White", "White"],
+        "wires": ["cab_aps1_sh", "cab_aps_sh", "w38", "w_aps_vpa2"]
       },
       "CRANKC": {
-        "bands": [
-          "White",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w200_c",
-          "w_shc_crank"
-        ]
+        "bands": ["Blue", "Blue", "White", "Blue"],
+        "wires": ["w200_c", "w_shc_crank"]
       },
       "SHLD": {
-        "bands": [
-          "White",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_drain_ecu_a",
-          "w_shd_a_aps",
-          "w_shd_a_wsf"
-        ]
+        "bands": ["Yellow", "White", "Blue"],
+        "wires": ["w_drain_ecu_a", "w_drain_ecu_b", "w_shd_a_aps", "w_shd_a_wsf", "w_shd_b_wsr"]
       },
       "ACKILL": {
-        "bands": [
-          "White",
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w_ac_kill"
-        ]
+        "bands": ["Blue", "Yellow", "Blue", "White"],
+        "wires": ["w_ac_kill"]
       },
       "FP": {
-        "bands": [
-          "White",
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w_fp85"
-        ]
+        "bands": ["White", "White", "Blue"],
+        "wires": ["w_fp85"]
       },
       "IATC": {
-        "bands": [
-          "White",
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w202_c"
-        ]
+        "bands": ["Blue", "Yellow", "Yellow", "Yellow"],
+        "wires": ["w202_c"]
       },
       "MAPC": {
-        "bands": [
-          "White",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w26_c"
-        ]
+        "bands": ["Blue", "Yellow", "White", "Yellow"],
+        "wires": ["w26_c"]
       },
       "MRSSPD": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_mrs_c"
-        ]
-      }
-    },
-    "B-cabin": {
-      "SW12": {
-        "bands": [
-          "Blue"
-        ],
-        "wires": [
-          "w_rail_sw12_b_c"
-        ]
+        "bands": ["Blue", "Yellow", "White", "White"],
+        "wires": ["w_mrs_c"]
       },
       "CAN": {
-        "bands": [
-          "Yellow"
-        ],
-        "wires": [
-          "wc_h_bh_bc",
-          "wc_l_bh_bc",
-          "cab_canbh_bc_sh"
-        ]
+        "bands": ["Yellow"],
+        "wires": ["wc_h_bh_bc", "wc_l_bh_bc", "cab_canbh_bc_sh"]
       },
       "REV": {
-        "bands": [
-          "White"
-        ],
-        "wires": [
-          "w_sw7_c",
-          "w_rev_sw_c",
-          "w_rev_coil_c",
-          "w_rev_feed_c"
-        ]
-      },
-      "5V": {
-        "bands": [
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_rail_5v_b_c",
-          "cab_rspur_5v"
-        ]
+        "bands": ["White"],
+        "wires": ["w_sw7_c", "w_rev_sw_c", "w_rev_coil_c", "w_rev_feed_c"]
       },
       "ETBM": {
-        "bands": [
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w124_c",
-          "w215_c",
-          "w_shc_etbm"
-        ]
-      },
-      "EPSEN": {
-        "bands": [
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w_eps_trig"
-        ]
-      },
-      "ACC": {
-        "bands": [
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_acc_trig"
-        ]
+        "bands": ["Blue", "Yellow", "White"],
+        "wires": ["w124_c", "w215_c", "w_shc_etbm"]
       },
       "VSS": {
-        "bands": [
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w_vss_sig_c",
-          "w_shc_vss"
-        ]
+        "bands": ["Yellow", "White", "Yellow"],
+        "wires": ["w_vss_sig_c", "w_shc_vss"]
       },
       "CLNTP": {
-        "bands": [
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w35_c"
-        ]
+        "bands": ["White", "Yellow", "Blue"],
+        "wires": ["w35_c"]
       },
       "FAN2": {
-        "bands": [
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "w_fan285"
-        ]
+        "bands": ["White", "Blue"],
+        "wires": ["w_fan285"]
       },
       "FUELP": {
-        "bands": [
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w32_c"
-        ]
-      },
-      "ETB": {
-        "bands": [
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w82"
-        ]
+        "bands": ["Blue", "Blue", "Blue", "Yellow"],
+        "wires": ["w32_c"]
       },
       "OILT": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w203_c"
-        ]
+        "bands": ["Blue", "Blue", "Yellow", "Blue"],
+        "wires": ["w203_c"]
       },
       "ACBTN": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w_ac_btn",
-          "w_ac_btn_in",
-          "w_ac_btn_hi",
-          "w_ac_btn_lo",
-          "w_ac_btn_gnd"
-        ]
+        "bands": ["Yellow", "Yellow", "Blue"],
+        "wires": ["w_ac_btn", "w_ac_btn_in", "w_ac_btn_hi", "w_ac_btn_lo", "w_ac_btn_gnd"]
       },
       "EVAP": {
-        "bands": [
-          "Blue",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w_evap_temp",
-          "w_evap_sig",
-          "w_evap_pu",
-          "w_evap_5v"
-        ]
+        "bands": ["White", "Blue", "Blue"],
+        "wires": ["w_evap_temp", "w_evap_sig", "w_evap_pu", "w_evap_5v"]
       },
       "FLVL": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w43",
-          "w44",
-          "w_fl_sig",
-          "w_fl_sig_pin"
-        ]
+        "bands": ["Blue", "Yellow", "Blue"],
+        "wires": ["w43", "w44", "w_fl_sig", "w_fl_sig_pin"]
       },
       "B30": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "Yellow"
-        ],
-        "wires": [
-          "w_start",
-          "w_start_in"
-        ]
+        "bands": ["Blue", "Yellow", "Yellow"],
+        "wires": ["w_start", "w_start_in"]
       },
       "KNOCK": {
-        "bands": [
-          "Blue",
-          "Yellow",
-          "White"
-        ],
-        "wires": [
-          "w205_c",
-          "w12_c",
-          "w_shc_knock1"
-        ]
+        "bands": ["Blue", "Blue", "Blue", "White"],
+        "wires": ["w205_c", "w12_c", "w_shc_knock1"]
       },
       "WSSR": {
-        "bands": [
-          "Blue",
-          "White",
-          "Blue"
-        ],
-        "wires": [
-          "cab_rspur_l",
-          "cab_rspur_r",
-          "cab_rspur_sh"
-        ]
+        "bands": ["Blue", "Blue", "Yellow", "Yellow"],
+        "wires": ["cab_rspur_l", "cab_rspur_r", "cab_rspur_sh"]
       },
       "CIAT": {
-        "bands": [
-          "Blue",
-          "White",
-          "Yellow"
-        ],
-        "wires": [
-          "w204_c"
-        ]
-      },
-      "LAM": {
-        "bands": [
-          "Blue",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w_lam12_bc",
-          "w_lamg_bc"
-        ]
+        "bands": ["Blue", "Yellow", "Yellow", "Blue"],
+        "wires": ["w204_c"]
       },
       "IGNSW": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "w_ign"
-        ]
+        "bands": ["Blue", "Yellow", "White", "Blue"],
+        "wires": ["w_ign"]
       },
       "IMMOB": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w_at_immob2_bc"
-        ]
+        "bands": ["Yellow", "Blue", "Yellow"],
+        "wires": ["w_at_immob2_bc"]
       },
       "OILPC": {
-        "bands": [
-          "Yellow",
-          "Blue",
-          "White"
-        ],
-        "wires": [
-          "w29_c"
-        ]
-      },
-      "SGND": {
-        "bands": [
-          "Yellow",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w69",
-          "w45",
-          "w_gnd_bhb_trunk",
-          "w_gnd_b_c19",
-          "w_gnd_b_c21",
-          "cab_rspur_gnd",
-          "w_evap_rtn"
-        ]
-      },
-      "GND": {
-        "bands": [
-          "Yellow",
-          "White",
-          "White"
-        ],
-        "wires": [
-          "w_b25",
-          "w_b34"
-        ]
-      },
-      "WSSF": {
-        "bands": [
-          "White",
-          "Blue",
-          "Blue"
-        ],
-        "wires": [
-          "cab_fspur_r"
-        ]
-      },
-      "APS": {
-        "bands": [
-          "White",
-          "Blue",
-          "Yellow"
-        ],
-        "wires": [
-          "w39"
-        ]
-      },
-      "SHLD": {
-        "bands": [
-          "White",
-          "Yellow",
-          "Blue"
-        ],
-        "wires": [
-          "w_drain_ecu_b",
-          "w_shd_b_wsr"
-        ]
+        "bands": ["Blue", "White", "Blue", "Blue"],
+        "wires": ["w29_c"]
       }
     },
     "CSB3": {
@@ -5639,19 +4621,21 @@
         "receptacle": "bus_sw12_r",
         "mate": "m_bus_sw12"
       },
+      {"harness": "ECU-cabin", "splice": "sp_bus_5v", "plug": "bus_5v_p", "receptacle": "bus_5v_r", "mate": "m_bus_5v"},
+      {"harness": "ECU-cabin", "splice": "sp_bus_5v2", "plug": "bus_5v2_p", "receptacle": "bus_5v2_r", "mate": "m_bus_5v2"},
       {
-        "harness": "A-cabin",
-        "splice": "sp_5v_bha",
-        "plug": "bus_5v_bha_p",
-        "receptacle": "bus_5v_bha_r",
-        "mate": "m_bus_5v_bha"
+        "harness": "ECU-cabin",
+        "splice": "sp_bus_gnd_a",
+        "plug": "bus_gnd_a_p",
+        "receptacle": "bus_gnd_a_r",
+        "mate": "m_bus_gnd_a"
       },
       {
-        "harness": "A-cabin",
-        "splice": "sp_gnd_bha",
-        "plug": "bus_gnd_bha_p",
-        "receptacle": "bus_gnd_bha_r",
-        "mate": "m_bus_gnd_bha"
+        "harness": "ECU-cabin",
+        "splice": "sp_bus_gnd_b",
+        "plug": "bus_gnd_b_p",
+        "receptacle": "bus_gnd_b_r",
+        "mate": "m_bus_gnd_b"
       }
     ]
   }

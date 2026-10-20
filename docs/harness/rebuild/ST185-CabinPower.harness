@@ -2729,7 +2729,7 @@
         "y": 1080
       },
       "propagate": false,
-      "label": "Switched 12 V splice at ECU plug A (A-cabin loom) - ECU +14 V and sensor rail"
+      "label": "Switched 12 V splice at ECU plug A (ECU-cabin loom) - ECU +14 V and sensor rail"
     },
     {
       "id": "br_w_fb_mrs_en",
@@ -3044,7 +3044,7 @@
         "y": 660
       },
       "propagate": false,
-      "label": "Starter solenoid S spade lug (A-engine loom) - start relay output"
+      "label": "Starter solenoid S spade lug (ECU-engine loom) - start relay output"
     },
     {
       "id": "br_w_fan285",
@@ -3134,7 +3134,7 @@
         "y": 3510
       },
       "propagate": false,
-      "label": "A/C pressure switch splice (A-cabin loom) - switch A5 pin 4 output to the clutch relay"
+      "label": "A/C pressure switch splice (ECU-cabin loom) - switch A5 pin 4 output to the clutch relay"
     },
     {
       "id": "br_w_acc_clutch",
@@ -3330,7 +3330,7 @@
         "y": -4050
       },
       "propagate": false,
-      "label": "Reverse switch splice (B-cabin loom) - back-up switch B1 pin 1, +12 V in reverse"
+      "label": "Reverse switch splice (ECU-cabin loom) - back-up switch B1 pin 1, +12 V in reverse"
     },
     {
       "id": "br_rl_rev",
@@ -4358,7 +4358,7 @@
         "x": 2520,
         "y": 0
       },
-      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 30, mini fuses BUS1-n / BUS2-n, micro relays M1-M7; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M1, k_hr M2, k_horn M3, k_etb M4, k_acc M5, k_eps_en M6, k_rev M7 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 87. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-A-cabin / ST185-B-cabin (their ECU pin sets the loom) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
+      "text": "CABIN POWER HARNESS - non-ECU: the two glove-box fuse + relay boxes of DECISIONS R75 (cad/fusebox rev 7 POWER box (DECISIONS R91) + LOGIC box, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107); slot map in cad/fusebox/ST185-fusebox-summary.html): the POWER box (fb_power - tinned copper + bar that is the AMI bar (the bus bar is inside this box, no 1/0 link cable), 7 AMI IN feeding the Mini ISO relays R1-R6, 7 AMI OUT, the ACPS mini fuse; outboard) and the LOGIC box (fb_logic - Bus 1 permanent from AMI OUT-1 BUS1 50A, Bus 2 switched from k_efi 30, mini fuses BUS1-n / BUS2-n, micro relays M1-M7; inboard). Both boxes live only in this file. Relays: k_htr R1, k_efi R2, k_str R3, k_fan R4, k_fan2 R5, k_pwr R6 (POWER); k_hl M1, k_hr M2, k_horn M3, k_etb M4, k_acc M5, k_eps_en M6, k_rev M7 (LOGIC); k_eps HCR150 beside the POWER box. The fuel pump relay k_fp is NOT here: it sits in the battery relay block in the trunk (ST185-HeavyDC); only its coil + (SW12) leaves this file, broken off (br_fp86). Each relay terminal is crimped and pushed into its printed cavity (no relay sockets); each relay feed is a cable from its AMI IN lug to terminal 87. The non-ECU relay coil circuits follow the EWD 1993 (k_hl / k_hr coil- to IE1-2 R-Y, p.116; k_horn coil- to IE1-19 G, p.185; k_htr coil from the old R/B4 R-L / L-W leads to the A/C amplifier HR, p.215; k_pwr coil+ key IG from the old R/B2 L-Y lead, p.137). The ECU coil (85) wires stay on ST185-ECU-cabin (the ECU harness) and arrive broken off. Every feed between this file and another is drawn broken off in both with a note naming the other file. Gauges are this drawing's; the CAD summary's gauges are placeholders by fuse rating."
     },
     {
       "id": "n_cavity_notes",

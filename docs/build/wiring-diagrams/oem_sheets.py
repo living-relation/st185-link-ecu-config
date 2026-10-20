@@ -80,7 +80,7 @@ def collect(ents, wires):
         if not key:
             other.append(lead)
             continue
-        term = (lead['harness'].replace('A-cabin', 'A-cabin'), lead['terminal'])
+        term = (lead['harness'], lead['terminal'])
         found = [(w, e) for (w, e) in by_term.get(term, [])]
         out = []
         for w, e in found:

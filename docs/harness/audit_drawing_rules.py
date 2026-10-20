@@ -22,6 +22,8 @@ splices - a connector never joins its own cavities.
       direction rule (center-out around the main connector is fine); it only must not overlap
   G3  no two schematic nodes (connectors, terminals, splices, cables, notes) overlap
       (estimated boxes - connector height = 30 per cavity + header, note height from its text)
+L1 and G3 are app-canvas rules: they skip a harness our own generator draws (interfaces.json "drawing": "own",
+DECISIONS R220).
 
 Exit 1 on any finding.
 """
@@ -149,7 +151,8 @@ def layout_backtracks(g, p, root, sign):
 todo_len = []
 
 
-def check(loom, d):
+def check(loom, d, canvas=True):
+    """canvas=False: a harness our own generator draws (R220) - the app-canvas rules L1 / G3 do not apply."""
     bad = []
     lab = labels(d)
     for ns in nets(d):
@@ -183,7 +186,7 @@ def check(loom, d):
                 bad.append("G1 %s: bundle %s layout point off the grid" % (loom, b["id"]))
     p = {x["id"]: (x["layoutPosition"]["x"], x["layoutPosition"]["y"])
          for k in ("connectors", "terminals", "branchPoints") for x in d.get(k, []) if x.get("layoutPosition")}
-    for comp, g in layout_pieces(d):
+    for comp, g in (layout_pieces(d) if canvas else []):
         cand = [n for n in comp if n in p]
         if len(cand) < 2:
             continue
@@ -195,15 +198,16 @@ def check(loom, d):
             best = a if len(a) <= len(b) else b
             bad.append("L1 %s: layout piece at %s doubles back - %d bundle(s), e.g. %s -> %s"
                        % (loom, left, len(best), best[0][0], best[0][1]))
-    for a, b in overlaps(boxes(d)):
+    for a, b in (overlaps(boxes(d)) if canvas else []):
         bad.append("G3 %s: schematic %s overlaps %s" % (loom, a, b))
     return bad
 
 
 if __name__ == "__main__":
     bad = []
+    own = model.own_drawn()
     for loom, d in model.docs().items():
-        bad += check(loom, d)
+        bad += check(loom, d, canvas=loom not in own)
     for line in bad:
         print(line)
     c = collections.Counter(l.split()[0] for l in bad)

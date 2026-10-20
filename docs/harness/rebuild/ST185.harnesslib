@@ -2472,6 +2472,22 @@
       "partNumber": "320575",
       "description": "TERMINAL, RING TONGUE, PIDG, CLOSED, 5/16 (M8) STUD, 16-14 AWG (1.25-2 MM2), TIN, PARTIALLY INSULATED",
       "manufacturer": "TE Connectivity"
+    },
+    {
+      "id": "tp_ring_m8_12_10",
+      "size": "M8",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "partNumber": "GENERIC RING M8 12-10",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M8 STUD, 12-10 AWG",
+      "manufacturer": "generic"
     }
   ],
   "connectorParts": [

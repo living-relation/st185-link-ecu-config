@@ -20,10 +20,10 @@ What it runs, in order - every one in HARD is a hard gate:
                            strip feeds take M5 lugs (Daniel 2026-10-12, moved from the RFRM 2026-10-14)
   audit_shields.py         docs/SHIELD-RULES.md, enforced
   audit_pin_names.py       shield grounds carry drains only; one name per mating cavity
-  audit_mating.py          A cabin mates A engine, B mates B
+  audit_mating.py          the cabin half of the bulkhead mates the engine half
   audit_shared_connectors.py a connector shared by several files is drawn whole in each: same
                            part, full cavity count, other files' cavities N/C (Daniel 2026-10-12)
-  validate_bulkhead_letter.py ECU looms follow the ECU connector letter; crossovers a/b/c only
+  validate_breaks.py       ECU-pin / bulkhead wires on the ECU harness files (R220); broken-off pairs; one element per drawing
   audit_bulkhead_pairs.py  no bulkhead cavity wired on one side only
   audit_bh_collisions.py   bulkhead pin sharing (direct or pigtail + splice): only one class
                            behind a pin - same rail, ground, shield drain, CAN H or CAN L
@@ -81,7 +81,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 HARD = [["validate_sot.py"], ["sync_io_table.py", "--check"], ["lint_v09.py"],
         ["validate_ownership.py"], ["validate_interfaces.py"], ["validate_wheel_speed.py"],
         ["verify_connectivity.py"], ["validate_oem_endpoints.py"], ["audit_cavity_parts.py"], ["audit_logic_gauge.py"], ["audit_shields.py"],
-        ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_bulkhead_letter.py"],
+        ["audit_pin_names.py"], ["audit_mating.py"], ["audit_shared_connectors.py"], ["validate_breaks.py"],
         ["audit_bulkhead_pairs.py"],
         ["audit_bh_collisions.py"], ["part_desc.py"], ["audit_parts_layout.py"], ["check_harnesslib.py"], ["audit_drawing_rules.py"], ["audit_wire_spacing.py"], ["audit_ident_bands.py"],
         ["audit_dan_rules.py"], ["audit_doc_claims.py"], ["buylist.py", "--check"], ["../sourcing/build_project_bom.py", "--check"],   # the ONE project BOM / shopping list is current
@@ -113,8 +113,7 @@ SOFT = [["../build/wiring-diagrams/build_wiring_diagrams.py", "--check"]]   # R1
 # drain on a shield ground, and one name per bulkhead cavity across a mating
 # pair. Neither may ever go back above zero.
 #
-# 2026-09-28: validate_bulkhead_letter started HARD - Daniel's ECU loom rule. Its
-# Its PENDING list is empty since Q-RAIL was ruled on (rails cross on the A side, now bulkhead A c48 / c49).
+# 2026-10-19: validate_bulkhead_letter (the 2026-09-28 ECU-letter rule) replaced by validate_breaks (R220: loom A and B are one harness).
 #
 # 2026-09-28: part_desc started HARD - Daniel's rule that a part description names
 # the part itself, never the net, device or circuit it is used on.

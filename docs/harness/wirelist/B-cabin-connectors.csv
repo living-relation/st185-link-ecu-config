@@ -1,5 +1,0 @@
-conn_id,name,harness,part_number,cavities,mates_with,note
-bh_b_fw,"BH-B (firewall bulkhead DRB102, RH)",B-cabin,DRB12-102PAE-L018,102,bh_b_eng on B-engine,"shared DRB102 (loom B wires here, loom A wires on A-cabin)"
-ecu_b,"ECU-B (Link G4X plug B, centre dash)",B-cabin,4-1437290-0,34,,
-ix_fuel_r,IX-FUEL inline to fuel sender lead (trunk end),B-cabin,DT04-2P,2,ix_fuel_p on RearFuel,inline DT pair
-ix_ws_rear_p,IX-WS-R inline to rear VRC (dash above ECU),B-cabin,DT06-6S,6,ix_ws_rear_r on WheelSpeed-Rear,inline DT pair

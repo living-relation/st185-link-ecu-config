@@ -15,8 +15,8 @@ docs/SHIELD-RULES.md holds the inventory.  This script checks the ones a script 
       drain wire, never a cable screen core
   S2  the CAN screen net ("Screen CAN") carries CAN-circuit screens and drains only, and every CAN-circuit
       screen is on that net: nothing else shares the CAN screen, and no CAN screen lands on A7 / B17
-  S3  loom screens never cross: nothing on Screen A is in a loom B file or lands on a B bulkhead / ECU-B
-      pin, nothing on Screen B in a loom A file or on an A pin (R207: no A-B shield bridge)
+  S3  the A7 and B17 screens never meet: nothing on Screen A lands on an ECU-B pin, nothing on Screen B
+      on an ECU-A pin (R207: no A-B shield bridge)
   S4  every splice on the CAN screen net is a named branch splice, "SP-CAN-SH-<node>" (R207: each node's
       drain splices onto the trunk drain at its own branch)
   S5  a cabin-side external component (pedal, wheel-speed spur / VRC output) joins the loom shield trunk
@@ -85,8 +85,8 @@ for sid in sorted(BOTH_ENDS_OK):
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "cleanroom"))
 import wirelist as WL  # noqa: E402
 
-LOOM = {"A-cabin": "A", "A-engine": "A", "B-cabin": "B", "B-engine": "B"}
-rows = [dict(r, _file=h) for h in LOOM.keys() | {"CAN", "CSB3", "WheelSpeed-Front", "WheelSpeed-Rear"}
+ECU_FILES = ("ECU-cabin", "ECU-engine")
+rows = [dict(r, _file=h) for h in ECU_FILES + ("CAN", "CSB3", "WheelSpeed-Front", "WheelSpeed-Rear")
         for r in WL.read_rows(h) if r["wire_id"]]
 c1 = [r for r in rows if any(r[s + "_type"] == "connector" and r[s + "_conn"] == "ecu_com" and r[s + "_pin"] == "C1"
                              for s in ("from", "to"))]
@@ -106,11 +106,10 @@ for r in rows:
             continue
         other = "B" if own == "A" else "A"
         pins = [r[s + "_conn"] for s in ("from", "to") if r[s + "_type"] == "connector"]
-        own_pin = any(c.startswith(("ecu_" + own.lower(), "bh_" + own.lower())) for c in pins)   # a cable drawn on the other loom's file but wired to this loom's pins (the ETB motor) is this loom's
-        if (LOOM.get(r["_file"]) == other and not own_pin) or any(c.startswith(("ecu_" + other.lower(), "bh_" + other.lower())) for c in pins)                 or any(LOOM.get(f) == other for f in r["passes_through"].split(" / ")):
-            bad.append("S3 %s/%s is on %s but belongs to loom %s: the loom screens never cross" % (r["_file"], r["wire_id"], tag, other))
+        if any(c == "ecu_" + other.lower() for c in pins):
+            bad.append("S3 %s/%s is on %s but lands on ECU-%s: the A7 and B17 screens never meet" % (r["_file"], r["wire_id"], tag, other))
 for h in ("CAN",):
-    for r in WL.read_rows("CAN") + WL.read_rows("B-cabin"):
+    for r in WL.read_rows("CAN") + WL.read_rows("ECU-cabin"):
         for s_ in ("from", "to"):
             if r["wire_id"] and r["net_name"].startswith(CAN_NET) and r[s_ + "_type"] == "splice"                     and not r[s_ + "_conn"].startswith("sp_can_sh_"):
                 bad.append("S4 %s lands on splice %s: a CAN screen splice is named sp_can_sh_<node> (SP-CAN-SH-<NODE>)" % (r["wire_id"], r[s_ + "_conn"]))
@@ -142,12 +141,12 @@ def _junction(d, dev, ecu):
     return next((n for n in path[::-1][1:] if len(adj[n]) >= 3), None)
 
 
-for loom, ecu in (("A-cabin", "ecu_a"), ("B-cabin", "ecu_b")):
+for loom, ecu, tag in (("ECU-cabin", "ecu_a", "Screen A"), ("ECU-cabin", "ecu_b", "Screen B")):
     d = g.docs[loom]
     loc = {x["id"]: x.get("locationId") or x["id"] for x in d.get("splices", [])}
     mine = [r for r in rows if r["_file"] == loom]
     for r in mine:
-        if not r["net_name"].startswith(("Screen A", "Screen B")):
+        if not r["net_name"].startswith(tag):
             continue
         sig = [x for x in mine if x["circuit_id"] == r["circuit_id"] and not x["net_name"].startswith("Screen")]
         ends = {x[s_ + "_conn"] for x in sig for s_ in ("from", "to") if x[s_ + "_type"] == "connector"}

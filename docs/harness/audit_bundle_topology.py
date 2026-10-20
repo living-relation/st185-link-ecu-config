@@ -13,9 +13,10 @@ Mechanical signs that a drawing's bundle tree was bent to fit the drawing instea
       harness to get from one end to the other)
 
 Whether a bundle runs WITH the right neighbours (H5 joining H4 at the firewall) is judged against
-the route figure by eye; this gate catches the shapes that cannot be right on any route.
+the route figure by eye; this gate catches the shapes that cannot be right on any route. A harness
+our own generator draws (interfaces.json "drawing": "own", DECISIONS R220) has no app bundles to check.
 
-    python docs/harness/audit_bundle_topology.py [A-cabin | ST185-A-cabin ...]
+    python docs/harness/audit_bundle_topology.py [CabinPower | ST185-CabinPower ...]
 """
 import collections
 import heapq
@@ -118,7 +119,7 @@ def check(loom, d):
             continue
         used.update(p[0])
     pair = collections.defaultdict(set)      # parallel bundles between the same two nodes (a
-    for b in d.get("bundles", []):           # labelled sub-group, e.g. A-cabin's INJ COP) count
+    for b in d.get("bundles", []):           # labelled sub-group, e.g. the old A-cabin's INJ COP) count
         pair[frozenset((b["sourceId"], b["targetId"]))].add(b["id"])   # as one
     for b in d.get("bundles", []):
         if not pair[frozenset((b["sourceId"], b["targetId"]))] & used:
@@ -144,7 +145,8 @@ def check(loom, d):
 def main(argv):
     files = model.harness_files()
     want = [a for a in argv if not a.startswith("--")]
-    looms = sorted(files) if not want else []
+    own = model.own_drawn()   # drawn by our own generator, not as app bundles (R220): its layout tree has its own check
+    looms = sorted(set(files) - own) if not want else []
     for w in want:
         k = w.replace("ST185-", "").replace(".harness", "")
         if k not in files:

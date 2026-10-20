@@ -61,7 +61,7 @@ Shield: yes
 | 5 | GND1 |
 | 6 | VPA1 APS-M |
 
-All six pins are one connector on `ST185-A-cabin`, supplies included (wire list `docs/harness/wirelist/A-cabin-wirelist.csv`).
+All six pins are one connector on `ST185-ECU-cabin`, supplies included (wire list `docs/harness/wirelist/ECU-cabin-wirelist.csv`).
 
 Pin 6 is the full-range track. If the sub track saturates before full pedal travel, that
 percentage must go into PCLink's `APS (Sub) 100%` — otherwise the ECU throws a permanent
@@ -339,7 +339,7 @@ glove box to the pump also makes voltage drop a sizing input once the current is
 
 **Two relays (DECISIONS R22, Daniel 2026-10-04; drawn 2026-10-12).** `k_eps` (HCR 150) carries
 the pump feed: coil+ = 12 V ignition (`sp_sw12`), coil- switched to ground by the pump's own pin
-B5 (net `MRS_RLY`, glove box -> `ST185-A-cabin` -> bulkhead A c27 -> `ST185-A-engine` ->
+B5 (net `MRS_RLY`, glove box -> `ST185-ECU-cabin` -> bulkhead -> `ST185-ECU-engine` ->
 `ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` micro relay in LOGIC box M21, fed by
 LOGIC EPSEN 7.5 A) is the ECU's enable: Link Ign 6 (B12) sinks its coil-, its 87 feeds the LOGIC
 MRS 7.5 A fuse -> pump C1. So the ECU switches the pump on, and the pump switches its own main
@@ -393,7 +393,7 @@ the clean square edge the trigger input needs.
 **The fault.** It is drawn in **series** with the signal, not pulling it up:
 
 ```
-   drawn now:   cam.c2 --[1.8k]-- bh_a_eng.c32 == bh_a_fw.c32 -- ecu_a.a9 (Trig 2)
+   drawn now:   cam.c2 --[1.8k]-- bh_eng.c32 == bh_fw.c32 -- ecu_a.a9 (Trig 2)
 ```
 
 A9 is Trigger 2. So the resistor sits directly in the cam trigger path, where it attenuates

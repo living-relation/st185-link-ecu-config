@@ -2,7 +2,7 @@
 "Binding rules from Daniel", 2026-10-12). Each check names its rule.
 
   D1  R11  no OEM engine-bay wire is reused: an interfaces.json flying lead on a pure
-           engine-bay harness (A-engine, B-engine, HeavyDC, WheelSpeed-*) whose method says it
+           engine-bay harness (ECU-engine, HeavyDC, WheelSpeed-*) whose method says it
            splices into a factory lead FAILS. EngineRoom-C flying leads are LISTED (its cabin-side
            landings at J/B1 / IE1 / the blower / the window feed are allowed cabin splices;
            its bay ends must be new wire to the device plug - read the list).
@@ -29,7 +29,7 @@ import sys
 import model
 
 SOFT = set()
-BAY = {"A-engine", "B-engine", "HeavyDC", "WheelSpeed-Front", "WheelSpeed-Rear"}
+BAY = {"ECU-engine", "HeavyDC", "WheelSpeed-Front", "WheelSpeed-Rear"}
 SPLICE_INTO = re.compile(r"solder.?sleeve into|splice[sd]? into|tap(ped)? into", re.I)
 WIRE_PN = re.compile(r"^(M22759/16-\d+-\d+|BC-)")
 BAD_SIGNAL = re.compile(r"\bnot used\b|placeholder|\breserved\b|not wired yet", re.I)

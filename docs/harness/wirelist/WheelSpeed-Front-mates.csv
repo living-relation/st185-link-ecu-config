@@ -1,6 +1,6 @@
 circuit_id,net_name,this_conn,this_pin,this_desc,mate_harness,mate_conn,mate_pin,mate_desc,check
-VRC_F_5V,+5V sensor (ECU-A A32),ix_ws_front_r,1,VRC-F +5V,A-cabin,ix_ws_front_p,1,VRC-F +5V,OK
-VRC_F_GND,Sensor GND (ECU-A A24),ix_ws_front_r,2,VRC-F GND,A-cabin,ix_ws_front_p,2,VRC-F GND,OK
-WSS_FL,FL conditioned out (ECU-A A23),ix_ws_front_r,3,FL conditioned out,A-cabin,ix_ws_front_p,3,FL conditioned out,OK
-WSS_FR,FR conditioned out (ECU-B B21),ix_ws_front_r,4,FR conditioned out,A-cabin,ix_ws_front_p,4,FR conditioned out,OK
-VRC_F_DRAIN,"Screen A (ECU A7, SHIELD_A)",ix_ws_front_r,5,WS-F screen drain,A-cabin,ix_ws_front_p,5,WS-F screen drain,OK
+VRC_F_5V,+5V sensor (ECU-A A32),ix_ws_front_r,1,VRC-F +5V,ECU-cabin,ix_ws_front_p,1,VRC-F +5V,OK
+VRC_F_GND,Sensor GND (ECU-A A24),ix_ws_front_r,2,VRC-F GND,ECU-cabin,ix_ws_front_p,2,VRC-F GND,OK
+WSS_FL,FL conditioned out (ECU-A A23),ix_ws_front_r,3,FL conditioned out,ECU-cabin,ix_ws_front_p,3,FL conditioned out,OK
+WSS_FR,FR conditioned out (ECU-B B21),ix_ws_front_r,4,FR conditioned out,ECU-cabin,ix_ws_front_p,4,FR conditioned out,OK
+VRC_F_DRAIN,"Screen A (ECU A7, SHIELD_A)",ix_ws_front_r,5,WS-F screen drain,ECU-cabin,ix_ws_front_p,5,WS-F screen drain,OK

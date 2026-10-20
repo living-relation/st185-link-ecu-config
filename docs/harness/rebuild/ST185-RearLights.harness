@@ -1081,7 +1081,7 @@
         "x": 0,
         "y": 450
       },
-      "text": "FEEDS (Dan C5, DECISIONS R61): tail, stop and turn stay fed from the kept OEM J/B No.1 - tail 15A TAIL / TAIL relay out 1F-1, turn LH / RH 1F-3 / 1F-2 (flasher T3, hazard H5 and switch C15 stay OEM, C8), stop 15A STOP through S9 pin 1. Back-up: reverse relay k_rev in the glove-box LOGIC box (ST185-CabinPower), its contact fed from the J/B No.1 GAUGE 15A fuse, coil from the back-up switch B1 on ST185-B-engine; 87 arrives broken off. 16 AWG behind the 15A fuses, 18 AWG behind the 10A TURN fuse (fuse protects the thinnest wire)."
+      "text": "FEEDS (Dan C5, DECISIONS R61): tail, stop and turn stay fed from the kept OEM J/B No.1 - tail 15A TAIL / TAIL relay out 1F-1, turn LH / RH 1F-3 / 1F-2 (flasher T3, hazard H5 and switch C15 stay OEM, C8), stop 15A STOP through S9 pin 1. Back-up: reverse relay k_rev in the glove-box LOGIC box (ST185-CabinPower), its contact fed from the J/B No.1 GAUGE 15A fuse, coil from the back-up switch B1 on ST185-ECU-engine; 87 arrives broken off. 16 AWG behind the 15A fuses, 18 AWG behind the 10A TURN fuse (fuse protects the thinnest wire)."
     },
     {
       "id": "n_rl_ground",

@@ -35,7 +35,7 @@ harness.design JSON.
   `{page, connector, pin, function, method}`. An unknown field is written `TBD` with the
   reason; `validate_oem_endpoints.py` lists every `TBD`.
 - `breaks` — every broken-off pair: `id`, `what`, and two `ends` `{harness, terminal}` on two
-  different files. The graph joins the two ends into one node. `validate_bulkhead_letter.py` L6
+  different files. The graph joins the two ends into one node. `validate_breaks.py` L6
   fails a missing end, an unregistered `br_` terminal, a note that does not name the other file,
   or any `cp_xref` dummy left on a drawing; L7 fails an element drawn on two files.
 - `inFileMates` — connector pairs mated inside one drawing (the pedal's DT06-6S / DT04-6P); the

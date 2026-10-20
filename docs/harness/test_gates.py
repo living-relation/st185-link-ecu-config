@@ -102,58 +102,58 @@ def case(name, gate, expect):
 
 @case("two injector signals crimped into one bulkhead pin", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "A-engine", "w109_e", "bh_a_eng", "c21")   # INJ1's cavity (R208 map)
+    add_copy(d, "ECU-engine", "w109_e", "bh_eng", "c21")   # INJ1's cavity (R208 map)
 
 
 @case("injector signal + injector 12V feed in one pin", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "A-engine", "w_inj_pwr_e_ae", "bh_a_eng", "c21")
+    add_copy(d, "ECU-engine", "w_inj_pwr_e_ae", "bh_eng", "c21")
 
 
 @case("two sensor grounds crimped into one ground pin (direct form)", "audit_bh_collisions.py", 0)
 def _(d):
-    add_copy(d, "A-engine", "w17", "bh_a_eng", "c65")   # the cam sensor ground cavity
+    add_copy(d, "ECU-engine", "w17", "bh_eng", "c65")   # the cam sensor ground cavity
 
 
 @case("ground + switched 12V in one pin", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "B-engine", "w_vss_12v", "bh_b_eng", "c29")   # a B ground cavity
+    add_copy(d, "ECU-engine", "w_vss_12v", "bh_eng", "c29")   # a B ground cavity
 
 
 @case("pigtail + splice: +5V bus plug (bussed DT, R169) also fed from ECU +8V Out", "audit_bh_collisions.py", 1)
 def _(d):
-    add_wire(d, "A-cabin", "w_t_8v_into_5v", {"id": "bus_5v_bha_p", "handle": "c8"},
+    add_wire(d, "ECU-cabin", "w_t_8v_into_5v", {"id": "bus_5v2_p", "handle": "c8"},
              {"id": "ecu_a", "handle": "a6"})
 
 
 @case("pigtail + splice: extra 12V device on the switched-12V splice", "audit_bh_collisions.py", 0)
 def _(d):
-    add_wire(d, "A-engine", "w_t_12v_dev", {"id": "sp_sw12_eng", "handle": "Splice"},
+    add_wire(d, "ECU-engine", "w_t_12v_dev", {"id": "sp_sw12_eng", "handle": "Splice"},
              {"id": "inj1", "handle": "c1"})
 
 
 @case("one ECU signal fanned out to 2 devices, cavity NOT labelled splice", "audit_bh_collisions.py", 1)
 def _(d):
-    add_copy(d, "A-engine", "w109_e", "bh_a_eng", "c22", extra_target=None)
-    add_copy(d, "A-engine", "w108_e", "bh_a_eng", "c22")
+    add_copy(d, "ECU-engine", "w109_e", "bh_eng", "c22", extra_target=None)
+    add_copy(d, "ECU-engine", "w108_e", "bh_eng", "c22")
 
 
 @case("same fan-out, cavity labelled 'splice' on both halves", "audit_bh_collisions.py", 0)
 def _(d):
-    add_copy(d, "A-engine", "w108_e", "bh_a_eng", "c22")
-    for loom, half in (("A-engine", "bh_a_eng"), ("A-cabin", "bh_a_fw")):
+    add_copy(d, "ECU-engine", "w108_e", "bh_eng", "c22")
+    for loom, half in (("ECU-engine", "bh_eng"), ("ECU-cabin", "bh_fw")):
         label(d, loom, half, "c22", "INJ2 (splice)")
 
 
 @case("4 x 18 AWG grounds direct in one size-16 pin: sharing OK ...", "audit_bh_collisions.py", 0)
 def _(d):
-    p, doc = load(d, "A-engine")
+    p, doc = load(d, "ECU-engine")
     doc["wireParts"].append({"id": "wp_18_t", "partNumber": "T18", "manufacturer": "t",
                              "description": "t", "color": "Black", "gauge": {"value": 18, "unit": "AWG"}})
     save(p, doc)
     for i in range(3):
-        add_copy(d, "A-engine", "w17", "bh_a_eng", "c56", gauge_part="wp_18_t")
-    p, doc = load(d, "A-engine")
+        add_copy(d, "ECU-engine", "w17", "bh_eng", "c56", gauge_part="wp_18_t")
+    p, doc = load(d, "ECU-engine")
     for w in doc["wires"]:
         if w["id"] == "w17":
             w["partId"] = "wp_18_t"
@@ -176,13 +176,13 @@ def designate(d, loom, conn, cav, num):
 
 @case("DRB102: a B spare moved onto the crank signal cavity 74, both halves (M8 collision)", "audit_mating.py", 1)
 def _(d):
-    for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
+    for loom, half in (("ECU-cabin", "bh_fw"), ("ECU-engine", "bh_eng")):
         designate(d, loom, half, "c97", "74")
 
 
 @case("DRB102: size-12 plug put in a size-16 cavity (M8 size)", "audit_mating.py", 1)
 def _(d):
-    for loom, half in (("B-cabin", "bh_b_fw"), ("B-engine", "bh_b_eng")):
+    for loom, half in (("ECU-cabin", "bh_fw"), ("ECU-engine", "bh_eng")):
         designate(d, loom, half, "c97", "82")      # the size-12 plug sits on a size-16 number ...
         designate(d, loom, half, "c82", "97")      # ... and the size-16 plug on a size-12 number
 
@@ -570,7 +570,7 @@ def _(d):
 
 @case("R107: a layout bundle drawn on top of another, no shared end (W2)", "audit_wire_spacing.py", 1)
 def _(d):
-    p, doc = load(d, "A-cabin")
+    p, doc = load(d, "CabinPower")   # an app-drawn file (the ECU harness is drawn by our own generator, R220)
     pos = {x["id"]: x["layoutPosition"] for k in ("connectors", "terminals", "branchPoints")
            for x in doc.get(k, []) if x.get("layoutPosition")}
     b = next(x for x in doc["bundles"] if x["sourceId"] in pos and x["targetId"] in pos
@@ -584,8 +584,9 @@ def _(d):
 
 @case("R107: two layout bundles ending at the same connector run together (W2 allows)", "audit_wire_spacing.py", 0)
 def _(d):
-    p, doc = load(d, "A-cabin")
-    b = copy.deepcopy(next(x for x in doc["bundles"] if "ecu_a" in (x["sourceId"], x["targetId"])))
+    p, doc = load(d, "CabinPower")
+    conns = {c["id"] for c in doc["connectors"]}
+    b = copy.deepcopy(next(x for x in doc["bundles"] if conns & {x["sourceId"], x["targetId"]}))
     b["id"] += "_twin"
     doc["bundles"].append(b)
     save(p, doc)

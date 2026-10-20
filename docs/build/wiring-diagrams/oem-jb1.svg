@@ -182,7 +182,7 @@
 <circle cx="168.00" cy="184.50" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="181.30" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_IGN_SW_C1</text>
 <text x="171.00" y="188.50" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">solder splice onto the factory lead</text>
-<text x="227.00" y="182.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ign | 20 AWG | Yellow (Yellow-Blue-Blue)</text>
+<text x="227.00" y="182.90" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ign | 20 AWG | Yellow (Blue-Yellow-White-Blue)</text>
 <text x="265.00" y="182.90" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; ECU-B (Link G4X plug B, centre dash) pin B28</text>
 <text x="17.00" y="201.60" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 7</text>
 <text x="50.00" y="201.60" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">B-O</text>
@@ -192,7 +192,7 @@
 <circle cx="168.00" cy="201.00" r="1.50" fill="#14213d" stroke="none" stroke-width="0.20"/>
 <text x="171.00" y="197.80" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">FL_IG2_WAKE_C1</text>
 <text x="171.00" y="205.00" font-size="1.90" text-anchor="start" fill="#222" font-family="Helvetica, Arial, sans-serif">solder splice onto the factory lead</text>
-<text x="227.00" y="199.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ig2_in | 20 AWG | Yellow (White-Yellow-White)</text>
+<text x="227.00" y="199.40" font-size="2.10" text-anchor="middle" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">w_ig2_in | 20 AWG | Yellow (Blue-Yellow-Yellow-White)</text>
 <text x="265.00" y="199.40" font-size="2.10" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif">-&gt; pin Left</text>
 <text x="17.00" y="218.10" font-size="2.50" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">pin 8</text>
 <text x="50.00" y="218.10" font-size="2.30" text-anchor="start" fill="#14213d" font-family="Helvetica, Arial, sans-serif" font-weight="bold">G-Y</text>

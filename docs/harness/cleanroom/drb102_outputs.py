@@ -19,7 +19,7 @@ import zlib
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
-BH = {"bh_a_fw": ("A", "cab"), "bh_b_fw": ("B", "cab"), "bh_a_eng": ("A", "eng"), "bh_b_eng": ("B", "eng")}
+BH = {"bh_fw": ("", "cab"), "bh_eng": ("", "eng")}   # the DRB102: cabin receptacle, engine plug
 COLS = [list(range(102, 94, -1)), list(range(94, 82, -1)), list(range(82, 70, -1)), [70, 69, 68, 67, None, 66, 65, 64, 63],
         [62, 61, 60, 59, 58], [57, 56, 55, 54, 53, 52], [51, 50, 49, 48, 47, 46], [45, 44, 43, 42, 41],
         [40, 39, 38, 37, None, 36, 35, 34, 33], list(range(32, 20, -1)), list(range(20, 8, -1)), list(range(8, 0, -1))]
@@ -27,7 +27,6 @@ SIZE = {**{i: 12 for i in list(range(1, 9)) + list(range(95, 103))}, 48: 8, 49: 
 HEAD = ["cavity", "contact size", "signal", "circuit", "cabin harness", "cabin wire", "cabin far end",
         "engine harness", "engine wire", "engine far end", "AWG", "colour", "net"]
 WIDTH = [8, 9, 26, 9, 12, 16, 28, 12, 16, 30, 6, 12, 32]
-OWNER_FILES = {"A": ("A-cabin", "A-engine"), "B": ("B-cabin", "B-engine")}
 STYLE = "drb102-outputs v1"
 
 FILL = {"spare": "FFFFFF", "can": "2E7D32", "shield": "9E9E9E", "power": "C62828", "signal": "7CB342", "output": "00838F",

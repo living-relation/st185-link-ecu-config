@@ -40,20 +40,18 @@ Dan edits the drawings in the harness.design **desktop app**, which opens the fi
 - Free plan: 100 connections per harness also applies to local files. The app rejects unknown keys, so repo-only data lives in `interfaces.json`, never in a `.harness`.
 - Agents: use the global skill `harness-design` (`C:/Users/danie/.claude/skills/harness-design/SKILL.md`).
 
-## The 15 harnesses
+## The 13 harnesses
 
 Each file is one physical harness that gets built. Shared nets may cross a boundary; a
 physical section of copper, a connector or a BOM line has one owner.
 
 | File | Harness | Scope |
 |---|---|---|
-| `ST185-A-cabin.harness` | ECU connector A, cabin | ECU-A, cabin half of bulkhead A, the A-pin relay coil wires (relays are in the box, CabinPower), the BRZ APS pedal connector (folded in 2026-10-11, B33 leg breaks off to B-cabin), the A/C amplifier's cabin-side flying leads (folded in from ST185-ACAmp-Spur 2026-10-11: TW/return, kill, clutch and pressure-switch taps at the amplifier - the A4/A5 device-side ends are on EngineRoom-C), front wheel-speed spur, the +5V / Gnd Out / +8V / switched-12V splices |
-| `ST185-B-cabin.harness` | ECU connector B, cabin | ECU-B, cabin half of bulkhead B, the B-pin relay coil wires (k_fan2 / k_eps_en / k_acc are in the box, CabinPower), fuel level branch, rear wheel-speed spur, the front spur's FR core, the B legs of +5V / Gnd Out |
+| `ST185-ECU-cabin.harness` | ECU harness, cabin side (R220) | ECU plugs A, B and C, the cabin half of the DRB102 bulkhead, the ECU splice point (bussed DT plugs `BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`; +8V, switched 12V, A5 feed and the ECU ground splices), the relay coil wires (relays are in the box, CabinPower), the BRZ APS pedal, the A/C amplifier's cabin-side flying leads (the A4 / A5 device-side ends are on EngineRoom-C), both wheel-speed spurs, fuel level, A/C button and evaporator inputs, the NEG bar ground lugs. Drawn by our own generator (`"drawing": "own"`); the file is its parts / cavity data |
 | `ST185-CabinPower.harness` | Cabin power (non-ECU) | the two glove-box fuse + relay boxes (DECISIONS R75, `cad/fusebox` rev 5: POWER box `fb_power`, LOGIC box `fb_logic`) with the ECU-switched relays seated in them (all but `k_fp`, which is in the battery relay block on `ST185-HeavyDC`), battery feed ring; the ECU coil wires, splices, CSB3, CAN (DEV), AntiTheft and EngineRoom-C ends arrive broken off |
 | `ST185-HeavyDC.harness` | Heavy DC (Route 1) | trunk battery, RADLOK firewall pair, starter, 170 A alternator B+, engine-bay jump post, engine block ground, the battery relay block (fuel pump relay `k_fp` + its AMI-40, fed from the kill switch LOAD side, DECISIONS R75); hands off to EngineRoom-C at the cabin PDB (breaks H1/H2/H3/H6a) |
 | `ST185-CSB3.harness` | ECUMaster CSB3 | CSB3 plug, cruise stalk, clutch and brake switches, cruise ladder, the 8-channel brake / reverse optocoupler board inline at the plug (DECISIONS S17, S25); power, ground, reverse, LED and CAN wires arrive broken off |
-| `ST185-A-engine.harness` | ECU connector A, engine | bulkhead A engine half to every A-letter engine device, plus the `IX_B_RAIL` spur (B-engine sensor +5V / Gnd Out) |
-| `ST185-B-engine.harness` | ECU connector B, engine | bulkhead B engine half to every B-letter engine device and the ETB motor; the B sensors' +5V / Gnd Out come in on `IX_B_RAIL` |
+| `ST185-ECU-engine.harness` | ECU harness, engine side (R220) | the engine half of the DRB102 to every engine device the ECU drives or reads, the throttle body included. Drawn by our own generator |
 | `ST185-CAN.harness` | CAN backbone | the only drawing with CAN H/L |
 | `ST185-EngineRoom-C.harness` | Loom C | engine room, PDB (battery, RADLOK and ground studs; the fuse box is on CabinPower), EPS, the ex-J/B2 / R/B loads (headlamp and horn feeds to the device plugs; cabin-side landings at J/B1 / IE1 / blower / window feed as flying leads); the A4/A5 A/C device-side flying leads (VC coil - not fitted - and pressure switch, folded in from ST185-ACAmp-Spur 2026-10-11, new-wire runs, no factory engine-bay wire reused) |
 | `ST185-WheelSpeed-Front.harness` | Front wheel speed | one Y harness: FL/FR drops to the front VRC endpoints, output to `IX_WS_FRONT` |
@@ -63,10 +61,9 @@ physical section of copper, a connector or a BOM line has one owner.
 | `ST185-AntiTheft.harness` | Anti-theft | cabin |
 | `ST185-RearLights.harness` | Rear lights (Route 15) | J/B No.1 1F tail / turn and S9 stop flying leads, reverse feed broken off from `k_rev` (CabinPower), R11 / R12 rear combination lamps, L1 license light, H6 high-mount stop light (hatch), one rear ground BL |
 
-The four ECU loom files follow the ECU connector letter - the rule, its three allowed
-crossovers are in `../RECONCILIATION-RULES.md` Rule 3 (the old Q-RAIL deviation is
-closed: the injector/COP rails cross on bulkhead A c48 / c49). `validate_bulkhead_letter.py` enforces it; `audit_mating.py` checks A cabin cN
-mates A engine cN and B mates B.
+The ECU harness is ONE harness in two files, cabin and engine (`../RECONCILIATION-RULES.md` Rule 3,
+DECISIONS R220); `validate_breaks.py` keeps ECU-pin and bulkhead wires on those files, and `audit_mating.py`
+checks every cabin cavity mates the same engine cavity.
 
 The only center-cluster portion in this repo is the CAN node, plus power and
 ground to the cluster. Interior cluster wiring lives only in
@@ -83,20 +80,15 @@ spots, A/C pressure switch; J/B2 and the R/Bs themselves are removed, R12) and r
 How each kind of boundary is drawn is in `redesign/INTERFACES.md`. In short:
 
 - **Inline interface** - a real connector pair, one half per harness, same cavity text
-  on both. The four today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way), `IX_FUEL_LVL`
-  (DT 2-way) and `IX_B_RAIL` (A-engine to B-engine sensor +5V / Gnd Out). `IX_AC_CTS`
-  (A/C coolant switch deleted) and the pedal's `IX_APS` (folded into A-cabin 2026-10-11)
-  are retired.
+  on both. The three today: `IX_WS_FRONT`, `IX_WS_REAR` (DT 6-way) and `IX_FUEL_LVL`
+  (DT 2-way).
 - **Broken-off wire** - a wire that runs between two harness files is drawn in both, each
   section ending at a `Loose` terminal (`br_<wire>`) whose note names the other file. The
   pairs are `interfaces.json` "breaks"; no device is drawn on two files and there are no
-  cross-reference dummies (Rule 3, `validate_bulkhead_letter.py` L6 / L7).
+  cross-reference dummies (Rule 3, `validate_breaks.py` L6 / L7).
 - **Bulkhead** - one shared Deutsch DRB102 (`DRB12-102PAE-L018` receptacle / `DRB16-102SAE-L018`
-  plug + `DRBF-1A` flange), one 102-position connector drawn WHOLE on every loom that uses it (A-cabin / B-cabin: the
-  receptacle; A-engine / B-engine: the plug). A and B are only our names for its sections
-  (connector-letter gate): each loom wires its own section and marks the other's cavities N/C
-  with a "see ST185-<other>" note. See `redesign/DECISIONS.md`
-  ("Bulkhead A/B + DTP replaced by a shared DRB102"). Real cavity numbers, sizes and
+  plug + `DRBF-1A` flange), one 102-position connector: the receptacle `bh_fw` on ECU-cabin, the plug
+  `bh_eng` on ECU-engine, cavities assigned by device (R208). Real cavity numbers, sizes and
   spares: `DRB102-CAVITY-MAP.md` (gate `audit_mating.py` M8).
 - **Shared connectors** - rule R10: drawn whole in every file, the other file's cavities N/C
   (https://docs.harness.design/component/connector) with a "see ST185-<other file>" note.
@@ -126,8 +118,8 @@ interfaces.json              <- and the ownership facts with them
         audit_cavity_parts.py      contact or plug, never both
         audit_shields.py           docs/SHIELD-RULES.md
         audit_pin_names.py         drains only on A7/B17; one name per mating cavity
-        audit_mating.py            A mates A, B mates B
-        validate_bulkhead_letter.py ECU looms follow the connector letter (Rule 3)
+        audit_mating.py            every cabin cavity mates the same engine cavity
+        validate_breaks.py         ECU-pin / bulkhead wires on the ECU harness files; breaks; one element per drawing
         audit_bulkhead_pairs.py    no one-sided bulkhead cavity
         audit_bh_collisions.py     no two circuits on one cavity half
         audit_wire_spacing.py      no wire routing points unless allow-listed or squaring a diagonal (RP1, R202);
@@ -149,7 +141,7 @@ reader: it loads the registry and builds one electrical graph across every harne
 (bulkhead halves, interface halves, cross-references and VRC enclosures each collapse
 to one node). It also puts back the long label / signal text the drawings no longer
 carry (`full_text.json`, DECISIONS R124), so the gates read the full text while the app shows
-short destinations. `python docs/harness/audit_destinations.py --table A-cabin ecu_a` prints a
+short destinations. `python docs/harness/audit_destinations.py --table ECU-cabin ecu_a` prints a
 connector's Destination column (add `--raw` for the long text); `--ends <loom>` prints both
 printed ends of every wire.
 
