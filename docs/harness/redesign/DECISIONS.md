@@ -10,12 +10,13 @@ the 2026-09-28 audit table), which was deleted on 2026-10-20 (OPEN-ITEMS row 151
 The retire map under the rules stays for good so every old citation still resolves.
 Each rule is 2 lines or less (Dan 2026-10-20): detail lives in the file the rule names, older wording in git history.
 At most 30 rules: adding one means merging or removing one (R226). Newest ruling won wherever two old rows disagreed.
-A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Needs Dan N61.
+Surgical rewire (Dan 2026-10-20): keep the OEM body wiring, replace only the engine-bay wiring (B1, B5, B7, B9, B11).
+A/C: both factory A/C amps stay (Dan 2026-10-20); how the Link feeds the compressor amp A15 is open (Needs Dan N61).
 
 ### Scope and freeze
 
-- **B1 Scope.** Four goals, in order: G1 wiring sorted to build the harnesses, G2 ECU base maps, G3 ECU CAN config
-  checked, G4 CSB3 config. OPEN-ITEMS rows only for their blockers (`[G1]`-`[G4]`); fit in the car is Dan's call.
+- **B1 Scope.** Keep the OEM body wiring, replace only the engine-bay wiring; new wire only for the engine harness, fuel
+  pump, dash feed (cluster, LEDs, Pi), CAN, alarm and taps. Goals G1 wiring, G2 maps, G3 CAN, G4 CSB3; rows for blockers.
 - **B2 Freeze.** Until the bloat cut is done (OPEN-ITEMS rows 151-155): no new rule, script, gate, doc, drawing format
   or feature; only the cut and G1 blockers. A green gate is no proof; Dan's spot-check at the car is (row 155).
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
@@ -25,23 +26,23 @@ A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Need
 
 ### Wiring and harness
 
-- **B5 ONE wiring source of truth.** `docs/harness/MASTER-wirelist.csv`: one row per wire, end to end, every harness;
-  unconfirmed = `TBD` + reason. `sot/channels.csv` = ECU settings only. No script writes either; the master wins.
+- **B5 ONE wire list.** `docs/harness/MASTER-wirelist.csv` holds every new wire, cut, reuse and tap with its EWD page; no
+  row, no cut. Reuse an OEM wire only if its gauge fits and both ends are known. `sot/channels.csv` = ECU settings.
 - **B6 ONE drawing set, read back.** `ST185-harness` is generated from the master by `build_drawings.py`, never
   hand-edited; `--check` reads every wire back. Wire list and pinout first; harness.design only as a generated consumer.
-- **B7 ECU harness and bulkhead.** Loom A + B = ONE harness: `AB-cabin` (ECU plugs A, B, C to the DRB102) and
-  `AB-engine`; ECU pins never move. DRB102 cavities and the ECU splice point: `docs/RECONCILIATION-RULES.md` Rule 3.
+- **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
+  DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3).
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
-- **B9 Factory wiring.** Every engine-bay run is new wire: no factory engine-bay wire, plug or box is reused. Cabin J/B
-  No.1 / No.3 and under-dash wiring stay. OEM pins from the 1993 EWD. Detail: `docs/harness/README.md`.
+- **B9 Boundary.** Kept: OEM cabin and body wires, J/B No.1 / No.3, the Engine Room Main Wire outer loop (its branches
+  into the engine area are cut). Removed parts: `docs/harness/README.md`. Factory pins and colours: 1993 EWD.
 
 ### Power and grounds
 
 - **B10 Grounds.** ECU power grounds (A25, A34, B25, B34) splice together, one wire to the POWER box battery-negative
   bar. Electronics to the battery-negative bus, sensors to Gnd Out, shields to drains; heavy loads may use chassis.
-- **B11 Fuses, power, stopping.** Every fuse and relay is in the glove-box POWER / LOGIC boxes, except the trunk fuel
-  pump block (`k_fp`, 40 A). Alternator fused at the POWER box (MEGA 175 A). Engine stops by kill switch or key to ACC.
+- **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
+  fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
 - **B12 Wire gauge.** Size a wire for the device's peak current plus margin (when in doubt, the larger) and at least for
   its fuse. Wire first, then a contact that takes it, else a fuse-sized splice + pigtail of 150 mm or less.
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
