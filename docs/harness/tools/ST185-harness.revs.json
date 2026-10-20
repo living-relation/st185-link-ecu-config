@@ -1,0 +1,13 @@
+{
+ "_doc": "Revision log of the ST185-harness drawing set (every harness of the car) (DECISIONS R200): DRAWN = the BY of Rev A and never changes; every BY is the initials of the person who REQUESTED the change (from %USERPROFILE%\\.drawing-initials), never an agent or tool name. .01 clerical revs are not rows here (git history only). A full-letter rev from Rev B on lists what changed in `marks` (the rev triangle goes next to each).",
+ "title": "ST185-harness - every wiring harness of the car, one drawing set",
+ "subtitle": "All 13 harnesses of the master wire list (R221): the ECU harness (AB-cabin + AB-engine, R220), CabinPower, harness C, HeavyDC, CAN, CSB3, AntiTheft, ClusterLED, wheel speed front / rear, rear lights, rear fuel",
+ "revs": [
+  {
+   "rev": "A",
+   "date": "2026-10-20",
+   "by": "DG",
+   "what": "First issue: every harness of the master in one drawing set (replaces the ST185-AB-cabin pilot, Rev A 2026-10-19)."
+  }
+ ]
+}
