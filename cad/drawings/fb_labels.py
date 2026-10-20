@@ -26,6 +26,10 @@ PIN = {'c1': '30', 'c2': '85', 'c3': '86', 'c4': '87', 'c5': '87a'}
 def _harness_names():
     """(drawing, id) -> short printed name of every terminal / splice / connector cavity in the harness drawings (an id can be in two
     drawings - each side of a broken-off wire - so names are kept per drawing)."""
+    if not os.path.isdir(REB):
+        raise SystemExit('fb_labels.py reads the harness.design files, retired 2026-10-20 (R225; OPEN-ITEMS row 153): repoint it to '
+                         'docs/harness/MASTER-wirelist.csv at the next fuse-box CAD job; until then cad/fusebox/rev7/wiring_plan.json '
+                         'is the frozen wire plan.')
     out = {}
     for fn in sorted(glob.glob(os.path.join(REB, '*.harness'))):
         d = json.load(open(fn, encoding='utf-8'))

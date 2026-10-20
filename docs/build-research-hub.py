@@ -47,8 +47,7 @@ TOPICS: list[dict] = [
         "dir": "harness",
         "title": "Harness & Wiring",
         "blurb": "ONE master wire list (MASTER-wirelist.csv, every wire of every harness) is the wiring source of truth; "
-                 "drawings/ holds the generated drawing sets, tools/ the generator and the one wiring check. "
-                 "rebuild/ keeps the frozen harness.design files until every harness is drawn by the generator.",
+                 "drawings/ holds the generated drawing sets, tools/ the generator and the one wiring check.",
     },
     {
         "dir": "sourcing",
@@ -1257,9 +1256,7 @@ def load_looms(hub: dict) -> list[dict]:
     for h in sorted(wires):
         state = "redo" if h in redo or "ST185-" + h in redo else ("approved" if cfg.get("approved_on") else "drawn")
         sets = [p for p in [DOCS / "harness" / "drawings" / f"{in_set.get(h, h)}-schematic.pdf"] if p.is_file()]
-        href = f"harness/drawings/{sets[0].name}" if sets else (
-            f"harness/rebuild/ST185-{h}.harness" if (DOCS / "harness" / "rebuild" / f"ST185-{h}.harness").is_file()
-            else "harness/MASTER-wirelist.csv")
+        href = f"harness/drawings/{sets[0].name}" if sets else "harness/MASTER-wirelist.csv"
         out.append({"name": h, "state": state, "wires": wires[h], "conns": len(conns.get(h, ())), "thumb": "",
                     "href": href})
     return out
