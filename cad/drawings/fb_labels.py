@@ -1,7 +1,7 @@
 """Fuse box label data for the assembly drawings (DECISIONS R189 / R190), from the source-of-truth chain, never invented:
   - fuse and relay names: cad/fusebox/src/spec.py (MINI_COLS fuse positions, MICRO_POS micro relay positions)
   - what each one serves and every harness wire that lands in the box: cad/fusebox/rev7/wiring_plan.json (wiring_sim.py, read from
-    the docs/harness/rebuild/*.harness files) for the cavity and the far end; the far end's printed name is the SHORT name the harness
+    the frozen cad/fusebox/frozen-inputs/*.harness files) for the cavity and the far end; the far end's printed name is the SHORT name the harness
     drawing shows (the .harness file itself: a terminal / splice `label`, or a connector's label + cavity designation + signal; R124 /
     R156), so the drawing says what the harness drawing says.
 The LOGIC box sits at the assembly origin (box-local = assembly mm, checked 2026-10-18: every fuse and relay solid of
@@ -18,7 +18,9 @@ sys.path.insert(0, os.path.join(REPO, 'cad', 'fusebox', 'src'))
 import spec as S  # noqa: E402
 
 PLAN = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_plan.json')
-REB = os.path.join(REPO, 'docs', 'harness', 'rebuild')
+# Inputs: frozen copies of the retired docs/harness/rebuild/*.harness files, restored 2026-10-20 (Dan); they may lag
+# docs/harness/MASTER-wirelist.csv.
+REB = os.path.join(REPO, 'cad', 'fusebox', 'frozen-inputs')
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn'}
 PIN = {'c1': '30', 'c2': '85', 'c3': '86', 'c4': '87', 'c5': '87a'}
 
@@ -26,10 +28,6 @@ PIN = {'c1': '30', 'c2': '85', 'c3': '86', 'c4': '87', 'c5': '87a'}
 def _harness_names():
     """(drawing, id) -> short printed name of every terminal / splice / connector cavity in the harness drawings (an id can be in two
     drawings - each side of a broken-off wire - so names are kept per drawing)."""
-    if not os.path.isdir(REB):
-        raise SystemExit('fb_labels.py reads the harness.design files, retired 2026-10-20 (R225; OPEN-ITEMS row 153): repoint it to '
-                         'docs/harness/MASTER-wirelist.csv at the next fuse-box CAD job; until then cad/fusebox/rev7/wiring_plan.json '
-                         'is the frozen wire plan.')
     out = {}
     for fn in sorted(glob.glob(os.path.join(REB, '*.harness'))):
         d = json.load(open(fn, encoding='utf-8'))
