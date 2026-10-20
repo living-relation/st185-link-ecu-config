@@ -118,7 +118,7 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 ### 0x640 (Base+0) — Analog Inputs 1–4 (OUTPUT)
 | Bytes | Field | Type | Range | Notes |
 |---|---|---|---|---|
-| 0–1 | Analog Input 1 | uint16 BE | 0–5000 mV | |
+| 0–1 | Analog Input 1 | uint16 BE | 0–5000 mV | Evaporator thermistor A24 (3.9 kΩ pull-up to the CSB3 +5V) -> ECU "Evap Temp mV" (2026-10-20) |
 | 2–3 | Analog Input 2 | uint16 BE | 0–5000 mV | |
 | 4–5 | Analog Input 3 | uint16 BE | 0–5000 mV | |
 | 6–7 | Analog Input 4 | uint16 BE | 0–5000 mV | |
@@ -148,7 +148,7 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 | Bit | Switch | Function |
 |---|---|---|
 | 0 | Switch 1 | **Unassigned** — was Evaporator Core State |
-| 1 | Switch 2 | **Unassigned** — was AC Request |
+| 1 | Switch 2 | A/C request (opto IN3 from the dash A/C switch V-G) -> ECU VDI2 |
 | 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
@@ -160,9 +160,10 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 > (`switchboard_frames.json` "ecu_receive", `.lcs` receive channel 0x642). Reverse also sets
 > 0x3EB Gear Position = 7, so the cluster and RealDash see it in an ECU frame (R51).
 
-> **2026-09-27:** A/C is the OEM A/C amplifier's job, not the CSB3's (harness redesign,
-> `docs/harness/redesign/DECISIONS.md`). Switch 1 / Switch 2 and Analog Input 1 (was cabin
-> temp) are unassigned. Frame layout unchanged; the cluster does not decode 0x640-0x642.
+> **2026-10-20 (Dan):** the compressor A/C amplifier A15 is removed and the Link runs the A/C.
+> Switch 2 (bit 1) = A/C request -> VDI2, Analog Input 1 = evaporator thermistor -> "Evap Temp mV",
+> both in the ECU receive config (`switchboard_frames.json` "ecu_receive", `.lcs` 0x640 / 0x642).
+> Switch 1 stays unassigned. Frame layout unchanged; the cluster does not decode 0x640-0x642.
 
 ### 0x643 (Base+3) — Low-Side Output Control (INPUT, host → switchboard)
 

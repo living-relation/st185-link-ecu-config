@@ -65,8 +65,8 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 | Bit | Switch | Function |
 |---|---|---|
-| 0 | Switch 1 | Unassigned (was Evaporator Core State; A/C is the OEM amplifier's, 2026-09-27) |
-| 1 | Switch 2 | Unassigned (was AC Request; same) |
+| 0 | Switch 1 | Unassigned (was Evaporator Core State) |
+| 1 | Switch 2 | A/C request (dash A/C switch V-G -> opto IN3; 2026-10-20) |
 | 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
@@ -83,17 +83,18 @@ Increments on every transmitted 0x642 frame (0-255, wraps). Nominal cycle: switc
 
 The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, converting raw CAN bytes into ECU-usable channels:
 
-### User Stream 1 — retired 2026-09-27
-- Analog Input 1 (0x640 bytes 0-1) used to carry a cabin thermistor into **GP Temp1**. Cabin, evaporator and A/C request belong to the OEM A/C amplifier, so no CSB3 input is wired for them and Analog Input 1 is unassigned. The frame layout is unchanged.
+### User Stream 1 — Analog Inputs (0x640)
+- Bytes 0-1: CSB3 Analog Input 1 = evaporator thermistor A24 (3.9 kOhm 1 % pull-up to the CSB3 +5V, internal pull-up off) -> **"Evap Temp mV"** (2026-10-20, Dan: the compressor A/C amplifier A15 is removed, the Link runs the A/C).
+- Bytes 2-3: Analog Input 2 = cruise stalk ladder -> "Cruise Stalk mV".
 
-### User Stream 2 — Accessory Switch States (VDI3, VDI6-8)
-- **Source:** 0x642, byte 4 (SW_MASK), bits 2 and 5-7 (receive channel 0x642 in the `.lcs`; canonical map `switchboard_frames.json` "ecu_receive").
+### User Stream 2 — Accessory Switch States (VDI2, VDI3, VDI6-8)
+- **Source:** 0x642, byte 4 (SW_MASK), bits 1, 2 and 5-7 (receive channel 0x642 in the `.lcs`; canonical map `switchboard_frames.json` "ecu_receive").
 - **PCLink target:** Virtual Digital Inputs (VDI1-5), one bit per VDI:
 
 | SW_MASK bit | VDI | Meaning |
 |---|---|---|
 | 0 | VDI1 | Unassigned (was Evaporator Core State) |
-| 1 | VDI2 | Unassigned (was AC Request) |
+| 1 | VDI2 | A/C Req — A/C request from the dash A/C switch (2026-10-20) |
 | 2 | VDI3 | Cruise Control Active |
 | 3 | VDI4 | Unassigned |
 | 4 | VDI5 | Unassigned |
@@ -101,7 +102,7 @@ The Link G4X consumes two switchboard frames via PCLink "User Stream" inputs, co
 | 6 | VDI7 | Brake Switch — cruise cancel (the ECU's brake input) |
 | 7 | VDI8 | Reverse Switch — sets Gear Position = 7 (R) in 0x3EB |
 
-- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise, VDI6 (clutch) and VDI7 (brake) cancel it; SET/COAST, RES/ACC and CANCEL come from the stalk ladder on CSB3 Analog 2 (0x640 bytes 2-3), decoded in PCLink (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1). VDI1, VDI2, VDI4 and VDI5 are unassigned; A/C request and evaporator control are the OEM A/C amplifier's.
+- **Downstream use:** these VDIs feed the ECU's cruise-control logic (PCLink condition tables / virtual aux outputs) — VDI3=1 arms cruise, VDI6 (clutch) and VDI7 (brake) cancel it; SET/COAST, RES/ACC and CANCEL come from the stalk ladder on CSB3 Analog 2 (0x640 bytes 2-3), decoded in PCLink (ECUMASTER_SWITCHBOARD_SETUP.md Step 4.1). VDI2 (A/C request) and "Evap Temp mV" feed the Link A/C control (set at tune time). VDI1, VDI4 and VDI5 are unassigned.
 
 Both User Streams require the ECU to be on the same physical bus as the switchboard (§3).
 

@@ -10,7 +10,15 @@ the 2026-09-28 audit table), which was deleted on 2026-10-20 (OPEN-ITEMS row 151
 The retire map under the rules stays for good so every old citation still resolves.
 Each rule gets trimmed to 2 lines or less in a later PR (Dan 2026-10-20); the substance stays.
 At most 30 rules: adding one means merging or removing one (R226). Newest ruling won wherever two old rows disagreed.
-A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Needs Dan N61.
+A/C is left off this page on purpose (Dan: "ignore this"). **A/C, decided 2026-10-20 (Dan; closes Needs Dan N61):** the
+compressor A/C amplifier A15 is removed and the Link G4X is the A/C controller. It drives the clutch relay `k_acc`
+(B10 / Ign 8) and the condenser fan relay `k_fan2` (B13 / Ign 5). The A/C request (dash A/C switch V-G) goes opto board
+IN3 -> CSB3 S2 -> 0x642 -> VDI2, and the evaporator thermistor A24 (pins 1-2) goes to CSB3 A1 with a 3.9 kOhm pull-up
+to the CSB3 +5V -> 0x640; neither touches an ECU plug, and ECU A18, B31, B32 are spare. The 2-pin dual pressure switch
+A5 stays in series with the `k_acc` coil feed from the POWER box ACPS 10 A, which also feeds the A/C switch; the switch
+lamp sinks on the `k_acc` 85 / B10 net; the ambient sensor A1 gets new EngineRoom-C wires to its cowl leads. The auto A/C
+amplifier (A31 / A32) and A23 keep the blower, air mix, mode and their sensors on factory wiring. The wires live in the
+master, the CSB3 bits in the CAN files; the Link A/C logic is set at tune time.
 
 ### Scope and freeze
 
@@ -222,7 +230,7 @@ A/C is left off this page on purpose (Dan: "ignore this"); it stays open as Need
 ### Retire map (permanent)
 
 Every old rule ID and where it went. "dropped" = no longer binding, with the reason; "A/C" = left off this page,
-open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this table.
+decided 2026-10-20 in the A/C line above (N61 closed). Read an old citation (e.g. "DECISIONS R154") through this table.
 
 | Old | Now | Note |
 |---|---|---|
@@ -238,7 +246,7 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 | R10 | B7 | |
 | R11 | B9 | |
 | R12 | B9 | OEM ground points in B9 |
-| R13 | B9 | its A/C amp part: A/C, Needs Dan N61 |
+| R13 | B9 | its A/C amp part: A/C (decided 2026-10-20, A/C line at the top) |
 | R14 | B9 | |
 | R15 | B11 | |
 | R16 | B9 | |
@@ -248,7 +256,7 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 | R20 | B11 | |
 | R21 | B30 | ECU starts the engine, no clutch interlock: applied; the facts live in the file it changed |
 | R22 | B30 | EPS pump wiring: applied; the facts live in the file it changed |
-| R23 | A/C | A/C - left off the page (Needs Dan N61) |
+| R23 | A/C | A/C - left off the page; decided 2026-10-20 (A/C line at the top) |
 | R24 | B17 | |
 | R25 | B15 | |
 | R26 | B19 | |
@@ -430,7 +438,7 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 | R202 | B6 | |
 | R203 | B5 | |
 | R204 | B15 | |
-| R205 | A/C | A/C - left off the page (Needs Dan N61) |
+| R205 | A/C | A/C - left off the page; decided 2026-10-20 (A/C line at the top) |
 | R206 | B5 | |
 | R207 | B14 | |
 | R208 | B7 | |
@@ -479,14 +487,14 @@ open as Needs Dan N61. Read an old citation (e.g. "DECISIONS R154") through this
 | S25 | B19 | opto board: B30 |
 | S26 | B30 | enclosure answers: applied; the facts live in the file it changed |
 | S27 | B30 | applied; the facts live in the file it changed |
-| S28 | A/C | A/C - left off the page (Needs Dan N61) |
+| S28 | A/C | A/C - left off the page; decided 2026-10-20 (A/C line at the top) |
 | S29 | B30 | applied; the facts live in the file it changed |
 | S30 | B30 | VRC IN / OUT labels: applied; the facts live in the file it changed |
 | S31 | dropped | dropped - harness.design is gone (R225) |
 | S32 | B30 | machined enclosures: applied; the facts live in the file it changed |
 | S33 | B30 | applied; the facts live in the file it changed |
 | S34 | B15 |  |
-| S35 | A/C | A/C - left off the page (Needs Dan N61) |
+| S35 | A/C | A/C - left off the page; decided 2026-10-20 (A/C line at the top) |
 | S36 | B30 | applied; the facts live in the file it changed |
 | S37 | dropped | `validate_sot.py` replaced by `check_wiring.py` (R221) |
 | S38 | B30 | applied; the facts live in the file it changed |

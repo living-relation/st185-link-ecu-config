@@ -42,7 +42,7 @@ maintainer something the rules already answer.
 >    checked against the Link G4X Quick Start Guide **and the G4X plug-in (wire-in) guides** (the plug-in guide wins
 >    for special circuits and pin modes): pin function and mode, what it may connect to, current limits, wire gauge.
 >    Any mismatch is a stop. Copies (local, gitignored `docs/vendor/`): the QSG and the two plug-in ECU
->    *specification* PDFs; the plug-in wire-in guides and the PCLink wiring manual are missing. Tracked extract:
+>    *specification* PDFs, the TST185X plug-in manual, CSB3 manual v2.1 + drawing, CAN-Lambda docs; no PCLink wiring manual. Tracked extract:
 >    `sot/channels.csv` (`QSG-IO`).
 > 5. **Grounds (R213 / R216 / R217)** — ECU power ground -> battery-negative bar in the POWER box only; PCBs, CAN
 >    nodes, LEDs -> battery-negative bus, never chassis; sensors -> Gnd Out only; high-current loads may use chassis;

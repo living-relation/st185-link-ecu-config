@@ -56,7 +56,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 
 | CSB3 Analog Input | CAN Frame | Byte Offset | Connected Signal | Notes |
 |---|---|---|---|---|
-| Analog 1 | 0x640 | bytes 0-1 | Unassigned (brought out, spare) | Was cabin temp; A/C is the OEM amplifier's (2026-09-27) |
+| Analog 1 | 0x640 | bytes 0-1 | Evaporator thermistor A24 pins 1-2 (3.9 kohm 1 % pull-up to the CSB3 +5V, return to SGND) | See Step 4.2 (Dan 2026-10-20) |
 | Analog 2 | 0x640 | bytes 2-3 | OEM cruise control stalk (C14 pin 5 resistor ladder, 1 kohm pull-up to +5V) | See Step 4.1 |
 | Analog 3 | 0x640 | bytes 4-5 | TBD | |
 | Analog 4 | 0x640 | bytes 6-7 | TBD | |
@@ -64,7 +64,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 | Analog 6–8 | 0x641 | bytes 2-7 | TBD | |
 
 **In the configurator:** Set each active channel to:
-- Input type: **Voltage (0–5V)**
+- Input type: **Voltage (0–5V)**, internal pull-up **OFF** on A1 and A2 (manual v2.1 p.5: the 35 kOhm pull-up is for switches only; both have an external pull-up)
 - Output format: **Raw mV**, uint16, BigEndian
 - Transmit rate: **20 Hz (50 ms)**
 
@@ -136,18 +136,34 @@ into three states. Option A (AS_MASK) is therefore not used.
    repo). The OEM ECU also drops MAIN after an auto cancel until the ignition is cycled; set the same
    re-arm in the Link cruise strategy if wanted.
 
+## Step 4.2 — Evaporator thermistor (Analog 1)
+
+Dan 2026-10-20: the compressor A/C amplifier A15 is removed and the Link runs the A/C, so the evaporator thermistor
+A24 (element pins 1-2; pins 3-4 stay on the auto A/C amplifier) feeds CSB3 A1 (1993 EWD p.211: pin 2 Y-G signal,
+pin 1 W-R common). Wiring in `docs/harness/MASTER-wirelist.csv` (harness `CSB3`, circuit EVAP): A24 pin 2 ->
+splice SP-EVAP-SIG -> A1, a 3.9 kohm 1 % resistor from the splice to the CSB3 +5V, A24 pin 1 -> the CSB3 SGND.
+
+| Evap temp | A24 (EWD points, S28) | A1 with 3.9 kohm to 5 V |
+|---|---|---|
+| 0 C | about 4.85 kohm | about 2.77 V |
+| 25 C | about 1.5 kohm | about 1.39 V |
+
+The value goes to the ECU raw in 0x640 bytes 0-1 (mV, BigEndian) as "Evap Temp mV"; the mV -> deg C table and the
+anti-freeze cycling are set in the Link A/C control at tune time. On a CSB3 timeout the channel reads 0 mV: set the
+A/C control to treat a reading near 0 mV as a fault and keep the clutch off.
+
 ---
 
 ## Step 5 — Digital Switch Assignments (SW_MASK → 0x642 byte4)
 
 The CSB3 packs digital input states into byte4 of 0x642 as a bitmask (SW_MASK).
-PCLink reads this via a CAN User Stream: **0x642 byte4 bit 2 → VDI3, bits 5-7 → VDI6-VDI8** (the `.lcs`
+PCLink reads this via a CAN User Stream: **0x642 byte4 bit 1 → VDI2, bit 2 → VDI3, bits 5-7 → VDI6-VDI8** (the `.lcs`
 receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 
 | SW_MASK Bit | Physical Signal | PCLink VDI | Function |
 |---|---|---|---|
 | bit0 (LSB) | Switch 1 — unassigned (was evap core) | VDI1 | — |
-| bit1 | Switch 2 — unassigned (was A/C request) | VDI2 | — |
+| bit1 | Switch 2 — A/C request (opto IN3 from the dash A/C switch V-G, CSB3 c16) | VDI2 | A/C Req: the Link A/C control (2026-10-20) |
 | bit2 | Switch 3 — cruise MAIN on (CSB3 c17, stalk pin 15) | VDI3 | Cruise master on/off |
 | bit3 | Switch 4 — unassigned (was cruise SET; the stalk has no such wire) | VDI4 | — |
 | bit4 | Switch 5 — unassigned (was cruise RESUME; the stalk has no such wire) | VDI5 | — |
@@ -159,12 +175,14 @@ receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
 are in the CAN contract and the `.lcs` receive channel now. Left for the bench: confirm a set bit means pressed /
 engaged (opto board check, `docs/OPEN-ITEMS.md` row 101) and that the receive channels import (row 2).
+**Mapped 2026-10-20 (Dan):** the A/C request (S2, bit 1) arrives the same way: the dash A/C switch V-G (+12 V when on,
+0 V with the blower off) -> opto board IN3 -> OUT3 -> S2; the row 101 bench check covers channel 3 too.
 
 **Note:** SET/COAST, RES/ACC and CANCEL do not arrive on SW_MASK or AS_MASK: they are decoded in PCLink from the A2 raw mV (Step 4.1). SW_MASK bit 2 carries only MAIN.
 
 In the configurator, map physical wires to digital input channels and confirm the bit ordering matches the table above.
 
-**PCLink VDI failsafe:** If CSB3 comm is lost (PCLink timeout 200 ms), VDI3 and VDI6–VDI8 default to **0** (all off). This is safe — cruise disarms (VDI3 = 0), and the gear is no longer forced to R.
+**PCLink VDI failsafe:** If CSB3 comm is lost (PCLink timeout 200 ms), VDI2, VDI3 and VDI6–VDI8 default to **0** (all off). This is safe — the A/C request drops (VDI2 = 0), cruise disarms (VDI3 = 0), and the gear is no longer forced to R.
 
 ---
 
@@ -220,7 +238,7 @@ when an LED is added, map its PCLink virtual output to the matching byte.
 0x642 byte7 is a rolling counter (0→255→0) that increments with every CSB3 transmission. The ECU monitors this automatically via the PCLink receive timeout setting.
 
 - **PCLink timeout:** 200 ms on the receive channels 0x640 / 0x642 (`Timeout="200"` in `link_g4x_can_setup.lcs`; 0x641 carries nothing the ECU reads)
-- **Fault action (automatic):** VDI3 / VDI6–8 and Cruise Stalk mV reset to 0
+- **Fault action (automatic):** VDI2 / VDI3 / VDI6–8, Evap Temp mV and Cruise Stalk mV reset to 0
 - **Fault broadcast:** PCLink sets 0x3F1 byte6 bit5 ("Switchboard Comm Fault")
 
 The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK-G4X-CONFIG.md` for the receive timeout setting.
@@ -261,8 +279,8 @@ Before first power-on with ECU on the bus:
 - [ ] CSB3 CAN speed confirmed **1000 kbps** in configurator
 - [ ] Base ID confirmed **0x640**
 - [ ] CSB3 termination jumper confirmed **OPEN (OFF)**
-- [ ] SW_MASK bit 2 wired to the cruise MAIN switch (bits 0–1 and 3–4 unassigned); stalk ladder on A2 with a 1 kohm pull-up
+- [ ] SW_MASK bit 1 wired to the A/C request (opto OUT3), bit 2 to the cruise MAIN switch (bits 0 and 3–4 unassigned); stalk ladder on A2 with a 1 kohm pull-up; evaporator thermistor on A1 with a 3.9 kohm pull-up (A1 / A2 internal pull-ups OFF)
 - [ ] With CSB3 powered and isolated, 0x640 / 0x641 / 0x642 frames visible in CAN monitor at 1 Mbit/s
-- [ ] In PCLink — the `.lcs` receive channels imported (written 2026-10-14, R80): 0x640 "Cruise Stalk mV"; 0x642 "CSB3 Switches" = "Cruise Main" → VDI3, "Clutch Switch" → VDI6, "Brake Switch" → VDI7, "Reverse Switch" → VDI8 (enter by hand with the same values if the import skips them)
+- [ ] In PCLink — the `.lcs` receive channels imported (written 2026-10-14, R80): 0x640 "Evap Temp mV" and "Cruise Stalk mV"; 0x642 "CSB3 Switches" = "A/C Req" → VDI2, "Cruise Main" → VDI3, "Clutch Switch" → VDI6, "Brake Switch" → VDI7, "Reverse Switch" → VDI8 (enter by hand with the same values if the import skips them)
 - [ ] In PCLink — receive timeout 200 ms on 0x640 / 0x642 came in with the import
 - [ ] In PCLink — 0x643 TX stream (50 ms) only once an output is assigned (L1-L4 unused / LED-only for now)

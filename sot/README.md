@@ -38,5 +38,4 @@ ambient sensor).
 
 ## Unknown means TBD
 
-An unknown pin stays blank (status `tbd`) until a document says otherwise - never invent a pin number. ACT is A18 pin 11
-(1992 EWD132U A17-11).
+An unknown pin stays blank (status `tbd`) until a document says otherwise - never invent a pin number.

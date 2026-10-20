@@ -89,7 +89,7 @@
         { "byte": 4, "length": 1, "name": "TC Intervention %",    "pclink_name": "TC Ignition Cut % / Torque Reduction", "scale": 1,    "offset": 0,  "unit": "%" },
         { "byte": 5, "length": 1, "name": "Boost Map Index (ECU echo)","pclink_name": "CAN Rx 0x3EC byte0", "scale": 1, "offset": 0, "note": "ECU echoes the cluster 0x3EC boost-map selection." },
         { "byte": 6, "length": 1, "name": "Cruise Control State", "pclink_name": "Cruise Control State",                 "scale": 1,    "offset": 0,  "unit": "enum", "note": "0=Off,1=Standby,2=Set/Active,3=Resume,4=Override" },
-        { "byte": 7, "length": 1, "name": "AC Status",            "pclink_name": "AC Clutch / AC Request (post-VDI)",    "scale": 1,    "offset": 0,  "unit": "enum", "note": "0=Off,1=Requested,2=Compressor Engaged,3=Fault" }
+        { "byte": 7, "length": 1, "name": "AC Status",            "pclink_name": "AC Clutch / AC Request (post-VDI)",    "scale": 1,    "offset": 0,  "unit": "enum", "note": "0=Off,1=Requested,2=Compressor Engaged,3=Fault. Request = VDI2 (CSB3 S2, 0x642 byte 4 bit 1), evaporator temp = CSB3 A1 (0x640 bytes 0-1): switchboard_frames.json ecu_receive (2026-10-20)." }
       ]
     },
     {

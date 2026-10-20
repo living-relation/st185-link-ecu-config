@@ -123,7 +123,9 @@ Receive channels at the end of `link_g4x_can_setup.lcs`, canonical map `switchbo
 
 | Frame | Field | PCLink target | Use |
 |---|---|---|---|
+| 0x640 | bytes 0-1, u16 BE, mV | Evap Temp mV | evaporator thermistor A24 on CSB3 A1 -> A/C control (2026-10-20) |
 | 0x640 | bytes 2-3, u16 BE, mV | Cruise Stalk mV | math channels → SET/COAST, RES/ACC, CANCEL (`ECUMASTER_SWITCHBOARD_SETUP.md` Step 4.1) |
+| 0x642 | byte 4 bit 1 | VDI2 | A/C Req: A/C request from the dash A/C switch (2026-10-20) |
 | 0x642 | byte 4 bit 2 | VDI3 | cruise main |
 | 0x642 | byte 4 bit 5 | VDI6 | clutch: cruise cancel, flat shift / launch clutch input |
 | 0x642 | byte 4 bit 6 | VDI7 | brake: cruise cancel |

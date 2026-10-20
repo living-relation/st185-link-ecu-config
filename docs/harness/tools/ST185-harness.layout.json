@@ -92,7 +92,7 @@
     84,
     31
    ],
-   "label": "A/C amplifier (A18) taps",
+   "label": "A/C amplifier A15 plug (amp removed): V-G and R-Y taps",
    "end": true,
    "short": "A/C amplifier taps"
   },
@@ -119,7 +119,7 @@
     72,
     58
    ],
-   "label": "Mid-dash above the ECU: front + rear WS inlines, A/C switch lead",
+   "label": "Mid-dash above the ECU: front + rear WS inlines",
    "end": true,
    "short": "Mid-dash: WS inlines, A/C switch"
   },
@@ -1313,11 +1313,6 @@
   "R-CAM-PULLUP": "SP",
   "SP-FUEL-LVL": "SP",
   "R-FUELLVL": "SP",
-  "SP-EVAP": "SP",
-  "R-EVAP": "SP",
-  "SP-AC-BTN": "SP",
-  "R-AC-BTN-HI": "SP",
-  "R-AC-BTN-LO": "SP",
   "SP-REV": "SP",
   "DRB102-CABIN": "BH",
   "POWER-NEG-BAR": "GB",
@@ -1335,13 +1330,10 @@
   "SP-REV-GAUGE": "GB",
   "K-FP": "BATT",
   "IX-FUEL-P": "FUEL",
-  "SP-AC-PSW": "ACAMP",
-  "T-EVAP-TEMP": "EVAP",
-  "T-EVAP-RTN": "EVAP",
+  "SP-ACC-85": "BP_AC",
   "IX-WS-F-S": "DASH",
   "IX-WS-R-S": "DASH",
   "CAB-FSPUR-FR-AC": "DASH",
-  "T-AC-BTN": "DASH",
   "SP-SHIELD-A-WSF": "BP_DASH",
   "SP-SHIELD-B-WSR": "BP_DASH",
   "APS-PEDAL": "PEDAL",
@@ -1352,6 +1344,10 @@
   "R-CRUISE": "CSB3",
   "SP-CSB-GND": "CSB3",
   "OPTO-8": "CSB3",
+  "SP-CSB-5V": "CSB3",
+  "SP-CSB-SGND": "CSB3",
+  "SP-EVAP-SIG": "CSB3",
+  "R-EVAP-PU": "CSB3",
   "SP-CANH": "CANJ",
   "SP-CANL": "CANJ",
   "SP-CAN-SH-BH": "CANJ",
@@ -1420,6 +1416,7 @@
   "SP-HZ": "GB",
   "SP-HEAD-COIL": "GB",
   "SP-HTR87": "GB",
+  "SP-ACPS": "GB",
   "SP-AT-12V": "ALARM",
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",
@@ -1639,12 +1636,16 @@
    "JB1"
   ],
   [
-   "A18",
+   "A15",
    "ACAMP"
   ],
   [
-   "A5 ",
-   "ACAMP"
+   "thermistor A24",
+   "EVAP"
+  ],
+  [
+   "ambient temp sensor A1",
+   "C_FRONT"
   ],
   [
    "R/B No.4",

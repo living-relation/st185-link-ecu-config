@@ -133,7 +133,7 @@
   <div class="pmc pm-temp" title="Coolant temp · set"><b>A15</b><span class="pmch">Temp 1</span><span class="pmlb">Coolant temp</span></div>
   <div class="pmc pm-temp" title="Manifold IAT · set"><b>A16</b><span class="pmch">Temp 2</span><span class="pmlb">Manifold IAT</span></div>
   <div class="pmc pm-volt" title="MAP · set"><b>A17</b><span class="pmch">An Volt 1</span><span class="pmlb">MAP</span></div>
-  <div class="pmc pm-aux" title="A/C kill to amp ACT · set"><b>A18</b><span class="pmch">Aux 4</span><span class="pmlb">A/C kill to amp ACT</span></div>
+  <div class="pmc pm-tbd" title="spare low-side · spare"><b>A18</b><span class="pmch">Aux 4</span><span class="pmlb">spare low-side</span></div>
   <div class="pmc pm-aux" title="Fuel pump relay coil · set"><b>A19</b><span class="pmch">Aux 3</span><span class="pmlb">Fuel pump relay coil</span></div>
   <div class="pmc pm-aux" title="ETB power relay coil · set"><b>A20</b><span class="pmch">Aux 2</span><span class="pmlb">ETB power relay coil</span></div>
   <div class="pmc pm-aux" title="Boost solenoid · set"><b>A21</b><span class="pmch">Aux 1</span><span class="pmlb">Boost solenoid</span></div>
@@ -182,8 +182,8 @@
   <div class="pmc pm-di" title="Ignition switch sense · set"><b>B28</b><span class="pmch">DI 9</span><span class="pmlb">Ignition switch sense</span></div>
   <div class="pmc pm-di" title="Gearbox vehicle speed · set"><b>B29</b><span class="pmch">DI 8</span><span class="pmlb">Gearbox vehicle speed</span></div>
   <div class="pmc pm-di" title="Start request · set"><b>B30</b><span class="pmch">DI 7</span><span class="pmlb">Start request</span></div>
-  <div class="pmc pm-volt" title="A/C request button · set"><b>B31</b><span class="pmch">An Volt 10</span><span class="pmlb">A/C request button</span></div>
-  <div class="pmc pm-volt" title="Evaporator thermistor · set"><b>B32</b><span class="pmch">An Volt 11</span><span class="pmlb">Evaporator thermistor</span></div>
+  <div class="pmc pm-tbd" title="spare analog input · spare"><b>B31</b><span class="pmch">An Volt 10</span><span class="pmlb">spare analog input</span></div>
+  <div class="pmc pm-tbd" title="spare analog input · spare"><b>B32</b><span class="pmch">An Volt 11</span><span class="pmlb">spare analog input</span></div>
   <div class="pmc pm-volt" title="APS sub VPA2 · set"><b>B33</b><span class="pmch">An Volt 5</span><span class="pmlb">APS sub VPA2</span></div>
   <div class="pmc pm-gnd" title="ECU reference ground · set"><b>B34</b><span class="pmch">Ground</span><span class="pmlb">ECU reference ground</span></div>
 </div>
@@ -216,8 +216,8 @@
   <tr class="g-volt"><td class="chan">An Volt 7</td><td class="pin">B16</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 8</td><td class="pin">B23</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 9</td><td class="pin">B24</td><td>Fuel level sender</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong> (QSG: 0–5 V only). External pull-up to +5 V (<code>r_fuellvl</code>) — value and cal status live in <code>sot/channels.csv</code> row b24.</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 10</td><td class="pin">B31</td><td>A/C request button</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong>. The V-G A/C switch lead is 12 V when ON, so it goes through a divider: 10 kΩ series + 3.9 kΩ to Gnd Out (<code>r_ac_btn_hi</code> / <code>r_ac_btn_lo</code>, B-cabin) — values and volts live in <code>sot/channels.csv</code> row b31.</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 11</td><td class="pin">B32</td><td>Evaporator thermistor</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong>. 2.2 kΩ 1 % pull-up to +5 V (<code>r_evap</code>, B-cabin), return to Gnd Out — value and curve live in <code>sot/channels.csv</code> row b32.</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 10</td><td class="pin">B31</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>Spare since 2026-10-20: the A/C button goes to the CSB3 (S2) through the opto board, never to an ECU plug.</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 11</td><td class="pin">B32</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>Spare since 2026-10-20: the evaporator thermistor goes to CSB3 A1 (3.9 kΩ 1 % pull-up to the CSB3 +5 V).</td></tr>
   <tr class="g-knock"><td class="chan">Knock 1</td><td class="pin">B9</td><td>Knock sensor</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-knock"><td class="chan">Knock 2</td><td class="pin">B8</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td></td></tr>
 </table>
@@ -251,7 +251,7 @@
   <tr class="g-aux"><td class="chan">Aux 1</td><td class="pin">A21</td><td>Boost solenoid</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
   <tr class="g-aux"><td class="chan">Aux 2</td><td class="pin">A20</td><td>ETB power relay (V-Ethrottle feed)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
   <tr class="g-aux"><td class="chan">Aux 3</td><td class="pin">A19</td><td>Fuel pump relay</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 4</td><td class="pin">A18</td><td>AC kill to amp ACT (A18-11)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>active-low sink; <strong>floats when off, no pull-up</strong>. Amp <code>ACT</code> is A/C AMPLIFIER <strong>A18 pin 11</strong> G-Y (1992 Celica EWD132U A17-11; 1990 book locator A18): <strong>ground = kill, floating = normal</strong>. Flying lead on <code>AB-cabin</code> (<code>docs/harness/MASTER-wirelist.csv</code>).</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 4</td><td class="pin">A18</td><td>spare</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>Spare since 2026-10-20: the A/C amplifier A15 and its ACT kill wire are gone. Fly-wheeled low-side (PCLink G4X help, Auxiliary Outputs).</td></tr>
   <tr class="g-aux"><td class="chan">Aux 5</td><td class="pin">A29</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-aux"><td class="chan">Aux 6</td><td class="pin">A28</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown. PCLink Hold Power Ignition Switch input is <strong>DI 9 (B28)</strong> from the dummy OEM ignition-switch block.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 7</td><td class="pin">A27</td><td>Speed-out → MRS pump SPD pin</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>PCLink Speedo Out / GP PWM is a valid Aux 5–8 function. MRS wants ~4 pulses/rev, <strong>0–5 V</strong> (scoped on the RAV4-family PS ECU). Aux 5–8 have an internal ~1.5 kΩ pull-up (high polarity ≈ 5–14 V per the wiring manual) — <strong>scope the high level before adding a second 5 V pull-up</strong>; a 12 V high needs a divider/clamp, a hi-Z-off low-side needs a 5 V pull-up.</td></tr>
@@ -260,12 +260,12 @@
   <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td class="pin">B18 · B26</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
   <tr class="g-ign"><td class="chan">Ign 5</td><td class="pin">B13</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>spare ign as aux</td></tr>
   <tr class="g-ign"><td class="chan">Ign 6</td><td class="pin">B12</td><td>EPS pump relay coil</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>Spare ign used as aux (per <code>sot/channels.csv</code>). No ECU-driven warning lamps — the replacement cluster handles indicators over CAN.</td></tr>
-  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td class="pin">B11 B10 · B4–B1</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>The only spare ECU drives left — the next ECU actuator comes from here (no PMU/PDM, plan 6.48)</td></tr>
+  <tr class="g-inj"><td class="chan">Ign 7 / Inj 5–8</td><td class="pin">B11 · B4–B1</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>The only spare ECU drives left — the next ECU actuator comes from here (no PMU/PDM, plan 6.48)</td></tr>
 </table>
 
-<h2>AC control (per your AC-amp notes)</h2>
+<h2>AC control (Dan 2026-10-20)</h2>
 <div class="panel">
-  ECU does <strong>not</strong> drive the compressor. The <strong>only</strong> AC signal on the ECU is this kill output. Aux 4 is a <strong>low-side</strong> output feeding the amplifier's <code>ACT</code> cancel input (A/C AMPLIFIER <strong>A18 pin 11</strong> G-Y; 1992 EWD132U A17-11 on the 1990 locator A18) — <strong>active-low, floats when inactive, no pull-up</strong>. Used to cancel the compressor under high load/throttle/boost. No AC-on input — the XtremeX closed-loop idle absorbs the AC-load dip in software. <strong>Polarity resolved:</strong> Aux 4 drives the amplifier's <code>ACT</code> terminal — <strong>ground = kill, floating = normal</strong>. Pass A lock: <strong>intentional</strong> kill-only to OEM amp (ground = kill, float = run); no Request DI. Active-low sink, no pull-up. There is no <code>AC1</code> wire in this install; <code>ACT</code> is the only AC signal. Clutch (A18-5 / A4-3) and pressure switch (A18-13 / A5-4) are flying leads in <code>docs/harness/MASTER-wirelist.csv</code>; solar and TAM are not this pass.
+  The compressor A/C amplifier A15 is removed and the <strong>Link is the A/C controller</strong>. It drives the A/C clutch relay <code>k_acc</code> on <strong>Ign 8 (B10)</strong> and the condenser fan relay <code>k_fan2</code> on <strong>Ign 5 (B13)</strong>, both low-side. The A/C request (dash A/C switch V-G) and the evaporator thermistor A24 arrive over CAN from the CSB3 (0x642 S2 -> VDI2 "A/C Req"; 0x640 A1 -> "Evap Temp mV"); no A/C wire lands on an ECU plug input. The dual pressure switch A5 stays in series with the <code>k_acc</code> coil feed. The auto A/C amplifier (A31 / A32) and A23 keep the blower, air mix, mode and their sensors on factory wiring. A/C logic (lockouts, anti-freeze cycling, idle step) is set at tune time. Wiring: <code>docs/harness/MASTER-wirelist.csv</code>.
 </div>
 
 <h2>Pull-ups and terminal capabilities</h2>
@@ -277,7 +277,6 @@
     <li><strong>An Volt 1–11:</strong> <em>no</em> internal pull-up, 0–5 V only. Fuel level on An Volt 9: <strong>OEM sender + voltage divider</strong> (Pass A lock). External pull-up to +5 V — value: <code>sot/channels.csv</code> row b24 (Daniel lock 2026-09-18). V→% calibration is done on the car.</li>
     <li><strong>Digital inputs:</strong> software-selectable pull-up, active state, all channels to 10 kHz (product spec). Enable the DI pull-up for the start switch (to GND) and for the Continental flex sensor on DI 2 (Ethanol Sensor function). Do <em>not</em> add a second 2.4 kΩ on the flex signal unless a scope shows a weak edge — the ECU pull-up is the intended source.</li>
     <li><strong>Trigger 2 cam Hall:</strong> open-collector. Fit <strong>1.8 kΩ to +8 V Out (A6)</strong>. Do not fit the kit's 2.4 kΩ (that value assumes 12 V). Sensor is 5–24 V; staying on the ECU +8 V rail is correct.</li>
-    <li><strong>Aux 4 AC kill:</strong> flywheeled low-side. With no inductive load the pin is hi-Z when off — <strong>no pull-up</strong>. Amp ACT: ground = kill, floating = normal.</li>
     <li><strong>Aux 7 MRS SPD:</strong> see the Aux 7 row — confirm high level on a scope before adding a 5 V pull-up.</li>
     <li><strong>Connectors:</strong> two 34-way AMP Superseal 1.0 (Link Connector A + B kits, gold terminals). TE 3-1447221-4 = 0.5 mm² / 20 AWG; 3-1447221-3 = 0.75–1.25 mm² / 18–16 AWG for A5 / B5 / grounds. Housing rating ~15 A; <strong>the ECU pin is the limit</strong>, not the terminal.</li>
     <li><strong>B14:</strong> empty cavity on the official B-loom drawing — no terminal, no wire.</li>
@@ -330,16 +329,16 @@
 <h2>Pin budget</h2>
 <table>
   <tr><th>Group</th><th>Avail</th><th>Used</th><th>Spare</th></tr>
-  <tr><td>An Volt</td><td>11</td><td>11</td><td>0 (B31 / B32 assigned 2026-10-10: A/C request button, evaporator thermistor — pull-up/divider TBD)</td></tr>
+  <tr><td>An Volt</td><td>11</td><td>9</td><td>2 (B31 / B32, freed 2026-10-20: the A/C button and evaporator thermistor moved to the CSB3)</td></tr>
   <tr><td>Temp</td><td>4</td><td>4</td><td>0 (ECT, IAT, oil, charge-pipe IAT — ECU pull-ups)</td></tr>
   <tr><td>Trigger</td><td>2</td><td>2</td><td>0</td></tr>
   <tr><td>Knock</td><td>2</td><td>1</td><td>1 (Knock 2 / B8)</td></tr>
   <tr><td>Digital in</td><td>10</td><td>10</td><td>0 (DI 10 / B27 = anti-theft)</td></tr>
   <tr><td>Injection</td><td>8</td><td>4</td><td>4 → aux (B1–B4)</td></tr>
   <tr><td>Ignition</td><td>8</td><td>4 coils + 3 aux (Ign 5, Ign 6, Ign 8)</td><td>1 (Ign 7)</td></tr>
-  <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj</td></tr>
+  <tr><td>Aux</td><td>10</td><td>9 (9/10 = ETB)</td><td>1 (Aux 4 / A18, freed 2026-10-20)</td></tr>
 </table>
-<div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator comes out of spare Ign 7 / Inj 5–8 (Ign 5 = condenser-fan relay, Ign 6 = EPS enable relay, Ign 8 = A/C clutch relay). <strong>No PMU/PDU</strong>: the glove-box power is the custom POWER and LOGIC boxes (DECISIONS R75, drawn in <code>ST185-CabinPower</code>) with Mini ISO and micro relays, the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Every splice and feed: <code>docs/harness/MASTER-wirelist.csv</code>.</div>
+<div class="note"><strong>One Aux spare:</strong> Aux 4 (A18) since 2026-10-20. The next <em>ECU</em> actuator comes out of Aux 4 or spare Ign 7 / Inj 5–8 (Ign 5 = condenser-fan relay, Ign 6 = EPS enable relay, Ign 8 = A/C clutch relay). <strong>No PMU/PDU</strong>: the glove-box power is the custom POWER and LOGIC boxes (DECISIONS R75, drawn in <code>ST185-CabinPower</code>) with Mini ISO and micro relays, the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Every splice and feed: <code>docs/harness/MASTER-wirelist.csv</code>.</div>
 
 
 <h2>Comms port (6-pin) — USER CAN 1</h2>

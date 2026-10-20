@@ -288,11 +288,13 @@ def decode_sb_analog(data: bytes, base_channel: int = 1) -> Dict[str, float]:
 # SW_MASK bit assignments (allocation table section 5, switchboard_frames.json).
 # Bits 3 and 4 (cruise SET / RESUME) are UNASSIGNED since 2026-10-13: the OEM stalk
 # has no such wires (DECISIONS S23).
-# Bits 0 and 1 (was evaporator core / A/C request) are UNASSIGNED since
-# 2026-09-27 - A/C is the OEM amplifier's job, not the switchboard's. Only
-# assigned bits get a constant; check_parity.py compares this set to the JSON.
+# Bit 0 (was evaporator core) is UNASSIGNED. Bit 1 = A/C request since 2026-10-20
+# (Dan: the A/C amplifier A15 is removed and the Link runs the A/C; dash A/C switch
+# V-G -> opto IN3 -> S2). Only assigned bits get a constant; check_parity.py compares
+# this set to the JSON.
 # Bits 5-7 assigned 2026-10-14 (DECISIONS R80, Route 15 S17 C14): clutch S6, brake S7,
 # reverse S8 (brake / reverse through the inline optoisolator, R56).
+SW_AC_REQ = 1 << 1
 SW_CRUISE_ACTIVE = 1 << 2
 SW_CLUTCH = 1 << 5
 SW_BRAKE = 1 << 6

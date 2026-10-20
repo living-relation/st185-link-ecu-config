@@ -146,13 +146,16 @@
          Canonical source: switchboard_frames.json "ecu_receive". Switchboard -> ECU only (R51).
          Timeout 200 ms on each; on timeout every channel below reads 0 (cruise disarmed).
          Bit fields: StartBit = byte*8 + bit (bit 0 = LSB of that byte).
-         0x642 byte 4 (SW_MASK): bit 2 Cruise Main -> VDI3, bit 5 Clutch -> VDI6,
-         bit 6 Brake -> VDI7, bit 7 Reverse -> VDI8 (reverse sets Gear Position = 7 in 0x3EB).
+         0x640 bytes 0-1: CSB3 A1 = evaporator thermistor, mV (Dan 2026-10-20); bytes 2-3: cruise stalk, mV.
+         0x642 byte 4 (SW_MASK): bit 1 A/C Req -> VDI2 (Dan 2026-10-20), bit 2 Cruise Main -> VDI3,
+         bit 5 Clutch -> VDI6, bit 6 Brake -> VDI7, bit 7 Reverse -> VDI8 (reverse sets Gear Position = 7 in 0x3EB).
          ═══════════════════════════════════════════════════════════════════ -->
     <Channel ID="0x640" Name="CSB3 Analog 1-4" Direction="Receive" Type="Custom" DLC="8" Timeout="200">
+      <Parameter Name="Evap Temp mV"    StartBit="0"  Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
       <Parameter Name="Cruise Stalk mV" StartBit="16" Length="16" Scale="1"    Offset="0"   ByteOrder="BigEndian" />
     </Channel>
     <Channel ID="0x642" Name="CSB3 Switches" Direction="Receive" Type="Custom" DLC="8" Timeout="200">
+      <Parameter Name="A/C Req"         StartBit="33" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI2" />
       <Parameter Name="Cruise Main"     StartBit="34" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI3" />
       <Parameter Name="Clutch Switch"   StartBit="37" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI6" />
       <Parameter Name="Brake Switch"    StartBit="38" Length="1"  Scale="1"    Offset="0"   ByteOrder="BigEndian" Target="VDI7" />
