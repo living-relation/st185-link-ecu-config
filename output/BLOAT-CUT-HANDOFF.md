@@ -2,8 +2,9 @@
 
 **Status (2026-10-20, updated as steps land):** plan approved by Dan. Step 0 merged (#376). Step 1: draft PR #377
 (B1-B30 + retire map; B-prefix confirmed by Dan, the page waits for his review; the deletion commit follows his OK).
-Step 2 (read-back check, row 154): merged (#378). Step 3 (`rebuild/` deleted, row 153): the `dan_/bloat-3-rebuild` PR.
-Step 4 follows. Step 5: memory part done; skills compared with the claude.ai copies, AGENTS.md "Skills" repointed (step 3).
+Step 2 (read-back check, row 154): merged (#378). Step 3 (`rebuild/` deleted, row 153): merged (#379).
+Step 4 (dead scripts, row 152): the `dan_/bloat-4-scripts` PR. Step 5: done (memory pruned; the PC skill copies recycled after a
+diff against the claude.ai copies; AGENTS.md "Skills" points to the account). Left: Dan's review of #377, then its deletion commit.
 Delete this file once every step, Dan's step-1 approval included, is done (open work goes into `docs/OPEN-ITEMS.md`).
 
 ## Context
