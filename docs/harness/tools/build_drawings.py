@@ -20,11 +20,16 @@ and grows as harnesses join the set; nothing is split across sheets; each has it
                   bands, signal, other end and estimated cut length; spare pins take a sealing plug.
 
 and, untracked, docs/harness/out/<set>-pinout.xlsx (the same table) and a thumbnail. The PDF carries the digest of its
-inputs in its Keywords, so --check needs no PDF library. Title block and rev log per R200.
+inputs in its Keywords. Title block and rev log per R200.
+
+The read-back (R224 step 4, R225): --check also reads the committed pinout and schematic PDFs back (PyMuPDF text and
+band-chip extraction) and compares every wire with the master: both ends (connector and pin), gauge, colour and ident
+bands, plus every spare pin. Any difference fails, whatever the inputs digest says.
 
     python docs/harness/tools/build_drawings.py [set]          write (needs PyMuPDF + openpyxl)
-    python docs/harness/tools/build_drawings.py --check [set]  fail if a drawing set is stale against its inputs,
-                                                              or a wire end is not on the layout (no PyMuPDF)
+    python docs/harness/tools/build_drawings.py --check [set]  fail if a drawing set is stale against its inputs, a wire
+                                                              end is not on the layout, or the sheets read back differ
+                                                              from the master (needs PyMuPDF, CI pins pymupdf==1.28.0)
 
 Nothing on these sheets is placed or typed by hand except the layout tree (node positions, segment lengths) and the
 rev log; the scripts never write into the master.
@@ -181,8 +186,8 @@ class Harness:
         t, c = r[s + "_type"], r[s + "_conn"]
         if t == "cable screen":
             return ("screen", c)
-        if t == "OEM":
-            return ("oem", c + "|" + r[s + "_pin"])
+        if t == "OEM":   # a factory tap is its locator AND its name: two taps on one locator (W1 motor / cowl lead) stay apart
+            return ("oem", c + "|" + r[s + "_pin"] + "|" + r[s + "_name"])
         return (t, c)
 
     def local(self, r, s):
@@ -313,7 +318,203 @@ def check(h):
     for p in glob.glob(os.path.join(DRAWINGS, "%s-*.pdf" % h)):
         if p not in H.p["pdfs"]:
             bad.append("%s is not one of the three sheets of the set (delete it)" % os.path.basename(p))
-    return bad
+    return bad + readback(H)
+
+
+# ------------------------------------------------------------------------------------------------ read-back (R224 step 4)
+GREY_INT = (round(GREY[0] * 255) << 16) | (round(GREY[1] * 255) << 8) | round(GREY[2] * 255)
+CUT = "..."                                # what Sheet.fit leaves at the end of a cut text
+
+
+def _spans(page):
+    """Every text span on a sheet: (x, baseline y, x end, size, bold, grey, text)."""
+    out = []
+    for b in page.get_text("rawdict")["blocks"]:
+        for ln in b.get("lines", []):
+            for s in ln["spans"]:
+                t = "".join(c["c"] for c in s["chars"]).strip()
+                if t:
+                    out.append((s["origin"][0], s["origin"][1], s["bbox"][2], round(s["size"], 1), "Bold" in s["font"],
+                                s["color"] == GREY_INT, t))
+    return out
+
+
+def _chips(page):
+    """Every ident-band chip on a sheet: (x0, y1, colour name), from the filled 4.2 pt squares band_chips draws."""
+    names = {tuple(round(c, 2) for c in v): k for k, v in BAND_RGB.items()}
+    out = []
+    for d in page.get_drawings():
+        r, f = d.get("rect"), d.get("fill")
+        if f and r is not None and abs(r.width - 4.2) < 0.3 and abs(r.height - 4.2) < 0.3:
+            k = names.get(tuple(round(c, 2) for c in f))
+            if k:
+                out.append((r.x0, r.y1, k))
+    return out
+
+
+def _bands_at(chips, x0, x1, y):
+    return "-".join(k for x, yy, k in sorted(c for c in chips if x0 <= c[0] < x1 and abs(c[1] - y) < 0.6))
+
+
+def _names_end(title, r, s):
+    """Does a table / block title name this end of master row r? Connector, splice and part titles start with the end ID;
+    a factory tap's title is its name (a title cut short on the sheet ends in '...')."""
+    title = re.sub(r"\s+\(on ST185-[^)]*\)$", "", title)
+    if r[s + "_type"] == "OEM":
+        name = r[s + "_name"]
+        return title == name or (title.endswith(CUT) and name.startswith(title[:-len(CUT)]))
+    return title == r[s + "_id"] or title.startswith(r[s + "_id"] + " ")
+
+
+def _same_or_cut(seen, want):
+    return seen == want or (seen.endswith(CUT) and want.startswith(seen[:-len(CUT)]))
+
+
+def _read_pinout(path, fitz):
+    """The pinout sheet read back: one dict per table row (the table title plus every column), from the text alone."""
+    page = fitz.open(path)[0]
+    sp, chips = _spans(page), _chips(page)
+    names = [n for n, _ in TABLE_COLS]
+    heads = [s for s in sp if s[4] and s[3] == 5.4 and s[6] == names[0]]
+    titles = [s for s in sp if s[4] and s[3] == 7.0]
+    frames = [d["rect"] for d in page.get_drawings() if d.get("rect") is not None and not d.get("fill") and d["rect"].width > 200]
+    rows, bad = [], []
+    for hx, hy, *_ in heads:
+        # the table's own column headers are the first ones from its PIN header rightward; it ends with its last column
+        cand = sorted((s[0], s[6]) for s in sp if s[4] and s[3] == 5.4 and abs(s[1] - hy) < 0.3 and s[0] >= hx - 0.5)
+        cols = cand[:len(names)]
+        right = cols[-1][0] + dict(PIN_COLS)[names[-1]] + 4
+        above = [t for t in titles if abs(t[0] - hx) < 0.5 and t[1] < hy]
+        below = [t[1] for t in titles if abs(t[0] - hx) < 0.5 and t[1] > hy]
+        if [c[1] for c in cols] != names or not above:
+            bad.append("pinout sheet: a table at x %.0f y %.0f has columns %s, not %s" % (hx, hy, [c[1] for c in cols], names))
+            continue
+        title = max(above, key=lambda t: t[1])[6]
+        box = [f for f in frames if abs(f.x0 + 4 - hx) < 0.6 and f.y0 < hy < f.y1]     # the table's own frame ends it
+        stop = min([f.y1 for f in box] + below + [page.rect.height])
+        xs = [c[0] for c in cols]
+        cells = collections.defaultdict(dict)
+        for x, y, *_rest in sp:
+            text = _rest[-1]
+            if hy + 0.5 < y < stop - 1 and xs[0] - 0.5 <= x < right:
+                i = max(j for j, cx in enumerate(xs) if cx <= x + 0.5)
+                cells[round(y, 1)][names[i]] = (cells[round(y, 1)].get(names[i], "") + " " + text).strip()
+        bx = names.index("BANDS")
+        for y in sorted(cells):
+            row = {n: cells[y].get(n, "") for n in names}
+            row["BANDS"] = _bands_at(chips, xs[bx] - 0.5, xs[bx + 1], y)
+            row["_table"], row["_y"] = title, y
+            rows.append(row)
+    return rows, bad
+
+
+def _read_schematic(path, fitz):
+    """The schematic sheet read back: the wire labels (id, gauge, colour, bands) and every pinout-block row (block title,
+    pin, wire id)."""
+    page = fitz.open(path)[0]
+    sp, chips = _spans(page), _chips(page)
+    labels = []
+    for x, y, xe, size, bold, grey, t in sp:
+        if size == 5.0 and not bold and not grey:
+            labels.append((t, _bands_at(chips, xe, xe + 4.8 * 4 + 4, y + 0.4)))
+    titles = [s for s in sp if s[4] and s[3] == 6.5]
+    pins = [s for s in sp if s[4] and s[3] == 6.0]
+    ends = []
+    for x, y, xe, size, bold, grey, t in sp:
+        if size == 5.0 and grey and not bold:
+            pin = [p for p in pins if abs(p[1] - y) < 0.3 and x - 220 < p[0] < x]
+            if not pin:
+                continue
+            px = max(pin, key=lambda p: p[0])
+            above = [s for s in titles if abs(s[0] - px[0]) < 0.5 and s[1] < y]
+            if above:
+                ends.append((t, max(above, key=lambda s: s[1])[6], "" if px[6] == "-" else px[6]))
+    return labels, ends
+
+
+def readback(H):
+    """R224 step 4: read the committed pinout and schematic sheets back and compare every wire with the master."""
+    try:
+        import fitz
+    except ImportError:
+        return ["read-back needs PyMuPDF (python -m pip install pymupdf==1.28.0)"]
+    pin_pdf, sch_pdf = H.p["pdfs"][2], H.p["pdfs"][0]
+    if not (os.path.exists(pin_pdf) and os.path.exists(sch_pdf)):
+        return ["read-back: the pinout / schematic sheet is missing: run build_drawings.py %s" % H.h]
+    bad = []
+    prows, pbad = _read_pinout(pin_pdf, fitz)
+    bad += pbad
+    labels, ends = _read_schematic(sch_pdf, fitz)
+    ids = {r["wire_id"] for r in H.wires}
+    by_wire = collections.defaultdict(list)
+    for row in prows:
+        by_wire[row["WIRE"]].append(row)
+    lab_by = collections.defaultdict(list)
+    for t, bands in labels:
+        lab_by[t.split()[0]].append((t, bands))
+    end_by = collections.defaultdict(list)
+    for t, title, pin in ends:
+        if t.endswith(CUT):
+            hit = [i for i in ids if i.startswith(t[:-len(CUT)])]
+            t = hit[0] if len(hit) == 1 else t
+        end_by[t].append((title, pin))
+    for r in H.wires:
+        w = r["wire_id"]
+        bands, gauge, colour = r["ident_bands"], r["gauge_awg"], r["colour"]
+        # pinout sheet: one row per end, in that end's table, at its pin
+        got = list(by_wire.get(w, []))
+        for s, o in (("from", "to"), ("to", "from")):
+            where = "%s %s pin %s" % (s, r[s + "_id"], r[s + "_pin"] or "-")
+            hit = next((x for x in got if _names_end(x["_table"], r, s) and x["PIN"] == r[s + "_pin"]), None)
+            if hit is None:
+                bad.append("%s: pinout sheet has no row for its %s end (sheet rows: %s)" % (
+                    w, where, ["%s / pin %s" % (x["_table"][:40], x["PIN"] or "-") for x in got] or "none"))
+                continue
+            got.remove(hit)
+            for col, want in (("AWG", gauge), ("COLOUR", colour), ("BANDS", bands)):
+                if hit[col] != want:
+                    bad.append("%s: pinout sheet %s %s %r, master %r" % (w, where, col, hit[col], want))
+            other = (r[o + "_name"] or r[o + "_id"]) + ((" pin " + r[o + "_pin"]) if r[o + "_pin"] else "")
+            if not _same_or_cut(hit["OTHER END"], other):
+                bad.append("%s: pinout sheet %s OTHER END %r, master %r" % (w, where, hit["OTHER END"], other))
+        for x in got:
+            bad.append("%s: pinout sheet has an extra row in %s pin %s" % (w, x["_table"][:40], x["PIN"] or "-"))
+        # schematic sheet: a label at each end (id, gauge, colour, bands) and a row in each end's block at its pin
+        want_lab = ("%s  screen" % w) if colour == "Shield" else ("%s  %s %s" % (w, gauge, ABBR.get(colour, colour[:3].upper())))
+        labs = lab_by.get(w, [])
+        if len(labs) != 2 or any(" ".join(t.split()) != " ".join(want_lab.split()) or b != bands for t, b in labs):
+            bad.append("%s: schematic wire labels %s, master %r + bands %r (one at each end)" % (w, labs, want_lab, bands))
+        seen = list(end_by.get(w, []))
+        for s in ("from", "to"):
+            hit = next((x for x in seen if _names_end(x[0], r, s) and x[1] == r[s + "_pin"]), None)
+            if hit is None:
+                bad.append("%s: schematic has no row for its %s end %s pin %s (sheet rows: %s)" % (
+                    w, s, r[s + "_id"], r[s + "_pin"] or "-", seen or "none"))
+            else:
+                seen.remove(hit)
+        for x in seen:
+            bad.append("%s: schematic has an extra end row %s pin %s" % (w, x[0][:40], x[1] or "-"))
+    for w in sorted(set(by_wire) - ids - {""}):
+        bad.append("%s: on the pinout sheet but not a wire of the set in the master" % w)
+    for w in sorted(set(lab_by) - ids):
+        bad.append("%s: wire label on the schematic but not a wire of the set in the master" % w)
+    for w in sorted(set(end_by) - ids):
+        bad.append("%s: schematic block row but not a wire of the set in the master" % w)
+    # spare pins: each one a row with no wire in its end's table
+    spare_rows = list(by_wire.get("", []))
+    for r in H.spares:
+        hit = next((x for x in spare_rows if _names_end(x["_table"], r, "from") and x["PIN"] == r["from_pin"]), None)
+        if hit is None:
+            bad.append("spare %s pin %s: no spare row on the pinout sheet" % (r["from_id"], r["from_pin"]))
+        else:
+            spare_rows.remove(hit)
+    for x in spare_rows:
+        bad.append("pinout sheet: %s pin %s has no wire, and the master has no spare row for it" % (x["_table"][:40], x["PIN"]))
+    if len(bad) > 60:
+        bad = bad[:60] + ["read-back: %d more finding(s) not shown" % (len(bad) - 60)]
+    print("   read-back: %d wires, %d spares; pinout sheet %d rows, schematic %d labels / %d end rows: %s"
+          % (len(H.wires), len(H.spares), len(prows), len(labels), len(ends), "OK" if not bad else "%d finding(s)" % len(bad)))
+    return ["read-back: " + b for b in bad]
 
 
 # ------------------------------------------------------------------------------------------------ drawing helpers
@@ -746,7 +947,7 @@ def draw_block(S, H, b):
                     "screen": "cable screen", "bus": "bussed DT plug"}.get(H.kind(b.key), "")
     S.text(x0 + 3, y + 16, S.fit(sub, x1 - x0 - 6, 5.2), 5.2, color=GREY)
     yy = y + HEAD_H
-    pinw = 30.0
+    pinw = max([30.0] + [S.tl(pin, 6, "hebo") + 7 for pin, _, _ in b.rows])   # a pin is never cut
     for j, (pin, desc, rid) in enumerate(b.rows):
         if j % 2:
             S.rect(x0 + 0.4, yy, x1 - 0.4, yy + ROW_H, color=None, fill=(0.975, 0.98, 0.985))
@@ -820,6 +1021,14 @@ def pinout_rows(H):
 
 TABLE_COLS = [c for c in PIN_COLS if c[0] != "END"]   # one table per end: its name is the table header
 TABLE_W = sum(w for _, w in TABLE_COLS) + 8
+
+
+def size_pin_column(fitz, prow):
+    """The PIN column fits the longest pin of the set, so a pin is never cut on the sheet."""
+    global TABLE_COLS, TABLE_W
+    w = max([34.0] + [math.ceil(fitz.get_text_length(r["PIN"], fontname="hebo", fontsize=5.8)) + 8 for r in prow])
+    TABLE_COLS = [(n, w if n == "PIN" else cw) for n, cw in TABLE_COLS]
+    TABLE_W = sum(cw for _, cw in TABLE_COLS) + 8
 T_HEAD, T_COLS, T_ROW, T_GAP = 20.0, 10.0, 8.4, 12.0
 
 
@@ -1011,6 +1220,7 @@ def build(h):
     S = Sheet(doc, fitz)
     layout_sheet(S, H)
     title_block(S, H, 1, 1, SHEETS[1][2], "-" + SHEETS[1][1])
+    size_pin_column(fitz, prow)
     tables = pinout_tables(H, prow)
     cols, w, hh = pinout_size(tables)
     set_page(w, hh)

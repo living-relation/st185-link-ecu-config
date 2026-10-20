@@ -12,8 +12,9 @@ name: Repo checks
 # unrelated changes.
 #
 # Python 3.14 matches the local dev machine (dansPC) and research-hub.yml.
-# Everything is standard-library only except tune/scripts/validate_tune.py, which needs
-# PyYAML - installed pinned (same version as on dansPC) right before that step.
+# Everything is standard-library only except the BOM workbook (openpyxl), the drawing read-back in
+# build_drawings.py --check (PyMuPDF) and tune/scripts/validate_tune.py (PyYAML) - each installed
+# pinned (same version as on dansPC) right before its step.
 on:
   push:
     branches: [main]
@@ -79,9 +80,9 @@ jobs:
         run: python docs/build-research-hub.py --strict
       - name: Docs gate self-tests (Rows line + --strict)
         run: python .github/scripts/test_docs_gates.py
-      - name: Install openpyxl for the BOM workbook (pinned)
+      - name: Install openpyxl (BOM workbook) and PyMuPDF (drawing read-back, R224 step 4), pinned
         if: steps.scope.outputs.run == 'true'
-        run: python -m pip install --disable-pip-version-check openpyxl==3.1.5
+        run: python -m pip install --disable-pip-version-check openpyxl==3.1.5 pymupdf==1.28.0
       - name: Repo gates (tools/check_all.py)
         if: steps.scope.outputs.run == 'true'
         run: python tools/check_all.py
