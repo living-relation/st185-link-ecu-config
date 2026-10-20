@@ -1,10 +1,11 @@
 # Bloat-cut plan and handoff (R224 steps 4-6 + memory cleanup)
 
-**Status (2026-10-20, updated as steps land):** plan approved by Dan. Step 0 merged (#376). Step 1: draft PR #377
-(B1-B30 + retire map; B-prefix confirmed by Dan, the page waits for his review; the deletion commit follows his OK).
-Step 2 (read-back check, row 154): merged (#378). Step 3 (`rebuild/` deleted, row 153): merged (#379).
-Step 4 (dead scripts, row 152): the `dan_/bloat-4-scripts` PR. Step 5: done (memory pruned; the PC skill copies recycled after a
-diff against the claude.ai copies; AGENTS.md "Skills" points to the account). Left: Dan's review of #377, then its deletion commit.
+**Status (2026-10-20, updated as steps land):** plan approved by Dan. Step 0 merged (#376). Step 1: B1-B30 + retire map
+approved by Dan and merged (#377); the old rule rows deleted and every pointer moved to "Binding rules B1-B30" (#384);
+the trim of each rule to 2 lines or less goes in a draft PR on branch `dan_/rules-trim`. Step 2 (read-back check, row 154): merged (#378).
+Step 3 (`rebuild/` deleted, row 153): merged (#379). Step 4 (dead scripts, row 152): merged (#380; Dan had 11 RealDash helpers and the fuse-box CAD inputs restored in #383). Step 5: done (memory
+pruned; the PC skill copies recycled after a diff against the claude.ai copies; AGENTS.md "Skills" points to the account).
+Left: Dan's review of the draft PR on branch `dan_/rules-trim` (row 151).
 Delete this file once every step, Dan's step-1 approval included, is done (open work goes into `docs/OPEN-ITEMS.md`).
 
 ## Context
@@ -32,14 +33,14 @@ can read fast, with a one-page rule set, one read-back check, and no dead files.
 - PR `Rows: 151, 152, 153, 154`, merge when green, sync.
 
 ### 1. Rules on one page (row 151, R226), draft PR, Dan approves
-- Read `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel" (216 R-lines) and the S-rows.
+- Read the old rule section of `docs/harness/redesign/DECISIONS.md` (216 R-lines) and the S-rows (done; now deleted, git history keeps them).
 - Draft at most 30 short plain rules, grouped: scope/freeze, power+grounds, relays, CAN,
   ECU pins, wire+parts, drawings, shipping. Newest ruling wins. No A/C line.
 - Write them as the new "Binding rules" section at the top of `DECISIONS.md`, plus a retire list
   (every old R-number -> the new rule number it merged into, or "dropped").
 - The PR does not delete the old rules. It **waits for Dan's review** (not auto-merged).
-- After Dan approves: second commit deletes the old R-lines and S-rows, and repoints
-  `AGENTS.md` (cut to about 80 lines), `.claude/rules/*`, `.cursor/rules/*`,
+- After Dan approves (done 2026-10-20, #384): delete the old R-lines and S-rows, and repoint
+  `AGENTS.md` (its cut to about 80 lines is still open), `.claude/rules/*`, `.cursor/rules/*`,
   `docs/RECONCILIATION-RULES.md`, `docs/SHIELD-RULES.md`, `docs/dispatch/DISPATCH-RULES.md`.
   Then merge and sync.
 

@@ -3,7 +3,7 @@
 Agent-agnostic. Claude Code, Cursor, Codex, or any other tool: these apply. The
 per-agent rule files (`.cursor/rules/`, `.claude/rules/`, `AGENTS.md`) point here for the
 **procedure**. The rule statements themselves (what Daniel decided, dated) are
-owned by `docs/harness/redesign/DECISIONS.md` "Binding rules from Daniel"; this file says
+owned by `docs/harness/redesign/DECISIONS.md` "Binding rules B1-B30"; this file says
 how to apply them and which surfaces must agree. Where the two disagree, `DECISIONS.md` wins.
 
 Three rules. Rules 1 and 2 exist because this project has repeatedly drifted: a change
@@ -59,7 +59,7 @@ violations waiting for the wiring fix are listed in its `PENDING`.
 | `docs/harness/routes/` | Dan's approved routes; a drawing's path follows its route |
 | `cad/fusebox/` | The fuse-box design (slot map `rev7/wiring_plan.json`, R204) |
 | `docs/sourcing/PROJECT-BOM.csv` | Generated - re-run `build_project_bom.py` |
-| `docs/harness/redesign/DECISIONS.md` | The binding rules |
+| `docs/harness/redesign/DECISIONS.md` | The binding rules (B1-B30) |
 | `docs/SHIELD-RULES.md` | Shield rules, enforced by `check_wiring.py` S1-S3 |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned - check before speccing anything new |
 
@@ -67,7 +67,7 @@ Generated files are never hand-edited - re-run their script.
 
 ### No factory engine-bay wire is reused
 
-Rule **R11** in `DECISIONS.md`. Applied here: an OEM end on an engine-bay harness (`EngineRoom-C`, `AB-engine`,
+Rule **B9** in `DECISIONS.md` (old R11). Applied here: an OEM end on an engine-bay harness (`EngineRoom-C`, `AB-engine`,
 `HeavyDC`) is a new-wire run to the device's own plug, never a splice into a factory lead.
 
 ---

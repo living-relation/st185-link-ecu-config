@@ -5,7 +5,7 @@
   `docs/RECONCILIATION-RULES.md` Rule 2.
 - **Who reads which frame** (CSB3 0x640-0x642 -> ECU only; cluster 0x3E8-0x3EB, 0x3EE;
   RealDash 0x3EB gear byte + 0x3EF-0x3F1; cluster sends 0x3EC/0x3ED):
-  `docs/harness/redesign/DECISIONS.md` R51.
+  `docs/harness/redesign/DECISIONS.md` B16.
 - **Contract details** (IDs, encode/decode scale forms, BigEndian, `WARN_*` bits, which files
   must agree) and the parity gate `python bench/check_parity.py`: `AGENTS.md` "Working Rules".
 - Cluster decode truth: `C:\projects\active\center-cluster-esp32-p4\main\canbus.c`.
