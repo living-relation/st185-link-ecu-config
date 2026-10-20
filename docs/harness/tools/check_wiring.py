@@ -78,6 +78,7 @@ DRB_RANGE = {16: (16, 20), 12: (12, 14)}
 # fuse-box ends: master ID -> the id the fuse-box design uses
 FB_IDS = {"LOGIC": "fb_logic", "POWER": "fb_power", "BATT-RELAY-BLOCK": "fb_batt", "POWER-STUDS": "pdb"}
 FB_PIN = {"BAT": "BAT+", "ALT": "ALT/STR", "NEG": "GND", "BATT": "BATT +", "FP": "FP 40A"}
+PLAN_GAUGE = {"53.5": "1/0"}     # the fuse-box design writes 1/0 battery cable as 53.5 (mm2, unit Metric)
 ELECTRONICS = re.compile(r"\bLED\b|CAN[- ]?LAMBDA|cluster|RealDash|\bPi\b|CSB3|opto|alarm|valet|shock|status|buck converter|cruise", re.I)
 CHASSIS = re.compile(r"^GND-|^T-AT-GND|^T-RL-GND|^ENG-GND|^T-ENG-BLOCK|^T-TRUNK-NEG|chassis", re.I)
 QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
@@ -376,9 +377,9 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                 ws = plan_end.get((old, pin))
                 if not ws and old in ("fb_logic", "fb_power", "fb_batt", "pdb"):
                     fail("P1", "%s: fuse-box design has no wire at %s %s (R204)" % (r["wire_id"], eid, r[s + "_pin"]))
-                elif ws and r["gauge_awg"] and r["gauge_awg"] not in {str(w.get("gauge")) for w in ws}:
+                elif ws and r["gauge_awg"] and r["gauge_awg"] not in {PLAN_GAUGE.get(str(w.get("gauge")), str(w.get("gauge"))) for w in ws}:
                     fail("P1", "%s: %s %s is %s AWG in the fuse-box design, %s AWG in the master (R204)" % (
-                        r["wire_id"], eid, r[s + "_pin"], "/".join(sorted({str(w.get("gauge")) for w in ws})), r["gauge_awg"]))
+                        r["wire_id"], eid, r[s + "_pin"], "/".join(sorted({PLAN_GAUGE.get(str(w.get("gauge")), str(w.get("gauge"))) for w in ws})), r["gauge_awg"]))
     # ---- B1 ident bands
     code_of = collections.defaultdict(set)
     per_h = collections.defaultdict(lambda: collections.defaultdict(set))
