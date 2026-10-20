@@ -2,7 +2,8 @@
 
 **The ONE wiring source of truth is `MASTER-wirelist.csv`** (DECISIONS R221): one row per wire, FROM end to TO end, for
 every harness. `sot/channels.csv` keeps only the ECU channel settings and is checked against it. Every rule Daniel has set
-is in `redesign/DECISIONS.md` "Binding rules B1-B30"; this page restates none of them.
+is in `redesign/DECISIONS.md` "Binding rules B1-B30"; this page restates none of them (it holds the factory-wiring detail
+that B9 points to).
 
 | Path | What it is | Edit it? |
 |---|---|---|
@@ -34,6 +35,14 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
 
 ## Factory wiring facts (OEM ends)
 
+- What stays and what goes (DECISIONS B9): kept are the cabin J/B No.1 and No.3 and the under-dash wiring; what a kept J/B
+  already feeds stays fed from it (its fuse, relay and pin). Gone and never a circuit source: every OEM relay block and
+  engine-bay box (J/B No.2, R/B No.2-5, F11), the OEM ECU, the EFI / circuit-opening / fuel pump relays and resistors, ABS,
+  SRS, the cruise ECU, the combination meter, the OEM fan relays, the rear wiper and washer. Front wipers and washer stay;
+  no side marker lights; every OEM cruise stalk function is kept. Kept OEM ground points (where a high-current load may
+  ground, B10): EA (M8 studs), EB, EC, ID, IE / IF, IG. The rear lighting is a new harness: rear lamp ends are flying
+  leads soldered to the factory bulb-socket pigtails; the turn flasher is a load-independent LED flasher in the stock
+  socket. No center-cluster harness is drawn here.
 - Pin authority for OEM ends: the 1993 ST185 EWD (Dan 2026-10-20, DECISIONS R16): the 1993 TIS EWD pages in the
   `st185-celica-repair-manual` repo. The 1990 ST185 All-Trac book and the 1992 Celica EWD132U are reading aids only; an
   end still sourced from them is re-checked against 1993 (`docs/OPEN-ITEMS.md` row 156). The public PDF labelled EWD160U
