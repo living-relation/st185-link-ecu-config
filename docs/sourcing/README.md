@@ -126,3 +126,6 @@ One line per pick; OWN = on the on-hand list, BUY = not. Prices are estimates wi
 
 Notes: The binder M9 `99 0414 00 05` used before took AWG 24 at most; the LP-16 cups take the
 20 AWG cores (OPEN-ITEMS row 76 closed 2026-10-12).
+
+## Digi-Key pricing (API)
+`docs/sourcing/digikey_price.py` looks up every BOM line that has a real part number and no real price through the Digi-Key Product Information v4 API (2-legged OAuth). Keys are read from `~/.secrets/digikey.env` and never printed or stored in the repo. Results land in the untracked `_research/digikey-results.json`; `docs/sourcing/merge_digikey.py` writes the exact-match unit price (at the BOM quantity, cheapest package), product URL and stock into `bom-links.csv`; then run `build_project_bom.py`. Parts Digi-Key does not carry (RS, Klauke, PEM, Tefzel wire, Aptiv, Toyota, Bosch, CNLINKO, battery cable) are left as they were. Digi-Key does not publish a free-sample flag, so the "Free sample" column stays TE-only plus `sample_other` entries in `bom-links.csv`.
