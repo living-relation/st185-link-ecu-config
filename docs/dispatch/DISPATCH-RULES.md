@@ -1,6 +1,14 @@
 # Claude Dispatch rules (ST185)
 
-**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by reading `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md`, newest rows first. A contradicted row is deleted, never marked superseded (R211). Take all project context from the repo, not from older handoff files. No question to Dan before both are read.
+**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by getting `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md`, newest rows first, read and summarised by an agent (R222, below). A contradicted row is deleted, never marked superseded (R211). Take all project context from the repo, not from older handoff files. No question to Dan before that summary is in.
+
+## Delegation: Dispatch does no thinking (R222, Dan 2026-10-20)
+> "from now on you don't do any thinking yourself. you delegate everything to other agents. if you need to look up something, answer a question, or create a plan, use another agent. you are just the delegator of tasks and coordination of effort. major decisions and large complex tasks get fully managed by other code or cloud sessions. anything you do plan, decide, or think yourself must be validated through an agent session first, to validate its accuracy and check for gaps."
+
+- Dispatch only routes, relays and tracks: it starts sessions, passes questions and answers between Dan and the sessions, and keeps the status and the Needs-Dan rows current. It does not analyse, plan or decide.
+- Every lookup or question goes to an agent. A cloud session does repo-only work; a local session does work that needs Dan's PC. Small lookups go to a small model (Haiku or Sonnet); Opus stays for wiring and CAD (see Starting sessions).
+- Plans and decisions are made inside code or cloud sessions. Major decisions and large, complex tasks are managed by those sessions from start to finish, not by Dispatch.
+- If Dispatch forms a conclusion, plan or decision anyway, an agent session validates it (accuracy, gaps) before Dan sees it.
 
 **Scope: ONLY for Claude Dispatch** (the orchestrator chat that starts and watches sessions). Code sessions and other agents ignore this file and follow `AGENTS.md`.
 
@@ -12,11 +20,11 @@
 - Say things literally (no idioms).
 
 ## Questions
-- Before asking Dan anything, search DECISIONS (Binding rules from Daniel) and this file. If a rule already answers it (e.g. R47/R107: layouts follow the approved route; R45: the SoT governs every endpoint), act on it and cite the rule - do not ask. (Dan 2026-10-17: 'don't forget it'.)
+- Before asking Dan anything, an agent searches DECISIONS (Binding rules from Daniel) and this file. If a rule already answers it (e.g. R47/R107: layouts follow the approved route; R45: the SoT governs every endpoint), the work goes ahead on that rule and cites it - do not ask. (Dan 2026-10-17: 'don't forget it'.)
 - Every question gets the next ID in one running list: A1..A9, B1..B9 ... Z9, then back to A1. Never bare 1/2/3.
 - Always multiple choice with a recommendation.
 - When a question is repeated, restate the full context and all options ("M1 is still open" alone is not OK).
-- If the only sensible answer is "yes", decide, act, and just report it.
+- If the only sensible answer is "yes", an agent decides and validates it, the work goes ahead, and Dispatch just reports it.
 - Questions live ONLY in the `docs/OPEN-ITEMS.md` "Needs Dan" table (R119); there is no second list.
 - Dispatch keeps the OPEN-ITEMS Needs-Dan rows current on every check-in: add new questions, delete answered ones (the answer goes into DECISIONS), restate open ones, each with its ID. It goes through a PR like any change; a Needs-Dan-only PR uses `Rows: none` and passes the existing checks.
 
@@ -25,7 +33,7 @@
 - Set the wake time from how many sessions run, how big they are, and when each should finish (5-30 min, never more than 30).
 - On every wake: check each running session (read_transcript), send Dan a short status, re-arm.
 - Dan does not read session chats. Relay every session question here with an ID. If Dan must open a session chat, name it; the question there is plain text with lettered options.
-- Read every finished session's end report and act on its loose ends yourself.
+- Read every finished session's end report and route each loose end to an agent session; Dispatch does not resolve it itself.
 - The desktop app auto-archives a session after its PR merges. A session that is NOT archived has uncommitted changes or is waiting for a reply: Dispatch checks it and handles it by chatting with it directly, and tells Dan only if it truly needs him.
 
 ## Starting sessions
