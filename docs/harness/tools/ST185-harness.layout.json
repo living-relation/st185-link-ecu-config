@@ -1417,6 +1417,7 @@
   "SP-HEAD-COIL": "GB",
   "SP-HTR87": "GB",
   "SP-ACPS": "GB",
+  "SP-AC-SGND": "RFG",
   "SP-AT-12V": "ALARM",
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",

@@ -12,13 +12,15 @@ Each rule gets trimmed to 2 lines or less in a later PR (Dan 2026-10-20); the su
 At most 30 rules: adding one means merging or removing one (R226). Newest ruling won wherever two old rows disagreed.
 A/C is left off this page on purpose (Dan: "ignore this"). **A/C, decided 2026-10-20 (Dan; closes Needs Dan N61):** the
 compressor A/C amplifier A15 is removed and the Link G4X is the A/C controller. It drives the clutch relay `k_acc`
-(B10 / Ign 8) and the condenser fan relay `k_fan2` (B13 / Ign 5). The A/C request (dash A/C switch V-G) goes opto board
+(B10 / Ign 8) and the condenser fan relay `k_fan2` (A18 / Aux 4, fly-wheeled; moved from Ign 5). The A/C request (dash A/C switch V-G) goes opto board
 IN3 -> CSB3 S2 -> 0x642 -> VDI2, and the evaporator thermistor A24 (pins 1-2) goes to CSB3 A1 with a 3.9 kOhm pull-up
-to the CSB3 +5V -> 0x640; neither touches an ECU plug, and ECU A18, B31, B32 are spare. The 2-pin dual pressure switch
+to the CSB3 +5V -> 0x640; neither touches an ECU plug, and ECU B13, B31, B32 are spare. The 2-pin dual pressure switch
 A5 stays in series with the `k_acc` coil feed from the POWER box ACPS 10 A, which also feeds the A/C switch; the switch
-lamp sinks on the `k_acc` 85 / B10 net; the ambient sensor A1 gets new EngineRoom-C wires to its cowl leads. The auto A/C
+lamp sinks on the `k_acc` 85 / B10 net; the ambient sensor A1 gets new EngineRoom-C wires, and the engine-bay splice E10 of the auto amp's sensor common is rebuilt in the cabin as SP-AC-SGND. The auto A/C
 amplifier (A31 / A32) and A23 keep the blower, air mix, mode and their sensors on factory wiring. The wires live in the
-master, the CSB3 bits in the CAN files; the Link A/C logic is set at tune time.
+master, the CSB3 bits in the CAN files; the Link A/C logic is set at tune time. Dan answered "no preference" on the
+follow-ups, so the recommended defaults are applied for his confirmation: N63 = A (SP-AC-SGND), N64 = A (the lamp also
+lights with the blower off; no part), OPEN-ITEMS row 162 = C (`k_fan2` on Aux 4).
 
 ### Scope and freeze
 
