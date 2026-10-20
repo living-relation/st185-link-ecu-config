@@ -7,7 +7,7 @@ is in `redesign/DECISIONS.md` "Binding rules from Daniel"; this page restates no
 | Path | What it is | Edit it? |
 |---|---|---|
 | `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
-| `drawings/` | generated: each drawing set's PDF (`<set>-drawings.pdf`) and the DRB102 insert-face map | No - re-run the generator |
+| `drawings/` | generated: each drawing set's PDF (`<set>-drawings.pdf`: three big sheets - schematic, layout, pinout tables - each sized to its content with its own title block and rev log) and the DRB102 insert-face map | No - re-run the generator |
 | `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
