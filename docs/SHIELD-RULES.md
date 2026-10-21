@@ -31,7 +31,7 @@ screen (the VRC LP-16 plugs included); the master has no shell pins, so a screen
 Every shielded cable is drawn as if it had a drain wire, straight to its pin; no sleeve, no
 splice just to end one screen. Two or more screens on one pin share ONE `GENERIC SOLDER
 SPLICE` (no covering), placed on the pin's connector through its `locationId`
-(https://docs.harness.design/component/splice), with one `M22759/16-20-06` drain wire to the
+(https://docs.harness.design/component/splice), with one drain wire (no wire part number, R32) to the
 pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into
 its own named branch splice on the trunk drain (`SP-CAN-SH-*`, R207; the one exception to "one splice").
 
@@ -49,7 +49,7 @@ Both sensor screens of a VRC share its input plug pin 3 (Dan's design); `check_w
 ## Vocabulary (Daniel)
 
 **Screen means shield.** A **drain** is the wire that connects the shield to the pin
-(`M22759/16-20-06`, R32). Shields exist only on cables; a device or sensor gets one shield
+(no wire part number, R32). Shields exist only on cables; a device or sensor gets one shield
 flag (never per pin or per wire), in `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
 
 ## The absolute rules (R27, R28, R33)
