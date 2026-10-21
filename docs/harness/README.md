@@ -58,7 +58,8 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     to the VRC enclosure by the ECU; the fuel pump circuit; one dash feed for the cluster, LEDs and RealDash Pi; CAN;
     the alarm add-on; power taps. A spare relay circuit (was fog) runs to the old fog-lamp spots, ends insulated.
     Engine-bay jump studs at the old battery spot are optional (owning harness open).
-  - **Connectors:** only at each device; no inline breakpoints on a run unless one helps install or maintenance (fewer
+  - **Connectors:** the new wire mates only with each device's own connector (Dan has the mating plugs); no new inline
+    connector anywhere on a run, and none added at the device, unless one later helps install or maintenance (fewer
     connectors, fewer failure points; Dan 2026-10-21).
   - Kept OEM ground points (where a high-current load may ground, B10): EA (M8 studs), EB, EC, ID, IE / IF, IG.
 - Pin authority for OEM ends: the 1993 ST185 EWD (Dan 2026-10-20, DECISIONS R16): the 1993 TIS EWD pages in the
