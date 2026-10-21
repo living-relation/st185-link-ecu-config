@@ -53,7 +53,7 @@ PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
          'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']
 HB = None
-# Oldest handbuilt-cad commit whose checker gives st185's results (handbuilt-cad #18, proved byte-identical in st185 #390).
+# The pinned handbuilt-cad commit: its checker gives st185's results (handbuilt-cad #18, proved byte-identical in st185 #390).
 # hb() needs handbuilt-cad checked out at exactly HB_COMMIT (override with HANDBUILT_CAD_COMMIT=<sha>). A newer checkout is
 # opt-in only: HANDBUILT_CAD_ALLOW_NEWER=1 accepts any descendant of HB_COMMIT and prints the commit it used.
 HB_COMMIT = '0c426f019a6b80172c766b9300c194fbec4154a3'
