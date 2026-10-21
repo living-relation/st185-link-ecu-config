@@ -29,7 +29,7 @@ keeps st185's settings and outputs. Run in WSL with the handbuilt-cad venv (trim
 without re-running W / A.
 Claude Code, 2026-10-15.
 """
-import argparse, importlib.util, json, os, sys, time
+import argparse, importlib.util, json, os, subprocess, sys, time
 import trimesh
 
 # Detection (W sections, A voxels, every R127 fix) lives in handbuilt-cad's generic checker, tools/checks/check_printed_walls.py
@@ -53,6 +53,10 @@ PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
          'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']
 HB = None
+# The pinned handbuilt-cad commit: its checker gives st185's results (handbuilt-cad #18, proved byte-identical in st185 #390).
+# hb() needs handbuilt-cad checked out at exactly HB_COMMIT (override with HANDBUILT_CAD_COMMIT=<sha>). A newer checkout is
+# opt-in only: HANDBUILT_CAD_ALLOW_NEWER=1 accepts any descendant of HB_COMMIT and prints the commit it used.
+HB_COMMIT = '0c426f019a6b80172c766b9300c194fbec4154a3'
 
 
 def hb():
@@ -63,14 +67,54 @@ def hb():
         path = os.path.join(root, 'tools', 'checks', 'check_printed_walls.py')
         if not os.path.isfile(path):
             raise SystemExit('handbuilt-cad wall checker not found at %s - set HANDBUILT_CAD to a handbuilt-cad checkout' % path)
-        mine = sys.modules.pop('wall_classes', None)  # handbuilt-cad imports its own wall_classes; keep st185's apart
-        sp = importlib.util.spec_from_file_location('hb_check_printed_walls', path)
-        HB = importlib.util.module_from_spec(sp)
-        sp.loader.exec_module(HB)
+        head = _hb_check_commit(root)
+        # handbuilt-cad imports its own wall_classes (and puts its folder first on sys.path); keep st185's apart and put both
+        # sys.modules and sys.path back exactly as they were, even if loading fails.
+        mine, had_mine = sys.modules.get('wall_classes'), 'wall_classes' in sys.modules
+        saved_path = list(sys.path)
         sys.modules.pop('wall_classes', None)
-        if mine is not None:
-            sys.modules['wall_classes'] = mine
+        try:
+            sp = importlib.util.spec_from_file_location('hb_check_printed_walls', path)
+            mod = importlib.util.module_from_spec(sp)
+            sp.loader.exec_module(mod)
+        finally:
+            sys.modules.pop('wall_classes', None)
+            if had_mine:
+                sys.modules['wall_classes'] = mine
+            sys.path[:] = saved_path
+        HB = mod
+        print('handbuilt-cad wall checker: %s @ %s' % (path, head or 'unknown commit'))
     return HB
+
+
+def _hb_check_commit(root):
+    """handbuilt-cad's HEAD commit, after checking it is exactly the pin (HB_COMMIT or $HANDBUILT_CAD_COMMIT), or, only with
+    HANDBUILT_CAD_ALLOW_NEWER=1, a descendant of the pin."""
+    def git(*a):
+        r = subprocess.run(['git', '-C', root] + list(a), capture_output=True, text=True)
+        return r.returncode, r.stdout.strip()
+    try:
+        rc, head = git('rev-parse', 'HEAD')
+    except OSError:
+        raise SystemExit('git not found: cannot check the handbuilt-cad commit at %s' % root)
+    if rc:
+        raise SystemExit('%s is not a git checkout of handbuilt-cad (needed to check its commit)' % root)
+    pin = os.environ.get('HANDBUILT_CAD_COMMIT') or HB_COMMIT
+    if head.startswith(pin):
+        return head
+    if os.environ.get('HANDBUILT_CAD_ALLOW_NEWER') != '1':
+        raise SystemExit('handbuilt-cad at %s is %s, not the pinned %s. Check out the pin (git -C %s checkout %s) or set '
+                         'HANDBUILT_CAD_ALLOW_NEWER=1 to accept a newer commit' % (root, head[:12], pin[:12], root, pin[:12]))
+    rc, _ = git('merge-base', '--is-ancestor', pin, 'HEAD')
+    if rc == 1:
+        raise SystemExit('handbuilt-cad at %s (%s) does not contain the pinned %s; pull it (git pull --ff-only)' % (root, head[:12], pin[:12]))
+    if rc:
+        shallow = git('rev-parse', '--is-shallow-repository')[1] == 'true'
+        raise SystemExit('cannot check handbuilt-cad at %s against the pinned %s (git exit %d)%s' % (
+            root, pin[:12], rc, ': it is a shallow clone without that commit; run git -C %s fetch --unshallow' % root if shallow
+            else ': the pinned commit is not in this clone; run git -C %s fetch' % root))
+    print('handbuilt-cad: HANDBUILT_CAD_ALLOW_NEWER=1, using %s (newer than the pinned %s)' % (head[:12], pin[:12]))
+    return head
 
 
 def section(m, axis, c):
