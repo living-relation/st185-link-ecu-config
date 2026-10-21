@@ -47,7 +47,9 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     igniter; every SRS crash sensor and SRS computer; the ABS computer and the ABS actuator (solenoid module). The
     joints where the Engine Wire met a kept harness (EB1, EB2, ES2, ET1, IG1 / IG2, IH1) go dead: no OEM wire crosses
     into the engine bay (B9). Each live wire that crossed from a removed part into a kept harness gets one row in the
-    master: cut and cap, or re-feed from the cabin side (B5).
+    master: re-feed from the cabin side, or remove. A dead OEM wire comes out of its harness back to its last live point
+    (splice, plug or box); nothing is left cut and capped (Dan 2026-10-21; goes into B5 at the rules walk-through).
+    New engine-bay wires follow the 9 named lines of `routes/ROUTE-16-ENGINE-MAIN.html` (Dan 2026-10-21).
   - **New wire:** the engine harness (Link to every engine sensor and actuator), the fuel pump circuit, one dash feed
     for the cluster, LEDs and RealDash Pi (bypassing the dash wiring), CAN, the alarm add-on, and power taps.
   - Kept OEM ground points (where a high-current load may ground, B10): EA (M8 studs), EB, EC, ID, IE / IF, IG.
