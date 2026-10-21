@@ -36,26 +36,35 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
 ## Factory wiring facts (OEM ends)
 
 - What stays and what goes (DECISIONS B1 / B9, surgical rewire, Dan 2026-10-20):
-  - **Kept OEM:** cowl, instrument panel, floor, door, seat, console and luggage room wires; cabin J/B No.1 and No.3
-    (what a kept J/B feeds stays fed from it: fuse, relay, pin); the kick-panel R/B No.2, No.3 and No.4 (R/B4 lost its
-    feed through EB1, so it gets a short new cabin wire from a glove-box POWER fuse); the Engine Room Main Wire outer
-    loop (headlights, turn and clearance lamps, horns, fans, washer); the rear lights; both A/C amps (A15 and the auto
-    A/C amp A31 / A32, A23); the four wheel speed sensors (they feed the Link). Every branch of a kept harness that runs
-    into the engine area is cut and its job moves into the new engine harness.
-  - **Removed (never a circuit source):** the Engine Wire; the engine-bay J/B No.2 and R/B No.5 (the 1993 EWD puts the
-    A/C clutch relay in R/B No.5: check at the car that it is the small A/C clutch relay box); the OEM engine ECU and
-    igniter; every SRS crash sensor and SRS computer; the ABS computer and the ABS actuator (solenoid module). The
-    joints where the Engine Wire met a kept harness (EB1, EB2, ES2, ET1, IG1 / IG2, IH1) go dead: no OEM wire crosses
-    into the engine bay (B9). Each live wire that crossed from a removed part into a kept harness gets one row in the
-    master: re-feed from the cabin side, or remove. A dead OEM wire comes out of its harness back to its last live point
-    (splice, plug or box); nothing is left cut and capped (Dan 2026-10-21; goes into B5 at the rules walk-through).
-    New engine-bay wires follow the 9 named lines of `routes/ROUTE-16-ENGINE-MAIN.html` (Dan 2026-10-21).
-  - **New wire:** the engine harness (Link to every engine sensor and actuator), the fuel pump circuit, one dash feed
-    for the cluster, LEDs and RealDash Pi (bypassing the dash wiring), CAN, the alarm add-on, and power taps.
+  - **Kept OEM:** every cabin wire (cowl, instrument panel, floor, door, seat, console and luggage room wires); cabin
+    J/B No.1 and No.3 (what a kept J/B feeds stays fed from it: fuse, relay, pin); the rear lights; both A/C amps (A15
+    and the auto A/C amp A31 / A32, A23); the four wheel speed sensors (they feed the Link). Forward of the firewall
+    only 6 in OEM pigtails stay, spliced to new wire at the headlights, turn / hazard and clearance / corner lamps,
+    pop-up motors, ambient air temp sensor and wiper motor (B9).
+  - **Removed (never a circuit source):** the Engine Wire; the Engine Room Main Wire (outer loop) and every Cowl Wire
+    leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3: J/B No.2,
+    R/B No.2, No.3, No.4 and No.5, the ABS relay box (Dan 2026-10-21; their jobs are in the glove-box POWER / LOGIC
+    boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer; the ABS computer and actuator; the
+    brake fluid level switch; the fog lights (the car has none). Each live wire that crossed from a removed part into a
+    kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire comes out of its
+    harness back to its last live point (splice, plug or box); nothing is left cut and capped (Dan 2026-10-21; goes into
+    B5 at the rules walk-through). The R/B No.4 socket keeps two live leads as pigtails: the key START wire (Link start
+    request) and the clutch switch wire (CSB3).
+  - **New wire** (routes: `routes/ROUTE-16-ENGINE-MAIN.html` lines 1-9, `routes/ROUTE-17-FRONT.html` lines 10-13): the
+    engine harness (Link to every engine sensor and actuator; through bulkhead A); power from the trunk battery up the
+    passenger side to the glove-box boxes, then out through the RH fender grommet for engine-bay loads; the front run
+    (inside the RH fender, then along the underside of the radiator support) to every front device; the driver fender
+    run (driver kick pass-through) to the wiper motor and the alarm siren; one mini harness per front wheel speed sensor
+    to the VRC enclosure by the ECU; the fuel pump circuit; one dash feed for the cluster, LEDs and RealDash Pi; CAN;
+    the alarm add-on; power taps. A spare relay circuit (was fog) runs to the old fog-lamp spots, ends insulated.
+    Engine-bay jump studs at the old battery spot are optional (owning harness open).
+  - **Connectors:** the new wire mates only with each device's own connector (Dan has the mating plugs); no new inline
+    connector anywhere on a run, and none added at the device, unless one later helps install or maintenance (fewer
+    connectors, fewer failure points; Dan 2026-10-21).
   - Kept OEM ground points (where a high-current load may ground, B10): EA (M8 studs), EB, EC, ID, IE / IF, IG.
 - Pin authority for OEM ends: the 1993 ST185 EWD (Dan 2026-10-20, DECISIONS R16): the 1993 TIS EWD pages in the
   `st185-celica-repair-manual` repo. The 1990 ST185 All-Trac book and the 1992 Celica EWD132U are reading aids only; an
   end still sourced from them is re-checked against 1993 (`docs/OPEN-ITEMS.md` row 156). The public PDF labelled EWD160U
   is the FWD AT180 / ST184 book: never use its pin numbers. Factory snips: `docs/electrical/ewd-snips/`.
-- Before first power-up, with the battery isolated: ohmmeter from each cabin landing (J/B1, IE1, the R/B2 / R/B4
-  feeds, blower, ignition switch) to its named load.
+- Before first power-up, with the battery isolated: ohmmeter from each cabin landing (J/B1, IE1, the old R/B2 / R/B4
+  leads, blower, ignition switch) to its named load.
