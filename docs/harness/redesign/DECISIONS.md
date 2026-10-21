@@ -34,8 +34,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20); how the Link feeds the compres
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3).
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
-- **B9 Boundary.** Kept: OEM cabin and body wires, J/B No.1 / No.3, the Engine Room Main Wire outer loop (its branches
-  into the engine area are cut). Removed parts: `docs/harness/README.md`. Factory pins and colours: 1993 EWD.
+- **B9 Boundary.** No OEM wire crosses into the engine bay; every engine-bay circuit is new wire on one main route. Only
+  the Engine Room Main outer loop stays. Kept: cabin wires, J/B No.1/3, R/B No.2-4; list: README; pins: 1993 EWD.
 
 ### Power and grounds
 
