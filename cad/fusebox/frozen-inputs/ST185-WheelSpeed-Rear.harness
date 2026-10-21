@@ -1,0 +1,1026 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
+  "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-WheelSpeed-Rear - rear wheel speed harness: RL / RR ABS sensors to the rear VRC and the IX_WS_REAR inline",
+    "drawingNumber": "ST185-WheelSpeed-Rear"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Codes: WSS_RL White; WSS_RR Blue-Blue; VRC_R_DRAIN Yellow-Yellow; VRC_R_5V Blue-Yellow; VRC_R_GND Blue-White. Labels: printed TMS-SCE marker on each bundle end: RL WSS / RR WSS at the sensor plugs, IX WS REAR at the inline (the VRC plugs keep their VRC-IN / VRC-OUT markers).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
+  "wires": [
+    {
+      "id": "w_ws_r_shield",
+      "source": {
+        "id": "sp_ws_r_shield",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "lp16_vrc_r_in",
+        "handle": "c3"
+      },
+      "color": "Black",
+      "identColors": [
+        "Yellow",
+        "Yellow"
+      ],
+      "stripeColor": "Blue",
+      "partId": "m16_20_06"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "wss_rl",
+      "label": "WSS RL",
+      "width": 210,
+      "partId": "cp_dt2s_ce05",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "RL wheel speed +",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "RL wheel speed -",
+          "propagate": false
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1170,
+        "y": -450
+      }
+    },
+    {
+      "id": "wss_rr",
+      "label": "WSS RR",
+      "width": 210,
+      "partId": "cp_dt2s_ce05",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "RR wheel speed +",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "RR wheel speed -",
+          "propagate": false
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 270
+      },
+      "layoutPosition": {
+        "x": 450,
+        "y": 450
+      }
+    },
+    {
+      "id": "ix_ws_rear_r",
+      "label": "IX-WS-R",
+      "width": 270,
+      "partId": "cp_dt04_6p",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VRC-R +5V",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "VRC-R GND",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Rear left wheel spd",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Rear right wheel spd",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "WS-R screen drain",
+          "propagate": false
+        },
+        {
+          "id": "c6",
+          "designation": "6",
+          "cavityPlugPartId": "pl_sz16",
+          "notConnected": true
+        }
+      ],
+      "schematicPosition": {
+        "x": 1290,
+        "y": 510
+      },
+      "layoutPosition": {
+        "x": 810,
+        "y": 120
+      }
+    },
+    {
+      "id": "lp16_vrc_r_in",
+      "label": "VRC-R IN",
+      "width": 390,
+      "partId": "cp_lp16_5f",
+      "layoutPosition": {
+        "x": 1170,
+        "y": 0
+      },
+      "schematicPosition": {
+        "x": 1230,
+        "y": 120
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "RL wheel speed +",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "RL wheel speed -",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Rear sensor shields",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "RR wheel speed +",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "RR wheel speed -",
+          "propagate": false
+        }
+      ],
+      "configurationId": "cfg_vrc_in"
+    },
+    {
+      "id": "lp16_vrc_r_out",
+      "label": "VRC-R OUT",
+      "width": 390,
+      "partId": "cp_lp16_5f",
+      "layoutPosition": {
+        "x": 1170,
+        "y": 120
+      },
+      "schematicPosition": {
+        "x": 480,
+        "y": 510
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "VRC-R +5V",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "VRC-R GND",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Rear left wheel spd",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "4",
+          "signal": "Rear right wheel spd",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "5",
+          "signal": "WS-R screen drain",
+          "propagate": false
+        }
+      ],
+      "configurationId": "cfg_vrc_out"
+    }
+  ],
+  "cables": [
+    {
+      "id": "cab_rl",
+      "partId": "cab_55a1821",
+      "schematicPosition": {
+        "x": 750,
+        "y": 30
+      },
+      "cores": [
+        {
+          "id": "cab_rl_p",
+          "color": "Blue",
+          "identColors": [
+            "White"
+          ],
+          "source": {
+            "id": "wss_rl",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "lp16_vrc_r_in",
+            "handle": "c1"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_rl_n",
+          "color": "White",
+          "identColors": [
+            "White"
+          ],
+          "source": {
+            "id": "wss_rl",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "lp16_vrc_r_in",
+            "handle": "c2"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rl_sh",
+        "color": "Shield",
+        "identColors": [
+          "White"
+        ],
+        "source": {
+          "id": "sp_ws_r_shield",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_rr",
+      "partId": "cab_55a1821",
+      "schematicPosition": {
+        "x": 750,
+        "y": 300
+      },
+      "cores": [
+        {
+          "id": "cab_rr_p",
+          "color": "Blue",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
+          "source": {
+            "id": "wss_rr",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "lp16_vrc_r_in",
+            "handle": "c4"
+          },
+          "twistedWithNext": true
+        },
+        {
+          "id": "cab_rr_n",
+          "color": "White",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
+          "source": {
+            "id": "wss_rr",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "lp16_vrc_r_in",
+            "handle": "c5"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rr_sh",
+        "color": "Shield",
+        "identColors": [
+          "Blue",
+          "Blue"
+        ],
+        "source": {
+          "id": "sp_ws_r_shield",
+          "handle": "Splice"
+        }
+      }
+    },
+    {
+      "id": "cab_rout",
+      "partId": "cab_55a1841",
+      "schematicPosition": {
+        "x": 990,
+        "y": 510
+      },
+      "cores": [
+        {
+          "id": "cab_rout_5v",
+          "color": "Red",
+          "identColors": [
+            "Blue",
+            "Yellow"
+          ],
+          "source": {
+            "id": "lp16_vrc_r_out",
+            "handle": "c1"
+          },
+          "target": {
+            "id": "ix_ws_rear_r",
+            "handle": "c1"
+          }
+        },
+        {
+          "id": "cab_rout_gnd",
+          "color": "Yellow",
+          "identColors": [
+            "Blue",
+            "White"
+          ],
+          "source": {
+            "id": "lp16_vrc_r_out",
+            "handle": "c2"
+          },
+          "target": {
+            "id": "ix_ws_rear_r",
+            "handle": "c2"
+          }
+        },
+        {
+          "id": "cab_rout_l",
+          "color": "Green",
+          "identColors": [
+            "White"
+          ],
+          "source": {
+            "id": "lp16_vrc_r_out",
+            "handle": "c3"
+          },
+          "target": {
+            "id": "ix_ws_rear_r",
+            "handle": "c3"
+          }
+        },
+        {
+          "id": "cab_rout_r",
+          "color": "Blue",
+          "identColors": [
+            "Blue",
+            "Blue"
+          ],
+          "source": {
+            "id": "lp16_vrc_r_out",
+            "handle": "c4"
+          },
+          "target": {
+            "id": "ix_ws_rear_r",
+            "handle": "c4"
+          }
+        }
+      ],
+      "shield": {
+        "id": "cab_rout_sh",
+        "color": "Shield",
+        "identColors": [
+          "Yellow",
+          "Yellow"
+        ],
+        "source": {
+          "id": "lp16_vrc_r_out",
+          "handle": "c5"
+        },
+        "target": {
+          "id": "ix_ws_rear_r",
+          "handle": "c5"
+        }
+      }
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_bp_r_out__lp16_vrc_r_out",
+      "sourceId": "lp16_vrc_r_out",
+      "targetId": "ix_ws_rear_r",
+      "length": {
+        "unit": "mm",
+        "value": 2230
+      },
+      "layoutPoints": [
+        {
+          "id": "lp_r_o1",
+          "layoutPosition": {
+            "x": 1170,
+            "y": 180
+          }
+        },
+        {
+          "id": "lp_r_o2",
+          "layoutPosition": {
+            "x": 810,
+            "y": 180
+          }
+        }
+      ],
+      "separateLabels": true,
+      "endLabel": "IX WS REAR",
+      "partIds": [
+        "cov_lbl_vrc_out"
+      ]
+    },
+    {
+      "id": "m-w4pP",
+      "sourceId": "wss_rl",
+      "targetId": "lp16_vrc_r_in",
+      "layoutPoints": [
+        {
+          "id": "lp_r_l1",
+          "layoutPosition": {
+            "x": 1170,
+            "y": -330
+          }
+        }
+      ],
+      "separateLabels": true,
+      "label": "RL WSS",
+      "partIds": [
+        "cov_lbl_vrc_out"
+      ]
+    },
+    {
+      "id": "sBWNAW",
+      "sourceId": "wss_rr",
+      "targetId": "lp16_vrc_r_in",
+      "layoutPoints": [
+        {
+          "id": "lp_r_r1",
+          "layoutPosition": {
+            "x": 450,
+            "y": 330
+          }
+        },
+        {
+          "id": "lp_r_r2",
+          "layoutPosition": {
+            "x": 450,
+            "y": -270
+          }
+        },
+        {
+          "id": "lp_r_r3",
+          "layoutPosition": {
+            "x": 1110,
+            "y": -270
+          }
+        },
+        {
+          "id": "lp_r_r4",
+          "layoutPosition": {
+            "x": 1110,
+            "y": -90
+          }
+        },
+        {
+          "id": "lp_r_r5",
+          "layoutPosition": {
+            "x": 1140,
+            "y": -60
+          }
+        }
+      ],
+      "separateLabels": true,
+      "label": "RR WSS",
+      "partIds": [
+        "cov_lbl_vrc_out"
+      ]
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_ws_r_shield",
+      "schematicPosition": {
+        "x": 780,
+        "y": 210
+      },
+      "layoutPosition": {
+        "x": 1050,
+        "y": -120
+      },
+      "label": "Sensor screen join - RL + RR screens to the VRC IN pin 3 drain"
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_scope",
+      "width": 390,
+      "schematicPosition": {
+        "x": 240,
+        "y": 150
+      },
+      "text": "REAR WHEEL SPEED - two pieces, no drawn link, no bulkhead. IN: RL / RR ABS cables -> IN plug lp16_vrc_r_in. OUT: OUT plug lp16_vrc_r_out -> screened 4-core cable -> 6-way inline IX_WS_REAR (DT04-6P) near the ECU. VRC and its box not drawn (enclosure build)."
+    },
+    {
+      "id": "n_shield",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 420
+      },
+      "text": "SHIELD: one screen node, grounded once at the ECU. Sensor screens float at the sensor, splice by the IN plug, drain to IN pin 3. Output screen: OUT pin 5 -> inline pin 5. No shell or case landings."
+    },
+    {
+      "id": "n_notes_doc",
+      "width": 390,
+      "schematicPosition": {
+        "x": 1260,
+        "y": 0
+      },
+      "text": "Full notes - VRC plug pinouts and parts, drain build method, isolation, powder coat: docs/harness/HARNESS-NOTES.md, ST185-WheelSpeed-Rear."
+    }
+  ],
+  "layoutNotes": [
+    {
+      "id": "ln_vrc_r",
+      "text": "VRC REAR",
+      "color": "Orange",
+      "width": 390,
+      "layoutPosition": {
+        "x": 330,
+        "y": 60
+      }
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_20_06",
+      "partNumber": "M22759/16-20-06",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, BLACK/BLUE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Black",
+      "stripeColor": "Blue",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "cableParts": [
+    {
+      "id": "cab_55a1821",
+      "partNumber": "55A1821-20-6/9-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-3181663001.html",
+      "description": "CABLE, SHIELDED, 2 CONDUCTOR TWISTED PAIR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Blue",
+          "twistedWithNext": true,
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "White",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    },
+    {
+      "id": "cab_55a1841",
+      "partNumber": "55A1841-20-2/4/5/6-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "url": "https://www.te.com/usa-en/product-318074-002.html",
+      "description": "CABLE, SHIELDED, 4 CONDUCTOR, 20 AWG, TINNED COPPER BRAID, WHITE ETFE JACKET, 600 V, -65 TO 150 C",
+      "cores": [
+        {
+          "id": "k1",
+          "color": "Red",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k2",
+          "color": "Yellow",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k3",
+          "color": "Green",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        },
+        {
+          "id": "k4",
+          "color": "Blue",
+          "gauge": {
+            "value": 20,
+            "unit": "AWG"
+          }
+        }
+      ],
+      "shielded": true
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_dt16s_ni",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0462-201-16141",
+      "description": "CONTACT, SOCKET, SOLID, SIZE 16, NICKEL, 16-20 AWG, 13 A",
+      "contactColor": "Silver",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "ct_dt16p",
+      "type": "Crimp",
+      "gender": "Pin",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 20
+      },
+      "partNumber": "0460-202-1631",
+      "description": "CONTACT, PIN, SOLID, SIZE 16, GOLD, 16-20 AWG, 13 A",
+      "contactColor": "Gold",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_vrc_in",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-1/2-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 4.3,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_vrc_out",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_band_blue",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/8-6-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, BLUE, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 25,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_band_yellow",
+      "type": "HeatShrink",
+      "partNumber": "RNF-100-3/8-4-STK",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, RNF-100, YELLOW, 2:1, 9.5 MM EXPANDED ID, 4.8 MM RECOVERED ID, CUT 25 MM",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 25,
+        "unit": "mm"
+      }
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_dt04_6p",
+      "url": "https://www.te.com/usa-en/product-DT04-6P.html",
+      "gender": "Male",
+      "hasShell": false,
+      "partNumber": "DT04-6P",
+      "description": "CONNECTOR, RECEPTACLE, DT, 6 POS, PIN CONTACTS, N SEAL, GRAY",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w6p"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16p"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 6
+    },
+    {
+      "id": "cp_lp16_5f",
+      "url": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
+      "color": "Black",
+      "gender": "Female",
+      "hasShell": false,
+      "partNumber": "LP-16-J05PE-02-001",
+      "description": "CONNECTOR, CIRCULAR, LP-16, CABLE PLUG, FEMALE, 5 POS, PLASTIC, SOLDER, 22-20 AWG, IP68 MATED, LATCH",
+      "manufacturer": "CNLINKO",
+      "numberOfCavities": 5,
+      "configurations": [
+        {
+          "id": "cfg"
+        },
+        {
+          "id": "cfg_vrc_in",
+          "name": "VRC-IN: printed label VRC-IN + blue band on each sensor cable",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_in"
+            },
+            {
+              "id": "acc_band_l",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            },
+            {
+              "id": "acc_band_r",
+              "type": "CoveringPart",
+              "partId": "cov_band_blue"
+            }
+          ]
+        },
+        {
+          "id": "cfg_vrc_out",
+          "name": "VRC-OUT: printed label VRC-OUT + yellow band",
+          "accessories": [
+            {
+              "id": "acc_lbl",
+              "type": "CoveringPart",
+              "partId": "cov_lbl_vrc_out"
+            },
+            {
+              "id": "acc_band",
+              "type": "CoveringPart",
+              "partId": "cov_band_yellow"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cp_dt2s_ce05",
+      "url": "https://www.te.com/usa-en/product-DT06-2S-CE05.html",
+      "gender": "Female",
+      "pinout": {
+        "id": "te-deutsch-dt-2",
+        "name": "DT 2-way",
+        "pins": [
+          {
+            "x": 2.73,
+            "y": 0,
+            "size": 4.2
+          },
+          {
+            "x": -2.73,
+            "y": 0,
+            "size": 4.2
+          }
+        ],
+        "outline": {
+          "type": "rect",
+          "width": 15.1,
+          "height": 11.7,
+          "cornerRadius": 2.5
+        },
+        "features": [
+          {
+            "y": -5.85,
+            "layer": "behind",
+            "shape": {
+              "type": "rect",
+              "width": 8.5,
+              "height": 3
+            }
+          }
+        ],
+        "mirrored": true
+      },
+      "hasShell": false,
+      "partNumber": "DT06-2S-CE05",
+      "description": "CONNECTOR, PLUG, DT, 2 POS, SOCKET CONTACTS, E SEAL, INSUL 1.35-3.05 MM, ENHANCED SEAL RETENTION, END CAP, BLACK",
+      "manufacturer": "TE DEUTSCH",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "LockPart",
+              "partId": "lp_w2s"
+            },
+            {
+              "id": "cfg-2",
+              "type": "ContactPart",
+              "partId": "ct_dt16s_ni"
+            },
+            {
+              "id": "cfg-3",
+              "type": "CavityPlugPart",
+              "partId": "pl_sz16"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 2,
+      "designationStrategy": {
+        "type": "sequential"
+      },
+      "color": "Black"
+    }
+  ],
+  "lockParts": [
+    {
+      "id": "lp_w2s",
+      "partNumber": "W2S",
+      "description": "WEDGELOCK, DT, 2-WAY PLUG",
+      "manufacturer": "TE DEUTSCH"
+    },
+    {
+      "id": "lp_w6p",
+      "partNumber": "W6P",
+      "description": "WEDGELOCK, DT, 6-WAY RECEPTACLE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "cavityPlugParts": [
+    {
+      "id": "pl_sz16",
+      "partNumber": "114017",
+      "description": "PLUG, SEALING, CAVITY, SIZE 16, WHITE",
+      "manufacturer": "TE DEUTSCH"
+    }
+  ],
+  "terminals": [],
+  "mates": []
+}

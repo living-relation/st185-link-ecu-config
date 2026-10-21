@@ -1,0 +1,1338 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
+  "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-RearLights - rear lights harness: tail, stop, turn and back-up lamps",
+    "drawingNumber": "ST185-RearLights"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band.",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
+  "wires": [
+    {
+      "id": "w_rl_tail",
+      "source": {
+        "id": "fl_oem_jb1_1f_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_tail",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "m16_16_5",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_tail_r11_c2",
+      "source": {
+        "id": "sp_rl_tail",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r11_c2",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_5",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_tail_r11_c3",
+      "source": {
+        "id": "sp_rl_tail",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r11_c3",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_5",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_tail_r12_c2",
+      "source": {
+        "id": "sp_rl_tail",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r12_c2",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_5",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_tail_r12_c3",
+      "source": {
+        "id": "sp_rl_tail",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r12_c3",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_5",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_tail_l1_c1",
+      "source": {
+        "id": "sp_rl_tail",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_l1_c1",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_5",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_stop",
+      "source": {
+        "id": "fl_oem_s9_c1",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_stop",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "m16_16_59",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_stop_r11_c1",
+      "source": {
+        "id": "sp_rl_stop",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r11_c1",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_59",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_stop_r12_c1",
+      "source": {
+        "id": "sp_rl_stop",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r12_c1",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_59",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_stop_h6_c1",
+      "source": {
+        "id": "sp_rl_stop",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_h6_c1",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_59",
+      "identColors": [
+        "Blue",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_rl_turn_l",
+      "source": {
+        "id": "fl_oem_jb1_1f_c3",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_r11_c6",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_18_50",
+      "identColors": [
+        "Blue",
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_rl_turn_r",
+      "source": {
+        "id": "fl_oem_jb1_1f_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "fl_r12_c6",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_18_54",
+      "identColors": [
+        "Blue",
+        "White"
+      ]
+    },
+    {
+      "id": "w_rl_rev",
+      "source": {
+        "id": "br_rl_rev",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_rev",
+        "handle": "Splice"
+      },
+      "color": "Red",
+      "partId": "m16_16_20",
+      "identColors": [
+        "White"
+      ]
+    },
+    {
+      "id": "w_rl_rev_r11_c4",
+      "source": {
+        "id": "sp_rl_rev",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r11_c4",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_20",
+      "identColors": [
+        "White"
+      ]
+    },
+    {
+      "id": "w_rl_rev_r12_c4",
+      "source": {
+        "id": "sp_rl_rev",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "fl_r12_c4",
+        "handle": "Terminal"
+      },
+      "color": "Red",
+      "partId": "m16_16_20",
+      "identColors": [
+        "White"
+      ]
+    },
+    {
+      "id": "w_rl_gnd_r11_c5",
+      "source": {
+        "id": "fl_r11_c5",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_gnd",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "partId": "m16_16_90",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_rl_gnd_r12_c5",
+      "source": {
+        "id": "fl_r12_c5",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_gnd",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "partId": "m16_16_90",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_rl_gnd_l1_c2",
+      "source": {
+        "id": "fl_l1_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_gnd",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "partId": "m16_16_90",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_rl_gnd_h6_c2",
+      "source": {
+        "id": "fl_h6_c2",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "sp_rl_gnd",
+        "handle": "Splice"
+      },
+      "color": "Black",
+      "partId": "m16_16_90",
+      "identColors": [
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_rl_gnd_bl",
+      "source": {
+        "id": "sp_rl_gnd",
+        "handle": "Splice"
+      },
+      "target": {
+        "id": "t_rl_gnd_bl",
+        "handle": "Terminal"
+      },
+      "color": "Black",
+      "partId": "m16_16_90",
+      "identColors": [
+        "Yellow"
+      ]
+    }
+  ],
+  "connectors": [],
+  "terminals": [
+    {
+      "id": "fl_oem_jb1_1f_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": -120
+      },
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1F pin 1 (LH kick), G wire - TAIL 15A out (EWD 1993 p.112-113)"
+    },
+    {
+      "id": "fl_oem_jb1_1f_c3",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": -90,
+        "y": -180
+      },
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1F pin 3 (LH kick), G-B wire - turn LH out (EWD 1993 p.130-131)"
+    },
+    {
+      "id": "fl_oem_jb1_1f_c2",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": -60,
+        "y": 300
+      },
+      "propagate": false,
+      "label": "OEM J/B 1 plug 1F pin 2 (LH kick), G-Y wire - turn RH out (EWD 1993 p.130-131)"
+    },
+    {
+      "id": "fl_oem_s9_c1",
+      "type": "Loose",
+      "partId": "tp_flying_lead",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": -150,
+        "y": 360
+      },
+      "propagate": false,
+      "label": "OEM stop lamp switch S9 pin 1 (pedal), G-W wire - stop lamp feed (EWD 1993 p.126)"
+    },
+    {
+      "id": "br_rl_rev",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "propagate": false,
+      "label": "Reverse relay M7 pin 87 (LOGIC box, glove box) - back-up lamp +12 V"
+    },
+    {
+      "id": "fl_r11_c1",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": -720,
+        "y": 810
+      },
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 1, socket pigtail - stop LH (EWD 1993 p.126)"
+    },
+    {
+      "id": "fl_r11_c2",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 60
+      },
+      "layoutPosition": {
+        "x": -720,
+        "y": -720
+      },
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 2, socket pigtail - tail LH (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_r11_c3",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": -780,
+        "y": 870
+      },
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 3, socket pigtail - rear side marker LH (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_r11_c4",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 180
+      },
+      "layoutPosition": {
+        "x": -780,
+        "y": -780
+      },
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 4, socket pigtail - back-up LH (Mitchell 1993 Fig. 16)"
+    },
+    {
+      "id": "fl_r11_c5",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": -840,
+        "y": 930
+      },
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 5, socket pigtail - lamp ground LH (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_r11_c6",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 300
+      },
+      "layoutPosition": {
+        "x": -840,
+        "y": -840
+      },
+      "propagate": false,
+      "label": "LH rear lamp R11 pin 6, socket pigtail - turn LH (EWD 1993 p.130)"
+    },
+    {
+      "id": "fl_r12_c1",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": -1440,
+        "y": 240
+      },
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 1, socket pigtail - stop RH (EWD 1993 p.126)"
+    },
+    {
+      "id": "fl_r12_c2",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 420
+      },
+      "layoutPosition": {
+        "x": -1440,
+        "y": -240
+      },
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 2, socket pigtail - tail RH (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_r12_c3",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": -1500,
+        "y": 300
+      },
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 3, socket pigtail - rear side marker RH (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_r12_c4",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 540
+      },
+      "layoutPosition": {
+        "x": -1500,
+        "y": -300
+      },
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 4, socket pigtail - back-up RH (Mitchell 1993 Fig. 16)"
+    },
+    {
+      "id": "fl_r12_c5",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 600
+      },
+      "layoutPosition": {
+        "x": -1590,
+        "y": 360
+      },
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 5, socket pigtail - lamp ground RH (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_r12_c6",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": -1590,
+        "y": -360
+      },
+      "propagate": false,
+      "label": "RH rear lamp R12 pin 6, socket pigtail - turn RH (EWD 1993 p.130)"
+    },
+    {
+      "id": "fl_l1_c1",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 720
+      },
+      "layoutPosition": {
+        "x": -1080,
+        "y": 120
+      },
+      "propagate": false,
+      "label": "Licence plate light L1 pin 1, socket pigtail - licence light + (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_l1_c2",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 780
+      },
+      "layoutPosition": {
+        "x": -1080,
+        "y": -90
+      },
+      "propagate": false,
+      "label": "Licence plate light L1 pin 2, socket pigtail - licence light ground (EWD 1993 p.113)"
+    },
+    {
+      "id": "fl_h6_c1",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 840
+      },
+      "layoutPosition": {
+        "x": -630,
+        "y": 11040
+      },
+      "propagate": false,
+      "label": "High-mount stop light H6 plug A pin 1 (hatch spoiler) - HMSL + (EWD 1993 p.126)"
+    },
+    {
+      "id": "fl_h6_c2",
+      "type": "Loose",
+      "partId": "tp_lamp_pigtail_atum",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 900
+      },
+      "layoutPosition": {
+        "x": -720,
+        "y": 11100
+      },
+      "propagate": false,
+      "label": "High-mount stop light H6 plug A pin 2 (hatch spoiler) - HMSL ground (EWD 1993 p.126)"
+    },
+    {
+      "id": "t_rl_gnd_bl",
+      "type": "Ring",
+      "partId": "tp_ring_m6_22_16",
+      "width": 390,
+      "schematicPosition": {
+        "x": 750,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": -1170,
+        "y": 180
+      },
+      "propagate": false,
+      "label": "Ground point BL, back panel center (EWD 1993 p.112) - every rear lamp ground, M6 ring"
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_bp_rl_kick__bp_rl_hatch",
+      "sourceId": "bp_rl_kick",
+      "targetId": "bp_rl_hatch",
+      "length": {
+        "value": 2400,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
+    },
+    {
+      "id": "bn_bp_rl_hatch__bp_rl_rear",
+      "sourceId": "bp_rl_hatch",
+      "targetId": "bp_rl_rear",
+      "length": {
+        "value": 400,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
+    },
+    {
+      "id": "bn_bp_rl_hatch__bp_rl_h6",
+      "sourceId": "bp_rl_hatch",
+      "targetId": "bp_rl_h6",
+      "length": {
+        "value": 1200,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_14"
+      ]
+    },
+    {
+      "id": "bn_bp_rl_rear__bp_rl_center",
+      "sourceId": "bp_rl_rear",
+      "targetId": "bp_rl_center",
+      "length": {
+        "value": 500,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
+    },
+    {
+      "id": "bn_bp_rl_center__bp_rl_rh",
+      "sourceId": "bp_rl_center",
+      "targetId": "bp_rl_rh",
+      "length": {
+        "value": 500,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_38"
+      ]
+    },
+    {
+      "id": "bn_bp_rl_kick__fl_oem_jb1_1f_c1",
+      "sourceId": "bp_rl_kick",
+      "targetId": "fl_oem_jb1_1f_c1",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_kick__fl_oem_jb1_1f_c3",
+      "sourceId": "bp_rl_kick",
+      "targetId": "fl_oem_jb1_1f_c3",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_kick__fl_oem_jb1_1f_c2",
+      "sourceId": "bp_rl_kick",
+      "targetId": "fl_oem_jb1_1f_c2",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_kick__fl_oem_s9_c1",
+      "sourceId": "bp_rl_kick",
+      "targetId": "fl_oem_s9_c1",
+      "length": {
+        "value": 700,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_kick__br_rl_rev",
+      "sourceId": "bp_rl_kick",
+      "targetId": "br_rl_rev",
+      "length": {
+        "value": 1500,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rear__fl_r11_c1",
+      "sourceId": "bp_rl_rear",
+      "targetId": "fl_r11_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rear__fl_r11_c2",
+      "sourceId": "bp_rl_rear",
+      "targetId": "fl_r11_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rear__fl_r11_c3",
+      "sourceId": "bp_rl_rear",
+      "targetId": "fl_r11_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rear__fl_r11_c4",
+      "sourceId": "bp_rl_rear",
+      "targetId": "fl_r11_c4",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rear__fl_r11_c5",
+      "sourceId": "bp_rl_rear",
+      "targetId": "fl_r11_c5",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rear__fl_r11_c6",
+      "sourceId": "bp_rl_rear",
+      "targetId": "fl_r11_c6",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rh__fl_r12_c1",
+      "sourceId": "bp_rl_rh",
+      "targetId": "fl_r12_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rh__fl_r12_c2",
+      "sourceId": "bp_rl_rh",
+      "targetId": "fl_r12_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rh__fl_r12_c3",
+      "sourceId": "bp_rl_rh",
+      "targetId": "fl_r12_c3",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rh__fl_r12_c4",
+      "sourceId": "bp_rl_rh",
+      "targetId": "fl_r12_c4",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rh__fl_r12_c5",
+      "sourceId": "bp_rl_rh",
+      "targetId": "fl_r12_c5",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_rh__fl_r12_c6",
+      "sourceId": "bp_rl_rh",
+      "targetId": "fl_r12_c6",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_center__fl_l1_c1",
+      "sourceId": "bp_rl_center",
+      "targetId": "fl_l1_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_center__fl_l1_c2",
+      "sourceId": "bp_rl_center",
+      "targetId": "fl_l1_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_h6__fl_h6_c1",
+      "sourceId": "bp_rl_h6",
+      "targetId": "fl_h6_c1",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_h6__fl_h6_c2",
+      "sourceId": "bp_rl_h6",
+      "targetId": "fl_h6_c2",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_rl_center__t_rl_gnd_bl",
+      "sourceId": "bp_rl_center",
+      "targetId": "t_rl_gnd_bl",
+      "length": {
+        "value": 100,
+        "unit": "mm"
+      }
+    }
+  ],
+  "splices": [
+    {
+      "id": "sp_rl_tail",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_rear",
+      "schematicPosition": {
+        "x": 480,
+        "y": -30
+      },
+      "layoutPosition": {
+        "x": -780,
+        "y": 60
+      },
+      "label": "Tail splice - J/B 1 TAIL feed to R11 / R12 pins 2 and 3 and L1"
+    },
+    {
+      "id": "sp_rl_stop",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_hatch",
+      "schematicPosition": {
+        "x": 480,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": -360,
+        "y": -60
+      },
+      "label": "Stop splice - S9 stop feed to R11 / R12 pin 1 and the HMSL"
+    },
+    {
+      "id": "sp_rl_rev",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_rear",
+      "schematicPosition": {
+        "x": 480,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": -660,
+        "y": 60
+      },
+      "label": "Back-up splice - reverse relay feed to R11 / R12 pin 4"
+    },
+    {
+      "id": "sp_rl_gnd",
+      "partId": "spp_solder_generic",
+      "locationId": "bp_rl_center",
+      "schematicPosition": {
+        "x": 480,
+        "y": 600
+      },
+      "layoutPosition": {
+        "x": -1140,
+        "y": -60
+      },
+      "label": "Rear ground splice - every rear lamp ground to ground point BL"
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_rl_scope",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 300
+      },
+      "text": "REAR LIGHTS HARNESS (Route 15, approved 2026-10-13). All wires new (R55), factory colours. Run: J/B No.1 / left kick panel -> LH sill -> left quarter -> hatch branch to H6 -> rear panel: R11, L1, BL, R12."
+    },
+    {
+      "id": "n_rl_feeds",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 450
+      },
+      "text": "FEEDS (Dan C5, DECISIONS R61): tail, stop and turn stay fed from the kept OEM J/B No.1 - tail 15A TAIL / TAIL relay out 1F-1, turn LH / RH 1F-3 / 1F-2 (flasher T3, hazard H5 and switch C15 stay OEM, C8), stop 15A STOP through S9 pin 1. Back-up: reverse relay k_rev in the glove-box LOGIC box (ST185-CabinPower), its contact fed from the J/B No.1 GAUGE 15A fuse, coil from the back-up switch B1 on ST185-ECU-engine; 87 arrives broken off. 16 AWG behind the 15A fuses, 18 AWG behind the 10A TURN fuse (fuse protects the thinnest wire)."
+    },
+    {
+      "id": "n_rl_ground",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 750
+      },
+      "text": "GROUND: all rear lamps, H6 included -> sp_rl_gnd -> body ground BL. Full notes: docs/harness/HARNESS-NOTES.md, ST185-RearLights."
+    },
+    {
+      "id": "n_rl_lamp_ends",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 900
+      },
+      "text": "LAMP ENDS (Dan M1, DECISIONS R117): R11, R12, L1 and H6 keep their factory bulb sockets. Every lamp end is a flying lead: solder to factory bulb-socket pigtail + adhesive heat-shrink (ATUM-4/1-0, 40 mm, on hand). No lamp plug is bought."
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_16_5",
+      "partNumber": "M22759/16-16-5",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_59",
+      "partNumber": "M22759/16-16-59",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, GREEN/WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "White",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_50",
+      "partNumber": "M22759/16-18-50",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_54",
+      "partNumber": "M22759/16-18-54",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, GREEN/YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Green",
+      "stripeColor": "Yellow",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_20",
+      "partNumber": "M22759/16-16-20",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_90",
+      "partNumber": "M22759/16-16-90",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, WHITE/BLACK, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "stripeColor": "Black",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_dr25_14",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1/4-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 6.4 MM EXPANDED ID, 3.2 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039274019.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 6.4,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 0.89,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    },
+    {
+      "id": "cov_dr25_38",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-3/8-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 9.53 MM EXPANDED ID, 4.8 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039264026.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 4.8,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.53,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 1.02,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    }
+  ],
+  "bootParts": [
+    {
+      "id": "boot_342a012",
+      "partNumber": "342A012-25-0",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TRANSITION, MOULDED, HEAT SHRINK, 45 DEG BREAKOUT, 3 BRANCHES, -25 FLUID RESISTANT ELASTOMER, BLACK, 13.2/6.9 X 6.6/3.6 MM SUPPLIED / RECOVERED, -75 TO 150 C",
+      "url": "https://www.te.com/en/search.html?q=342A012-25-0",
+      "color": "Black"
+    }
+  ],
+  "spliceParts": [
+    {
+      "id": "spp_solder_generic",
+      "partNumber": "GENERIC SOLDER SPLICE",
+      "description": "SPLICE, SOLDERED, ADHESIVE HEATSHRINK OVER",
+      "manufacturer": "generic"
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_rl_kick",
+      "layoutPosition": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_rl_hatch",
+      "layoutPosition": {
+        "x": -360,
+        "y": 0
+      },
+      "partIds": [
+        "boot_342a012"
+      ]
+    },
+    {
+      "id": "bp_rl_h6",
+      "layoutPosition": {
+        "x": -630,
+        "y": 10920
+      }
+    },
+    {
+      "id": "bp_rl_rear",
+      "layoutPosition": {
+        "x": -720,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_rl_center",
+      "layoutPosition": {
+        "x": -1080,
+        "y": 0
+      }
+    },
+    {
+      "id": "bp_rl_rh",
+      "layoutPosition": {
+        "x": -1440,
+        "y": 0
+      }
+    }
+  ],
+  "terminalParts": [
+    {
+      "id": "tp_flying_lead",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 12
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC FLYING LEAD",
+      "description": "TERMINAL, FLYING LEAD",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "tp_lamp_pigtail_atum",
+      "type": "Loose",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "ATUM-4/1-0",
+      "description": "TERMINAL, FLYING LEAD, SOLDERED TO FACTORY BULB-SOCKET PIGTAIL, ADHESIVE-LINED HEAT-SHRINK RAYCHEM ATUM-4/1-0, 4:1, 4.0 MM EXPANDED / 1.0 MM RECOVERED ID, 40 MM CUT",
+      "manufacturer": "TE Connectivity (Raychem)"
+    },
+    {
+      "id": "tp_ring_m6_22_16",
+      "size": "M6",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 22
+      },
+      "partNumber": "GENERIC RING M6 22-16",
+      "description": "TERMINAL, RING, INSULATED, NYLON, M6 STUD, 22-16 AWG",
+      "manufacturer": "generic"
+    }
+  ],
+  "mates": []
+}

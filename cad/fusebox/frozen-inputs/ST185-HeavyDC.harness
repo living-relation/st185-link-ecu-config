@@ -1,0 +1,1791 @@
+{
+  "$schema": "https://docs.harness.design/files/harness/schema/v1.2.json",
+  "$docs": "https://docs.harness.design/files/harness/editing-guide.md",
+  "version": 1.2,
+  "lengthUnit": "mm",
+  "titleBlock": {
+    "company": "ST185 Celica (living-relation)",
+    "title": "ST185-HeavyDC - heavy DC harness: trunk battery, kill switch, RADLOK bulkhead, starter / alternator cables, fuel pump relay",
+    "drawingNumber": "ST185-HeavyDC"
+  },
+  "exportNotes": "Ident bands (DECISIONS R87): every wire carries its circuit's code in Blue / Yellow / White bands (RNF-100, 6 mm) at every end - connector, terminal, splice and break - band 1 next to the end. Circuit per wire: Connections 'Ident' column and HARNESS-BUILD-LIST.csv. Wires 6 AWG and heavier carry no band. Labels: printed TMS-SCE marker at each fuel pump feed end (KILL SW C2, FB BATT IN, BATT K1 30 ...) and at the jump post (JUMP +).",
+  "pdfExportSettings": {
+    "includeSchematic": true,
+    "includeLayout": true,
+    "schematic": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "layout": {
+      "showParts": true,
+      "showAccessories": true,
+      "showComponentIds": true,
+      "pageSize": "Fit"
+    },
+    "wireThickness": "Thick",
+    "includeTitleBlock": true,
+    "includeNotes": true,
+    "includeParts": true,
+    "parts": {
+      "columns": [
+        "PartNumber",
+        "Manufacturer",
+        "Details",
+        "Description",
+        "Url",
+        "Quantity"
+      ],
+      "pageMode": "Multiple",
+      "pageSize": "A3"
+    },
+    "includeConnections": true,
+    "connections": {
+      "includeAll": true,
+      "includeComponents": true,
+      "columns": [
+        "Conductor",
+        "PartNumber",
+        "TwistedWith",
+        "Ident",
+        "Group",
+        "Net",
+        "Length",
+        "Contact"
+      ],
+      "showConductorIds": true,
+      "pageMode": "Multiple",
+      "pageSize": "A3",
+      "showPart": true,
+      "showPartImage": false,
+      "showAccessories": true,
+      "showPinout": true,
+      "showUnconnected": true
+    }
+  },
+  "wires": [
+    {
+      "id": "w_trunk_pos",
+      "color": "Red",
+      "source": {
+        "id": "t_trunk_pos",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "kill_sw",
+        "handle": "c1"
+      },
+      "partId": "wp_1_0_red"
+    },
+    {
+      "id": "w_ks_h1",
+      "color": "Red",
+      "source": {
+        "id": "kill_sw",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "br_h1_batt_pos",
+        "handle": "Terminal"
+      },
+      "partId": "wp_1_0_red"
+    },
+    {
+      "id": "w_trunk_neg",
+      "color": "Black",
+      "source": {
+        "id": "t_trunk_neg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "br_h2_batt_neg",
+        "handle": "Terminal"
+      },
+      "partId": "wp_1_0_blk"
+    },
+    {
+      "id": "w_h3_radlok_pos",
+      "color": "Red",
+      "source": {
+        "id": "br_h3_radlok_pos",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "rl_pos_fw",
+        "handle": "c1"
+      },
+      "partId": "wp_1_0_red"
+    },
+    {
+      "id": "w_h6a_radlok_neg",
+      "color": "Black",
+      "source": {
+        "id": "br_h6a_radlok_neg",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "rl_neg_fw",
+        "handle": "c1"
+      },
+      "partId": "wp_1_0_blk"
+    },
+    {
+      "id": "w_rl_pos",
+      "color": "Red",
+      "source": {
+        "id": "rl_pos_fw",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "rl_pos_eng",
+        "handle": "c1"
+      },
+      "partId": "wp_1_0_red"
+    },
+    {
+      "id": "w_rlp_str",
+      "color": "Red",
+      "source": {
+        "id": "rl_pos_eng",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "t_starter_b",
+        "handle": "Terminal"
+      },
+      "partId": "wp_1_0_red"
+    },
+    {
+      "id": "w_alt",
+      "color": "Red",
+      "source": {
+        "id": "t_alt_b",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "t_starter_b_2",
+        "handle": "Terminal"
+      },
+      "partId": "wp_2_red"
+    },
+    {
+      "id": "w_jump",
+      "color": "Red",
+      "source": {
+        "id": "t_starter_b_3",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "jump_pos",
+        "handle": "c1"
+      },
+      "partId": "wp_2_red"
+    },
+    {
+      "id": "w_rln",
+      "color": "Black",
+      "source": {
+        "id": "rl_neg_fw",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "rl_neg_eng",
+        "handle": "c1"
+      },
+      "partId": "wp_1_0_blk"
+    },
+    {
+      "id": "w_rln_blk",
+      "color": "Black",
+      "source": {
+        "id": "rl_neg_eng",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "t_eng_block",
+        "handle": "Terminal"
+      },
+      "partId": "wp_1_0_blk"
+    },
+    {
+      "id": "w_alt_s_h",
+      "source": {
+        "id": "alt_plug",
+        "handle": "c1"
+      },
+      "target": {
+        "id": "br_alt_s",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "m16_20_9",
+      "identColors": [
+        "White",
+        "Blue",
+        "Yellow"
+      ]
+    },
+    {
+      "id": "w_alt_l_h",
+      "source": {
+        "id": "alt_plug",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "br_alt_l",
+        "handle": "Terminal"
+      },
+      "color": "White",
+      "partId": "m16_20_4",
+      "identColors": [
+        "Blue",
+        "White",
+        "White"
+      ]
+    },
+    {
+      "id": "w_alt_ig_h",
+      "source": {
+        "id": "br_alt_ig",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "alt_plug",
+        "handle": "c3"
+      },
+      "color": "Red",
+      "partId": "m16_16_2",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_ig_ks_in",
+      "color": "Red",
+      "source": {
+        "id": "br_ig_ks_in",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "kill_sw",
+        "handle": "c3"
+      },
+      "partId": "m16_16_2",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_ig_ks_out",
+      "color": "Red",
+      "source": {
+        "id": "kill_sw",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_ig_ks_out",
+        "handle": "Terminal"
+      },
+      "partId": "m16_16_2",
+      "identColors": [
+        "Blue",
+        "Yellow",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_fp_feed",
+      "color": "White",
+      "source": {
+        "id": "kill_sw",
+        "handle": "c2"
+      },
+      "target": {
+        "id": "fb_batt",
+        "handle": "in"
+      },
+      "partId": "m16_10_2",
+      "identColors": [
+        "White",
+        "White",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_fp_30",
+      "color": "Red",
+      "source": {
+        "id": "fb_batt",
+        "handle": "fp"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c1"
+      },
+      "partId": "m16_10_2",
+      "identColors": [
+        "White",
+        "White",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_fp85_h",
+      "color": "White",
+      "source": {
+        "id": "br_w_fp85",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c2"
+      },
+      "partId": "m16_18_9",
+      "identColors": [
+        "White",
+        "White",
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_fp86_h",
+      "color": "Red",
+      "source": {
+        "id": "br_fp86",
+        "handle": "Terminal"
+      },
+      "target": {
+        "id": "k_fp",
+        "handle": "c3"
+      },
+      "partId": "m16_18_2",
+      "identColors": [
+        "Blue"
+      ]
+    },
+    {
+      "id": "w_fp87_h",
+      "color": "Red",
+      "source": {
+        "id": "k_fp",
+        "handle": "c4"
+      },
+      "target": {
+        "id": "br_fp_pump",
+        "handle": "Terminal"
+      },
+      "partId": "m16_10_2",
+      "identColors": [
+        "White",
+        "White",
+        "Blue"
+      ]
+    }
+  ],
+  "connectors": [
+    {
+      "id": "rl_pos_fw",
+      "label": "RADLOK+ FW",
+      "width": 150,
+      "schematicPosition": {
+        "x": 660,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1500,
+        "y": -150
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Starter feed (H3)",
+          "propagate": false
+        }
+      ],
+      "partId": "cp_rl_red_eng"
+    },
+    {
+      "id": "rl_pos_eng",
+      "label": "RADLOK+ ENG",
+      "width": 150,
+      "schematicPosition": {
+        "x": 660,
+        "y": 120
+      },
+      "layoutPosition": {
+        "x": 1680,
+        "y": -540
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Starter feed (H3)",
+          "propagate": false
+        }
+      ],
+      "partId": "cp_rl_red_eng"
+    },
+    {
+      "id": "rl_neg_fw",
+      "label": "RADLOK- FW",
+      "width": 150,
+      "schematicPosition": {
+        "x": 660,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 1500,
+        "y": 30
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Engine ground (H6a)",
+          "propagate": false
+        }
+      ],
+      "partId": "cp_rl_blk_eng"
+    },
+    {
+      "id": "rl_neg_eng",
+      "label": "RADLOK- ENG",
+      "width": 150,
+      "schematicPosition": {
+        "x": 660,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 2160,
+        "y": 330
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Engine ground (H6a)",
+          "propagate": false
+        }
+      ],
+      "partId": "cp_rl_blk_eng"
+    },
+    {
+      "id": "jump_pos",
+      "label": "JUMP POST",
+      "width": 270,
+      "schematicPosition": {
+        "x": 1320,
+        "y": 840
+      },
+      "layoutPosition": {
+        "x": 2400,
+        "y": -660
+      },
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Jump post feed",
+          "propagate": false
+        }
+      ],
+      "partId": "cp_jump"
+    },
+    {
+      "id": "alt_plug",
+      "width": 390,
+      "partId": "cp_alt_round3",
+      "label": "ALT PLUG G2",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "1",
+          "signal": "Alt S battery sense",
+          "propagate": false,
+          "contactPartId": "ct_generic_skt"
+        },
+        {
+          "id": "c2",
+          "designation": "2",
+          "signal": "Alt L charge lamp",
+          "propagate": false,
+          "contactPartId": "ct_generic_skt"
+        },
+        {
+          "id": "c3",
+          "designation": "3",
+          "signal": "Alt IG excite",
+          "propagate": false,
+          "contactPartId": "ct_generic_skt"
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 1080
+      },
+      "layoutPosition": {
+        "x": 2760,
+        "y": -360
+      }
+    },
+    {
+      "id": "kill_sw",
+      "width": 390,
+      "partId": "cp_ks_longacre",
+      "label": "KILL SWITCH",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "MAIN 1",
+          "signal": "Battery + main",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        },
+        {
+          "id": "c2",
+          "designation": "MAIN 2",
+          "signal": "Battery + to POWER",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        },
+        {
+          "id": "c3",
+          "designation": "ALT 1",
+          "signal": "Alt IG to kill sw",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        },
+        {
+          "id": "c4",
+          "designation": "ALT 2",
+          "signal": "Alt IG excite",
+          "propagate": false,
+          "contactPartId": "ct_lug_stud"
+        }
+      ],
+      "schematicPosition": {
+        "x": 0,
+        "y": 360
+      },
+      "layoutPosition": {
+        "x": 420,
+        "y": 210
+      }
+    },
+    {
+      "id": "fb_batt",
+      "label": "BATT RLY BOX",
+      "cavities": [
+        {
+          "id": "in",
+          "designation": "BATT +",
+          "signal": "Battery relay box +",
+          "propagate": false
+        },
+        {
+          "id": "fp",
+          "designation": "FP 40A",
+          "signal": "Fuel pump rly feed",
+          "propagate": false,
+          "contactPartId": "ct_klauke_2r5"
+        }
+      ],
+      "layoutPosition": {
+        "x": 60,
+        "y": 480
+      },
+      "schematicPosition": {
+        "x": 0,
+        "y": 1380
+      },
+      "partId": "cp_fb_batt",
+      "width": 390
+    },
+    {
+      "id": "k_fp",
+      "label": "FP RELAY K1",
+      "cavities": [
+        {
+          "id": "c1",
+          "designation": "30",
+          "signal": "Fuel pump rly feed",
+          "propagate": false
+        },
+        {
+          "id": "c2",
+          "designation": "85",
+          "signal": "Fuel pump relay (-)",
+          "contactPartId": "ct_ss15",
+          "propagate": false
+        },
+        {
+          "id": "c3",
+          "designation": "86",
+          "signal": "Fuel pump rly coil+",
+          "contactPartId": "ct_ss15",
+          "propagate": false
+        },
+        {
+          "id": "c4",
+          "designation": "87",
+          "signal": "Fuel pump +12 V",
+          "propagate": false
+        },
+        {
+          "id": "c5",
+          "designation": "87a"
+        }
+      ],
+      "layoutPosition": {
+        "x": -300,
+        "y": 750
+      },
+      "schematicPosition": {
+        "x": 480,
+        "y": 1380
+      },
+      "partId": "cp_rly_hcr150",
+      "width": 390
+    }
+  ],
+  "terminals": [
+    {
+      "id": "br_h1_batt_pos",
+      "type": "Loose",
+      "schematicPosition": {
+        "x": 0,
+        "y": 150
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": 660
+      },
+      "propagate": false,
+      "label": "POWER box bus BAT+ stud (glove box; EngineRoom-C) - battery + via H1",
+      "width": 390
+    },
+    {
+      "id": "br_h2_batt_neg",
+      "type": "Loose",
+      "schematicPosition": {
+        "x": 0,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 1140,
+        "y": -780
+      },
+      "propagate": false,
+      "label": "POWER box bus NEG bar (glove box; EngineRoom-C) - battery - via H2"
+    },
+    {
+      "id": "br_h3_radlok_pos",
+      "type": "Loose",
+      "schematicPosition": {
+        "x": 330,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": 720
+      },
+      "propagate": false,
+      "label": "POWER box bus ALT/STR stud (glove box; EngineRoom-C) - starter feed via H3"
+    },
+    {
+      "id": "br_h6a_radlok_neg",
+      "type": "Loose",
+      "schematicPosition": {
+        "x": 330,
+        "y": 240
+      },
+      "layoutPosition": {
+        "x": 1080,
+        "y": -840
+      },
+      "propagate": false,
+      "label": "POWER box bus NEG bar (glove box; EngineRoom-C) - engine ground via H6a"
+    },
+    {
+      "id": "t_trunk_pos",
+      "type": "Ring",
+      "width": 270,
+      "schematicPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "layoutPosition": {
+        "x": 780,
+        "y": -150
+      },
+      "partId": "tp_lug_m10_50",
+      "propagate": false,
+      "label": "Battery positive terminal post, trunk RH rear (Route 1 point 1) - main feed 1/0"
+    },
+    {
+      "id": "t_trunk_neg",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 90
+      },
+      "layoutPosition": {
+        "x": 780,
+        "y": 30
+      },
+      "partId": "tp_lug_m10_50",
+      "propagate": false,
+      "label": "Battery negative terminal post, trunk RH rear (Route 1 point 1) - main ground 1/0"
+    },
+    {
+      "id": "t_starter_b",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 990,
+        "y": 480
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": -240
+      },
+      "partId": "tp_lug_m10_50",
+      "propagate": false,
+      "label": "Starter B+ stud, lug 1 (Route 1 point 2) - 1/0 from RADLOK +"
+    },
+    {
+      "id": "t_starter_b_2",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 990,
+        "y": 570
+      },
+      "layoutPosition": {
+        "x": 2040,
+        "y": -750
+      },
+      "partId": "tp_lug_m10_2",
+      "propagate": false,
+      "label": "Starter B+ stud, lug 2 (Route 1 point 2) - 2 AWG from the alternator"
+    },
+    {
+      "id": "t_starter_b_3",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 990,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 1980,
+        "y": -180
+      },
+      "partId": "tp_lug_m10_2",
+      "propagate": false,
+      "label": "Starter B+ stud, lug 3 (Route 1 point 2) - 2 AWG to the jump post"
+    },
+    {
+      "id": "t_alt_b",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 990,
+        "y": 750
+      },
+      "layoutPosition": {
+        "x": 1590,
+        "y": -480
+      },
+      "partId": "tp_lug_m8_2",
+      "propagate": false,
+      "label": "Alternator B+ stud, rear RH of engine (Route 1 point 3) - 2 AWG to starter"
+    },
+    {
+      "id": "t_eng_block",
+      "type": "Ring",
+      "width": 390,
+      "schematicPosition": {
+        "x": 990,
+        "y": 960
+      },
+      "layoutPosition": {
+        "x": 2160,
+        "y": 240
+      },
+      "partId": "tp_lug_m10_50",
+      "propagate": false,
+      "label": "Engine block ground stud, lug 1 (Route 1 point 5) - 1/0 from RADLOK -"
+    },
+    {
+      "id": "br_alt_s",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 480,
+        "y": 1080
+      },
+      "layoutPosition": {
+        "x": 2670,
+        "y": -180
+      },
+      "propagate": false,
+      "label": "LOGIC box Bus 1 pin 9 (glove box; via EngineRoom-C) - ALT S 2 A fuse out"
+    },
+    {
+      "id": "br_alt_l",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 480,
+        "y": 1140
+      },
+      "layoutPosition": {
+        "x": 2760,
+        "y": -450
+      },
+      "propagate": false,
+      "label": "OEM IG2 pin 16 (under the ECU, cowl side) - Y, charge lamp (via EngineRoom-C) (EWD p.74)"
+    },
+    {
+      "id": "br_alt_ig",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 480,
+        "y": 1200
+      },
+      "layoutPosition": {
+        "x": 2760,
+        "y": -240
+      },
+      "propagate": false,
+      "label": "Kill switch ALT 2 stud, trunk RH rear (via EngineRoom-C) - alt IG out"
+    },
+    {
+      "id": "br_ig_ks_in",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 660
+      },
+      "layoutPosition": {
+        "x": 1020,
+        "y": 780
+      },
+      "propagate": false,
+      "label": "OEM IG2 pin 15 (under the ECU, cowl side) - B-R, ECU-IG 15 A (via EngineRoom-C) (EWD p.74)"
+    },
+    {
+      "id": "br_ig_ks_out",
+      "type": "Loose",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 720
+      },
+      "layoutPosition": {
+        "x": 1020,
+        "y": -900
+      },
+      "propagate": false,
+      "label": "Alternator plug G2 pin 3, rear RH of engine (via EngineRoom-C) - IG excite"
+    },
+    {
+      "id": "br_w_fp85",
+      "type": "Loose",
+      "width": 390,
+      "layoutPosition": {
+        "x": -450,
+        "y": 1110
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 1380
+      },
+      "propagate": false,
+      "label": "ECU A pin 19 (Link ECU, center dash; ECU-cabin) - fuel pump relay drive"
+    },
+    {
+      "id": "br_fp86",
+      "type": "Loose",
+      "width": 390,
+      "layoutPosition": {
+        "x": -300,
+        "y": 990
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 1440
+      },
+      "propagate": false,
+      "label": "SW12 splice after LOGIC Bus 2 pin 2 (glove box; CabinPower) - switched 12 V"
+    },
+    {
+      "id": "br_fp_pump",
+      "type": "Loose",
+      "width": 390,
+      "layoutPosition": {
+        "x": -360,
+        "y": 1050
+      },
+      "schematicPosition": {
+        "x": 990,
+        "y": 1500
+      },
+      "propagate": false,
+      "label": "Fuel pump plug pin 1 (in the tank; RearFuel) - pump +12 V"
+    }
+  ],
+  "bundles": [
+    {
+      "id": "bn_t_trunk_pos__bp_hdc_batt",
+      "sourceId": "t_trunk_pos",
+      "targetId": "bp_hdc_batt",
+      "length": {
+        "value": 260,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_t_trunk_neg__bp_hdc_batt",
+      "sourceId": "t_trunk_neg",
+      "targetId": "bp_hdc_batt",
+      "length": {
+        "value": 200,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_h1_batt_pos",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_h1_batt_pos",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_h2_batt_neg",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_h2_batt_neg",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_batt__bp_hdc_pdb_h",
+      "sourceId": "bp_hdc_batt",
+      "targetId": "bp_hdc_pdb_h",
+      "length": {
+        "value": 3000,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_h3_radlok_pos",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_h3_radlok_pos",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_h6a_radlok_neg",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_h6a_radlok_neg",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__bp_hdc_fw",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "bp_hdc_fw",
+      "length": {
+        "value": 390,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
+    },
+    {
+      "id": "bn_bp_hdc_fw__rl_pos_fw",
+      "sourceId": "bp_hdc_fw",
+      "targetId": "rl_pos_fw",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_fw__rl_neg_fw",
+      "sourceId": "bp_hdc_fw",
+      "targetId": "rl_neg_fw",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_rl_pos_eng__bp_hdc_join",
+      "sourceId": "rl_pos_eng",
+      "targetId": "bp_hdc_join",
+      "length": {
+        "value": 130,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_join__t_alt_b",
+      "sourceId": "bp_hdc_join",
+      "targetId": "t_alt_b",
+      "length": {
+        "value": 410,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_join__bp_hdc_str",
+      "sourceId": "bp_hdc_join",
+      "targetId": "bp_hdc_str",
+      "length": {
+        "value": 1550,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
+    },
+    {
+      "id": "bn_rl_neg_eng__t_eng_block",
+      "sourceId": "rl_neg_eng",
+      "targetId": "t_eng_block",
+      "length": {
+        "value": 890,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_str__t_starter_b",
+      "sourceId": "bp_hdc_str",
+      "targetId": "t_starter_b",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_str__t_starter_b_2",
+      "sourceId": "bp_hdc_str",
+      "targetId": "t_starter_b_2",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_str__t_starter_b_3",
+      "sourceId": "bp_hdc_str",
+      "targetId": "t_starter_b_3",
+      "length": {
+        "value": 20,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_str__jump_pos",
+      "sourceId": "bp_hdc_str",
+      "targetId": "jump_pos",
+      "length": {
+        "value": 390,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "endLabel": "JUMP +",
+      "partIds": [
+        "cov_lbl_12"
+      ]
+    },
+    {
+      "id": "bn_alt_plug__br_alt_s",
+      "sourceId": "alt_plug",
+      "targetId": "br_alt_s",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_alt_plug__br_alt_l",
+      "sourceId": "alt_plug",
+      "targetId": "br_alt_l",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_alt_plug__br_alt_ig",
+      "sourceId": "alt_plug",
+      "targetId": "br_alt_ig",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_batt__kill_sw",
+      "sourceId": "bp_hdc_batt",
+      "targetId": "kill_sw",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      },
+      "partIds": [
+        "cov_dr25_112"
+      ]
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_ig_ks_in",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_ig_ks_in",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "bn_bp_hdc_pdb_h__br_ig_ks_out",
+      "sourceId": "bp_hdc_pdb_h",
+      "targetId": "br_ig_ks_out",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_ks__fb_batt",
+      "sourceId": "kill_sw",
+      "targetId": "fb_batt",
+      "length": {
+        "value": 300,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "label": "KILL SW C2",
+      "endLabel": "FB BATT IN",
+      "partIds": [
+        "cov_lbl_38",
+        "cov_lbl_38"
+      ]
+    },
+    {
+      "id": "b_bn_fb_batt__k_fp",
+      "sourceId": "fb_batt",
+      "targetId": "k_fp",
+      "length": {
+        "value": 60,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "label": "FB BATT FP",
+      "endLabel": "BATT K1 30",
+      "partIds": [
+        "cov_lbl_38",
+        "cov_lbl_38"
+      ]
+    },
+    {
+      "id": "b_bn_k_fp__br_w_fp85",
+      "sourceId": "k_fp",
+      "targetId": "br_w_fp85",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_k_fp__br_fp86",
+      "sourceId": "k_fp",
+      "targetId": "br_fp86",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "b_bn_k_fp__br_fp_pump",
+      "sourceId": "k_fp",
+      "targetId": "br_fp_pump",
+      "length": {
+        "value": 150,
+        "unit": "mm"
+      },
+      "separateLabels": true,
+      "label": "BATT K1 87",
+      "partIds": [
+        "cov_lbl_38"
+      ]
+    }
+  ],
+  "mates": [
+    {
+      "id": "m_rlp",
+      "sourceId": "rl_pos_fw",
+      "targetId": "rl_pos_eng"
+    },
+    {
+      "id": "m_rln",
+      "sourceId": "rl_neg_fw",
+      "targetId": "rl_neg_eng"
+    }
+  ],
+  "schematicNotes": [
+    {
+      "id": "n_alt_prot",
+      "width": 390,
+      "schematicPosition": {
+        "x": 990,
+        "y": 0
+      },
+      "text": "ALTERNATOR OUTPUT PROTECTION (Daniel 2026-09-28): a fusible link or an inline fuse / breaker on the positive cable at the trunk battery or near the cabin fuse box / PDB - never at the starter post. 170 A alternator (R161, R162): Littelfuse 880014175, sealed MEGA SN holder with a 175 A MEGA, on H3 at the POWER box (S40). Battery is AGM.\nKILL SWITCH (Dan 2026-10-13, J2; DECISIONS S21 / R64): Longacre 52-45780 in the trunk (175 A main, 20 A alternator pole; passes at 170 A, R162). Main pole: battery + -> MAIN 1, MAIN 2 (LOAD) -> H1 -> PDB BAT+ -> PDB ALT/STR -> H3 -> RADLOK -> starter B+, where the alternator B+ (w_alt) lands - so the alternator is on the LOAD side. Second pole: the alternator IG (excite, J/B No.1 ECU-IG 15A via IG2-15, 16 AWG for the 15 A fuse) runs glove box -> RH sill (with H1 / H2) -> ALT 1 / ALT 2 -> back -> RH fender grommet -> G2-3. Switch off = battery cut AND excite cut, so the alternator cannot keep the engine running; key ON -> ACC is the second stop (ECU ignition input, R97).\nSPIKE PROTECTION (info only, not drawn): opening the main pole while the alternator charges can load-dump into the loads. Option: a cutoff with alternator protection (Pegasus 4430 re-routes the alternator output to ground) - Daniel's call, not part of this build."
+    },
+    {
+      "id": "n_rev4",
+      "width": 390,
+      "schematicPosition": {
+        "x": 420,
+        "y": 450
+      },
+      "text": "ROUTE 1 REV 4 (Dan's mark-up, 2026-10-10): battery box moved to the passenger-side rear corner of the trunk (H1/H2 rerouted from there - bundle lengths above are inherited estimates from the prior ST185-EngineRoom-C drawing, not re-measured against the new spot - verify on the car). Starter moved to Dan's spot (lower-middle of the engine, p.29 leaders S2/S3). H4 (RADLOK+ -> starter) and H5 (alt B+ -> starter) now run as one bundle along the firewall and down to the starter (Dan: \"run 1 and 3 together\") - drawn as separate conductors here (H4 via RADLOK/rl_pos_eng, H5 via t_alt_b/w_alt) since harness.design has no native \"co-routed, not bundled-as-one-cable\" primitive; the physical bundling is a routing note, not a schema change. Alternator moved to the rear of the engine, RH side, under bulkheads A/B (MR2-style, rev 3 Dan mark-up 2026-10-04). The G2 round 3-pin plug (alt_plug, Toyota 90980-10341) is drawn here (Dan 2026-10-13, R17); its IG / L / S leads break off to ST185-EngineRoom-C and cross the firewall in harness C's own RH fender grommet (no ECU signal, so no bulkhead letter, R2) - IG and L to the cowl-side IG2-15 / IG2-16 leads under the ECU, S to the glove-box LOGIC box ALTS 2A."
+    },
+    {
+      "id": "n_batt_relay",
+      "width": 390,
+      "schematicPosition": {
+        "x": 0,
+        "y": 780
+      },
+      "text": "BATTERY RELAY BLOCK (DECISIONS R75, Z4; cad/fusebox rev 5, layout accepted by Dan 2026-10-14 (B6 = A); approval waits for every part to be a real buyable part (OPEN-ITEMS row 107)): trunk, passenger side, between the rear wall and the battery. Kill switch MAIN 2 (LOAD) -> 10 AWG -> M6 stud on the block's copper bar -> AMI-40 FP -> one straight 10 AWG jumper -> HCR150 k_fp terminal 3; terminal 5 -> fuel pump (wire on ST185-RearFuel). Fed from the LOAD side, so the kill switch also stops the pump. Coil plug (Superseal 1.5, 282080-1): coil - from ECU A19 (ST185-ECU-cabin) and coil + from LOGIC SW12 (ST185-CabinPower) arrive broken off. The kill-switch stud carries the 1/0 H1 lug and the 10 AWG feed lug. Bundle lengths are estimates - measure at install."
+    },
+    {
+      "id": "n_heavy",
+      "width": 390,
+      "schematicPosition": {
+        "x": 900,
+        "y": 1020
+      },
+      "text": "HEAVY DC: trunk battery -> POWER box bus zone (glove box, ST185-EngineRoom-C) -> RADLOK 8.0 through the firewall -> starter B+. 170 A alt B+ (2 AWG, R161 / R162) joins the starter post and does not recross; its protection is NOT at the starter (see n_alt_prot). Jump lugs at trunk battery, PDB, starter, engine block, and the engine-bay jump post. H1-H4 are 1/0 with RADLOK 8.0 (200 A), H5 is 2 AWG behind the 175 A fuse; sizes in DECISIONS S39 / S40. Moved out of ST185-EngineRoom-C into its own file 2026-10-11 (harness-reconcile pass, Section 40.1 step 4) - the POWER box bus zone (and everything it also feeds: cabin fuse block, glove-box body block, OEM hot, AM1/AM2) stays on EngineRoom-C; only the H1-H8 heavy-DC chain moved."
+    },
+    {
+      "id": "shdr_1",
+      "width": 270,
+      "schematicPosition": {
+        "x": 660,
+        "y": -90
+      },
+      "color": "Orange",
+      "text": "FIREWALL RADLOK"
+    }
+  ],
+  "wireParts": [
+    {
+      "id": "m16_10_2",
+      "partNumber": "M22759/16-10-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 10 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 10,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_16_2",
+      "partNumber": "M22759/16-16-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 16 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 16,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_2",
+      "partNumber": "M22759/16-18-2",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, RED, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Red",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_18_9",
+      "partNumber": "M22759/16-18-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 18 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 18,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_4",
+      "partNumber": "M22759/16-20-4",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, YELLOW, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "Yellow",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "m16_20_9",
+      "partNumber": "M22759/16-20-9",
+      "manufacturer": "M22759",
+      "description": "WIRE, ELECTRICAL, 20 AWG, WHITE, ETFE (TEFZEL) INSULATED, TIN PLATED COPPER, 150 C, 600 V",
+      "color": "White",
+      "gauge": {
+        "value": 20,
+        "unit": "AWG"
+      }
+    },
+    {
+      "id": "wp_1_0_blk",
+      "partNumber": "BC-1/0-BLK",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Black",
+      "gauge": {
+        "value": 53.5,
+        "unit": "Metric"
+      }
+    },
+    {
+      "id": "wp_1_0_red",
+      "partNumber": "BC-1/0-RED",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 53.5,
+        "unit": "Metric"
+      }
+    },
+    {
+      "id": "wp_2_red",
+      "partNumber": "BC-2-RED",
+      "manufacturer": "generic",
+      "description": "CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",
+      "color": "Red",
+      "gauge": {
+        "value": 2,
+        "unit": "AWG"
+      }
+    }
+  ],
+  "branchPoints": [
+    {
+      "id": "bp_hdc_batt",
+      "layoutPosition": {
+        "x": 780,
+        "y": -60
+      }
+    },
+    {
+      "id": "bp_hdc_pdb_h",
+      "layoutPosition": {
+        "x": 1140,
+        "y": -60
+      }
+    },
+    {
+      "id": "bp_hdc_fw",
+      "layoutPosition": {
+        "x": 1500,
+        "y": -60
+      }
+    },
+    {
+      "id": "bp_hdc_join",
+      "layoutPosition": {
+        "x": 1680,
+        "y": -660
+      }
+    },
+    {
+      "id": "bp_hdc_str",
+      "layoutPosition": {
+        "x": 2040,
+        "y": -660
+      }
+    }
+  ],
+  "contactParts": [
+    {
+      "id": "ct_generic_skt",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "(generic)",
+      "description": "CONTACT, SOCKET, CRIMP, GENERIC",
+      "manufacturer": "Generic"
+    },
+    {
+      "id": "ct_klauke_2r5",
+      "type": "Crimp",
+      "gender": "Socket",
+      "partNumber": "2R5",
+      "description": "TERMINAL, LUG, TUBULAR, RING, COPPER, TINNED, 10 MM2, M5 STUD",
+      "manufacturer": "Klauke",
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      }
+    },
+    {
+      "id": "ct_lug_stud",
+      "type": "Other",
+      "gender": "Socket",
+      "partNumber": "(ring lug, sized to cable)",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, SIZED TO CABLE, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "partNumber": "(integral - RL00801-50)",
+      "manufacturer": "Amphenol",
+      "type": "Crimp",
+      "gender": "Socket",
+      "contactColor": "Silver",
+      "description": "CONTACT, RADSOK 8.0, INTEGRAL TO RL00801-50 CABLE CONNECTOR, 50 MM2 (1/0) CRIMP BARREL",
+      "id": "ct_radlok8"
+    },
+    {
+      "id": "ct_ring_m6_8",
+      "type": "Other",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 8
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 10
+      },
+      "partNumber": "(ring lug, 8 AWG, M6)",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 8 AWG, M6 STUD, ADHESIVE HEATSHRINK",
+      "contactColor": "Silver",
+      "manufacturer": "generic"
+    },
+    {
+      "id": "ct_ss15",
+      "type": "Crimp",
+      "gender": "Socket",
+      "maxGauge": {
+        "unit": "AWG",
+        "value": 16
+      },
+      "minGauge": {
+        "unit": "AWG",
+        "value": 18
+      },
+      "partNumber": "282110-1",
+      "description": "CONTACT, SOCKET, CRIMP, SUPERSEAL 1.5, TIN, 0.75-1.5 MM2 (18-16 AWG), SEAL 281934-2",
+      "contactColor": "Silver",
+      "manufacturer": "TE Connectivity"
+    }
+  ],
+  "coveringParts": [
+    {
+      "id": "cov_lbl_12",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-1/2-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 12.7 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 4.3,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 12.7,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_lbl_38",
+      "type": "HeatShrink",
+      "partNumber": "TMS-SCE-3/8-2.0-9",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "MARKER, HEAT SHRINK, PRINTABLE, TMS-SCE, WHITE, 3:1, 9.5 MM EXPANDED ID, 50 MM, THERMAL TRANSFER PRINT",
+      "minDiameter": {
+        "value": 3.2,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 9.5,
+        "unit": "mm"
+      },
+      "isFixedLength": true,
+      "length": {
+        "value": 50,
+        "unit": "mm"
+      }
+    },
+    {
+      "id": "cov_dr25_112",
+      "type": "HeatShrink",
+      "partNumber": "DR-25-1-1/2-0-SP",
+      "manufacturer": "TE Connectivity (Raychem)",
+      "description": "TUBING, HEAT SHRINK, DR-25, BLACK, 2:1, 38.1 MM EXPANDED ID, 19.0 MM RECOVERED ID, FLUID RESISTANT ELASTOMER, -75 TO 150 C",
+      "url": "https://www.te.com/en/product-5039234011.html",
+      "color": "Black",
+      "minDiameter": {
+        "value": 19.0,
+        "unit": "mm"
+      },
+      "maxDiameter": {
+        "value": 38.1,
+        "unit": "mm"
+      },
+      "thickness": {
+        "value": 2.41,
+        "unit": "mm"
+      },
+      "isFixedLength": false
+    }
+  ],
+  "terminalParts": [
+    {
+      "type": "Ring",
+      "size": "M10",
+      "partNumber": "GENERIC LUG M10 2AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 3,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 2,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M10 STUD, ADHESIVE HEATSHRINK",
+      "id": "tp_lug_m10_2"
+    },
+    {
+      "id": "tp_lug_m10_50",
+      "size": "M10",
+      "type": "Ring",
+      "maxGauge": {
+        "unit": "Metric",
+        "value": 110
+      },
+      "minGauge": {
+        "unit": "Metric",
+        "value": 35
+      },
+      "partNumber": "GENERIC LUG M10 50MM2",
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 50 MM2 (1/0) BARREL, M10 STUD, ADHESIVE HEATSHRINK",
+      "manufacturer": "generic"
+    },
+    {
+      "type": "Ring",
+      "size": "M8",
+      "partNumber": "GENERIC LUG M8 2AWG",
+      "manufacturer": "generic",
+      "minGauge": {
+        "value": 3,
+        "unit": "AWG"
+      },
+      "maxGauge": {
+        "value": 2,
+        "unit": "AWG"
+      },
+      "description": "TERMINAL, LUG, RING, COPPER, TINNED, 2 AWG, M8 STUD, ADHESIVE HEATSHRINK",
+      "id": "tp_lug_m8_2"
+    }
+  ],
+  "connectorParts": [
+    {
+      "id": "cp_alt_round3",
+      "partNumber": "90980-10341",
+      "description": "CONNECTOR, PLUG, TOYOTA, ROUND, 3 POS",
+      "manufacturer": "Toyota",
+      "numberOfCavities": 3,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_generic_skt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cp_fb_batt",
+      "partNumber": "ST185-FB-BATT rev 5",
+      "manufacturer": "custom (PA12 print)",
+      "description": "BLOCK, RELAY AND FUSE, PRINTED PA12, COPPER BAR, M6 STUD, 1 AMI FUSE, 1 HCR 150 RELAY",
+      "gender": "Female",
+      "hasShell": false,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ring_m6_8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "partNumber": "jump-post-M8",
+      "manufacturer": "TBD",
+      "description": "POST, JUMP START, M8, INSULATED",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_lug_stud"
+            }
+          ]
+        }
+      ],
+      "id": "cp_jump",
+      "image": {
+        "source": "url",
+        "url": "https://raw.githubusercontent.com/living-relation/st185-link-ecu-config/main/docs/harness/part-images/jump-post-m8.png"
+      }
+    },
+    {
+      "id": "cp_ks_longacre",
+      "partNumber": "52-45780",
+      "manufacturer": "Longacre",
+      "description": "SWITCH, BATTERY DISCONNECT, 4 TERMINAL, 2 POLE, 175 A CONTINUOUS, 1000 A PEAK, 20 A AUXILIARY POLE, 6-36 V",
+      "url": "https://www.ogracing.com/products/longacre-battery-disconnect-switch",
+      "numberOfCavities": 4,
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_lug_stud"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "partNumber": "RL00801-50BK",
+      "manufacturer": "Amphenol",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), BLACK",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_radlok8"
+            }
+          ]
+        }
+      ],
+      "id": "cp_rl_blk_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Black_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Black_SPL.jpg"
+      }
+    },
+    {
+      "partNumber": "RL00801-50RE",
+      "manufacturer": "Amphenol",
+      "description": "CONNECTOR, CABLE, RADLOK 8.0, FEMALE, 200 A, 50 MM2 (1/0), RED",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_radlok8"
+            }
+          ]
+        }
+      ],
+      "id": "cp_rl_red_eng",
+      "image": {
+        "source": "url",
+        "url": "https://www.mouser.com/images/amphenol/lrg/RADLOCK_Red_SPL.jpg",
+        "lowResUrl": "https://www.mouser.com/images/amphenol/sm/RADLOCK_Red_SPL.jpg"
+      }
+    },
+    {
+      "id": "cp_rly_hcr150",
+      "image": {
+        "url": "https://www.te.com/catalog/common/images/PartImages/pr_relay_high_current_150.jpg",
+        "source": "url",
+        "lowResUrl": "https://www.te.com/catalog/common/images/PartThumbnails/th_relay_high_current_150.jpg"
+      },
+      "partNumber": "V23132-A2001-B200",
+      "description": "RELAY, HIGH CURRENT, TE HCR 150, IP67, 1 FORM A, 130 A AT 85 C, 12 VDC COIL 37 OHM 3.9 W, PARALLEL RESISTOR, STUD LOAD TERMINALS",
+      "manufacturer": "TE Connectivity",
+      "configurations": [
+        {
+          "id": "cfg",
+          "accessories": [
+            {
+              "id": "cfg-1",
+              "type": "ContactPart",
+              "partId": "ct_ring_m6_8"
+            }
+          ]
+        }
+      ],
+      "numberOfCavities": 5
+    }
+  ]
+}

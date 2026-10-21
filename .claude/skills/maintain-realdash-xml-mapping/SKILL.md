@@ -16,7 +16,7 @@ paths:
 - Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
-- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working Rules" and `docs/RECONCILIATION-RULES.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` R51); this list is the working checklist, not a second copy.
+- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working Rules" and `docs/RECONCILIATION-RULES.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
 - RealDash reads 0x3EB (gear byte only, reverse-camera switch) plus 0x3EF-0x3F1. `python bench/check_parity.py` checks every XML value's offset, length, signedness, conversion and warning bit against the contract.
 - Treat `link_g4x_can_setup.json` as the canonical contract for CAN IDs, scaling, and offsets before touching `link_g4x_realdash.xml`.
 - Keep `ST185:` input names in `link_g4x_realdash.xml` exactly stable unless the user explicitly asks for a rename; dashboard bindings depend on exact names.

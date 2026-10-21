@@ -1,6 +1,6 @@
 # Claude Dispatch rules (ST185)
 
-**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by getting `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md`, newest rows first, read and summarised by a session (R222, below). A contradicted row is deleted, never marked superseded (R211). Project context comes from the repo, not from older handoff files. No question to Dan before that summary is in.
+**Start here (Dan 2026-10-19).** Every new Dispatch chat starts by getting `docs/OPEN-ITEMS.md` (Status, Needs Dan, History) and `docs/harness/redesign/DECISIONS.md` (Binding rules B1-B30) read and summarised by a session (R222, below). A contradicted row is deleted, never marked superseded (R211). Project context comes from the repo, not from older handoff files. No question to Dan before that summary is in.
 
 ## Delegation: Dispatch is the secretary (R222, Dan 2026-10-20)
 > "from now on you don't do any thinking yourself. you delegate everything to other agents. if you need to look up something, answer a question, or create a plan, use another agent. you are just the delegator of tasks and coordination of effort. major decisions and large complex tasks get fully managed by other code or cloud sessions. anything you do plan, decide, or think yourself must be validated through an agent session first, to validate its accuracy and check for gaps."
@@ -26,7 +26,7 @@ Refined by Dan, 2026-10-20:
 - Say things literally (no idioms).
 
 ## Questions
-- Before a question reaches Dan, a second session searches DECISIONS (Binding rules from Daniel), this file, the SoT and research (R222). If a rule already answers it (e.g. R47/R107: layouts follow the approved route; R45: the SoT governs every endpoint), the work goes ahead on that rule and cites it - do not ask. Only if that session cannot answer does the question go to Dan. (Dan 2026-10-17: 'don't forget it'.)
+- Before a question reaches Dan, a second session searches DECISIONS (Binding rules B1-B30), this file, the SoT and research (R222). If a rule already answers it (e.g. R47/R107: layouts follow the approved route; R45: the SoT governs every endpoint), the work goes ahead on that rule and cites it - do not ask. Only if that session cannot answer does the question go to Dan. (Dan 2026-10-17: 'don't forget it'.)
 - Every question gets the next ID in one running list: A1..A9, B1..B9 ... Z9, then back to A1. Never bare 1/2/3.
 - Always multiple choice with a recommendation.
 - When a question is repeated, restate the full context and all options ("M1 is still open" alone is not OK).
@@ -53,7 +53,7 @@ Refined by Dan, 2026-10-20:
 - Every wake: Dispatch asks the standing maintenance session to run `powershell -File tools\hygiene.ps1` in the main checkout (add `-WhatIf` to preview). It fetches --prune, fast-forwards main, removes merged worktrees and their local branches that no session is using, and deletes empty leftover folders (R118). Sessions never remove their own worktree. Never force-push. The script has no skip list: to protect a worktree, `git worktree lock` it before the run and `git worktree unlock` it after.
 - After answers and finished runs, Dispatch asks a session to make sure OPEN-ITEMS (incl. Needs Dan), DECISIONS and the research hub are updated.
 - Who updates the hub: GitHub rebuilds the page on every merge; each session updates OPEN-ITEMS / DECISIONS in its ship step; a code session, asked by Dispatch, refreshes the Needs-Dan rows and the sessions strip (`docs/status/hub.json`) after every Dan answer and at least every few check-ins.
-- Every new Dan rule goes into DECISIONS "Binding rules from Daniel" the same day (Dispatch-only rules go in this file); Dispatch asks a session to write it.
+- Every new Dan rule goes into DECISIONS "Binding rules B1-B30" the same day (Dispatch-only rules go in this file); Dispatch asks a session to write it.
 - No stale documents (R211): a task card that creates a new document or SoT says to find and consolidate or delete every older doc on the same subject in the same PR; nothing is archived. A session checks every PR for it.
 - ECU pins (R212): a task card that touches a circuit with a wire on an ECU pin says to check it against the Link G4X Quick Start Guide AND the G4X plug-in (wire-in) guides first (the plug-in guide wins for special circuits and pin modes); a mismatch is a stop, ask here. The plug-in wire-in guides and the PCLink wiring manual are not in the repo yet: Dan supplies them. Grounds, loom A-B and relay drive are gated (R213, R216-R219).
 
