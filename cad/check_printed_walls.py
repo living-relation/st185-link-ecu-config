@@ -54,8 +54,9 @@ PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_
          'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']
 HB = None
 # Oldest handbuilt-cad commit whose checker gives st185's results (handbuilt-cad #18, proved byte-identical in st185 #390).
-# hb() refuses an older checkout; a newer one is used and its commit printed. Set HANDBUILT_CAD_COMMIT to require an exact commit.
-HB_MIN_COMMIT = '0c426f019a6b80172c766b9300c194fbec4154a3'
+# hb() needs handbuilt-cad checked out at exactly HB_COMMIT (override with HANDBUILT_CAD_COMMIT=<sha>). A newer checkout is
+# opt-in only: HANDBUILT_CAD_ALLOW_NEWER=1 accepts any descendant of HB_COMMIT and prints the commit it used.
+HB_COMMIT = '0c426f019a6b80172c766b9300c194fbec4154a3'
 
 
 def hb():
@@ -87,7 +88,8 @@ def hb():
 
 
 def _hb_check_commit(root):
-    """handbuilt-cad's HEAD commit, after checking it is HB_MIN_COMMIT or newer (or exactly $HANDBUILT_CAD_COMMIT)."""
+    """handbuilt-cad's HEAD commit, after checking it is exactly the pin (HB_COMMIT or $HANDBUILT_CAD_COMMIT), or, only with
+    HANDBUILT_CAD_ALLOW_NEWER=1, a descendant of the pin."""
     def git(*a):
         r = subprocess.run(['git', '-C', root] + list(a), capture_output=True, text=True)
         return r.returncode, r.stdout.strip()
@@ -97,12 +99,21 @@ def _hb_check_commit(root):
         raise SystemExit('git not found: cannot check the handbuilt-cad commit at %s' % root)
     if rc:
         raise SystemExit('%s is not a git checkout of handbuilt-cad (needed to check its commit)' % root)
-    want = os.environ.get('HANDBUILT_CAD_COMMIT')
-    if want:
-        if not head.startswith(want):
-            raise SystemExit('handbuilt-cad at %s is %s, not HANDBUILT_CAD_COMMIT=%s' % (root, head[:12], want))
-    elif git('merge-base', '--is-ancestor', HB_MIN_COMMIT, 'HEAD')[0]:
-        raise SystemExit('handbuilt-cad at %s (%s) is older than %s; pull it (git pull --ff-only)' % (root, head[:12], HB_MIN_COMMIT[:12]))
+    pin = os.environ.get('HANDBUILT_CAD_COMMIT') or HB_COMMIT
+    if head.startswith(pin):
+        return head
+    if os.environ.get('HANDBUILT_CAD_ALLOW_NEWER') != '1':
+        raise SystemExit('handbuilt-cad at %s is %s, not the pinned %s. Check out the pin (git -C %s checkout %s) or set '
+                         'HANDBUILT_CAD_ALLOW_NEWER=1 to accept a newer commit' % (root, head[:12], pin[:12], root, pin[:12]))
+    rc, _ = git('merge-base', '--is-ancestor', pin, 'HEAD')
+    if rc == 1:
+        raise SystemExit('handbuilt-cad at %s (%s) does not contain the pinned %s; pull it (git pull --ff-only)' % (root, head[:12], pin[:12]))
+    if rc:
+        shallow = git('rev-parse', '--is-shallow-repository')[1] == 'true'
+        raise SystemExit('cannot check handbuilt-cad at %s against the pinned %s (git exit %d)%s' % (
+            root, pin[:12], rc, ': it is a shallow clone without that commit; run git -C %s fetch --unshallow' % root if shallow
+            else ': the pinned commit is not in this clone; run git -C %s fetch' % root))
+    print('handbuilt-cad: HANDBUILT_CAD_ALLOW_NEWER=1, using %s (newer than the pinned %s)' % (head[:12], pin[:12]))
     return head
 
 
