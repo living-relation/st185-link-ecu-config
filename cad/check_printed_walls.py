@@ -29,7 +29,7 @@ keeps st185's settings and outputs. Run in WSL with the handbuilt-cad venv (trim
 without re-running W / A.
 Claude Code, 2026-10-15.
 """
-import argparse, importlib.util, json, os, sys, time
+import argparse, importlib.util, json, os, subprocess, sys, time
 import trimesh
 
 # Detection (W sections, A voxels, every R127 fix) lives in handbuilt-cad's generic checker, tools/checks/check_printed_walls.py
@@ -53,6 +53,9 @@ PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
          'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']
 HB = None
+# Oldest handbuilt-cad commit whose checker gives st185's results (handbuilt-cad #18, proved byte-identical in st185 #390).
+# hb() refuses an older checkout; a newer one is used and its commit printed. Set HANDBUILT_CAD_COMMIT to require an exact commit.
+HB_MIN_COMMIT = '0c426f019a6b80172c766b9300c194fbec4154a3'
 
 
 def hb():
@@ -63,14 +66,44 @@ def hb():
         path = os.path.join(root, 'tools', 'checks', 'check_printed_walls.py')
         if not os.path.isfile(path):
             raise SystemExit('handbuilt-cad wall checker not found at %s - set HANDBUILT_CAD to a handbuilt-cad checkout' % path)
-        mine = sys.modules.pop('wall_classes', None)  # handbuilt-cad imports its own wall_classes; keep st185's apart
-        sp = importlib.util.spec_from_file_location('hb_check_printed_walls', path)
-        HB = importlib.util.module_from_spec(sp)
-        sp.loader.exec_module(HB)
+        head = _hb_check_commit(root)
+        # handbuilt-cad imports its own wall_classes (and puts its folder first on sys.path); keep st185's apart and put both
+        # sys.modules and sys.path back exactly as they were, even if loading fails.
+        mine, had_mine = sys.modules.get('wall_classes'), 'wall_classes' in sys.modules
+        saved_path = list(sys.path)
         sys.modules.pop('wall_classes', None)
-        if mine is not None:
-            sys.modules['wall_classes'] = mine
+        try:
+            sp = importlib.util.spec_from_file_location('hb_check_printed_walls', path)
+            mod = importlib.util.module_from_spec(sp)
+            sp.loader.exec_module(mod)
+        finally:
+            sys.modules.pop('wall_classes', None)
+            if had_mine:
+                sys.modules['wall_classes'] = mine
+            sys.path[:] = saved_path
+        HB = mod
+        print('handbuilt-cad wall checker: %s @ %s' % (path, head or 'unknown commit'))
     return HB
+
+
+def _hb_check_commit(root):
+    """handbuilt-cad's HEAD commit, after checking it is HB_MIN_COMMIT or newer (or exactly $HANDBUILT_CAD_COMMIT)."""
+    def git(*a):
+        r = subprocess.run(['git', '-C', root] + list(a), capture_output=True, text=True)
+        return r.returncode, r.stdout.strip()
+    try:
+        rc, head = git('rev-parse', 'HEAD')
+    except OSError:
+        raise SystemExit('git not found: cannot check the handbuilt-cad commit at %s' % root)
+    if rc:
+        raise SystemExit('%s is not a git checkout of handbuilt-cad (needed to check its commit)' % root)
+    want = os.environ.get('HANDBUILT_CAD_COMMIT')
+    if want:
+        if not head.startswith(want):
+            raise SystemExit('handbuilt-cad at %s is %s, not HANDBUILT_CAD_COMMIT=%s' % (root, head[:12], want))
+    elif git('merge-base', '--is-ancestor', HB_MIN_COMMIT, 'HEAD')[0]:
+        raise SystemExit('handbuilt-cad at %s (%s) is older than %s; pull it (git pull --ff-only)' % (root, head[:12], HB_MIN_COMMIT[:12]))
+    return head
 
 
 def section(m, axis, c):
