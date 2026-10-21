@@ -36,15 +36,18 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
 ## Factory wiring facts (OEM ends)
 
 - What stays and what goes (DECISIONS B1 / B9, surgical rewire, Dan 2026-10-20):
-  - **Kept OEM:** cowl, instrument panel, floor, door, seat, console and luggage room wires; cabin J/B No.1 and No.3 (what
-    a kept J/B feeds stays fed from it: fuse, relay, pin); the Engine Room Main Wire outer loop (headlights, turn and
-    clearance lamps, horns, fans, washer); the rear lights; both A/C amps (A15 and the auto A/C amp A31 / A32, A23); the
-    four wheel speed sensors (they feed the Link). Every branch of a kept harness that runs into the engine area is cut
-    and its job moves into the new engine harness.
-  - **Removed (never a circuit source):** the Engine Wire; J/B No.2, R/B No.2-5 and the A/C clutch relay box; the OEM
-    engine ECU and igniter; every SRS crash sensor and SRS computer; the ABS computer and the ABS actuator (solenoid
-    module). Each wire that crossed from a removed part into a kept harness gets one row in the master: cut and cap,
-    reuse, or re-feed (B5).
+  - **Kept OEM:** cowl, instrument panel, floor, door, seat, console and luggage room wires; cabin J/B No.1 and No.3
+    (what a kept J/B feeds stays fed from it: fuse, relay, pin); the kick-panel R/B No.2, No.3 and No.4 (R/B4 lost its
+    feed through EB1, so it gets a short new cabin wire from a glove-box POWER fuse); the Engine Room Main Wire outer
+    loop (headlights, turn and clearance lamps, horns, fans, washer); the rear lights; both A/C amps (A15 and the auto
+    A/C amp A31 / A32, A23); the four wheel speed sensors (they feed the Link). Every branch of a kept harness that runs
+    into the engine area is cut and its job moves into the new engine harness.
+  - **Removed (never a circuit source):** the Engine Wire; the engine-bay J/B No.2 and R/B No.5 (the 1993 EWD puts the
+    A/C clutch relay in R/B No.5: check at the car that it is the small A/C clutch relay box); the OEM engine ECU and
+    igniter; every SRS crash sensor and SRS computer; the ABS computer and the ABS actuator (solenoid module). The
+    joints where the Engine Wire met a kept harness (EB1, EB2, ES2, ET1, IG1 / IG2, IH1) go dead: no OEM wire crosses
+    into the engine bay (B9). Each live wire that crossed from a removed part into a kept harness gets one row in the
+    master: cut and cap, or re-feed from the cabin side (B5).
   - **New wire:** the engine harness (Link to every engine sensor and actuator), the fuel pump circuit, one dash feed
     for the cluster, LEDs and RealDash Pi (bypassing the dash wiring), CAN, the alarm add-on, and power taps.
   - Kept OEM ground points (where a high-current load may ground, B10): EA (M8 studs), EB, EC, ID, IE / IF, IG.
@@ -52,5 +55,5 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
   `st185-celica-repair-manual` repo. The 1990 ST185 All-Trac book and the 1992 Celica EWD132U are reading aids only; an
   end still sourced from them is re-checked against 1993 (`docs/OPEN-ITEMS.md` row 156). The public PDF labelled EWD160U
   is the FWD AT180 / ST184 book: never use its pin numbers. Factory snips: `docs/electrical/ewd-snips/`.
-- Before first power-up, with the battery isolated: ohmmeter from each cabin landing (J/B1, IE1, the old R/B2 / R/B4
-  leads, blower, ignition switch) to its named load.
+- Before first power-up, with the battery isolated: ohmmeter from each cabin landing (J/B1, IE1, the R/B2 / R/B4
+  feeds, blower, ignition switch) to its named load.
