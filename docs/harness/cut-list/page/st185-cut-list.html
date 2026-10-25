@@ -1,0 +1,370 @@
+<title>ST185 Firewall Cut List</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one column "service sheet" per joint group; figures in a 2-up grid, wire table below. */
+:root{
+  --paper:#eef1f4; --sheet:#ffffff; --ink:#18212b; --muted:#56616e; --rule:#cfd6de;
+  --cut:#c8342b; --cut-bg:#fbe9e7; --keep:#1d6b5c; --keep-bg:#e3f2ee; --gone:#6b7380; --gone-bg:#eceff2;
+  --ask:#9a5b00; --ask-bg:#fff2dc; --fig:#ffffff;
+  --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"JetBrains Mono",Consolas,"Courier New",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11161c; --sheet:#1a2129; --ink:#e6ebf0; --muted:#9aa6b2; --rule:#2e3843;
+  --cut:#ff7a6e; --cut-bg:#3a1f1d; --keep:#6fd3bd; --keep-bg:#163029; --gone:#a3acb7; --gone-bg:#252d36;
+  --ask:#f2b45a; --ask-bg:#3a2c14; --fig:#f7f7f5; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11161c; --sheet:#1a2129; --ink:#e6ebf0; --muted:#9aa6b2; --rule:#2e3843;
+  --cut:#ff7a6e; --cut-bg:#3a1f1d; --keep:#6fd3bd; --keep-bg:#163029; --gone:#a3acb7; --gone-bg:#252d36;
+  --ask:#f2b45a; --ask-bg:#3a2c14; --fig:#f7f7f5; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font:16px/1.5 var(--body)}
+.wrap{max-width:1100px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:20px}
+header{display:grid;gap:6px}
+.eyebrow{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(28px,4vw,40px)/1.05 var(--display);margin:0;text-wrap:balance}
+h2{font:700 26px/1.1 var(--display);margin:0;text-wrap:balance}
+h3{font:600 15px/1.2 var(--display);letter-spacing:.04em;text-transform:uppercase;margin:0;color:var(--muted)}
+p{margin:0;max-width:68ch}
+.lede{color:var(--muted)}
+nav.groups{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:600 13px/1 var(--mono);padding:7px 10px;border:1px solid var(--rule);border-radius:4px;color:var(--muted);background:var(--sheet)}
+.chip b{color:var(--ink)}
+.chip.on{border-color:var(--cut);color:var(--cut);background:var(--cut-bg)}
+.chip.on b{color:var(--cut)}
+.chip.done{border-color:var(--keep);color:var(--keep);background:var(--keep-bg)}
+.chip.done b{color:var(--keep)}
+a.chip{text-decoration:none}
+a.chip:focus-visible{outline:2px solid var(--cut);outline-offset:2px}
+.mapfig{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:16px;align-items:start}
+@media (max-width:720px){.mapfig{grid-template-columns:minmax(0,1fr)}}
+.boxlist{display:grid;gap:16px}
+.box{border:1px solid var(--rule);border-radius:4px;padding:14px;display:grid;gap:12px;min-width:0}
+.box header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.box header h3{color:var(--ink);text-transform:none;letter-spacing:0;font-size:19px;flex:1 1 220px}
+.box header .code{font-size:15px;color:var(--cut)}
+.boxfigs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.boxfigs{grid-template-columns:minmax(0,1fr)}}
+.path{display:grid;gap:10px;border:1px solid var(--rule);border-radius:4px;padding:12px 14px}
+.prow{display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:start}
+.prow ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 0;font-size:14px}
+.prow li{display:inline-flex;align-items:center}
+.prow li+li::before{content:"→";color:var(--muted);padding:0 8px}
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:20px;display:grid;gap:18px;min-width:0}
+.where{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px}
+.where span{color:var(--muted)}
+.where strong{font-weight:600}
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.figs .wide{grid-column:1/-1}
+figure{margin:0;display:grid;gap:8px;min-width:0}
+figure .img{background:var(--fig);border:1px solid var(--rule);border-radius:4px;padding:8px;display:flex;justify-content:center}
+figure img{display:block;max-width:100%;height:auto}
+figcaption{font-size:14px;color:var(--muted)}
+figcaption b{color:var(--ink);font-weight:600}
+.pg{font:600 12px/1 var(--mono);color:var(--cut);white-space:nowrap}
+.tablebox{overflow-x:auto;border:1px solid var(--rule);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:14px}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--rule)}
+th{font:600 12px/1.2 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted);background:var(--paper)}
+tbody tr.wirehead td{background:var(--paper);font-weight:700;font-family:var(--display);font-size:16px;letter-spacing:.01em}
+td.c{font-family:var(--mono);font-size:13px;white-space:nowrap}
+td.arrow{color:var(--muted);text-align:center;padding-inline:2px}
+.code{font-family:var(--mono);font-weight:600}
+.sw{display:inline-block;width:22px;height:10px;border:1px solid #7c8590;border-radius:2px;vertical-align:middle;margin-right:6px}
+.sw.BO{background:linear-gradient(#111 0 35%,#f28c28 35% 65%,#111 65%)}
+.sw.B{background:#111}
+.sw.W{background:#f6f6f6}
+.tag{display:inline-block;font:600 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:4px 6px;border-radius:3px;white-space:nowrap}
+.tag.keep{color:var(--keep);background:var(--keep-bg)}
+.tag.gone{color:var(--gone);background:var(--gone-bg)}
+.tag.cut{color:var(--cut);background:var(--cut-bg)}
+.tag.ask{color:var(--ask);background:var(--ask-bg)}
+.note{font-size:13px;color:var(--muted);margin-top:4px}
+.callouts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.callout{border:1px solid var(--rule);border-left:4px solid var(--ask);border-radius:4px;padding:12px 14px;display:grid;gap:4px;min-width:0}
+.callout.car{border-left-color:var(--keep)}
+.road{display:grid;gap:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.road div{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:12px;padding:9px 12px;border-bottom:1px solid var(--rule);align-items:baseline}
+.road div:last-child{border-bottom:0}
+.road .n{font:700 18px/1 var(--display);color:var(--muted)}
+.road .n.on{color:var(--cut)}
+.road .w{font:600 13px/1 var(--mono);color:var(--muted);white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted)}
+@media (max-width:720px){.figs,.callouts{grid-template-columns:minmax(0,1fr)}.sheet{padding:14px}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Step 4 · Surgical rewire · Cut list · 1993 EWD (EWD160U)</div>
+    <h1>Where the old Engine Wire plugs into the kept harnesses</h1>
+    <p class="lede">One joint group at a time. Each group shows where it sits in the car, the connector face, the wiring-diagram page, and every wire end to end: connector, pin, colour.</p>
+    <p class="lede" style="border-left:4px solid var(--accent,#c60);padding-left:10px"><b>Status 2026-10-25.</b> Every box is decided (tags below). The "R/B No.4 routes" section is from before R/B No.4 was kept, so it is superseded: R/B No.4 stays with one new feed wire and its own starter relay. "Cut + cap" now means remove the dead wire back to its last live point. Group 3 (IG1 / IG2) is done; its table is in the repo at <code>docs/harness/cut-list/</code>.</p>
+    <nav class="groups" aria-label="Joint groups">
+      <a class="chip" href="#boxes"><b>□</b> 7 boxes</a>
+      <a class="chip" href="#rb4"><b>↯</b> R/B4 routes (old)</a>
+      <a class="chip done" href="#g1"><b>1</b> EB1 ✓</a>
+      <a class="chip done" href="#g2"><b>2</b> ET1 ✓</a>
+      <span class="chip done"><b>3</b> IG1 / IG2 ✓</span>
+      <span class="chip"><b>4</b> IH1</span>
+      <span class="chip"><b>5</b> EB2 / ES2</span>
+      <span class="chip"><b>6</b> J/B2 + R/B boxes</span>
+      <span class="chip"><b>7</b> Removed parts</span>
+      <span class="chip"><b>8</b> ER Main branches</span>
+    </nav>
+  </header>
+
+  <section class="sheet" aria-labelledby="maph">
+    <div class="mapfig">
+      <div style="display:grid;gap:8px;min-width:0">
+        <div class="eyebrow">Map · book p.18</div>
+        <h2 id="maph">Where the boxes are</h2>
+        <p>Engine bay (top): J/B No.2, R/B No.5 and the ABS relay box all go. Dash (bottom): J/B No.1, J/B No.3, R/B No.2 and No.4 stay; R/B No.3 goes (no fog lights). The A/C amplifier A15 sits behind the glove box, next to R/B No.4.</p>
+        <p class="lede">Rule B9: forward of the firewall every wire is new, on a named route. Every joint below goes dead, and anything a kept box still needs gets fed from the cabin side.</p>
+      </div>
+      <figure>
+        <div class="img"><img src="img/map_p18.png" width="900" height="1088" alt="Relay locations: engine compartment with J/B No.2 and R/B No.5; instrument panel with J/B No.1, R/B No.2, R/B No.3, R/B No.4 and the A/C amplifier"></div>
+        <figcaption><span class="pg">BOOK P.18</span> &nbsp;<b>Relay locations.</b> 1993 EWD.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sheet" id="boxes" aria-labelledby="boxh">
+    <div style="display:grid;gap:6px">
+      <div class="eyebrow">The 7 OEM boxes · book p.18 to 27</div>
+      <h2 id="boxh">J/B and R/B, one by one</h2>
+      <p class="lede">J/B = junction block (fuses, relays and wire joins). R/B = relay block (a few relays, sometimes fuses). Toyota numbers them in no useful order, so here is each one with where it sits and what it does.</p>
+    </div>
+
+    <div class="boxlist">
+      <article class="box">
+        <header><span class="code">J/B No.1</span><h3>Dash fuse box · left kick panel</h3><span class="tag keep">Stays (B9)</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_jb1_loc.png" width="760" height="506" alt="Instrument panel drawing with J/B No.1 circled at the driver's left kick panel"></div><figcaption><span class="pg">P.18</span> Driver's left kick panel.</figcaption></figure>
+          <figure><div class="img"><img src="img/box_jb1.png" width="760" height="919" alt="J/B No.1 drawing with plugs 1A to 1I, fuses and relays"></div><figcaption><span class="pg">P.20</span> Plugs 1A to 1I.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> the dash fuses (IGN, GAUGE, WIPER, CIG/RADIO, TURN, ECU-B, ECU-IG, STOP, TAIL), the taillight and defogger relays, 30A defogger fuse, turn flasher, integration relay. <b>Fed by:</b> plug 1I. That is group 2: new feed from the glove box.</p>
+      </article>
+
+      <article class="box">
+        <header><span class="code">J/B No.3</span><h3>Wire junction · behind the gauge cluster</h3><span class="tag keep">Stays (B9)</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_jb3_loc.png" width="760" height="506" alt="Instrument panel drawing with J/B No.3 circled behind the combination meter"></div><figcaption><span class="pg">P.18</span> Behind the gauge cluster.</figcaption></figure>
+          <figure><div class="img"><img src="img/box_jb3.png" width="760" height="400" alt="J/B No.3 drawing with plugs 3A, 3B and 3C"></div><figcaption><span class="pg">P.25</span> Plugs 3A, 3B, 3C.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> no fuses or relays. It only joins cowl-wire circuits behind the dash.</p>
+      </article>
+
+      <article class="box">
+        <header><span class="code">R/B No.2</span><h3>Power-accessory relay · left kick panel, under J/B No.1</h3><span class="tag keep">Stays (one new feed)</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_rb2_loc.png" width="760" height="506" alt="Instrument panel drawing with R/B No.2 circled below J/B No.1"></div><figcaption><span class="pg">P.18</span> Below J/B No.1.</figcaption></figure>
+          <figure><div class="img"><img src="img/box_rb2.png" width="760" height="493" alt="R/B No.2 drawing with the power main relay and 30A power fuse"></div><figcaption><span class="pg">P.26</span> Power main relay, 30A POWER fuse.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> power main relay + 30A POWER fuse. Runs power windows, door locks, sunroof, power seat. <b>Fed by:</b> AM1, which came through the Engine Wire, so it needs a new feed either way. <b>Glove-box twin already designed:</b> <span class="code">k_pwr</span>.</p>
+      </article>
+
+      <article class="box">
+        <header><span class="code">R/B No.3</span><h3>Fog light relay · right kick panel</h3><span class="tag cut">Goes (no fog lights)</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_rb3_loc.png" width="760" height="506" alt="Instrument panel drawing with R/B No.3 circled at the right kick panel"></div><figcaption><span class="pg">P.18</span> Right kick panel, lower.</figcaption></figure>
+          <figure><div class="img"><img src="img/box_rb3.png" width="760" height="478" alt="R/B No.3 drawing with the fog light relay"></div><figcaption><span class="pg">P.26</span> Fog light relay only.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> the fog light relay, nothing else. Its power came from the 20A FR FOG fuse in R/B No.4. <b>Glove-box twin:</b> none yet (spare micro relays M8 to M10 exist).</p>
+      </article>
+
+      <article class="box">
+        <header><span class="code">R/B No.4</span><h3>Starter, blower and A/C fuses · right kick panel</h3><span class="tag keep">Stays (one new feed)</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_rb4_loc.png" width="760" height="506" alt="Instrument panel drawing with R/B No.4 circled at the right kick panel"></div><figcaption><span class="pg">P.18</span> Right kick panel, upper, by the glove box.</figcaption></figure>
+          <figure><div class="img"><img src="img/box_rb4.png" width="760" height="460" alt="R/B No.4 drawing with starter relay, heater relay, 40A heater, 20A fog and 10A A/C fuses"></div><figcaption><span class="pg">P.27</span> Starter relay, heater relay, 3 fuses.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> starter relay, heater (blower) relay, 40A HEATER, 20A FR FOG and 10A A/C fuses (the A/C fuse powers both A/C amps). <b>Fed by:</b> EB1 pin 3 (group 1). <b>Glove-box twins already designed:</b> <span class="code">k_str</span>, <span class="code">k_htr</span>. FOG and A/C would need slots.</p>
+      </article>
+
+      <article class="box">
+        <header><span class="code">J/B No.2</span><h3>Engine-bay fuse box · left front, by the battery</h3><span class="tag cut">Goes</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_jb2_loc.png" width="760" height="364" alt="Engine compartment drawing with J/B No.2 for All-Trac circled at the left front"></div><figcaption><span class="pg">P.18</span> Left front, by the battery (All-Trac version).</figcaption></figure>
+          <figure><div class="img"><img src="img/box_jb2.png" width="760" height="403" alt="J/B No.2 All-Trac drawing with main fuses and relays"></div><figcaption><span class="pg">P.23</span> Main fuses and engine relays.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> main fuses (100A ALT, AM1, AM2, 60A ABS), HEAD LH/RH, RTR, EFI, DOME, HAZ-HORN, radiator and condenser fan fuses, headlight relay, EFI main relay, engine main relay, radiator fan relay. Every job moves to the glove-box boxes.</p>
+      </article>
+
+      <article class="box">
+        <header><span class="code">R/B No.5</span><h3>Engine-bay relay box · front right</h3><span class="tag cut">Goes</span></header>
+        <div class="boxfigs">
+          <figure><div class="img"><img src="img/box_rb5_loc.png" width="760" height="364" alt="Engine compartment drawing with R/B No.5 circled at the front right, next to the ABS relay"></div><figcaption><span class="pg">P.18</span> Front right. The little "ABS Relay" box beside it goes with ABS.</figcaption></figure>
+          <figure><div class="img"><img src="img/box_rb5.png" width="760" height="426" alt="R/B No.5 drawing with condenser fan relays, fuel pump relay, horn relay and A/C magnetic clutch relay"></div><figcaption><span class="pg">P.27</span> 5 relays.</figcaption></figure>
+        </div>
+        <p><b>Inside:</b> A/C magnetic clutch relay, horn relay, condenser fan relays No.2 and No.3, fuel pump relay. This is the box with the A/C clutch relay; check at the car that it is the "small A/C clutch relay box" you meant.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sheet" id="rb4" aria-labelledby="rb4h">
+    <div style="display:grid;gap:6px">
+      <div class="eyebrow">Box routes · 1 of 5 · old vs new · SUPERSEDED 2026-10-21: R/B No.4 stays</div>
+      <h2 id="rb4h">R/B No.4: every wire, old route and new route</h2>
+      <div class="legend"><span><span class="sw" style="background:repeating-linear-gradient(90deg,#e8590c 0 8px,transparent 8px 12px);border-color:#e8590c"></span>Old OEM route</span><span><span class="sw" style="background:#1c6dd0;border-color:#1c6dd0"></span>New route if R/B No.4 goes</span><span>Numbers = circuits in the table. Paths are best fit on the FSM art, not measured.</span></div>
+    </div>
+    <div class="figs">
+      <figure class="wide">
+        <div class="img"><img src="img/rb4_cabin.png" width="1355" height="980" alt="Dash wiring drawing with R/B No.4 circuits: old routes dashed orange from R/B No.4 to the firewall grommet, blower, A/C amp and fog relay; new routes solid blue from the glove-box boxes"></div>
+        <figcaption><span class="pg">BOOK P.42</span> &nbsp;<b>Inside the dash</b> (passenger side). Old: everything hangs off R/B No.4 and leaves through the RH firewall grommet. New: each job starts at the glove-box boxes.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="img"><img src="img/rb4_bay.png" width="1400" height="813" alt="Engine bay drawing: old Engine Wire route dashed orange from EB1 to J/B No.2 and the starter, old fog route from EA1; new starter wire solid blue from bulkhead A along the engine-harness trunk to the starter"></div>
+        <figcaption><span class="pg">BOOK P.36</span> &nbsp;<b>Engine bay.</b> Old: R/B No.4's feed came from J/B No.2 across the engine (Engine Wire) to EB1, and the starter signal went back the same way. New: one wire from bulkhead A down the new engine-harness trunk to the starter.</figcaption>
+      </figure>
+    </div>
+    <div class="tablebox">
+      <table>
+        <thead><tr><th>#</th><th>Circuit</th><th>Old route</th><th>New route if R/B No.4 goes</th><th>If R/B No.4 stays</th></tr></thead>
+        <tbody>
+          <tr><td class="c">1</td><td>Power in (40A HEATER, 20A FOG)</td><td>J/B2 100A ALT → Engine Wire → EB1-3 → Cowl Wire → grommet → splice I9 → R/B4</td><td>Not needed: the glove-box POWER box is fed from the trunk battery</td><td>POWER fuse → short new cabin wire → R/B4 (picked yesterday)</td></tr>
+          <tr><td class="c">2</td><td>Starter signal</td><td>Key START → R/B4 starter relay → grommet → EB1-2 → Engine Wire → starter</td><td colspan="2"><code>k_str</code> → bulkhead A → engine-harness trunk → starter (already decided either way)</td></tr>
+          <tr><td class="c">3</td><td>Blower motor</td><td>R/B4 heater relay → blower B4</td><td><code>k_htr</code> → blower B4</td><td>Unchanged OEM</td></tr>
+          <tr><td class="c">4</td><td>Fog lights</td><td>R/B4 FOG fuse → R/B3 fog relay → grommet → EA1 → ER Main → fog lights</td><td>LOGIC spare relay M8 → R/B3's old output wire → EA1 → fog lights</td><td>Unchanged OEM</td></tr>
+          <tr><td class="c">5</td><td>A/C amps power</td><td>R/B4 10A A/C fuse → A/C amp A15 and A/C controls</td><td>New LOGIC A/C fuse → the same V-R wire</td><td>Unchanged OEM</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Unchanged both ways: the key START wire tap at the R/B4 spot (Link start request) and the clutch-switch wire (to the CSB3).</p>
+  </section>
+
+  <section class="sheet" id="g1" aria-labelledby="g1h">
+    <div style="display:grid;gap:6px">
+      <div class="eyebrow">Group 1 of 8 · 3 live wires</div>
+      <h2 id="g1h">EB1 · Engine Wire ↔ Cowl Wire</h2>
+      <div class="where">
+        <div><span>Where:</span> <strong>rear of the right front fender</strong>, by the strut tower, next to EB2</div>
+        <div><span>Housing:</span> <strong>gray, 4 cavities</strong> (pin 4 empty on 3S-GTE)</div>
+      </div>
+    </div>
+
+    <div class="figs">
+      <figure class="wide">
+        <div class="img"><img src="img/g1_loc.png" width="1200" height="637" alt="1993 Celica 3S-GTE engine bay drawing with joint connector EB1 circled at the rear of the right front fender"></div>
+        <figcaption><span class="pg">BOOK P.36</span> &nbsp;<b>Where it is.</b> Drawing looks down from the front bumper: firewall at the top, the car's right (passenger) side on the left of the picture. EB1 and EB2 sit together inside the red circle.</figcaption>
+      </figure>
+      <figure>
+        <div class="img"><img src="img/g1_face.png" width="459" height="417" alt="EB1 connector faces: female half pins 1 2 3 4, male half pins 2 1 4 3"></div>
+        <figcaption><span class="pg">BOOK P.37</span> &nbsp;<b>Connector face.</b> Two halves of one gray 4-pin joint. Pin numbers mirror between the halves.</figcaption>
+      </figure>
+      <figure>
+        <div class="img"><img src="img/g1_p62.png" width="800" height="550" alt="Power source diagram: EB1 pin 3 white wire to splice I9 and relay block No.4"></div>
+        <figcaption><span class="pg">BOOK P.62</span> &nbsp;<b>Pin 3 (W).</b> Power Source page. The white wire leaves EB1-3, hits splice I9, and feeds two fuses in R/B No.4 (the circled 4s).</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="img"><img src="img/g1_p66.png" width="855" height="1126" alt="Starting and ignition diagram: ignition switch IG2 B-O wire to EB1 pin 1, starter relay output B wire to EB1 pin 2 then splice E5 to the starter"></div>
+        <figcaption><span class="pg">BOOK P.66</span> &nbsp;<b>Pins 1 and 2.</b> Starting &amp; Ignition (All-Trac). Top: ignition switch I13 pin 9 (IG2) runs B-O straight to EB1-1. Middle: the starter relay (in R/B No.4, the circled 4s) sends B down to EB1-2, then splice E5 feeds the starter, cold-start injector and ES2.</figcaption>
+      </figure>
+    </div>
+
+    <div style="display:grid;gap:8px">
+      <h3>Every wire, end to end</h3>
+      <div class="legend"><span class="tag keep">Kept</span> stays in the car (Cowl Wire) <span class="tag gone">Gone</span> leaves with the Engine Wire <span class="tag cut">Cut + cap</span> proposed <span class="tag ask">Your pick</span> open question</div>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>Side</th><th>From connector</th><th>Pin</th><th>Wire</th><th></th><th>To connector</th><th>Pin</th><th>Wire</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr class="wirehead"><td colspan="9">EB1-1 · IG2, unfused, live with the key ON</td></tr>
+            <tr><td><span class="tag keep">Kept</span></td><td class="c">I13 Ignition SW</td><td class="c">9 (IG2)</td><td class="c"><span class="sw BO"></span>B-O</td><td class="arrow">→</td><td class="c">EB1 (cowl half)</td><td class="c">1</td><td class="c"><span class="sw BO"></span>B-O</td><td><span class="tag cut">Cut + cap</span><div class="note">Decided 2026-10-20: cut + cap behind the plug. The new engine harness gets key-ON power from the glove-box LOGIC box.</div></td></tr>
+            <tr><td><span class="tag gone">Gone</span></td><td class="c">EB1 (engine half)</td><td class="c">1</td><td class="c"><span class="sw BO"></span>B-O</td><td class="arrow">→</td><td class="c">E7 → N3 noise filter<br>E9 → I4 coil (+)<br>E9 → I2 igniter</td><td class="c"><br>1<br>1<br>3 (+B)</td><td class="c"><span class="sw BO"></span>B-O</td><td>Leaves with the Engine Wire</td></tr>
+
+            <tr class="wirehead"><td colspan="9">EB1-2 · Starter "50" signal</td></tr>
+            <tr><td><span class="tag keep">Kept</span></td><td class="c">R/B4 starter relay</td><td class="c">4</td><td class="c"><span class="sw B"></span>B</td><td class="arrow">→</td><td class="c">EB1 (cowl half)</td><td class="c">2</td><td class="c"><span class="sw B"></span>B</td><td><span class="tag cut">Cut + cap</span><div class="note">Decided 2026-10-20: a new wire runs from the Link's starter relay (<span class="code">k_str</span>) to the starter on the main engine-harness route.</div></td></tr>
+            <tr><td><span class="tag gone">Gone</span></td><td class="c">EB1 (engine half)</td><td class="c">2</td><td class="c"><span class="sw B"></span>B</td><td class="arrow">→</td><td class="c">E5 → S2 starter<br>E5 → C3 cold-start inj.<br>E5 → ES2 → S1 time SW</td><td class="c">50<br>2<br>1 → STA</td><td class="c"><span class="sw B"></span>B</td><td>Leaves with the Engine Wire</td></tr>
+
+            <tr class="wirehead"><td colspan="9">EB1-3 · R/B No.4 power feed (from the 100A ALT link)</td></tr>
+            <tr><td><span class="tag gone">Gone</span></td><td class="c">F11 fuse box (100A ALT)</td><td class="c">A-3</td><td class="c"><span class="sw W"></span>W</td><td class="arrow">→</td><td class="c">E8 → EB1 (engine half)</td><td class="c">3</td><td class="c"><span class="sw W"></span>W</td><td>Leaves with the Engine Wire</td></tr>
+            <tr><td><span class="tag keep">Kept</span></td><td class="c">EB1 (cowl half)</td><td class="c">3</td><td class="c"><span class="sw W"></span>W</td><td class="arrow">→</td><td class="c">I9 → R/B4 40A HEATER<br>I9 → R/B4 20A FR FOG</td><td class="c">1<br>1</td><td class="c"><span class="sw W"></span>W</td><td><span class="tag cut">Cut + cap</span><div class="note">Decided 2026-10-20: R/B4 is fed by a short new cabin wire from a glove-box POWER fuse. Fuse size comes from the OEM W wire gauge at the car.</div></td></tr>
+
+            <tr class="wirehead"><td colspan="9">EB1-4 · Empty on the 3S-GTE</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callouts">
+      <div class="callout car"><h3>Check at the car</h3><p>EB1-1: the drawings show B-O leaving ignition switch pin 9 twice (to EB1 and to J/B1 1A-5, the 7.5A IGN fuse). Confirm it is one lead spliced inside the Cowl Wire before capping.</p></div>
+      <div class="callout car"><h3>Decided</h3><p>R/B No.2, 3 and 4 stay (they are in the cabin). Every wire into the engine bay is new and follows the one main engine-harness route. EB1 is fully dead: all 3 pins cut + capped on the cabin side. R/B4 is fed from the glove box.</p></div>
+    </div>
+  </section>
+
+  <section class="sheet" id="g2" aria-labelledby="g2h">
+    <div style="display:grid;gap:6px">
+      <div class="eyebrow">Group 2 of 8 · 1 live wire</div>
+      <h2 id="g2h">ET1 · Engine Room Main ↔ Engine Wire</h2>
+      <div class="where">
+        <div><span>Where:</span> <strong>left front, next to J/B No.2</strong> (by the battery)</div>
+        <div><span>Housing:</span> <strong>gray, 1 cavity</strong></div>
+        <div><span>Job:</span> <strong>the main power feed for J/B No.1</strong></div>
+      </div>
+    </div>
+
+    <div class="path" aria-label="Power path today and after">
+      <div class="prow"><span class="tag gone">Today</span><ol><li>Battery</li><li>J/B No.2 (engine bay), 100A ALT fuse</li><li>white wire, Engine Wire</li><li>ET1 plug by J/B No.2</li><li>black wire, Engine Room Main, through the firewall</li><li>J/B No.1 plug 1I pin 1</li><li>taillight relay, STOP, ECU-B, DEFOGGER fuses</li></ol></div>
+      <div class="prow"><span class="tag keep">After</span><ol><li>Battery</li><li>glove-box POWER box, 60 A fuse "JB1"</li><li>new red 6 AWG wire, behind the dash</li><li>J/B No.1 plug 1I pin 1</li><li>same fuses as today</li></ol></div>
+      <p class="note">The old black wire from 1I back to ET1 gets disconnected and capped, so it carries nothing.</p>
+    </div>
+
+    <div class="figs">
+      <figure class="wide">
+        <div class="img"><img src="img/g2_loc.png" width="1200" height="637" alt="1993 Celica 3S-GTE engine bay drawing with joint connector ET1 circled near J/B No.2 on the left front"></div>
+        <figcaption><span class="pg">BOOK P.36</span> &nbsp;<b>Where it is.</b> Same view as group 1: firewall at the top, so the car's left (driver) side is on the right of the picture. ET1 sits beside J/B No.2.</figcaption>
+      </figure>
+      <figure>
+        <div class="img"><img src="img/g2_face.png" width="425" height="355" alt="ET1 connector faces: one-pin round connector halves"></div>
+        <figcaption><span class="pg">BOOK P.37</span> &nbsp;<b>Connector face.</b> Gray, one pin, one heavy wire.</figcaption>
+      </figure>
+      <figure>
+        <div class="img"><img src="img/g2_p62.png" width="900" height="349" alt="Power source diagram: ET1 pin 1 heavy black wire to J/B No.1 plug 1I pin 1 feeding the taillight relay and the TAIL, STOP, ECU-B and DEFOGGER fuses"></div>
+        <figcaption><span class="pg">BOOK P.62</span> &nbsp;<b>The circuit.</b> The heavy black wire from ET1 lands on J/B No.1 plug 1I pin 1. It feeds the taillight relay and the STOP, ECU-B and DEFOGGER fuses.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="img"><img src="img/g2_jb1.png" width="900" height="706" alt="J/B No.1 in the left kick panel with the one-pin 1I plug from the Engine Room Main Wire circled"></div>
+        <figcaption><span class="pg">BOOK P.20</span> &nbsp;<b>Where it lands.</b> J/B No.1 in the left kick panel. The circled one-pin plug 1I is "from Engine Room Main Wire": that is where the new feed goes.</figcaption>
+      </figure>
+    </div>
+
+    <div style="display:grid;gap:8px">
+      <h3>Every wire, end to end</h3>
+      <div class="tablebox">
+        <table>
+          <thead><tr><th>Side</th><th>From connector</th><th>Pin</th><th>Wire</th><th></th><th>To connector</th><th>Pin</th><th>Wire</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr class="wirehead"><td colspan="9">ET1-1 · J/B No.1 main feed, battery power, always live</td></tr>
+            <tr><td><span class="tag gone">Gone</span></td><td class="c">F11 fuse box (100A ALT)</td><td class="c">A-3</td><td class="c"><span class="sw W"></span>W</td><td class="arrow">→</td><td class="c">E8 → ET1 (engine half)</td><td class="c">1</td><td class="c"><span class="sw W"></span>W</td><td>Leaves with the Engine Wire</td></tr>
+            <tr><td><span class="tag keep">Kept</span></td><td class="c">ET1 (ER Main half)</td><td class="c">1</td><td class="c"><span class="sw B"></span>B</td><td class="arrow">→</td><td class="c">J/B1 plug 1I</td><td class="c">1</td><td class="c"><span class="sw B"></span>B</td><td><span class="tag cut">Cut + cap</span><div class="note">Decided 2026-10-20: cut the old black wire 6 in from the 1I plug, splice the new feed to that stub, cap the long old end. ET1 goes dead.</div></td></tr>
+            <tr><td><span class="tag keep">New</span></td><td class="c">POWER box AMI OUT</td><td class="c">5</td><td class="c">Red 6 AWG</td><td class="arrow">→</td><td class="c">J/B1 plug 1I</td><td class="c">1</td><td class="c">—</td><td>Master row <span class="code">w_pdb_jb1</span>. Route fix below.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callouts">
+      <div class="callout"><h3>Flag: route</h3><p>The master runs this new 6 AWG feed through the engine room (about 2 m on harness EngineRoom-C), left over from the full-rebuild plan. Under B9 it stays in the cabin: glove box, behind the dash, to the left kick panel. That fix goes in the add list (Step 5).</p></div>
+      <div class="callout car"><h3>Check at the car</h3><p>Measure the old black 1I lead's gauge. It decides whether the 6 in pigtail we keep on the 1I plug is big enough for the 60 A fuse (B12 allows a fuse-sized splice and a pigtail of 150 mm or less).</p></div>
+    </div>
+  </section>
+
+  <section style="display:grid;gap:10px" aria-labelledby="roadh">
+    <h3 id="roadh">The road ahead</h3>
+    <div class="road">
+      <div><span class="n">1</span><span><b>EB1</b> · Engine ↔ Cowl, rear of RH fender · <span style="color:var(--keep)">done</span></span><span class="w">3 wires</span></div>
+      <div><span class="n">2</span><span><b>ET1</b> · ER Main ↔ Engine, near J/B No.2 (J/B No.1 main feed) · <span style="color:var(--keep)">done</span></span><span class="w">1 wire</span></div>
+      <div><span class="n on">3</span><span><b>IG1 / IG2</b> · Engine ↔ Cowl, under the ECU</span><span class="w">14 / 16</span></div>
+      <div><span class="n">4</span><span><b>IH1</b> · Engine ↔ A/C No.1, behind the glove box (A15 links)</span><span class="w">5 wires</span></div>
+      <div><span class="n">5</span><span><b>EB2 / ES2</b> · A/C pressure switch; Engine ↔ ER No.2 by the distributor</span><span class="w">2 / 5</span></div>
+      <div><span class="n">6</span><span><b>J/B No.2 + R/B No.2-5</b> · every plug and where each wire goes</span><span class="w">boxes</span></div>
+      <div><span class="n">7</span><span><b>Removed parts</b> on kept harnesses: ECU plug A, SRS, ABS, cruise, old cluster</span><span class="w">parts</span></div>
+      <div><span class="n">8</span><span><b>ER Main branches</b> that dip into the engine area</span><span class="w">8 wires</span></div>
+    </div>
+  </section>
+
+  <footer>Source: Toyota 1993 Celica Electrical Wiring Diagram (EWD160U), book pages 18, 20, 23, 25, 26, 27, 36, 37, 62 and 66. Draft for Dan's review; nothing here is in the master wire list yet.</footer>
+</div>

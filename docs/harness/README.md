@@ -12,6 +12,7 @@ that B9 points to).
 | `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
+| `cut-list/` | surgical-rewire cut-list work files (row 164): index, draft, group tables, circuit plan, images, the cut-list page | Yes, as each group is decided |
 | `redesign/DECISIONS.md` | every binding rule (B1-B30) and the retire map of the old R / S numbers | Only for a new Dan rule |
 
 Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails land in `out/` (gitignored).
@@ -37,19 +38,33 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
 
 - What stays and what goes (DECISIONS B1 / B9, surgical rewire, Dan 2026-10-20):
   - **Kept OEM:** every cabin wire (cowl, instrument panel, floor, door, seat, console and luggage room wires); cabin
-    J/B No.1 and No.3 (what a kept J/B feeds stays fed from it: fuse, relay, pin); the rear lights; both A/C amps (A15
-    and the auto A/C amp A31 / A32, A23); the four wheel speed sensors (they feed the Link). Forward of the firewall
-    only 6 in OEM pigtails stay, spliced to new wire at the headlights, turn / hazard and clearance / corner lamps,
-    pop-up motors, ambient air temp sensor and wiper motor (B9).
+    J/B No.1 and No.3 (what a kept J/B feeds stays fed from it: fuse, relay, pin); cabin R/B No.2 (windows, locks,
+    sunroof, seat; its 30 A POWER fuse is re-fed by one new wire from the glove-box boxes) and R/B No.4 (one short new
+    feed wire from the glove-box boxes; its heater relay, 40 A HEATER and 10 A A/C fuses and its starter relay stay)
+    (Dan 2026-10-21: keep the complex OEM cabin wiring to cut wiring cost); the rear lights and their OEM wiring, reused
+    as they are (no new RearLights harness; this replaces R55, Dan 2026-10-25); both A/C amps (A15 and the auto A/C amp
+    A31 / A32, A23); the four wheel speed sensors (they feed the Link). Forward of the firewall only 6 in OEM pigtails
+    stay, spliced to new wire at the headlights, turn / hazard and clearance / corner lamps, pop-up motors, ambient air
+    temp sensor and wiper motor (B9).
   - **Removed (never a circuit source):** the Engine Wire; the Engine Room Main Wire (outer loop) and every Cowl Wire
-    leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3: J/B No.2,
-    R/B No.2, No.3, No.4 and No.5, the ABS relay box (Dan 2026-10-21; their jobs are in the glove-box POWER / LOGIC
-    boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer; the ABS computer and actuator; the
-    brake fluid level switch; the fog lights (the car has none). Each live wire that crossed from a removed part into a
-    kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire comes out of its
-    harness back to its last live point (splice, plug or box); nothing is left cut and capped (Dan 2026-10-21; goes into
-    B5 at the rules walk-through). The R/B No.4 socket keeps two live leads as pigtails: the key START wire (Link start
-    request) and the clutch switch wire (CSB3).
+    leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3 and R/B No.2
+    / No.4: J/B No.2, R/B No.3 (fog; the car has no fog lights) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
+    are in the glove-box POWER / LOGIC boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer;
+    the ABS computer and actuator; the brake fluid level switch; the fog lights. Each live wire that crossed from a
+    removed part into a kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire
+    comes out of its harness back to its last live point (splice, plug or box); nothing is left cut and capped (Dan
+    2026-10-21; goes into B5 at the rules walk-through).
+  - **Circuits decided (Dan 2026-10-21 to 2026-10-25; not in the master yet, row 164):** starter: the OEM starter relay
+    in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 to Link Aux 8 (the Link runs
+    the start; no `k_str`). Clutch: the cruise clutch switch C17 gives the CSB3 the clutch state (flat shift, rev
+    match); C11 is for the starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
+    tapped through opto IN2 to the CSB3; the new switch wires (engine harness, bulkhead A) splice to the IG2-4 / IG2-13
+    pigtails. Charge lamp: IG2-16 Y stays, the ClusterLED charge LED sinks to OEM cluster plug C12-8. IG2-15 B-R
+    (ECU-IG) keeps a 6 in pigtail to the kill switch, then the alternator IG. ETB hold power is all cabin and J/B No.1
+    stays: Aux 6 (A28) -> K-EFI, DI 9 (B28) IG sense, IG2 wake diode from J/B1 1H-7 -> A5, K-ETB on Aux 2 (A20) -> B5.
+    Fuse box design is parked: the glove-box boxes are not built and fill blanks only; after the rest is designed, drop
+    the duplicates (`k_pwr`, `k_htr`, `k_str`, K-REV) and add the R/B No.2 / No.4 feed fuses. Cut-list work files:
+    `cut-list/README.md`.
   - **New wire** (routes: `routes/ROUTE-16-ENGINE-MAIN.html` lines 1-9, `routes/ROUTE-17-FRONT.html` lines 10-13): the
     engine harness (Link to every engine sensor and actuator; through bulkhead A); power from the trunk battery up the
     passenger side to the glove-box boxes, then out through the RH fender grommet for engine-bay loads; the front run
