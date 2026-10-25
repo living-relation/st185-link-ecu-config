@@ -135,6 +135,7 @@ def _mat(r):
     g=r['group']; d=(r['item']+' '+r['description']).lower()
     w=lambda *ks: any(re.search(r'\b%s\b'%re.escape(k),d) for k in ks)      # whole words: "plug" is not a "lug", "130 A, 2" is not "A2"
     if g=='Printed': return 'PA12, 3D PRINTED'
+    if g=='Copper' and w('stud') and w('stainless'): return '400-SERIES STAINLESS'   # PEM FHS-M5-12 sits in the Copper group but is a stainless stud (pemnet.com FHS-M5-12, Bulletin FH)
     if g=='Copper': return 'C110 Cu, TINNED'
     if g in ('Relay','Relays','Fuses','Terminals','Jumpers') and not w('lug','bolt','washer'): return 'PURCHASED'
     if w('a4','316'): return 'A4 STAINLESS'
