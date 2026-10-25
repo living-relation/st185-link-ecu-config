@@ -48,9 +48,9 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     temp sensor and wiper motor (B9).
   - **Removed (never a circuit source):** the Engine Wire; the Engine Room Main Wire (outer loop) and every Cowl Wire
     leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3 and R/B No.2
-    / No.4: J/B No.2, R/B No.3 (fog relay; open: keep it as the spare accessory relay, Needs Dan N62) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
+    / No.4: J/B No.2, R/B No.3 (fog relay) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
     are in the glove-box POWER / LOGIC boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer;
-    the ABS computer and actuator; the brake fluid level switch; the fog lamps (removed long ago; the OEM fog relay, switch and wires are still in the car, Dan 2026-10-25). Each live wire that crossed from a
+    the ABS computer and actuator; the brake fluid level switch; the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, dead wire out back to its last live point (Dan 2026-10-25); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
     removed part into a kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire
     comes out of its harness back to its last live point (splice, plug or box); nothing is left cut and capped (Dan
     2026-10-21; goes into B5 at the rules walk-through).
