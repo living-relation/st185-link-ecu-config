@@ -22,8 +22,8 @@ SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-st
 # The keep list (R211) and the docs that state the chain of sources; only these may call something a source of truth.
 KEEP = {
     "AGENTS.md", "README.md", "XTREMEX-IO-TABLE.html", "sot/README.md",
-    "docs/harness/README.md", "docs/RECONCILIATION-RULES.md", "docs/dispatch/DISPATCH-RULES.md",
-    "docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md", "docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md",
+    "docs/harness/README.md", "docs/harness/redesign/DECISIONS.md",
+    "docs/OPEN-ITEMS.md", "docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md",
 }
 IS_SOT = re.compile(r"\b(is|are|as) (the |a |our )?(one |single |only )?(\w+ ){0,2}(source of truth|sources of truth|SoT)\b|"
                     r"\bSoT (for|of) (the )?\w+", re.I)
@@ -61,7 +61,7 @@ def main():
                 bad.append("C4 %s: names %s, which does not exist" % (f, m))
         head = "\n".join(text.split("\n")[:15])
         m = BANNER.search(head)
-        if m and f not in ("docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md", "docs/dispatch/DISPATCH-RULES.md"):
+        if m and f not in ("docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md"):
             bad.append("C3 %s: opens with a '%s' banner" % (f, m.group(0)))
     for b in bad:
         print("FAIL", b)

@@ -2,6 +2,7 @@
 
 The ONE wiring source of truth is `docs/harness/MASTER-wirelist.csv` (DECISIONS R221). `channels.csv` keeps only the ECU
 channel settings (type, pull-up, direction, tune / CAN data) and the pin each channel owns; it holds no net and no loom.
+`sot/fuse-relay-map.csv` assigns each B1 / B2 / B3 / B4 fuse and relay seat to a circuit; it is not a wire list.
 `python docs/harness/tools/check_wiring.py` compares its live pins with the master both ways and checks every ECU pin's
 class against the Link G4X Quick Start Guide (R212). `XTREMEX-IO-TABLE.html` is its visual face:
 `check_wiring.py --write-io-table` rewrites the table's generated pin map, and the plain run fails if the table is stale.
@@ -9,7 +10,7 @@ No script writes this file.
 
 ## The rule
 
-A channel's identity comes from the pin that owns it (R45, `docs/RECONCILIATION-RULES.md` Rule 3). On the ECU that is the
+A channel's identity comes from the pin that owns it (R45, `docs/harness/redesign/DECISIONS.md` Rule 3). On the ECU that is the
 Link G4X XtremeX pin: the pin decides what the channel can physically do (pull-up, drive type, voltage range). ECU pins are
 fixed and never move. Device-owned pins live in `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`; for everything else the
 owner is the device at the end that cannot move (the VR conditioner owns the raw wheel-speed pairs, the A/C amplifier the

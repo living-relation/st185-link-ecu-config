@@ -1,6 +1,6 @@
 # CAN Bus Master Design — Celica Project
 
-**Companion document:** `CAN-BUS-ID-ALLOCATION-TABLE.md` contains the byte-level layout for every ID referenced here. Read the two together — this document covers *architecture and configuration*; the allocation table covers *wire format*.
+The byte-level layout for every ID is `CAN-BUS-ID-ALLOCATION-TABLE.md` (the one wire-format table; `bench/check_parity.py` reads it). This file is the one CAN architecture and PCLink-apply document.
 
 ---
 
@@ -16,7 +16,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 | ECUMaster CAN Switch Board V3 | Accessory I/O (analog inputs, switches, low-side outputs) | Bidirectional (0x640-0x642 out, 0x643 in) |
 | Pi4+/Pi5 + USB-CAN adapter (CANable or PCAN USB) running RealDash | Secondary display (840×480, 7") | Passive listener only — receive 0x3EF/0x3F0/0x3F1 |
 
-**Out of scope:** the left and right side displays (`left-side-cluster-esp32s3`, `right-side-cluster-esp32s3`) are **not CAN nodes**. Per `CANBUS-LINK-G4X-CONFIG.md`, they receive data from the center cluster over UART (center GPIO20→left GPIO44, center GPIO21→right GPIO44). They are unaffected by anything in this document.
+**Out of scope:** the left and right side displays (`left-side-cluster-esp32s3`, `right-side-cluster-esp32s3`) are **not CAN nodes**. Per `CAN-BUS-MASTER-DESIGN.md`, they receive data from the center cluster over UART (center GPIO20→left GPIO44, center GPIO21→right GPIO44). They are unaffected by anything in this document.
 
 ---
 
@@ -182,3 +182,31 @@ Two independent layers protect against switchboard communication loss:
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §8 — outputs unused/LED-only, low priority | PCLink config (deferred) |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
 | 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |
+
+
+## 10. PCLink apply (ECU side)
+
+Import `link_g4x_can_setup.lcs` in PCLink → CAN → Setup → File → Open. `link_g4x_can_setup.json` is the human-readable canonical copy of the same map (encode form). The cluster decoder (`main/canbus.c` in `center-cluster-esp32-p4`, frozen) must match; `bench/check_parity.py` checks this repo's copies. Assign only the channels in the ID table — extra channels waste bus bandwidth.
+
+Left and right side displays are not CAN nodes. They receive data from the center cluster over UART (center GPIO20→left GPIO44, center GPIO21→right GPIO44).
+
+| Setting | Value |
+|---|---|
+| CAN module | the module wired to the dashboard transceiver |
+| Bit rate | **1 Mbit/s** |
+| Stream type | **Custom** |
+| Byte order | **Big endian** |
+| Transmit | streams 0x3E8–0x3EB, 0x3EE and 0x3EF–0x3F1 (ID table) |
+| Receive | 0x3EC / 0x3ED (center encoder selections; ECU echoes them in 0x3EF bytes 5 / 3); 0x640 / 0x642 (CSB3); Link CAN-Lambda 0x3B6 |
+
+**External Link CAN Lambda.** There is no onboard wideband. ECU Controls → CAN Setup: Mode tab, CAN Configuration = User Defined, Bit Rate = 1 Mbit/s. Data box, free channel: Mode = Link CAN-Lambda, CAN ID = 950 (0x3B6), format Normal. CAN Devices → Find Devices → confirm Lambda 1. Factory defaults (device identifier 0, 1 Mbit/s). Reconfig commands go on 958 (0x3BE).
+
+**Cluster selections (Daniel 2026-10-03).** The ECU receives 0x3EC (boost-map index 0–3) and 0x3ED (TC index 0–4). Receive channels are at the end of `link_g4x_can_setup.lcs`.
+
+**CSB3 receive.** Channels at the end of the `.lcs`, map in `switchboard_frames.json` "ecu_receive". Timeout 200 ms on each, value 0 on timeout. Switchboard frames go to the ECU only (B16); what a display needs is echoed in ECU frames.
+
+**Adding or removing a channel later.** Never broadcast a channel the firmware has no field for: (1) add the field to cluster `dash_data.h`; (2) decode it in `canbus.c` (frozen — needs Daniel's approval); (3) then assign the next free byte here and update `.lcs` / `.json`, the ID table and `bench/frames.py`; `python bench/check_parity.py` must pass.
+
+**Validate (PCLink).** CAN → Monitor: 0x3E8–0x3EB and 0x3EE at their cycle times; cross-check against the live runtime page; dashboard gauges track within ~2 s and an engine-protection flag raises the right-cluster warning overlay.
+
+**Validate (vehicle).** Transceiver wired only to the center board (GPIO5 TX, GPIO4 RX) and ECU CANH/CANL. Side displays have UART from center GPIO20/21 TX to each side GPIO44 RX, plus common GND. With ECU live, center updates from CAN and both side displays mirror over UART.

@@ -1,13 +1,20 @@
 {
  "_doc": "Revision log of the ST185-harness drawing set (every harness of the car) (DECISIONS R200): DRAWN = the BY of Rev A and never changes; every BY is the initials of the person who REQUESTED the change (from %USERPROFILE%\\.drawing-initials), never an agent or tool name. .01 clerical revs are not rows here (git history only). A full-letter rev from Rev B on lists what changed in `marks` (the rev triangle goes next to each).",
  "title": "ST185-harness - every wiring harness of the car, one drawing set",
- "subtitle": "All 13 harnesses of the master wire list (R221): the ECU harness (AB-cabin + AB-engine, R220), CabinPower, harness C, HeavyDC, CAN, CSB3, AntiTheft, ClusterLED, wheel speed front / rear, rear lights, rear fuel",
+ "subtitle": "All 12 harnesses of the master wire list (R221): the ECU harness (AB-cabin + AB-engine, R220), CabinPower, harness C, HeavyDC, CAN, CSB3, AntiTheft, ClusterLED, wheel speed front / rear, rear fuel. Rear lights stay on the factory harness.",
  "revs": [
   {
    "rev": "A",
    "date": "2026-10-20",
    "by": "DG",
    "what": "First issue: every harness of the master in one drawing set (replaces the ST185-AB-cabin pilot, Rev A 2026-10-19)."
+  },
+  {
+   "rev": "B",
+   "date": "2026-10-25",
+   "by": "DG",
+   "what": "Surgical rewire written into the master: 21 decided circuits, D16 A/C, OEM starter / reverse / rear lights, fog cut-and-cap, bank IDs, RearLights harness dropped.",
+   "marks": "starter C11 to Aux 8; k_acc from A15 pin 8; Ign 8 tacho; EL814 headlight-sense; w_pdb_jb1 behind the dash; E10 cabin splice; R/B2 and R/B4 feeds"
   }
  ]
 }

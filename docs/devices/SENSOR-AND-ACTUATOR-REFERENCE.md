@@ -420,7 +420,7 @@ not need this change - only the cam one is wrong.
 ## VR conditioner (NCV1124 dual boards)
 
 Write-up: `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. Pins below are the
-conditioner's own cavities from `sot/channels.csv` and `docs/SHIELD-RULES.md`.
+conditioner's own cavities from `sot/channels.csv` and `docs/harness/redesign/DECISIONS.md`.
 
 Shield: yes
 

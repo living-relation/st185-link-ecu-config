@@ -7,7 +7,7 @@
 
 Also require: A/C request, idle RPM floor, valid high-side pressure, evap above freeze.
 
-Idle-up: +150–250 RPM when clutch on at low MAP.
+Idle-up when clutch on: stale (Dan 2026-10-25). No clutch-on signal to the Link; closed-loop idle on the e-throttle holds the target.
 
 Fans: ECT + head-pressure override when A/C on.
 

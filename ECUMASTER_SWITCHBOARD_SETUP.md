@@ -155,6 +155,8 @@ receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 | bit6 | Switch 7 — brake pedal pressed (opto IN1 from S9 pin 1) | VDI7 | Cruise cancel (the ECU's brake input) |
 | bit7 | Switch 8 — reverse engaged (opto IN2 from back-up switch B1 pin 1) | VDI8 | Gear Position = 7 (R) in 0x3EB: cluster R, RealDash reverse camera |
 
+Opto IN3 / OUT3: headlights-on from dimmer R10 pin 1 (green TAIL +12 V) to the cluster headlight-sense input. Not a CSB3 switch bit. IN4-IN8 stay spare.
+
 **Mapped 2026-10-14 (DECISIONS R80, Route 15 C14):** brake (S7, bit 6) and reverse (S8, bit 7) arrive through the
 inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
 are in the CAN contract and the `.lcs` receive channel now. Left for the bench: confirm a set bit means pressed /
@@ -223,7 +225,7 @@ when an LED is added, map its PCLink virtual output to the matching byte.
 - **Fault action (automatic):** VDI3 / VDI6–8 and Cruise Stalk mV reset to 0
 - **Fault broadcast:** PCLink sets 0x3F1 byte6 bit5 ("Switchboard Comm Fault")
 
-The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK-G4X-CONFIG.md` for the receive timeout setting.
+The CSB3 needs no configuration for the heartbeat. PCLink side: see `CAN-BUS-MASTER-DESIGN.md` for the receive timeout setting.
 
 ---
 

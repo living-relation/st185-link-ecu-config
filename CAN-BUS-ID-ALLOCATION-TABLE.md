@@ -38,7 +38,7 @@
 
 ## 2. Section A — ECU → Cluster TX (Immutable, coded-complete)
 
-Source: `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md`. All streams are **Custom type, BigEndian, non-multiplexed**, on the 1 Mbit/s `CANModule Index="1"` (CAN1).
+Source: `link_g4x_can_setup.lcs`, `CAN-BUS-MASTER-DESIGN.md`. All streams are **Custom type, BigEndian, non-multiplexed**, on the 1 Mbit/s `CANModule Index="1"` (CAN1).
 
 ### 0x3E8 — Engine Fast (CycleTime 10ms)
 | Bytes | Field | Type | Scale | Offset | Notes |

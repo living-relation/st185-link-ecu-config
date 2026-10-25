@@ -22,7 +22,7 @@ PCLink features to configure after triggers and base VE/ignition seeds. Conserva
 ## Idle strategy
 
 - ETB idle primary; idle ignition trim vs ECT secondary.
-- **Idle-up offsets:** A/C clutch (+150–250 RPM), Spal fans, alternator load optional.
+- **Idle-up offsets:** A/C clutch (+150–250 RPM) is stale (Dan 2026-10-25: no clutch-on to the Link; closed-loop idle handles the compressor load). Spal fans, alternator load optional.
 - See A/C MAP/RPM cutouts in `FEATURES_AC_IDLE_CRUISE_TC.md`.
 
 ## Dual IAT

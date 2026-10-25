@@ -9,7 +9,7 @@ paths:
   - switchboard_frames.json
   - bench/check_parity.py
   - CAN-BUS-ID-ALLOCATION-TABLE.md
-  - CANBUS-LINK-G4X-CONFIG.md
+  - CAN-BUS-MASTER-DESIGN.md
   - bench/*.py
   - apps/trackcluster-can-sender/app.py
 ---
@@ -19,7 +19,7 @@ paths:
 - Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
-- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working Rules" and `docs/RECONCILIATION-RULES.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
+- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working Rules" and `docs/harness/redesign/DECISIONS.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
 - `python bench/check_parity.py` is the parity gate (also run in CI). It compares the JSON, `.lcs`, `bench/frames.py`, `CAN-BUS-ID-ALLOCATION-TABLE.md`, `link_g4x_realdash.xml`, the sender UI profiles and `switchboard_frames.json`. Exit 0 = all agree. A change is not done until it passes.
 - Scale convention: `link_g4x_can_setup.json` uses PCLink ENCODE form (`raw = value * scale + offset`); the `.lcs`, the ID table and `bench/frames.py` use DECODE form (`value = raw * (1/scale) - offset/scale`). Write each file in its own convention.
 - Switchboard frames `0x640`-`0x643` live in `switchboard_frames.json`, not in `link_g4x_can_setup.json`.
@@ -66,7 +66,7 @@ paths:
 5. **Update contract documentation parity**
    - Update the exact frame/signal sections in:
      - `CAN-BUS-ID-ALLOCATION-TABLE.md`
-     - `CANBUS-LINK-G4X-CONFIG.md`
+     - `CAN-BUS-MASTER-DESIGN.md`
    - Keep terminology and frame tables consistent with `README.md` and existing docs style.
    - If a new frame was added, document ID purpose, byte map, and scale/offset mapping in both docs.
    - **Dependency:** Uses validated frame behavior from Step 4.
@@ -92,7 +92,7 @@ paths:
 2. Add signal definition in `link_g4x_can_setup.json` with BigEndian byte order, scale `0.1`, offset `-40`.
 3. Update `bench/frames.py` encode/decode logic and constants for the same bytes.
 4. Run `python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py`.
-5. Update `CAN-BUS-ID-ALLOCATION-TABLE.md` and `CANBUS-LINK-G4X-CONFIG.md` with the new signal map.
+5. Update `CAN-BUS-ID-ALLOCATION-TABLE.md` and `CAN-BUS-MASTER-DESIGN.md` with the new signal map.
 
 **Result:**
 - Frame payload layout is synchronized across contract JSON, bench tooling, and docs.
@@ -137,6 +137,6 @@ paths:
   3. Validate with `full-realdash` bench scenario.
 
 - **Issue:** Contract changed but docs drifted
-  1. Diff `link_g4x_can_setup.json` against `CAN-BUS-ID-ALLOCATION-TABLE.md` and `CANBUS-LINK-G4X-CONFIG.md` for frame ID, byte index, scale, and offset mismatches.
+  1. Diff `link_g4x_can_setup.json` against `CAN-BUS-ID-ALLOCATION-TABLE.md` and `CAN-BUS-MASTER-DESIGN.md` for frame ID, byte index, scale, and offset mismatches.
   2. Update docs immediately in the same change set.
   3. Re-run final compile checks to ensure no accidental code edits.
