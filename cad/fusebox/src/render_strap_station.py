@@ -123,15 +123,15 @@ def main(argv):
         st = station(asm, row, name)
         y, xo, s = st['y'], st['xo'], st['sgn']
         g = lambda dx: xo + s * dx
-        sub = 'ST185 POWER box rev 7, %s row %s (%d A) - copper C-strap 3 x 15 tinned C110, PEM CLSS-M5-2 nuts, mm' % (
+        sub = 'ST185 POWER box rev 7, %s row %s (%d A) - copper C-strap 3 x 15 tinned C110, PEM FHS-M5-12 lug stud + DIN 934 top nut in a PA12 holder (N37), mm' % (
             row, name, dict(S.AMI_ROWS[row])[name])
         L = [('copper C-strap 3 x 15 tinned C110', (g(-2.0), y, bt - 1.5)),
              ('lips rest on the printed ledge (stops DOWN)', (g(ST['web'][1] + 1.0), y - 5.5, bt - ST['t'])),
              ('printed snap hook over the lips (stops UP)', (g(ST['web'][1] + ST['lip'] + 1.5), y - 5.0, bt + 1.4)),
-             ('PEM CLSS-M5-2 pressed into the copper', (xo, y, bt - ST['t'] - 1.0)),
+             ('DIN 934 M5 nut in the printed PA12 holder (FB-118)', (xo, y, bt - ST['t'] - 1.0)),
              ('AMI ear clamped flat on copper, M5 x 10', (g(2.5), y, bt + 0.8)),
              ('web through the deck well', (g((ST['web'][0] + ST['web'][1]) / 2), y, 33.0)),
-             ('lug palm up, flat on copper; PEM above', (g(ST['lug']), y, ST['z_bl'] - 1.0)),
+             ('lug palm up on the PEM FHS-M5-12 stud, Keps nut', (g(ST['lug']), y, ST['z_bl'] - 1.0)),
              ('lug barrel passes under the web', (g(ST['web'][1] + 6.0), y, ST['z_bl'] - 4.0))]
         side = 1 if s > 0 else -1
         cam = [(xo + side * -10, y + 260, 120), (xo + side * 2, y, 33), (0, 0, 1)]

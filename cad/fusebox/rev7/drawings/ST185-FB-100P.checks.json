@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-100P",
- "pdf_sha": "18566873a58a10ec",
+ "pdf_sha": "4b3f6b29e4eb7ea7",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -133,5 +133,8 @@
   }
  ],
  "not_ballooned": [],
- "ok": true
+ "ok": true,
+ "rev_marks": {},
+ "rev_marks_unplaced": [],
+ "rev_marks_accumulate": true
 }
