@@ -22,7 +22,7 @@ the master yet (row 164). Pins are 1993 EWD; ECU pins are Link G4X XtremeX.
 | 14 | Horn | Front run, relay in the glove box. |
 | 15 | Radiator + condenser fans | Link-controlled relays, front run. |
 | 16 | Wiper + washer | Wiper on the driver fender run (line 11), washer pump on the front run. |
-| 17 | Fog | Gone (no fog lights). A spare relay wire runs to the old fog spots, ends insulated. R/B No.3 goes. |
+| 17 | Fog | The fog lamps were removed long ago; the OEM fog relay (R/B No.3), the fog switch and the cabin wires are still in the car (Dan 2026-10-25). A spare relay wire runs to the old fog spots, ends insulated. Open (Needs Dan N62): keep R/B No.3 as that spare relay, or use a glove-box spare. |
 | 18 | Windows, locks, sunroof, seat | **Changed:** R/B No.2 stays; its 30 A POWER fuse gets one new feed wire from the glove-box boxes. No `k_pwr`. |
 | 19 | Diagnostic plug (DLC1) | Gone. |
 | 20 | Alarm hood pin + siren | Front run and driver fender run. |
