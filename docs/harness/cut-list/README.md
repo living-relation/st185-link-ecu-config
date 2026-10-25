@@ -21,6 +21,6 @@ rows (st185-change-sot) after cut-list groups 4-8. Current lists: `../README.md`
 | `circuit-plan.md` | the circuits decided by complete circuit (starter, clutch, reverse, charge lamp, hold power, rear lights, fuse box) |
 | `group3-IG1-IG2.md` | every IG1 / IG2 wire: pin, colour, both ends, 1993 EWD page, action |
 | `cut-list-draft-2026-10-20.md` | the first 8-group draft (working draft for groups 4-8; its read-first note lists what changed) |
-| `dan_routes_p36.json`, `front_loads_p36.json`, `gb_boxes_p42.json` | route polylines and spots in FSM page points (p.36 engine bay, p.42 dash), for the route overlays |
+| `dan_routes_p36.json`, `front_loads_p36.json`, `gb_boxes_p42.json` | route polylines and spots in FSM page points (p.36 engine bay, p.42 dash), for the route overlays; the low end of `gb_boxes_p42.json` is the old floor spot: the boxes now sit in the glove box area (Dan 2026-10-25) |
 
 The route drawings Dan approved are in `../routes/` (Routes 16, 17); the cut-list page and chat images were deleted 2026-10-25 (git history).
