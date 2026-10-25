@@ -16,6 +16,11 @@ maintainer something the rules already answer.
 > **Freeze (DECISIONS R224, Dan 2026-10-20):** no new rule, script, gate, doc, drawing format or feature until the
 > bloat cut is done (`docs/OPEN-ITEMS.md` rows 151-155). Work only the cut and Goal 1 blockers.
 
+> **Current work (2026-10-25): the surgical rewire, `docs/OPEN-ITEMS.md` row 164.** Forward of the firewall every wire
+> is new, on a named route (B9; `docs/harness/routes/` Routes 16 and 17); the OEM cabin wiring stays with J/B No.1 / No.3
+> and R/B No.2 / No.4. Lists and decided circuits: `docs/harness/README.md` "What stays and what goes"; work files and
+> the next group: `docs/harness/cut-list/README.md`. Walk it with Dan one step at a time, 1993 EWD in hand.
+
 > ## Before any wiring or CAN change — binding on every agent
 >
 > **First read `docs/harness/redesign/DECISIONS.md`, section "Binding rules B1-B30"

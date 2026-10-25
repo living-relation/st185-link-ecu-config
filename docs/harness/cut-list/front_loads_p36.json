@@ -1,0 +1,86 @@
+{
+ "A5 A/C pressure SW": [
+  225.6,
+  207.1
+ ],
+ "A14 wheel speed RH": [
+  167.0,
+  235.7
+ ],
+ "A4 A/C clutch": [
+  222.7,
+  274.1
+ ],
+ "A8 ABS actuator (EPS pump spot)": [
+  172.8,
+  278.5
+ ],
+ "F8 turn/clearance RH": [
+  177.3,
+  368.2
+ ],
+ "F2 fog spot RH": [
+  200.4,
+  374.5
+ ],
+ "A2 condenser fan": [
+  295.3,
+  350.8
+ ],
+ "A1 ambient sensor": [
+  307.4,
+  348.9
+ ],
+ "F9 wiper motor": [
+  408.2,
+  172.5
+ ],
+ "A13 wheel speed LH": [
+  427.4,
+  241.7
+ ],
+ "F1 fog spot LH": [
+  402.4,
+  369.4
+ ],
+ "F7 turn/clearance LH": [
+  420.2,
+  363.6
+ ],
+ "B2 brake fluid level": [
+  360.1,
+  197.4
+ ],
+ "W1 washer pump": [
+  161.5,
+  327.6
+ ],
+ "R3 pop-up motor RH": [
+  176.7,
+  333.2
+ ],
+ "H2 headlight RH": [
+  191.1,
+  332.0
+ ],
+ "H3 horn LH": [
+  322.1,
+  366.1
+ ],
+ "H4 horn RH": [
+  341.5,
+  355.2
+ ],
+ "H1 headlight LH": [
+  403.6,
+  337.4
+ ],
+ "R2 pop-up motor LH": [
+  418.9,
+  336.7
+ ],
+ "R1 radiator fan": [
+  385.2,
+  298.2
+ ]
+}

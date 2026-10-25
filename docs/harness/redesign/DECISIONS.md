@@ -35,7 +35,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20); how the Link feeds the compres
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
 - **B9 Boundary.** Forward of the firewall every wire is new, on a named route; OEM wire stays only as 6 in pigtails at
-  lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B No.1 / No.3. Removed: README. Pins: 1993 EWD.
+  lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B1 / J/B3, R/B2 / R/B4. Removed: README. Pins: 1993 EWD.
 
 ### Power and grounds
 
