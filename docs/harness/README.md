@@ -71,7 +71,7 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     (inside the RH fender, then along the underside of the radiator support) to every front device; the driver fender
     run (driver kick pass-through) to the wiper motor and the alarm siren; one mini harness per front wheel speed sensor
     to the VRC enclosure by the ECU; the fuel pump circuit; one dash feed for the cluster, LEDs and RealDash Pi; CAN;
-    the alarm add-on; power taps. A spare relay circuit (was fog) runs to the old fog-lamp spots, ends insulated.
+    the alarm add-on; power taps. No spare circuit to the old fog-lamp spots: aux circuits come later and are separate (Dan 2026-10-25).
     Engine-bay jump studs at the old battery spot are optional (owning harness open).
   - **Connectors:** the new wire mates only with each device's own connector (Dan has the mating plugs); no new inline
     connector anywhere on a run, and none added at the device, unless one later helps install or maintenance (fewer
