@@ -179,7 +179,11 @@ HARNESS_PN = set(H_NEED) | set(BANDS) | set(TUBE_MM) | set(WIRE_MM) | set(CABLE_
 ntb_early = HARNESS_PN   # a part the harness section counts is not added again from an enclosure BOM
 BOXNAME = {"POWER": "POWER box", "LOGIC": "LOGIC box", "BATTRELAY": "Battery relay block"}
 MECH_PN = set()
-for f in sorted(glob.glob(P("cad", "fusebox", "fusebox-parts-*.csv"))):
+# The selected fuse box is rev 7 (cad/README.md "Selected for build"): its POWER list is cad/fusebox/rev7/; the LOGIC box and
+# battery relay block keep their lists in cad/fusebox/. The rev 6 POWER list there is superseded and not counted.
+FB_LISTS = [f for f in sorted(glob.glob(P("cad", "fusebox", "fusebox-parts-*.csv"))) if not f.endswith("fusebox-parts-power.csv")]
+FB_LISTS.append(P("cad", "fusebox", "rev7", "fusebox-parts-power.csv"))
+for f in FB_LISTS:
     for r in rd(f):
         n = int(r["qty_need"] or 0) + int(r["qty_spare"] or 0)
         pn = r["part_number"]
