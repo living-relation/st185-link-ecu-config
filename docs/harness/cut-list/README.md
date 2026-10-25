@@ -10,7 +10,7 @@ rows (st185-change-sot) after cut-list groups 4-8. Current lists: `../README.md`
 |---|---|---|
 | 1 | EB1 Engine <-> Cowl (rear of RH fender) | Decided 2026-10-20: dead; J/B No.1 fed from POWER JB1 60 A spliced to a 6 in stub of the old 1I lead |
 | 2 | ET1 ER Main <-> Engine (near J/B2) | Decided 2026-10-20 |
-| 3 | IG1 / IG2 Engine <-> Cowl (under the ECU) | Decided 2026-10-21: `group3-IG1-IG2.csv` |
+| 3 | IG1 / IG2 Engine <-> Cowl (under the ECU) | Decided 2026-10-21: `group3-IG1-IG2.md` |
 | Boxes | the 7 OEM boxes + ABS relay box | Decided 2026-10-21: J/B1, J/B3, R/B2, R/B4 stay; J/B2, R/B3, R/B5, ABS relay box go |
 | 4-8 | IH1, EB2 / ES2, box plugs, removed parts, ER Main branches | Next; start from `cut-list-draft-2026-10-20.md` |
 
@@ -19,7 +19,7 @@ rows (st185-change-sot) after cut-list groups 4-8. Current lists: `../README.md`
 | File | What it is |
 |---|---|
 | `circuit-plan.md` | the circuits decided by complete circuit (starter, clutch, reverse, charge lamp, hold power, rear lights, fuse box) |
-| `group3-IG1-IG2.csv` | every IG1 / IG2 wire: pin, colour, both ends, 1993 EWD page, action |
+| `group3-IG1-IG2.md` | every IG1 / IG2 wire: pin, colour, both ends, 1993 EWD page, action |
 | `cut-list-draft-2026-10-20.md` | the first 8-group draft (historical; header lists what is superseded) |
 | `page/st185-cut-list.html` + `page/img/` | the cut-list page Dan reviewed (map, 7 box cards, groups 1-2); the R/B No.4 route section on it is superseded |
 | `img/engine-routes-named.png` | Route 16, the 9 named engine-bay lines on FSM p.36 |

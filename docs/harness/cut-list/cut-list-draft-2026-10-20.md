@@ -1,10 +1,9 @@
-> **Status 2026-10-25: historical draft.** Written 2026-10-20 before most decisions. Superseded where it
-> says: cut and cap (now: remove back to the last live point), R/B No.2-5 kept or gone (now: R/B No.2 / No.4 stay,
-> R/B No.3 / No.5 go), new wire into a kept engine-bay loop (now: forward of the firewall every wire is new, B9),
-> the starter, clutch, reverse and rear-light circuits (now: `../README.md` "What stays and what goes"). Groups 1-3
-> are decided; groups 4-8 are still to be walked with Dan, and this draft is their starting point.
+# ST185 surgical rewire - interface cut list (working draft, written 2026-10-20)
 
-# ST185 surgical rewire - interface cut list (DRAFT for Daniel's review)
+> **Read first (2026-10-25).** Groups 1-3 and every box are decided: `README.md` and `../README.md` "What stays and
+> what goes" win over this draft. Where it says cut and cap, read remove back to the last live point; where it keeps
+> R/B No.2-5 or a kept engine-bay loop, read B9 (forward of the firewall every wire is new; R/B No.2 / No.4 stay).
+> Groups 4-8 below are the starting point for the next walk-through with Dan.
 
 Scope: every wire that crosses from a removed part/harness into a kept harness, per Daniel's 2026-10-20 "surgical rewire" plan.
 Read-only research; nothing in either repo was changed.
