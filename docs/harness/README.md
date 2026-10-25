@@ -56,7 +56,7 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     2026-10-21; goes into B5 at the rules walk-through).
   - **Circuits decided (Dan 2026-10-21 to 2026-10-25; not in the master yet, row 164):** starter: the OEM starter relay
     in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 to Link Aux 8 (the Link runs
-    the start; no `k_str`). Clutch: the cruise clutch switch C17 (on the car) gives the CSB3 the clutch state (flat shift, rev
+    the start; no `k_str`). Clutch: the clutch switch C17 (on the car) gives the CSB3 the clutch state (flat shift, rev
     match); C11 is for the starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
     tapped through opto IN2 to the CSB3; the new switch wires (engine harness, bulkhead A) splice to the IG2-4 / IG2-13
     pigtails. Charge lamp: IG2-16 Y stays, the ClusterLED charge LED sinks to OEM cluster plug C12-8. IG2-15 B-R

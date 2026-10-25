@@ -9,7 +9,7 @@ the master yet (row 164). Pins are 1993 EWD; ECU pins are Link G4X XtremeX.
 | 1 | Engine management (factory ECU, igniter, EFI relays) | Gone. The Link plus the new engine harness replace it. |
 | 2 | Starting | **Changed:** the OEM starter relay in R/B No.4 stays. Coil + from key START; coil - through the clutch start switch C11 to Link Aux 8 (the Link runs the start). No `k_str`. |
 | 3 | Charging | IG2-15 B-R keeps a 6 in pigtail: kill switch, then alternator IG. IG2-16 Y stays and drives the 12 V charge LED in the ClusterLED harness (sinks to OEM cluster plug C12-8); nothing else on it (Dan 2026-10-25). Alternator B+ on the heavy-cable harness. |
-| 4 | Cruise | Gone. The stalk goes to the CSB3. The cruise clutch switch C17 (present on the car, Dan 2026-10-25) gives the CSB3 the clutch state for flat shift and rev match; C11 is for the starter only. |
+| 4 | Cruise | The OEM cruise ECU and actuator are gone; the stalk stays as CSB3 buttons (0x640 / 0x642 unchanged; Dan 2026-10-25). The clutch switch C17 (on the car, Dan 2026-10-25) gives the CSB3 the clutch state for flat shift and rev match; C11 is for the starter only. |
 | 5 | SRS | Gone. |
 | 6 | ABS | Gone. The wheel speed sensors get their own mini harnesses to the VRC enclosure (Route 17 lines 12-13). |
 | 7 | Gauges + warning lamps | Gone; replaced by the CAN cluster. The LEDs take turn, high beam, charge and park brake from the OEM cluster plugs, oil pressure from the CSB3. |
