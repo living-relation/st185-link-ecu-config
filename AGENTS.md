@@ -14,7 +14,9 @@ question, act on it and cite it - never ask Dan something the rules already answ
 > **Current work: the surgical rewire, `docs/OPEN-ITEMS.md` row 164.** Forward of the firewall every wire is new, on a
 > named route (B9; `docs/harness/routes/` Routes 16 and 17); the OEM cabin wiring stays with J/B No.1 / No.3 and R/B
 > No.2 / No.4. Lists and decided circuits: `docs/harness/README.md` "What stays and what goes"; work files and the next
-> group: `docs/harness/cut-list/README.md`. Walk it with Dan one step at a time, 1993 EWD in hand.
+> group: `docs/harness/cut-list/README.md`. Walk it with Dan one step at a time, 1993 EWD in hand. Parked: the fuse
+> box (row 107 and rows 113 / 123 / 148). The drawing set (rows 153 / 155) is stale until row 164 writes the master.
+> Wire lengths wait for a tape-measure pass (row 165). No bench tests: car checks use `docs/procedures/`.
 
 > **Freeze (R224, Dan 2026-10-20):** no new rule, script, gate, drawing format or feature until the bloat cut is done
 > (`docs/OPEN-ITEMS.md` rows 153, 155). Work only the cut and Goal 1 blockers.

@@ -6,7 +6,7 @@ that applies them (the shield pins and cavities are in `docs/harness/MASTER-wire
 
 **B14 detail.** Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, flex
 fuel, gearbox VSS, ETB, APS pedal, the CAN-Lambda run and every CAN pair; injectors and coils get none. A drain is its own
-`M22759/16-20-06` wire, found by its part, never its colour; no connector shell, no solder sleeve. A cabin device that
+`M22759/16-20-06` wire, found by its part, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that
 joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead
 pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one
 OUT plug; its board is isolated from the case.
@@ -34,6 +34,9 @@ SPLICE` (no covering), placed on the pin's connector through its `locationId`
 (https://docs.harness.design/component/splice), with one drain wire (no wire part number, R32) to the
 pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into
 its own named branch splice on the trunk drain (`SP-CAN-SH-*`, R207; the one exception to "one splice").
+**CAN branch splices (Dan 2026-10-25):** where each CAN node branches off the trunk for power and CAN signal, that
+node's shield splices onto the main trunk shield at that same point, one splice per branch point, never all in one lump.
+Each branch splice is a solder sleeve that takes a drain lead (Raychem / TE type); part number TBD (row 166).
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|

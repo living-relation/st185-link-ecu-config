@@ -5,6 +5,9 @@ master rows after cut-list groups 4-8. Every wire is dead and comes out back to 
 (6 in pigtail: kill switch, then alternator IG), IG2-16 Y (charge lamp, stays) and IG1-11 (branch only; splice I2 and
 ground IE stay).
 
+IG2 cavities 1 and 2 are used on a 1993 car: the 1993 face drawing (p.43) still marks 1, 2 and 10 as empty, but it is the
+1990 drawing left unchanged (1990 p.31 is the same); the 1993 circuit pages (p.79, 81, 210) and the 1992 book use both.
+
 | Joint | Pin | Wire colour | Signal | Cabin end (connector, pin) | Engine end (connector, pin) - removed with Engine Wire | EWD page | Action |
 |---|---|---|---|---|---|---|---|
 | IG1 | 2 | P | IDL to cruise ECU | Cruise ECU plug B pin 9 IDL (removed, earlier plan) | ECU plug C pin 12 IDL / Engine Wire splice I7 -> TPS T1-2 | [90/92] 1990 p.119, 1992 p.181; 1993 p.80 shows "to cruise ECU" | remove (dead) back to last live point |
@@ -22,7 +25,7 @@ ground IE stay).
 | IG1 | 17 | GR-R | Cruise actuator VR2 | Cruise ECU A11 | Actuator pin 2 | [90/92] | remove (dead) back to last live point |
 | IG1 | 18 | P-B | Cruise actuator MO | Cruise ECU B4 | Actuator pin 6 | [90/92] | remove (dead) back to last live point |
 | IG2 | 1 | L-Y (cowl) / Y (engine, p.79) or L-Y (engine, p.210) | ECU ATS <-> A/C amp A15-2 | OEM ECU plug A pin 7 ATS | Engine Wire -> IH1-1 -> A15-2 | 1993 p.79, 210 | remove (dead) back to last live point |
-| IG2 | 2 | P | MIL (ECU W) to DLC1 "W" | Cowl splice I6 -> comb meter C12 (A) pin 3 + ECU plug A pin 5 W | DLC1 (check connector) pin 2 W | 1993 p.81, 79 | remove (dead) back to last live point |
+| IG2 | 2 | P | MIL (ECU W) to DLC1 "W" | Cowl splice I6 -> comb meter C12 (B) pin 3 + ECU plug A pin 5 W | DLC1 (check connector) pin 2 W | 1993 p.81, 79 | remove (dead) back to last live point |
 | IG2 | 3 | W-L | SRS TC to DLC1 | Centre airbag sensor assy pin 12 TC (removed) | DLC1 TC (15) | [90/92] 1992 p.200; Mitchell Fig.12 "check conn" | remove (dead) back to last live point |
 | IG2 | 4 | R-L | Back-up SW feed (GAUGE 15A) | J/B3 3B-9 (GAUGE via 1E-5) | Back-up light SW B1 pin 2 (M/T) | [90/92] 1990 p.82, 1992 p.132 | remove (dead) back to last live point |
 | IG2 | 5 | G | FC (fuel-pump control) | Circuit opening relay C9-4 (cowl, removed) | ECU A14 FC (drawn crossing here) | 1993 p.78, 79 | remove (dead) back to last live point |

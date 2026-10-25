@@ -48,15 +48,15 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     temp sensor and wiper motor (B9).
   - **Removed (never a circuit source):** the Engine Wire; the Engine Room Main Wire (outer loop) and every Cowl Wire
     leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3 and R/B No.2
-    / No.4: J/B No.2, R/B No.3 (fog; the car has no fog lights) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
+    / No.4: J/B No.2, R/B No.3 (fog relay) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
     are in the glove-box POWER / LOGIC boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer;
-    the ABS computer and actuator; the brake fluid level switch; the fog lights. Each live wire that crossed from a
+    the ABS computer and actuator; the brake fluid level switch; the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, dead wire out back to its last live point (Dan 2026-10-25); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
     removed part into a kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire
     comes out of its harness back to its last live point (splice, plug or box); nothing is left cut and capped (Dan
     2026-10-21; goes into B5 at the rules walk-through).
   - **Circuits decided (Dan 2026-10-21 to 2026-10-25; not in the master yet, row 164):** starter: the OEM starter relay
     in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 to Link Aux 8 (the Link runs
-    the start; no `k_str`). Clutch: the clutch switch C17 (on the car) gives the CSB3 the clutch state (flat shift, rev
+    the start; no `k_str`). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) gives the CSB3 the clutch state (flat shift, rev
     match); C11 is for the starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
     tapped through opto IN2 to the CSB3; the new switch wires (engine harness, bulkhead A) splice to the IG2-4 / IG2-13
     pigtails. Charge lamp: IG2-16 Y stays, the ClusterLED charge LED sinks to OEM cluster plug C12-8. IG2-15 B-R
@@ -71,7 +71,7 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     (inside the RH fender, then along the underside of the radiator support) to every front device; the driver fender
     run (driver kick pass-through) to the wiper motor and the alarm siren; one mini harness per front wheel speed sensor
     to the VRC enclosure by the ECU; the fuel pump circuit; one dash feed for the cluster, LEDs and RealDash Pi; CAN;
-    the alarm add-on; power taps. A spare relay circuit (was fog) runs to the old fog-lamp spots, ends insulated.
+    the alarm add-on; power taps. No spare circuit to the old fog-lamp spots: aux circuits come later and are separate (Dan 2026-10-25).
     Engine-bay jump studs at the old battery spot are optional (owning harness open).
   - **Connectors:** the new wire mates only with each device's own connector (Dan has the mating plugs); no new inline
     connector anywhere on a run, and none added at the device, unless one later helps install or maintenance (fewer
