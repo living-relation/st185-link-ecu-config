@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ST185 A/C amplifier A15 circuit test</title>
+<style>
+  :root {
+    --ink: #1b1f24; --muted: #5b6470; --line: #d7dce2; --bg: #f6f7f9; --card: #fff;
+    --accent: #0b6bcb; --pass: #1a7f37; --fail: #c62828; --warn: #9a6700;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+  main { max-width: 900px; margin: 0 auto; padding: 24px 20px 60px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  h2 { font-size: 1.15rem; margin: 28px 0 10px; padding-bottom: 4px; border-bottom: 2px solid var(--line); }
+  .sub { color: var(--muted); margin: 0 0 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 12px 0; }
+  .answer { border-left: 5px solid var(--accent); }
+  .warn { border-left: 5px solid var(--warn); }
+  table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+  th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #eef1f4; font-weight: 600; }
+  code { background: #eef1f4; padding: 1px 5px; border-radius: 4px; font-size: .92em; }
+  .step { display: grid; grid-template-columns: 38px 1fr; gap: 12px; }
+  .num { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .step h3 { margin: 2px 0 6px; font-size: 1.02rem; }
+  .spec { font-weight: 600; }
+  .rec { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+  .rec label { display: flex; gap: 6px; align-items: center; }
+  .rec input[type=text] { width: 110px; padding: 4px 6px; border: 1px solid #b8c0ca; border-radius: 5px; font: inherit; }
+  .result { font-weight: 700; min-width: 60px; }
+  .result.pass { color: var(--pass); } .result.fail { color: var(--fail); }
+  .verdict { font-size: 1.1rem; font-weight: 700; padding: 12px 14px; border-radius: 8px; background: #eef1f4; }
+  .verdict.pass { background: #e6f4ea; color: var(--pass); } .verdict.fail { background: #fdecea; color: var(--fail); }
+  .toolbar { display: flex; gap: 10px; margin: 14px 0; }
+  button { font: inherit; padding: 7px 14px; border-radius: 7px; border: 1px solid #b8c0ca; background: #fff; cursor: pointer; }
+  button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  ul { margin: 6px 0; padding-left: 20px; }
+  .small { font-size: .88rem; color: var(--muted); }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .toolbar { display: none; }
+    .card { break-inside: avoid; border-color: #999; }
+    .rec input[type=text] { border: none; border-bottom: 1px solid #000; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+<h1>A/C amplifier A15 circuit test</h1>
+<p class="sub">Compressor A/C amplifier A15, behind the glove box (1993 ST185). Source: <b>1993 Celica Service Manual (Mitchell) - Electrical</b>, "A/C-Heater System - Automatic", A/C AMPLIFIER CIRCUIT TEST, PDF p.25-26 (table p.26, connector face Fig. 4 p.28); the manual-A/C article has the same test on p.6-7 (Fig. 5). Repo copy: <code>st185-celica-repair-manual/manuals-electrical/</code>. No bench test is planned (Dan 2026-10-25): the wiring is assumed right and this test is run in the car later.</p>
+
+<div class="card warn"><b>What this is:</b> a harness-side check with the amp unplugged, not a powered test of the amp itself. It proves every wire the amp needs is there and right, including the new RPM feed and the compressor lock sensor.</div>
+
+<h2>Set-up</h2>
+<div class="card">
+<div class="step"><div class="num">1</div><div><h3>Unplug A15</h3>Disconnect the 18-pin A/C amplifier plug. All readings are on the <b>harness side</b> of the plug. Face (Fig. 4): top row 1-2, 3-4, 5-6, 7-8; bottom row 9-10, 11-12, 13-14 (centre), 15-16, 17-18.</div></div>
+<div class="step"><div class="num">2</div><div><h3>Set the controls</h3>Ignition ON, temperature dial at max cool, blower on HI. Pin 18 also needs the engine running.</div></div>
+<div class="step"><div class="num">3</div><div><h3>Measure each line below</h3>A reading off spec means that circuit has a fault: repair the wire, not the amp.</div></div>
+</div>
+
+<h2>Readings (Mitchell p.26)</h2>
+<table><thead><tr><th>Pins</th><th>Condition</th><th>Spec</th><th>Note</th></tr></thead><tbody>
+<tr><td><code>2 - ground</code></td><td>Coolant below 95 °C (203 °F) / above 100 °C (212 °F)</td><td class="spec">Continuity / none</td><td>Variable-displacement compressor only</td></tr>
+<tr><td><code>15 - ground</code></td><td>-</td><td class="spec">Continuity</td><td></td></tr>
+<tr><td><code>10 - ground</code></td><td>1.6L / 2.2L</td><td class="spec">None / continuity</td><td>The manual-A/C copy (p.7) lists 3S-GTE = none</td></tr>
+<tr><td><code>5 - ground</code></td><td>-</td><td class="spec">About 12 ohm</td><td>Variable-displacement compressor only</td></tr>
+<tr><td><code>9 - 14</code></td><td>-</td><td class="spec">About 115 ohm</td><td>Compressor lock (speed) sensor</td></tr>
+<tr><td><code>16 - 14</code></td><td>Air at 25 °C (77 °F)</td><td class="spec">About 15,000 ohm</td><td></td></tr>
+<tr><td><code>1 - ground</code></td><td>A/C switch on / off</td><td class="spec">Battery V / 0</td><td></td></tr>
+<tr><td><code>3 - ground</code></td><td>A/C switch on / off</td><td class="spec">Battery V / 0</td><td></td></tr>
+<tr><td><code>6 - ground</code></td><td>A/C switch on / off</td><td class="spec">0 / battery V</td><td>Manual-A/C copy: battery V always</td></tr>
+<tr><td><code>8 - ground</code></td><td>-</td><td class="spec">Battery V</td><td></td></tr>
+<tr><td><code>13 - ground</code></td><td>A/C switch on / off</td><td class="spec">Battery V / 0</td><td>Manual-A/C copy: battery V always</td></tr>
+<tr><td><code>18 - ground</code></td><td>Engine running / off</td><td class="spec">About 10-14 V / 0</td><td>RPM signal; on the new car it comes from the Link (N61)</td></tr>
+</tbody></table>
+
+<h2>Related checks</h2>
+<table><thead><tr><th>Check</th><th>How</th><th>Spec</th><th>Source</th></tr></thead><tbody>
+<tr><td>Lock sensor at the compressor</td><td>Unplug the compressor; measure the W-L and W-R terminals</td><td class="spec">100-130 ohm at 20 °C (68 °F), else replace the sensor</td><td>Mitchell Electrical p.30 (manual-A/C copy p.13, terminals 2 and 3, Fig. 11)</td></tr>
+<tr><td>Magnetic clutch coil</td><td>B-W terminal to the compressor body; then apply 12 V</td><td class="spec">3.4-3.8 ohm at 20 °C; clutch engages; air gap 0.05-0.15 mm</td><td>Mitchell Electrical p.24</td></tr>
+<tr><td>EWD service hints</td><td>A15 harness side</td><td class="spec">8-15 continuity (A/C switch and ignition on); 14-15, 14-ground, 15-ground always continuity; 13-ground about 12 V ignition on</td><td>1993 EWD book p.217 (<code>RadAirAuto.pdf</code> PDF p.9)</td></tr>
+</tbody></table>
+<p class="sub">How the amp uses these: it cuts the compressor at high engine rpm, or when engine and compressor speeds differ a lot (lock), per EWD p.217. Open wiring question: Needs Dan N61 in <code>docs/OPEN-ITEMS.md</code>.</p>
+</main>
+</body>
+</html>

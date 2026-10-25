@@ -214,7 +214,7 @@ Unclear (EB2/ES2)
 |---|---|---|---|---|---|---|---|---|
 | Starter relay | 1 | B-W | Coil + (ST1) | Cowl I8/I9 <- ignition SW I13-7 ST1 | - | p.66, 78 | **reuse** as the crank signal (master B30: RB4-1 -> LOGIC BUS2-13) | |
 | Starter relay | 2 | B-W | Contact in (ST1) | Cowl I8/I9 <- I13-7 | - | p.66 | cut + cap | |
-| Starter relay | 3 | B | Coil - through the clutch start SW | Clutch start SW C11 pin 1 | - | p.66 | **reuse** (master CSB3 CLUTCH: C11-1 -> CSB3 20) | |
+| Starter relay | 3 | B | Coil - through the clutch start SW | Clutch start SW C11 pin 1 | - | p.66 | **reuse** for the starter (C11 -> Link Aux 8); the CSB3 clutch input moved to C17 pin 2 (master `w_sw5`, 2026-10-25) | |
 | Starter relay | 4 | B | Starter out | Cowl -> EB1-2 (dead after removal) | - | p.66, 78 | cut + cap | |
 | Heater relay | 1 | L-W | Coil - from the A/C amp HR | IQ2-9 -> A31/A32 auto amp HR (A11) | - | p.215 | **reuse** -> K-HTR 85 (master) | |
 | Heater relay | 3 | R-L | Coil + (GAUGE via J4) | Cowl J4 | - | p.215 | **reuse** -> K-HTR 86 (master) | |
