@@ -15,8 +15,8 @@ Each page has its own title block and rev log.
                   point to point from its pin row to its other pin row on its own track, named on the run and labelled
                   at both ends with its id, gauge, colour and ident bands. A crossing bumps over the other wire. A wire
                   the list says is built with another harness is dashed.
-  2. LAYOUT       the approved route drawing for that harness (docs/harness/routes/). Routes 1-15 are the signed SVG
-                  figures. Routes 16 and 17 are the approved lines drawn on 1993 EWD p.36. A harness with no route file
+  2. LAYOUT       the approved route drawing for that harness (docs/harness/routes/). Routes 1 and 8-15 are the signed
+                  SVG figures (Routes 2-7 removed, Dan 2026-10-26: wrong). Routes 16 and 17 are the approved lines drawn on 1993 EWD p.36. A harness with no route file
                   falls back to the physical tree (front of the car to the right, driver side up): every segment with its
                   length, its wire count and the DR-25 size. Not to scale.
   3. PINOUT       one table per connector, bus, splice and end (never split): every pin, its wire, gauge, colour,
@@ -1326,10 +1326,8 @@ def write_xlsx(H, prow, path):
 # ------------------------------------------------------------------------------------------------ approved route figures (layout pages)
 ROUTES_FOR = {
     "HeavyDC": ["ROUTE-1-HEAVYDC.html"],
-    "EngineRoom-C": ["ROUTE-2-HARNESS-C.html", "ROUTE-17-FRONT.html"],
-    "AB-engine": ["ROUTE-3-A-ENGINE.html", "ROUTE-4-B-ENGINE.html", "ROUTE-16-ENGINE-MAIN.html"],
-    "AB-cabin": ["ROUTE-5-A-CABIN.html", "ROUTE-6-B-CABIN.html"],
-    "CabinPower": ["ROUTE-7-CABINPOWER.html"],
+    "EngineRoom-C": ["ROUTE-17-FRONT.html"],
+    "AB-engine": ["ROUTE-16-ENGINE-MAIN.html"],
     "CAN": ["ROUTE-8-CAN.html"],
     "WheelSpeed-Front": ["ROUTE-9-WHEELSPEED-FRONT.html"],
     "WheelSpeed-Rear": ["ROUTE-10-WHEELSPEED-REAR.html"],
