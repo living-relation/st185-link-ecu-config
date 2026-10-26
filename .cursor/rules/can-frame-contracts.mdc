@@ -11,19 +11,18 @@ globs:
   - st185_dash.rd
   - CAN-BUS-ID-ALLOCATION-TABLE.md
   - CAN-BUS-MASTER-DESIGN.md
-  - CANBUS-LINK-G4X-CONFIG.md
   - REALDASH-LAYOUT.md
   - ECUMASTER_SWITCHBOARD_SETUP.md
   - BENCH-TEST.md
   - realdash-simulation.html
-  - docs/RECONCILIATION-RULES.md
+  - docs/harness/redesign/DECISIONS.md
 alwaysApply: false
 ---
 # CAN Frame Contracts - pointer only
 
 - **The rule** (any CAN change on any device reconciles against Link ECU, center cluster,
   RealDash and CSB3; bus facts; authority order with the frozen cluster first):
-  `docs/RECONCILIATION-RULES.md` Rule 2.
+  `docs/harness/redesign/DECISIONS.md` Rule 2.
 - **Who reads which frame** (CSB3 0x640-0x642 -> ECU only; cluster 0x3E8-0x3EB, 0x3EE;
   RealDash 0x3EB gear byte + 0x3EF-0x3F1; cluster sends 0x3EC/0x3ED):
   `docs/harness/redesign/DECISIONS.md` B16.

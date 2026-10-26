@@ -151,9 +151,11 @@ receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 | bit2 | Switch 3 — cruise MAIN on (CSB3 c17, stalk pin 15) | VDI3 | Cruise master on/off |
 | bit3 | Switch 4 — unassigned (was cruise SET; the stalk has no such wire) | VDI4 | — |
 | bit4 | Switch 5 — unassigned (was cruise RESUME; the stalk has no such wire) | VDI5 | — |
-| bit5 | Switch 6 — clutch pedal down (C11 pin 1, ground-active) | VDI6 | Cruise cancel; clutch input for flat shift / launch |
+| bit5 | Switch 6 — clutch pedal down (C17 pin 2, ground-active) | VDI6 | The one ECU clutch input: cruise cancel; flat shift / launch |
 | bit6 | Switch 7 — brake pedal pressed (opto IN1 from S9 pin 1) | VDI7 | Cruise cancel (the ECU's brake input) |
 | bit7 | Switch 8 — reverse engaged (opto IN2 from back-up switch B1 pin 1) | VDI8 | Gear Position = 7 (R) in 0x3EB: cluster R, RealDash reverse camera |
+
+Opto IN3 / OUT3: headlights-on from dimmer R10 pin 1 (green TAIL +12 V) to the cluster headlight-sense input. Not a CSB3 switch bit. IN4-IN8 stay spare.
 
 **Mapped 2026-10-14 (DECISIONS R80, Route 15 C14):** brake (S7, bit 6) and reverse (S8, bit 7) arrive through the
 inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
@@ -207,11 +209,11 @@ Layout per the CSB3 manual v2.1 §6 (DLC ≥ 4, one **byte** per output, not bit
 | byte0 | L1 ctrl | Unused (LED-only if ever used) |
 | byte1 | L2 ctrl | Unused (LED-only if ever used) |
 | byte2 | L3 ctrl | Unused (LED-only if ever used) |
-| byte3 | L4 ctrl | Unused (LED-only if ever used) |
+| byte3 | L4 ctrl | Oil warning LED (CSB3 cavity 26, `w_oil_k` / D-OIL) |
 | byte4–7 | — | Send 0x00 |
 
-Each output is rated 0.5 A (manual §2). Nothing is assigned yet, so the PCLink 0x643 stream can wait;
-when an LED is added, map its PCLink virtual output to the matching byte.
+Each output is rated 0.5 A (manual §2). L4 is assigned, so the PCLink 0x643 stream (50 ms) is in the
+CAN config now (B18): map the oil-warning virtual output to byte 3. L1–L3 stay unused.
 
 ---
 
@@ -223,7 +225,7 @@ when an LED is added, map its PCLink virtual output to the matching byte.
 - **Fault action (automatic):** VDI3 / VDI6–8 and Cruise Stalk mV reset to 0
 - **Fault broadcast:** PCLink sets 0x3F1 byte6 bit5 ("Switchboard Comm Fault")
 
-The CSB3 needs no configuration for the heartbeat. PCLink side: see `CANBUS-LINK-G4X-CONFIG.md` for the receive timeout setting.
+The CSB3 needs no configuration for the heartbeat. PCLink side: see `CAN-BUS-MASTER-DESIGN.md` for the receive timeout setting.
 
 ---
 
@@ -265,4 +267,4 @@ Before first power-on with ECU on the bus:
 - [ ] With CSB3 powered and isolated, 0x640 / 0x641 / 0x642 frames visible in CAN monitor at 1 Mbit/s
 - [ ] In PCLink — the `.lcs` receive channels imported (written 2026-10-14, R80): 0x640 "Cruise Stalk mV"; 0x642 "CSB3 Switches" = "Cruise Main" → VDI3, "Clutch Switch" → VDI6, "Brake Switch" → VDI7, "Reverse Switch" → VDI8 (enter by hand with the same values if the import skips them)
 - [ ] In PCLink — receive timeout 200 ms on 0x640 / 0x642 came in with the import
-- [ ] In PCLink — 0x643 TX stream (50 ms) only once an output is assigned (L1-L4 unused / LED-only for now)
+- [ ] In PCLink — 0x643 TX stream (50 ms): L4 / byte 3 = oil warning LED; L1–L3 unused

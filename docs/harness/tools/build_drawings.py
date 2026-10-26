@@ -4,18 +4,21 @@
 A drawing set is one or more harnesses of docs/harness/MASTER-wirelist.csv drawn as one: its layout spec
 `tools/<set>.layout.json` names them (`"harnesses": [...]`) and holds the physical tree; `tools/<set>.revs.json` is its rev
 log. Combining one more harness later = add it to `harnesses` (and its branches to the tree), then re-run. It writes, to
-docs/harness/drawings/, THREE single-page PDFs `<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf` (Dan, 2026-10-19: "one big sheet for the schematics one big
-sheet for the layout view and one big sheet for the pinout tables just by themselves"). Each sheet is sized to what it holds
-and grows as harnesses join the set; nothing is split across sheets; each has its own title block and rev log.
+docs/harness/drawings/, three PDFs `<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf`. Each grouped section is its own
+page (Dan, 2026-10-25: the single sheets hid the wires). A schematic page holds at most six wires, each in its own line
+colour, so one wire can be followed without mixing it up with the one beside it. The label still carries that wire's gauge
+and colour. A section that does not fit continues on the next page of that same section; a wire is drawn whole on one page.
+Each page has its own title block and rev log.
 
   1. SCHEMATIC    the wires grouped by job (through the bulkhead, the ECU splice point, cabin branches, shield
-                  drains), one whole panel per job. Every connector, bus, splice and end is a pinout table (pin |
-                  signal); every wire is drawn point to point from its pin row to its other pin row on its own
-                  track, labelled at both ends with its id, gauge, colour and ident bands. A wire the list says is
-                  built with another harness is dashed.
-  2. LAYOUT       the physical trunk and branches as a top view (front of the car to the right, driver side up,
-                  R140 / R153): every segment with its length, its wire count and the DR-25 size for its bundle;
-                  the branch points, the ECU splice point, the bulkhead and every end. Not to scale.
+                  drains). Every connector, bus, splice and end is a pinout table (pin | signal); every wire is drawn
+                  point to point from its pin row to its other pin row on its own track, named on the run and labelled
+                  at both ends with its id, gauge, colour and ident bands. A crossing bumps over the other wire. A wire
+                  the list says is built with another harness is dashed.
+  2. LAYOUT       the approved route drawing for that harness (docs/harness/routes/). Routes 1-15 are the signed SVG
+                  figures. Routes 16 and 17 are the approved lines drawn on 1993 EWD p.36. A harness with no route file
+                  falls back to the physical tree (front of the car to the right, driver side up): every segment with its
+                  length, its wire count and the DR-25 size. Not to scale.
   3. PINOUT       one table per connector, bus, splice and end (never split): every pin, its wire, gauge, colour,
                   bands, signal, other end and estimated cut length; spare pins take a sealing plug.
 
@@ -34,10 +37,12 @@ bands, plus every spare pin. Any difference fails, whatever the inputs digest sa
 Nothing on these sheets is placed or typed by hand except the layout tree (node positions, segment lengths) and the
 rev log; the scripts never write into the master.
 """
+import base64
 import collections
 import csv
 import glob
 import hashlib
+import html
 import io
 import json
 import math
@@ -52,9 +57,9 @@ MASTER = os.path.join(HARNESS, "MASTER-wirelist.csv")
 DRAWINGS = os.path.join(HARNESS, "drawings")
 OUT = os.path.join(HARNESS, "out")        # untracked (.gitignore): xlsx views, thumbnails
 
-STYLE = "own-drawings v2 (three big sheets)"
-PW, PH = 1224.0, 792.0                     # the current page (set_page); a schematic panel is PANEL_W wide
-PANEL_W = 1224.0
+STYLE = "own-drawings v5 (one colour per wire, approved routes)"
+PW, PH = 1224.0, 792.0                     # the current page (set_page); a readable page is tabloid, 17 x 11 in
+PAGE_MAX_W, PAGE_MAX_H = 1224.0, 792.0     # a section spills onto another page of that section past this size
 M = 18.0                                   # page margin
 TB_W, TB_H = 372.0, 128.0                  # title block (bottom right)
 INK = (0.08, 0.13, 0.24)
@@ -63,6 +68,9 @@ LIGHT = (0.93, 0.94, 0.96)
 AGENT = re.compile(r"claude|grok|stevecad|fairsolid|agent|unknown|cursor|codex", re.I)
 WIRE_RGB = {"Red": (0.78, 0.16, 0.16), "Black": (0.1, 0.1, 0.1), "Orange": (0.93, 0.45, 0.0), "Blue": (0.12, 0.38, 0.8),
             "White": (0.55, 0.55, 0.55), "Green": (0.18, 0.55, 0.25), "Yellow": (0.85, 0.68, 0.0), "Shield": (0.45, 0.45, 0.45)}
+# One colour per wire on a schematic page. The wire's own colour stays in the label; these exist so two orange wires
+# are not the same line. Six, because a page holds six wires.
+TRACE = [(0.78, 0.08, 0.12), (0.08, 0.28, 0.82), (0.00, 0.48, 0.22), (0.90, 0.42, 0.00), (0.48, 0.12, 0.66), (0.08, 0.08, 0.08)]
 ABBR = {"Red": "RED", "Black": "BLK", "Orange": "ORN", "Blue": "BLU", "White": "WHT", "Green": "GRN", "Yellow": "YEL",
         "Shield": "SCREEN", "": "-"}
 BAND_RGB = {"Blue": (0.12, 0.38, 0.8), "Yellow": (0.95, 0.8, 0.1), "White": (1, 1, 1)}
@@ -371,8 +379,19 @@ def _same_or_cut(seen, want):
 
 
 def _read_pinout(path, fitz):
-    """The pinout sheet read back: one dict per table row (the table title plus every column), from the text alone."""
-    page = fitz.open(path)[0]
+    """Every pinout page read back: one dict per table row (the table title plus every column), from the text alone."""
+    doc = fitz.open(path)
+    rows, bad = [], []
+    for page in doc:
+        got, page_bad = _read_pinout_page(page)
+        rows.extend(got)
+        bad.extend(page_bad)
+    doc.close()
+    return rows, bad
+
+
+def _read_pinout_page(page):
+    """One pinout page."""
     sp, chips = _spans(page), _chips(page)
     names = [n for n, _ in TABLE_COLS]
     heads = [s for s in sp if s[4] and s[3] == 5.4 and s[6] == names[0]]
@@ -409,9 +428,20 @@ def _read_pinout(path, fitz):
 
 
 def _read_schematic(path, fitz):
-    """The schematic sheet read back: the wire labels (id, gauge, colour, bands) and every pinout-block row (block title,
+    """Every schematic page read back: the wire labels (id, gauge, colour, bands) and every pinout-block row (block title,
     pin, wire id)."""
-    page = fitz.open(path)[0]
+    doc = fitz.open(path)
+    labels, ends = [], []
+    for page in doc:
+        lab, end = _read_schematic_page(page)
+        labels.extend(lab)
+        ends.extend(end)
+    doc.close()
+    return labels, ends
+
+
+def _read_schematic_page(page):
+    """One schematic page."""
     sp, chips = _spans(page), _chips(page)
     labels = []
     for x, y, xe, size, bold, grey, t in sp:
@@ -604,13 +634,38 @@ def band_chips(S, x, y, bands):
 
 
 # ------------------------------------------------------------------------------------------------ 1. layout sheet
-def layout_sheet(S, H):
+def layout_keep(H, harness):
+    """Nodes, segments and end ids the wires of one harness actually run through."""
+    nodes, segs, ends = set(), set(), set()
+    for r in H.wires:
+        if r["harness"] != harness:
+            continue
+        for s in ("from", "to"):
+            if r[s + "_conn"]:
+                ends.add(r[s + "_conn"])
+        p, _mm = H.route(r)
+        if not p:
+            continue
+        nodes.update(p)
+        for a, b in zip(p, p[1:]):
+            segs.add(tuple(sorted((a, b))))
+    return nodes, segs, ends
+
+
+def layout_page_size(n_nodes, n_seg):
+    """Tabloid, grown only so the segment table ends above the title block."""
+    ty = M + 50 + 11 + 8.5 * n_seg + 14 + 8 * n_nodes + 14 + 7.5 * 8
+    return 1224.0, max(792.0, ty + 24 + TB_H + M)
+
+
+def layout_sheet(S, H, harness=None, keep_nodes=None, keep_segs=None, keep_ends=None):
     L = H.layout
-    nodes = L["nodes"]
-    seg_w = {}
+    nodes = L["nodes"] if keep_nodes is None else {k: v for k, v in L["nodes"].items() if k in keep_nodes}
+    seg_src = L["segments"] if keep_segs is None else [s for s in L["segments"] if tuple(sorted((s[0], s[1]))) in keep_segs]
+    wires = H.wires if harness is None else [r for r in H.wires if r["harness"] == harness]
     seg_od = {}
     count = {}
-    for r in H.wires:
+    for r in wires:
         p, mm = H.route(r)
         if not p:
             continue
@@ -630,14 +685,15 @@ def layout_sheet(S, H):
         # top view: +x = toward the front (right), +y = driver side (up on the sheet)
         return (ax0 + (x - min(xs)) * sx, ay1 - (y - min(ys)) * sy)
 
-    S.text(M + 8, M + 16, "LAYOUT - top view, front of the car to the RIGHT, driver side UP (R140 / R153). Not to scale; "
-           "lengths in mm (estimates until measured at the car).", 8, "hebo")
+    head = ("LAYOUT - ST185-%s - " % harness) if harness else "LAYOUT - "
+    head += "top view, front of the car to the RIGHT, driver side UP (R140 / R153). Not to scale; lengths in mm (estimates until measured at the car)."
+    S.text(M + 8, M + 16, S.fit(head, PW - 2 * M - 16, 8, "hebo"), 8, "hebo")
     S.text(M + 8, M + 27, "Each segment: length | wires in it | DR-25 heat-shrink size for its bundle (est. from the wire ODs). "
            "Lengths per wire (path + %d mm at each end) are in the pinout table." % L.get("end_allowance_mm", 100), 6.5)
     S.text(ax1 - 40, M + 50, "FRONT  -->", 7, "hebo", GREY)
     S.text(M + 8, M + 50, "^ DRIVER SIDE (LH) at the top  /  PASSENGER SIDE (RH) at the bottom v", 6.5, "hebo", GREY)
     table = []
-    for a, b, mm in L["segments"]:
+    for a, b, mm in seg_src:
         k = tuple(sorted((a, b)))
         n = count.get(k, 0)
         bundle = 1.2 * math.sqrt(seg_od.get(k, 0.0)) if n else 0
@@ -660,7 +716,7 @@ def layout_sheet(S, H):
         else:
             S.dot(x, y, 2.4)
         head = S.fit("%s  %s" % (n, v.get("short", v["label"])), 200, 6.5, "hebo")
-        names = sorted({short_name(H, c) for c in placed.get(n, [])})
+        names = sorted({short_name(H, c) for c in placed.get(n, []) if keep_ends is None or c in keep_ends})
         lines = wrap(S, ", ".join(names), 190, 5.2)[:3] if names else []
         side = v.get("lab", "right")
         w = max([S.tl(head, 6.5, "hebo")] + [S.tl(ln, 5.2) for ln in lines])
@@ -809,10 +865,31 @@ RIGHT_BOT = PH - M - TB_H - 8   # the right column stops above the title block
 
 
 LANE = 92.0      # label lane beside a table: id, gauge, colour, bands
-TRK = 3.2        # track pitch in the outer channels
+TRK = 16.0       # track pitch in the outer channels
+STEP = 16.0      # minimum centre-track pitch; a page holds few wires so the real gap is wider
+LW, RW = 200.0, 214.0
+MAX_SCH_WIRES = 6   # more than this and same-colour wires cannot be followed through the channel
 
 
-def schematic_sheet(S, H, title, i, n, rows, with_legend=True):
+def section_order(H):
+    """Schematic / pinout sections: the ECU cabin job groups, then one section per other harness."""
+    titles = H.layout.get("panel_titles", {})
+    order = list(GROUPS)
+    rest = [x for x in AB if x != AB[0]] + sorted({r["harness"] for r in H.rows} - set(AB))
+    for name in rest:
+        order.append(("h:" + name, titles.get(name, "ST185-%s - every wire of this harness" % name).upper()))
+    return order
+
+
+def row_group(H, r):
+    """The section a pinout row belongs to. AB-cabin spare pins sit on the cabin page."""
+    if r["wire_id"]:
+        return group_of(H, r)
+    return "cabin" if r["harness"] == AB[0] else "h:" + r["harness"]
+
+
+def arrange_schematic(H, rows):
+    """Column positions and a track per wire. Track assignment depends on the row heights, not on the page width."""
     bl = blocks_for(H, rows)
     sides = choose_sides(H, rows)
     left = sorted([b for k, b in bl.items() if sides[k] == 0], key=lambda b: order_key(H, b.key))
@@ -839,7 +916,6 @@ def schematic_sheet(S, H, title, i, n, rows, with_legend=True):
         for j, (pin, desc, rid) in enumerate(b.rows):
             rowy[rid] = b.y + HEAD_H + ROW_H * (j + 0.5)
     blk = {rid: b for b in left + right for pin, desc, rid in b.rows}
-    # channel jobs and tracks (tracks depend only on the row heights)
     jobs = []
     for r in rows:
         a, z = blk[(r["wire_id"], "from")], blk[(r["wire_id"], "to")]
@@ -860,7 +936,44 @@ def schematic_sheet(S, H, title, i, n, rows, with_legend=True):
                 ends[t] = hi
             j[6] = t
         ntr[ch] = len(ends)
-    LW, RW = 200.0, 214.0
+    return {"left": left, "right": right, "jobs": jobs, "ntr": ntr, "sides": sides}
+
+
+def schematic_need(lay):
+    """Page size that keeps centre tracks at STEP. Not clamped to the readable page."""
+    ntr = lay["ntr"]
+    outer_l = (ntr["L"] * TRK + 8 + LANE) if ntr["L"] else 0
+    outer_r = (ntr["R"] * TRK + 8 + LANE) if ntr["R"] else 0
+    center = (ntr["C"] + 1) * STEP if ntr["C"] else 36.0
+    w = 2 * (M + 8) + outer_l + outer_r + LW + RW + 2 * LANE + center
+    content = COL_TOP
+    for b in lay["left"] + lay["right"]:
+        content = max(content, b.y + b.height())
+    return w, content + 36 + TB_H + M
+
+
+def pack_schematic(H, rows):
+    """Split one section into pages that stay inside the readable sheet. Each page draws its wires whole."""
+    ordered = sorted(rows, key=lambda r: (r["from_id"], pin_sort(r["from_pin"]), r["to_id"], r["wire_id"]))
+    pages, cur = [], []
+    for r in ordered:
+        trial = cur + [r]
+        w, h = schematic_need(arrange_schematic(H, trial))
+        if cur and (len(trial) > MAX_SCH_WIRES or w > PAGE_MAX_W + 0.5 or h > PAGE_MAX_H + 0.5):
+            pages.append(cur)
+            cur = [r]
+        else:
+            cur = trial
+    if cur:
+        pages.append(cur)
+    return pages
+
+
+def schematic_sheet(S, H, title, i, n, rows, lay=None, with_legend=True):
+    if lay is None:
+        lay = arrange_schematic(H, rows)
+    left, right = lay["left"], lay["right"]
+    jobs, ntr, sides = lay["jobs"], lay["ntr"], lay["sides"]
     outer_l = (ntr["L"] * TRK + 8 + LANE) if ntr["L"] else 0
     outer_r = (ntr["R"] * TRK + 8 + LANE) if ntr["R"] else 0
     lx0 = M + 8 + outer_l
@@ -873,30 +986,102 @@ def schematic_sheet(S, H, title, i, n, rows, with_legend=True):
     for b in left + right:
         draw_block(S, H, b)
     cx0, cx1 = lx0 + LW + LANE, rx0 - LANE
-    step = min(4.0, (cx1 - cx0) / (ntr["C"] + 1)) if ntr["C"] else 4.0
+    step = (cx1 - cx0) / (ntr["C"] + 1) if ntr["C"] else STEP
+    if ntr["C"] and step < STEP - 0.05:
+        print("PROBLEM centre tracks %.2f pt apart on %s (need %.1f)" % (step, title, STEP))
+    drawn = []
     for ch, r, a, z, ya, yz, t in jobs:
+        if ch == "C":
+            tx = cx0 + step * (t + 1)
+        elif ch == "L":
+            tx = lx0 - LANE - 6 - TRK * t
+        else:
+            tx = rx1 + LANE + 6 + TRK * t
+        drawn.append((ch, r, a, z, ya, yz, tx))
+    for i, (ch, r, a, z, ya, yz, tx) in enumerate(drawn):
         dashed = "[3 2] 0" if r["harness"] not in H.set else None
-        col = WIRE_RGB.get(r["colour"], INK)
-        width = 0.55 if r["colour"] != "Shield" else 0.45
+        col = TRACE[i % len(TRACE)]
+        width = 1.6 if r["colour"] != "Shield" else 1.15
+        others = [ox for och, _or, _oa, _oz, _oya, _oyz, ox in drawn if och == ch and abs(ox - tx) > 0.5]
         if ch == "C":
             (la, ly), (lz, lyz) = ((a, ya), (z, yz)) if sides[a.key] == 0 else ((z, yz), (a, ya))
-            tx = cx0 + step * (t + 1)
-            S.line([(la.x1, ly), (tx, ly), (tx, lyz), (lz.x0, lyz)], col, width, dashed)
+            jump_run(S, la.x1, ly, tx, ly, others, col, width, dashed)
+            stroke(S, [(tx, ly), (tx, lyz)], col, width, dashed)
+            jump_run(S, tx, lyz, lz.x0, lyz, others, col, width, dashed)
+            wire_id_on(S, r["wire_id"], tx, ly, lyz, col)
             wire_label(S, r, la.x1 + 3, ly - 1.4)
             wire_label(S, r, lz.x0 - LANE + 3, lyz - 1.4)
         elif ch == "L":
-            tx = lx0 - LANE - 6 - TRK * t
-            S.line([(a.x0, ya), (tx, ya), (tx, yz), (z.x0, yz)], col, width, dashed)
+            jump_run(S, a.x0, ya, tx, ya, others, col, width, dashed)
+            stroke(S, [(tx, ya), (tx, yz)], col, width, dashed)
+            jump_run(S, tx, yz, z.x0, yz, others, col, width, dashed)
+            wire_id_on(S, r["wire_id"], tx, ya, yz, col)
             wire_label(S, r, a.x0 - LANE + 3, ya - 1.4)
             wire_label(S, r, z.x0 - LANE + 3, yz - 1.4)
         else:
-            tx = rx1 + LANE + 6 + TRK * t
-            S.line([(a.x1, ya), (tx, ya), (tx, yz), (z.x1, yz)], col, width, dashed)
+            jump_run(S, a.x1, ya, tx, ya, others, col, width, dashed)
+            stroke(S, [(tx, ya), (tx, yz)], col, width, dashed)
+            jump_run(S, tx, yz, z.x1, yz, others, col, width, dashed)
+            wire_id_on(S, r["wire_id"], tx, ya, yz, col)
             wire_label(S, r, a.x1 + 3, ya - 1.4)
             wire_label(S, r, z.x1 + 3, yz - 1.4)
-    S.text(M + 8, M + 16, "%s%s" % (title, "" if n == 1 else "  (part %d of %d)" % (i, n)), 8, "hebo")
+    S.text(M + 8, M + 16, S.fit("%s%s" % (title, "" if n == 1 else "  (part %d of %d)" % (i, n)), PW - 2 * M - 16, 8, "hebo"), 8, "hebo")
     if with_legend:
-        legend(S, PH - M - 40)
+        legend(S, PH - M - TB_H - 14)
+
+
+def stroke(S, pts, col, width, dashed):
+    """A white halo under the coloured stroke, so a crossing reads as two wires and not one blob."""
+    S.line(pts, (1, 1, 1), width + 2.6, dashed)
+    S.line(pts, col, width, dashed)
+
+
+def jump_run(S, x0, y0, x1, y1, obstacles, col, width, dashed):
+    """Straight run, with a bump where it crosses another wire's track. Horizontal or vertical."""
+    if abs(y0 - y1) < 0.5:
+        horizontal, fixed, a, b = True, y0, x0, x1
+    elif abs(x0 - x1) < 0.5:
+        horizontal, fixed, a, b = False, x0, y0, y1
+    else:
+        stroke(S, [(x0, y0), (x1, y1)], col, width, dashed)
+        return
+    direction = 1 if b >= a else -1
+    gap, bump = 6.0, 8.0
+    stops = sorted(obstacles, key=lambda v: (v - a) * direction)
+    stops = [v for v in stops if (v - a) * direction > gap + 2 and (b - v) * direction > gap + 2]
+    cur = a
+
+    def seg(p, q):
+        if abs(p - q) < 0.4:
+            return
+        if horizontal:
+            stroke(S, [(p, fixed), (q, fixed)], col, width, dashed)
+        else:
+            stroke(S, [(fixed, p), (fixed, q)], col, width, dashed)
+
+    def hop(v):
+        pre, post = v - direction * gap, v + direction * gap
+        if horizontal:
+            stroke(S, [(pre, fixed), (v, fixed - bump), (post, fixed)], col, width, dashed)
+        else:
+            stroke(S, [(fixed, pre), (fixed + bump, v), (fixed, post)], col, width, dashed)
+
+    for v in stops:
+        seg(cur, v - direction * gap)
+        hop(v)
+        cur = v + direction * gap
+    seg(cur, b)
+
+
+def wire_id_on(S, text, x, y0, y1, col):
+    """The wire id just left of the vertical run, clear of the pin labels on the right of that run."""
+    lo, hi = min(y0, y1), max(y0, y1)
+    size = 8
+    tw = S.tl(text, size, "hebo")
+    if hi - lo < tw + 8:
+        return
+    mid = (lo + hi) / 2.0
+    S.page.insert_text((x - size - 2, mid + tw / 2.0), text, fontsize=size, fontname="hebo", color=col, rotate=90)
 
 
 def wire_label(S, r, x, y, w=LANE - 6):
@@ -974,6 +1159,8 @@ def legend(S, y):
         x += 34
     S.line([(x + 8, y - 2), (x + 26, y - 2)], INK, 0.6, "[3 2] 0")
     S.text(x + 29, y, "built with another harness", 5.5)
+    x += 145
+    S.text(x, y, "line colour = one wire on this page; the label has the wire colour", 5.5)
 
 
 # ------------------------------------------------------------------------------------------------ 3. pinout
@@ -1008,13 +1195,13 @@ def pinout_rows(H):
                         "AWG": r["gauge_awg"],
                         "COLOUR": r["colour"], "BANDS": r["ident_bands"], "SIGNAL": r[s + "_desc"], "OTHER END": oth,
                         "LEN MM": str(mm or ""), "BUILT WITH": "ST185-" + r["harness"], "CIRCUIT": r["circuit_id"],
-                        "_k": (order_key(H, key), pin_sort(r[s + "_pin"]))})
+                        "_g": row_group(H, r), "_k": (order_key(H, key), pin_sort(r[s + "_pin"]))})
     for r in H.spares:
         key = H.end_key(r, "from")
         out.append({"END": H.title(key, r, "from"), "_sub": table_sub(H, key, r, "from"), "PIN": r["from_pin"], "WIRE": "",
                     "AWG": "", "COLOUR": "", "BANDS": "",
                     "SIGNAL": r["from_desc"], "OTHER END": "", "LEN MM": "", "BUILT WITH": "", "CIRCUIT": "",
-                    "_k": (order_key(H, key), pin_sort(r["from_pin"]))})
+                    "_g": row_group(H, r), "_k": (order_key(H, key), pin_sort(r["from_pin"]))})
     out.sort(key=lambda x: x["_k"])
     return out
 
@@ -1046,43 +1233,34 @@ def table_h(tb):
     return T_HEAD + T_COLS + T_ROW * len(tb[2])
 
 
-def pack(heights, k):
-    """Split heights (in order) into at most k columns of about even height; -> [[index ...]]."""
-    target = max(max(heights), sum(heights) / k)
-    cols, cur, h = [], [], 0.0
-    for i, x in enumerate(heights):
-        # start a new column when this item's middle would pass the target (keeps the columns even, order kept)
-        if cur and h + x / 2 > target + 1e-6 and len(cols) < k - 1:
-            cols.append(cur)
-            cur, h = [], 0.0
-        cur.append(i)
-        h += x
-    cols.append(cur)
-    return cols
+def pinout_page_plan(tables):
+    """Flow a section's tables down one column of a tabloid page. A table is never split; a tall table grows its page."""
+    chrome_top = M + 44
+    chrome_bot = M + TB_H + 12
+    usable = PAGE_MAX_H - chrome_top - chrome_bot
+    pages, col, used = [], [], 0.0
+
+    def flush():
+        nonlocal col, used
+        if col:
+            pages.append((col, PAGE_MAX_W, PAGE_MAX_H))
+        col, used = [], 0.0
+
+    for i, tb in enumerate(tables):
+        th = table_h(tb) + T_GAP
+        if col and used + th > usable + 1e-6:
+            flush()
+        if not col and th > usable:
+            pages.append(([i], PAGE_MAX_W, chrome_top + chrome_bot + th))
+            continue
+        col.append(i)
+        used += th
+    flush()
+    return pages
 
 
-def best_pack(heights, col_w, extra_w, extra_h, kmax=8):
-    """The column count whose sheet is closest to the ISO aspect (1.414 : 1, landscape)."""
-    best = None
-    for k in range(1, min(kmax, len(heights)) + 1):
-        cols = pack(heights, k)
-        w = extra_w + len(cols) * col_w
-        h = extra_h + max(sum(heights[i] for i in c) for c in cols)
-        score = abs(w / h - 1.414)
-        if best is None or score < best[0] - 1e-9:
-            best = (score, cols, w, h)
-    return best[1], best[2], best[3]
-
-
-def pinout_size(tables):
-    hs = [table_h(tb) + T_GAP for tb in tables]
-    cols, w, h = best_pack(hs, TABLE_W + 16, 2 * M + 16, M + 44 + TB_H + 30 + M)
-    return cols, w, h
-
-
-def pinout_sheet(S, tables, cols):
-    S.text(M + 8, M + 16, "PINOUT TABLES - one table per connector, bus plug, splice and end of the set; every pin, the wire on "
-           "it and where its other end lands", 8, "hebo")
+def pinout_sheet(S, tables, cols, banner):
+    S.text(M + 8, M + 16, S.fit(banner, PW - 2 * M - 16, 8, "hebo"), 8, "hebo")
     S.text(M + 8, M + 27, "Length = layout path + end allowance (estimate until measured). Built with = the harness that builds "
            "that wire (a wire passing through is built with its owner). A pin with no wire takes a sealing plug.", 6)
     for ci, col in enumerate(cols):
@@ -1145,60 +1323,261 @@ def write_xlsx(H, prow, path):
         f.write(tmp.getvalue())
 
 
-# ------------------------------------------------------------------------------------------------ build
-def panel_height(H, rows):
-    bl = blocks_for(H, rows)
-    sides = choose_sides(H, rows)
-    cols = [0.0, 0.0]
-    for k, b in bl.items():
-        cols[sides[k]] += b.height() + GAP_B
-    return COL_TOP + max(cols) + 16
+# ------------------------------------------------------------------------------------------------ approved route figures (layout pages)
+ROUTES_FOR = {
+    "HeavyDC": ["ROUTE-1-HEAVYDC.html"],
+    "EngineRoom-C": ["ROUTE-2-HARNESS-C.html", "ROUTE-17-FRONT.html"],
+    "AB-engine": ["ROUTE-3-A-ENGINE.html", "ROUTE-4-B-ENGINE.html", "ROUTE-16-ENGINE-MAIN.html"],
+    "AB-cabin": ["ROUTE-5-A-CABIN.html", "ROUTE-6-B-CABIN.html"],
+    "CabinPower": ["ROUTE-7-CABINPOWER.html"],
+    "CAN": ["ROUTE-8-CAN.html"],
+    "WheelSpeed-Front": ["ROUTE-9-WHEELSPEED-FRONT.html"],
+    "WheelSpeed-Rear": ["ROUTE-10-WHEELSPEED-REAR.html"],
+    "RearFuel": ["ROUTE-11-REARFUEL.html"],
+    "CSB3": ["ROUTE-12-CSB3.html"],
+    "ClusterLED": ["ROUTE-13-CLUSTERLED.html"],
+    "AntiTheft": ["ROUTE-14-ANTITHEFT.html"],
+    "RearLights": ["ROUTE-15-REARLIGHTS.html"],
+}
+_SVG_TAG = re.compile(r"<(image|polyline|polygon|circle|text|rect)\b([^>]*?)/?>(?:(.*?)</\1>)?", re.S)
 
 
-def schematic_big(doc, fitz, H):
-    """Each job group drawn whole as one panel (a temporary page), then the panels placed in columns on ONE sheet."""
-    panels = []
-    tmp = fitz.open()
-    titles = H.layout.get("panel_titles", {})
-    order = list(GROUPS) + [("h:" + h, titles.get(h, "ST185-%s - every wire of this harness" % h).upper())
-                            for h in [x for x in AB if x != AB[0]] + sorted({r["harness"] for r in H.wires} - set(AB))]
-    for g, title in order:
-        rows = [r for r in H.wires if group_of(H, r) == g]
-        if not rows:
+def _css_rgb(value):
+    if not value or value == "none":
+        return None
+    h = value.strip().lstrip("#")
+    if len(h) == 3:
+        h = "".join(c * 2 for c in h)
+    if len(h) == 6 and all(c in "0123456789abcdefABCDEF" for c in h):
+        return tuple(int(h[i:i + 2], 16) / 255.0 for i in (0, 2, 4))
+    return None
+
+
+def _attr(raw):
+    return {k: html.unescape(v) for k, v in re.findall(r'([\w:-]+)="([^"]*)"', raw)}
+
+
+def route_figures(path):
+    """Every SVG figure in an approved route file: the drawing Dan signed, not a new layout."""
+    text = open(path, encoding="utf-8").read()
+    out = []
+    for part in re.split(r"<figure\b[^>]*>", text)[1:]:
+        body = part.split("</figure>", 1)[0]
+        cap = re.search(r"<figcaption>(.*?)</figcaption>", body, re.S)
+        caption = re.sub(r"<[^>]+>", "", html.unescape(cap.group(1))).strip() if cap else ""
+        caption = re.sub(r"\s+", " ", caption)
+        for svg in re.finditer(r"<svg\b([^>]*)>(.*?)</svg>", body, re.S):
+            box = re.search(r'viewBox="([\d.]+) ([\d.]+) ([\d.]+) ([\d.]+)"', svg.group(1))
+            if not box:
+                continue
+            ops = []
+            for tag in _SVG_TAG.finditer(svg.group(2)):
+                ops.append((tag.group(1), _attr(tag.group(2)), tag.group(3) or ""))
+            if ops:
+                out.append({"box": tuple(float(v) for v in box.groups()), "ops": ops, "caption": caption,
+                            "file": os.path.basename(path)})
+    return out
+
+
+# Routes 16 and 17 store polylines in PDF points of this page (origin top-left, y down, the same space PyMuPDF draws in).
+EWD_PDF = os.path.join(os.path.dirname(REPO), "st185-celica-repair-manual", "manuals-electrical",
+                       "Connector__Ground_and_Splice.pdf")
+EWD_PAGE = (612.0, 792.0)  # letter; page 1 is printed p.36, the 3S-GTE engine compartment
+ROUTE_COLOUR = {"red": (0.82, 0.06, 0.08), "cyan": (0.00, 0.55, 0.70), "blue": (0.10, 0.28, 0.82),
+                "yellow": (0.78, 0.58, 0.00), "purple": (0.48, 0.12, 0.62), "green": (0.05, 0.48, 0.22),
+                "orange": (0.90, 0.40, 0.00)}
+_RUN_COLOUR = ["red", "blue", "orange", "green", "purple", "cyan"]
+
+
+def route_json_figure(path):
+    """Routes 16 and 17: one approved drawing, the EWD page with every signed line on it."""
+    text = open(path, encoding="utf-8").read()
+    found = re.search(r'<script type="application/json" id="route-data">(.*?)</script>', text, re.S)
+    if not found:
+        return None
+    data = json.loads(found.group(1))
+    lines, marks = [], []
+    for r in data.get("routes") or []:
+        lines.append({"name": "%s  %s" % (r["n"], r["name"]), "n": str(r["n"]), "colour": r.get("colour", "red"),
+                      "pts": r["path"], "dash": False})
+        for extra in r.get("low_behind_engine") or []:
+            lines.append({"name": "%s  %s, low behind the engine" % (r["n"], r["name"]), "n": str(r["n"]),
+                          "colour": r.get("colour", "red"), "pts": extra, "dash": True})
+        for end_name, pt in (r.get("ends") or {}).items():
+            marks.append({"n": "", "name": end_name, "at": pt})
+    for i, (name, pts) in enumerate((data.get("runs") or {}).items()):
+        lines.append({"name": name, "n": name.split()[0], "colour": _RUN_COLOUR[i % len(_RUN_COLOUR)],
+                      "pts": pts, "dash": False})
+    for d in data.get("devices") or []:
+        if "REMOVED" in d.get("name", ""):
             continue
-        ph = panel_height(H, rows)
-        set_page(PANEL_W, ph, title_block=False)
-        S = Sheet(tmp, fitz)
-        schematic_sheet(S, H, title, 1, 1, rows, with_legend=False)
-        panels.append((len(tmp) - 1, ph))
-    GAPP = 14.0
-    cols, w, h = best_pack([p[1] + GAPP for p in panels], PANEL_W + GAPP, 2 * M + 8, M + 44 + 30 + TB_H + 20 + M)
-    set_page(w, h)
-    S = Sheet(doc, fitz)
-    S.text(M + 8, M + 16, "SCHEMATIC - every wire of the set, grouped by job; neat, not to scale", 8, "hebo")
-    S.text(M + 8, M + 27, "Tables are pinouts (pin | signal) of the pins each panel uses; the PINOUT TABLES sheet has every pin. "
-           "Wire label: id  AWG  colour  [ident bands]. Dashed = built with the harness named in its table; grey header = an "
-           "end on another harness.", 6)
-    legend(S, M + 38)
-    for ci, col in enumerate(cols):
-        x0 = M + 4 + ci * (PANEL_W + GAPP)
-        y = M + 44
-        for i in col:
-            pno, ph = panels[i]
-            r = fitz.Rect(x0, y, x0 + PANEL_W, y + ph)
-            S.page.show_pdf_page(r, tmp, pno)
-            S.rect(r.x0, r.y0, r.x1, r.y1, color=GREY, width=0.5)
-            y += ph + GAPP
-    return S
+        marks.append({"n": str(d.get("n", "")), "name": d["name"], "at": d["at"]})
+    if not lines and not marks:
+        return None
+    return {"file": os.path.basename(path), "caption": data.get("base", ""), "lines": lines, "marks": marks,
+            "page": EWD_PAGE}
 
 
-def layout_size(H):
-    n, nseg = len(H.layout["nodes"]), len(H.layout["segments"])
-    aw = max(860.0, 46.0 * n)
-    w = M + 40 + aw + 500 + M
-    h = max(M + 70 + aw * 0.62 + 50 + M,
-            M + 61 + 8.5 * nseg + 14 + 8 * n + 14 + 6 * 7.5 + 30 + TB_H + M)
-    return w, h
+def route_pages(path):
+    """The approved pages of one route file. SVG figures win; 16 and 17 are the JSON overlay."""
+    figs = route_figures(path)
+    if figs:
+        return figs
+    overlay = route_json_figure(path)
+    return [overlay] if overlay else []
+
+
+def _paint_route_figure(S, fig, dest):
+    vx, vy, vw, vh = fig["box"]
+    scale = min(dest.width / vw, dest.height / vh)
+    ox = dest.x0 + (dest.width - vw * scale) / 2.0
+    oy = dest.y0 + (dest.height - vh * scale) / 2.0
+
+    def xy(x, y):
+        return (ox + (float(x) - vx) * scale, oy + (float(y) - vy) * scale)
+
+    for kind, a, inner in fig["ops"]:
+        if kind == "image":
+            href = a.get("href") or a.get("xlink:href") or ""
+            if "base64," not in href:
+                continue
+            ix, iy = float(a.get("x", vx)), float(a.get("y", vy))
+            iw, ih = float(a.get("width", vw)), float(a.get("height", vh))
+            x0, y0 = xy(ix, iy)
+            x1, y1 = xy(ix + iw, iy + ih)
+            flip = a.get("transform", "").startswith("matrix(-1")
+            try:
+                S.page.insert_image(S.fitz.Rect(x0, y0, x1, y1), stream=base64.b64decode(href.split(",", 1)[1]),
+                                    rotate=180 if flip else 0)
+            except Exception:
+                continue
+        elif kind in ("polyline", "polygon"):
+            pts = [xy(*p.split(",")) for p in a.get("points", "").split() if "," in p]
+            if len(pts) < 2:
+                continue
+            col = _css_rgb(a.get("stroke")) or _css_rgb(a.get("fill")) or (0.88, 0, 0)
+            fill = _css_rgb(a.get("fill")) if kind == "polygon" else None
+            sw = float(a.get("stroke-width", "1") or 1) * scale
+            op = float(a.get("opacity", "1") or 1)
+            dash = a.get("stroke-dasharray")
+            dashes = None if not dash else "[%s] 0" % " ".join(str(float(n) * scale) for n in dash.split())
+            sh = S.page.new_shape()
+            if kind == "polygon":
+                sh.draw_polyline(pts)
+            else:
+                for p, q in zip(pts, pts[1:]):
+                    sh.draw_line(p, q)
+            sh.finish(color=col, fill=fill, width=max(0.4, sw), dashes=dashes, stroke_opacity=op,
+                      fill_opacity=op if fill else 0, closePath=(kind == "polygon"))
+            sh.commit()
+        elif kind == "circle":
+            c = xy(a.get("cx", 0), a.get("cy", 0))
+            rad = float(a.get("r", 4)) * scale
+            fill = _css_rgb(a.get("fill"))
+            stroke = _css_rgb(a.get("stroke")) or fill or INK
+            S.page.draw_circle(c, rad, color=stroke, fill=fill, width=max(0.4, float(a.get("stroke-width", 1)) * scale))
+        elif kind == "text":
+            body = re.sub(r"<[^>]+>", "", html.unescape(inner)).strip()
+            if not body or "x" not in a:
+                continue
+            size = max(4.0, float(a.get("font-size", 12)) * scale)
+            font = "hebo" if a.get("font-weight") == "bold" else "helv"
+            x, y = xy(a["x"], a["y"])
+            tw = S.tl(body, size, font)
+            anchor = a.get("text-anchor", "start")
+            if anchor == "middle":
+                x -= tw / 2.0
+            elif anchor == "end":
+                x -= tw
+            S.page.insert_text((x, y), body, fontsize=size, fontname=font, color=_css_rgb(a.get("fill")) or INK)
+        elif kind == "rect":
+            fill = _css_rgb(a.get("fill"))
+            if not fill or fill == (1, 1, 1):
+                continue
+            x, y = xy(a.get("x", 0), a.get("y", 0))
+            x2, y2 = xy(float(a.get("x", 0)) + float(a.get("width", 0)), float(a.get("y", 0)) + float(a.get("height", 0)))
+            S.rect(x, y, x2, y2, color=fill, fill=fill, width=0.2)
+
+
+def _paint_route_overlay(S, fig, dest):
+    """The EWD page, then the approved lines in the same point space, with the key beside it."""
+    pw, ph = fig["page"]
+    legend_w = 250.0
+    scale = min((dest.width - legend_w) / pw, dest.height / ph)
+    ox, oy = dest.x0, dest.y0 + (dest.height - ph * scale) / 2.0
+    box = S.fitz.Rect(ox, oy, ox + pw * scale, oy + ph * scale)
+    if not os.path.exists(EWD_PDF):
+        raise SystemExit("route overlay needs the EWD page: %s" % EWD_PDF)
+    src = S.fitz.open(EWD_PDF)
+    pix = src[0].get_pixmap(matrix=S.fitz.Matrix(2, 2), alpha=False)
+    src.close()
+    S.page.insert_image(box, pixmap=pix)
+
+    def xy(x, y):
+        return (ox + float(x) * scale, oy + float(y) * scale)
+
+    for line in fig["lines"]:
+        pts = [xy(p[0], p[1]) for p in line["pts"]]
+        if len(pts) < 2:
+            continue
+        col = ROUTE_COLOUR.get(line["colour"], (0.8, 0, 0))
+        sh = S.page.new_shape()
+        for a, b in zip(pts, pts[1:]):
+            sh.draw_line(a, b)
+        sh.finish(color=col, width=max(1.5, 2.4 * scale), dashes="[5 3] 0" if line["dash"] else None, closePath=False)
+        sh.commit()
+        if line["n"]:
+            x, y = pts[0]
+            S.page.insert_text((x + 3, y - 2), line["n"][:3], fontsize=7, fontname="hebo", color=col)
+    for m in fig["marks"]:
+        x, y = xy(m["at"][0], m["at"][1])
+        S.page.draw_rect(S.fitz.Rect(x - 3.2, y - 3.2, x + 3.2, y + 3.2), color=INK, fill=(1, 0.92, 0.3), width=0.5)
+        if m["n"]:
+            S.page.insert_text((x + 4.5, y + 2), m["n"], fontsize=6, fontname="hebo", color=INK)
+    lx = box.x1 + 10
+    y = dest.y0 + 12
+    S.text(lx, y, "APPROVED LINES", 7, "hebo")
+    y += 12
+    for line in fig["lines"]:
+        col = ROUTE_COLOUR.get(line["colour"], (0.8, 0, 0))
+        S.line([(lx, y - 2), (lx + 16, y - 2)], col, 1.8, "[3 2] 0" if line["dash"] else None)
+        S.text(lx + 20, y, S.fit(line["name"], dest.x1 - lx - 24, 6), 6)
+        y += 11
+    if fig["marks"]:
+        y += 6
+        S.text(lx, y, "DEVICES", 7, "hebo")
+        y += 12
+        for m in fig["marks"]:
+            label = ("%s  %s" % (m["n"], m["name"])) if m["n"] else m["name"]
+            S.text(lx, y, S.fit(label, dest.x1 - lx - 4, 5.5), 5.5)
+            y += 9
+            if y > dest.y1 - 4:
+                break
+
+
+def layout_route_page(S, harness, route_file, fig, i, n):
+    who = route_file.replace(".html", "").replace("-", " ")
+    S.text(M + 8, M + 16, S.fit("LAYOUT - ST185-%s - %s, as approved (%d of %d)" % (harness, who, i, n),
+                                PW - 2 * M - 16, 8, "hebo"), 8, "hebo")
+    if fig.get("caption"):
+        S.text(M + 8, M + 28, S.fit(fig["caption"], PW - 2 * M - 16, 6), 6, color=GREY)
+    dest = S.fitz.Rect(M + 6, M + 36, PW - M - 6, PH - M - TB_H - 8)
+    if fig.get("lines") is not None:
+        _paint_route_overlay(S, fig, dest)
+    else:
+        _paint_route_figure(S, fig, dest)
+
+
+# ------------------------------------------------------------------------------------------------ build
+def _part_label(title, i, n):
+    return title if n == 1 else "%s  (part %d of %d)" % (title, i, n)
+
+
+def _save_pdf(doc, path, H, what):
+    doc.set_metadata({"title": "%s - %s" % (H.revs["title"], what), "author": H.revs["revs"][0]["by"],
+                      "subject": H.revs["subtitle"], "keywords": "inputs %s" % digest(H.h), "creator": "build_drawings.py",
+                      "producer": "PyMuPDF", "creationDate": "", "modDate": ""})
+    doc.save(path, garbage=3, deflate=True)
 
 
 def build(h):
@@ -1211,40 +1590,79 @@ def build(h):
             print("PROBLEM", p)
         raise SystemExit("not written: %d problem(s)" % len(H.problems))
     os.makedirs(H.p["dir"], exist_ok=True)
+    sections = section_order(H)
+    # each page is finished (title block included) before the next page is made: PyMuPDF page handles go stale
+    sch = fitz.open()
+    sch_plan = []
+    for _g, title in sections:
+        rows = [r for r in H.wires if group_of(H, r) == _g]
+        if not rows:
+            continue
+        for part in pack_schematic(H, rows):
+            sch_plan.append((title, part))
+    counts = collections.Counter(t for t, _part in sch_plan)
+    seen = collections.Counter()
+    for i, (title, rows) in enumerate(sch_plan, 1):
+        seen[title] += 1
+        lay = arrange_schematic(H, rows)
+        need_w, need_h = schematic_need(lay)
+        set_page(max(PAGE_MAX_W, need_w), max(PAGE_MAX_H, need_h))
+        S = Sheet(sch, fitz)
+        schematic_sheet(S, H, title, seen[title], counts[title], rows, lay)
+        title_block(S, H, i, len(sch_plan), _part_label(title, seen[title], counts[title]), "-" + SHEETS[0][1])
+    laydoc = fitz.open()
+    lay_plan = []
+    for name in set_harnesses(H.h):
+        for route in ROUTES_FOR.get(name, []):
+            figs = route_pages(os.path.join(HARNESS, "routes", route))
+            for fi, fig in enumerate(figs, 1):
+                lay_plan.append((name, route, fig, fi, len(figs)))
+        if not ROUTES_FOR.get(name):
+            nodes, segs, ends = layout_keep(H, name)
+            if nodes:
+                lay_plan.append((name, None, (nodes, segs, ends), 1, 1))
+    for i, (name, route, fig, fi, fn) in enumerate(lay_plan, 1):
+        set_page(1224.0, 792.0)
+        S = Sheet(laydoc, fitz)
+        if route:
+            layout_route_page(S, name, route, fig, fi, fn)
+            what = "Layout - ST185-%s - %s" % (name, route.replace(".html", ""))
+        else:
+            nodes, segs, ends = fig
+            layout_sheet(S, H, name, nodes, segs, ends)
+            what = "Layout - ST185-%s" % name
+        title_block(S, H, i, len(lay_plan), what, "-" + SHEETS[1][1])
     prow = pinout_rows(H)
-    doc = fitz.open()
-    # each sheet is finished (title block included) before the next page is made: PyMuPDF page handles go stale
-    S = schematic_big(doc, fitz, H)
-    title_block(S, H, 1, 1, SHEETS[0][2], "-" + SHEETS[0][1])
-    set_page(*layout_size(H))
-    S = Sheet(doc, fitz)
-    layout_sheet(S, H)
-    title_block(S, H, 1, 1, SHEETS[1][2], "-" + SHEETS[1][1])
     size_pin_column(fitz, prow)
-    tables = pinout_tables(H, prow)
-    cols, w, hh = pinout_size(tables)
-    set_page(w, hh)
-    S = Sheet(doc, fitz)
-    pinout_sheet(S, tables, cols)
-    title_block(S, H, 1, 1, SHEETS[2][2], "-" + SHEETS[2][1])
-    # three separate drawings, one page each (Dan: one big sheet per view)
-    for i, (k, code, what) in enumerate(SHEETS):
-        one = fitz.open()
-        one.insert_pdf(doc, from_page=i, to_page=i)
-        one.set_metadata({"title": "%s - %s" % (H.revs["title"], what), "author": H.revs["revs"][0]["by"],
-                          "subject": H.revs["subtitle"], "keywords": "inputs %s" % digest(h), "creator": "build_drawings.py",
-                          "producer": "PyMuPDF", "creationDate": "", "modDate": ""})
-        one.save(H.p["pdfs"][i], garbage=3, deflate=True)
-    # hub thumbnail: the layout sheet, 360 px wide (as the loom tiles)
-    lay = doc[1]
+    pindoc = fitz.open()
+    pin_plan = []
+    for g, title in sections:
+        sub = [r for r in prow if r["_g"] == g]
+        if not sub:
+            continue
+        tables = pinout_tables(H, sub)
+        for col, w, hh in pinout_page_plan(tables):
+            pin_plan.append((title, tables, col, w, hh))
+    counts = collections.Counter(t for t, _tables, _col, _w, _hh in pin_plan)
+    seen = collections.Counter()
+    for i, (title, tables, col, w, hh) in enumerate(pin_plan, 1):
+        seen[title] += 1
+        set_page(w, hh)
+        S = Sheet(pindoc, fitz)
+        pinout_sheet(S, tables, [col], _part_label(title, seen[title], counts[title]))
+        title_block(S, H, i, len(pin_plan), _part_label(title, seen[title], counts[title]), "-" + SHEETS[2][1])
+    docs = (sch, laydoc, pindoc)
+    for i, ((_k, _code, what), doc) in enumerate(zip(SHEETS, docs)):
+        _save_pdf(doc, H.p["pdfs"][i], H, what)
+    lay = laydoc[0]
     pix = lay.get_pixmap(matrix=fitz.Matrix(360 / lay.rect.width, 360 / lay.rect.width))
     os.makedirs(OUT, exist_ok=True)
     pix.save(H.p["thumb"])
     write_xlsx(H, prow, H.p["xlsx"])
-    print("wrote %s (%s), %s, %s" % (", ".join(os.path.relpath(p, REPO) for p in H.p["pdfs"]),
-                                               ", ".join("%d x %d mm" % (round(p.rect.width / 72 * 25.4), round(p.rect.height / 72 * 25.4))
-                                                         for p in doc),
-                                               os.path.relpath(H.p["xlsx"], REPO), os.path.relpath(H.p["thumb"], REPO)))
+    print("wrote %s (%s), %s, %s" % (
+        ", ".join(os.path.relpath(p, REPO) for p in H.p["pdfs"]),
+        ", ".join("%s %d pages" % (name, doc.page_count) for (name, _c, _w), doc in zip(SHEETS, docs)),
+        os.path.relpath(H.p["xlsx"], REPO), os.path.relpath(H.p["thumb"], REPO)))
 
 
 # ------------------------------------------------------------------------------------------------ DRB102 insert-face map

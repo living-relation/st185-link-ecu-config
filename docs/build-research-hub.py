@@ -101,9 +101,7 @@ TOPICS: list[dict] = [
     },
 ]
 
-ROOT_NOTES = [
-    "RECONCILIATION-RULES.md",
-]
+ROOT_NOTES = []
 
 # Files matching these are working artifacts, not things you read.
 SUPPORTING_SUFFIXES = {".py", ".js", ".json", ".csv", ".css", ".txt"}

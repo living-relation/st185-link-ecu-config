@@ -96,9 +96,15 @@ MASTER = rd(P("docs", "harness", "MASTER-wirelist.csv"))
 PARTS = rd(P("docs", "sourcing", "harness-parts.csv"))
 LIBP = {q["part_number"]: q for q in PARTS}
 BOX = re.compile(r"^(LOGIC|POWER|POWER-STUDS|BATT-RELAY-BLOCK|K-)")
-NOT_PN = re.compile(r"^(TBD|INTEGRAL|none|solder|screw terminal|flying lead|crimp splice|factory)", re.I)
+NOT_PN = re.compile(r"^(TBD|INTEGRAL|none|solder|screw terminal|flying lead|crimp splice|factory|cut-and-cap|heat-shrink)", re.I)
 H_NEED, H_TBD = collections.Counter(), collections.Counter()
 seen_conn = set()
+SENSOR_IDS = {
+    "CRANK", "CAM", "MAP", "IAT", "ECT", "FLEX", "TURBO-SPD", "OIL-T", "KNOCK-1",
+    "FUEL-P", "OIL-P", "CLNT-P", "CHARGE-IAT", "VSS", "WSS-FL", "WSS-FR", "WSS-RL",
+    "WSS-RR", "APS-PEDAL", "FUEL-LEVEL", "REV-SW", "A5", "A1",
+}
+SENSOR_PN = set()
 
 
 def h_count(pn, n=1, what=""):
@@ -123,6 +129,11 @@ for r in MASTER:
                 for x in (r[s + "_housing_extra"] or "").split(";"):
                     h_count(x)
             h_count(r[s + "_terminal_pn"], what="contact / plug (%s)" % i)
+            if i in SENSOR_IDS:
+                for col in ("housing_pn", "terminal_pn"):
+                    pn = re.sub(r" \(bussed cap\)$", "", (r[s + "_" + col] or "").strip())
+                    if pn and pn != "TBD" and not NOT_PN.match(pn):
+                        SENSOR_PN.add(pn)
         elif t == "terminal":
             h_count(r[s + "_terminal_pn"], what="lug / terminal (%s)" % i)
         elif t in ("resistor", "diode") and ("rd", i) not in seen_conn:
@@ -165,6 +176,21 @@ for s in BD.own_harnesses():
 for q in PARTS:
     if q["fixed_qty"]:
         H_NEED[q["part_number"]] += int(q["fixed_qty"])
+
+# Master parts list: owned / needed / short. On-hand first. Sensor plugs and terminals are never a buy.
+PARTS_COLS = ["part_number", "manufacturer", "description", "fixed_qty", "owned", "needed", "short"]
+for q in PARTS:
+    pn = q["part_number"]
+    need = int(H_NEED.get(pn, 0))
+    owned = int(ONHAND.get(pn, 0))
+    short = 0 if pn in SENSOR_PN else max(0, need - owned)
+    q["owned"], q["needed"], q["short"] = str(owned), str(need), str(short)
+parts_path = P("docs", "sourcing", "harness-parts.csv")
+if "--check" not in sys.argv:
+    with open(parts_path, "w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, PARTS_COLS, lineterminator="\n", extrasaction="ignore")
+        w.writeheader()
+        w.writerows({c: q.get(c, "") for c in PARTS_COLS} for q in PARTS)
 
 
 def lib_desc(pn):
@@ -212,7 +238,9 @@ for pn, need in sorted(H_NEED.items()):
     if pn in MECH_PN:
         continue
     mk, desc = lib_desc(pn)
-    add(SECTIONS[1], ASSY, pn, mk, desc, need, ONHAND.get(pn, 0))
+    have = need if pn in SENSOR_PN else ONHAND.get(pn, 0)
+    add(SECTIONS[1], ASSY, pn, mk, desc, need, have,
+        notes="on hand (sensor plug / terminal: never a buy)" if pn in SENSOR_PN else "")
 for what, n in sorted(H_TBD.items()):
     add(SECTIONS[1], ASSY, "TBD", "", "part number not confirmed yet: %s (check_wiring.py --tbd)" % what, n, 0,
         notes="no maker document in the repo yet; never guessed")

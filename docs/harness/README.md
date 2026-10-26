@@ -8,12 +8,13 @@ that B9 points to).
 | Path | What it is | Edit it? |
 |---|---|---|
 | `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
-| `drawings/` | generated: each drawing set as three single-page PDFs (`<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf`), each one big sheet sized to its content with its own title block and rev log and the DRB102 insert-face map | No - re-run the generator |
+| `sot/fuse-relay-map.csv` | B1 / B2 / B3 / B4 seat to circuit (not a wire list) | Yes, when a seat changes |
+| `drawings/` | generated: each drawing set as three PDFs (`<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf`). Each grouped section is its own page (a section continues when it does not fit). A schematic page holds six wires, each in its own line colour so it can be followed; the label keeps the wire colour. Layout pages are the approved drawings in `routes/`, including Routes 16 and 17 on 1993 EWD p.36. Each page has its own title block and rev log. Plus the DRB102 insert-face map | No - re-run the generator |
 | `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
-| `cut-list/` | surgical-rewire cut-list work files (row 164): index, draft, group tables, circuit plan, images, the cut-list page | Yes, as each group is decided |
-| `redesign/DECISIONS.md` | every binding rule (B1-B30) and the retire map of the old R / S numbers | Only for a new Dan rule |
+| `circuit-plan.md` | the 21 circuits, cut-list groups and the IG1 / IG2 table | Yes, when a circuit decision changes |
+| `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
 
 Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails land in `out/` (gitignored).
 
@@ -29,10 +30,10 @@ Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails
 ## Harnesses in the master
 
 `AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
-`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `RearLights`, `WheelSpeed-Front`, `WheelSpeed-Rear`. All 13 are drawn by
+`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `WheelSpeed-Front`, `WheelSpeed-Rear`. All 12 are drawn by
 the generator as ONE drawing set, `ST185-harness` (`drawings/ST185-harness-schematic.pdf`, `-layout.pdf`, `-pinout.pdf`;
-layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AWG ranges) the BOM and the check read:
-`docs/sourcing/harness-parts.csv`.
+layout tree `tools/ST185-harness.layout.json`). Rear lights stay on the factory harness. Part makers and descriptions
+(AWG ranges) the BOM and the check read: `docs/sourcing/harness-parts.csv`. Fuse and relay seats: `sot/fuse-relay-map.csv`.
 
 ## Factory wiring facts (OEM ends)
 
@@ -50,21 +51,23 @@ layout tree `tools/ST185-harness.layout.json`). Part makers and descriptions (AW
     leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3 and R/B No.2
     / No.4: J/B No.2, R/B No.3 (fog relay) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
     are in the glove-box POWER / LOGIC boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer;
-    the ABS computer and actuator; the brake fluid level switch; the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, dead wire out back to its last live point (Dan 2026-10-25); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
+    the ABS computer and actuator; the brake fluid level switch (factory safety item, not needed, will not be connected); the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, cut and capped (Dan 2026-10-25; fog only, the rest of B5 still removes to the last live point); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
     removed part into a kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire
-    comes out of its harness back to its last live point (splice, plug or box); nothing is left cut and capped (Dan
-    2026-10-21; goes into B5 at the rules walk-through).
-  - **Circuits decided (Dan 2026-10-21 to 2026-10-25; not in the master yet, row 164):** starter: the OEM starter relay
-    in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 to Link Aux 8 (the Link runs
-    the start; no `k_str`). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) gives the CSB3 the clutch state (flat shift, rev
-    match); C11 is for the starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
+    comes out of its harness back to its last live point (splice, plug or box), except the fog leads above.
+  - **Circuits decided (Dan 2026-10-21 to 2026-10-25; written into the master, row 164):** starter: the OEM starter relay
+    in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 (C11 completes the starter
+    circuit in hardware; it is not an ECU input; no `k_str`; Aux 8 spare). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) is the one ECU clutch input (flat-shift, via CSB3 VDI6);
+    C11 is hardware starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
     tapped through opto IN2 to the CSB3; the new switch wires (engine harness, bulkhead A) splice to the IG2-4 / IG2-13
     pigtails. Charge lamp: IG2-16 Y stays, the ClusterLED charge LED sinks to OEM cluster plug C12-8. IG2-15 B-R
     (ECU-IG) keeps a 6 in pigtail to the kill switch, then the alternator IG. ETB hold power is all cabin and J/B No.1
     stays: Aux 6 (A28) -> K-EFI, DI 9 (B28) IG sense, IG2 wake diode from J/B1 1H-7 -> A5, K-ETB on Aux 2 (A20) -> B5.
-    Fuse box design is parked: the glove-box boxes are not built and fill blanks only; after the rest is designed, drop
-    the duplicates (`k_pwr`, `k_htr`, `k_str`, K-REV) and add the R/B No.2 / No.4 feed fuses. Cut-list work files:
-    `cut-list/README.md`.
+    A/C (D16): A15 drives `k_acc` (pin 8 to coil 85); Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho
+    to pin 18 and through 4.7 kΩ to pin 9 (lock-sensor workaround, N61); A/C button and evap thermistor wires to the Link
+    removed.     Cabin splice `SP-AC-SG` stays (sensor common). The A/C pressure switch is the factory trinary switch, wired to the factory A/C amp; factory yellow-red is that switch output, not the
+    sensor ground (1990 ST185 EWD p.150 / p.152). Headlight-sense: R10 pin 1 through EL814 IN3 (OEM dimmer stays; Dan 2026-10-26).
+    `w_pdb_jb1` lands behind the dash on J/B No.1 1I, 6 AWG for our 60 A JB1 fuse. Fuse box design is parked: seats live in `sot/fuse-relay-map.csv`
+    (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS). Circuit plan: `circuit-plan.md`.
   - **New wire** (routes: `routes/ROUTE-16-ENGINE-MAIN.html` lines 1-9, `routes/ROUTE-17-FRONT.html` lines 10-13): the
     engine harness (Link to every engine sensor and actuator; through bulkhead A); power from the trunk battery up the
     passenger side to the glove-box boxes, then out through the RH fender grommet for engine-bay loads; the front run

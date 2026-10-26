@@ -33,7 +33,7 @@ ECU digital input's roughly 1.5-1.8 V, which is what removes the low-speed dropo
   connector.
 - Screen path: the drain is connected on both the VRC input and the VRC output.
   The ABS input drains splice together and terminate on a single pin. See
-  `docs/SHIELD-RULES.md`. Do not mark a shield on each wire. Do not
+  `docs/harness/redesign/DECISIONS.md`. Do not mark a shield on each wire. Do not
   record a separate shell flag.
 
 ## Wiring into the car

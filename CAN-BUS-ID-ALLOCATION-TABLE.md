@@ -31,14 +31,14 @@
 | 0x640 | 1600 | Switchboard Analog 1–4 (Base+0) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only; RealDash does not read it — display-relevant values are echoed into 0x3EF/0x3F1. |
 | 0x641 | 1601 | Switchboard Analog 5–8 (Base+1) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only (not read by RealDash). |
 | 0x642 | 1602 | Switchboard Rotary/Switch/Heartbeat (Base+2) | Switchboard → ECU | 20 Hz (default) | Existing device, fully mapped below. ECU-only (not read by RealDash). |
-| 0x643 | 1603 | Switchboard Low-Side Output Control (Base+3) | **ECU** → Switchboard | 50 ms (periodic PCLink TX; bytes change only when an output changes) | INPUT — source = **ECU** (PCLink aux→CAN TX); outputs unused/LED-only — master-design §9 |
+| 0x643 | 1603 | Switchboard Low-Side Output Control (Base+3) | **ECU** → Switchboard | 50 ms (periodic PCLink TX; bytes change only when an output changes) | INPUT — source = **ECU** (PCLink aux→CAN TX); L4 = oil warning LED; L1–L3 unused — master-design §9 |
 | 0x644+ | 1604+ | — | — | — | Available if a second switchboard is added (Base ID configurable) |
 
 ---
 
 ## 2. Section A — ECU → Cluster TX (Immutable, coded-complete)
 
-Source: `link_g4x_can_setup.lcs`, `CANBUS-LINK-G4X-CONFIG.md`. All streams are **Custom type, BigEndian, non-multiplexed**, on the 1 Mbit/s `CANModule Index="1"` (CAN1).
+Source: `link_g4x_can_setup.lcs`, `CAN-BUS-MASTER-DESIGN.md`. All streams are **Custom type, BigEndian, non-multiplexed**, on the 1 Mbit/s `CANModule Index="1"` (CAN1).
 
 ### 0x3E8 — Engine Fast (CycleTime 10ms)
 | Bytes | Field | Type | Scale | Offset | Notes |
@@ -152,7 +152,7 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 | 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
-| 5 | Switch 6 | Clutch pedal down (C11 pin 1, ground-active) -> ECU VDI6 |
+| 5 | Switch 6 | Clutch pedal down (C17 pin 2, ground-active) -> ECU VDI6 |
 | 6 | Switch 7 | Brake pedal pressed (opto IN1 from S9 pin 1) -> ECU VDI7 |
 | 7 | Switch 8 | Reverse engaged (opto IN2 from back-up switch B1 pin 1) -> ECU VDI8 |
 
@@ -166,13 +166,13 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 
 ### 0x643 (Base+3) — Low-Side Output Control (INPUT, host → switchboard)
 
-> **Source = ECU** (Link G4X PCLink aux output → CAN TX), decided 2026-06-14. Sent as a 50 ms periodic PCLink TX stream; the manual sets no required rate (DLC ≥ 4). Switchboard outputs are currently unused (likely LED-only when used); the cluster does **not** transmit 0x643. See master-design §9.
+> **Source = ECU** (Link G4X PCLink aux output → CAN TX), decided 2026-06-14. Sent as a 50 ms periodic PCLink TX stream; the manual sets no required rate (DLC ≥ 4). L4 is the oil warning LED (Dan 2026-10-26); L1–L3 unused. The cluster does **not** transmit 0x643. See master-design §9.
 | Byte | Field | Notes |
 |---|---|---|
-| 0 | L1 control | DLC ≥ 4 required |
-| 1 | L2 control | |
-| 2 | L3 control | |
-| 3 | L4 control | |
+| 0 | L1 control | unused |
+| 1 | L2 control | unused |
+| 2 | L3 control | unused |
+| 3 | L4 control | oil warning LED (CSB3 cavity 26, `w_oil_k` / D-OIL) |
 | 4-7 | 0 | reserved |
 
 ---
@@ -232,4 +232,4 @@ All new streams follow the existing convention: **Custom type, BigEndian, non-mu
 | Configure ECUMaster Switch Board V3 | Set CAN speed to 1000 kbps (non-default); confirm Base ID = 0x640; verify SW_MASK assignments match Section 5 |
 | Cluster firmware (`canbus.c`/`dash_data.c`) | **No changes** — cluster displays are unchanged; it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and sending 0x3EC/0x3ED. 0x3EF/0x3F0/0x3F1 are ECU→RealDash only |
 | RealDash XML | **Done** — `link_g4x_realdash.xml` defines `<frame id="1007/1008/1009">` (0x3EF–0x3F1) as valid RealDash CAN v2 (BigEndian, per-bit warning decode). 0x640–0x642 excluded (ECU echoes display-relevant values). Dashboard layout: `REALDASH-LAYOUT.md` |
-| 0x643 source = **ECU** | L1–L4 control transmitted by ECU (PCLink aux output → CAN TX); switchboard outputs unused for now (likely LED-only). Cluster has no 0x643 TX role — master-design §9 |
+| 0x643 source = **ECU** | L1–L4 control transmitted by ECU (PCLink aux output → CAN TX); L4 = oil warning LED, L1–L3 unused. Cluster has no 0x643 TX role — master-design §9 |

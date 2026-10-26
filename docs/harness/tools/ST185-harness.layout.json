@@ -1336,6 +1336,8 @@
   "K-FP": "BATT",
   "IX-FUEL-P": "FUEL",
   "SP-AC-PSW": "ACAMP",
+  "SP-TACH": "ACAMP",
+  "R-LOCK": "ACAMP",
   "T-EVAP-TEMP": "EVAP",
   "T-EVAP-RTN": "EVAP",
   "IX-WS-F-S": "DASH",
@@ -1527,7 +1529,13 @@
   "FUEL-PUMP": "TANK",
   "T-TRUNK-FP-GND": "TANK",
   "IX-FUEL-S": "FUEL",
-  "FUEL-LEVEL": "TANK"
+  "FUEL-LEVEL": "TANK",
+  "SP-ACC12": "GB",
+  "SP-AC-SG": "ACAMP",
+  "T-CLUSTER-HL": "CLUSTER",
+  "FOG-CAP-1": "RHKICK",
+  "FOG-CAP-4": "RHKICK",
+  "FOG-CAP-6": "RHKICK"
  },
  "place_oem": [
   [
@@ -1653,6 +1661,26 @@
   [
    "R/B No.4",
    "RHKICK"
+  ],
+  [
+   "R10 ",
+   "COLUMN"
+  ],
+  [
+   "RB3 ",
+   "RHKICK"
+  ],
+  [
+   "F12 ",
+   "COLUMN"
+  ],
+  [
+   "A1 ",
+   "ACC"
+  ],
+  [
+   "A32",
+   "ACAMP"
   ]
  ],
  "harnesses": [
@@ -1667,7 +1695,6 @@
   "ClusterLED",
   "WheelSpeed-Front",
   "WheelSpeed-Rear",
-  "RearLights",
   "RearFuel"
  ],
  "panel_titles": {
@@ -1681,7 +1708,6 @@
   "ClusterLED": "CLUSTER LEDS - LED BOARD ON THE METER PLUGS C11 / C12",
   "WheelSpeed-Front": "FRONT WHEEL SPEED - FL / FR SENSORS TO THE FRONT VRC",
   "WheelSpeed-Rear": "REAR WHEEL SPEED - RL / RR SENSORS TO THE REAR VRC",
-  "RearLights": "REAR LIGHTS - TAIL, STOP, HIGH-MOUNT, REVERSE, TURN, LICENCE",
   "RearFuel": "REAR FUEL - FUEL PUMP AND LEVEL SENDER"
  }
 }

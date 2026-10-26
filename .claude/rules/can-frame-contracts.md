@@ -2,7 +2,7 @@
 
 - **The rule** (any CAN change on any device reconciles against Link ECU, center cluster,
   RealDash and CSB3; bus facts; authority order with the frozen cluster first):
-  `docs/RECONCILIATION-RULES.md` Rule 2.
+  `docs/harness/redesign/DECISIONS.md` Rule 2.
 - **Who reads which frame** (CSB3 0x640-0x642 -> ECU only; cluster 0x3E8-0x3EB, 0x3EE;
   RealDash 0x3EB gear byte + 0x3EF-0x3F1; cluster sends 0x3EC/0x3ED):
   `docs/harness/redesign/DECISIONS.md` B16.

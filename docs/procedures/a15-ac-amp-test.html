@@ -51,7 +51,7 @@
 <h1>A/C amplifier A15 circuit test</h1>
 <p class="sub">Compressor A/C amplifier A15, behind the glove box (1993 ST185). Source: <b>1993 Celica Service Manual (Mitchell) - Electrical</b>, "A/C-Heater System - Automatic", A/C AMPLIFIER CIRCUIT TEST, PDF p.25-26 (table p.26, connector face Fig. 4 p.28); the manual-A/C article has the same test on p.6-7 (Fig. 5). Repo copy: <code>st185-celica-repair-manual/manuals-electrical/</code>. No bench test is planned (Dan 2026-10-25): the wiring is assumed right and this test is run in the car later.</p>
 
-<div class="card warn"><b>What this is:</b> a harness-side check with the amp unplugged, not a powered test of the amp itself. It proves every wire the amp needs is there and right, including the new RPM feed and the compressor lock sensor.</div>
+<div class="card warn"><b>What this is:</b> a harness-side check with the amp unplugged, not a powered test of the amp itself. It proves every wire the amp needs is there and right, including the new RPM feed and the lock-sensor tap (modified tacho through 4.7 kΩ to pin 9; the compressor pickup itself is unused).</div>
 
 <h2>Set-up</h2>
 <div class="card">
@@ -66,14 +66,14 @@
 <tr><td><code>15 - ground</code></td><td>-</td><td class="spec">Continuity</td><td></td></tr>
 <tr><td><code>10 - ground</code></td><td>1.6L / 2.2L</td><td class="spec">None / continuity</td><td>The manual-A/C copy (p.7) lists 3S-GTE = none</td></tr>
 <tr><td><code>5 - ground</code></td><td>-</td><td class="spec">About 12 ohm</td><td>Variable-displacement compressor only</td></tr>
-<tr><td><code>9 - 14</code></td><td>-</td><td class="spec">About 115 ohm</td><td>Compressor lock (speed) sensor</td></tr>
+<tr><td><code>9 - 14</code></td><td>-</td><td class="spec">About 115 ohm at the factory sensor; this car uses the N61 tap instead</td><td>Factory lock (speed) sensor. Applied workaround (OPEN-ITEMS History 2026-10-21; Dan 2026-10-26): tach through 4.7 kΩ to pin 9. Pin 9 to the resistor is not 115 ohm. IH1-4/5 unused.</td></tr>
 <tr><td><code>16 - 14</code></td><td>Air at 25 °C (77 °F)</td><td class="spec">About 15,000 ohm</td><td></td></tr>
 <tr><td><code>1 - ground</code></td><td>A/C switch on / off</td><td class="spec">Battery V / 0</td><td></td></tr>
 <tr><td><code>3 - ground</code></td><td>A/C switch on / off</td><td class="spec">Battery V / 0</td><td></td></tr>
 <tr><td><code>6 - ground</code></td><td>A/C switch on / off</td><td class="spec">0 / battery V</td><td>Manual-A/C copy: battery V always</td></tr>
 <tr><td><code>8 - ground</code></td><td>-</td><td class="spec">Battery V</td><td></td></tr>
 <tr><td><code>13 - ground</code></td><td>A/C switch on / off</td><td class="spec">Battery V / 0</td><td>Manual-A/C copy: battery V always</td></tr>
-<tr><td><code>18 - ground</code></td><td>Engine running / off</td><td class="spec">About 10-14 V / 0</td><td>RPM signal; on the new car it comes from the Link (N61)</td></tr>
+<tr><td><code>18 - ground</code></td><td>Engine running / off</td><td class="spec">About 10-14 V / 0</td><td>RPM signal from Link ignition output 8 (tacho) to A15 pin 18 (D16)</td></tr>
 </tbody></table>
 
 <h2>Related checks</h2>
@@ -82,7 +82,7 @@
 <tr><td>Magnetic clutch coil</td><td>B-W terminal to the compressor body; then apply 12 V</td><td class="spec">3.4-3.8 ohm at 20 °C; clutch engages; air gap 0.05-0.15 mm</td><td>Mitchell Electrical p.24</td></tr>
 <tr><td>EWD service hints</td><td>A15 harness side</td><td class="spec">8-15 continuity (A/C switch and ignition on); 14-15, 14-ground, 15-ground always continuity; 13-ground about 12 V ignition on</td><td>1993 EWD book p.217 (<code>RadAirAuto.pdf</code> PDF p.9)</td></tr>
 </tbody></table>
-<p class="sub">How the amp uses these: it cuts the compressor at high engine rpm, or when engine and compressor speeds differ a lot (lock), per EWD p.217. Open wiring question: Needs Dan N61 in <code>docs/OPEN-ITEMS.md</code>.</p>
+<p class="sub">How the amp uses these: it cuts the compressor at high engine rpm, or when engine and compressor speeds differ a lot (lock), per EWD p.217. D16 (2026-10-25): A15 pin 8 drives the clutch relay; the Link only sends the ACT kill; pin 2 is hard-grounded. Lock sensor (Dan 2026-10-26): Ign 8 tacho through 4.7 kΩ to A15 pin 9 (OPEN-ITEMS History 2026-10-21 N61).</p>
 </main>
 </body>
 </html>

@@ -1,0 +1,35 @@
+bank,position,kind,circuit,master_id,status,notes
+B1,R1,relay,R/B No.4 40 A HEATER feed,POWER AMI IN-1,feed,vacant relay seat (was k_htr); AMI IN-1 is the new feed to the kept OEM heater fuse
+B1,R2,relay,EFI main,K-EFI,seated,POWER box Mini ISO
+B1,R3,relay,(vacant),,vacant,was k_str; starter stays on OEM R/B No.4
+B1,R4,relay,radiator fan,K-FAN,seated,
+B1,R5,relay,condenser fan,K-FAN2,seated,
+B1,R6,relay,R/B No.2 30 A POWER feed,POWER AMI IN-6,feed,vacant relay seat (was k_pwr); AMI IN-6 is the new feed to the kept OEM POWER fuse
+B1,AMI IN-1,fuse,R/B No.4 40 A HEATER,POWER,assigned,8 AWG to R/B No.4 HEATER fuse pin 1
+B1,AMI IN-2,fuse,EFI 30 A,POWER,assigned,K-EFI 87
+B1,AMI IN-3,fuse,(vacant),,vacant,was start 30 A
+B1,AMI IN-4,fuse,radiator fan,POWER,assigned,K-FAN
+B1,AMI IN-5,fuse,condenser fan,POWER,assigned,K-FAN2
+B1,AMI IN-6,fuse,R/B No.2 30 A POWER,POWER,assigned,10 AWG to R/B No.2 POWER fuse pin 1
+B1,AMI OUT-2,fuse,RTR 30 A,POWER,assigned,retract
+B1,AMI OUT-3,fuse,AM1 40 A,POWER,assigned,
+B1,AMI OUT-4,fuse,AM2 30 A,POWER,assigned,
+B1,AMI OUT-5,fuse,J/B No.1 60 A,POWER,assigned,w_pdb_jb1 behind the dash to 1I-1; 6 AWG for 60 A
+B1,AMI OUT-6,fuse,EPS 60 A,POWER,assigned,B4 K-EPS 30
+B1,ACPS,fuse,(vacant),,vacant,A5 pin 1 now from R/B No.4 10 A A/C
+B2,M1,relay,headlight LH,K-HL,seated,LOGIC micro
+B2,M2,relay,headlight RH,K-HR,seated,
+B2,M3,relay,horn,K-HORN,seated,
+B2,M4,relay,ETB power,K-ETB,seated,
+B2,M5,relay,A/C clutch,K-ACC,seated,coil 85 from A15 pin 8 (D16); coil 86 from B2-BUS2-8
+B2,M6,relay,EPS enable,K-EPS-EN,seated,
+B2,M7,relay,(vacant),,vacant,was K-REV; back-up lamps stay on the factory harness
+B2,BUS1-1,fuse,EFI86 5 A,LOGIC,assigned,K-EFI coil+
+B2,BUS1-5,fuse,DOME 20 A,LOGIC,assigned,
+B2,BUS1-6,fuse,WL 15 A,LOGIC,assigned,door-lock feed at R/B No.2
+B2,BUS1-10,fuse,ETB 10 A,LOGIC,assigned,K-ETB 30
+B2,BUS2-7,fuse,EPSEN 7.5 A,LOGIC,assigned,K-EPS-EN 30
+B2,BUS2-8,fuse,ACC 10 A,LOGIC,assigned,K-ACC 30 and 86 via SP-ACC12
+B2,BUS2-13,fuse,start request,LOGIC,assigned,ST1 tap to Link DI 7
+B3,K1,relay,fuel pump,K-FP,seated,trunk battery relay block
+B4,EPS,relay,EPS pump,K-EPS,seated,HCR150 beside the POWER box
