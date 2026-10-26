@@ -43,6 +43,13 @@
    "by": "DG",
    "what": "Each grouped section is its own page. A schematic page holds six wires, each in its own line colour; the label keeps the wire's gauge and colour. A crossing bumps over the other wire. Layout pages are the approved route drawings, including Routes 16 and 17 on 1993 EWD p.36 (Dan 2026-10-26 keep).",
    "marks": "section pages; six-wire schematic; Routes 16 and 17"
+  },
+  {
+   "rev": "G",
+   "date": "2026-10-26",
+   "by": "DG",
+   "what": "Layout: the old Routes 2-7 (harness C, A / B engine, A / B cabin, cabin power) were wrong and are removed (Dan 2026-10-26). Route 16 and 17 and Routes 1, 8-14 stay; AB-cabin and CabinPower fall back to the physical tree.",
+   "marks": "Routes 2-7 removed"
   }
  ]
 }
