@@ -36,6 +36,13 @@
    "by": "DG",
    "what": "C11 is hardware starter interlock only; Aux 8 spare. Oil LED stays on CSB3 L4.",
    "marks": "w_str85 removed; Aux 8 spare; oil LED CSB3 L4"
+  },
+  {
+   "rev": "F",
+   "date": "2026-10-26",
+   "by": "DG",
+   "what": "Each grouped section is its own page. A schematic page holds six wires, each in its own line colour; the label keeps the wire's gauge and colour. A crossing bumps over the other wire. Layout pages are the approved route drawings, including Routes 16 and 17 on 1993 EWD p.36 (Dan 2026-10-26 keep).",
+   "marks": "section pages; six-wire schematic; Routes 16 and 17"
   }
  ]
 }
