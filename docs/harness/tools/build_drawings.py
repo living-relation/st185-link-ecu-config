@@ -323,6 +323,11 @@ def check(h):
         if have != want:
             bad.append("%s is stale (inputs %s, made from %s): run build_drawings.py %s"
                        % (os.path.basename(p), want, have or "none", h))
+    for name in wirelist_harnesses(H):
+        have, want_wl = xlsx_digest(wirelist_path(name)), wirelist_digest(H, name)
+        if have != want_wl:
+            bad.append("%s is stale (inputs %s, made from %s): run build_drawings.py %s"
+                       % (os.path.basename(wirelist_path(name)), want_wl, have or "none", h))
     for p in glob.glob(os.path.join(DRAWINGS, "%s-*.pdf" % h)):
         if p not in H.p["pdfs"]:
             bad.append("%s is not one of the three sheets of the set (delete it)" % os.path.basename(p))
@@ -1323,6 +1328,176 @@ def write_xlsx(H, prow, path):
         f.write(tmp.getvalue())
 
 
+# ------------------------------------------------------------------------------------------------ per-harness wire lists
+# One From / To wire list per harness (Dan 2026-10-26), generated from the master like every other view. Column names
+# follow the harness.design Excel-import example (Wire, From, From Pin, To, To Pin, Signal, Colour, Gauge (AWG), Length (mm);
+# Connectors sheet Connector, Part Number: docs.harness.design/guides/excel-import), then the build detail.
+WIRELISTS = os.path.join(HARNESS, "wirelists")
+WL_COLS = [("Wire", 14), ("From", 18), ("From Pin", 9), ("To", 18), ("To Pin", 9), ("Signal", 30), ("Colour", 9),
+           ("Ident bands", 22), ("Gauge (AWG)", 8), ("Length (mm)", 9), ("Wire Type", 17), ("Cable", 15),
+           ("Cable Part Number", 20), ("From Contact PN", 17), ("To Contact PN", 17), ("From Device", 38),
+           ("To Device", 38), ("Circuit", 10), ("Built With", 14), ("Net", 18), ("Route Branch", 34),
+           ("OEM Ref", 40), ("Notes", 60)]
+AWG_MM2 = {"4": 21.15, "6": 13.3, "8": 8.37, "10": 5.26, "12": 3.31, "14": 2.08, "16": 1.31, "18": 0.823, "20": 0.519,
+           "22": 0.324, "24": 0.205}
+
+
+def wirelist_harnesses(H):
+    return [x for x in H.layout.get("wirelists", []) if x in H.set]
+
+
+def wirelist_path(name):
+    return os.path.join(WIRELISTS, "ST185-%s-wirelist.xlsx" % name)
+
+
+def wirelist_digest(H, name):
+    hs = hashlib.sha256()
+    for r in H.rows:
+        hs.update(json.dumps(sorted(r.items()), ensure_ascii=False).encode("utf-8"))
+    with open(os.path.abspath(__file__), "rb") as fh:
+        hs.update(fh.read().replace(b"\r\n", b"\n"))
+    hs.update(name.encode())
+    return hs.hexdigest()[:16]
+
+
+def xlsx_digest(path):
+    if not os.path.exists(path):
+        return ""
+    from openpyxl import load_workbook
+    m = re.match(r"inputs ([0-9a-f]{16})", load_workbook(path, read_only=True).properties.keywords or "")
+    return m.group(1) if m else ""
+
+
+def _wl_end(r, s):
+    t, i, pin = r[s + "_type"], r[s + "_id"], r[s + "_pin"]
+    if t == "cable screen":
+        pin = "screen"
+    return i, pin
+
+
+def wirelist_rows(H, name):
+    """Every wire of one harness (its own rows plus the wires of other harnesses that pass through it), From / To."""
+    def owned(r):
+        return r["harness"] == name or name in [x.strip() for x in r["passes_through"].split("/")]
+    wires = [r for r in H.rows if r["wire_id"] and owned(r)]
+    first = {"AB-cabin": ["ECU-A", "ECU-B"], "AB-engine": ["DRB102-ENGINE"]}.get(name, [])
+
+    def key(r):
+        f = r["from_id"]
+        return (first.index(f) if f in first else len(first), f, pin_sort(r["from_pin"]), r["wire_id"])
+    out = []
+    for r in sorted(wires, key=key):
+        fc, fp = _wl_end(r, "from")
+        tc, tp = _wl_end(r, "to")
+        sig = r["from_desc"] or r["to_desc"]
+        notes = [x for x in (r["from_note"], r["to_note"], r["notes"]) if x]
+        if r["to_desc"] and r["to_desc"] != r["from_desc"]:
+            notes.insert(0, "To end: " + r["to_desc"])
+        oem = "; ".join(x for x in (r["oem_location"], r["oem_wire_colour"] and "OEM colour " + r["oem_wire_colour"],
+                                    r["oem_ewd_page"] and "EWD " + r["oem_ewd_page"], r["oem_method"]) if x)
+        out.append({"Wire": r["wire_id"], "From": fc, "From Pin": fp, "To": tc, "To Pin": tp, "Signal": sig,
+                    "Colour": r["colour"], "Ident bands": r["ident_bands"], "Gauge (AWG)": r["gauge_awg"],
+                    "Length (mm)": r["est_length_mm"] or "TBD", "Wire Type": r["wire_pn"] or ("(cable core)" if r["cable"] else "TBD"),
+                    "Cable": r["cable"], "Cable Part Number": r["cable_pn"], "From Contact PN": r["from_terminal_pn"],
+                    "To Contact PN": r["to_terminal_pn"], "From Device": r["from_name"], "To Device": r["to_name"],
+                    "Circuit": r["circuit"], "Built With": "ST185-" + r["harness"], "Net": r["net"],
+                    "Route Branch": r["route_branch"], "OEM Ref": oem, "Notes": " | ".join(notes)})
+    return wires, out
+
+
+def wirelist_ends(H, name, wires):
+    """Connectors sheet (every end the harness touches) and Splices sheet (wires joined, total copper)."""
+    ends, splices = collections.OrderedDict(), collections.OrderedDict()
+    for r in wires:
+        for s in ("from", "to"):
+            t, i = r[s + "_type"], r[s + "_id"]
+            if not i:
+                continue
+            e = ends.setdefault(i, {"Connector": i, "Part Number": "", "Type": t, "Name": r[s + "_name"], "Extras": "",
+                                    "Pin Numbering": "", "Contacts": set(), "Wires": 0})
+            e["Wires"] += 1
+            if r[s + "_housing_pn"] and not e["Part Number"]:
+                e["Part Number"] = r[s + "_housing_pn"]
+            if r[s + "_housing_extra"] and not e["Extras"]:
+                e["Extras"] = r[s + "_housing_extra"]
+            if r[s + "_pin_doc"] and not e["Pin Numbering"]:
+                e["Pin Numbering"] = r[s + "_pin_doc"]
+            if r[s + "_terminal_pn"]:
+                e["Contacts"].add(r[s + "_terminal_pn"])
+            if t == "splice":
+                sp = splices.setdefault(i, {"Splice": i, "Location / job": r[s + "_name"], "Method": r[s + "_terminal_pn"],
+                                            "Wires": [], "mm2": 0.0})
+                sp["Wires"].append("%s (%s AWG)" % (r["wire_id"], r["gauge_awg"] or "screen"))
+                sp["mm2"] += AWG_MM2.get(r["gauge_awg"], 0.0)
+    spare = collections.Counter(r["from_id"] for r in H.spares if r["harness"] == name)
+    order = {"connector": 0, "OEM": 1, "terminal": 2, "splice": 3, "resistor": 4, "diode": 5, "cable screen": 6}
+    conns = []
+    for e in sorted(ends.values(), key=lambda e: (order.get(e["Type"], 9), e["Connector"])):
+        e = dict(e)
+        e["Contacts"] = ", ".join(sorted(e["Contacts"]))
+        e["Spare Cavities"] = spare.get(e["Connector"], 0)
+        conns.append(e)
+    sps = [{"Splice": v["Splice"], "Location / job": v["Location / job"], "Method": v["Method"], "Wires Joined": len(v["Wires"]),
+            "Total Copper (mm2)": round(v["mm2"], 2), "Wires": ", ".join(v["Wires"])} for v in splices.values()]
+    spares = [{"Connector": r["from_id"], "Cavity": r["from_pin"], "Plug / Contact": r["from_terminal_pn"],
+               "Note": r["from_desc"] or r["notes"]} for r in sorted(
+                   (r for r in H.spares if r["harness"] == name), key=lambda r: (r["from_id"], pin_sort(r["from_pin"])))]
+    return conns, sps, spares
+
+
+def write_wirelist(H, name):
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+    path = wirelist_path(name)
+    dg = wirelist_digest(H, name)
+    if xlsx_digest(path) == dg:
+        return None
+    wires, rows = wirelist_rows(H, name)
+    conns, sps, spares = wirelist_ends(H, name, wires)
+    wb = Workbook()
+    head_font, head_fill = Font(bold=True, color="FFFFFF"), PatternFill("solid", fgColor="14213D")
+
+    def sheet(ws, cols, data):
+        ws.append([c for c, _w in cols])
+        for c in ws[1]:
+            c.font, c.fill = head_font, head_fill
+            c.alignment = Alignment(wrap_text=True, vertical="top")
+        for d in data:
+            ws.append([d.get(c, "") for c, _w in cols])
+        for i, (_c, w) in enumerate(cols, 1):
+            ws.column_dimensions[ws.cell(1, i).column_letter].width = w
+        ws.freeze_panes = "B2"
+        ws.auto_filter.ref = ws.dimensions
+    ws = wb.active
+    ws.title = "Wires"
+    sheet(ws, WL_COLS, rows)
+    sheet(wb.create_sheet("Connectors"), [("Connector", 18), ("Part Number", 20), ("Type", 12), ("Name", 50), ("Extras", 30),
+                                          ("Contacts", 30), ("Wires", 7), ("Spare Cavities", 9), ("Pin Numbering", 50)], conns)
+    sheet(wb.create_sheet("Splices"), [("Splice", 20), ("Location / job", 60), ("Method", 16), ("Wires Joined", 9),
+                                       ("Total Copper (mm2)", 11), ("Wires", 80)], sps)
+    sheet(wb.create_sheet("Spare Cavities"), [("Connector", 18), ("Cavity", 9), ("Plug / Contact", 20), ("Note", 50)], spares)
+    key = wb.create_sheet("Key")
+    for line in ("ST185-%s wire list - generated from docs/harness/MASTER-wirelist.csv by build_drawings.py; edit the master, "
+                 "never this file." % name,
+                 "One row per wire segment, From end to To end. A splice (SP-...) is its own end: one row per wire into it.",
+                 "Colour = insulation colour (harness.design colour names). Ident bands = printed MIL-STD-681 band code.",
+                 "Length (mm) = the master's estimate; TBD until the tape-measure pass (OPEN-ITEMS row 165).",
+                 "Built With = the harness that owns the wire; a wire owned by another harness passes through this one.",
+                 "Contact PN 'solder splice' / 'solder onto the factory lead' = no contact; TBD = not confirmed by a maker document.",
+                 "Wires: %d   Connectors / ends: %d   Splices: %d   Spare cavities: %d" % (len(rows), len(conns), len(sps), len(spares))):
+        key.append([line])
+    key.column_dimensions["A"].width = 140
+    wb.properties.title = "ST185-%s wire list" % name
+    wb.properties.creator = "build_drawings.py"
+    wb.properties.keywords = "inputs %s" % dg
+    os.makedirs(WIRELISTS, exist_ok=True)
+    tmp = io.BytesIO()
+    wb.save(tmp)
+    with open(path, "wb") as f:
+        f.write(tmp.getvalue())
+    return path
+
+
 # ------------------------------------------------------------------------------------------------ approved route figures (layout pages)
 ROUTES_FOR = {
     "HeavyDC": ["ROUTE-1-HEAVYDC.html"],
@@ -1657,6 +1832,10 @@ def build(h):
     os.makedirs(OUT, exist_ok=True)
     pix.save(H.p["thumb"])
     write_xlsx(H, prow, H.p["xlsx"])
+    for name in wirelist_harnesses(H):
+        wl = write_wirelist(H, name)
+        if wl:
+            print("wrote", os.path.relpath(wl, REPO))
     print("wrote %s (%s), %s, %s" % (
         ", ".join(os.path.relpath(p, REPO) for p in H.p["pdfs"]),
         ", ".join("%s %d pages" % (name, doc.page_count) for (name, _c, _w), doc in zip(SHEETS, docs)),

@@ -88,8 +88,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   trimetrics, makers' own models, balloons only on visible parts, shop-only NOTES. Gate `check_drawing_rules.py`.
 - **B26 CAD work.** CAD stays frozen unless Dan asks. Every model has a `cad/README.md` row and a trimetric PNG; heavy
   files stay gitignored; bought parts are maker models in `cad/vendor/`; reuse Fusion documents (10 max).
-- **B27 Fuse boxes and printed parts.** As small as sensible; PA12 on Dan's HP MJF, no printed threads; live parts >= 3
-  mm apart; current copper to copper, never through threads. Detail: `cad/fusebox/src/spec.py` and its gates.
+- **B27 Fuse boxes follow the harnesses.** Harnesses are made as required; the boxes are configured to match (Dan
+  2026-10-26). Small, PA12 MJF, no printed threads, live parts >= 3 mm apart, copper to copper: `cad/fusebox/src/spec.py`.
 
 ### Shipping
 

@@ -50,6 +50,13 @@
    "by": "DG",
    "what": "Layout: the old Routes 2-7 (harness C, A / B engine, A / B cabin, cabin power) were wrong and are removed (Dan 2026-10-26). Route 16 and 17 and Routes 1, 8-14 stay; AB-cabin and CabinPower fall back to the physical tree.",
    "marks": "Routes 2-7 removed"
+  },
+  {
+   "rev": "H",
+   "date": "2026-10-26",
+   "by": "DG",
+   "what": "Spare ECU pins A26 (Aux 8), B31 / B32 (An Volt 10 / 11) listed with sealing plugs. First per-harness From / To wire lists (AB-cabin, AB-engine) generated with the set.",
+   "marks": "ECU A26, B31, B32 spare"
   }
  ]
 }

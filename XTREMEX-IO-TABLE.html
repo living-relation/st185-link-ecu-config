@@ -216,8 +216,8 @@
   <tr class="g-volt"><td class="chan">An Volt 7</td><td class="pin">B16</td><td>Fuel pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 8</td><td class="pin">B23</td><td>Coolant pressure</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-volt"><td class="chan">An Volt 9</td><td class="pin">B24</td><td>Fuel level sender</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong> (QSG: 0–5 V only). External pull-up to +5 V (<code>r_fuellvl</code>) — value and cal status live in <code>sot/channels.csv</code> row b24.</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 10</td><td class="pin">B31</td><td>A/C request button</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong>. The V-G A/C switch lead is 12 V when ON, so it goes through a divider: 10 kΩ series + 3.9 kΩ to Gnd Out (<code>r_ac_btn_hi</code> / <code>r_ac_btn_lo</code>, B-cabin) — values and volts live in <code>sot/channels.csv</code> row b31.</td></tr>
-  <tr class="g-volt"><td class="chan">An Volt 11</td><td class="pin">B32</td><td>Evaporator thermistor</td><td><span class="badge ok">✅</span></td><td>An Volt has <strong>no internal pull-up</strong>. 2.2 kΩ 1 % pull-up to +5 V (<code>r_evap</code>, B-cabin), return to Gnd Out — value and curve live in <code>sot/channels.csv</code> row b32.</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 10</td><td class="pin">B31</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>Was the A/C request button; removed 2026-10-25 (the button belongs to the factory A/C amp). See <code>sot/channels.csv</code> row b31.</td></tr>
+  <tr class="g-volt"><td class="chan">An Volt 11</td><td class="pin">B32</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td>Was the evaporator thermistor; removed 2026-10-25 (it belongs to the factory A/C amp). See <code>sot/channels.csv</code> row b32.</td></tr>
   <tr class="g-knock"><td class="chan">Knock 1</td><td class="pin">B9</td><td>Knock sensor</td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-knock"><td class="chan">Knock 2</td><td class="pin">B8</td><td>spare</td><td><span class="badge tbd">⬜</span></td><td></td></tr>
 </table>
@@ -255,7 +255,7 @@
   <tr class="g-aux"><td class="chan">Aux 5</td><td class="pin">A29</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-aux"><td class="chan">Aux 6</td><td class="pin">A28</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown. PCLink Hold Power Ignition Switch input is <strong>DI 9 (B28)</strong> from the dummy OEM ignition-switch block.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 7</td><td class="pin">A27</td><td>Speed-out → MRS pump SPD pin</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>PCLink Speedo Out / GP PWM is a valid Aux 5–8 function. MRS wants ~4 pulses/rev, <strong>0–5 V</strong> (scoped on the RAV4-family PS ECU). Aux 5–8 have an internal ~1.5 kΩ pull-up (high polarity ≈ 5–14 V per the wiring manual) — <strong>scope the high level before adding a second 5 V pull-up</strong>; a 12 V high needs a divider/clamp, a hi-Z-off low-side needs a 5 V pull-up.</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 8</td><td class="pin">A26</td><td>Start relay (ECU-controlled)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>ECU enables/disables in software (clutch/neutral/anti-restart) — no separate cut relay</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 8</td><td class="pin">A26</td><td>spare</td><td><span class="drive">hi/lo</span></td><td><span class="badge tbd">⬜</span></td><td>Spare: C11 completes the starter circuit in hardware, not an ECU input (Dan 2026-10-26). See <code>sot/channels.csv</code> row a26.</td></tr>
   <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td>ETB H-bridge supply — <strong>power in, not an output</strong>. Triggered by Aux 2 (A20).</td><td><span class="drive">12V in</span></td><td><span class="badge ok">✅</span></td><td>0.75 mm². Present on the loom but absent from the Quickstart I/O table — always list it explicitly.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td class="pin">B18 · B26</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
   <tr class="g-ign"><td class="chan">Ign 5</td><td class="pin">B13</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>spare ign as aux</td></tr>
@@ -330,14 +330,14 @@
 <h2>Pin budget</h2>
 <table>
   <tr><th>Group</th><th>Avail</th><th>Used</th><th>Spare</th></tr>
-  <tr><td>An Volt</td><td>11</td><td>11</td><td>0 (B31 / B32 assigned 2026-10-10: A/C request button, evaporator thermistor — pull-up/divider TBD)</td></tr>
+  <tr><td>An Volt</td><td>11</td><td>9</td><td>2 (B31 / B32, freed 2026-10-25: A/C button and evaporator thermistor stay on the factory A/C amp)</td></tr>
   <tr><td>Temp</td><td>4</td><td>4</td><td>0 (ECT, IAT, oil, charge-pipe IAT — ECU pull-ups)</td></tr>
   <tr><td>Trigger</td><td>2</td><td>2</td><td>0</td></tr>
   <tr><td>Knock</td><td>2</td><td>1</td><td>1 (Knock 2 / B8)</td></tr>
   <tr><td>Digital in</td><td>10</td><td>10</td><td>0 (DI 10 / B27 = anti-theft)</td></tr>
   <tr><td>Injection</td><td>8</td><td>4</td><td>4 → aux (B1–B4)</td></tr>
   <tr><td>Ignition</td><td>8</td><td>4 coils + 3 aux (Ign 5, Ign 6, Ign 8)</td><td>1 (Ign 7)</td></tr>
-  <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB)</td><td>0 → spare Ign/Inj</td></tr>
+  <tr><td>Aux</td><td>10</td><td>9 (9/10 = ETB)</td><td>1 (Aux 8 / A26, freed 2026-10-26)</td></tr>
 </table>
 <div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator comes out of spare Ign 7 / Inj 5–8 (Ign 5 = condenser-fan relay, Ign 6 = EPS enable relay, Ign 8 = A/C clutch relay). <strong>No PMU/PDU</strong>: the glove-box power is the custom POWER and LOGIC boxes (DECISIONS R75, drawn in <code>ST185-CabinPower</code>) with Mini ISO and micro relays, the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Every splice and feed: <code>docs/harness/MASTER-wirelist.csv</code>.</div>
 
