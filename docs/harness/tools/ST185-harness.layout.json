@@ -1336,6 +1336,8 @@
   "K-FP": "BATT",
   "IX-FUEL-P": "FUEL",
   "SP-AC-PSW": "ACAMP",
+  "SP-TACH": "ACAMP",
+  "R-LOCK": "ACAMP",
   "T-EVAP-TEMP": "EVAP",
   "T-EVAP-RTN": "EVAP",
   "IX-WS-F-S": "DASH",

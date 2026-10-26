@@ -15,6 +15,13 @@
    "by": "DG",
    "what": "Surgical rewire written into the master: 21 decided circuits, D16 A/C, OEM starter / reverse / rear lights, fog cut-and-cap, bank IDs, RearLights harness dropped.",
    "marks": "starter C11 to Aux 8; k_acc from A15 pin 8; Ign 8 tacho; EL814 headlight-sense; w_pdb_jb1 behind the dash; E10 cabin splice; R/B2 and R/B4 feeds"
+  },
+  {
+   "rev": "C",
+   "date": "2026-10-26",
+   "by": "DG",
+   "what": "A15 lock-sensor input takes a modified tacho: Ign 8 through 4.7 kΩ to pin 9 (N61 workaround).",
+   "marks": "SP-TACH; R-LOCK 4.7k to A15 pin 9"
   }
  ]
 }
