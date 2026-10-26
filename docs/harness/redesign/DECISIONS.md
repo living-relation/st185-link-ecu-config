@@ -10,15 +10,15 @@ the 2026-09-28 audit table), which was deleted on 2026-10-20 (OPEN-ITEMS row 151
 The retire map under the rules stays for good so every old citation still resolves.
 Each rule is 2 lines or less (Dan 2026-10-20): detail lives in the named sections of this file; older wording is in git history.
 At most 30 rules: adding one means merging or removing one (R226). Newest ruling won wherever two old rows disagreed.
-Surgical rewire (Dan 2026-10-20): keep the OEM body wiring, replace only the engine-bay wiring (B1, B5, B7, B9, B11).
+Surgical rewire (Dan 2026-10-20): forward of the firewall every wire is new; keep the OEM cabin / body wiring (B1, B5, B7, B9, B11).
 A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 drives `k_acc` (pin 8 to coil 85); the Link only sends the ACT kill (Aux 4); pin 2 hard-grounded; Ign 8 is tacho to pin 18; no clutch-on to the Link. Lock sensor (Dan 2026-10-26): same tacho through 4.7 kΩ to A15 pin 9 (OPEN-ITEMS History 2026-10-21 N61). Sensor common: keep cabin splice `SP-AC-SG` (replaces E10). Factory yellow-red is the A/C pressure-switch output (A5 pin 4 through joiner E10 to A18 pin 13), not the sensor ground; sensor common is yellow (1990 ST185 EWD p.150 / p.152; 1992 EWD132U p.219).
 
 ### Scope and freeze
 
-- **B1 Scope.** Keep the OEM body wiring, replace only the engine-bay wiring; new wire only for the engine harness, fuel
-  pump, dash feed (cluster, LEDs, Pi), CAN, alarm and taps. Goals G1 wiring, G2 maps, G3 CAN, G4 CSB3; rows for blockers.
-- **B2 Freeze.** Until the bloat cut is done (OPEN-ITEMS rows 151-155): no new rule, script, gate, doc, drawing format
-  or feature; only the cut and G1 blockers. A green gate is no proof; Dan's spot-check at the car is (row 155).
+- **B1 Scope.** Forward of the firewall every wire is new, on a named route (B9); keep the OEM cabin / body wiring.
+  New wire also for fuel pump, dash feed, CAN, alarm and taps. Goals G1-G4; rows for blockers.
+- **B2 Freeze.** Until the bloat cut is done (OPEN-ITEMS rows 151-155): no new script, gate or drawing format; cleanup
+  work is allowed. A green gate is no proof; Dan's spot-check at the car is (row 155).
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
   Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo (CAD work in progress may sit in `_scratch`).
 - **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers: look it up or work it out. A
@@ -329,7 +329,7 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R220 | B7 | |
 | R221 | B5 | |
 | R222 | B4 | |
-| R223 | B30 | gearbox VSS on switched 12 V, DI 8 pull-up ON: applied; the facts live in the file it changed; Link check open in OPEN-ITEMS |
+| R223 | B30 | gearbox VSS on switched 12 V, DI 8 pull-up ON: applied; the facts live in the file it changed; Link check open in OPEN-ITEMS row 169 |
 | R224 | B2 | the ONE drawing set and read-back: B6 |
 | R225 | B6 | amended by Dan 2026-10-20: harness.design only as an optional consumer of generated per-harness tables |
 | R226 | B2 | this page |
