@@ -8,15 +8,15 @@ changes to #2, #9, #11 and #18, then written into `docs/harness/MASTER-wirelist.
 | # | Circuit | Plan (in the master) |
 |---|---|---|
 | 1 | Engine management (factory ECU, igniter, EFI relays) | Gone. The Link plus the new engine harness replace it. |
-| 2 | Starting | OEM starter relay in R/B No.4 stays. Coil + from key START; coil - through the clutch start switch C11 to Link Aux 8. No `k_str`. |
+| 2 | Starting | OEM starter relay in R/B No.4 stays. Coil + from key START; coil - through the clutch start switch C11. C11 completes the starter circuit in hardware; it is not an ECU input. No `k_str`. Aux 8 is spare. |
 | 3 | Charging | IG2-15 B-R keeps a 6 in pigtail: kill switch, then alternator IG. IG2-16 Y stays and drives the 12 V charge LED in the ClusterLED harness (sinks to OEM cluster plug C12-8). Alternator B+ on the heavy-cable harness. |
-| 4 | Cruise | The OEM cruise ECU and actuator are gone; the stalk stays as CSB3 buttons. Cruise control clutch switch C17 pin 2 to CSB3 pin 20 (`w_sw5`); C11 is for the starter only. |
+| 4 | Cruise | The OEM cruise ECU and actuator are gone; the stalk stays as CSB3 buttons. Cruise control clutch switch C17 pin 2 to CSB3 pin 20 (`w_sw5`) is the one ECU clutch input (flat-shift, via VDI6). C11 completes the starter circuit in hardware; it is not an ECU input. |
 | 5 | SRS | Gone. |
 | 6 | ABS | Gone. The wheel speed sensors get their own mini harnesses to the VRC enclosure. |
-| 7 | Gauges + warning lamps | Gone; replaced by the CAN cluster. LEDs take turn, high beam, charge and park brake from the OEM cluster plugs, oil pressure from the CSB3. OEM dimmer R10 stays for the rest of the dash lighting. Headlight-sense: tap R10 pin 1 green TAIL through EL814 IN3 to centre-cluster GPIO28 (Dan 2026-10-26: no change; encoder not used). |
+| 7 | Gauges + warning lamps | Gone; replaced by the CAN cluster. LEDs take turn, high beam, charge and park brake from the OEM cluster plugs, oil pressure from CSB3 L4 (cavity 26, 0x643 byte 3). OEM dimmer R10 stays for the rest of the dash lighting. Headlight-sense: tap R10 pin 1 green TAIL through EL814 IN3 to centre-cluster GPIO28 (Dan 2026-10-26: no change; encoder not used). |
 | 8 | Main power (AM1, AM2, J/B1, dome, hazard, retract) | Trunk battery -> glove-box boxes -> cabin landings. `w_pdb_jb1` is behind the dash to J/B No.1 1I, 6 AWG for our 60 A JB1 fuse (`cad/fusebox/src/spec.py` AMI_AWG). |
 | 9 | Blower | R/B No.4 stays with its heater relay, 40 A HEATER and 10 A A/C fuses; one new feed from B1 AMI IN-1. No `k_htr`. |
-| 10 | A/C | Both amps stay. D16: A15 pin 8 drives `k_acc` coil 85; coil 86 from B2-BUS2-8; Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho to pin 18 and, through 4.7 kΩ, to pin 9 (lock-sensor workaround, N61 2026-10-21 / Dan 2026-10-26). A/C button and evap wires to the Link removed. Cabin sensor-common splice `SP-AC-SG` stays (replaces E10). Factory yellow-red is the pressure-switch output, not the sensor ground (1990 ST185 EWD p.150 / p.152). |
+| 10 | A/C | Both amps stay. D16: A15 pin 8 drives `k_acc` coil 85; coil 86 from B2-BUS2-8; Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho to pin 18 and, through 4.7 kΩ, to pin 9 (lock-sensor workaround, N61 2026-10-21 / Dan 2026-10-26). A/C button and evap wires to the Link removed. Cabin sensor-common splice `SP-AC-SG` stays (replaces E10). The A/C pressure switch is the factory trinary switch, wired to the factory A/C amp; factory yellow-red is that switch output, not the sensor ground (1990 ST185 EWD p.150 / p.152). |
 | 11 | Reverse + back-up lamps | No K-REV. OEM back-up switch drives the lamps; output tapped through opto IN2. New switch wires splice to the IG2-4 / IG2-13 pigtails. Factory rear lighting stays (no RearLights harness). |
 | 12 | Fuel pump | `k_fp` in the trunk, rear-fuel harness (B3-K1). |
 | 13 | Front lights + pop-ups | Front run (Route 17 line 10), spliced to the 6 in pigtails. |

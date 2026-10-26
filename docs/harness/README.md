@@ -51,20 +51,20 @@ layout tree `tools/ST185-harness.layout.json`). Rear lights stay on the factory 
     leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3 and R/B No.2
     / No.4: J/B No.2, R/B No.3 (fog relay) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
     are in the glove-box POWER / LOGIC boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer;
-    the ABS computer and actuator; the brake fluid level switch; the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, cut and capped (Dan 2026-10-25; fog only, the rest of B5 still removes to the last live point); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
+    the ABS computer and actuator; the brake fluid level switch (factory safety item, not needed, will not be connected); the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, cut and capped (Dan 2026-10-25; fog only, the rest of B5 still removes to the last live point); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
     removed part into a kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire
     comes out of its harness back to its last live point (splice, plug or box), except the fog leads above.
   - **Circuits decided (Dan 2026-10-21 to 2026-10-25; written into the master, row 164):** starter: the OEM starter relay
-    in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 to Link Aux 8 (the Link runs
-    the start; no `k_str`). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) gives the CSB3 the clutch state (flat shift, rev
-    match); C11 is for the starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
+    in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 (C11 completes the starter
+    circuit in hardware; it is not an ECU input; no `k_str`; Aux 8 spare). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) is the one ECU clutch input (flat-shift, via CSB3 VDI6);
+    C11 is hardware starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
     tapped through opto IN2 to the CSB3; the new switch wires (engine harness, bulkhead A) splice to the IG2-4 / IG2-13
     pigtails. Charge lamp: IG2-16 Y stays, the ClusterLED charge LED sinks to OEM cluster plug C12-8. IG2-15 B-R
     (ECU-IG) keeps a 6 in pigtail to the kill switch, then the alternator IG. ETB hold power is all cabin and J/B No.1
     stays: Aux 6 (A28) -> K-EFI, DI 9 (B28) IG sense, IG2 wake diode from J/B1 1H-7 -> A5, K-ETB on Aux 2 (A20) -> B5.
     A/C (D16): A15 drives `k_acc` (pin 8 to coil 85); Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho
     to pin 18 and through 4.7 kΩ to pin 9 (lock-sensor workaround, N61); A/C button and evap thermistor wires to the Link
-    removed. Cabin splice `SP-AC-SG` stays (sensor common); factory yellow-red is the pressure-switch output, not the
+    removed.     Cabin splice `SP-AC-SG` stays (sensor common). The A/C pressure switch is the factory trinary switch, wired to the factory A/C amp; factory yellow-red is that switch output, not the
     sensor ground (1990 ST185 EWD p.150 / p.152). Headlight-sense: R10 pin 1 through EL814 IN3 (OEM dimmer stays; Dan 2026-10-26).
     `w_pdb_jb1` lands behind the dash on J/B No.1 1I, 6 AWG for our 60 A JB1 fuse. Fuse box design is parked: seats live in `sot/fuse-relay-map.csv`
     (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS). Circuit plan: `circuit-plan.md`.

@@ -29,6 +29,13 @@
    "by": "DG",
    "what": "Car-check answers: if the ignition-switch black-orange wire is at the engine plug, remove it; A/C sensor common stays; J/B1 feed sized 6 AWG for 60 A.",
    "marks": "SP-AC-SG kept; w_pdb_jb1 6 AWG"
+  },
+  {
+   "rev": "E",
+   "date": "2026-10-26",
+   "by": "DG",
+   "what": "C11 is hardware starter interlock only; Aux 8 spare. Oil LED stays on CSB3 L4.",
+   "marks": "w_str85 removed; Aux 8 spare; oil LED CSB3 L4"
   }
  ]
 }

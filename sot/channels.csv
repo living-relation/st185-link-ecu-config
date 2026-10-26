@@ -24,7 +24,7 @@ ECU,An Volt 2,ecu_a,a22,ETB TPS main,signal,in,0-5v,none,set,QSG-IO,Bosch 74.5mm
 ECU,DI 3,ecu_a,a23,Wheel speed front left,signal,in,freq-di,none,set,QSG-IO,Square wave from front VRC out c3; raw VR never reaches the ECU
 ECU,Gnd Out,ecu_a,a24,Sensor return rail,rail,out,gnd,none,set,QSG-IO,"Loom A sensor returns; never chassis; never SHIELD; 18 AWG lead (ct_ss10_075) to sp_gndout, tapered to 20 AWG bulkhead pins (Rule 3a)"
 ECU,Ground,ecu_a,a25,ECU reference ground,ground,na,gnd,none,set,QSG-IO,ECU reference only - not a sensor return
-ECU,Aux 8,ecu_a,a26,Start inhibit through C11,signal,out,hilo-2a,int-1k5,set,QSG-IO,"ECU inhibits in software. Coil- of the OEM R/B No.4 starter relay goes through clutch start switch C11 to this pin. No k_str (circuit 2, Dan 2026-10-25)."
+ECU,Aux 8,ecu_a,a26,spare,spare,out,hilo-2a,int-1k5,spare,QSG-IO,"Spare. C11 completes the starter circuit in hardware and is not an ECU input (Dan 2026-10-26). The one ECU clutch input is C17 via CSB3 VDI6."
 ECU,Aux 7,ecu_a,a27,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,set,QSG-IO,MRS wants ~4 pulses/rev 0-5V; scope the high level before adding a 5V pull-up
 ECU,Aux 6,ecu_a,a28,EFI main relay coil,signal,out,hilo-2a,int-1k5,set,QSG-IO,Hold Power; pairs with DI 9
 ECU,Aux 5,ecu_a,a29,Rad fan relay coil,signal,out,hilo-2a,int-1k5,set,QSG-IO,Relay in cabin
