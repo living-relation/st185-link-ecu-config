@@ -14,9 +14,9 @@ changes to #2, #9, #11 and #18, then written into `docs/harness/MASTER-wirelist.
 | 5 | SRS | Gone. |
 | 6 | ABS | Gone. The wheel speed sensors get their own mini harnesses to the VRC enclosure. |
 | 7 | Gauges + warning lamps | Gone; replaced by the CAN cluster. LEDs take turn, high beam, charge and park brake from the OEM cluster plugs, oil pressure from the CSB3. OEM dimmer R10 stays for the rest of the dash lighting. Headlight-sense: tap R10 pin 1 green TAIL through EL814 IN3 to centre-cluster GPIO28 (Dan 2026-10-26: no change; encoder not used). |
-| 8 | Main power (AM1, AM2, J/B1, dome, hazard, retract) | Trunk battery -> glove-box boxes -> cabin landings. `w_pdb_jb1` is behind the dash to J/B No.1 1I. |
+| 8 | Main power (AM1, AM2, J/B1, dome, hazard, retract) | Trunk battery -> glove-box boxes -> cabin landings. `w_pdb_jb1` is behind the dash to J/B No.1 1I, 6 AWG for our 60 A JB1 fuse (`cad/fusebox/src/spec.py` AMI_AWG). |
 | 9 | Blower | R/B No.4 stays with its heater relay, 40 A HEATER and 10 A A/C fuses; one new feed from B1 AMI IN-1. No `k_htr`. |
-| 10 | A/C | Both amps stay. D16: A15 pin 8 drives `k_acc` coil 85; coil 86 from B2-BUS2-8; Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho to pin 18 and, through 4.7 kΩ, to pin 9 (lock-sensor workaround, N61 2026-10-21 / Dan 2026-10-26). A/C button and evap wires to the Link removed. |
+| 10 | A/C | Both amps stay. D16: A15 pin 8 drives `k_acc` coil 85; coil 86 from B2-BUS2-8; Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho to pin 18 and, through 4.7 kΩ, to pin 9 (lock-sensor workaround, N61 2026-10-21 / Dan 2026-10-26). A/C button and evap wires to the Link removed. Cabin sensor-common splice `SP-AC-SG` stays (replaces E10). Factory yellow-red is the pressure-switch output, not the sensor ground (1990 ST185 EWD p.150 / p.152). |
 | 11 | Reverse + back-up lamps | No K-REV. OEM back-up switch drives the lamps; output tapped through opto IN2. New switch wires splice to the IG2-4 / IG2-13 pigtails. Factory rear lighting stays (no RearLights harness). |
 | 12 | Fuel pump | `k_fp` in the trunk, rear-fuel harness (B3-K1). |
 | 13 | Front lights + pop-ups | Front run (Route 17 line 10), spliced to the 6 in pigtails. |
@@ -37,7 +37,7 @@ Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POW
 
 | Group | Joint | Status |
 |---|---|---|
-| 1 | EB1 Engine <-> Cowl (rear of RH fender) | Decided 2026-10-20: dead; J/B No.1 fed from POWER JB1 60 A spliced to a 6 in stub of the old 1I lead |
+| 1 | EB1 Engine <-> Cowl (rear of RH fender) | Decided 2026-10-20 / 2026-10-26: dead. If the ignition-switch black-orange wire is at the engine plug (EB1-1), remove it. J/B No.1 fed from POWER JB1 60 A, 6 AWG for our 60 A load, spliced to a 6 in stub of the old 1I lead |
 | 2 | ET1 ER Main <-> Engine (near J/B2) | Decided 2026-10-20 |
 | 3 | IG1 / IG2 Engine <-> Cowl (under the ECU) | Decided 2026-10-21: table below |
 | Boxes | the 7 OEM boxes + ABS relay box | Decided 2026-10-21: J/B1, J/B3, R/B2, R/B4 stay; J/B2, R/B3, R/B5, ABS relay box go |
@@ -54,8 +54,6 @@ Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POW
 ## IG1 / IG2 (Engine Wire <-> Cowl Wire, under the ECU)
 
 Decided 2026-10-21. Every wire is dead and comes out back to its last live point, except IG2-15 B-R (6 in pigtail: kill switch, then alternator IG), IG2-16 Y (charge lamp, stays) and IG1-11 (branch only; splice I2 and ground IE stay).
-
-IG2 cavities 1 and 2 are used on a 1993 car: the 1993 face drawing (p.43) still marks 1, 2 and 10 as empty, but it is the 1990 drawing left unchanged (1990 p.31 is the same); the 1993 circuit pages (p.79, 81, 210) and the 1992 book use both. Car check: confirm 1 / 2 on the 1993 car.
 
 | Joint | Pin | Wire colour | Signal | Cabin end | Engine end (removed with Engine Wire) | EWD page | Action |
 |---|---|---|---|---|---|---|---|
@@ -92,4 +90,4 @@ IG2 cavities 1 and 2 are used on a 1993 car: the 1993 face drawing (p.43) still 
 | IG2 | 19 | L-B | Fuel-pump + (FP check) | Cowl splice I1 -> IE2-19 and IF1-15 -> BP1-12 -> fuel pump | DLC1 FP | 1993 p.79, 78 | remove (dead) |
 | IG2 | 20 | B | STA (cranking) | Cowl splice I6 -> ECU A11, C9-3, comb meter C13 (B) pin 10 | Engine Wire <- EB1-2 (starter relay out) | 1993 p.78, 206 | remove (dead) |
 
-Rows tagged **[90/92]** are not 1993-verified (row 156). EB1-1 (B-O IG2 unfused) and the 1I lead gauge stay as car checks in OPEN-ITEMS.
+Rows tagged **[90/92]** are not 1993-verified (row 156).

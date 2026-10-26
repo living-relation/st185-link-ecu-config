@@ -14,7 +14,7 @@ B1,AMI IN-6,fuse,R/B No.2 30 A POWER,POWER,assigned,10 AWG to R/B No.2 POWER fus
 B1,AMI OUT-2,fuse,RTR 30 A,POWER,assigned,retract
 B1,AMI OUT-3,fuse,AM1 40 A,POWER,assigned,
 B1,AMI OUT-4,fuse,AM2 30 A,POWER,assigned,
-B1,AMI OUT-5,fuse,J/B No.1 60 A,POWER,assigned,w_pdb_jb1 behind the dash to 1I-1
+B1,AMI OUT-5,fuse,J/B No.1 60 A,POWER,assigned,w_pdb_jb1 behind the dash to 1I-1; 6 AWG for 60 A
 B1,AMI OUT-6,fuse,EPS 60 A,POWER,assigned,B4 K-EPS 30
 B1,ACPS,fuse,(vacant),,vacant,A5 pin 1 now from R/B No.4 10 A A/C
 B2,M1,relay,headlight LH,K-HL,seated,LOGIC micro

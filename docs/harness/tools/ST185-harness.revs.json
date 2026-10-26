@@ -22,6 +22,13 @@
    "by": "DG",
    "what": "A15 lock-sensor input takes a modified tacho: Ign 8 through 4.7 kΩ to pin 9 (N61 workaround).",
    "marks": "SP-TACH; R-LOCK 4.7k to A15 pin 9"
+  },
+  {
+   "rev": "D",
+   "date": "2026-10-26",
+   "by": "DG",
+   "what": "Car-check answers: if the ignition-switch black-orange wire is at the engine plug, remove it; A/C sensor common stays; J/B1 feed sized 6 AWG for 60 A.",
+   "marks": "SP-AC-SG kept; w_pdb_jb1 6 AWG"
   }
  ]
 }

@@ -64,8 +64,9 @@ layout tree `tools/ST185-harness.layout.json`). Rear lights stay on the factory 
     stays: Aux 6 (A28) -> K-EFI, DI 9 (B28) IG sense, IG2 wake diode from J/B1 1H-7 -> A5, K-ETB on Aux 2 (A20) -> B5.
     A/C (D16): A15 drives `k_acc` (pin 8 to coil 85); Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho
     to pin 18 and through 4.7 kΩ to pin 9 (lock-sensor workaround, N61); A/C button and evap thermistor wires to the Link
-    removed. Headlight-sense: R10 pin 1 through EL814 IN3 (OEM dimmer stays; Dan 2026-10-26).
-    `w_pdb_jb1` lands behind the dash on J/B No.1 1I. Fuse box design is parked: seats live in `sot/fuse-relay-map.csv`
+    removed. Cabin splice `SP-AC-SG` stays (sensor common); factory yellow-red is the pressure-switch output, not the
+    sensor ground (1990 ST185 EWD p.150 / p.152). Headlight-sense: R10 pin 1 through EL814 IN3 (OEM dimmer stays; Dan 2026-10-26).
+    `w_pdb_jb1` lands behind the dash on J/B No.1 1I, 6 AWG for our 60 A JB1 fuse. Fuse box design is parked: seats live in `sot/fuse-relay-map.csv`
     (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS). Circuit plan: `circuit-plan.md`.
   - **New wire** (routes: `routes/ROUTE-16-ENGINE-MAIN.html` lines 1-9, `routes/ROUTE-17-FRONT.html` lines 10-13): the
     engine harness (Link to every engine sensor and actuator; through bulkhead A); power from the trunk battery up the
