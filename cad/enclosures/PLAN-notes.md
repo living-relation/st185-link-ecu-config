@@ -58,7 +58,7 @@ Source: CNLINKO drawing **LP-16-xxxSX-02-1xxx, Rev A1, 2024-03-14**, sheets 1-2 
 - External (inward) pressure, e.g. water outside the box: the groove **inside** edge is primary (Hi = O-ring mean ID, +1 %, max +0.060 in).
 - **Section 4.3:** for rectangular face grooves, the inside corner radii are **≥ 3 x W (ideally 6 x W)**, so ≥ 5.3 mm, ideally 10.7 mm on a 1.78 mm ring.
 - Sizes from **Table 9-1**, AS568 -030 to -040 (ID mm): -030 41.00, -031 44.17, -032 47.35, -033 50.52, -034 53.70, -035 56.87, -036 60.05, -037 63.22, -038 66.40, -039 69.57, -040 72.75 (all W 1.78, tolerance ±0.33 to ±0.51).
-- Material: EPDM or NBR 70 Shore A. Pick EPDM for water and road splash, NBR if oil is likely. PN format from Table 9-1 note (a): compound + size, e.g. `N0674-70 2-039` (NBR 70). The EPDM compound code is not picked yet. **Confirm the compound with Dan, then look up the code in Parker's catalogue.**
+- Material: the boxes are in the cabin, so compound does not matter (Dan 2026-10-26). Keep the repo spec: Parker `N0674-70 2-039` (NBR 70, AS568-039). PN format from Table 9-1 note (a): compound + size.
 
 ### Lid screws: ISO 10642 M3, 90° countersunk socket head, A2 stainless
 - Head dk 6.72 max (5.54 min), k 1.86, 2 mm hex (Engineers Edge ISO 10642 table; Accu SSK-M3-x-A2 listings).
