@@ -1370,8 +1370,8 @@ def xlsx_digest(path):
 
 def _wl_end(r, s):
     t, i, pin = r[s + "_type"], r[s + "_id"], r[s + "_pin"]
-    if t == "cable screen":
-        pin = "screen"
+    if not pin:   # ends with no cavity say what they are (harness.design end handles), never a blank pin
+        pin = {"cable screen": "Screen", "splice": "Splice", "terminal": "Terminal"}.get(t, "TBD")
     return i, pin
 
 
@@ -1483,6 +1483,7 @@ def write_wirelist(H, name):
                  "Colour = insulation colour (harness.design colour names). Ident bands = printed MIL-STD-681 band code.",
                  "Length (mm) = the master's estimate; TBD until the tape-measure pass (OPEN-ITEMS row 165).",
                  "Built With = the harness that owns the wire; a wire owned by another harness passes through this one.",
+                 "Pin 'Splice' / 'Terminal' / 'Screen' = an end with no cavity (a solder splice, a ring or spade lug, a cable screen).",
                  "Contact PN 'solder splice' / 'solder onto the factory lead' = no contact; TBD = not confirmed by a maker document.",
                  "Wires: %d   Connectors / ends: %d   Splices: %d   Spare cavities: %d" % (len(rows), len(conns), len(sps), len(spares))):
         key.append([line])
