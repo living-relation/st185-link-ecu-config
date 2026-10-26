@@ -1,7 +1,9 @@
 # AGENTS.md
 
 ## Read first, before starting work or asking
-Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — the one rules and decisions file (B1-B30; old R-numbers resolve through its retire map; Rule 1 wiring, Rule 2 CAN, Rule 3 ECU harness, Dispatch, Shields, Drawing rules); (3) the working memory `%USERPROFILE%\.claude\working-memory\st185-link-ecu-config\INDEX.md` (WSL: `/mnt/c/Users/<user>/.claude/...`); (4) `docs/OPEN-ITEMS.md` "Status". If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
+Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — the one rules and decisions file (B1-B30; old R-numbers resolve through its retire map; Rule 1 wiring, Rule 2 CAN, Rule 3 ECU harness, Dispatch, Shields, Drawing rules); (3) `docs/OPEN-ITEMS.md` "Status". If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
+
+Memory (workstation #32, global to every project): project progress lives in the repo; personal preferences stay in local memory; Cursor edits Claude's notes directly; there is no sync step.
 
 > **Project focus (R102, Dan 2026-10-15) - the ONLY scope, in order:** (1) wiring sorted so Dan can build the harnesses; (2) ECU base maps; (3) ECU CAN config written and checked; (4) CSB3 config finished. Open a `docs/OPEN-ITEMS.md` row only for a blocker of one of them.
 
