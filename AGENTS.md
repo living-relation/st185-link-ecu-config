@@ -1,15 +1,15 @@
 # AGENTS.md
 
 ## Read first, before starting work or asking
-Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — the one rules and decisions file (B1-B30; old R-numbers resolve through its retire map; Rule 1 wiring, Rule 2 CAN, Rule 3 ECU harness, Dispatch, Shields, Drawing rules); (3) `docs/OPEN-ITEMS.md` "Status". If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
+Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — the one rules and decisions file (B1-B30; old R-numbers resolve through its retire map; Rule 1 wiring, Rule 2 CAN, Rule 3 ECU harness, Dispatch, Shields, Drawing rules); (3) `docs/OPEN-ITEMS.md` "Current state" (a new chat starts there, then Needs Dan, then History). If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
 
 Memory (workstation #32, global to every project): project progress lives in the repo; personal preferences stay in local memory; Cursor edits Claude's notes directly; there is no sync step.
 
 > **Project focus (R102, Dan 2026-10-15) - the ONLY scope, in order:** (1) wiring sorted so Dan can build the harnesses; (2) ECU base maps; (3) ECU CAN config written and checked; (4) CSB3 config finished. Open a `docs/OPEN-ITEMS.md` row only for a blocker of one of them.
 
-> **Current work: the surgical rewire, `docs/OPEN-ITEMS.md` row 164.** Forward of the firewall every wire is new, on a named route (B9; `docs/harness/routes/` Routes 16 and 17). OEM cabin wiring stays with J/B No.1 / No.3 and R/B No.2 / No.4. Factory list: `docs/harness/README.md` "What stays and what goes". Circuit plan: `docs/harness/circuit-plan.md`. The decided circuits are in the master (2026-10-25). Next: overlays, the B-walk, the add list, the bulkhead. Parked: the fuse box (row 107 and rows 113 / 123 / 148). Rows 153 / 155 wait on Dan's review of the regenerated drawing set. Wire lengths wait for a tape-measure pass (row 165). No bench tests: car checks use `docs/procedures/`.
+> **Current work: the surgical rewire, `docs/OPEN-ITEMS.md` row 164.** Forward of the firewall every wire is new, on a named route (B9; `docs/harness/routes/` Routes 16 and 17). OEM cabin wiring stays with J/B No.1 / No.3 and R/B No.2 / No.4. Factory list: `docs/harness/README.md` "What stays and what goes". Circuit plan: `docs/harness/circuit-plan.md`. The decided circuits are in the master. Next: overlays, the B-walk, the add list, the bulkhead. Parked: the fuse box (row 107 and rows 113 / 123 / 148). Rows 153 / 155: Dan's review and car spot-check of Rev F. Wire lengths wait for a tape-measure pass (row 165).
 
-> **Freeze (R224, Dan 2026-10-20):** no new rule, script, gate, drawing format or feature until the bloat cut is done (`docs/OPEN-ITEMS.md` rows 153, 155). Work only the cut and Goal 1 blockers.
+> **Freeze (B2 / R224, Dan 2026-10-20):** still on for new scripts, gates and drawing formats only. Cleanup is allowed; the section-pages drawing format stays. Bloat cut left: Dan's review of the drawing set (row 153) and his car spot-check (row 155). Work only the cut and Goal 1 blockers.
 
 ## Before any wiring or CAN change
 1. **Wiring:** ONE source of truth, `docs/harness/MASTER-wirelist.csv`. `sot/channels.csv` is ECU settings only; `XTREMEX-IO-TABLE.html` is its visual face. Drawings and the BOM are generated from the master; no script writes the master. A change is done only when every wiring surface agrees (DECISIONS Rule 1).
