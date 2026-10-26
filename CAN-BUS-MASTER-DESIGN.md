@@ -59,7 +59,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
   - 0x640: Analog Inputs 1-4 (raw mV, 0-5000)
   - 0x641: Analog Inputs 5-8 (raw mV, 0-5000)
   - 0x642: Rotaries 1-8 (nibble-packed), SW_MASK (8 switches), AS_MASK (8 analog-states), LS_MASK (4 low-side outputs), heartbeat byte
-- **Input frame** (Base+3 = 0x643): low-side output control (L1-L4), source = **ECU** (decided 2026-06-14, §8). Outputs unused / LED-only for now. Sent as a 50 ms periodic PCLink TX stream; bytes change only when an output changes.
+- **Input frame** (Base+3 = 0x643): low-side output control (L1-L4), source = **ECU** (decided 2026-06-14, §8). L4 is the oil warning LED (Dan 2026-10-26); L1-L3 unused. Sent as a 50 ms periodic PCLink TX stream; bytes change only when an output changes.
 
 ### SW_MASK assignment (0x642 byte4)
 
@@ -70,7 +70,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 | 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
-| 5 | Switch 6 | Clutch pedal down (2026-10-14, R80) |
+| 5 | Switch 6 | Clutch pedal down (C17 pin 2; the one ECU clutch input, 2026-10-26) |
 | 6 | Switch 7 | Brake pedal pressed (2026-10-14, R80) |
 | 7 | Switch 8 | Reverse engaged (2026-10-14, R80) |
 
@@ -166,7 +166,7 @@ Two independent layers protect against switchboard communication loss:
 | **A — ECU (PCLink aux output → CAN TX)** | Link G4X PCLink aux/output table drives a CAN TX frame on 0x643 | ECU already has rich conditional logic (RPM, temp, speed-based conditions) available via Virtual Aux tables; no firmware changes | Couples body/accessory output control to the tune file rather than firmware — harder to version-control alongside cluster code; need to confirm PCLink's Custom-stream CAN TX supports per-bit aux-output mapping for L1-L4 |
 | **B — Cluster (center-cluster-esp32-p4 via `canbus_inject_frame`)** | Cluster firmware periodically transmits 0x643 based on its own switch/UI state | Keeps accessory/body output ownership in the cluster, consistent with the cluster already owning UI inputs and transmitting 0x3EC/0x3ED on confirmed actions; `canbus_inject_frame()` already exists in `canbus.h` (currently scoped as a USB bench-tooling injector — would need to be promoted to a general "construct + send" helper, a small addition) | Requires new cluster firmware logic; adds a new periodic/event TX role to the cluster |
 
-**Decision (2026-06-14): Option A — 0x643 is transmitted by the ECU** (Link G4X PCLink aux output → CAN TX). The switchboard low-side outputs are **not used for anything yet**; if/when they are used, the ECU owns that logic and they will most likely just drive **LEDs**. This is therefore **low priority** — no cluster firmware TX role for 0x643 is added, and `canbus_inject_frame()` stays scoped as USB bench tooling. (Option B, cluster-owned TX, was considered but not chosen.)
+**Decision (2026-06-14): Option A — 0x643 is transmitted by the ECU** (Link G4X PCLink aux output → CAN TX). L4 is the oil warning LED (Dan 2026-10-26, CSB3 cavity 26); L1–L3 stay unused. No cluster firmware TX role for 0x643; `canbus_inject_frame()` stays scoped as USB bench tooling. (Option B, cluster-owned TX, was considered but not chosen.)
 
 ---
 
@@ -179,7 +179,7 @@ Two independent layers protect against switchboard communication loss:
 | 3 | User Stream 2 (0x642 byte4 bits 2, 5-7 → VDI3, VDI6-8) and the 0x640 Cruise Stalk mV channel — **written** in the `.lcs` receive channels (2026-10-14, R80); imported with the `.lcs`. User Stream 1 (cabin temp → GP Temp1) is retired, see §5 | PCLink config |
 | 4 | PCLink receive timeouts (200ms) on 0x640/0x642 with fail-safe value 0 — **written** in the `.lcs` (`Timeout="200"`) | PCLink config |
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
-| 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §8 — outputs unused/LED-only, low priority | PCLink config (deferred) |
+| 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §8 — L4 oil warning LED in the CAN config now (B18); L1–L3 unused | PCLink config |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
 | 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |
 

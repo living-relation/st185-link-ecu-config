@@ -62,7 +62,7 @@
             "2": "Switch 3 - cruise MAIN on (stalk pin 15)",
             "3": "Switch 4 - unassigned (was cruise SET; no such stalk wire)",
             "4": "Switch 5 - unassigned (was cruise RESUME; no such stalk wire)",
-            "5": "Switch 6 - clutch pedal down (C11 clutch switch pin 1, ground-active; FL_CLUTCH_SW_C1)",
+            "5": "Switch 6 - clutch pedal down (C17 cruise clutch switch pin 2, ground-active; FL_CLUTCH_SW_C1)",
             "6": "Switch 7 - brake pedal pressed (S9 pin 1 +12V -> opto IN1 -> S7; FL_BRAKE_SW_C1, R56)",
             "7": "Switch 8 - reverse engaged (back-up switch B1 pin 1 +12V -> opto IN2 -> S8; R56)" } },
         { "byte": 5, "length": 1, "name": "AS_MASK", "unit": "bits", "note": "bit N = Analog State N+1 (per manual: 0 below 2 V, 1 above 3 V)" },
@@ -76,12 +76,12 @@
       "direction": "ECU -> Switchboard",
       "cycle_ms": 50,
       "dlc": 8,
-      "_comment": "Source = ECU (PCLink CAN TX stream), decided 2026-06-14. The cluster never transmits 0x643. Outputs L1-L4 are currently unused (LED-only if ever used). Manual: DLC >= 4, byte N = L(N+1) ctrl, bytes 4-7 = 0.",
+      "_comment": "Source = ECU (PCLink CAN TX stream), decided 2026-06-14. The cluster never transmits 0x643. L4 is the oil warning LED (Dan 2026-10-26); L1-L3 unused. Manual: DLC >= 4, byte N = L(N+1) ctrl, bytes 4-7 = 0.",
       "channels": [
         { "byte": 0, "length": 1, "name": "L1 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
         { "byte": 1, "length": 1, "name": "L2 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
         { "byte": 2, "length": 1, "name": "L3 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
-        { "byte": 3, "length": 1, "name": "L4 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
+        { "byte": 3, "length": 1, "name": "L4 ctrl", "scale": 1, "offset": 0, "assignment": "oil warning LED (CSB3 cavity 26, w_oil_k / D-OIL)" },
         { "byte": 4, "length": 0, "name": "(reserved)", "note": "transmit 0x00 in bytes 4-7" }
       ]
     }
