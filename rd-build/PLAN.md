@@ -292,7 +292,7 @@ the GL environment is fine and the rest of this plan applies normally.
 ## Appendix B. Login / account notes
 
 - On first launch RealDash shows a language dialog (pick English -> DONE), then a **My RealDash**
-  login (email + password). Use the account in `CREDENTIALS.md`.
+  login (email + password). [removed - stored outside the repo].
 - The desktop Linux/macOS builds require login + an active subscription and do periodic online
   license checks — keep the PC online during the build.
 - After a successful login on a GPU-backed machine, RealDash proceeds to the Garage; this PC then

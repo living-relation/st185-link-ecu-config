@@ -49,5 +49,4 @@ type/target to the real source; keep the same channel description file.
   (The older `apps/canbus-bench-test.html` / `canbus-live-sender` tools no longer exist.)
 
 ## Account note
-Login used the My RealDash account from CREDENTIALS.md. Consider rotating that
-password now that the build is done (it was shared in plaintext).
+Login used the My RealDash account [removed - stored outside the repo].
