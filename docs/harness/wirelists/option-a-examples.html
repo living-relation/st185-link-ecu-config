@@ -1,0 +1,162 @@
+<title>Splice Column Examples</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: rules card, then one case per section: drawing above, one table below */
+:root{--bg:#f5f6f8;--panel:#fff;--fg:#1b2430;--muted:#5d6b7a;--line:#d6dbe2;--accent:#1f5fa8;--wire:#55606c;--splice:#c2491d;--shield:#8a8f96;--can:#2a7a4f;--hi:#eef3fa;
+--sans:"IBM Plex Sans Condensed",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11161c;--panel:#18202a;--fg:#e4e9ef;--muted:#93a1b1;--line:#2c3744;--accent:#6aa7ec;--wire:#a9b4c0;--splice:#f08a5d;--shield:#7d848c;--can:#5fc28c;--hi:#1d2a38;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#11161c;--panel:#18202a;--fg:#e4e9ef;--muted:#93a1b1;--line:#2c3744;--accent:#6aa7ec;--wire:#a9b4c0;--splice:#f08a5d;--shield:#7d848c;--can:#5fc28c;--hi:#1d2a38;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:14px;line-height:1.45;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px}
+main{max-width:1000px;margin:0 auto;display:grid;gap:22px}
+h1{font-size:22px;margin:0;font-weight:600;text-wrap:balance}
+h2{font-size:17px;margin:0 0 4px;font-weight:600;text-wrap:balance}
+p{margin:0;max-width:72ch}
+.muted{color:var(--muted)}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:10px;min-width:0}
+ol{margin:0;padding-left:20px;display:grid;gap:3px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;font-size:12.5px;width:100%}
+th,td{padding:5px 7px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;vertical-align:top}
+th{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+td.m{font-family:var(--mono);font-size:12px}
+tr.trunk td{background:var(--hi)}
+.flag{border-left:3px solid var(--splice);padding-left:10px;border-radius:0}
+svg{width:100%;height:auto;max-width:100%}
+svg text{font-family:var(--sans);font-size:12px;fill:var(--fg)}
+svg .lab{fill:var(--muted);font-size:11px}
+svg .box{fill:var(--panel);stroke:var(--fg);stroke-width:1}
+svg .w{stroke:var(--wire);stroke-width:1.6;fill:none}
+svg .t{stroke:var(--wire);stroke-width:3.2;fill:none}
+svg .can{stroke:var(--can);stroke-width:1.6;fill:none}
+svg .sh{stroke:var(--shield);stroke-width:1.4;fill:none;stroke-dasharray:4 3}
+svg .sp{fill:var(--splice)}
+svg .file{fill:none;stroke:var(--muted);stroke-dasharray:6 4;stroke-width:1}
+svg .nc{fill:var(--panel);stroke:var(--shield);stroke-width:1.4}
+</style>
+<main>
+<div style="display:grid;gap:6px">
+<h1>Splice column examples (Option A)</h1>
+<p class="muted">Example circuits only, not the ST185 wiring. Each drawing has one wire table under it, written the Option A way.</p>
+</div>
+
+<section>
+<h2>The rules</h2>
+<p>The Option A rules live in one place: <code>docs/harness/redesign/DECISIONS.md</code>, section "Wire lists". This page only shows them at work.</p>
+</section>
+
+<section>
+<h2>1. Splices at both ends of the harness</h2>
+<p>One feed fans out at each end: 2 loads at the fuse end, 3 at the ECU end, joined by one link wire.</p>
+<svg viewBox="0 0 900 230" role="img" aria-label="Two splices joined by a link wire, two legs at the left splice and three at the right">
+<rect class="box" x="20" y="40" width="120" height="44" rx="4"/><text x="80" y="66" text-anchor="middle">FUSE-1 pin 1</text>
+<rect class="box" x="20" y="140" width="120" height="44" rx="4"/><text x="80" y="166" text-anchor="middle">RELAY-K2 pin 86</text>
+<path class="w" d="M140 62 L260 112"/><path class="w" d="M140 162 L260 112"/>
+<circle class="sp" cx="268" cy="112" r="8"/><text x="268" y="92" text-anchor="middle">SP-1</text>
+<path class="t" d="M276 112 L614 112"/><text class="lab" x="445" y="102" text-anchor="middle">w3 link</text>
+<circle class="sp" cx="622" cy="112" r="8"/><text x="622" y="92" text-anchor="middle">SP-2</text>
+<path class="w" d="M630 112 L760 42"/><path class="w" d="M630 112 L760 112"/><path class="w" d="M630 112 L760 182"/>
+<rect class="box" x="760" y="20" width="120" height="44" rx="4"/><text x="820" y="46" text-anchor="middle">ECU-A pin 5</text>
+<rect class="box" x="760" y="90" width="120" height="44" rx="4"/><text x="820" y="116" text-anchor="middle">ECU-B pin 5</text>
+<rect class="box" x="760" y="160" width="120" height="44" rx="4"/><text x="820" y="186" text-anchor="middle">CSB3 pin 1</text>
+<text class="lab" x="200" y="74">w1</text><text class="lab" x="200" y="160">w2</text><text class="lab" x="690" y="66">w4</text><text class="lab" x="690" y="106">w5</text><text class="lab" x="690" y="166">w6</text>
+</svg>
+<div class="tw"><table>
+<tr><th>Wire</th><th>From</th><th>Pin</th><th>To</th><th>Pin</th><th>Splice</th><th>Branch</th><th>AWG</th><th>Net</th></tr>
+<tr><td class="m">w1</td><td class="m">FUSE-1</td><td class="m">1</td><td>legs of SP-2</td><td class="m">-</td><td class="m">SP-1</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
+<tr><td class="m">w2</td><td class="m">RELAY-K2</td><td class="m">86</td><td>legs of SP-2</td><td class="m">-</td><td class="m">SP-1</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
+<tr class="trunk"><td class="m">w3</td><td>legs of SP-1</td><td class="m">-</td><td>legs of SP-2</td><td class="m">-</td><td class="m">SP-1 &gt; SP-2</td><td>link</td><td class="m">16</td><td class="m">SW12</td></tr>
+<tr><td class="m">w4</td><td class="m">ECU-A</td><td class="m">5</td><td>legs of SP-1</td><td class="m">-</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
+<tr><td class="m">w5</td><td class="m">ECU-B</td><td class="m">5</td><td>legs of SP-1</td><td class="m">-</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
+<tr><td class="m">w6</td><td class="m">CSB3</td><td class="m">1</td><td>legs of SP-1</td><td class="m">-</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
+</table></div>
+<p class="flag">This is where Option A gets clumsy: with no single home end, "legs of SP-x" stands in for the far side. It still reads, and the Net column ties all six wires together.</p>
+</section>
+
+<section>
+<h2>2. Spliced wire continues into another harness file</h2>
+<p>The engine harness carries a sensor 5 V lead to the bulkhead. The cabin harness picks it up at the same bulkhead pin and splices it into the ECU's 5 V splice.</p>
+<svg viewBox="0 0 900 220" role="img" aria-label="A wire crosses from the engine harness file to the cabin harness file at the bulkhead and lands in a splice there">
+<rect class="file" x="10" y="14" width="420" height="196" rx="6"/><text class="lab" x="22" y="32">File: AB-engine</text>
+<rect class="file" x="470" y="14" width="420" height="196" rx="6"/><text class="lab" x="482" y="32">File: AB-cabin</text>
+<rect class="box" x="40" y="90" width="120" height="44" rx="4"/><text x="100" y="116" text-anchor="middle">MAP pin 3</text>
+<rect class="box" x="390" y="80" width="120" height="64" rx="4"/><text x="450" y="106" text-anchor="middle">BULKHEAD</text><text x="450" y="124" text-anchor="middle">pin 12</text>
+<path class="w" d="M160 112 L390 112"/><text class="lab" x="275" y="102" text-anchor="middle">w20 (engine file)</text>
+<path class="w" d="M510 112 L640 112"/><text class="lab" x="575" y="102" text-anchor="middle">w21</text>
+<circle class="sp" cx="648" cy="112" r="8"/><text x="648" y="92" text-anchor="middle">SP-5V</text>
+<path class="t" d="M656 112 L760 112"/><text class="lab" x="708" y="102" text-anchor="middle">w22</text>
+<rect class="box" x="760" y="90" width="110" height="44" rx="4"/><text x="815" y="116" text-anchor="middle">ECU-A pin 15</text>
+<path class="w" d="M648 120 L648 180 L760 180"/><text class="lab" x="700" y="172" text-anchor="middle">w23</text>
+<rect class="box" x="760" y="160" width="110" height="40" rx="4"/><text x="815" y="184" text-anchor="middle">APS pin 2</text>
+</svg>
+<div class="tw"><table>
+<tr><th>File</th><th>Wire</th><th>From</th><th>Pin</th><th>To</th><th>Pin</th><th>Splice</th><th>Branch</th><th>Net</th><th>Continues</th></tr>
+<tr><td>AB-engine</td><td class="m">w20</td><td class="m">MAP</td><td class="m">3</td><td class="m">BULKHEAD</td><td class="m">12</td><td class="m">-</td><td>wire</td><td class="m">5V</td><td>AB-cabin w21, leg of SP-5V</td></tr>
+<tr><td>AB-cabin</td><td class="m">w21</td><td class="m">BULKHEAD</td><td class="m">12</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">SP-5V</td><td>leg</td><td class="m">5V</td><td>AB-engine w20 to MAP pin 3</td></tr>
+<tr class="trunk"><td>AB-cabin</td><td class="m">w22</td><td>legs of SP-5V</td><td class="m">-</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">SP-5V</td><td>trunk</td><td class="m">5V</td><td class="m">-</td></tr>
+<tr><td>AB-cabin</td><td class="m">w23</td><td class="m">APS</td><td class="m">2</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">SP-5V</td><td>leg</td><td class="m">5V</td><td class="m">-</td></tr>
+</table></div>
+<p>If the splice sat in the engine file instead, w20 would be the leg (Splice = SP-5V) and w21 would be a plain bulkhead-to-ECU wire. The bulkhead pin is always where one file hands over to the other.</p>
+</section>
+
+<section>
+<h2>3. Shield drain grounded at one end only</h2>
+<p>A 2-core shielded crank sensor cable. The shield drain lands at the ECU end and floats at the sensor.</p>
+<svg viewBox="0 0 900 190" role="img" aria-label="Shielded two-core cable from ECU to sensor; drain connected at the ECU end only">
+<rect class="box" x="20" y="40" width="130" height="110" rx="4"/><text x="85" y="62" text-anchor="middle">ECU-A</text><text class="lab" x="85" y="88" text-anchor="middle">pin 13 signal</text><text class="lab" x="85" y="110" text-anchor="middle">pin 14 ground</text><text class="lab" x="85" y="132" text-anchor="middle">pin 33 shield</text>
+<rect class="box" x="740" y="50" width="140" height="80" rx="4"/><text x="810" y="72" text-anchor="middle">CRANK</text><text class="lab" x="810" y="96" text-anchor="middle">pin 1 signal</text><text class="lab" x="810" y="116" text-anchor="middle">pin 2 ground</text>
+<rect x="240" y="70" width="420" height="56" rx="10" fill="none" stroke="var(--shield)" stroke-dasharray="4 3"/>
+<text class="lab" x="450" y="62" text-anchor="middle">CAB-CRANK shielded cable</text>
+<path class="w" d="M150 84 L740 92"/><path class="w" d="M150 106 L740 112"/>
+<path class="sh" d="M150 128 L240 120 L660 120"/>
+<circle class="nc" cx="672" cy="120" r="6"/><text class="lab" x="684" y="150">NC, floats</text>
+</svg>
+<div class="tw"><table>
+<tr><th>Wire</th><th>Cable</th><th>From</th><th>Pin</th><th>To</th><th>Pin</th><th>Splice</th><th>Branch</th><th>Colour</th><th>Notes</th></tr>
+<tr><td class="m">cr1</td><td class="m">CAB-CRANK</td><td class="m">ECU-A</td><td class="m">13</td><td class="m">CRANK</td><td class="m">1</td><td class="m">-</td><td>core</td><td>White</td><td></td></tr>
+<tr><td class="m">cr2</td><td class="m">CAB-CRANK</td><td class="m">ECU-A</td><td class="m">14</td><td class="m">CRANK</td><td class="m">2</td><td class="m">-</td><td>core</td><td>Black</td><td></td></tr>
+<tr><td class="m">cr_sh</td><td class="m">CAB-CRANK</td><td class="m">ECU-A</td><td class="m">33</td><td>NC, floats</td><td class="m">NC</td><td class="m">-</td><td>drain</td><td>Shield</td><td>Cut back at the sensor end and seal under heat-shrink</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2>4. CAN trunk with a drain that runs on, and five node branches</h2>
+<p>A 2-core shielded CAN trunk leaves a 5-pin connector X1. Its drain does not pin into X1: it runs on to a shield splice on connector X2. At the far end the trunk splits at three splices into five branches. Each branch carries CAN H, CAN L and the shield to its node, and every branch drain floats at the node.</p>
+<svg viewBox="0 0 900 340" role="img" aria-label="CAN trunk from X1 to three branch splices feeding five nodes; trunk drain runs past X1 to a splice at X2; branch drains float at the nodes">
+<rect class="box" x="20" y="70" width="110" height="80" rx="4"/><text x="75" y="94" text-anchor="middle">X1 (5-pin)</text><text class="lab" x="75" y="116" text-anchor="middle">pin 1 CAN H</text><text class="lab" x="75" y="134" text-anchor="middle">pin 2 CAN L</text>
+<rect class="box" x="20" y="220" width="110" height="60" rx="4"/><text x="75" y="244" text-anchor="middle">X2</text><text class="lab" x="75" y="264" text-anchor="middle">pin 4 shield</text>
+<circle class="sp" cx="190" cy="250" r="7"/><text x="190" y="234" text-anchor="middle">SP-DRN</text>
+<path class="sh" d="M130 250 L183 250"/>
+<path class="can" d="M130 108 L440 108"/><path class="can" d="M130 130 L440 130"/>
+<path class="sh" d="M197 250 L250 250 L250 152 L440 152"/>
+<text class="lab" x="300" y="98" text-anchor="middle">trunk cable CAB-CAN-T</text>
+<circle class="sp" cx="448" cy="108" r="7"/><circle class="sp" cx="448" cy="130" r="7"/><circle class="sp" cx="448" cy="152" r="7"/>
+<text x="470" y="80">SP-CANH, SP-CANL, SP-SH</text>
+<g>
+<path class="can" d="M455 108 L560 30 L760 30"/><path class="can" d="M455 130 L560 44 L760 44"/><path class="sh" d="M455 152 L560 58 L748 58"/><circle class="nc" cx="754" cy="58" r="4"/>
+<path class="can" d="M455 108 L560 92 L760 92"/><path class="can" d="M455 130 L560 106 L760 106"/><path class="sh" d="M455 152 L560 120 L748 120"/><circle class="nc" cx="754" cy="120" r="4"/>
+<path class="can" d="M455 108 L560 154 L760 154"/><path class="can" d="M455 130 L560 168 L760 168"/><path class="sh" d="M455 152 L560 182 L748 182"/><circle class="nc" cx="754" cy="182" r="4"/>
+<path class="can" d="M455 108 L560 216 L760 216"/><path class="can" d="M455 130 L560 230 L760 230"/><path class="sh" d="M455 152 L560 244 L748 244"/><circle class="nc" cx="754" cy="244" r="4"/>
+<path class="can" d="M455 108 L560 278 L760 278"/><path class="can" d="M455 130 L560 292 L760 292"/><path class="sh" d="M455 152 L560 306 L748 306"/><circle class="nc" cx="754" cy="306" r="4"/>
+</g>
+<rect class="box" x="770" y="22" width="110" height="44" rx="4"/><text x="825" y="48" text-anchor="middle">NODE-1</text>
+<rect class="box" x="770" y="84" width="110" height="44" rx="4"/><text x="825" y="110" text-anchor="middle">NODE-2</text>
+<rect class="box" x="770" y="146" width="110" height="44" rx="4"/><text x="825" y="172" text-anchor="middle">NODE-3</text>
+<rect class="box" x="770" y="208" width="110" height="44" rx="4"/><text x="825" y="234" text-anchor="middle">NODE-4</text>
+<rect class="box" x="770" y="270" width="110" height="44" rx="4"/><text x="825" y="296" text-anchor="middle">NODE-5</text>
+<text class="lab" x="560" y="330">green = CAN H / L, dashed = shield, open dot = drain floats</text>
+</svg>
+<div class="tw"><table>
+<tr><th>Wire</th><th>Cable</th><th>From</th><th>Pin</th><th>To</th><th>Pin</th><th>Splice</th><th>Branch</th><th>Net</th><th>Notes</th></tr>
+<tr class="trunk"><td class="m">t_h</td><td class="m">CAB-CAN-T</td><td class="m">X1</td><td class="m">1</td><td>legs of SP-CANH</td><td class="m">-</td><td class="m">SP-CANH</td><td>trunk core</td><td class="m">CAN-H</td><td></td></tr>
+<tr class="trunk"><td class="m">t_l</td><td class="m">CAB-CAN-T</td><td class="m">X1</td><td class="m">2</td><td>legs of SP-CANL</td><td class="m">-</td><td class="m">SP-CANL</td><td>trunk core</td><td class="m">CAN-L</td><td></td></tr>
+<tr class="trunk"><td class="m">t_sh</td><td class="m">CAB-CAN-T</td><td class="m">X2</td><td class="m">4</td><td>legs of SP-SH</td><td class="m">-</td><td class="m">SP-DRN &gt; SP-SH</td><td>trunk drain</td><td class="m">CAN-SHLD</td><td>Runs past X1 without a pin; joins SP-DRN at X2</td></tr>
+<tr><td class="m">d_x2</td><td class="m">-</td><td class="m">X2</td><td class="m">4</td><td>legs of SP-DRN</td><td class="m">-</td><td class="m">SP-DRN</td><td>leg</td><td class="m">CAN-SHLD</td><td>Short lead from the X2 pin into SP-DRN</td></tr>
+<tr><td class="m">n1_h</td><td class="m">CAB-CAN-N1</td><td class="m">NODE-1</td><td class="m">CAN H</td><td class="m">X1</td><td class="m">1</td><td class="m">SP-CANH</td><td>leg core</td><td class="m">CAN-H</td><td></td></tr>
+<tr><td class="m">n1_l</td><td class="m">CAB-CAN-N1</td><td class="m">NODE-1</td><td class="m">CAN L</td><td class="m">X1</td><td class="m">2</td><td class="m">SP-CANL</td><td>leg core</td><td class="m">CAN-L</td><td></td></tr>
+<tr><td class="m">n1_sh</td><td class="m">CAB-CAN-N1</td><td>NC, floats</td><td class="m">NC</td><td class="m">X2</td><td class="m">4</td><td class="m">SP-SH</td><td>leg drain</td><td class="m">CAN-SHLD</td><td>Shield runs to NODE-1; drain cut back and sealed there</td></tr>
+<tr><td colspan="10" class="muted">NODE-2 to NODE-5: the same three rows each (n2_h ... n5_sh)</td></tr>
+</table></div>
+<p class="flag">Flag: this layout is a star with five stubs. On a 1 Mbit/s CAN bus (ISO 11898-2) each stub should stay under about 0.3 m, or the reflections corrupt frames. If the branches are longer than that, daisy-chain the nodes instead (the bus goes in and out of each node) and put the two 120 Ω terminators at the two far ends.</p>
+</section>
+</main>

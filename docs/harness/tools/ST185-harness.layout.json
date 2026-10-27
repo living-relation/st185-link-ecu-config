@@ -1683,6 +1683,7 @@
    "ACAMP"
   ]
  ],
+ "wirelists": ["AB-cabin", "AB-engine"],
  "harnesses": [
   "AB-cabin",
   "AB-engine",

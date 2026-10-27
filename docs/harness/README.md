@@ -10,6 +10,7 @@ that B9 points to).
 | `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
 | `sot/fuse-relay-map.csv` | B1 / B2 / B3 / B4 seat to circuit (not a wire list) | Yes, when a seat changes |
 | `drawings/` | generated: each drawing set as three PDFs (`<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf`). Each grouped section is its own page (a section continues when it does not fit). A schematic page holds six wires, each in its own line colour so it can be followed; the label keeps the wire colour. Layout pages are the approved drawings in `routes/`, including Routes 16 and 17 on 1993 EWD p.36. Routes 2-7 were wrong and are removed (Dan 2026-10-26); AB-cabin and CabinPower have no route file, so they fall back to the physical tree. Each page has its own title block and rev log. Plus the DRB102 insert-face map | No - re-run the generator |
+| `wirelists/` | generated: one From / To wire list per harness (`ST185-<harness>-wirelist.xlsx`: Wires, Connectors, Splices, Spare Cavities, Key), in the Option A splice-column format (DECISIONS "Wire lists"; examples `option-a-examples.html`); so far AB-cabin and AB-engine (`"wirelists"` in the layout file) | No - re-run the generator |
 | `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
@@ -32,7 +33,9 @@ Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails
 `AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
 `CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `WheelSpeed-Front`, `WheelSpeed-Rear`. All 12 are drawn by
 the generator as ONE drawing set, `ST185-harness` (`drawings/ST185-harness-schematic.pdf`, `-layout.pdf`, `-pinout.pdf`;
-layout tree `tools/ST185-harness.layout.json`). Rear lights stay on the factory harness. Part makers and descriptions
+layout tree `tools/ST185-harness.layout.json`). Rear lights stay on the factory harness. AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
+the dash near the floor, where every other harness to the ECU joins it; it is drawn left to right, and where each other
+harness's branch joins is set in the layout tree. Part makers and descriptions
 (AWG ranges) the BOM and the check read: `docs/sourcing/harness-parts.csv`. Fuse and relay seats: `sot/fuse-relay-map.csv`.
 
 ## Factory wiring facts (OEM ends)
