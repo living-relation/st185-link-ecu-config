@@ -501,13 +501,15 @@ node branches): `docs/harness/wirelists/option-a-examples.html`.
 3. `Splice` names the splice(s) the wire lands in (`SP-1 > SP-2` through a link); `Branch` says what the wire is: wire,
    core, leg, trunk, link or drain.
 4. Each splice has one trunk: the heaviest wire if one is heavier than the rest, else the one wire to an ECU pin, else the
-   one wire to the bulkhead, else the one link to another splice, else the longest, else the first by wire ID.
+   one wire to the bulkhead, else the one link to another splice, else the one wire to a power or ground source (fuse /
+   relay box, J/B, bus, ground point), else the one factory tap, else the longest, else the first by wire ID.
 5. A leg's To is the end its trunk lands on, followed through link splices. A trunk or link end inside a splice reads
    `legs of SP-x`.
 6. A wire that leaves the file stops at the shared connector pin (the bulkhead); `Continues` names the other harness, its
    wire and where that wire goes, and any splice the wire shares with another harness.
 7. A shield drain left unconnected reads `NC, floats` (pin `NC`): cut back and sealed under heat-shrink.
-8. harness.design stores a splice as a wire end; the import converts Option A rows to splice ends, the build list stays
+8. `build_drawings.py --check` reads each committed list back against the master (rules 1-4, 7, ends, gauge, colour,
+   bands). harness.design stores a splice as a wire end; the import converts Option A rows to splice ends, the build list stays
    Option A.
 
 ## Drawing rules

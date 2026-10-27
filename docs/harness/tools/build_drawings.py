@@ -328,6 +328,8 @@ def check(h):
         if have != want_wl:
             bad.append("%s is stale (inputs %s, made from %s): run build_drawings.py %s"
                        % (os.path.basename(wirelist_path(name)), want_wl, have or "none", h))
+        else:
+            bad += wirelist_readback(name)
     for p in glob.glob(os.path.join(DRAWINGS, "%s-*.pdf" % h)):
         if p not in H.p["pdfs"]:
             bad.append("%s is not one of the three sheets of the set (delete it)" % os.path.basename(p))
@@ -1352,9 +1354,10 @@ def wirelist_path(name):
 
 
 def wirelist_digest(H, name):
+    """The whole master (trunks and Continues read other harnesses' rows too), this script and the harness name."""
     hs = hashlib.sha256()
-    for r in H.rows:
-        hs.update(json.dumps(sorted(r.items()), ensure_ascii=False).encode("utf-8"))
+    with open(MASTER, "rb") as fh:
+        hs.update(fh.read().replace(b"\r\n", b"\n"))
     with open(os.path.abspath(__file__), "rb") as fh:
         hs.update(fh.read().replace(b"\r\n", b"\n"))
     hs.update(name.encode())
@@ -1371,6 +1374,7 @@ def xlsx_digest(path):
 
 BULKHEAD_MATE = {"DRB102-CABIN": "DRB102-ENGINE", "DRB102-ENGINE": "DRB102-CABIN"}
 NC = ("NC, floats", "NC")
+SOURCE = re.compile(r"^(LOGIC|POWER|JB\d|RB\d|BUS-|GND|ENG-GND)")   # fuse / relay boxes, J/B, buses, ground points
 
 
 def _end(r, s):
@@ -1400,7 +1404,8 @@ class SpliceNets:
 
     def trunk(self, sp):
         """The heaviest wire if one is heavier than the rest, else the one ECU pin wire, else the one bulkhead wire,
-        else the one link to another splice, else the longest, else the first by wire ID."""
+        else the one link to another splice, else the one wire to a power or ground source, else the one factory tap,
+        else the longest, else the first by wire ID (DECISIONS "Wire lists" rule 4)."""
         if sp in self._trunk:
             return self._trunk[sp]
         ws = sorted(self.at[sp], key=lambda x: x[0]["wire_id"])
@@ -1418,6 +1423,8 @@ class SpliceNets:
         pick = pick or one([x for x in ws if far(x)[1].startswith("ECU-")])
         pick = pick or one([x for x in ws if far(x)[1] in BULKHEAD_MATE])
         pick = pick or one([x for x in ws if far(x)[0] == "splice"])
+        pick = pick or one([x for x in ws if SOURCE.match(far(x)[1])])
+        pick = pick or one([x for x in ws if far(x)[0] == "OEM"])
         if not pick:
             lens = [(int(x[0]["est_length_mm"] or 0), x) for x in ws]
             best = max(v for v, _x in lens) if lens else 0
@@ -1560,6 +1567,52 @@ def wirelist_ends(H, name, wires):
                "Note": r["from_desc"] or r["notes"]} for r in sorted(
                    (r for r in H.spares if r["harness"] == name), key=lambda r: (r["from_id"], pin_sort(r["from_pin"])))]
     return conns, sps, spares
+
+
+def wirelist_readback(name):
+    """Read a committed wire list back against the master (Option A, DECISIONS "Wire lists"): every wire once, both
+    device ends with their pins, gauge, colour and bands; From / To never a splice and never blank; one trunk per splice."""
+    from openpyxl import load_workbook
+    path = wirelist_path(name)
+    ws = load_workbook(path, read_only=True)["Wires"]
+    it = ws.iter_rows(values_only=True)
+    head = list(next(it))
+    rows = [dict(zip(head, ["" if v is None else str(v) for v in r])) for r in it]
+    allrows = [r for r in master_rows() if r["wire_id"]]
+    splices = {r[s + "_id"] for r in allrows for s in ("from", "to") if r[s + "_type"] == "splice"}
+    want = {r["wire_id"]: r for r in allrows
+            if r["harness"] == name or name in [x.strip() for x in r["passes_through"].split("/")]}
+    bad, seen, trunks = [], collections.Counter(), collections.Counter()
+    tag = os.path.basename(path)
+    for d in rows:
+        w = d.get("Wire", "")
+        seen[w] += 1
+        m = want.get(w)
+        if not m:
+            bad.append("%s: %s is not a wire of %s in the master" % (tag, w, name))
+            continue
+        for e in ("From", "To"):
+            if d[e] in splices or not d[e] or not d[e + " Pin"]:
+                bad.append("%s: %s %s is a splice or blank (%r / %r)" % (tag, w, e, d[e], d[e + " Pin"]))
+        ends = {(d["From"], d["From Pin"]), (d["To"], d["To Pin"])}
+        col = [x.strip() for x in d["Splice"].split(">") if x.strip()]
+        for s in ("from", "to"):
+            t = m[s + "_type"]
+            if t == "splice" and m[s + "_id"] not in col:
+                bad.append("%s: %s Splice column misses %s" % (tag, w, m[s + "_id"]))
+            elif t == "cable screen" and NC not in ends:
+                bad.append("%s: %s screen end is not 'NC, floats'" % (tag, w))
+            elif t not in ("splice", "cable screen") and (m[s + "_id"], m[s + "_pin"] or "Lug") not in ends:
+                bad.append("%s: %s lost its end %s %s" % (tag, w, m[s + "_id"], m[s + "_pin"]))
+        for col_name, key in (("Gauge (AWG)", "gauge_awg"), ("Colour", "colour"), ("Ident bands", "ident_bands")):
+            if d[col_name] != m[key]:
+                bad.append("%s: %s %s %r, master %r" % (tag, w, col_name, d[col_name], m[key]))
+        if d["Branch"].startswith("trunk"):
+            trunks[d["Splice"]] += 1
+    bad += ["%s: %s listed %d times" % (tag, w, n) for w, n in seen.items() if n > 1]
+    bad += ["%s: %s missing" % (tag, w) for w in sorted(set(want) - set(seen))]
+    bad += ["%s: %s has %d trunks" % (tag, sp, n) for sp, n in trunks.items() if n > 1]
+    return bad
 
 
 def write_wirelist(H, name):
