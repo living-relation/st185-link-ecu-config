@@ -16,7 +16,7 @@ Memory (workstation #32, global to every project): project progress lives in the
 2. **CAN:** reconcile across Link ECU, center cluster, RealDash, ECUMaster CSB3 (DECISIONS Rule 2). Frozen cluster wins. Write the repo CAN files now; `bench/check_parity.py` green.
 3. **ECU harness:** loom A and B are ONE harness, `AB` (`AB-cabin`, `AB-engine`); ECU pins never move. Drawn as ONE set, `ST185-harness`.
 4. **ECU pins:** check every ECU-pin circuit against the Link G4X Quick Start Guide and plug-in guides (G4X only). A mismatch is a stop.
-5. **Grounds and relays:** ECU power ground -> POWER box battery-negative bar only; electronics -> battery-negative bus; sensor ground/return (not power, not the sensor signal) -> ECU Gnd Out; shield/drain (not the sensor signal) -> ECU shield gnd. ECU output driving a relay is low-side: pin -> coil 85, 86 -> fused +12 V.
+5. **Grounds and relays:** ECU power ground -> POWER box battery-negative bar only; electronics -> battery-negative bus; sensor ground/return (not power, not the sensor signal) -> ECU Gnd Out; shield drain only -> ECU shield gnd. ECU output driving a relay is low-side: pin -> coil 85, 86 -> fused +12 V.
 
 Link CAN-Lambda is on CAN bus 1; CAN bus 2 is unused.
 
