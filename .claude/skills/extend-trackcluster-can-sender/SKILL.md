@@ -16,7 +16,7 @@ paths:
   Shell: PowerShell.
 
 ## Critical
-- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working Rules" and `docs/harness/redesign/DECISIONS.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
+- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working rules" and `docs/harness/redesign/DECISIONS.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
 - The UI device profiles (`FRAMES_REALDASH`, `FRAMES_CLUSTER` in `ui/index.html`) are checked by `python bench/check_parity.py` (byte, length, signed, bit, period, RealDash `toRaw`). RealDash profile = 0x3EB (gear) + 0x3EF-0x3F1; cluster profile = what `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` decodes (0x3E8-0x3EB, 0x3EE).
 - Treat `link_g4x_can_setup.json` as the CAN contract source of truth before changing sender behavior.
 - Do not ship sender changes unless `apps/trackcluster-can-sender/app.py` still compiles and bench contract IDs `0x3E8`-`0x3F1` remain aligned with `bench/frames.py` and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
