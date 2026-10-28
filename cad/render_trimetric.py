@@ -2,7 +2,7 @@
 
 Headless: reads each model's STEP (never Fusion, R74), tessellates it with OCP and paints
 it with a fixed orthographic trimetric camera. Writes cad/<model>/trimetric*.png (tracked,
-small) and cad/trimetrics.json (source files + their mtimes, so the research hub can warn
+small) and cad/trimetrics.json (source files + their mtimes, to tell
 when a STEP is newer than its picture).
 
 Two stages: OCP (build123d venv) tessellates, VTK (--vtk-python, default ~/simvenv) draws.

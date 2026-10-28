@@ -1,13 +1,9 @@
-"""Self-test for the M3 docs gates: PR-body Rows line + research-hub --strict.
+"""Self-test for the M3 docs gates: PR-body Rows line + the Needs Dan table.
 
     python .github/scripts/test_docs_gates.py      exit 0 = every case behaved as expected
 """
-import importlib.util
-import io
-import os
 import sys
 import tempfile
-from contextlib import redirect_stderr
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -36,38 +32,8 @@ for body, want, name in [
 ]:
     check(f"PR body: {name}", check_pr_rows.has_rows_line(body) == want)
 
-# --- research hub --strict: count mismatch is collected (and fails main) ---
-spec = importlib.util.spec_from_file_location("hub", ROOT / "docs" / "build-research-hub.py")
-hub = importlib.util.module_from_spec(spec)
-sys.modules["hub"] = hub  # dataclasses looks the module up by name
-spec.loader.exec_module(hub)
-
-real = hub.TRACKER.read_text(encoding="utf-8")
-hub.COUNT_PROBLEMS.clear()
-with redirect_stderr(io.StringIO()):
-    hub.load_status()
-check("hub: real tracker counts match", not hub.COUNT_PROBLEMS)
-
-status = next(t for t in hub.parse_md_tables(real) if t["columns"][:2] == ["Bucket", "Open"])
-row = status["rows"][0]
-bad = real.replace(f"| {row[0]} | {row[1]} |", f"| {row[0]} | {int(row[1]) + 5} |", 1)
-check("hub: test edit changed the tracker", bad != real)
-with tempfile.TemporaryDirectory() as d:
-    p = Path(d) / "OPEN-ITEMS.md"
-    p.write_text(bad, encoding="utf-8")
-    hub.TRACKER = p
-    hub.COUNT_PROBLEMS.clear()
-    with redirect_stderr(io.StringIO()):
-        hub.load_status()
-check("hub: wrong Status count is flagged", len(hub.COUNT_PROBLEMS) == 1)
-sys.argv = ["x", "--strict"]
-try:
-    hub.main()
-    check("hub: --strict exits 1 on a count problem", False)
-except SystemExit as e:
-    check("hub: --strict exits 1 on a count problem", bool(e.code))
-
 # --- Needs Dan table in OPEN-ITEMS (R119) ---
+real = (ROOT / "docs" / "OPEN-ITEMS.md").read_text(encoding="utf-8")
 sys.path.insert(0, str(ROOT / "docs"))
 from needs_dan import open_questions  # noqa: E402
 

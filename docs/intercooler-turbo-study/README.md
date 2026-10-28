@@ -31,5 +31,4 @@ Regenerate reports:
 
 ```bash
 python3 model/ic_stack.py && python3 model/pipes.py && python3 model/power_limits.py && python3 model/build_reports.py
-python3 ../build-research-hub.py
 ```

@@ -141,7 +141,7 @@ def ci_fp(spec):
 
 
 def main_checkout():
-    """The gitignored model files live in the main checkout; a worktree has only tracked files (build-research-hub.py)."""
+    """The gitignored model files live in the main checkout; a worktree has only tracked files."""
     try:
         out = subprocess.run(['git', 'rev-parse', '--git-common-dir'], cwd=REPO, capture_output=True, text=True, timeout=10,
                              check=True).stdout.strip()

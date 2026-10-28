@@ -1,6 +1,6 @@
 """Open questions for Dan: the "Needs Dan" table in docs/OPEN-ITEMS.md (DECISIONS R119).
 
-One reader for every consumer (research hub, fusebox clearance check, fusebox summary):
+One reader for every consumer (fusebox clearance check, fusebox summary):
 
     from needs_dan import open_questions
     open_questions()   # [{"id", "topic", "text", "options": [{"value","label","recommended"}]}]
