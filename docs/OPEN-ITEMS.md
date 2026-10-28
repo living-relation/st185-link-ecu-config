@@ -23,9 +23,9 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); the research 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
 
-## Status (2026-10-26)
+## Status (2026-10-28)
 
-**Current state (2026-10-26) - a new chat starts here, then Needs Dan, then History.** Every session updates its own rows and this block in its own PR.
+**Current state (2026-10-28) - a new chat starts here, then Needs Dan, then History.** Every session updates its own rows and this block in its own PR.
 
 - **Goals (R102):** G1 wiring sorted to build - in progress: the surgical rewire (row 164) is the main job; G2 ECU base maps - seeds in `tune/`, the rest waits for the ECU on the bench; G3 ECU CAN config - written and parity-checked (R80), PCLink import and checks wait for the ECU (rows 2, 102, 103); G4 CSB3 config - written, bench checks wait for the CSB3 (row 101).
 - **Surgical rewire (row 164; B1, B5, B9):** forward of the firewall every wire is new, on a named route (Route 16 lines 1-9 engine bay, Route 17 lines 10-13 front); the OEM cabin wiring stays with J/B No.1 / No.3 and R/B No.2 / No.4; only 6 in OEM pigtails stay at the lamps, pop-ups, ambient sensor and wiper; no new connectors anywhere (the new wire mates with each device's own plug); dead OEM wire is removed, never capped, except fog (cut and cap). What stays, what goes and the circuits decided: `docs/harness/README.md` "What stays and what goes"; circuit plan: `docs/harness/circuit-plan.md`. Route drawings stay as Dan marked them.
@@ -34,6 +34,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); the research 
 - **Freeze (R224, 2026-10-20):** still on for new scripts, gates and drawing formats. Dan 2026-10-26: keep the section-pages format (each grouped section its own page; a schematic page holds six wires, each in its own line colour; layout pages are the approved `docs/harness/routes/` figures, including Routes 16 and 17 on 1993 EWD p.36). Bloat cut left: Dan's review of the drawing set (row 153) and his car spot-check (row 155). The set is Rev F, regenerated from the rewired master.
 - **ONE master wire list = the wiring SoT (N60 = A, R221):** `docs/harness/MASTER-wirelist.csv`; one gate `docs/harness/tools/check_wiring.py` (in `tools/check_all.py`); ONE drawing set `ST185-harness` from our own generator (R225), read back wire by wire (`build_drawings.py --check`); `sot/channels.csv` keeps only the ECU channel settings.
 - **BOM** `docs/sourcing/PROJECT-BOM.xlsx`: 90 real-PN lines and 51 TBD-PN lines are still unpriced. **CAD:** all 34 drawings current with their models.
+- **Context (2026-10-28):** pointer cleanup is in. Rule files point at the matching skill and `python bench/check_parity.py` (#405). Item 5: sensors -> ECU Gnd Out; shield/drain -> ECU shield gnd (#406). `CLAUDE.md` is `@AGENTS.md` (#407). Dan confirmed the CAN rule stays off until a CAN file is open. Next job is still row 164.
 - **Next question ID:** N65.
 
 The research hub (`docs/research-hub.html`) reads this section: keep the table and the numbered list in this shape.
@@ -47,7 +48,7 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 | CAN | 1 | Goal 3: the knock warning PCLink checks (row 102; 0x3EE now 10 ms, ECU side only, R98). Oil LED stays on CSB3 L4 and 0x643 byte 3 is in the CAN config (row 163 closed). | dash |
 | RealDash | 0 | Nothing in scope: the RealDash bench checks are parked (R102). | - |
 | Tune-ECU setup-time | 11 | Goals 2-4 on the bench when the ECU and CSB3 arrive: PCLink import and CAN checks (G3), tables and outputs (G2), the CSB3 opto board (G4), Link support on the gearbox speed input (row 169). CAN config itself is written now (R80). | bay, dash |
-| Housekeeping | 0 | Bloat cut housekeeping done: rules on one page (row 151 closed 2026-10-25 with the `AGENTS.md` cut); the one-off scripts are gone (row 152). | - |
+| Housekeeping | 0 | Bloat cut housekeeping done: rules on one page (row 151 closed 2026-10-25 with the `AGENTS.md` cut); the one-off scripts are gone (row 152). Context pointers fixed 2026-10-28 (#405-#407). | - |
 
 Blocks progress:
 
@@ -158,6 +159,7 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 
 ## History
 
+- 2026-10-28 - Context pointers (Dan; no new row): broken rule pointers now name the skills and `python bench/check_parity.py` (#405). AGENTS item 5 is sensors -> ECU Gnd Out and shield/drain -> ECU shield gnd (#406). `CLAUDE.md` is `@AGENTS.md` so Claude Code loads the repo rules (#407). Dan confirmed the CAN rule loads only when a CAN file is open. Local only, not in git: store-root `C:\projects\AGENTS.md` names `docs/harness/MASTER-wirelist.csv` as the wiring source of truth; memory `project_current_state.md` trimmed to two facts the repo does not hold and the three unsigned index lines signed `Claude Code, 2026-10-27`; untracked `CLEANUP-LATER.md` and empty `.claude\worktrees\` removed, then `git worktree prune`.
 - 2026-10-27 - Option A audit (Dan; row 164): `build_drawings.py --check` now reads each committed wire list back against the master (every wire once, device ends and pins, gauge, colour, bands, no splice or blank in From / To, one trunk per splice) and fails on a hand edit or a stale list; trunk rule 4 gained power / ground source and factory-tap steps. Checked: master ECU pins = `sot/channels.csv` non-spare channels (58 = 58) and every channel pin matches the XtremeX Quick Start Guide p.4-5 pin map; check_all, CAN parity, docs gates green; a dry run over all 12 harnesses passes the read-back. Found, not fixed (EngineRoom-C, no list yet): `w_wash_neg` / `w_wash_pos` give the cowl-lead end the washer motor's own locator `W1` and pin, so both ends read `W1 1` (`W1 2`); the cowl lead needs its own end ID before the EngineRoom-C list is made.
 - 2026-10-26 - Wire list format Option A (Dan; row 164): From / To name only connectors or devices with their pin; a Splice column names the splice, a Branch column says wire / core / leg / trunk / link / drain; one trunk per splice; unconnected drains read `NC, floats`; a Continues column follows the wire into the other harness file. Rules in DECISIONS "Wire lists"; worked examples `docs/harness/wirelists/option-a-examples.html`. AB-cabin and AB-engine lists regenerated in this format.
 - 2026-10-26 - Per-harness wire lists started (Dan; row 164): `docs/harness/wirelists/ST185-AB-cabin-wirelist.xlsx` and `ST185-AB-engine-wirelist.xlsx`, standard From / To tables generated from the master by `build_drawings.py` (harness.design Excel-import column names; Connectors, Splices, Spare Cavities sheets). Read back against the master: every wire, both ends, gauge, colour, bands. Fixed on the way: spare rows for ECU A26 (Aux 8), B31 / B32 (An Volt 10 / 11) added to the master; `XTREMEX-IO-TABLE.html` detail rows and pin budget updated to show them spare. B27 now says the fuse boxes follow the harnesses (Dan). Fuse-box CAD input note now points at Route 17. AB-cabin is drawn left to right without a route (Dan). Next: one wire list per harness, then the harnesses generated from them.
