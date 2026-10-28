@@ -337,9 +337,9 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
             fail("M1", "%s pin %s is wired, %s pin %s is not" % (a, p, b, p))
     lib_awg = {}
     for p in lib or []:
-        m = re.search(r"(\d{1,2})-(\d{1,2}) AWG", p["description"])
-        if m and p["part_number"]:
-            lib_awg[p["part_number"]] = tuple(sorted((int(m.group(1)), int(m.group(2)))))
+        m = re.search(r"(\d{1,2})-(\d{1,2}) AWG", p["description"]) or re.search(r"\b(\d{1,2}) ?AWG", p["description"])
+        if m and p["part_number"]:   # a range ("16-20 AWG") or one size ("(18 AWG)", "20 AWG")
+            lib_awg[p["part_number"]] = tuple(sorted((int(m.group(1)), int(m.groups()[-1]))))
     for r in rows:
         for s, o in ends(r):
             eid, pin = r[s + "_id"], r[s + "_pin"]
