@@ -40,7 +40,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 ### Power and grounds
 
 - **B10 Grounds.** ECU power grounds (A25, A34, B25, B34) splice together, one wire to the POWER box battery-negative
-  bar. Electronics to the battery-negative bus, sensors to Gnd Out, shields to drains; heavy loads may use chassis.
+  bar. Sensor ground/return (not power, not the signal) to Gnd Out; shield drain only to the ECU shield pin; electronics to the battery-negative bus; heavy loads may use chassis.
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
 - **B12 Wire gauge.** Size a wire for the device's peak current plus margin (when in doubt, the larger) and at least for
