@@ -1,13 +1,15 @@
 ---
 paths:
   - apps/trackcluster-can-sender/**
-  - rd-build/tools/**
   - bench/**
+  - rd-build/tools/**
 ---
 
 # Python Tooling Patterns - pointer only
 
 The Python tooling rules (adapter handling style, strict CAN payload validation, small
 usage-driven CLI scripts, dependencies documented in the nearest `requirements.txt`, the
-desktop-only constraints of `rd-build/`) are owned by `AGENTS.md` "Working Rules", under
-"Python tooling".
+desktop-only constraints of `rd-build/`) live in
+`.claude/skills/extend-trackcluster-can-sender/SKILL.md` and
+`.claude/skills/run-can-bench-scenarios/SKILL.md`, checked by
+`python bench/check_parity.py`. Frame routing: `docs/harness/redesign/DECISIONS.md` B16.

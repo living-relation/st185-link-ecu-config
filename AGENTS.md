@@ -1,13 +1,13 @@
 # AGENTS.md
 
 ## Read first, before starting work or asking
-Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — the one rules and decisions file (B1-B30; old R-numbers resolve through its retire map; Rule 1 wiring, Rule 2 CAN, Rule 3 ECU harness, Dispatch, Shields, Drawing rules); (3) `docs/OPEN-ITEMS.md` "Current state" (a new chat starts there, then Needs Dan, then History). If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
+Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — B1–B30 and Rules 1–3; use the retire map only to look up an old R-number; (3) `docs/OPEN-ITEMS.md` "Current state" (a new chat starts there, then Needs Dan, then History). If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
 
 Memory (workstation #32, global to every project): project progress lives in the repo; personal preferences stay in local memory; Cursor edits Claude's notes directly; there is no sync step.
 
 > **Project focus (R102, Dan 2026-10-15) - the ONLY scope, in order:** (1) wiring sorted so Dan can build the harnesses; (2) ECU base maps; (3) ECU CAN config written and checked; (4) CSB3 config finished. Open a `docs/OPEN-ITEMS.md` row only for a blocker of one of them.
 
-> **Current work: the surgical rewire, `docs/OPEN-ITEMS.md` row 164.** Forward of the firewall every wire is new, on a named route (B9; `docs/harness/routes/` Routes 16 and 17). OEM cabin wiring stays with J/B No.1 / No.3 and R/B No.2 / No.4. Factory list: `docs/harness/README.md` "What stays and what goes". Circuit plan: `docs/harness/circuit-plan.md`. The decided circuits are in the master. Next: overlays, the B-walk, the add list, the bulkhead. Parked: the fuse box (row 107 and rows 113 / 123 / 148). Rows 153 / 155: Dan's review and car spot-check of Rev F. Wire lengths wait for a tape-measure pass (row 165). The ECU and switch board (CSB3) checks happen in the car, not on a bench. No bench tests: car checks use `docs/procedures/`.
+> **Current work:** `docs/OPEN-ITEMS.md` "Current state" (row 164).
 
 > **Freeze (B2 / R224, Dan 2026-10-20):** still on for new scripts, gates and drawing formats only. Cleanup is allowed; the section-pages drawing format stays. Bloat cut left: Dan's review of the drawing set (row 153) and his car spot-check (row 155). Work only the cut and Goal 1 blockers.
 

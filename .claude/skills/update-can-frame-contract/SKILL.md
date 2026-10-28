@@ -19,7 +19,7 @@ paths:
 - Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
-- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working Rules" and `docs/harness/redesign/DECISIONS.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
+- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working rules" and `docs/harness/redesign/DECISIONS.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
 - `python bench/check_parity.py` is the parity gate (also run in CI). It compares the JSON, `.lcs`, `bench/frames.py`, `CAN-BUS-ID-ALLOCATION-TABLE.md`, `link_g4x_realdash.xml`, the sender UI profiles and `switchboard_frames.json`. Exit 0 = all agree. A change is not done until it passes.
 - Scale convention: `link_g4x_can_setup.json` uses PCLink ENCODE form (`raw = value * scale + offset`); the `.lcs`, the ID table and `bench/frames.py` use DECODE form (`value = raw * (1/scale) - offset/scale`). Write each file in its own convention.
 - Switchboard frames `0x640`-`0x643` live in `switchboard_frames.json`, not in `link_g4x_can_setup.json`.
