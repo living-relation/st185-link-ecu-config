@@ -57,6 +57,13 @@
    "by": "DG",
    "what": "Spare ECU pins A26 (Aux 8), B31 / B32 (An Volt 10 / 11) listed with sealing plugs. First per-harness From / To wire lists (AB-cabin, AB-engine) generated with the set.",
    "marks": "ECU A26, B31, B32 spare"
+  },
+  {
+   "rev": "I",
+   "date": "2026-10-27",
+   "by": "DG",
+   "what": "Crank and cam each run in one shielded Raychem cable (2-core / 3-core). The CAN-Lambda branch is all ECU engine harness: shielded pair to splices and the 120R terminator behind the Lambda plug. Starter S crosses the bulkhead on cavity 3 (12 AWG, size 12). ECU-B 10 tach contact is the 20 AWG Superseal.",
+   "marks": "CAB-CRANK 2-core; CAB-CAM 3-core; CAN-Lambda terminator at plug; w_strl_c / w_strl_e on DRB102 3; w_tach contact"
   }
  ]
 }

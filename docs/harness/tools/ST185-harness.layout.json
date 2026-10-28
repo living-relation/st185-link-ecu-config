@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: Routes 3 and 4, each bulkhead-to-device path = the master est_length_mm) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the cabin tree, B+ stud on the heavy-cable tree); harness C joins the engine tree at the MR-S pump; they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: Routes 3 and 4, each bulkhead-to-device path = the master est_length_mm) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); harness C joins the engine tree at the MR-S pump; they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -533,8 +533,8 @@
     91,
     8
    ],
-   "label": "RH firewall: RADLOK pair, cabin side, and the starter S wire pass - spot TBD (Route 1 point 1)",
-   "short": "RADLOK pair (cabin side) + starter S pass",
+   "label": "RH firewall: RADLOK pair, cabin side - spot TBD (Route 1 point 1)",
+   "short": "RADLOK pair (cabin side)",
    "lab": "below",
    "end": true
   },
@@ -1129,9 +1129,9 @@
    400
   ],
   [
-   "FW_STR",
+   "BP_ENG_A2",
    "STARTER",
-   2470
+   450
   ],
   [
    "CANJ",
