@@ -1,6 +1,0 @@
-{
-  "updated": "2026-10-15",
-  "base_kit": "C:/projects/_archive/2026-10-17-fairsolid/fairsolid/handoff/fairsolid-grok-handoff-2026-10-15.zip",
-  "schema": "jobs: [{id: G1, title, goal: 1-4, status: queued | sent | returned | accepted, zip: path of the handoff zip, date: YYYY-MM-DD, notes}] - DECISIONS R106",
-  "jobs": []
-}

@@ -95,8 +95,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B28 Shipping a change.** Branch from `origin/main`; `check_all.py` and `check_parity.py` green; update touched
   OPEN-ITEMS rows; PR with a `Rows:` line, squash-merged when both required checks pass. Never remove your own worktree.
-- **B29 Tracker, hub, generated files.** `docs/OPEN-ITEMS.md` is the one tracker (open rows, Needs Dan, history), kept
-  short. The hub, drawings and BOM are generated, never hand-edited; only the bot commits the hub.
+- **B29 Tracker, generated files.** `docs/OPEN-ITEMS.md` is the one tracker (open rows, Needs Dan, history), kept
+  short. The drawings and BOM are generated, never hand-edited.
 - **B30 Past decisions.** Old R1-R226, S1-S40 and audit rows resolve through the retire map below (full text in git
   history); what they decided lives in the files they changed. Reversing an applied decision is Dan's call.
 

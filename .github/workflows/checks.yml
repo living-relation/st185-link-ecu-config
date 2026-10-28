@@ -11,7 +11,7 @@ name: Repo checks
 # skipped and the check passes in seconds. tools/check_all.py does NOT run for
 # unrelated changes.
 #
-# Python 3.14 matches the local dev machine (dansPC) and research-hub.yml.
+# Python 3.14 matches the local dev machine (dansPC).
 # Everything is standard-library only except the BOM workbook (openpyxl), the drawing read-back in
 # build_drawings.py --check (PyMuPDF) and tune/scripts/validate_tune.py (PyYAML) - each installed
 # pinned (same version as on dansPC) right before its step.
@@ -30,7 +30,7 @@ permissions:
 jobs:
   checks:
     name: Repo checks
-    # The research-hub bot's own commits are skipped (a skipped job counts as passing).
+    # Bot commits are skipped (a skipped job counts as passing).
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
@@ -76,9 +76,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.14'
-      - name: Tracker counts match (build-research-hub.py --strict, writes nothing)
-        run: python docs/build-research-hub.py --strict
-      - name: Docs gate self-tests (Rows line + --strict)
+      - name: Docs gate self-tests (Rows line + Needs Dan table)
         run: python .github/scripts/test_docs_gates.py
       - name: Install openpyxl (BOM workbook) and PyMuPDF (drawing read-back, R224 step 4), pinned
         if: steps.scope.outputs.run == 'true'

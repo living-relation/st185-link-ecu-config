@@ -46,7 +46,6 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `tune/tables/` | PCLink table seeds — VE (93 + E85), ignition base, injector dead time. Conservative placeholders, not dyno data. See `tune/README.md`. |
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `docs/harness/redesign/DECISIONS.md` | Decision record and **the one home for every binding rule Daniel has set** (section "Binding rules B1-B30"; old R-numbers resolve through its retire map). |
-| `docs/research-hub.html` | Index of everything under `docs/` plus interactive parts tables (on-hand BOM, harness buy list, enclosure BOMs). Open in any browser. The "Regenerate research hub" Action runs `python docs/build-research-hub.py` on PRs that touch `docs/**` and commits the HTML on `main` only — do not commit the HTML yourself. |
 
 ## Import Checklist (PCLink, when ECU is available)
 

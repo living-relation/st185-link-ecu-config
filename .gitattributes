@@ -1,19 +1,3 @@
-# docs/research-hub.html is generated and owned by the "Regenerate research hub"
-# GitHub Action. Humans and agents must NOT commit it -- see AGENTS.md.
-#
-# merge=ours makes a merge or rebase keep the local side instead of raising a
-# conflict when the bot has regenerated it upstream. It needs the driver enabled
-# once per clone:
-#
-#     git config merge.ours.driver true
-#
-# Without that config git falls back to a normal conflict, which is noisy but
-# never wrong -- resolve it by re-running docs/build-research-hub.py.
-docs/research-hub.html merge=ours linguist-generated=true
-
-# Generated harness views. Same idea: rebuild, never hand-merge.
+# Generated harness views: rebuild, never hand-merge.
 docs/harness/drawings/**            linguist-generated=true
 docs/sourcing/PROJECT-BOM.csv       linguist-generated=true
-
-# Git hooks run under sh - a CRLF shebang line breaks them on every platform.
-.githooks/pre-commit                text eol=lf

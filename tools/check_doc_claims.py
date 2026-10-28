@@ -16,7 +16,6 @@ import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOC_EXT = (".md", ".html", ".txt")
-SKIP = ("docs/research-hub.html", "docs/status/")
 SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-study/", "docs/5sgte-project-data/", "docs/harness/routes/",
              "docs/vendor/")
 # The keep list (R211) and the docs that state the chain of sources; only these may call something a source of truth.
@@ -44,7 +43,7 @@ def main():
             continue
         if ARCHIVE_DIR.search(f):
             bad.append("C1 %s: archive-style folder" % f)
-        if not f.endswith(DOC_EXT) or f in SKIP or f.startswith(SKIP) or f.startswith(SKIP_DIRS):
+        if not f.endswith(DOC_EXT) or f.startswith(SKIP_DIRS):
             continue
         try:
             text = open(os.path.join(REPO, f), encoding="utf-8", errors="ignore").read()
