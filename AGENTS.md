@@ -2,6 +2,7 @@
 
 ## Read first, before starting work or asking
 Read in order: (1) this file; (2) `docs/harness/redesign/DECISIONS.md` — B1–B30 and Rules 1–3; use the retire map only to look up an old R-number; (3) `docs/OPEN-ITEMS.md` "Current state" (a new chat starts there, then Needs Dan, then History). If a rule or note already answers a question, act on it — never ask Dan something the rules already answer.
+Put every question for Dan in the Needs Dan table in docs/OPEN-ITEMS.md, as well as in chat.
 
 Memory (workstation #32, global to every project): project progress lives in the repo; personal preferences stay in local memory; Cursor edits Claude's notes directly; there is no sync step.
 
