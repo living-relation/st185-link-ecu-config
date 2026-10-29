@@ -147,7 +147,8 @@ def digest(h):
         head = next(csv.reader(f))
     for r in rows_for(h):
         hs.update(json.dumps([r.get(c, "") for c in head], ensure_ascii=False).encode("utf-8"))
-    for f in (p["layout"], p["revs"], os.path.abspath(__file__)):
+    trees = [os.path.join(HARNESS, "routes", t["route"]) for t in load(p["layout"]).get("route_trees", [])]
+    for f in [p["layout"], p["revs"], os.path.abspath(__file__)] + trees:
         with open(f, "rb") as fh:
             hs.update(fh.read().replace(b"\r\n", b"\n"))
     hs.update(STYLE.encode())
@@ -169,6 +170,7 @@ class Harness:
         self.set = set(set_harnesses(h))
         self.p = paths(h)
         self.layout = load(self.p["layout"])
+        add_route_trees(self.layout)
         self.revs = load(self.p["revs"])
         allrows = master_rows()
         self.rows = rows_for(h, allrows)
@@ -1766,6 +1768,230 @@ def route_json_figure(path):
             "page": EWD_PAGE}
 
 
+# ------------------------------------------------------------------------------------------------ layout trees from a route file
+# DECISIONS B8 (Dan 2026-10-28): a route file's devices and runs are the one definition of where each device sits and
+# which line it hangs on; lengths from a route map = map length x 5.3 mm per EWD point (the 96 mm cylinder spacing)
+# + 300 mm drop for a low-mounted part (device "low": true), an estimate until measured at the car.
+MM_PER_PT = 5.3
+DROP_MM = 300
+JOIN_PT = 15.0   # a line or branch end this close to another line joins it
+
+
+def _seg_proj(p, a, b):
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    ll = dx * dx + dy * dy
+    t = 0.0 if not ll else max(0.0, min(1.0, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / ll))
+    q = (a[0] + t * dx, a[1] + t * dy)
+    return math.hypot(p[0] - q[0], p[1] - q[1]), q
+
+
+def _along(pts, p):
+    """(gap, distance along pts) of point p projected onto the polyline pts."""
+    best, run = None, 0.0
+    for a, b in zip(pts, pts[1:]):
+        gap, q = _seg_proj(p, a, b)
+        if best is None or gap < best[0] - 1e-9:
+            best = (gap, run + math.hypot(q[0] - a[0], q[1] - a[1]))
+        run += math.hypot(b[0] - a[0], b[1] - a[1])
+    return best
+
+
+def _pt_at(pts, dist):
+    run = 0.0
+    for a, b in zip(pts, pts[1:]):
+        L = math.hypot(b[0] - a[0], b[1] - a[1])
+        if run + L >= dist - 1e-9:
+            t = 0.0 if not L else (dist - run) / L
+            return (a[0] + t * (b[0] - a[0]), a[1] + t * (b[1] - a[1]))
+        run += L
+    return tuple(pts[-1])
+
+
+def route_lines(data):
+    """Route 16 lines by id: routes L1-L9, the low parts of route 9 (L9b starter, L9c alternator), and the runs."""
+    lines = {}
+    for r in data.get("routes") or []:
+        lines["L%s" % r["n"]] = [tuple(p) for p in r["path"]]
+        for k, extra in enumerate(r.get("low_behind_engine") or []):
+            lines["L%s%s" % (r["n"], "bcdefg"[k])] = [tuple(p) for p in extra]
+    for name, pts in (data.get("runs") or {}).items():
+        lines[name.split()[0]] = [tuple(p) for p in pts]
+    return lines
+
+
+def add_route_trees(L):
+    """Add to the layout the tree of each route file named in its `route_trees` (one definition, DECISIONS B8).
+
+    Each entry: {"route": file in docs/harness/routes/, "root": bulkhead node, "harness": the harness it carries}.
+    The root sits at the start of line 1; every other line or branch joins the line its end lies closest to; a device
+    joins the line it is on (a stub when it sits off it). Only the parts that lead to a device of that harness are kept.
+    A device's node is its layout `place` node (so other harnesses' segments still reach it), else its own ID.
+    """
+    for spec in L.get("route_trees", []):
+        text = open(os.path.join(HARNESS, "routes", spec["route"]), encoding="utf-8").read()
+        data = json.loads(re.search(r'<script type="application/json" id="route-data">(.*?)</script>', text, re.S).group(1))
+        lines = route_lines(data)
+        root_pt = lines["L1"][0]
+        # a main line that passes the root (route 9 by the bulkhead) is split there into two lines that start at it
+        for k in [k for k in lines if k.startswith("L") and k != "L1"]:
+            pts = lines[k]
+            gap, d = _along(pts, root_pt)
+            total = sum(math.hypot(b[0] - a[0], b[1] - a[1]) for a, b in zip(pts, pts[1:]))
+            if gap <= JOIN_PT and 1.0 < d < total - 1.0:
+                q, run, head, tail = _pt_at(pts, d), 0.0, [], []
+                for a, b in zip(pts, pts[1:]):
+                    (head if run + math.hypot(b[0] - a[0], b[1] - a[1]) <= d else tail).append(b)
+                    run += math.hypot(b[0] - a[0], b[1] - a[1])
+                lines[k] = [q] + tail
+                lines[k + "-in"] = [q] + head[::-1] + [pts[0]]
+        # join order: each line hangs on the line (or the root) its nearer end lies closest to
+        hint = dict(data.get("line_from") or {}, **(data.get("run_from") or {}))
+        parent, todo = {"L1": (None, 0.0, 0.0, "start")}, [k for k in lines if k != "L1"]
+        for k in todo[:]:
+            if math.hypot(lines[k][0][0] - root_pt[0], lines[k][0][1] - root_pt[1]) <= JOIN_PT and "-in" not in k \
+                    and any(x == k + "-in" for x in lines):
+                parent[k] = (None, 0.0, math.hypot(lines[k][0][0] - root_pt[0], lines[k][0][1] - root_pt[1]), "start")
+                parent[k + "-in"] = (None, 0.0, parent[k][2], "start")
+                todo.remove(k)
+                todo.remove(k + "-in")
+        while todo:
+            best = None
+            for k in todo:
+                for end in ("start", "end"):
+                    p = lines[k][0] if end == "start" else lines[k][-1]
+                    for j in parent:
+                        want_j = hint.get(k.split("-")[0])
+                        if want_j and j.split("-")[0] != want_j:   # the route data names the line it hangs on
+                            continue
+                        if k.startswith("L") and not j.startswith("L"):   # a main line hangs on a main line
+                            continue
+                        gap, d = _along(lines[j], p)
+                        if best is None or gap < best[0]:
+                            best = (gap, k, j, d, end)
+            gap, k, j, d, end = best
+            if gap > JOIN_PT:
+                break
+            parent[k] = (j, d, gap, end)
+            todo.remove(k)
+        # events along each line: where children join and where devices sit (distance from the line's own root end)
+        def from_root(k, d):
+            j, _, _, end = parent[k]
+            total = sum(math.hypot(b[0] - a[0], b[1] - a[1]) for a, b in zip(lines[k], lines[k][1:]))
+            return d if end == "start" else total - d
+        ev = collections.defaultdict(list)
+        for k, (j, d, gap, end) in parent.items():
+            if j is not None:
+                ev[j].append((from_root(j, d), "line", k, gap))
+        place = L.setdefault("place", {})
+        want, used = set(), set()
+        for dev in data.get("devices") or []:
+            if spec["harness"] not in dev.get("harness", ""):
+                continue
+            ids = [x.strip() for x in str(dev.get("id", dev["name"])).split("/")]
+            node = place.get(ids[0]) or ids[0]
+            if node in used:   # two devices placed on one old node (MR-S plugs B / C) get a node each
+                node = ids[0].replace("-", "_")
+            used.add(node)
+            on = dev["on"] if dev["on"] in parent else min(parent, key=lambda k: _along(lines[k], dev["at"])[0])
+            gap, d = _along(lines[on], dev["at"])
+            ev[on].append((from_root(on, d), "dev", node, gap, dev))
+            for i in ids:
+                place[i] = node
+            want.add(on)
+        # keep only the lines that lead to a device
+        keep = set()
+        for k in want:
+            while k is not None and k not in keep:
+                keep.add(k)
+                k = parent[k][0]
+        nodes, segs = L["nodes"], L["segments"]
+        fx = lambda p: [round(90 + (p[1] - 160) * 0.35, 1), round((p[0] - 170) * 100.0 / 220.0, 1)]
+        nodes[spec["root"]]["xy"] = fx(root_pt)
+        def build(k, start_node):
+            here, at = start_node, 0.0
+            items = sorted((e for e in ev[k] if e[1] == "dev" or e[2] in keep), key=lambda e: (e[0], e[1]))
+            n_j = 0
+            for e in items:
+                step = max(0.0, e[0] - at) * MM_PER_PT
+                if e[1] == "line":
+                    n_j += 1
+                    jn = "J_%s_%d" % (k, n_j)
+                    nodes[jn] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
+                                 "label": "Route 16 %s: %s joins" % (k, e[2]), "short": "%s / %s" % (k, e[2])}
+                    segs.append([here, jn, int(round(step))])
+                    here, at = jn, e[0]
+                    if e[3] * MM_PER_PT < 1:
+                        build(e[2], jn)
+                    else:
+                        build_stub(e[2], jn, e[3])
+                else:
+                    node, gap, dev = e[2], e[3], e[4]
+                    drop = DROP_MM if dev.get("low") else 0
+                    old = nodes.get(node, {})
+                    nodes[node] = {"xy": fx(dev["at"]), "end": True, "short": old.get("short", dev["name"]),
+                                   "label": "%s (Route 16 device %s on %s%s)" % (
+                                       dev["name"], dev["n"], k, ", low: +%d mm drop" % drop if drop else "")}
+                    if gap * MM_PER_PT + drop >= 1:
+                        tap = "T_%s_%s" % (k, node)
+                        nodes[tap] = {"xy": nodes[node]["xy"], "label": "Route 16 %s: %s stub" % (k, node), "short": ""}
+                        segs.append([here, tap, int(round(step))])
+                        segs.append([tap, node, int(round(gap * MM_PER_PT + drop))])
+                        here, at = tap, e[0]
+                    else:
+                        segs.append([here, node, int(round(step))])
+                        here, at = node, e[0]
+        def build_stub(k, jn, gap):
+            sub = "S_%s" % k
+            nodes[sub] = {"xy": nodes[jn]["xy"], "label": "Route 16 %s joins (%.0f mm gap)" % (k, gap * MM_PER_PT), "short": ""}
+            segs.append([jn, sub, int(round(gap * MM_PER_PT))])
+            build(k, sub)
+        for k in [k for k, v in parent.items() if v[0] is None]:
+            if k in keep:
+                if k == "L1":
+                    build(k, spec["root"])
+                else:
+                    build_stub(k, spec["root"], parent[k][2])
+        # splices, resistors and cable screens whose old node is gone sit where their wires part: the deepest node
+        # common to the paths from the root to every other end of their wires (the root itself is the trunk end)
+        up, todo = {spec["root"]: None}, [spec["root"]]
+        adj = collections.defaultdict(list)
+        for a, b, _ in segs:
+            adj[a].append(b)
+            adj[b].append(a)
+        while todo:
+            n = todo.pop(0)
+            for m in adj[n]:
+                if m not in up:
+                    up[m] = n
+                    todo.append(m)
+        def chain(n):
+            out = []
+            while n is not None:
+                out.append(n)
+                n = up.get(n)
+            return out[::-1]
+        rows = [r for r in master_rows() if r["wire_id"] and spec["harness"] in (r["harness"], r["passes_through"])]
+        for _ in range(4):
+            for c in sorted({r[s + "_id"] for r in rows for s in ("from", "to")} | {r["cable"] for r in rows if r["cable"]}):
+                if not c or place.get(c) in nodes:
+                    continue
+                ends = set()
+                for r in rows:
+                    for s, o in (("from", "to"), ("to", "from")):
+                        if r[s + "_id"] == c or r["cable"] == c:
+                            n = place.get(r[o + "_id"])
+                            if n in up and n != spec["root"]:
+                                ends.add(n)
+                if not ends:   # a cable screen whose only other end is the bulkhead sits with its cable
+                    cab = {place.get(r["cable"]) for r in rows if c in (r["from_id"], r["to_id"]) and r["cable"]}
+                    ends = {n for n in cab if n in up and n != spec["root"]}
+                if not ends:
+                    continue
+                chains = [chain(n) for n in ends]
+                common = [x for x in zip(*chains) if len(set(x)) == 1]
+                place[c] = common[-1][0] if common else spec["root"]
+
+
 def route_pages(path):
     """The approved pages of one route file. SVG figures win; 16 and 17 are the JSON overlay."""
     figs = route_figures(path)
@@ -1895,12 +2121,13 @@ def _paint_route_overlay(S, fig, dest):
         y += 6
         S.text(lx, y, "DEVICES", 7, "hebo")
         y += 12
-        for m in fig["marks"]:
-            label = ("%s  %s" % (m["n"], m["name"])) if m["n"] else m["name"]
-            S.text(lx, y, S.fit(label, dest.x1 - lx - 4, 5.5), 5.5)
-            y += 9
+        top = y
+        for m in fig["marks"]:   # a long list carries on in the next column (nothing left off the sheet)
             if y > dest.y1 - 4:
-                break
+                lx, y = lx + 150, top
+            label = ("%s  %s" % (m["n"], m["name"])) if m["n"] else m["name"]
+            S.text(lx, y, S.fit(label, min(146, dest.x1 - lx - 4), 5.5), 5.5)
+            y += 9
 
 
 def layout_route_page(S, harness, route_file, fig, i, n):

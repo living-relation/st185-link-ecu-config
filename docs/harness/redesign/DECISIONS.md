@@ -37,7 +37,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17
   front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot
   in one file (a moved one is marked REMOVED in the other). Lengths from a route map: map length x 5.3 mm per EWD point
-  (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part, an estimate until measured at the car.
+  (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until
+  measured at the car. The ECU engine harness tree and its master lengths are built from Route 16 (`route_trees` in the
+  layout file); a splice sits where its legs part.
 - **B9 Boundary.** Forward of the firewall every wire is new, on a named route; OEM wire stays only as 6 in pigtails at
   lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B1 / J/B3, R/B2 / R/B4. Removed: README. Pins: 1993 EWD.
 
