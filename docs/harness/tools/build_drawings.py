@@ -1884,11 +1884,12 @@ def add_route_trees(L):
                 ev[j].append((from_root(j, d), "line", k, gap))
         place = L.setdefault("place", {})
         want, used = set(), set()
+        linked = {n for seg in L["segments"] for n in seg[:2]}   # nodes other harnesses' segments already reach
         for dev in data.get("devices") or []:
-            if spec["harness"] not in dev.get("harness", ""):
-                continue
             ids = [x.strip() for x in str(dev.get("id", dev["name"])).split("/")]
             node = place.get(ids[0]) or ids[0]
+            if spec["harness"] not in dev.get("harness", "") and node not in linked:
+                continue
             if node in used:   # two devices placed on one old node (MR-S plugs B / C) get a node each
                 node = ids[0].replace("-", "_")
             used.add(node)
