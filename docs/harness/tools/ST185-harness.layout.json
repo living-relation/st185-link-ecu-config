@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: Routes 3 and 4, each bulkhead-to-device path = the master est_length_mm) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); harness C joins the engine tree at the MR-S pump; they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); harness C joins the engine tree at the MR-S pump; they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -182,351 +182,10 @@
     94,
     26
    ],
-   "label": "DRB102 bulkhead, engine half (RH firewall)",
+   "label": "DRB102 bulkhead, engine half (RH firewall); the engine tree is built from Route 16 (route_trees)",
    "end": true,
    "short": "Bulkhead (DRB102, engine half)",
    "lab": "below"
-  },
-  "BP_ENG_A1": {
-   "xy": [
-    98,
-    32
-   ],
-   "label": "A trunk branch point FP1 (just off the bulkhead, passenger side; Route 3 point 3)",
-   "short": "FP1 branch point (A)",
-   "lab": "left"
-  },
-  "BP_ENG_A2": {
-   "xy": [
-    107,
-    40
-   ],
-   "label": "A trunk branch point FP2 (top of the head, centre; Route 3 point 4)",
-   "short": "FP2 branch point (A)"
-  },
-  "BP_ENG_A3": {
-   "xy": [
-    110,
-    82
-   ],
-   "label": "A trunk branch point FP3 (driver side of the head; Route 3 point 5)",
-   "short": "FP3 branch point (A)"
-  },
-  "CRANK": {
-   "xy": [
-    120,
-    6
-   ],
-   "label": "Crank VR sensor (Dan's 'crank below' spot; Route 3 point 6)",
-   "end": true,
-   "short": "Crank sensor",
-   "lab": "below"
-  },
-  "MRS": {
-   "xy": [
-    133,
-    14
-   ],
-   "label": "MR-S EHPS pump plugs B / C (pump at the old ABS block spot; Route 3 point 7)",
-   "end": true,
-   "short": "MR-S EHPS pump",
-   "lab": "left"
-  },
-  "MAP": {
-   "xy": [
-    104,
-    35
-   ],
-   "label": "MAP sensor (Route 3 point 9)",
-   "end": true,
-   "short": "MAP",
-   "lab": "below"
-  },
-  "IAT": {
-   "xy": [
-    102,
-    47
-   ],
-   "label": "IAT sensor, intake manifold (Route 3 point 8)",
-   "end": true,
-   "short": "IAT (manifold)",
-   "lab": "left"
-  },
-  "ETB": {
-   "xy": [
-    97,
-    78
-   ],
-   "label": "Bosch 74.5 mm ETB (Route 3 point 10)",
-   "end": true,
-   "short": "ETB",
-   "lab": "left"
-  },
-  "FLEX": {
-   "xy": [
-    104,
-    94
-   ],
-   "label": "Flex fuel sensor (driver side, top; Route 3 point 12)",
-   "end": true,
-   "short": "Flex fuel"
-  },
-  "CAM": {
-   "xy": [
-    114,
-    32
-   ],
-   "label": "Cam Hall sensor (centre of the head, behind the COP row; Route 3 point 11)",
-   "end": true,
-   "short": "Cam sensor"
-  },
-  "INJ4": {
-   "xy": [
-    102,
-    74
-   ],
-   "label": "Injector 4 (injector row enters at cyl 4; Route 3 point 13)",
-   "end": true,
-   "short": "Injector 4",
-   "lab": "left"
-  },
-  "INJ3": {
-   "xy": [
-    102,
-    66
-   ],
-   "label": "Injector 3",
-   "end": true,
-   "short": "Injector 3",
-   "lab": "left"
-  },
-  "INJ2": {
-   "xy": [
-    102,
-    60
-   ],
-   "label": "Injector 2",
-   "end": true,
-   "short": "Injector 2",
-   "lab": "left"
-  },
-  "INJ1": {
-   "xy": [
-    102,
-    54
-   ],
-   "label": "Injector 1",
-   "end": true,
-   "short": "Injector 1",
-   "lab": "left"
-  },
-  "COIL4": {
-   "xy": [
-    118,
-    72
-   ],
-   "label": "COP 4 (coil row enters at cyl 4; Route 3 point 14)",
-   "end": true,
-   "short": "COP 4"
-  },
-  "COIL3": {
-   "xy": [
-    118,
-    64
-   ],
-   "label": "COP 3",
-   "end": true,
-   "short": "COP 3"
-  },
-  "COIL2": {
-   "xy": [
-    118,
-    58
-   ],
-   "label": "COP 2",
-   "end": true,
-   "short": "COP 2"
-  },
-  "COIL1": {
-   "xy": [
-    118,
-    52
-   ],
-   "label": "COP 1",
-   "end": true,
-   "short": "COP 1"
-  },
-  "ENG_BLOCK": {
-   "xy": [
-    112,
-    50
-   ],
-   "label": "Engine block ground stud (RADLOK engine ground H6; Route 1 point 5)",
-   "end": true,
-   "short": "Engine block ground stud",
-   "lab": "below"
-  },
-  "TURBO": {
-   "xy": [
-    114,
-    90
-   ],
-   "label": "Turbo speed sensor (Route 3 point 17)",
-   "end": true,
-   "short": "Turbo speed"
-  },
-  "BOOST": {
-   "xy": [
-    122,
-    96
-   ],
-   "label": "Boost control solenoid (Route 3 point 16)",
-   "end": true,
-   "short": "Boost solenoid"
-  },
-  "ECT": {
-   "xy": [
-    126,
-    86
-   ],
-   "label": "ECT sensor (Route 3 point 15)",
-   "end": true,
-   "short": "ECT"
-  },
-  "BP_ENG_B0": {
-   "xy": [
-    96,
-    16
-   ],
-   "label": "B trunk branch point FP0 (passenger leg; Route 4 point 3)",
-   "short": "FP0 branch point (B)",
-   "lab": "left"
-  },
-  "LAMJ": {
-   "xy": [
-    101,
-    10
-   ],
-   "label": "CAN-Lambda joins: CAN H / L, +12 V and ground splices (240 mm from the bulkhead)",
-   "end": true,
-   "short": "CAN-Lambda splices",
-   "lab": "below"
-  },
-  "LAMBDA": {
-   "xy": [
-    108,
-    3
-   ],
-   "label": "Link CAN-Lambda controller (wideband O2; Route 4 point 8)",
-   "end": true,
-   "short": "CAN-Lambda",
-   "lab": "below"
-  },
-  "OILT": {
-   "xy": [
-    108,
-    18
-   ],
-   "label": "Oil temp sender (Route 4 point 7)",
-   "end": true,
-   "short": "Oil temp"
-  },
-  "BP_ENG_B1": {
-   "xy": [
-    94,
-    44
-   ],
-   "label": "B trunk branch point FP1 (rear of block, centre; Route 4 point 4)",
-   "short": "FP1 branch point (B)",
-   "lab": "left"
-  },
-  "KNOCK": {
-   "xy": [
-    98,
-    38
-   ],
-   "label": "Knock sensor 1 (factory K1 leader; Route 4 point 9)",
-   "end": true,
-   "short": "Knock 1",
-   "lab": "below"
-  },
-  "BP_ENG_B2": {
-   "xy": [
-    94,
-    64
-   ],
-   "label": "B trunk branch point FP2 (rear of block, driver side; Route 4 point 5)",
-   "short": "FP2 branch point (B)",
-   "lab": "left"
-  },
-  "FUELP": {
-   "xy": [
-    97,
-    60
-   ],
-   "label": "Fuel pressure sensor (Route 4 point 10)",
-   "end": true,
-   "short": "Fuel pressure",
-   "lab": "below"
-  },
-  "OILP": {
-   "xy": [
-    97,
-    70
-   ],
-   "label": "Oil pressure sensor (Route 4 point 12)",
-   "end": true,
-   "short": "Oil pressure",
-   "lab": "above"
-  },
-  "CLNTP": {
-   "xy": [
-    97,
-    82
-   ],
-   "label": "Coolant pressure sensor (rear of block, driver side; Route 4 point 11)",
-   "end": true,
-   "short": "Coolant pressure",
-   "lab": "left"
-  },
-  "BP_ENG_B3": {
-   "xy": [
-    95,
-    90
-   ],
-   "label": "B trunk branch point FP3 (driver side, low; Route 4 point 6)",
-   "short": "FP3 branch point (B)",
-   "lab": "left"
-  },
-  "CHIAT": {
-   "xy": [
-    97,
-    99
-   ],
-   "label": "Charge-pipe IAT sensor (Route 4 point 13)",
-   "end": true,
-   "short": "Charge-pipe IAT",
-   "lab": "above"
-  },
-  "VSS": {
-   "xy": [
-    110,
-    100
-   ],
-   "label": "Gearbox VSS (spot estimated in Route 4, point 14)",
-   "end": true,
-   "short": "Gearbox VSS",
-   "lab": "above"
-  },
-  "REVSW": {
-   "xy": [
-    119,
-    100
-   ],
-   "label": "Back-up (reverse) switch B1 on the transaxle - spot TBD (not on Route 4)",
-   "end": true,
-   "short": "Reverse switch (TBD spot)",
-   "lab": "above"
   },
   "FW_STR": {
    "xy": [
@@ -537,15 +196,6 @@
    "short": "RADLOK pair (cabin side)",
    "lab": "below",
    "end": true
-  },
-  "STARTER": {
-   "xy": [
-    126,
-    60
-   ],
-   "label": "Starter solenoid S (50) post (starter: lower-middle of the engine; Route 1 point 2)",
-   "end": true,
-   "short": "Starter S post"
   },
   "CLUSTER": {
    "xy": [
@@ -944,194 +594,9 @@
    50
   ],
   [
-   "BH_ENG",
-   "BP_ENG_A1",
-   100
-  ],
-  [
-   "BP_ENG_A1",
-   "CRANK",
-   1410
-  ],
-  [
-   "BP_ENG_A1",
-   "MRS",
-   1360
-  ],
-  [
-   "BP_ENG_A1",
-   "BP_ENG_A2",
-   200
-  ],
-  [
-   "BP_ENG_A2",
-   "MAP",
-   130
-  ],
-  [
-   "BP_ENG_A2",
-   "IAT",
-   400
-  ],
-  [
-   "BP_ENG_A2",
-   "ETB",
-   430
-  ],
-  [
-   "BP_ENG_A2",
-   "FLEX",
-   230
-  ],
-  [
-   "BP_ENG_A2",
-   "CAM",
-   850
-  ],
-  [
-   "BP_ENG_A2",
-   "INJ4",
-   160
-  ],
-  [
-   "INJ4",
-   "INJ3",
-   180
-  ],
-  [
-   "INJ3",
-   "INJ2",
-   380
-  ],
-  [
-   "INJ2",
-   "INJ1",
-   170
-  ],
-  [
-   "BP_ENG_A2",
-   "COIL4",
-   100
-  ],
-  [
-   "COIL4",
-   "COIL3",
-   160
-  ],
-  [
-   "COIL3",
-   "COIL2",
-   180
-  ],
-  [
-   "COIL2",
-   "COIL1",
-   180
-  ],
-  [
-   "BP_ENG_A2",
-   "ENG_BLOCK",
-   300
-  ],
-  [
-   "BP_ENG_A2",
-   "BP_ENG_A3",
-   450
-  ],
-  [
-   "BP_ENG_A3",
-   "TURBO",
-   150
-  ],
-  [
-   "BP_ENG_A3",
-   "BOOST",
-   280
-  ],
-  [
-   "BP_ENG_A3",
-   "ECT",
-   700
-  ],
-  [
-   "BH_ENG",
-   "BP_ENG_B0",
-   150
-  ],
-  [
-   "BP_ENG_B0",
-   "LAMJ",
-   90
-  ],
-  [
-   "LAMJ",
-   "LAMBDA",
-   150
-  ],
-  [
-   "BP_ENG_B0",
-   "OILT",
-   960
-  ],
-  [
-   "BH_ENG",
-   "BP_ENG_B1",
-   200
-  ],
-  [
-   "BP_ENG_B1",
-   "KNOCK",
-   1260
-  ],
-  [
-   "BP_ENG_B1",
-   "BP_ENG_B2",
-   200
-  ],
-  [
-   "BP_ENG_B2",
-   "FUELP",
-   30
-  ],
-  [
-   "BP_ENG_B2",
-   "OILP",
-   580
-  ],
-  [
-   "BP_ENG_B2",
-   "CLNTP",
-   1020
-  ],
-  [
-   "BP_ENG_B2",
-   "BP_ENG_B3",
-   300
-  ],
-  [
-   "BP_ENG_B3",
-   "CHIAT",
-   360
-  ],
-  [
-   "BP_ENG_B3",
-   "VSS",
-   680
-  ],
-  [
-   "BP_ENG_B3",
-   "REVSW",
-   880
-  ],
-  [
    "GB",
    "FW_STR",
    400
-  ],
-  [
-   "BP_ENG_A2",
-   "STARTER",
-   450
   ],
   [
    "CANJ",
@@ -1294,6 +759,13 @@
    210
   ]
  ],
+ "route_trees": [
+  {
+   "route": "ROUTE-16-ENGINE-MAIN.html",
+   "root": "BH_ENG",
+   "harness": "AB-engine"
+  }
+ ],
  "end_allowance_mm": 100,
  "place": {
   "ECU-A": "ECU",
@@ -1392,7 +864,6 @@
   "ECT": "ECT",
   "SP-CANH-LAM": "LAMJ",
   "SP-CANL-LAM": "LAMJ",
-  "CAB-CAN-LAM": "LAMJ",
   "SP-LAM12-B": "LAMJ",
   "SP-LAMG-B": "LAMJ",
   "CAN-LAMBDA": "LAMBDA",
@@ -1683,7 +1154,10 @@
    "ACAMP"
   ]
  ],
- "wirelists": ["AB-cabin", "AB-engine"],
+ "wirelists": [
+  "AB-cabin",
+  "AB-engine"
+ ],
  "harnesses": [
   "AB-cabin",
   "AB-engine",

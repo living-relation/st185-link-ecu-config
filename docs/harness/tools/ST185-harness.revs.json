@@ -64,6 +64,13 @@
    "by": "DG",
    "what": "Crank and cam each run in one shielded Raychem cable (2-core / 3-core). The CAN-Lambda branch is all ECU engine harness: shielded pair to splices and the 120R terminator behind the Lambda plug. Starter S crosses the bulkhead on cavity 3 (12 AWG, size 12). ECU-B 10 tach contact is the 20 AWG Superseal.",
    "marks": "CAB-CRANK 2-core; CAB-CAM 3-core; CAN-Lambda terminator at plug; w_strl_c / w_strl_e on DRB102 3; w_tach contact"
+  },
+  {
+   "rev": "J",
+   "date": "2026-10-28",
+   "by": "DG",
+   "what": "ECU engine harness layout tree built from Route 16 (Dan's device spots and branches, DECISIONS B8) in place of the old Route 3 / 4 tree. Lengths = map length x 5.3 mm per EWD point + 300 mm drop for low parts (crank, knock, starter, VSS, reverse switch, oil pressure, oil temp, engine ground); estimates until measured. Engine splices sit where their legs part.",
+   "marks": "AB-engine tree from Route 16; AB-engine est. lengths"
   }
  ]
 }
