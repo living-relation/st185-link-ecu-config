@@ -39,6 +39,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 - **Next question ID:** N65.
 - **Last cleanup:** 2026-10-28 @ b1a75ae (session-start drift baseline; stale local branch and stash removed).
 - **Hook:** none installed; automation registry skipped (Dan 2026-10-28, freeze).
+- **Agent-ready, no overlap with the route work (2026-10-28):** row 168 (CAN-Lambda power / ground pigtails 20 -> 18 AWG if the DTM size 20 contact takes it), row 157 (`w_fp85` route branch and length), row 145 (EWD page for 4 factory leads), row 156 (1990 / 1992 pin cites vs the 1993 EWD). Suggested order 168, 157, 145, 156; one branch and PR each. Rows 157 and 156 edit the master, so rebase on any route-work change.
 
 Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as Housekeeping); rows in the setup-time table below count as Tune-ECU setup-time (RealDash rows as RealDash); Deferred, Blocked and On hold rows count as open; the "Parked (out of scope)" table is not counted (R102).
 
