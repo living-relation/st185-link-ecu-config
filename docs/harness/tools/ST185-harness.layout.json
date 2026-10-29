@@ -763,7 +763,8 @@
   {
    "route": "ROUTE-16-ENGINE-MAIN.html",
    "root": "BH_ENG",
-   "harness": "AB-engine"
+   "harness": "AB-engine",
+   "root_drop_mm": 203
   }
  ],
  "end_allowance_mm": 100,

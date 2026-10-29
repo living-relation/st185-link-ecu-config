@@ -83,8 +83,8 @@
    "rev": "L",
    "date": "2026-10-29",
    "by": "DG",
-   "what": "Every connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector on a line may end it (Dan 2026-10-29). Cam, coils 2-4 and CAN-Lambda get 6 in breakouts; stub taps drawn on the route line.",
-   "marks": "AB-engine est. lengths: cam, coils 2-4, CAN-Lambda"
+   "what": "Every connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector on a line may end it (Dan 2026-10-29). Cam, coils 2-4 and CAN-Lambda get 6 in breakouts; stub taps drawn on the route line. The engine bulkhead sits 8 in (203 mm) above where the trunk meets the firewall: every engine harness wire from the bulkhead is 203 mm longer.",
+   "marks": "AB-engine est. lengths: cam, coils 2-4, CAN-Lambda; bulkhead 8 in drop (+203 mm on 63 bulkhead wires)"
   }
  ]
 }

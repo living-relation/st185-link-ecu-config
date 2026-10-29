@@ -1951,12 +1951,18 @@ def add_route_trees(L):
             nodes[sub] = {"xy": nodes[jn]["xy"], "label": "Route 16 %s joins (%.0f mm gap)" % (k, gap * MM_PER_PT), "short": ""}
             segs.append([jn, sub, int(round(gap * MM_PER_PT))])
             build(k, sub)
+        start = spec["root"]
+        if spec.get("root_drop_mm"):   # the bulkhead sits this far above where the trunk meets the firewall (Dan 2026-10-29)
+            start = "J_%s_drop" % spec["root"]
+            nodes[start] = {"xy": nodes[spec["root"]]["xy"], "label": "Route 16: trunk meets the firewall below the bulkhead",
+                            "short": ""}
+            segs.append([spec["root"], start, int(spec["root_drop_mm"])])
         for k in [k for k, v in parent.items() if v[0] is None]:
             if k in keep:
                 if k == "L1":
-                    build(k, spec["root"])
+                    build(k, start)
                 else:
-                    build_stub(k, spec["root"], parent[k][2])
+                    build_stub(k, start, parent[k][2])
         # splices, resistors and cable screens whose old node is gone sit where their wires part: the deepest node
         # common to the paths from the root to every other end of their wires (the root itself is the trunk end)
         up, todo = {spec["root"]: None}, [spec["root"]]
