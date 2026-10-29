@@ -206,9 +206,9 @@ Shield: no
 
 | Pin | Name |
 |---|---|
-| 1 | GND |
-| 2 | Supply + |
-| 3 | Output |
+| A | GND |
+| B | Supply + |
+| C | Output |
 
 **Oil temp — Lowdoller 153299**
 
@@ -284,17 +284,18 @@ Racer X kit, Cherry/ZF GS1007 Hall, single tooth.
 - **Pull-up: 1.8 kΩ**, bought separately. The ZF datasheet maps resistor to supply
   (1k @ 5V, 1.8k @ 9V, 2.4k @ 12V); 8V interpolates to about 1.6k, and 1.8k is the
   nearest standard value. The 2.4 kΩ the kit ships is sized for 12V and is not used.
-- Needs a connector — the kit pigtail is a placeholder. Still to be chosen.
+- Connector (Dan 2026-10-29): the sensor's bare leads get a DT04-3P + W3P + 0460-202-16141 pins; the harness
+  side is DT06-3S-CE05 + W3S + 0462-201-16141. The pins take 16-20 AWG: the lead gauge is still to be checked.
 
-Pin numbers are not in this repo.
+Pins are the DT cavity numbers (moulded on the housing); lead colours from Dan's sensor sheet.
 
 Shield: yes
 
-| Pin | Name |
-|---|---|
-|  | +8V |
-|  | signal |
-|  | ground |
+| Pin | Name | Sensor lead |
+|---|---|---|
+| 1 | +8V | brown |
+| 2 | signal | black |
+| 3 | ground | blue |
 
 **Knock**
 
