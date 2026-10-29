@@ -34,6 +34,10 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
+  Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17
+  front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot
+  in one file (a moved one is marked REMOVED in the other). Lengths from a route map: map length x 5.3 mm per EWD point
+  (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part, an estimate until measured at the car.
 - **B9 Boundary.** Forward of the firewall every wire is new, on a named route; OEM wire stays only as 6 in pigtails at
   lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B1 / J/B3, R/B2 / R/B4. Removed: README. Pins: 1993 EWD.
 
