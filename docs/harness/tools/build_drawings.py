@@ -1774,6 +1774,7 @@ def route_json_figure(path):
 # + 300 mm drop for a low-mounted part (device "low": true), an estimate until measured at the car.
 MM_PER_PT = 5.3
 DROP_MM = 300
+MIN_BREAKOUT_MM = 152   # a connector part-way along a line sits at least 6 in off it; the last one on a line may end it
 JOIN_PT = 15.0   # a line or branch end this close to another line joins it
 
 
@@ -1912,7 +1913,7 @@ def add_route_trees(L):
             here, at = start_node, 0.0
             items = sorted((e for e in ev[k] if e[1] == "dev" or e[2] in keep), key=lambda e: (e[0], e[1]))
             n_j = 0
-            for e in items:
+            for i_e, e in enumerate(items):
                 step = max(0.0, e[0] - at) * MM_PER_PT
                 if e[1] == "line":
                     n_j += 1
@@ -1932,11 +1933,15 @@ def add_route_trees(L):
                     nodes[node] = {"xy": fx(dev["at"]), "end": True, "short": old.get("short", dev["name"]),
                                    "label": "%s (Route 16 device %s on %s%s)" % (
                                        dev["name"], dev["n"], k, ", low: +%d mm drop" % drop if drop else "")}
-                    if gap * MM_PER_PT + drop >= 1:
+                    stub = gap * MM_PER_PT + drop
+                    if i_e < len(items) - 1:   # the line goes on past it: a breakout of at least 6 in (Dan 2026-10-29)
+                        stub = max(stub, MIN_BREAKOUT_MM)
+                    if stub >= 1:
                         tap = "T_%s_%s" % (k, node)
-                        nodes[tap] = {"xy": nodes[node]["xy"], "label": "Route 16 %s: %s stub" % (k, node), "short": ""}
+                        nodes[tap] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
+                                      "label": "Route 16 %s: %s stub" % (k, node), "short": ""}
                         segs.append([here, tap, int(round(step))])
-                        segs.append([tap, node, int(round(gap * MM_PER_PT + drop))])
+                        segs.append([tap, node, int(round(stub))])
                         here, at = tap, e[0]
                     else:
                         segs.append([here, node, int(round(step))])

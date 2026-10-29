@@ -78,6 +78,13 @@
    "by": "DG",
    "what": "Ignition coil ground goes straight to the glove-box POWER box NEG bar through bulkhead cavity 4 (12 AWG engine side, 14 AWG cabin side, like the coil feed on cavity 1), not to the engine block stud. Coil ground splice now at coil 4.",
    "marks": "w_cop_gnd_e_ae / w_cop_gnd_ac on DRB102 4; ENG-GND-RING removed"
+  },
+  {
+   "rev": "L",
+   "date": "2026-10-29",
+   "by": "DG",
+   "what": "Every connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector on a line may end it (Dan 2026-10-29). Cam, coils 2-4 and CAN-Lambda get 6 in breakouts; stub taps drawn on the route line.",
+   "marks": "AB-engine est. lengths: cam, coils 2-4, CAN-Lambda"
   }
  ]
 }
