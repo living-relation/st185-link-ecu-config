@@ -28,6 +28,22 @@ Generated views that are not committed (R221): the pinout `.xlsx` and thumbnails
    `python docs/sourcing/build_project_bom.py` for the shopping list.
 4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
 
+## harness.design copy (optional, never a source)
+
+A harness.design document is only a viewer of the master (DECISIONS B6); nothing in it is edited back. AB-engine:
+https://app.harness.design/lDDj (Rev K). How these are built and kept right (repo notes; the global `harness-design`
+skill is not changed for this project):
+- Built from the master + the `route_trees` layout tree by a throwaway script (freeze: none is committed). New or
+  regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
+- Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
+- Layout: keep each device and junction at its Route 16 spot; bundles follow the route corners, lightly smoothed (slants
+  fine, no staircases or rapid turns). Change it in small steps; never swap in a different layout method (Dan 2026-10-29).
+- Schematic: bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
+  horizontal into its pin; no two signals on one line.
+- Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
+  `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
+- The Pro plan (revisions work) has no connection limit, so AB-cabin can be one document.
+
 ## Harnesses in the master
 
 `AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,

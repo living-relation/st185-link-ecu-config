@@ -39,7 +39,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   in one file (a moved one is marked REMOVED in the other). Lengths from a route map: map length x 5.3 mm per EWD point
   (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until
   measured at the car. The ECU engine harness tree and its master lengths are built from Route 16 (`route_trees` in the
-  layout file); a splice sits where its legs part.
+  layout file); a splice sits where its legs part. A connector part-way along a line or run breaks out at least 6 in
+  (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29). The engine bulkhead sits 8 in
+  (203 mm) above where the trunk meets the firewall (`root_drop_mm`; Dan 2026-10-29).
 - **B9 Boundary.** Forward of the firewall every wire is new, on a named route; OEM wire stays only as 6 in pigtails at
   lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B1 / J/B3, R/B2 / R/B4. Removed: README. Pins: 1993 EWD.
 
@@ -47,6 +49,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B10 Grounds.** ECU power grounds (A25, A34, B25, B34) splice together, one wire to the POWER box battery-negative
   bar. Sensor ground/return (not power, not the signal) to Gnd Out; shield drain only to the ECU shield pin; electronics to the battery-negative bus; heavy loads may use chassis.
+  The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4, not the engine block (Dan 2026-10-29).
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
 - **B12 Wire gauge.** Size a wire for the device's peak current plus margin (when in doubt, the larger) and at least for

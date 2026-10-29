@@ -1774,6 +1774,7 @@ def route_json_figure(path):
 # + 300 mm drop for a low-mounted part (device "low": true), an estimate until measured at the car.
 MM_PER_PT = 5.3
 DROP_MM = 300
+MIN_BREAKOUT_MM = 152   # a connector part-way along a line sits at least 6 in off it; the last one on a line may end it
 JOIN_PT = 15.0   # a line or branch end this close to another line joins it
 
 
@@ -1884,11 +1885,12 @@ def add_route_trees(L):
                 ev[j].append((from_root(j, d), "line", k, gap))
         place = L.setdefault("place", {})
         want, used = set(), set()
+        linked = {n for seg in L["segments"] for n in seg[:2]}   # nodes other harnesses' segments already reach
         for dev in data.get("devices") or []:
-            if spec["harness"] not in dev.get("harness", ""):
-                continue
             ids = [x.strip() for x in str(dev.get("id", dev["name"])).split("/")]
             node = place.get(ids[0]) or ids[0]
+            if spec["harness"] not in dev.get("harness", "") and node not in linked:
+                continue
             if node in used:   # two devices placed on one old node (MR-S plugs B / C) get a node each
                 node = ids[0].replace("-", "_")
             used.add(node)
@@ -1911,7 +1913,7 @@ def add_route_trees(L):
             here, at = start_node, 0.0
             items = sorted((e for e in ev[k] if e[1] == "dev" or e[2] in keep), key=lambda e: (e[0], e[1]))
             n_j = 0
-            for e in items:
+            for i_e, e in enumerate(items):
                 step = max(0.0, e[0] - at) * MM_PER_PT
                 if e[1] == "line":
                     n_j += 1
@@ -1931,11 +1933,15 @@ def add_route_trees(L):
                     nodes[node] = {"xy": fx(dev["at"]), "end": True, "short": old.get("short", dev["name"]),
                                    "label": "%s (Route 16 device %s on %s%s)" % (
                                        dev["name"], dev["n"], k, ", low: +%d mm drop" % drop if drop else "")}
-                    if gap * MM_PER_PT + drop >= 1:
+                    stub = gap * MM_PER_PT + drop
+                    if i_e < len(items) - 1:   # the line goes on past it: a breakout of at least 6 in (Dan 2026-10-29)
+                        stub = max(stub, MIN_BREAKOUT_MM)
+                    if stub >= 1:
                         tap = "T_%s_%s" % (k, node)
-                        nodes[tap] = {"xy": nodes[node]["xy"], "label": "Route 16 %s: %s stub" % (k, node), "short": ""}
+                        nodes[tap] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
+                                      "label": "Route 16 %s: %s stub" % (k, node), "short": ""}
                         segs.append([here, tap, int(round(step))])
-                        segs.append([tap, node, int(round(gap * MM_PER_PT + drop))])
+                        segs.append([tap, node, int(round(stub))])
                         here, at = tap, e[0]
                     else:
                         segs.append([here, node, int(round(step))])
@@ -1945,12 +1951,18 @@ def add_route_trees(L):
             nodes[sub] = {"xy": nodes[jn]["xy"], "label": "Route 16 %s joins (%.0f mm gap)" % (k, gap * MM_PER_PT), "short": ""}
             segs.append([jn, sub, int(round(gap * MM_PER_PT))])
             build(k, sub)
+        start = spec["root"]
+        if spec.get("root_drop_mm"):   # the bulkhead sits this far above where the trunk meets the firewall (Dan 2026-10-29)
+            start = "J_%s_drop" % spec["root"]
+            nodes[start] = {"xy": nodes[spec["root"]]["xy"], "label": "Route 16: trunk meets the firewall below the bulkhead",
+                            "short": ""}
+            segs.append([spec["root"], start, int(spec["root_drop_mm"])])
         for k in [k for k, v in parent.items() if v[0] is None]:
             if k in keep:
                 if k == "L1":
-                    build(k, spec["root"])
+                    build(k, start)
                 else:
-                    build_stub(k, spec["root"], parent[k][2])
+                    build_stub(k, start, parent[k][2])
         # splices, resistors and cable screens whose old node is gone sit where their wires part: the deepest node
         # common to the paths from the root to every other end of their wires (the root itself is the trunk end)
         up, todo = {spec["root"]: None}, [spec["root"]]

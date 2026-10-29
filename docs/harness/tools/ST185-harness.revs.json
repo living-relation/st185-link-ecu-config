@@ -71,6 +71,20 @@
    "by": "DG",
    "what": "ECU engine harness layout tree built from Route 16 (Dan's device spots and branches, DECISIONS B8) in place of the old Route 3 / 4 tree. Lengths = map length x 5.3 mm per EWD point + 300 mm drop for low parts (crank, knock, starter, VSS, reverse switch, oil pressure, oil temp, engine ground); estimates until measured. Engine splices sit where their legs part.",
    "marks": "AB-engine tree from Route 16; AB-engine est. lengths"
+  },
+  {
+   "rev": "K",
+   "date": "2026-10-29",
+   "by": "DG",
+   "what": "Ignition coil ground goes straight to the glove-box POWER box NEG bar through bulkhead cavity 4 (12 AWG engine side, 14 AWG cabin side, like the coil feed on cavity 1), not to the engine block stud. Coil ground splice now at coil 4.",
+   "marks": "w_cop_gnd_e_ae / w_cop_gnd_ac on DRB102 4; ENG-GND-RING removed"
+  },
+  {
+   "rev": "L",
+   "date": "2026-10-29",
+   "by": "DG",
+   "what": "Every connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector on a line may end it (Dan 2026-10-29). Cam, coils 2-4 and CAN-Lambda get 6 in breakouts; stub taps drawn on the route line. The engine bulkhead sits 8 in (203 mm) above where the trunk meets the firewall: every engine harness wire from the bulkhead is 203 mm longer.",
+   "marks": "AB-engine est. lengths: cam, coils 2-4, CAN-Lambda; bulkhead 8 in drop (+203 mm on 63 bulkhead wires)"
   }
  ]
 }
