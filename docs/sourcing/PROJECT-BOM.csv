@@ -253,8 +253,8 @@ Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed ye
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (FUEL-PUMP) (check_wiring.py --tbd),2,ea,0,2,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (JUMP-POST) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (KILL-SW) (check_wiring.py --tbd),5,ea,0,5,,,,,,NO LINK,no maker document in the repo yet; never guessed
-Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (MRS-B) (check_wiring.py --tbd),4,ea,0,4,,,,,,NO LINK,no maker document in the repo yet; never guessed
-Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (MRS-C) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
+Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (MRS-B) (check_wiring.py --tbd),6,ea,0,6,,,,,,NO LINK,no maker document in the repo yet; never guessed
+Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (MRS-C) (check_wiring.py --tbd),3,ea,0,3,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: diode (D-CHG) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: diode (D-HB) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: diode (D-OIL) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
