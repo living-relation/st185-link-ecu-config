@@ -103,6 +103,8 @@ SENSOR_IDS = {
     "CRANK", "CAM", "MAP", "IAT", "ECT", "FLEX", "TURBO-SPD", "OIL-T", "KNOCK-1",
     "FUEL-P", "OIL-P", "CLNT-P", "CHARGE-IAT", "VSS", "WSS-FL", "WSS-FR", "WSS-RL",
     "WSS-RR", "APS-PEDAL", "FUEL-LEVEL", "REV-SW", "A5", "A1",
+    # plugs Dan already owns that are not sensors (Dan 2026-10-30): the 1ZZ coil plugs and the MR-S pump plugs
+    "COIL-1", "COIL-2", "COIL-3", "COIL-4", "MRS-A", "MRS-B", "MRS-C",
 }
 SENSOR_PN = set()
 
