@@ -171,6 +171,7 @@ Wire harness,All harnesses (master wire list),90980-10942,,,,1,ea,0,1,,,,,,NO LI
 Wire harness,All harnesses (master wire list),90980-11062,Toyota,,"CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS",4,ea,4,0,4.52,,https://www.ksvlooms.com/products/2-way-connector-kit-for-toyota-lexus-90980-11062-water-temperature-sensor-22-18-awg?variant=11482559741994,,"KSV Looms, 2026-10-20; equivalent connector kit, not the OEM part: confirm it fits","vendor page read 2026-10-20 (products.json), in stock",on hand (sensor plug / terminal: never a buy)
 Wire harness,All harnesses (master wire list),90980-11143,Toyota,,"CONNECTOR, PLUG, TOYOTA OVAL, 3 POS, SOCKET CONTACTS",1,ea,1,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)
 Wire harness,All harnesses (master wire list),90980-11250,Toyota,,"CONNECTOR, PLUG, TOYOTA, 2 POS, SOCKET CONTACTS (HOUSING CONNECTOR F), BACK-UP LIGHT SWITCH",1,ea,1,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)
+Wire harness,All harnesses (master wire list),90980-11400,Toyota,,"CONNECTOR, PLUG, TOYOTA / SUMITOMO TS187, 1 POS, SEALED, 4.8 MM FEMALE, STARTER S TERMINAL",1,ea,0,1,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),90980-11885,Toyota,,"CONNECTOR, PLUG, TOYOTA, 4 POS",4,ea,0,4,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),90980-12068,,,,1,ea,0,1,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),BC-1/0-BLK,generic,,"CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",28,ft,0,28,,,,,,NO LINK,7.2 m in the master + 15% margin
@@ -268,7 +269,6 @@ Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed ye
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (GND-EB) (check_wiring.py --tbd),4,ea,0,4,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (GND-ID) (check_wiring.py --tbd),2,ea,0,2,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (GND-IG) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
-Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (STARTER-TRIGGER) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (T-ALT-B) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (T-AT-GND) (check_wiring.py --tbd),2,ea,0,2,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: lug / terminal (T-AT-GND-B) (check_wiring.py --tbd),2,ea,0,2,,,,,,NO LINK,no maker document in the repo yet; never guessed
@@ -296,5 +296,6 @@ Wire harness,All harnesses (master wire list),W8S,TE DEUTSCH,✓ TE,"WEDGELOCK, 
 Wire harness,All harnesses (master wire list),WM-4S,TE DEUTSCH,✓ TE,"WEDGELOCK, DTM, 4 POS, PLUG",1,ea,0,1,0.28,0.28,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/WM-4S/6566615,,"Digi-Key qty 1 (Box), 2026-10-20",Digi-Key API 2026-10-20: 12271 in stock,
 Wire harness,All harnesses (master wire list),WM-6S,Deutsch,✓ TE,"WEDGELOCK, DTM, 6 POS, PLUG",1,ea,0,1,0.31,0.31,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/WM-6S/6566617,,"Digi-Key qty 1 (Box), 2026-10-20",Digi-Key API 2026-10-20: 2478 in stock,
 Wire harness,All harnesses (master wire list),in kit 354404,,,,9,ea,9,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)
+Wire harness,All harnesses (master wire list),"in kit CONN-76058 (Sumitomo TS187 4.8 mm sealed female, 12-10 AWG)",,,,1,ea,0,1,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),in kit D 261 205 358-01,,,,6,ea,0,6,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),pigtail supplied with the sensor (owned),,,,1,ea,1,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)
