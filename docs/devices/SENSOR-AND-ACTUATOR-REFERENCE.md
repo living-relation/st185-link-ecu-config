@@ -204,11 +204,14 @@ Shield: no
 
 Shield: no
 
-| Pin | Name |
-|---|---|
-| A | GND |
-| B | Supply + |
-| C | Output |
+Comes with its own pigtail (Dan owns it): a 3-way plug on the sensor, bare leads on the other end; the harness
+solder-splices to the leads. Plug pin numbers and colours from the seller's connection guide (Dan 2026-10-30).
+
+| Pin | Plug pin | Name | Pigtail lead |
+|---|---|---|---|
+| A | 1 | GND | black |
+| B | 2 | Supply + | red |
+| C | 3 | Output | green |
 
 **Oil temp — Lowdoller 153299**
 
@@ -285,7 +288,8 @@ Racer X kit, Cherry/ZF GS1007 Hall, single tooth.
   (1k @ 5V, 1.8k @ 9V, 2.4k @ 12V); 8V interpolates to about 1.6k, and 1.8k is the
   nearest standard value. The 2.4 kΩ the kit ships is sized for 12V and is not used.
 - Connector (Dan 2026-10-29): the sensor's bare leads get a DT04-3P + W3P + 0460-202-16141 pins; the harness
-  side is DT06-3S-CE05 + W3S + 0462-201-16141. The pins take 16-20 AWG: the lead gauge is still to be checked.
+  side is DT06-3S-CE05 + W3S + 0462-201-16141. The pins take 16-20 AWG; the GS100701 leads are 20 AWG x 1 m (ZF datasheet
+  GS1005-GS1007, 2024-09-11, in Dan's Drive), so they fit.
 
 Pins are the DT cavity numbers (moulded on the housing); lead colours from Dan's sensor sheet.
 
