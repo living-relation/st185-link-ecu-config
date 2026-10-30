@@ -241,7 +241,6 @@ Wire harness,All harnesses (master wire list),RNF-100-3/32-6-STK,TE Connectivity
 Wire harness,All harnesses (master wire list),RNF-100-3/32-9-STK,TE Connectivity (Raychem),,"TUBING, HEAT SHRINK, RNF-100, WHITE, 2:1, 2.4 MM EXPANDED ID, 1.2 MM RECOVERED ID, 1.2 M STICK",3,stick,0,3,0.00,0.00,,,not priced (Dan),404: te.com URL form is not a product page (checked 2026-10-19); find the real page,"402 bands of 6 mm, both ends of each wire"
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (ALT-PLUG) (check_wiring.py --tbd),3,ea,0,3,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (APS-PEDAL) (check_wiring.py --tbd),6,ea,0,6,,,,,,NO LINK,no maker document in the repo yet; never guessed
-Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (CLNT-P) (check_wiring.py --tbd),3,ea,0,3,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (COIL-1) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (COIL-2) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: contact / plug (COIL-3) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
@@ -261,7 +260,6 @@ Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed ye
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: diode (D-TL) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: diode (D-TR) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: housing (APS-PEDAL) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
-Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: housing (CLNT-P) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: housing (FUEL-PUMP) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: housing (JUMP-POST) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
 Wire harness,All harnesses (master wire list),TBD,,,part number not confirmed yet: housing (OPTO-8) (check_wiring.py --tbd),1,ea,0,1,,,,,,NO LINK,no maker document in the repo yet; never guessed
@@ -299,3 +297,4 @@ Wire harness,All harnesses (master wire list),WM-4S,TE DEUTSCH,✓ TE,"WEDGELOCK
 Wire harness,All harnesses (master wire list),WM-6S,Deutsch,✓ TE,"WEDGELOCK, DTM, 6 POS, PLUG",1,ea,0,1,0.31,0.31,https://www.digikey.com/en/products/detail/te-connectivity-deutsch-ict-connectors/WM-6S/6566617,,"Digi-Key qty 1 (Box), 2026-10-20",Digi-Key API 2026-10-20: 2478 in stock,
 Wire harness,All harnesses (master wire list),in kit 354404,,,,9,ea,9,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)
 Wire harness,All harnesses (master wire list),in kit D 261 205 358-01,,,,6,ea,0,6,,,,,,NO LINK,
+Wire harness,All harnesses (master wire list),pigtail supplied with the sensor (owned),,,,1,ea,1,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)

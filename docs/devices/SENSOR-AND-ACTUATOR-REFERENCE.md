@@ -204,11 +204,14 @@ Shield: no
 
 Shield: no
 
-| Pin | Name |
-|---|---|
-| A | GND |
-| B | Supply + |
-| C | Output |
+Comes with its own pigtail (Dan owns it): a 3-way plug on the sensor, bare leads on the other end; the harness
+solder-splices to the leads. Plug pin numbers and colours from the seller's connection guide (Dan 2026-10-30).
+
+| Pin | Plug pin | Name | Pigtail lead |
+|---|---|---|---|
+| A | 1 | GND | black |
+| B | 2 | Supply + | red |
+| C | 3 | Output | green |
 
 **Oil temp — Lowdoller 153299**
 
