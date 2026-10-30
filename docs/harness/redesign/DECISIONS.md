@@ -52,12 +52,13 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4, not the engine block (Dan 2026-10-29).
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
-- **B12 Wire gauge.** Size a wire for the device's peak current plus margin (when in doubt, the larger) and at least for
-  its fuse. Wire first, then a contact that takes it, else a fuse-sized splice + pigtail of 150 mm or less.
-  Check every contact in every circuit, end to end, against the circuit's max current and the wire AWG; where a
-  step-down is needed, spec a Raychem (or generic) sealed step-down or straight solder sleeve whose AWG range fits both
-  wires; if no solder sleeve fits, a hand solder splice under adhesive heat shrink. Always look first for contacts
-  that take the wire's AWG, at every end of the circuit (Dan 2026-10-30).
+- **B12 Wire gauge (Dan 2026-10-30).** The device and its wire set the circuit. (1) Size the wire for the realistic
+  highest load (peaks count, but they are not full time). (2) If the device's own connector has no contact for that
+  size, drop to the next size its contacts take; that is the wire for the whole circuit. (3) Every other contact in
+  the circuit (bulkhead, ECU, relay, splice) must take that wire; check each one, end to end. (4) The fuse protects
+  that wire. (5) Last resort, only when there is no other way: split the circuit over two bulkhead pins and rejoin it.
+  A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits
+  both wires, else a hand solder splice under adhesive heat shrink.
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
   forward of the firewall and on rear lamp / wheel-speed plugs. DR-25 on 2+ wire runs, System 25 boots at branches.
 - **B14 Shields and drains.** Shielded cable as listed under Shields below; a shield runs unbroken, floats at
