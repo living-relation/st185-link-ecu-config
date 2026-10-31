@@ -59,6 +59,11 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   that wire. (5) Last resort, only when there is no other way: split the circuit over two bulkhead pins and rejoin it.
   A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits
   both wires, else a hand solder splice under adhesive heat shrink.
+  Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into
+  per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A;
+  injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with
+  TE 5-965906-1 at the ETB after a test-fit (else 20 AWG, ETB 5 A), ETB 7.5 A; fuel pump 10 AWG feed and ground to
+  the pump's own short lead; EPS 8 AWG + 50 A, solder step-down onto the generic Toyota repair-wire lead.
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
   forward of the firewall and on rear lamp / wheel-speed plugs. DR-25 on 2+ wire runs, System 25 boots at branches.
 - **B14 Shields and drains.** Shielded cable as listed under Shields below; a shield runs unbroken, floats at

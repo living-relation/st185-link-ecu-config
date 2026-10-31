@@ -27,7 +27,7 @@ B2,M7,relay,(vacant),,vacant,was K-REV; back-up lamps stay on the factory harnes
 B2,BUS1-1,fuse,EFI86 5 A,LOGIC,assigned,K-EFI coil+
 B2,BUS1-5,fuse,DOME 20 A,LOGIC,assigned,
 B2,BUS1-6,fuse,WL 15 A,LOGIC,assigned,door-lock feed at R/B No.2
-B2,BUS1-10,fuse,ETB 10 A,LOGIC,assigned,K-ETB 30
+B2,BUS1-10,fuse,ETB 7.5 A,LOGIC,assigned,K-ETB 30
 B2,BUS2-7,fuse,EPSEN 7.5 A,LOGIC,assigned,K-EPS-EN 30
 B2,BUS2-8,fuse,ACC 10 A,LOGIC,assigned,K-ACC 30 and 86 via SP-ACC12
 B2,BUS2-13,fuse,start request,LOGIC,assigned,ST1 tap to Link DI 7

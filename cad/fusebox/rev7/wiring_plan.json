@@ -5327,9 +5327,9 @@
     "Blue",
     "Blue"
    ],
-   "gauge": 16,
+   "gauge": 14,
    "unit": "AWG",
-   "od": 2.06,
+   "od": 2.41,
    "ends": [
     {
      "id": "sp_hz",
