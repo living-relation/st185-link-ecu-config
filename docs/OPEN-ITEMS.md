@@ -23,8 +23,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
 | N80 | ETB plug (B12) | Which housing is in Dan's Bosch ETB plug kit? No ETB-plug receipt in the repo or the Drive receipts folder, and the photo did not come through. The number molded on the housing (likely TE MQS 0.63 6-pos, e.g. 1-967616-1) settles whether TE 5-965906-1 (18 AWG) is approved. | A) Dan sends the housing number / photo; B) 20 AWG whole circuit + ETB fuse 5 A now | A if the number is readable, else B |
-| N81 | EPS pigtail AWG (B12) | Toyota repair wires 82998-12440 / -12500 (TPD order CT34616815): the receipt gives no wire size. | A) Dan reads the size printed on the lead or measures it; B) assume 12 AWG (worst case) for the step-down splice | A |
-| N82 | Wire type | Master specifies M22759/16 Tefzel (150 C); Dan also owns CrimpZone GXL 20/18/16 and TXL 20/22 (125 C) and Ballenger 20 AWG shielded Tefzel 2- and 3-core. Where may GXL/TXL go? | A) cabin only (Tefzel forward of the firewall); B) everywhere (125 C ok); C) Tefzel everywhere, GXL/TXL for bench / spares | A |
+| N81 | EPS pigtail AWG (B12) | Toyota repair wires 82998-12440 / -12500 (TPD order CT34616815): the receipt gives no wire size and the leads are not marked (Dan 2026-10-31). | A) find Toyota's listed size (research running); B) assume 12 AWG (worst case) for the step-down splice | A if Toyota lists it, else B |
 
 ## Status (2026-10-30)
 
@@ -165,6 +164,7 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 
 ## History
 
+- 2026-10-31 - Wire type (Dan N82 A; DECISIONS B20): SAE J1128 TXL in the cabin, trunk and harness-C signal / low-current runs (196 master rows); Tefzel stays on AB-engine, near the exhaust / turbo, in Spec 55 cables and on 20 circuits where derated TXL falls below the fuse. harness.design lDDj cleaned (unused 18 AWG black wire, DT06-2S part and W2S lock removed); #428 merged.
 - 2026-10-31 - Owned plugs from Dan's receipts (Ballenger 978721 / 985647, TE on-hand sheet): injectors now on Ballenger CONN-76270 kits (black EV6/EV14, GT 150 20-16 AWG, seal 24-18 AWG), so the injector +12 V branches go 16 -> 18 AWG (B12 step 2); crank plug DT06-2S -> Toyota 90980-10947 (Ballenger CONN-75800, owned; mates the sensor's own socket, pin order TBD); horn sockets -> owned gold 0462-209-1631 (Dan, 2a). harness.design lDDj and library 5LO8 synced. Needs Dan N80-N82.
 - 2026-10-31 - Needs Dan rows may recommend more than one letter when the circumstances differ (Dan): `docs/needs_dan.py` reads every standalone capital letter in the Recommended cell; the docs gate wants at least one. #426 (wire / fuse audit) merged.
 - 2026-10-30 - Wire / fuse audit applied (Dan N72-N77, B12; rows 150, 164): device maxes researched (TI Walbro curve 22.5 A at 90 psi; Haltech 1ZZ coil 8 A peak; 12 ohm injectors 1.2 A; Bosch ETB < 10 A, ~2 A typical; PIAA Slim 2.7 A; MR-S EHPS ~50 A at lock). Master, parts, fuse map, fuse-box wiring plan (w_horn_30_cp 14 AWG), drawings, BOM and harness.design lDDj updated. N78 fans 10 AWG / 30 A for an 18 A 12 in fan (not bought yet), N79 FP fuse 40 A (Dan 2026-10-31).
