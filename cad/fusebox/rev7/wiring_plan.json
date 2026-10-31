@@ -58,15 +58,15 @@
     "White",
     "Blue"
    ],
-   "gauge": 8,
+   "gauge": 10,
    "unit": "AWG",
-   "od": 5.13,
+   "od": 3.61,
    "ends": [
     {
      "id": "fb_power",
      "cav": "in5",
      "box": "POWER",
-     "part": "Klauke 2R5",
+     "part": "TE 36161",
      "des": "AMI IN-5",
      "sig": "AMI-30 FAN2 -> condenser fan relay k_fan2 87 (R5)",
      "at": null,
@@ -76,7 +76,7 @@
      "id": "k_fan2",
      "cav": "c4",
      "box": "POWER",
-     "part": "280755-4",
+     "part": "280756-4",
      "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-5 FAN2 30A)",
      "at": {
@@ -703,15 +703,15 @@
     "Yellow",
     "White"
    ],
-   "gauge": 8,
+   "gauge": 10,
    "unit": "AWG",
-   "od": 5.13,
+   "od": 3.61,
    "ends": [
     {
      "id": "fb_power",
      "cav": "in4",
      "box": "POWER",
-     "part": "Klauke 2R5",
+     "part": "TE 36161",
      "des": "AMI IN-4",
      "sig": "AMI-40 FAN -> radiator fan relay k_fan 87 (R4)",
      "at": null,
@@ -721,7 +721,7 @@
      "id": "k_fan",
      "cav": "c4",
      "box": "POWER",
-     "part": "280755-4",
+     "part": "280756-4",
      "des": "87",
      "sig": "Fused +12V in (POWER AMI IN-4 FAN 40A)",
      "at": {
@@ -2198,15 +2198,15 @@
     "Yellow",
     "White"
    ],
-   "gauge": 8,
+   "gauge": 10,
    "unit": "AWG",
-   "od": 5.13,
+   "od": 3.61,
    "ends": [
     {
      "id": "k_fan",
      "cav": "c1",
      "box": "POWER",
-     "part": "280755-4",
+     "part": "280756-4",
      "des": "30",
      "sig": "+12V out -> radiator fan motor",
      "at": {
@@ -2915,15 +2915,15 @@
     "White",
     "Blue"
    ],
-   "gauge": 8,
+   "gauge": 10,
    "unit": "AWG",
-   "od": 5.13,
+   "od": 3.61,
    "ends": [
     {
      "id": "k_fan2",
      "cav": "c1",
      "box": "POWER",
-     "part": "280755-4",
+     "part": "280756-4",
      "des": "30",
      "sig": "+12V out -> condenser fan motor",
      "at": {
@@ -5327,9 +5327,9 @@
     "Blue",
     "Blue"
    ],
-   "gauge": 16,
+   "gauge": 14,
    "unit": "AWG",
-   "od": 2.06,
+   "od": 2.41,
    "ends": [
     {
      "id": "sp_hz",

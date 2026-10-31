@@ -52,12 +52,21 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4, not the engine block (Dan 2026-10-29).
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
-- **B12 Wire gauge.** Size a wire for the device's peak current plus margin (when in doubt, the larger) and at least for
-  its fuse. Wire first, then a contact that takes it, else a fuse-sized splice + pigtail of 150 mm or less.
-  Check every contact in every circuit, end to end, against the circuit's max current and the wire AWG; where a
-  step-down is needed, spec a Raychem (or generic) sealed step-down or straight solder sleeve whose AWG range fits both
-  wires; if no solder sleeve fits, a hand solder splice under adhesive heat shrink. Always look first for contacts
-  that take the wire's AWG, at every end of the circuit (Dan 2026-10-30).
+- **B12 Wire gauge (Dan 2026-10-30).** The device and its wire set the circuit. (1) Size the wire for the realistic
+  highest load (peaks count, but they are not full time). (2) If the device's own connector has no contact for that
+  size, drop to the next size its contacts take; that is the wire for the whole circuit. (3) Every other contact in
+  the circuit (bulkhead, ECU, relay, splice) must take that wire; check each one, end to end. (4) The fuse protects
+  that wire. (5) Last resort, only when there is no other way: split the circuit over two bulkhead pins and rejoin it.
+  A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits
+  both wires, else a hand solder splice under adhesive heat shrink.
+  Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into
+  per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A;
+  injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with
+  TE 5-965906-1 at the ETB after a test-fit (else 20 AWG, ETB 5 A), ETB 7.5 A; fuel pump 10 AWG feed and ground to
+  the pump's own short lead, FP fuse 40 A (N79); EPS 8 AWG + 50 A, solder step-down onto the generic Toyota repair-wire lead.
+  Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range
+  14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the
+  AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
   forward of the firewall and on rear lamp / wheel-speed plugs. DR-25 on 2+ wire runs, System 25 boots at branches.
 - **B14 Shields and drains.** Shielded cable as listed under Shields below; a shield runs unbroken, floats at

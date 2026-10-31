@@ -3,7 +3,7 @@ ECU,Inj 1,ecu_a,a4,Injector cyl 1,signal,out,lowside-sat,none,set,QSG-IO,1400cc 
 ECU,Inj 2,ecu_a,a3,Injector cyl 2,signal,out,lowside-sat,none,set,QSG-IO,1400cc hi-Z sequential
 ECU,Inj 3,ecu_a,a2,Injector cyl 3,signal,out,lowside-sat,none,set,QSG-IO,1400cc hi-Z sequential
 ECU,Inj 4,ecu_a,a1,Injector cyl 4,signal,out,lowside-sat,none,set,QSG-IO,1400cc hi-Z sequential
-ECU,14V +,ecu_a,a5,Main ECU feed,power,in,rail-12v,none,set,QSG-IO,0.75mm2; net SW12 (same net as the relay coil feeds): SW12 7.5A fuse behind the EFI main relay (held by Aux 6) joined at sp_a5 with the IG2 wake diode (b28 note)
+ECU,14V +,ecu_a,a5,Main ECU feed,power,in,rail-12v,none,set,QSG-IO,0.75mm2; net SW12 (same net as the relay coil feeds): SW12 5A fuse (was 7.5 A; Dan 2026-10-30, 20 AWG engine-bay wires) behind the EFI main relay (held by Aux 6) joined at sp_a5 with the IG2 wake diode (b28 note)
 ECU,+8V Out,ecu_a,a6,+8V sensor rail,rail,out,rail-8v,none,set,QSG-IO,Cam Hall on Trigger 2 only
 ECU,Shield/Gnd,ecu_a,a7,Loom A screen termination,screen,na,screen,none,set,QSG-IO,DRAIN ONLY - no signal and no current may land here; do not bridge to SHIELD_A
 ECU,Trigger 1,ecu_a,a8,Crank VR,signal,in,vr,none,set,QSG-IO,Toyota OEM reluctor on 36-2 wheel
