@@ -10,6 +10,9 @@ Table shape (header row only = nothing open):
     | ID | Topic | Question | Options | Recommended |
     | M6 | topic | text     | A) label; B) label | A |
 
+Recommended is one letter, or several when the circumstances differ ("A if the fit passes, else B";
+Dan 2026-10-31): every standalone capital letter in the cell counts.
+
 Standard library only.
 """
 import re
@@ -39,13 +42,13 @@ def open_questions(path: Path = TRACKER) -> list[dict]:
             c = dict(zip(cols, _cells(row) + [""] * len(cols)))
             if not c.get("id") or not c.get("question"):
                 continue
-            rec = c.get("recommended", "").strip().upper()
+            rec = set(re.findall(r"\b([A-Z])\b", c.get("recommended", "")))
             opts = []
             for part in _OPT.split(c.get("options", "")):
                 m = re.match(r"([A-Z])\)\s*(.*)", part.strip())
                 if m:
                     opts.append({"value": m.group(1), "label": m.group(2),
-                                 "recommended": m.group(1) == rec})
+                                 "recommended": m.group(1) in rec})
             qs.append({"id": c["id"], "topic": c.get("topic", ""),
                        "text": c["question"], "options": opts})
         break

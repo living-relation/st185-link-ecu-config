@@ -18,7 +18,7 @@ blocker of goal 1-4.
 
 ## Needs Dan
 
-Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_dan.py` reads this table. Dispatch keeps it current on every check-in: add a row with the next ID (R115), restate it in full when repeated, delete the row once Dan answers (the answer goes into DECISIONS). Options: `A) label; B) label`; Recommended: the letter. Header only = nothing waiting.
+Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_dan.py` reads this table. Dispatch keeps it current on every check-in: add a row with the next ID (R115), restate it in full when repeated, delete the row once Dan answers (the answer goes into DECISIONS). Options: `A) label; B) label`; Recommended: the letter, or several letters when the circumstances differ ("A if ..., else B"; Dan 2026-10-31). Header only = nothing waiting.
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
@@ -162,6 +162,7 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 
 ## History
 
+- 2026-10-31 - Needs Dan rows may recommend more than one letter when the circumstances differ (Dan): `docs/needs_dan.py` reads every standalone capital letter in the Recommended cell; the docs gate wants at least one. #426 (wire / fuse audit) merged.
 - 2026-10-30 - Wire / fuse audit applied (Dan N72-N77, B12; rows 150, 164): device maxes researched (TI Walbro curve 22.5 A at 90 psi; Haltech 1ZZ coil 8 A peak; 12 ohm injectors 1.2 A; Bosch ETB < 10 A, ~2 A typical; PIAA Slim 2.7 A; MR-S EHPS ~50 A at lock). Master, parts, fuse map, fuse-box wiring plan (w_horn_30_cp 14 AWG), drawings, BOM and harness.design lDDj updated. N78 fans 10 AWG / 30 A for an 18 A 12 in fan (not bought yet), N79 FP fuse 40 A (Dan 2026-10-31).
 - 2026-10-30 - Wire vs fuse audit, first fixes (Dan, B12; rows 150, 164): LOGIC SW12 and MRS fuses 7.5 -> 5 A (20 AWG engine-bay wires good for about 6 A at 100 C; loads under 2 A). Still open with Dan: coil / injector branches and horn feeds (16 AWG on 15 A fuses), the ETB 20 AWG tail, the fuel pump ground (12 AWG) and pigtail gauge, the EPS pump pigtail, fan currents. The parked fuse-box CAD keeps the old SW12 / MRS / EPS ratings until the fuse-box revisit (row 107).
 - 2026-10-30 - Step-down splices (Dan, B12): no sealed step-down solder sleeve is made (TE Raychem D-436 sealed crimp splices cover 26-12 AWG; no 8 AWG inline sealed part). ETB 16 -> 20 AWG tails: TE Raychem D-436-37 (20-16 AWG each side, 150 C). EPS 8 AWG -> 12/10 AWG pigtail: hand solder splice under adhesive-lined heat shrink. Parts table: D-436-37 fixed qty 3 (SP-GNDOUT-ENG + 2 ETB tails).
