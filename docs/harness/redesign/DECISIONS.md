@@ -18,7 +18,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B1 Scope.** Forward of the firewall every wire is new, on a named route (B9); keep the OEM cabin / body wiring.
   New wire also for fuel pump, dash feed, CAN, alarm and taps. Goals G1-G4; rows for blockers.
 - **B2 Freeze.** Until the bloat cut is done (OPEN-ITEMS rows 151-155): no new script, gate or drawing format; cleanup
-  work is allowed. A green gate is no proof; Dan's spot-check at the car is (row 155).
+  allowed. Exceptions (Dan 2026-10-31): per-device pages (B6) and the checked OEM splice reference (rows 174, 175).
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
   Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo (CAD work in progress may sit in `_scratch`).
 - **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers: look it up or work it out. A
@@ -30,6 +30,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   row, no cut. Reuse an OEM wire only if its gauge fits and both ends are known. `sot/channels.csv` = ECU settings.
 - **B6 ONE drawing set, read back.** `ST185-harness` is generated from the master by `build_drawings.py`, never
   hand-edited; `--check` reads every wire back. Per-harness wire lists use Option A ("Wire lists" below); harness.design only as a consumer.
+  Each device sits on one page per harness, all its wires together (Dan 2026-10-31); the OEM splice reference is built and checked the same way.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Top
@@ -48,7 +49,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 ### Power and grounds
 
 - **B10 Grounds.** ECU power grounds (A25, A34, B25, B34) splice together, one wire to the POWER box battery-negative
-  bar. Sensor ground/return (not power, not the signal) to Gnd Out; shield drain only to the ECU shield pin; electronics to the battery-negative bus; heavy loads may use chassis.
+  bar. Gnd Out takes only the return of a sensor the ECU powers (+5 V / +8 V); anything fed from a fuse box or the SW12 bus grounds on the
+  battery-negative bus with the other 12 V devices, never on the ECU (Dan 2026-10-31; row 170). Shield drain only to the ECU shield pin; heavy loads may use chassis.
   The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4, not the engine block (Dan 2026-10-29).
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
@@ -70,7 +72,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
   forward of the firewall and on rear lamp / wheel-speed plugs. DR-25 on 2+ wire runs, System 25 boots at branches.
 - **B14 Shields and drains.** Shielded cable as listed under Shields below; a shield runs unbroken, floats at
-  the device and ends only at A7 (loom A), B17 (loom B) or C1 (CAN) through its own drain wire.
+  the device and ends only at A7 (loom A), B17 (loom B) or C1 (CAN) through its own drain wire. Same cable and colours on
+  both sides of the firewall (Dan 2026-10-31; row 171).
 
 ### Relays
 
@@ -106,6 +109,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B22 End labels, clean sheets.** Each wire end says where that end lands (device, connector, pin, signal; OEM end +
   EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`. Only asked-for parts.
+  Every connector, splice, bus, relay and box has a plain name; any code follows in parentheses (Dan 2026-10-31; row 172).
 - **B23 Models drive drawings.** The CAD model is the master: a physical change goes in the model first, then the
   drawing is regenerated, never hand-edited. Revs: Drawing rules below; gate `check_drawings_current.py`.
 - **B24 Initials and revision marks.** DRAWN and every rev-log BY are a person, always `DG` (`.drawing-initials`), never
@@ -121,6 +125,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B28 Shipping a change.** Branch from `origin/main`; `check_all.py` and `check_parity.py` green; update touched
   OPEN-ITEMS rows; PR with a `Rows:` line, squash-merged when both required checks pass. Never remove your own worktree.
+  Local `main` stays in sync with `origin/main` (Dan 2026-10-31): `git pull --ff-only` at session start and after every merge.
 - **B29 Tracker, generated files.** `docs/OPEN-ITEMS.md` is the one tracker (open rows, Needs Dan, history), kept
   short. The drawings and BOM are generated, never hand-edited.
 - **B30 Past decisions.** Old R1-R226, S1-S40 and audit rows resolve through the retire map below (full text in git
