@@ -22,7 +22,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| N78 | Fans (B12) | Dan 2026-10-30: 12 in fans (not the 10 in SPAL VA11 in the Drive inventory). Model / running amps? 12 in SPAL high-performance fans run 14.5-18 A (Evasive 30102030, Kartek 30102025). Master has 8 AWG + AMI FAN 40 A / FAN2 30 A. | A) send the model; size from its data; B) size for 18 A now: 10 AWG, keep the size-8 DTHD sockets (8-10 AWG) and relay 280755-4 (10-7 AWG), both fuses 30 A; C) 12 AWG + size-12 contacts + 25 A fuses | A, else B |
+| N78 | Fans (B12) | Dan 2026-10-30: 12 in fans (not the 10 in SPAL VA11 in the Drive inventory). Model / running amps? 12 in SPAL high-performance fans run 14.5-18 A (Evasive 30102030, Kartek 30102025). Master has 8 AWG + AMI FAN 40 A / FAN2 30 A. | A) send the model; size from its data; B) size for 18 A now: 10 AWG, keep the size-8 DTHD sockets (8-10 AWG) and relay 280755-4 (10-7 AWG), both fuses 30 A; C) 12 AWG + size-12 contacts + 25 A fuses | A |
 | N79 | Fuel pump fuse (B12) | N72 B listed FP 40 -> 30 A, but the +35 % rule on 22.5 A gives 30.4 A -> 40 A, and 40 A still protects 10 AWG (~41 A). Kept 40 A. | A) keep 40 A; B) 30 A | A |
 
 ## Status (2026-10-30)
