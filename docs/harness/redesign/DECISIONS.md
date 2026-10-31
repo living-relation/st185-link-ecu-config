@@ -501,8 +501,8 @@ Read this file and `AGENTS.md` first; they win. Dispatch only relays messages, p
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
-| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur, front WS FR spur | `SP-SHIELD-A` at `ECU-A`; the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
-| ECU-B B17 | knock, ETB motor, VSS, rear WS spur | `SP-SHIELD-B` at `ECU-B` |
+| ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur, front WS FR spur | `SP-SHIELD-A`, 6 in (152 mm) behind `ECU-A` (N83 = A, Dan 2026-10-31); the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
+| ECU-B B17 | knock, ETB motor, VSS, rear WS spur | `SP-SHIELD-B`, 6 in (152 mm) behind `ECU-B` (N83 = A) |
 | ECU-COMMS C1 (R207) | CAN trunk drain `w_shd_can_trunk` (one wire); CSB3, cluster, RealDash, ECU cable and bulkhead / Lambda branch drains | one named splice per branch, `sp_can_sh_clu` / `_csb` / `_rd` / `_bh`, at that branch point |
 | VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `lp16_vrc_f_in` |
 | VRC rear IN pin 3 | RL and RR sensor cables | `sp_vrc_r_in_sh` at `lp16_vrc_r_in` |

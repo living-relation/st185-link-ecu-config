@@ -14,6 +14,7 @@ that B9 points to).
 | `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines by `route_trees`, DECISIONS B8) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only) | Only from Dan's markup |
+| `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170-175 (Dan 2026-10-31); deleted when they close | No - closed to additions |
 | `circuit-plan.md` | the 21 circuits, cut-list groups and the IG1 / IG2 table | Yes, when a circuit decision changes |
 | `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
 
