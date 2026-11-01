@@ -34,7 +34,7 @@ engine:
   redline_range_rpm: [7200, 8000]   # usable redline is a band, not a fixed number; taper/limit set in tune
 
 # Volumetric efficiency vs rpm (fraction). ESTIMATED, not dyno-measured.
-# Basis: 3S-GTE/5S-GTE head-flow studies in docs/5sgte-project-data/
+# Basis: 3S-GTE/5S-GTE head-flow studies in docs/intercooler-turbo-study/research/5sgte-project-data/
 # (stock Gen-2 intake ~240-250 CFM @28"; ported hybrid head + HKS 264 cams +
 # twin-scroll long-tube header + dual-plenum intake), scaled against comparable
 # built 2.0-2.4 L four-cylinder dyno VE. Peaks ~5000 rpm, falls off up top as
@@ -153,6 +153,6 @@ turbos:
 # Provenance of the inputs above.
 sources:
   engine: "tune/engine_constants.yaml (repo canonical build spec)"
-  ve_and_airflow_model: "Drive: 'BorgWarner EFR Turbo Selection for a Built 2.2L 5S-GTE at 7,500' + docs/5sgte-project-data head-flow studies"
+  ve_and_airflow_model: "Drive: 'BorgWarner EFR Turbo Selection for a Built 2.2L 5S-GTE at 7,500' + docs/intercooler-turbo-study/research/5sgte-project-data head-flow studies"
   turbo_specs: "BorgWarner official EFR dimensional-reference sheets + EFR Power Range chart (to be map-verified in Phase 2 via MatchBot)"
   fsm_baseline: "Drive: 3S-GTE Engine Repair Manual Supplement 1991; 5S-FE Engine Mechanical service specs"

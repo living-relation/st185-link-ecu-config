@@ -210,3 +210,24 @@ Left and right side displays are not CAN nodes. They receive data from the cente
 **Validate (PCLink).** CAN → Monitor: 0x3E8–0x3EB and 0x3EE at their cycle times; cross-check against the live runtime page; dashboard gauges track within ~2 s and an engine-protection flag raises the right-cluster warning overlay.
 
 **Validate (vehicle).** Transceiver wired only to the center board (GPIO5 TX, GPIO4 RX) and ECU CANH/CANL. Side displays have UART from center GPIO20/21 TX to each side GPIO44 RX, plus common GND. With ECU live, center updates from CAN and both side displays mirror over UART.
+
+
+## 11. PCLink setup checks (ECU TX to the frozen cluster)
+
+Folded in 2026-10-31 from the CAN scale / units audit (2026-10-03) and the ECU CAN setup checklist (2026-10-13); both pages deleted, git history keeps them. Cluster decode = `center-cluster-esp32-p4` `main/canbus.c` (frozen). Encode rule: wire = round(value x Mult / Div) + Offset; never copy a decode number into PCLink. Prove each channel with the PCLink test calculator (Link mod advice). Open bench rows: OPEN-ITEMS 2, 102, 103.
+
+**Must set**
+- **F1 boost reference (0x3E8 b2-3).** The cluster computes boost as (value - 100 kPa) x 0.145 (`canbus.c:59-64`), so plain MAP reads about 0.9 psi low at ~2,100 ft. Send a math channel **MAP - Baro + 100** (kPa, u16, mult 1 / div 1 / off 0). Check: key on, engine off, cluster reads 0.0 psi. Baro parameter name still to confirm (XtremeX has on-board baro).
+- **F8 knock (0x3EE b0).** Any non-zero byte lights KNOCK and beeps (`canbus.c:127`); a knock level is almost never 0. Send a 0/1 flag that goes to 1 the instant the ECU's own detection fires, no delay and no hold (R98, Dan 2026-10-15). Fix false alarms in the ECU (Knock Target Table, gain, lockouts), not with a delay. No ready-made G4X 0/1 channel found: build it as a math channel from knock level vs target.
+
+**Verify in PCLink**
+- PCLink in metric: temps degC (u8, offset +50), pressures kPa, speed km/h; the cluster converts to degF / psi / mph itself.
+- **F7** oil and fuel pressure must be gauge (key on, engine off, pump off reads ~0 kPa, not ~94); if absolute, subtract Baro in a math channel. **F12** same for coolant pressure (RealDash alarms assume gauge).
+- **F14** fuel level (An Volt 9) calibrated 0-100 % in PCLink, or the cluster shows volts as percent.
+- **F9** cruise math channel outputs exactly 0-4 (OFF/STBY/SET/RES/OVR); A/C 0-3 (OFF/REQ/ON/FLT); anything else shows "---" in RealDash.
+- 0x3EE bytes 1-5 (ign / fuel / boost cut, sensor error, throttle error): 0 normally, non-zero while active; an unused input's fault must not hold sensor error on.
+- Gear byte (0x3EB b0): R = 7 (from VDI8 reverse). Ignition angle raw = deg x 10 + 1000. Turbo speed raw = RPM / 1000. Accel X/Y/Z signed, g x 10 (PCLink in g, not m/s2). 0x3F1 b6 bits: 0 flat shift, 1 fan, 2 low fuel, 3 high coolant P, 4 low oil P, 5 switchboard fault.
+- Echo bytes: 0x3EF b3 = received 0x3ED (TC 0-4), b5 = received 0x3EC (boost map 0-3). Link mod: on G4X a value received on CAN is treated as the displayed value, so test the receive channels too.
+- Transmit rate: a Link mod gives 200 Hz as the CAN TX limit (G4+ thread; no G4X figure found). 0x3EE at 10 ms is within that; confirm the range in PCLink.
+
+**Display notes (not ECU settings).** Clusters show imperial, RealDash metric (intended, R65); keep RealDash on metric units. Known frozen-firmware issues, each needs Dan's approval to touch: N1 right cluster shows lambda 0.9995-0.9999 as "0.000" and .95-.99 one low; N2 center and left clusters use different fuel / oil-temp thresholds; N6 RealDash coolant-pressure alarm 250 kPa (BUILD-NOTES) vs 200 (REALDASH-LAYOUT). DI 12 V-active inputs (B28 / B30): setup-time row 93.
