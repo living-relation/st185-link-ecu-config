@@ -33,7 +33,7 @@ Generated views that are not committed (R221): thumbnails land in `out/` (gitign
 ## harness.design copy (optional, never a source)
 
 A harness.design document is only a viewer of the master (DECISIONS B6); nothing in it is edited back. AB-engine:
-https://app.harness.design/lDDj (Rev K). How these are built and kept right (repo notes; the global `harness-design`
+https://app.harness.design/lDDj (Rev K). AB-cabin (two documents, 100-connection plan limit): https://app.harness.design/8OJ2 bulkhead run, https://app.harness.design/kD3r dash (Rev 1, 2026-11-01). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
 - Built from the master + the `route_trees` layout tree by a throwaway script (freeze: none is committed). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
@@ -44,7 +44,7 @@ skill is not changed for this project):
   horizontal into its pin; no two signals on one line.
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
-- Connection limit: on 2026-11-01 the server applied the Free plan limit (100 connections per harness) and refused AB-cabin (132); one document per harness needs Pro (row 177).
+- Connection limit: 100 connections per document (plan limit, 2026-11-01); a bigger harness is split by whole circuits into numbered documents (AB-cabin: 1 bulkhead run, 2 dash).
 - Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
   library (`compare_parts`). Out of sync: the library wins (pull), unless `docs/sourcing/harness-parts.csv` says
   otherwise. Not in the library: give the part its full maker, description and jacket colour from
