@@ -160,3 +160,5 @@ Trust ranks: **1** — its data for the tagged categories can be used as it stan
 | Ballenger Motorsports (bmotorsports.com, also Dan's approved supplier "B Motorsports") | 3 | terminals, connectors, availability | 2026-10-18, CONN-100329 "Tyco TE MCP 2.8 (280) Female Terminal, 1.25-2.5mm2" / spec tab "16 - 14 AWG": names no TE part number; TE's own data for the matching part 1-968851-1 says 1.0 - 2.5 mm2 (DIN) and 16 / 14 AWG crimp data (TE 114-18148 Rev D1 Table 7) - the mm2 range differs. Sister parts CONN-100328 "0.5 - 1.25 mm2" vs TE 1-968849-1 0.5 - 1.0 mm2. | Good for finding the family and buying small lots; never for ranges. Its "Associated & Mating Parts" tab is a starting list only. |
 
 Tried, not usable (not ranked): Octopart (availability / cross-reference) — 2026-10-18 the part pages answer automated reads with a CAPTCHA. Add it here with a rank once a person has checked it against maker data.
+
+`reference-parts.csv`: factory parts kept as a reference only (rear lamp bulbs and sockets; rear lamps stay factory, out of scope, Dan 2026-10-31). Not read by the BOM builder and never a buy.

@@ -10,5 +10,3 @@ Custom-part CAD is in the repo `cad/` tree.
 | `AUTO-AC-AMP-OPTIONS.html` | Auto A/C amp: keep the amp, Link replaces A15 (cited by Route 2, R23) |
 | `CAN-SCALE-UNITS-AUDIT.html` | CAN scale/units audit F1-F14, N1-N6 (OPEN-ITEMS row 32) |
 | `ST185-ECU-CAN-setup-checklist.html` | ECU CAN setup checklist |
-| `Evans-Link-tuning-summaries.html` | Evans Link tuning video summaries |
-| `WS-FRONT-DAN-EXAMPLE-2026-10-12.json` | Daniel's example front wheel-speed drawing export (DECISIONS S8) |
