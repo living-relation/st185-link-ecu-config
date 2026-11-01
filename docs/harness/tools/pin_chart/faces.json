@@ -1,0 +1,794 @@
+{
+ "TE Superseal 1.0 34-pos 4-1437290-0 (code 1)": {
+  "shape": "rect, rounded corners",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+   ],
+   [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+   ],
+   [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://downloads.linkecu.com/docs/wire-in-ecus/xtremex-quickstart-guide.pdf",
+  "note": "Link G4X XtremeX QSG p.5 'G4X Pin Numbering - wire side of loom' (latch at top). Rows 9/8/8/9; the 8-cavity rows are centred (offset half a pitch). 3.0 mm pitch (TE). Same numbering on A and B plugs. Link 'A & B connector keys, looking into ECU header': A = 2 keys top + 1 key bottom centre; B = 2 keys top + 2 keys bottom. TE catalog: 4-1437290-0 = coding 1, 4-1437290-1 = coding 2; the Link guide does not say which code is A, so check the housing keys against the header before pinning. Mating-face view = this grid mirrored left-right. Pin functions (A1 Inj4 ... A34 Ground) are in the same guide p.4-5."
+ },
+ "TE Superseal 1.0 34-pos 4-1437290-1 (code 2)": {
+  "shape": "rect, rounded corners",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+   ],
+   [
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+   ],
+   [
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://downloads.linkecu.com/docs/wire-in-ecus/xtremex-quickstart-guide.pdf",
+  "note": "Link G4X XtremeX QSG p.5 'G4X Pin Numbering - wire side of loom' (latch at top). Rows 9/8/8/9; the 8-cavity rows are centred (offset half a pitch). 3.0 mm pitch (TE). Same numbering on A and B plugs. Link 'A & B connector keys, looking into ECU header': A = 2 keys top + 1 key bottom centre; B = 2 keys top + 2 keys bottom. TE catalog: 4-1437290-0 = coding 1, 4-1437290-1 = coding 2; the Link guide does not say which code is A, so check the housing keys against the header before pinning. Mating-face view = this grid mirrored left-right. Pin functions (A1 Inj4 ... A34 Ground) are in the same guide p.4-5."
+ },
+ "Toyota 90980-11885 (1ZZ coil 4-way)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page. Partial only: MoTeC forum (forum.motec.com.au/viewtopic.php?p=3441) gives functions 'looking into the coil moulding, left to right: Ground - Trigger - Tach - 12V' with no pin numbers or latch side."
+ },
+ "Toyota 90980-11062 (2-way temp)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-11143 (3-way oval VSS)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-10947 (2-way crank, Sumitomo TS)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-11250 (2-way back-up switch)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-12068 (8.0 2-way EHPS)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-10897 (8-way)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-10942 (4-way)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-10341 (3-way round alternator)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page."
+ },
+ "Toyota 90980-12303 (6-way DBW pedal, BRZ 36010CA110)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker or Toyota RM/EWD face drawing found that is tied to this 90980 number; local repair-manual folder has only Connector__Ground_and_Splice.pdf (routing/locations, no faces or 90980 numbers). Do not guess; read cavity numbers moulded on the housing or the vehicle EWD connector page. Repo docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md has pin FUNCTIONS 1-6 'looking into the 6-way with the locking tab up' but no positions."
+ },
+ "Toyota 90980-11400 (1-way starter)": {
+  "shape": "single cavity",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    1
+   ]
+  ],
+  "view": "mating",
+  "latch": null,
+  "source": null,
+  "note": "Trivial: one cavity, numbered 1. No drawing sourced for shape/size."
+ },
+ "Aptiv GT 150 3-way female 13519047": {
+  "shape": "rect, single row of 3",
+  "w_mm": 28.2,
+  "h_mm": 23.1,
+  "rows": null,
+  "view": null,
+  "latch": "top (CPA side)",
+  "source": "https://cdn.shopify.com/s/files/1/0342/1247/9111/files/Delphi-GT-Series.pdf",
+  "note": "NOT FOUND - cavity lettering (A/B/C) order not shown in the Delphi GT catalog p.1.8 (gives only size 29.3L x 23.1H x 28.2W). Aptiv eCatalog drawing site unreachable from here. Read the A/B/C letters moulded on the housing."
+ },
+ "Aptiv Metri-Pack 150 2-way sealed female 12052641": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no Aptiv drawing reachable (ecat.aptiv.com blocked); single row of 2 cavities lettered A/B on the housing, order not sourced."
+ },
+ "Bosch EV6/EV14 injector plug (Ballenger CONN-76270)": {
+  "shape": null,
+  "w_mm": null,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND - no maker drawing found. 2 cavities; order not sourced."
+ },
+ "TE MQS 6-pos 1-967616-1 (Bosch ETB 0 280 750 474)": {
+  "shape": "oval/rect, 2 staggered columns of 3",
+  "w_mm": 17.0,
+  "h_mm": 25.9,
+  "rows": [
+   [
+    6,
+    null
+   ],
+   [
+    null,
+    3
+   ],
+   [
+    5,
+    null
+   ],
+   [
+    null,
+    2
+   ],
+   [
+    4,
+    null
+   ],
+   [
+    null,
+    1
+   ]
+  ],
+  "view": "wire",
+  "latch": "long ends top and bottom (drawing orientation, long axis vertical)",
+  "source": "https://www.farnell.com/cad/2020188.pdf",
+  "note": "TE customer drawing C-967616 rev F8 (also static.chipdip.ru/lib/428/DOC014428311.pdf). Rows are half-pitch steps: vertical pitch 4.0 mm per column, columns 3.5 mm apart, left column (6,5,4) sits 2.0 mm higher than right column (3,2,1) in the wire-side view. Mating-face view on same drawing = mirror: left column 3,2,1 (lower), right column 6,5,4 (higher). Housing 17 x 30.4 mm overall (25.9 body). Bosch ETB pin functions (repo): 1 Motor-, 2 TPS-, 3 TPS 5V, 4 Motor+, 5 TPS2, 6 TPS1."
+ },
+ "Bosch Compact 1.1a 2-way 1 928 403 874 (knock)": {
+  "shape": "rect, 2 cavities in a row",
+  "w_mm": 20.0,
+  "h_mm": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": "https://www.dalroad.com/wp-content/uploads/2015/05/Compact-1_1a.pdf",
+  "note": "NOT FOUND for numbering - Bosch catalog p.48 gives 2 poles, contact spacing 5 mm, 26.2 x 20.0 x 30.4 mm, coding 1, BDK 2.8, but no cavity 1/2 positions. Read the 1/2 moulded on the housing."
+ },
+ "Deutsch DT06-2S (plug, sockets)": {
+  "shape": "rect",
+  "w_mm": 15.0,
+  "h_mm": 15.8,
+  "rows": [
+   [
+    1,
+    2
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://www.farnell.com/cad/2632897.pdf",
+  "note": "TE drawing C-DT06-2S-XXXX rev B, grommet (rear) view: cavity 1 left, 2 right, latch up. Mating face = 2 left, 1 right."
+ },
+ "Deutsch DT04-2P (receptacle, pins)": {
+  "shape": "rect",
+  "w_mm": 17.2,
+  "h_mm": 17.6,
+  "rows": [
+   [
+    2,
+    1
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://atta.szlcsc.com/upload/public/pdf/source/20221219/34D2D8CDE7D4B53755E4AE529F4D4043.pdf",
+  "note": "TE drawing C-DT04-2P-C017 rev B, rear (grommet) view: 2 left, 1 right. Mating face = 1 left, 2 right (mates with DT06-2S mating face 2,1)."
+ },
+ "Deutsch DT06-3S (plug, sockets)": {
+  "shape": "triangle, point down",
+  "w_mm": 18.4,
+  "h_mm": 23.7,
+  "rows": [
+   [
+    "B",
+    "A"
+   ],
+   [
+    null,
+    "C"
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://www.farnell.com/cad/2829917.pdf",
+  "note": "TE drawing C-DT06-3S-XXXX rev B1, grommet view: B top-left, A top-right, C bottom point (C is centred, drawn in a 2nd row). DT 3-way cavities are LETTERED A/B/C, not numbered. Mating face = A top-left, B top-right, C bottom."
+ },
+ "Deutsch DT06-6S (plug, sockets)": {
+  "shape": "rect, portrait",
+  "w_mm": 18.2,
+  "h_mm": 22.9,
+  "rows": [
+   [
+    6,
+    1
+   ],
+   [
+    5,
+    2
+   ],
+   [
+    4,
+    3
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://sigma.octopart.com/155827878/technical_drawing/TE-Connectivity-DT06-6S-EP11.pdf",
+  "note": "TE drawing C-DT06-6S-XXXX rev A, grommet view, latch up. Mating face = [[1,6],[2,5],[3,4]] (matches Turck end-view 'Female 6 pin')."
+ },
+ "Deutsch DT06-08SA (plug, sockets)": {
+  "shape": "rect, portrait",
+  "w_mm": 19.7,
+  "h_mm": 37.2,
+  "rows": [
+   [
+    8,
+    1
+   ],
+   [
+    7,
+    2
+   ],
+   [
+    6,
+    3
+   ],
+   [
+    5,
+    4
+   ]
+  ],
+  "view": "wire",
+  "latch": "top and bottom (lock features both short ends)",
+  "source": "https://atta.szlcsc.com/upload/public/pdf/source/20221216/74A4235DF010D8E9F74E0314F4821C2F.pdf",
+  "note": "TE drawing C-DT06-08SX-XXXX rev A, grommet view (figs 1, 2 and China alt view agree). Mating face = [[1,8],[2,7],[3,6],[4,5]]."
+ },
+ "Deutsch DT06-12SA (plug, sockets)": {
+  "shape": "rect, portrait",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    12,
+    1
+   ],
+   [
+    11,
+    2
+   ],
+   [
+    10,
+    3
+   ],
+   [
+    9,
+    4
+   ],
+   [
+    8,
+    5
+   ],
+   [
+    7,
+    6
+   ]
+  ],
+  "view": "wire",
+  "latch": "lock features both short ends; cavity 1/12 end at top",
+  "source": "https://static.chipdip.ru/lib/855/DOC028855460.pdf ; https://www.farnell.com/cad/2693922.pdf",
+  "note": "DERIVED, no DT06-12SA drawing read. From TE DT04-12PA-CL06 rear view (top row 12..7, bottom row 1..6, cavity 1 bottom-left) and DT15-12PX mating face (left col 6..1, right col 7..12): plug wire side = receptacle wire side mirrored. Pattern matches DT06-08SA style (1 top-right, last cavity top-left). Mating face = [[1,12],[2,11],[3,10],[4,9],[5,8],[6,7]], consistent with Turck 'Female 12 pin'. Confirm against moulded numbers on the grommet."
+ },
+ "Deutsch DT04-6P": {
+  "shape": "rect, portrait",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    1,
+    6
+   ],
+   [
+    2,
+    5
+   ],
+   [
+    3,
+    4
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "https://sigma.octopart.com/155827878/technical_drawing/TE-Connectivity-DT06-6S-EP11.pdf ; https://connect.turck.us/illustrations/Deutsch_catalog_pages.pdf",
+  "note": "DERIVED, no DT04-6P drawing read: receptacle mating face must mirror the DT06-6S mating face -> mating [[6,1],[5,2],[4,3]], which matches Turck 'Male 6 pin' end view; wire side = mirror of that. Confirm against moulded numbers on the grommet."
+ },
+ "Deutsch DTM06-4S": {
+  "shape": "rect, 2x2",
+  "w_mm": 15.2,
+  "h_mm": 17.7,
+  "rows": null,
+  "view": null,
+  "latch": "top",
+  "source": "https://static.chipdip.ru/lib/862/DOC029862743.pdf",
+  "note": "NOT FOUND for numbering - Deutsch DTM technical manual gives arrangement (2x2) and plug size 15.24 x 17.65 mm only; no numbered TE drawing reachable."
+ },
+ "Deutsch DTM06-6S": {
+  "shape": "rect, 2 cols x 3 rows",
+  "w_mm": 15.2,
+  "h_mm": 21.8,
+  "rows": null,
+  "view": null,
+  "latch": "top",
+  "source": "https://static.chipdip.ru/lib/862/DOC029862743.pdf",
+  "note": "NOT FOUND for numbering - DTM manual gives arrangement and plug size 15.24 x 21.84 mm only."
+ },
+ "Deutsch DTHD06-1-8S": {
+  "shape": "round, single cavity",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    1
+   ]
+  ],
+  "view": "mating",
+  "latch": null,
+  "source": null,
+  "note": "Trivial: 1 size-8 cavity. No drawing read."
+ },
+ "Deutsch HD36-24-33SE (HD30 shell 24, 24-33)": {
+  "shape": "round",
+  "w_mm": null,
+  "h_mm": null,
+  "rows": [
+   [
+    33,
+    17
+   ],
+   [
+    32,
+    16,
+    18
+   ],
+   [
+    31,
+    15,
+    6,
+    19
+   ],
+   [
+    14,
+    7
+   ],
+   [
+    30,
+    5,
+    1,
+    20
+   ],
+   [
+    13,
+    8
+   ],
+   [
+    29,
+    4,
+    2,
+    21
+   ],
+   [
+    12,
+    3,
+    9
+   ],
+   [
+    28,
+    22
+   ],
+   [
+    11,
+    10
+   ],
+   [
+    27,
+    23
+   ],
+   [
+    26,
+    25,
+    24
+   ]
+  ],
+  "view": "wire",
+  "latch": "not shown (HD30 master key not drawn in catalog)",
+  "source": "https://cdn.shopify.com/s/files/1/0083/7782/7386/files/HD30_HDP20_Series.pdf",
+  "xy": {
+   "1": [
+    0.145,
+    0.17
+   ],
+   "2": [
+    0.175,
+    -0.097
+   ],
+   "3": [
+    0.0,
+    -0.299
+   ],
+   "4": [
+    -0.197,
+    -0.097
+   ],
+   "5": [
+    -0.141,
+    0.17
+   ],
+   "6": [
+    0.223,
+    0.451
+   ],
+   "7": [
+    0.442,
+    0.288
+   ],
+   "8": [
+    0.535,
+    0.016
+   ],
+   "9": [
+    0.442,
+    -0.288
+   ],
+   "10": [
+    0.235,
+    -0.464
+   ],
+   "11": [
+    -0.234,
+    -0.457
+   ],
+   "12": [
+    -0.432,
+    -0.284
+   ],
+   "13": [
+    -0.529,
+    0.024
+   ],
+   "14": [
+    -0.432,
+    0.288
+   ],
+   "15": [
+    -0.219,
+    0.451
+   ],
+   "16": [
+    0.0,
+    0.633
+   ],
+   "17": [
+    0.22,
+    0.76
+   ],
+   "18": [
+    0.482,
+    0.633
+   ],
+   "19": [
+    0.666,
+    0.451
+   ],
+   "20": [
+    0.772,
+    0.17
+   ],
+   "21": [
+    0.78,
+    -0.119
+   ],
+   "22": [
+    0.689,
+    -0.391
+   ],
+   "23": [
+    0.51,
+    -0.603
+   ],
+   "24": [
+    0.272,
+    -0.751
+   ],
+   "25": [
+    0.0,
+    -0.802
+   ],
+   "26": [
+    -0.256,
+    -0.751
+   ],
+   "27": [
+    -0.504,
+    -0.603
+   ],
+   "28": [
+    -0.696,
+    -0.391
+   ],
+   "29": [
+    -0.759,
+    -0.119
+   ],
+   "30": [
+    -0.768,
+    0.17
+   ],
+   "31": [
+    -0.662,
+    0.451
+   ],
+   "32": [
+    -0.489,
+    0.633
+   ],
+   "33": [
+    -0.24,
+    0.766
+   ]
+  },
+  "note": "Deutsch HD30 catalog p.4 (insert arrangements 'shown from the socket rear'), arrangement 24-33 = 33 size-20. Circular insert, not a grid: 'rows' are y-bands left-to-right; use 'xy' (x right, y up, unit = drawn insert-circle radius, measured from catalog image) for placement. Rings: centre 1-5, middle 6-15, outer 16-33. Catalog lists only N seal for 24-33 - confirm the -SE (E-seal) part exists/matches. Key position not in this source."
+ },
+ "CNLINKO LP-16 5-pin female cable plug LP-16-J05PE-02-001": {
+  "shape": "round",
+  "w_mm": 23.0,
+  "h_mm": null,
+  "rows": [
+   [
+    null,
+    5,
+    null
+   ],
+   [
+    3,
+    null,
+    4
+   ],
+   [
+    1,
+    null,
+    2
+   ]
+  ],
+  "view": "mating",
+  "latch": "key slot at bottom",
+  "source": "https://cnlinko-en.oss-us-east-1.aliyuncs.com/uploads/image/20250819/7d5b62abdd63e73884abd9dfc71b8b0e-1755574530.pdf",
+  "note": "CNLINKO drawing LP-16-xxxPE-02-0xxx rev A1 (2024-03-14), table 'Female' 5-core face (view not labelled; socket face shown, so taken as mating face). 5 top, 3 upper-left, 4 upper-right, 1 lower-left, 2 lower-right, key at bottom between 1 and 2. Male face on same sheet is the mirror (4 left, 3 right, 2 lower-left, 1 lower-right). Plug OD 23.0 mm."
+ },
+ "TE Micro ISO V23074 (4-1904124-2/-3, 5-1393292-8, 6-1419137-4)": {
+  "shape": "rect",
+  "w_mm": 23.0,
+  "h_mm": 15.5,
+  "rows": [
+   [
+    null,
+    null,
+    1
+   ],
+   [
+    3,
+    5,
+    4
+   ],
+   [
+    null,
+    null,
+    2
+   ]
+  ],
+  "view": "bottom (terminal side)",
+  "latch": null,
+  "source": "https://static.chipdip.ru/lib/975/DOC029975876.pdf",
+  "note": "TE 'Plug-in Micro ISO Relays - Micro Relay A' datasheet, 'View of the terminals (bottom view)'. ISO 7588-3 numbers: 1,2 = coil; 3 = common; 5 = NO; 4 = NC (CO types only; absent on 1 form A). 3 and 5 are 6.3 mm blades (vertical in view), 1/2/4 are 4.8 mm. Spacing: 3->5 8 mm, 5->right column 6 mm, right column pitch 4.5 mm. Part map: 4-1904124-2 = NO+resistor, 4-1904124-3 = CO+resistor, 5-1393292-8 = NO+diode, 6-1419137-4 = CO+diode (all 12 V). Datasheet does NOT give the DIN 85/86/30/87/87a labels; read the relay case. DIODE TYPES: schematic shows diode cathode on terminal 1, so terminal 1 must be the +12 V side and terminal 2 the switched-ground side."
+ },
+ "TE Power Relay F7 V23134 (1-1414147-0, 1-1393304-0)": {
+  "shape": "square",
+  "w_mm": 25.9,
+  "h_mm": 25.9,
+  "rows": [
+   [
+    null,
+    30,
+    null
+   ],
+   [
+    85,
+    null,
+    86
+   ],
+   [
+    null,
+    87,
+    null
+   ]
+  ],
+  "view": "bottom (terminal side)",
+  "latch": null,
+  "source": "https://zoro.com/static/cms/enhanced_pdf/Waldom%20Electronics_TExxConnectivityxxxxxxPxxBxx1xx1393304xx8xxdatasheetxx13889f.pdf",
+  "note": "TE 'Power Relay F7' datasheet (Plug-in Maxi ISO family), bottom view TE1103-411: 30 top, 85 left, 86 right, 87 bottom (87 blade horizontal). 1-1414147-0 = V23134-J0052-X429, NO, 680 ohm resistor, no bracket. 1-1393304-0 = V23134-J1052-X281, NO, 560 ohm resistor, bracket at terminal 30. Diode version (not these) has cathode on 86."
+ },
+ "TE HCR150 V23132-A2001-B200 (1416010-1)": {
+  "shape": "rect",
+  "w_mm": 63.0,
+  "h_mm": 40.0,
+  "rows": [
+   [
+    1,
+    null,
+    null
+   ],
+   [
+    null,
+    5,
+    3
+   ],
+   [
+    2,
+    null,
+    null
+   ]
+  ],
+  "view": "bottom (terminal side)",
+  "latch": null,
+  "source": "https://datasheet.chipsmall.com/1393315-2/330775.pdf",
+  "note": "TE 'High Current Relay 150' datasheet, bottom view TE1667-61: 2-pole coil socket at left (1 top, 2 bottom); M6 load studs 5 (middle) and 3 (right), 15.5 mm apart. V23132-A2001-B200 = 1 form A NO, 12 VDC, coil resistor (polarity-free), IP67, PN 1416010-1. ISO numbers: 1,2 coil; 3 common (DIN 30); 5 NO (DIN 87). Coil mate: Superseal 1.5 receptacle 282080-1, seal 281934-2, contact 282110-1. Datasheet does not map 1/2 to 85/86."
+ }
+}

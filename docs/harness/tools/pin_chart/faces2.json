@@ -1,0 +1,266 @@
+{
+ "Toyota 90980-11885": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    2,
+    3,
+    4
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.89 (book page D-12 / p.87)",
+  "note": "4 in a single row, 1 left -> 4 right. RM1022E housing list (PDF p.370) confirms 4 cav, 2.3 II female. Cross-check: MoTeC forum 'looking into the coil moulding, left to right: Ground - Trigger - Tach - 12V' = coil (male) side 4-3-2-1, the mirror of this plug face, so master 1 +B / 2 IGF / 3 IGT / 4 GND is consistent. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-11062": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    2
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.82 (book page D-5 / p.80)",
+  "note": "Small 2-way, 1 left, 2 right. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-11143": {
+  "shape": "oval",
+  "rows": [
+   [
+    1,
+    2,
+    3
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.86 (book page D-9 / p.84)",
+  "note": "3 in a row, 1 left -> 3 right. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-10947": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    2
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.82 (book page D-5 / p.80)",
+  "note": "1 left, 2 right. Which crank-sensor terminal is signal is still not sourced (master pin_doc TBD). View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-11250": {
+  "shape": "oval",
+  "rows": [
+   [
+    1,
+    2
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.83 (book page D-6 / p.81)",
+  "note": "1 left, 2 right. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-12068": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    2
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.84 (book page D-7 / p.82)",
+  "note": "8.0 mm 2-way, 1 left, 2 right (housing list PDF p.375: 8.0 F 2). View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-10897": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    2,
+    3,
+    4
+   ],
+   [
+    5,
+    6,
+    7,
+    8
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.93 (book page D-16 / p.91)",
+  "note": "8 cavities, 2 rows of 4: top 1-4, bottom 5-8 (housing list PDF p.342: 8 cav). Master's 8-pin MRS-B matches. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-10942": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    2
+   ],
+   [
+    3,
+    4
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.88 (book page D-11 / p.86)",
+  "note": "4 cavities 2x2: top 1 2, bottom 3 4 (housing list PDF p.344: 2.3 II F 4 cav). Master's 4-pin MRS-C matches. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-10341": {
+  "shape": "round",
+  "rows": [
+   [
+    null,
+    1,
+    null
+   ],
+   [
+    2,
+    null,
+    3
+   ]
+  ],
+  "view": "mating",
+  "latch": "top",
+  "source": "/home/claude/st185-repair-full/manuals-electrical/Toyota - Wire Harness Repair Manual (RM1022E).pdf, section D 'Table of Housing Shape' <FEMALE>, PDF p.85 (book page D-8 / p.83)",
+  "note": "Round, 1 top centre, 2 bottom-left, 3 bottom-right (shared drawing with 90980-11491). Same face in /home/claude/st185-repair-full/electrical/circuits/tis1993-charging.pdf p.2 (book p.75) G2(B); its service hint '(B) 2-GROUND 0-4 V IG on, engine off' = pin 2 is L, matching master 1 S / 2 L / 3 IG. View basis: RM1022E 'Table of Housing Shape' does not print the view, but its FEMALE and MALE tables are mirror images (female 2P '1 2', male 2P '2 1', e.g. D-187 p.262), which matches Toyota's stated convention 'All connectors are shown from the open end, and the lock is on top' (/home/claude/st185-repair-full/manuals-electrical/1990 ST185 EWD.pdf, PDF p.5, How to use). So: mating (open-end) face of the female harness plug, lock up. Wire-side view = mirror left-right."
+ },
+ "Toyota 90980-12303": {
+  "shape": null,
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND. Not in RM1022E (1991-2005). Ballenger CONN-100992 lists 90980-12303 as a 6-way Toyota DBW pedal plug (Sumitomo TS 025), no face drawing (https://www.bmotorsports.com/shop/product_info.php/products_id/4604). Repo has only text: SENSOR-AND-ACTUATOR-REFERENCE.md 'Looking into the 6-way with the locking tab up' + pin list 1-6, no positions. Also: 90980-12303 is not in the master; APS-PEDAL housing is TBD."
+ },
+ "Aptiv GT 150 3-way 13519047": {
+  "shape": "rect",
+  "rows": null,
+  "view": null,
+  "latch": "top",
+  "source": "https://cdn.shopify.com/s/files/1/0342/1247/9111/files/Delphi-GT-Series.pdf",
+  "note": "NOT FOUND for positions. The Aptiv drawing site and Mouser copies were blocked. Single row of 3. The master uses A/B/C on FLEX (13519047) but 1/2/3 on MAP/OIL-P/FUEL-P (Lowdoller kit 354404, also GT 150 3-way per harness-parts.csv). Read the moulded letters, then map 1->A? only from a Lowdoller document."
+ },
+ "Aptiv Metri-Pack 150.2 2-way 12052641": {
+  "shape": "rect",
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND. Aptiv drawing blocked (ecat.aptiv.com, Mouser). Master uses 1/2 (BOOST-SOL); the housing is moulded A/B. Read the housing."
+ },
+ "Bosch EV6/EV14 injector 2-way plug (USCAR / Ballenger CONN-76270)": {
+  "shape": "rect",
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": null,
+  "note": "NOT FOUND. No maker drawing with cavity numbers reachable. Injector coil is not polarity-sensitive, so only the pin chart label is at stake."
+ },
+ "Bosch Compact 1.1a 2-way 1 928 403 874": {
+  "shape": "rect",
+  "rows": null,
+  "view": null,
+  "latch": null,
+  "source": "https://www.dalroad.com/wp-content/uploads/2015/05/Compact-1_1a.pdf",
+  "note": "NOT FOUND for numbering: Bosch catalog p.48 gives 2 poles, 5 mm pitch, 26.2 x 20.0 x 30.4 mm, coding 1, but no cavity positions. Read the 1/2 moulded on the housing."
+ },
+ "Deutsch DTM06-4S": {
+  "shape": "rect",
+  "rows": [
+   [
+    4,
+    1
+   ],
+   [
+    3,
+    2
+   ]
+  ],
+  "view": "wire",
+  "latch": "top",
+  "source": "Deutsch drawing DTM06-4S rev A (plug, 4 skt #20, envelope), https://datasheet.lcsc.com/datasheet/pdf/1558b08567a9ca02c177ac993e3eceb9.pdf (linked from https://www.lcsc.com/product-detail/C3271303.html)",
+  "note": "Grommet (rear, wire-entry) end view with latch up: 4 top-left, 1 top-right, 3 bottom-left, 2 bottom-right. Mating face = [[1,4],[2,3]]. 15.24 x 17.65 mm. Same pattern as DT06-4S/6S (1 top-right from the wire side)."
+ },
+ "Deutsch DTM06-6S": {
+  "shape": "rect",
+  "rows": null,
+  "view": null,
+  "latch": "top",
+  "source": "https://static.chipdip.ru/lib/862/DOC029862743.pdf",
+  "note": "NOT FOUND for numbering: no numbered DTM06-6S drawing reachable (TE, Farnell, RS, chipdip, Mouser blocked or missing). 2 cols x 3 rows, 15.24 x 21.84 mm. Do not infer from DTM06-4S."
+ },
+ "TE micro ISO relay V23074": {
+  "shape": "rect",
+  "rows": [
+   [
+    null,
+    null,
+    1
+   ],
+   [
+    3,
+    5,
+    4
+   ],
+   [
+    null,
+    null,
+    2
+   ]
+  ],
+  "view": "mating",
+  "latch": null,
+  "label_map": {
+   "1": "86",
+   "2": "85",
+   "3": "30",
+   "4": "87a",
+   "5": "87"
+  },
+  "source": "Layout: TE 'Plug-in Micro ISO Relays - Micro Relay A' datasheet, bottom view, https://static.chipdip.ru/lib/975/DOC029975876.pdf. DIN map: Bosch 'Micro Relays' catalog 2007/2008, 'Comparison of terminal designations, Micro relay / Mini relay', pp. 2-10 of https://dalroad.com/wp-content/uploads/2015/05/Bosch-Micro-Relays.pdf (1=86 +, 2=85 -, 3=30, 4=87a, 5=87)",
+  "note": "View = relay terminal (bottom) side, i.e. the relay's mating face. This is the same orientation as the socket seen from its wire side; the socket's mating face is the mirror. 4 (87a) only on changeover types. The Bosch Micro relay A catalog (https://www.dalroad.com/wp-content/uploads/2015/05/Bosch-Micro-Relays-A.pdf p.2) cross-lists Bosch 0 986 332 010 = Tyco V23074-A1001-X007, so the Bosch table applies to this footprint. Diode types: the TE schematic puts the cathode at 1, so 1 must be +12 V (86)."
+ },
+ "TE HCR150 V23132-A2001-B200": {
+  "shape": "rect",
+  "rows": [
+   [
+    1,
+    null,
+    null
+   ],
+   [
+    null,
+    5,
+    3
+   ],
+   [
+    2,
+    null,
+    null
+   ]
+  ],
+  "view": "mating",
+  "latch": null,
+  "label_map": {
+   "1": "86",
+   "2": "85",
+   "3": "30",
+   "5": "87"
+  },
+  "source": "Layout: TE 'High Current Relay 150' datasheet, bottom view, https://datasheet.chipsmall.com/1393315-2/330775.pdf. DIN map: ISO->DIN table in the Bosch Micro Relays catalog (above): 3=30, 5=87, 1/2 = coil.",
+  "note": "View = terminal (bottom) side. Coil plug 1 (top) / 2 (bottom) at the left; M6 studs 5 (middle) and 3 (right). B200 = 1 form A with a coil resistor, so 1/2 are polarity-free (86/85 assignment is nominal). There is NO 4 / 87a terminal."
+ }
+}
