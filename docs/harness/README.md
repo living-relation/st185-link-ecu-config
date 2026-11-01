@@ -44,7 +44,7 @@ skill is not changed for this project):
   horizontal into its pin; no two signals on one line.
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
-- The Pro plan (revisions work) has no connection limit, so AB-cabin can be one document.
+- Connection limit: on 2026-11-01 the server applied the Free plan limit (100 connections per harness) and refused AB-cabin (132); one document per harness needs Pro (row 177).
 - Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
   library (`compare_parts`). Out of sync: the library wins (pull), unless `docs/sourcing/harness-parts.csv` says
   otherwise. Not in the library: give the part its full maker, description and jacket colour from
