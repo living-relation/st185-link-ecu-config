@@ -45,6 +45,7 @@ skill is not changed for this project):
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
 - Connection limit: 100 connections per document (plan limit, 2026-11-01); a bigger harness is split by whole circuits into numbered documents (AB-cabin: 1 bulkhead run, 2 dash).
+- Display stripes (Dan 2026-11-01): in each harness.design document every +12 V (red) wire gets a stripe colour per circuit, the same for every wire of that circuit, so crossing power wires can be followed; a note in the document lists them. Tracing only: the wire part, master colour and BOM stay plain red.
 - Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
   library (`compare_parts`). Out of sync: the library wins (pull), unless `docs/sourcing/harness-parts.csv` says
   otherwise. Not in the library: give the part its full maker, description and jacket colour from
