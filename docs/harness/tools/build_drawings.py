@@ -889,9 +889,9 @@ def schematic_sheet(S, H, title, i, n, rows, lay=None, with_legend=True):
         else:
             tx = rx1 + LANE + 6 + TRK * t
         drawn.append((ch, r, a, z, ya, yz, tx))
-    for i, (ch, r, a, z, ya, yz, tx) in enumerate(drawn):
+    for k, (ch, r, a, z, ya, yz, tx) in enumerate(drawn):
         dashed = "[3 2] 0" if r["harness"] not in H.set else None
-        col = TRACE[i % len(TRACE)]
+        col = TRACE[k % len(TRACE)]
         width = 1.6 if r["colour"] != "Shield" else 1.15
         others = [ox for och, _or, _oa, _oz, _oya, _oyz, ox in drawn if och == ch and abs(ox - tx) > 0.5]
         if ch == "C":
