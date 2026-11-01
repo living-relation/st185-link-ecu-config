@@ -156,14 +156,14 @@ Shield: yes
 
 **Gearbox VSS — Toyota 83181-20040** (1991-97 Land Cruiser FZJ80 / Previa speedometer
 sensor, 3 blade pins). Mate = Toyota 90980-11143 oval 3-pin socket plug, Sumitomo TS 090
-sockets.
+sockets. Powered from the ECU +8 V (Dan 2026-11-01).
 
-Shield: yes
+Shield: no (Dan 2026-11-01)
 
 | Pin | Name |
 |---|---|
-| 1 | IG +12V switched |
-| 2 | ground |
+| 1 | +8 V from ECU |
+| 2 | ground (ECU Gnd Out) |
 | 3 | SP1 speed output |
 
 **MAP — Lowdoller 899005**

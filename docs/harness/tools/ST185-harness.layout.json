@@ -842,7 +842,6 @@
   "CLNT-P": "CLNTP",
   "CHARGE-IAT": "CHIAT",
   "VSS": "VSS",
-  "CAB-VSS": "VSS",
   "REV-SW": "REVSW",
   "STARTER-TRIGGER": "STARTER",
   "POWER": "GB",
