@@ -16,7 +16,7 @@ import sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOC_EXT = (".md", ".html", ".txt")
-SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-study/", "docs/5sgte-project-data/", "docs/harness/routes/",
+SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-study/", "docs/harness/routes/",
              "docs/vendor/")
 # The keep list (R211) and the docs that state the chain of sources; only these may call something a source of truth.
 KEEP = {

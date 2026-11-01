@@ -1,6 +1,6 @@
 # 5S-GTE ST185 — Intercooler and Turbo Selection Study
 
-> **2026-10-13 consolidation:** the round 1-6 working scripts, charts and JSON in this folder were removed (git history keeps them); the findings below are the record, and the current deliverables are `../intercooler-report.html` and `../turbo-comparison.html`, built from `../model/`. Kept here: `data/throttle-body-plumbing/` (pipe-sizing source the model reads) and `data/prior-turbo-research/` (earlier turbo study images and data; its CSV / script / head-flow copies live once, in `docs/5sgte-project-data/`). Scanned parts invoices are kept local only (`_research/purchase-records/`) - this repo is public.
+> **2026-10-13 consolidation:** the round 1-6 working scripts, charts and JSON in this folder were removed (git history keeps them); the findings below are the record, and the current deliverables are `../intercooler-report.html` and `../turbo-comparison.html`, built from `../model/`. Kept here: `data/throttle-body-plumbing/` (pipe-sizing source the model reads) and `data/prior-turbo-research/` (earlier turbo study images and data; its CSV / script / head-flow copies live once, in `5sgte-project-data/` next to it). Scanned parts invoices are kept local only (`_research/purchase-records/`) - this repo is public.
 
 
 Research + engineering study for the 1991 Celica GT-Four ST185 with the 5S-GTE hybrid.
@@ -108,35 +108,13 @@ worth ~37 °C, where the largest difference between core types is ~10 °C.
 
 ## What's in this folder
 
-| File | What it is |
+| Path | What it is |
 |---|---|
-| `../intercooler-report.html` | Current deliverable (parent folder; rebuilt 2026-09-09) |
-| *(round 1/2/3/5 `.bak.html` and `PATCH-NOTE-intercooler-report.md` deleted)* | Replaced by the model-built report |
-| **`data/prior-turbo-research/`** | **The supplied earlier turbo research, preserved verbatim** — the shared model, 4 CSVs, the head-flow reference, and 15 charts |
-| **`reconcile.py`** | Round three — forensic diff of the prior research (stage 1), then the unified model (stage 2) |
-| **`unified_model.py`** | Round three — the model itself. One consistent set of constants, charge temperature coupled to airflow. |
-| **`make_r3_chartdata.py`** | Emits `data/chartdata_r3.js`, the data block the round-three charts read |
-| **`build_r3.py` / `build_r3_js.py` / `build_r3_open.py`** | One-shot scripts that spliced round three into the report. Kept for audit. |
-| **`verify_r3.js`** | Verification harness. Checks all 27 charts mount, both calculators compute, defaults match the model, zero console errors, no external resources. |
-| **`dump_r3_svg.js`** | Dumps the round-three charts to standalone SVG for visual inspection |
-| `rpm_sensitivity.py`, `rpm_sens2.py` | Round two — VE models, redline sweep, head-to-head |
-| `thermal.py` … `thermal4.py` | Rounds one and two — ε-NTU, heat soak, core size study |
-| `endtank.py` | Round two — billet cost and machining time |
-| `make_chartdata.py`, `verify.js`, `dumpsvg2.js` | Round two equivalents of the above |
-| `build-inputs.csv` | Extracted build spec with source and confidence for each row |
-| `data/r3png/`, `data/r3svg/` | Rendered round-three charts, for checking them outside the report |
+| `5sgte-project-data/` | Head-flow references, the earlier turbo model (`06_turbo_model.py`) and its CSVs; the one copy (moved here from `docs/` 2026-10-31) |
+| `data/prior-turbo-research/` | The supplied earlier turbo research: charts and data |
+| `data/throttle-body-plumbing/` | Pipe-sizing source the model reads |
 
-### Re-running round three
-
-```
-python reconcile.py
-python unified_model.py
-python make_r3_chartdata.py
-node verify_r3.js
-```
-
-`reconcile.py` prints the forensic diff — what the prior model's constant `K` actually contains,
-the implied VE inside each supplied CSV, and the itemised walk from 511 whp to 466 whp.
+The round 1-6 working scripts (`reconcile.py`, `unified_model.py`, the build / verify scripts) were removed 2026-10-13; git history keeps them. The current model is `../model/` and builds `../intercooler-report.html` and `../turbo-comparison.html`.
 
 ---
 
