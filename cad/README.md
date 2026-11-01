@@ -1,5 +1,13 @@
 # ST185 CAD index
 
+> **Where the models are (Dan 2026-11-01):** every CAD model file (STEP, STL, 3MF, Fusion `.f3d`), the busbar drawing PDFs, the bought-part
+> models in `cad/vendor/` and the busbar concept STEPs from `_research/` were MOVED to Dan's models folder
+> `C:\Users\danie\.personal OneDrive\OneDrive\Desktop\models`, one job per assembly: `st185_fusebox_1101` (revA = repo rev 6, revB = rev 7), `st185_busbar-A_1101`, `st185_busbar-B_1101`
+> (+ `research/`), `st185_fuel-hanger_1101` (revA billet, revB 10-17, revC threaded), `st185_csb3-enclosure_1101`, `st185_vrc-enclosure_1101`,
+> `st185_drb102-plate_1101`, `st185_vendor-parts_1101`. Each rev folder has a SUMMARY.md (open issues) and a MANIFEST.sha256.
+> The drawings, DXFs and parts lists STAY here too (copied, not moved) because the repo checks and the BOM read them. The
+> "Local model files" column below names the old repo paths; find the file under the job above.
+
 The ONE list of every custom-part CAD model (DECISIONS R77). **A new CAD model gets a row here in the same PR that adds it.**
 
 - **Summary page** = tracked HTML in git (renders, drawings). Open it from the repo.
