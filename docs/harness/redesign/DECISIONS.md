@@ -28,9 +28,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B5 ONE wire list.** `docs/harness/MASTER-wirelist.csv` holds every new wire, cut, reuse and tap with its EWD page; no
   row, no cut. Reuse an OEM wire only if its gauge fits and both ends are known. `sot/channels.csv` = ECU settings.
-- **B6 ONE drawing set, read back.** `ST185-harness` is generated from the master by `build_drawings.py`, never
-  hand-edited; `--check` reads every wire back. Per-harness wire lists use Option A ("Wire lists" below); harness.design only as a consumer.
-  Each device sits on one page per harness, all its wires together (Dan 2026-10-31); the OEM splice reference is built and checked the same way.
+- **B6 Built in harness.design.** Every harness is built in harness.design from the master (Dan 2026-11-01), one at a
+  time; our layout / schematic PDFs are retired. `build_drawings.py --check` keeps the layout tree, master lengths, the
+  Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is built and checked from the master.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it.
@@ -369,8 +369,8 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R221 | B5 | |
 | R222 | B4 | |
 | R223 | B30 | gearbox VSS on switched 12 V, DI 8 pull-up ON: applied; the facts live in the file it changed; Link check open in OPEN-ITEMS row 169 |
-| R224 | B2 | the ONE drawing set and read-back: B6 |
-| R225 | B6 | amended by Dan 2026-10-20: harness.design only as an optional consumer of generated per-harness tables |
+| R224 | B2 | the ONE drawing set and read-back: retired 2026-11-01 (B6: harness.design) |
+| R225 | B6 | amended by Dan 2026-10-20 (harness.design only a consumer); reversed 2026-11-01: harnesses are built in harness.design, our drawing PDFs retired |
 | R226 | B2 | this page |
 | S1 | B18 |  |
 | S2 | B18 |  |

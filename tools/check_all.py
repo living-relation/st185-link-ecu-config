@@ -7,7 +7,7 @@ writes, so the tree is untouched and CI can trust it.
 
   docs/harness/tools/check_wiring.py       the ONE wiring check (DECISIONS R221): the master wire list, sot/channels.csv
                                            (ECU settings), the IO table, the route drawings
-  docs/harness/tools/build_drawings.py     our own drawing sets and the DRB102 map are current against the master
+  docs/harness/tools/build_drawings.py     layout tree, lengths, wire lists and the DRB102 map are current against the master
   docs/sourcing/build_project_bom.py       the ONE project BOM / shopping list is current
   cad/fusebox/src/parts_lists.py           R82: every fuse box part is real and buyable
   cad/fusebox/src/check_clearance.py       Dan's 3 mm rule: no two live fuse box parts closer than 3 mm

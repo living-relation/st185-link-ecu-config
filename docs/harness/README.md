@@ -9,9 +9,9 @@ that B9 points to).
 |---|---|---|
 | `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
 | `sot/fuse-relay-map.csv` | B1 / B2 / B3 / B4 seat to circuit (not a wire list) | Yes, when a seat changes |
-| `drawings/` | generated: each drawing set as two PDFs (`<set>-schematic.pdf`, `<set>-layout.pdf`); the pinout is the pin chart below (Dan 2026-10-31). Each grouped section is its own page (a section continues when it does not fit). A schematic page holds six wires, each in its own line colour so it can be followed; the label keeps the wire colour. Layout pages are the approved drawings in `routes/`, including Routes 16 and 17 on 1993 EWD p.36. Routes 2-7 were wrong and are removed (Dan 2026-10-26); AB-cabin and CabinPower have no route file, so they fall back to the physical tree. Each page has its own title block and rev log. Plus the DRB102 insert-face map, and the pin chart `ST185-pin-chart.pdf` (every connector's cavity face, then each pin: wire, what it does, where it goes as device + pin, fuse box + fuse, or relay + terminal) | No - re-run the generator |
+| `drawings/` | generated: the pin chart `ST185-pin-chart.pdf` (the one pinout, a bench printout) and the DRB102 insert-face map `DRB102-bulkhead-map.png`. No layout / schematic PDFs: harnesses are built in harness.design (Dan 2026-11-01) | No - re-run the generator |
 | `wirelists/` | generated: one From / To wire list per harness (`ST185-<harness>-wirelist.xlsx`: Wires, Connectors, Splices, Spare Cavities, Key), in the Option A splice-column format (DECISIONS "Wire lists"; examples `option-a-examples.html`); so far AB-cabin and AB-engine (`"wirelists"` in the layout file) | No - re-run the generator |
-| `tools/build_drawings.py` | the drawing generator; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
+| `tools/build_drawings.py` | makes no drawings (Dan 2026-11-01): the layout tree, wire routing and master lengths, the wire lists and the DRB102 map; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/build_pin_chart.py` | builds `drawings/ST185-pin-chart.pdf` from the master; connector faces in `tools/pin_chart/` (sourced layouts; a connector without one is a numbered list, flagged) | The face files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout when its pass is done (DECISIONS B8) | Only from Dan's markup or placement |
@@ -19,20 +19,19 @@ that B9 points to).
 | `circuit-plan.md` | the 21 circuits, cut-list groups and the IG1 / IG2 table | Yes, when a circuit decision changes |
 | `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
 
-Generated views that are not committed (R221): thumbnails land in `out/` (gitignored).
-
 ## Change the wiring
 
 1. Edit the rows in `MASTER-wirelist.csv` (pins exactly as the maker numbers them; a part number not confirmed by a maker
    document is `TBD`, never guessed).
 2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell).
-3. `python docs/harness/tools/build_drawings.py <set>` for a drawing set that holds the harness, and
+3. `python docs/harness/tools/build_drawings.py` (wire lists, DRB102 map, length check), and
    `python docs/sourcing/build_project_bom.py` for the shopping list.
 4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
 
-## harness.design copy (optional, never a source)
+## harness.design - where the harnesses are built
 
-A harness.design document is only a viewer of the master (DECISIONS B6); nothing in it is edited back. AB-engine:
+Every harness is built in harness.design from the master (Dan 2026-11-01, DECISIONS B6): it forces a wire list and a
+planned layout first. The master stays the only wiring source; nothing in a document is edited back into it. AB-engine:
 https://app.harness.design/lDDj (Rev K). AB-cabin (two documents, 100-connection plan limit): https://app.harness.design/8OJ2 bulkhead run, https://app.harness.design/kD3r dash (Rev 1, 2026-11-01). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
 - Built from the master + the `route_trees` layout tree by a throwaway script (freeze: none is committed). New or
@@ -55,9 +54,9 @@ skill is not changed for this project):
 ## Harnesses in the master
 
 `AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
-`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `WheelSpeed-Front`, `WheelSpeed-Rear`. All 12 are drawn by
-the generator as ONE drawing set, `ST185-harness` (`drawings/ST185-harness-schematic.pdf`, `-layout.pdf`; pinout: `drawings/ST185-pin-chart.pdf`;
-layout tree `tools/ST185-harness.layout.json`). Rear lights stay on the factory harness. AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
+`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `WheelSpeed-Front`, `WheelSpeed-Rear`. Each is built in
+harness.design (one at a time); the layout tree for all of them is `tools/ST185-harness.layout.json`; pinout:
+`drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness. AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
 the dash near the floor, where every other harness to the ECU joins it; it is drawn left to right, and where each other
 harness's branch joins is set in the layout tree. Part makers and descriptions
 (AWG ranges) the BOM and the check read: `docs/sourcing/harness-parts.csv`. Fuse and relay seats: `sot/fuse-relay-map.csv`.
