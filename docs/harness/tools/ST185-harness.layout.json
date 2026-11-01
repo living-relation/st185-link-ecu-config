@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); harness C joins the engine tree at the MR-S pump; they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit) and LFP (run 11, driver kick), riding Route 16 lines 9 / 6 / 4 / 2 to the A/C, alternator plug, MR-S pump plug A and block stud, its own copies of those nodes (prefix C_); ground studs EA / EB have no Route 17 spot yet and stay on the old Route 2 nodes) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -241,9 +241,9 @@
     84,
     3
    ],
-   "label": "Existing factory RH fender grommet, RH front inner fender corner: harness C, alarm siren + hood pin, alternator IG / L / S (Routes 1, 2, 14)",
+   "label": "Harness C out of the cabin into the RH fender by the hood hinge (Route 17 run 10 start; the harness C tree is built from Route 17 by route_trees); alarm siren leads (Route 14)",
    "end": true,
-   "short": "RH fender grommet (factory)",
+   "short": "RH fender exit (harness C)",
    "lab": "below"
   },
   "RFP": {
@@ -265,16 +265,6 @@
    "end": true,
    "short": "LH fender pass-through: FL sensor",
    "lab": "above"
-  },
-  "WIPER": {
-   "xy": [
-    90,
-    93
-   ],
-   "label": "Front wiper motor F9, under the cowl, driver side (Route 2 point 18)",
-   "end": true,
-   "short": "Wiper motor F9",
-   "lab": "left"
   },
   "LHSILL": {
    "xy": [
@@ -380,47 +370,17 @@
     118,
     1
    ],
-   "label": "Harness C: down the RH inner fender (A/C branch, EPS pump) (Route 2 rev 12)",
-   "short": "RH inner fender run (harness C)"
-  },
-  "ACC": {
-   "xy": [
-    124,
-    12
-   ],
-   "label": "A/C compressor A4 clutch lead + dual pressure switch A5 (Route 2 point 7)",
-   "end": true,
-   "short": "A/C compressor + pressure switch",
-   "lab": "below"
+   "label": "Old Route 2 RH inner fender point: kept only for ground studs EA / EB (no Route 17 spot yet), the alarm hood pin lead and the heavy-cable path to the engine tree",
+   "short": "old RH inner fender point"
   },
   "C_RHC": {
    "xy": [
     140,
     4
    ],
-   "label": "RH front corner: headlamp H2, turn / clearance F8, retract motor R3, washer W1, hood pin, ground EA (Route 2 point 15)",
+   "label": "Old Route 2 RH front corner: ground stud EA (no Route 17 spot yet) and the alarm hood pin lead",
    "end": true,
-   "short": "RH front corner",
-   "lab": "left"
-  },
-  "FANC": {
-   "xy": [
-    140,
-    24
-   ],
-   "label": "Condenser fan (own connector; first stop on the fan branch, Route 2 point 9)",
-   "end": true,
-   "short": "Condenser fan",
-   "lab": "left"
-  },
-  "FANR": {
-   "xy": [
-    140,
-    36
-   ],
-   "label": "Radiator fan (own connector; end of the fan branch, Route 2 point 10)",
-   "end": true,
-   "short": "Radiator fan",
+   "short": "old RH front corner: ground EA",
    "lab": "left"
   },
   "C_FRONT": {
@@ -428,9 +388,8 @@
     140,
     50
    ],
-   "label": "Core support, front centre: horn split, both horns (DT 2-way each), headlamp / retract / clearance return joins (Route 2 points 8, 17)",
-   "end": true,
-   "short": "Front centre: horns, return joins",
+   "label": "Old Route 2 front centre: kept only as the way to ground stud EB (no Route 17 spot yet)",
+   "short": "old front centre",
    "lab": "left"
   },
   "C_LHC": {
@@ -438,9 +397,9 @@
     140,
     98
    ],
-   "label": "LH front corner: headlamp H1, turn / clearance F7, retract motor R2, ground EB (Route 2 point 16)",
+   "label": "Old Route 2 LH front corner: ground stud EB (no Route 17 spot yet)",
    "end": true,
-   "short": "LH front corner",
+   "short": "old LH front corner: ground EB",
    "lab": "left"
   },
   "SIREN": {
@@ -452,16 +411,6 @@
    "end": true,
    "short": "Alarm siren",
    "lab": "left"
-  },
-  "ALT": {
-   "xy": [
-    100,
-    22
-   ],
-   "label": "Alternator G2 round 3-pin plug (IG / L / S, through the RH fender grommet) - rear RH of the engine under the bulkhead (Route 1 point 3)",
-   "end": true,
-   "short": "Alternator plug (IG / L / S)",
-   "lab": "below"
   },
   "RL_ENG": {
    "xy": [
@@ -630,11 +579,6 @@
   ],
   [
    "C_FEND",
-   "ACC",
-   250
-  ],
-  [
-   "C_FEND",
    "MRS",
    400
   ],
@@ -642,16 +586,6 @@
    "C_FEND",
    "C_RHC",
    500
-  ],
-  [
-   "C_RHC",
-   "FANC",
-   300
-  ],
-  [
-   "FANC",
-   "FANR",
-   300
   ],
   [
    "C_RHC",
@@ -669,11 +603,6 @@
    500
   ],
   [
-   "RFG",
-   "ALT",
-   400
-  ],
-  [
    "RHKICK",
    "RFP",
    300
@@ -681,11 +610,6 @@
   [
    "JB1",
    "LFP",
-   300
-  ],
-  [
-   "LFP",
-   "WIPER",
    300
   ],
   [
@@ -765,6 +689,57 @@
    "root": "BH_ENG",
    "harness": "AB-engine",
    "root_drop_mm": 203
+  },
+  {
+   "route": "ROUTE-17-FRONT.html",
+   "harness": "EngineRoom-C",
+   "prefix": "C_",
+   "roots": {
+    "10": "RFG",
+    "11": "LFP"
+   },
+   "with": [
+    "ROUTE-16-ENGINE-MAIN.html"
+   ],
+   "line_from": {
+    "RH": "10",
+    "L9": "RH"
+   },
+   "devices": {
+    "1": "HL_RH",
+    "2": "RTR_RH",
+    "3": "WASH",
+    "4": "TURN_RH",
+    "8": "ACC",
+    "9": "FANC",
+    "10": "AMB",
+    "12": "HORNS",
+    "13": "FANR",
+    "14": "HL_LH",
+    "15": "RTR_LH",
+    "16": "TURN_LH",
+    "18": "ACPSW",
+    "19": "WIPER",
+    "ROUTE-16-ENGINE-MAIN.html#H1": {
+     "node": "ALT",
+     "ids": [
+      "ALT-PLUG"
+     ]
+    },
+    "ROUTE-16-ENGINE-MAIN.html#18": {
+     "node": "BLOCK_C",
+     "ids": [
+      "T-ENG-BLOCK-2",
+      "T-ENG-BLOCK-3"
+     ]
+    },
+    "ROUTE-16-ENGINE-MAIN.html#24": {
+     "node": "MRS_A",
+     "ids": [
+      "MRS-A"
+     ]
+    }
+   }
   }
  ],
  "end_allowance_mm": 100,
@@ -884,9 +859,8 @@
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",
   "SP-DEV": "PI",
-  "SP-HORN": "C_FRONT",
   "SP-RL-REV": "RLJ",
-  "MRS-A": "MRS",
+  "MRS-A": "MRS_A",
   "ALT-PLUG": "ALT",
   "FAN-COND": "FANC",
   "FAN-COND-GND": "FANC",
@@ -896,19 +870,14 @@
   "GND-EB": "C_LHC",
   "GND-ID": "JB1",
   "GND-IG": "RHKICK",
-  "HORN-LH": "C_FRONT",
-  "HORN-RH": "C_FRONT",
-  "T-ENG-BLOCK-2": "ENG_BLOCK",
-  "T-ENG-BLOCK-3": "ENG_BLOCK",
-  "SP-HL-HIGH": "C_FRONT",
-  "SP-HL-LOW": "C_FRONT",
-  "SP-RTR-CLOSE": "C_FRONT",
-  "SP-RTR-OPEN": "C_FRONT",
-  "SP-CLR": "C_FRONT",
-  "SP-RTR-R3-4": "C_RHC",
-  "SP-RTR-GND-R3": "C_RHC",
-  "SP-RTR-R2-4": "C_LHC",
-  "SP-RTR-GND-R2": "C_LHC",
+  "HORN-LH": "HORNS",
+  "HORN-RH": "HORNS",
+  "T-ENG-BLOCK-2": "BLOCK_C",
+  "T-ENG-BLOCK-3": "BLOCK_C",
+  "SP-RTR-R3-4": "RTR_RH",
+  "SP-RTR-GND-R3": "RTR_RH",
+  "SP-RTR-R2-4": "RTR_LH",
+  "SP-RTR-GND-R2": "RTR_LH",
   "BATT-RELAY-BLOCK": "BATT",
   "KILL-SW": "BATT",
   "BATT-POS": "BATT",
@@ -1021,7 +990,7 @@
   ],
   [
    "A/C pressure switch A5",
-   "ACC"
+   "ACPSW"
   ],
   [
    "A/C compressor A4",
@@ -1033,31 +1002,31 @@
   ],
   [
    "Washer motor W1",
-   "C_RHC"
+   "WASH"
   ],
   [
    "LH headlamp H1",
-   "C_LHC"
+   "HL_LH"
   ],
   [
    "LH front turn",
-   "C_LHC"
+   "TURN_LH"
   ],
   [
    "LH retract motor",
-   "C_LHC"
+   "RTR_LH"
   ],
   [
    "RH headlamp H2",
-   "C_RHC"
+   "HL_RH"
   ],
   [
    "RH front turn",
-   "C_RHC"
+   "TURN_RH"
   ],
   [
    "RH retract motor",
-   "C_RHC"
+   "RTR_RH"
   ],
   [
    "Front wiper motor F9",
@@ -1133,7 +1102,7 @@
   ],
   [
    "A1 ",
-   "ACC"
+   "AMB"
   ],
   [
    "A32",
