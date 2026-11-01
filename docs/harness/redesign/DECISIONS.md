@@ -101,7 +101,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   harness (AB-engine), anything within 150 mm of the exhaust, turbo or downpipe, the Spec 55 shielded cables, and any
   circuit where TXL's derated rating (about 0.8x Tefzel at 80 C cabin, 0.7x at 100 C engine bay) falls below its fuse
   (B12). Battery cables `BC-*`. Solid colours: Red +12 V, Black ground / drain, Orange
-  sensor supply, Blue sensor return, White signal, Green CAN, Yellow switch in. Ident bands at circuit ends, not 6 AWG+.
+  sensor supply, Blue sensor return, White signal, Green CAN, Yellow switch in. No ident bands (Dan 2026-10-31): a printed
+  wire-ID label at each end (B22) tells same-colour wires apart.
 - **B21 Picking parts.** Order and validation per `docs/sourcing/README.md` (on hand, TE, Dan's suppliers, else a stated
   reason). Never guess a PN: unverified = `TBD` + reason; every part real and buyable; parts made at work cost $0.
 
