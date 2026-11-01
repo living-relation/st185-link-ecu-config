@@ -1,0 +1,75 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>ST185 Pin Chart</title>
+<style>
+/* Layout: a bench chart. Sticky search + harness tabs, then one card per connector: face drawing, then its pin table. */
+:root{
+  --bg:#eef0ec; --paper:#fbfbf8; --ink:#1d2427; --dim:#5d686c; --line:#cfd5d2; --accent:#0d6b73; --spare:#ffffff;
+  --body:#e2e6e3; --warn:#b4541a; --ok:#2f7d4f;
+  --f-disp:"Saira Condensed","Arial Narrow",sans-serif; --f-body:"IBM Plex Sans",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111618;--paper:#182024;--ink:#e3e8e6;--dim:#97a3a6;--line:#2c373b;--accent:#4fb3ba;--spare:#20292d;--body:#24303a;--warn:#e08a52;--ok:#6cc08f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111618;--paper:#182024;--ink:#e3e8e6;--dim:#97a3a6;--line:#2c373b;--accent:#4fb3ba;--spare:#20292d;--body:#24303a;--warn:#e08a52;--ok:#6cc08f;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.45}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px;max-width:1500px;margin:0 auto}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px}
+.top .row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;max-width:1500px;margin:0 auto}
+h1{font-family:var(--f-disp);font-size:26px;letter-spacing:.02em;margin:0;text-wrap:balance}
+.meta{color:var(--dim);font-size:13px}
+input#q{flex:1 1 220px;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+input#q:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav{display:flex;flex-wrap:wrap;gap:6px;max-width:1500px;margin:8px auto 0}
+nav a{font-size:12px;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:3px 10px}
+nav a b{color:var(--accent);font-family:var(--f-mono);font-weight:500}
+.key{display:flex;flex-wrap:wrap;gap:6px 14px;margin:18px 0 0;font-size:12px;color:var(--dim)}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--ink);display:inline-block}
+h2{font-family:var(--f-disp);font-size:22px;letter-spacing:.03em;margin:28px 0 10px;border-bottom:2px solid var(--ink);padding-bottom:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:14px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.card header{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.card h3{font-family:var(--f-disp);font-size:21px;margin:0;letter-spacing:.02em}
+.pn{font-family:var(--f-mono);font-size:12px;color:var(--dim)}
+.chip{margin-left:auto;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:2px 8px;border:1px solid}
+.chip.sourced{color:var(--ok)} .chip.unverified{color:var(--warn)}
+.nm{margin:0;color:var(--dim);font-size:13px;overflow-wrap:anywhere}
+.faceWrap{overflow-x:auto;display:flex;justify-content:center;padding:6px 0;background:var(--bg);border-radius:6px}
+svg.face{max-width:100%;height:auto}
+svg.face.drb{max-width:none}
+svg.face text{font-family:var(--f-mono);text-anchor:middle;font-weight:500}
+svg.face text.cap{font-size:10px;fill:var(--dim)}
+.cav:hover circle,.cav:hover rect,.cav.hi circle,.cav.hi rect{stroke:var(--accent);stroke-width:3}
+.view{margin:0;font-size:12px;color:var(--dim)} .view a{color:var(--accent)}
+.nt{font-size:11.5px;color:var(--dim)} .nt summary{cursor:pointer}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+th{text-align:left;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--line);padding:4px 6px}
+td{border-bottom:1px solid var(--line);padding:4px 6px;vertical-align:top}
+tr.sp td{color:var(--dim);font-style:italic}
+td.pin,td.mono{font-family:var(--f-mono);font-weight:500;white-space:nowrap}
+.mono{font-family:var(--f-mono);font-size:11.5px} .dim{color:var(--dim)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;border:1px solid var(--ink);margin-right:5px;vertical-align:-1px}
+.bd{display:inline-flex;gap:1px;margin-left:6px;vertical-align:-1px}.bd i{width:4px;height:10px;border:1px solid var(--ink)}
+tbody tr:hover{background:var(--bg)}
+.doc{margin:0;font-size:11.5px;color:var(--dim)}
+.hide{display:none!important}
+@media (prefers-reduced-motion:no-preference){.cav circle,.cav rect{transition:stroke-width .12s}}
+@page{size:letter landscape;margin:10mm}
+@media print{body{background:#fff}.top{position:static}input#q,nav,.nt{display:none}.grid{display:block}
+ .card{break-before:page;border:none;padding:0}section>h2{margin:0}.card header,.faceWrap{break-after:avoid}
+ .faceWrap{overflow:visible;background:#f3f4f2}tr{break-inside:avoid}tbody tr:hover{background:none}
+ table{font-size:11.5px}th,td{padding:3px 6px}}
+</style></head><body>
+<div class="top"><div class="row"><h1>ST185 Pin Chart</h1>
+<span class="meta">{{N}} connectors · {{SRC}} faces sourced · {{UNV}} still a numbered list</span>
+<input id="q" type="search" placeholder="Find a connector, wire ID or signal" aria-label="Search connectors, wires and signals"></div>
+<nav>{{NAV}}</nav></div>
+<main class="wrap">
+<div class="key"><span><i class="dot" style="background:#c8312b"></i>Red +12 V</span><span><i class="dot" style="background:#2b2b2b"></i>Black ground</span>
+<span><i class="dot" style="background:#f4f4f2"></i>White signal</span><span><i class="dot" style="background:#2a62c9"></i>Blue sensor return</span>
+<span><i class="dot" style="background:#e8781e"></i>Orange sensor supply</span><span><i class="dot" style="background:#f0c419"></i>Yellow switch in</span>
+<span><i class="dot" style="background:#2e8b43"></i>Green CAN</span><span><i class="dot" style="background:#9a9a9a"></i>Grey shield drain</span>
+<span><i class="dot" style="background:var(--bg);border:1px dashed var(--dim)"></i>Dashed = spare cavity</span><span>Cavity colour is the wire's insulation colour. From MASTER-wirelist.csv.</span></div>
+{{BODY}}
+</main>
+</body></html>
