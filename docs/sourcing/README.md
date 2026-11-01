@@ -36,7 +36,8 @@ Rule: `docs/harness/redesign/DECISIONS.md` R38.
 - PT Motorsport (AU): power distribution https://www.ptmotorsport.com.au/product-category/powerdist/ | wiring https://www.ptmotorsport.com.au/product-category/wiring/
 - CrimpZone: https://www.crimpzone.com/
 - B Motorsports: https://www.bmotorsports.com/shop/index.php/cPath/150
-- Corsa Technic: https://www.corsa-technic.com/category.php?category_id=47
+- Corsa Technic: https://www.corsa-technic.com/category.php?category_id=47 | **preferred supplier for all Tefzel wire** (Dan 2026-11-01):
+  https://www.corsa-technic.com/category.php?category_id=62 (M22759/16 22-8 AWG, M22759/32, M27500 shielded cable; sold per foot)
 - Crimp tool alternatives (reference): https://www.mattmillman.com/info/crimpconnectors/pc-modding-crimp-connectors-and-tools/
 
 ## Sources in Google Drive
