@@ -45,7 +45,7 @@ Check: `check_wiring.py` E3 passes (no chassis ground), nothing powered from SW1
 
 Each circuit below is Spec 55 shielded in AB-engine but loose TXL in AB-cabin. In AB-cabin, replace the loose wires
 between the bulkhead and their cabin ends with **one cable of the same part number**, cores in the **same colours as
-the engine half**, ident bands copied from the engine half. Cabin ends do not move (the cores fan out at the ECU
+the engine half** (no ident bands, B20). Cabin ends do not move (the cores fan out at the ECU
 splice point to the same ECU pins, bus cavities and splices). The cabin drain wire (`w_shc_*`) becomes that cable's
 screen drain, still to the same splice. Model the rows on the cabin cables that already exist (`CAB-APS1`,
 `CAB-FSPUR-FR-AC`, `CAB-CANBH-BC`): `cable` + `cable_pn` set, `wire_pn` blank on cores, a `cable screen` row for the
@@ -64,7 +64,7 @@ shrink (pin `NC`, like Wire lists rule 7).
 | Throttle sensor | `55A1841-20-2/4/5/6-9` | 41 +5 V -> BUS-5V 2 (red); 42 TPS1 -> ECU-A 22 (green); 44 TPS2 -> ECU-A 33 (blue); yellow `NC` sealed (sensor ground returns through bulkhead 34); 47 screen -> SP-SHIELD-A | `w_rail_sp_5v_c`, `w128_c`, `w129_c`, `w_shc_etbs` |
 | Throttle motor | `55A1821-18-2/0-9` | 45 motor + -> ECU-B 18 (red); 46 motor - -> ECU-B 26 (black); 50 screen -> SP-SHIELD-B | `w124_c`, `w215_c`, `w_shc_etbm` |
 
-Check: the S1-S3 shield checks in `check_wiring.py` pass; every bulkhead cavity above has the same colour and bands on
+Check: the S1-S3 shield checks in `check_wiring.py` pass; every bulkhead cavity above has the same colour on
 both halves (re-run the pairing check in section 7).
 
 ## 3. Row 173 - wire-end text and the shield splice distance
@@ -184,5 +184,5 @@ master; every master factory-tap wire appears once.
 ## 7. Done when
 
 - Rows 170-175 closed in OPEN-ITEMS (History line each), this file deleted with its README line, `main` pulled.
-- Pairing check (run after PR 1): for every firewall cavity, both halves have the same circuit, colour and bands, and a
+- Pairing check (run after PR 1): for every firewall cavity, both halves have the same circuit and colour, and a
   shielded engine half has a shielded cabin half.

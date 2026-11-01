@@ -14,11 +14,6 @@
    "wire": "w_hc_fb",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "Blue",
-    "White"
-   ],
    "gauge": 8,
    "unit": "AWG",
    "od": 5.13,
@@ -54,10 +49,6 @@
    "wire": "w_fb_k_fan2_87_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "Blue"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -99,11 +90,6 @@
    "wire": "w_fb_k_eps_30_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "Blue"
-   ],
    "gauge": 8,
    "unit": "AWG",
    "od": 5.13,
@@ -138,11 +124,6 @@
    "wire": "w_inj_pwr_c_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "White",
-    "Blue"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -219,11 +200,6 @@
    "wire": "w_cop_pwr_c_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "White",
-    "Yellow"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -300,10 +276,6 @@
    "wire": "w77_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -381,10 +353,6 @@
    "wire": "w_fb_k_efi_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 12,
    "unit": "AWG",
    "od": 2.97,
@@ -426,10 +394,6 @@
    "wire": "w_k_efi_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -548,10 +512,6 @@
    "wire": "w_fb_k_etb_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "White"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -654,10 +614,6 @@
    "wire": "w_fb_k_str_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "Yellow"
-   ],
    "gauge": 12,
    "unit": "AWG",
    "od": 2.97,
@@ -699,10 +655,6 @@
    "wire": "w_fb_k_fan_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "White"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -744,10 +696,6 @@
    "wire": "w_fb_mrs_en_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "White"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -824,11 +772,6 @@
    "wire": "w_lam12_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "White",
-    "White"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -905,9 +848,6 @@
    "wire": "w_htr_acps",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -984,11 +924,6 @@
    "wire": "w_pmu_hl_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -1065,11 +1000,6 @@
    "wire": "w_pmu_hr_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "White"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -1146,10 +1076,6 @@
    "wire": "w_pmu_horn_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -1226,11 +1152,6 @@
    "wire": "w_pmu_dome_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Blue",
-    "White"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -1307,11 +1228,6 @@
    "wire": "w_pmu_rtr_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -1346,11 +1262,6 @@
    "wire": "w_acp_1_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Blue",
-    "Yellow",
-    "White"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -1427,11 +1338,6 @@
    "wire": "w_pdb_am1_cp",
    "file": "CabinPower",
    "colour": "White",
-   "bands": [
-    "Yellow",
-    "Yellow",
-    "White"
-   ],
    "gauge": 8,
    "unit": "AWG",
    "od": 5.13,
@@ -1466,11 +1372,6 @@
    "wire": "w_pdb_am2_cp",
    "file": "CabinPower",
    "colour": "Brown",
-   "bands": [
-    "Yellow",
-    "White",
-    "Blue"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -1505,7 +1406,6 @@
    "wire": "w_pdb_jb1_cp",
    "file": "CabinPower",
    "colour": "White",
-   "bands": [],
    "gauge": 6,
    "unit": "AWG",
    "od": 6.43,
@@ -1540,9 +1440,6 @@
    "wire": "w_htr_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow"
-   ],
    "gauge": 8,
    "unit": "AWG",
    "od": 5.13,
@@ -1619,10 +1516,6 @@
    "wire": "w_rb2_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -1699,11 +1592,6 @@
    "wire": "w_csb12_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Blue",
-    "Blue"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -1780,10 +1668,6 @@
    "wire": "w_fb_k_acc_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -1876,9 +1760,6 @@
    "wire": "w_cp_sw12_in",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -1955,10 +1836,6 @@
    "wire": "w76_cp",
    "file": "CabinPower",
    "colour": "White",
-   "bands": [
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2035,10 +1912,6 @@
    "wire": "w_fan85_cp",
    "file": "CabinPower",
    "colour": "White",
-   "bands": [
-    "Yellow",
-    "White"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2115,9 +1988,6 @@
    "wire": "w_k_fan_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2194,10 +2064,6 @@
    "wire": "w_fan_pwr_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "White"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -2274,10 +2140,6 @@
    "wire": "w81_cp",
    "file": "CabinPower",
    "colour": "Gray",
-   "bands": [
-    "White",
-    "White"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -2354,9 +2216,6 @@
    "wire": "w_k_etb_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -2433,10 +2292,6 @@
    "wire": "w82_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "White"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2513,10 +2368,6 @@
    "wire": "w_str85_cp",
    "file": "CabinPower",
    "colour": "White",
-   "bands": [
-    "White",
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2593,9 +2444,6 @@
    "wire": "w_k_str_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2672,10 +2520,6 @@
    "wire": "w_strl_ac",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "Yellow"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -2752,10 +2596,6 @@
    "wire": "w_fan285_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "White",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2832,9 +2672,6 @@
    "wire": "w_k_fan2_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -2911,10 +2748,6 @@
    "wire": "w_fan2_pwr_bc",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White",
-    "Blue"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -2991,10 +2824,6 @@
    "wire": "w_eps_trig_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Blue",
-    "White"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -3071,10 +2900,6 @@
    "wire": "w_acc_trig_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -3151,10 +2976,6 @@
    "wire": "w_acc86_cp",
    "file": "CabinPower",
    "colour": "Yellow",
-   "bands": [
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -3231,10 +3052,6 @@
    "wire": "w_acc_clutch_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -3311,11 +3128,6 @@
    "wire": "w_start_in_cp",
    "file": "CabinPower",
    "colour": "Green",
-   "bands": [
-    "Blue",
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -3392,11 +3204,6 @@
    "wire": "w_start_cp",
    "file": "CabinPower",
    "colour": "Green",
-   "bands": [
-    "Blue",
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -3473,11 +3280,6 @@
    "wire": "w_at_12v_tie_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "White",
-    "Yellow"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -3554,11 +3356,6 @@
    "wire": "w_at_12v_shk_tie_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "White",
-    "White"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -3635,11 +3432,6 @@
    "wire": "w_at_ig_tie_cp",
    "file": "CabinPower",
    "colour": "Gray",
-   "bands": [
-    "White",
-    "Blue",
-    "Blue"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -3716,11 +3508,6 @@
    "wire": "w_dev_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -3797,10 +3584,6 @@
    "wire": "w_hz_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -3877,10 +3660,6 @@
    "wire": "w_fb_k_eps_en_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "White"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -3963,9 +3742,6 @@
    "wire": "w_k_eps_en_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -4042,10 +3818,6 @@
    "wire": "w_k_eps_en_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "White"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -4138,11 +3910,6 @@
    "wire": "w_rb2_wl_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -4219,9 +3986,6 @@
    "wire": "w_rev_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -4298,9 +4062,6 @@
    "wire": "w_rev_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -4377,9 +4138,6 @@
    "wire": "w_rev_85_cp",
    "file": "CabinPower",
    "colour": "Black",
-   "bands": [
-    "White"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -4457,9 +4215,6 @@
    "wire": "w_rev_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "White"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -4536,11 +4291,6 @@
    "wire": "w_alt_s_cp",
    "file": "CabinPower",
    "colour": "White",
-   "bands": [
-    "White",
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 20,
    "unit": "AWG",
    "od": 1.57,
@@ -4617,11 +4367,6 @@
    "wire": "w_hl_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -4716,11 +4461,6 @@
    "wire": "w_hl_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -4800,11 +4540,6 @@
    "wire": "w_hl_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "Yellow"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -4884,11 +4619,6 @@
    "wire": "w_hl_85_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Blue",
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -4965,11 +4695,6 @@
    "wire": "w_hr_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "White"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -5064,11 +4789,6 @@
    "wire": "w_hr_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "White"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -5153,11 +4873,6 @@
    "wire": "w_hr_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue",
-    "White"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -5242,11 +4957,6 @@
    "wire": "w_hr_85_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Blue",
-    "Yellow",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -5323,10 +5033,6 @@
    "wire": "w_horn_30_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -5403,10 +5109,6 @@
    "wire": "w_horn_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Blue",
-    "Blue"
-   ],
    "gauge": 16,
    "unit": "AWG",
    "od": 2.06,
@@ -5483,10 +5185,6 @@
    "wire": "w_horn_85_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Blue",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -5563,9 +5261,6 @@
    "wire": "w_htr_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow"
-   ],
    "gauge": 8,
    "unit": "AWG",
    "od": 5.13,
@@ -5607,9 +5302,6 @@
    "wire": "w_htr_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -5686,9 +5378,6 @@
    "wire": "w_htr_85_cp",
    "file": "CabinPower",
    "colour": "Violet",
-   "bands": [
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -5765,10 +5454,6 @@
    "wire": "w_pwr_86_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -5845,10 +5530,6 @@
    "wire": "w_pwr_85_cp",
    "file": "CabinPower",
    "colour": "Black",
-   "bands": [
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -5926,9 +5607,6 @@
    "wire": "w_htr_87a_cp",
    "file": "CabinPower",
    "colour": "Black",
-   "bands": [
-    "Yellow"
-   ],
    "gauge": 14,
    "unit": "AWG",
    "od": 2.41,
@@ -6006,10 +5684,6 @@
    "wire": "w_pwr_87_cp",
    "file": "CabinPower",
    "colour": "Red",
-   "bands": [
-    "Yellow",
-    "Yellow"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -6051,7 +5725,6 @@
    "wire": "w_h1_pdb",
    "file": "EngineRoom-C",
    "colour": "Red",
-   "bands": [],
    "gauge": 53.5,
    "unit": "Metric",
    "od": 13.6,
@@ -6086,7 +5759,6 @@
    "wire": "w_h2_pdb",
    "file": "EngineRoom-C",
    "colour": "Black",
-   "bands": [],
    "gauge": 53.5,
    "unit": "Metric",
    "od": 13.6,
@@ -6121,7 +5793,6 @@
    "wire": "w_pdb_rlp",
    "file": "EngineRoom-C",
    "colour": "Red",
-   "bands": [],
    "gauge": 53.5,
    "unit": "Metric",
    "od": 13.6,
@@ -6156,7 +5827,6 @@
    "wire": "w_pdb_rln",
    "file": "EngineRoom-C",
    "colour": "Black",
-   "bands": [],
    "gauge": 53.5,
    "unit": "Metric",
    "od": 13.6,
@@ -6191,7 +5861,6 @@
    "wire": "w_gnd_id",
    "file": "EngineRoom-C",
    "colour": "Black",
-   "bands": [],
    "gauge": 53.5,
    "unit": "Metric",
    "od": 13.6,
@@ -6226,7 +5895,6 @@
    "wire": "w_gnd_ig",
    "file": "EngineRoom-C",
    "colour": "Black",
-   "bands": [],
    "gauge": 53.5,
    "unit": "Metric",
    "od": 13.6,
@@ -6261,11 +5929,6 @@
    "wire": "w_fp_feed",
    "file": "HeavyDC",
    "colour": "Red",
-   "bands": [
-    "White",
-    "White",
-    "Blue"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -6300,11 +5963,6 @@
    "wire": "w_fp_30",
    "file": "HeavyDC",
    "colour": "Red",
-   "bands": [
-    "White",
-    "White",
-    "Blue"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,
@@ -6340,11 +5998,6 @@
    "wire": "w_fp85_h",
    "file": "HeavyDC",
    "colour": "White",
-   "bands": [
-    "White",
-    "White",
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -6379,9 +6032,6 @@
    "wire": "w_fp86_h",
    "file": "HeavyDC",
    "colour": "Red",
-   "bands": [
-    "Blue"
-   ],
    "gauge": 18,
    "unit": "AWG",
    "od": 1.85,
@@ -6416,11 +6066,6 @@
    "wire": "w_fp87_h",
    "file": "HeavyDC",
    "colour": "Red",
-   "bands": [
-    "White",
-    "White",
-    "Blue"
-   ],
    "gauge": 10,
    "unit": "AWG",
    "od": 3.61,

@@ -542,8 +542,7 @@ node branches): `docs/harness/wirelists/option-a-examples.html`.
 6. A wire that leaves the file stops at the shared connector pin (the bulkhead); `Continues` names the other harness, its
    wire and where that wire goes, and any splice the wire shares with another harness.
 7. A shield drain left unconnected reads `NC, floats` (pin `NC`): cut back and sealed under heat-shrink.
-8. `build_drawings.py --check` reads each committed list back against the master (rules 1-4, 7, ends, gauge, colour,
-   bands). harness.design stores a splice as a wire end; the import converts Option A rows to splice ends, the build list stays
+8. `build_drawings.py --check` reads each committed list back against the master (rules 1-4, 7, ends, gauge, colour). harness.design stores a splice as a wire end; the import converts Option A rows to splice ends, the build list stays
    Option A.
 
 ## Drawing rules

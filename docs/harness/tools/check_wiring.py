@@ -22,7 +22,6 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   M2  DRB102 contacts: size 16 cavities take 16-20 AWG, size 12 take 12-14 AWG, size 8 / 4 stay spare (TE drawing
       DRB12-102PXE-L018 rev C3); a contact the maker does not list for the housing fails (MAKER_CONTACTS)
   P1  a fuse-box end exists in the fuse-box design (cad/fusebox/rev7/wiring_plan.json, R204) with the same gauge
-  B1  ident bands (R87): Blue / Yellow / White, 1-4 bands; one code per circuit name; no two circuits share a code in a harness
   R1  the approved route drawings (routes/*.html) lint clean (red lines unfilled, attributes sound, a top view after every
       figure, no overlapping labels); overlapping numbered markers are listed as warnings, since the routes are Dan's (R47)
   X1  XTREMEX-IO-TABLE.html's generated pin map is current with sot/channels.csv (--write-io-table rewrites it)
@@ -58,7 +57,7 @@ COLS = ["harness", "circuit", "wire_id", "passes_through",
         "from_desc", "from_note",
         "to_type", "to_id", "to_name", "to_housing_pn", "to_housing_extra", "to_pin", "to_pin_doc", "to_terminal_pn",
         "to_desc", "to_note",
-        "net", "cable", "cable_pn", "wire_pn", "gauge_awg", "colour", "ident_bands",
+        "net", "cable", "cable_pn", "wire_pn", "gauge_awg", "colour",
         "oem_location", "oem_wire_colour", "oem_ewd_page", "oem_method", "route_branch", "est_length_mm", "notes"]
 CHANNEL_COLS = ["owner", "channel", "conn", "pin", "label", "class", "dir", "type", "pullup", "status", "source", "notes"]
 PIN_RE = re.compile(r"[A-Za-z0-9]+([ -][A-Za-z0-9]+)*")
@@ -90,7 +89,6 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
 # Known violations waiting for their wiring fix (OPEN-ITEMS): printed, not failing; a fixed one must be removed.
 PENDING = {"E3:w_at_gnd_a1", "E3:w_at_gnd_b1", "E3:w_at_gnd_b2", "E3:w_at_gnd_c1", "E3:w_led_gnd_out"}
 STUD_IDS = re.compile(r"^(POWER-STUDS|KILL-SW|RADLOK-|JUMP-POST|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
-BANDS = ("Blue", "Yellow", "White")
 
 
 def read_csv(path, text=None):
@@ -380,24 +378,6 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                 elif ws and r["gauge_awg"] and r["gauge_awg"] not in {PLAN_GAUGE.get(str(w.get("gauge")), str(w.get("gauge"))) for w in ws}:
                     fail("P1", "%s: %s %s is %s AWG in the fuse-box design, %s AWG in the master (R204)" % (
                         r["wire_id"], eid, r[s + "_pin"], "/".join(sorted({PLAN_GAUGE.get(str(w.get("gauge")), str(w.get("gauge"))) for w in ws})), r["gauge_awg"]))
-    # ---- B1 ident bands
-    code_of = collections.defaultdict(set)
-    per_h = collections.defaultdict(lambda: collections.defaultdict(set))
-    for r in wires:
-        if not r["ident_bands"]:
-            continue
-        bs = r["ident_bands"].split("-")
-        if not 1 <= len(bs) <= 4 or any(b not in BANDS for b in bs):
-            fail("B1", "%s bands %r: 1-4 of Blue / Yellow / White (R87)" % (r["wire_id"], r["ident_bands"]))
-        code_of[r["circuit"]].add(r["ident_bands"])
-        per_h[r["harness"]][r["ident_bands"]].add(r["circuit"])
-    for c, codes in code_of.items():
-        if len(codes) > 1:
-            fail("B1", "circuit %s has %d band codes: %s" % (c, len(codes), sorted(codes)))
-    for h, m in per_h.items():
-        for code, cs in m.items():
-            if len(cs) > 1:
-                fail("B1", "%s: circuits %s share bands %s" % (h, sorted(cs), code))
     # ---- R1 routes
     if routes:
         for f in sorted(glob.glob(os.path.join(ROUTES, "*.html"))):
@@ -564,7 +544,6 @@ def self_test():
         from_pin="5"))
     mutate("12 AWG in a size-16 cavity", "M2", lambda rs: first(rs, lambda r: r["to_id"] == "DRB102-CABIN" and r["to_pin"] == "21")
            .update(gauge_awg="12"))
-    mutate("a circuit with two band codes", "B1", lambda rs: first(rs, lambda r: r["circuit"] == "INJ1").update(ident_bands="Blue"))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))

@@ -1,6 +1,6 @@
 """Wired fuse boxes (Dan, 2026-10-14: "aren't there going to be more wires in these? can you simulate that?"): EVERY harness
 wire that lands in POWER rev 7, LOGIC and the battery relay block, from cad/fusebox/rev7/wiring_plan.json (wiring_sim.py:
-real cavity, gauge OD, insulation colour, ident bands, the CAD lanes with the bend rule), drawn as Tmp_ bodies in the open
+real cavity, gauge OD, insulation colour, the CAD lanes with the bend rule), drawn as Tmp_ bodies in the open
 ST185_fusebox_rev7 document, then
   - checks: every wire against the printed parts (through plastic / the cover closing), against the pull path of every fuse
     and relay, against the bare copper and steel, and wire against wire;
@@ -204,13 +204,13 @@ def run(_context: str):
             bodies = tube(pcs, w['od'])
             W[box].append((w['wire'] + ('#%d' % k if k else ''), bodies, colour))
             meta[w['wire'] + ('#%d' % k if k else '')] = dict(box=box, od=w['od'], colour=colour, gauge=w['gauge'], end=bp.get('end'))
-            BANDS[box] += bands_on(pts[0], nrm(sub(pts[1], pts[0])), w['od'], w['bands'])
+            BANDS[box] += bands_on(pts[0], nrm(sub(pts[1], pts[0])), w['od'], w.get('bands', []))
             if bp.get('loop') or bp.get('direct'):
-                BANDS[box] += bands_on(pts[-1], nrm(sub(pts[-2], pts[-1])), w['od'], w['bands'])
+                BANDS[box] += bands_on(pts[-1], nrm(sub(pts[-2], pts[-1])), w['od'], w.get('bands', []))
     # battery block coil plug: 85 (white) and 86 (red), 18 AWG, side by side where the CAD drew one lead
     BX, BY = S.PLACE['BATTRELAY']
     od18 = S.OD[18]
-    for (wid, colr, dz, bands) in (('w_fp85_h', 'White', -(od18 / 2 + 0.15), ['White', 'White', 'Blue']), ('w_fp86_h', 'Red', od18 / 2 + 0.15, ['Blue'])):
+    for (wid, colr, dz, bands) in (('w_fp85_h', 'White', -(od18 / 2 + 0.15), []), ('w_fp86_h', 'Red', od18 / 2 + 0.15, [])):
         pts = [(103.0, -161.0, 24.5 + dz), (103.0, -169.0, 24.5 + dz), (214.0, -169.0, 24.5 + dz)]
         W['BATT'].append((wid, tube(fillet(pts, 3 * od18 + od18 / 2, wid)[0], od18), colr))      # 3 x OD (tied at the plug)
         meta[wid] = dict(box='BATT', od=od18, colour=colr, gauge=18, end='k_fp coil plug')
@@ -440,7 +440,7 @@ def run(_context: str):
     xb1, xb2 = cb1 + 2.15 + LX, cb2 - 2.15 + LX                  # LOGIC Bus 1 (front) / Bus 2 (rear) feed lug lines
     zf1 = S.FEED['BUS1']['z']                                    # J4 (R94): the Bus 1 feed lug sits lower (z 13)
     cable('Bus1', [(PXE, 43, 13), (426.4, 43, 13), (426.4, -110, 13), (260, -110, 40), (xb1, -110, 40), (xb1, -48, zf1), (xb1, -30, zf1)], 5.13, 'Red', rf(5.13),
-          'Bus 1 feed (8 AWG red): POWER BUS1 50 A -> LOGIC front', (150, -110, 40), v='FT', bands=['White', 'Blue', 'White'])
+          'Bus 1 feed (8 AWG red): POWER BUS1 50 A -> LOGIC front', (150, -110, 40), v='FT')
     # breakouts that leave the looms: from each wire's own slot at its box's exit (wiring_plan)
     slot_end = {}
     for w in plan['wires']:
@@ -450,7 +450,7 @@ def run(_context: str):
             p = bp['pts'][-1]
             off = (PL[bp['box']][0] + (LX if bp['box'] == 'LOGIC' else 0.0), PL[bp['box']][1], 0.0)
             slot_end[(w['wire'], bp['box'])] = add(tuple(p), off)
-    wcol = {w['wire']: (w['colour'], w['od'], w['bands']) for w in plan['wires']}
+    wcol = {w['wire']: (w['colour'], w['od'], w.get('bands', [])) for w in plan['wires']}
     s = slot_end[('w77_cp', 'POWER')]
     cable('Bus2', [s, (92, s[1], s[2]), (92, 130, 50), (92, 300, 50), (xb2, 300, 50), (xb2, 250, 13), (xb2, 211, 13)], 3.61, 'Red', rf(3.61),
           'Bus 2 feed (10 AWG red): k_efi 30 -> LOGIC rear', (92, 230, 50))

@@ -1,6 +1,6 @@
 """Wire simulation for the selected fuse boxes (POWER rev 7, LOGIC, battery relay block): EVERY harness wire that lands in a
 box (ST185-CabinPower, -HeavyDC, -EngineRoom-C, -RearFuel ...), at its real cavity, with its real gauge OD, insulation colour,
-ident bands and terminal part, routed under the deck into the bundle of its exit (the CAD lanes, which set the belly pan exits)
+terminal part, routed under the deck into the bundle of its exit (the CAD lanes, which set the belly pan exits)
 with the bend rule (3 x OD where the wire is tied into its bundle, FAA AC 43.13-1B 11-96).
 Pure Python (no Fusion): it writes the plan (cad/fusebox/rev7/wiring_plan.json, read by render_wired_rev7.py inside Fusion)
 and the numbers that need no geometry (wires per box, bundle sizes against the exits, two wires in one terminal, terminal part
@@ -164,7 +164,7 @@ def harness_wires():
                 continue
             p = wp.get(w.get('partId'), {})
             g = p.get('gauge', {})
-            rows[w['id']] = dict(wire=w['id'], file=name, colour=w.get('color') or 'Red', bands=w.get('identColors') or [],
+            rows[w['id']] = dict(wire=w['id'], file=name, colour=w.get('color') or 'Red', bands=[],
                                  gauge=g.get('value'), unit=g.get('unit'), od=od_of(g.get('value'), g.get('unit')), ends=ends)
     return list(rows.values())
 

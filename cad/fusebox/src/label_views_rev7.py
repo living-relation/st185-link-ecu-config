@@ -33,7 +33,7 @@ NAMES = {   # raw (render_wired_rev7.py) -> (published name in cad/fusebox/rev7,
     'arr_glove_wired_top.png': ('fusebox_arrangement_wired_glovebox_top.png', 'Typical arrangement, top view (front of the car at the bottom, RH door on the right)'),
     'arr_trunk_wired.png': ('fusebox_arrangement_wired_trunk.png', 'Typical arrangement, trunk: battery relay block with its feed, pump and both coil wires'),
 }
-FOOT = 'Every harness wire that lands in the box: real gauge, colour and ident bands (CabinPower, HeavyDC, EngineRoom-C); wiring_sim.py + render_wired_rev7.py. Claude Code, 2026-10-14.'
+FOOT = 'Every harness wire that lands in the box: real gauge and colour (CabinPower, HeavyDC, EngineRoom-C); wiring_sim.py + render_wired_rev7.py. Claude Code, 2026-10-14.'
 
 
 def wrap(text, n=44):

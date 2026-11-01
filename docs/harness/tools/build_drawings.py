@@ -4,30 +4,30 @@
 A drawing set is one or more harnesses of docs/harness/MASTER-wirelist.csv drawn as one: its layout spec
 `tools/<set>.layout.json` names them (`"harnesses": [...]`) and holds the physical tree; `tools/<set>.revs.json` is its rev
 log. Combining one more harness later = add it to `harnesses` (and its branches to the tree), then re-run. It writes, to
-docs/harness/drawings/, three PDFs `<set>-schematic.pdf`, `<set>-layout.pdf`, `<set>-pinout.pdf`. Each grouped section is its own
+docs/harness/drawings/, two PDFs `<set>-schematic.pdf` and `<set>-layout.pdf`. Each grouped section is its own
 page (Dan, 2026-10-25: the single sheets hid the wires). A schematic page holds at most six wires, each in its own line
 colour, so one wire can be followed without mixing it up with the one beside it. The label still carries that wire's gauge
 and colour. A section that does not fit continues on the next page of that same section; a wire is drawn whole on one page.
 Each page has its own title block and rev log.
 
   1. SCHEMATIC    the wires grouped by job (through the bulkhead, the ECU splice point, cabin branches, shield
-                  drains). Every connector, bus, splice and end is a pinout table (pin | signal); every wire is drawn
+                  drains). Every connector, bus, splice and end is a pin block (pin | signal); every wire is drawn
                   point to point from its pin row to its other pin row on its own track, named on the run and labelled
-                  at both ends with its id, gauge, colour and ident bands. A crossing bumps over the other wire. A wire
-                  the list says is built with another harness is dashed.
+                  at both ends with its id, gauge and colour (no ident bands, Dan 2026-10-31). A crossing bumps over the
+                  other wire. A wire the list says is built with another harness is dashed.
   2. LAYOUT       the approved route drawing for that harness (docs/harness/routes/). Routes 1 and 8-15 are the signed
                   SVG figures (Routes 2-7 removed, Dan 2026-10-26: wrong). Routes 16 and 17 are the approved lines drawn on 1993 EWD p.36. A harness with no route file
                   falls back to the physical tree (front of the car to the right, driver side up): every segment with its
                   length, its wire count and the DR-25 size. Not to scale.
-  3. PINOUT       one table per connector, bus, splice and end (never split): every pin, its wire, gauge, colour,
-                  bands, signal, other end and estimated cut length; spare pins take a sealing plug.
 
-and, untracked, docs/harness/out/<set>-pinout.xlsx (the same table) and a thumbnail. The PDF carries the digest of its
-inputs in its Keywords. Title block and rev log per R200.
+The set has no pinout sheet (dropped, Dan 2026-10-31): the one pinout is the pin chart, docs/harness/drawings/ST185-pin-chart.pdf
+from build_pin_chart.py, and spare pins (sealing plugs) are shown there. It also writes the per-harness wire lists
+(docs/harness/wirelists/) and, untracked, a thumbnail in docs/harness/out/. Each PDF carries the digest of its inputs in its
+Keywords. Title block and rev log per R200.
 
-The read-back (R224 step 4, R225): --check also reads the committed pinout and schematic PDFs back (PyMuPDF text and
-band-chip extraction) and compares every wire with the master: both ends (connector and pin), gauge, colour and ident
-bands, plus every spare pin. Any difference fails, whatever the inputs digest says.
+The read-back (R224 step 4, R225): --check also reads the committed schematic PDF back (PyMuPDF text extraction) and
+compares every wire with the master: a label at each end (id, gauge, colour) and each end's block row at its pin
+(connector and pin). Any difference fails, whatever the inputs digest says.
 
     python docs/harness/tools/build_drawings.py [set]          write (needs PyMuPDF + openpyxl)
     python docs/harness/tools/build_drawings.py --check [set]  fail if a drawing set is stale against its inputs, a wire
@@ -73,7 +73,6 @@ WIRE_RGB = {"Red": (0.78, 0.16, 0.16), "Black": (0.1, 0.1, 0.1), "Orange": (0.93
 TRACE = [(0.78, 0.08, 0.12), (0.08, 0.28, 0.82), (0.00, 0.48, 0.22), (0.90, 0.42, 0.00), (0.48, 0.12, 0.66), (0.08, 0.08, 0.08)]
 ABBR = {"Red": "RED", "Black": "BLK", "Orange": "ORN", "Blue": "BLU", "White": "WHT", "Green": "GRN", "Yellow": "YEL",
         "Shield": "SCREEN", "": "-"}
-BAND_RGB = {"Blue": (0.12, 0.38, 0.8), "Yellow": (0.95, 0.8, 0.1), "White": (1, 1, 1)}
 # M22759/16 nominal finished OD (mm) by AWG, for the bundle size (est); a cable core counts as its cable
 OD = {24: 1.17, 22: 1.32, 20: 1.57, 18: 1.85, 16: 2.11, 14: 2.41, 12: 2.97, 10: 3.81, 8: 5.08}
 CABLE_OD = 4.5
@@ -129,13 +128,12 @@ def rows_for(h, rows=None):
 
 
 SHEETS = [("schematic", "SCH", "Schematic - every wire, grouped by job"),
-          ("layout", "LAY", "Layout - top view, segment lengths, wire counts, DR-25 sizes"),
-          ("pinout", "PIN", "Pinout tables - every pin of every connector, bus, splice and end")]
+          ("layout", "LAY", "Layout - top view, segment lengths, wire counts, DR-25 sizes")]
 
 
 def paths(h):
     return {"dir": DRAWINGS, "pdfs": [os.path.join(DRAWINGS, "%s-%s.pdf" % (h, k)) for k, _, _ in SHEETS],
-            "xlsx": os.path.join(OUT, "%s-pinout.xlsx" % h), "thumb": os.path.join(OUT, "%s-thumb.png" % h),
+            "thumb": os.path.join(OUT, "%s-thumb.png" % h),
             "layout": os.path.join(HERE, "%s.layout.json" % h), "revs": os.path.join(HERE, "%s.revs.json" % h)}
 
 
@@ -334,7 +332,8 @@ def check(h):
             bad += wirelist_readback(name)
     for p in glob.glob(os.path.join(DRAWINGS, "%s-*.pdf" % h)):
         if p not in H.p["pdfs"]:
-            bad.append("%s is not one of the three sheets of the set (delete it)" % os.path.basename(p))
+            bad.append("%s is not one of the %d sheets of the set (delete it; the pinout is the pin chart)"
+                       % (os.path.basename(p), len(SHEETS)))
     return bad + readback(H)
 
 
@@ -356,23 +355,6 @@ def _spans(page):
     return out
 
 
-def _chips(page):
-    """Every ident-band chip on a sheet: (x0, y1, colour name), from the filled 4.2 pt squares band_chips draws."""
-    names = {tuple(round(c, 2) for c in v): k for k, v in BAND_RGB.items()}
-    out = []
-    for d in page.get_drawings():
-        r, f = d.get("rect"), d.get("fill")
-        if f and r is not None and abs(r.width - 4.2) < 0.3 and abs(r.height - 4.2) < 0.3:
-            k = names.get(tuple(round(c, 2) for c in f))
-            if k:
-                out.append((r.x0, r.y1, k))
-    return out
-
-
-def _bands_at(chips, x0, x1, y):
-    return "-".join(k for x, yy, k in sorted(c for c in chips if x0 <= c[0] < x1 and abs(c[1] - y) < 0.6))
-
-
 def _names_end(title, r, s):
     """Does a table / block title name this end of master row r? Connector, splice and part titles start with the end ID;
     a factory tap's title is its name (a title cut short on the sheet ends in '...')."""
@@ -387,58 +369,9 @@ def _same_or_cut(seen, want):
     return seen == want or (seen.endswith(CUT) and want.startswith(seen[:-len(CUT)]))
 
 
-def _read_pinout(path, fitz):
-    """Every pinout page read back: one dict per table row (the table title plus every column), from the text alone."""
-    doc = fitz.open(path)
-    rows, bad = [], []
-    for page in doc:
-        got, page_bad = _read_pinout_page(page)
-        rows.extend(got)
-        bad.extend(page_bad)
-    doc.close()
-    return rows, bad
-
-
-def _read_pinout_page(page):
-    """One pinout page."""
-    sp, chips = _spans(page), _chips(page)
-    names = [n for n, _ in TABLE_COLS]
-    heads = [s for s in sp if s[4] and s[3] == 5.4 and s[6] == names[0]]
-    titles = [s for s in sp if s[4] and s[3] == 7.0]
-    frames = [d["rect"] for d in page.get_drawings() if d.get("rect") is not None and not d.get("fill") and d["rect"].width > 200]
-    rows, bad = [], []
-    for hx, hy, *_ in heads:
-        # the table's own column headers are the first ones from its PIN header rightward; it ends with its last column
-        cand = sorted((s[0], s[6]) for s in sp if s[4] and s[3] == 5.4 and abs(s[1] - hy) < 0.3 and s[0] >= hx - 0.5)
-        cols = cand[:len(names)]
-        right = cols[-1][0] + dict(PIN_COLS)[names[-1]] + 4
-        above = [t for t in titles if abs(t[0] - hx) < 0.5 and t[1] < hy]
-        below = [t[1] for t in titles if abs(t[0] - hx) < 0.5 and t[1] > hy]
-        if [c[1] for c in cols] != names or not above:
-            bad.append("pinout sheet: a table at x %.0f y %.0f has columns %s, not %s" % (hx, hy, [c[1] for c in cols], names))
-            continue
-        title = max(above, key=lambda t: t[1])[6]
-        box = [f for f in frames if abs(f.x0 + 4 - hx) < 0.6 and f.y0 < hy < f.y1]     # the table's own frame ends it
-        stop = min([f.y1 for f in box] + below + [page.rect.height])
-        xs = [c[0] for c in cols]
-        cells = collections.defaultdict(dict)
-        for x, y, *_rest in sp:
-            text = _rest[-1]
-            if hy + 0.5 < y < stop - 1 and xs[0] - 0.5 <= x < right:
-                i = max(j for j, cx in enumerate(xs) if cx <= x + 0.5)
-                cells[round(y, 1)][names[i]] = (cells[round(y, 1)].get(names[i], "") + " " + text).strip()
-        bx = names.index("BANDS")
-        for y in sorted(cells):
-            row = {n: cells[y].get(n, "") for n in names}
-            row["BANDS"] = _bands_at(chips, xs[bx] - 0.5, xs[bx + 1], y)
-            row["_table"], row["_y"] = title, y
-            rows.append(row)
-    return rows, bad
-
-
 def _read_schematic(path, fitz):
-    """Every schematic page read back: the wire labels (id, gauge, colour, bands) and every pinout-block row (block title,
-    pin, wire id)."""
+    """Every schematic page read back: the wire labels (id, gauge, colour) and every pin-block row (block title, pin,
+    wire id)."""
     doc = fitz.open(path)
     labels, ends = [], []
     for page in doc:
@@ -451,11 +384,8 @@ def _read_schematic(path, fitz):
 
 def _read_schematic_page(page):
     """One schematic page."""
-    sp, chips = _spans(page), _chips(page)
-    labels = []
-    for x, y, xe, size, bold, grey, t in sp:
-        if size == 5.0 and not bold and not grey:
-            labels.append((t, _bands_at(chips, xe, xe + 4.8 * 4 + 4, y + 0.4)))
+    sp = _spans(page)
+    labels = [t for x, y, xe, size, bold, grey, t in sp if size == 5.0 and not bold and not grey]
     titles = [s for s in sp if s[4] and s[3] == 6.5]
     pins = [s for s in sp if s[4] and s[3] == 6.0]
     ends = []
@@ -472,25 +402,21 @@ def _read_schematic_page(page):
 
 
 def readback(H):
-    """R224 step 4: read the committed pinout and schematic sheets back and compare every wire with the master."""
+    """R224 step 4: read the committed schematic sheet back and compare every wire with the master (labels and block
+    rows). Spare pins are not on the set; they are on the pin chart (build_pin_chart.py)."""
     try:
         import fitz
     except ImportError:
         return ["read-back needs PyMuPDF (python -m pip install pymupdf==1.28.0)"]
-    pin_pdf, sch_pdf = H.p["pdfs"][2], H.p["pdfs"][0]
-    if not (os.path.exists(pin_pdf) and os.path.exists(sch_pdf)):
-        return ["read-back: the pinout / schematic sheet is missing: run build_drawings.py %s" % H.h]
+    sch_pdf = H.p["pdfs"][0]
+    if not os.path.exists(sch_pdf):
+        return ["read-back: the schematic sheet is missing: run build_drawings.py %s" % H.h]
     bad = []
-    prows, pbad = _read_pinout(pin_pdf, fitz)
-    bad += pbad
     labels, ends = _read_schematic(sch_pdf, fitz)
     ids = {r["wire_id"] for r in H.wires}
-    by_wire = collections.defaultdict(list)
-    for row in prows:
-        by_wire[row["WIRE"]].append(row)
     lab_by = collections.defaultdict(list)
-    for t, bands in labels:
-        lab_by[t.split()[0]].append((t, bands))
+    for t in labels:
+        lab_by[t.split()[0]].append(t)
     end_by = collections.defaultdict(list)
     for t, title, pin in ends:
         if t.endswith(CUT):
@@ -499,30 +425,12 @@ def readback(H):
         end_by[t].append((title, pin))
     for r in H.wires:
         w = r["wire_id"]
-        bands, gauge, colour = r["ident_bands"], r["gauge_awg"], r["colour"]
-        # pinout sheet: one row per end, in that end's table, at its pin
-        got = list(by_wire.get(w, []))
-        for s, o in (("from", "to"), ("to", "from")):
-            where = "%s %s pin %s" % (s, r[s + "_id"], r[s + "_pin"] or "-")
-            hit = next((x for x in got if _names_end(x["_table"], r, s) and x["PIN"] == r[s + "_pin"]), None)
-            if hit is None:
-                bad.append("%s: pinout sheet has no row for its %s end (sheet rows: %s)" % (
-                    w, where, ["%s / pin %s" % (x["_table"][:40], x["PIN"] or "-") for x in got] or "none"))
-                continue
-            got.remove(hit)
-            for col, want in (("AWG", gauge), ("COLOUR", colour), ("BANDS", bands)):
-                if hit[col] != want:
-                    bad.append("%s: pinout sheet %s %s %r, master %r" % (w, where, col, hit[col], want))
-            other = (r[o + "_name"] or r[o + "_id"]) + ((" pin " + r[o + "_pin"]) if r[o + "_pin"] else "")
-            if not _same_or_cut(hit["OTHER END"], other):
-                bad.append("%s: pinout sheet %s OTHER END %r, master %r" % (w, where, hit["OTHER END"], other))
-        for x in got:
-            bad.append("%s: pinout sheet has an extra row in %s pin %s" % (w, x["_table"][:40], x["PIN"] or "-"))
-        # schematic sheet: a label at each end (id, gauge, colour, bands) and a row in each end's block at its pin
+        gauge, colour = r["gauge_awg"], r["colour"]
+        # a label at each end (id, gauge, colour) and a row in each end's block at its pin
         want_lab = ("%s  screen" % w) if colour == "Shield" else ("%s  %s %s" % (w, gauge, ABBR.get(colour, colour[:3].upper())))
         labs = lab_by.get(w, [])
-        if len(labs) != 2 or any(" ".join(t.split()) != " ".join(want_lab.split()) or b != bands for t, b in labs):
-            bad.append("%s: schematic wire labels %s, master %r + bands %r (one at each end)" % (w, labs, want_lab, bands))
+        if len(labs) != 2 or any(" ".join(t.split()) != " ".join(want_lab.split()) for t in labs):
+            bad.append("%s: schematic wire labels %s, master %r (one at each end)" % (w, labs, want_lab))
         seen = list(end_by.get(w, []))
         for s in ("from", "to"):
             hit = next((x for x in seen if _names_end(x[0], r, s) and x[1] == r[s + "_pin"]), None)
@@ -533,26 +441,14 @@ def readback(H):
                 seen.remove(hit)
         for x in seen:
             bad.append("%s: schematic has an extra end row %s pin %s" % (w, x[0][:40], x[1] or "-"))
-    for w in sorted(set(by_wire) - ids - {""}):
-        bad.append("%s: on the pinout sheet but not a wire of the set in the master" % w)
     for w in sorted(set(lab_by) - ids):
         bad.append("%s: wire label on the schematic but not a wire of the set in the master" % w)
     for w in sorted(set(end_by) - ids):
         bad.append("%s: schematic block row but not a wire of the set in the master" % w)
-    # spare pins: each one a row with no wire in its end's table
-    spare_rows = list(by_wire.get("", []))
-    for r in H.spares:
-        hit = next((x for x in spare_rows if _names_end(x["_table"], r, "from") and x["PIN"] == r["from_pin"]), None)
-        if hit is None:
-            bad.append("spare %s pin %s: no spare row on the pinout sheet" % (r["from_id"], r["from_pin"]))
-        else:
-            spare_rows.remove(hit)
-    for x in spare_rows:
-        bad.append("pinout sheet: %s pin %s has no wire, and the master has no spare row for it" % (x["_table"][:40], x["PIN"]))
     if len(bad) > 60:
         bad = bad[:60] + ["read-back: %d more finding(s) not shown" % (len(bad) - 60)]
-    print("   read-back: %d wires, %d spares; pinout sheet %d rows, schematic %d labels / %d end rows: %s"
-          % (len(H.wires), len(H.spares), len(prows), len(labels), len(ends), "OK" if not bad else "%d finding(s)" % len(bad)))
+    print("   read-back: %d wires; schematic %d labels / %d end rows: %s"
+          % (len(H.wires), len(labels), len(ends), "OK" if not bad else "%d finding(s)" % len(bad)))
     return ["read-back: " + b for b in bad]
 
 
@@ -635,13 +531,6 @@ def title_block(S, H, sheet_no, sheets, what, dwg=""):
     S.rect(M, M, PW - M, PH - M, width=1.2)
 
 
-def band_chips(S, x, y, bands):
-    for b in bands:
-        S.rect(x, y - 4.2, x + 4.2, y, color=INK, fill=BAND_RGB.get(b, (1, 1, 1)), width=0.3)
-        x += 4.8
-    return x
-
-
 # ------------------------------------------------------------------------------------------------ 1. layout sheet
 def layout_keep(H, harness):
     """Nodes, segments and end ids the wires of one harness actually run through."""
@@ -698,7 +587,7 @@ def layout_sheet(S, H, harness=None, keep_nodes=None, keep_segs=None, keep_ends=
     head += "top view, front of the car to the RIGHT, driver side UP (R140 / R153). Not to scale; lengths in mm (estimates until measured at the car)."
     S.text(M + 8, M + 16, S.fit(head, PW - 2 * M - 16, 8, "hebo"), 8, "hebo")
     S.text(M + 8, M + 27, "Each segment: length | wires in it | DR-25 heat-shrink size for its bundle (est. from the wire ODs). "
-           "Lengths per wire (path + %d mm at each end) are in the pinout table." % L.get("end_allowance_mm", 100), 6.5)
+           "Lengths per wire are in the harness wire list (docs/harness/wirelists/).", 6.5)
     S.text(ax1 - 40, M + 50, "FRONT  -->", 7, "hebo", GREY)
     S.text(M + 8, M + 50, "^ DRIVER SIDE (LH) at the top  /  PASSENGER SIDE (RH) at the bottom v", 6.5, "hebo", GREY)
     table = []
@@ -873,7 +762,7 @@ LEFT_BOT = PH - M - 54          # the left column runs down to the legend
 RIGHT_BOT = PH - M - TB_H - 8   # the right column stops above the title block
 
 
-LANE = 92.0      # label lane beside a table: id, gauge, colour, bands
+LANE = 92.0      # label lane beside a block: id, gauge, colour
 TRK = 16.0       # track pitch in the outer channels
 STEP = 16.0      # minimum centre-track pitch; a page holds few wires so the real gap is wider
 LW, RW = 200.0, 214.0
@@ -881,20 +770,13 @@ MAX_SCH_WIRES = 6   # more than this and same-colour wires cannot be followed th
 
 
 def section_order(H):
-    """Schematic / pinout sections: the ECU cabin job groups, then one section per other harness."""
+    """Schematic sections: the ECU cabin job groups, then one section per other harness."""
     titles = H.layout.get("panel_titles", {})
     order = list(GROUPS)
     rest = [x for x in AB if x != AB[0]] + sorted({r["harness"] for r in H.rows} - set(AB))
     for name in rest:
         order.append(("h:" + name, titles.get(name, "ST185-%s - every wire of this harness" % name).upper()))
     return order
-
-
-def row_group(H, r):
-    """The section a pinout row belongs to. AB-cabin spare pins sit on the cabin page."""
-    if r["wire_id"]:
-        return group_of(H, r)
-    return "cabin" if r["harness"] == AB[0] else "h:" + r["harness"]
 
 
 def arrange_schematic(H, rows):
@@ -1097,11 +979,8 @@ def wire_label(S, r, x, y, w=LANE - 6):
     g = r["gauge_awg"] or ""
     lab = ("%s  %s %s" % (r["wire_id"], g, ABBR.get(r["colour"], r["colour"][:3].upper()))) if r["colour"] != "Shield" \
         else "%s  screen" % r["wire_id"]
-    bands = [b for b in r["ident_bands"].split("-") if b]
     size = 5.0
-    lab = S.fit(lab, w - 4.8 * len(bands) - 2, size)
-    S.text(x, y, lab, size, color=INK)
-    band_chips(S, x + S.tl(lab, size) + 2, y + 0.4, bands)
+    S.text(x, y, S.fit(lab, w, size), size, color=INK)
 
 
 def order_key(H, key):
@@ -1160,176 +1039,10 @@ def legend(S, y):
         S.line([(x, y - 2), (x + 14, y - 2)], WIRE_RGB[c], 1.4)
         S.text(x + 16, y, ABBR[c], 5.5)
         x += 40
-    S.text(x + 6, y, "IDENT BANDS (R87):", 5.5, "hebo")
-    x += 72
-    for b in ("Blue", "Yellow", "White"):
-        band_chips(S, x, y, [b])
-        S.text(x + 6, y, b, 5.5)
-        x += 34
     S.line([(x + 8, y - 2), (x + 26, y - 2)], INK, 0.6, "[3 2] 0")
     S.text(x + 29, y, "built with another harness", 5.5)
     x += 145
     S.text(x, y, "line colour = one wire on this page; the label has the wire colour", 5.5)
-
-
-# ------------------------------------------------------------------------------------------------ 3. pinout
-PIN_COLS = [("END", 150), ("PIN", 34), ("WIRE", 78), ("AWG", 24), ("COLOUR", 38), ("BANDS", 40), ("SIGNAL", 150),
-            ("OTHER END", 250), ("LEN MM", 36), ("BUILT WITH", 72), ("CIRCUIT", 50)]
-
-
-def table_sub(H, key, r, s):
-    """The line under a pinout table's name: what the end is and its maker part numbers (TBD where not confirmed)."""
-    t, i = key
-    if t == "connector":
-        hp = r[s + "_housing_pn"] or "TBD"
-        ex = r[s + "_housing_extra"]
-        return "housing %s%s  |  contacts %s  |  pins per %s" % (hp, ("  + " + ex) if ex else "", r[s + "_terminal_pn"] or "TBD",
-                                                              r[s + "_pin_doc"] or "TBD")
-    return {"splice": "splice: %s" % (r[s + "_terminal_pn"] or "solder splice"), "terminal": "terminal %s" % (r[s + "_terminal_pn"] or "TBD"),
-            "oem": "factory lead tap (EWD locator in the signal)", "screen": "cable screen",
-            "resistor": "inline resistor %s" % (r[s + "_housing_pn"] or "TBD"),
-            "diode": "inline diode %s" % (r[s + "_housing_pn"] or "TBD")}.get(t, "")
-
-
-def pinout_rows(H):
-    out = []
-    for r in H.wires:
-        p, mm = H.route(r)
-        for s, o in (("from", "to"), ("to", "from")):
-            if not H.local(r, s):
-                continue
-            key = H.end_key(r, s)
-            oth = (r[o + "_conn_name"] or r[o + "_conn"]) + ((" pin " + r[o + "_pin"]) if r[o + "_pin"] else "")
-            out.append({"END": H.title(key, r, s), "_sub": table_sub(H, key, r, s), "PIN": r[s + "_pin"], "WIRE": r["wire_id"],
-                        "AWG": r["gauge_awg"],
-                        "COLOUR": r["colour"], "BANDS": r["ident_bands"], "SIGNAL": r[s + "_desc"], "OTHER END": oth,
-                        "LEN MM": str(mm or ""), "BUILT WITH": "ST185-" + r["harness"], "CIRCUIT": r["circuit_id"],
-                        "_g": row_group(H, r), "_k": (order_key(H, key), pin_sort(r[s + "_pin"]))})
-    for r in H.spares:
-        key = H.end_key(r, "from")
-        out.append({"END": H.title(key, r, "from"), "_sub": table_sub(H, key, r, "from"), "PIN": r["from_pin"], "WIRE": "",
-                    "AWG": "", "COLOUR": "", "BANDS": "",
-                    "SIGNAL": r["from_desc"], "OTHER END": "", "LEN MM": "", "BUILT WITH": "", "CIRCUIT": "",
-                    "_g": row_group(H, r), "_k": (order_key(H, key), pin_sort(r["from_pin"]))})
-    out.sort(key=lambda x: x["_k"])
-    return out
-
-
-TABLE_COLS = [c for c in PIN_COLS if c[0] != "END"]   # one table per end: its name is the table header
-TABLE_W = sum(w for _, w in TABLE_COLS) + 8
-
-
-def size_pin_column(fitz, prow):
-    """The PIN column fits the longest pin of the set, so a pin is never cut on the sheet."""
-    global TABLE_COLS, TABLE_W
-    w = max([34.0] + [math.ceil(fitz.get_text_length(r["PIN"], fontname="hebo", fontsize=5.8)) + 8 for r in prow])
-    TABLE_COLS = [(n, w if n == "PIN" else cw) for n, cw in TABLE_COLS]
-    TABLE_W = sum(cw for _, cw in TABLE_COLS) + 8
-T_HEAD, T_COLS, T_ROW, T_GAP = 20.0, 10.0, 8.4, 12.0
-
-
-def pinout_tables(H, prow):
-    """[(end title, sub, [rows])] in pinout order, one per connector / bus / splice / end."""
-    out = []
-    for row in prow:
-        if not out or out[-1][0] != row["END"]:
-            out.append((row["END"], row["_sub"], []))
-        out[-1][2].append(row)
-    return out
-
-
-def table_h(tb):
-    return T_HEAD + T_COLS + T_ROW * len(tb[2])
-
-
-def pinout_page_plan(tables):
-    """Flow a section's tables down one column of a tabloid page. A table is never split; a tall table grows its page."""
-    chrome_top = M + 44
-    chrome_bot = M + TB_H + 12
-    usable = PAGE_MAX_H - chrome_top - chrome_bot
-    pages, col, used = [], [], 0.0
-
-    def flush():
-        nonlocal col, used
-        if col:
-            pages.append((col, PAGE_MAX_W, PAGE_MAX_H))
-        col, used = [], 0.0
-
-    for i, tb in enumerate(tables):
-        th = table_h(tb) + T_GAP
-        if col and used + th > usable + 1e-6:
-            flush()
-        if not col and th > usable:
-            pages.append(([i], PAGE_MAX_W, chrome_top + chrome_bot + th))
-            continue
-        col.append(i)
-        used += th
-    flush()
-    return pages
-
-
-def pinout_sheet(S, tables, cols, banner):
-    S.text(M + 8, M + 16, S.fit(banner, PW - 2 * M - 16, 8, "hebo"), 8, "hebo")
-    S.text(M + 8, M + 27, "Length = layout path + end allowance (estimate until measured). Built with = the harness that builds "
-           "that wire (a wire passing through is built with its owner). A pin with no wire takes a sealing plug.", 6)
-    for ci, col in enumerate(cols):
-        x0 = M + 8 + ci * (TABLE_W + 16)
-        y = M + 44
-        for i in col:
-            title, sub, rows = tables[i]
-            x1 = x0 + TABLE_W
-            S.rect(x0, y, x1, y + table_h(tables[i]), width=0.7)
-            S.rect(x0, y, x1, y + T_HEAD, fill=LIGHT, width=0.7)
-            S.text(x0 + 4, y + 8.5, S.fit(title, TABLE_W - 8, 7, "hebo"), 7, "hebo")
-            S.text(x0 + 4, y + 16.5, S.fit(sub, TABLE_W - 8, 5.4), 5.4, color=GREY)
-            yy = y + T_HEAD + 7.5
-            x = x0 + 4
-            for name, w in TABLE_COLS:
-                S.text(x, yy, name, 5.4, "hebo", GREY)
-                x += w
-            yy = y + T_HEAD + T_COLS
-            for j, row in enumerate(rows):
-                if j % 2:
-                    S.rect(x0 + 0.4, yy, x1 - 0.4, yy + T_ROW, color=None, fill=(0.975, 0.98, 0.985))
-                x = x0 + 4
-                for name, w in TABLE_COLS:
-                    val = row[name]
-                    if name == "BANDS":
-                        band_chips(S, x, yy + 6.2, [b for b in val.split("-") if b])
-                    else:
-                        bold = name == "PIN"
-                        S.text(x, yy + 6.2, S.fit(val, w - 4, 5.8, "hebo" if bold else "helv"), 5.8, "hebo" if bold else "helv")
-                    x += w
-                yy += T_ROW
-            y += table_h(tables[i]) + T_GAP
-
-
-def write_xlsx(H, prow, path):
-    from openpyxl import Workbook
-    from openpyxl.styles import Alignment, Font, PatternFill
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Pinout"
-    heads = [n for n, _ in PIN_COLS]
-    ws.append(heads)
-    for c in ws[1]:
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="14213D")
-    for row in prow:
-        ws.append([row[h] for h in heads])
-    for i, (n, w) in enumerate(PIN_COLS):
-        ws.column_dimensions[chr(65 + i)].width = max(8, w / 5.2)
-    ws.freeze_panes = "C2"
-    ws2 = wb.create_sheet("Layout segments")
-    ws2.append(["From", "To", "Length mm"])
-    for a, b, mm in H.layout["segments"]:
-        ws2.append([a, b, mm])
-    for c in ws2[1]:
-        c.font = Font(bold=True)
-    tmp = io.BytesIO()
-    wb.save(tmp)
-    with open(path, "wb") as f:
-        f.write(tmp.getvalue())
 
 
 # ------------------------------------------------------------------------------------------------ per-harness wire lists
@@ -1338,8 +1051,7 @@ def write_xlsx(H, prow, path):
 # Connectors sheet Connector, Part Number: docs.harness.design/guides/excel-import), then the build detail.
 WIRELISTS = os.path.join(HARNESS, "wirelists")
 WL_COLS = [("Wire", 14), ("From", 20), ("From Pin", 9), ("To", 20), ("To Pin", 9), ("Splice", 24), ("Branch", 11),
-           ("Signal", 30), ("Colour", 9),
-           ("Ident bands", 22), ("Gauge (AWG)", 8), ("Length (mm)", 9), ("Wire Type", 17), ("Cable", 15),
+           ("Signal", 30), ("Colour", 9), ("Gauge (AWG)", 8), ("Length (mm)", 9), ("Wire Type", 17), ("Cable", 15),
            ("Cable Part Number", 20), ("From Contact PN", 17), ("To Contact PN", 17), ("From Device", 38),
            ("To Device", 38), ("Circuit", 10), ("Built With", 14), ("Net", 18), ("Continues", 50), ("Route Branch", 34),
            ("OEM Ref", 40), ("Notes", 60)]
@@ -1514,7 +1226,7 @@ def wirelist_rows(H, name, nets=None):
                                     r["oem_ewd_page"] and "EWD " + r["oem_ewd_page"], r["oem_method"]) if x)
         out.append({"Wire": r["wire_id"], "From": fr[0], "From Pin": fr[1], "To": to[0], "To Pin": to[1],
                     "Splice": " > ".join(splices), "Branch": branch, "Signal": sig,
-                    "Colour": r["colour"], "Ident bands": r["ident_bands"], "Gauge (AWG)": r["gauge_awg"],
+                    "Colour": r["colour"], "Gauge (AWG)": r["gauge_awg"],
                     "Length (mm)": r["est_length_mm"] or "TBD", "Wire Type": r["wire_pn"] or ("(cable core)" if r["cable"] else "TBD"),
                     "Cable": r["cable"], "Cable Part Number": r["cable_pn"], "From Contact PN": fc, "To Contact PN": tc,
                     "From Device": fd, "To Device": td, "Circuit": r["circuit"], "Built With": "ST185-" + r["harness"],
@@ -1573,7 +1285,7 @@ def wirelist_ends(H, name, wires):
 
 def wirelist_readback(name):
     """Read a committed wire list back against the master (Option A, DECISIONS "Wire lists"): every wire once, both
-    device ends with their pins, gauge, colour and bands; From / To never a splice and never blank; one trunk per splice."""
+    device ends with their pins, gauge and colour; From / To never a splice and never blank; one trunk per splice."""
     from openpyxl import load_workbook
     path = wirelist_path(name)
     ws = load_workbook(path, read_only=True)["Wires"]
@@ -1606,7 +1318,7 @@ def wirelist_readback(name):
                 bad.append("%s: %s screen end is not 'NC, floats'" % (tag, w))
             elif t not in ("splice", "cable screen") and (m[s + "_id"], m[s + "_pin"] or "Lug") not in ends:
                 bad.append("%s: %s lost its end %s %s" % (tag, w, m[s + "_id"], m[s + "_pin"]))
-        for col_name, key in (("Gauge (AWG)", "gauge_awg"), ("Colour", "colour"), ("Ident bands", "ident_bands")):
+        for col_name, key in (("Gauge (AWG)", "gauge_awg"), ("Colour", "colour")):
             if d[col_name] != m[key]:
                 bad.append("%s: %s %s %r, master %r" % (tag, w, col_name, d[col_name], m[key]))
         if d["Branch"].startswith("trunk"):
@@ -1652,7 +1364,7 @@ def write_wirelist(H, name):
     for line in ("ST185-%s wire list - generated from docs/harness/MASTER-wirelist.csv by build_drawings.py; edit the master, "
                  "never this file." % name,
                  "One row per wire segment, From end to To end. A splice (SP-...) is its own end: one row per wire into it.",
-                 "Colour = insulation colour (harness.design colour names). Ident bands = printed MIL-STD-681 band code.",
+                 "Colour = insulation colour (harness.design colour names). No ident bands (Dan 2026-10-31).",
                  "Length (mm) = the master's estimate; TBD until the tape-measure pass (OPEN-ITEMS row 165).",
                  "Built With = the harness that owns the wire; a wire owned by another harness passes through this one.",
                  "Option A (DECISIONS 'Wire lists'): From / To are only connectors or devices with their pin, never a splice. "
@@ -2219,41 +1931,21 @@ def build(h):
             layout_sheet(S, H, name, nodes, segs, ends)
             what = "Layout - ST185-%s" % name
         title_block(S, H, i, len(lay_plan), what, "-" + SHEETS[1][1])
-    prow = pinout_rows(H)
-    size_pin_column(fitz, prow)
-    pindoc = fitz.open()
-    pin_plan = []
-    for g, title in sections:
-        sub = [r for r in prow if r["_g"] == g]
-        if not sub:
-            continue
-        tables = pinout_tables(H, sub)
-        for col, w, hh in pinout_page_plan(tables):
-            pin_plan.append((title, tables, col, w, hh))
-    counts = collections.Counter(t for t, _tables, _col, _w, _hh in pin_plan)
-    seen = collections.Counter()
-    for i, (title, tables, col, w, hh) in enumerate(pin_plan, 1):
-        seen[title] += 1
-        set_page(w, hh)
-        S = Sheet(pindoc, fitz)
-        pinout_sheet(S, tables, [col], _part_label(title, seen[title], counts[title]))
-        title_block(S, H, i, len(pin_plan), _part_label(title, seen[title], counts[title]), "-" + SHEETS[2][1])
-    docs = (sch, laydoc, pindoc)
+    docs = (sch, laydoc)
     for i, ((_k, _code, what), doc) in enumerate(zip(SHEETS, docs)):
         _save_pdf(doc, H.p["pdfs"][i], H, what)
     lay = laydoc[0]
     pix = lay.get_pixmap(matrix=fitz.Matrix(360 / lay.rect.width, 360 / lay.rect.width))
     os.makedirs(OUT, exist_ok=True)
     pix.save(H.p["thumb"])
-    write_xlsx(H, prow, H.p["xlsx"])
     for name in wirelist_harnesses(H):
         wl = write_wirelist(H, name)
         if wl:
             print("wrote", os.path.relpath(wl, REPO))
-    print("wrote %s (%s), %s, %s" % (
+    print("wrote %s (%s), %s" % (
         ", ".join(os.path.relpath(p, REPO) for p in H.p["pdfs"]),
         ", ".join("%s %d pages" % (name, doc.page_count) for (name, _c, _w), doc in zip(SHEETS, docs)),
-        os.path.relpath(H.p["xlsx"], REPO), os.path.relpath(H.p["thumb"], REPO)))
+        os.path.relpath(H.p["thumb"], REPO)))
 
 
 # ------------------------------------------------------------------------------------------------ DRB102 insert-face map
