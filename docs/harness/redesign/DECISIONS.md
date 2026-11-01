@@ -125,7 +125,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B26 CAD work.** CAD stays frozen unless Dan asks. Every model has a `cad/README.md` row and a trimetric PNG; heavy
   files stay gitignored; bought parts are maker models in `cad/vendor/`; reuse Fusion documents (10 max).
   CAD models do not live in the repo (Dan 2026-10-31, replaces M1): every model, working or finished, goes to Dan's models
-  folder (OneDrive `Desktop\models`, add-only revs, handbuilt-cad `publish-to-models`). Move-out plan: OPEN-ITEMS History.
+  folder (OneDrive `Desktop\models`, add-only revs, handbuilt-cad `publish-to-models`). Done 2026-11-01 (models moved; drawings / BOMs copied and kept
+  here for the checks; job list in `cad/README.md`). Dan rules: keep the latest model rev + 2 previous; every fabricated part and assembly has a
+  drawing with a BOM (also as an Excel copy, in sync); each part / body its own model file; OTS parts need a model only, a modified OTS part a drawing + model.
 - **B27 Fuse boxes follow the harnesses.** Harnesses are made as required; the boxes are configured to match (Dan
   2026-10-26). Small, PA12 MJF, no printed threads, live parts >= 3 mm apart, copper to copper: `cad/fusebox/src/spec.py`.
 

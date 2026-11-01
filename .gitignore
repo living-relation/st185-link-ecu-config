@@ -30,7 +30,7 @@ Claude outputs/
 _cluster/
 
 
-# Heavy CAD stays local and untracked, but inside this project beside its design (DECISIONS R67, 2026-10-13):
+# CAD model files do not live here: they are in Dan's models folder (DECISIONS B26, 2026-11-01; cad/README.md). Keep ignoring any that land here:
 # every CAD model file (STEP, STL, Fusion .f3d) and the 10-15 MB busbar drawing PDFs.
 *.step
 *.stp
