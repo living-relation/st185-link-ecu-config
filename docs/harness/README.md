@@ -41,6 +41,16 @@ skill is not changed for this project):
   fine, no staircases or rapid turns). Change it in small steps; never swap in a different layout method (Dan 2026-10-29).
 - Schematic: bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
   horizontal into its pin; no two signals on one line.
+- Schematic format (Dan 2026-11-01): every connector 8 grid units wide (`width` 240, document `schematic.connectorWidth`
+  240). Lines orthogonal; wires of one cable or one run share a path, side by side, like the real cable; no wire folds
+  back over itself; no layout points next to a device or connector (let the app route the last stretch; "Make
+  orthogonal" in the app fixes a bad route). A part in parallel with two lines (e.g. the CAN 120 ohm resistor) sits
+  between them with short equal legs.
+- Pin text (Dan 2026-11-01): a device pin says only what that pin does ("+8 V", "Gnd", "Signal", "Motor +", "Switched
+  +12 V (NO)"); the device name is already on the connector. Bulkhead, ECU and splice ends name the device ("Gearbox
+  speed signal"). Never "in" / "out" (direction is relative): "+12 V to reverse switch", "Switched +12 V from reverse
+  switch". One name per device, the master's (reverse switch, not back-up switch). The text comes from the master's
+  end descriptions; AB-engine done, every other harness when its document is next built.
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
 - Connection limit: 100 connections per document (plan limit, 2026-11-01); a bigger harness is split by whole circuits into numbered documents (AB-cabin: 1 bulkhead run, 2 dash).
