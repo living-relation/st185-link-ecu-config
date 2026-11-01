@@ -1,0 +1,9 @@
+area,item,part_number,maker,description,qty_per_car,note
+Rear lamps (factory),Rear combination lamp R11 / R12 stop + tail bulb,99132-21270,Toyota,"Bulb 12 V 27/8 W, type 1157 (BAY15d)",4,reference only: rear lamps stay factory (out of scope); not on the BOM
+Rear lamps (factory),Rear combination lamp R11 / R12 turn + back-up bulb,99132-11270,Toyota,"Bulb 12 V 27 W, type 1156 (BA15s)",4,reference only
+Rear lamps (factory),Rear combination lamp R11 / R12 side marker bulb,90981-11020,Toyota,"Bulb 12 V 3.8 W, T10 wedge (194 class)",2,reference only
+Rear lamps (factory),Licence lamp L1 bulb,99132-12050,Toyota,"Bulb 12 V 5 W, T10 wedge (W5W / 168)",2,reference only
+Rear lamps (factory),High-mount stop lamp H6 bulb,99132-11270,Toyota,"Bulb 12 V 27 W, type 1156",2,reference only
+Rear lamps (factory),Rear combination lamp socket and wire,81555-2B090,Toyota,"Socket & wire, rear combination lamp, RH and LH",2,reference only: discontinued
+Rear lamps (factory),Licence lamp socket and wire,81275-20450,Toyota,"Socket and wire, licence plate lamp (1990-1993)",2,reference only: discontinued
+Rear lamps (factory),High-mount stop lamp socket and wire,81576-20190,Toyota,"Socket and wire, centre stop lamp",2,reference only: not found at a dealer
