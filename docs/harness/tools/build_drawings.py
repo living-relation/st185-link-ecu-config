@@ -145,7 +145,8 @@ def digest(h):
         head = next(csv.reader(f))
     for r in rows_for(h):
         hs.update(json.dumps([r.get(c, "") for c in head], ensure_ascii=False).encode("utf-8"))
-    trees = [os.path.join(HARNESS, "routes", t["route"]) for t in load(p["layout"]).get("route_trees", [])]
+    trees = [os.path.join(HARNESS, "routes", f) for t in load(p["layout"]).get("route_trees", [])
+             for f in [t["route"]] + t.get("with", [])]
     for f in [p["layout"], p["revs"], os.path.abspath(__file__)] + trees:
         with open(f, "rb") as fh:
             hs.update(fh.read().replace(b"\r\n", b"\n"))
@@ -638,10 +639,12 @@ def layout_sheet(S, H, harness=None, keep_nodes=None, keep_segs=None, keep_ends=
             S.text(tx + dx, ty, s, 5.8)
     ty += 14
     S.text(tx, ty, "NODES", 7.5, "hebo")
-    for n, v in nodes.items():
-        ty += 8
-        S.text(tx, ty, S.fit("%s  %s" % (n, v["label"]), 300, 5.5), 5.5)
-    ty += 14
+    room = int((PH - M - TB_H - 26 - ty) // 8)   # rows above the title block; a long list goes in two columns
+    cols = 1 if len(nodes) <= room else 2
+    per = -(-len(nodes) // cols)
+    for i, (n, v) in enumerate(nodes.items()):
+        S.text(tx + (i // per) * 180, ty + 8 * (i % per + 1), S.fit("%s  %s" % (n, v["label"]), 300 if cols == 1 else 172, 5.5), 5.5)
+    ty += 8 * per + 14
     for ln in wrap(S, "The ECU splice point (SP) is ONE place by the ECU plugs (Dan 2026-10-19): +5 V on BUS-5V + BUS-5V-2, "
                       "Gnd Out A24 on BUS-GNDOUT-A, B22 on BUS-GNDOUT-B (bussed DEUTSCH DT, DECISIONS R169 parts), +8 V, switched "
                       "12 V, the A5 feed and the ECU power ground soldered there. The ECU ground runs alone to the POWER box NEG bar "
@@ -1520,33 +1523,71 @@ def _pt_at(pts, dist):
     return tuple(pts[-1])
 
 
+def route_data(name):
+    """The route data of a route file in docs/harness/routes/ (its `route-data` JSON)."""
+    text = open(os.path.join(HARNESS, "routes", name), encoding="utf-8").read()
+    return json.loads(re.search(r'<script type="application/json" id="route-data">(.*?)</script>', text, re.S).group(1))
+
+
 def route_lines(data):
-    """Route 16 lines by id: routes L1-L9, the low parts of route 9 (L9b starter, L9c alternator), and the runs."""
+    """A route file's lines by id: Route 16 routes L1-L9, the low parts of route 9 (L9b starter, L9c alternator) and its
+    runs; Route 17 runs by their first word (10-13, RH, F1-F21; the second run 11, the siren branch, is 11b)."""
     lines = {}
     for r in data.get("routes") or []:
         lines["L%s" % r["n"]] = [tuple(p) for p in r["path"]]
         for k, extra in enumerate(r.get("low_behind_engine") or []):
             lines["L%s%s" % (r["n"], "bcdefg"[k])] = [tuple(p) for p in extra]
     for name, pts in (data.get("runs") or {}).items():
-        lines[name.split()[0]] = [tuple(p) for p in pts]
+        k = name.split()[0]
+        while k in lines:
+            k += "b"
+        lines[k] = [tuple(p) for p in pts]
     return lines
 
 
 def add_route_trees(L):
     """Add to the layout the tree of each route file named in its `route_trees` (one definition, DECISIONS B8).
 
-    Each entry: {"route": file in docs/harness/routes/, "root": bulkhead node, "harness": the harness it carries}.
-    The root sits at the start of line 1; every other line or branch joins the line its end lies closest to; a device
-    joins the line it is on (a stub when it sits off it). Only the parts that lead to a device of that harness are kept.
-    A device's node is its layout `place` node (so other harnesses' segments still reach it), else its own ID.
+    Each entry: {"route": file in docs/harness/routes/, "harness": the harness it carries}, and either
+    - "root": the bulkhead node (Route 16): the root sits at the start of line L1; a device of the harness, or one whose
+      node other harnesses' segments reach, joins the line it is on; a device's node is its layout `place` node; or
+    - "roots": {line: cabin node} (Route 17: run 10 starts at the RH fender exit, run 11 at the driver kick), with
+      "with": other route files whose lines this tree may also use (Route 16 line 6 for the A/C), "line_from": {line:
+      line it hangs on} where the route data names none, "devices": {device n: node} for the route's own devices and
+      {"<file>#<n>": {"node", "ids"}} for a device of a "with" file, and "prefix" so its junction nodes are its own.
+    Every other line or branch joins the line its end lies closest to; a device joins the line it is on (a stub when it
+    sits off it). Only the parts that lead to a device of the tree are kept.
     """
     for spec in L.get("route_trees", []):
-        text = open(os.path.join(HARNESS, "routes", spec["route"]), encoding="utf-8").read()
-        data = json.loads(re.search(r'<script type="application/json" id="route-data">(.*?)</script>', text, re.S).group(1))
+        legacy = "roots" not in spec
+        data = route_data(spec["route"])
         lines = route_lines(data)
-        root_pt = lines["L1"][0]
+        num = lambda f: "Route " + re.search(r"ROUTE-(\d+)", f).group(1)
+        src = {k: num(spec["route"]) for k in lines}
+        hint = dict(data.get("line_from") or {}, **(data.get("run_from") or {}))
+        devs = []
+        for d in data.get("devices") or []:
+            if legacy:
+                devs.append(dict(d, _route=num(spec["route"])))
+            elif str(d.get("n")) in spec.get("devices", {}):
+                devs.append(dict(d, _route=num(spec["route"]), _node=spec["devices"][str(d["n"])], _ids=[]))
+        for f in spec.get("with", []):
+            other = route_data(f)
+            for k, pts in route_lines(other).items():
+                if k in lines:
+                    raise SystemExit("route_trees: line %s is in both %s and %s" % (k, spec["route"], f))
+                lines[k], src[k] = pts, num(f)
+            hint.update(other.get("line_from") or {}, **(other.get("run_from") or {}))
+            for d in other.get("devices") or []:
+                pick = spec.get("devices", {}).get("%s#%s" % (f, d.get("n")))
+                if pick:
+                    devs.append(dict(d, _route=num(f), _node=pick["node"], _ids=pick.get("ids", [])))
+        hint.update(spec.get("line_from") or {})
+        roots = {"L1": spec["root"]} if legacy else spec["roots"]
+        pre = spec.get("prefix", "")
+        root_pt = lines["L1"][0] if legacy else None
         # a main line that passes the root (route 9 by the bulkhead) is split there into two lines that start at it
-        for k in [k for k in lines if k.startswith("L") and k != "L1"]:
+        for k in [k for k in lines if legacy and k.startswith("L") and k != "L1"]:
             pts = lines[k]
             gap, d = _along(pts, root_pt)
             total = sum(math.hypot(b[0] - a[0], b[1] - a[1]) for a, b in zip(pts, pts[1:]))
@@ -1557,10 +1598,11 @@ def add_route_trees(L):
                     run += math.hypot(b[0] - a[0], b[1] - a[1])
                 lines[k] = [q] + tail
                 lines[k + "-in"] = [q] + head[::-1] + [pts[0]]
+                src[k + "-in"] = src[k]
         # join order: each line hangs on the line (or the root) its nearer end lies closest to
-        hint = dict(data.get("line_from") or {}, **(data.get("run_from") or {}))
-        parent, todo = {"L1": (None, 0.0, 0.0, "start")}, [k for k in lines if k != "L1"]
-        for k in todo[:]:
+        parent = {k: (None, 0.0, 0.0, "start") for k in roots}
+        todo = [k for k in lines if k not in roots]
+        for k in todo[:] if legacy else []:
             if math.hypot(lines[k][0][0] - root_pt[0], lines[k][0][1] - root_pt[1]) <= JOIN_PT and "-in" not in k \
                     and any(x == k + "-in" for x in lines):
                 parent[k] = (None, 0.0, math.hypot(lines[k][0][0] - root_pt[0], lines[k][0][1] - root_pt[1]), "start")
@@ -1574,13 +1616,15 @@ def add_route_trees(L):
                     p = lines[k][0] if end == "start" else lines[k][-1]
                     for j in parent:
                         want_j = hint.get(k.split("-")[0])
-                        if want_j and j.split("-")[0] != want_j:   # the route data names the line it hangs on
+                        if want_j and j.split("-")[0] != want_j:   # the route data (or the layout) names the line it hangs on
                             continue
-                        if k.startswith("L") and not j.startswith("L"):   # a main line hangs on a main line
+                        if k.startswith("L") and not j.startswith("L") and not want_j:   # a main line hangs on a main line
                             continue
                         gap, d = _along(lines[j], p)
                         if best is None or gap < best[0]:
                             best = (gap, k, j, d, end)
+            if best is None:
+                break
             gap, k, j, d, end = best
             if gap > JOIN_PT:
                 break
@@ -1598,15 +1642,18 @@ def add_route_trees(L):
         place = L.setdefault("place", {})
         want, used = set(), set()
         linked = {n for seg in L["segments"] for n in seg[:2]}   # nodes other harnesses' segments already reach
-        for dev in data.get("devices") or []:
-            ids = [x.strip() for x in str(dev.get("id", dev["name"])).split("/")]
-            node = place.get(ids[0]) or ids[0]
-            if spec["harness"] not in dev.get("harness", "") and node not in linked:
-                continue
-            if node in used:   # two devices placed on one old node (MR-S plugs B / C) get a node each
-                node = ids[0].replace("-", "_")
+        for dev in devs:
+            if legacy:
+                ids = [x.strip() for x in str(dev.get("id", dev["name"])).split("/")]
+                node = place.get(ids[0]) or ids[0]
+                if spec["harness"] not in dev.get("harness", "") and node not in linked:
+                    continue
+                if node in used:   # two devices placed on one old node (MR-S plugs B / C) get a node each
+                    node = ids[0].replace("-", "_")
+            else:
+                ids, node = dev["_ids"], dev["_node"]
             used.add(node)
-            on = dev["on"] if dev["on"] in parent else min(parent, key=lambda k: _along(lines[k], dev["at"])[0])
+            on = dev["on"] if dev.get("on") in parent else min(parent, key=lambda k: _along(lines[k], dev["at"])[0])
             gap, d = _along(lines[on], dev["at"])
             ev[on].append((from_root(on, d), "dev", node, gap, dev))
             for i in ids:
@@ -1619,8 +1666,10 @@ def add_route_trees(L):
                 keep.add(k)
                 k = parent[k][0]
         nodes, segs = L["nodes"], L["segments"]
+        first_seg = len(segs)
         fx = lambda p: [round(90 + (p[1] - 160) * 0.35, 1), round((p[0] - 170) * 100.0 / 220.0, 1)]
-        nodes[spec["root"]]["xy"] = fx(root_pt)
+        if legacy:
+            nodes[spec["root"]]["xy"] = fx(root_pt)
         def build(k, start_node):
             here, at = start_node, 0.0
             items = sorted((e for e in ev[k] if e[1] == "dev" or e[2] in keep), key=lambda e: (e[0], e[1]))
@@ -1629,9 +1678,9 @@ def add_route_trees(L):
                 step = max(0.0, e[0] - at) * MM_PER_PT
                 if e[1] == "line":
                     n_j += 1
-                    jn = "J_%s_%d" % (k, n_j)
+                    jn = "%sJ_%s_%d" % (pre, k, n_j)
                     nodes[jn] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
-                                 "label": "Route 16 %s: %s joins" % (k, e[2]), "short": "%s / %s" % (k, e[2])}
+                                 "label": "%s %s: %s joins" % (src[k], k, e[2]), "short": "%s / %s" % (k, e[2])}
                     segs.append([here, jn, int(round(step))])
                     here, at = jn, e[0]
                     if e[3] * MM_PER_PT < 1:
@@ -1643,15 +1692,15 @@ def add_route_trees(L):
                     drop = DROP_MM if dev.get("low") else 0
                     old = nodes.get(node, {})
                     nodes[node] = {"xy": fx(dev["at"]), "end": True, "short": old.get("short", dev["name"]),
-                                   "label": "%s (Route 16 device %s on %s%s)" % (
-                                       dev["name"], dev["n"], k, ", low: +%d mm drop" % drop if drop else "")}
+                                   "label": "%s (%s device %s on %s%s)" % (
+                                       dev["name"], dev["_route"], dev["n"], k, ", low: +%d mm drop" % drop if drop else "")}
                     stub = gap * MM_PER_PT + drop
                     if i_e < len(items) - 1:   # the line goes on past it: a breakout of at least 6 in (Dan 2026-10-29)
                         stub = max(stub, MIN_BREAKOUT_MM)
                     if stub >= 1:
-                        tap = "T_%s_%s" % (k, node)
+                        tap = "%sT_%s_%s" % (pre, k, node)
                         nodes[tap] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
-                                      "label": "Route 16 %s: %s stub" % (k, node), "short": ""}
+                                      "label": "%s %s: %s stub" % (src[k], k, node), "short": ""}
                         segs.append([here, tap, int(round(step))])
                         segs.append([tap, node, int(round(stub))])
                         here, at = tap, e[0]
@@ -1659,11 +1708,12 @@ def add_route_trees(L):
                         segs.append([here, node, int(round(step))])
                         here, at = node, e[0]
         def build_stub(k, jn, gap):
-            sub = "S_%s" % k
-            nodes[sub] = {"xy": nodes[jn]["xy"], "label": "Route 16 %s joins (%.0f mm gap)" % (k, gap * MM_PER_PT), "short": ""}
+            sub = "%sS_%s" % (pre, k)
+            nodes[sub] = {"xy": nodes[jn]["xy"], "label": "%s %s joins (%.0f mm gap)" % (src[k], k, gap * MM_PER_PT),
+                          "short": ""}
             segs.append([jn, sub, int(round(gap * MM_PER_PT))])
             build(k, sub)
-        start = spec["root"]
+        start = spec.get("root")
         if spec.get("root_drop_mm"):   # the bulkhead sits this far above where the trunk meets the firewall (Dan 2026-10-29)
             start = "J_%s_drop" % spec["root"]
             nodes[start] = {"xy": nodes[spec["root"]]["xy"], "label": "Route 16: trunk meets the firewall below the bulkhead",
@@ -1671,15 +1721,17 @@ def add_route_trees(L):
             segs.append([spec["root"], start, int(spec["root_drop_mm"])])
         for k in [k for k, v in parent.items() if v[0] is None]:
             if k in keep:
-                if k == "L1":
-                    build(k, start)
+                if k in roots:
+                    build(k, start if legacy else roots[k])
                 else:
                     build_stub(k, start, parent[k][2])
         # splices, resistors and cable screens whose old node is gone sit where their wires part: the deepest node
-        # common to the paths from the root to every other end of their wires (the root itself is the trunk end)
-        up, todo = {spec["root"]: None}, [spec["root"]]
+        # common to the paths from the root to every other end of their wires (the root itself is the trunk end; a
+        # "roots" tree looks only at its own segments, so its cabin ends count as the root end)
+        top = [spec["root"]] if legacy else list(roots.values())
+        up, todo = {n: None for n in top}, list(top)
         adj = collections.defaultdict(list)
-        for a, b, _ in segs:
+        for a, b, _ in (segs if legacy else segs[first_seg:]):
             adj[a].append(b)
             adj[b].append(a)
         while todo:
@@ -1695,25 +1747,30 @@ def add_route_trees(L):
                 n = up.get(n)
             return out[::-1]
         rows = [r for r in master_rows() if r["wire_id"] and spec["harness"] in (r["harness"], r["passes_through"])]
+        def at(r, s):   # a "roots" tree also places factory ends (by `place_oem`, as Harness.place does)
+            if legacy or r[s + "_type"] != "OEM":
+                return place.get(r[s + "_id"])
+            return next((n for pat, n in L.get("place_oem", []) if pat in r[s + "_id"] + " " + r[s + "_name"]), None)
         for _ in range(4):
-            for c in sorted({r[s + "_id"] for r in rows for s in ("from", "to")} | {r["cable"] for r in rows if r["cable"]}):
+            for c in sorted({r[s + "_id"] for r in rows for s in ("from", "to") if legacy or r[s + "_type"] != "OEM"}
+                            | {r["cable"] for r in rows if r["cable"]}):
                 if not c or place.get(c) in nodes:
                     continue
                 ends = set()
                 for r in rows:
                     for s, o in (("from", "to"), ("to", "from")):
                         if r[s + "_id"] == c or r["cable"] == c:
-                            n = place.get(r[o + "_id"])
-                            if n in up and n != spec["root"]:
+                            n = at(r, o)
+                            if n in up and n not in top:
                                 ends.add(n)
                 if not ends:   # a cable screen whose only other end is the bulkhead sits with its cable
                     cab = {place.get(r["cable"]) for r in rows if c in (r["from_id"], r["to_id"]) and r["cable"]}
-                    ends = {n for n in cab if n in up and n != spec["root"]}
+                    ends = {n for n in cab if n in up and n not in top}
                 if not ends:
                     continue
                 chains = [chain(n) for n in ends]
                 common = [x for x in zip(*chains) if len(set(x)) == 1]
-                place[c] = common[-1][0] if common else spec["root"]
+                place[c] = common[-1][0] if common else top[0]
 
 
 def route_pages(path):
