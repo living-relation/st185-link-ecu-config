@@ -33,7 +33,10 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   Each device sits on one page per harness, all its wires together (Dan 2026-10-31); the OEM splice reference is built and checked the same way.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
-- **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Top
+- **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it.
+  Placement editor rule (Dan 2026-11-01): every harness gets a placement-editor pass (Dan places each device and draws
+  its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes
+  that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive). Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
   Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17
   front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot
