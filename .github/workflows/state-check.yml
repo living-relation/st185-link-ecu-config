@@ -1,0 +1,28 @@
+# git-checker PR hook (Dan 2026-11-01, COMMENT mode). Script: .github/state-check.sh.
+# Mode comes from .state-check-mode (comment = never fails; block = check fails).
+# The no-state-change label skips the check in both modes. Never pushes or edits.
+name: state-check
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled, edited]
+permissions: { contents: read, pull-requests: write }
+jobs:
+  check:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'no-state-change') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: run check
+        id: check
+        env: { BODY: "${{ github.event.pull_request.body }}" }
+        run: |
+          printf '%s' "$BODY" > /tmp/body.txt
+          set +e; bash .github/state-check.sh origin/${{ github.base_ref }} HEAD /tmp/body.txt > /tmp/out.txt; rc=$?; set -e
+          cat /tmp/out.txt; echo "rc=$rc" >> "$GITHUB_OUTPUT"
+      - name: comment
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: '[ -s /tmp/out.txt ] && gh pr comment ${{ github.event.number }} -F /tmp/out.txt || true'
+      - name: fail in block mode
+        if: steps.check.outputs.rc != '0'
+        run: exit 1
