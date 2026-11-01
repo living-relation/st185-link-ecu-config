@@ -24,12 +24,16 @@ LIGHT = {"White", "Yellow", ""}
 FRM = list(csv.DictReader(open(os.path.join(REPO, "sot/fuse-relay-map.csv"), encoding="utf-8")))
 BOX = {"B1": "POWER fuse box", "B2": "LOGIC fuse box", "B3": "Trunk relay box", "B4": "beside the POWER fuse box"}
 RELAY = {r["master_id"]: (r["bank"], r["position"], r["circuit"]) for r in FRM if r["kind"] == "relay" and r["master_id"].startswith("K-")}
-FIX = {"BUS-5V": "+5 V bus plug (BUS-5V)", "BUS-5V-2": "+5 V bus plug 2 (BUS-5V-2)",
-       "BUS-GNDOUT-A": "Sensor ground bus plug A (BUS-GNDOUT-A)", "BUS-GNDOUT-B": "Sensor ground bus plug B (BUS-GNDOUT-B)",
-       "BUS-SW12": "Switched 12 V bus plug (BUS-SW12)", "DRB102-ENGINE": "DRB102 bulkhead, engine side",
-       "DRB102-CABIN": "DRB102 bulkhead, cabin side", "ECU-A": "Link G4X plug A", "ECU-B": "Link G4X plug B",
-       "IX-WS-F-P": "IX-WS-F front wheel-speed inline (sensor side)", "IX-WS-F-S": "IX-WS-F front wheel-speed inline (VRC side)",
-       "IX-WS-R-P": "IX-WS-R rear wheel-speed inline (sensor side)", "IX-WS-R-S": "IX-WS-R rear wheel-speed inline (VRC side)",
+FIX = {"BUS-5V": "+5 V bussed plug at the ECU, fed by ECU plug A pin 32 (BUS-5V)",
+       "BUS-5V-2": "+5 V bussed plug 2 at the ECU, fed from BUS-5V pin 12 (BUS-5V-2)",
+       "BUS-GNDOUT-A": "Sensor-ground bussed plug A at the ECU, to ECU plug A pin 24 (BUS-GNDOUT-A)",
+       "BUS-GNDOUT-B": "Sensor-ground bussed plug B at the ECU, to ECU plug B pin 22 (BUS-GNDOUT-B)",
+       "BUS-SW12": "Switched 12 V bussed plug in the glove box by the LOGIC fuse box, fed by LOGIC fuse BUS2-2 (BUS-SW12)",
+       "DRB102-ENGINE": "DRB102 bulkhead, engine side", "DRB102-CABIN": "DRB102 bulkhead, cabin side",
+       "ECU-A": "Link G4X plug A", "ECU-B": "Link G4X plug B",
+       "IX-WS-F-P": "Front wheel-speed inline plug, sensor side (IX-WS-F)", "IX-WS-F-S": "Front wheel-speed inline plug, VRC side (IX-WS-F)",
+       "IX-WS-R-P": "Rear wheel-speed inline plug, sensor side (IX-WS-R)", "IX-WS-R-S": "Rear wheel-speed inline plug, VRC side, dash above the ECU (IX-WS-R)",
+       "IX-FUEL-P": "Fuel sender inline plug, harness side, trunk (IX-FUEL)", "IX-FUEL-S": "Fuel sender inline plug, sender side, trunk (IX-FUEL)",
        "R-CRUISE": "Cruise resistor on the CSB3", "R-TERM-ECU": "120 ohm CAN end resistor, ECU end",
        "R-TERM-END": "120 ohm CAN end resistor, Lambda end", "POWER": "POWER fuse box", "LOGIC": "LOGIC fuse box",
        "BATT-RELAY-BLOCK": "Trunk relay box", "POWER-STUDS": "POWER fuse box", "CSB3": "ECUMaster CSB3",
