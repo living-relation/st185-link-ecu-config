@@ -375,7 +375,7 @@ A('<h2 id="views">Every wire in place (simulation)</h2>')
 pb = plan['per_box_wire_ends']
 A('<div class="note">Your question: "aren\'t there going to be more wires in these? can you simulate that?" Every harness wire that lands in a box '
   '(<code>ST185-CabinPower</code>, <code>-HeavyDC</code>, <code>-EngineRoom-C</code>), at its real cavity, with its real gauge (outside diameter), '
-  'insulation colour, ident bands and terminal part, bundled into the exit it leaves by (the CAD lanes) with the bend rule: 3 x OD where it is '
+  'insulation colour and terminal part, bundled into the exit it leaves by (the CAD lanes) with the bend rule: 3 x OD where it is '
   'tied into its bundle, 10 x OD free outside. <code>cad/fusebox/src/wiring_sim.py</code> plans it, <code>render_wired_rev7.py</code> draws and '
   'checks it in Fusion (not saved). Nothing in the design was changed for it.</div>')
 A('<div class="kpi"><div>POWER<b>%d wire ends</b><span class="mut">%d drawn here + the CAD feeds, OUT row and 1/0</span></div>'

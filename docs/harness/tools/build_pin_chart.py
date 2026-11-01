@@ -125,7 +125,7 @@ for r in rows:
         c["harness"].add(r["harness"])
         other = goes_to(r, o) if (r[o + "_id"] or r[o + "_type"]) else ""
         c["pins"][r[s + "_pin"]].append({
-            "wire": r["wire_id"], "awg": r["gauge_awg"], "colour": r["colour"], "bands": r["ident_bands"],
+            "wire": r["wire_id"], "awg": r["gauge_awg"], "colour": r["colour"],
             "desc": r[s + "_desc"] or r["circuit"], "other": other if r["wire_id"] else "", "term": r[s + "_terminal_pn"],
             "spare": not r["wire_id"]})
 
@@ -263,9 +263,6 @@ def svg_list(c):
     face = {"rows": [pins[i:i + per] for i in range(0, n, per)], "shape": "rect"}
     return svg_grid(c, face)
 
-
-def bands(b):
-    return "".join('<i style="background:%s"></i>' % WIRE.get(x, "#ccc") for x in b.split("-") if x) if b else ""
 
 
 cards = []

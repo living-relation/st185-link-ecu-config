@@ -3,8 +3,8 @@
   python docs/sourcing/build_project_bom.py            write PROJECT-BOM.csv + PROJECT-BOM.xlsx
   python docs/sourcing/build_project_bom.py --check    fail if the committed CSV / xlsx is stale (check_all.py)
 
-Inputs, all in git: docs/harness/MASTER-wirelist.csv (every housing, accessory, contact, plug, lug, cable, wire and ident
-band; R221), the drawing sets' layouts (DR-25 tubing), docs/sourcing/harness-parts.csv (maker and description of each
+Inputs, all in git: docs/harness/MASTER-wirelist.csv (every housing, accessory, contact, plug, lug, cable and wire;
+R221), the drawing sets' layouts (DR-25 tubing), docs/sourcing/harness-parts.csv (maker and description of each
 harness part; fixed_qty = boots and labels counted from the retired harness.design files), cad/fusebox/fusebox-parts-*.csv, docs/enclosures/*-bom.csv,
 docs/sourcing/mech-extra.csv (machined parts / pump), docs/sourcing/te-on-hand-bom.csv (on hand),
 docs/sourcing/bom-links.csv (hand-kept buy links, prices, link status, te_sample = Y when te.com shows "Get free samples" for that exact TE PN; sample_other = "<maker> <PN>" of a validated drop-in equivalent whose maker offers free samples; both feed the "Free sample" column).
@@ -27,8 +27,8 @@ def P(*a):
 
 
 MADE_AT_WORK = "made at work (Dan, R210)"
-# R210: labels and ident-band sleeves are listed but not priced
-UNPRICED = re.compile(r"^(TMS-SCE-|RNF-100-[0-9/]+-(4|6|9)-STK$)")
+# R210: labels are listed but not priced
+UNPRICED = re.compile(r"^TMS-SCE-")
 ALIAS = {"2R5": "Klauke 2R5"}   # buylist name -> bom-links name
 MARGIN = 1.15
 FT_PER_M = 3.28084
@@ -89,7 +89,7 @@ def add(section, assembly, pn, maker, desc, need, have, unit="ea", notes="", kin
 # ---------- Wire harness: counted from the ONE master wire list (DECISIONS R221) ----------
 # Every housing, accessory, contact, sealing plug, lug, resistor / diode, cable and wire is read from
 # docs/harness/MASTER-wirelist.csv. Fuse-box ends (the POWER / LOGIC boxes, their relays, the battery relay block) are
-# the fuse-box parts lists' (Mechanical section). Ident bands come from the master's ident_bands; covering tubing from a
+# the fuse-box parts lists' (Mechanical section). No ident bands (DECISIONS B20). Covering tubing from a
 # drawing set's layout (docs/harness/tools/<set>.layout.json, DR-25 per segment); boots and labels from the fixed_qty of
 # docs/sourcing/harness-parts.csv (counted from the harness.design files when they were retired, R225).
 MASTER = rd(P("docs", "harness", "MASTER-wirelist.csv"))
@@ -152,14 +152,6 @@ for r in MASTER:
         CABLE_MM[r["cable_pn"]][r["cable"]] = max(CABLE_MM[r["cable_pn"]].get(r["cable"], 0), mm)
     elif r["wire_pn"] and r["wire_pn"] != "TBD":
         WIRE_MM[r["wire_pn"]] += mm
-BANDS = collections.Counter()
-for r in MASTER:
-    g = int(r["gauge_awg"]) if r["gauge_awg"].isdigit() else None
-    if not r["wire_id"] or not r["ident_bands"] or g is None or g < 8:
-        continue
-    size = "3/32" if g >= 14 else "3/16"
-    for b in r["ident_bands"].split("-"):
-        BANDS["RNF-100-%s-%s-STK" % (size, {"Blue": "6", "Yellow": "4", "White": "9"}[b])] += 2
 TUBE_MM = collections.Counter()
 sys.path.insert(0, P("docs", "harness", "tools"))
 import build_drawings as BD   # noqa: E402  (the drawing sets and their DR-25 per segment)
@@ -202,7 +194,7 @@ def lib_desc(pn):
     return q.get("manufacturer", ""), q.get("description", "")
 
 
-HARNESS_PN = set(H_NEED) | set(BANDS) | set(TUBE_MM) | set(WIRE_MM) | set(CABLE_MM)
+HARNESS_PN = set(H_NEED) | set(TUBE_MM) | set(WIRE_MM) | set(CABLE_MM)
 
 
 # ---------- Mechanical: fuse boxes, enclosures, machined parts, pump ----------
@@ -248,9 +240,6 @@ for pn, need in sorted(H_NEED.items()):
 for what, n in sorted(H_TBD.items()):
     add(SECTIONS[1], ASSY, "TBD", "", "part number not confirmed yet: %s (check_wiring.py --tbd)" % what, n, 0,
         notes="no maker document in the repo yet; never guessed")
-for pn, n in sorted(BANDS.items()):
-    mk, desc = lib_desc(pn)
-    add(SECTIONS[1], ASSY, pn, mk, desc, -(-n // 180), ONHAND.get(pn, 0), unit="stick", notes="%d bands of 6 mm, both ends of each wire" % n)
 for pn, mm in sorted(TUBE_MM.items()):
     mk, desc = lib_desc(pn)
     add(SECTIONS[1], ASSY, pn, mk, desc, -(-int(mm * 1.10) // 1000), ONHAND.get(pn, 0), unit="m",
