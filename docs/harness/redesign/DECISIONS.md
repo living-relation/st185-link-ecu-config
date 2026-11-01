@@ -504,7 +504,7 @@ Read this file and `AGENTS.md` first; they win. Dispatch only relays messages, p
 
 `check_wiring.py` S1-S3 enforces the drain and floating-screen rules (R207). Device pin, pin name, and whether that device gets a shield: `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
 
-**B14 detail.** Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, flex fuel, gearbox VSS, ETB, APS pedal, the CAN-Lambda run and every CAN pair; injectors and coils get none. A drain is its own `M22759/16-20-06` wire, found by its part, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one OUT plug; its board is isolated from the case.
+**B14 detail.** Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, flex fuel, ETB, APS pedal, the CAN-Lambda run and every CAN pair; injectors, coils and the gearbox VSS (plain wires, Dan 2026-11-01) get none. A drain is its own `M22759/16-20-06` wire, found by its part, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one OUT plug; its board is isolated from the case.
 
 **No connector shells (R33).** Every drain lands on a regular pin; no shell, backshell or shielding plate ever carries a screen (the VRC LP-16 plugs included).
 
@@ -513,7 +513,7 @@ Read this file and `AGENTS.md` first; they win. Dispatch only relays messages, p
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
 | ECU-A A7 | crank, cam, turbo, flex, ETB sensor, APS, front WS spur, front WS FR spur | `SP-SHIELD-A`, 6 in (152 mm) behind `ECU-A` (N83 = A, Dan 2026-10-31); the crank drain is the one crimped into A7, the others are soldered onto it (R30) |
-| ECU-B B17 | knock, ETB motor, VSS, rear WS spur | `SP-SHIELD-B`, 6 in (152 mm) behind `ECU-B` (N83 = A) |
+| ECU-B B17 | knock, ETB motor, rear WS spur | `SP-SHIELD-B`, 6 in (152 mm) behind `ECU-B` (N83 = A) |
 | ECU-COMMS C1 (R207) | CAN trunk drain `w_shd_can_trunk` (one wire); CSB3, cluster, RealDash, ECU cable and bulkhead / Lambda branch drains | one named splice per branch, `sp_can_sh_clu` / `_csb` / `_rd` / `_bh`, at that branch point |
 | VRC front IN pin 3 | FL and FR sensor cables | `sp_vrc_f_in_sh` at `lp16_vrc_f_in` |
 | VRC rear IN pin 3 | RL and RR sensor cables | `sp_vrc_r_in_sh` at `lp16_vrc_r_in` |
