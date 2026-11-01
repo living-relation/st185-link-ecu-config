@@ -738,7 +738,9 @@
      "ids": [
       "MRS-A"
      ]
-    }
+    },
+    "24": "GND_EA",
+    "25": "GND_EB"
    }
   }
  ],
@@ -866,8 +868,8 @@
   "FAN-COND-GND": "FANC",
   "FAN-RAD": "FANR",
   "FAN-RAD-GND": "FANR",
-  "GND-EA": "C_RHC",
-  "GND-EB": "C_LHC",
+  "GND-EA": "GND_EA",
+  "GND-EB": "GND_EB",
   "GND-ID": "JB1",
   "GND-IG": "RHKICK",
   "HORN-LH": "HORNS",

@@ -92,6 +92,13 @@
    "by": "DG",
    "what": "Harness C (EngineRoom-C) layout on the Route 17 device spots; its lengths from the tree (Dan 2026-11-01)",
    "marks": "EngineRoom-C tree from Route 17 (runs 10 / 11, RH fender grommet, Route 16 lines 9 / 6 / 4 / 2); EngineRoom-C est. lengths"
+  },
+  {
+   "rev": "N",
+   "date": "2026-11-01",
+   "by": "DG",
+   "what": "Ground studs EA / EB on Route 17 at their factory spots (1993 EWD p.36); their 9 wire lengths from the tree (Dan 2026-11-01)",
+   "marks": "Route 17 devices 24 / 25 with stubs to run 10; 9 EngineRoom-C ground wire est. lengths"
   }
  ]
 }
