@@ -4,15 +4,15 @@ B1,R2,relay,EFI main,K-EFI,seated,POWER box Mini ISO
 B1,R3,relay,(vacant),,vacant,was k_str; starter stays on OEM R/B No.4
 B1,R4,relay,radiator fan,K-FAN,seated,
 B1,R5,relay,condenser fan,K-FAN2,seated,
-B1,R6,relay,R/B No.2 30 A POWER feed,POWER AMI IN-6,feed,vacant relay seat (was k_pwr); AMI IN-6 is the new feed to the kept OEM POWER fuse
+B1,R6,relay,(vacant),,vacant,was k_pwr; R/B No.2 30 A POWER fuse is fed by AM1 (AMI OUT-3) through factory splice I2 as stock (Dan B17 = b 2026-11-02)
 B1,AMI IN-1,fuse,R/B No.4 40 A HEATER,POWER,assigned,8 AWG to R/B No.4 HEATER fuse pin 1
 B1,AMI IN-2,fuse,EFI 30 A,POWER,assigned,K-EFI 87
 B1,AMI IN-3,fuse,(vacant),,vacant,was start 30 A
 B1,AMI IN-4,fuse,radiator fan,POWER,assigned,K-FAN
 B1,AMI IN-5,fuse,condenser fan,POWER,assigned,K-FAN2
-B1,AMI IN-6,fuse,R/B No.2 30 A POWER,POWER,assigned,10 AWG to R/B No.2 POWER fuse pin 1
+B1,AMI IN-6,fuse,(vacant),,vacant,was R/B No.2 30 A POWER feed (w_rb2_feed dropped: Dan B17 = b 2026-11-02; AM1 feeds R/B No.2 through factory splice I2)
 B1,AMI OUT-2,fuse,RTR 30 A,POWER,assigned,retract
-B1,AMI OUT-3,fuse,AM1 40 A,POWER,assigned,
+B1,AMI OUT-3,fuse,AM1 40 A,POWER,assigned,w_pdb_am1 to IE1-10; through factory splice I2 also feeds ignition switch AM1 and the R/B No.2 30 A POWER fuse as stock (1993 EWD p.62; Dan B17 = b)
 B1,AMI OUT-4,fuse,AM2 30 A,POWER,assigned,
 B1,AMI OUT-5,fuse,J/B No.1 60 A,POWER,assigned,w_pdb_jb1 behind the dash to 1I-1; 6 AWG for 60 A
 B1,AMI OUT-6,fuse,EPS 50 A,POWER,assigned,B4 K-EPS 30
@@ -25,11 +25,24 @@ B2,M5,relay,A/C clutch,K-ACC,seated,coil 85 from A15 pin 8 (D16); coil 86 from B
 B2,M6,relay,EPS enable,K-EPS-EN,seated,
 B2,M7,relay,(vacant),,vacant,was K-REV; back-up lamps stay on the factory harness
 B2,BUS1-1,fuse,EFI86 5 A,LOGIC,assigned,K-EFI coil+
+B2,BUS1-2,fuse,HL 15 A,LOGIC,assigned,w_hl_cp via SP-HL to K-HL 30 / 86 (headlamp LH)
+B2,BUS1-3,fuse,HR 15 A,LOGIC,assigned,w_hr_cp via SP-HR to K-HR 30 / 86 (headlamp RH)
+B2,BUS1-4,fuse,HZ 15 A,LOGIC,assigned,w_hz_cp via SP-HZ to the hazard feed (IE1-12) and K-HORN 30 / 86
 B2,BUS1-5,fuse,DOME 20 A,LOGIC,assigned,
-B2,BUS1-6,fuse,WL 15 A,LOGIC,assigned,door-lock feed at R/B No.2
+B2,BUS1-6,fuse,(vacant),,vacant,was WL 15 A door-lock feed at R/B No.2 (w_rb2_wl dropped: Dan B17 = b 2026-11-02; door locks are fed through the R/B No.2 30 A POWER fuse as stock)
+B2,BUS1-7,fuse,ALM 5 A,LOGIC,assigned,w_at_12v_tie_cp to alarm pin 1
+B2,BUS1-8,fuse,ALMS 2 A,LOGIC,assigned,w_at_12v_shk_tie_cp to shock sensor pin A
+B2,BUS1-9,fuse,ALTS 2 A,LOGIC,assigned,w_alt_s_c to alternator plug pin 1 S (rating from the fuse-box design wiring_plan.json; the master names no rating)
 B2,BUS1-10,fuse,ETB 7.5 A,LOGIC,assigned,K-ETB 30
+B2,BUS2-1,fuse,LAM 7.5 A,LOGIC,assigned,w_lam12_cp to DRB102 cavity 95 (CAN-Lambda)
+B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V); master 5 A vs fuse-box design 7.5 A
+B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A); fuse-box design still says 15 A
+B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A); fuse-box design still says 15 A
+B2,BUS2-5,fuse,CSB 5 A,LOGIC,assigned,w_csb12 to CSB3 pin 1
+B2,BUS2-6,fuse,DEV 15 A,LOGIC,assigned,w_dev_cp via SP-DEV to the cluster and RealDash Pi supplies
 B2,BUS2-7,fuse,EPSEN 7.5 A,LOGIC,assigned,K-EPS-EN 30
 B2,BUS2-8,fuse,ACC 10 A,LOGIC,assigned,K-ACC 30 and 86 via SP-ACC12
+B2,BUS2-9,fuse,ALMIG 2 A,LOGIC,assigned,w_at_ig_tie_cp to alarm pin 3
 B2,BUS2-13,fuse,start request,LOGIC,assigned,ST1 tap to Link DI 7
 B3,K1,relay,fuel pump,K-FP,seated,trunk battery relay block
 B4,EPS,relay,EPS pump,K-EPS,seated,HCR150 beside the POWER box

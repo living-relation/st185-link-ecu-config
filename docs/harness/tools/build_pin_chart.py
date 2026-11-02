@@ -267,7 +267,7 @@ def svg_list(c):
 
 cards = []
 sections = collections.OrderedDict()
-ORDER = ["AB-cabin", "AB-engine", "CabinPower", "EngineRoom-C", "HeavyDC", "RearFuel", "CSB3", "ClusterLED", "AntiTheft", "CAN"]
+ORDER = ["AB-cabin", "AB-engine", "CabinPower", "EngineRoom-C", "HeavyDC", "RearFuel", "Dash", "AntiTheft"]
 counts = {"sourced": 0, "drb": 0, "unverified": 0}
 for c in con.values():
     face = face_for(c)
