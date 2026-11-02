@@ -180,7 +180,7 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R19 | B11 | |
 | R20 | B11 | |
 | R21 | B30 | ECU starts the engine, no clutch interlock: applied; the facts live in the file it changed |
-| R22 | B30 | EPS pump wiring: applied; the facts live in the file it changed |
+| R22 | B30 | EPS pump wiring: applied; the facts live in the file it changed. Enable: one fuse, LOGIC EPSEN 5 A -> `K-EPS-EN` (Ign 6 active-low) -> 87 straight to the pump (E3 a, Dan 2026-11-02) |
 | R23 | A/C | A/C - D16 2026-10-25 (amp drives k_acc; Link kill only) |
 | R24 | B17 | |
 | R25 | B15 | |

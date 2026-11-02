@@ -158,7 +158,7 @@ new feed on J/B1 1A-1G. Superseded from that plan: R/B No.2 / No.4 removed, `k_s
 | BUS2-3 / BUS2-4 | coils / injectors | `w_cop_pwr_ac` / `w_inj_pwr_ac` | DRB102 cavity 1 / 2 (AB-engine) | COP coils, injectors | - | current; seats in the map (phase 2) |
 | BUS2-5 | CSB3 12 V | `w_csb12` | CSB3 pin 1 | CSB3 (Dash) | - | current; seat in the map (phase 2) |
 | BUS2-6 | dash 12 V | `w_dev_cp` -> `SP-DEV` | cluster and RealDash Pi supplies (Dash) | centre cluster, RealDash | - | current; seat in the map (phase 2) |
-| BUS2-7 / BUS2-12 | EPSEN 7.5 A, relay M6 K-EPS-EN | `w_fb_k_eps_en_30_cp` -> `w_k_eps_en_87_cp` -> `w_fb_mrs_en` | DRB102 cavity 83 -> MR-S plug C pin 1 (AB-engine) | EPS enable | - | current |
+| BUS2-7 | EPSEN 5 A, relay M6 K-EPS-EN (87 straight out, no second fuse; E3 a) | `w_fb_k_eps_en_30_cp` -> K-EPS-EN 87 -> `w_fb_mrs_en` | DRB102 cavity 83 -> MR-S plug C pin 1 (AB-engine) | EPS enable | - | current |
 | BUS2-8 | ACC 10 A via `SP-ACC12`, relay M5 K-ACC | `w_acc_fuse` -> `w_fb_k_acc_30_cp`, `w_acc86` -> `w_acc_clutch` | new wire to compressor A4 pin 4 (EngineRoom-C); coil 85 from A15 pin 8 (`w_acc_trig`) | A/C clutch (D16) | p.210-211 | current |
 | BUS2-9 | ALMIG 2 A | `w_at_ig_tie_cp` | alarm pin 3 (AntiTheft) | alarm ignition sense | - | current; seat in the map (phase 2) |
 | BUS2-13 | start request | in `w_start_in_cp`, out `w_start` | tap on R/B No.4 starter relay pin 1, B-W (ST1) -> Link DI 7 (ECU plug B pin 30) | start sense | p.66 | current; own pin id `ST-1` (fault C3 fixed in phase 2) |
