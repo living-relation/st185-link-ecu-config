@@ -11,7 +11,9 @@ spec = importlib.util.spec_from_file_location("bd", os.path.join(REPO, "docs/har
 BD = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(BD)
 
-rows = list(csv.DictReader(open(os.path.join(REPO, "docs/harness/MASTER-wirelist.csv"), encoding="utf-8")))
+# removal rows (factory wires taken out of the car, BD.is_removal) are not pins to build or devices to own
+rows = [r for r in csv.DictReader(open(os.path.join(REPO, "docs/harness/MASTER-wirelist.csv"), encoding="utf-8"))
+        if not BD.is_removal(r)]
 FACES = json.load(open(os.path.join(HERE, "faces.json"), encoding="utf-8")) if os.path.exists(os.path.join(HERE, "faces.json")) else {}
 ALIAS = {"354404": "13519047", "CONN-76270": "EV6", "D 261 205 358-01": "1-967616-1",
          "DT06-2S-CE05": "DT06-2S", "DT06-3S-CE05": "DT06-3S", "5-1393292-8": "V23074", "6-1419137-4": "V23074",

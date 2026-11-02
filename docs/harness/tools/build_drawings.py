@@ -49,10 +49,19 @@ def load(p):
         return json.load(f)
 
 
-def master_rows():
-    """The master as rows, with the field names the drawing code uses (from_conn = the end ID ...)."""
+def is_removal(r):
+    """A removal row: a factory wire taken OUT of the car, back to its last live point (B5 "no row, no cut"; README
+    "What stays and what goes"). Marked by `oem_method` "remove ..." and `wire_pn` "none (removed)", no gauge or length.
+    check_wiring.py audits it; no generator builds, routes, sizes or buys it."""
+    return (r.get("oem_method") or "").strip().lower().startswith("remove") or \
+        (r.get("wire_pn") or "").startswith("none (removed)")
+
+
+def master_rows(removed=False):
+    """The master as rows, with the field names the drawing code uses (from_conn = the end ID ...). Removal rows are
+    left out (they are not wires to build) unless `removed` is set."""
     with open(MASTER, encoding="utf-8", newline="") as f:
-        rows = list(csv.DictReader(f))
+        rows = [r for r in csv.DictReader(f) if removed or not is_removal(r)]
     for r in rows:
         for s in ("from", "to"):
             r[s + "_conn"], r[s + "_conn_name"] = r[s + "_id"], r[s + "_name"]

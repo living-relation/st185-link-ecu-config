@@ -92,7 +92,10 @@ def add(section, assembly, pn, maker, desc, need, have, unit="ea", notes="", kin
 # the fuse-box parts lists' (Mechanical section). No ident bands (DECISIONS B20). Covering tubing from a
 # drawing set's layout (docs/harness/tools/<set>.layout.json, DR-25 per segment); boots and labels from the fixed_qty of
 # docs/sourcing/harness-parts.csv (counted from the harness.design files when they were retired, R225).
-MASTER = rd(P("docs", "harness", "MASTER-wirelist.csv"))
+sys.path.insert(0, P("docs", "harness", "tools"))
+import build_drawings as BD   # noqa: E402  (the drawing sets and their DR-25 per segment; removal rows)
+# a removal row (a factory wire taken out of the car, BD.is_removal) is nothing to buy
+MASTER = [r for r in rd(P("docs", "harness", "MASTER-wirelist.csv")) if not BD.is_removal(r)]
 PARTS = rd(P("docs", "sourcing", "harness-parts.csv"))
 LIBP = {q["part_number"]: q for q in PARTS}
 BOX = re.compile(r"^(LOGIC|POWER|POWER-STUDS|BATT-RELAY-BLOCK|K-)")
@@ -153,8 +156,6 @@ for r in MASTER:
     elif r["wire_pn"] and r["wire_pn"] != "TBD":
         WIRE_MM[r["wire_pn"]] += mm
 TUBE_MM = collections.Counter()
-sys.path.insert(0, P("docs", "harness", "tools"))
-import build_drawings as BD   # noqa: E402  (the drawing sets and their DR-25 per segment)
 for s in BD.own_harnesses():
     H = BD.Harness(s)
     seg = collections.Counter()
