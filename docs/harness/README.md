@@ -20,7 +20,7 @@ that B9 points to).
 | `tools/router.py` | the lane router `genroute.py` uses (box collision, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout when its pass is done (DECISIONS B8) | Only from Dan's markup or placement |
 | `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170-175 (Dan 2026-10-31); deleted when they close | No - closed to additions |
-| `circuit-plan.md` | the 21 circuits, cut-list groups and the IG1 / IG2 table | Yes, when a circuit decision changes |
+| `circuit-plan.md` | the 21 circuits and the cut-list groups 1-8 wire by wire (remove / keep / re-fed by a master wire) | Yes, when a circuit decision changes |
 | `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
 
 ## Change the wiring
@@ -72,13 +72,95 @@ skill is not changed for this project):
 
 ## Harnesses in the master
 
-`AB-cabin` and `AB-engine` (the ECU harness, loom A and B merged, R220), `CabinPower`, `HeavyDC`, `EngineRoom-C`, `CAN`,
-`CSB3`, `ClusterLED`, `AntiTheft`, `RearFuel`, `WheelSpeed-Front`, `WheelSpeed-Rear`. Each is built in
-harness.design (one at a time); the layout tree for all of them is `tools/ST185-harness.layout.json`; pinout:
-`drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness. AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
+Twelve harnesses today. Purpose restored from `git show e2ec9d7^:docs/harness/README.md` "The 13 harnesses" (deleted in
+#363) and re-read against today's master; which device belongs to which harness is the locked list in
+`redesign/DECISIONS.md` "Harness ownership (B8 list)". Planned (Dan B8 = a, 2026-11-02): `CAN`, `CSB3` and `ClusterLED`
+become one `Dash` harness; the names below stay until the master is changed (OPEN-ITEMS row 183, phase 2).
+
+| Harness | Purpose / scope | Route |
+|---|---|---|
+| `AB-cabin` | ECU harness, cabin side (loom A + B, R220): Link plugs A and B, the cabin half of the DRB102, the ECU splice point (bussed plugs `BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`; +8 V, switched 12 V, A5 feed and ECU power-ground splices), the ECU relay coil wires (relays sit in the boxes), APS pedal, A/C amp taps (A15 / A32 / A1), IG / reverse / start taps, both wheel-speed inline plugs, fuel level, and the cabin-to-trunk sill run (Dan B9 = a) | none (bulkhead to centre dash; placement editor, row 180) |
+| `AB-engine` | ECU harness, engine side: the engine half of the DRB102 to every engine sensor and actuator, throttle body included, plus the CAN-Lambda, MR-S plugs B / C (Dan B7 = a) and the starter S wire (DRB102 cavity 3) | Route 16 (lines 1-9 today; line 9 "Alt and starter" moves to Route 1, Dan B6 = b) |
+| `CabinPower` | Glove-box POWER (B1) and LOGIC (B2) boxes with their relays and every cabin power injection ("Power injection" below): J/B No.1, IE1, R/B No.2 / No.4 re-feeds, SW12 bus, fog cut-and-cap leads | none (glove box to the kick panels) |
+| `HeavyDC` | Trunk battery, kill switch, 1/0 cables to the POWER box and through the RADLOK pair, starter and alternator B+, engine block ground, jump post, trunk relay block (B3, `k_fp`), POWER NEG to grounds ID / IG | Route 1 (its engine-bay devices move there from Route 16, Dan B6 = b) |
+| `EngineRoom-C` | "Harness C": every new front-of-firewall wire that is not ECU or heavy cable: headlamps, pop-ups, front lamps, wiper / washer, horns, fans, EPS pump plug A, A/C compressor clutch and pressure switch, alternator plug, ground studs EA / EB; its cabin ends are splices into the J/B No.1 / IE1 / IG2 / R/B No.4 factory leads | Route 17 lines 10-13 (+ RH fender grommet run) |
+| `CAN` | CAN 1 backbone (the only CAN H / L): ECU plug C, cluster and RealDash nodes, CSB3 branch, ECU-end terminator, dash 12 V split | Route 8 |
+| `CSB3` | ECUMaster CSB3 plug, cruise stalk buttons, C17 clutch, S9 brake, R10 headlight sense, the 8-channel opto board at the plug | Route 12 |
+| `ClusterLED` | Warning LEDs (turn, high beam, charge, park brake, oil) fed from the OEM cluster plug taps | Route 13 |
+| `AntiTheft` | Alarm module, siren, shock sensor, status LED, valet switch, door / hood / trunk pin and park-lamp leads | Route 14 |
+| `RearFuel` | Fuel pump (from `k_fp` in the trunk relay block) and fuel level sender behind `IX-FUEL` | Route 11 |
+| `WheelSpeed-Front` / `-Rear` | Wheel speed sensor -> VR conditioner -> inline DT to AB-cabin (`IX-WS-F` / `IX-WS-R`) | Routes 9 / 10 |
+
+Routes 1 and 8-14 are the old route pages; no tool reads them since #456, and each is replaced by that harness's
+placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today.
+
+Each is built in harness.design (one at a time); the layout tree for all of them is `tools/ST185-harness.layout.json`;
+pinout: `drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness (no RearLights harness, #399). AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
 the dash near the floor, where every other harness to the ECU joins it; it is drawn left to right, and where each other
 harness's branch joins is set in the layout tree. Part makers and descriptions
 (AWG ranges) the BOM and the check read: `docs/sourcing/harness-parts.csv`. Fuse and relay seats: `sot/fuse-relay-map.csv`.
+
+## Power injection (new box seat -> OEM landing or new harness)
+
+Where each new box seat puts power into the car. Restored from the old power plan `ENGINE-ROOM-POWER-REDISTRIBUTION.md`
+(sections 3.1, 5.2, 5.4; deleted in #363; read it with `git show` at `e2ec9d7^`, folder `electrical/`), re-checked against today's master and `sot/fuse-relay-map.csv`. The master
+wire id is the source; this table only points at it. EWD = 1993 printed page. Kept rules from that plan: one source per
+load; inject only where the factory feed came through the Engine Wire (J/B1 1I-1, IE1-10, IE1-17, plus the kept R/B No.2 /
+No.4 fuses); J/B1 1H-7 (IGN) comes alive from AM2 through the ignition switch, so it is tapped, never fed; never land a
+new feed on J/B1 1A-1G. Superseded from that plan: R/B No.2 / No.4 removed, `k_str` / `k_htr` / `k_pwr` / `k_rev`, the
+1990 / 1992 pin pages, the kept ER Main (see `circuit-plan.md` groups 6-8).
+
+**B1 POWER box (glove box, outboard)**
+
+| Seat | Fuse / relay | Master wire (AWG) | Lands on | Powers | EWD | Status |
+|---|---|---|---|---|---|---|
+| AMI IN-1 (relay seat R1 vacant) | R/B No.4 feed | `w_rb4_feed` (8) | R/B No.4 40 A HEATER fuse pin 1, W (RH kick) | heater relay -> blower B4; 10 A A/C fuse (A/C amps, A5); 20 A FR FOG (spare) | p.62, p.215 | current; shares pin id with `w_start_in_cp` (fault C3, row 183) |
+| AMI IN-2 | EFI 30 A, relay R2 K-EFI | `w_fb_k_efi_87_cp` (12), `w77_cp` (10) | K-EFI 30 -> LOGIC Bus 2 (switched bus) | everything on Bus 2 | - | current |
+| AMI IN-3 | (vacant, was start 30 A) | - | - | - | - | vacant (starter on OEM R/B No.4) |
+| AMI IN-4 | radiator fan, relay R4 K-FAN | `w_fb_k_fan_87_cp` (10) -> `w_fan_pwr` (10) | new wire to the radiator fan (EngineRoom-C) | radiator fan | - | current |
+| AMI IN-5 | condenser fan, relay R5 K-FAN2 | `w_fb_k_fan2_87_ac` (10) -> `w_fan2_pwr` (10) | new wire to the condenser fan (EngineRoom-C) | condenser fan | - | current |
+| AMI IN-6 (relay seat R6 vacant) | R/B No.2 feed | `w_rb2_feed` (10) | R/B No.2 30 A POWER fuse pin 1, W (LH kick) | power main relay -> windows; W-L bus -> door lock ECU, sunroof, seat | p.62, p.137 | **pending B4 verification** (R/B No.2 fed twice, faults C1 / C2) |
+| AMI OUT-1 | LOGIC feed | `w_hc_fb` (8) | LOGIC Bus 1 (permanent bus) | everything on Bus 1 | - | current |
+| AMI OUT-2 | RTR 30 A | `w_pmu_rtr` (10) | IE1 pin 3, W (cowl side) | retract control relay R8 pin 3 | p.116 | current |
+| AMI OUT-3 | AM1 40 A | `w_pdb_am1` (8) | IE1 pin 10, W (cowl side) | ignition switch I13-4 AM1 (ACC / IG1 / ST1) via cowl splice I2; I2 also feeds the R/B No.2 POWER fuse | p.62, p.66 (master cites p.31, a 1990 page) | **AM1 via I2 to R/B No.2 pending B4 verification** (fault C2) |
+| AMI OUT-4 | AM2 30 A | `w_pdb_am2` (10) | IE1 pin 17, B-R (cowl side) | ignition switch I13-10 AM2 (IG2) | p.62, p.66 (master cites p.31) | current |
+| AMI OUT-5 | J/B No.1 60 A | `w_pdb_jb1` (6) | J/B No.1 1I pin 1, B (6 in stub, behind the dash) | taillight relay, STOP, ECU-B, DEFOGGER, tail bus | p.62 (master cites 1990 p.18-19 / p.46) | current |
+| AMI OUT-6 | EPS 50 A -> B4 relay K-EPS | `w_fb_k_eps_30_ac` (8) -> `w_eps_pwr_bc` (8) | new wire to MR-S pump plug A pin 1 (EngineRoom-C) | EPS pump | - | current |
+| ACPS | (vacant) | - | - | A5 pin 1 now from the kept R/B No.4 10 A A/C fuse (`w_acp_1`, p.211-212) | - | vacant |
+| NEG studs | battery negative | `w_gnd_id`, `w_gnd_ig` (1/0) | ground ID (LH kick) and IG (R/B No.4 set bolt, RH kick) | cabin body grounds | p.229 | current (HeavyDC) |
+| BAT / ALT / NEG studs | trunk battery in, out to the bay | `w_ks_h1`, `w_h3_radlok_pos`, `w_h6a_radlok_neg` (1/0) | kill switch; RADLOK + / - to the starter B+ and block | HeavyDC | - | current |
+
+**B2 LOGIC box (glove box, inboard).** Bus 1 is permanent (from AMI OUT-1); Bus 2 is switched (K-EFI 30).
+
+| Seat | Fuse / relay | Master wire | Lands on | Powers | EWD | Status |
+|---|---|---|---|---|---|---|
+| BUS1-1 | EFI86 5 A | `w_k_efi_86_cp` | K-EFI coil 86 | EFI main relay hold | - | current |
+| BUS1-2 / BUS1-3 | HL / HR 15 A, relays M1 / M2 K-HL / K-HR | `w_hl_cp` / `w_hr_cp` -> `w_pmu_hl` / `w_pmu_hr`; coil 85 `w_head_coil_cp` | new wire to headlamp H1 / H2 pin 3 (EngineRoom-C); coils to IE1 pin 2, R-Y | headlamps (light switch C15 / retract relay R8 sink the coils) | p.116 | current; seats not in `sot/fuse-relay-map.csv` |
+| BUS1-4 | HZ 15 A via `SP-HZ`, relay M3 K-HORN | `w_hz_cp` -> `w_haz_cp`; `w_horn_30_cp`, `w_horn_86_cp` -> `w_pmu_horn_cp`; coil 85 `w_horn_85_cp` | IE1 pin 12, W (hazard); horns via `SP-HORN` (EngineRoom-C); coil to IE1 pin 19, G | hazard switch H5-8 / flasher; horns (horn switch sinks the coil) | p.130, p.185 | current; seat not in the map |
+| BUS1-5 | DOME 20 A | `w_pmu_dome` (14) | J/B No.1 1H pin 2, L-Y | dome, interior, clock | p.132 | current; owned by EngineRoom-C but never leaves the cabin (fault C4) |
+| BUS1-6 | WL 15 A | `w_rb2_wl` (14) | R/B No.2 W-L lead (POWER fuse output) | door lock ECU, tilt-away | p.137 | **pending B4 verification** (Dan B4 = a: drop it, keep `w_rb2_feed`, once checked; faults C1 / C4) |
+| BUS1-7 / BUS1-8 | ALM 5 A / ALMS 2 A | `w_at_12v_tie_cp` / `w_at_12v_shk_tie_cp` | alarm pin 1 / shock sensor A (AntiTheft) | alarm | - | current; seats not in the map |
+| BUS1-9 | alternator S | `w_alt_s_c` | alternator plug pin 1 (EngineRoom-C) | alternator sense | p.74 | current; `passes_through` "CabinPower / HeavyDC" is not one harness name |
+| BUS1-10 | ETB 7.5 A, relay M4 K-ETB | `w_fb_k_etb_30_cp` -> `w82_ac` | ECU plug B pin 5 (AB-cabin) | throttle motor power | - | current |
+| BUS2-1 | CAN-Lambda 12 V | `w_lam12_cp` | DRB102 cavity 95 (AB-cabin -> AB-engine) | CAN-Lambda | - | current; seat not in the map |
+| BUS2-2 | SW12 bus | `w_cp_sw12_in` -> `BUS-SW12` | relay coil 86 of K-FP, K-FAN, K-ETB, K-FAN2, K-EPS, K-EPS-EN; `w_fb_sw12` -> AB-cabin switched 12 V (ECU A5 feed, DRB102 cavity 30) | relay coils, ECU switched 12 V | - | current; seat not in the map |
+| BUS2-3 / BUS2-4 | coils / injectors | `w_cop_pwr_ac` / `w_inj_pwr_ac` | DRB102 cavity 1 / 2 (AB-engine) | COP coils, injectors | - | current; seats not in the map |
+| BUS2-5 | CSB3 12 V | `w_csb12` | CSB3 pin 1 | CSB3 | - | current; seat not in the map |
+| BUS2-6 | dash 12 V | `w_dev_cp` -> `SP-DEV` | cluster and RealDash Pi supplies (CAN) | centre cluster, RealDash | - | current; seat not in the map |
+| BUS2-7 / BUS2-12 | EPSEN 7.5 A, relay M6 K-EPS-EN | `w_fb_k_eps_en_30_cp` -> `w_k_eps_en_87_cp` -> `w_fb_mrs_en` | DRB102 cavity 83 -> MR-S plug C pin 1 (AB-engine) | EPS enable | - | current |
+| BUS2-8 | ACC 10 A via `SP-ACC12`, relay M5 K-ACC | `w_acc_fuse` -> `w_fb_k_acc_30_cp`, `w_acc86` -> `w_acc_clutch` | new wire to compressor A4 pin 4 (EngineRoom-C); coil 85 from A15 pin 8 (`w_acc_trig`) | A/C clutch (D16) | p.210-211 | current |
+| BUS2-9 | ALMIG 2 A | `w_at_ig_tie_cp` | alarm pin 3 (AntiTheft) | alarm ignition sense | - | current; seat not in the map |
+| BUS2-13 | start request | in `w_start_in_cp`, out `w_start` | tap on R/B No.4 starter relay pin 1, B-W (ST1) -> Link DI 7 (ECU plug B pin 30) | start sense | p.66 | current; pin-id collision with `w_rb4_feed` (fault C3) |
+
+**B3 trunk relay block and B4 EPS relay**
+
+| Seat | Fuse / relay | Master wire | Lands on | Powers | Status |
+|---|---|---|---|---|---|
+| B3 BATT / FP | 40 A (B11), relay K1 K-FP | `w_fp_feed` (kill switch MAIN2), `w_fp_30` -> `w_fpump_r` (10) | fuel pump pin 1 (RearFuel); coil 86 `w_k_fp_86_cp` from `BUS-SW12`, coil 85 `w_fp85` to ECU plug A pin 19 | fuel pump | current; the two coil wires ride the 1/0 run (`passes_through` HeavyDC) until the sill run moves to AB-cabin (Dan B9 = a) |
+| B4 EPS | HCR 150 K-EPS | AMI OUT-6 above | MR-S plug A | EPS pump | current |
+
+No new box feeds J/B No.3: what it feeds stays fed through J/B No.1 (B9). Before first power-up, with the battery isolated:
+ohmmeter from each landing above to its named load.
 
 ## Factory wiring facts (OEM ends)
 
