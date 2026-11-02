@@ -45,7 +45,8 @@ skill is not changed for this project):
   240). Lines orthogonal; wires of one cable or one run share a path, side by side, like the real cable; no wire folds
   back over itself; no layout points next to a device or connector (let the app route the last stretch; "Make
   orthogonal" in the app fixes a bad route). A part in parallel with two lines (e.g. the CAN 120 ohm resistor) sits
-  between them with short equal legs.
+  between them with short equal legs. A ground stud is drawn on the side of the car its wires go to (LH pop-up and
+  lamps at EB, RH ones at EA; Dan 2026-11-01), so LH and RH grounds can't be mixed up.
 - Pin text (Dan 2026-11-01): a device pin says only what that pin does ("+8 V", "Gnd", "Signal", "Motor +", "Switched
   +12 V (NO)"); the device name is already on the connector. Bulkhead, ECU and splice ends name the device ("Gearbox
   speed signal"). Never "in" / "out" (direction is relative): "+12 V to reverse switch", "Switched +12 V from reverse
