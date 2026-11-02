@@ -39,6 +39,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes
   that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive). Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
+  Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed
+  plugs are splices (no number, anywhere between ECU and bulkhead); a device outside the map's area is a hand-off point
+  where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
   Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17
   front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot
   in one file (a moved one is marked REMOVED in the other). Lengths from a route map: map length x 5.3 mm per EWD point
