@@ -25,7 +25,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 | 14 | Horn | Front run, relay in the glove box (B2-M3). |
 | 15 | Radiator + condenser fans | Link-controlled relays, front run. |
 | 16 | Wiper + washer | Wiper on the driver fender run, washer pump on the front run. |
-| 17 | Fog | Removed: R/B No.3, switch F12 and every fog wire, cut and capped. 20 A FR FOG fuse in R/B No.4 is a spare. No spare circuit to the old fog-lamp spots. |
+| 17 | Fog | Removed (Dan 2026-11-02): no fog lamps, relay or wiring. Every fog wire (switch F12, relay R/B No.3, 20 A FR FOG fuse) comes out back to its last live point; the relay and the fuse come out, the R/B No.4 seat stays empty. No spare circuit to the old fog-lamp spots. |
 | 18 | Windows, locks, sunroof, seat | R/B No.2 stays; its 30 A POWER fuse is fed by AM1 (B1 AMI OUT-3, `w_pdb_am1`) through cowl splice I2, as stock (Dan B17 b, 1993 p.62 / p.137-142, US = Canada). No `k_pwr`. |
 | 19 | Diagnostic plug (DLC1) | Gone. |
 | 20 | Alarm hood pin + siren | Front run and driver fender run. |

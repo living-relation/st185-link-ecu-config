@@ -187,9 +187,9 @@ ohmmeter from each landing above to its named load.
     leg forward of the firewall, except those pigtails; every OEM relay and fuse box except J/B No.1 / No.3 and R/B No.2
     / No.4: J/B No.2, R/B No.3 (fog relay) and No.5, the ABS relay box (Dan 2026-10-21; their jobs
     are in the glove-box POWER / LOGIC boxes); the OEM engine ECU and igniter; every SRS crash sensor and SRS computer;
-    the ABS computer and actuator; the brake fluid level switch (factory safety item, not needed, will not be connected); the whole fog circuit: the lamps (removed long ago), the fog light switch F12 on the dash and every fog wire, cut and capped (Dan 2026-10-25; fog only, the rest of B5 still removes to the last live point); the 20 A FR FOG fuse in R/B No.4 is left as a spare position. Each live wire that crossed from a
+    the ABS computer and actuator; the brake fluid level switch (factory safety item, not needed, will not be connected); the whole fog circuit (Dan 2026-11-02, replaces the 2026-10-25 cut-and-cap): no fog lamps, no fog relay, no fog wiring; every fog wire (to and from the fog switch F12, the fog relay R/B No.3 and the 20 A FR FOG fuse) is removed back to its last live point like any dead wire; the R/B No.3 relay and the FR FOG fuse come out (its R/B No.4 seat stays empty). Each live wire that crossed from a
     removed part into a kept harness gets one row in the master: re-feed from the cabin side, or remove. A dead OEM wire
-    comes out of its harness back to its last live point (splice, plug or box), except the fog leads above.
+    comes out of its harness back to its last live point (splice, plug or box).
   - **Circuits decided (Dan 2026-10-21 to 2026-10-25; written into the master, row 164):** starter: the OEM starter relay
     in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 (C11 completes the starter
     circuit in hardware; it is not an ECU input; no `k_str`; Aux 8 spare). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) is the one ECU clutch input (flat-shift, via CSB3 VDI6);

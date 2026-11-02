@@ -575,7 +575,7 @@ are below. Phase 2 (2026-11-02) applied this list to `MASTER-wirelist.csv`, with
 **Hubs (B8: several harnesses land on them, no owner):** POWER box (B1) and its bus studs and NEG bar, LOGIC box (B2),
 SW12 bus plug, every box relay (K-EFI, K-FAN, K-FAN2, K-HL, K-HR, K-HORN, K-ETB, K-ACC, K-EPS-EN, K-EPS, K-FP), trunk relay
 block (B3), kill switch, ground points ID / IG / EA / EB and the engine block stud, and the factory taps on J/B No.1, IE1,
-IG2, R/B No.2, R/B No.3, R/B No.4 and the fog switch F12. Bussed plugs (`BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`)
+IG2, R/B No.2 and R/B No.4 (R/B No.3 and the fog switch F12 are no longer hubs: the fog circuit is removed, Dan 2026-11-02). Bussed plugs (`BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`)
 are splices (B8 editor devices) and sit in AB-cabin.
 
 | Harness (target) | Devices it owns |
