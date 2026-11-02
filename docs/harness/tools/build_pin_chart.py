@@ -315,6 +315,28 @@ for c in con.values():
 nav = "".join('<a href="#s-%s">%s <b>%d</b></a>' % (k, k, len(v)) for k, v in sorted(sections.items(), key=lambda kv: ORDER.index(kv[0]) if kv[0] in ORDER else 99))
 body = "".join('<section id="s-%s"><h2>%s</h2><div class="grid">%s</div></section>' % (k, k, "".join(v))
                for k, v in sorted(sections.items(), key=lambda kv: ORDER.index(kv[0]) if kv[0] in ORDER else 99))
+# front page: every device and the harness it belongs to (Dan 2026-11-01: one plug = one harness; hubs take many)
+own = collections.defaultdict(set); dname = {}
+for r in rows:
+    if not r["wire_id"]: continue
+    for s_ in ("from", "to"):
+        if r[s_ + "_type"] in ("splice", "cable screen") or not r[s_ + "_id"]: continue
+        i = r[s_ + "_id"]
+        own[i].add(r["harness"]); dname.setdefault(i, dev(i, r[s_ + "_name"], r[s_ + "_type"]))
+idx = []
+for h in ORDER + sorted({x for v in own.values() for x in v} - set(ORDER)):
+    items = sorted(i for i, hs in own.items() if len(hs) == 1 and h in hs)
+    if items:
+        idx.append('<tr><td class="mono"><b>%s</b></td><td>%s</td></tr>' % (html.escape(h), "; ".join(
+            "%s (%s)" % (html.escape(dname[i]), html.escape(i)) if dname[i] != i else html.escape(i) for i in items)))
+hubs = sorted(i for i, hs in own.items() if len(hs) > 1)
+idx.append('<tr><td class="mono"><b>Shared hubs</b></td><td>%s</td></tr>' % "; ".join(
+    "%s: %s" % (html.escape(i), html.escape(", ".join(sorted(own[i])))) for i in hubs))
+body = ('<section id="s-index"><h2>Devices by harness</h2><p class="view">Each plug belongs to one harness (Dan 2026-11-01). '
+        'Fuse boxes, relays, buses, studs and factory taps are hubs: several harnesses land on them.</p>'
+        '<div class="tw"><table><thead><tr><th>Harness</th><th>Devices and plugs</th></tr></thead><tbody>%s</tbody></table></div></section>'
+        % "".join(idx)) + body
+nav = '<a href="#s-index">Devices by harness</a>' + nav
 tpl = open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
 out = tpl.replace("{{NAV}}", nav).replace("{{BODY}}", body).replace("{{N}}", str(len(con))).replace(
     "{{SRC}}", str(counts["sourced"] + counts["drb"])).replace("{{UNV}}", str(counts["unverified"]))
