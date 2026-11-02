@@ -45,7 +45,7 @@ Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POW
 | Boxes | the 7 OEM boxes + ABS relay box | Decided 2026-10-21: J/B1, J/B3, R/B2, R/B4 stay; J/B2, R/B3, R/B5, ABS relay box go |
 | 4 | IH1 Engine <-> A/C No.1 | Decided 2026-10-25 / 2026-10-26: A15 pin 8 drives `k_acc`; Ign 8 tacho to pin 18; same tacho through 4.7 kΩ to pin 9 (N61); pin 2 hard-grounded; IH1-4/5 engine lock-sensor wires unused. Table below |
 | 5 | EB2 / ES2 | Decided 2026-10-25: A5 pin 1 from R/B No.4 10 A A/C; pressure switch already on the master; ER No.2 gone. Table below |
-| 6 | Box plugs (J/B2, R/B2-5) | Decided 2026-10-25: R/B2 and R/B4 re-fed; fog cut and cap; starter / heater / A/C fuse stay on R/B4. Table below (R/B2 rows pending Dan's B4 check) |
+| 6 | Box plugs (J/B2, R/B2-5) | Decided 2026-10-25: R/B2 and R/B4 re-fed; fog removed (Dan 2026-11-02, was cut and cap); starter / heater / A/C fuse stay on R/B4. Table below (R/B2 rows pending Dan's B4 check) |
 | 7 | Removed parts on kept harnesses | Decided 2026-10-25: OEM ECU / C9 / SRS / ABS / cruise ECU / meter extras are dead; the Dash taps (was ClusterLED and CSB3) stay. Table below |
 | 8 | ER Main branches | Decided 2026-10-25: the whole ER Main goes (B9); re-feeds are new wire on the master. Table below |
 
@@ -172,12 +172,21 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 
 **R/B No.3 (RH kick, fog relay) [90/92] - goes (circuit 17)**
 
+No 1993 TIS fog page: relay and switch pins from 1992 p.128 and Mitchell 1993 Fig. 1 (grid C2-3); the fuse, switch
+illumination and ground ends from 1993 p.62 / p.109 / p.231. USA wiring (Canada differs: 1992 p.122). 1993 p.26 numbers
+the relay cavities 1, 2, 3, 5 (pin 4 below may be cavity 5 on the box). Every wire is removed back to its last live
+point, never capped (Dan 2026-11-02); each has a master row.
+
 | Terminal | Pin | Colour | Signal | Kept-side end | EWD | Draft said | Action |
 |---|---|---|---|---|---|---|---|
-| Fog relay | 1 | R-W | fog lamp feed | cowl -> EA1-6 -> ER Main -> fog lamps | 1992 p.128 | open | remove: cut and cap, `w_fog_rb3_1` |
-| Fog relay | 4 | G-R | contact in (20 A FR FOG) | R/B4 FOG fuse pin 2 | 1992 p.128 | open | remove: cut and cap, `w_fog_rb3_4`; the R/B4 FOG fuse stays as a spare position |
-| Fog relay | 3 | G-B | coil - (fog switch) | fog switch F12 pin 6 | 1992 p.128 | open | remove: cut and cap at F12, `w_fog_sw` |
-| Fog relay | 2 | R-W | coil + (low-beam line, I2 / IE1-18) | cowl I2 low-beam lead | 1992 p.128 | open | remove: cut and cap. **No master row yet** (live with the low beams on; B5 "no row, no cut", fault C5) |
+| Fog relay | 1 | R-W | fog lamp feed | cowl -> EA1-6 -> ER Main -> fog lamps | 1992 p.128 | open | remove whole (no live end; the bay leg goes with B9), `w_fog_rb3_1` |
+| Fog relay | 4 | G-R | contact in (20 A FR FOG) | R/B4 FOG fuse pin 2 | 1992 p.128; p.62 | open | remove whole (the fuse and the relay both come out), `w_fog_rb3_4` |
+| Fog relay | 3 | G-B | coil - (fog switch) | fog switch F12 pin 6 | 1992 p.128 | open | remove whole (switch and relay both come out), `w_fog_sw` |
+| Fog relay | 2 | R-W | coil + (low-beam line, I2 / IE1-18) | cowl I2 low-beam lead (IE1-18 / C15-12) | 1992 p.128; p.116 | open | remove back to splice I2 (I2 keeps its 2 low-beam legs), `w_fog_rb3_2` |
+| Fog switch F12 | 3 | W-B | ground | J/B No.3 3A-1 (ground bus) | p.231; Mitchell 1993 | - | remove back to J/B No.3 3A-1 (the bus stays for the other switches), `w_fog_sw_gnd` |
+| Fog switch F12 | 1 | G | illumination + | J/B No.3 3C-14 (TAIL illumination bus) | p.109 | - | remove back to J/B No.3 3C-14, `w_fog_sw_ill` |
+| Fog switch F12 | 2 | W-G | illumination - | J/B No.3 3A-10 (ILL- bus to rheostat R10) | p.109 | - | remove back to J/B No.3 3A-10, `w_fog_sw_ill_rtn` |
+| Fog switch F12 | 4, 5 | - | not used; no fog indicator in the switch or the meter | - | Mitchell 1993; p.206-207 | - | none |
 
 **R/B No.4 (RH kick, cowl) - stays (circuits 2, 9, 10)**
 
@@ -194,7 +203,7 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 | Heater relay | 2 | W-B | 87a = ground | R/B4 plug A pin 4 -> ground IG | p.215 | cut + cap | keep |
 | 40 A HEATER fuse | 1 | W | feed in (EB1-3 via I9) | cowl I9 | p.62, 215 | cut + cap | re-fed by `w_rb4_feed` (AMI IN-1); the EB1-3 leg comes out (group 1). Fault C3 (pin id) |
 | 40 A HEATER fuse | 2 | L | out to heater relay | heater relay pin 5 | p.215 | cut + cap | keep |
-| 20 A FR FOG fuse | 1 / 2 | W / G-R | feed in (I9) / out to R/B3 pin 4 | I9; R/B3 | p.62; 1992 p.128 | open (fog) | keep the position as a spare; pin 2 lead cut and capped at R/B3 (`w_fog_rb3_4`) |
+| 20 A FR FOG fuse | 1 / 2 | W / G-R | feed in (I9) / out to R/B3 pin 4 | I9; R/B3 | p.62; 1992 p.128 | fog removed | the fuse comes out, its seat stays empty; pin 1 lead removed back to splice I9 (`w_fog_fuse_in`; I9 keeps the HEATER and old EB1-3 legs), pin 2 lead removed whole (`w_fog_rb3_4`) |
 | 10 A A/C fuse | 1 | B | in from heater relay 4 (J5) | J5 bus | p.211, 215 | cut + cap | keep |
 | 10 A A/C fuse | 2 | V-R | A/C IG out | I9 -> EB2-1 (A5) and the V-R bus to the A/C amps | p.211-212 | re-feed, slot open | keep; A5 pin 1 tapped by `w_acp_1` (group 5) |
 
@@ -266,7 +275,7 @@ Every row is **remove**; the new wire that takes over each load is listed.
 | ER Main outer loop: front turn / clearance / markers F5-F8 | G-B, G-Y, G | turn and TAIL | p.112, 130 | kept | remove to the pigtails; re-fed by `w_turn_f7` (1H-4), `w_turn_f8` (1H-8), `w_clr` (1H-6) via `SP-CLR` |
 | ER Main outer loop: pop-up motors R2 / R3 | G, G-O, G-Y, G-B, G-W | retract feed and limits | p.117 | kept | remove to the pigtails; re-fed by the `w_rtr_*` wires from IE1-7 / 8 / 9 / 14 / 15 / 16 |
 | ER Main / cowl: wiper F9 and washer W1 | L, L-B, L-O, L-R | wiper +B, LO, HI, park; washer | p.148 | kept | remove to the pigtails; re-fed by `w_wip_b` (1H-5), `w_wip_lo` (IE1-13), `w_wip_hi` (IE1-20), `w_wip_park` (IE1-6), `w_wash_neg` / `w_wash_pos` |
-| ER Main fog branch (EA1-6 -> fog lamps) | R-W | fog lamps | 1992 p.128 | kept / open | remove (circuit 17; the R/B3 end is cut and capped) |
+| ER Main fog branch (EA1-6 -> splice E1 -> fog lamps F1 / F2 -> E2 -> EA) | R-W, W-B | fog lamps | 1992 p.128 | kept / open | remove with the ER Main (circuit 17); its cabin leg R/B3-1 -> EA1-6 is `w_fog_rb3_1` |
 
 The cabin-side stubs these land on stay: J/B1 1H-2 / 4 / 5 / 6 / 7 / 8 and 1I-1, IE1 (cowl side). They are ER Main
 plugs at J/B1 (1993 p.63), so they are 6 in stubs of a removed wire; they are not yet on B9's kept-pigtail list (fault C6,

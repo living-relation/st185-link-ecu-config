@@ -92,13 +92,15 @@ Ten harnesses today. Purpose restored from `git show e2ec9d7^:docs/harness/READM
 |---|---|---|
 | `AB-cabin` | ECU harness, cabin side (loom A + B, R220): Link plugs A and B, the cabin half of the DRB102, the ECU splice point (bussed plugs `BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`; +8 V, switched 12 V, A5 feed and ECU power-ground splices), the ECU relay coil wires (relays sit in the boxes), APS pedal, A/C amp taps (A15 / A32 / A1), IG / reverse / start taps, both wheel-speed inline plugs, fuel level, and the cabin-to-trunk sill run (Dan B9 = a) | none (bulkhead to centre dash; placement editor, row 180) |
 | `AB-engine` | ECU harness, engine side: the engine half of the DRB102 to every engine sensor and actuator, throttle body included, plus the CAN-Lambda, MR-S plugs B / C (Dan B7 = a) and the starter S wire (DRB102 cavity 3) | Route 16 (lines 1-9 today; line 9 "Alt and starter" moves to Route 1, Dan B6 = b) |
-| `CabinPower` | Glove-box POWER (B1) and LOGIC (B2) boxes with their relays and every cabin power injection ("Power injection" below): J/B No.1, IE1, R/B No.4 re-feed, SW12 bus, fog cut-and-cap leads | none (glove box to the kick panels) |
+| `CabinPower` | Glove-box POWER (B1) and LOGIC (B2) boxes with their relays and every cabin power injection ("Power injection" below): J/B No.1, IE1, R/B No.4 re-feed, SW12 bus; the fog removal rows (`w_fog_*`, Dan 2026-11-02) | none (glove box to the kick panels) |
 | `HeavyDC` | Trunk battery, kill switch, 1/0 cables to the POWER box and through the RADLOK pair, starter and alternator B+, engine block ground, jump post, trunk relay block (B3, `k_fp`), POWER NEG to grounds ID / IG | Route 1 (its engine-bay devices move there from Route 16, Dan B6 = b) |
 | `EngineRoom-C` | "Harness C": every new front-of-firewall wire that is not ECU or heavy cable: headlamps, pop-ups, front lamps, wiper / washer, horns, fans, EPS pump plug A, A/C compressor clutch and pressure switch, alternator plug, ground studs EA / EB; its cabin ends are splices into the J/B No.1 / IE1 / IG2 / R/B No.4 factory leads | Route 17 lines 10-13 (+ RH fender grommet run) |
 | `Dash` | Was `CAN` + `CSB3` + `ClusterLED` (Dan B8 = a). CAN 1 backbone (the only CAN H / L): ECU plug C, cluster and RealDash nodes, ECU-end terminator, dash 12 V split; ECUMaster CSB3 plug, cruise stalk buttons, C17 clutch, S9 brake, R10 headlight sense, the 8-channel opto board at the plug; warning LEDs (turn, high beam, charge, park brake, oil) fed from the OEM cluster plug taps | Routes 8 / 12 / 13 (old pages) |
 | `AntiTheft` | Alarm module, siren, shock sensor, status LED, valet switch, door / hood / trunk pin and park-lamp leads | Route 14 |
 | `RearFuel` | Fuel pump (from `k_fp` in the trunk relay block) and fuel level sender behind `IX-FUEL` | Route 11 |
 | `WheelSpeed-Front` / `-Rear` | Wheel speed sensor -> VR conditioner -> inline DT to AB-cabin (`IX-WS-F` / `IX-WS-R`) | Routes 9 / 10 |
+
+Alternator (Dan 2026-11-02): all 3 wires of the round 3-pin plug G2 (B) (1 S battery sense, 2 L charge lamp, 3 IG excite; ground through the case; 1993 EWD p.74-75) stay in one harness, EngineRoom-C (harness C, RH fender grommet to Route 16 line 9, no bulkhead pins); the heavy B+ cable stays in HeavyDC. The All-Trac grey G2 (A) plug is pinned differently (1 L, 2 IG, 3 S): which plug the fitted 160 A alternator has is to be checked at the car.
 
 Routes 1 and 8-14 are the old route pages; no tool reads them since #456, and each is replaced by that harness's
 placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today.
@@ -123,7 +125,7 @@ new feed on J/B1 1A-1G. Superseded from that plan: R/B No.2 / No.4 removed, `k_s
 
 | Seat | Fuse / relay | Master wire (AWG) | Lands on | Powers | EWD | Status |
 |---|---|---|---|---|---|---|
-| AMI IN-1 (relay seat R1 vacant) | R/B No.4 feed | `w_rb4_feed` (8) | R/B No.4 40 A HEATER fuse pin 1, W (RH kick) | heater relay -> blower B4; 10 A A/C fuse (A/C amps, A5); 20 A FR FOG (spare) | p.62, p.215 | current; own pin id `HTR-1` (fault C3 fixed in phase 2) |
+| AMI IN-1 (relay seat R1 vacant) | R/B No.4 feed | `w_rb4_feed` (8) | R/B No.4 40 A HEATER fuse pin 1, W (RH kick) | heater relay -> blower B4; 10 A A/C fuse (A/C amps, A5); the 20 A FR FOG fuse comes out, seat empty (`w_fog_fuse_in` removed back to I9) | p.62, p.215 | current; own pin id `HTR-1` (fault C3 fixed in phase 2) |
 | AMI IN-2 | EFI 30 A, relay R2 K-EFI | `w_fb_k_efi_87_cp` (12), `w77_cp` (10) | K-EFI 30 -> LOGIC Bus 2 (switched bus) | everything on Bus 2 | - | current |
 | AMI IN-3 | (vacant, was start 30 A) | - | - | - | - | vacant (starter on OEM R/B No.4) |
 | AMI IN-4 | radiator fan, relay R4 K-FAN | `w_fb_k_fan_87_cp` (10) -> `w_fan_pwr` (10) | new wire to the radiator fan (EngineRoom-C) | radiator fan | - | current |
