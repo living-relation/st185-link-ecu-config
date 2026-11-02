@@ -35,6 +35,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Harness ownership (Dan 2026-11-01): one harness file is one physical harness; each plug belongs to the harness that physically carries it and every wire landing on that plug is in that harness (`passes_through` names any other bundle it rides in); fuse / relay boxes, buses, studs and factory taps are hubs that several harnesses land on. A cable listed in a harness it cannot physically ride in (size, route, cavity limits) is flagged to Dan; the pin chart's first page lists every device by harness.
+  Locked device list (Dan B1 = a, 2026-11-02): "Harness ownership (B8 list)" below is the target owner of every device;
+  the master is brought to it (OPEN-ITEMS row 183 phase 2) and a device changes harness only with Dan's OK.
   Placement editor rule (Dan 2026-11-01): every harness gets a placement-editor pass (Dan places each device and draws
   its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes
   that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive). Top
@@ -558,6 +560,54 @@ node branches): `docs/harness/wirelists/option-a-examples.html`.
 7. A shield drain left unconnected reads `NC, floats` (pin `NC`): cut back and sealed under heat-shrink.
 8. `build_drawings.py --check` reads each committed list back against the master (rules 1-4, 7, ends, gauge, colour). harness.design stores a splice as a wire end; the import converts Option A rows to splice ends, the build list stays
    Option A.
+
+## Harness ownership (B8 list)
+
+Locked by Dan 2026-11-02 (B1 = a; OPEN-ITEMS row 183). This is the **target** owner of every device after Dan's
+2026-11-02 answers, not a copy of today's master: B7 = a (MR-S plugs B / C fully AB-engine, spare rows included), B8 = a
+(`CAN` + `CSB3` + `ClusterLED` become one `Dash` harness), B9 = a (AB-cabin owns the cabin-to-trunk sill run), B6 = b
+(the HeavyDC devices in Route 16 belong to HeavyDC's own map, Route 1). Base: the R90 lock (#203, files at `2c4aee6`)
+and today's master as compared in research `02-ownership.md` section 2; fixes for its double owners and cabin-only feeds
+are below. Until phase 2 changes the master, `MASTER-wirelist.csv` still shows today's owners and the old names.
+
+**Hubs (B8: several harnesses land on them, no owner):** POWER box (B1) and its bus studs and NEG bar, LOGIC box (B2),
+SW12 bus plug, every box relay (K-EFI, K-FAN, K-FAN2, K-HL, K-HR, K-HORN, K-ETB, K-ACC, K-EPS-EN, K-EPS, K-FP), trunk relay
+block (B3), kill switch, ground points ID / IG / EA / EB and the engine block stud, and the factory taps on J/B No.1, IE1,
+IG2, R/B No.2, R/B No.3, R/B No.4 and the fog switch F12. Bussed plugs (`BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`)
+are splices (B8 editor devices) and sit in AB-cabin.
+
+| Harness (target) | Devices it owns |
+|---|---|
+| AB-cabin | ECU plugs A and B (`ECU-A`, `ECU-B`); bulkhead, cabin half (`DRB102-CABIN`); the ECU splice point; accelerator pedal (`APS-PEDAL`); IG2 wake diode (`D-IG2-WAKE`); cam pull-up, fuel-level pull-up and lock-sensor resistors (`R-CAM-PULLUP`, `R-FUELLVL`, `R-LOCK`); A/C amp taps (`A18` = 1993 A15, `A32`); ambient air sensor (`A1`, front, its two wires ride harness C to a "To front" hand-off); wheel-speed inline plugs, ECU side (`IX-WS-F-S`, `IX-WS-R-S`); fuel level inline plug, trunk end (`IX-FUEL-P`); the cabin-to-trunk sill run (B9: fuel pump relay coil wires, fuel level pair, kill-switch IG leg, trunk pin lead) |
+| AB-engine | Bulkhead, engine half (`DRB102-ENGINE`); injectors 1-4, coils 1-4, throttle body (`ETB`), boost solenoid, crank, cam, knock, MAP, IAT, charge IAT, coolant temp (`ECT`), coolant / oil / fuel pressure, oil temp, flex fuel, turbo speed, gearbox speed (`VSS`), reverse switch (`REV-SW`); CAN-Lambda and the far-end CAN terminator (`CAN-LAMBDA`, `R-TERM-END`); MR-S pump plugs B and C (`MRS-B`, `MRS-C`), spare cavities included (B7 = a); starter solenoid S plug (`STARTER-TRIGGER`; its line, see TBD below) |
+| CabinPower | Only hubs (the boxes and relays above) plus the cabin feed wires between them and the factory taps: dome feed (`w_pmu_dome`, moves in from EngineRoom-C), hazard feed (`w_haz_cp`), R/B No.2 W-L feed (`w_rb2_wl`, pending B4 verification: Dan B4 = a drops it once checked), fog cut-and-cap leads (`FOG-CAP-1`, `-4`, `-6`) |
+| HeavyDC | Trunk battery posts (`BATT-POS`, `T-TRUNK-NEG`); RADLOK pair, both sides (`RADLOK-POS-CAB`, `-POS-ENG`, `-NEG-CAB`, `-NEG-ENG`); starter B+ stud lugs 1-3 (`T-STARTER-B`, `-2`, `-3`); alternator B+ stud (`T-ALT-B`); engine block stud lug 1 (`T-ENG-BLOCK`); jump post (`JUMP-POST`); kill switch and trunk relay block (hubs). Map: Route 1, with Route 16 devices H1, H2, H4, 18 and line 9 "Alt and starter" moved there (B6 = b, later phase), shown greyed in the AB-engine editor |
+| EngineRoom-C | Headlamps (`H1`, `H2`); pop-up motors (`R2`, `R3`); front turn / clearance and side marker lamps (`F5`-`F8`); wiper motor (`F9`); washer pump (`W1`); horns (`HORN-LH`, `HORN-RH`); radiator and condenser fans with their grounds (`FAN-RAD`, `FAN-COND`, `-GND`); MR-S pump plug A (`MRS-A`); A/C compressor clutch (`A4`); A/C pressure switch (`A5`, both its wires; was also AB-cabin); alternator plug (`ALT-PLUG`); ground studs EA, EB and the EB strap lug (`GND-EA`, `GND-EB`, `GND-EB-2`); engine block stud lugs 2-3 (`T-ENG-BLOCK-2`, `-3`) |
+| Dash (today `CAN` + `CSB3` + `ClusterLED`) | ECU plug C (`ECU-C`) and the ECU-end CAN terminator (`R-TERM-ECU`); centre cluster and RealDash Pi CAN, power, ground and headlight-sense ends (`T-CLUSTER-*`, `T-REALDASH-*`); CSB3 plug (`CSB3`); 8-channel opto board (`OPTO-8`, was also AB-cabin); cruise ladder resistor (`R-CRUISE`, was also AB-cabin); cruise stalk, cruise clutch switch, stop switch and dimmer taps (`Cruise` = C14, `C17`, `S9`, `R10`); warning LEDs turn L / R, high beam, charge, park brake, oil (`D-TL`, `D-TR`, `D-HB`, `D-CHG`, `D-PK`, `D-OIL`, was CSB3 + ClusterLED); cluster plug taps (`C11`, `C12`) |
+| AntiTheft | Alarm module (`ALARM`, was also AB-cabin, see TBD); siren (`SIREN`); shock sensor; status LED; valet switch; door, hood, trunk and park-lamp leads (`T-AT-DOOR`, `T-AT-HOOD`, `T-AT-TRUNK`, `T-AT-PARK`); its ground lugs (`T-AT-GND`, `-B`, `-C`) |
+| RearFuel | Fuel pump (`FUEL-PUMP`); fuel level sender (`FUEL-LEVEL`) and its inline plug, sender end (`IX-FUEL-S`); trunk pump ground (`T-TRUNK-FP-GND`) |
+| WheelSpeed-Front / -Rear | Wheel speed sensors (`WSS-FL`, `WSS-FR` / `WSS-RL`, `WSS-RR`); VR conditioner IN / OUT plugs (`VRC-F-*` / `VRC-R-*`); inline plugs, sensor side (`IX-WS-F-P` / `IX-WS-R-P`) |
+
+**Changes from today's master (phase 2 applies them):**
+
+| Device or wire | Today | Target | Why |
+|---|---|---|---|
+| MR-S plugs B / C spare cavities (9 rows) | EngineRoom-C | AB-engine | B7 = a: one owner per plug |
+| Alarm module immobiliser lead (`w_at_immob2`, ECU-B pin 27 to alarm pin 9) | AB-cabin | **TBD - Dan** (recommended AntiTheft, riding AB-cabin) | it joins two non-hub plugs of two harnesses, so one plug gets a foreign wire either way |
+| Opto board input 2 (`w_sw7_c`) and cruise ladder 5 V (`w_cru_5v_ac`) | AB-cabin | Dash | they land on the opto board / cruise resistor; the other end is a splice or a bussed plug |
+| Oil warning LED (`w_oil_a` / `w_oil_k`) | ClusterLED + CSB3 | Dash | B8 = a merges both owners |
+| A/C pressure switch signal (`w_ac_psw_in`, A5 pin 4) | AB-cabin | EngineRoom-C | A5 is harness C's plug in the bay; it ends at the cabin splice `SP-AC-PSW` |
+| Dome feed (`w_pmu_dome`) | EngineRoom-C | CabinPower | both ends in the cabin (glove box to J/B No.1 1H-2), fault C4 |
+| R/B No.2 W-L feed (`w_rb2_wl`) | EngineRoom-C | CabinPower if kept; dropped if B4 verification confirms | fault C1 / C4; Dan B4 = a |
+| Hazard feed (`w_haz_cp`) `passes_through` | EngineRoom-C | blank | glove box to IE1 at the LH kick, never in harness C |
+| Horn relay output (`w_pmu_horn_cp`, K-HORN 87 to `SP-HORN` at the front) | CabinPower, `passes_through` EngineRoom-C | EngineRoom-C | it runs glove box to the horns inside harness C |
+| Fuel pump relay coil wires (`w_fp85`, `w_k_fp_86_cp`) | AB-cabin / CabinPower, `passes_through` HeavyDC | AB-cabin (sill run) | B9 = a; signal wire is not taped to the 1/0 cable |
+| Fuel level pair (`w_fl_sig`, `w45`) | AB-cabin, no carrier named | AB-cabin (sill run) | B9 = a |
+| Kill switch IG legs (`w_ig_ks_in` IG2-15 to kill switch; `w_ig_ks_out` kill switch to alternator plug) | HeavyDC `passes_through` EngineRoom-C; EngineRoom-C `passes_through` HeavyDC | `w_ig_ks_in` AB-cabin (sill run); `w_ig_ks_out` EngineRoom-C `passes_through` AB-cabin | B9 = a; the alternator plug is harness C's |
+| Trunk pin lead (`w_at_trunk_tie`) | AntiTheft, no carrier | AntiTheft `passes_through` AB-cabin | B9 = a |
+| Siren and hood pin leads (`w_at_siren`, `w_at_gnd_a2`, `w_at_hood_tie`) | AntiTheft, no carrier | AntiTheft `passes_through` EngineRoom-C | they cross with harness C; which crossing for the siren is **TBD - Dan** |
+| Starter S (`w_strl_c` / `w_strl_e`) | AB-cabin / AB-engine on Route 16 line 9 | AB-engine; its line **TBD - Dan** | line 9 moves to HeavyDC's map (B6 = b) |
+| HeavyDC devices H1, H2, H4, 18 and line 9 | Route 16 | Route 1 (HeavyDC map), greyed in the AB-engine editor | B6 = b; also removes the row 179 loops |
 
 ## Drawing rules
 
