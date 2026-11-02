@@ -23,8 +23,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   allowed. Exceptions: the checked OEM splice reference (row 175, Dan 2026-10-31); the harness.design generators (Dan 2026-11-01).
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
   Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo (CAD work in progress may sit in `_scratch`).
-- **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers: look it up or work it out. A
-  real question goes in the OPEN-ITEMS "Needs Dan" table as lettered options with one recommended.
+- **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers, and never ask Dan to test or
+  measure at the car (it is apart; Dan 2026-11-02): look it up (EWD, FSM, maker docs) or work it out. Real questions: OPEN-ITEMS "Needs Dan", lettered, one recommended.
 
 ### Wiring and harness
 
