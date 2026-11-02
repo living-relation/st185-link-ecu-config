@@ -355,8 +355,9 @@ connector B pin 6 "relay request out"; R22 names B5 - see `docs/OPEN-ITEMS.md`.
 
 `Aux 7 / A27` generates the SPD pulse train **to** the pump (~4 pulses/rev, 0-5 V). It is
 not an input and carries no load information. Aux 5-8 already have an internal ~1.5 kOhm
-pull-up, so **no external pull-up goes on this line until the high level has been scoped**
-(see `XTREMEX-IO-TABLE.html`). Remove any pull-up drawn on it in the meantime.
+pull-up, so **no external pull-up goes on this line** (see `XTREMEX-IO-TABLE.html`). A 0-12 V pulse is fine
+(Dan 2026-11-02): Toyota speed sensors switch 12 V four times per turn (he measured 12 V pulses on the
+gearbox speed sensor), so the pump's speed input takes 12 V; no scope check needed.
 
 ### Idle-up for pump current draw - settled 2026-09-17
 
