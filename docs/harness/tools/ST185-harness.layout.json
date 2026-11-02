@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (every harness of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit) and LFP (run 11, driver kick), riding Route 16 lines 9 / 6 / 4 / 2 to the A/C, alternator plug, MR-S pump plug A and block stud, its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-01; the EB strap lug GND-EB-2 is the same bolt drawn twice)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (every harness of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: the old A-cabin / B-cabin bundle lengths until its placement pass, OPEN-ITEMS row 180 (Routes 5 / 6 were deleted 2026-10-26); AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit) and LFP (run 11, driver kick), riding Route 16 lines 9 / 6 / 4 / 2 to the A/C, alternator plug, MR-S pump plug A and block stud, its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-01; the EB strap lug GND-EB-2 is the same bolt drawn twice)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from the old Routes 1, 2 and 7-15 (2026-10-20; Routes 2-7 and 15 since deleted, each harness gets a placement pass, DECISIONS B8). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -751,37 +751,26 @@
   "R-CAM-PULLUP": "SP",
   "SP-FUEL-LVL": "SP",
   "R-FUELLVL": "SP",
-  "SP-EVAP": "SP",
-  "R-EVAP": "SP",
-  "SP-AC-BTN": "SP",
-  "R-AC-BTN-HI": "SP",
-  "R-AC-BTN-LO": "SP",
   "SP-REV": "SP",
   "DRB102-CABIN": "BH",
   "POWER-NEG-BAR": "GB",
   "K-EFI": "GB",
-  "K-STR": "GB",
   "K-FAN": "GB",
   "K-FAN2": "GB",
   "K-EPS": "GB",
   "K-ETB": "GB",
   "K-ACC": "GB",
   "K-EPS-EN": "GB",
-  "K-REV": "GB",
   "LOGIC": "GB",
   "BUS-SW12": "GB",
-  "SP-REV-GAUGE": "GB",
   "K-FP": "BATT",
   "IX-FUEL-P": "FUEL",
   "SP-AC-PSW": "ACAMP",
   "SP-TACH": "ACAMP",
   "R-LOCK": "ACAMP",
-  "T-EVAP-TEMP": "EVAP",
-  "T-EVAP-RTN": "EVAP",
   "IX-WS-F-S": "DASH",
   "IX-WS-R-S": "DASH",
   "CAB-FSPUR-FR-AC": "DASH",
-  "T-AC-BTN": "DASH",
   "SP-SHIELD-A-WSF": "BP_DASH",
   "SP-SHIELD-B-WSR": "BP_DASH",
   "APS-PEDAL": "PEDAL",
@@ -834,8 +823,6 @@
   "STARTER-TRIGGER": "STARTER",
   "POWER": "GB",
   "POWER-STUDS": "GB",
-  "K-HTR": "GB",
-  "K-PWR": "GB",
   "K-HL": "GB",
   "K-HR": "GB",
   "K-HORN": "GB",
@@ -843,12 +830,10 @@
   "SP-HR": "GB",
   "SP-HZ": "GB",
   "SP-HEAD-COIL": "GB",
-  "SP-HTR87": "GB",
   "SP-AT-12V": "ALARM",
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",
   "SP-DEV": "PI",
-  "SP-RL-REV": "RLJ",
   "MRS-A": "MRS_A",
   "ALT-PLUG": "ALT",
   "FAN-COND": "FANC",
@@ -913,10 +898,6 @@
   "T-AT-DOOR": "JB1",
   "T-AT-HOOD": "C_RHC",
   "T-AT-TRUNK": "RPANEL",
-  "SP-RL-GND": "RLJ",
-  "SP-RL-TAIL": "RLJ",
-  "SP-RL-STOP": "RLJ",
-  "T-RL-GND-BL": "RPANEL",
   "D-TL": "CLUSTER",
   "D-TR": "CLUSTER",
   "D-HB": "CLUSTER",
@@ -948,16 +929,9 @@
   "SP-ACC12": "GB",
   "SP-AC-SG": "ACAMP",
   "T-CLUSTER-HL": "CLUSTER",
-  "FOG-CAP-1": "RHKICK",
-  "FOG-CAP-4": "RHKICK",
-  "FOG-CAP-6": "RHKICK",
   "GND-EB-2": "GND_EB_S"
  },
  "place_oem": [
-  [
-   "clutch start switch",
-   "PEDAL"
-  ],
   [
    "cruise control clutch switch",
    "PEDAL"
@@ -972,10 +946,6 @@
   ],
   [
    "cluster plug C1",
-   "CLUSTER"
-  ],
-  [
-   "J/B 3 plug",
    "CLUSTER"
   ],
   [
@@ -1023,36 +993,12 @@
    "WIPER"
   ],
   [
-   "High-mount stop light H6",
-   "HATCH"
-  ],
-  [
-   "LH rear lamp R11",
-   "R11"
-  ],
-  [
-   "RH rear lamp R12",
-   "R12"
-  ],
-  [
-   "Licence plate light L1",
-   "RPANEL"
-  ],
-  [
    "IG2 OEM IG2",
    "ECU"
   ],
   [
-   "blower motor B4",
-   "GB"
-  ],
-  [
    "RB4 ",
    "RHKICK"
-  ],
-  [
-   "RB2 ",
-   "JB1"
   ],
   [
    "IE1 ",
@@ -1060,10 +1006,6 @@
   ],
   [
    "J/B No.1",
-   "JB1"
-  ],
-  [
-   "J/B 1 plug",
    "JB1"
   ],
   [
@@ -1080,14 +1022,6 @@
   ],
   [
    "R10 ",
-   "COLUMN"
-  ],
-  [
-   "RB3 ",
-   "RHKICK"
-  ],
-  [
-   "F12 ",
    "COLUMN"
   ],
   [

@@ -32,6 +32,8 @@ that B9 points to).
    `python docs/sourcing/build_project_bom.py` for the shopping list.
 4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
 
+A removal row (a factory wire taken out of the car, back to its last live point; B5 "no row, no cut") is written as: `oem_method` starting "remove" ("remove whole: ..." or "remove back to <splice, plug or box>"), `wire_pn` `none (removed)`, gauge, colour and length blank. `check_wiring.py` audits it like any row; `build_drawings.py`, the BOM, the pin chart and the harness.design generators skip it (`build_drawings.is_removal`).
+
 ## harness.design - where the harnesses are built
 
 Every harness is built in harness.design from the master (Dan 2026-11-01, DECISIONS B6): it forces a wire list and a
