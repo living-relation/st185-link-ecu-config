@@ -42,7 +42,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot
   in one file (a moved one is marked REMOVED in the other). Lengths from a route map: map length x 5.3 mm per EWD point
   (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until
-  measured at the car. The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the
+  measured at the car. AB-cabin (Dan 2026-11-02, A2-A4 = a): placed on the body manual under-body plan (DI-7), front right, driver up, in real mm
+  (8.49 mm per PDF point from the 2525 mm wheelbase), plus an optional drop in mm per device; EWD p.44 (faded) is a look-only tab, since a 3-D view gives no lengths.
+  The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the
   layout file); a splice sits where its legs part. A connector part-way along a line or run breaks out at least 6 in
   (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29). The engine bulkhead sits 8 in
   (203 mm) above where the trunk meets the firewall (`root_drop_mm`; Dan 2026-10-29).
