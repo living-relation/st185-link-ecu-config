@@ -323,7 +323,7 @@ the pump itself**, so everything below lives in the engine bay.
 |---|---|---:|---|---|
 | `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
 | `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | 2 = speed pulse in; 5 = switches `k_eps` coil- (R22); the rest unused |
-| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |
+| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V from `k_eps_en` 87 (LOGIC EPSEN 5 A), 2 unused |
 
 No shields on the MRS.
 
@@ -345,10 +345,13 @@ glove box to the pump also makes voltage drop a sizing input once the current is
 **Two relays (DECISIONS R22, Daniel 2026-10-04; drawn 2026-10-12).** `k_eps` (HCR 150) carries
 the pump feed: coil+ = 12 V ignition (`sp_sw12`), coil- switched to ground by the pump's own pin
 B5 (net `MRS_RLY`, glove box -> `ST185-ECU-cabin` -> bulkhead -> `ST185-ECU-engine` ->
-`ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` micro relay in LOGIC box M21, fed by
-LOGIC EPSEN 7.5 A) is the ECU's enable: Link Ign 6 (B12) sinks its coil-, its 87 feeds the LOGIC
-MRS 7.5 A fuse -> pump C1. So the ECU switches the pump on, and the pump switches its own main
-relay. Ign 6 runs on above ~400 rpm with a 1-2 s off-delay (setup time, R52). Older text named
+`ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` diode micro relay in LOGIC box M6, fed by
+LOGIC EPSEN 5 A at BUS2-7) is the ECU's enable: Link Ign 6 (B12) sinks its coil- (active-low), coil+
+is on SW12, and its 87 runs straight to bulkhead cavity 83 -> pump C1, with no second fuse (E3 a,
+Dan 2026-11-02; the LOGIC MRS fuse at BUS2-12 is dropped). The pin only wakes the pump's control
+logic; the stock MR-S feeds it from the ECU-IG 7.5 A fuse, shared with the ABS (MR-S EWD "Power
+source", mrs-passion.fr; fuse-box.info MR2 Spyder W30 fuse #12). So the ECU switches the pump on,
+and the pump switches its own main relay. Ign 6 runs on above ~400 rpm with a 1-2 s off-delay (setup time, R52). Older text named
 connector B pin 6 "relay request out"; R22 names B5 - see `docs/OPEN-ITEMS.md`.
 
 ### Speed signal - it is an ECU output
