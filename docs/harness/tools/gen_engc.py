@@ -207,21 +207,13 @@ for n in inl:
     if '_row' in n: n['schematicPosition'] = {"x": SPX, "y": n['_row'] - 15}
 n_right = sum(1 for w in wires if w['source']['id'] in RIGHT_IDS or w['target']['id'] in RIGHT_IDS)
 DEVX = (SPX + 150 + 30 * n_right) // 30 * 30          # room for one lane per conductor that lands on the front column
-def partner_y(n):
-    ys = []
-    for w in wires:
-        for a, b in ((w['source'], w['target']), (w['target'], w['source'])):
-            if a['id'] != n['id']: continue
-            if b['id'] in LEFT_IDS: ys.append(cav_y(NODES[b['id']], b['handle']))
-            elif b['id'] in INLN and 'schematicPosition' in INLN[b['id']]: ys.append(INLN[b['id']]['schematicPosition']['y'] + 15)
-    return ys
 y = 0
 for gi, g in enumerate(RIGHT):
     y += 90 if gi else 0
-    for nm in g:          # keep the side order; drop a device level with what feeds it when that is lower
-        n = node_of(nm); ys = partner_y(n)
-        y = max(y, (min(ys) - (45 if 'cavities' in n else 15)) // 30 * 30 if ys else y)
-        n['schematicPosition'] = {"x": DEVX, "y": y}; y += h(n) + (60 if 'cavities' in n else 30)
+    for nm in g:          # side order, top level with the left column (Dan 2026-11-02: not pushed down to its feeders)
+        n = node_of(nm); n['schematicPosition'] = {"x": DEVX, "y": y}; y += h(n) + (60 if 'cavities' in n else 30)
+TOPS = [node_of(g[0])['schematicPosition']['y'] for g in (LEFT[0], RIGHT[0])]
+print('schematic top y: left', LEFT[0][0], TOPS[0], '| right', RIGHT[0][0], TOPS[1]); assert TOPS[0] == TOPS[1], TOPS
 for n in pending:   # a splice with only front ends sits just left of the front column, on the row of its top front pin
     rys = [cav_y(NODES[o['id']], o['handle']) for w, x, o in links[n['id']] if o['id'] in RIGHT_IDS]
     n['schematicPosition'] = {"x": DEVX - 240, "y": min(rys) - 15}
@@ -242,9 +234,9 @@ for c, pins in spares.items():
 pass_by = collections.defaultdict(list)
 for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": -480, "y": -390},
-              "text": TITLE + ", Rev 5 (2026-11-01, Route 17 tree, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+              "text": TITLE + ", Rev A (2026-11-02, Route 17 tree, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: fuse / relay boxes, kill switch and "
-                      "factory cabin taps left, splices middle, front devices right by side of the car (driver / LH side up, RH down); each "
+                      "factory cabin taps left, splices middle, front devices right by side of the car (driver / LH side up, RH down), both columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
                       "connectors are drawn whole; cavities wired by other harnesses are N/C with a note. Wires of other harnesses that only "
                       "pass through EngineRoom-C are not drawn: " + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) +
