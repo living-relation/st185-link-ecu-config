@@ -321,15 +321,11 @@ the pump itself**, so everything below lives in the engine bay.
 
 | Ours | On the pump | Cavities | Part number | Used |
 |---|---|---:|---|---|
-| `mrs_pwr` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
-| `mrs_ctrl` | **B** - signal | **6** | *not yet identified* | 2 = speed pulse in; 5 = switches `k_eps` coil- (R22); the rest unused |
-| `mrs_en` | **C** - ignition | 2 | `90980-10942` | 1 = switched 12 V (7.5 A ign fuse), 2 unused |
+| `MRS-A` | **A** - main power | 2 | `90980-12068` | 1 = +12 V from `k_eps`, 2 = GND to block |
+| `MRS-B` | **B** - signal | **8** | `90980-10897` | 2 = speed pulse in (SPD); 5 = switches `k_eps` coil- (MRLY, R22); 1 IDUP, 3 TC, 6 EFI, 7 TS, 4 / 8 unused |
+| `MRS-C` | **C** - ignition | **4** | `90980-10942` | 1 = switched 12 V (IGB, LOGIC MRS 5 A fuse); 2 SIL, 4 WL, 3 unused |
 
-No shields on the MRS.
-
-**`mrs_ctrl` is a 6-way, not a 3-way.** The diagrams draw only the wired pins. Draw all six
-and mark the spares unused - that is what the "3 vs 6 cavities" note was about. Its part
-number is still unidentified; `90980-*` family, to confirm.
+No shields on the MRS. Pins per the MR-S EWD (2026-10-30; the master's MRS rows cite it); the master holds every pin, spares included.
 
 ### Relay placement
 
@@ -338,7 +334,7 @@ in the glove box beside the POWER box (DECISIONS R75; was HCFB, then the LMI), d
 contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
 feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 
-**Sized 2026-09-28:** Bussmann AMI-60 (60 A) at POWER AMI OUT-6 (was LMI L7, HCFB H4) and 8 AWG feed. Pump draw: about 4 A idle and under 40 A at full load on a stock pump (honda-tech 'EHPS Redone' write-up; diyelectriccar MR2 EHPS wiki), 70-80 A at maximum load on raised-pressure pumps (Alaria Tech FAQ); factory MR-S EHPS fuse 50 A (2002 MR2 EWD element list). Bussmann AMI time-current (Cooper Bussmann AMI series data sheet): 100% >= 100 h, 110% >= 4 h, 150% 90-3600 s, 200% 5-100 s - an 80 A peak is 133% of 60 A, so it holds well over 90 s, longer than any full-lock burst. Wire: 8 AWG 150 C single wire in free air 76 A (Thermal Wire and Cable ampacity table, AS50881 method) >= 60 A, so the fuse protects the wire; 10 AWG (55 A) would not. The HCR 150's own rating:  130 A at 85 C
+**Fuse now 50 A** (Dan 2026-10-30, N71: AMI-50 at POWER AMI OUT-6, matching the MR-S EWD 50 A EHPS fuse; `sot/fuse-relay-map.csv` B1 AMI OUT-6). The 2026-09-28 sizing below is the history of that choice. **Sized 2026-09-28:** Bussmann AMI-60 (60 A) at POWER AMI OUT-6 (was LMI L7, HCFB H4) and 8 AWG feed. Pump draw: about 4 A idle and under 40 A at full load on a stock pump (honda-tech 'EHPS Redone' write-up; diyelectriccar MR2 EHPS wiki), 70-80 A at maximum load on raised-pressure pumps (Alaria Tech FAQ); factory MR-S EHPS fuse 50 A (2002 MR2 EWD element list). Bussmann AMI time-current (Cooper Bussmann AMI series data sheet): 100% >= 100 h, 110% >= 4 h, 150% 90-3600 s, 200% 5-100 s - an 80 A peak is 133% of 60 A, so it holds well over 90 s, longer than any full-lock burst. Wire: 8 AWG 150 C single wire in free air 76 A (Thermal Wire and Cable ampacity table, AS50881 method) >= 60 A, so the fuse protects the wire; 10 AWG (55 A) would not. The HCR 150's own rating:  130 A at 85 C
 with a 25 mm2 load cable (TE datasheet V23132-X0000-A001). The longer heavy run from the
 glove box to the pump also makes voltage drop a sizing input once the current is known.
 
@@ -347,7 +343,7 @@ the pump feed: coil+ = 12 V ignition (`sp_sw12`), coil- switched to ground by th
 B5 (net `MRS_RLY`, glove box -> `ST185-ECU-cabin` -> bulkhead -> `ST185-ECU-engine` ->
 `ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` micro relay in LOGIC box M21, fed by
 LOGIC EPSEN 7.5 A) is the ECU's enable: Link Ign 6 (B12) sinks its coil-, its 87 feeds the LOGIC
-MRS 7.5 A fuse -> pump C1. So the ECU switches the pump on, and the pump switches its own main
+MRS 5 A fuse (7.5 -> 5 A, Dan 2026-10-30, B12) -> pump C1. So the ECU switches the pump on, and the pump switches its own main
 relay. Ign 6 runs on above ~400 rpm with a 1-2 s off-delay (setup time, R52). Older text named
 connector B pin 6 "relay request out"; R22 names B5 - see `docs/OPEN-ITEMS.md`.
 

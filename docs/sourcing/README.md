@@ -111,8 +111,8 @@ Daniel's call. Flagged, not decided.
 
 ## Rules
 
-- Edit the CSV only. Do not hand-edit generated buy lists - re-run `buylist.py`.
-- A part number in a `.harness` file must exist here, or the BOM row must say why
+- Edit the CSV only. Do not hand-edit the generated BOM - re-run `docs/sourcing/build_project_bom.py`.
+- A part number in `docs/harness/MASTER-wirelist.csv` must exist here, or the BOM row must say why
   it is being bought new.
 - When a part is consumed by a build, note it - do not silently decrement.
 

@@ -439,7 +439,7 @@ docs/harness/MASTER-wirelist.csv   the ONE wiring SoT (R221)
       +-- sot/channels.csv             ECU channel settings; check_wiring.py compares live pins both ways
       +-- docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md   device pin, pin name, shield flag per device
       +-- XTREMEX-IO-TABLE.html        visual face of channels.csv (generated pin map)
-      +-- docs/harness/drawings/       generated drawing sets
+      +-- docs/harness/drawings/       generated pin chart and DRB102 map
       +-- docs/sourcing/PROJECT-BOM.*  generated shopping list
 ```
 
@@ -453,7 +453,7 @@ A wire on an ECU pin is also checked against the Link G4X Quick Start Guide and 
 | `sot/channels.csv` | ECU channel settings; pins checked against the master |
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, shield flag per device |
 | `XTREMEX-IO-TABLE.html` | Visual face of `channels.csv` |
-| `docs/harness/drawings/` | Generated drawing sets (re-run `build_drawings.py`) |
+| `docs/harness/drawings/` | Generated pin chart (`build_pin_chart.py`) and DRB102 map (`build_drawings.py`); harnesses are built in harness.design (B6) |
 | `docs/harness/routes/` | Dan's approved routes; a drawing's path follows its route |
 | `cad/fusebox/` | Fuse-box design (slot map `rev7/wiring_plan.json`, R204) |
 | `docs/sourcing/PROJECT-BOM.csv` | Generated — re-run `build_project_bom.py` |
