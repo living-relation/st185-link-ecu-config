@@ -9,20 +9,20 @@ Memory (workstation #32, global to every project): project progress lives in the
 
 > **Current work:** `docs/OPEN-ITEMS.md` "Current state" (row 164).
 
-> **Freeze (B2 / R224, Dan 2026-10-20):** still on for new scripts, gates and drawing formats only. Cleanup is allowed. Exceptions (Dan 2026-10-31): drawings get one page per device per harness, and the OEM splice reference is rebuilt from the master and checked (OPEN-ITEMS rows 174, 175). Bloat cut left: Dan's review of the drawing set (row 153) and his car spot-check (row 155). Work only the cut and Goal 1 blockers.
+> **Freeze:** DECISIONS B2 (what it blocks, its exceptions, what is left). Cleanup is allowed.
 
 ## Before any wiring or CAN change
 1. **Wiring:** ONE source of truth, `docs/harness/MASTER-wirelist.csv`. `sot/channels.csv` is ECU settings only; `XTREMEX-IO-TABLE.html` is its visual face. Drawings and the BOM are generated from the master; no script writes the master. A change is done only when every wiring surface agrees (DECISIONS Rule 1).
 2. **CAN:** reconcile across Link ECU, center cluster, RealDash, ECUMaster CSB3 (DECISIONS Rule 2). Frozen cluster wins. Write the repo CAN files now; `bench/check_parity.py` green.
 3. **ECU harness:** loom A and B are ONE harness, `AB` (`AB-cabin`, `AB-engine`); ECU pins never move. Drawn as ONE set, `ST185-harness`.
 4. **ECU pins:** check every ECU-pin circuit against the Link G4X Quick Start Guide and plug-in guides (G4X only). A mismatch is a stop.
-5. **Grounds and relays:** ECU power ground -> POWER box battery-negative bar only; electronics -> battery-negative bus; ground/return of a sensor the ECU powers (+5 V / +8 V) -> ECU Gnd Out; anything powered from a fuse box or the switched 12 V bus grounds on the battery-negative bus with the other 12 V devices, never on the ECU (Dan 2026-10-31); shield drain only -> ECU shield gnd. ECU output driving a relay is low-side: pin -> coil 85, 86 -> fused +12 V.
+5. **Grounds and relays:** DECISIONS B10 (grounds) and B15 (relays).
 
 Link CAN-Lambda is on CAN bus 1; CAN bus 2 is unused.
 
 ## Project map
 - **Rules / decisions:** `docs/harness/redesign/DECISIONS.md` (the one file). Tracker: `docs/OPEN-ITEMS.md`.
-- **Wiring:** `docs/harness/MASTER-wirelist.csv`, folder map `docs/harness/README.md`, circuit plan `docs/harness/circuit-plan.md`, routes `docs/harness/routes/` (Dan's; do not delete or reroute), drawings generated, seats `sot/fuse-relay-map.csv`, parts `docs/sourcing/harness-parts.csv`.
+- **Wiring:** `docs/harness/MASTER-wirelist.csv`, folder map `docs/harness/README.md`, circuit plan `docs/harness/circuit-plan.md`, routes `docs/harness/routes/` (change only per DECISIONS B8), generated pin chart and DRB102 map `docs/harness/drawings/`, seats `sot/fuse-relay-map.csv`, parts `docs/sourcing/harness-parts.csv`.
 - **CAN:** `link_g4x_can_setup.json` / `.lcs`, `switchboard_frames.json`, `CAN-BUS-ID-ALLOCATION-TABLE.md` (wire format), `CAN-BUS-MASTER-DESIGN.md` (architecture and PCLink apply), `ECUMASTER_SWITCHBOARD_SETUP.md`. Parity: `bench/check_parity.py`. Cluster decode: `center-cluster-esp32-p4` `main/canbus.c` (frozen).
 - **RealDash / bench:** `link_g4x_realdash.xml`, `REALDASH-LAYOUT.md`, `BENCH-TEST.md`, `bench/`, `apps/trackcluster-can-sender/`.
 - **Tune / fuel:** `tune/` (PCLink seeds; `tune/scripts/validate_tune.py`); `FUEL-SYSTEM.md`.
@@ -45,7 +45,7 @@ python bench/can_bench.py --interface virtual --channel bench --bitrate 1000000 
 - Keep local `main` in sync with `origin/main` (`git pull --ff-only` at session start and after every merge; DECISIONS B28, Dan 2026-10-31).
 - `main` is protected: PRs only, both required checks green, squash-merge. Every PR body has a `Rows: <n>, <n>` or `Rows: none` line. Never force-push.
 - Generated: `PROJECT-BOM.*` and `docs/harness/drawings/*` come from their generators.
-- Drawing initials always `DG` (`.drawing-initials`). Layout: front RIGHT, driver side up. Dispatch: relay only; no clickable pickers.
+- Drawing initials always `DG` (`.drawing-initials`). Layout: front RIGHT, driver side up. Dispatch: relay only. Ask Dan decisions with the question tool; a decision that depends on an image is asked in chat text (Dan 2026-11-01).
 - Do not edit `.claude/settings*.json` or `mcpServers` in normal work.
 
 ## Cloud agents
