@@ -37,8 +37,8 @@ that B9 points to).
 Every harness is built in harness.design from the master (Dan 2026-11-01, DECISIONS B6): it forces a wire list and a
 planned layout first. The master stays the only wiring source; nothing in a document is edited back into it.
 File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`, next change = a new file `Rev B` (agents
-cannot rename; Dan deletes the old file). Current files: AB-engine https://app.harness.design/lDDj, EngineRoom-C
-https://app.harness.design/lD37 (both Rev A; Dan renames them). AB-cabin (two documents, 100-connection plan limit) is rebuilt
+cannot rename; Dan deletes the old file). Current files: AB-engine https://app.harness.design/lDDj (Rev A; Dan renames it), EngineRoom-C
+`ST185-EngineRoom-C Rev A` (https://app.harness.design/lD37; schematic columns level at the top, 2026-11-02). AB-cabin (two documents, 100-connection plan limit) is rebuilt
 after its placement pass as new files `ST185-AB-cabin 1 - bulkhead run Rev A` / `ST185-AB-cabin 2 - dash Rev A` (the old
 8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
