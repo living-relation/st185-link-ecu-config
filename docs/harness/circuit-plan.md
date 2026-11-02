@@ -11,7 +11,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 |---|---|---|
 | 1 | Engine management (factory ECU, igniter, EFI relays) | Gone. The Link plus the new engine harness replace it. |
 | 2 | Starting | OEM starter relay in R/B No.4 stays. Coil + from key START; coil - through the clutch start switch C11. C11 completes the starter circuit in hardware; it is not an ECU input. No `k_str`. Aux 8 is spare. |
-| 3 | Charging | IG2-15 B-R keeps a 6 in pigtail: kill switch, then alternator IG. IG2-16 Y stays and drives the 12 V charge LED in the ClusterLED harness (sinks to OEM cluster plug C12-8). Alternator B+ on the heavy-cable harness. |
+| 3 | Charging | IG2-15 B-R keeps a 6 in pigtail: kill switch, then alternator IG. IG2-16 Y stays and drives the 12 V charge LED in the Dash harness (sinks to OEM cluster plug C12-8). Alternator B+ on the heavy-cable harness. |
 | 4 | Cruise | The OEM cruise ECU and actuator are gone; the stalk stays as CSB3 buttons. Cruise control clutch switch C17 pin 2 to CSB3 pin 20 (`w_sw5`) is the one ECU clutch input (flat-shift, via VDI6). C11 completes the starter circuit in hardware; it is not an ECU input. |
 | 5 | SRS | Gone. |
 | 6 | ABS | Gone. The wheel speed sensors get their own mini harnesses to the VRC enclosure. |
@@ -26,7 +26,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 | 15 | Radiator + condenser fans | Link-controlled relays, front run. |
 | 16 | Wiper + washer | Wiper on the driver fender run, washer pump on the front run. |
 | 17 | Fog | Removed: R/B No.3, switch F12 and every fog wire, cut and capped. 20 A FR FOG fuse in R/B No.4 is a spare. No spare circuit to the old fog-lamp spots. |
-| 18 | Windows, locks, sunroof, seat | R/B No.2 stays; its 30 A POWER fuse gets one new feed from B1 AMI IN-6. No `k_pwr`. |
+| 18 | Windows, locks, sunroof, seat | R/B No.2 stays; its 30 A POWER fuse is fed by AM1 (B1 AMI OUT-3, `w_pdb_am1`) through cowl splice I2, as stock (Dan B17 b, 1993 p.62 / p.137-142, US = Canada). No `k_pwr`. |
 | 19 | Diagnostic plug (DLC1) | Gone. |
 | 20 | Alarm hood pin + siren | Front run and driver fender run. |
 | 21 | Engine-bay ground studs (EA, EB, EC) | The studs stay as ground points; every ground wire on them is new. |
@@ -46,7 +46,7 @@ Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POW
 | 4 | IH1 Engine <-> A/C No.1 | Decided 2026-10-25 / 2026-10-26: A15 pin 8 drives `k_acc`; Ign 8 tacho to pin 18; same tacho through 4.7 kΩ to pin 9 (N61); pin 2 hard-grounded; IH1-4/5 engine lock-sensor wires unused. Table below |
 | 5 | EB2 / ES2 | Decided 2026-10-25: A5 pin 1 from R/B No.4 10 A A/C; pressure switch already on the master; ER No.2 gone. Table below |
 | 6 | Box plugs (J/B2, R/B2-5) | Decided 2026-10-25: R/B2 and R/B4 re-fed; fog cut and cap; starter / heater / A/C fuse stay on R/B4. Table below (R/B2 rows pending Dan's B4 check) |
-| 7 | Removed parts on kept harnesses | Decided 2026-10-25: OEM ECU / C9 / SRS / ABS / cruise ECU / meter extras are dead; ClusterLED and CSB3 taps stay. Table below |
+| 7 | Removed parts on kept harnesses | Decided 2026-10-25: OEM ECU / C9 / SRS / ABS / cruise ECU / meter extras are dead; the Dash taps (was ClusterLED and CSB3) stay. Table below |
 | 8 | ER Main branches | Decided 2026-10-25: the whole ER Main goes (B9); re-feeds are new wire on the master. Table below |
 
 **Joint-code corrections (1993 p.37 / p.43 / p.63 / p.83 / p.219).** IF2 / IG1 in the brief is IG1 + IG2 (Engine <-> Cowl under the ECU); IF1/IF2 = Floor <-> Cowl (left kick). IG2 / IH1 in the brief is IH1 only (Engine <-> A/C No.1). EB2 is Engine <-> Cowl (same spot as EB1); ES2 is Engine <-> ER No.2 (near the distributor); ES1 is 4A-FE only. EA1 / EB1 / ET1 confirmed. IJ1 = Cowl <-> A/C No.1; IK1/IK2 = front door RH.
@@ -86,7 +86,7 @@ Decided 2026-10-21. Every wire is dead and comes out back to its last live point
 | IG2 | 13 | R-B | Back-up lamp output | IF1-7 -> Floor -> BP1-8 -> rear back-up lamps | Back-up SW B1 pin 1 | [90/92] 1992 p.132 | remove (dead); new switch output splices to the IG2-13 pigtail |
 | IG2 | 14 | BR | Water-temp gauge ground | Comb meter C12 (A) pin 5 | Ground EC (intake manifold) | 1993 p.207 | remove (dead) |
 | IG2 | 15 | B-R | ECU-IG 15A | J3 <- J/B1 1B-8 (15A ECU-IG) | Alternator IG (G2 A-2) | 1993 p.74; 1992 p.180 | KEEP 6 in pigtail, splice (alt IG feed per master) |
-| IG2 | 16 | Y | Charge lamp (alternator L) | Cowl splice I5 -> comb meter C14 (C) pin 8 | Alternator L (G2 A-1) | 1993 p.74 | KEEP; ClusterLED charge LED sinks to C12-8 |
+| IG2 | 16 | Y | Charge lamp (alternator L) | Cowl splice I5 -> comb meter C14 (C) pin 8 | Alternator L (G2 A-1) | 1993 p.74 | KEEP; Dash charge LED sinks to C12-8 |
 | IG2 | 17 | W-R | ABS TS | IF1-16 -> ABS ECU TS | DLC1 TS (16) | [90/92] 1992 p.192 | remove (dead) |
 | IG2 | 18 | B-Y | +B from EFI main relay | Cowl splice I6 -> ECU A12 / A13, C9-2 | J/B2 2C-10 / splice I7 (VSVs) | 1993 p.80, 78 | remove (dead) |
 | IG2 | 19 | L-B | Fuel-pump + (FP check) | Cowl splice I1 -> IE2-19 and IF1-15 -> BP1-12 -> fuel pump | DLC1 FP | 1993 p.79, 78 | remove (dead) |
@@ -152,7 +152,7 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 | 2E | 2 | W | 30 A RTR out | IE1-3 -> retract relay R8 pin 3 | p.116 | re-feed POWER RTR | remove; re-fed by `w_pmu_rtr` at IE1-3 (cowl side) |
 | 2E | 3 | W | 15 A HAZ-HORN out | R/B5 horn relay pin 3; IE1-12 -> hazard SW H5-8 | p.130, 185 | re-feed LOGIC HZ + horn relay | remove; hazard re-fed by `w_haz_cp` (LOGIC HZ via `SP-HZ`); horn relay feed `w_horn_30_cp` / `w_horn_86_cp` |
 | 2E | 4 | L-Y | 20 A DOME out | J/B1 1H-2 | p.132, 200, 207 | re-feed LOGIC DM | remove; re-fed by `w_pmu_dome` at 1H-2 (owner fix: DECISIONS B8 list) |
-| 2E | 5 | W | AM1 out | IE1-10 -> cowl I2 -> ignition SW I13-4 and R/B2 30 A POWER fuse pin 1 | p.62, 66 | re-feed POWER AM1 | remove; re-fed by `w_pdb_am1` at IE1-10. I2 still also feeds R/B2: pending B4 verification (OPEN-ITEMS row 183, fault C2) |
+| 2E | 5 | W | AM1 out | IE1-10 -> cowl I2 -> ignition SW I13-4 and R/B2 30 A POWER fuse pin 1 | p.62, 66 | re-feed POWER AM1 | remove; re-fed by `w_pdb_am1` at IE1-10. I2 also feeds R/B2, as stock (Dan B17 b) |
 | 2E | 6 | B-R | AM2 out | IE1-17 -> I13-10 | p.62, 66 | re-feed POWER AM2 | remove; re-fed by `w_pdb_am2` at IE1-17 |
 | 2E | 7 | R-Y | Headlight relay coil | IE1-2 -> I2 -> light control SW C15, retract relay R8-8 | p.116 | re-feed LOGIC head relay coils | remove; re-fed by `w_head_coil_cp` (K-HL / K-HR coil 85 via `SP-HEAD-COIL`) |
 | 2E | 8 | B-O | IGN 7.5 A to J/B2 relay coils | ER Main splice E13 / E4 <- J/B1 1H-7 | p.210, 79 | cut + cap at J/B2 and R/B5 | remove; 1H-7 itself keeps (tapped by `w_ig2_in`, `w_ign`) |
@@ -163,8 +163,8 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 
 | Terminal | Pin | Colour | Signal | Kept-side end | EWD | Draft said | Action |
 |---|---|---|---|---|---|---|---|
-| 30 A POWER fuse | 1 | W | AM1 branch in | cowl I2 <- IE1-10 | p.62 | cut + cap | re-fed by `w_rb2_feed` (AMI IN-6). Pending B4 verification: the factory I2 branch from AM1 (`w_pdb_am1`) also lands here (fault C2) |
-| 30 A POWER fuse | 2 | W-L | 30 A POWER out | I1 / I4 -> power main relay 4, door lock ECU, sunroof, seat | p.137 | re-feed LOGIC WL | keep (fed through the kept POWER fuse). `w_rb2_wl` lands here today: pending B4 verification (Dan B4 = a: drop it once the 1993 EWD and US / Canada check is done; fault C1) |
+| 30 A POWER fuse | 1 | W | AM1 branch in | cowl I2 <- IE1-10 | p.62 | keep | fed by AM1 through the factory I2 branch (`w_pdb_am1` at IE1-10), as stock; `w_rb2_feed` dropped (Dan B17 b) |
+| 30 A POWER fuse | 2 | W-L | 30 A POWER out | I1 / I4 -> power main relay 4, door lock ECU, sunroof, seat | p.137 | keep | keep (fed through the kept POWER fuse); `w_rb2_wl` dropped (Dan B17 b) |
 | Power main relay | 1 | W-G | window / accessory power out | I1 -> IC1-3, IK1-3 | p.137 | re-feed POWER PWR + `k_pwr` | keep (no `k_pwr`) |
 | Power main relay | 2 | L-Y | coil + (GAUGE via key-off diode D6) | I1 / D6 | p.136-137 | reuse as `k_pwr` 86 | keep |
 | Power main relay | 3 | W-B | coil ground | ground | p.137 | cut + cap | keep |
@@ -234,12 +234,12 @@ C11 (= 1993 C13 B) and C12 (= 1993 C14 C).
 | ABS ECU (26-pin and 16-pin), actuator A7 / A8, relays A11 / A12, check conn A9 / A10 | all | ID1, IF1, J/B1 1F-8 / 1F-11 / 1F-13, J2, decel sensor, IF1-16 -> IG2-17 | Mitchell 1993 Fig.13; 1992 p.192 | cut + cap; remove the ID1 leads | remove (circuit 6); J/B1 1F-8 park brake keeps its other loads |
 | Wheel speed sensors (A13, A14, rears) | 1 / 2 | ER Main / Cowl / Floor leads | 1992 p.192 | cut at the sensor plugs | sensors keep; OEM leads removed; re-fed by WheelSpeed-Front / -Rear (`WSS-FL`, `WSS-FR`, `WSS-RL`, `WSS-RR`) |
 | Cruise ECU plug A / B (motor type) | all but the stalk leads | J3, stop SW, J2, C17, park brake SW, IG1-6 / 7 / 17 / 18 / 2 / 8, meter C12-2, IG2-6 | Mitchell 1993 Fig.12; [90/92] 1990 p.118-119 | cut + cap, keep the stalk leads | remove (circuit 4) |
-| Cruise stalk C14 [1993 C16] | 5 CCS (W), 15 CMS (Y-B), 17 GND (BR) | stalk switch | [90/92] 1990 p.116 | keep for the CSB3 | keep; tapped by `w_an2`, `w_sw2`, `w_cru_gnd` (CSB3) |
+| Cruise stalk C14 [1993 C16] | 5 CCS (W), 15 CMS (Y-B), 17 GND (BR) | stalk switch | [90/92] 1990 p.116 | keep for the CSB3 | keep; tapped by `w_an2`, `w_sw2`, `w_cru_gnd` (Dash) |
 | Cruise clutch switch C17 | 2 (B) | was cruise ECU N&C | Mitchell 1993 Fig.12; 1993 p.32 | not in the draft | keep; tapped by `w_sw5` (CSB3 pin 20, the one clutch input) |
 | Meter C12 (A) (1993) | 1, 2, 3, 5, 6, 7, 8, 9, 10 | rheostat, cruise PI, I6, IG2-14, IG1-13, I4, I4, IF1-9, IF1-12 | 1993 p.206-207 | cut + cap | remove (old meter gone, circuit 7) |
-| Meter C13 (B) (1993) = master C11 | 2 G-B turn LH, 11 G-Y turn RH, 12 R-L high beam | J3 / IE1-11 | 1993 p.206 | reuse per ClusterLED | keep; tapped by `w_tl_a`, `w_tr_a`, `w_hb_a` (ClusterLED) |
+| Meter C13 (B) (1993) = master C11 | 2 G-B turn LH, 11 G-Y turn RH, 12 R-L high beam | J3 / IE1-11 | 1993 p.206 | reuse per Dash | keep; tapped by `w_tl_a`, `w_tr_a`, `w_hb_a` (Dash) |
 | Meter C13 (B) (1993) | 1, 3, 4, 5, 6, 7, 10 | J/B3 3B-6, IF1-14, IG1-15, J6, J2, 3B-9, IG2-20 | 1993 p.206 | cut + cap | remove |
-| Meter C14 (C) (1993) = master C12 | 9 B-O IGN, 8 Y charge, 1 R-G brake / park brake | 1D-5, I5 / IG2-16, J6 | 1993 p.206-207 | reuse per ClusterLED | keep; tapped by `w_ig_tap`, `w_chg_k`, `w_pk_k` (ClusterLED) |
+| Meter C14 (C) (1993) = master C12 | 9 B-O IGN, 8 Y charge, 1 R-G brake / park brake | 1D-5, I5 / IG2-16, J6 | 1993 p.206-207 | reuse per Dash | keep; tapped by `w_ig_tap`, `w_chg_k`, `w_pk_k` (Dash) |
 | Meter C14 (C) (1993) | 3, 4, 5, 6 oil (Y-B), 10, tacho | 3B-10, J1, integration relay, IG1-12, 3B-16, IG1-14 | 1993 p.206-207 | cut + cap | remove; oil warning is the LED on CSB3 L4 (`w_oil_a` / `w_oil_k`) |
 | Rear wiper motor and relay, rear washer outlet W1 pin 3 [90/92] | 1-3; W1-3 | back door wire -> J/B1 1F-10, rear wiper SW C17 (1992 code) | 1992 p.150 | cut + cap | remove (R54); front washer W1 pins 1 / 2 re-fed by `w_wash_neg` / `w_wash_pos`. Check at the car whether the pump has a pin 3 |
 | Igniter, ECU plugs B / C, DLC1, cruise actuator, compressor clutch lead, back-up SW lead | all | only through IG1 / IG2 / IH1 / EB1 / EB2 | - | leave with the Engine Wire | remove; back-up SW wires re-fed by `w_rev_feed_c` / `w_rev_lamps` at the IG2-4 / IG2-13 pigtails (circuit 11) |
