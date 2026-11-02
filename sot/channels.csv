@@ -25,7 +25,7 @@ ECU,DI 3,ecu_a,a23,Wheel speed front left,signal,in,freq-di,none,set,QSG-IO,Squa
 ECU,Gnd Out,ecu_a,a24,Sensor return rail,rail,out,gnd,none,set,QSG-IO,"Loom A sensor returns; never chassis; never SHIELD; 18 AWG lead (ct_ss10_075) to sp_gndout, tapered to 20 AWG bulkhead pins (Rule 3a)"
 ECU,Ground,ecu_a,a25,ECU reference ground,ground,na,gnd,none,set,QSG-IO,ECU reference only - not a sensor return
 ECU,Aux 8,ecu_a,a26,spare,spare,out,hilo-2a,int-1k5,spare,QSG-IO,"Spare. C11 completes the starter circuit in hardware and is not an ECU input (Dan 2026-10-26). The one ECU clutch input is C17 via CSB3 VDI6."
-ECU,Aux 7,ecu_a,a27,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,set,QSG-IO,MRS wants ~4 pulses/rev 0-5V; scope the high level before adding a 5V pull-up
+ECU,Aux 7,ecu_a,a27,Speed out to MRS pump,signal,out,hilo-2a,int-1k5,set,QSG-IO,MRS wants ~4 pulses/rev; 0-12 V pulse is fine (Toyota VSS switches 12 V, Dan measured it 2026-11-02); internal 1k5 pull-up, no external pull-up
 ECU,Aux 6,ecu_a,a28,EFI main relay coil,signal,out,hilo-2a,int-1k5,set,QSG-IO,Hold Power; pairs with DI 9
 ECU,Aux 5,ecu_a,a29,Rad fan relay coil,signal,out,hilo-2a,int-1k5,set,QSG-IO,Relay in cabin
 ECU,DI 1,ecu_a,a30,Turbo speed,signal,in,freq-di,sel-4k7-to-12v,set,QSG-IO,Sensor supplied +5V on its own bulkhead A pin c40 (2026-09-25 assumption: Garrett 781328-style sensor; the 12V lead only powers the gauge)
