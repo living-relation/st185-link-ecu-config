@@ -26,9 +26,21 @@ def run(d, mid=None, step=30):
         if h in('Right','PIN2') and n['id'].startswith(('r','d')): return (p['x']+30,p['y']+15,'R')
         return (p['x']+15,p['y']+15,'C')
     segs=[]
+    conds=d['wires']+[q for c in d.get('cables',[]) for q in c['cores']+([c['shield']] if 'shield' in c else [])]
+    tuse=collections.Counter(e['id'] for w in conds for e in (w.get('source'),w.get('target')) if e and node[e['id']][0]=='term')
+    def bus(e):      # a splice, or a stud with 2+ wires (a ground stud): its wires share rows and lanes
+        return e and ((node[e['id']][0]=='pt' and e['handle']=='Splice') or (node[e['id']][0]=='term' and tuse[e['id']]>1))
+    par={}
+    def f(x):
+        par.setdefault(x,x)
+        while par[x]!=x: x=par[x]
+        return x
+    for w in conds:  # a splice wired to a stud is one net with it
+        bs=[e['id'] for e in (w.get('source'),w.get('target')) if bus(e)]
+        for b in bs[1:]: par[f(b)]=f(bs[0])
     def net_of(*es):
         for e in es:
-            if e and node[e['id']][0]=='pt' and e['handle']=='Splice': return e['id']
+            if bus(e): return f(e['id'])
         return None
     for w in d['wires']:
         a,b=anchor(w['source']),anchor(w['target'])

@@ -370,7 +370,7 @@
     118,
     1
    ],
-   "label": "Old Route 2 RH inner fender point: kept only for ground studs EA / EB (no Route 17 spot yet), the alarm hood pin lead and the heavy-cable path to the engine tree",
+   "label": "Old Route 2 RH inner fender point: kept only for the alarm hood pin lead and the heavy-cable path to the engine tree (ground studs EA / EB sit on Route 17 devices 24 / 25)",
    "short": "old RH inner fender point"
   },
   "C_RHC": {
@@ -378,9 +378,9 @@
     140,
     4
    ],
-   "label": "Old Route 2 RH front corner: ground stud EA (no Route 17 spot yet) and the alarm hood pin lead",
+   "label": "Old Route 2 RH front corner: the alarm hood pin lead (ground stud EA sits on Route 17 device 24)",
    "end": true,
-   "short": "old RH front corner: ground EA",
+   "short": "old RH front corner: hood pin",
    "lab": "left"
   },
   "C_FRONT": {
@@ -388,7 +388,7 @@
     140,
     50
    ],
-   "label": "Old Route 2 front centre: kept only as the way to ground stud EB (no Route 17 spot yet)",
+   "label": "Old Route 2 front centre: no wire uses it now (ground stud EB sits on Route 17 device 25)",
    "short": "old front centre",
    "lab": "left"
   },
@@ -397,9 +397,9 @@
     140,
     98
    ],
-   "label": "Old Route 2 LH front corner: ground stud EB (no Route 17 spot yet)",
+   "label": "Old Route 2 LH front corner: no wire uses it now (ground stud EB sits on Route 17 device 25)",
    "end": true,
-   "short": "old LH front corner: ground EB",
+   "short": "old LH front corner",
    "lab": "left"
   },
   "SIREN": {
