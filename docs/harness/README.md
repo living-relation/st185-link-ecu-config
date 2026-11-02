@@ -100,6 +100,8 @@ Ten harnesses today. Purpose restored from `git show e2ec9d7^:docs/harness/READM
 | `RearFuel` | Fuel pump (from `k_fp` in the trunk relay block) and fuel level sender behind `IX-FUEL` | Route 11 |
 | `WheelSpeed-Front` / `-Rear` | Wheel speed sensor -> VR conditioner -> inline DT to AB-cabin (`IX-WS-F` / `IX-WS-R`) | Routes 9 / 10 |
 
+Alternator (Dan 2026-11-02): all 3 wires of the round 3-pin plug G2 (B) (1 S battery sense, 2 L charge lamp, 3 IG excite; ground through the case; 1993 EWD p.74-75) stay in one harness, EngineRoom-C (harness C, RH fender grommet to Route 16 line 9, no bulkhead pins); the heavy B+ cable stays in HeavyDC. The All-Trac grey G2 (A) plug is pinned differently (1 L, 2 IG, 3 S): which plug the fitted 160 A alternator has is to be checked at the car.
+
 Routes 1 and 8-14 are the old route pages; no tool reads them since #456, and each is replaced by that harness's
 placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today.
 
