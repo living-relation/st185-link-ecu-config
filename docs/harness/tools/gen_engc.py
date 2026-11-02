@@ -301,6 +301,13 @@ while changed:      # fold pass-through nodes into bundle bend points
         seglen[c] += seglen[n]; parent[c] = p; via[c] = via[n] + [n] + via[c]
         kids[p] = [c if x == n else x for x in kids[p]]
         del parent[n], seglen[n], kids[n]; changed = True; break
+for n in [n for n in parent if parent[n] and seglen[n] == 0]:   # a 0 mm segment is no bundle: merge its node into its parent
+    p = parent[n]
+    for c in kids[n]: parent[c] = p; via[c] = via[n] + [n] + via[c]
+    kids[p] = [x for x in kids[p] if x != n] + kids[n]
+    node_items[p] += node_items.pop(n, []); inline_at[p] += inline_at.pop(n, [])
+    print('0 mm segment', p, '-', n, ': merged into', p)
+    del parent[n], seglen[n], kids[n], via[n]
 SCX, SCY = 27, 24
 def lpos(n):
     x, yy = L['nodes'][n]['xy']
