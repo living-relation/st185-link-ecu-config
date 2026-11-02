@@ -9,6 +9,8 @@
 the 2026-09-28 audit table), which was deleted on 2026-10-20 (OPEN-ITEMS row 151); git history keeps their full text.
 The retire map under the rules stays for good so every old citation still resolves.
 Each rule is 2 lines or less (Dan 2026-10-20): detail lives in the named sections of this file; older wording is in git history.
+Record at once (Dan 2026-11-02): a rule or design decision Dan makes is written into this file (or the README it belongs
+in) and merged in the same session, never left only in agent memory or a handoff.
 At most 30 rules: adding one means merging or removing one (R226). Newest ruling won wherever two old rows disagreed.
 Surgical rewire (Dan 2026-10-20): forward of the firewall every wire is new; keep the OEM cabin / body wiring (B1, B5, B7, B9, B11).
 A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 drives `k_acc` (pin 8 to coil 85); the Link only sends the ACT kill (Aux 4); pin 2 hard-grounded; Ign 8 is tacho to pin 18; no clutch-on to the Link. Lock sensor (Dan 2026-10-26): same tacho through 4.7 kΩ to A15 pin 9 (OPEN-ITEMS History 2026-10-21 N61). Sensor common: keep cabin splice `SP-AC-SG` (replaces E10). The A/C pressure switch is the factory trinary switch, wired to the factory A/C amp; factory yellow-red is that switch output (A5 pin 4 through joiner E10 to A18 pin 13), not the sensor ground; sensor common is yellow (1990 ST185 EWD p.150 / p.152; 1992 EWD132U p.219). Clutch (Dan 2026-10-26): one ECU clutch input only — cruise clutch switch C17 to CSB3 pin 20 (VDI6) for flat-shift; clutch start switch C11 completes the starter circuit in hardware and is not an ECU input. Oil warning LED on CSB3 L4 (cavity 26, 0x643 byte 3). Brake fluid level switch is a factory safety item, not needed, not connected.
@@ -29,8 +31,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B5 ONE wire list.** `docs/harness/MASTER-wirelist.csv` holds every new wire, cut, reuse and tap with its EWD page; no
   row, no cut. Reuse an OEM wire only if its gauge fits and both ends are known. `sot/channels.csv` = ECU settings.
 - **B6 Built in harness.design.** Every harness is built in harness.design from the master (Dan 2026-11-01), one at a
-  time; our layout / schematic PDFs are retired. File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a change = a new
-  file at the next letter, Dan deletes the old; Dan 2026-11-02). `build_drawings.py --check` keeps the layout tree, master lengths, the
+  time; our layout / schematic PDFs are retired. File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a physical change = a new
+  file at the next letter, Dan deletes the old; a view-only change keeps the file and letter; Dan 2026-11-02). Layout view = formboard (README). `build_drawings.py --check` keeps the layout tree, master lengths, the
   Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is built and checked from the master.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).

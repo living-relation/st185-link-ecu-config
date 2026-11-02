@@ -36,8 +36,9 @@ that B9 points to).
 
 Every harness is built in harness.design from the master (Dan 2026-11-01, DECISIONS B6): it forces a wire list and a
 planned layout first. The master stays the only wiring source; nothing in a document is edited back into it.
-File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`, next change = a new file `Rev B` (agents
-cannot rename; Dan deletes the old file). Current files: AB-engine https://app.harness.design/lDDj (Rev A; Dan renames it), EngineRoom-C
+File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`. Only a physical change (wires, parts, pins,
+lengths) makes a new file at the next letter (`Rev B`; agents cannot rename; Dan deletes the old file). A view-only
+change (layout, schematic tidy, labels, colours) edits the same file and keeps its letter (Dan 2026-11-02). Current files: AB-engine https://app.harness.design/lDDj (Rev A; Dan renames it), EngineRoom-C
 `ST185-EngineRoom-C Rev A` (https://app.harness.design/lD37; schematic columns level at the top, 2026-11-02). AB-cabin (two documents, 100-connection plan limit) is rebuilt
 after its placement pass as new files `ST185-AB-cabin 1 - bulkhead run Rev A` / `ST185-AB-cabin 2 - dash Rev A` (the old
 8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
@@ -45,9 +46,19 @@ skill is not changed for this project):
 - Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_engc.py`, `gen_cabin.py`; B2 exception). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
-- Layout: keep each device and junction at its Route 16 spot; bundles follow the route corners, lightly smoothed (slants
-  fine, no staircases or rapid turns). Change it in small steps; never swap in a different layout method (Dan 2026-10-29).
-- Schematic: bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
+- Layout view = a FORMBOARD (Dan 2026-11-02; replaces the 2026-10-29 "Route 16 spots, smoothed" rule): the harness
+  drawn laid flat on a build table, organised for building it, not a copy of the car. The placement editor / route map
+  is where install spots and lengths come from; the formboard only re-arranges them.
+  - Straight trunk, branches off it at 90 degrees, on the grid; orthogonal lines only, no slants or curves.
+  - Parallel runs bundled into one line; breakouts that sit close together merged into one branch.
+  - Wire lengths stay exactly the master's (drawn length is not to scale; the numbers are).
+  - Orientation: front of car RIGHT, rear / trunk LEFT, driver side on top. Each harness sits where it lies along the
+    car, so harnesses that run the full length (cabin to trunk) fit; engine-bay harnesses have the bulkhead at their
+    left end. Never put the bulkhead on the left as a blanket rule.
+  - A connector part-way along a line breaks out at least 6 in off it; the last one may end the run (B8). Coil and
+    injector breakouts all point the same way.
+- Schematic: compact (fits one screen zoomed out); both columns start level at the top; connectors may be reordered
+  for readability, pin order never changes (Dan 2026-11-02). Bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
   horizontal into its pin; no two signals on one line.
 - Schematic format (Dan 2026-11-01): every connector 8 grid units wide (`width` 240, document `schematic.connectorWidth`
   240). Lines orthogonal; wires of one cable or one run share a path, side by side, like the real cable; no wire folds
