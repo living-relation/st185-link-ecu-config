@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit) and LFP (run 11, driver kick), riding Route 16 lines 9 / 6 / 4 / 2 to the A/C, alternator plug, MR-S pump plug A and block stud, its own copies of those nodes (prefix C_); ground studs EA / EB have no Route 17 spot yet and stay on the old Route 2 nodes) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (all 13 harnesses of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: Routes 5 and 6; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit) and LFP (run 11, driver kick), riding Route 16 lines 9 / 6 / 4 / 2 to the A/C, alternator plug, MR-S pump plug A and block stud, its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-02; the EB strap lug GND-EB-2 is the same bolt drawn twice)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from Routes 1, 2 and 7-15 (2026-10-20). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -703,7 +703,8 @@
    ],
    "line_from": {
     "RH": "10",
-    "L9": "RH"
+    "L9": "RH",
+    "FEB": "FBG"
    },
    "devices": {
     "1": "HL_RH",
@@ -720,27 +721,14 @@
     "16": "TURN_LH",
     "18": "ACPSW",
     "19": "WIPER",
-    "ROUTE-16-ENGINE-MAIN.html#H1": {
-     "node": "ALT",
-     "ids": [
-      "ALT-PLUG"
-     ]
-    },
-    "ROUTE-16-ENGINE-MAIN.html#18": {
-     "node": "BLOCK_C",
-     "ids": [
-      "T-ENG-BLOCK-2",
-      "T-ENG-BLOCK-3"
-     ]
-    },
-    "ROUTE-16-ENGINE-MAIN.html#24": {
-     "node": "MRS_A",
-     "ids": [
-      "MRS-A"
-     ]
-    },
     "24": "GND_EA",
-    "25": "GND_EB"
+    "25": "GND_EB",
+    "5": "MARK_RH",
+    "6": "MARK_LH",
+    "H1": "ALT",
+    "BG": "BLOCK_C",
+    "MA": "MRS_A",
+    "EBS": "GND_EB_S"
    }
   }
  ],
@@ -962,7 +950,8 @@
   "T-CLUSTER-HL": "CLUSTER",
   "FOG-CAP-1": "RHKICK",
   "FOG-CAP-4": "RHKICK",
-  "FOG-CAP-6": "RHKICK"
+  "FOG-CAP-6": "RHKICK",
+  "GND-EB-2": "GND_EB_S"
  },
  "place_oem": [
   [
@@ -1108,6 +1097,14 @@
   [
    "A32",
    "ACAMP"
+  ],
+  [
+   "RH front side marker lamp",
+   "MARK_RH"
+  ],
+  [
+   "LH front side marker lamp",
+   "MARK_LH"
   ]
  ],
  "wirelists": [
