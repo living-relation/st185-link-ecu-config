@@ -17,8 +17,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B1 Scope.** Forward of the firewall every wire is new, on a named route (B9); keep the OEM cabin / body wiring.
   New wire also for fuel pump, dash feed, CAN, alarm and taps. Goals G1-G4; rows for blockers.
-- **B2 Freeze.** Until the bloat cut is done (OPEN-ITEMS rows 151-155): no new script, gate or drawing format; cleanup
-  allowed. Exceptions (Dan 2026-10-31): per-device pages (B6) and the checked OEM splice reference (rows 174, 175).
+- **B2 Freeze.** Until the bloat cut is done (OPEN-ITEMS row 153 is left): no new script, gate or drawing format; cleanup
+  allowed. Exceptions: the checked OEM splice reference (row 175, Dan 2026-10-31); the harness.design generators (Dan 2026-11-01).
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
   Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo (CAD work in progress may sit in `_scratch`).
 - **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers: look it up or work it out. A
