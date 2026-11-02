@@ -14,7 +14,7 @@ that B9 points to).
 | `tools/build_drawings.py` | makes no drawings (Dan 2026-11-01): the layout tree, wire routing and master lengths, the wire lists and the DRB102 map; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
 | `tools/build_pin_chart.py` | builds `drawings/ST185-pin-chart.pdf` from the master; connector faces in `tools/pin_chart/` (sourced layouts; a connector without one is a numbered list, flagged) | The face files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
-| `tools/gen_cabin.py` | builds the harness.design AB-cabin documents (8OJ2 = doc 1, kD3r = doc 2) from the master; `python gen_cabin.py <repo> <out> <1\|2>`, needs `<out>/lib.json` (part library 5LO8 dump). Needs updating for the 8 wires moved into AB-cabin (#465) at the next AB-cabin rebuild | Never by hand-editing its output |
+| `tools/gen_cabin.py` | builds the two harness.design AB-cabin documents (doc 1 bulkhead run, doc 2 dash) from the master; `python gen_cabin.py <repo> <out> <1\|2>`, needs `<out>/lib.json` (part library 5LO8 dump). Needs updating for the 8 wires moved into AB-cabin (#465) at the next AB-cabin rebuild | Never by hand-editing its output |
 | `tools/gen_engc.py` | builds the harness.design EngineRoom-C document (lD37) from the master; `python gen_engc.py <repo> <out>`, needs `<out>/lib_engc.json` (part library 5LO8 dump); writes `ld37.json` and `ld37_lib_ops.json`, then route with `genroute.py`. Built from the Route 17 tree; stops if a routed length differs from the master | Never by hand-editing its output |
 | `tools/genroute.py` | orthogonal schematic routing for a harness.design document JSON (Dan's format rules); keeps node positions, rewrites wire / core / shield points; `python genroute.py <doc.json> <out.json>` | Only with the format rules |
 | `tools/router.py` | the lane router `genroute.py` uses (box collision, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
@@ -35,10 +35,14 @@ that B9 points to).
 ## harness.design - where the harnesses are built
 
 Every harness is built in harness.design from the master (Dan 2026-11-01, DECISIONS B6): it forces a wire list and a
-planned layout first. The master stays the only wiring source; nothing in a document is edited back into it. AB-engine:
-https://app.harness.design/lDDj (Rev K). AB-cabin (two documents, 100-connection plan limit): https://app.harness.design/8OJ2 bulkhead run, https://app.harness.design/kD3r dash (Rev 1, 2026-11-01). How these are built and kept right (repo notes; the global `harness-design`
+planned layout first. The master stays the only wiring source; nothing in a document is edited back into it.
+File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`, next change = a new file `Rev B` (agents
+cannot rename; Dan deletes the old file). Current files: AB-engine https://app.harness.design/lDDj, EngineRoom-C
+https://app.harness.design/lD37 (both Rev A; Dan renames them). AB-cabin (two documents, 100-connection plan limit) is rebuilt
+after its placement pass as new files `ST185-AB-cabin 1 - bulkhead run Rev A` / `ST185-AB-cabin 2 - dash Rev A` (the old
+8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
-- Built from the master + the `route_trees` layout tree by a throwaway script (freeze: none is committed). New or
+- Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_engc.py`, `gen_cabin.py`; B2 exception). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
 - Layout: keep each device and junction at its Route 16 spot; bundles follow the route corners, lightly smoothed (slants

@@ -29,7 +29,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B5 ONE wire list.** `docs/harness/MASTER-wirelist.csv` holds every new wire, cut, reuse and tap with its EWD page; no
   row, no cut. Reuse an OEM wire only if its gauge fits and both ends are known. `sot/channels.csv` = ECU settings.
 - **B6 Built in harness.design.** Every harness is built in harness.design from the master (Dan 2026-11-01), one at a
-  time; our layout / schematic PDFs are retired. `build_drawings.py --check` keeps the layout tree, master lengths, the
+  time; our layout / schematic PDFs are retired. File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a change = a new
+  file at the next letter, Dan deletes the old; Dan 2026-11-02). `build_drawings.py --check` keeps the layout tree, master lengths, the
   Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is built and checked from the master.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
