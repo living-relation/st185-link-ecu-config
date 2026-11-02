@@ -134,9 +134,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 ### Shipping
 
-- **B28 Shipping a change.** Branch from `origin/main`; `check_all.py` and `check_parity.py` green; update touched
-  OPEN-ITEMS rows; PR with a `Rows:` line, squash-merged when both required checks pass. Never remove your own worktree.
-  Local `main` stays in sync with `origin/main` (Dan 2026-10-31): `git pull --ff-only` at session start and after every merge.
+- **B28 Shipping a change.** From `origin/main`; `check_all.py`, `check_parity.py` green; touched rows updated; PR with `Rows:`;
+  pr-closeout, then squash-merge when Repo checks pass. Never merge `main` into a conflicting PR: tell Dan on its own line. Never remove your own worktree.
+  `git pull --ff-only` at session start and after every merge, then session-start unless work stops (Dan 2026-10-31 / 11-01).
 - **B29 Tracker, generated files.** `docs/OPEN-ITEMS.md` is the one tracker (open rows, Needs Dan, history), kept
   short. The drawings and BOM are generated, never hand-edited.
 - **B30 Past decisions.** Old R1-R226, S1-S40 and audit rows resolve through the retire map below (full text in git
