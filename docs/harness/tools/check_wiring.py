@@ -4,7 +4,9 @@
 The wiring source of truth is ONE file, docs/harness/MASTER-wirelist.csv: one row per physical wire (or spare cavity), with
 its harness, both ends and the wire. sot/channels.csv holds the ECU channel settings only. This script checks them:
 
-  F1  the master is the only committed wiring CSV under docs/harness, with exactly the master columns
+  F1  the master is the only hand-edited wiring CSV under docs/harness, with exactly the master columns; the only other
+      wiring CSV allowed is a generated wire list docs/harness/wirelists/ST185-<harness>-wirelist.csv (Dan B2 a; written
+      and read back by build_drawings.py)
   F2  every connector end has an ID, a name, a housing PN, a pin, a pin source and a terminal PN (TBD allowed - listed);
       every splice / terminal / OEM end has an ID and a name; pins are numbers or letters (BUS2-1, 87a, IN3 ...), never a sign
   F3  nets = splices only: a wire has a net exactly when it lands on a splice or a bussed DT plug, and the net names it
@@ -161,6 +163,10 @@ def far_ends(g, start_rows):
     return out
 
 
+# the generated per-harness wire lists (build_drawings.py writes and --check reads them back; F1, Dan B2 a)
+WIRELIST_CSV = re.compile(r"docs/harness/wirelists/ST185-[A-Za-z0-9-]+-wirelist\.csv")
+
+
 def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=None, routes=True, io_table=True):
     bad, tbd, pend = [], collections.defaultdict(set), set()
     warn = []
@@ -179,8 +185,9 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
              [c for c in COLS if c not in head])
     if tracked is not None:
         for f in tracked:
-            if f.endswith(".csv") and os.path.basename(f) != "MASTER-wirelist.csv":
-                fail("F1", "%s: the only committed wiring CSV is the master (N60)" % f)
+            if f.endswith(".csv") and os.path.basename(f) != "MASTER-wirelist.csv" and not WIRELIST_CSV.fullmatch(f):
+                fail("F1", "%s: the only hand-edited wiring CSV is the master (N60); the one other kind is a generated "
+                     "docs/harness/wirelists/ST185-<harness>-wirelist.csv (Dan B2 a)" % f)
     if ch_head is not None and ch_head != CHANNEL_COLS:
         fail("F1", "sot/channels.csv columns are %s, want the ECU settings only: %s" % (ch_head, CHANNEL_COLS))
     # ---- F2 / F3 / F4
@@ -544,6 +551,12 @@ def self_test():
         from_pin="5"))
     mutate("12 AWG in a size-16 cavity", "M2", lambda rs: first(rs, lambda r: r["to_id"] == "DRB102-CABIN" and r["to_pin"] == "21")
            .update(gauge_awg="12"))
+    for name, extra, want in (("a stray wiring CSV under docs/harness", "docs/harness/extra-wires.csv", True),
+                              ("a CSV in wirelists/ not named like a wire list", "docs/harness/wirelists/notes.csv", True),
+                              ("a generated wire list CSV (allowed)", "docs/harness/wirelists/ST185-Test-wirelist.csv", False)):
+        got, _, _ = check(rows, channels, head, ch_head, list(tracked or []) + [extra], plan, lib, routes=False, io_table=False)
+        new = [x for x in got if x not in base]
+        cases.append((name, any(x.startswith("F1") for x in new) == want))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))

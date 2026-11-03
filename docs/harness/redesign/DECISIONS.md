@@ -13,14 +13,14 @@ At most 30 rules: adding one means merging or removing one (R226). Newest ruling
 Surgical rewire (Dan 2026-10-20): forward of the firewall every wire is new; keep the OEM cabin / body wiring (B1, B5, B7, B9, B11).
 A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 drives `k_acc` (pin 8 to coil 85); the Link only sends the ACT kill (Aux 4); pin 2 hard-grounded; Ign 8 is tacho to pin 18; no clutch-on to the Link. Lock sensor (Dan 2026-10-26): same tacho through 4.7 kΩ to A15 pin 9 (OPEN-ITEMS History 2026-10-21 N61). Sensor common: keep cabin splice `SP-AC-SG` (replaces E10). The A/C pressure switch is the factory trinary switch, wired to the factory A/C amp; factory yellow-red is that switch output (A5 pin 4 through joiner E10 to A18 pin 13), not the sensor ground; sensor common is yellow (1990 ST185 EWD p.150 / p.152; 1992 EWD132U p.219). Clutch (Dan 2026-10-26): one ECU clutch input only — cruise clutch switch C17 to CSB3 pin 20 (VDI6) for flat-shift; clutch start switch C11 completes the starter circuit in hardware and is not an ECU input. Oil warning LED on CSB3 L4 (cavity 26, 0x643 byte 3). Brake fluid level switch is a factory safety item, not needed, not connected.
 
-### Scope and freeze
+### Scope and records
 
 - **B1 Scope.** Forward of the firewall every wire is new, on a named route (B9); keep the OEM cabin / body wiring.
   New wire also for fuel pump, dash feed, CAN, alarm and taps. Goals G1-G4; rows for blockers.
 - **B2 Record at once** (Dan 2026-11-02, G1 b; replaces the freeze, which ended 2026-11-02, Dan B10 a). A rule or design decision
   Dan makes is written into this file (or the README it belongs in) and merged in the same session, never left only in memory or a handoff.
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
-  Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo (CAD work in progress may sit in `_scratch`).
+  Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo, except CAD models (B26).
 - **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers, and never ask Dan to test or
   measure at the car (it is apart; Dan 2026-11-02): look it up (EWD, FSM, maker docs) or work it out. Real questions: OPEN-ITEMS "Needs Dan", lettered, one recommended.
 
@@ -31,31 +31,11 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B6 Built in harness.design.** Every harness is built in harness.design from the master (Dan 2026-11-01), one at a
   time; our layout / schematic PDFs are retired. File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a physical change = a new
   file at the next letter, Dan deletes the old; a view-only change keeps the file and letter; Dan 2026-11-02). Layout view = formboard (README). `build_drawings.py --check` keeps the layout tree, master lengths, the
-  Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is built and checked from the master.
+  Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is rebuilt from the master and checked (row 175).
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   one DRB102 (Dan B5 a, 2026-11-02; replaces the on-hand smaller-bulkhead option), cavities per Rule 3 below.
-- **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Harness ownership (Dan 2026-11-01): one harness file is one physical harness; each plug belongs to the harness that physically carries it and every wire landing on that plug is in that harness (`passes_through` names any other bundle it rides in); fuse / relay boxes, buses, studs and factory taps are hubs that several harnesses land on. A cable listed in a harness it cannot physically ride in (size, route, cavity limits) is flagged to Dan; the pin chart's first page lists every device by harness.
-  Locked device list (Dan B1 = a, 2026-11-02): "Harness ownership (B8 list)" below is the target owner of every device;
-  the master is brought to it (OPEN-ITEMS row 183 phase 2) and a device changes harness only with Dan's OK.
-  Placement editor rule (Dan 2026-11-01): every harness gets a placement-editor pass (Dan places each device and draws
-  its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes
-  that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive). Top
-  views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
-  Dan's saves are his (Dan 2026-11-02): no agent overwrites a saved placement, editor save or route without showing Dan
-  the change and getting his OK first; the old save is kept as a backup either way.
-  Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed
-  plugs are splices (no number, anywhere between ECU and bulkhead); a device outside the map's area is a hand-off point
-  where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
-  Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17
-  front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot
-  in one file (a moved one is marked REMOVED in the other). Lengths from a route map: map length x 5.3 mm per EWD point
-  (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until
-  measured at the car. AB-cabin (Dan 2026-11-02, A2-A4 = a): placed on the body manual under-body plan (DI-7), front right, driver up, in real mm
-  (8.49 mm per PDF point from the 2525 mm wheelbase), plus an optional drop in mm per device; EWD p.44 (faded) is a look-only tab, since a 3-D view gives no lengths.
-  The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the
-  layout file); a splice sits where its legs part. A connector part-way along a line or run breaks out at least 6 in
-  (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29). The engine bulkhead sits 8 in
-  (203 mm) above where the trunk meets the firewall (`root_drop_mm`; Dan 2026-10-29).
+- **B8 Routes and views.** A route (route file or saved placement) changes only from Dan's markup or placement; lengths
+  follow it, the formboard view does not (README). Detail: "Harness ownership (B8 list)" and "Placement and lengths" below.
 - **B9 Boundary.** Forward of the firewall every wire is new, on a named route; OEM wire stays only as 6 in pigtails at
   lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B1 / J/B3, R/B2 / R/B4. Removed: README. Pins: 1993 EWD.
 
@@ -68,21 +48,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   ECU +8V Out feeds the cam sensor and the gearbox speed sensor only; the VSS returns on Gnd Out, DI 8 pull-up off (Dan 2026-11-01).
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
-- **B12 Wire gauge (Dan 2026-10-30).** The device and its wire set the circuit. (1) Size the wire for the realistic
-  highest load (peaks count, but they are not full time). (2) If the device's own connector has no contact for that
-  size, drop to the next size its contacts take; that is the wire for the whole circuit. (3) Every other contact in
-  the circuit (bulkhead, ECU, relay, splice) must take that wire; check each one, end to end. (4) The fuse protects
-  that wire. (5) Last resort, only when there is no other way: split the circuit over two bulkhead pins and rejoin it.
-  A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits
-  both wires, else a hand solder splice under adhesive heat shrink.
-  Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into
-  per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A;
-  injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with
-  TE 5-965906-1 + seal 1-967067-1 at the ETB (on TE drawing C-967616 for the Bosch MQS housing 1-967616-1; Dan 2026-10-31), ETB 7.5 A; fuel pump 10 AWG feed and ground to
-  the pump's own short lead, FP fuse 40 A (N79); EPS 8 AWG + 50 A, solder splice onto the Toyota repair-wire lead 82998-12500 (8 mm2, so size-for-size; RM06H0E).
-  Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range
-  14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the
-  AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
+- **B12 Wire gauge (Dan 2026-10-30).** The device and its wire set the circuit: size for the realistic peak load, drop to what
+  the device's own contacts take; every contact end to end takes that wire and the fuse protects it. Steps and cases: "Gauge cases" below.
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
   forward of the firewall and on rear lamp / wheel-speed plugs. DR-25 on 2+ wire runs, System 25 boots at branches.
 - **B14 Shields and drains.** Shielded cable as listed under Shields below; a shield runs unbroken, floats at
@@ -127,20 +94,16 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B22 End labels, clean sheets.** Each wire end says where that end lands (device, connector, pin, signal; OEM end +
   EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`. Only asked-for parts.
   Every connector, splice, bus, relay and box has a plain name; any code follows in parentheses (Dan 2026-10-31; row 172).
-- **B23 Models drive drawings.** The CAD model is the master: a physical change goes in the model first, then the
-  drawing is regenerated, never hand-edited. Revs: Drawing rules below; gate `check_drawings_current.py`.
+- **B23 Models drive drawings.** The CAD model is the master: a physical change goes in the model first, then the drawing is regenerated, never hand-edited. Revs: Drawing rules below.
+  Gate `check_drawings_current.py` checks the register, rev letters, issued PDFs and tracked fingerprints; it skips the STEP model files (in Dan's models folder, B26; Dan G2 a).
 - **B24 Initials and revision marks.** DRAWN and every rev-log BY are a person, always `DG` (`.drawing-initials`), never
   an agent; no file = stop and ask. Full-letter revs from 2026-10-19 get rev triangles (Drawing rules below).
 - **B25 What a drawing shows.** As the Drawing rules below list: no hidden lines or mesh facets, tangent edges in
   trimetrics, makers' own models, balloons only on visible parts, shop-only NOTES. Gate `check_drawing_rules.py`.
-- **B26 CAD work.** CAD stays frozen unless Dan asks. Every model has a `cad/README.md` row and a trimetric PNG; heavy
-  files stay gitignored; bought parts are maker models in `cad/vendor/`; reuse Fusion documents (10 max).
-  CAD models do not live in the repo (Dan 2026-10-31, replaces M1): every model, working or finished, goes to Dan's models
-  folder (OneDrive `Desktop\models`, add-only revs, handbuilt-cad `publish-to-models`). Done 2026-11-01 (models moved; drawings / BOMs copied and kept
-  here for the checks; job list in `cad/README.md`). Dan rules: keep the latest model rev + 2 previous; every fabricated part and assembly has a
-  drawing with a BOM (also as an Excel copy, in sync); each part / body its own model file; OTS parts need a model only, a modified OTS part a drawing + model.
-- **B27 Fuse boxes follow the harnesses.** Harnesses are made as required; the boxes are configured to match (Dan
-  2026-10-26). Small, PA12 MJF, no printed threads, live parts >= 3 mm apart, copper to copper: `cad/fusebox/src/spec.py`.
+- **B26 CAD work.** CAD stays frozen unless Dan asks (model and drawing detail: Drawing rules below). Models live only in
+  Dan's models folder (OneDrive `Desktop\models`, `publish-to-models`): latest rev + 2 previous, bought parts as maker models there; drawings / BOMs are copied here for the checks.
+- **B27 Fuse boxes follow the harnesses.** Harnesses are made as required; the boxes are configured to match (Dan 2026-10-26; build rules: Drawing rules below).
+  Until the fuse-box revisit (row 107) the box CAD may lag the master; `sot/fuse-relay-map.csv` wins (e.g. EPSEN 5 A, BUS2-12 vacant).
 
 ### Shipping
 
@@ -197,18 +160,18 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R36 | B12 | |
 | R37 | B12 | |
 | R38 | B21 | |
-| R39 | dropped | the harness.design part library goes with `rebuild/` (R225) |
+| R39 | dropped | dropped - the old library went with `rebuild/`; the part library rules are in the README (B6) |
 | R40 | B4 | also B21 |
-| R41 | dropped | dropped - harness.design is gone (R225) |
+| R41 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R42 | B8 | |
-| R43 | dropped | dropped - harness.design is gone (R225) |
+| R43 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R44 | B22 | coverings: B13 |
 | R45 | B5 | also B6 |
 | R46 | B3 | |
 | R47 | B8 | |
 | R48 | B21 | |
 | R49 | B22 | |
-| R50 | dropped | dropped - harness.design is gone (R225) |
+| R50 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R51 | B16 | |
 | R52 | B18 | |
 | R53 | B9 | |
@@ -246,11 +209,11 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R85 | B30 | fuse box rev 6 parts: applied; the facts live in the file it changed |
 | R86 | - | removed before R226 (git history) |
 | R87 | B20 | its harness.design label part dropped (R225) |
-| R88 | dropped | no PDF export (R103), dropped - harness.design is gone (R225) |
+| R88 | dropped | no PDF export (R103), dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R89 | dropped | circuit tracer deferred; OPEN-ITEMS row 117 keeps it |
 | R90 | B30 | approval of the harness.design drawings superseded by R224 / R225 |
 | R91 | B11 | |
-| R92 | dropped | dropped - harness.design is gone (R225) |
+| R92 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R93 | B27 | |
 | R94 | B27 | |
 | R95 | B8 | |
@@ -261,20 +224,20 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R100 | B16 | cluster fix flashed = frozen baseline |
 | R101 | B27 | |
 | R102 | B1 | |
-| R103 | dropped | dropped - harness.design is gone (R225) |
+| R103 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R104 | - | removed before R226 (git history); replaced by R217 |
 | R105 | B30 | RealDash 200 kPa tile, ruleset: applied; the facts live in the file it changed |
 | R106 | B26 | |
 | R107 | B8 | |
 | R108 | - | removed before R226 (git history) |
 | R109 | B1 | |
-| R110 | dropped | dropped - harness.design is gone (R225) |
-| R111 | dropped | dropped - harness.design is gone (R225) |
+| R110 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
+| R111 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R112 | B26 | |
 | R113 | B4 | Dispatch detail: Dispatch below |
 | R114 | B29 | |
 | R115 | B4 | |
-| R116 | dropped | dropped - harness.design is gone (R225) |
+| R116 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | R117 | B9 | back-up switch plug: B30 |
 | R118 | B28 | |
 | R119 | B4 | also B29 |
@@ -381,7 +344,7 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | R220 | B7 | |
 | R221 | B5 | |
 | R222 | B4 | |
-| R223 | B30 | gearbox VSS on switched 12 V, DI 8 pull-up ON: applied; the facts live in the file it changed; Link check open in OPEN-ITEMS row 169 |
+| R223 | B10 | reversed 2026-11-01: VSS on ECU +8 V, Gnd Out, DI 8 pull-up off (B10) |
 | R224 | dropped | the freeze ended 2026-11-02 (Dan B10 a, G1 b); the ONE drawing set retired 2026-11-01 (B6: harness.design) |
 | R225 | B6 | amended by Dan 2026-10-20 (harness.design only a consumer); reversed 2026-11-01: harnesses are built in harness.design, our drawing PDFs retired |
 | R226 | - | this page (the B1-B30 header) |
@@ -415,7 +378,7 @@ Every old rule ID and where it went. "dropped" = no longer binding, with the rea
 | S28 | A/C | A/C - D16 2026-10-25 (button and evap to the Link removed) |
 | S29 | B30 | applied; the facts live in the file it changed |
 | S30 | B30 | VRC IN / OUT labels: applied; the facts live in the file it changed |
-| S31 | dropped | dropped - harness.design is gone (R225) |
+| S31 | dropped | dropped - written for the deleted `rebuild/` files (R225); harness.design is back under B6 with its own README rules |
 | S32 | B30 | machined enclosures: applied; the facts live in the file it changed |
 | S33 | B30 | applied; the facts live in the file it changed |
 | S34 | B15 |  |
@@ -443,7 +406,11 @@ docs/harness/MASTER-wirelist.csv   the ONE wiring SoT (R221)
       +-- sot/channels.csv             ECU channel settings; check_wiring.py compares live pins both ways
       +-- docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md   device pin, pin name, shield flag per device
       +-- XTREMEX-IO-TABLE.html        visual face of channels.csv (generated pin map)
-      +-- docs/harness/drawings/       generated drawing sets
+      +-- docs/harness/drawings/       generated pin chart (build_pin_chart.py) and DRB102 map (build_drawings.py)
+      +-- docs/harness/wirelists/      generated per-harness wire lists, xlsx + CSV (build_drawings.py --check reads them back)
+      +-- harness.design files         ST185-<harness> Rev X, built from the master by gen_*.py (B6); never a source
+      +-- sot/fuse-relay-map.csv       box seat -> circuit; wins over the parked fuse-box CAD (row 107)
+      +-- docs/harness/routes/ + placement editors   device spots and lengths (B8)
       +-- docs/sourcing/PROJECT-BOM.*  generated shopping list
 ```
 
@@ -457,14 +424,16 @@ A wire on an ECU pin is also checked against the Link G4X Quick Start Guide and 
 | `sot/channels.csv` | ECU channel settings; pins checked against the master |
 | `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` | Device pin, pin name, shield flag per device |
 | `XTREMEX-IO-TABLE.html` | Visual face of `channels.csv` |
-| `docs/harness/drawings/` | Generated drawing sets (re-run `build_drawings.py`) |
-| `docs/harness/routes/` | Dan's approved routes; a drawing's path follows its route |
-| `cad/fusebox/` | Fuse-box design (slot map `rev7/wiring_plan.json`, R204) |
+| `docs/harness/drawings/` | Generated: pin chart (`build_pin_chart.py`) and DRB102 map (`build_drawings.py`) |
+| `docs/harness/wirelists/` | Generated per-harness wire lists (xlsx + CSV); `build_drawings.py --check` reads them back |
+| harness.design files (`ST185-<harness> Rev X`) | Built from the master by `gen_*.py` (B6); never a source |
+| `sot/fuse-relay-map.csv` | Box seat -> circuit; wins over the parked fuse-box CAD (row 107) |
+| `docs/harness/routes/` + placement editors | Device spots and lengths (B8) |
 | `docs/sourcing/PROJECT-BOM.csv` | Generated — re-run `build_project_bom.py` |
 | This file | Binding rules B1-B30 and the procedure on this page |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned — check before speccing anything new |
 
-Generated files are never hand-edited. B9 applied: an OEM end on an engine-bay harness (`EngineRoom-C`, `AB-engine`, `HeavyDC`) is a new-wire run to the device's own plug, never a splice into a factory lead.
+Generated files are never hand-edited. B9 applied: forward of the firewall a device end is new wire to the device's own plug or its 6 in pigtail (B9); a bay harness's cabin end may splice into a kept factory lead (J/B No.1, IE1, IG2, R/B No.4).
 
 ## Rule 2 — CAN: any change on any device reconciles across all devices
 
@@ -560,10 +529,14 @@ node branches): `docs/harness/wirelists/option-a-examples.html`.
 6. A wire that leaves the file stops at the shared connector pin (the bulkhead); `Continues` names the other harness, its
    wire and where that wire goes, and any splice the wire shares with another harness.
 7. A shield drain left unconnected reads `NC, floats` (pin `NC`): cut back and sealed under heat-shrink.
-8. `build_drawings.py --check` reads each committed list back against the master (rules 1-4, 7, ends, gauge, colour). harness.design stores a splice as a wire end; the import converts Option A rows to splice ends, the build list stays
-   Option A.
+8. `build_drawings.py --check` reads each committed list (xlsx and its CSV) back against the master (rules 1-4, 7, ends,
+   gauge, colour). harness.design files are built from the master by `gen_*.py`, not from these lists; the lists are the
+   build / review copy. Removal rows are not wires and are left out (`is_removal`).
 
 ## Harness ownership (B8 list)
+
+Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8. Harness ownership (Dan 2026-11-01): one harness file is one physical harness; each plug belongs to the harness that physically carries it and every wire landing on that plug is in that harness (`passes_through` names any other bundle it rides in); fuse / relay boxes, buses, studs and factory taps are hubs that several harnesses land on. A cable listed in a harness it cannot physically ride in (size, route, cavity limits) is flagged to Dan; the pin chart's first page lists every device by harness.
+Locked device list (Dan B1 = a, 2026-11-02): this list is the target owner of every device; the master is brought to it (OPEN-ITEMS row 183 phase 2) and a device changes harness only with Dan's OK.
 
 Locked by Dan 2026-11-02 (B1 = a; OPEN-ITEMS row 183). This is the **target** owner of every device after Dan's
 2026-11-02 answers, not a copy of today's master: B7 = a (MR-S plugs B / C fully AB-engine, spare rows included), B8 = a
@@ -611,6 +584,36 @@ are splices (B8 editor devices) and sit in AB-cabin.
 | Starter S (`w_strl_c` / `w_strl_e`) | AB-cabin / AB-engine on Route 16 line 9 | `w_strl_e` AB-engine on its own short branch, DRB102 cavity 3 (Dan B20 a); `w_strl_c` stays AB-cabin (R/B No.4 to the cabin half of DRB102: one plug, one harness; Dan to confirm) | line 9 moves to HeavyDC's map (B6 = b) |
 | HeavyDC devices H1, H2, H4, 18 and line 9 | Route 16 | Route 1 (HeavyDC map), greyed in the AB-engine editor | B6 = b; also removes the row 179 loops |
 
+## Placement and lengths (B8)
+
+Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
+
+- Placement editor rule (Dan 2026-11-01): every harness gets a placement-editor pass (Dan places each device and draws its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive).
+- Top views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
+- Dan's saves are his (Dan 2026-11-02): no agent overwrites a saved placement, editor save or route without showing Dan the change and getting his OK first; the old save is kept as a backup either way.
+- Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed plugs are splices (no number, anywhere between ECU and bulkhead); a device outside the map's area is a hand-off point where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
+- Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17 front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot in one file (a moved one is marked REMOVED in the other).
+- Lengths from a route map: map length x 5.3 mm per EWD point (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until measured at the car.
+- AB-cabin (Dan 2026-11-02, A2-A4 = a): placed on the body manual under-body plan (DI-7), front right, driver up, in real mm (8.49 mm per PDF point from the 2525 mm wheelbase), plus an optional drop in mm per device; EWD p.44 (faded) is a look-only tab, since a 3-D view gives no lengths.
+- The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the layout file); a splice sits where its legs part.
+- A connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29).
+- The engine bulkhead sits 8 in (203 mm) above where the trunk meets the firewall (`root_drop_mm`; Dan 2026-10-29).
+
+## Gauge cases (B12)
+
+Moved here from rule B12 on 2026-11-02 (phase 3, O6); binding as part of B12.
+
+The device and its wire set the circuit.
+
+- (1) Size the wire for the realistic highest load (peaks count, but they are not full time).
+- (2) If the device's own connector has no contact for that size, drop to the next size its contacts take; that is the wire for the whole circuit.
+- (3) Every other contact in the circuit (bulkhead, ECU, relay, splice) must take that wire; check each one, end to end.
+- (4) The fuse protects that wire.
+- (5) Last resort, only when there is no other way: split the circuit over two bulkhead pins and rejoin it.
+- A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits both wires, else a hand solder splice under adhesive heat shrink.
+- Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A; injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with TE 5-965906-1 + seal 1-967067-1 at the ETB (on TE drawing C-967616 for the Bosch MQS housing 1-967616-1; Dan 2026-10-31), ETB 7.5 A; fuel pump 10 AWG feed and ground to the pump's own short lead, FP fuse 40 A (N79); EPS 8 AWG + 50 A, solder splice onto the Toyota repair-wire lead 82998-12500 (8 mm2, so size-for-size; RM06H0E).
+- Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
+
 ## Drawing rules
 
 Shop-drawing rules. Rev letters live in `cad/DRAWING-REVS.md`. Gates: `cad/check_drawings_current.py` (R183, R196) and `cad/check_drawing_rules.py` (R184–R196 and the R200 initials check K4).
@@ -629,7 +632,7 @@ Shop-drawing rules. Rev letters live in `cad/DRAWING-REVS.md`. Gates: `cad/check
 | Every model says what made it (`MADE-WITH.md` + register column). | R149 |
 | Every fabricated assembly has its model and an assembly drawing, reissued with its parts. | R182 (B23) |
 | No notes about things that are not in the model: no edge-break notes (also out of the tolerance block), nothing "not modelled". Replaces R138's drawing note. | R191 |
-| Bought parts come from the real maker STEP (`cad/vendor/`), never an envelope model; no note says "envelope". | R184 |
+| Bought parts come from the real maker STEP (the models folder, B26), never an envelope model; no note says "envelope". | R184 |
 | No pin / socket gender notes: gender belongs to the connector shell installed. | R185 |
 | A balloon only where its part is clearly visible, its leader on that part; hidden parts are ballooned in an exploded or alternate view. | R186 |
 | Tangent edges show in every trimetric view. | R187 |
@@ -645,3 +648,5 @@ Shop-drawing rules. Rev letters live in `cad/DRAWING-REVS.md`. Gates: `cad/check
 | DRAWN (title block) = the initials on Rev A of that drawing, never changed. Rev-log BY = the initials of the person who requested that change, never an agent or tool name. Always DG for this project. One per-computer file `%USERPROFILE%\.drawing-initials` (env `DRAWING_INITIALS`); missing = a person is asked once, an agent stops. | R200 (Dan N41 = B, 2026-10-19) |
 | .01 clerical revs never appear in the REVISIONS table (full letters only; .01 is tracked in git); the title-block REV still shows e.g. D.01. | R200 (Dan via Dispatch 2026-10-19) |
 | Every full-letter rev made from 2026-10-19 on puts its letter in a triangle next to each changed item (and the BOM row of a changed part number); old triangles stay on later revs (N42 = B). Declared in `spec['rev_marks']` or `<pn>.REVMARKS.json` beside the rev log; gate K5; revs before that date exempt (`cad/rev-marks.json`). | R200 (Dan N42 = B) |
+| Every model has a `cad/README.md` row and a trimetric PNG; reuse Fusion documents (10 max). Every fabricated part and assembly has a drawing with a BOM (also as an Excel copy, in sync); each part / body its own model file; OTS parts need a model only, a modified OTS part a drawing + model. | B26 (moved out of the rule 2026-11-02) |
+| Fuse boxes: small, PA12 MJF, no printed threads, live parts >= 3 mm apart, copper to copper (`cad/fusebox/src/spec.py`). | B27 (moved out of the rule 2026-11-02) |

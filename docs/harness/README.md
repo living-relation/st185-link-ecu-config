@@ -10,8 +10,8 @@ that B9 points to).
 | `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
 | `sot/fuse-relay-map.csv` | B1 / B2 / B3 / B4 seat to circuit (not a wire list) | Yes, when a seat changes |
 | `drawings/` | generated: the pin chart `ST185-pin-chart.pdf` (the one pinout, a bench printout) and the DRB102 insert-face map `DRB102-bulkhead-map.png`. No layout / schematic PDFs: harnesses are built in harness.design (Dan 2026-11-01) | No - re-run the generator |
-| `wirelists/` | generated: one From / To wire list per harness (`ST185-<harness>-wirelist.xlsx`: Wires, Connectors, Splices, Spare Cavities, Key), in the Option A splice-column format (DECISIONS "Wire lists"; examples `option-a-examples.html`); so far AB-cabin and AB-engine (`"wirelists"` in the layout file) | No - re-run the generator |
-| `tools/build_drawings.py` | makes no drawings (Dan 2026-11-01): the layout tree, wire routing and master lengths, the wire lists and the DRB102 map; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
+| `wirelists/` | generated: one From / To wire list per harness, `ST185-<harness>-wirelist.xlsx` (Wires, Connectors, Splices, Spare Cavities, Key) and `ST185-<harness>-wirelist.csv` (the Wires sheet; the only wiring CSV besides the master, F1), in the Option A splice-column format (DECISIONS "Wire lists"; examples `option-a-examples.html`); so far AB-cabin and AB-engine (`"wirelists"` in the layout file) | No - re-run the generator |
+| `tools/build_drawings.py` | makes no drawings (Dan 2026-11-01): the layout tree, wire routing and master lengths, the wire lists (xlsx + CSV, removal rows skipped) and the DRB102 map; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) | The layout file, yes |
 | `tools/build_pin_chart.py` | builds `drawings/ST185-pin-chart.pdf` from the master; connector faces in `tools/pin_chart/` (sourced layouts; a connector without one is a numbered list, flagged) | The face files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `tools/gen_cabin.py` | builds the two harness.design AB-cabin documents (doc 1 bulkhead run, doc 2 dash) from the master; `python gen_cabin.py <repo> <out> <1\|2>`, needs `<out>/lib.json` (part library 5LO8 dump). Needs updating for the 8 wires moved into AB-cabin (#465) at the next AB-cabin rebuild | Never by hand-editing its output |
@@ -28,9 +28,12 @@ that B9 points to).
 1. Edit the rows in `MASTER-wirelist.csv` (pins exactly as the maker numbers them; a part number not confirmed by a maker
    document is `TBD`, never guessed).
 2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell).
-3. `python docs/harness/tools/build_drawings.py` (wire lists, DRB102 map, length check), and
+3. `python docs/harness/tools/build_drawings.py` (wire lists as xlsx + CSV, DRB102 map, length check; `--check` reads the
+   lists back), `python docs/harness/tools/build_pin_chart.py` for the pin chart, and
    `python docs/sourcing/build_project_bom.py` for the shopping list.
 4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
+5. Ship it per `AGENTS.md` "Working rules" and DECISIONS B28 (PR with a `Rows:` line, then pr-closeout). Part numbers
+   are picked per `docs/sourcing/README.md` (B21).
 
 A removal row (a factory wire taken out of the car, back to its last live point; B5 "no row, no cut") is written as: `oem_method` starting "remove" ("remove whole: ..." or "remove back to <splice, plug or box>"), `wire_pn` `none (removed)`, gauge, colour and length blank. `check_wiring.py` audits it like any row; `build_drawings.py`, the BOM, the pin chart and the harness.design generators skip it (`build_drawings.is_removal`).
 
@@ -108,7 +111,7 @@ Routes 1 and 8-14 are the old route pages; no tool reads them since #456, and ea
 placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today.
 
 Each is built in harness.design (one at a time); the layout tree for all of them is `tools/ST185-harness.layout.json`;
-pinout: `drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness (no RearLights harness, #399). AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
+pinout: `drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness (no RearLights harness, #399). AB-cabin's route is its placement-editor layout (row 180): it runs from the bulkhead to the centre of
 the dash near the floor, where every other harness to the ECU joins it; it is drawn left to right, and where each other
 harness's branch joins is set in the layout tree. Part makers and descriptions
 (AWG ranges) the BOM and the check read: `docs/sourcing/harness-parts.csv`. Fuse and relay seats: `sot/fuse-relay-map.csv`.

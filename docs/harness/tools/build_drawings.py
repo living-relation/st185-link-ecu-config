@@ -8,7 +8,9 @@ used to write are retired (git history keeps them). What it still does, for the 
                   approved route data (Routes 16 / 17; B8): every wire end is placed, every wire is routed, and the
                   master `est_length_mm` must equal its tree length. harness.design generators import `Harness` /
                   `route()` from here for the same tree.
-  2. WIRE LISTS   the per-harness wire lists in docs/harness/wirelists/ (Option A, DECISIONS "Wire lists"), read back.
+  2. WIRE LISTS   the per-harness wire lists in docs/harness/wirelists/ (Option A, DECISIONS "Wire lists"): an .xlsx and
+                  a .csv (the Wires sheet, master ids and names) per harness, removal rows skipped (`is_removal`); both
+                  are read back by --check. The CSV is the only wiring CSV besides the master (check_wiring F1, Dan B2 a).
   3. DRB102 MAP   docs/harness/drawings/DRB102-bulkhead-map.png (insert face, from the master); build_pin_chart.py reads
                   DRB_COLS / DRB_SIZE.
   Also: `od()` / `dr25_for()` give the DR-25 size per segment for docs/sourcing/build_project_bom.py.
@@ -258,6 +260,12 @@ def check(h):
                        % (os.path.basename(wirelist_path(name)), want_wl, have or "none", h))
         else:
             bad += wirelist_readback(name)
+        tag = os.path.basename(wirelist_csv_path(name))
+        have_csv, csv_rows = read_wirelist_csv(name)
+        if have_csv != wirelist_csv_text(wirelist_rows(H, name)[1]):
+            bad.append("%s is %s: run build_drawings.py %s" % (tag, "stale" if have_csv else "missing", h))
+        else:
+            bad += wirelist_readback(name, csv_rows, tag)
     for p in glob.glob(os.path.join(DRAWINGS, "%s-*.pdf" % h)):
         bad.append("%s: drawing PDFs are retired (Dan 2026-11-01; harnesses are built in harness.design): delete it"
                    % os.path.basename(p))
@@ -289,6 +297,41 @@ def wirelist_harnesses(H):
 
 def wirelist_path(name):
     return os.path.join(WIRELISTS, "ST185-%s-wirelist.xlsx" % name)
+
+
+def wirelist_csv_path(name):
+    return os.path.join(WIRELISTS, "ST185-%s-wirelist.csv" % name)
+
+
+def wirelist_csv_text(rows):
+    """The Wires sheet as CSV: the same columns, master ids and names, LF line ends (F1 allows only this generated CSV
+    besides the master; Dan B2 a). Removal rows never reach it (master_rows skips them)."""
+    buf = io.StringIO()
+    w = csv.DictWriter(buf, [c for c, _w in WL_COLS], lineterminator="\n", extrasaction="ignore")
+    w.writeheader()
+    for d in rows:
+        w.writerow({k: ("" if v is None else v) for k, v in d.items()})
+    return buf.getvalue()
+
+
+def read_wirelist_csv(name):
+    """(text with LF line ends, rows) of the committed CSV, or (None, None)."""
+    path = wirelist_csv_path(name)
+    if not os.path.exists(path):
+        return None, None
+    with open(path, encoding="utf-8", newline="") as f:
+        text = f.read().replace("\r\n", "\n")
+    return text, list(csv.DictReader(io.StringIO(text)))
+
+
+def write_wirelist_csv(H, name):
+    text = wirelist_csv_text(wirelist_rows(H, name)[1])
+    if read_wirelist_csv(name)[0] == text:
+        return None
+    os.makedirs(WIRELISTS, exist_ok=True)
+    with open(wirelist_csv_path(name), "w", encoding="utf-8", newline="") as f:
+        f.write(text)
+    return wirelist_csv_path(name)
 
 
 def wirelist_digest(H, name):
@@ -507,21 +550,23 @@ def wirelist_ends(H, name, wires):
     return conns, sps, spares
 
 
-def wirelist_readback(name):
+def wirelist_readback(name, rows=None, tag=None):
     """Read a committed wire list back against the master (Option A, DECISIONS "Wire lists"): every wire once, both
-    device ends with their pins, gauge and colour; From / To never a splice and never blank; one trunk per splice."""
-    from openpyxl import load_workbook
+    device ends with their pins, gauge and colour; From / To never a splice and never blank; one trunk per splice.
+    `rows` / `tag`: read back the CSV copy instead of the xlsx Wires sheet."""
     path = wirelist_path(name)
-    ws = load_workbook(path, read_only=True)["Wires"]
-    it = ws.iter_rows(values_only=True)
-    head = list(next(it))
-    rows = [dict(zip(head, ["" if v is None else str(v) for v in r])) for r in it]
+    if rows is None:
+        from openpyxl import load_workbook
+        ws = load_workbook(path, read_only=True)["Wires"]
+        it = ws.iter_rows(values_only=True)
+        head = list(next(it))
+        rows = [dict(zip(head, ["" if v is None else str(v) for v in r])) for r in it]
     allrows = [r for r in master_rows() if r["wire_id"]]
     splices = {r[s + "_id"] for r in allrows for s in ("from", "to") if r[s + "_type"] == "splice"}
     want = {r["wire_id"]: r for r in allrows
             if r["harness"] == name or name in [x.strip() for x in r["passes_through"].split("/")]}
     bad, seen, trunks = [], collections.Counter(), collections.Counter()
-    tag = os.path.basename(path)
+    tag = tag or os.path.basename(path)
     for d in rows:
         w = d.get("Wire", "")
         seen[w] += 1
@@ -912,9 +957,9 @@ def build(h):
             print("PROBLEM", p)
         raise SystemExit("not written: %d problem(s)" % len(H.problems))
     for name in wirelist_harnesses(H):
-        wl = write_wirelist(H, name)
-        if wl:
-            print("wrote", os.path.relpath(wl, REPO))
+        for wl in (write_wirelist(H, name), write_wirelist_csv(H, name)):
+            if wl:
+                print("wrote", os.path.relpath(wl, REPO))
 
 
 # ------------------------------------------------------------------------------------------------ DRB102 insert-face map

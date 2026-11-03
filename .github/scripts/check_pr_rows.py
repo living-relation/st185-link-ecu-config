@@ -3,7 +3,7 @@
     PR_BODY="..." python .github/scripts/check_pr_rows.py     exit 0 = line present
 
 The line says which docs/OPEN-ITEMS.md rows the change touched, so the tracker is
-updated by the session that did the work (st185-ship-change "docs updated" step).
+updated by the session that did the work (AGENTS.md "Working rules" and DECISIONS B28, then pr-closeout).
 """
 import os
 import re

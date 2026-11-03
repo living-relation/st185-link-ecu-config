@@ -26,7 +26,7 @@ already owns HDP20, HD30, Deutsch DT, SuperSeal and AMP MCP hardware.
 
 Step 3 of the selection order: use these when TE Connectivity falls short or has too few
 options. Fuse boxes, power distribution blocks, OEM and aftermarket connectors, wire, supplies.
-Rule: `docs/harness/redesign/DECISIONS.md` R38.
+Rule: `docs/harness/redesign/DECISIONS.md` B21 (was R38).
 
 - ProWire USA: fuse blocks https://www.prowireusa.com/fuse-blocks | clearance https://www.prowireusa.com/clearance-items | junction blocks https://www.prowireusa.com/c-210-junction-blocks.html | connectors https://www.prowireusa.com/c-2-wire-connectors.html | relays https://www.prowireusa.com/c-13-relays.html | aircraft/automotive wire https://www.prowireusa.com/c-15-aircraft-automotive-wire.html | circuit breakers https://www.prowireusa.com/c-7-circuit-breakers.html | heat shrink boots https://www.prowireusa.com/c-10-heat-shrink-boots.html | terminals https://www.prowireusa.com/c-11-terminal-connectors.html | fuses https://www.prowireusa.com/automotive-fuses.html | fire sleeve https://www.prowireusa.com/high-heat-fire-sleeve.html | heat shrink tubing https://www.prowireusa.com/c-9-heat-shrink-tubing.html
 - Find Pigtails (OEM pigtails): https://findpigtails.com/
