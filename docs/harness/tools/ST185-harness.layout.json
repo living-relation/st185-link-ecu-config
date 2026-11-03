@@ -704,7 +704,9 @@
    "line_from": {
     "RH": "10",
     "L9": "RH",
-    "FEB": "FBG"
+    "FEB": "L9b",
+    "SBG": "FEB",
+    "SMA": "F24"
    },
    "devices": {
     "1": "HL_RH",
@@ -847,7 +849,6 @@
   "HORN-LH": "HORNS",
   "HORN-RH": "HORNS",
   "T-ENG-BLOCK-2": "BLOCK_C",
-  "T-ENG-BLOCK-3": "BLOCK_C",
   "SP-RTR-R3-4": "RTR_RH",
   "SP-RTR-GND-R3": "RTR_RH",
   "SP-RTR-R2-4": "RTR_LH",

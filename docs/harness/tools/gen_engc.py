@@ -155,7 +155,7 @@ LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN',
 # front devices by side of the car, driver (LH) side up: a ground stud sits with the side its wires go to (EB LH, EA RH)
 RIGHT = [['H1-1', 'H1-2', 'H1-3', 'R2-1', 'R2-2', 'R2-3', 'R2-4', 'R2-5', 'F7-1', 'F7-2', 'F7-3', 'F5-1', 'F5-2', 'GND-EB', 'GND-EB-2'],
          ['F9-1', 'F9-2', 'F9-3', 'F9-4', 'HORN-LH', 'HORN-RH', 'FAN-RAD', 'FAN-RAD-GND', 'FAN-COND', 'FAN-COND-GND', 'A4-4', 'A5-1', 'A5-4',
-          'ALT-PLUG', 'MRS-A', 'MRS-B', 'MRS-C', 'T-ENG-BLOCK-2', 'T-ENG-BLOCK-3'],
+          'ALT-PLUG', 'MRS-A', 'MRS-B', 'MRS-C', 'T-ENG-BLOCK-2'],
          ['GND-EA', 'H2-1', 'H2-2', 'H2-3', 'R3-1', 'R3-2', 'R3-3', 'R3-4', 'R3-5', 'F8-1', 'F8-2', 'F8-3', 'F6-1', 'F6-2', 'W1-1', 'W1-2']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
