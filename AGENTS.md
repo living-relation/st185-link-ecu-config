@@ -9,7 +9,6 @@ Memory (workstation #32, global to every project): project progress lives in the
 
 > **Current work:** `docs/OPEN-ITEMS.md` "Current state" (row 164).
 
-> **Freeze:** DECISIONS B2 (what it blocks, its exceptions, what is left). Cleanup is allowed.
 
 ## Before any wiring or CAN change
 1. **Wiring:** ONE source of truth, `docs/harness/MASTER-wirelist.csv`. `sot/channels.csv` is ECU settings only; `XTREMEX-IO-TABLE.html` is its visual face. Drawings and the BOM are generated from the master; no script writes the master. A change is done only when every wiring surface agrees (DECISIONS Rule 1).

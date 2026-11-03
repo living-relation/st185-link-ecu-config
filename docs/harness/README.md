@@ -45,7 +45,7 @@ change (layout, schematic tidy, labels, colours) edits the same file and keeps i
 after its placement pass as new files `ST185-AB-cabin 1 - bulkhead run Rev A` / `ST185-AB-cabin 2 - dash Rev A` (the old
 8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
-- Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_engc.py`, `gen_cabin.py`; B2 exception). New or
+- Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_engc.py`, `gen_cabin.py`). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
 - Layout view = a FORMBOARD (Dan 2026-11-02; replaces the 2026-10-29 "Route 16 spots, smoothed" rule): the harness
