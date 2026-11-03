@@ -62,6 +62,10 @@ def run(d, mid=None, step=30):
     res={}
     for s in segs:   # straights first
         if s['P'][1]==s['Q'][1] and R.route(s['P'],s['Q'],s['ends'],[],s['net'])==[]: res[s['k']]=[]
+    for s in segs:   # a cable that sits right beside its far ends (a bulkhead cable): its short hops get the lanes next to it
+        if s['k'] in res or s['k'][0]!='c' or not s['left'] or s['Q'][0]-s['P'][0]>300: continue
+        r_=R.route(s['P'],s['Q'],s['ends'],[x for x in LANES if s['P'][0]<x<s['Q'][0]][::-1],s['net'])
+        if r_ is not None: res[s['k']]=r_
     # bundle by the left node: order lanes per left node to cut crossings
     byleft=collections.defaultdict(list)
     for s in segs:
