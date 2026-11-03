@@ -1,132 +1,119 @@
-"""harness.design copy of ST185-AB-cabin (viewer only; the master is the source).
-Usage: python gen_cabin.py <repo> <out_dir> <doc 1|2>   (1 = AB-cabin 1, bulkhead run; 2 = AB-cabin 2, dash)
-Needs <out>/lib.json = a dump of the harness.design part library 5LO8 (get_part_library). Writes <out>/abcab<doc>.json
-(whole document), abcab<doc>_lib_ops.json (library add ops), abcab<doc>_routes.json and abcab<doc>_expect.json
-(expected routed length per wire id = sum of the bundle lengths on its layout path)."""
-import sys, os, json, re, collections, math
+"""harness.design copy of ST185-AB-cabin = the ECU harness, cabin half, in two documents (100-connection plan limit):
+"ST185-AB-cabin 1 - bulkhead run Rev A" (every AB-cabin conductor with an end on the bulkhead DRB102-CABIN) and
+"ST185-AB-cabin 2 - dash Rev A" (the rest). Viewer only; the master is the source.
+Usage: python gen_cabin.py <repo> <out_dir> <1|2>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library).
+Writes <out>/abcab<doc>.json (whole document, wires not yet routed), abcab<doc>_lib_ops.json (part-library add ops) and
+abcab<doc>_expect.json (routed length per wire id); then route it: python genroute.py <out>/abcab<doc>.json <out>/abcab<doc>_final.json.
+Same rules and helpers' shape as gen_abeng.py (README "harness.design"): connectors and terminals 240 wide, each pin its own master
+end text, display stripes on +12 V wires, parts from library 5LO8 (new ones from harness-parts.csv), shielded cables drawn as
+cables, connectors and splices shared by both documents drawn whole in each (cavities wired in the other one N/C with a note),
+formboard layout, compact schematic (bulkhead / far ends left, cables beside them, splices middle, ECU side right). Lengths: the
+ST185-harness.layout.json tree (AB-cabin's placement-editor layout plus the glove-box breakout GB_T, DECISIONS B8), checked here
+against the master est_length_mm. gen_abeng.py runs on import, so its helpers are not imported."""
+import sys, os, json, re, collections, math, csv, copy
 REPO, OUT, DOC = sys.argv[1], sys.argv[2], int(sys.argv[3])
+assert DOC in (1, 2), 'doc is 1 (bulkhead run) or 2 (dash)'
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
+import genroute
 H = B.Harness('ST185-harness')
-NAME = 'AB-cabin'
-ALL = H.rows                                   # every master row (with _conn / _conn_name)
+NAME, REV, DATE = 'AB-cabin', 'A', '2026-11-03'
+TITLES = {1: 'ST185-AB-cabin 1 - bulkhead run', 2: 'ST185-AB-cabin 2 - dash'}
+TITLE, OTHER = TITLES[DOC], TITLES[3 - DOC] + ' Rev ' + REV
+BHN = 'DRB102-CABIN'
+def doc_of(r): return 1 if BHN in (r['from_id'], r['to_id']) else 2
+def spare_doc(c): return 1 if c == BHN else 2      # a spare cavity is listed in the document of its plug's main run
+ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W_ALL = [r for r in ROWS if r['wire_id']]
-def doc_of(r): return 1 if 'DRB102-CABIN' in (r['from_id'], r['to_id']) else 2
-TITLES = {1: 'ST185-AB-cabin 1 - bulkhead run', 2: 'ST185-AB-cabin 2 - dash'}
-OTHER = TITLES[3 - DOC]
 W = [r for r in W_ALL if doc_of(r) == DOC]
-def spare_doc(c): return 1 if c == 'DRB102-CABIN' else 2
-SPARE = [r for r in ROWS if not r['wire_id']]
-PARTS_CSV = {}
-import csv
-for p in csv.DictReader(open(os.path.join(REPO, 'docs/sourcing/harness-parts.csv'), encoding='utf-8')):
-    PARTS_CSV[p['part_number']] = p
-LIB = json.load(open(os.path.join(OUT, 'lib.json')))['parts']   # dump of get_part_library 5LO8
-def lib_by_pn(kind, pn):
-    return next((p for p in LIB[kind] if p.get('partNumber') == pn), None)
+SPARE_ALL = [r for r in ROWS if not r['wire_id']]
+PASS = [r for r in ALL if r['harness'] != NAME and NAME in (r.get('passes_through') or '')]
+PARTS_CSV = {p['part_number']: p for p in csv.DictReader(open(os.path.join(REPO, 'docs/sourcing/harness-parts.csv'), encoding='utf-8'))}
+LIB = json.load(open(os.path.join(OUT, 'lib.json')))['parts']
+for k in ('lockParts', 'contactParts', 'connectorParts', 'cableParts', 'wireParts', 'spliceParts', 'cavityPlugParts', 'resistorParts',
+          'diodeParts', 'terminalParts'): LIB.setdefault(k, [])
 def sid(s): return re.sub(r'[^A-Za-z0-9]', '_', s)
 COLORS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White", "Pink", "Tan", "Maroon", "Shield"}
 def col(c): return c if c in COLORS else "Gray"
+# display stripes on +12 V wires, one per circuit (README "Display stripes"; tracing only, the master stays plain red). Cable
+# cores keep their cable part's colours, so only loose red wires are striped. Same colour per circuit as gen_abeng.py where the
+# circuit crosses the bulkhead (INJ, COP, SW12, LAM, STR, REV, EPSEN).
+STRIPE = {'INJ': ('Blue', 'injector feed'), 'COP': ('White', 'coil feed'), 'SW12': ('Green', 'switched +12 V (ECU A5, SW12 bus, fuel pump relay coil)'),
+          'LAM': ('Violet', 'CAN-Lambda feed'), 'STR': ('Orange', 'starter S'), 'REV': ('Pink', 'reverse switch feed'),
+          'EPSEN': ('Gray', 'steering pump enable'), 'ACC': ('Yellow', 'A/C clutch relay coil feed'), 'ETB': ('Brown', 'throttle motor feed'),
+          'ALTIG': ('Black', 'alternator IG through the kill switch')}
+
+# ------------------------------------------------------------------ the tree: ST185-harness.layout.json (DECISIONS B8)
+STUB = H.layout.get('end_allowance_mm', 100)
+def troute(r):
+    p, mm = H.route(r)
+    assert p is not None, (r['wire_id'], H.problems[-1:])
+    return p, mm
 
 # ------------------------------------------------------------------ parts (library wins; new = from harness-parts.csv)
-doc_parts = collections.defaultdict(dict)      # kind -> id -> part
-lib_add = []                                   # edit_part_library add ops
+doc_parts, lib_add, missing = collections.defaultdict(dict), [], set()
+ACC = {'LockPart': 'lockParts', 'ContactPart': 'contactParts', 'CavityPlugPart': 'cavityPlugParts', 'MountPart': 'mountParts',
+       'CavitySealPart': 'cavitySealParts', 'BootPart': 'bootParts', 'CoveringPart': 'coveringParts'}
 def use_lib(kind, part):
     doc_parts[kind][part['id']] = json.loads(json.dumps(part))
     for cfg in part.get('configurations', []):
         for a in cfg.get('accessories', []):
-            k = {'LockPart': 'lockParts', 'ContactPart': 'contactParts', 'CavityPlugPart': 'cavityPlugParts', 'MountPart': 'mountParts',
-                 'CavitySealPart': 'cavitySealParts', 'BootPart': 'bootParts', 'CoveringPart': 'coveringParts'}[a['type']]
-            ap = next(p for p in LIB[k] if p['id'] == a['partId']) if any(p['id'] == a['partId'] for p in LIB[k]) else doc_parts[k].get(a['partId'])
-            doc_parts[k][ap['id']] = json.loads(json.dumps(ap))
+            ap = next((p for p in LIB[ACC[a['type']]] if p['id'] == a['partId']), None)
+            assert ap, (part['id'], a)
+            doc_parts[ACC[a['type']]][ap['id']] = json.loads(json.dumps(ap))
     return part['id']
-def new_part(kind, part):
-    assert part['partNumber'] in PARTS_CSV, part['partNumber']
-    c = PARTS_CSV[part['partNumber']]
-    part.setdefault('manufacturer', c['manufacturer']); part.setdefault('description', c['description'])
-    LIB[kind].append(part); lib_add.append({"op": "add", "collection": kind, "value": part})
-    return use_lib(kind, part)
-def part_id(kind, pn, maker=None):
-    """library part id for this part number (adding it from harness-parts.csv when missing); None for TBD / unknown."""
-    if not pn or pn.upper().startswith('TBD') or pn in ('factory (OEM)',):
-        return None
-    if kind == 'resistorParts' and pn == '1k 1/4W': pn = '1.0k 1/4W'   # Dan 2026-11-01: the library's 1.0k part
-    p = lib_by_pn(kind, pn)
+# parts not yet in library 5LO8: the shape here, maker and description from harness-parts.csv (README "Parts"); an
+# accessory names the part number it points at and gets the library's own id
+NEW = {}
+ALIAS = {('resistorParts', '1k 1/4W'): '1.0k 1/4W'}     # Dan 2026-11-01: the library's 1.0k part
+def lib_pn(kind, pn): return next((p for p in LIB[kind] if p.get('partNumber') == pn), None)
+def part_id(kind, pn):
+    """library part id for this part number (a NEW part is added from harness-parts.csv); None for TBD / kit / unknown."""
+    if not pn or pn.upper().startswith('TBD') or pn.startswith(('factory', 'in kit', 'pigtail', 'solder splice onto')): return None
+    pn = ALIAS.get((kind, pn), pn)
+    p = lib_pn(kind, pn)
     if p: return use_lib(kind, p)
-    if pn not in PARTS_CSV: return None
-    return maker(pn) if maker else None
+    if pn not in NEW or pn not in PARTS_CSV: missing.add((kind, pn)); return None
+    k, shape = NEW[pn]; assert k == kind, (pn, k, kind)
+    c = PARTS_CSV[pn]
+    p = {x: v for x, v in shape.items() if x != '_acc'}
+    p.update(partNumber=pn, manufacturer=c['manufacturer'], description=c['description'])
+    if shape.get('_acc'):
+        acc = []
+        for i, (ty, apn) in enumerate(shape['_acc']):
+            aid = part_id(ACC[ty], apn); assert aid, apn
+            acc.append({"id": "%s_cfg%d" % (p['id'], i + 1), "type": ty, "partId": aid})
+        p['configurations'] = [{"id": p['id'] + "_cfg", "accessories": acc}]
+    LIB[kind].append(p); lib_add.append({"op": "add", "collection": kind, "value": p})
+    return use_lib(kind, p)
 
-def mk_wire(pn):
-    m = re.match(r'J1128-TXL-(\d+)-([A-Z]+)$', pn)
-    g, c = int(m.group(1)), m.group(2).title()
-    return new_part('wireParts', {"id": "j1128_%d_%s" % (g, c.lower()), "color": c, "gauge": {"unit": "AWG", "value": g}, "partNumber": pn})
-def mk_contact(pn):
-    c = PARTS_CSV[pn]['description']
-    if pn == '280919-2':
-        return new_part('contactParts', {"id": "ct_280919_2", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
-                                         "minGauge": {"unit": "AWG", "value": 20}, "maxGauge": {"unit": "AWG", "value": 15}, "partNumber": pn})
-    if pn == '1-968849-1':
-        return new_part('contactParts', {"id": "ct_1_968849_1", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
-                                         "minGauge": {"unit": "AWG", "value": 20}, "maxGauge": {"unit": "AWG", "value": 18}, "partNumber": pn})
-    if pn == '1-968851-1':
-        return new_part('contactParts', {"id": "ct_1_968851_1", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
-                                         "minGauge": {"unit": "AWG", "value": 16}, "maxGauge": {"unit": "AWG", "value": 14}, "partNumber": pn})
-    raise SystemExit('no maker for contact ' + pn)
-def mk_res(pn):
-    m = re.match(r'([\d.]+)(k|R)\s', pn)
-    v = float(m.group(1)); u = 'kohm' if m.group(2) == 'k' else 'ohm'
-    return new_part('resistorParts', {"id": "rp_" + sid(pn).lower(), "partNumber": pn, "resistance": v, "resistanceUnit": u,
-                                      "power": 0.25, "powerUnit": "W"})
-def mk_diode(pn):
-    return new_part('diodeParts', {"id": "dp_1n5822", "partNumber": pn, "voltage": 40, "voltageUnit": "V", "current": 3, "currentUnit": "A"})
-def mk_cable(pn):
-    assert pn == '55A1811-20-9-9CS2275'
-    return new_part('cableParts', {"id": "cp_55a1811_20_9", "color": "White", "shielded": True, "partNumber": pn,
-                                   "cores": [{"id": "c55a1811_1", "color": "White", "gauge": {"unit": "AWG", "value": 20}}]})
-def mk_conn(pn):
-    assert pn == 'DT06-08SA'
-    lock = lib_by_pn('lockParts', 'W8S') or None
-    if not lock:
-        new_part('lockParts', {"id": "lp_w8s", "partNumber": "W8S"}); lock = lib_by_pn('lockParts', 'W8S')
-    return new_part('connectorParts', {"id": "cp_dt06_08sa", "gender": "Female", "hasShell": False, "numberOfCavities": 8, "partNumber": pn,
-                                       "configurations": [{"id": "cp_dt06_08sa_cfg", "accessories": [
-                                           {"id": "cp_dt06_08sa_cfg1", "type": "LockPart", "partId": lock['id']},
-                                           {"id": "cp_dt06_08sa_cfg2", "type": "ContactPart", "partId": lib_by_pn('contactParts', '0462-201-16141')['id']},
-                                           {"id": "cp_dt06_08sa_cfg3", "type": "CavityPlugPart", "partId": lib_by_pn('cavityPlugParts', '114017')['id']}]}]})
-
-# ------------------------------------------------------------------ connectors (drawn whole; other-harness cavities N/C + note)
+# ------------------------------------------------------------------ connectors (drawn whole; other-document / harness cavities N/C)
 def pkey(p):
     m = re.match(r'(\d+)$', p)
     return (0, int(m.group(1)), '') if m else (1, 0, p)
 RELAY_ORDER = ['30', '85', '86', '87', '87a']
-conn_ids = []
-for r in W:
-    for s in ('from', 'to'):
-        if r[s + '_type'] == 'connector' and r[s + '_id'] not in conn_ids:
-            conn_ids.append(r[s + '_id'])
-use = collections.defaultdict(dict)            # conn -> pin -> list of (harness, wire_id, row, side)
-housing = {}
+def pin_order(p, c='K-'): return (RELAY_ORDER.index(p) if c.startswith('K-') and p in RELAY_ORDER else 99, pkey(p))   # relays 30 85 86 87 87a
+conn_ids = list(dict.fromkeys(r[s + '_id'] for r in W for s in ('from', 'to') if r[s + '_type'] == 'connector'))
+use, housing = collections.defaultdict(dict), {}
 for r in ALL:
     for s in ('from', 'to'):
         c = r[s + '_id']
         if r[s + '_type'] == 'connector' and c in conn_ids:
             use[c].setdefault(r[s + '_pin'], []).append((r['harness'], r['wire_id'], r, s))
             if r[s + '_housing_pn'] and r[s + '_housing_pn'] != 'TBD': housing.setdefault(c, r[s + '_housing_pn'])
-conns = collections.OrderedDict(); other_owned = collections.defaultdict(list)
+conns, other_owned = collections.OrderedDict(), collections.defaultdict(list)
 for c in conn_ids:
-    hp = housing.get(c)
-    cpid = part_id('connectorParts', hp, mk_conn) if hp else None
+    cpid = part_id('connectorParts', housing.get(c))
     cpart = doc_parts['connectorParts'].get(cpid) if cpid else None
-    pins = sorted(use[c], key=lambda p: (RELAY_ORDER.index(p) if p in RELAY_ORDER else 99, pkey(p)))
+    pins = sorted(use[c], key=lambda p: pin_order(p, c))
     if cpart and cpart.get('numberOfCavities') and all(re.match(r'\d+$', p) and 1 <= int(p) <= cpart['numberOfCavities'] for p in pins):
         pins = [str(i) for i in range(1, cpart['numberOfCavities'] + 1)]
     if cpart: assert len(pins) == cpart['numberOfCavities'], (c, pins, cpart['numberOfCavities'])
     cfg_contact = cfg_plug = None
-    if cpart:
-        for a in (cpart.get('configurations') or [{}])[0].get('accessories', []):
-            if a['type'] == 'ContactPart' and not a.get('rule') and not cfg_contact: cfg_contact = a['partId']
-            if a['type'] == 'CavityPlugPart' and not a.get('rule') and not cfg_plug: cfg_plug = a['partId']
+    for a in ((cpart or {}).get('configurations') or [{}])[0].get('accessories', []):
+        if a['type'] == 'ContactPart' and not a.get('rule') and not cfg_contact: cfg_contact = a['partId']
+        if a['type'] == 'CavityPlugPart' and not a.get('rule') and not cfg_plug: cfg_plug = a['partId']
     cavs = []
     for p in pins:
         cv = {"id": "%s.%s" % (sid(c), sid(p)), "designation": p}
@@ -135,587 +122,508 @@ for c in conn_ids:
         theirs_w = [u for u in here if u[1] and doc_of(u[2]) != DOC]
         if mine_w:
             r, s = mine_w[0][2], mine_w[0][3]
-            ct = part_id('contactParts', r[s + '_terminal_pn'], mk_contact)
+            ct = part_id('contactParts', r[s + '_terminal_pn'])
             if ct and ct != cfg_contact: cv['contactPartId'] = ct
         else:
             cv['notConnected'] = True
             if theirs_w:
                 other_owned[c].append((p, OTHER)); cv['cavityPlugPartId'] = None
             elif here and spare_doc(c) != DOC:
-                other_owned[c].append((p, OTHER + ' (spare, its plug)')); cv['cavityPlugPartId'] = None
-            elif here:     # an AB-cabin spare: its sealing plug from the master
+                other_owned[c].append((p, OTHER + ' (an AB-cabin spare, listed there)')); cv['cavityPlugPartId'] = None
+            elif here:      # an AB-cabin spare: its sealing plug from the master (TBD -> none)
                 pl = part_id('cavityPlugParts', here[0][2][here[0][3] + '_terminal_pn'])
                 if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
             else:
                 owners = sorted({u[0] for u in use[c].get(p, [])})
-                if owners:
-                    other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
+                if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
         cavs.append(cv)
-    conns[c] = {"id": "c_" + sid(c), "label": c, "cavities": cavs}
+    conns[c] = {"id": "c_" + sid(c), "label": c, "cavities": cavs, "width": 240}
     if cpid: conns[c]['partId'] = cpid
 cav_of = {(c, cv['designation']): cv['id'] for c, n in conns.items() for cv in n['cavities']}
 
-# ------------------------------------------------------------------ other ends
+# ------------------------------------------------------------------ other ends, wires, cables
 terms, splices, resistors, diodes = (collections.OrderedDict() for _ in range(4))
-SPL = part_id('spliceParts', 'GENERIC SOLDER SPLICE')
-inline_side = collections.defaultdict(dict)    # inline id -> pin -> handle (decided after schematic placement)
+SPLP = {'solder splice': 'GENERIC SOLDER SPLICE', 'crimp splice': 'GENERIC CRIMP SPLICE 14-10'}
+spl_pn = collections.defaultdict(set)
+DEVNAME = {}      # a factory lead names its device, the master's name before "<id> pin" (README "Pin text", Dan 2026-11-03)
+for r in W_ALL:
+    for s in ('from', 'to'):
+        if r[s + '_type'] == 'OEM':
+            m = re.match(r'(.+?) %s pin ' % re.escape(r[s + '_id']), r[s + '_name'])
+            if m and not m.group(1).startswith('OEM'): DEVNAME.setdefault(r[s + '_id'], m.group(1))
+def tkey(r, s): return r[s + '_id'] + ('-' + r[s + '_pin'] if r[s + '_type'] == 'OEM' else '')
+def tlabel(r, s):
+    i, p = r[s + '_id'], r[s + '_pin']
+    if r[s + '_type'] == 'terminal': return i
+    if i in DEVNAME: return '%s (%s) pin %s (factory lead)' % (DEVNAME[i], i, p)
+    return '%s pin %s (factory lead)' % (i, p)
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
     if t == 'splice':
-        splices.setdefault(i, {"id": "s_" + sid(i), "label": i, "partId": SPL}); return {"id": "s_" + sid(i), "handle": "Splice"}
+        tp = r[s + '_terminal_pn']; spl_pn[i].add(SPLP.get(tp, tp))
+        splices.setdefault(i, {"id": "s_" + sid(i), "label": i})
+        return {"id": "s_" + sid(i), "handle": "Splice"}
     if t in ('terminal', 'OEM'):
-        k = i + ('-' + p if t == 'OEM' else '')
-        nm = r[s + '_name'].lower()
-        ty = 'Ring' if ('ring' in nm or 'stud' in nm) else 'Loose'
-        terms.setdefault(k, {"id": "t_" + sid(k), "label": k if t == 'terminal' else '%s pin %s (factory lead)' % (i, p), "type": ty})
+        k, nm = tkey(r, s), r[s + '_name'].lower()
+        ty = 'Ring' if ('ring' in nm or 'stud' in nm or 'bolt' in nm or ' bar' in nm) else 'Loose'
+        terms.setdefault(k, {"id": "t_" + sid(k), "label": tlabel(r, s), "type": ty, "width": 240})
         return {"id": "t_" + sid(k), "handle": "Terminal"}
-    if t == 'resistor':
-        resistors.setdefault(i, {"id": "r_" + sid(i), "label": i, "partId": part_id('resistorParts', r[s + '_housing_pn'], mk_res)})
-        return {"id": "r_" + sid(i), "handle": "PIN" + p}
-    if t == 'diode':
-        diodes.setdefault(i, {"id": "d_" + sid(i), "label": i, "partId": part_id('diodeParts', r[s + '_housing_pn'], mk_diode)})
-        return {"id": "d_" + sid(i), "handle": "PIN" + p}
-    return None   # cable screen: floats
-wires, cables = [], collections.OrderedDict()
-wire_row = {}
+    if t in ('resistor', 'diode'):
+        reg, kind, pre = (resistors, 'resistorParts', 'r_') if t == 'resistor' else (diodes, 'diodeParts', 'd_')
+        if i not in reg:
+            reg[i] = {"id": pre + sid(i), "label": i}
+            pid = part_id(kind, r[s + '_housing_pn'])
+            if pid: reg[i]['partId'] = pid
+        return {"id": pre + sid(i), "handle": "PIN" + p}      # PIN1 / PIN2 -> Left / Right once placed
+    if t == 'cable screen': return None      # the screen floats at that end
+    raise SystemExit('end type %r (%s): add it to gen_cabin.py' % (t, r['wire_id']))
+wires, cables, row_of = [], collections.OrderedDict(), {}
 for r in W:
     a, b = end(r, 'from'), end(r, 'to')
+    row_of[r['wire_id']] = r
     if r['cable']:
-        cpid = part_id('cableParts', r['cable_pn'], mk_cable)
-        cab = cables.setdefault(r['cable'], {"id": "cab_" + sid(r['cable']), "label": r['cable'], "partId": cpid, "cores": []})
+        cab = cables.setdefault(r['cable'], {"id": "cab_" + sid(r['cable']), "label": r['cable'], "cores": []})
+        cp = part_id('cableParts', r['cable_pn'])
+        if cp: assert cab.get('partId', cp) == cp, r['cable']; cab['partId'] = cp
+        co = {"id": "co_" + sid(r['wire_id']), "color": col(r['colour'])}
+        for k, e in (('source', a), ('target', b)):
+            if e: co[k] = e
         if r['colour'] == 'Shield':
-            sh = {"id": "sh_" + sid(r['wire_id']), "color": "Shield"}
-            ends = [e for e in (a, b) if e]
-            sh['source'] = ends[0]
-            if len(ends) > 1: sh['target'] = ends[1]
-            cab['shield'] = sh
-        else:
-            cab['cores'].append({"id": "co_" + sid(r['wire_id']), "color": col(r['colour']), "source": a, "target": b})
-        wire_row[r['wire_id']] = r
+            if 'source' not in co: co['source'] = co.pop('target')      # a screen with one end: that end is its source
+            assert 'shield' not in cab, r['cable']; cab['shield'] = co
+        else: assert a and b, r['wire_id']; cab['cores'].append(co)
         continue
     w = {"id": "w_" + sid(r['wire_id']), "source": a, "target": b, "color": col(r['colour']), "identLabel": r['wire_id']}
-    wp = part_id('wireParts', r['wire_pn'], mk_wire)
+    wp = part_id('wireParts', r['wire_pn'])
     if wp: w['partId'] = wp
-    wires.append(w); wire_row[r['wire_id']] = r
-for c in cables.values():   # core order = the cable part's core order (matched by colour)
-    cp = doc_parts['cableParts'][c['partId']]
-    order = [k['color'] for k in cp['cores']]
+    if r['colour'] == 'Red': w['stripeColor'] = STRIPE[r['circuit_id']][0]   # a new +12 V circuit needs a STRIPE entry
+    wires.append(w)
+for i, pns in spl_pn.items():
+    assert len(pns) == 1, (i, pns)
+    pid = part_id('spliceParts', pns.pop())
+    if pid: splices[i]['partId'] = pid
+for c in cables.values():   # core order = the cable part's core order (matched by colour); a core with no cabin job (cut back
+    order = [k['color'] for k in doc_parts['cableParts'][c['partId']]['cores']]     # and sealed at both ends) still sits in the cable
     have = [co['color'] for co in c['cores']]
-    for colr in order:      # a core with no cabin job (cut back and sealed) still sits in the cable
-        if colr not in have: c['cores'].append({"id": "co_%s_nc_%s" % (sid(c['label']), colr.lower()), "color": colr})
+    assert all(have.count(x) <= order.count(x) for x in have), (c['label'], order, have)
+    for x in order:
+        if x not in have: c['cores'].append({"id": "co_%s_nc_%s" % (sid(c['label']), x.lower()), "color": x})
     c['cores'].sort(key=lambda co: order.index(co['color']))
-    assert [co['color'] for co in c['cores']] == order, (c['label'], order)
-
-# ------------------------------------------------------------------ signals: one origin per net
-par = {}
-def f(x):
-    par.setdefault(x, x)
-    while par[x] != x: par[x] = par[par[x]]; x = par[x]
-    return x
-def un(a, b): par[f(a)] = f(b)
-def key(e): return (e['id'], e['handle']) if e['handle'] != 'Splice' else (e['id'],)
-conds = [(w, wire_row[w['identLabel']]) for w in wires] + [(co, wire_row[co['id'][3:]] if co['id'][3:] in wire_row else None) for c in cables.values() for co in [q for q in c['cores'] if 'source' in q]]
-desc = {}
-for w in wires:
-    r = wire_row[w['identLabel']]
-    for s, e in (('from', w['source']), ('to', w['target'])):
-        if e: desc.setdefault(key(e), r[s + '_desc'])
-    un(key(w['source']), key(w['target']))
-for c in cables.values():
-    for co in [q for q in c['cores'] if 'source' in q]:
-        un(key(co['source']), key(co['target']))
-for r in W:
-    if r['cable'] and r['colour'] != 'Shield':
-        for s in ('from', 'to'):
-            e = end(r, s)
-            if e: desc.setdefault(key(e), r[s + '_desc'])
-nets = collections.defaultdict(list)
-for k in list(par): nets[f(k)].append(k)
-def rank(k):
-    i = k[0]
-    if i == 'c_DRB102_CABIN': return 0
-    if i.startswith('c_ECU'): return 2
-    if i.startswith('c_'): return 1
-    if i.startswith('t_'): return 3
-    return 9
+def cseq(c): return c['cores'] + ([c['shield']] if 'shield' in c else [])
+CONDS = wires + [co for c in cables.values() for co in cseq(c) if 'source' in co]
+NC_CORES = [co for c in cables.values() for co in cseq(c) if 'source' not in co]
+def lab(cond): return cond.get('identLabel') or cond['id'][3:]
+# pin text (Dan 2026-11-01): each end shows its own master end description (device pins say what the pin does; bulkhead, ECU
+# and splice ends name the device - the master's text); a stud lists every description that lands on it
 comp = {n['id']: n for n in list(conns.values()) + list(terms.values())}
-# Dan 2026-11-01: every pin shows its own end text from the master (device pins say only the pin's job)
-for k, sig in desc.items():
-    if rank(k) >= 9 or not sig: continue
-    n = comp.get(k[0])
-    if not n: continue
-    if k[0].startswith('t_'): n['signal'] = sig
-    else:
-        cv = next((cv for cv in n['cavities'] if cv['id'] == k[1]), None)
-        if cv is not None and not cv.get('notConnected'): cv['signal'] = sig
+tdesc = collections.defaultdict(list)
+for cond in CONDS:
+    r = row_of[lab(cond)]
+    for s in ('from', 'to'):
+        e = end(r, s)
+        if not e or e['id'] not in comp or not r[s + '_desc']: continue
+        if e['id'].startswith('t_'):
+            if r[s + '_desc'] not in tdesc[e['id']]: tdesc[e['id']].append(r[s + '_desc'])
+            continue
+        cv = next(cv for cv in comp[e['id']]['cavities'] if cv['id'] == e['handle'])
+        assert not cv.get('signal') or cv['signal'] == r[s + '_desc'], (cv['id'], cv.get('signal'), r[s + '_desc'])
+        cv['signal'] = r[s + '_desc']
+for i, ds in tdesc.items(): comp[i]['signal'] = '; '.join(ds)
 
-# ================================================================== schematic
-LEFT_GROUPS = [['DRB102-CABIN'],
-               ['LOGIC', 'BUS-SW12', 'K-ACC', 'K-EPS', 'K-EPS-EN', 'K-FAN', 'K-FAN2', 'POWER-NEG-BAR'],
-               ['K-FP'],
-               ['A18-2', 'A18-8', 'A18-9', 'A18-11', 'A18-13', 'A18-18', 'A32-6', 'A32-15', 'A5-4', 'A1-1', 'A1-2'],
-               ['IG2-4', 'IG2-13', 'JB1-1H-7'],
-               ['IX-WS-F-S', 'IX-WS-R-S', 'APS-PEDAL'],
-               ['OPTO-8', 'IX-FUEL-P']]
-RIGHT = ['ECU-A', 'ECU-B', 'BUS-5V', 'BUS-5V-2', 'BUS-GNDOUT-A', 'BUS-GNDOUT-B']
-def node_of(name): return conns.get(name) or terms.get(name)
-LEFT_GROUPS = [[n for n in g if node_of(n)] for g in LEFT_GROUPS]
-LEFT_GROUPS = [g for g in LEFT_GROUPS if g]
-RIGHT = [n for n in RIGHT if n in conns]
-placed_left = [n for g in LEFT_GROUPS for n in g]
-assert set(placed_left) | set(RIGHT) == set(conns) | set(terms), (set(conns) | set(terms)) ^ (set(placed_left) | set(RIGHT))
-NLP = 16
-CABX = 210 + 30 * NLP + 30
-SPX = CABX + 600
-DRL, DRR = SPX - 150, SPX + 150
-LP = list(range(210, CABX - 30, 30))
-CP = list(range(CABX + 90, DRL - 30, 30))
-DP = [SPX - 90, SPX - 60, SPX - 30]
-EP = [SPX + 60, SPX + 90, SPX + 120]
-MP = list(range(SPX + 390, SPX + 390 + 30 * 260, 30))
-KP = [SPX + 240, SPX + 270]
+# ================================================================== schematic: far ends left, cables, splices, ECU side right
+# README "harness.design" (Dan 2026-11-01 / 11-02 / 11-03 N1 a): bulkhead (doc 1) or the far ends (doc 2) left, the cabin halves
+# of the shielded runs as cables beside them, splices middle, the ECU plugs and ECU splice-point bus plugs right (doc 1: with
+# every other non-bulkhead end); each wire horizontal with one 90 degree jog in its own lane; columns level at the top, the right
+# column half a grid lower.
+def place_of(cid):
+    for r in W:
+        for s in ('from', 'to'):
+            if r[s + '_type'] in ('connector', 'terminal', 'OEM') and \
+                    ("c_" + sid(r[s + '_id']) if r[s + '_type'] == 'connector' else "t_" + sid(tkey(r, s))) == cid:
+                return H.place(r, s)
+NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
+def is_ecu_side(n): return n['id'].startswith('c_') and place_of(n['id']) in ('ECU', 'SP')     # ECU plugs + the ECU splice-point bus plugs
+if DOC == 1: LEFT_IDS = [conns[BHN]['id']]
+else:
+    # far ends grouped by where they sit in the car (glove box first, then the sill run, A/C, front, dash, pedal)
+    AREA = ['GB', 'RHKICK', 'BATT', 'FUEL', 'ACAMP', 'EVAP', 'AMB', 'ECU', 'CSB3', 'DASH', 'JB1', 'PEDAL']
+    LEFT_IDS = sorted([i for i, n in NODES.items() if not is_ecu_side(n)],
+                      key=lambda i: (AREA.index(place_of(i)) if place_of(i) in AREA else 99, i.startswith('t_'), NODES[i]['label']))
+DEV_IDS = {i for i in NODES if i not in LEFT_IDS}
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
-cab_dev = {}
-for c in cables.values():
-    cnt = collections.Counter(e['id'] for co in c['cores'] + ([c['shield']] if 'shield' in c else []) for e in (co.get('source'), co.get('target'))
-                              if e and e['id'] in [node_of(n)['id'] for n in placed_left])
-    cab_dev[c['id']] = cnt.most_common(1)[0][0]
-def cab_h(c): return 30 + 30 * len(c['cores']) + (30 if 'shield' in c else 0)
-y = 0; notes = []
-for gi, g in enumerate(LEFT_GROUPS):
-    if gi: y += 90
-    for nm in g:
-        n = node_of(nm)
-        n['schematicPosition'] = {"x": 0, "y": y}
-        bottom = y + h(n)
-        cy = y
-        for c in cables.values():
-            if cab_dev[c['id']] == n['id'] and n['id'] != 'c_DRB102_CABIN':
-                c['schematicPosition'] = {"x": CABX, "y": cy}; cy += cab_h(c) + 30
-        bottom = max(bottom, cy - 30)
-        y = bottom + (60 if 'cavities' in n else 30)
-LEFT_BOTTOM = y
-y = 15
-for nm in RIGHT:
-    n = conns[nm]; n['schematicPosition'] = {"x": 0, "y": y}; y += h(n) + 60
-# the CAN cable sits by the bulkhead on N/C rows 86-89 (its cores are DRB 79 / 80 / 81)
-CANCAB = cables.get('CAB-CANBH-BC')
-if CANCAB: CANCAB['schematicPosition'] = {"x": CABX, "y": 30 * 86}
-# Dan 2026-11-01 (row 171): the cabin halves of the shielded sensor runs are cables from the bulkhead to the ECU side;
-# each sits beside the bulkhead at its own pins' rows, stacked without overlap
-def _bh_rows(c):
-    rows = []
-    for co in [q for q in c['cores'] if 'source' in q] + ([c['shield']] if 'shield' in c else []):
-        for e in (co.get('source'), co.get('target')):
-            if e and e['id'] == 'c_DRB102_CABIN':
-                cv = conns['DRB102-CABIN']['cavities']; rows.append([x['id'] for x in cv].index(e['handle']))
-    return rows
-_bot = -10**9
-for c in sorted([c for c in cables.values() if 'schematicPosition' not in c and _bh_rows(c)], key=lambda c: min(_bh_rows(c))):
-    y0 = conns['DRB102-CABIN']['schematicPosition']['y'] + 30 * min(_bh_rows(c))
-    y0 = max(y0, _bot + 30); y0 -= y0 % 30
-    c['schematicPosition'] = {"x": CABX, "y": y0}; _bot = y0 + cab_h(c)
-NODES = {}
-for n in list(conns.values()) + list(terms.values()): NODES[n['id']] = n
-LEFT_IDS = {node_of(n)['id'] for n in placed_left}
-RIGHT_IDS = {conns[n]['id'] for n in RIGHT}
-# rows: left lattice rows (centre y = 30k + 15) that hold a wired left cavity or terminal
+def cab_h(c): return 30 + 30 * len(cseq(c))
+def tap_plug(i):      # factory leads of one plug (A18-8, A18-9, ...) stack touching, like the cavities of a connector
+    m = re.match(r't_(.*)_[^_]+$', i); return m.group(1) if m and NODES[i]['label'].endswith('(factory lead)') else i
+y, prev = 0, None
+for i in LEFT_IDS:
+    n = NODES[i]
+    if prev is not None:
+        y += h(NODES[prev]) + (0 if tap_plug(i) == tap_plug(prev) and 'cavities' not in n else
+                               (30 if place_of(i) == place_of(prev) else 60))
+    n['schematicPosition'] = {"x": 0, "y": y}; prev = i
+LEFT_BOTTOM = y + h(NODES[prev])
 def cav_y(n, handle):
     if 'cavities' not in n: return n['schematicPosition']['y'] + 15
-    i = [cv['id'] for cv in n['cavities']].index(handle)
-    return n['schematicPosition']['y'] + 30 * (i + 1) + 15
-all_conds = [w for w in wires] + [co for c in cables.values() for co in [q for q in c['cores'] if 'source' in q] + ([c['shield']] if 'shield' in c else [])]
-used_rows = set()
-deg = collections.Counter()
-for w in all_conds:
-    for e in (w.get('source'), w.get('target')):
-        if e and e['id'] in LEFT_IDS:
-            deg[(e['id'], e['handle'])] += 1
-            used_rows.add(cav_y(NODES[e['id']], e['handle']))
-for n in list(conns.values()) + list(terms.values()):
-    if n['id'] in LEFT_IDS and 'cavities' in n:   # a left connector's N/C rows hold nothing, header row neither
-        pass
-for c in cables.values():
-    p = c['schematicPosition']
-    for k in range(cab_h(c) // 30): used_rows.add(p['y'] + 30 * k + 15)
-# inline parts: rows and columns
-inl = list(splices.values()) + list(resistors.values()) + list(diodes.values())
-links = collections.defaultdict(list)            # inline id -> list of (conductor, its end key, other end)
-for w in all_conds:
-    a, b = w.get('source'), w.get('target')
-    for x, o in ((a, b), (b, a)):
-        if x and x['id'][:2] in ('s_', 'r_', 'd_'): links[x['id']].append((w, x, o))
-def left_row_of(e):
-    if e and e['id'] in LEFT_IDS: return cav_y(NODES[e['id']], e['handle'])
-    if e and e['id'] in [c['id'] for c in cables.values()]: return None
+    return n['schematicPosition']['y'] + 30 * ([cv['id'] for cv in n['cavities']].index(handle) + 1) + 15
+def ends(cond): return [e for e in (cond.get('source'), cond.get('target')) if e]
+cab_of = {co['id']: c for c in cables.values() for co in cseq(c)}
+used_rows = {cav_y(NODES[e['id']], e['handle']) for cond in CONDS for e in ends(cond) if e['id'] in LEFT_IDS}
+taken, cab_rows = collections.defaultdict(set), set()
+def core_row(c, co): return c['schematicPosition']['y'] + 30 * (cseq(c).index(co) + 1) + 15
+# every cable has an end on the left column (the bulkhead in doc 1, its far plug in doc 2): it sits beside the left column on the
+# nearest run of empty rows, so no left pin's wire runs into it, and its splices sit on its core rows
+# the hops from the left pins to the cables each take a lane of their own between the two columns
+CABLX = 240 + 30 * (3 + sum(1 for c in cables.values() for co in cseq(c) for e in ends(co) if e['id'] in LEFT_IDS))
+for c in sorted(cables.values(), key=lambda c: min(cav_y(NODES[e['id']], e['handle']) for co in cseq(c) for e in ends(co) if e['id'] in LEFT_IDS)):
+    lefts = [cav_y(NODES[e['id']], e['handle']) for co in cseq(c) for e in ends(co) if e['id'] in LEFT_IDS]
+    assert lefts, (c['label'], 'a cable with no end on the left column: add a placement rule')
+    want, k = min(lefts), cab_h(c) // 30
+    tops = [m for m in range(0, LEFT_BOTTOM + 30 * 60, 30) if not any(m + 30 * j + 15 in used_rows | cab_rows for j in range(k))]
+    top = min(tops, key=lambda m: (abs(m + 45 - want), m))
+    c['schematicPosition'] = {"x": CABLX, "y": top}
+    cab_rows |= {top + 30 * j + 15 for j in range(k)}
+N_CR = sum(1 for c in cables.values() for co in cseq(c) for e in ends(co) if e['id'] not in LEFT_IDS)
+PX = CABLX + 60 + 30 * max(4, N_CR // 2)       # a resistor / diode with one end on the left column (lanes for the cable cores first)
+SPX = PX + 150              # splices fed from the left column (or a cable core)
+STEP = 180                  # a part fed only by another inline part sits this far right of it
+INL = collections.OrderedDict((n['id'], n) for n in list(splices.values()) + list(resistors.values()) + list(diodes.values()))
+def two(i): return i[:2] in ('r_', 'd_')
+links = collections.defaultdict(list)
+for cond in CONDS:
+    es = ends(cond)
+    for x in es:
+        if x['id'] in INL: links[x['id']].append((cond, x, next((o for o in es if o is not x), None)))
+deg = collections.Counter((e['id'], e['handle']) for cond in CONDS for e in ends(cond) if e['id'] in LEFT_IDS)
+def left_row(cond, o):
+    """the row an inline part's feed comes in on: a left pin, or the core row of a cable"""
+    c = cab_of.get(cond['id'])
+    if c is not None: return core_row(c, cond)
+    if o and o['id'] in LEFT_IDS: return cav_y(NODES[o['id']], o['handle'])
     return None
-taken = set()
-def free_row(want):
-    cands = [y for y in range(15, max(LEFT_BOTTOM, 4000), 30) if y not in used_rows and y not in taken]
-    y = min(cands, key=lambda y: (abs(y - want), y)); taken.add(y); return y
-# cable core rows for cores whose cable end is right of the cable (row of that core in the cable)
-def core_row(c, co):
-    seq = c['cores'] + ([c['shield']] if 'shield' in c else [])
-    return c['schematicPosition']['y'] + 30 * (seq.index(co) + 1) + 15
-cab_of = {co['id']: c for c in cables.values() for co in c['cores'] + ([c['shield']] if 'shield' in c else [])}
-order = []
-INLN = {n['id']: n for n in inl}
-for n in inl:
-    want, straight = None, None
-    for w, x, o in links[n['id']]:
-        ly = left_row_of(o)
-        if w['id'] in cab_of:
-            cy = core_row(cab_of[w['id']], w)
-            if cy not in taken: straight = cy; break
-            continue
-        if ly is not None and deg[(o['id'], o['handle'])] == 1 and ly not in taken:
-            straight = ly; break
-        if ly is not None and want is None: want = ly
-    order.append((0 if straight is not None else 1, straight or want or 0, n))
-def right_y(o):
-    if o and o['id'] in RIGHT_IDS:
-        return cav_y(NODES[o['id']], o['handle'])
-    return None
+def free_row(want, x):
+    bad = used_rows | cab_rows | taken[x]
+    yy = min((v for v in range(15, max(LEFT_BOTTOM, 3000) + 3000, 30) if v not in bad), key=lambda v: (abs(v - want), v))
+    taken[x].add(yy); return yy
+_y = 15     # provisional right column (label order) so a part fed only from the right finds its rows; re-placed below
+for d in sorted(DEV_IDS, key=lambda d: NODES[d]['label']): NODES[d]['schematicPosition'] = {"x": 10 ** 6, "y": _y}; _y += h(NODES[d]) + 30
 pending = []
-for pri, yy, n in sorted(order, key=lambda t: (t[0], t[1])):
-    if pri == 0: taken.add(yy); n['_row'] = yy
-    else: pending.append((yy, n))
-for it in range(6):          # place the rest near what they hang on: a left row, a placed splice, else a right row
+for n in INL.values():      # an inline part fed by one left pin (or a cable core) sits on that row: a straight wire
+    x = PX if two(n['id']) else SPX
+    st = next((left_row(cond, o) for cond, e, o in links[n['id']] if left_row(cond, o) is not None
+               and (cab_of.get(cond['id']) or deg[(o['id'], o['handle'])] == 1) and left_row(cond, o) not in taken[x]), None)
+    if st is not None: taken[x].add(st); n['_row'] = st; n['_x'] = x
+    else: pending.append(n)
+for it in range(8):
     left = []
-    for yy, n in pending:
-        ys = [INLN[o['id']]['_row'] for w, x, o in links[n['id']] if o and o['id'] in INLN and '_row' in INLN[o['id']]]
-        lys = [left_row_of(o) for w, x, o in links[n['id']] if left_row_of(o) is not None]
-        rys = [right_y(o) for w, x, o in links[n['id']] if right_y(o) is not None]
-        if lys: n['_row'] = free_row(min(lys))
-        elif ys: n['_row'] = free_row(sum(ys) // len(ys))
-        elif rys and it >= 2: n['_row'] = free_row(min(rys))
-        elif it == 5: n['_row'] = free_row(0)
-        else: left.append((yy, n))
+    for n in pending:
+        lys = [left_row(cond, o) for cond, e, o in links[n['id']] if left_row(cond, o) is not None]
+        sps = [INL[o['id']] for cond, e, o in links[n['id']] if o and o['id'] in INL and '_row' in INL[o['id']]]
+        rys = [cav_y(NODES[o['id']], o['handle']) for cond, e, o in links[n['id']] if o and o['id'] in DEV_IDS]
+        if lys:
+            x = PX if two(n['id']) else SPX; n['_row'] = free_row(min(lys), x); n['_x'] = x
+        elif sps:
+            x = max(s['_x'] for s in sps) + STEP; want = sps[0]['_row']
+            # a part on its feeding splice's row would block that splice's other wires to the right: it takes the next row
+            if two(n['id']) and any(o and o['id'] not in LEFT_IDS and o['id'] != n['id'] for cond, e, o in links[sps[0]['id']]):
+                taken[x].add(want)
+            if want in taken[x] or want in used_rows | cab_rows: want = free_row(want, x)
+            else: taken[x].add(want)
+            n['_row'], n['_x'] = want, x
+        elif rys and it >= 2: n['_row'] = free_row(sum(rys) / len(rys), SPX); n['_x'] = SPX
+        elif it == 7: n['_row'] = free_row(0, SPX); n['_x'] = SPX
+        else: left.append(n)
     pending = left
-# column per inline part
-for n in splices.values(): n['schematicPosition'] = {"x": SPX, "y": n['_row'] - 15}
-sp = splices.get('SP-CAM')
-if sp and 'r_R_CAM_PULLUP' in [r['id'] for r in resistors.values()]: sp['schematicPosition']['x'] = SPX + 300   # the pull-up sits between SP-8V and SP-CAM
+assert not pending, [n['label'] for n in pending]
 def other_x(o):
     if o is None: return None
     if o['id'] in LEFT_IDS: return 0
-    if o['id'] in RIGHT_IDS: return 99999
-    if o['id'].startswith('s_'): return NODES_ALL[o['id']]['schematicPosition']['x']
-    return None
-NODES_ALL = dict(NODES); NODES_ALL.update({s['id']: s for s in splices.values()})
-for n in list(resistors.values()) + list(diodes.values()):
-    ends = [(x['handle'], o) for w, x, o in links[n['id']]]
-    xs = {hd: other_x(o) for hd, o in ends}
-    leftish = any(v == 0 for v in xs.values())
-    n['schematicPosition'] = {"x": DRL if leftish else DRR, "y": n['_row'] - 15}
-    if n['id'] == 'r_R_CAM_PULLUP': n['schematicPosition']['x'] = SPX + 150
-    # handle: the end further left goes on Left (a diode keeps anode = pin 1 on the side it lands; anodeOnRight if flipped)
-    srt = sorted(ends, key=lambda t: (xs[t[0]] if xs[t[0]] is not None else 50000))
-    hmap = {}
-    if len(srt) == 1:
-        hmap[srt[0][0]] = 'Right' if (xs[srt[0][0]] or 0) > n['schematicPosition']['x'] else 'Left'
+    if o['id'] in DEV_IDS: return 10 ** 6
+    n = INL[o['id']]; return n['_x'] if '_x' in n else n['schematicPosition']['x']
+# a resistor / diode between two splices that sit left of it: the splice on its far side moves right of it, on its row
+for n in [n for n in INL.values() if two(n['id'])]:
+    sp = [o for cond, e, o in links[n['id']] if o and o['id'] in INL and INL[o['id']]['_x'] <= n['_x']]
+    if len(sp) == 2:
+        far = INL[sp[1]['id']]
+        if not [1 for cond, e, o in links[far['id']] if o and o['id'] in INL and o['id'] != n['id']]:
+            taken[far['_x']].discard(far['_row']); far['_x'] = n['_x'] + STEP + 30
+            far['_row'] = n['_row'] if n['_row'] not in taken[far['_x']] else free_row(n['_row'], far['_x'])
+            taken[far['_x']].add(far['_row'])
+for n in INL.values(): n['schematicPosition'] = {"x": n.pop('_x'), "y": n.pop('_row') - 15}
+for n in INL.values():
+    if not two(n['id']): continue
+    # handles: the end whose far side lies further left goes on Left; a diode keeps anode = pin 1 (anodeOnRight when flipped)
+    es = [(e, other_x(o)) for cond, e, o in links[n['id']]]
+    xs = {e['handle']: (v if v is not None else 0) for e, v in es}
+    if len(xs) == 1:
+        hd = next(iter(xs)); hmap = {hd: 'Right' if xs[hd] > n['schematicPosition']['x'] else 'Left'}
     else:
-        hmap[srt[0][0]] = 'Left'; hmap[srt[1][0]] = 'Right'
-    if n['id'] == 'r_R_CAM_PULLUP': hmap = {'PIN1': 'Left', 'PIN2': 'Right'}
-    if n['id'].startswith('d_'):
-        if hmap.get('PIN1') == 'Right': n['anodeOnRight'] = True
-    for w, x, o in links[n['id']]: x['handle'] = hmap[x['handle']]
-for n in inl: n.pop('_row', None)
-for c in cables.values():
-    if c is not CANCAB: pass
-# ---- end points: (x, y, facing)
-INL = {n['id']: n for n in inl}
-CAB = {c['id']: c for c in cables.values()}
-def endpt(e, toward_x):
-    n = NODES.get(e['id']) or INL.get(e['id'])
-    p = n['schematicPosition']
-    if e['id'].startswith('s_'): return (p['x'] + 15, p['y'] + 15, 0)
-    if e['id'][:2] in ('r_', 'd_'): return ((p['x'] - 10, p['y'] + 15, -1) if e['handle'] == 'Left' else (p['x'] + 40, p['y'] + 15, 1))
-    yy = cav_y(n, e['handle'])
-    if e['id'] in LEFT_IDS: return (p['x'] + 160, yy, 1) if 'cavities' in n else (p['x'] + 160, yy, 1)
-    return (DEVX - 10, yy, -1)
-busy = collections.defaultdict(list)
-def lane(pool, y1, y2, lo, hi, rev=False):
-    a, b = min(y1, y2) - 14, max(y1, y2) + 14
-    for x in (pool[::-1] if rev else pool):
-        if lo < x < hi and all(b < u or a > v for u, v in busy[x]):
-            busy[x].append((a, b)); return x
-    raise SystemExit('no lane %r %s-%s in (%s,%s)' % (pool[:2], y1, y2, lo, hi))
-DEVX = None
-def pool_for(p1, p2, ids):
-    ids = set(ids)
-    if any(i in RIGHT_IDS for i in ids): return MP
-    if ids & set(CAB) and any(i in LEFT_IDS for i in ids): return LP
-    if ids & set(CAB): return CP
-    if all(i in LEFT_IDS for i in ids): return LP
-    if any(i in LEFT_IDS for i in ids): return LP
-    xs = sorted(p[0] for p in (p1, p2))
-    if any(i.startswith(('r_', 'd_')) for i in ids):
-        return DP if xs[1] <= SPX + 15 and xs[0] >= DRL else (EP if xs[0] >= SPX else MP)
-    return EP
-plan = []    # (conductor, side key or None, p1, p2, pool, ids)
-def want(cond, side, e1pt, e2pt, ids):
-    plan.append((cond, side, e1pt, e2pt, pool_for(e1pt, e2pt, ids)))
-def place_dev():
-    pass
-# right column x: decide after counting how many MP lanes are needed: first pass with a huge DEVX
-for DEVX in (SPX + 240 + 30 * 260,):
-    pass
-def build(DEVXv):
-    global DEVX
-    DEVX = DEVXv
-    busy.clear(); out = {}
-    jobs = []
-    for w in wires:
-        a, b = w['source'], w['target']
-        p1, p2 = endpt(a, None), endpt(b, None)
-        jobs.append((w, None, p1, p2, (a['id'], b['id'])))
-    for c in cables.values():
-        p = c['schematicPosition']
-        for co in [q for q in c['cores'] if 'source' in q] + ([c['shield']] if 'shield' in c else []):
-            cy = core_row(c, co)
-            for side, e in (('sourceLayoutPoints', co.get('source')), ('targetLayoutPoints', co.get('target'))):
-                if not e: continue
-                q = endpt(e, None)
-                cpt = (p['x'] - 10, cy, -1) if q[0] < p['x'] else (p['x'] + 70, cy, 1)
-                jobs.append((co, side, cpt, q, (c['id'], e['id'])))
-    # longest vertical spans first get the inner lanes
-    jobs.sort(key=lambda j: -abs(j[2][1] - j[3][1]))
-    for cond, side, p1, p2, ids in jobs:
-        if p1[1] == p2[1]:
-            pts = []
-        else:
-            lo = max([p[0] + 20 for p in (p1, p2) if p[2] == 1] + [-10 ** 6])
-            hi = min([p[0] - 20 for p in (p1, p2) if p[2] == -1] + [10 ** 6])
-            for p in (p1, p2):     # a splice centre: keep the lane on the side the other end lies
-                if p[2] == 0:
-                    o = p2 if p is p1 else p1
-                    if o[0] >= p[0]: lo = max(lo, p[0] + 30)
-                    else: hi = min(hi, p[0] - 30)
-            pool = pool_for(p1, p2, ids)
-            try:
-                x = lane(pool, p1[1], p2[1], lo, hi)
-            except SystemExit:
-                x = lane(LP + CP + DP + EP + KP + MP, p1[1], p2[1], lo, hi)
-            pts = [{"x": x, "y": p1[1]}, {"x": x, "y": p2[1]}]
-        out[(cond['id'], side)] = (pts, p1, p2)
-    return out
-res = build(SPX + 390 + 30 * 260)
-maxlane = max([pts[0]['x'] for pts, a, b in res.values() if pts] + [SPX])
-DEVXV = (maxlane + 120) // 30 * 30
-res = build(DEVXV)
-for nm in RIGHT: conns[nm]['schematicPosition']['x'] = DEVX
-for n in conns.values(): n['width'] = 240          # Dan 2026-11-01: 8 grid units
-for n in terms.values(): n['width'] = 240
-for g in LEFT_GROUPS:
-    for nm in g:
-        nd = node_of(nm); nd['schematicPosition']['x'] -= 90   # keep the right edge (wire side) where it was
-def lp(pts, tag): return [{"id": "%s_s%d" % (tag, i), "schematicPosition": {"x": q['x'] - 15, "y": q['y'] - 15}} for i, q in enumerate(pts)]
-for w in wires:
-    pts, a, b = res[(w['id'], None)]
-    if pts: w['layoutPoints'] = lp(pts, w['id'])
-for c in cables.values():
-    for co in [q for q in c['cores'] if 'source' in q] + ([c['shield']] if 'shield' in c else []):
-        for side in ('sourceLayoutPoints', 'targetLayoutPoints'):
-            if (co['id'], side) in res:
-                pts, cpt, q = res[(co['id'], side)]
-                if pts: co[side] = lp(pts, co['id'] + ('_a' if side[0] == 's' else '_b'))   # listed from the cable outward
-# notes: who owns the N/C cavities of a shared connector
-for c, lst in other_owned.items():
-    n = conns[c]; p = n['schematicPosition']
-    by = collections.defaultdict(list)
-    for pin, own in lst: by[own].append(pin)
-    txt = '%s: N/C cavities belong to other harnesses - ' % c + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items()))
-    x = -420 if n['id'] in LEFT_IDS else DEVX + 210
-    notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": x, "y": p['y']}})
-notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": -420, "y": -270},
-              "text": TITLES[DOC] + ", Rev 1 (2026-11-01). Part %d of 2 of AB-cabin: %s. The rest of AB-cabin is in '%s'; connectors and splices shared by both are drawn whole here, cavities wired in the other part are N/C with a note. Viewer copy generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin); never a source. " % (DOC, 'every AB-cabin conductor with an end on the bulkhead DRB102-CABIN' if DOC == 1 else 'every AB-cabin conductor with no end on the bulkhead', OTHER) +
-                      "Schematic: bulkhead and the other far ends left, splices middle, ECU plugs and ECU splice-point bus plugs right. "
-                      "Layout: the ST185-harness.layout.json tree, bulkhead LEFT (front of the car left), driver side up; each part on a 100 mm end allowance stub."})
+        a, b = sorted(xs, key=lambda k: (xs[k], k)); hmap = {a: 'Left', b: 'Right'}
+    if n['id'].startswith('d_') and hmap.get('PIN1') == 'Right': n['anodeOnRight'] = True
+    for e, v in es: e['handle'] = hmap[e['handle']]
+def row_of_end(e):
+    if e['id'] in LEFT_IDS: return cav_y(NODES[e['id']], e['handle'])
+    if e['id'] in INL: return INL[e['id']]['schematicPosition']['y'] + 15
+    return None
+# right column: ordered by the mean row of what feeds it, so lanes cross least (connectors may be reordered, pins never)
+bary = collections.defaultdict(list)
+for cond in CONDS:
+    es = ends(cond)
+    for e in es:
+        if e['id'] in DEV_IDS:
+            c = cab_of.get(cond['id'])
+            bary[e['id']] += [core_row(c, cond)] if c else [row_of_end(o) for o in es if o is not e and row_of_end(o) is not None]
+DEV_ORDER = sorted(DEV_IDS, key=lambda d: (sum(bary[d]) / len(bary[d]) if bary[d] else 10 ** 6, NODES[d]['label']))
+def place_right(devx):
+    y = 15
+    for d in DEV_ORDER:
+        n = NODES[d]; n['schematicPosition'] = {"x": devx, "y": y}
+        y += h(n) + 30
+    return y - 30
+def doc_now():
+    return {"connectors": list(conns.values()), "terminals": list(terms.values()), "splices": list(splices.values()),
+            "resistors": list(resistors.values()), "diodes": list(diodes.values()), "wires": wires, "cables": list(cables.values())}
+def route_cost(devx):    # (unrouted conductors, conductors that need more than one lane) with the right column at devx
+    place_right(devx)
+    R_, segs_, res_ = genroute.run(copy.deepcopy(doc_now()))
+    return (sum(1 for s in segs_ if res_.get(s['k']) is None), sum(1 for v in res_.values() if v and len(v) > 2))
+XMAX = max(n['schematicPosition']['x'] for n in INL.values()) if INL else CABLX
+n_right = sum(1 for cond in CONDS for e in ends(cond) if e['id'] in DEV_IDS)
+DEVX = (XMAX + 150 + 30 * n_right) // 30 * 30
+base = route_cost(DEVX)
+print('widest right column x', DEVX, 'routing (unrouted, multi-lane)', base, flush=True)
+lo, hi = XMAX + 300, DEVX        # compact (Dan 2026-11-02): the narrowest lane field that routes as cleanly
+while hi - lo > 30:
+    mid = (lo + hi) // 60 * 30
+    if route_cost(mid) <= base: hi = mid
+    else: lo = mid
+    print('  try', mid, '->', 'ok' if hi == mid else 'worse', flush=True)
+DEVX = hi
+RIGHT_BOTTOM = place_right(DEVX)
+print('right column x', DEVX, 'bottom', RIGHT_BOTTOM, '| left bottom', LEFT_BOTTOM, flush=True)
 
-# ================================================================== layout
-L = H.layout
-end_nodes = {}
-def place_end(r, s): return H.place(r, s)
-node_items = collections.defaultdict(list)      # layout node -> component ids (connectors / terminals)
-inline_at = collections.defaultdict(list)
-seen = set()
+# ------------------------------------------------------------------ notes
+spares = collections.defaultdict(list)
+for r in SPARE_ALL:
+    if r['from_id'] in conns and spare_doc(r['from_id']) == DOC: spares[r['from_id']].append((r['from_pin'], r['from_terminal_pn']))
+left_txt, right_txt = [], []
+for c in conns:
+    txt = []
+    if spares.get(c):
+        by = collections.defaultdict(list)
+        for p, pl in spares[c]: by[pl if pl and pl != 'TBD' else 'TBD'].append(p)
+        txt.append('%s: %s %s (sealing plug from the master: %s).' % (
+            c, ('pins %s are' if len(spares[c]) > 1 else 'pin %s is') % ', '.join(sorted((p for p, _ in spares[c]), key=pkey)),
+            'AB-cabin spares' if len(spares[c]) > 1 else 'an AB-cabin spare',
+            '; '.join('%s %s' % (k, ', '.join(sorted(v, key=pkey))) for k, v in sorted(by.items()))))
+    if other_owned.get(c):
+        by = collections.defaultdict(list)
+        for pin, own in other_owned[c]: by[own].append(pin)
+        txt.append('%s: N/C cavities are wired elsewhere - %s.' % (c, '; '.join('%s see %s' % (', '.join(sorted(v, key=lambda p: pin_order(p, c))), k)
+                                                                        for k, v in sorted(by.items()))))
+    if txt: (left_txt if conns[c]['id'] in LEFT_IDS else right_txt).append(' '.join(txt))
+for sname, sp in splices.items():     # a splice shared with the other document or another harness: say where its other legs are
+    oth = sorted({(r['harness'] if r['harness'] != NAME else OTHER, r['wire_id']) for r in ALL if r['wire_id']
+                  and (r['harness'] != NAME or doc_of(r) != DOC)
+                  and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
+    if oth:
+        by = collections.defaultdict(list)
+        for h_, w in oth: by[h_].append(w)
+        right_txt.append('%s: its other legs are drawn elsewhere - %s.' % (sname, '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items()))))
+if NC_CORES:
+    right_txt.append('Cable cores with no AB-cabin job (cut back and sealed under heat-shrink at both ends): %s.' % '; '.join(
+        '%s %s' % (cab_of[co['id']]['label'], co['color'].lower()) for co in NC_CORES))
+pass_by = collections.defaultdict(list)
+for r in PASS: pass_by[r['harness']].append(r['wire_id'])
+used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
+head = [{"id": "n_title", "width": 360,
+         "text": "%s Rev %s (%s). Part %d of 2 of AB-cabin, the ECU harness cabin half: %s. The rest of AB-cabin is '%s'; connectors "
+                 "and splices shared by both are drawn whole in each, cavities wired in the other part are N/C with a note. Viewer copy "
+                 "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
+                 "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
+                 "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text. %s"
+                 "Layout: a formboard of the ST185-harness.layout.json tree (AB-cabin's placement-editor layout, glove-box breakout GB_T), "
+                 "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a "
+                 "100 mm end-allowance stub; bundle lengths = the master est_length_mm." % (
+                     TITLE, REV, DATE, DOC, 'every AB-cabin conductor with an end on the bulkhead DRB102-CABIN' if DOC == 1 else
+                     'every AB-cabin conductor with no end on the bulkhead (ECU splice point, glove-box relays and feeds, A/C taps, pedal, '
+                     'wheel-speed and fuel inlines, the cabin-to-trunk sill run)', OTHER,
+                     'the bulkhead' if DOC == 1 else 'the far ends (glove box, sill run, A/C taps, front, dash, pedal)',
+                     'every other end (ECU plugs, ECU splice-point bus plugs, glove box, factory leads)' if DOC == 1 else
+                     'the ECU plugs and ECU splice-point bus plugs',
+                     ("Wires of other harnesses that ride AB-cabin, not drawn: " + '; '.join(
+                         '%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) + ". ") if pass_by else "")},
+        {"id": "n_stripes", "width": 360,
+         "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
+                 "the master wire list and BOM. Stripe per circuit: " + '; '.join('%s = %s' % (STRIPE[k][1], STRIPE[k][0]) for k in used_st) +
+                 ". Red cable cores keep their cable's colours."}]
+def est_h(t): return 30 * (2 + len(t) // 50)       # a 360-wide note: about 50 characters a line, one grid row a line
+HEAD_Y = -30 * ((max(est_h(n['text']) for n in head) + 59) // 30)
+for i, n in enumerate(head): n['schematicPosition'] = {"x": 390 * i, "y": HEAD_Y}
+NOTES = list(head)
+N_LL = sum(1 for cond in CONDS if len([e for e in ends(cond) if e['id'] in LEFT_IDS]) == 2)   # left-to-left wires run down the outside
+if left_txt: NOTES.append({"id": "n_left", "width": 360, "text": ' '.join(left_txt), "schematicPosition": {"x": -420 - 30 * N_LL, "y": 0}})
+if right_txt: NOTES.append({"id": "n_right", "width": 360, "text": ' '.join(right_txt), "schematicPosition": {"x": DEVX + 270, "y": 15}})
+
+# ================================================================== layout: the layout tree as a formboard
+node_items, inline_at, seen = collections.defaultdict(list), collections.defaultdict(list), set()
 for r in W:
     for s in ('from', 'to'):
-        t = r[s + '_type']
-        if not t or t == 'cable screen': continue
-        nd = place_end(r, s)
-        if t == 'connector': cid = conns[r[s + '_id']]['id']
-        elif t in ('terminal', 'OEM'): cid = terms[r[s + '_id'] + ('-' + r[s + '_pin'] if t == 'OEM' else '')]['id']
-        elif t == 'splice': cid = splices[r[s + '_id']]['id']
-        elif t == 'resistor': cid = resistors[r[s + '_id']]['id']
-        elif t == 'diode': cid = diodes[r[s + '_id']]['id']
+        e = end(r, s)
+        if e is None: continue
+        cid = e['id']
         if cid in seen: continue
-        seen.add(cid)
-        (node_items if cid[:2] in ('c_', 't_') else inline_at)[nd].append(cid)
-segs = collections.Counter()
+        nd = H.place(r, s); assert nd in H.adj, (r['wire_id'], s, nd)
+        seen.add(cid); (node_items if cid[:2] in ('c_', 't_') else inline_at)[nd].append(cid)
+segs, hroute = collections.Counter(), {}
 for r in W:
-    p, mm = H.route(r)
+    p, mm = troute(r); hroute[r['wire_id']] = mm
     for a, b in zip(p, p[1:]): segs[tuple(sorted((a, b)))] += 1
-used = set(node_items) | set(inline_at) | {n for k in segs for n in k}
+tree_nodes = {n for k in segs for n in k} | set(node_items) | set(inline_at)
 adj = collections.defaultdict(list)
-for a, b, mm in L['segments']:
+for a, b, mm in H.layout['segments']:
     if tuple(sorted((a, b))) in segs: adj[a].append((b, mm)); adj[b].append((a, mm))
-root = 'BH' if 'BH' in adj else 'ECU'; parent = {root: None}; seglen = {}; todo = [root]; kids = collections.defaultdict(list)
+ROOT = 'BH' if DOC == 1 else 'ECU'
+assert ROOT in tree_nodes, ROOT
+parent, slen, kids = {ROOT: None}, {}, collections.defaultdict(list)
+todo = [ROOT]
 while todo:
     n = todo.pop(0)
     for m, mm in adj[n]:
-        if m not in parent: parent[m] = n; seglen[m] = mm; kids[n].append(m); todo.append(m)
-via = {n: [] for n in parent}
+        if m not in parent: parent[m] = n; slen[m] = mm; kids[n].append(m); todo.append(m)
+assert tree_nodes <= set(parent), tree_nodes - set(parent)
+assert sum(len(v) for v in adj.values()) // 2 == len(parent) - 1, 'the segments this document uses are not a tree'
 changed = True
-while changed:
+while changed:      # fold pass-through nodes into the bundle
     changed = False
     for n in list(parent):
-        if n == root or node_items.get(n) or inline_at.get(n): continue
-        if len(kids[n]) == 1:
-            c = kids[n][0]; p = parent[n]
-            seglen[c] += seglen[n]; parent[c] = p; via[c] = via[n] + [n] + via[c]
-            kids[p] = [c if x == n else x for x in kids[p]]
-            del parent[n], seglen[n], kids[n]; changed = True; break
-SCX, SCY = 27, 24
-def lpos(n):
-    x, y = L['nodes'][n]['xy']
-    return (int(round((130 - x) * SCX / 30)) * 30, int(round((100 - y) * SCY / 30)) * 30)
-bps, bundles = [], []
-pos = {n: lpos(n) for n in parent}
-allpos = set(pos.values())
-STUB = L.get('end_allowance_mm', 100)
-for n in parent:
-    bps.append({"id": "bp_" + sid(n), "layoutPosition": {"x": pos[n][0], "y": pos[n][1]}})
+        if parent[n] is None or node_items.get(n) or inline_at.get(n) or len(kids[n]) != 1: continue
+        c = kids[n][0]; p = parent[n]
+        slen[c] += slen[n]; parent[c] = p
+        kids[p] = [c if x == n else x for x in kids[p]]
+        del parent[n], slen[n], kids[n]; changed = True; break
+for n in [n for n in parent if parent[n] and slen[n] == 0]:   # a 0 mm segment is no bundle: merge its node into its parent
+    p = parent[n]
+    for c in kids[n]: parent[c] = p
+    kids[p] = [x for x in kids[p] if x != n] + kids[n]
+    node_items[p] += node_items.pop(n, []); inline_at[p] += inline_at.pop(n, [])
+    print('0 mm segment', p, '-', n, ': merged into', p)
+    del parent[n], slen[n], kids[n]
+# formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles on the
+# 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its part of the
+# car lies); drawn length is not to scale, every bundle keeps its tree length (= the master's). Each part sits on its 100 mm
+# end-allowance stub, combed off the node. A node whose four sides are all taken by bundles combs its parts along the way in.
+DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
+OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
+GAP, MINL, ISP, LBL = 60, 150, 60, 240        # clearance, shortest drawn bundle, comb pitch, room for a part's label
+ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + list(INL.values())}
+XY = H.layout['nodes']
+def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
+def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
+    pts = [XY[m]['xy'] for m in sub_nodes(c)]
+    x0, y0 = XY[n]['xy']
+    return (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+def rect(a, b): return (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a[1], b[1]))
+def hit(r, s, g=GAP): return r[0] - g < s[2] and s[0] - g < r[2] and r[1] - g < s[3] and s[1] - g < r[3]
+def mv(p, o): return (p[0] + o[0], p[1] + o[1])
+def mvr(r, o): return (r[0] + o[0], r[1] + o[1], r[2] + o[0], r[3] + o[1])
+def lay(n, din):
+    """n's piece of the tree with n at (0, 0): (rects, node positions, stubs {part id: (node, part xy, stub points, outward)})."""
+    free = [d for d in 'RULD' if din is None or d != OPP[din]]
+    asg = {}
+    for c in sorted(kids[n], key=lambda c: (-len(sub_nodes(c)), c)):
+        v = heading(n, c); left = [d for d in free if d not in asg.values()]
+        assert left, ('more branches than directions at', n)
+        asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
+    items = node_items.get(n, []) + inline_at.get(n, [])
+    rects, P, S = [], {n: (0, 0)}, {}
+    ray = [rect((-DV[din][0] * 90, -DV[din][1] * 90), (-DV[din][0] * 10 ** 6, -DV[din][1] * 10 ** 6))] if din else []   # the way in
+    if items:
+        left = [d for d in free if d not in asg.values()]
+        cd = (din if din in left else next(d for d in ('U', 'D', 'R', 'L') if d in left)) if left else OPP[din]
+        k, (dx, dy) = len(items), DV[cd]
+        if dy == 0:     # a column of parts across the end of a horizontal stub
+            ys = [ISP * i - 30 * (k - 1) for i in range(k)]; xj = dx * 90
+            for cid, yy in zip(items, ys):
+                S[cid] = (n, (dx * 150, yy), [(xj, 0), (xj, yy)] if yy else [], (dx, 0))
+            rects += [rect((dx * 90, 0), (dx * 90, 0)), rect((xj, ys[0]), (dx * (150 + LBL), ys[-1]))]
+        else:           # parts combed off a vertical spine, to the front (right) side
+            for i, cid in enumerate(items):
+                yy = dy * (120 + ISP * i); S[cid] = (n, (120, yy), [(0, yy)], (1, 0))
+            rects += [rect((0, dy * 90), (0, dy * (120 + ISP * (k - 1)))), rect((0, dy * 90), (120 + LBL, dy * (120 + ISP * (k - 1) + 30)))]
+    for c in sorted(kids[n], key=lambda c: (len(sub_nodes(c)), c)):
+        d = asg[c]; cr, cp, cs = lay(c, d)
+        back = max([-(DV[d][0] * (r[0] if DV[d][0] > 0 else r[2]) + DV[d][1] * (r[1] if DV[d][1] > 0 else r[3])) for r in cr] + [0])
+        ln = max(MINL, int(back + GAP + 29) // 30 * 30)
+        while True:
+            o = (DV[d][0] * ln, DV[d][1] * ln)
+            cand = [mvr(r, o) for r in cr] + [rect((DV[d][0] * 90, DV[d][1] * 90), o)]
+            if not any(hit(a, b) for a in cand for b in rects + ray): break
+            ln += 30
+        rects += cand
+        P.update({m: mv(q, o) for m, q in cp.items()})
+        S.update({cid: (nd, mv(q, o), [mv(p, o) for p in pts], ow) for cid, (nd, q, pts, ow) in cs.items()})
+    return rects, P, S
+allrects, pos, stubs = lay(ROOT, None)
+xs = [r[0] for r in allrects] + [r[2] for r in allrects]
+print('formboard width %d .. %d, root node at %.0f%% of the width' % (min(xs), max(xs), 100 * (pos[ROOT][0] - min(xs)) / ((max(xs) - min(xs)) or 1)))
+assert all(v[0] % 30 == 0 and v[1] % 30 == 0 for v in pos.values())
+bps = [{"id": "bp_" + sid(n), "layoutPosition": {"x": pos[n][0], "y": pos[n][1]}} for n in parent]
+bundles = []
 for n, p in parent.items():
     if p is None: continue
-    bn = {"id": "bn_" + sid(n), "sourceId": "bp_" + sid(p), "targetId": "bp_" + sid(n), "length": {"value": int(seglen[n]), "unit": "mm"}}
-    if via[n]: bn['layoutPoints'] = [{"id": "%s_p%d" % (bn['id'], i), "layoutPosition": {"x": lpos(m)[0], "y": lpos(m)[1]}} for i, m in enumerate(via[n])]
-    bundles.append(bn)
-# parts on stubs around their node, on the side away from the node's bundles
-occupied = set()
-for n in parent: occupied.add(pos[n])
-def free_dir(n):
-    angs = []
-    nbrs = ([parent[n]] if parent[n] else []) + kids[n]
-    for m in nbrs:
-        q = lpos(via[m][0]) if (m in kids[n] and via[m]) else (lpos(via[n][-1]) if (m == parent[n] and via[n]) else pos[m])
-        angs.append(math.atan2(q[1] - pos[n][1], q[0] - pos[n][0]))
-    best = None
-    for k in (0, 4):
-        a = k * math.pi / 4
-        d = min([abs((a - b + math.pi) % (2 * math.pi) - math.pi) for b in angs] or [math.pi])
-        tip = (pos[n][0] + 200 * math.cos(a), pos[n][1] + 200 * math.sin(a))
-        clr = min([math.hypot(tip[0] - q[0], tip[1] - q[1]) for m, q in pos.items() if m != n] or [999])
-        sc = (d >= math.pi / 4 - 1e-6, min(clr, 300), d)
-        if best is None or sc > best[0]: best = (sc, a)
-    return best[1]
+    assert pos[n][0] == pos[p][0] or pos[n][1] == pos[p][1], (p, n)
+    bundles.append({"id": "bn_" + sid(n), "sourceId": "bp_" + sid(p), "targetId": "bp_" + sid(n), "length": {"value": int(slen[n]), "unit": "mm"}})
 INL_AT = {}
-ALLC = {}
-for x in list(conns.values()) + list(terms.values()) + inl: ALLC[x['id']] = x
-TREESEG = []
-for n, p in parent.items():
-    if p is None: continue
-    ch = [pos[p]] + [lpos(m) for m in via[n]] + [pos[n]]
-    TREESEG += list(zip(ch, ch[1:]))
-def sdist(q, a, b):
-    vx, vy = b[0] - a[0], b[1] - a[1]; ll = vx * vx + vy * vy or 1
-    u = max(0, min(1, ((q[0] - a[0]) * vx + (q[1] - a[1]) * vy) / ll))
-    return math.hypot(q[0] - a[0] - u * vx, q[1] - a[1] - u * vy)
-def arrangements(n, k):
-    x0, y0 = pos[n]
-    out = []
-    for sx in (1, -1):        # a column (or two) beside the node
-        pts = []
-        for i in range(k):
-            cc, row = divmod(i, 6); m = min(6, k - cc * 6)
-            pts.append((x0 + sx * (120 + 270 * cc), y0 + int((row - (m - 1) / 2) * 60 // 30) * 30))
-        out.append((sx, 0, pts))
-    for sy in (1, -1):        # a grid of 3 wide above / below
-        pts = []
-        for i in range(k):
-            row, cc = divmod(i, 3); m = min(3, k - row * 3)
-            pts.append((x0 + int((cc - (m - 1) / 2) * 210 // 30) * 30, y0 + sy * (120 + 60 * row)))
-        out.append((0, sy, pts))
-    return out
-for n in parent:
-    items = node_items.get(n, [])
-    k = len(items)
-    best = None
-    for sx, sy, pts in arrangements(n, max(k, 1)):
-        clr = min([sdist(q, a, b) for q in pts for a, b in TREESEG if pos[n] not in (a, b)] +
-                  [math.hypot(q[0] - v[0], q[1] - v[1]) for q in pts for v in occupied if v != pos[n]] + [999])
-        sc = (min(clr, 150), sx != 0)
-        if best is None or sc > best[0]: best = (sc, sx, sy, pts)
-    _, sxx, syy, pts = best
-    dx, dy = sxx, syy
-    for cid, q in zip(items, pts):
-        q = list(q)
-        while tuple(q) in occupied: q[1] += 30
-        occupied.add(tuple(q))
-        ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
-        bundles.append({"id": "bn_" + cid, "sourceId": "bp_" + sid(n), "targetId": cid, "length": {"value": STUB, "unit": "mm"}})
-    if not dx: dx = -1 if pos[n][0] > 2000 else 1
-    ins = inline_at.get(n, [])
-    for i, cid in enumerate(ins):     # inline parts sit by their node, opposite their stubs
-        cc, row = divmod(i, 5)
-        m = min(5, len(ins) - cc * 5)
-        sx = int(round(dx)) or 1
-        q = [pos[n][0] - sx * (60 + 180 * cc), pos[n][1] + int((row - (m - 1) / 2) * 30 // 30) * 30]
-        while tuple(q) in occupied or (q[0] - sx * 60, q[1]) in occupied: q[1] += 30
-        occupied.add(tuple(q)); occupied.add((q[0] - sx * 60, q[1]))
-        # each inline part sits on its own 100 mm end-allowance stub (a branch point), like the plugs do
-        sbp = "bp_" + cid
-        bps.append({"id": sbp, "layoutPosition": {"x": q[0], "y": q[1]}})
-        bundles.append({"id": "bn_" + cid, "sourceId": "bp_" + sid(n), "targetId": sbp, "length": {"value": STUB, "unit": "mm"}})
-        ALLC[cid]['layoutPosition'] = {"x": q[0] - sx * 60, "y": q[1]}; ALLC[cid]['locationId'] = sbp
-        INL_AT[cid] = "bp_" + sid(n)
-# expected lengths per conductor: path of bundles
+for cid, (nd, q, pts, ow) in stubs.items():
+    direct = cid[:2] in ('c_', 't_')
+    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": STUB, "unit": "mm"}}
+    if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
+    bundles.append(b)
+    ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
+    if not direct:
+        bps.append({"id": "bp_" + cid, "layoutPosition": {"x": q[0], "y": q[1]}}); ALLC[cid]['locationId'] = "bp_" + cid; INL_AT[cid] = "bp_" + sid(nd)
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
-for c in list(conns.values()) + list(terms.values()):
-    pass
-loc = {}
-for b in bundles:
-    if b['targetId'][:2] in ('c_', 't_'): loc[b['targetId']] = (b['sourceId'], b['length']['value'])
-for x in inl: loc[x['id']] = (INL_AT[x['id']], STUB)
+loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] in ('c_', 't_')}
+loc.update({i: (INL_AT[i], STUB) for i in INL})
 def chain(bp):
     out = []
     while bp: out.append(bp); bp = nodepar[bp]
     return out
 def dist(b1, b2):
-    c1, c2 = chain(b1), chain(b2)
-    common = next(x for x in c1 if x in c2)
-    d = 0
-    for c in (c1, c2):
-        for x in c[:c.index(common)]:
-            d += blen[(nodepar[x], x)]
-    return d
-expect = {}
-for w in wires + [co for c in cables.values() for co in [q for q in c['cores'] if 'source' in q]]:
-    a, b = w['source'], w['target']
-    if not (a and b): continue
-    (ba, la), (bb, lb) = loc[a['id']], loc[b['id']]
-    lab = w.get('identLabel') or w['id'][3:]
-    expect[lab] = la + lb + dist(ba, bb)
+    c1, c2 = chain(b1), chain(b2); common = next(x for x in c1 if x in c2)
+    return sum(blen[(nodepar[x], x)] for c in (c1, c2) for x in c[:c.index(common)])
 
-# ================================================================== emit
-doc = {"version": 1.3, "currency": "$", "lengthUnit": "mm", "gaugeUnit": "AWG", "schematic": {"connectorWidth": 240},
+# ================================================================== checks and emit
+expect = {lab(w): loc[w['source']['id']][1] + loc[w['target']['id']][1] + dist(loc[w['source']['id']][0], loc[w['target']['id']][0])
+          for w in CONDS if 'target' in w}
+bad = {k: (v, hroute[k], row_of[k]['est_length_mm']) for k, v in expect.items() if not (v == hroute[k] == int(float(row_of[k]['est_length_mm'] or -1)))}
+bad.update({lab(w): (None, hroute[lab(w)], row_of[lab(w)]['est_length_mm']) for w in CONDS if 'target' not in w
+            and hroute[lab(w)] != int(float(row_of[lab(w)]['est_length_mm'] or -1))})
+assert not bad, 'routed length != tree route != master est_length_mm: %r' % bad
+assert sorted(lab(w) for w in CONDS) == sorted(r['wire_id'] for r in W) and len({lab(w) for w in CONDS}) == len(W)
+cav_n = collections.Counter((e['id'], e['handle']) for w in CONDS for e in ends(w) if e['id'].startswith('c_'))
+cav_m = collections.Counter(("c_" + sid(r[s + '_id']), cav_of[(r[s + '_id'], r[s + '_pin'])]) for r in W for s in ('from', 'to') if r[s + '_type'] == 'connector')
+assert cav_n == cav_m and all(v == 1 for v in cav_n.values()), {k: v for k, v in cav_n.items() if v > 1}
+NCONN = len(CONDS) + len(NC_CORES)
+assert NCONN <= 100, 'over the 100-connection plan limit: split by whole circuits into numbered documents (README)'
+doc = {"version": 1.3, "currency": "$", "lengthUnit": "mm", "gaugeUnit": "AWG", "schematic": {"connectorWidth": 240, "terminalWidth": 240},
        "connectors": list(conns.values()), "terminals": list(terms.values()), "splices": list(splices.values()),
        "resistors": list(resistors.values()), "diodes": list(diodes.values()), "wires": wires, "cables": list(cables.values()),
-       "branchPoints": bps, "bundles": bundles, "schematicNotes": notes}
+       "branchPoints": bps, "bundles": bundles, "schematicNotes": NOTES}
 for k, v in doc_parts.items():
     if v: doc[k] = list(v.values())
-for k in list(doc):
-    if doc[k] == []: del doc[k]
-for s in doc.get('splices', []) + doc.get('resistors', []) + doc.get('diodes', []):
-    if s.get('partId') is None: s.pop('partId', None)
+for k in [k for k in doc if doc[k] == []]: del doc[k]
+have = {p['id'] for k, v in doc.items() if k.endswith('Parts') for p in v}
+refs = {x['partId'] for k in ('wires', 'splices', 'cables', 'connectors', 'resistors', 'diodes') for x in doc.get(k, []) if x.get('partId')} | \
+       {cv[k] for n in doc['connectors'] for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
+       {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
+assert refs <= have, refs - have
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)
-json.dump({'%s|%s' % k: [v[1], v[0], v[2]] for k, v in res.items()}, open(os.path.join(OUT, 'abcab%d_routes.json' % DOC), 'w'))
 json.dump(expect, open(os.path.join(OUT, 'abcab%d_expect.json' % DOC), 'w'), indent=1)
-nconn = len(wires) + sum(len(c['cores']) + (1 if 'shield' in c else 0) for c in cables.values())
-print('connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'res', len(resistors), 'diodes', len(diodes),
-      'wires', len(wires), 'cables', len(cables), 'conductors', nconn, 'bundles', len(bundles), 'bps', len(bps), 'DEVX', DEVX,
-      'lib adds', [o['value']['partNumber'] for o in lib_add])
+print('doc', DOC, TITLE, 'Rev', REV, '| connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'resistors', len(resistors),
+      'diodes', len(diodes), 'wires', len(wires), 'cables', len(cables), 'conductors (connections)', NCONN, '(%d cores with no job)' % len(NC_CORES),
+      'bundles', len(bundles), 'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect), 'routed +', len(CONDS) - len(expect),
+      'one-ended screens | lib adds', [o['value']['partNumber'] for o in lib_add], '| no library part (left unset):', sorted(missing))
