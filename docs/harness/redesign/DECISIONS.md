@@ -597,7 +597,7 @@ Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
 - AB-cabin (Dan 2026-11-02, A2-A4 = a): placed on the body manual under-body plan (DI-7), front right, driver up, in real mm (8.49 mm per PDF point from the 2525 mm wheelbase), plus an optional drop in mm per device; EWD p.44 (faded) is a look-only tab, since a 3-D view gives no lengths.
 - The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the layout file); a splice sits where its legs part.
 - A connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29).
-- The engine bulkhead sits 8 in (203 mm) above where the trunk meets the firewall (`root_drop_mm`; Dan 2026-10-29).
+- The engine bulkhead sits 16 in (406 mm) from where the trunk meets the firewall (`root_drop_mm`; Dan 2026-11-02 (J1); was 8 in / 203 mm, Dan 2026-10-29). The 6 in breakout rule above is unchanged.
 
 ## Gauge cases (B12)
 

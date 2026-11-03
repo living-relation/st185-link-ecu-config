@@ -58,16 +58,22 @@ skill is not changed for this project):
   - Parallel runs bundled into one line; breakouts that sit close together merged into one branch.
   - Wire lengths stay exactly the master's (drawn length is not to scale; the numbers are).
   - Orientation: front of car RIGHT, rear / trunk LEFT, driver side on top. Each harness sits where it lies along the
-    car, so harnesses that run the full length (cabin to trunk) fit; engine-bay harnesses have the bulkhead at their
-    left end. Never put the bulkhead on the left as a blanket rule.
+    car, so harnesses that run the full length (cabin to trunk) fit; engine-bay harnesses have the bulkhead near the
+    center third of the page (Dan 2026-11-02 (J1)). Never put the bulkhead on the left as a blanket rule.
   - A connector part-way along a line breaks out at least 6 in off it; the last one may end the run (B8). Coil and
-    injector breakouts all point the same way.
+    injector breakouts run parallel (Dan 2026-11-02 (J1)).
 - Schematic: compact (fits one screen zoomed out); both columns start level at the top; connectors may be reordered
-  for readability, pin order never changes (Dan 2026-11-02). Bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
+  for readability, pin order never changes (Dan 2026-11-02). Other harnesses: bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
   horizontal into its pin; no two signals on one line.
+  - Engine harness schematic (Dan 2026-11-02 (J1)): bulkhead near the center third of the page; splices near the bulkhead,
+    preferably on the cabin harness before the bulkhead, never in the middle of a run (injectors and ignition coils are the
+    exception); devices to the right of the bulkhead; straight orthogonal runs with one 90 degree jog per lane.
+  - 45 degree jogs may be placed close to devices, near splices and before connectors (Dan 2026-11-02 (J1)).
+  - Parallel wires must not conceal or overlap other wires (schematic view only; overlap is unavoidable in the layout
+    view); parallel runs in schematic views keep at least half a grid square between them (Dan 2026-11-02 (J1)).
 - Schematic format (Dan 2026-11-01): every connector 8 grid units wide (`width` 240, document `schematic.connectorWidth`
-  240). Lines orthogonal; wires of one cable or one run share a path, side by side, like the real cable; no wire folds
-  back over itself; no layout points next to a device or connector (let the app route the last stretch; "Make
+  240). Lines orthogonal (plus the 45 degree jogs above, Dan 2026-11-02 (J1)); wires of one cable or one run share a path, side by side, like the real cable; no wire folds
+  back over itself; no layout points next to a device or connector other than those 45 degree jogs (let the app route the last stretch; "Make
   orthogonal" in the app fixes a bad route). A part in parallel with two lines (e.g. the CAN 120 ohm resistor) sits
   between them with short equal legs. A ground stud is drawn on the side of the car its wires go to (LH pop-up and
   lamps at EB, RH ones at EA; Dan 2026-11-01), so LH and RH grounds can't be mixed up.
@@ -80,10 +86,11 @@ skill is not changed for this project):
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
 - Connection limit: 100 connections per document (plan limit, 2026-11-01); a bigger harness is split by whole circuits into numbered documents (AB-cabin: 1 bulkhead run, 2 dash).
 - Display stripes (Dan 2026-11-01): in each harness.design document every +12 V (red) wire gets a stripe colour per circuit, the same for every wire of that circuit, so crossing power wires can be followed; a note in the document lists them. Tracing only: the wire part, master colour and BOM stay plain red.
-- Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
+- Parts (Dan 2026-11-02 (J1)): parts come from library 5LO8 first; unconfirmed part numbers stay `TBD`; out-of-sync
+  parts are synced and missing parts are added, as below. Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
   library (`compare_parts`). Out of sync: the library wins (pull), unless `docs/sourcing/harness-parts.csv` says
   otherwise. Not in the library: give the part its full maker, description and jacket colour from
-  `harness-parts.csv`, then add it to the library with its accessories pointing at the library's own lock / contact
+  `harness-parts.csv`, then add it to library 5LO8 with its accessories pointing at the library's own lock / contact
   ids. A `TBD` part is never added.
 
 ## Harnesses in the master
