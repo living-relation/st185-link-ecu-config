@@ -170,6 +170,12 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 | Power main relay | 3 | W-B | coil ground | ground | p.137 | cut + cap | keep |
 | Power main relay | 4 | W-L | contact in | I1 / I4 (POWER fuse out) | p.137 | cut + cap | keep |
 
+R/B No.2 check (2026-11-02, Dan B4 / B17 b): the only feed is the factory W from cowl splice I2 (AM1, IE1-10) into the
+30 A POWER fuse pin 1; W-L is that fuse's output, so nothing else may land on it (1993 p.26, p.62, p.136-145; 1990 p.46
+and 1992 p.66 agree; US = Canada). Splice codes are per diagram: the "I2" on the 1990 / 1992 cruise pages (IG1-11 BR
+ground, group 3) and the fog relay's low-beam "I2" (1992 p.128) may not be the AM1 splice; tell them apart by wire colour
+(W = AM1) before removing a leg.
+
 **R/B No.3 (RH kick, fog relay) [90/92] - goes (circuit 17)**
 
 No 1993 TIS fog page: relay and switch pins from 1992 p.128 and Mitchell 1993 Fig. 1 (grid C2-3); the fuse, switch
@@ -192,7 +198,7 @@ point, never capped (Dan 2026-11-02); each has a master row.
 
 | Terminal | Pin | Colour | Signal | Kept-side end | EWD | Draft said | Action |
 |---|---|---|---|---|---|---|---|
-| Starter relay | 1 | B-W | coil + (ST1) | I8 / I9 <- ignition SW I13-7 | p.66, 78 | reuse as the crank signal | keep; tapped by `w_start_in_cp` (start request, LOGIC BUS2-13 -> `w_start` to Link DI 7). Shares id + pin with `w_rb4_feed` in the master (fault C3) |
+| Starter relay | 1 | B-W | coil + (ST1) | I8 / I9 <- ignition SW I13-7 | p.66, 78 | reuse as the crank signal | keep; tapped by `w_start_in_cp` (start request, LOGIC BUS2-13 -> `w_start` to Link DI 7), pin id `ST-1` (fault C3 fixed in phase 2) |
 | Starter relay | 2 | B-W | contact in (ST1) | I8 / I9 <- I13-7 | p.66 | cut + cap | keep |
 | Starter relay | 3 | B | coil - through clutch start SW C11 pin 1 | C11 | p.66 | C11 -> Link Aux 8 | keep: C11 completes the starter circuit in hardware, not a Link input (circuit 2) |
 | Starter relay | 4 | B | starter out | cowl -> EB1-2 (Engine Wire) | p.66, 78 | cut + cap; `k_str` instead | re-fed by `w_strl_c` (R/B4 pin 4 -> DRB102 cavity 3) and `w_strl_e` (-> starter S) |
@@ -201,7 +207,7 @@ point, never capped (Dan 2026-11-02); each has a master row.
 | Heater relay | 4 | B | blower + out | J5 -> blower B4 pin 2, -> 10 A A/C fuse pin 1 | p.211, 215 | re-feed from `k_htr` 87 | keep |
 | Heater relay | 5 | L | contact in | 40 A HEATER fuse pin 2 | p.215 | cut + cap | keep |
 | Heater relay | 2 | W-B | 87a = ground | R/B4 plug A pin 4 -> ground IG | p.215 | cut + cap | keep |
-| 40 A HEATER fuse | 1 | W | feed in (EB1-3 via I9) | cowl I9 | p.62, 215 | cut + cap | re-fed by `w_rb4_feed` (AMI IN-1); the EB1-3 leg comes out (group 1). Fault C3 (pin id) |
+| 40 A HEATER fuse | 1 | W | feed in (EB1-3 via I9) | cowl I9 | p.62, 215 | cut + cap | re-fed by `w_rb4_feed` (AMI IN-1), pin id `HTR-1` (fault C3 fixed in phase 2); the EB1-3 leg comes out (group 1), leaving splice I9 with one live leg (open, row 183) |
 | 40 A HEATER fuse | 2 | L | out to heater relay | heater relay pin 5 | p.215 | cut + cap | keep |
 | 20 A FR FOG fuse | 1 / 2 | W / G-R | feed in (I9) / out to R/B3 pin 4 | I9; R/B3 | p.62; 1992 p.128 | fog removed | the fuse comes out, its seat stays empty; pin 1 lead removed back to splice I9 (`w_fog_fuse_in`; I9 keeps the HEATER and old EB1-3 legs), pin 2 lead removed whole (`w_fog_rb3_4`) |
 | 10 A A/C fuse | 1 | B | in from heater relay 4 (J5) | J5 bus | p.211, 215 | cut + cap | keep |
@@ -279,4 +285,4 @@ Every row is **remove**; the new wire that takes over each load is listed.
 
 The cabin-side stubs these land on stay: J/B1 1H-2 / 4 / 5 / 6 / 7 / 8 and 1I-1, IE1 (cowl side). They are ER Main
 plugs at J/B1 (1993 p.63), so they are 6 in stubs of a removed wire; they are not yet on B9's kept-pigtail list (fault C6,
-OPEN-ITEMS row 183 phase 2). Open from the draft: walk the car for anything else taped into the ER Main trunk near J/B2.
+carried in OPEN-ITEMS row 183: this list is the one to add). Open from the draft: walk the car for anything else taped into the ER Main trunk near J/B2.

@@ -30,8 +30,9 @@ that B9 points to).
    document is `TBD`, never guessed).
 2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell).
 3. `python docs/harness/tools/build_drawings.py` (wire lists as xlsx + CSV, DRB102 map, length check; `--check` reads the
-   lists back), `python docs/harness/tools/build_pin_chart.py` for the pin chart, and
-   `python docs/sourcing/build_project_bom.py` for the shopping list.
+   lists back), `python docs/harness/tools/build_pin_chart.py` for the pin chart (it prints with Playwright's bundled
+   Chromium, else the installed Edge, else Chrome; on Dan's PC: `uv run --no-project --with playwright --with pypdf
+   python docs/harness/tools/build_pin_chart.py`), and `python docs/sourcing/build_project_bom.py` for the shopping list.
 4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
 5. Ship it per `AGENTS.md` "Working rules" and DECISIONS B28 (PR with a `Rows:` line, then pr-closeout). Part numbers
    are picked per `docs/sourcing/README.md` (B21).
@@ -121,7 +122,12 @@ Ten harnesses today. Purpose restored from `git show e2ec9d7^:docs/harness/READM
 Alternator (Dan 2026-11-02): all 3 wires of the round 3-pin plug G2 (B) (1 S battery sense, 2 L charge lamp, 3 IG excite; ground through the case; 1993 EWD p.74-75) stay in one harness, EngineRoom-C (harness C, RH fender grommet to Route 16 line 9, no bulkhead pins); the heavy B+ cable stays in HeavyDC. Plug confirmed at the car (Dan 2026-11-02): the fitted 160 A alternator has the round G2 (B) plug, so the pinout above stands (the All-Trac grey G2 (A) plug, 1 L, 2 IG, 3 S, is not used).
 
 Routes 1 and 8-14 are the old route pages; no tool reads them since #456, and each is replaced by that harness's
-placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today.
+placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today. Deleted routes, for a harness's
+starting map at its pass (all hand-drawn pictures, no route data, so their lines are traced into the editor): Routes 2-7
+from `801c1f3^` (#402: 2 old harness C rev 12, 3 / 4 A- / B-engine, 5 / 6 A- / B-cabin = AB-cabin, 7 CabinPower, its
+redraw approved in `5e5f21b`), read with `git show 801c1f3^:docs/harness/routes/<file>` (e.g. `ROUTE-7-CABINPOWER.html`); Route 15 rear lights
+from `960e25e^` (#466; not needed, rear lights stay factory). Route 2 was the only drawing of harness C's cabin leg (glove
+box under the dash to the RH fender grommet).
 
 Each is built in harness.design (one at a time); the layout tree for all of them is `tools/ST185-harness.layout.json`;
 pinout: `drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness (no RearLights harness, #399). AB-cabin's route is its placement-editor layout (row 180): it runs from the bulkhead to the centre of
@@ -231,7 +237,7 @@ ohmmeter from each landing above to its named load.
     run (driver kick pass-through) to the wiper motor and the alarm siren; one mini harness per front wheel speed sensor
     to the VRC enclosure by the ECU; the fuel pump circuit; one dash feed for the cluster, LEDs and RealDash Pi; CAN;
     the alarm add-on; power taps. No spare circuit to the old fog-lamp spots: aux circuits come later and are separate (Dan 2026-10-25).
-    Engine-bay jump studs at the old battery spot are optional (owning harness open).
+    The engine-bay jump post at the old battery spot is HeavyDC's (`JUMP-POST`, DECISIONS "Harness ownership (B8 list)").
   - **Connectors:** the new wire mates only with each device's own connector (Dan has the mating plugs); no new inline
     connector anywhere on a run, and none added at the device, unless one later helps install or maintenance (fewer
     connectors, fewer failure points; Dan 2026-10-21).

@@ -20,7 +20,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B2 Record at once** (Dan 2026-11-02, G1 b; replaces the freeze, which ended 2026-11-02, Dan B10 a). A rule or design decision
   Dan makes is written into this file (or the README it belongs in) and merged in the same session, never left only in memory or a handoff.
 - **B3 One home per fact.** A new doc or SoT replaces older ones in the same PR; no archives (git history is one).
-  Retiring files: `AGENTS.md` (R46). Every ST185 file lives in this repo, except CAD models (B26).
+  Every ST185 file lives in this repo, except CAD models (B26); scratch is disposable only. Detail: "Where data lives (B3)" below.
 - **B4 Ask only real choices.** Never ask what a rule, the SoT or a maker document answers, and never ask Dan to test or
   measure at the car (it is apart; Dan 2026-11-02): look it up (EWD, FSM, maker docs) or work it out. Real questions: OPEN-ITEMS "Needs Dan", lettered, one recommended.
 
@@ -464,6 +464,15 @@ Read this file and `AGENTS.md` first; they win. Dispatch only relays messages, p
 - Before a question reaches Dan, a session answers it from the repo, the SoT, or a maker document. If that fails, ask Dan in `docs/OPEN-ITEMS.md` Needs Dan.
 - Code sessions follow `AGENTS.md`. This section is for Dispatch only.
 
+## Where data lives (B3)
+
+Binding as part of B3.
+
+- Scratch folders hold disposable work only; anything vital goes to its home by type: rules -> DECISIONS / README, agent instructions -> AGENTS.md, state and tracking -> OPEN-ITEMS, cross-session notes -> working memory; tools and scripts -> the repo (Dan 2026-11-03).
+- Retiring files: `AGENTS.md` (R46).
+- Before a file is folded away or deleted, every fact open work still needs is already in its home (lesson: #363 and #399 folded away the power-injection plan and cut-list groups 4-8; recovery phase 1 put them back, row 183).
+- A session cleans a scratch or handoff folder only by deleting, by name, the files it made itself, never with a wildcard (lesson: 2026-11-03, a scratch cleanup deleted the planning research files).
+
 ## harness.design files (B6)
 
 Moved here from rule B6 on 2026-11-02 (Dan L3 = a); binding as part of B6.
@@ -569,7 +578,7 @@ Locked by Dan 2026-11-02 (B1 = a; OPEN-ITEMS row 183). This is the **target** ow
 2026-11-02 answers, not a copy of today's master: B7 = a (MR-S plugs B / C fully AB-engine, spare rows included), B8 = a
 (`CAN` + `CSB3` + `ClusterLED` become one `Dash` harness), B9 = a (AB-cabin owns the cabin-to-trunk sill run), B6 = b
 (the HeavyDC devices in Route 16 belong to HeavyDC's own map, Route 1). Base: the R90 lock (#203, files at `2c4aee6`)
-and today's master as compared in research `02-ownership.md` section 2; fixes for its double owners and cabin-only feeds
+and the master at `b2217ab` (#477), compared device by device on 2026-11-02; fixes for its double owners and cabin-only feeds
 are below. Phase 2 (2026-11-02) applied this list to `MASTER-wirelist.csv`, with Dan B17 b, B18 a, B19 and B20 a.
 
 **Hubs (B8: several harnesses land on them, no owner):** POWER box (B1) and its bus studs and NEG bar, LOGIC box (B2),
