@@ -35,7 +35,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   file at the next letter, Dan deletes the old; a view-only change keeps the file and letter; Dan 2026-11-02). Layout view = formboard (README). `build_drawings.py --check` keeps the layout tree, master lengths, the
   Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is built and checked from the master.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
-  DRB102, or 1-2 smaller bulkheads from Dan's on-hand parts first, sized from the new-wire count (Rule 3 below).
+  one DRB102 (Dan B5 a, 2026-11-02; replaces the on-hand smaller-bulkhead option), cavities per Rule 3 below.
 - **B8 Routes and views.** A route (`docs/harness/routes/`) changes only from Dan's markup; the harness follows it. Harness ownership (Dan 2026-11-01): one harness file is one physical harness; each plug belongs to the harness that physically carries it and every wire landing on that plug is in that harness (`passes_through` names any other bundle it rides in); fuse / relay boxes, buses, studs and factory taps are hubs that several harnesses land on. A cable listed in a harness it cannot physically ride in (size, route, cavity limits) is flagged to Dan; the pin chart's first page lists every device by harness.
   Locked device list (Dan B1 = a, 2026-11-02): "Harness ownership (B8 list)" below is the target owner of every device;
   the master is brought to it (OPEN-ITEMS row 183 phase 2) and a device changes harness only with Dan's OK.
@@ -43,6 +43,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes
   that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive). Top
   views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
+  Dan's saves are his (Dan 2026-11-02): no agent overwrites a saved placement, editor save or route without showing Dan
+  the change and getting his OK first; the old save is kept as a backup either way.
   Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed
   plugs are splices (no number, anywhere between ECU and bulkhead); a device outside the map's area is a hand-off point
   where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
