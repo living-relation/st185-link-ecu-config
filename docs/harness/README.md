@@ -83,7 +83,9 @@ skill is not changed for this project):
   +12 V (NO)"); the device name is already on the connector. Bulkhead, ECU and splice ends name the device ("Gearbox
   speed signal"). Never "in" / "out" (direction is relative): "+12 V to reverse switch", "Switched +12 V from reverse
   switch". One name per device, the master's (reverse switch, not back-up switch). The text comes from the master's
-  end descriptions; AB-engine done, every other harness when its document is next built.
+  end descriptions; AB-engine done, every other harness when its document is next built. A device's factory lead (a
+  terminal, so no connector name) carries the device name in its label, the master's, code in parentheses: "LH
+  headlamp (H1) pin 3 (factory lead)" (Dan 2026-11-03).
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
 - Connection limit: 100 connections per document (plan limit, 2026-11-01); a bigger harness is split by whole circuits into numbered documents (AB-cabin: 1 bulkhead run, 2 dash).

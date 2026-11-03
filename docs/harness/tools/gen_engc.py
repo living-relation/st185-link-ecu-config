@@ -112,7 +112,19 @@ def tlabel(r, s):
     t, i, p, nm = r[s + '_type'], r[s + '_id'], r[s + '_pin'], r[s + '_name']
     if t == 'terminal': return i
     if i == 'W1': return 'W1 pin %s (%s)' % (p, 'factory cowl lead' if 'cowl lead' in nm.lower() else 'washer motor')
+    # a front device's lead names its device, the master's name before "<id> pin", code in parentheses (B22):
+    # "LH headlamp (H1) pin 3 (factory lead)" (Dan 2026-11-03); cabin leads (IE1, J/B No.1, IG2, R/B No.4: master
+    # name "OEM ...") name the device in their pin text instead
+    # a lead whose own master name gives no device (A5 pin 4 "OEM A5, factory Y-R lead") takes it from another end of
+    # the same OEM id ("A/C pressure switch A5 pin 1"; DECISIONS A/C paragraph)
+    if i in DEVNAME: return '%s (%s) pin %s (factory lead)' % (DEVNAME[i], i, p)
     return '%s pin %s (factory lead)' % (i, p)
+DEVNAME = {}
+for r in W:
+    for s in ('from', 'to'):
+        if r[s + '_type'] == 'OEM':
+            m = re.match(r'(.+?) %s pin ' % re.escape(r[s + '_id']), r[s + '_name'])
+            if m and not m.group(1).startswith('OEM'): DEVNAME.setdefault(r[s + '_id'], m.group(1))
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
