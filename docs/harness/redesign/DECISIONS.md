@@ -29,9 +29,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B5 ONE wire list.** `docs/harness/MASTER-wirelist.csv` holds every new wire, cut, reuse and tap with its EWD page; no
   row, no cut. Reuse an OEM wire only if its gauge fits and both ends are known. `sot/channels.csv` = ECU settings.
 - **B6 Built in harness.design.** Every harness is built in harness.design from the master (Dan 2026-11-01), one at a
-  time; our layout / schematic PDFs are retired. File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a physical change = a new
-  file at the next letter, Dan deletes the old; a view-only change keeps the file and letter; Dan 2026-11-02). Layout view = formboard (README). `build_drawings.py --check` keeps the layout tree, master lengths, the
-  Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout. The OEM splice reference is rebuilt from the master and checked (row 175).
+  time; our layout / schematic PDFs are retired. Detail: "harness.design files (B6)" below.
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   one DRB102 (Dan B5 a, 2026-11-02; replaces the on-hand smaller-bulkhead option), cavities per Rule 3 below.
 - **B8 Routes and views.** A route (route file or saved placement) changes only from Dan's markup or placement; lengths
@@ -41,11 +39,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 ### Power and grounds
 
-- **B10 Grounds.** ECU power grounds (A25, A34, B25, B34) splice together, one wire to the POWER box battery-negative
-  bar. Gnd Out takes only the return of a sensor the ECU powers (+5 V / +8 V); anything fed from a fuse box or the SW12 bus grounds on the
-  battery-negative bus with the other 12 V devices, never on the ECU (Dan 2026-10-31; row 170). Shield drain only to the ECU shield pin; heavy loads may use chassis.
-  The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4, not the engine block (Dan 2026-10-29).
-  ECU +8V Out feeds the cam sensor and the gearbox speed sensor only; the VSS returns on Gnd Out, DI 8 pull-up off (Dan 2026-11-01).
+- **B10 Grounds.** ECU power grounds splice to one wire to the POWER box battery-negative bar; Gnd Out takes only the
+  return of a sensor the ECU powers, 12 V devices ground on the battery-negative bus. Detail: "Grounds (B10)" below.
 - **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
   fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator MEGA 175 A; stop: kill or ACC.
 - **B12 Wire gauge (Dan 2026-10-30).** The device and its wire set the circuit: size for the realistic peak load, drop to what
@@ -53,15 +48,12 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
   forward of the firewall and on rear lamp / wheel-speed plugs. DR-25 on 2+ wire runs, System 25 boots at branches.
 - **B14 Shields and drains.** Shielded cable as listed under Shields below; a shield runs unbroken, floats at
-  the device and ends only at A7 (loom A), B17 (loom B) or C1 (CAN) through its own drain wire. Same cable and colours on
-  both sides of the firewall (Dan 2026-10-31; row 171).
+  the device and ends only at A7 (loom A), B17 (loom B) or C1 (CAN) through its own drain wire. Detail: Shields below.
 
 ### Relays
 
 - **B15 Relays.** An ECU or CSB3 output drives a relay low-side (Aux 1-4 are low-side only, Aux 5-8 set Low): pin ->
-  coil 85, 86 -> fused +12 V; no flyback diodes. Relay pins per maker drawing; boxes per `cad/fusebox/`.
-  Coil check (Dan 2026-11-01): whenever a fuse / relay box is touched or reviewed, check every relay coil against its driver;
-  Link Aux outputs have their own flywheel diode, Ign / Inj outputs do not, so a relay on those gets a diode-coil part.
+  coil 85, 86 -> fused +12 V; no flyback diodes. Relay pins per maker drawing; boxes per `cad/fusebox/`. Detail: "Relays (B15)" below.
 
 ### CAN
 
@@ -79,21 +71,15 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 ### Wire and parts
 
-- **B20 Wire and colours.** Wire type (Dan 2026-10-31, N82 A): SAE J1128 TXL (XLPE, 125 C, `J1128-TXL-<awg>-<colour>`) in the
-  cabin and trunk and for front-of-car (harness C) signal / low-current wires; `M22759/16` Tefzel (150 C) for the engine
-  harness (AB-engine), anything within 150 mm of the exhaust, turbo or downpipe, the Spec 55 shielded cables, and any
-  circuit where TXL's derated rating (about 0.8x Tefzel at 80 C cabin, 0.7x at 100 C engine bay) falls below its fuse
-  (B12). Battery cables `BC-*`. Solid colours: Red +12 V, Black ground / drain, Orange
-  sensor supply, Blue sensor return, White signal, Green CAN, Yellow switch in. No ident bands (Dan 2026-10-31): a printed
-  wire-ID label at each end (B22) tells same-colour wires apart.
+- **B20 Wire and colours.** SAE J1128 TXL in the cabin, trunk and harness C; `M22759/16` Tefzel for the engine harness
+  and hot or high-current spots; solid colours by function, no ident bands. Detail: "Wire and colours (B20)" below.
 - **B21 Picking parts.** Order and validation per `docs/sourcing/README.md` (on hand, TE, Dan's suppliers, else a stated
   reason). Never guess a PN: unverified = `TBD` + reason; every part real and buyable; parts made at work cost $0.
 
 ### Drawings and CAD
 
-- **B22 End labels, clean sheets.** Each wire end says where that end lands (device, connector, pin, signal; OEM end +
-  EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`. Only asked-for parts.
-  Every connector, splice, bus, relay and box has a plain name; any code follows in parentheses (Dan 2026-10-31; row 172).
+- **B22 End labels, clean sheets.** Each wire end says where that end lands, never a generic word or internal id; every
+  part has a plain name, any code in parentheses. Only asked-for parts. Detail: "End labels and names (B22)" below.
 - **B23 Models drive drawings.** The CAD model is the master: a physical change goes in the model first, then the drawing is regenerated, never hand-edited. Revs: Drawing rules below.
   Gate `check_drawings_current.py` checks the register, rev letters, issued PDFs and tracked fingerprints; it skips the STEP model files (in Dan's models folder, B26; Dan G2 a).
 - **B24 Initials and revision marks.** DRAWN and every rev-log BY are a person, always `DG` (`.drawing-initials`), never
@@ -108,8 +94,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 ### Shipping
 
 - **B28 Shipping a change.** From `origin/main`; `check_all.py`, `check_parity.py` green; touched rows updated; PR with `Rows:`;
-  pr-closeout, then squash-merge when Repo checks pass. Never merge `main` into a conflicting PR: tell Dan on its own line. Never remove your own worktree.
-  `git pull --ff-only` at session start and after every merge, then session-start unless work stops (Dan 2026-10-31 / 11-01).
+  pr-closeout, then squash-merge when Repo checks pass. Detail: "Shipping (B28)" below.
 - **B29 Tracker, generated files.** `docs/OPEN-ITEMS.md` is the one tracker (open rows, Needs Dan, history), kept
   short. The drawings and BOM are generated, never hand-edited.
 - **B30 Past decisions.** Old R1-R226, S1-S40 and audit rows resolve through the retire map below (full text in git
@@ -479,11 +464,36 @@ Read this file and `AGENTS.md` first; they win. Dispatch only relays messages, p
 - Before a question reaches Dan, a session answers it from the repo, the SoT, or a maker document. If that fails, ask Dan in `docs/OPEN-ITEMS.md` Needs Dan.
 - Code sessions follow `AGENTS.md`. This section is for Dispatch only.
 
+## harness.design files (B6)
+
+Moved here from rule B6 on 2026-11-02 (Dan L3 = a); binding as part of B6.
+
+- File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a physical change = a new file at the next letter, Dan deletes the old; a view-only change keeps the file and letter; Dan 2026-11-02).
+- Layout view = formboard (README).
+- `build_drawings.py --check` keeps the layout tree, master lengths, the Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout.
+- The OEM splice reference is rebuilt from the master and checked (row 175).
+
+## Grounds (B10)
+
+Moved here from rule B10 on 2026-11-02 (Dan L3 = a); binding as part of B10.
+
+- ECU power grounds (A25, A34, B25, B34) splice together, one wire to the POWER box battery-negative bar.
+- Gnd Out takes only the return of a sensor the ECU powers (+5 V / +8 V); anything fed from a fuse box or the SW12 bus grounds on the battery-negative bus with the other 12 V devices, never on the ECU (Dan 2026-10-31; row 170).
+- Shield drain only to the ECU shield pin; heavy loads may use chassis.
+- The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4, not the engine block (Dan 2026-10-29).
+- ECU +8V Out feeds the cam sensor and the gearbox speed sensor only; the VSS returns on Gnd Out, DI 8 pull-up off (Dan 2026-11-01).
+
+## Relays (B15)
+
+Moved here from rule B15 on 2026-11-02 (Dan L3 = a); binding as part of B15.
+
+- Coil check (Dan 2026-11-01): whenever a fuse / relay box is touched or reviewed, check every relay coil against its driver; Link Aux outputs have their own flywheel diode, Ign / Inj outputs do not, so a relay on those gets a diode-coil part.
+
 ## Shields
 
 `check_wiring.py` S1-S3 enforces the drain and floating-screen rules (R207). Device pin, pin name, and whether that device gets a shield: `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
 
-**B14 detail.** Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, flex fuel, ETB, APS pedal, the CAN-Lambda run and every CAN pair; injectors, coils and the gearbox VSS (plain wires, Dan 2026-11-01) get none. A drain is its own `M22759/16-20-06` wire, found by its part, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one OUT plug; its board is isolated from the case.
+**B14 detail.** Same cable and colours on both sides of the firewall (Dan 2026-10-31; row 171; moved here from rule B14 on 2026-11-02, Dan L3 = a). Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, flex fuel, ETB, APS pedal, the CAN-Lambda run and every CAN pair; injectors, coils and the gearbox VSS (plain wires, Dan 2026-11-01) get none. A drain is its own `M22759/16-20-06` wire, found by its part, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one OUT plug; its board is isolated from the case.
 
 **No connector shells (R33).** Every drain lands on a regular pin; no shell, backshell or shielding plate ever carries a screen (the VRC LP-16 plugs included).
 
@@ -510,6 +520,23 @@ Every bulkhead drain has its own cavity. Both sensor screens of a VRC share its 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in two non-shielded 5-pin CNLINKO LP-16 plugs (`LP-16-J05PE-02-001`, S8 / R34 / S16). Nothing bonds to the case and no shell carries the screen (R33): the box is not part of the shield path, the PCB sits in a printed holder (S26) and grounds through the output cable only, and the box mounts on nylon hardware.
 
 **ABS routing.** Front (FL, FR) runs through the fenders with loom C. Rear (RL, RR) runs with the fuel pump and level sender. Neither pair gets its own firewall crossing; the wheel-speed loom uses no bulkhead connector — it crosses on a grommet so each screen stays unbroken.
+
+## Wire and colours (B20)
+
+Moved here from rule B20 on 2026-11-02 (Dan L3 = a); binding as part of B20.
+
+- Wire type (Dan 2026-10-31, N82 A): SAE J1128 TXL (XLPE, 125 C, `J1128-TXL-<awg>-<colour>`) in the cabin and trunk and for front-of-car (harness C) signal / low-current wires; `M22759/16` Tefzel (150 C) for the engine harness (AB-engine), anything within 150 mm of the exhaust, turbo or downpipe, the Spec 55 shielded cables, and any circuit where TXL's derated rating (about 0.8x Tefzel at 80 C cabin, 0.7x at 100 C engine bay) falls below its fuse (B12).
+- Battery cables `BC-*`.
+- Solid colours: Red +12 V, Black ground / drain, Orange sensor supply, Blue sensor return, White signal, Green CAN, Yellow switch in.
+- No ident bands (Dan 2026-10-31): a printed wire-ID label at each end (B22) tells same-colour wires apart.
+
+## End labels and names (B22)
+
+Moved here from rule B22 on 2026-11-02 (Dan L3 = a); binding as part of B22.
+
+- Each wire end says where that end lands (device, connector, pin, signal; OEM end + EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`.
+- Only asked-for parts.
+- Every connector, splice, bus, relay and box has a plain name; any code follows in parentheses (Dan 2026-10-31; row 172).
 
 ## Wire lists (Option A, Dan 2026-10-26)
 
@@ -596,6 +623,7 @@ Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
 - Lengths from a route map: map length x 5.3 mm per EWD point (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until measured at the car.
 - AB-cabin (Dan 2026-11-02, A2-A4 = a): placed on the body manual under-body plan (DI-7), front right, driver up, in real mm (8.49 mm per PDF point from the 2525 mm wheelbase), plus an optional drop in mm per device; EWD p.44 (faded) is a look-only tab, since a 3-D view gives no lengths.
 - The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the layout file); a splice sits where its legs part.
+- Master lengths step (Dan L2 = a, 2026-11-02): a harness's master lengths are written from the layout tree at phase 4's lengths step, one harness at a time, with a before -> after list for Dan (OPEN-ITEMS row 183).
 - A connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29).
 - The engine bulkhead sits 16 in (406 mm) from where the trunk meets the firewall (`root_drop_mm`; Dan 2026-11-02 (J1); was 8 in / 203 mm, Dan 2026-10-29). The 6 in breakout rule above is unchanged.
 
@@ -650,3 +678,11 @@ Shop-drawing rules. Rev letters live in `cad/DRAWING-REVS.md`. Gates: `cad/check
 | Every full-letter rev made from 2026-10-19 on puts its letter in a triangle next to each changed item (and the BOM row of a changed part number); old triangles stay on later revs (N42 = B). Declared in `spec['rev_marks']` or `<pn>.REVMARKS.json` beside the rev log; gate K5; revs before that date exempt (`cad/rev-marks.json`). | R200 (Dan N42 = B) |
 | Every model has a `cad/README.md` row and a trimetric PNG; reuse Fusion documents (10 max). Every fabricated part and assembly has a drawing with a BOM (also as an Excel copy, in sync); each part / body its own model file; OTS parts need a model only, a modified OTS part a drawing + model. | B26 (moved out of the rule 2026-11-02) |
 | Fuse boxes: small, PA12 MJF, no printed threads, live parts >= 3 mm apart, copper to copper (`cad/fusebox/src/spec.py`). | B27 (moved out of the rule 2026-11-02) |
+
+## Shipping (B28)
+
+Moved here from rule B28 on 2026-11-02 (Dan L3 = a); binding as part of B28.
+
+- Never merge `main` into a conflicting PR: tell Dan on its own line.
+- Never remove your own worktree.
+- `git pull --ff-only` at session start and after every merge, then session-start unless work stops (Dan 2026-10-31 / 11-01).
