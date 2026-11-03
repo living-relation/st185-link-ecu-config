@@ -20,20 +20,24 @@ that B9 points to).
 | `tools/genroute.py` | orthogonal schematic routing for a harness.design document JSON (Dan's format rules); keeps node positions, rewrites wire / core / shield points; `python genroute.py <doc.json> <out.json>` | Only with the format rules |
 | `tools/router.py` | the lane router `genroute.py` uses (box collision, a line along a box edge counts as a hit, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout when its pass is done (DECISIONS B8) | Only from Dan's markup or placement |
-| `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170-175 (Dan 2026-10-31); deleted when they close | No - closed to additions |
+| `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170, 172, 173 and 175 (Dan 2026-10-31); deleted when they close | No - closed to additions |
 | `circuit-plan.md` | the 21 circuits and the cut-list groups 1-8 wire by wire (remove / keep / re-fed by a master wire) | Yes, when a circuit decision changes |
 | `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
 
 ## Change the wiring
 
-1. Edit the rows in `MASTER-wirelist.csv` (pins exactly as the maker numbers them; a part number not confirmed by a maker
+1. ECU-pin circuits first: `AGENTS.md` "Before any wiring or CAN change" item 4 (a mismatch is a stop: ask Dan). Then
+   edit the rows by hand in `MASTER-wirelist.csv` and, for ECU settings, `sot/channels.csv`, in the existing style; quote
+   any field that contains a comma (pins exactly as the maker numbers them; a part number not confirmed by a maker
    document is `TBD`, never guessed).
-2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell).
+2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell). After editing `sot/channels.csv`,
+   also `python docs/harness/tools/check_wiring.py --write-io-table` (regenerates the `XTREMEX-IO-TABLE.html` pin map).
 3. `python docs/harness/tools/build_drawings.py` (wire lists as xlsx + CSV, DRB102 map, length check; `--check` reads the
    lists back), `python docs/harness/tools/build_pin_chart.py` for the pin chart (it prints with Playwright's bundled
    Chromium, else the installed Edge, else Chrome; on Dan's PC: `uv run --no-project --with playwright --with pypdf
    python docs/harness/tools/build_pin_chart.py`), and `python docs/sourcing/build_project_bom.py` for the shopping list.
-4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
+4. Before the commit, together: `python tools/check_all.py`, `python bench/check_parity.py` and
+   `python tune/scripts/validate_tune.py` (CI runs `check_all.py`, plus `check_wiring.py --self-test`).
 5. Ship it per `AGENTS.md` "Working rules" and DECISIONS B28 (PR with a `Rows:` line, then pr-closeout). Part numbers
    are picked per `docs/sourcing/README.md` (B21).
 
@@ -47,8 +51,8 @@ Every harness is built in harness.design from the master (Dan 2026-11-01, DECISI
 planned layout first. The master stays the only wiring source; nothing in a document is edited back into it.
 File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`. Only a physical change (wires, parts, pins,
 lengths) makes a new file at the next letter (`Rev B`; agents cannot rename; Dan deletes the old file). A view-only
-change (layout, schematic tidy, labels, colours) edits the same file and keeps its letter (Dan 2026-11-02). Current files: AB-engine `ST185-AB-engine Rev C` (https://app.harness.design/x9QB; formboard layout, compact schematic, 2026-11-03; Rev B and Rev A are stale, Dan deletes them), EngineRoom-C
-`ST185-EngineRoom-C Rev B` (https://app.harness.design/Km0x; formboard layout, compact schematic, 2026-11-03; Rev A is stale, Dan deletes it). AB-cabin (two documents, 100-connection plan limit) is rebuilt
+change (layout, schematic tidy, labels, colours) edits the same file and keeps its letter (Dan 2026-11-02). Current files
+and their links: `docs/OPEN-ITEMS.md` "Current state" (the harness.design bullet). AB-cabin (two documents, 100-connection plan limit) is rebuilt
 after its placement pass as new files `ST185-AB-cabin 1 - bulkhead run Rev A` / `ST185-AB-cabin 2 - dash Rev A` (the old
 8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
