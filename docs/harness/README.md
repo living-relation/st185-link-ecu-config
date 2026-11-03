@@ -59,6 +59,8 @@ skill is not changed for this project):
 - Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_abeng.py`, `gen_engc.py`, `gen_cabin.py`). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
+- Review a harness by reading 10 random rows: each says what the wire does and its far end matches; never accept a
+  harness on counts alone (practice per SAE AS50881 / IPC/WHMA-A-620).
 - Layout view = a FORMBOARD (Dan 2026-11-02; replaces the 2026-10-29 "Route 16 spots, smoothed" rule): the harness
   drawn laid flat on a build table, organised for building it, not a copy of the car. The placement editor / route map
   is where install spots and lengths come from; the formboard only re-arranges them.

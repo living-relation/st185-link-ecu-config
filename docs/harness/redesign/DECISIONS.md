@@ -496,6 +496,8 @@ Moved here from rule B10 on 2026-11-02 (Dan L3 = a); binding as part of B10.
 
 Moved here from rule B15 on 2026-11-02 (Dan L3 = a); binding as part of B15.
 
+- Link Aux outputs: `hilo-2a` in `sot/channels.csv` = 2 A to ground (low side) only; Aux 5-8 high side is about 0.5 A, and
+  Aux 1-10 carry a 1.5 kOhm pull-up to 12 V (Link forum 15847 / 17727). So a relay coil is driven low side (B15).
 - Coil check (Dan 2026-11-01): whenever a fuse / relay box is touched or reviewed, check every relay coil against its driver; Link Aux outputs have their own flywheel diode, Ign / Inj outputs do not, so a relay on those gets a diode-coil part.
 
 ## Shields
@@ -648,6 +650,10 @@ The device and its wire set the circuit.
 - (3) Every other contact in the circuit (bulkhead, ECU, relay, splice) must take that wire; check each one, end to end.
 - (4) The fuse protects that wire.
 - (5) Last resort, only when there is no other way: split the circuit over two bulkhead pins and rejoin it.
+- Ratings used for sizing (M22759/16, HP Academy), cabin 80 C / engine bay 100 C: 20 AWG 8 / 6 A, 18 AWG 11 / 9 A,
+  16 AWG 15 / 12 A, 14 AWG 22 / 18 A.
+- Any source (ECU output, fuse, relay, contact) rated below its load is flagged; a pass is a number, and a fail is asked of
+  Dan before any part changes (Dan 2026-10-24).
 - A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits both wires, else a hand solder splice under adhesive heat shrink.
 - Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A; injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with TE 5-965906-1 + seal 1-967067-1 at the ETB (on TE drawing C-967616 for the Bosch MQS housing 1-967616-1; Dan 2026-10-31), ETB 7.5 A; fuel pump 10 AWG feed and ground to the pump's own short lead, FP fuse 40 A (N79); EPS 8 AWG + 50 A, solder splice onto the Toyota repair-wire lead 82998-12500 (8 mm2, so size-for-size; RM06H0E).
 - Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
@@ -693,6 +699,7 @@ Shop-drawing rules. Rev letters live in `cad/DRAWING-REVS.md`. Gates: `cad/check
 
 Moved here from rule B28 on 2026-11-02 (Dan L3 = a); binding as part of B28.
 
-- Never merge `main` into a conflicting PR: tell Dan on its own line.
+- Never merge `main` into a conflicting PR: stop, tell Dan on its own line ("PR #n now conflicts with main on <file>"); only after
+  his answer, cut a new branch from `origin/main`, carry the files over, close the old PR; no rebase, no force-push (Dan 2026-11-01).
 - Never remove your own worktree.
 - `git pull --ff-only` at session start and after every merge, then session-start unless work stops (Dan 2026-10-31 / 11-01).

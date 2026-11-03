@@ -8,6 +8,10 @@
 > fields in PCLink ENCODE form (raw = value × scale + offset). `bench/check_parity.py` checks every copy
 > (JSON, .lcs, this table, frames.py, RealDash XML, sender UI, `switchboard_frames.json`) and runs in CI.
 
+> **Packing rule (highest importance):** in each ECU stream (0x3E8-0x3F1) the active channels pack in order from byte 0,
+> each starting where the last ends (offset[n] = offset[n-1] + length[n-1]): no gaps, no overlaps; unassigned slots are
+> 0-length placeholders after them. `.lcs` StartBit = byte offset x 8. Bit-packed switchboard frames follow their own table.
+
 > **Configuration requirement:** the ECUMaster CAN Switch Board V3 ships with a **default speed of 500 kbps**. It must be set to **1 Mbit/s** to share this bus (matches `link_g4x_can_setup.lcs` CANModule Index=1 / CAN1, BitRate=1000000). 1000 kbps is a supported speed per the switchboard manual — this is a config change, not a hardware conflict.
 
 ---
