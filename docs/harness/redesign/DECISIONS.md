@@ -468,7 +468,7 @@ Read this file and `AGENTS.md` first; they win. Dispatch only relays messages, p
 
 Binding as part of B3.
 
-- Scratch folders hold disposable work only; anything vital goes to its home by type: rules -> DECISIONS / README, agent instructions -> AGENTS.md, state and tracking -> OPEN-ITEMS, cross-session notes -> working memory; tools and scripts -> the repo (Dan 2026-11-03).
+- Scratch folders hold disposable work only; anything vital goes to its home by type: rules -> DECISIONS / README, agent instructions -> AGENTS.md, state and tracking -> OPEN-ITEMS, cross-session notes -> working memory; tools and scripts -> the repo (Dan 2026-11-03). Scratch inside the repo is `_scratch/` (gitignored); nothing vital ever goes there.
 - Retiring files: `AGENTS.md` (R46).
 - Before a file is folded away or deleted, every fact open work still needs is already in its home (lesson: #363 and #399 folded away the power-injection plan and cut-list groups 4-8; recovery phase 1 put them back, row 183).
 - A session cleans a scratch or handoff folder only by deleting, by name, the files it made itself, never with a wildcard (lesson: 2026-11-03, a scratch cleanup deleted the planning research files).
