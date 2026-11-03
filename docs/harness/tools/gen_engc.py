@@ -112,6 +112,11 @@ def tlabel(r, s):
     t, i, p, nm = r[s + '_type'], r[s + '_id'], r[s + '_pin'], r[s + '_name']
     if t == 'terminal': return i
     if i == 'W1': return 'W1 pin %s (%s)' % (p, 'factory cowl lead' if 'cowl lead' in nm.lower() else 'washer motor')
+    # a front device's lead names its device, the master's name before "<id> pin", code in parentheses (B22):
+    # "LH headlamp (H1) pin 3 (factory lead)" (Dan 2026-11-03); cabin leads (IE1, J/B No.1, IG2, R/B No.4: master
+    # name "OEM ...") name the device in their pin text instead
+    m = re.match(r'(.+?) %s pin ' % re.escape(i), nm)
+    if m and not m.group(1).startswith('OEM'): return '%s (%s) pin %s (factory lead)' % (m.group(1), i, p)
     return '%s pin %s (factory lead)' % (i, p)
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
