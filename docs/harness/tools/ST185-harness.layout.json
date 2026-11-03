@@ -813,6 +813,7 @@
   "BOOST-SOL": "BOOST",
   "ECT": "ECT",
   "CAN-LAMBDA": "LAMBDA",
+  "CAN-TERM-END": "LAMBDA",
   "OIL-T": "OILT",
   "KNOCK-1": "KNOCK",
   "CAB-KNOCK1": "KNOCK",

@@ -37,7 +37,7 @@ FIX = {"BUS-5V": "+5 V bussed plug at the ECU, fed by ECU plug A pin 32 (BUS-5V)
        "IX-WS-R-P": "Rear wheel-speed inline plug, sensor side (IX-WS-R)", "IX-WS-R-S": "Rear wheel-speed inline plug, VRC side, dash above the ECU (IX-WS-R)",
        "IX-FUEL-P": "Fuel sender inline plug, harness side, trunk (IX-FUEL)", "IX-FUEL-S": "Fuel sender inline plug, sender side, trunk (IX-FUEL)",
        "R-CRUISE": "Cruise resistor on the CSB3", "R-TERM-ECU": "120 ohm CAN end resistor, ECU end",
-       "R-TERM-END": "120 ohm CAN end resistor, Lambda end", "POWER": "POWER fuse box", "LOGIC": "LOGIC fuse box",
+       "CAN-TERM-END": "120 ohm CAN terminator plug, Lambda end", "POWER": "POWER fuse box", "LOGIC": "LOGIC fuse box",
        "BATT-RELAY-BLOCK": "Trunk relay box", "POWER-STUDS": "POWER fuse box", "CSB3": "ECUMaster CSB3",
        "COIL-1": "Coil 1", "COIL-2": "Coil 2", "COIL-3": "Coil 3", "COIL-4": "Coil 4"}
 FUSE = {}
