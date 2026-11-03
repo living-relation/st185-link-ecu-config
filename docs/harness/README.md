@@ -10,8 +10,8 @@ that B9 points to).
 | `MASTER-wirelist.csv` | every wire, cavity, splice, mate and spare of every harness | **Yes - the only wiring file you edit** |
 | `sot/fuse-relay-map.csv` | B1 / B2 / B3 / B4 seat to circuit (not a wire list) | Yes, when a seat changes |
 | `drawings/` | generated: the pin chart `ST185-pin-chart.pdf` (the one pinout, a bench printout) and the DRB102 insert-face map `DRB102-bulkhead-map.png`. No layout / schematic PDFs: harnesses are built in harness.design (Dan 2026-11-01) | No - re-run the generator |
-| `wirelists/` | generated: one From / To wire list per harness (`ST185-<harness>-wirelist.xlsx`: Wires, Connectors, Splices, Spare Cavities, Key), in the Option A splice-column format (DECISIONS "Wire lists"; examples `option-a-examples.html`); so far AB-cabin and AB-engine (`"wirelists"` in the layout file) | No - re-run the generator |
-| `tools/build_drawings.py` | makes no drawings (Dan 2026-11-01): the layout tree, wire routing and master lengths, the wire lists and the DRB102 map; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) + `tools/<set>.revs.json` (title block, rev log) | The layout and rev files, yes |
+| `wirelists/` | generated: one From / To wire list per harness, `ST185-<harness>-wirelist.xlsx` (Wires, Connectors, Splices, Spare Cavities, Key) and `ST185-<harness>-wirelist.csv` (the Wires sheet; the only wiring CSV besides the master, F1), in the Option A splice-column format (DECISIONS "Wire lists"; examples `option-a-examples.html`); so far AB-cabin and AB-engine (`"wirelists"` in the layout file) | No - re-run the generator |
+| `tools/build_drawings.py` | makes no drawings (Dan 2026-11-01): the layout tree, wire routing and master lengths, the wire lists (xlsx + CSV, removal rows skipped) and the DRB102 map; a drawing set is `tools/<set>.layout.json` (physical tree, harnesses in the set; the AB-engine part of the tree is built from Route 16's device spots and lines, and the harness C (EngineRoom-C) part from Route 17's (runs 10 / 11, the RH fender grommet run, and Route 16 lines for the A/C, alternator plug, EPS pump and block ground), by `route_trees`, DECISIONS B8) | The layout file, yes |
 | `tools/build_pin_chart.py` | builds `drawings/ST185-pin-chart.pdf` from the master; connector faces in `tools/pin_chart/` (sourced layouts; a connector without one is a numbered list, flagged) | The face files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `tools/gen_cabin.py` | builds the two harness.design AB-cabin documents (doc 1 bulkhead run, doc 2 dash) from the master; `python gen_cabin.py <repo> <out> <1\|2>`, needs `<out>/lib.json` (part library 5LO8 dump). Needs updating for the 8 wires moved into AB-cabin (#465) at the next AB-cabin rebuild | Never by hand-editing its output |
@@ -28,9 +28,12 @@ that B9 points to).
 1. Edit the rows in `MASTER-wirelist.csv` (pins exactly as the maker numbers them; a part number not confirmed by a maker
    document is `TBD`, never guessed).
 2. `python docs/harness/tools/check_wiring.py` (add `--tbd` to list every TBD cell).
-3. `python docs/harness/tools/build_drawings.py` (wire lists, DRB102 map, length check), and
+3. `python docs/harness/tools/build_drawings.py` (wire lists as xlsx + CSV, DRB102 map, length check; `--check` reads the
+   lists back), `python docs/harness/tools/build_pin_chart.py` for the pin chart, and
    `python docs/sourcing/build_project_bom.py` for the shopping list.
 4. `python tools/check_all.py` before the commit (CI runs it, plus `check_wiring.py --self-test`).
+5. Ship it per `AGENTS.md` "Working rules" and DECISIONS B28 (PR with a `Rows:` line, then pr-closeout). Part numbers
+   are picked per `docs/sourcing/README.md` (B21).
 
 A removal row (a factory wire taken out of the car, back to its last live point; B5 "no row, no cut") is written as: `oem_method` starting "remove" ("remove whole: ..." or "remove back to <splice, plug or box>"), `wire_pn` `none (removed)`, gauge, colour and length blank. `check_wiring.py` audits it like any row; `build_drawings.py`, the BOM, the pin chart and the harness.design generators skip it (`build_drawings.is_removal`).
 
@@ -55,16 +58,22 @@ skill is not changed for this project):
   - Parallel runs bundled into one line; breakouts that sit close together merged into one branch.
   - Wire lengths stay exactly the master's (drawn length is not to scale; the numbers are).
   - Orientation: front of car RIGHT, rear / trunk LEFT, driver side on top. Each harness sits where it lies along the
-    car, so harnesses that run the full length (cabin to trunk) fit; engine-bay harnesses have the bulkhead at their
-    left end. Never put the bulkhead on the left as a blanket rule.
+    car, so harnesses that run the full length (cabin to trunk) fit; engine-bay harnesses have the bulkhead near the
+    center third of the page (Dan 2026-11-02 (J1)). Never put the bulkhead on the left as a blanket rule.
   - A connector part-way along a line breaks out at least 6 in off it; the last one may end the run (B8). Coil and
-    injector breakouts all point the same way.
+    injector breakouts run parallel (Dan 2026-11-02 (J1)).
 - Schematic: compact (fits one screen zoomed out); both columns start level at the top; connectors may be reordered
-  for readability, pin order never changes (Dan 2026-11-02). Bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
+  for readability, pin order never changes (Dan 2026-11-02). Other harnesses: bulkhead left, splices middle, devices right; each wire horizontal, one 90 degree jog in its own lane,
   horizontal into its pin; no two signals on one line.
+  - Engine harness schematic (Dan 2026-11-02 (J1)): bulkhead near the center third of the page; splices near the bulkhead,
+    preferably on the cabin harness before the bulkhead, never in the middle of a run (injectors and ignition coils are the
+    exception); devices to the right of the bulkhead; straight orthogonal runs with one 90 degree jog per lane.
+  - 45 degree jogs may be placed close to devices, near splices and before connectors (Dan 2026-11-02 (J1)).
+  - Parallel wires must not conceal or overlap other wires (schematic view only; overlap is unavoidable in the layout
+    view); parallel runs in schematic views keep at least half a grid square between them (Dan 2026-11-02 (J1)).
 - Schematic format (Dan 2026-11-01): every connector 8 grid units wide (`width` 240, document `schematic.connectorWidth`
-  240). Lines orthogonal; wires of one cable or one run share a path, side by side, like the real cable; no wire folds
-  back over itself; no layout points next to a device or connector (let the app route the last stretch; "Make
+  240). Lines orthogonal (plus the 45 degree jogs above, Dan 2026-11-02 (J1)); wires of one cable or one run share a path, side by side, like the real cable; no wire folds
+  back over itself; no layout points next to a device or connector other than those 45 degree jogs (let the app route the last stretch; "Make
   orthogonal" in the app fixes a bad route). A part in parallel with two lines (e.g. the CAN 120 ohm resistor) sits
   between them with short equal legs. A ground stud is drawn on the side of the car its wires go to (LH pop-up and
   lamps at EB, RH ones at EA; Dan 2026-11-01), so LH and RH grounds can't be mixed up.
@@ -77,10 +86,11 @@ skill is not changed for this project):
   `schematicPosition`, drawn at (x+15, y+15); a cable core's points run from the cable outward on both sides.
 - Connection limit: 100 connections per document (plan limit, 2026-11-01); a bigger harness is split by whole circuits into numbered documents (AB-cabin: 1 bulkhead run, 2 dash).
 - Display stripes (Dan 2026-11-01): in each harness.design document every +12 V (red) wire gets a stripe colour per circuit, the same for every wire of that circuit, so crossing power wires can be followed; a note in the document lists them. Tracing only: the wire part, master colour and BOM stay plain red.
-- Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
+- Parts (Dan 2026-11-02 (J1)): parts come from library 5LO8 first; unconfirmed part numbers stay `TBD`; out-of-sync
+  parts are synced and missing parts are added, as below. Parts view sync (Dan 2026-10-29): fix it whenever it shows up. Every part in the document must be in sync with the
   library (`compare_parts`). Out of sync: the library wins (pull), unless `docs/sourcing/harness-parts.csv` says
   otherwise. Not in the library: give the part its full maker, description and jacket colour from
-  `harness-parts.csv`, then add it to the library with its accessories pointing at the library's own lock / contact
+  `harness-parts.csv`, then add it to library 5LO8 with its accessories pointing at the library's own lock / contact
   ids. A `TBD` part is never added.
 
 ## Harnesses in the master
@@ -108,7 +118,7 @@ Routes 1 and 8-14 are the old route pages; no tool reads them since #456, and ea
 placement-editor layout at its pass (B8). Only Routes 16 / 17 carry device spots today.
 
 Each is built in harness.design (one at a time); the layout tree for all of them is `tools/ST185-harness.layout.json`;
-pinout: `drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness (no RearLights harness, #399). AB-cabin has no route (Dan 2026-10-26): it runs from the bulkhead to the centre of
+pinout: `drawings/ST185-pin-chart.pdf`. Rear lights stay on the factory harness (no RearLights harness, #399). AB-cabin's route is its placement-editor layout (row 180): it runs from the bulkhead to the centre of
 the dash near the floor, where every other harness to the ECU joins it; it is drawn left to right, and where each other
 harness's branch joins is set in the layout tree. Part makers and descriptions
 (AWG ranges) the BOM and the check read: `docs/sourcing/harness-parts.csv`. Fuse and relay seats: `sot/fuse-relay-map.csv`.

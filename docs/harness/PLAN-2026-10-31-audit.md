@@ -10,7 +10,7 @@ Every decision below is already Dan's (DECISIONS B2, B6, B10, B14, B20, B22, B28
 
 1. `git switch main && git pull --ff-only` (B28), then branch. Read `AGENTS.md`, DECISIONS B1-B30 and the "Shields" and
    "Wire lists" sections, OPEN-ITEMS rows 170-175.
-2. Master edits follow the `st185-change-sot` skill; shipping follows `st185-ship-change` (B28). The master is
+2. Master edits follow `docs/harness/README.md` "Change the wiring"; shipping follows AGENTS.md and B28 (then pr-closeout). The master is
    `docs/harness/MASTER-wirelist.csv`; nothing else is hand-edited (drawings, wire lists, BOM regenerate).
 3. Order and PRs: **PR 1** = rows 170 + 171 + 173 (master only, then regenerate); **PR 2** = row 172 (names);
    **PR 3** = row 174 (generator: per-device pages); **PR 4** = row 175 (OEM splice reference). Each PR: `python

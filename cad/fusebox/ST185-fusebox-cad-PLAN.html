@@ -594,7 +594,7 @@ ol.q li{margin:.5em 0}
 <li><b>Wire: 10 AWG</b>, protected by 40 A per the repo sizing table (10 AWG = 40 A max).</li>
 <li><b>SSR spec:</b> DC output, at least 40 A continuous AFTER its heat derating (needs a heatsink or a metal mount), a non-repetitive surge rating (usually given for 10 ms) above the measured inrush, low on-resistance (heat = I&sup2;R at 25 A), off-state leakage too small to turn the pump, and an input that works with the Link's low-side drive on A19.</li>
 <li><b>Turn-off spike:</b> switching off a motor makes an inductive voltage spike that can kill a DC SSR. Put a freewheel diode (rated for the pump current) across the pump feed at the battery box, unless the SSR's datasheet says it is built in. This is the load side; R25's "no flyback diodes" is about relay coils on the ECU side.</li>
-<li>Needs: an R15 exception (fuse in the trunk) and the SSR picked with <code>st185-pick-parts</code> once the inrush is measured.</li>
+<li>Needs: an R15 exception (fuse in the trunk) and the SSR picked per <code>docs/sourcing/README.md</code> (DECISIONS B21) once the inrush is measured.</li>
 </ul></li>
 </ol>
 <p class="mut">L2 (closed: Bus 0 removed), L3 (closed: answers A and B applied), L4 (closed: orientation from routes), L5 (closed: custom box).</p>
