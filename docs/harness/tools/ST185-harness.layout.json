@@ -704,7 +704,9 @@
    "line_from": {
     "RH": "10",
     "L9": "RH",
-    "FEB": "FBG"
+    "FEB": "L9b",
+    "SBG": "FEB",
+    "SMA": "F24"
    },
    "devices": {
     "1": "HL_RH",
