@@ -2,7 +2,8 @@
 coloured by its wire, and a table of what lands on each pin and where the other end goes (device + pin, fuse box + fuse,
 relay + terminal; a splice lists where it leads). Faces: pin_chart/faces.json and faces2.json (sourced layouts) or the
 DRB102 layout in build_drawings.py; a connector with no sourced layout is a numbered list, flagged.
-Run: python docs/harness/tools/build_pin_chart.py   (needs playwright + chromium)"""
+Run: python docs/harness/tools/build_pin_chart.py   (needs playwright; uses its bundled Chromium, else Edge, else Chrome)
+  without a playwright install: uv run --no-project --with playwright --with pypdf python docs/harness/tools/build_pin_chart.py"""
 import csv, json, html, os, re, sys, tempfile, collections, importlib.util
 
 HERE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pin_chart")
@@ -346,9 +347,20 @@ PDF = os.path.join(REPO, "docs", "harness", "drawings", "ST185-pin-chart.pdf")
 with tempfile.TemporaryDirectory() as tmp:
     page_html = os.path.join(tmp, "pin-chart.html")
     open(page_html, "w", encoding="utf-8").write(out)
-    from playwright.sync_api import sync_playwright
+    from playwright.sync_api import sync_playwright, Error as PlaywrightError
+
+    def launch(pw):
+        """Playwright's bundled Chromium first, then the installed Edge, then Chrome (Dan's PC has no bundled one)."""
+        errors = []
+        for channel in (None, "msedge", "chrome"):
+            try:
+                return pw.chromium.launch(channel=channel) if channel else pw.chromium.launch()
+            except PlaywrightError as e:
+                errors.append("%s: %s" % (channel or "bundled chromium", str(e).splitlines()[0]))
+        sys.exit("no browser for the PDF; tried " + "; ".join(errors))
+
     with sync_playwright() as pw:
-        b = pw.chromium.launch()
+        b = launch(pw)
         pg = b.new_page()
         pg.emulate_media(media="print", color_scheme="light")
         pg.goto("file://" + page_html)
