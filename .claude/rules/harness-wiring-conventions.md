@@ -1,3 +1,10 @@
+---
+paths:
+  - sot/**
+  - XTREMEX-IO-TABLE.html
+  - docs/harness/**
+  - docs/devices/**
+---
 # Harness Wiring Conventions - pointer only
 
 **Every wiring rule Daniel has set lives in one place: `docs/harness/redesign/DECISIONS.md`,
