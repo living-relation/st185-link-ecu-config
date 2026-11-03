@@ -15,9 +15,9 @@ that B9 points to).
 | `tools/build_pin_chart.py` | builds `drawings/ST185-pin-chart.pdf` from the master; connector faces in `tools/pin_chart/` (sourced layouts; a connector without one is a numbered list, flagged) | The face files, yes |
 | `tools/check_wiring.py` | the ONE wiring check (also writes the IO table pin map with `--write-io-table`) | Only to add a rule |
 | `tools/gen_cabin.py` | builds the two harness.design AB-cabin documents (doc 1 bulkhead run, doc 2 dash) from the master; `python gen_cabin.py <repo> <out> <1\|2>`, needs `<out>/lib.json` (part library 5LO8 dump). Needs updating for the 8 wires moved into AB-cabin (#465) at the next AB-cabin rebuild | Never by hand-editing its output |
-| `tools/gen_engc.py` | builds the harness.design EngineRoom-C document (lD37) from the master; `python gen_engc.py <repo> <out>`, needs `<out>/lib_engc.json` (part library 5LO8 dump); writes `ld37.json` and `ld37_lib_ops.json`, then route with `genroute.py`. Built from the Route 17 tree; stops if a routed length differs from the master | Never by hand-editing its output |
+| `tools/gen_engc.py` | builds the harness.design EngineRoom-C document (`ST185-EngineRoom-C Rev B`) from the master; `python gen_engc.py <repo> <out>`, needs `<out>/lib_engc.json` (part library 5LO8 dump); writes `ld37.json` and `ld37_lib_ops.json`, then route with `genroute.py`. Built from the Route 17 tree; stops if a routed length differs from the master. Layout = formboard (orthogonal, front right, driver up; a separate piece such as the EB block strap sits below); schematic = narrowest lane field that routes cleanly | Never by hand-editing its output |
 | `tools/genroute.py` | orthogonal schematic routing for a harness.design document JSON (Dan's format rules); keeps node positions, rewrites wire / core / shield points; `python genroute.py <doc.json> <out.json>` | Only with the format rules |
-| `tools/router.py` | the lane router `genroute.py` uses (box collision, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
+| `tools/router.py` | the lane router `genroute.py` uses (box collision, a line along a box edge counts as a hit, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout when its pass is done (DECISIONS B8) | Only from Dan's markup or placement |
 | `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170-175 (Dan 2026-10-31); deleted when they close | No - closed to additions |
 | `circuit-plan.md` | the 21 circuits and the cut-list groups 1-8 wire by wire (remove / keep / re-fed by a master wire) | Yes, when a circuit decision changes |
@@ -46,7 +46,7 @@ planned layout first. The master stays the only wiring source; nothing in a docu
 File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`. Only a physical change (wires, parts, pins,
 lengths) makes a new file at the next letter (`Rev B`; agents cannot rename; Dan deletes the old file). A view-only
 change (layout, schematic tidy, labels, colours) edits the same file and keeps its letter (Dan 2026-11-02). Current files: AB-engine https://app.harness.design/lDDj (Rev A; Dan renames it), EngineRoom-C
-`ST185-EngineRoom-C Rev A` (https://app.harness.design/lD37; schematic columns level at the top, 2026-11-02). AB-cabin (two documents, 100-connection plan limit) is rebuilt
+`ST185-EngineRoom-C Rev B` (https://app.harness.design/Km0x; formboard layout, compact schematic, 2026-11-03; Rev A is stale, Dan deletes it). AB-cabin (two documents, 100-connection plan limit) is rebuilt
 after its placement pass as new files `ST185-AB-cabin 1 - bulkhead run Rev A` / `ST185-AB-cabin 2 - dash Rev A` (the old
 8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
