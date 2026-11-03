@@ -26,6 +26,7 @@ paths:
 - Reconcile against the frozen cluster decoder `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE). CI cannot see that repo.
 - Treat `link_g4x_can_setup.json` as the canonical CAN contract for IDs, scaling, offsets, and signal ranges. Do not change `bench/frames.py` first.
 - Keep `0x3E8`-`0x3F1` semantics aligned across `bench/frames.py`, `link_g4x_can_setup.json`, and docs.
+- Packing rule (highest importance): `CAN-BUS-ID-ALLOCATION-TABLE.md` top; a new signal takes the next free byte, never a gap.
 - Keep all multibyte CAN fields BigEndian unless an existing source file explicitly documents otherwise.
 - For frame `0x3F1` byte 6 warnings, keep bit mapping consistent with `bench/frames.py` constants and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
 - Do not rename existing `ST185:` input names in `link_g4x_realdash.xml` when doing CAN contract work; dashboard bindings depend on exact names.
@@ -85,7 +86,7 @@ paths:
 
 ## Examples
 ### Example 1: Add a CAN signal to an existing frame
-**User says:** "Add oil temp signal to frame 0x3EA using bytes 4-5 with scale 0.1 and offset -40."
+**User says:** "Add oil temp signal to frame 0x3EA using bytes 2-3 with scale 0.1 and offset -40."
 
 **Actions taken:**
 1. Locate frame `0x3EA` and free bytes in `link_g4x_can_setup.json`.
