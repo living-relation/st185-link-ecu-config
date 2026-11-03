@@ -233,7 +233,7 @@ The CSB3 needs no configuration for the heartbeat. PCLink side: see `CAN-BUS-MAS
 
 Exactly two 120Ω termination resistors go on the bus — one at each physical end. **Settled
 (2026-09-27): the two ends are the ECU and the Link CAN-Lambda**, as drawn in
-`docs/harness/MASTER-wirelist.csv` (resistor `R-TERM-ECU` in harness `Dash`, `R-TERM-END` in harness `AB-engine`). See the topology bullets in
+`docs/harness/MASTER-wirelist.csv` (resistor `R-TERM-ECU` in harness `Dash`; at the CAN-Lambda end the AT04-2P-R120YEL terminator in plug `CAN-TERM-END`, harness `AB-engine`, Dan 2026-11-03). See the topology bullets in
 `CAN-BUS-MASTER-DESIGN.md` §2 and §7.
 
 | Node | Position | Termination |

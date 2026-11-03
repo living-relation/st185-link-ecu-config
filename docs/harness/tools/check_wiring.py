@@ -596,7 +596,19 @@ def main(argv):
     return 1 if bad else 0
 
 
-MAKER_CONTACTS = {'DRB12-102PAE-L018': {'contacts': ['0460-202-16141',
+MAKER_CONTACTS = {'AT06-2S-RD01': {'contacts': ['AT62-201-16141',
+                               'AT62-201-1631',
+                               'AT62-209-16141',
+                               'AT62-209-1631',
+                               'AT62-201-16141-22',
+                               'AT62-201-1631-22',
+                               'AT62-201-16NKIT'],
+                  'source': "Amphenol Sine Systems drawing AT06-2S-RD01 rev A5 (contact size 16, 14-20 AWG, AW2S "
+                            "wedge; https://www.farnell.com/cad/3324071.pdf) and Amphenol 'Machined and Stamped & "
+                            "Formed Contacts for use with A Series Products' (updated 08-2023; machined size 16 "
+                            "sockets; https://onlinecomponents.com/upload/globalresourcefiles/a-series-contacts.pdf, "
+                            "read 2026-11-03)"},
+ 'DRB12-102PAE-L018': {'contacts': ['0460-202-16141',
                                     '0460-202-1631',
                                     '0460-002-1631',
                                     '0460-247-16141',
