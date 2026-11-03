@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, document lD37 (viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev B" (viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -162,12 +162,26 @@ RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
 placed = [n for g in LEFT + RIGHT for n in g]
 assert sorted(placed) == sorted(set(conns) | set(terms)), (set(conns) | set(terms)) ^ set(placed)
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
-y = 0
-for gi, g in enumerate(LEFT):
-    y += 90 if gi else 0
-    for nm in g:
-        n = node_of(nm); n['schematicPosition'] = {"x": -90, "y": y}; y += h(n) + (60 if 'cavities' in n else 30)
-LEFT_BOTTOM = y
+def tap_plug(nm):     # factory leads of one plug (H1-1, H1-2, ...) stack touching, like the cavities of a connector
+    m = re.match(r'(.*)-\d+( cowl)?$', nm); return m.group(1) if m else nm
+def stack(names, x, y0, skip=()):
+    """one column, top at y0: 30 between parts, factory leads of one plug touching; never a part on a row in skip"""
+    y, prev = y0, None
+    for nm in names:
+        n = node_of(nm)
+        if prev is not None:
+            pn = node_of(prev)
+            y += h(pn) + (0 if 'cavities' not in n and 'cavities' not in pn and tap_plug(nm) == tap_plug(prev) else 30)
+        while any(y < r < y + h(n) for r in skip): y += 30
+        n['schematicPosition'] = {"x": x, "y": y}; prev = nm
+    return y + h(node_of(prev)) if prev else y0
+# compact (README "Schematic", Dan 2026-11-02): the cabin end is two columns, the fuse / relay boxes and kill switch outside,
+# the factory cabin taps inside; a box pin's wire runs out between the taps (no tap sits on a used box row)
+XO = -90 - 240 - 150
+stack(LEFT[0], XO, 0)
+box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)]
+            for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')}
+LEFT_BOTTOM = max(stack(LEFT[1], -90, 0, box_rows), max(node_of(nm)['schematicPosition']['y'] + h(node_of(nm)) for nm in LEFT[0]))
 NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 LEFT_IDS = {node_of(n)['id'] for g in LEFT for n in g}
 RIGHT_IDS = {node_of(n)['id'] for g in RIGHT for n in g}
@@ -208,23 +222,38 @@ for n in inl:
     if '_row' in n: n['schematicPosition'] = {"x": SPX, "y": n['_row'] - 15}
 n_right = sum(1 for w in wires if w['source']['id'] in RIGHT_IDS or w['target']['id'] in RIGHT_IDS)
 DEVX = (SPX + 150 + 30 * n_right) // 30 * 30          # room for one lane per conductor that lands on the front column
-y = 0
-for gi, g in enumerate(RIGHT):
-    y += 90 if gi else 0
-    for nm in g:          # side order, top level with the left column (Dan 2026-11-02: not pushed down to its feeders)
-        n = node_of(nm); n['schematicPosition'] = {"x": DEVX, "y": y}; y += h(n) + (60 if 'cavities' in n else 30)
-TOPS = [node_of(g[0])['schematicPosition']['y'] for g in (LEFT[0], RIGHT[0])]
-print('schematic top y: left', LEFT[0][0], TOPS[0], '| right', RIGHT[0][0], TOPS[1]); assert TOPS[0] == TOPS[1], TOPS
-for n in pending:   # a splice with only front ends sits just left of the front column, on the row of its top front pin
-    rys = [cav_y(NODES[o['id']], o['handle']) for w, x, o in links[n['id']] if o['id'] in RIGHT_IDS]
-    n['schematicPosition'] = {"x": DEVX - 240, "y": min(rys) - 15}
+def place_right(devx):
+    y = 15     # device rows sit half a grid off the cabin rows, so no front pin shares a row with a cabin pin or splice
+    for g in RIGHT:       # side order, top level with the left column (Dan 2026-11-02: not pushed down to its feeders)
+        y = stack(g, devx, y) + 60
+    for n in pending:   # a splice with only front ends sits just left of the front column, on the row of its top front pin
+        rys = [cav_y(NODES[o['id']], o['handle']) for w, x, o in links[n['id']] if o['id'] in RIGHT_IDS]
+        n['schematicPosition'] = {"x": devx - 240, "y": min(rys) - 15}
+    return y - 60
+import copy, genroute
+def route_cost(devx):    # (unrouted wires, wires that need two lanes) with the front column at devx
+    place_right(devx)
+    R_, segs_, res_ = genroute.run(copy.deepcopy({"connectors": list(conns.values()), "terminals": list(terms.values()),
+                                                  "splices": list(splices.values()), "wires": wires}))
+    return (sum(1 for s in segs_ if res_.get(s['k']) is None), sum(1 for v in res_.values() if v and len(v) > 2))
+base = route_cost(DEVX)
+# compact (Dan 2026-11-02): the narrowest lane field that routes as cleanly, with the splice column (where the cabin side
+# meets the engine bay) kept inside the centre third of the page (Dan 2026-11-02 (J1))
+DMIN = int(XO + (SPX + 15 - XO) / 0.6 - 240 + 29) // 30 * 30
+for devx in range(max(SPX + 360, DMIN), DEVX, 30):
+    if route_cost(devx) <= base: DEVX = devx; break
+print('front column x', DEVX, 'routing (unrouted, two-lane wires)', base)
+RIGHT_BOTTOM = place_right(DEVX)
+TOPS = [node_of(g[0])['schematicPosition']['y'] for g in (LEFT[0], LEFT[1], RIGHT[0])]
+print('schematic top y: left', TOPS[:2], '| right', TOPS[2], '| bottom left', LEFT_BOTTOM, 'right', RIGHT_BOTTOM, '| width', XO, '..', DEVX + 240)
+assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
 notes = []
 for c, lst in other_owned.items():
     n = conns[c]; by = collections.defaultdict(list)
     for pin, own in lst: by[own].append(pin)
     txt = '%s: N/C cavities belong to other harnesses - ' % c + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items()))
-    notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": -480 if n['id'] in LEFT_IDS else DEVX + 270, "y": n['schematicPosition']['y']}})
+    notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": XO - 390 if n['id'] in LEFT_IDS else DEVX + 270, "y": n['schematicPosition']['y']}})
 spares = collections.defaultdict(list)
 for r in SPARE: spares[r['from_id']].append(r['from_pin'])
 for c, pins in spares.items():
@@ -232,20 +261,28 @@ for c, pins in spares.items():
     ex = next((x for x in notes if x['id'] == 'n_' + sid(c)), None)
     if ex: ex['text'] = t + ' ' + ex['text']
     else: notes.append({"id": "n_" + sid(c), "text": t, "width": 360, "schematicPosition": {"x": DEVX + 270, "y": conns[c]['schematicPosition']['y']}})
+for sname, sp in splices.items():     # a splice shared with another harness: say where its other legs are
+    oth = sorted({(r['harness'], r['wire_id']) for r in ALL if r['harness'] != NAME and r['wire_id']
+                  and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
+    if oth:
+        notes.append({"id": "n_" + sid(sname), "width": 360, "schematicPosition": {"x": DEVX + 270, "y": sp['schematicPosition']['y']},
+                      "text": '%s: its other legs are in other harnesses - %s (the splice is drawn here with its EngineRoom-C leg only).'
+                              % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth))})
 pass_by = collections.defaultdict(list)
 for r in PASS: pass_by[r['harness']].append(r['wire_id'])
-notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": -480, "y": -390},
-              "text": TITLE + ", Rev A (2026-11-02, Route 17 tree, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
-                      "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: fuse / relay boxes, kill switch and "
-                      "factory cabin taps left, splices middle, front devices right by side of the car (driver / LH side up, RH down), both columns level at the top; each "
+notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
+              "text": TITLE + ", Rev B (2026-11-03, Route 17 tree from Dan's 2026-11-02 placement, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+                      "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: cabin ends left (fuse / relay boxes and kill switch "
+                      "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
                       "connectors are drawn whole; cavities wired by other harnesses are N/C with a note. Wires of other harnesses that only "
                       "pass through EngineRoom-C are not drawn: " + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) +
-                      ". Layout: the ST185-harness tree from Route 17 (runs 10 / 11 / 11b; A/C, alternator plug, MR-S pump and block stud via "
-                      "Route 16 lines; EA / EB on Route 17 devices 24 / 25, the EB bolt drawn twice for the block strap), front LEFT, driver side "
-                      "up; each part on a 100 mm end-allowance stub; bundle lengths = the master est_length_mm."})
+                      ". Layout: a formboard of the ST185-harness tree from Route 17 (runs 10 / 11 / 11b; A/C, alternator plug, MR-S pump and block stud via "
+                      "Route 16 lines; EA / EB on Route 17 devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "
+                      "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm "
+                      "end-allowance stub; bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
-notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": -900, "y": -390},
+notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},
               "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
                       "the master wire list and BOM. Stripe per circuit: " + '; '.join('%s = %s' % (STRIPE[k][1], STRIPE[k][0]) for k in used_st) + "."})
 
@@ -269,27 +306,39 @@ for r in W:
     p, mm = H.route(r); hroute[r['wire_id']] = mm
     for a, b in zip(p, p[1:]): segs[tuple(sorted((a, b)))] += 1
 tree_nodes = {n for k in segs for n in k}
-for nd in list(node_items) + list(inline_at):   # a spare-only plug (MRS-B / MRS-C): join it to the nearest tree node
-    if nd in tree_nodes: continue
-    p = min((H.path(nd, x) for x in tree_nodes), key=len)
-    print('spare-only node', nd, 'joined via', p)
-    for a, b in zip(p, p[1:]): segs[tuple(sorted((a, b)))] += 1
 adj = collections.defaultdict(list)
 for a, b, mm in L['segments']:
     if tuple(sorted((a, b))) in segs: adj[a].append((b, mm)); adj[b].append((a, mm))
-assert len(segs) == len({n for k in segs for n in k}) - 1, 'harness C layout is not a tree'
-root = 'GB'; parent = {root: None}; seglen = {}; todo = [root]; kids = collections.defaultdict(list)
-while todo:
-    n = todo.pop(0)
-    for m, mm in adj[n]:
-        if m not in parent: parent[m] = n; seglen[m] = mm; kids[n].append(m); todo.append(m)
+# the harness may be a forest (Route 17, Dan 2026-11-02): the EB block strap is its own piece, and a part whose wires
+# never leave its spot (A5 / SP-AC-PSW at the A/C amp) is a piece of one node; each piece must be a tree, drawn on its own
+comp_of = {}
+for s0 in sorted(tree_nodes, key=lambda n: (n != 'GB', n)):
+    if s0 in comp_of: continue
+    comp_of[s0] = s0; st = [s0]
+    while st:
+        n = st.pop()
+        for m, _ in adj[n]:
+            if m not in comp_of: comp_of[m] = s0; st.append(m)
+roots = list(dict.fromkeys(comp_of[n] for n in sorted(tree_nodes, key=lambda n: (n != 'GB', n))))
+for nd in list(node_items) + list(inline_at):
+    if nd not in tree_nodes and nd not in roots: roots.append(nd); print('one-node piece', nd)
+assert len(segs) == len(tree_nodes) - len([r for r in roots if r in tree_nodes]), 'a harness C piece is not a tree'
+assert roots[0] == 'GB', roots
+parent = {}; seglen = {}; kids = collections.defaultdict(list)
+for root in roots:
+    parent[root] = None; todo = [root]
+    while todo:
+        n = todo.pop(0)
+        for m, mm in adj[n]:
+            if m not in parent: parent[m] = n; seglen[m] = mm; kids[n].append(m); todo.append(m)
+print('pieces (roots):', roots)
 for nd in list(node_items) + list(inline_at): assert nd in parent, nd
 via = {n: [] for n in parent}
 changed = True
 while changed:      # fold pass-through nodes into bundle bend points
     changed = False
     for n in list(parent):
-        if n == root or node_items.get(n) or inline_at.get(n) or len(kids[n]) != 1: continue
+        if parent[n] is None or node_items.get(n) or inline_at.get(n) or len(kids[n]) != 1: continue
         c = kids[n][0]; p = parent[n]
         seglen[c] += seglen[n]; parent[c] = p; via[c] = via[n] + [n] + via[c]
         kids[p] = [c if x == n else x for x in kids[p]]
@@ -301,72 +350,90 @@ for n in [n for n in parent if parent[n] and seglen[n] == 0]:   # a 0 mm segment
     node_items[p] += node_items.pop(n, []); inline_at[p] += inline_at.pop(n, [])
     print('0 mm segment', p, '-', n, ': merged into', p)
     del parent[n], seglen[n], kids[n], via[n]
-SCX, SCY = 27, 24
-def lpos(n):
-    x, yy = L['nodes'][n]['xy']
-    return (int(round((130 - x) * SCX / 30)) * 30, int(round((100 - yy) * SCY / 30)) * 30)
-pos = {}
-for n in parent:     # a place drawn twice (the EB bolt: stud GND_EB and strap lug GND_EB_S) sits one grid step apart
-    q = lpos(n)
-    while q in pos.values(): q = (q[0], q[1] + 30)
-    pos[n] = q
+# formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles
+# on the 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its
+# part of the car lies); drawn length is not to scale, every bundle keeps its tree length (= the master's).
+# Each part sits on its 100 mm end-allowance stub, combed off the node; a node's extra branches never cross.
+DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
+OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
+GAP, MINL, ISP, LBL = 60, 150, 60, 240        # clearance, shortest drawn bundle, comb pitch, room for a part's label
+ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + inl}
+STUB = L.get('end_allowance_mm', 100)
+def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
+def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
+    pts = [L['nodes'][m]['xy'] for m in sub_nodes(c)]
+    x0, y0 = L['nodes'][n]['xy']
+    return (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+def rect(a, b): return (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a[1], b[1]))
+def hit(r, s, g=GAP): return r[0] - g < s[2] and s[0] - g < r[2] and r[1] - g < s[3] and s[1] - g < r[3]
+def mv(p, o): return (p[0] + o[0], p[1] + o[1])
+def mvr(r, o): return (r[0] + o[0], r[1] + o[1], r[2] + o[0], r[3] + o[1])
+def lay(n, din):
+    """n's piece of the tree with n at (0, 0): (rects, node positions, stubs {part id: (node, part xy, stub points)})."""
+    free = [d for d in 'RULD' if din is None or d != OPP[din]]
+    asg = {}
+    for c in sorted(kids[n], key=lambda c: (-len(sub_nodes(c)), c)):
+        v = heading(n, c); left = [d for d in free if d not in asg.values()]
+        assert left, ('more branches than directions at', n)
+        asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
+    items = node_items.get(n, []) + inline_at.get(n, [])
+    rects, P, S = [], {n: (0, 0)}, {}
+    ray = [rect((-DV[din][0] * 90, -DV[din][1] * 90), (-DV[din][0] * 10 ** 6, -DV[din][1] * 10 ** 6))] if din else []   # the way in
+    if items:
+        left = [d for d in free if d not in asg.values()]
+        assert left, ('no free side for the parts at', n)
+        cd = din if din in left else next(d for d in ('U', 'D', 'R', 'L') if d in left)
+        k, (dx, dy) = len(items), DV[cd]
+        if dy == 0:     # a column of parts across the end of a horizontal stub
+            ys = [ISP * i - 30 * (k - 1) for i in range(k)]; xj = dx * 90
+            for cid, yy in zip(items, ys):
+                S[cid] = (n, (dx * 150, yy), [(xj, 0), (xj, yy)] if yy else [])
+            rects += [rect((dx * 90, 0), (dx * 90, 0)), rect((xj, ys[0]), (dx * (150 + LBL), ys[-1]))]
+        else:           # parts combed off a vertical spine, to the front (right) side
+            for i, cid in enumerate(items):
+                yy = dy * (120 + ISP * i); S[cid] = (n, (120, yy), [(0, yy)])
+            rects += [rect((0, dy * 90), (0, dy * (120 + ISP * (k - 1)))), rect((0, dy * 90), (120 + LBL, dy * (120 + ISP * (k - 1) + 30)))]
+    for c in sorted(kids[n], key=lambda c: (len(sub_nodes(c)), c)):
+        d = asg[c]; cr, cp, cs = lay(c, d)
+        back = max([-(DV[d][0] * (r[0] if DV[d][0] > 0 else r[2]) + DV[d][1] * (r[1] if DV[d][1] > 0 else r[3])) for r in cr] + [0])
+        ln = max(MINL, int(back + GAP + 29) // 30 * 30)
+        while True:
+            o = (DV[d][0] * ln, DV[d][1] * ln)
+            cand = [mvr(r, o) for r in cr] + [rect((DV[d][0] * 90, DV[d][1] * 90), o)]
+            if not any(hit(a, b) for a in cand for b in rects + ray): break
+            ln += 30
+        rects += cand
+        P.update({m: mv(q, o) for m, q in cp.items()})
+        S.update({cid: (nd, mv(q, o), [mv(p, o) for p in pts]) for cid, (nd, q, pts) in cs.items()})
+    return rects, P, S
+pos, stubs, allrects, ytop = {}, {}, [], None
+for i, root in enumerate(roots):
+    rr, P, S = lay(root, None)
+    if i == 0: o = (0, 0)
+    else:       # a separate piece (the EB block strap, the A/C amp taps) sits below the main harness
+        o = (min(r[0] for r in allrects) - min(r[0] for r in rr) + 600 * (i - 1), max(r[3] for r in allrects) - min(r[1] for r in rr) + 240)
+        o = (o[0] // 30 * 30, o[1] // 30 * 30)
+    allrects += [mvr(r, o) for r in rr]
+    pos.update({m: mv(q, o) for m, q in P.items()})
+    stubs.update({cid: (nd, mv(q, o), [mv(p, o) for p in pts]) for cid, (nd, q, pts) in S.items()})
+xs = [r[0] for r in allrects] + [r[2] for r in allrects]
+ent = [pos[n][0] for n in ('RFG',) if n in pos]
+if ent: print('formboard width %d .. %d, RH fender grommet (harness entry) at %.0f%% of the width' % (min(xs), max(xs), 100 * (ent[0] - min(xs)) / (max(xs) - min(xs))))
+assert all(v[0] % 30 == 0 and v[1] % 30 == 0 for v in pos.values())
 bps = [{"id": "bp_" + sid(n), "layoutPosition": {"x": pos[n][0], "y": pos[n][1]}} for n in parent]
 bundles = []
 for n, p in parent.items():
     if p is None: continue
-    bn = {"id": "bn_" + sid(n), "sourceId": "bp_" + sid(p), "targetId": "bp_" + sid(n), "length": {"value": int(seglen[n]), "unit": "mm"}}
-    ch = [pos[p]] + [lpos(m) for m in via[n]] + [pos[n]]
-    changed = True
-    while changed:            # drop repeated points and A-B-A spikes left by rounding to the 30 grid
-        changed = False
-        for i in range(len(ch) - 1):
-            if ch[i] == ch[i + 1]: del ch[i + 1]; changed = True; break
-        else:
-            for i in range(len(ch) - 2):
-                if ch[i] == ch[i + 2]: del ch[i + 1:i + 3]; changed = True; break
-    if ch[1:-1]: bn['layoutPoints'] = [{"id": "%s_p%d" % (bn['id'], i), "layoutPosition": {"x": q[0], "y": q[1]}} for i, q in enumerate(ch[1:-1])]
-    bn['_ch'] = ch; bundles.append(bn)
-TREESEG = [s for b in bundles for s in zip(b['_ch'], b['_ch'][1:])]
-for b in bundles: b.pop('_ch')
-occupied = set(pos.values())
-ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + inl}
-STUB = L.get('end_allowance_mm', 100)
-def sdist(q, a, b):
-    vx, vy = b[0] - a[0], b[1] - a[1]; ll = vx * vx + vy * vy or 1
-    u = max(0, min(1, ((q[0] - a[0]) * vx + (q[1] - a[1]) * vy) / ll))
-    return math.hypot(q[0] - a[0] - u * vx, q[1] - a[1] - u * vy)
-def arrangements(n, k):
-    x0, y0 = pos[n]; out = []
-    for sx in (1, -1):     # a column (or two) beside the node
-        out.append((sx, 0, [(x0 + sx * (120 + 270 * (i // 6)), y0 + int((i % 6 - (min(6, k - i // 6 * 6) - 1) / 2) * 60 // 30) * 30) for i in range(k)]))
-    for sy in (1, -1):     # a grid of 3 wide above / below
-        out.append((0, sy, [(x0 + int((i % 3 - (min(3, k - i // 3 * 3) - 1) / 2) * 210 // 30) * 30, y0 + sy * (120 + 60 * (i // 3))) for i in range(k)]))
-    return out
+    assert pos[n][0] == pos[p][0] or pos[n][1] == pos[p][1], (p, n)
+    bundles.append({"id": "bn_" + sid(n), "sourceId": "bp_" + sid(p), "targetId": "bp_" + sid(n), "length": {"value": int(seglen[n]), "unit": "mm"}})
 INL_AT = {}
-for n in parent:
-    items = node_items.get(n, []); best = None
-    for sx, sy, pts in arrangements(n, max(len(items), 1)):
-        clr = min([sdist(q, a, b) for q in pts for a, b in TREESEG if pos[n] not in (a, b)] +
-                  [math.hypot(q[0] - v[0], q[1] - v[1]) for q in pts for v in occupied if v != pos[n]] + [999])
-        sc = (min(clr, 150), sx != 0)
-        if best is None or sc > best[0]: best = (sc, sx, sy, pts)
-    _, dx, dy, pts = best
-    for cid, q in zip(items, pts):
-        q = list(q)
-        while tuple(q) in occupied: q[1] += 30
-        occupied.add(tuple(q)); ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
-        bundles.append({"id": "bn_" + cid, "sourceId": "bp_" + sid(n), "targetId": cid, "length": {"value": STUB, "unit": "mm"}})
-    sx = int(round(dx)) or (-1 if pos[n][0] > 2000 else 1)
-    ins = inline_at.get(n, [])
-    for i, cid in enumerate(ins):     # inline parts sit by their node, opposite their stubs, each on its own 100 mm stub
-        cc, row = divmod(i, 5); m = min(5, len(ins) - cc * 5)
-        q = [pos[n][0] - sx * (60 + 180 * cc), pos[n][1] + int((row - (m - 1) / 2) * 30 // 30) * 30]
-        while tuple(q) in occupied or (q[0] - sx * 60, q[1]) in occupied: q[1] += 30
-        occupied.add(tuple(q)); occupied.add((q[0] - sx * 60, q[1]))
-        bps.append({"id": "bp_" + cid, "layoutPosition": {"x": q[0], "y": q[1]}})
-        bundles.append({"id": "bn_" + cid, "sourceId": "bp_" + sid(n), "targetId": "bp_" + cid, "length": {"value": STUB, "unit": "mm"}})
-        ALLC[cid]['layoutPosition'] = {"x": q[0] - sx * 60, "y": q[1]}; ALLC[cid]['locationId'] = "bp_" + cid
-        INL_AT[cid] = "bp_" + sid(n)
+for cid, (nd, q, pts) in stubs.items():
+    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if cid[:2] in ('c_', 't_') else "bp_" + cid, "length": {"value": STUB, "unit": "mm"}}
+    if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
+    bundles.append(b)
+    ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
+    if cid[:2] == 's_':
+        bps.append({"id": "bp_" + cid, "layoutPosition": {"x": q[0], "y": q[1]}}); ALLC[cid]['locationId'] = "bp_" + cid; INL_AT[cid] = "bp_" + sid(nd)
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
 loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] in ('c_', 't_')}

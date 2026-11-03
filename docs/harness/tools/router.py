@@ -3,10 +3,10 @@ import itertools, random, collections
 G=30
 class Box:
     def __init__(s,id,x,y,w,h): s.id,s.x,s.y,s.w,s.h=id,x,y,w,h
-    def hit_h(s,y,x1,x2):   # horizontal line at drawn y (stored+15)
-        a,b=min(x1,x2),max(x1,x2); return s.y<y<s.y+s.h and a<s.x+s.w and b>s.x
+    def hit_h(s,y,x1,x2):   # horizontal line at drawn y (stored+15); a line along a box edge counts as a hit (it would hide the edge)
+        a,b=min(x1,x2),max(x1,x2); return s.y<=y<=s.y+s.h and a<s.x+s.w and b>s.x
     def hit_v(s,x,y1,y2):
-        a,b=min(y1,y2),max(y1,y2); return s.x<x<s.x+s.w and a<s.y+s.h and b>s.y
+        a,b=min(y1,y2),max(y1,y2); return s.x<=x<=s.x+s.w and a<s.y+s.h and b>s.y
 class Router:
     def __init__(s): s.boxes={}; s.vsegs=[]; s.hsegs=[]
     def box(s,id,x,y,w,h): s.boxes[id]=Box(id,x,y,w,h)
