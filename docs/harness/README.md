@@ -39,6 +39,8 @@ A removal row (a factory wire taken out of the car, back to its last live point;
 
 ## harness.design - where the harnesses are built
 
+Don't ask, build (Dan 2026-11-03): once a harness has its wire list, factory taps, route and lengths, the agent builds its
+harness.design file straight away and sends the link; never stop to ask "now or later".
 Every harness is built in harness.design from the master (Dan 2026-11-01, DECISIONS B6): it forces a wire list and a
 planned layout first. The master stays the only wiring source; nothing in a document is edited back into it.
 File names carry a revision letter (Dan 2026-11-02): `ST185-<harness> Rev A`. Only a physical change (wires, parts, pins,
