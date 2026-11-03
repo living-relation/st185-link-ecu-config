@@ -22,7 +22,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 ## 2. Physical Layer
 
-- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus. **Settled 2026-09-27 (harness redesign; not an open item): the two ends are the ECU and the Link CAN-Lambda**, matching `ST185-CAN.harness` as drawn (`r_term_ecu`, `r_term_end`). The center cluster, switchboard, and Pi are mid-bus stubs — none of them are terminated.
+- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus. **Settled 2026-09-27 (harness redesign; not an open item): the two ends are the ECU and the Link CAN-Lambda**, as wired in `docs/harness/MASTER-wirelist.csv` (`R-TERM-ECU`; the `CAN-TERM-END` terminator plug). The center cluster, switchboard, and Pi are mid-bus stubs — none of them are terminated.
 - **Transceivers:**
   - ECU: Link G4X XtremeX CANH/CANL.
   - Link CAN-Lambda: module CANH/CANL on the shared bus (0x3B6 / 0x3BE). This is the fifth node.
@@ -30,7 +30,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
   - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
 - **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination resistors live at the ECU end and the CAN-Lambda end only. Do not add a third termination point, and do not terminate at the center cluster, switchboard, or Pi.
-- **CAN-Lambda end terminator (Dan 2026-11-03):** no bare resistor soldered in parallel; a short shielded CAN H / L spur splices into the pair where the resistor was (behind the CAN-Lambda plug) and runs about 6 in (152 mm) to an Amphenol AT06-2S-RD01 plug (`CAN-TERM-END`) that takes the Amphenol AT04-2P-R120YEL 120 ohm terminator receptacle (master `wc_term3` / `wc_term4`).
+- **CAN-Lambda end terminator (Dan 2026-11-03):** no bare resistor soldered in parallel; a short CAN H / L spur splices into the pair where the resistor was (behind the CAN-Lambda plug) and runs about 6 in (152 mm) to an Amphenol AT06-2S-RD01 plug (`CAN-TERM-END`) that takes the Amphenol AT04-2P-R120YEL 120 ohm terminator receptacle (master `wc_term3` / `wc_term4`). The spur to the terminator plug is 2 plain wires (CAN-H, CAN-L), no shield (Dan 2026-11-03); this is the one exception to "every CAN pair is shielded" (DECISIONS B14 detail), and the CAN-Lambda run screen floats behind the CAN-Lambda plug with no branch splice there.
 - **Node hook-up (moved from the retired `WIRING.md`, 2026-10-19; the wires themselves are in `docs/harness/MASTER-wirelist.csv`):**
   - Center cluster: Waveshare [SN65HVD230 CAN Board](https://www.waveshare.com/sn65hvd230-can-board.htm), passive (no firmware). VCC -> the P4's **3V3** (never 5 V), GND -> GND, CTX -> GPIO5 (TWAI TX), CRX -> GPIO4 (TWAI RX), CANH / CANL -> the bus. Never short CANH to CANL. No resistor on this board (mid-bus stub). The cluster's J8 header pinout lives only in `center-cluster-esp32-p4` (`PINOUT.md`, `main/Kconfig.projbuild`).
   - Switchboard: CANH / CANL screw terminals; its onboard 120 ohm jumper stays **OFF**; bit rate set to 1000 kbps before it is connected (§3, `ECUMASTER_SWITCHBOARD_SETUP.md`).
