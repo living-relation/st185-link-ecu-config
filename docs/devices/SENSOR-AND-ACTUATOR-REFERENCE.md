@@ -433,6 +433,11 @@ not need this change - only the cam one is wrong.
 
 ## VR conditioner (NCV1124 dual boards)
 
+Two separate enclosures, side by side above the ECU (Dan 2026-11-04): VRC front (`VRC-F-IN` / `VRC-F-OUT`) and VRC rear
+(`VRC-R-IN` / `VRC-R-OUT`). Each takes its own wheel-speed sensors and sends the conditioned signals to the ECU through
+its own inline plug (`IX-WS-F-*`, `IX-WS-R-*`). They sit at one spot, so neither plug gets a breakout (U2 a).
+CSB3 (ECUMaster CAN Switch Board V3) is another enclosure and a CAN node.
+
 Write-up: `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. Pins below are the
 conditioner's own cavities from `sot/channels.csv` and `docs/harness/redesign/DECISIONS.md`.
 
