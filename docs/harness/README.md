@@ -105,7 +105,7 @@ skill is not changed for this project):
   A splice end whose other legs are in another file or harness says where they go: "to AB-cabin 2, <device name>", and
   only a wire that ends there because it continues in another file carries a label naming its signal (Dan 2026-11-04).
   A factory tap names the device first, then its code, pin and the factory wire it splices onto: "A/C amplifier (A32)
-  pin 15, spliced onto <wire>" (Dan 2026-11-04). A wire end at a new fuse / relay box names
+  pin 15, spliced onto <wire>" (Dan 2026-11-04). Every wire spliced onto an OEM (factory) wire gets, where possible, a note placed on that wire reading exactly `Splice to OEM wire X-X`, X-X the factory wire's colour code from the master's `oem_wire_colour` (e.g. `G-Y`, `B-O`); the new wire keeps its own colour, no colour change (Dan 2026-11-04, Y6). A wire end at a new fuse / relay box names
   the box first, then the relay or fuse: "New LOGIC fuse box, K-EPS-EN", "New POWER fuse box, F12"; a wire between two
   boxes names both ends that way (Dan 2026-11-04).
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
