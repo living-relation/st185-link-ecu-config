@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev B" (viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev C" (viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -10,7 +10,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE = 'EngineRoom-C', 'ST185-EngineRoom-C'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'C', '2026-11-04'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -300,7 +300,7 @@ for sname, sp in splices.items():     # a splice shared with another harness: sa
 pass_by = collections.defaultdict(list)
 for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
-              "text": TITLE + ", Rev B (2026-11-03, Route 17 tree from Dan's 2026-11-02 placement, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+              "text": TITLE + " Rev " + REV + " (" + DATE + ", Route 17 tree from Dan's 2026-11-02 placement, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: cabin ends left (fuse / relay boxes and kill switch "
                       "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
