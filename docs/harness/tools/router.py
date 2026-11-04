@@ -14,7 +14,7 @@ class Router:
         # pts: drawn polyline; ends: box ids allowed
         for (x1,y1),(x2,y2) in zip(pts,pts[1:]):
             for b in s.boxes.values():
-                if b.id in ends: continue
+                if b.id.split('#')[0] in ends: continue      # an end's own box, or the note that sits on its wire ('<end>#oem')
                 if y1==y2 and b.hit_h(y1,x1,x2): return False
                 if x1==x2 and b.hit_v(x1,y1,y2): return False
             if x1==x2:

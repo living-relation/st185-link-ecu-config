@@ -94,8 +94,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   trimetrics, makers' own models, balloons only on visible parts, shop-only NOTES. Gate `check_drawing_rules.py`.
 - **B26 CAD work.** CAD stays frozen unless Dan asks (model and drawing detail: Drawing rules below). Models live only in
   Dan's models folder (OneDrive `Desktop\models`, `publish-to-models`): latest rev + 2 previous, bought parts as maker models there; drawings / BOMs are copied here for the checks.
-- **B27 Fuse boxes follow the harnesses.** Harnesses are made as required; the boxes are configured to match (Dan 2026-10-26; build rules: Drawing rules below).
-  Until the fuse-box revisit (row 107) the box CAD may lag the master; `sot/fuse-relay-map.csv` wins (e.g. EPSEN 5 A, BUS1-6 LAM 10 A, AMI IN-6 reserved: amplifier).
+- **B27 Fuse boxes follow the harnesses.** Boxes are configured to match the harnesses (Dan 2026-10-26; build rules: Drawing rules below); until the revisit (row 107) the box CAD may lag and `sot/fuse-relay-map.csv` wins.
+  Spare fuse and relay seats in the boxes are allowed and kept as spares: no cleanup of unused seats (Dan 2026-11-04, Y7).
 
 ### Shipping
 
@@ -677,7 +677,7 @@ The device and its wire set the circuit.
   fuse (Dan 2026-11-04; ECU-B pin 28 takes contact 3-1447221-3, 18-16 AWG). Known exception (Dan 2026-11-04, accepted):
   the CAN-Lambda's DTM size 20 contacts are rated 7.5 A (Link's own plug takes no larger contact) against its 8.1 A peak
   (manual p.5), a peak only during heater warm-up.
-- Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
+- Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought. Each uprated fan has two single-pin leads, so two DTHD06-1-8S plugs per fan (`FAN-RAD` / `FAN-RAD-GND`, `FAN-COND` / `FAN-COND-GND`) are right (Dan 2026-11-04, Y1 b).
 
 ## Drawing rules
 

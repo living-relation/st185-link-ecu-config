@@ -74,6 +74,8 @@ for c in conn_ids:
     pins = sorted(use[c], key=lambda p: (RELAY_ORDER.index(p) if p in RELAY_ORDER else 99, pkey(p)))
     if cpart and cpart.get('numberOfCavities') and all(re.match(r'\d+$', p) and 1 <= int(p) <= cpart['numberOfCavities'] for p in pins):
         pins = [str(i) for i in range(1, cpart['numberOfCavities'] + 1)]
+    if cpart and c in B.BOX_CAVITIES:     # a new fuse box with its library part: every landing of the box drawing, vacant seats N/C
+        assert set(pins) <= set(B.BOX_CAVITIES[c]), (c, set(pins) - set(B.BOX_CAVITIES[c])); pins = list(B.BOX_CAVITIES[c])
     if cpart: assert len(pins) == cpart['numberOfCavities'], (c, pins, cpart['numberOfCavities'])
     cfg_contact = cfg_plug = None
     for a in ((cpart or {}).get('configurations') or [{}])[0].get('accessories', []):
@@ -189,7 +191,7 @@ def stack(names, x, y0, skip=()):
     return y + h(node_of(prev)) if prev else y0
 # compact (README "Schematic", Dan 2026-11-02): the cabin end is two columns, the fuse / relay boxes and kill switch outside,
 # the factory cabin taps inside; a box pin's wire runs out between the taps (no tap sits on a used box row)
-XO = -90 - 240 - 150
+XO = -90 - 240 - 180     # the 180 gap holds the OEM splice notes of the cabin taps (below), clear of the box column
 stack(LEFT[0], XO, 0)
 box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)]
             for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')}
@@ -261,6 +263,21 @@ print('schematic top y: left', TOPS[:2], '| right', TOPS[2], '| bottom left', LE
 assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
 notes = []
+# OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
+# "Splice to OEM wire <colour>", the factory wire's colour code from the master (build_drawings.oem_splices); it sits on the
+# wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
+# it covers no lane; genroute.py keeps wires out of it. A blank colour gets no note and is listed.
+oem_col, oem_skip = {}, []
+for r in W:
+    for s, c in B.oem_splices(r):
+        tid = 't_' + sid(tkey(r, s))
+        if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
+        assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
+for tid, c in oem_col.items():
+    p = NODES[tid]['schematicPosition']; left = tid in LEFT_IDS
+    notes.append({"id": "n_oem_" + tid, "text": "Splice to OEM wire " + c, "width": 180, "alignment": "Right" if left else "Left",
+                  "schematicPosition": {"x": p['x'] - 180 if left else p['x'] + NODES[tid]['width'], "y": p['y']}})
+print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oem_skip) or 'none')
 for c, lst in other_owned.items():
     n = conns[c]; by = collections.defaultdict(list)
     for pin, own in lst: by[own].append(pin)

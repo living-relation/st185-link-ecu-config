@@ -13,6 +13,9 @@ def run(d, mid=None, step=30):
         p=s['schematicPosition']; R.box(s['id'],p['x'],p['y'],30,30); node[s['id']]=('pt',s)
     for c in d.get('cables',[]):
         p=c['schematicPosition']; n=len(c['cores'])+(1 if 'shield' in c else 0); R.box(c['id'],p['x'],p['y'],60,30+30*n); node[c['id']]=('cab',c)
+    for n in d.get('schematicNotes',[]):   # an OEM splice note (README "Pin text") sits on its end's wire: only that end's wires may cross it
+        if n['id'].startswith('n_oem_'):
+            p=n['schematicPosition']; R.box(n['id'][6:]+'#oem',p['x'],p['y'],n.get('width',150),30)
     xs=[n[1]['schematicPosition']['x'] for n in node.values() if n[0] in('conn','term')]
     if mid is None: mid=(min(xs)+max(xs))/2
     def anchor(e):

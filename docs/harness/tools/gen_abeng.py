@@ -17,6 +17,9 @@ NAME, TITLE, REV = 'AB-engine', 'ST185-AB-engine', 'C'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
+# OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): AB-engine has no factory-lead end today (every wire ends at a new
+# plug or the bulkhead), so it gets none; one that appears must be drawn with its "Splice to OEM wire" note as gen_engc.py does
+assert not [r['wire_id'] for r in W if B.oem_splices(r)], 'AB-engine has an OEM splice now: draw its factory lead and note as gen_engc.py does'
 SPARE = [r for r in ROWS if not r['wire_id']]
 PASS = [r for r in ALL if r['harness'] != NAME and NAME in (r.get('passes_through') or '')]
 PARTS_CSV = {p['part_number']: p for p in csv.DictReader(open(os.path.join(REPO, 'docs/sourcing/harness-parts.csv'), encoding='utf-8'))}
