@@ -34,7 +34,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 - **Node hook-up (moved from the retired `WIRING.md`, 2026-10-19; the wires themselves are in `docs/harness/MASTER-wirelist.csv`):**
   - Center cluster: Waveshare [SN65HVD230 CAN Board](https://www.waveshare.com/sn65hvd230-can-board.htm), passive (no firmware). VCC -> the P4's **3V3** (never 5 V), GND -> GND, CTX -> GPIO5 (TWAI TX), CRX -> GPIO4 (TWAI RX), CANH / CANL -> the bus. Never short CANH to CANL. No resistor on this board (mid-bus stub). The cluster's J8 header pinout lives only in `center-cluster-esp32-p4` (`PINOUT.md`, `main/Kconfig.projbuild`).
   - Switchboard: CANH / CANL screw terminals; its onboard 120 ohm jumper stays **OFF**; bit rate set to 1000 kbps before it is connected (§3, `ECUMASTER_SWITCHBOARD_SETUP.md`).
-  - Pi USB-CAN adapter: CANH -> CANH, CANL -> CANL, GND -> bus ground; a PCAN USB's termination switch stays **OFF**. The Pi runs on a switched ignition feed only, no hold relay (Daniel 2026-09-28).
+  - Pi USB-CAN adapter: CANH -> CANH, CANL -> CANL, GND -> bus ground; a PCAN USB's termination switch stays **OFF**. The Pi runs on a switched ignition feed only, no hold relay (Daniel 2026-09-28): an ON-only feed (Dan 2026-11-04, DECISIONS B17).
 
 ---
 
