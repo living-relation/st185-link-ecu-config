@@ -59,9 +59,10 @@ skill is not changed for this project):
 - Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_abeng.py`, `gen_engc.py`, `gen_cabin.py`). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
 - One device, one file (Dan 2026-11-04): a harness split over two files (100-connection limit) is split between
-  devices, never through one: every wire a device has in that harness is in the same file (AB-cabin hubs: Needs Dan V1).
-  A device with wires in several harnesses (the ECU; the fuse / relay boxes, with their feeds, outputs and box-to-box
-  wires) is drawn in each harness's file with that harness's wires (Dan 2026-11-04).
+  devices, never through one: every wire a device has in that harness is in the same file. The one exception, AB-cabin:
+  the ECU plugs and the bulkhead DRB102 are drawn whole in both its files (Dan 2026-11-04, V1 a). A device with wires
+  in several harnesses (the ECU, the fuse / relay boxes) is drawn in each harness's file with that harness's wires.
+  Wires between the fuse / relay boxes are their own harness (CabinPower, built later), never AB-cabin (Dan 2026-11-04).
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
 - Review a harness by reading 10 random rows: each says what the wire does and its far end matches; never accept a
   harness on counts alone (practice per SAE AS50881 / IPC/WHMA-A-620).
@@ -99,8 +100,10 @@ skill is not changed for this project):
   end descriptions; AB-engine done, every other harness when its document is next built. A device's factory lead (a
   terminal, so no connector name) carries the device name in its label, the master's, code in parentheses: "LH
   headlamp (H1) pin 3 (factory lead)" (Dan 2026-11-03).
-  A splice end whose other legs are in another file or harness says where they go: "to AB-cabin 2, <device name>";
-  every wire carries a label naming the signal it carries (Dan 2026-11-04). A wire end at a new fuse / relay box names
+  A splice end whose other legs are in another file or harness says where they go: "to AB-cabin 2, <device name>", and
+  only a wire that ends there because it continues in another file carries a label naming its signal (Dan 2026-11-04).
+  A factory tap names the device first, then its code, pin and the factory wire it splices onto: "A/C amplifier (A32)
+  pin 15, spliced onto <wire>" (Dan 2026-11-04). A wire end at a new fuse / relay box names
   the box first, then the relay or fuse: "New LOGIC fuse box, K-EPS-EN", "New POWER fuse box, F12"; a wire between two
   boxes names both ends that way (Dan 2026-11-04).
 - Format facts (v1.3): bundle and branch-point points are `layoutPosition`; wire and cable-core points are
