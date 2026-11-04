@@ -23,27 +23,27 @@ B2,M3,relay,horn,K-HORN,seated,
 B2,M4,relay,ETB power,K-ETB,seated,
 B2,M5,relay,A/C clutch,K-ACC,seated,coil 85 from A15 pin 8 (D16); coil 86 from B2-BUS2-8
 B2,M6,relay,EPS enable,K-EPS-EN,seated,"TE 6-1419137-4 diode micro relay: 85 from ECU B12 (Ign 6, active-low), 86 from BUS-SW12 9, 30 from BUS2-7, 87 straight to DRB102 cavity 83 (pump C1; E3 a, Dan 2026-11-02)"
-B2,M7,relay,(vacant),,vacant,was K-REV; back-up lamps stay on the factory harness
+B2,M7,relay,ON-only feed (CAN-Lambda + RealDash Pi),K-ON,seated,"TE 6-1419137-4 diode micro relay (Dan 2026-11-04, N5 a; DECISIONS B17): 86 from J/B No.1 1H-7 IGN (live at ON and ST), 85 to the POWER box NEG bar, 30 from BUS1-6 LAM 10 A, 87 via SP-ON to DRB102 cavity 95 (CAN-Lambda) and BUS2-12 IN (PI fuse); was K-REV (back-up lamps stay on the factory harness)"
 B2,BUS1-1,fuse,EFI86 5 A,LOGIC,assigned,K-EFI coil+
 B2,BUS1-2,fuse,HL 15 A,LOGIC,assigned,w_hl_cp via SP-HL to K-HL 30 / 86 (headlamp LH)
 B2,BUS1-3,fuse,HR 15 A,LOGIC,assigned,w_hr_cp via SP-HR to K-HR 30 / 86 (headlamp RH)
 B2,BUS1-4,fuse,HZ 15 A,LOGIC,assigned,w_hz_cp via SP-HZ to the hazard feed (IE1-12) and K-HORN 30 / 86
 B2,BUS1-5,fuse,DOME 20 A,LOGIC,assigned,
-B2,BUS1-6,fuse,(vacant),,vacant,was WL 15 A door-lock feed at R/B No.2 (w_rb2_wl dropped: Dan B17 = b 2026-11-02; door locks are fed through the R/B No.2 30 A POWER fuse as stock)
+B2,BUS1-6,fuse,LAM 10 A,LOGIC,assigned,"w_fb_k_on_30_cp to K-ON 30: the CAN-Lambda fuse (Link CAN-Lambda QSG: 10 A through an ignition relay; Dan 2026-11-04, N5 a, LAM 7.5 -> 10 A), also carrying the PI leg; load up to 10.6 A (CAN-Lambda 8.1 A peak + Pi about 2.5 A) flagged (B12); was WL 15 A (w_rb2_wl dropped, Dan B17 = b 2026-11-02), then vacant; fuse-box design still says WL 15 A"
 B2,BUS1-7,fuse,ALM 5 A,LOGIC,assigned,w_at_12v_tie_cp to alarm pin 1
 B2,BUS1-8,fuse,ALMS 2 A,LOGIC,assigned,w_at_12v_shk_tie_cp to shock sensor pin A
 B2,BUS1-9,fuse,ALTS 2 A,LOGIC,assigned,w_alt_s_c to alternator plug pin 1 S (rating from the fuse-box design wiring_plan.json; the master names no rating)
 B2,BUS1-10,fuse,ETB 7.5 A,LOGIC,assigned,K-ETB 30
-B2,BUS2-1,fuse,LAM 7.5 A,LOGIC,assigned,w_lam12_cp to DRB102 cavity 95 (CAN-Lambda)
+B2,BUS2-1,fuse,(vacant),,vacant,"was LAM 7.5 A to the CAN-Lambda (w_lam12_cp); the CAN-Lambda moved to the ON-only relay K-ON, fuse BUS1-6 LAM 10 A (Dan 2026-11-04, N5 a); fuse-box design still has LAM 7.5 A here"
 B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V); master 5 A vs fuse-box design 7.5 A
 B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A); fuse-box design still says 15 A
 B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A); fuse-box design still says 15 A
 B2,BUS2-5,fuse,CSB 5 A,LOGIC,assigned,w_csb12 to CSB3 pin 1
-B2,BUS2-6,fuse,DEV 15 A,LOGIC,assigned,w_dev_cp via SP-DEV to the cluster and RealDash Pi supplies
+B2,BUS2-6,fuse,DEV 15 A,LOGIC,assigned,"w_dev_clu to the centre cluster supply (the RealDash Pi moved to K-ON / BUS2-12, SP-DEV dropped: Dan 2026-11-04, N5 a)"
 B2,BUS2-7,fuse,EPSEN 5 A,LOGIC,assigned,K-EPS-EN 30; the only EPS enable fuse (E3 a, Dan 2026-11-02, was 7.5 A); fuse-box design still says 7.5 A
 B2,BUS2-8,fuse,ACC 10 A,LOGIC,assigned,K-ACC 30 and 86 via SP-ACC12
 B2,BUS2-9,fuse,ALMIG 2 A,LOGIC,assigned,w_at_ig_tie_cp to alarm pin 3
-B2,BUS2-12,fuse,(vacant),,vacant,was MRS 5 A pump-enable fuse fed by K-EPS-EN 87 (off the Bus 2 strip); dropped (E3 a, Dan 2026-11-02): relay 87 now goes straight to DRB102 cavity 83; fuse-box design still has it
+B2,BUS2-12,fuse,PI 5 A,LOGIC,assigned,"own input (off the Bus 2 strip) w_pi_in_cp from K-ON 87 via SP-ON; out w_pi12 to the RealDash Pi supply (Dan 2026-11-04, N5 a); was the MRS pump-enable fuse fed by K-EPS-EN 87, dropped (E3 a, Dan 2026-11-02); fuse-box design still says MRS 7.5 A"
 B2,BUS2-13,fuse,start request,LOGIC,assigned,ST1 tap to Link DI 7
 B3,K1,relay,fuel pump,K-FP,seated,trunk battery relay block
 B4,EPS,relay,EPS pump,K-EPS,seated,HCR150 beside the POWER box

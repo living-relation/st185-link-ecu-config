@@ -33,6 +33,8 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 
 ETB hold power is all cabin and J/B No.1 stays: Aux 6 (A28) holds K-EFI; DI 9 (B28) senses IG2; the IG2 wake diode feeds A5 from J/B1 1H-7; K-ETB on Aux 2 (A20) feeds B5.
 
+CAN node power (DECISIONS B17, Dan 2026-11-04): the cluster on LOGIC DEV 15 A and the CSB3 on CSB 5 A (Bus 2); the RealDash Pi and the CAN-Lambda on the ON-only relay K-ON (LOGIC M7): coil 86 from J/B1 1H-7 IGN (`w_k_on_86_cp`), coil 85 to the NEG bar (`w_k_on_85_cp`), LAM 10 A at BUS1-6 to 30 (`w_fb_k_on_30_cp`), 87 to splice `SP-ON` (`w_k_on_87_cp`), then the CAN-Lambda (`w_lam12_cp`, DRB102 cavity 95) and PI 5 A at BUS2-12 (`w_pi_in_cp`, out `w_pi12`).
+
 Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS).
 
 ## Cut-list groups (row 164)
@@ -155,7 +157,7 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 | 2E | 5 | W | AM1 out | IE1-10 -> cowl I2 -> ignition SW I13-4 and R/B2 30 A POWER fuse pin 1 | p.62, 66 | re-feed POWER AM1 | remove; re-fed by `w_pdb_am1` at IE1-10. I2 also feeds R/B2, as stock (Dan B17 b) |
 | 2E | 6 | B-R | AM2 out | IE1-17 -> I13-10 | p.62, 66 | re-feed POWER AM2 | remove; re-fed by `w_pdb_am2` at IE1-17 |
 | 2E | 7 | R-Y | Headlight relay coil | IE1-2 -> I2 -> light control SW C15, retract relay R8-8 | p.116 | re-feed LOGIC head relay coils | remove; re-fed by `w_head_coil_cp` (K-HL / K-HR coil 85 via `SP-HEAD-COIL`) |
-| 2E | 8 | B-O | IGN 7.5 A to J/B2 relay coils | ER Main splice E13 / E4 <- J/B1 1H-7 | p.210, 79 | cut + cap at J/B2 and R/B5 | remove; 1H-7 itself keeps (tapped by `w_ig2_in`, `w_ign`) |
+| 2E | 8 | B-O | IGN 7.5 A to J/B2 relay coils | ER Main splice E13 / E4 <- J/B1 1H-7 | p.210, 79 | cut + cap at J/B2 and R/B5 | remove; 1H-7 itself keeps (tapped by `w_ig2_in`, `w_ign`, `w_k_on_86_cp`) |
 | F11-A | 2, 3, 4, 7 | W, W, B, B-R | AM1, 100 A ALT, FL MAIN in, AM2 | battery, alternator | p.62, 64 | gone | remove (trunk battery and HeavyDC, B11) |
 | F11-C | 1 | W-L | 60 A ABS out | ABS relays (ER Main E12) | p.62; 1992 p.192 | cut + cap | remove (ABS gone, circuit 6) |
 
