@@ -61,6 +61,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
   0x640-0x642 -> ECU; cluster reads 0x3E8-0x3EB, 0x3EE, sends 0x3EC/0x3ED; RealDash 0x3EB gear, 0x3EF-0x3F1.
 - **B17 CAN wiring.** One bus (CAN 1, bus 2 unused), the CAN-Lambda on it, shielded the whole run. Every CAN node takes
   +12 V (fuse box) and ground (battery-negative bar) with the trunk at its branch, never ECU ground or chassis.
+  Power (Dan 2026-11-04, X1): the ECU per Link's hold-power wiring (ignition wake, the ECU holds main relay K-EFI for
+  the ETB); centre cluster and CSB3 on LOGIC Bus 2 (live with the ECU); RealDash Pi and CAN-Lambda on an ON-only feed,
+  no hold. Dan's ACC / ON key-position note is set aside.
 - **B18 CAN config now.** The ECU CAN config is written in the repo now (`link_g4x_can_setup.json` / `.lcs`,
   `switchboard_frames.json`, `check_parity.py` green); only work that needs the ECU connected waits for setup.
 
