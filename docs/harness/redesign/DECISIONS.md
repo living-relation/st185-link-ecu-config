@@ -672,9 +672,11 @@ The device and its wire set the circuit.
 - ON-only feed (Dan 2026-11-04, N5 a, "check AWG amp rating of wires"): CAN-Lambda on the 10 A LAM fuse: 14 AWG TXL in the
   cabin (about 17.6 A), DRB102 cavity 95 size 12, 12 AWG then 16 AWG Tefzel in the bay (12 A); the Pi fuse input leg is
   18 AWG Tefzel (11 A; TXL 18, about 8.8 A, is below the 10 A fuse), the Pi itself 20 AWG TXL on PI 5 A; the K-ON coil
-  feed from the IGN 7.5 A fuse 18 AWG TXL. Flagged, no part changed: the CAN-Lambda's DTM size 20 contacts are rated
-  7.5 A (its own plug takes no larger contact) against its 8.1 A peak (manual p.5), and the 10 A fuse carries both loads
-  (up to 10.6 A if the heater and the Pi peak together).
+  feed from the IGN 7.5 A fuse 18 AWG TXL, and the two older 1H-7 taps (`w_ig2_in`, `w_ign`) 20 -> 18 AWG TXL for the same
+  fuse (Dan 2026-11-04; ECU-B pin 28 takes contact 3-1447221-3, 18-16 AWG). Known exception (Dan 2026-11-04, accepted):
+  the CAN-Lambda's DTM size 20 contacts are rated 7.5 A (Link's own plug takes no larger contact) against its 8.1 A peak
+  (manual p.5), a peak only during heater warm-up. Still flagged: the 10 A LAM fuse carries both loads (up to 10.6 A if
+  the heater and the Pi peak together); Dan's split (two own-input fuses after K-ON) waits on Needs Dan N6.
 - Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
 
 ## Drawing rules
