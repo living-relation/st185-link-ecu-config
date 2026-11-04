@@ -27,7 +27,7 @@ ambient sensor).
 | `class` | `signal` `rail` `screen` `power` `ground` `spare` `nc` |
 | `dir` / `type` / `pullup` | direction, PCLink type, the pull-up fitted (not what is available) |
 | `status` | `set` `proposed` `spare` `tbd` `nc` |
-| `source` | QSG-IO, QSG-loom, QSG-comms, EWD page, or a dated Daniel lock |
+| `source` | QSG-IO, QSG-loom, PCLink-comms (PCLink help page "Communications Port Pinout", G4X / Xtreme / Fury wire-in, looking into the ECU connector), EWD page, or a dated Daniel lock |
 | `notes` | free text |
 
 ## Classes

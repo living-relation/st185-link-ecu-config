@@ -67,12 +67,12 @@ ECU,An Volt 10,ecu_b,b31,spare analogue,spare,in,0-5v,ext-div-10k-3k9,spare,Dani
 ECU,An Volt 11,ecu_b,b32,spare analogue,spare,in,ntc,ext-2k2-to-5v,spare,Daniel-lock-2026-10-25,Was evaporator thermistor. Removed 2026-10-25: the thermistor belongs to the factory A/C amp.
 ECU,An Volt 5,ecu_b,b33,APS sub VPA2,signal,in,0-5v,none,set,QSG-IO,BRZ pedal pin 3; VC2 = pedal pin 1; GND2 = pedal pin 2
 ECU,Ground,ecu_b,b34,ECU reference ground,ground,na,gnd,none,set,QSG-IO,ECU reference only - not a sensor return
-ECU,Comms 1,ecu_com,c1,CAN bus screen termination,screen,na,screen,none,set,QSG-comms,"CAN bus screen drain only (one end, ECU side); no power return; no signal; ONE wire (the trunk drain), every CAN node drain splices onto it at its own branch; nothing else shares it (Dan N50, 2026-10-19). Setup time: confirm C1 is a shield-safe ECU ground in the G4X help (R52)"
-ECU,Comms 2,ecu_com,c2,unused,nc,na,none,none,nc,QSG-comms,
-ECU,CAN 1 High,ecu_com,c3,CAN 1 high,signal,bidir,can,none,set,QSG-comms,120R terminator at this end
-ECU,CAN 1 Low,ecu_com,c4,CAN 1 low,signal,bidir,can,none,set,QSG-comms,120R terminator at this end
-ECU,RS232 TX,ecu_com,c5,RS232 TX,nc,out,rs232,none,nc,QSG-comms,not used in this build
-ECU,RS232 RX,ecu_com,c6,RS232 RX,nc,in,rs232,none,nc,QSG-comms,not used in this build
+ECU,Comms 1,ecu_com,c1,Ground (CAN screen drain),screen,na,screen,none,set,PCLink-comms,"PCLink help names pin 1 Ground; here the CAN bus screen drain only (one end, ECU side); no power return; no signal; ONE wire (the trunk drain), every CAN node drain splices onto it at its own branch; nothing else shares it (Dan N50, 2026-10-19). Setup time: confirm C1 is a shield-safe ECU ground in the G4X help (R52)"
+ECU,Comms 2,ecu_com,c2,NC,nc,na,none,none,nc,PCLink-comms,
+ECU,CAN 1 High,ecu_com,c3,CAN H (CAN 1),signal,bidir,can,none,set,PCLink-comms,120R terminator at this end
+ECU,CAN 1 Low,ecu_com,c4,CAN L (CAN 1),signal,bidir,can,none,set,PCLink-comms,120R terminator at this end
+ECU,RS232 TX,ecu_com,c5,ECU RS232 TX,nc,out,rs232,none,nc,PCLink-comms,not used in this build
+ECU,RS232 RX,ecu_com,c6,ECU RS232 RX,nc,in,rs232,none,nc,PCLink-comms,not used in this build
 VRC,Front in L,VRC_F_IN,1,WS FL+,signal,in,vr,none,set,harness-WheelSpeed-Front,"Raw VR; screen stays separate all the way to the VRC input; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)"
 VRC,Front in L,VRC_F_IN,2,WS FL-,signal,in,vr,none,set,harness-WheelSpeed-Front,"Raw VR; loom C fender sub-loom, no bulkhead (Daniel 2026-09-25)"
 VRC,SCREEN,VRC_F_IN,3,Both input screens (FL + FR),screen,na,screen,none,set,harness-WheelSpeed-Front,"Dan 2026-10-19: one 5-pin input plug, pin 3 = both sensor screens (shared). Drain connected on the VRC input and the VRC output. ABS input drains splice together and terminate on a single pin (docs/SHIELD-RULES.md 6.30). Floats at the sensor."
