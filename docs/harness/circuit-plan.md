@@ -33,7 +33,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 
 ETB hold power is all cabin and J/B No.1 stays: Aux 6 (A28) holds K-EFI; DI 9 (B28) senses IG2; the IG2 wake diode feeds A5 from J/B1 1H-7; K-ETB on Aux 2 (A20) feeds B5.
 
-CAN node power (DECISIONS B17, Dan 2026-11-04): the cluster on LOGIC DEV 15 A and the CSB3 on CSB 5 A (Bus 2); the RealDash Pi and the CAN-Lambda on the ON-only relay K-ON (LOGIC M7): coil 86 from J/B1 1H-7 IGN (`w_k_on_86_cp`), coil 85 to the NEG bar (`w_k_on_85_cp`), LAM 10 A at BUS1-6 to 30 (`w_fb_k_on_30_cp`), 87 to splice `SP-ON` (`w_k_on_87_cp`), then the CAN-Lambda (`w_lam12_cp`, DRB102 cavity 95) and PI 5 A at BUS2-12 (`w_pi_in_cp`, out `w_pi12`).
+CAN node power (DECISIONS B17, Dan 2026-11-04): the cluster on LOGIC DEV 15 A and the CSB3 on CSB 5 A (Bus 2); the CAN-Lambda on its own ON-only relay K-ON (LOGIC M7): coil 86 from J/B1 1H-7 IGN (`w_k_on_86_cp`), coil 85 to the NEG bar (`w_k_on_85_cp`), LAM 10 A at BUS1-6 to 30 (`w_fb_k_on_30_cp`), 87 to the CAN-Lambda (`w_lam12_cp`, DRB102 cavity 95); the RealDash Pi on the factory J/B No.1 CIG & RADIO 15 A ACC fuse, tapped on the old radio ACC lead at cowl plug II1 pin 3, GR (`w_pi12`; 1993 EWD p.201), Dan 2026-11-04 N6. Reserved for the new stereo (README "Power injection"): the radio on the same CIG & RADIO ACC lead as the Pi, the amplifier on the POWER box positive-bar spare stud.
 
 Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS).
 
