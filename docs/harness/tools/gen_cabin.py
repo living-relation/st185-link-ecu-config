@@ -1,5 +1,5 @@
 """harness.design copy of ST185-AB-cabin = the ECU harness, cabin half, in two documents (100-connection plan limit):
-"ST185-AB-cabin 1 - sensor rails and screens Rev B" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev B".
+"ST185-AB-cabin 1 - sensor rails and screens Rev C" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev C".
 Split rule (README "harness.design", one device, one file; Dan 2026-11-04 V1 a): the ECU plugs A, B, C and the bulkhead
 DRB102-CABIN are drawn whole in both documents (each wires its own cavities; the others are N/C with a note); every other
 device has all its AB-cabin wires in one document. Document 1 holds every wire joined (through devices, splices and
@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 import genroute
 H = B.Harness('ST185-harness')
-NAME, REV, DATE = 'AB-cabin', 'B', '2026-11-04'
+NAME, REV, DATE = 'AB-cabin', 'C', '2026-11-04'
 TITLES = {1: 'ST185-AB-cabin 1 - sensor rails and screens', 2: 'ST185-AB-cabin 2 - straight runs, power, taps and CAN'}
 SHORT = {1: 'AB-cabin 1', 2: 'AB-cabin 2'}
 TITLE, OTHER = TITLES[DOC], TITLES[3 - DOC] + ' Rev ' + REV
@@ -199,6 +199,8 @@ for c in conn_ids:
     pins = sorted(use[c], key=lambda p: pin_order(p, c))
     if cpart and cpart.get('numberOfCavities') and all(re.match(r'\d+$', p) and 1 <= int(p) <= cpart['numberOfCavities'] for p in pins):
         pins = [str(i) for i in range(1, cpart['numberOfCavities'] + 1)]
+    if cpart and c in B.BOX_CAVITIES:     # a new fuse box with its library part: every landing of the box drawing, vacant seats N/C
+        assert set(pins) <= set(B.BOX_CAVITIES[c]), (c, set(pins) - set(B.BOX_CAVITIES[c])); pins = list(B.BOX_CAVITIES[c])
     if cpart: assert len(pins) == cpart['numberOfCavities'], (c, pins, cpart['numberOfCavities'])
     cfg_contact = cfg_plug = None
     for a in ((cpart or {}).get('configurations') or [{}])[0].get('accessories', []):
@@ -568,7 +570,8 @@ head = [{"id": "n_title", "width": 360,
          "text": "%s Rev %s (%s). Part %d of 2 of AB-cabin, the ECU harness cabin half: %s. The rest of AB-cabin is '%s'. Split (Dan "
                  "2026-11-04, V1 a): the ECU plugs A, B, C and the bulkhead DRB102-CABIN are drawn whole in both parts (cavities wired in "
                  "the other part are N/C with a note); every other device has all its AB-cabin wires in one part. A splice whose other "
-                 "legs are elsewhere is labelled with its signal and where they go. Viewer copy "
+                 "legs are elsewhere is labelled with its signal and where they go; a wire spliced onto a factory wire carries the note "
+                 "'Splice to OEM wire <colour>' at its tap (Dan 2026-11-04, Y6). Viewer copy "
                  "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
                  "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
                  "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text. %s"
@@ -594,8 +597,25 @@ def est_h(t): return 30 * (2 + len(t) // 50)       # a 360-wide note: about 50 c
 HEAD_Y = -30 * ((max(est_h(n['text']) for n in head) + 59) // 30)
 for i, n in enumerate(head): n['schematicPosition'] = {"x": 390 * i, "y": HEAD_Y}
 NOTES = list(head)
+# OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
+# "Splice to OEM wire <colour>", the factory wire's colour code from the master (build_drawings.oem_splices), on the wire's row
+# just left of its factory tap (text right-aligned); genroute.py keeps the other wires out of it, so the left-to-left wires run
+# down the outside left of the notes. A blank colour gets no note and is listed.
+oem_col, oem_skip = collections.OrderedDict(), []
+for r in W:
+    for s, c in B.oem_splices(r):
+        tid = 't_' + sid(tkey(r, s))
+        if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
+        assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
+OEMW = 180
+for tid, c in oem_col.items():
+    p = NODES[tid]['schematicPosition']; assert tid in LEFT_IDS, tid
+    NOTES.append({"id": "n_oem_" + tid, "text": "Splice to OEM wire " + c, "width": OEMW, "alignment": "Right",
+                  "schematicPosition": {"x": p['x'] - OEMW, "y": p['y']}})
+print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oem_skip) or 'none', flush=True)
 N_LL = sum(1 for cond in CONDS if len([e for e in ends(cond) if e['id'] in LEFT_IDS]) == 2)   # left-to-left wires run down the outside
-if left_txt: NOTES.append({"id": "n_left", "width": 360, "text": ' '.join(left_txt), "schematicPosition": {"x": -420 - 30 * N_LL, "y": 0}})
+LL_X = -420 - (OEMW if oem_col else 0) - 30 * N_LL
+if left_txt: NOTES.append({"id": "n_left", "width": 360, "text": ' '.join(left_txt), "schematicPosition": {"x": LL_X, "y": 0}})
 if right_txt: NOTES.append({"id": "n_right", "width": 360, "text": ' '.join(right_txt), "schematicPosition": {"x": DEVX + 270, "y": 15}})
 
 # ================================================================== layout: the layout tree as a formboard
