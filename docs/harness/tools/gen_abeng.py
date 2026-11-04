@@ -4,8 +4,8 @@ get_part_library). Writes <out>/abeng.json (whole document, wires not yet routed
 add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.json. Same rules and helpers' shape as
 gen_engc.py (README "harness.design"): connectors 240 wide, each pin its own master end text, display stripes on +12 V wires,
 parts from library 5LO8 (new ones from harness-parts.csv), formboard layout, compact schematic (bulkhead, splices, cables,
-devices). Lengths: the Route 16 tree of `route_trees` alone (DECISIONS B8; the HeavyDC segments that loop through it are left
-out, OPEN-ITEMS row 179), checked here against the master est_length_mm. gen_engc.py runs on import, so its helpers are not
+devices). Lengths: the Route 16 tree of `route_trees` alone (DECISIONS B8; HeavyDC has its own Route 1 tree since B6 b,
+OPEN-ITEMS row 179), checked here against the master est_length_mm. gen_engc.py runs on import, so its helpers are not
 imported."""
 import sys, os, json, re, collections, math, csv, copy
 REPO, OUT = sys.argv[1], sys.argv[2]
@@ -381,8 +381,8 @@ head = [{"id": "n_title", "width": 360,
                      '%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) + ". " if pass_by else "") +
                  "Layout: a formboard of the Route 16 tree (route_trees; the bulkhead 16 in above where the trunk meets the firewall), "
                  "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on "
-                 "a 100 mm end-allowance stub; bundle lengths = the master est_length_mm (the HeavyDC segments that loop through Route 16 "
-                 "are left out, OPEN-ITEMS row 179)."},
+                 "a 100 mm end-allowance stub; bundle lengths = the master est_length_mm (HeavyDC is on its own Route 1 tree, "
+                 "DECISIONS B6 b)."},
         {"id": "n_stripes", "width": 360,
          "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
                  "the master wire list and BOM. Stripe per circuit: " + '; '.join('%s = %s' % (STRIPE[k][1], STRIPE[k][0]) for k in used_st) +
