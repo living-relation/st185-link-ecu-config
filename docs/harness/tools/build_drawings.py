@@ -59,6 +59,46 @@ def is_removal(r):
         (r.get("wire_pn") or "").startswith("none (removed)")
 
 
+# B9 6 in OEM pigtails: the new wire is spliced onto the factory lead at these front devices (lamps, pop-ups, ambient
+# sensor, wiper; README "What stays and what goes"), even where an older oem_method says "terminated at the device's plug"
+PIGTAIL_DEVICES = {'H1', 'H2', 'R2', 'R3', 'F5', 'F6', 'F7', 'F8', 'F9', 'A1'}
+
+
+def oem_splices(r):
+    """The OEM ends of a wire that is spliced onto a factory wire, with that wire's colour code from `oem_wire_colour`:
+    [(side, colour)], colour '' when the master gives none (README "Pin text": the note `Splice to OEM wire X-X`, Dan
+    2026-11-04 Y6). An end counts when its own method splices or solders onto a factory lead, or it is a B9 pigtail
+    device. Two OEM ends: `oem_wire_colour` / `oem_method` are "from / to"; one value for two ends belongs to the end
+    `oem_location` names. A device's own plug (A4, A5, the washer motor W1) is no splice."""
+    if is_removal(r) or not r.get('wire_id'):
+        return []
+    sides = [s for s in ('from', 'to') if r[s + '_type'] == 'OEM']
+    cols = [c.strip() for c in (r.get('oem_wire_colour') or '').split(' / ')]
+    meths = [m.strip() for m in (r.get('oem_method') or '').split(' / ')]
+    split = len(sides) == 2 and len(meths) == 2
+    def spliced(k, s):
+        # per end: its half of a "from / to" method, else (two OEM ends, one method) its own terminal text
+        how = (meths[k] if split else (r[s + '_terminal_pn'] or '') + ('' if len(sides) == 2 else ' ' + meths[0])).lower()
+        return r[s + '_id'] in PIGTAIL_DEVICES or 'splice' in how or 'solder onto' in how
+    ends = [(k, s) for k, s in enumerate(sides) if spliced(k, s)]
+    out = []
+    for k, s in ends:
+        if len(sides) == 2 and len(cols) == 2: col = cols[k]
+        elif len(sides) == 2 and len(ends) == 2:      # one colour, two spliced ends: the end oem_location names
+            col = cols[0] if ('%s pin %s' % (r[s + '_id'], r[s + '_pin'])) in (r.get('oem_location') or '') else ''
+        else: col = cols[0]
+        col = re.sub(r'\s*\(.*\)$', '', col).strip()
+        out.append((s, col if re.match(r'^[A-Z]{1,2}(-[A-Z]{1,2})?$', col) else ''))
+    return out
+
+
+# A new fuse box's harness wire landings, in cavity order, for its harness.design part (library 5LO8): the box drawing's
+# "harness wires at the fuses" sheet is the source. LOGIC (B2): ST185-FB-100L rev V.01 sheet 3 (models folder
+# st185_fusebox_1101 revB = cad/fusebox rev 7): the two M5 bus feed lugs, the 21 mini fuse outputs, the two own fuse inputs.
+BOX_CAVITIES = {'LOGIC': ['BUS1'] + ['BUS1-%d' % i for i in range(1, 11)] + ['BUS2'] + ['BUS2-%d' % i for i in range(1, 10)] +
+                ['BUS2-12', 'BUS2-12 IN', 'BUS2-13', 'BUS2-13 IN']}
+
+
 def master_rows(removed=False):
     """The master as rows, with the field names the drawing code uses (from_conn = the end ID ...). Removal rows are
     left out (they are not wires to build) unless `removed` is set."""
