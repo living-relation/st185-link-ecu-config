@@ -856,6 +856,8 @@ def add_route_trees(L):
         want, used = set(), set()
         linked = {n for seg in L["segments"] for n in seg[:2]}   # nodes other harnesses' segments already reach
         for dev in devs:
+            if dev.get("moved_to"):   # moved to another harness's own map (Route 16 HeavyDC ends -> Route 1, Dan B6 b)
+                continue
             if legacy:
                 ids = [x.strip() for x in str(dev.get("id", dev["name"])).split("/")]
                 node = place.get(ids[0]) or ids[0]
