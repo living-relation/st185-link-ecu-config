@@ -62,7 +62,9 @@ skill is not changed for this project):
   devices, never through one: every wire a device has in that harness is in the same file. The one exception, AB-cabin:
   the ECU plugs and the bulkhead DRB102 are drawn whole in both its files (Dan 2026-11-04, V1 a). A device with wires
   in several harnesses (the ECU, the fuse / relay boxes) is drawn in each harness's file with that harness's wires.
-  Wires between the fuse / relay boxes are their own harness (CabinPower, built later), never AB-cabin (Dan 2026-11-04).
+  Wires between fuse / relay boxes in one place are their own harness (CabinPower, built later), never AB-cabin; a wire
+  between boxes far apart belongs to the harness that holds the device it serves (e.g. `w_k_fp_86_cp`, SW12 bus plug to the
+  fuel pump relay K-FP in the trunk: RearFuel, riding the AB-cabin sill run) (Dan 2026-11-04).
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
 - Review a harness by reading 10 random rows: each says what the wire does and its far end matches; never accept a
   harness on counts alone (practice per SAE AS50881 / IPC/WHMA-A-620).

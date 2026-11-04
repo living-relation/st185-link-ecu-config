@@ -75,7 +75,7 @@
   <span><span class="sw" style="background:var(--aux)"></span>Aux out</span>
   <span><span class="sw" style="background:var(--pwr)"></span>Power</span>
   <span><span class="sw" style="background:var(--sb)"></span>Switchboard (CAN)</span>
-  <div class="note"><strong>Drive types (QSG + PCLink-family wiring manual):</strong> Aux 1–4 = flywheeled, <em>low-side only</em>, PWM / VVT / GP (2 A). Aux 5–8 = flywheeled <em>high or low side</em>, PWM / VVT / GP / stepper (low 2 A; high-side stepper 0.5 A). Aux 9 / 10 = E-throttle motor +/− <em>or</em> GP push-pull (4 A) — <strong>committed to the Bosch ETB H-bridge</strong>, not generic high/low aux. Spare Ign = 5 V / 20 mA logic high, or 2 A low-side aux <em>without</em> a flywheel diode. Spare Inj = high-Z saturated drive, or 2 A low-side aux <em>without</em> a flywheel diode. Low-side outputs sink to ground when active and are hi-Z when off. Active-HIGH loads must use Aux 5–8 (or a relay). Power pins A5 / B5 = 0.75 mm².</div>
+  <div class="note"><strong>Drive types (XtremeX QSG p.3; currents TBD, W3 a 2026-11-04 - no G4X document on hand gives them):</strong> Aux 1–4 = flywheeled, <em>low-side only</em>, PWM / VVT / GP. Aux 5–8 = flywheeled <em>high or low side</em>, PWM / VVT / GP / stepper. Aux 9 / 10 = E-throttle motor +/− <em>or</em> GP output — <strong>committed to the Bosch ETB H-bridge</strong>, not generic high/low aux. Aux 1–10 pull up to regulated 12 V through 1.5 kΩ (Link forum topic 17727, Adamw 2023-03-16). Ign 1–8 = one driver, type TBD (QSG p.2: spare Ignition channels may be used as Auxiliary Outputs; forum 17727: ignition and injector drives are effectively open collector, not flywheeled). Spare Inj = high-Z saturated drive, or low-side aux <em>without</em> a flywheel diode. Low-side outputs sink to ground when active and are hi-Z when off. Active-HIGH loads must use Aux 5–8 (or a relay). Power pins A5 / B5 = 0.75 mm².</div>
 </div>
 
 <div class="panel info">
@@ -85,7 +85,7 @@
     <li><strong>Cam trigger:</strong> RacerX MR2 kit, Cherry <strong>Hall</strong>, intake cam, single tooth → <strong>Trigger 2</strong>.</li>
     <li><strong>Ignition:</strong> 1ZZ <strong>coil-on-plug</strong> (built-in igniter, logic-level) → Ign 1–4. No distributor.</li>
     <li><strong>Injectors:</strong> 1400cc ATS/Bosch top-feed, flow-matched (hi-Z → saturated) → Inj 1–4.</li>
-    <li><strong>Throttle:</strong> Bosch Motorsport 74.5mm ETB → motor Aux 9/10, TP main+sub. APS is a Subaru BRZ 6-pin pedal (VPA1→An Volt 4 A14, VPA2→An Volt 5 B33), power via V-Ethrottle (relay Aux 2).</li>
+    <li><strong>Throttle:</strong> Bosch Motorsport 74.5mm ETB → motor Aux 9/10, TP main+sub. APS is a Subaru BRZ 6-pin pedal (VPA1→An Volt 4 A14, VPA2→An Volt 5 B33), ETB H-bridge supply via V Ethrottle (B5, relay K-ETB on Aux 2).</li>
     <li><strong>Flex sensor:</strong> Continental 3-pin (freq) → ethanol % <em>and</em> <strong>fuel temp</strong> (no separate fuel-temp sensor).</li>
     <li><strong>Starter:</strong> ECU-controlled — start input + start-relay output; ECU disables the start relay in software under set conditions (no separate cut relay). <strong>EFI main relay</strong> held by ECU for DBW key-off reset.</li>
   </ul>
@@ -140,7 +140,7 @@
   <div class="pmc pm-volt" title="ETB TPS main · set"><b>A22</b><span class="pmch">An Volt 2</span><span class="pmlb">ETB TPS main</span></div>
   <div class="pmc pm-di" title="Wheel speed front left · set"><b>A23</b><span class="pmch">DI 3</span><span class="pmlb">Wheel speed front left</span></div>
   <div class="pmc pm-gnd" title="Sensor return rail · set"><b>A24</b><span class="pmch">Gnd Out</span><span class="pmlb">Sensor return rail</span></div>
-  <div class="pmc pm-gnd" title="ECU reference ground · set"><b>A25</b><span class="pmch">Ground</span><span class="pmlb">ECU reference ground</span></div>
+  <div class="pmc pm-gnd" title="ECU power ground · set"><b>A25</b><span class="pmch">Ground</span><span class="pmlb">ECU power ground</span></div>
   <div class="pmc pm-tbd" title="spare · spare"><b>A26</b><span class="pmch">Aux 8</span><span class="pmlb">spare</span></div>
   <div class="pmc pm-aux" title="Speed out to MRS pump · set"><b>A27</b><span class="pmch">Aux 7</span><span class="pmlb">Speed out to MRS pump</span></div>
   <div class="pmc pm-aux" title="EFI main relay coil · set"><b>A28</b><span class="pmch">Aux 6</span><span class="pmlb">EFI main relay coil</span></div>
@@ -149,7 +149,7 @@
   <div class="pmc pm-di" title="Flex fuel sensor · set"><b>A31</b><span class="pmch">DI 2</span><span class="pmlb">Flex fuel sensor</span></div>
   <div class="pmc pm-pwr" title="+5V sensor rail · set"><b>A32</b><span class="pmch">+5V Out</span><span class="pmlb">+5V sensor rail</span></div>
   <div class="pmc pm-volt" title="ETB TPS sub · set"><b>A33</b><span class="pmch">An Volt 3</span><span class="pmlb">ETB TPS sub</span></div>
-  <div class="pmc pm-gnd" title="ECU reference ground · set"><b>A34</b><span class="pmch">Ground</span><span class="pmlb">ECU reference ground</span></div>
+  <div class="pmc pm-gnd" title="ECU power ground · set"><b>A34</b><span class="pmch">Ground</span><span class="pmlb">ECU power ground</span></div>
 </div>
 <h3 class="pmh">Connector B <span class="note">(33 pins)</span></h3>
 <div class="pm">
@@ -157,7 +157,7 @@
   <div class="pmc pm-tbd" title="spare low-side · spare"><b>B2</b><span class="pmch">Inj 7</span><span class="pmlb">spare low-side</span></div>
   <div class="pmc pm-tbd" title="spare low-side · spare"><b>B3</b><span class="pmch">Inj 6</span><span class="pmlb">spare low-side</span></div>
   <div class="pmc pm-tbd" title="spare low-side · spare"><b>B4</b><span class="pmch">Inj 5</span><span class="pmlb">spare low-side</span></div>
-  <div class="pmc pm-pwr" title="ETB H-bridge supply · set"><b>B5</b><span class="pmch">V-Ethrottle</span><span class="pmlb">ETB H-bridge supply</span></div>
+  <div class="pmc pm-pwr" title="V Ethrottle (ETB H-bridge supply) · set"><b>B5</b><span class="pmch">V Ethrottle</span><span class="pmlb">V Ethrottle (ETB H-bridge supply)</span></div>
   <div class="pmc pm-temp" title="Oil temp · set"><b>B6</b><span class="pmch">Temp 3</span><span class="pmlb">Oil temp</span></div>
   <div class="pmc pm-temp" title="Charge-pipe IAT · set"><b>B7</b><span class="pmch">Temp 4</span><span class="pmlb">Charge-pipe IAT</span></div>
   <div class="pmc pm-tbd" title="spare knock · spare"><b>B8</b><span class="pmch">Knock 2</span><span class="pmlb">spare knock</span></div>
@@ -176,7 +176,7 @@
   <div class="pmc pm-gnd" title="Sensor return rail · set"><b>B22</b><span class="pmch">Gnd Out</span><span class="pmlb">Sensor return rail</span></div>
   <div class="pmc pm-volt" title="Coolant pressure · set"><b>B23</b><span class="pmch">An Volt 8</span><span class="pmlb">Coolant pressure</span></div>
   <div class="pmc pm-volt" title="Fuel level sender · set"><b>B24</b><span class="pmch">An Volt 9</span><span class="pmlb">Fuel level sender</span></div>
-  <div class="pmc pm-gnd" title="ECU reference ground · set"><b>B25</b><span class="pmch">Ground</span><span class="pmlb">ECU reference ground</span></div>
+  <div class="pmc pm-gnd" title="ECU power ground · set"><b>B25</b><span class="pmch">Ground</span><span class="pmlb">ECU power ground</span></div>
   <div class="pmc pm-aux" title="ETB motor - · set"><b>B26</b><span class="pmch">Aux 10</span><span class="pmlb">ETB motor -</span></div>
   <div class="pmc pm-di" title="Anti-theft input · set"><b>B27</b><span class="pmch">DI 10</span><span class="pmlb">Anti-theft input</span></div>
   <div class="pmc pm-di" title="Ignition switch sense · set"><b>B28</b><span class="pmch">DI 9</span><span class="pmlb">Ignition switch sense</span></div>
@@ -185,7 +185,7 @@
   <div class="pmc pm-tbd" title="spare analogue · spare"><b>B31</b><span class="pmch">An Volt 10</span><span class="pmlb">spare analogue</span></div>
   <div class="pmc pm-tbd" title="spare analogue · spare"><b>B32</b><span class="pmch">An Volt 11</span><span class="pmlb">spare analogue</span></div>
   <div class="pmc pm-volt" title="APS sub VPA2 · set"><b>B33</b><span class="pmch">An Volt 5</span><span class="pmlb">APS sub VPA2</span></div>
-  <div class="pmc pm-gnd" title="ECU reference ground · set"><b>B34</b><span class="pmch">Ground</span><span class="pmlb">ECU reference ground</span></div>
+  <div class="pmc pm-gnd" title="ECU power ground · set"><b>B34</b><span class="pmch">Ground</span><span class="pmlb">ECU power ground</span></div>
 </div>
 <h3 class="pmh">Comms port <span class="note">(6 pins)</span></h3>
 <div class="pm">
