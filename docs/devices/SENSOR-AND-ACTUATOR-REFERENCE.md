@@ -28,6 +28,11 @@ source.
 
 ---
 
+## Factory parts confirmed (Dan 2026-11-04)
+
+- Battery: AGM.
+- Heater water temperature sensor A25 is fitted (factory part; not in the master).
+
 ## E-throttle / DBW
 
 **Throttle body — Bosch, 74.5mm.** Anything in the repo saying 74mm or 3S-GTE is wrong.

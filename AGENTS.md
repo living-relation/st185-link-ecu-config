@@ -13,7 +13,7 @@ Memory (workstation #32, global to every project): project progress lives in the
 ## Before any wiring or CAN change
 1. **Wiring:** ONE source of truth, `docs/harness/MASTER-wirelist.csv`. `sot/channels.csv` is ECU settings only; `XTREMEX-IO-TABLE.html` is its visual face. The wire lists, pin chart, DRB102 map and BOM are generated from the master; no script writes the master. A change is done only when every wiring surface agrees (DECISIONS Rule 1).
 2. **CAN:** reconcile across Link ECU, center cluster, RealDash, ECUMaster CSB3 (DECISIONS Rule 2). Frozen cluster wins. Write the repo CAN files now; `bench/check_parity.py` green.
-3. **ECU harness:** loom A and B are ONE harness, `AB` (`AB-cabin`, `AB-engine`); ECU pins never move. One layout tree, `ST185-harness.layout.json`; one harness.design file per harness (B6).
+3. **ECU harness:** loom A and B are ONE harness, `AB` (`AB-cabin`, `AB-engine`); ECU pins move only per DECISIONS B19. One layout tree, `ST185-harness.layout.json`; one harness.design file per harness (B6).
 4. **ECU pins:** before any edit, check every ECU-pin circuit against the Link G4X Quick Start Guide and plug-in guides (G4X only; DECISIONS B19). A mismatch is a stop: ask Dan.
 5. **Grounds and relays:** DECISIONS B10 (grounds) and B15 (relays).
 

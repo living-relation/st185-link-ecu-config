@@ -68,6 +68,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B19 ECU pins.** Check every ECU-pin circuit against the G4X Quick Start Guide and plug-in guides (plug-in wins;
   never G4 / G4+ pages); a mismatch is a stop. Resistors only where needed; 12 V switch into a ground input via opto.
+  An assigned ECU pin moves only to a pin the G4X Quick Start Guide shows can do the same job, checked and cited first (Dan 2026-11-04).
 
 ### Wire and parts
 
