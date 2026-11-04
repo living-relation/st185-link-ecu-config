@@ -777,6 +777,7 @@
   "K-ETB": "GB",
   "K-ACC": "GB",
   "K-EPS-EN": "GB",
+  "K-ON": "GB",
   "LOGIC": "GB",
   "BUS-SW12": "GB",
   "K-FP": "BATT",
@@ -850,7 +851,6 @@
   "SP-AT-12V": "ALARM",
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",
-  "SP-DEV": "PI",
   "MRS-A": "MRS_A",
   "ALT-PLUG": "ALT",
   "FAN-COND": "FANC",
@@ -948,6 +948,10 @@
   "GND-EB-2": "GND_EB_S"
  },
  "place_oem": [
+  [
+   "cowl plug II1",
+   "PI"
+  ],
   [
    "cruise control clutch switch",
    "PEDAL"

@@ -62,8 +62,9 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B17 CAN wiring.** One bus (CAN 1, bus 2 unused), the CAN-Lambda on it, shielded the whole run. Every CAN node takes
   +12 V (fuse box) and ground (battery-negative bar) with the trunk at its branch, never ECU ground or chassis.
   Power (Dan 2026-11-04, X1): the ECU per Link's hold-power wiring (ignition wake, the ECU holds main relay K-EFI for
-  the ETB); centre cluster and CSB3 on LOGIC Bus 2 (live with the ECU); RealDash Pi and CAN-Lambda on an ON-only feed,
-  no hold. Dan's ACC / ON key-position note is set aside.
+  the ETB); centre cluster and CSB3 on LOGIC Bus 2 (live with the ECU); CAN-Lambda on its own ON-only relay K-ON, no hold
+  ("Relays (B15)"); RealDash Pi on the factory radio circuit (J/B No.1 CIG & RADIO 15 A, ACC), shared with the future radio; Dan adds a
+  switch at the display (Dan 2026-11-04, N6). Reserved: radio on that circuit, amplifier one POWER positive-bar lug (README).
 - **B18 CAN config now.** The ECU CAN config is written in the repo now (`link_g4x_can_setup.json` / `.lcs`,
   `switchboard_frames.json`, `check_parity.py` green); only work that needs the ECU connected waits for setup.
 
@@ -94,7 +95,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B26 CAD work.** CAD stays frozen unless Dan asks (model and drawing detail: Drawing rules below). Models live only in
   Dan's models folder (OneDrive `Desktop\models`, `publish-to-models`): latest rev + 2 previous, bought parts as maker models there; drawings / BOMs are copied here for the checks.
 - **B27 Fuse boxes follow the harnesses.** Harnesses are made as required; the boxes are configured to match (Dan 2026-10-26; build rules: Drawing rules below).
-  Until the fuse-box revisit (row 107) the box CAD may lag the master; `sot/fuse-relay-map.csv` wins (e.g. EPSEN 5 A, BUS2-12 vacant).
+  Until the fuse-box revisit (row 107) the box CAD may lag the master; `sot/fuse-relay-map.csv` wins (e.g. EPSEN 5 A, BUS1-6 LAM 10 A, AMI IN-6 reserved: amplifier).
 
 ### Shipping
 
@@ -505,6 +506,13 @@ Moved here from rule B15 on 2026-11-02 (Dan L3 = a); binding as part of B15.
   `sot/channels.csv` (W3 a, 2026-11-04: no G4X document on hand gives it; Link forum 15847, a G4+ thread, says under 2 A low
   side and under 0.5 A high side). Aux 1-10 carry a 1.5 kOhm pull-up to regulated 12 V (forum 17727, Adamw, G4X). So a relay coil is driven low side (B15).
 - Coil check (Dan 2026-11-01): whenever a fuse / relay box is touched or reviewed, check every relay coil against its driver; Link Aux outputs have their own flywheel diode, Ign / Inj outputs do not, so a relay on those gets a diode-coil part.
+- ON-only relay K-ON (Dan 2026-11-04, N5 a; B17): LOGIC M7 (was K-REV), TE 6-1419137-4 (1 form C, diode). Coil 86 from
+  J/B No.1 1H-7 B-O (IGN 7.5 A out, live at ON and ST; 1993 EWD p.62-63), coil 85 to the POWER box NEG bar. Contact:
+  BUS1-6 LAM 10 A (Bus 1; Link CAN-Lambda QSG: 10 A fuse through an ignition relay; LAM 7.5 -> 10 A, Dan) -> 30; 87 ->
+  the CAN-Lambda only (DRB102 cavity 95; Dan N6: its own relay and its own fuse). The RealDash Pi is off the LOGIC box
+  (B17); the cluster stays alone on DEV 15 A (Bus 2); BUS2-1 and BUS2-12 are spare. No fuse-box design change.
+  Coil check of the LOGIC box with it: K-ETB on Aux 2 (flywheeled), K-EPS-EN on Ign 6 and K-ACC on the A/C amp are diode
+  parts, K-HL / K-HR / K-HORN switch-driven, K-ON key-driven with its own diode: all fit.
 
 ## Shields
 
@@ -620,7 +628,7 @@ are splices (B8 editor devices) and sit in AB-cabin.
 | R/B No.2 W-L feed (`w_rb2_wl`) | EngineRoom-C | dropped, with `w_rb2_feed` | fault C1 / C4; Dan B17 b: AM1 feeds R/B No.2 through I2, as stock |
 | Hazard feed (`w_haz_cp`) `passes_through` | EngineRoom-C | blank | glove box to IE1 at the LH kick, never in harness C |
 | Horn relay output (`w_pmu_horn_cp`, K-HORN 87 to `SP-HORN` at the front) | CabinPower, `passes_through` EngineRoom-C | EngineRoom-C | it runs glove box to the horns inside harness C |
-| Fuel pump relay coil wires (`w_fp85`, `w_k_fp_86_cp`) | AB-cabin / CabinPower, `passes_through` HeavyDC | AB-cabin (sill run) | B9 = a; signal wire is not taped to the 1/0 cable |
+| Fuel pump relay coil wires (`w_fp85`, `w_k_fp_86_cp`) | AB-cabin / CabinPower, `passes_through` HeavyDC | `w_fp85` AB-cabin (sill run); `w_k_fp_86_cp` RearFuel, riding the AB-cabin sill run (Dan 2026-11-04) | B9 = a; signal wire is not taped to the 1/0 cable |
 | Fuel level pair (`w_fl_sig`, `w45`) | AB-cabin, no carrier named | AB-cabin (sill run) | B9 = a |
 | Kill switch IG legs (`w_ig_ks_in` IG2-15 to kill switch; `w_ig_ks_out` kill switch to alternator plug) | HeavyDC `passes_through` EngineRoom-C; EngineRoom-C `passes_through` HeavyDC | `w_ig_ks_in` AB-cabin (sill run); `w_ig_ks_out` EngineRoom-C `passes_through` AB-cabin | B9 = a; the alternator plug is harness C's |
 | Trunk pin lead (`w_at_trunk_tie`) | AntiTheft, no carrier | AntiTheft `passes_through` AB-cabin | B9 = a |
@@ -662,6 +670,13 @@ The device and its wire set the circuit.
   Dan before any part changes (Dan 2026-10-24).
 - A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits both wires, else a hand solder splice under adhesive heat shrink.
 - Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A; injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with TE 5-965906-1 + seal 1-967067-1 at the ETB (on TE drawing C-967616 for the Bosch MQS housing 1-967616-1; Dan 2026-10-31), ETB 7.5 A; fuel pump 10 AWG feed and ground to the pump's own short lead, FP fuse 40 A (N79); EPS 8 AWG + 50 A, solder splice onto the Toyota repair-wire lead 82998-12500 (8 mm2, so size-for-size; RM06H0E).
+- CAN node feeds (Dan 2026-11-04, N5 a / N6, "check AWG amp rating of wires"): CAN-Lambda on the 10 A LAM fuse and K-ON:
+  14 AWG TXL in the cabin (about 17.6 A), DRB102 cavity 95 size 12, 12 AWG then 16 AWG Tefzel in the bay (12 A); the
+  RealDash Pi on the factory CIG & RADIO 15 A, so its tap is 16 AWG Tefzel (15 A; TXL 16 is about 12 A); the K-ON coil
+  feed from the IGN 7.5 A fuse 18 AWG TXL, and the two older 1H-7 taps (`w_ig2_in`, `w_ign`) 20 -> 18 AWG TXL for the same
+  fuse (Dan 2026-11-04; ECU-B pin 28 takes contact 3-1447221-3, 18-16 AWG). Known exception (Dan 2026-11-04, accepted):
+  the CAN-Lambda's DTM size 20 contacts are rated 7.5 A (Link's own plug takes no larger contact) against its 8.1 A peak
+  (manual p.5), a peak only during heater warm-up.
 - Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought.
 
 ## Drawing rules
