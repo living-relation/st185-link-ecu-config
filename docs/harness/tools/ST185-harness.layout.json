@@ -437,7 +437,7 @@
     128,
     68
    ],
-   "label": "Starter B+ stud (H4, H5, H8 lugs) (Route 1 point 2)",
+   "label": "Starter B+ stud, one lug (Route 1 point 2)",
    "end": true,
    "short": "Starter B+ stud"
   },
@@ -446,9 +446,9 @@
     134,
     80
    ],
-   "label": "Engine-bay jump post (Route 1 point 6, proposed spot)",
+   "label": "OEM battery spot: jump bus bar and jump post side by side (Route 1 point 6, proposed spot)",
    "end": true,
-   "short": "Jump post"
+   "short": "Jump bar + post"
   },
   "GB_T": {
    "xy": [
@@ -892,10 +892,9 @@
   "RADLOK-POS-ENG": "RL_ENG",
   "RADLOK-NEG-ENG": "RL_ENG",
   "T-ENG-BLOCK": "ENG_BLOCK",
-  "T-STARTER-B": "STARTER_B",
-  "T-STARTER-B-2": "STARTER_B",
-  "T-STARTER-B-3": "STARTER_B",
+  "T-STARTER-B": "STARTER_B",
   "T-ALT-B": "ALT_B",
+  "JUMP-BAR": "JUMP",
   "JUMP-POST": "JUMP",
   "CSB3": "CSB3",
   "SP-CRUISE-LADDER": "CSB3",
