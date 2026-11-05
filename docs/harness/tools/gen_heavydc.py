@@ -44,7 +44,11 @@ def use_lib(kind, part):
             assert ap, (part['id'], a)
             doc_parts[ACC[a['type']]][ap['id']] = json.loads(json.dumps(ap))
     return part['id']
-NEW = {}
+NEW = {   # library 5LO8 parts this generator added (manufacturer / description come from harness-parts.csv)
+    # Blue Sea PowerBar 600A jump bus bar (Dan N15 a 2026-11-05): 4 studs 1-4 like the master pins, a lug per stud
+    '2104': {"id": "cp_bluesea_2104", "url": "https://www.bluesea.com/products/2104", "hasShell": False, "numberOfCavities": 4,
+             "configurations": [{"id": "cfg", "accessories": [{"id": "cfg-1", "type": "ContactPart", "partId": "ct_lug_stud"}]}]},
+}
 def part_id(kind, pn):
     """library part id for this part number (a NEW part is added from harness-parts.csv); None for TBD / factory / unknown."""
     if not pn or pn.upper().startswith('TBD') or pn.startswith('factory'): return None
