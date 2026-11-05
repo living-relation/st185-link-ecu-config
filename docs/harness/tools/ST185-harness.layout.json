@@ -92,7 +92,7 @@
     84,
     31
    ],
-   "label": "A/C amplifier (A18) taps",
+   "label": "A/C amplifier (A15) taps",
    "end": true,
    "short": "A/C amplifier taps"
   },
@@ -202,7 +202,7 @@
     24,
     80
    ],
-   "label": "Centre cluster (old meter spot): LED board on the meter plugs C11 / C12, cluster CAN board + buck, J/B No.3 behind it (Routes 8, 13)",
+   "label": "Centre cluster (old meter spot): LED board on the meter plugs C13 (B) / C14 (C), cluster CAN board + buck, J/B No.3 behind it (Routes 8, 13)",
    "end": true,
    "short": "Centre cluster (old meter spot)",
    "lab": "left"
@@ -222,7 +222,7 @@
     76,
     94
    ],
-   "label": "Steering column: cruise stalk C14 flying leads (Route 12, spot approximate)",
+   "label": "Steering column: cruise control main switch flying leads (1993 code TBD; Route 12, spot approximate)",
    "end": true,
    "short": "Steering column: cruise stalk",
    "lab": "above"
@@ -977,7 +977,7 @@
    "PEDAL"
   ],
   [
-   "cruise stalk",
+   "cruise control main switch",
    "COLUMN"
   ],
   [
@@ -1045,7 +1045,7 @@
    "JB1"
   ],
   [
-   "A18",
+   "A15",
    "ACAMP"
   ],
   [

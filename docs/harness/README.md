@@ -246,13 +246,13 @@ ohmmeter from each landing above to its named load.
     circuit in hardware; it is not an ECU input; no `k_str`; Aux 8 spare). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) is the one ECU clutch input (flat-shift, via CSB3 VDI6);
     C11 is hardware starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
     tapped through opto IN2 to the CSB3; the new switch wires (engine harness, bulkhead A) splice to the IG2-4 / IG2-13
-    pigtails. Charge lamp: IG2-16 Y stays, the Dash charge LED sinks to OEM cluster plug C12-8. IG2-15 B-R
+    pigtails. Charge lamp: IG2-16 Y stays, the Dash charge LED sinks to OEM cluster plug C14 (C) pin 8 (1993 p.207). IG2-15 B-R
     (ECU-IG) keeps a 6 in pigtail to the kill switch, then the alternator IG. ETB hold power is all cabin and J/B No.1
     stays: Aux 6 (A28) -> K-EFI, DI 9 (B28) IG sense, IG2 wake diode from J/B1 1H-7 -> A5, K-ETB on Aux 2 (A20) -> B5.
     A/C (D16): A15 drives `k_acc` (pin 8 to coil 85); Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho
     to pin 18 and through 4.7 kΩ to pin 9 (lock-sensor workaround, N61); A/C button and evap thermistor wires to the Link
     removed.     Cabin splice `SP-AC-SG` stays (sensor common). The A/C pressure switch is the factory trinary switch, wired to the factory A/C amp; factory yellow-red is that switch output, not the
-    sensor ground (1990 ST185 EWD p.150 / p.152). Headlight-sense: R10 pin 1 through EL814 IN3 (OEM dimmer stays; Dan 2026-10-26).
+    sensor ground (1993 TIS EWD p.211; reading aid 1990 ST185 EWD p.150 / p.152). Headlight-sense: R10 pin 1 through EL814 IN3 (OEM dimmer stays; Dan 2026-10-26).
     `w_pdb_jb1` lands behind the dash on J/B No.1 1I, 6 AWG for our 60 A JB1 fuse. Fuse box design is parked: seats live in `sot/fuse-relay-map.csv`
     (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS). Circuit plan: `circuit-plan.md`.
   - **New wire** (routes: `routes/ROUTE-16-ENGINE-MAIN.html` lines 1-9, `routes/ROUTE-17-FRONT.html` lines 10-13): the

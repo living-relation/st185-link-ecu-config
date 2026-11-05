@@ -57,7 +57,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 | CSB3 Analog Input | CAN Frame | Byte Offset | Connected Signal | Notes |
 |---|---|---|---|---|
 | Analog 1 | 0x640 | bytes 0-1 | Unassigned (brought out, spare) | Was cabin temp; A/C is the OEM amplifier's (2026-09-27) |
-| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control stalk (C14 pin 5 resistor ladder, 1 kohm pull-up to +5V) | See Step 4.1 |
+| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control main switch (pin 5 resistor ladder, 1 kohm pull-up to +5V) | See Step 4.1 |
 | Analog 3 | 0x640 | bytes 4-5 | TBD | |
 | Analog 4 | 0x640 | bytes 6-7 | TBD | |
 | Analog 5 | 0x641 | bytes 0-1 | TBD | |
@@ -78,10 +78,10 @@ RESUME/DECEL - backwards. Holding SET/COAST decelerates, holding RES/ACC acceler
 
 ### What the stalk really is
 
-The stalk is connector **C14** of the combination switch. It has three wires (1990 ST185 EWD p.116, book p.118;
+The stalk is the cruise control main switch on the combination switch (1993 code TBD; the 1990 book codes it **C14**). It has three wires (1990 ST185 EWD p.116, book p.118;
 1992 Celica EWD132U p.180 has the same pins):
 
-| C14 pin | Colour | Function | Goes to |
+| Pin (1990 book) | Colour | Function | Goes to |
 |---|---|---|---|
 | 5 | W (white) | Control ladder: a resistor to ground per position | CSB3 **A2** (`FL_CRUISE_STALK_C1`) |
 | 15 | Y-B (yellow / black) | MAIN on/off: a contact to the pin 17 ground when ON | CSB3 **S3** (`FL_CRUISE_STALK_C3`) |
