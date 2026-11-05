@@ -222,7 +222,7 @@
     76,
     94
    ],
-   "label": "Steering column: cruise control main switch flying leads (1993 code TBD; Route 12, spot approximate)",
+   "label": "Steering column: cruise control switch 6-pin plug, SRS column (1993 code TBD; Mitchell 1993 p.98; Route 12, spot approximate)",
    "end": true,
    "short": "Steering column: cruise stalk",
    "lab": "above"
@@ -892,7 +892,7 @@
   "RADLOK-POS-ENG": "RL_ENG",
   "RADLOK-NEG-ENG": "RL_ENG",
   "T-ENG-BLOCK": "ENG_BLOCK",
-  "T-STARTER-B": "STARTER_B",
+  "T-STARTER-B": "STARTER_B",
   "T-ALT-B": "ALT_B",
   "JUMP-BAR": "JUMP",
   "JUMP-POST": "JUMP",
@@ -977,7 +977,7 @@
    "PEDAL"
   ],
   [
-   "cruise control main switch",
+   "cruise control switch 6-pin plug",
    "COLUMN"
   ],
   [

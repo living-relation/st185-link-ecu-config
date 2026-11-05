@@ -57,7 +57,7 @@ Each analog channel outputs raw mV (0–5000), uint16, BigEndian, at ~20 Hz.
 | CSB3 Analog Input | CAN Frame | Byte Offset | Connected Signal | Notes |
 |---|---|---|---|---|
 | Analog 1 | 0x640 | bytes 0-1 | Unassigned (brought out, spare) | Was cabin temp; A/C is the OEM amplifier's (2026-09-27) |
-| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control main switch (pin 5 resistor ladder, 1 kohm pull-up to +5V) | See Step 4.1 |
+| Analog 2 | 0x640 | bytes 2-3 | OEM cruise control switch (pin 4 resistor ladder, 1 kohm pull-up to +5V) | See Step 4.1 |
 | Analog 3 | 0x640 | bytes 4-5 | TBD | |
 | Analog 4 | 0x640 | bytes 6-7 | TBD | |
 | Analog 5 | 0x641 | bytes 0-1 | TBD | |
@@ -78,19 +78,20 @@ RESUME/DECEL - backwards. Holding SET/COAST decelerates, holding RES/ACC acceler
 
 ### What the stalk really is
 
-The stalk is the cruise control main switch on the combination switch (1993 code TBD; the 1990 book codes it **C14**). It has three wires (1990 ST185 EWD p.116, book p.118;
-1992 Celica EWD132U p.180 has the same pins):
+The stalk is the cruise control switch. This car has an SRS column (the SRS computer and crash sensors come out, row 164), so its three wires
+land on the switch's 6-pin plug at the steering column (1993 code TBD; Mitchell 1993 Celica Electrical p.98-99, cruise TEST 3, with SRS;
+Dan N13 a, N17 a 2026-11-05). The 1990 / 1992 books show the without-SRS car: pins 5 / 15 / 17 on the combination switch plug
+(1990 code **C14**, 1990 p.116, 1992 p.180), same colours.
 
-| Pin (1990 book) | Colour | Function | Goes to |
+| Pin (6-pin SRS plug) | Colour | Function | Goes to |
 |---|---|---|---|
-| 5 | W (white) | Control ladder: a resistor to ground per position | CSB3 **A2** (`FL_CRUISE_STALK_C1`) |
-| 15 | Y-B (yellow / black) | MAIN on/off: a contact to the pin 17 ground when ON | CSB3 **S3** (`FL_CRUISE_STALK_C3`) |
-| 17 | BR (brown) | Switch ground (OEM: body ground IE) | CSB3 ground (a ground lead replaces the old C4 lead) |
+| 4 | W (white) | Control ladder: a resistor to ground per position | CSB3 **A2** (`FL_CRUISE_STALK_C1`) |
+| 5 | Y-B (yellow / black) | MAIN on/off: a contact to the pin 3 ground when ON | CSB3 **S3** (`FL_CRUISE_STALK_C3`) |
+| 3 | BR (brown) | Switch ground (OEM: body ground IE, 1993 TIS Ground Points p.3) | CSB3 ground (a ground lead replaces the old C4 lead) |
 
 Ladder resistance to ground (1993 Mitchell Electrical p.98-99, switch test): OFF open, **RES/ACC about 68 ohm,
 SET/COAST about 198 ohm, CANCEL about 418 ohm**. There are no separate SET or RESUME wires, so CSB3 S4 / S5
-are not used. A car with an SRS column uses the same three wires on a 6-pin slip ring as pins 4 W / 5 Y-B / 3 BR
-(Mitchell); R14 says this car has no SRS, so use 5 / 15 / 17 and check the car's connector before soldering.
+are not used. Match the wire colours at the car's plug before soldering (the pin numbers come from Mitchell, not a Toyota page).
 
 The OEM cruise ECU is bypassed. The Link G4X cruise strategy does the control; its brake and clutch cancels
 come from CSB3 S7 / S6 and the speed from the ECU.
@@ -148,7 +149,7 @@ receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 |---|---|---|---|
 | bit0 (LSB) | Switch 1 — unassigned (was evap core) | VDI1 | — |
 | bit1 | Switch 2 — unassigned (was A/C request) | VDI2 | — |
-| bit2 | Switch 3 — cruise MAIN on (CSB3 c17, stalk pin 15) | VDI3 | Cruise master on/off |
+| bit2 | Switch 3 — cruise MAIN on (CSB3 c17, stalk pin 5) | VDI3 | Cruise master on/off |
 | bit3 | Switch 4 — unassigned (was cruise SET; the stalk has no such wire) | VDI4 | — |
 | bit4 | Switch 5 — unassigned (was cruise RESUME; the stalk has no such wire) | VDI5 | — |
 | bit5 | Switch 6 — clutch pedal down (C17 pin 2, ground-active) | VDI6 | The one ECU clutch input: cruise cancel; flat shift / launch |

@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev C" (viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev D" (viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -10,7 +10,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'C', '2026-11-04'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'D', '2026-11-05'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -191,7 +191,7 @@ def stack(names, x, y0, skip=()):
     return y + h(node_of(prev)) if prev else y0
 # compact (README "Schematic", Dan 2026-11-02): the cabin end is two columns, the fuse / relay boxes and kill switch outside,
 # the factory cabin taps inside; a box pin's wire runs out between the taps (no tap sits on a used box row)
-XO = -90 - 240 - 180     # the 180 gap holds the OEM splice notes of the cabin taps (below), clear of the box column
+XO = -90 - 240 - 540     # the 540 gap holds the OEM splice notes (N16 a full text) of the cabin taps (below), clear of the box column
 stack(LEFT[0], XO, 0)
 box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)]
             for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')}
@@ -264,19 +264,21 @@ assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
 notes = []
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
-# "Splice to OEM wire <colour>", the factory wire's colour code from the master (build_drawings.oem_splices); it sits on the
+# "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a); it sits on the
 # wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
 # it covers no lane; genroute.py keeps wires out of it. A blank colour gets no note and is listed.
-oem_col, oem_skip = {}, []
+oem_col, oem_txt, oem_skip = {}, {}, []
 for r in W:
     for s, c in B.oem_splices(r):
         tid = 't_' + sid(tkey(r, s))
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
+        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+OEMW = 540                       # the full N16 a note: about 75 characters a line, two lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; left = tid in LEFT_IDS
-    notes.append({"id": "n_oem_" + tid, "text": "Splice to OEM wire " + c, "width": 180, "alignment": "Right" if left else "Left",
-                  "schematicPosition": {"x": p['x'] - 180 if left else p['x'] + NODES[tid]['width'], "y": p['y']}})
+    notes.append({"id": "n_oem_" + tid, "text": oem_txt[tid], "width": OEMW, "alignment": "Right" if left else "Left",
+                  "schematicPosition": {"x": p['x'] - OEMW if left else p['x'] + NODES[tid]['width'], "y": p['y']}})
 print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oem_skip) or 'none')
 for c, lst in other_owned.items():
     n = conns[c]; by = collections.defaultdict(list)

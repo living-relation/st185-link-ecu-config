@@ -69,7 +69,7 @@ Decided 2026-10-21. Every wire is dead and comes out back to its last live point
 | IG1 | 6 | GR-B | Cruise actuator VR3 | Cruise ECU A10 | Cruise actuator pin 3 | [90/92] 1990 p.119 | remove (dead) |
 | IG1 | 7 | GR | Cruise actuator VR1 | Cruise ECU A12 | Actuator pin 1 | [90/92] | remove (dead) |
 | IG1 | 8 | R-G | Cruise actuator MC | Cruise ECU B10 | Actuator pin 7 | [90/92] | remove (dead) |
-| IG1 | 11 | BR | Cruise speed-sensor ground | Cowl splice I2 (USA) -> ground IE. Shared with the cruise control main switch BR ground (1990 / 1992 pin 17; 1993 code TBD; 1993 p.232) and cruise ECU GND A9. | Speed sensor pin 3 | [90/92] 1990 p.118, 1992 p.180 | remove IG1 branch back to splice I2 (I2/IE stays) |
+| IG1 | 11 | BR | Cruise speed-sensor ground | Cowl splice I2 (USA) -> ground IE. Shared with the cruise control switch BR ground (pin 3 on the SRS 6-pin plug, Mitchell 1993 p.98; 1993 code TBD; 1993 TIS Ground Points p.3) and cruise ECU GND A9. | Speed sensor pin 3 | [90/92] 1990 p.118, 1992 p.180 | remove IG1 branch back to splice I2 (I2/IE stays) |
 | IG1 | 12 | Y-B | Oil-pressure warning | Comb meter C14 (C) pin 6 (removed) | ES2-3 -> ER No.2 -> oil pressure SW O2-1 | 1993 p.207 | remove (dead) |
 | IG1 | 13 | Y-G | Water-temp gauge | Comb meter C12 (A) pin 6 | Water temp sender W2-1 | 1993 p.207 | remove (dead) |
 | IG1 | 14 | B | Tach (igniter TAC) | Comb meter C14 (C) tacho; pin number not printed (*4) | Igniter I2-4 TAC (also feeds IH1-6 -> A15-18) | 1993 p.206 | remove (dead) |
@@ -250,7 +250,7 @@ master wire. Meter plug codes are the 1993 codes C12 (A) / C13 (B) / C14 (C), in
 | ABS ECU (26-pin and 16-pin), actuator A7 / A8, relays A11 / A12, check conn A9 / A10 | all | ID1, IF1, J/B1 1F-8 / 1F-11 / 1F-13, J2, decel sensor, IF1-16 -> IG2-17 | Mitchell 1993 Fig.13; 1992 p.192 | cut + cap; remove the ID1 leads | remove (circuit 6); J/B1 1F-8 park brake keeps its other loads |
 | Wheel speed sensors (A13, A14, rears) | 1 / 2 | ER Main / Cowl / Floor leads | 1992 p.192 | cut at the sensor plugs | sensors keep; OEM leads removed; re-fed by WheelSpeed-Front / -Rear (`WSS-FL`, `WSS-FR`, `WSS-RL`, `WSS-RR`) |
 | Cruise ECU plug A / B (motor type) | all but the stalk leads | J3, stop SW, J2, C17, park brake SW, IG1-6 / 7 / 17 / 18 / 2 / 8, meter C12-2, IG2-6 | Mitchell 1993 Fig.12; [90/92] 1990 p.118-119 | cut + cap, keep the stalk leads | remove (circuit 4) |
-| Cruise control main switch (on the combination switch; 1993 code TBD, the 1990 book codes it C14) | 5 CCS (W), 15 CMS (Y-B), 17 GND (BR) | stalk switch | [90/92] 1990 p.116 | keep for the CSB3 | keep; tapped by `w_an2`, `w_sw2`, `w_cru_gnd` (Dash) |
+| Cruise control switch 6-pin plug (SRS column, steering column; 1993 code TBD) | 4 CCS (W), 5 CMS (Y-B), 3 GND (BR) | stalk switch | Mitchell 1993 p.98-99 (with SRS; Dan N17 a); without SRS 5 / 15 / 17 on C14 [90/92] 1990 p.116 | keep for the CSB3 | keep; tapped by `w_an2`, `w_sw2`, `w_cru_gnd` (Dash) |
 | Cruise clutch switch C17 | 2 (B) | was cruise ECU N&C | Mitchell 1993 Fig.12; 1993 p.32 | not in the draft | keep; tapped by `w_sw5` (CSB3 pin 20, the one clutch input) |
 | Meter C12 (A) (1993) | 1, 2, 3, 5, 6, 7, 8, 9, 10 | rheostat, cruise PI, I6, IG2-14, IG1-13, I4, I4, IF1-9, IF1-12 | 1993 p.206-207 | cut + cap | remove (old meter gone, circuit 7) |
 | Meter C13 (B) | 2 G-B turn LH, 11 G-Y turn RH, 12 R-L high beam | J3 / IE1-11 | 1993 p.206 | reuse per Dash | keep; tapped by `w_tl_a`, `w_tr_a`, `w_hb_a` (Dash) |

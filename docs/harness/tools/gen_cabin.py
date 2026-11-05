@@ -1,5 +1,5 @@
 """harness.design copy of ST185-AB-cabin = the ECU harness, cabin half, in two documents (100-connection plan limit):
-"ST185-AB-cabin 1 - sensor rails and screens Rev C" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev C".
+"ST185-AB-cabin 1 - sensor rails and screens Rev C" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev D".
 Split rule (README "harness.design", one device, one file; Dan 2026-11-04 V1 a): the ECU plugs A, B, C and the bulkhead
 DRB102-CABIN are drawn whole in both documents (each wires its own cavities; the others are N/C with a note); every other
 device has all its AB-cabin wires in one document. Document 1 holds every wire joined (through devices, splices and
@@ -28,10 +28,13 @@ sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 import genroute
 H = B.Harness('ST185-harness')
-NAME, REV, DATE = 'AB-cabin', 'C', '2026-11-04'
+# each document keeps its own rev letter: doc 2 went to Rev D for the full OEM splice notes (Dan N16 a, 2026-11-05); doc 1 has
+# no factory tap and stays at Rev C
+REVS, DATES = {1: 'C', 2: 'D'}, {1: '2026-11-04', 2: '2026-11-05'}
+NAME, REV, DATE = 'AB-cabin', REVS[DOC], DATES[DOC]
 TITLES = {1: 'ST185-AB-cabin 1 - sensor rails and screens', 2: 'ST185-AB-cabin 2 - straight runs, power, taps and CAN'}
 SHORT = {1: 'AB-cabin 1', 2: 'AB-cabin 2'}
-TITLE, OTHER = TITLES[DOC], TITLES[3 - DOC] + ' Rev ' + REV
+TITLE, OTHER = TITLES[DOC], TITLES[3 - DOC] + ' Rev ' + REVS[3 - DOC]
 BHN = 'DRB102-CABIN'
 SHARED = ('ECU-A', 'ECU-B', 'ECU-C', BHN)      # drawn whole in both documents (V1 a)
 ALL = H.rows
@@ -598,19 +601,20 @@ HEAD_Y = -30 * ((max(est_h(n['text']) for n in head) + 59) // 30)
 for i, n in enumerate(head): n['schematicPosition'] = {"x": 390 * i, "y": HEAD_Y}
 NOTES = list(head)
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
-# "Splice to OEM wire <colour>", the factory wire's colour code from the master (build_drawings.oem_splices), on the wire's row
+# "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a), on the wire's row
 # just left of its factory tap (text right-aligned); genroute.py keeps the other wires out of it, so the left-to-left wires run
 # down the outside left of the notes. A blank colour gets no note and is listed.
-oem_col, oem_skip = collections.OrderedDict(), []
+oem_col, oem_txt, oem_skip = collections.OrderedDict(), {}, []
 for r in W:
     for s, c in B.oem_splices(r):
         tid = 't_' + sid(tkey(r, s))
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
-OEMW = 180
+        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+OEMW = 540                       # the full N16 a note: about 75 characters a line, two lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; assert tid in LEFT_IDS, tid
-    NOTES.append({"id": "n_oem_" + tid, "text": "Splice to OEM wire " + c, "width": OEMW, "alignment": "Right",
+    NOTES.append({"id": "n_oem_" + tid, "text": oem_txt[tid], "width": OEMW, "alignment": "Right",
                   "schematicPosition": {"x": p['x'] - OEMW, "y": p['y']}})
 print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oem_skip) or 'none', flush=True)
 N_LL = sum(1 for cond in CONDS if len([e for e in ends(cond) if e['id'] in LEFT_IDS]) == 2)   # left-to-left wires run down the outside
