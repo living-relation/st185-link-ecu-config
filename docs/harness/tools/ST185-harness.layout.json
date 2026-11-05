@@ -1080,7 +1080,8 @@
  "wirelists": [
   "AB-cabin",
   "AB-engine",
-  "HeavyDC"
+  "HeavyDC",
+  "Dash"
  ],
  "harnesses": [
   "AB-cabin",
