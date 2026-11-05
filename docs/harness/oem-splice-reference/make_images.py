@@ -123,7 +123,7 @@ make('rb4.png', RL, 9, 130, (440, 335, 690, 445), [(492.4, 378, 8, RED, None), (
 make('loc_dash_1993.png', WR, 4, 110, (40, 85, 870, 650), [
     (68, 408, 16, RED, None), (340, 160, 16, RED, None), (373, 160, 16, RED, None), (436, 132, 16, RED, None),
     (358, 132, 16, BLU, None), (803, 325, 16, RED, None), (832, 310, 16, RED, None)], 1,
-    '1993 EWD p.32 parts: C11 clutch start SW, C12/C13/C14 cluster, C16 cruise stalk (blue), A15 A/C amp, B4 blower')
+    '1993 EWD p.32 parts: C11 clutch start SW, C12/C13/C14 cluster, C16 combination SW (blue; the cruise switch code is TBD), A15 A/C amp, B4 blower')
 make('loc_dash_1993_b.png', WR, 5, 110, (60, 85, 900, 650), [(316, 141, 16, RED, None)], 1, '1993 EWD p.33 - parts in instrument panel: S9 stop light switch')
 make('loc_rear_lamps.png', WR, 6, 110, (40, 85, 880, 660), [
     (815, 404, 16, RED, None), (815, 541, 16, RED, None), (815, 503, 16, RED, None), (815, 326, 16, RED, None)], 1,

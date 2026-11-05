@@ -144,9 +144,9 @@ def box_label(i, pin=None):
     if i in BOX_WHOLE: return BOX_WHOLE[i] if pin is None else '%s, %s' % (BOX_WHOLE[i], fuse_text(BOX_WHOLE[i], pin))
     return BOX_TERM.get(i)
 # factory taps (Dan 2026-11-04): the device (the master's name), its code, the pin, and the factory lead it is spliced onto
-OEMNAME = {'A18': 'A/C amplifier', 'A32': 'Auto A/C amplifier', 'A1': 'Ambient air temp sensor', 'JB1': 'J/B No.1',
-           'IG2': 'Cowl-side factory plug', 'RB4': 'R/B No.4 starter relay', 'Cruise': 'Cruise stalk switch', 'A5': 'A/C pressure switch'}
-OEMCODE = {'Cruise': 'C14'}
+OEMNAME = {'A15': 'A/C amplifier', 'A32': 'Auto A/C amplifier', 'A1': 'Ambient air temp sensor', 'JB1': 'J/B No.1',
+           'IG2': 'Cowl-side factory plug', 'RB4': 'R/B No.4 starter relay', 'Cruise': 'Cruise control main switch', 'A5': 'A/C pressure switch'}
+OEMCODE = {'Cruise': '1993 code TBD'}
 # far ends of legs drawn elsewhere, named for a splice label (the master's device names, plain)
 PLAIN = {'R-CRUISE': 'cruise ladder resistor', 'R-TERM-ECU': 'ECU-end CAN 120 ohm resistor', 'CSB3': 'ECUMaster CSB3',
          'T-CLUSTER-CAN': 'centre cluster CAN board', 'T-REALDASH-CAN': 'RealDash Pi USB-CAN adapter', 'OPTO-8': 'opto board'}
@@ -237,7 +237,7 @@ cav_of = {(c, cv['designation']): cv['id'] for c, n in conns.items() for cv in n
 terms, splices, resistors, diodes = (collections.OrderedDict() for _ in range(4))
 SPLP = {'solder splice': 'GENERIC SOLDER SPLICE', 'crimp splice': 'GENERIC CRIMP SPLICE 14-10'}
 spl_pn = collections.defaultdict(set)
-OEM_T = {}        # terminal id of a factory lead -> its plug (A18-8, A18-9 ... stack touching on the schematic)
+OEM_T = {}        # terminal id of a factory lead -> its plug (A15-8, A15-9 ... stack touching on the schematic)
 def tkey(r, s): return r[s + '_id'] + ('-' + r[s + '_pin'] if r[s + '_type'] == 'OEM' else '')
 def tlabel(r, s):
     i = r[s + '_id']
@@ -372,7 +372,7 @@ LEFT_IDS = sorted([i for i, n in NODES.items() if not is_ecu_side(n)],
 DEV_IDS = {i for i in NODES if i not in LEFT_IDS}
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
 def cab_h(c): return 30 + 30 * len(cseq(c))
-def tap_plug(i): return OEM_T.get(i, i)     # factory leads of one plug (A18-8, A18-9, ...) stack touching, like cavities
+def tap_plug(i): return OEM_T.get(i, i)     # factory leads of one plug (A15-8, A15-9, ...) stack touching, like cavities
 y, prev = 0, None
 for i in LEFT_IDS:
     n = NODES[i]

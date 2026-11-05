@@ -41,15 +41,15 @@ add(S4, 'R/B No.2 power main relay (left kick)', 'RB2', [('2', 'w_pwr_86_cp'), (
 add(S4, 'R/B No.4 starter relay (M/T) (right kick)', 'RB4', [('1', 'w_start_in_cp')])
 add(S4, 'R/B No.4 heater relay (right kick)', 'RB4', [('1', 'w_htr_85_cp'), ('3', 'w_htr_86_cp')])
 S5 = 'Cluster plugs'
-add(S5, 'Cluster plug C13 (B) [master calls it C11]', 'C11', [('2', 'w_tl_a'), ('11', 'w_tr_a'), ('12', 'w_hb_a')])
-add(S5, 'Cluster plug C14 (C) [master calls it C12]', 'C12', [('9', 'w_ig_tap'), ('8', 'w_chg_k'), ('1', 'w_pk_k')])
+add(S5, 'Cluster plug C13 (B)', 'C13', [('2', 'w_tl_a'), ('11', 'w_tr_a'), ('12', 'w_hb_a')])
+add(S5, 'Cluster plug C14 (C)', 'C14', [('9', 'w_ig_tap'), ('8', 'w_chg_k'), ('1', 'w_pk_k')])
 S6 = 'Cruise Clutch Stop'
-add(S6, 'Cruise stalk C16 (1993) [master: C14 = 1990 code]', 'Cruise', [('5', 'w_an2', CRU), ('15', 'w_sw2', CRU), ('17', 'w_cru_gnd', CRU)])
+add(S6, 'Cruise control main switch (on the combination switch; 1993 code TBD)', 'Cruise', [('5', 'w_an2', CRU), ('15', 'w_sw2', CRU), ('17', 'w_cru_gnd', CRU)])
 add(S6, 'Cruise clutch switch C17 (1993)', 'C17', [('2', 'w_sw5')])
 add(S6, 'Stop light switch S9 (1993)', 'S9', [('1', 'w_sw6'), ('1', 'w_rl_stop')])
 S7 = 'A-C amp + Blower'
 add(S7, 'Blower motor B4', 'B4', [('2', 'w_rb4_cp')])
-add(S7, 'A/C amplifier A15 (1993 manual A/C) [master: A18 = 1990/92 code]', 'A18', [('11', 'w_ac_kill'), ('13', 'w_ac_psw_sw', 'A5 pressure switch (skipped)')])
+add(S7, 'A/C amplifier A15 (1993)', 'A15', [('11', 'w_ac_kill'), ('13', 'w_ac_psw_sw', 'A5 pressure switch (skipped)')])
 S8 = 'Rear lamps'
 add(S8, 'LH rear lamp R11 (socket pigtail)', 'R11', [('1', 'w_rl_stop_r11_c1'), ('2', 'w_rl_tail_r11_c2'), ('3', 'w_rl_tail_r11_c3'), ('4', 'w_rl_rev_r11_c4'), ('5', 'w_rl_gnd_r11_c5'), ('6', 'w_rl_turn_l')])
 add(S8, 'RH rear lamp R12 (socket pigtail)', 'R12', [('1', 'w_rl_stop_r12_c1'), ('2', 'w_rl_tail_r12_c2'), ('3', 'w_rl_tail_r12_c3'), ('4', 'w_rl_rev_r12_c4'), ('5', 'w_rl_gnd_r12_c5'), ('6', 'w_rl_turn_r')])
@@ -75,7 +75,7 @@ def other_end(r, oem_id):
     return (r['from_id'], r['from_pin'], r['from_name'])
 
 PAGE = {'w_ac_kill': '1993 EWD p.223 (manual A/C, A15 pin 11)', 'w_ac_psw_sw': '1993 EWD p.222 (manual A/C, A15 pin 13)', 'w_rb4_cp': '1993 EWD p.223 (manual A/C, B4 pin 2)',
-        'w_an2': '1990 EWD p.118 (C14)', 'w_sw2': '1990 EWD p.118 (C14)', 'w_cru_gnd': '1990 EWD p.118 (C14)'}
+        'w_an2': '1990 EWD p.118 (1990 code C14)', 'w_sw2': '1990 EWD p.118 (1990 code C14)', 'w_cru_gnd': '1990 EWD p.118 (1990 code C14)'}
 def oem_page(r):
     return PAGE.get(r['wire_id'], r['oem_ewd_page'].split(' / ')[0])
 
@@ -142,13 +142,13 @@ lines = [
     ('Only the J/B, R/B and joint plugs (J-B1, IE1, IG2, J-B3/R-B2/R-B4) have real pin-face drawings in the EWD. The part plugs (cluster, cruise stalk, clutch switch, stop switch, blower) are NOT drawn as faces anywhere in the repo - for those the picture is the EWD schematic with the pin circled. Only the A/C amplifier has a face drawing (Mitchell Fig.5, 18 pin).', ''),
     ('J/B and joint-plug drawings are from the 1993 EWD.', ''),
     ('', ''),
-    ('YOUR CAR IS A 1993, SO THE 1993 EWD IS THE PRIMARY BOOK. Where the master uses another book\'s code:', 'title'),
-    ('Cluster: master "C11" = 1993 plug C13 (B); master "C12" = 1993 plug C14 (C). The pins and colours were read from 1993 p.206-207, so only the label differs.', ''),
-    ('Cruise stalk: master "C14" (1990 code) = C16 in the 1993 book. The 1993 EWD in the repo has no cruise page, so pins 5 / 15 / 17 come from the 1990 book; colours match the 1993 Mitchell diagram. Confirm pin numbers on the car.', ''),
-    ('A/C amplifier: master "A18" (1990/92 code) = A15 in the 1993 book. Pin 11 (G-Y) and pin 13 (Y-R) both check out on 1993 p.222-223 (manual A/C). Blower B4 pin 2 checks out on p.223.', ''),
+    ('YOUR CAR IS A 1993, SO THE 1993 EWD IS THE PRIMARY BOOK. Every code in the master is the 1993 book\'s (N14 a, 2026-11-05):', 'title'),
+    ('Cluster: plugs C13 (B) and C14 (C). The pins and colours were read from 1993 p.206-207.', ''),
+    ('Cruise control main switch: the 1993 EWD in the repo has no cruise page and gives it no code (1993 p.232 shows only CRUISE CONTROL SW [COMB. SW], BR to ground IE), so pins 5 / 15 / 17 come from the 1990 book (code C14 there); colours match the 1993 Mitchell diagram. Confirm pin numbers on the car.', ''),
+    ('A/C amplifier A15 (the 1990 book codes it A18, the 1992 book A17). Pin 11 (G-Y) and pin 13 (Y-R) both check out on 1993 p.222-223 (manual A/C). Blower B4 pin 2 checks out on p.223.', ''),
     ('Stop light switch S9 is a 1993 code and matches the master. Clutch start switch C11 is factory hardware only (no master wire); the CSB3 clutch tap is C17 (`w_sw5`).', ''),
     ('', ''),
-    ('SKIPPED per your instructions: headlights H1/H2, wiper F9, washer W1, retract motors R2/R3, compressor clutch A4, pressure switch A5, and all Group A engine-bay plugs. Their IE1 / 1H / A18 tap pins are still listed in orange so you can see what shares the plug.', ''),
+    ('SKIPPED per your instructions: headlights H1/H2, wiper F9, washer W1, retract motors R2/R3, compressor clutch A4, pressure switch A5, and all Group A engine-bay plugs. Their IE1 / 1H / A15 tap pins are still listed in orange so you can see what shares the plug.', ''),
 ]
 for i, (t, kind) in enumerate(lines, 1):
     c = ws.cell(row=i, column=1, value=t)
@@ -194,8 +194,8 @@ NOTES = {
     S2: 'IE1 joins the engine-room main wire and the cowl wire at the left kick panel. Both mating halves are shown; the pin numbers match between halves. Check wire colours on the car to tell which half is the cowl side.',
     S3: 'IG2 joins the engine wire and the cowl wire under the engine ECU (see location picture - ECU is at the bottom of the relay-block page).',
     S4: 'J/B3 is behind the combination meter. R/B2 is on the left kick panel, R/B4 (with R/B3) on the right kick panel. The master calls the R/B pins "terminal 1/2/3" of the relay socket. W-L lead on R/B2: the master puts it on pin 2, but pin 2 is the L-Y coil lead - verify on the car (orange circle = 30A fuse pin 2).',
-    S5: 'Cluster plugs are labelled A/B/C on the back of the meter. The 1993 book codes them C12 (A), C13 (B), C14 (C); the master calls the B plug C11 and the C plug C12. No pin-face drawing for these exists in the repo - the picture is the EWD schematic with the tapped pins circled.',
-    S6: 'No pin-face drawings for these plugs in the repo. The 1993 EWD in the repo has no cruise page, so the stalk pins (5 / 15 / 17, 1993 plug C16) come from the 1990 book (C14). Wire colours W / Y-B / BR match the 1993 Mitchell cruise diagram, but check the pin numbers on the car. Cruise clutch switch C17 (`w_sw5`) and stop switch S9 are the master taps. C11 is factory starter hardware only.',
+    S5: 'Cluster plugs are labelled A/B/C on the back of the meter. The 1993 book codes them C12 (A), C13 (B), C14 (C), and so does the master. No pin-face drawing for these exists in the repo - the picture is the EWD schematic with the tapped pins circled.',
+    S6: 'No pin-face drawings for these plugs in the repo. The 1993 EWD in the repo has no cruise page, so the stalk pins (5 / 15 / 17; 1993 code TBD) come from the 1990 book (code C14 there). Wire colours W / Y-B / BR match the 1993 Mitchell cruise diagram, but check the pin numbers on the car. Cruise clutch switch C17 (`w_sw5`) and stop switch S9 are the master taps. C11 is factory starter hardware only.',
     S7: 'Only the A/C amplifier has a pin-face drawing (Mitchell Fig.5, 18 pin, pins 11 and 13 circled). Blower motor B4: no plug-face drawing found. Pin 2 = the B (blower +) lead per 1993 EWD p.223. A15 pin 11 (G-Y, from the engine ECU) is on p.223 and pin 13 (Y-R) on p.222 of the 1993 manual-A/C pages, so both master pins check out against the 1993 book.',
     S8: 'Factory bulb sockets are kept (R117): solder flying leads to the socket pigtails. Pin numbers are the lamp-side pins from the EWD.',
     S9: 'F7 / F8: master replaces the plug (new wire run terminated at a new socket). Candidate part 81735-12180 (see Buy list tab) - pin count not confirmed, compare to the old socket.',
