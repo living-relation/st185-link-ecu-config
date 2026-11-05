@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev A" (viewer only; the master is the source).
+"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev B" (viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
 Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
@@ -12,7 +12,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'A', '2026-11-04'
+NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'B', '2026-11-05'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
@@ -30,7 +30,7 @@ def sid(s): return re.sub(r'[^A-Za-z0-9]', '_', s)
 COLORS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White", "Pink", "Tan", "Maroon", "Shield"}
 def col(c): return c if c in COLORS else "Gray"
 # display stripes on +12 V wires, one per circuit (README "Display stripes"; tracing only, the master stays plain red)
-STRIPE = {'BAT': ('White', 'battery + (kill switch, POWER box, starter, alternator, jump post)'), 'FP': ('Orange', 'fuel pump feed')}
+STRIPE = {'BAT': ('White', 'battery + (kill switch, POWER box, starter, alternator, jump bus bar, jump post)'), 'FP': ('Orange', 'fuel pump feed')}
 
 # ------------------------------------------------------------------ parts (library wins; new = from harness-parts.csv)
 doc_parts, lib_add, missing = collections.defaultdict(dict), [], set()
@@ -171,7 +171,7 @@ LEFT = [['KILL-SW', 'BATT-RELAY-BLOCK', 'K-FP', 'POWER-STUDS'],
         ['BATT-POS', 'T-TRUNK-NEG', 'GND-IG', 'GND-ID']]
 MID = [(r['from_id'], r['to_id']) for r in PT]          # (cabin plug, engine plug), POS before NEG
 MID.sort(key=lambda m: ('NEG' in m[0], m[0]))
-RIGHT = [['T-STARTER-B', 'T-STARTER-B-2', 'T-STARTER-B-3', 'T-ALT-B', 'JUMP-POST'],
+RIGHT = [['T-STARTER-B', 'T-ALT-B', 'JUMP-BAR', 'JUMP-POST'],
          ['T-ENG-BLOCK']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]

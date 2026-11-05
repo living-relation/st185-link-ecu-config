@@ -262,7 +262,7 @@ ohmmeter from each landing above to its named load.
     run (driver kick pass-through) to the wiper motor and the alarm siren; one mini harness per front wheel speed sensor
     to the VRC enclosure by the ECU; the fuel pump circuit; one dash feed for the cluster, LEDs and RealDash Pi; CAN;
     the alarm add-on; power taps. No spare circuit to the old fog-lamp spots: aux circuits come later and are separate (Dan 2026-10-25).
-    The engine-bay jump post at the old battery spot is HeavyDC's (`JUMP-POST`, DECISIONS "Harness ownership (B8 list)").
+    The engine-bay jump bus bar and jump post at the old battery spot are HeavyDC's (`JUMP-BAR`, `JUMP-POST`; Dan N11 a; DECISIONS "Harness ownership (B8 list)" and "Gauge cases (B12)").
   - **Connectors:** the new wire mates only with each device's own connector (Dan has the mating plugs); no new inline
     connector anywhere on a run, and none added at the device, unless one later helps install or maintenance (fewer
     connectors, fewer failure points; Dan 2026-10-21).

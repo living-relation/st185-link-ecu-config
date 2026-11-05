@@ -90,7 +90,7 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
 }
 # Known violations waiting for their wiring fix (OPEN-ITEMS): printed, not failing; a fixed one must be removed.
 PENDING = {"E3:w_at_gnd_a1", "E3:w_at_gnd_b1", "E3:w_at_gnd_b2", "E3:w_at_gnd_c1", "E3:w_led_gnd_out"}
-STUD_IDS = re.compile(r"^(POWER-STUDS|KILL-SW|RADLOK-|JUMP-POST|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
+STUD_IDS = re.compile(r"^(POWER-STUDS|KILL-SW|RADLOK-|JUMP-POST|JUMP-BAR|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
 
 
 def read_csv(path, text=None):
@@ -298,7 +298,7 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                         fail("E2", "screen pin %s %s reaches %s %s (%s): drains only (R212)" % (eid, pin, xid, xpin, x[xs + "_desc"]))
                 elif xt != "resistor" and not QSG_ENDS[kind].search(text):
                     fail("E2", "%s %s (%s) reaches %s %s (%s) (R212)" % (eid, pin, c["channel"], xid, xpin, x[xs + "_desc"]))
-    STUDS = re.compile(r"^(POWER-STUDS|BATT-RELAY-BLOCK|KILL-SW|RADLOK|POWER-NEG-BAR|JUMP-POST)")
+    STUDS = re.compile(r"^(POWER-STUDS|BATT-RELAY-BLOCK|KILL-SW|RADLOK|POWER-NEG-BAR|JUMP-POST|JUMP-BAR)")
     for r in wires:
         for s, o in ends(r):
             if r[s + "_type"] == "terminal" and CHASSIS.search(r[s + "_id"] + " " + r[s + "_name"]):
