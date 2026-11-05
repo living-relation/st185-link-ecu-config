@@ -183,7 +183,7 @@ new feed on J/B1 1A-1G. Superseded from that plan: R/B No.2 / No.4 removed, `k_s
 | AMI OUT-5 | J/B No.1 60 A | `w_pdb_jb1` (6) | J/B No.1 1I pin 1, B (6 in stub, behind the dash) | taillight relay, STOP, ECU-B, DEFOGGER, tail bus | p.62 | current (pin id `1I-1`; master cites 1993 p.62 since phase 2) |
 | AMI OUT-6 | EPS 50 A -> B4 relay K-EPS | `w_fb_k_eps_30_ac` (8) -> `w_eps_pwr_bc` (8) | new wire to MR-S pump plug A pin 1 (EngineRoom-C) | EPS pump | - | current |
 | ACPS | (vacant) | - | - | A5 pin 1 now from the kept R/B No.4 10 A A/C fuse (`w_acp_1`, p.211-212) | - | vacant |
-| NEG studs | battery negative | `w_gnd_id`, `w_gnd_ig` (1/0) | ground ID (LH kick) and IG (R/B No.4 set bolt, RH kick) | cabin body grounds | p.229 | current (HeavyDC) |
+| NEG studs | battery negative | `w_gnd_id`, `w_gnd_ig` (1/0) | ground ID (LH kick) and IG (R/B No.4 set bolt, RH kick) | cabin body grounds | p.234 / p.42 (ground points and their locations; checked at HeavyDC step 2, 2026-11-04) | current (HeavyDC) |
 | POS bar spare stud (M8, the third after BAT+ IN and RADLOK+) | reserved: audio amplifier | - | - | constant battery bus lug for a future amplifier: no fuse, no relay, no wiring yet (Dan 2026-11-04 09:07) | - | reserved (free in the box design, no CAD change) |
 | BAT / ALT / NEG studs | trunk battery in, out to the bay | `w_ks_h1`, `w_h3_radlok_pos`, `w_h6a_radlok_neg` (1/0) | kill switch; RADLOK + / - to the starter B+ and block | HeavyDC | - | current |
 
