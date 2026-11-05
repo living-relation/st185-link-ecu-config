@@ -611,7 +611,7 @@ for r in W:
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
         oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
-OEMW = 540                       # the full N16 a note: about 75 characters a line, two lines
+OEMW = 360                       # the full N16 a note at harness.design's widest note (60-360): about 50 characters a line, three lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; assert tid in LEFT_IDS, tid
     NOTES.append({"id": "n_oem_" + tid, "text": oem_txt[tid], "width": OEMW, "alignment": "Right",

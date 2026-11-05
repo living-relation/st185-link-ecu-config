@@ -191,7 +191,7 @@ def stack(names, x, y0, skip=()):
     return y + h(node_of(prev)) if prev else y0
 # compact (README "Schematic", Dan 2026-11-02): the cabin end is two columns, the fuse / relay boxes and kill switch outside,
 # the factory cabin taps inside; a box pin's wire runs out between the taps (no tap sits on a used box row)
-XO = -90 - 240 - 540     # the 540 gap holds the OEM splice notes (N16 a full text) of the cabin taps (below), clear of the box column
+XO = -90 - 240 - 360     # the 360 gap holds the OEM splice notes (N16 a full text) of the cabin taps (below), clear of the box column
 stack(LEFT[0], XO, 0)
 box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)]
             for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')}
@@ -274,7 +274,7 @@ for r in W:
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
         oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
-OEMW = 540                       # the full N16 a note: about 75 characters a line, two lines
+OEMW = 360                       # the full N16 a note at harness.design's widest note (60-360): about 50 characters a line, three lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; left = tid in LEFT_IDS
     notes.append({"id": "n_oem_" + tid, "text": oem_txt[tid], "width": OEMW, "alignment": "Right" if left else "Left",
