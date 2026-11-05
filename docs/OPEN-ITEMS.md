@@ -22,6 +22,8 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
+| N13 | Cruise switch pins | Dash step 2 (2026-11-05): `w_sw2` 15 Y-B, `w_an2` 5 W, `w_cru_gnd` 17 BR are the 1990 / 1992 non-airbag pins; Mitchell 1993 cruise TEST 3 (airbag car) gives a 6-pin plug: main 5 Y-B, control 4 W, ground 3 BR (same colours; no 1993 TIS cruise page in the manual repo). | A) change the cites to the Mitchell 1993 airbag pins 5 / 4 / 3 (colours unchanged, splice by colour, no circuit change); B) keep the 1990 pins + a note; C) add the 1993 TIS cruise pages first, then change | A |
+| N14 | Factory plug codes | The master uses 1990-book codes: cluster `C11` = 1993 C13 (B), `C12` = 1993 C14 (C) (1993 EWD p.206-208); clutch `C17` / cruise `C14` are 1990 codes (1992: C18 / C17). Clash: in 1993, C11 = clutch start switch (p.66-69, as DECISIONS uses) and C12 = cluster plug A. | A) one cleanup PR renaming to the 1993 codes (clutch / cruise switches get plain names until a 1993 page gives codes): master, layout, routes, README, DECISIONS, circuit plan; B) keep the codes (the cluster rows already cite the 1993 code); C) leave as is | A |
 
 ## Status (2026-11-03)
 
