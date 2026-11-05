@@ -22,7 +22,8 @@ def run(d, mid=None, step=30):
         k,n=node[e['id']]; p=n['schematicPosition']
         if k=='conn':
             i=[cv['id'] for cv in n['cavities']].index(e['handle']); y=p['y']+30*(i+1)+15
-            return (p['x']+W(n) if p['x']<mid else p['x'], y, 'R' if p['x']<mid else 'L')
+            right=n.get('_exit','R' if p['x']<mid else 'L')=='R'   # `_exit` (gen_heavydc.py firewall plugs) overrides the side
+            return (p['x']+W(n) if right else p['x'], y, 'R' if right else 'L')
         if k=='term': return (p['x']+W(n) if p['x']<mid else p['x'], p['y']+15, 'R' if p['x']<mid else 'L')
         h=e['handle']
         if h in('Left','PIN1') and n['id'].startswith(('r','d')): return (p['x'],p['y']+15,'L')

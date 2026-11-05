@@ -1,12 +1,12 @@
 """harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev A" (viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
-Writes <out>/hdc.json (whole document, wires not yet routed) and <out>/hdc_lib_ops.json (part-library add ops); then
-route it: python genroute.py <out>/hdc.json <out>/hdc_final.json. Built on the gen_engc.py pattern (README "harness.design"):
-connectors 240 wide, each pin its own master end text, bundle lengths from HeavyDC's own Route 1 tree (Dan's approved
-placement, 2026-11-04), checked here against the master est_length_mm. The RADLOK pass-through pair (`w_rl_pos` / `w_rln`,
-blank length, Dan D2) is the firewall connector itself: no wire is drawn, so the harness is two pieces (cabin / trunk side
-and engine side) that meet at the two RADLOK plugs. Stops if a length differs from the master or the file passes 100
-connections (plan limit). gen_engc.py runs on import, so its helpers are not imported."""
+Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
+Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
+lengths from HeavyDC's own Route 1 tree (Dan's approved placement, 2026-11-04), checked here against the master
+est_length_mm. The RADLOK pass-through pair (`w_rl_pos` / `w_rln`, blank length, Dan D2) is the firewall connector itself:
+no wire is drawn; each cabin RADLOK plug is MATED to its engine plug (Dan 2026-11-05), so the harness is two pieces joined
+by the two mates, drawn nose to nose. Stops if a length differs from the master or the file passes 100 connections (plan
+limit). gen_engc.py runs on import, so its helpers are not imported."""
 import sys, os, json, re, collections, math, csv
 REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
@@ -165,14 +165,17 @@ for (i, hd), ds in desc.items():
 # ================================================================== schematic: trunk / cabin ends left, engine bay right
 def node_of(nm): return conns.get(nm) or terms.get(nm)
 # trunk and glove-box ends left (outer column: kill switch, trunk relay block, fuel pump relay, POWER box studs; inner column:
-# battery posts, ground points, the cabin RADLOK plugs), engine-bay ends right (the engine RADLOK plugs, then what they feed)
+# battery posts, ground points), the RADLOK firewall pairs in the middle (cabin plug, mated to its engine plug: Dan 2026-11-05,
+# a mate, not a wire), engine-bay ends right
 LEFT = [['KILL-SW', 'BATT-RELAY-BLOCK', 'K-FP', 'POWER-STUDS'],
-        ['BATT-POS', 'T-TRUNK-NEG', 'GND-IG', 'GND-ID', 'RADLOK-POS-CAB', 'RADLOK-NEG-CAB']]
-RIGHT = [['RADLOK-POS-ENG', 'T-STARTER-B', 'T-STARTER-B-2', 'T-STARTER-B-3', 'T-ALT-B', 'JUMP-POST'],
-         ['RADLOK-NEG-ENG', 'T-ENG-BLOCK']]
+        ['BATT-POS', 'T-TRUNK-NEG', 'GND-IG', 'GND-ID']]
+MID = [(r['from_id'], r['to_id']) for r in PT]          # (cabin plug, engine plug), POS before NEG
+MID.sort(key=lambda m: ('NEG' in m[0], m[0]))
+RIGHT = [['T-STARTER-B', 'T-STARTER-B-2', 'T-STARTER-B-3', 'T-ALT-B', 'JUMP-POST'],
+         ['T-ENG-BLOCK']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
-placed = [n for g in LEFT + RIGHT for n in g]
+placed = [n for g in LEFT + RIGHT for n in g] + [n for m in MID for n in m]
 assert sorted(placed) == sorted(set(conns) | set(terms)), (set(conns) | set(terms)) ^ set(placed)
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
 def tap_plug(nm):     # factory leads of one plug (H1-1, H1-2, ...) stack touching, like the cavities of a connector
@@ -195,6 +198,14 @@ stack(LEFT[0], XO, 0)
 box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)]
             for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')}
 LEFT_BOTTOM = max(stack(LEFT[1], -90, 0, box_rows), max(node_of(nm)['schematicPosition']['y'] + h(node_of(nm)) for nm in LEFT[0]))
+# the firewall column: each cabin RADLOK plug takes its wire on its left (from the boxes), its mated engine plug sends its wire
+# right (to the engine bay); the pair sits on one row so the mate line is short and level; genroute reads `_exit`
+MX = 150 + 30 * 8                  # 8 lanes between the inner left column and the cabin plugs
+for k, (cab, eng) in enumerate(MID):
+    y = 300 + 150 * k
+    conns[cab]['schematicPosition'] = {"x": MX, "y": y}; conns[cab]['_exit'] = 'L'
+    conns[eng]['schematicPosition'] = {"x": MX + 360, "y": y}; conns[eng]['_exit'] = 'R'
+mates = [{"id": "m_" + sid(r['wire_id']), "sourceId": conns[r['from_id']]['id'], "targetId": conns[r['to_id']]['id']} for r in PT]
 NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 LEFT_IDS = {node_of(n)['id'] for g in LEFT for n in g}
 RIGHT_IDS = {node_of(n)['id'] for g in RIGHT for n in g}
@@ -230,7 +241,7 @@ for it in range(6):
         elif ys: n['_row'] = free_row(sum(ys) // len(ys))
         else: left.append(n)
     pending = left
-SPX = 150 + 30 * 14 + 120          # 14 lanes between the left column and the splices
+SPX = MX + 360 + 240 + 120          # (no splices) right of the firewall column
 for n in inl:
     if '_row' in n: n['schematicPosition'] = {"x": SPX, "y": n['_row'] - 15}
 n_right = sum(1 for w in wires if w['source']['id'] in RIGHT_IDS or w['target']['id'] in RIGHT_IDS)
@@ -258,6 +269,7 @@ for devx in range(max(SPX + 360, DMIN), DEVX, 30):
 print('front column x', DEVX, 'routing (unrouted, two-lane wires)', base)
 RIGHT_BOTTOM = place_right(DEVX)
 TOPS = [node_of(g[0])['schematicPosition']['y'] for g in (LEFT[0], LEFT[1], RIGHT[0])]
+MID_IDS = {conns[n]['id'] for m in MID for n in m}
 print('schematic top y: left', TOPS[:2], '| right', TOPS[2], '| bottom left', LEFT_BOTTOM, 'right', RIGHT_BOTTOM, '| width', XO, '..', DEVX + 240)
 assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
@@ -304,12 +316,13 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "the battery cables (trunk battery, kill switch, trunk relay block feed, POWER box studs, ground points ID / IG, the RADLOK "
                       "firewall pair, starter, alternator, engine block stud, jump post). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = HeavyDC) by docs/harness/tools/gen_heavydc.py; never a source. Schematic: trunk and glove-box ends left (boxes and "
-                      "kill switch outside, battery posts, ground points and cabin RADLOK plugs inside), engine-bay ends right. Each pin shows its own "
+                      "kill switch outside, battery posts and ground points inside), the RADLOK firewall pairs in the middle, engine-bay ends right. Each pin shows its own "
                       "master end text. Shared connectors are drawn whole; cavities wired by other harnesses are N/C with a note. The RADLOK "
-                      "pass-through is the firewall connector itself, no cable to cut or buy (Dan D2): " + pt_txt + ", not drawn. Wires of other "
+                      "pass-through is the firewall connector itself, no cable to cut or buy (Dan D2): " + pt_txt + ", drawn as a mate between "
+                      "the cabin and engine plugs (Dan 2026-11-05), not a wire. Wires of other "
                       "harnesses that only pass through HeavyDC are not drawn: " + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) +
-                      ". Layout: a formboard of the Route 1 tree in two pieces that meet at the RADLOK plugs (cabin / trunk piece on top, engine-bay "
-                      "piece below), straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; the kill switch, trunk relay block, "
+                      ". Layout: a formboard of the Route 1 tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
+                      "piece right of the firewall plugs), straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; the kill switch, trunk relay block, "
                       "fuel pump relay and battery posts share one trunk node (Dan D3); drawn length is not to scale; each part on a 100 mm "
                       "end-allowance stub; bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
@@ -332,6 +345,8 @@ for r in W + SPARE:
         if cid in seen: continue
         nd = H.place(r, s); assert nd, (r['wire_id'], s)
         seen.add(cid); (node_items if cid[:2] in ('c_', 't_') else inline_at)[nd].append(cid)
+MATE_ORDER = {conns[n]['id']: k for k, m in enumerate(MID) for n in m}
+for nd in node_items: node_items[nd].sort(key=lambda c: MATE_ORDER.get(c, -1))
 segs, hroute = collections.Counter(), {}
 for r in W:
     p, mm = H.route(r); hroute[r['wire_id']] = mm
@@ -399,12 +414,14 @@ def rect(a, b): return (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a
 def hit(r, s, g=GAP): return r[0] - g < s[2] and s[0] - g < r[2] and r[1] - g < s[3] and s[1] - g < r[3]
 def mv(p, o): return (p[0] + o[0], p[1] + o[1])
 def mvr(r, o): return (r[0] + o[0], r[1] + o[1], r[2] + o[0], r[3] + o[1])
+# the engine RADLOK plugs sit on the LEFT of their node, facing the cabin plugs they mate with (rear of the car LEFT)
+ITEM_SIDE = {}
 def lay(n, din):
     """n's piece of the tree with n at (0, 0): (rects, node positions, stubs {part id: (node, part xy, stub points)})."""
     free = [d for d in 'RULD' if din is None or d != OPP[din]]
     asg = {}
     for c in sorted(kids[n], key=lambda c: (-len(sub_nodes(c)), c)):
-        v = heading(n, c); left = [d for d in free if d not in asg.values()]
+        v = heading(n, c); left = [d for d in free if d not in asg.values() and d != ITEM_SIDE.get(n)]
         assert left, ('more branches than directions at', n)
         asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
     items = node_items.get(n, []) + inline_at.get(n, [])
@@ -413,7 +430,7 @@ def lay(n, din):
     if items:
         left = [d for d in free if d not in asg.values()]
         assert left, ('no free side for the parts at', n)
-        cd = din if din in left else next(d for d in ('U', 'D', 'R', 'L') if d in left)
+        cd = ITEM_SIDE[n] if n in ITEM_SIDE else din if din in left else next(d for d in ('U', 'D', 'R', 'L') if d in left)
         k, (dx, dy) = len(items), DV[cd]
         if dy == 0:     # a column of parts across the end of a horizontal stub
             ys = [ISP * i - 30 * (k - 1) for i in range(k)]; xj = dx * 90
@@ -439,11 +456,15 @@ def lay(n, din):
     return rects, P, S
 pos, stubs, allrects, ytop = {}, {}, [], None
 for i, root in enumerate(roots):
+    if i: ITEM_SIDE[root] = 'L'
     rr, P, S = lay(root, None)
     if i == 0: o = (0, 0)
-    else:       # a separate piece (the engine-bay side of the RADLOK pair) sits below the main harness
-        o = (min(r[0] for r in allrects) - min(r[0] for r in rr) + 600 * (i - 1), max(r[3] for r in allrects) - min(r[1] for r in rr) + 240)
-        o = (o[0] // 30 * 30, o[1] // 30 * 30)
+    else:       # the engine-bay piece: its RADLOK plugs face the cabin plugs they mate with (Dan 2026-11-05), clear of the cabin piece
+        pair = [(conns[c]['id'], conns[e]['id']) for c, e in MID if conns[e]['id'] in S and conns[c]['id'] in stubs]
+        assert pair, 'a second layout piece that does not mate to the first: ' + root
+        cab, eng = pair[0]
+        o = (stubs[cab][1][0] + 600 - S[eng][1][0], stubs[cab][1][1] - S[eng][1][1])   # plug faces 120 apart, labels outside
+        while any(hit(mvr(r, o), a) for r in rr for a in allrects): o = (o[0] + 30, o[1])
     allrects += [mvr(r, o) for r in rr]
     pos.update({m: mv(q, o) for m, q in P.items()})
     stubs.update({cid: (nd, mv(q, o), [mv(p, o) for p in pts]) for cid, (nd, q, pts) in S.items()})
@@ -488,7 +509,7 @@ STUD_CAV = {('c_POWER_STUDS', 'POWER_STUDS.NEG'), ('c_KILL_SW', 'KILL_SW.MAIN2')
 assert cav_n == cav_m and all(v == 1 or k in STUD_CAV for k, v in cav_n.items()), {k: v for k, v in cav_n.items() if v > 1}
 doc = {"version": 1.3, "currency": "$", "lengthUnit": "mm", "gaugeUnit": "AWG", "schematic": {"connectorWidth": 240, "terminalWidth": 240},
        "connectors": list(conns.values()), "terminals": list(terms.values()), "splices": list(splices.values()),
-       "wires": wires, "branchPoints": bps, "bundles": bundles, "schematicNotes": notes}
+       "wires": wires, "mates": mates, "branchPoints": bps, "bundles": bundles, "schematicNotes": notes}
 for k, v in doc_parts.items():
     if v: doc[k] = list(v.values())
 have = {p['id'] for k, v in doc.items() if k.endswith('Parts') for p in v}
@@ -497,7 +518,11 @@ refs = {x['partId'] for x in wires + inl + list(conns.values()) if x.get('partId
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
 assert len(wires) <= 100, 'HeavyDC passes the 100-connection plan limit (%d wires): split it by device (README)' % len(wires)
-json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)
+R_, segs_, res_ = genroute.run(doc)
+unrouted = genroute.apply(doc, segs_, res_)
+assert not unrouted, 'unrouted wires: %r' % unrouted
+for n in conns.values(): n.pop('_exit', None)
+json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)   # routed: upload as is (no separate genroute.py pass)
 json.dump(lib_add, open(os.path.join(OUT, 'hdc_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'wires', len(wires), 'cables 0', 'bundles', len(bundles),
       'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect), '| lib adds', [o['value']['partNumber'] for o in lib_add],
