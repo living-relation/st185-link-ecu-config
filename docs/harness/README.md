@@ -56,7 +56,7 @@ and their links: `docs/OPEN-ITEMS.md` "Current state" (the harness.design bullet
 after its placement pass as new files (Rev A 2026-11-03; Rev B 2026-11-04, ECU plug C joined, split by device: `gen_cabin.py`; Rev C 2026-11-04: CAN-Lambda feed from K-ON 87, the 18 AWG IGN taps, the LOGIC box part, OEM splice notes) (the old
 8OJ2 / kD3r and the unfinished CabinPower VlEB were deleted by Dan 2026-11-02). How these are built and kept right (repo notes; the global `harness-design`
 skill is not changed for this project):
-- Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_abeng.py`, `gen_engc.py`, `gen_cabin.py`). New or
+- Built from the master + the `route_trees` layout tree by the generators in `tools/` (`gen_abeng.py`, `gen_engc.py`, `gen_cabin.py`, `gen_heavydc.py`). New or
   regenerated document: one `set_document_json`; every later change: `edit_document` ops with only what changes.
 - One device, one file (Dan 2026-11-04): a harness split over two files (100-connection limit) is split between
   devices, never through one: every wire a device has in that harness is in the same file. The one exception, AB-cabin:
@@ -65,6 +65,7 @@ skill is not changed for this project):
   Wires between fuse / relay boxes in one place are their own harness (CabinPower, built later), never AB-cabin; a wire
   between boxes far apart belongs to the harness that holds the device it serves (e.g. `w_k_fp_86_cp`, SW12 bus plug to the
   fuel pump relay K-FP in the trunk: RearFuel, riding the AB-cabin sill run) (Dan 2026-11-04).
+- A firewall pass-through pair (the RADLOK plugs) is the connector itself: its blank-length master rows are not drawn as wires, so HeavyDC is two pieces that meet at the two plugs (Dan 2026-11-04, D2). A stud that takes several lugs (POWER box NEG bar, kill switch main stud) is one cavity with every lug on it; its pin text lists each lug's master text.
 - Check after every upload: `validate_harness`, `get_wire_lengths` against the master, and the rendered view.
 - Review a harness by reading 10 random rows: each says what the wire does and its far end matches; never accept a
   harness on counts alone (practice per SAE AS50881 / IPC/WHMA-A-620).

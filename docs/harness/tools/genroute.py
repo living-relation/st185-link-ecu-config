@@ -31,19 +31,22 @@ def run(d, mid=None, step=30):
     segs=[]
     conds=d['wires']+[q for c in d.get('cables',[]) for q in c['cores']+([c['shield']] if 'shield' in c else [])]
     tuse=collections.Counter(e['id'] for w in conds for e in (w.get('source'),w.get('target')) if e and node[e['id']][0]=='term')
-    def bus(e):      # a splice, or a stud with 2+ wires (a ground stud): its wires share rows and lanes
-        return e and ((node[e['id']][0]=='pt' and e['handle']=='Splice') or (node[e['id']][0]=='term' and tuse[e['id']]>1))
+    cuse=collections.Counter((e['id'],e['handle']) for w in conds for e in (w.get('source'),w.get('target')) if e and node[e['id']][0]=='conn')
+    def bus(e):      # a splice, a stud with 2+ wires (a ground stud) or a stud cavity with 2+ lugs (HeavyDC's POWER box NEG bar): its wires share rows and lanes
+        return e and ((node[e['id']][0]=='pt' and e['handle']=='Splice') or (node[e['id']][0]=='term' and tuse[e['id']]>1)
+                      or (node[e['id']][0]=='conn' and cuse[(e['id'],e['handle'])]>1))
+    def bus_key(e): return e['id']+('#'+e['handle'] if node[e['id']][0]=='conn' else '')
     par={}
     def f(x):
         par.setdefault(x,x)
         while par[x]!=x: x=par[x]
         return x
     for w in conds:  # a splice wired to a stud is one net with it
-        bs=[e['id'] for e in (w.get('source'),w.get('target')) if bus(e)]
+        bs=[bus_key(e) for e in (w.get('source'),w.get('target')) if bus(e)]
         for b in bs[1:]: par[f(b)]=f(bs[0])
     def net_of(*es):
         for e in es:
-            if bus(e): return f(e['id'])
+            if bus(e): return f(bus_key(e))
         return None
     for w in d['wires']:
         a,b=anchor(w['source']),anchor(w['target'])
