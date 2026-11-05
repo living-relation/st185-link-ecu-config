@@ -184,8 +184,8 @@ Wire harness,All harnesses (master wire list),AT04-2P-R120YEL,Amphenol Sine Syst
 Wire harness,All harnesses (master wire list),AT06-2S-RD01,Amphenol Sine Systems,,"CONNECTOR, PLUG, AT, 2 POS, SOCKET CONTACTS, SIZE 16, REDUCED DIAMETER WIRE SEAL, INSUL 1.35-3.05 MM, GRAY",1,ea,0,1,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),AT62-201-1631,Amphenol Sine Systems,,"CONTACT, SOCKET, MACHINED, SIZE 16, GOLD, 16-20 AWG",2,ea,0,2,,,,,,NO LINK,
 Wire harness,All harnesses (master wire list),AW2S,Amphenol Sine Systems,,"WEDGELOCK, AT, 2-WAY PLUG",1,ea,0,1,,,,,,NO LINK,
-Wire harness,All harnesses (master wire list),BC-1/0-BLK,generic,,"CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",27,ft,0,27,,,,,,NO LINK,7.0 m in the master + 15% margin
-Wire harness,All harnesses (master wire list),BC-1/0-RED,generic,,"CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",22,ft,0,22,,,,,,NO LINK,5.7 m in the master + 15% margin
+Wire harness,All harnesses (master wire list),BC-1/0-BLK,generic,,"CABLE, BATTERY, 1/0 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",26,ft,0,26,,,,,,NO LINK,6.8 m in the master + 15% margin
+Wire harness,All harnesses (master wire list),BC-1/0-RED,generic,,"CABLE, BATTERY, 1/0 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",21,ft,0,21,,,,,,NO LINK,5.5 m in the master + 15% margin
 Wire harness,All harnesses (master wire list),BC-2-RED,generic,,"CABLE, BATTERY, 2 AWG, RED, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",10,ft,0,10,,,,,,NO LINK,2.4 m in the master + 15% margin
 Wire harness,All harnesses (master wire list),BC-4-BLK,generic,,"CABLE, BATTERY, 4 AWG, BLACK, FINE-STRAND COPPER, SAE J1127 SGX 125 C OR EQUIV",3,ft,0,3,,,,,,NO LINK,0.7 m in the master + 15% margin
 Wire harness,All harnesses (master wire list),BDK 2.8,Bosch,,"CONTACT, SOCKET, CRIMP, BOSCH BDK 2.8, 0.5-1.0 MM2 (20-18 AWG)",2,ea,2,0,,,,,,NO LINK,on hand (sensor plug / terminal: never a buy)
