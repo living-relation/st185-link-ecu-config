@@ -678,6 +678,7 @@ The device and its wire set the circuit.
   the CAN-Lambda's DTM size 20 contacts are rated 7.5 A (Link's own plug takes no larger contact) against its 8.1 A peak
   (manual p.5), a peak only during heater warm-up.
 - Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought. Each uprated fan has two single-pin leads, so two DTHD06-1-8S plugs per fan (`FAN-RAD` / `FAN-RAD-GND`, `FAN-COND` / `FAN-COND-GND`) are right (Dan 2026-11-04, Y1 b).
+- Big cable lugs (Dan 2026-11-05): never stack large battery cables (2 AWG and up) on one stud; two 1/0 lugs cannot seat flat. Every big cable gets its own stud (a junction is a bus bar with one stud per cable, never the starter stud). HeavyDC's starter B+ stud (3 lugs today) is being reworked (OPEN-ITEMS row 183, N11).
 
 ## Drawing rules
 
