@@ -115,8 +115,6 @@ def oem_splice_note(r, s, col):
     elif oid == 'RB4':
         m = re.search(r'pin (\d+)', name)
         code, pin = 'R/B No.4', (m.group(1) if m else pin)
-    elif oid == 'Cruise':
-        code = '6-pin plug (1993 code TBD)'
     else:
         m = re.search(re.escape(oid) + r' (\([A-Z]\))', name)
         code = oid + (' ' + m.group(1) if m else '')
@@ -125,7 +123,6 @@ def oem_splice_note(r, s, col):
     pre = re.sub(r'\([^)]*\)', '', re.sub(r'^OEM\b', '', pre.strip()))
     pre = re.sub(r'\s+', ' ', pre).strip(' ,')
     if oid in ('JB1', 'RB4'): pre = ''
-    if oid == 'Cruise': pre, code = 'cruise control switch', '6-pin plug (1993 code TBD)'
     what_where = (pre + ' ' if pre else '') + code + ' pin ' + pin
     # what the factory wire is: oem_location after " - ", less its cite, colour and side remarks; else the end's own text
     circ = seg.split(' - ', 1)[1] if ' - ' in seg else ''

@@ -59,7 +59,7 @@
         { "byte": 4, "length": 1, "name": "SW_MASK", "unit": "bits", "bits": {
             "0": "Switch 1 - unassigned (was evaporator core state)",
             "1": "Switch 2 - unassigned (was A/C request)",
-            "2": "Switch 3 - cruise MAIN on (stalk pin 5)",
+            "2": "Switch 3 - cruise MAIN on (C16 pin 15)",
             "3": "Switch 4 - unassigned (was cruise SET; no such stalk wire)",
             "4": "Switch 5 - unassigned (was cruise RESUME; no such stalk wire)",
             "5": "Switch 6 - clutch pedal down (C17 cruise clutch switch pin 2, ground-active; FL_CLUTCH_SW_C1)",
