@@ -300,7 +300,7 @@
     -18,
     52
    ],
-   "label": "Rear panel centre: licence lamp L1, ground point BL, trunk pin switch (Routes 14, 15)",
+   "label": "Rear panel centre: licence lamp L1, ground point BL (Routes 14, 15)",
    "end": true,
    "short": "Rear panel centre: L1, ground BL",
    "lab": "left"
@@ -920,14 +920,10 @@
   "SIREN": "SIREN",
   "STATUS-LED": "CSB3",
   "VALET-SW": "VALET",
-  "SP-PARK": "ALARM",
   "SP-DOOR": "ALARM",
   "SP-HOOD": "ALARM",
-  "SP-TRUNK": "ALARM",
-  "T-AT-PARK": "JB1",
   "T-AT-DOOR": "JB1",
   "T-AT-HOOD": "C_RHC",
-  "T-AT-TRUNK": "RPANEL",
   "D-TL": "CLUSTER",
   "D-TR": "CLUSTER",
   "D-HB": "CLUSTER",
