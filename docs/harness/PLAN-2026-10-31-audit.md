@@ -2,9 +2,9 @@
 
 **Temporary plan (Dan 2026-10-31).** It holds the step-by-step for rows 170, 172, 173 and 175 so any agent can finish
 them without asking Dan for context. Nothing may be added to this file after it is saved; progress goes in the
-OPEN-ITEMS rows. Rows 171 and 174 closed 2026-11-01; their sections (2 and 5) were removed in the 2026-11-03 cleanup
+OPEN-ITEMS rows. Rows 171 and 174 closed 2026-11-01 and row 175 on 2026-11-05 (the OEM splice notes replace it, Dan N22 a); their sections (2, 5 and 6) were removed
 (git history keeps them); section numbers stay as the rows cite them.
-**Delete this file in the PR that closes the last of rows 170, 172, 173 and 175** (and drop its line from `docs/harness/README.md`).
+**Delete this file in the PR that closes the last of rows 170, 172 and 173** (and drop its line from `docs/harness/README.md`).
 
 Every decision below is already Dan's (DECISIONS B2, B6, B10, B14, B20, B22, B28; N83 = A). Do not re-ask them.
 
@@ -116,27 +116,8 @@ Then: no name may contain a seat code (`B1-R4`, `B2-M5`, `B3-K1`, `B2-BUS2-8`), 
 bare part number as the whole name. Drawings and wire lists print the name; a wire label prints its end description
 (row 173), with the wire id in small text only.
 
-## 6. Row 175 - OEM splice reference, rebuilt and checked
-
-Today `docs/harness/oem-splice-reference/build_xlsx.py` hard-codes 151 wire ids (55 no longer exist) and misses 36 of
-the 82 master wires that tap or reuse a factory point; nothing runs it.
-
-1. `build_xlsx.py`: drop the hard-coded list. Rows = every master wire with `oem_location` or `oem_method` set, grouped
-   one sheet per factory connector or junction block (the OEM end's id: `JB1`, `IE1`, `IG2`, `RB2`, `RB4`, `C11`,
-   `C12`, `H1`/`H2`, `R2`/`R3`, `F7`/`F8`/`F9`, `W1`, `A18`/`A32`/`A5`, `S9`, `C17`, cruise stalk, starter, ...).
-   Columns as today (connector, pin, OEM colour, gauge, new colour, description, method, EWD page, wire id, flag),
-   using the plain names from row 172.
-2. Images: keep `make_images.py` crops (they read `C:\projects\active\st185-celica-repair-manual`); add a crop for each
-   new sheet's connector face. A sheet without a crop says "no crop yet" in its header row (not a failure).
-3. Add `--check` to `build_xlsx.py` (rebuild the table in memory, compare cell values with the committed xlsx, fail on
-   any difference) and call it from `tools/check_all.py` next to `build_drawings.py --check`.
-4. List the folder in `docs/harness/README.md` as generated ("No - re-run the generator").
-
-Check: `python docs/harness/oem-splice-reference/build_xlsx.py --check` green; zero rows name a wire missing from the
-master; every master factory-tap wire appears once.
-
 ## 7. Done when
 
-- Rows 170, 172, 173 and 175 closed in OPEN-ITEMS (History line each), this file deleted with its README line, `main` pulled.
+- Rows 170, 172 and 173 closed in OPEN-ITEMS (History line each), this file deleted with its README line, `main` pulled.
 - Pairing check (run after PR 1): for every firewall cavity, both halves have the same circuit and colour, and a
   shielded engine half has a shielded cabin half.

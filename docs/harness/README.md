@@ -20,7 +20,7 @@ that B9 points to).
 | `tools/genroute.py` | orthogonal schematic routing for a harness.design document JSON (Dan's format rules); keeps node positions, rewrites wire / core / shield points; `python genroute.py <doc.json> <out.json>` | Only with the format rules |
 | `tools/router.py` | the lane router `genroute.py` uses (box collision, a line along a box edge counts as a hit, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout when its pass is done (DECISIONS B8) | Only from Dan's markup or placement |
-| `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170, 172, 173 and 175 (Dan 2026-10-31); deleted when they close | No - closed to additions |
+| `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS rows 170, 172 and 173 (Dan 2026-10-31); deleted when they close | No - closed to additions |
 | `circuit-plan.md` | the 21 circuits and the cut-list groups 1-8 wire by wire (remove / keep / re-fed by a master wire) | Yes, when a circuit decision changes |
 | `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
 
