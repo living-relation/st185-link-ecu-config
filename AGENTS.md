@@ -17,7 +17,7 @@ Memory (workstation #32, global to every project): project progress lives in the
 4. **ECU pins:** before any edit, check every ECU-pin circuit against the Link G4X Quick Start Guide and plug-in guides (G4X only; DECISIONS B19). A mismatch is a stop: ask Dan.
 5. **Grounds and relays:** DECISIONS B10 (grounds) and B15 (relays).
 
-Link CAN-Lambda is on CAN bus 1; CAN bus 2 is unused.
+CAN bus: one bus, CAN 1 (DECISIONS B17).
 
 ## Project map
 - **Rules / decisions:** `docs/harness/redesign/DECISIONS.md` (the one file). Tracker: `docs/OPEN-ITEMS.md`.

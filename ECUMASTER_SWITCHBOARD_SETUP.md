@@ -86,8 +86,8 @@ car included, keeps the stalk on C16.
 
 | Pin (C16 (B)) | Colour | Function | Goes to |
 |---|---|---|---|
-| 5 | W (white) | Control ladder: a resistor to ground per position | CSB3 **A2** (`FL_CRUISE_STALK_C1`) |
-| 15 | Y-B (yellow / black) | MAIN on/off: a contact to the pin 17 ground when ON | CSB3 **S3** (`FL_CRUISE_STALK_C3`) |
+| 5 | W (white) | Control ladder: a resistor to ground per position | CSB3 **A2** (master `w_an2`, through the ladder splice) |
+| 15 | Y-B (yellow / black) | MAIN on/off: a contact to the pin 17 ground when ON | CSB3 **S3** (master `w_sw2`) |
 | 17 | BR (brown) | Switch ground (OEM: body ground IE, 1993 TIS Ground Points p.3) | CSB3 ground (a ground lead replaces the old C4 lead) |
 
 Ladder resistance to ground (1993 Mitchell Electrical p.98-99, switch test): OFF open, **RES/ACC about 68 ohm,
@@ -99,7 +99,7 @@ come from CSB3 S7 / S6 and the speed from the ECU.
 
 ### Pull-up for A2
 
-The OEM cruise ECU supplied the reference. Here a resistor from +5V (ECU A32, via `r_cruise` in `ST185-CSB3`)
+The OEM cruise ECU supplied the reference. Here a resistor from +5V (ECU A32, via the cruise resistor `R-CRUISE` in the Dash harness)
 to the A2 junction forms the divider with the ladder. **Use 1 kohm, not 10 kohm.** A 10 kohm pull-up gives only
 34 / 98 / 400 mV, which a small ground offset between the stalk ground and the CSB3 ground would swamp.
 
@@ -159,8 +159,8 @@ receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 
 Opto IN3 / OUT3: headlights-on from dimmer R10 pin 1 (green TAIL +12 V) to the cluster headlight-sense input. Not a CSB3 switch bit. IN4-IN8 stay spare.
 
-**Mapped 2026-10-14 (DECISIONS R80, Route 15 C14):** brake (S7, bit 6) and reverse (S8, bit 7) arrive through the
-inline optoisolator (`ST185-CSB3`, DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
+**Mapped 2026-10-14 (DECISIONS R80; wires in the master, Dash harness):** brake (S7, bit 6) and reverse (S8, bit 7) arrive through the
+8-channel opto board (`OPTO-8`, Dash; DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
 are in the CAN contract and the `.lcs` receive channel now. Left for the bench: confirm a set bit means pressed /
 engaged (opto board check, `docs/OPEN-ITEMS.md` row 101) and that the receive channels import (row 2).
 
@@ -248,7 +248,7 @@ Exactly two 120Ω termination resistors go on the bus — one at each physical e
 
 **NOTE:** The Waveshare hat on the Pi is for cooling fan only — it has no CAN connections.
 
-Bus topology (daisy chain, shortest stub lengths; stub order as drawn in `ST185-CAN.harness`):
+Bus topology (daisy chain, shortest stub lengths; stub order as in the Dash harness, master):
 ```
 [ECU end] ──── mid-bus stubs: cluster, CSB3, Pi/USB-CAN ──── [CAN-Lambda end]
    120Ω                                                          120Ω

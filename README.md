@@ -12,15 +12,11 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 
 - **[center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4)** — the gauge cluster firmware. Its `main/canbus.c` is the decode truth for the frames the cluster reads (0x3E8–0x3EB, 0x3EE); its [`CANBUS-ENCODE-DECODE-REFERENCE.html`](https://github.com/living-relation/center-cluster-esp32-p4/blob/main/CANBUS-ENCODE-DECODE-REFERENCE.html) is the readable reference derived from it (linked, not copied). Any change to CAN framing, IDs, or wiring in this repo must be checked against that repo for compatibility — see `CAN-BUS-MASTER-DESIGN.md`.
 
-## 5-Node CAN Bus (1 Mbit/s, BigEndian)
+## CAN bus
 
-| Node | ID Range | Role |
-|---|---|---|
-| Link G4X XtremeX ECU | 0x3E8–0x3EB, 0x3EE–0x3F1 TX, 0x643 TX (once an output is used); RX 0x3B6, 0x640–0x642, 0x3EC/0x3ED (cluster encoder selections) | Engine management — bus master |
-| Link CAN-Lambda | 0x3B6 TX (0x3BE RX) | External wideband module — physically on the bus |
-| [center-cluster-esp32-p4](https://github.com/living-relation/center-cluster-esp32-p4) | 0x3EC/0x3ED TX, all others RX | Gauge cluster — listens + sends driver selections |
-| ECUMaster CAN Switch Board V3 | 0x640–0x642 TX, 0x643 RX | Analog/digital inputs, low-side outputs |
-| Raspberry Pi 5 (RealDash) | RX 0x3EB (gear byte only), 0x3EF–0x3F1 | Dashboard display — listen-only |
+One bus (CAN 1, 1 Mbit/s, BigEndian), five nodes: the Link G4X XtremeX ECU, the Link CAN-Lambda, the center cluster,
+the ECUMaster CSB3 and the RealDash Pi 5. IDs per node: `CAN-BUS-ID-ALLOCATION-TABLE.md` (the one ID table);
+topology and hookup: `CAN-BUS-MASTER-DESIGN.md`.
 
 ## Files
 
@@ -47,17 +43,9 @@ Cluster firmware is frozen. All files in this repo must be compatible with the c
 | `FUEL-SYSTEM.md` | Fuel system reference — AN hose sizing and pump capacity notes. Not part of the CAN bus contract. |
 | `docs/harness/redesign/DECISIONS.md` | Decision record and **the one home for every binding rule Daniel has set** (section "Binding rules B1-B30"; old R-numbers resolve through its retire map). |
 
-## Import Checklist (PCLink, when ECU is available)
+## PCLink import (when the ECU is available)
 
-1. Set CAN Module 1 (CAN1) → **1 000 000 bps**, Custom stream type, BigEndian.
-2. File → Open → `link_g4x_can_setup.lcs` — verify all 8 TX channels appear.
-3. Switchboard receive (already in the `.lcs`, 2026-10-14): 0x640 bytes 2-3 Cruise Stalk mV; 0x642 byte4
-   bit 2 → VDI3 (cruise main), bit 5 → VDI6 (clutch), bit 6 → VDI7 (brake), bit 7 → VDI8 (reverse).
-   Confirm they imported (or enter them by hand with the same values).
-4. CAN Receive Timeout: 200 ms on 0x640 / 0x642, value 0 on timeout (in the `.lcs`).
-5. Echo target: 0x3EF byte 3 (TC Setting) and byte 5 (Boost Map Index) are meant to carry the cluster's
-   0x3ED / 0x3EC selections, re-broadcast by the ECU. The ECU **receives** 0x3EC/0x3ED (Daniel,
-   2026-10-03) - set up the two receive channels at the end of the `.lcs` (DLC 1, byte 0 = index).
+Steps and checks: `CAN-BUS-MASTER-DESIGN.md` sections 10 "PCLink apply (ECU side)" and 11.
 
 ## Scale forms
 
