@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev B" (viewer only; the master is the source).
+"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev C" (viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
 Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
@@ -12,7 +12,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'B', '2026-11-05'
+NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'C', '2026-11-06'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
@@ -48,7 +48,13 @@ NEW = {   # library 5LO8 parts this generator added (manufacturer / description 
     # Blue Sea PowerBar 600A jump bus bar (Dan N15 a 2026-11-05): 4 studs 1-4 like the master pins, a lug per stud
     '2104': {"id": "cp_bluesea_2104", "url": "https://www.bluesea.com/products/2104", "hasShell": False, "numberOfCavities": 4,
              "configurations": [{"id": "cfg", "accessories": [{"id": "cfg-1", "type": "ContactPart", "partId": "ct_lug_stud"}]}]},
+    # Blue Sea MRBF terminal fuse block, the alternator fuse on jump bus bar stud 3 (Dan N26 a / N29 a 2026-11-06): one M8 stud,
+    # the alternator lug is its one lug
+    '5191': {"id": "cp_bluesea_5191", "url": "https://www.bluesea.com/products/5191", "hasShell": False, "numberOfCavities": 1,
+             "configurations": [{"id": "cfg", "accessories": [{"id": "cfg-1", "type": "ContactPart", "partId": "ct_lug_stud"}]}]},
 }
+# a part bolted straight onto a stud of another part (no wire between): drawn as a mate, the stud takes no lug
+BOLTED = [('ALT-FUSE', 'JUMP-BAR', '3')]     # the alternator fuse block on bar stud 3 (DECISIONS Gauge cases (B12), Dan N29 a)
 def part_id(kind, pn):
     """library part id for this part number (a NEW part is added from harness-parts.csv); None for TBD / factory / unknown."""
     if not pn or pn.upper().startswith('TBD') or pn.startswith('factory'): return None
@@ -175,7 +181,7 @@ LEFT = [['KILL-SW', 'BATT-RELAY-BLOCK', 'K-FP', 'POWER-STUDS'],
         ['BATT-POS', 'T-TRUNK-NEG', 'GND-IG', 'GND-ID']]
 MID = [(r['from_id'], r['to_id']) for r in PT]          # (cabin plug, engine plug), POS before NEG
 MID.sort(key=lambda m: ('NEG' in m[0], m[0]))
-RIGHT = [['T-STARTER-B', 'T-ALT-B', 'JUMP-BAR', 'JUMP-POST'],
+RIGHT = [['T-STARTER-B', 'T-ALT-B', 'JUMP-BAR', 'ALT-FUSE', 'JUMP-POST'],
          ['T-ENG-BLOCK']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
@@ -210,6 +216,11 @@ for k, (cab, eng) in enumerate(MID):
     conns[cab]['schematicPosition'] = {"x": MX, "y": y}; conns[cab]['_exit'] = 'L'
     conns[eng]['schematicPosition'] = {"x": MX + 360, "y": y}; conns[eng]['_exit'] = 'R'
 mates = [{"id": "m_" + sid(r['wire_id']), "sourceId": conns[r['from_id']]['id'], "targetId": conns[r['to_id']]['id']} for r in PT]
+for blk, bar, stud in BOLTED:
+    assert blk in conns and bar in conns, (blk, bar)
+    cv = next(cv for cv in conns[bar]['cavities'] if cv['designation'] == stud)
+    assert cv.get('notConnected') and not cv.get('signal'), (bar, stud, 'a bolted-on part sits on this stud: no lug may land here')
+    mates.append({"id": "m_" + sid(blk), "sourceId": conns[blk]['id'], "targetId": conns[bar]['id']})
 NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 LEFT_IDS = {node_of(n)['id'] for g in LEFT for n in g}
 RIGHT_IDS = {node_of(n)['id'] for g in RIGHT for n in g}
@@ -278,6 +289,12 @@ print('schematic top y: left', TOPS[:2], '| right', TOPS[2], '| bottom left', LE
 assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
 notes = []
+# the bolted-on part's stud: a note beside the bar, not a cavity signal (a signal on an N/C cavity is a validate warning)
+for blk, bar, stud in BOLTED:
+    p = conns[bar]['schematicPosition']
+    notes.append({"id": "n_" + sid(blk), "width": 360, "schematicPosition": {"x": p['x'] + 270, "y": p['y']},
+                  "text": "%s stud %s: %s (Blue Sea MRBF terminal fuse block 5191 with the 175 A fuse 5186) bolts on this stud, drawn as a "
+                          "mate; no lug lands here. The alternator lead w_alt lands on the block's M8 stud (Dan N26 a / N29 a)." % (bar, stud, blk)})
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
 # "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a); it sits on the
 # wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
@@ -320,7 +337,8 @@ pt_txt = '; '.join('%s (%s %s to %s %s)' % (r['wire_id'], r['from_id'], r['from_
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
               "text": TITLE + " Rev " + REV + " (" + DATE + ", HeavyDC's own Route 1 tree from Dan's approved placement 2026-11-04, Dan's format rules): "
                       "the battery cables (trunk battery, kill switch, trunk relay block feed, POWER box studs, ground points ID / IG, the RADLOK "
-                      "firewall pair, starter, alternator, engine block stud, jump post). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+                      "firewall pair, starter, alternator, engine block stud, jump bus bar, jump post; the alternator lead ends on its 175 A fuse block "
+                      "ALT-FUSE, drawn mated to the jump bus bar because it bolts on bar stud 3, Dan N26 a / N29 a). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = HeavyDC) by docs/harness/tools/gen_heavydc.py; never a source. Schematic: trunk and glove-box ends left (boxes and "
                       "kill switch outside, battery posts and ground points inside), the RADLOK firewall pairs in the middle, engine-bay ends right. Each pin shows its own "
                       "master end text. Shared connectors are drawn whole; cavities wired by other harnesses are N/C with a note. The RADLOK "
