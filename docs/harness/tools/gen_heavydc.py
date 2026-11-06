@@ -279,19 +279,21 @@ assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
 notes = []
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
-# "Splice to OEM wire <colour>", the factory wire's colour code from the master (build_drawings.oem_splices); it sits on the
+# "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a); it sits on the
 # wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
 # it covers no lane; genroute.py keeps wires out of it. A blank colour gets no note and is listed.
-oem_col, oem_skip = {}, []
+oem_col, oem_txt, oem_skip = {}, {}, []
 for r in W:
     for s, c in B.oem_splices(r):
         tid = 't_' + sid(tkey(r, s))
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
+        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+OEMW = 360                       # the full N16 a note at harness.design's widest note (60-360): about 50 characters a line, three lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; left = tid in LEFT_IDS
-    notes.append({"id": "n_oem_" + tid, "text": "Splice to OEM wire " + c, "width": 180, "alignment": "Right" if left else "Left",
-                  "schematicPosition": {"x": p['x'] - 180 if left else p['x'] + NODES[tid]['width'], "y": p['y']}})
+    notes.append({"id": "n_oem_" + tid, "text": oem_txt[tid], "width": OEMW, "alignment": "Right" if left else "Left",
+                  "schematicPosition": {"x": p['x'] - OEMW if left else p['x'] + NODES[tid]['width'], "y": p['y']}})
 print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oem_skip) or 'none')
 for c, lst in other_owned.items():
     n = conns[c]; by = collections.defaultdict(list)

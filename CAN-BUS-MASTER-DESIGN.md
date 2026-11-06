@@ -69,7 +69,7 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 |---|---|---|
 | 0 | Switch 1 | Unassigned (was Evaporator Core State; A/C is the OEM amplifier's, 2026-09-27) |
 | 1 | Switch 2 | Unassigned (was AC Request; same) |
-| 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 15) |
+| 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 5) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
 | 5 | Switch 6 | Clutch pedal down (C17 pin 2; the one ECU clutch input, 2026-10-26) |

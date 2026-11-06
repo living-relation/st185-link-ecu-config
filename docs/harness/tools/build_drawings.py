@@ -92,6 +92,64 @@ def oem_splices(r):
     return out
 
 
+_PLACE = re.compile(r'kick|dash|cowl|glove|ECU|column|steering|pedal|fender|corner|firewall|panel|cluster|centre|center|'
+                    r'under|behind|front|rear|trunk|console', re.I)
+
+
+def oem_splice_note(r, s, col):
+    """The full OEM splice note for end `s` of row `r` (README "Pin text", Dan 2026-11-05 N16 a): `Splice to OEM wire X-X`,
+    then the OEM connector / housing code (1993), the OEM pin, what the factory wire is and where the splice sits, e.g.
+    `Splice to OEM wire G-Y - cluster plug C13 (B) pin 11, turn RH indicator, behind the cluster`. Built from the end's own
+    master fields (`<s>_id`, `<s>_pin`, `<s>_name`, `<s>_desc`) and its half of `oem_location`; a part the master does not
+    give reads TBD."""
+    oid, pin, name = r[s + '_id'], r[s + '_pin'], r[s + '_name']
+    sides = [x for x in ('from', 'to') if r[x + '_type'] == 'OEM']
+    segs = [g.strip() for g in (r.get('oem_location') or '').split(' / ')] if len(sides) == 2 else [r.get('oem_location') or '']
+    seg = segs[0]
+    if len(sides) == 2 and len(segs) == 2:
+        mine = [g for g in segs if '%s pin %s' % (oid, pin) in g or ' %s ' % oid in ' %s ' % g]
+        seg = mine[0] if len(mine) == 1 else segs[sides.index(s)]
+    # code and pin: J/B and R/B cavities are "<plug>-<pin>" / "<fuse>-<pin>" in the master
+    if oid == 'JB1' and '-' in pin:
+        code, pin = 'J/B No.1 ' + pin.split('-')[0], pin.split('-', 1)[1]
+    elif oid == 'RB4':
+        m = re.search(r'pin (\d+)', name)
+        code, pin = 'R/B No.4', (m.group(1) if m else pin)
+    elif oid == 'Cruise':
+        code = '6-pin plug (1993 code TBD)'
+    else:
+        m = re.search(re.escape(oid) + r' (\([A-Z]\))', name)
+        code = oid + (' ' + m.group(1) if m else '')
+    # the device words before the code ("cluster plug", "LH headlamp"); none for the J/B / R/B cavities
+    pre = (' ' + name + ' ').split(' ' + oid + ' ')[0] if (' ' + oid + ' ') in (' ' + name + ' ') else re.sub(r'\spin \d.*$', '', name)
+    pre = re.sub(r'\([^)]*\)', '', re.sub(r'^OEM\b', '', pre.strip()))
+    pre = re.sub(r'\s+', ' ', pre).strip(' ,')
+    if oid in ('JB1', 'RB4'): pre = ''
+    if oid == 'Cruise': pre, code = 'cruise control switch', '6-pin plug (1993 code TBD)'
+    what_where = (pre + ' ' if pre else '') + code + ' pin ' + pin
+    # what the factory wire is: oem_location after " - ", less its cite, colour and side remarks; else the end's own text
+    circ = seg.split(' - ', 1)[1] if ' - ' in seg else ''
+    circ = re.split(r'[;:]', circ)[0]
+    circ = re.sub(r'\s*\([^)]*(EWD|p\.\d)[^)]*\)', '', circ)
+    circ = re.sub(r'^[A-Z]{1,2}(-[A-Z]{1,2})?,\s*', '', circ).strip(' ,')
+    loc = ''
+    parts = [p.strip() for p in circ.split(',')]
+    if len(parts) > 1 and _PLACE.search(parts[-1]):
+        circ, loc = ', '.join(parts[:-1]), parts[-1]
+    if not circ: circ = (r.get(s + '_desc') or '').strip() or 'TBD'
+    # where: a place in the end's name, else in oem_location after the code, else a B9 pigtail, else TBD
+    if not loc:
+        for p in re.findall(r'\(([^)]*)\)', name):
+            if _PLACE.search(p) and not re.fullmatch(r'[A-Z]', p): loc = p; break
+    for txt in (seg, name):
+        if loc: break
+        m = re.search(r'(?:%s|pin \S+)(?: pin \S+)?(?: [A-Z]{2,3})?,\s*([^,;]+)' % re.escape(oid), txt)
+        if m and _PLACE.search(m.group(1)): loc = m.group(1).split(' - ')[0].strip()
+    if not loc and oid in ('C12', 'C13', 'C14'): loc = 'behind the cluster'
+    if not loc and oid in PIGTAIL_DEVICES: loc = 'at the device, 6 in OEM pigtail'
+    return 'Splice to OEM wire %s - %s, %s, %s' % (col, what_where, circ, loc or 'location TBD')
+
+
 # A new fuse box's harness wire landings, in cavity order, for its harness.design part (library 5LO8): the box drawing's
 # "harness wires at the fuses" sheet is the source. LOGIC (B2): ST185-FB-100L rev V.01 sheet 3 (models folder
 # st185_fusebox_1101 revB = cad/fusebox rev 7): the two M5 bus feed lugs, the 21 mini fuse outputs, the two own fuse inputs.
