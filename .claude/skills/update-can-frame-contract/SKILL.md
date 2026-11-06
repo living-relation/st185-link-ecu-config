@@ -19,17 +19,15 @@ paths:
 - Working location: the repo root, `C:\projects\active\st185-link-ecu-config` (every path below is relative to it). Shell: PowerShell.
 
 ## Critical
-- Rule owners: the CAN contract rules below are owned by `AGENTS.md` "Working rules" and `docs/harness/redesign/DECISIONS.md` Rule 2 (routing: `docs/harness/redesign/DECISIONS.md` B16); this list is the working checklist, not a second copy.
-- `python bench/check_parity.py` is the parity gate (also run in CI). It compares the JSON, `.lcs`, `bench/frames.py`, `CAN-BUS-ID-ALLOCATION-TABLE.md`, `link_g4x_realdash.xml`, the sender UI profiles and `switchboard_frames.json`. Exit 0 = all agree. A change is not done until it passes.
-- Scale convention: `link_g4x_can_setup.json` uses PCLink ENCODE form (`raw = value * scale + offset`); the `.lcs`, the ID table and `bench/frames.py` use DECODE form (`value = raw * (1/scale) - offset/scale`). Write each file in its own convention.
-- Switchboard frames `0x640`-`0x643` live in `switchboard_frames.json`, not in `link_g4x_can_setup.json`.
-- Reconcile against the frozen cluster decoder `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (decodes 0x3E8-0x3EB, 0x3EE). CI cannot see that repo.
-- Treat `link_g4x_can_setup.json` as the canonical CAN contract for IDs, scaling, offsets, and signal ranges. Do not change `bench/frames.py` first.
-- Keep `0x3E8`-`0x3F1` semantics aligned across `bench/frames.py`, `link_g4x_can_setup.json`, and docs.
-- Packing rule (highest importance): `CAN-BUS-ID-ALLOCATION-TABLE.md` top; a new signal takes the next free byte, never a gap.
-- Keep all multibyte CAN fields BigEndian unless an existing source file explicitly documents otherwise.
-- For frame `0x3F1` byte 6 warnings, keep bit mapping consistent with `bench/frames.py` constants and `CAN-BUS-ID-ALLOCATION-TABLE.md`.
-- Do not rename existing `ST185:` input names in `link_g4x_realdash.xml` when doing CAN contract work; dashboard bindings depend on exact names.
+- Rule owners (this skill copies none of them): files kept in sync and BigEndian: `AGENTS.md` "Working rules"; reconcile across devices: `docs/harness/redesign/DECISIONS.md` Rule 2 and B16; scale forms and the packing rule: the top of `CAN-BUS-ID-ALLOCATION-TABLE.md`.
+- Checklist:
+  - `link_g4x_can_setup.json` first (the canonical contract), never `bench/frames.py` first.
+  - Switchboard frames `0x640`-`0x643` go in `switchboard_frames.json`, not `link_g4x_can_setup.json`.
+  - Each file in its own scale form; a new signal packed per the ID table's rule.
+  - `0x3F1` byte 6 warning bits match `bench/frames.py` and the ID table.
+  - Existing `ST185:` names in `link_g4x_realdash.xml` unchanged (dashboard bindings use them).
+  - Reconciled against the frozen cluster decoder `C:\projects\active\center-cluster-esp32-p4\main\canbus.c` (0x3E8-0x3EB, 0x3EE; CI cannot see it).
+  - `python bench/check_parity.py` exits 0 (the gate, also in CI); a change is not done until it passes.
 
 ## Instructions
 1. **Collect the target contract change and lock frame scope**
@@ -55,7 +53,7 @@ paths:
    - **Validation gate:** Verify every changed signal has matching byte/bit placement in both `link_g4x_can_setup.json` and `bench/frames.py` before proceeding to Step 4.
 
 4. **Run bench-level contract validation commands**
-   - Use the project bench commands from `AGENTS.md` (section **Fast Commands > Bench validation**):
+   - Bench commands (the virtual-bus one is in `AGENTS.md` "Commands"):
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 monitor --known-only`
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-cluster`
      - `python bench/can_bench.py --interface pcan --channel PCAN_USBBUS1 --bitrate 1000000 full-realdash`
@@ -129,7 +127,7 @@ paths:
 
 - **Error:** `pcan` interface/open failure (for example, cannot open `PCAN_USBBUS1`)
   1. Confirm device/channel is connected and available.
-  2. Retry with the exact command from `AGENTS.md` (section **Fast Commands > Bench validation**) including `--channel PCAN_USBBUS1 --bitrate 1000000`.
+  2. Retry with the exact step 4 command, including `--channel PCAN_USBBUS1 --bitrate 1000000` (`AGENTS.md` "Commands" has the virtual-bus run).
   3. If hardware is unavailable, complete compile validation first and mark bench hardware validation as pending.
 
 - **Issue:** RealDash stops updating a channel after CAN changes

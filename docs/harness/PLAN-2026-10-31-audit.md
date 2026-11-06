@@ -1,58 +1,21 @@
-# Wiring audit fixes (OPEN-ITEMS rows 170, 172, 173, 175) - hand-off plan
+# Wiring audit fixes (OPEN-ITEMS row 172) - hand-off plan
 
-**Temporary plan (Dan 2026-10-31).** It holds the step-by-step for rows 170, 172, 173 and 175 so any agent can finish
-them without asking Dan for context. Nothing may be added to this file after it is saved; progress goes in the
-OPEN-ITEMS rows. Rows 171 and 174 closed 2026-11-01 and row 175 on 2026-11-05 (the OEM splice notes replace it, Dan N22 a); their sections (2, 5 and 6) were removed
-(git history keeps them); section numbers stay as the rows cite them.
-**Delete this file in the PR that closes the last of rows 170, 172 and 173** (and drop its line from `docs/harness/README.md`).
+**Temporary plan (Dan 2026-10-31).** It holds the step-by-step for row 172 so any agent can finish it without asking
+Dan for context. Nothing may be added to this file after it is saved; progress goes in the OPEN-ITEMS row. Rows 170,
+171, 173, 174 and 175 are closed and their sections (1-3, 5 and 6) were removed (git history keeps them); section
+numbers stay as the rows cite them.
+**Delete this file in the PR that closes row 172** (and drop its line from `docs/harness/README.md`).
 
-Every decision below is already Dan's (DECISIONS B2, B6, B10, B14, B20, B22, B28; N83 = A). Do not re-ask them.
+Every decision below is already Dan's (DECISIONS B2, B6, B22, B28). Do not re-ask them.
 
 ## 0. Before you start
 
-1. `git switch main && git pull --ff-only` (B28), then branch. Read `AGENTS.md`, DECISIONS B1-B30 and the "Shields" and
-   "Wire lists" sections, OPEN-ITEMS rows 170, 172, 173, 175.
+1. `git switch main && git pull --ff-only` (B28), then branch. Read `AGENTS.md`, DECISIONS B1-B30 and the "End labels
+   and names (B22)" and "Wire lists" sections, OPEN-ITEMS row 172.
 2. Master edits follow `docs/harness/README.md` "Change the wiring"; shipping follows AGENTS.md and B28 (then pr-closeout). The master is
    `docs/harness/MASTER-wirelist.csv`; nothing else is hand-edited (drawings, wire lists, BOM regenerate).
-3. Order and PRs: **PR 1** = rows 170 + 173 (master only, then regenerate); **PR 2** = row 172 (names);
-   **PR 4** = row 175 (OEM splice reference; PR 3, row 174, is gone with the drawing PDFs, B6). Each PR: `python
-   tools/check_all.py`, `python bench/check_parity.py`, `python .github/scripts/test_docs_gates.py` green; `Rows:` line;
-   squash-merge when CI is green (Dan: merge your own PRs, don't wait); pull `main` after the merge.
-4. Mil colour digits in the Spec 55 part numbers: 0 black, 2 red, 4 yellow, 5 green, 6 blue, 9 white.
-
-## 1. Row 170 - 12 V sensor grounds off the ECU (B10; Dan B2 = one shared return)
-
-The gearbox speed sensor (`VSS`) left this row (Dan 2026-11-01, #460 / #461; row 170): it is fed from ECU +8 V Out, so
-its return `w_vss_gnd` on `SP-GNDOUT-B-ENG3` (with fuel pressure) is right and nothing below touches it. Flex fuel is
-the only 12 V sensor return left.
-
-Today: flex fuel (`FLEX`, Continental, +12 V from `SP-SW12-ENG`) pin B ->
-splice `SP-GNDOUT-ENG2` (with `MAP` pin 1) -> `w_gnd_a_e_c44` -> bulkhead 18 -> `w_gnd_a_c44` -> `BUS-GNDOUT-A` cavity 6
--> ECU A24.
-
-Target:
-
-| Step | Change |
-|---|---|
-| a | No new splice: with the VSS gone the return has one leg, and a one-leg splice becomes a direct wire (as step e). The `SP-12V-RET-ENG` splice of the first draft is dropped. |
-| b | Flex pin B leg (yellow core of `CAB-FLEX`) now ends on bulkhead **cavity 62** (spare size 20, sealing plug `114017` today), AB-engine, engine contact as the other size-20 engine cavities (`0462-201-1631`). |
-| d | Cabin half: bulkhead 62 -> `POWER-NEG-BAR` (the POWER box battery-negative bar, M8 stud, glove box), loose `J1128-TXL-20-BLACK` (B20 cabin wire; it is a plain return, not a shielded circuit), cabin contact `0460-202-1631`, ring lug as the other 20 AWG NEG-bar wires (`w_csbg_ac`, `w_ac_cool_gnd`); length as `w_lamg_ac` (bulkhead to the NEG bar). |
-| e | MAP keeps its ECU leg. `SP-GNDOUT-ENG2` has one device leg left: delete it; bulkhead 18 -> `MAP` pin 1 becomes a direct wire (keep the existing wire id and length to the old splice spot, plus the old leg length). `SP-GNDOUT-B-ENG3` stays (fuel pressure + VSS). |
-| f | Text: bulkhead 18 / `BUS-GNDOUT-A` 6 read "Gnd MAP" (not "+ flex"). Bulkhead 62 reads "12 V sensor return (flex fuel)". Bulkhead 15 / `BUS-GNDOUT-B` 8 keep "fuel pressure, gearbox speed". |
-| g | Remove cavity 62 from the spare / sealing-plug rows (both halves). |
-
-Check: `check_wiring.py` E3 passes (no chassis ground), nothing powered from SW12 ends on `BUS-GNDOUT-*` or
-`SP-GNDOUT-*`. Grep the master after the change: no `FLEX` row touches a `GNDOUT` id.
-
-## 3. Row 173 - wire-end text and the shield splice distance
-
-1. About 120 master ends carry the fuse path as their description (`... -> LOGIC SW12 5 A fuse`, `AMI BUS1 50 A fuse
-   -> ...`). For each: the end's `*_desc` becomes what the wire does (its `*_note` already says it in most rows, e.g.
-   firewall 67 = "+8 V to gearbox speed sensor", `K-FP` 86 = "Fuel pump relay coil +"), and the fuse path moves into the
-   `*_note` as "Fed by: <fuse path>". Where the note is a location note instead ("LOGIC box (glove box) fuse SW1"),
-   write the function from the circuit (B22: device, pin, signal).
-2. N83 = A (Dan 2026-10-31): `SP-SHIELD-A` and `SP-SHIELD-B` sit **6 in (152 mm) behind** their ECU plug; replace "6 mm".
-3. `VSS` connector name becomes "Gearbox speed sensor (VSS, Toyota 83181-20040)"; the long text moves to the note.
+3. One PR for row 172 (names): `python tools/check_all.py`, `python bench/check_parity.py`, `python
+   .github/scripts/test_docs_gates.py` green; `Rows:` line; squash-merge when CI is green; pull `main` after the merge.
 
 ## 4. Row 172 - plain names (B22): the `*_name` columns
 
@@ -99,12 +62,11 @@ show the name. Apply this map to every row's `from_name` / `to_name` for the id;
 | `ALT-PLUG` | Alternator plug (round 3-pin) |
 | `RADLOK-POS-CAB` / `-NEG-CAB` / `-POS-ENG` / `-NEG-ENG` | Battery + / - firewall post, cabin side / engine side (RADLOK) |
 | `MRS-A` / `MRS-B` / `MRS-C` | Steering pump plug A / B / C (MR-S EHPS) |
-| `A18` (also called A15) | A/C amplifier (EWD A15, 1993) - fix the A18 / A15 clash to the 1993 code |
 | `A32` / `A5` / `A4` / `A1` | Auto A/C amplifier (A32) / A/C pressure switch (A5) / A/C compressor (A4) / Outside air temp sensor (A1) |
 | `IG2` / `IE1` | Cowl plug under the ECU (IG2) / Cowl plug, LH kick (IE1) |
 | `JB1` / `JB1-1H` | Junction block 1, LH kick (J/B No.1) |
 | `RB2` / `RB3` / `RB4` | Relay block 2, LH kick (R/B No.2) / Relay block 3 (R/B No.3) / Relay block 4, RH kick (R/B No.4) |
-| `C11` / `C12` / `C17` / `Cruise` | Cluster plug C11 / Cluster plug C12 / Cruise clutch switch (C17) / Cruise stalk switch (C14) |
+| `C11` / `C12` / `C17` / `C16` | Cluster plug C11 / Cluster plug C12 / Cruise clutch switch (C17) / Combination switch plug, cruise switch (C16 (B)) |
 | `F7` / `F8` / `F9` / `F12` | LH / RH front turn lamp (F7 / F8) / Wiper motor (F9) / Fog switch (F12) |
 | `R2` / `R3` / `R10` / `S9` / `W1` | LH / RH headlight lift motor (R2 / R3) / Dash dimmer (R10) / Brake light switch (S9) / Washer motor (W1) |
 | `H1` / `H2` | LH / RH headlamp (H1 / H2) |
@@ -118,6 +80,4 @@ bare part number as the whole name. Drawings and wire lists print the name; a wi
 
 ## 7. Done when
 
-- Rows 170, 172 and 173 closed in OPEN-ITEMS (History line each), this file deleted with its README line, `main` pulled.
-- Pairing check (run after PR 1): for every firewall cavity, both halves have the same circuit and colour, and a
-  shielded engine half has a shielded cabin half.
+- Row 172 closed in OPEN-ITEMS (History line), this file deleted with its README line, `main` pulled.
