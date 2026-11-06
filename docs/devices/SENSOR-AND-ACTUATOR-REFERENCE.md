@@ -151,7 +151,7 @@ Shield: yes
 
 Syltech pinout.
 
-Shield: yes
+Shield: no (Dan N31 b, 2026-11-06: a slow 50-150 Hz open-collector pulse; Link and the maker call for no shield)
 
 | Pin | Name |
 |---|---|
