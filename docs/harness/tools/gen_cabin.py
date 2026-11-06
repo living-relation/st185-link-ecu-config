@@ -148,8 +148,8 @@ def box_label(i, pin=None):
     return BOX_TERM.get(i)
 # factory taps (Dan 2026-11-04): the device (the master's name), its code, the pin, and the factory lead it is spliced onto
 OEMNAME = {'A15': 'A/C amplifier', 'A32': 'Auto A/C amplifier', 'A1': 'Ambient air temp sensor', 'JB1': 'J/B No.1',
-           'IG2': 'Cowl-side factory plug', 'RB4': 'R/B No.4 starter relay', 'Cruise': 'Cruise control main switch', 'A5': 'A/C pressure switch'}
-OEMCODE = {'Cruise': '1993 code TBD'}
+           'IG2': 'Cowl-side factory plug', 'RB4': 'R/B No.4 starter relay', 'C16': 'Cruise control switch, combination switch plug B', 'A5': 'A/C pressure switch'}
+OEMCODE = {}
 # far ends of legs drawn elsewhere, named for a splice label (the master's device names, plain)
 PLAIN = {'R-CRUISE': 'cruise ladder resistor', 'R-TERM-ECU': 'ECU-end CAN 120 ohm resistor', 'CSB3': 'ECUMaster CSB3',
          'T-CLUSTER-CAN': 'centre cluster CAN board', 'T-REALDASH-CAN': 'RealDash Pi USB-CAN adapter', 'OPTO-8': 'opto board'}

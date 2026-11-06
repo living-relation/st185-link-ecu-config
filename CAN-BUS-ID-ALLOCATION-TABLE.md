@@ -153,7 +153,7 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 |---|---|---|
 | 0 | Switch 1 | **Unassigned** — was Evaporator Core State |
 | 1 | Switch 2 | **Unassigned** — was AC Request |
-| 2 | Switch 3 | Cruise Control Active (MAIN, stalk pin 5) |
+| 2 | Switch 3 | Cruise Control Active (MAIN, C16 pin 15) |
 | 3 | Switch 4 | Unassigned (was Cruise Set; the OEM stalk has no SET wire, S23) |
 | 4 | Switch 5 | Unassigned (was Cruise Resume; the OEM stalk has no RESUME wire, S23) |
 | 5 | Switch 6 | Clutch pedal down (C17 pin 2, ground-active) -> ECU VDI6 |
