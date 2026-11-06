@@ -671,7 +671,9 @@ The device and its wire set the circuit.
 - A step-down is the exception, not the plan: then a sealed Raychem (or generic) solder sleeve whose AWG range fits both wires, else a hand solder splice under adhesive heat shrink.
 - Cases (Dan 2026-10-30, N72-N77): shared feeds (coils, injectors) are sized for all their loads and split into per-device branches; horns one size the whole run. Coils 14 AWG trunk + 16 AWG branches and grounds, COP 10 A; injectors 14 AWG trunk + 16 AWG branches, INJ 7.5 A; horns (PIAA Slim) 14 AWG throughout; ETB motor 18 AWG with TE 5-965906-1 + seal 1-967067-1 at the ETB (on TE drawing C-967616 for the Bosch MQS housing 1-967616-1; Dan 2026-10-31), ETB 7.5 A; fuel pump 10 AWG feed and ground to the pump's own short lead, FP fuse 40 A (N79); EPS 8 AWG + 50 A, solder splice onto the Toyota repair-wire lead 82998-12500 (8 mm2, so size-for-size; RM06H0E).
 - CAN node feeds (Dan 2026-11-04, N5 a / N6, "check AWG amp rating of wires"): CAN-Lambda on the 10 A LAM fuse and K-ON:
-  14 AWG TXL in the cabin (about 17.6 A), DRB102 cavity 95 size 12, 12 AWG then 16 AWG Tefzel in the bay (12 A); the
+  14 AWG TXL in the cabin (about 17.6 A), DRB102 cavity 95 size 12, 14 AWG then 16 AWG Tefzel in the bay (12 A); 14 AWG
+  to match the cabin half (Dan N30 / N39 b, 2026-11-06): 14 AWG Tefzel about 18 A in the bay, above the 10 A LAM fuse;
+  Link sets only a minimum, 0.85-1.00 mm2 (CAN-Lambda QSG p.2); the
   RealDash Pi on the factory CIG & RADIO 15 A, so its tap is 16 AWG Tefzel (15 A; TXL 16 is about 12 A); the K-ON coil
   feed from the IGN 7.5 A fuse 18 AWG TXL, and the two older 1H-7 taps (`w_ig2_in`, `w_ign`) 20 -> 18 AWG TXL for the same
   fuse (Dan 2026-11-04; ECU-B pin 28 takes contact 3-1447221-3, 18-16 AWG). Known exception (Dan 2026-11-04, accepted):
