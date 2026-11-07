@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev C" (viewer only; the master is the source).
+"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev D" (viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
 Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
