@@ -22,19 +22,17 @@ A single shared CAN bus at **1 Mbit/s** connects **five nodes**:
 
 ## 2. Physical Layer
 
-- **Topology:** single linear bus segment, 1 Mbit/s, ISO 11898-2, 120Ω termination at both physical ends of the bus. **Settled 2026-09-27 (harness redesign; not an open item): the two ends are the ECU and the Link CAN-Lambda**, as wired in `docs/harness/MASTER-wirelist.csv`: the ECU end is the ECU's own built-in terminator (Dan N49 b, 2026-11-07: no extra resistor; source Link forum moderator Adamw, not confirmed in Link's own manuals; bench check in `BENCH-TEST.md` "CAN bus termination check"), the CAN-Lambda end the `CAN-TERM-END` terminator plug. The center cluster, switchboard, and Pi are mid-bus stubs — none of them are terminated.
+- **Topology, termination and the trunk / branch wiring:** DECISIONS "CAN wiring (B17)" (`docs/harness/redesign/DECISIONS.md`, the one home; the wires are in `docs/harness/MASTER-wirelist.csv`; the termination check before first start is `BENCH-TEST.md` "CAN bus termination check"). The center cluster, switchboard and Pi are never terminated.
 - **Transceivers:**
   - ECU: Link G4X XtremeX CANH/CANL.
   - Link CAN-Lambda: module CANH/CANL on the shared bus (0x3B6 / 0x3BE). This is the fifth node.
   - center-cluster-esp32-p4: SN65HVD230 (3.3V), TWAI GPIO5=TX / GPIO4=RX (per `sdkconfig`/`Kconfig.projbuild`).
   - ECUMaster CAN Switch Board V3: built-in CAN transceiver, CANH/CANL screw terminals.
   - Pi USB-CAN adapter (CANable or PCAN USB): plugs into a USB port on the Pi; the adapter's CANH/CANL terminals wire to the shared bus. The Waveshare dual-MCP2515 hat physically present on the Pi is **NOT a CAN node** — it is retained for its cooling fan only. Do not wire its CANH/CANL to the bus.
-- **Wiring rule:** all five nodes' CANH/CANL pairs are daisy-chained onto the same two-wire bus; termination lives at the ECU end (built into the ECU) and the CAN-Lambda end (`CAN-TERM-END`) only. The trunk starts at ECU plug C; the cluster, CSB3 and Pi each branch off it there with one 4-core shielded cable (CAN H, CAN L, +12 V, ground), each node's own fused feed and ground joining the trunk at that start (DECISIONS "CAN wiring (B17)", Dan 2026-11-07). Do not add a third termination point, and do not terminate at the center cluster, switchboard, or Pi.
-- **CAN-Lambda end terminator (Dan 2026-11-03):** no bare resistor soldered in parallel; a short CAN H / L spur splices into the pair where the resistor was (behind the CAN-Lambda plug) and runs about 6 in (152 mm) to an Amphenol AT06-2S-RD01 plug (`CAN-TERM-END`) that takes the Amphenol AT04-2P-R120YEL 120 ohm terminator receptacle (master `wc_term3` / `wc_term4`). The spur to the terminator plug is 2 plain wires (CAN-H, CAN-L), no shield (Dan 2026-11-03); this is the one exception to "every CAN pair is shielded" (DECISIONS B14 detail), and the CAN-Lambda run screen floats behind the CAN-Lambda plug with no branch splice there.
 - **Node hook-up (moved from the retired `WIRING.md`, 2026-10-19; the wires themselves are in `docs/harness/MASTER-wirelist.csv`):**
   - Center cluster: Waveshare [SN65HVD230 CAN Board](https://www.waveshare.com/sn65hvd230-can-board.htm), passive (no firmware). VCC -> the P4's **3V3** (never 5 V), GND -> GND, CTX -> GPIO5 (TWAI TX), CRX -> GPIO4 (TWAI RX), CANH / CANL -> the bus. Never short CANH to CANL. No resistor on this board (mid-bus stub). The cluster's J8 header pinout lives only in `center-cluster-esp32-p4` (`PINOUT.md`, `main/Kconfig.projbuild`).
   - Switchboard: CANH / CANL screw terminals; its onboard 120 ohm jumper stays **OFF**; bit rate set to 1000 kbps before it is connected (§3, `ECUMASTER_SWITCHBOARD_SETUP.md`).
-  - Pi USB-CAN adapter: CANH -> CANH, CANL -> CANL, GND -> bus ground; a PCAN USB's termination switch stays **OFF**. The Pi runs on a switched feed only, no hold relay (Daniel 2026-09-28): the factory accessory feed, live at ACC and ON (Dan 2026-11-04, N6, DECISIONS B17); Dan adds his own switch at the display.
+  - Pi USB-CAN adapter: CANH -> CANH, CANL -> CANL, GND -> bus ground; a PCAN USB's termination switch stays **OFF**.
 - **Node power:** DECISIONS B17 and "Relays (B15)" (Dan 2026-11-04; wires in the master).
 
 ---
@@ -183,7 +181,7 @@ Two independent layers protect against switchboard communication loss:
 | 5 | Cluster firmware: **no changes.** Cluster displays are unchanged — it keeps decoding 0x3E8–0x3EB and 0x3EE (`main/canbus.c`) and transmitting 0x3EC/0x3ED. The new 0x3EF/0x3F0/0x3F1 streams are ECU→RealDash only; switchboard comm-fault (§6) is ECU-detected and surfaced to RealDash via 0x3F1 byte6 bit5. | — (none) |
 | 6 | **0x643 source = ECU** (PCLink aux→CAN TX) per §8 — L4 oil warning LED in the CAN config now (B18); L1–L3 unused | PCLink config |
 | 7 | RealDash XML frame/value definitions for 0x3EF-0x3F1 — **done** (`link_g4x_realdash.xml`). Build the dashboard per `REALDASH-LAYOUT.md`. 0x640-0x642 deliberately excluded (ECU echoes display-relevant values) | RealDash config |
-| 8 | Verify bus termination (120Ω × 2): ECU end + CAN-Lambda end only. Center cluster, switchboard, and Pi (USB-CAN adapter) are mid-bus stubs — confirm none of them are terminated. Waveshare hat is not on the bus. | Hardware |
+| 8 | Verify bus termination: `BENCH-TEST.md` "CAN bus termination check" (ends and stubs: DECISIONS "CAN wiring (B17)"). Waveshare hat is not on the bus. | Hardware |
 
 
 ## 10. PCLink apply (ECU side)

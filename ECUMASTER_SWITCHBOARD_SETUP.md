@@ -233,28 +233,11 @@ The CSB3 needs no configuration for the heartbeat. PCLink side: see `CAN-BUS-MAS
 
 ## Step 9 — Termination (Critical)
 
-Exactly two 120Ω termination resistors go on the bus — one at each physical end. **Settled
-(2026-09-27): the two ends are the ECU and the Link CAN-Lambda**, as drawn in
-`docs/harness/MASTER-wirelist.csv` (at the ECU end the ECU's own built-in terminator, no extra resistor, Dan N49 b 2026-11-07, checked on the bench per `BENCH-TEST.md` "CAN bus termination check"; at the CAN-Lambda end the AT04-2P-R120YEL terminator in plug `CAN-TERM-END`, harness `AB-engine`, Dan 2026-11-03). See the topology bullets in
-`CAN-BUS-MASTER-DESIGN.md` §2 and §7.
+The CSB3 is a mid-bus stub: its onboard 120Ω termination jumper stays **OFF**. To bench-test the CSB3 alone on a short
+cable with a USB-CAN adapter you may close the jumper for that test; **open it again before connecting to the full bus.**
 
-| Node | Position | Termination |
-|---|---|---|
-| Link G4X XtremeX ECU | Bus end 1 | **ON** — 120Ω built into the ECU (no extra resistor) |
-| Link CAN-Lambda | Bus end 2 | **ON** — 120Ω in the AB-engine harness at the CAN-Lambda end |
-| center-cluster-esp32-p4 | Mid-bus stub | **None** (SN65HVD230 has no termination) |
-| ECUMaster CSB3 | Mid-bus stub | **Jumper OFF** — do not close onboard termination |
-| Pi4+/Pi5 + USB-CAN adapter | Mid-bus stub | **None** — PCAN USB termination switch OFF; no inline resistor on a CANable |
-
-**NOTE:** The Waveshare hat on the Pi is for cooling fan only — it has no CAN connections.
-
-Bus topology (daisy chain, shortest stub lengths; stub order as in the Dash harness, master):
-```
-[ECU end] ──── mid-bus stubs: cluster, CSB3, Pi/USB-CAN ──── [CAN-Lambda end]
-   120Ω                                                          120Ω
-```
-
-If you need to bench-test the CSB3 alone on a short cable with a USB-CAN adapter, you can close the CSB3 termination jumper temporarily. **Remove it again before connecting to the full bus.**
+Bus topology and termination (the two ends, every other node): DECISIONS "CAN wiring (B17)"
+(`docs/harness/redesign/DECISIONS.md`); the termination check before first start: `BENCH-TEST.md` "CAN bus termination check".
 
 ---
 

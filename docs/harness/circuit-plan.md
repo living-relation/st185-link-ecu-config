@@ -131,7 +131,7 @@ column shows the difference:
 | EB2 | 3, 4 | - | no cavity | - | p.37 | none | none |
 | ES2 | 1-5 | B, BR, Y-B, G, R | STA, ECT ground, oil pressure SW, STJ, THW | none (ER No.2 removed) | 1993 p.66, 80, 207 | remove | remove with the harness; oil pressure is the Link sensor `OIL-P` (AB-engine) and the oil LED on CSB3 L4 (`w_oil_k`) |
 
-Open from the draft: whether the car has an A3 idle-up VSV (p.219 lists it, p.28 does not); check at the car.
+Open from the draft: whether the car has an A3 idle-up VSV (p.219 lists it, p.28 does not); TBD: look up in the 1993 EWD / FSM.
 
 ### Group 6 - J/B No.2 (with F11) and R/B No.2-5
 
@@ -231,7 +231,7 @@ point, never capped (Dan 2026-11-02); each has a master row.
 | Fuel pump relay | 1-4 | L-O, L-W, G-R, L-B | contact common, low / high speed out, coil (ECU FPR) | C9, F10, IE2-18 / 19 / 20 | p.78-79 | cut + cap | remove; fuel pump is K-FP in the trunk (`w_fpump_r`, coil `w_fp85`) |
 
 Open from the draft: R/B No.2 / No.4 also carry multi-pin plugs (1993 p.26-27) whose cavity pinout is not in the 1993
-pulls; the terminals above are what the system pages show. Check at the car with the boxes in hand.
+pulls; the terminals above are what the system pages show. TBD: look up in the 1993 EWD / FSM.
 
 ### Group 7 - removed parts that sit on kept harnesses
 
@@ -257,11 +257,11 @@ master wire. Meter plug codes are the 1993 codes C12 (A) / C13 (B) / C14 (C), in
 | Meter C13 (B) (1993) | 1, 3, 4, 5, 6, 7, 10 | J/B3 3B-6, IF1-14, IG1-15, J6, J2, 3B-9, IG2-20 | 1993 p.206 | cut + cap | remove |
 | Meter C14 (C) | 9 B-O IGN, 8 Y charge, 1 R-G brake / park brake | 1D-5, I5 / IG2-16, J6 | 1993 p.206-207 | reuse per Dash | keep; tapped by `w_ig_tap`, `w_chg_k`, `w_pk_k` (Dash) |
 | Meter C14 (C) (1993) | 3, 4, 5, 6 oil (Y-B), 10, tacho | 3B-10, J1, integration relay, IG1-12, 3B-16, IG1-14 | 1993 p.206-207 | cut + cap | remove; oil warning is the LED on CSB3 L4 (`w_oil_a` / `w_oil_k`) |
-| Rear wiper motor and relay, rear washer outlet W1 pin 3 [90/92] | 1-3; W1-3 | back door wire -> J/B1 1F-10, rear wiper switch (1993 code TBD) | 1992 p.150 | cut + cap | remove (R54); front washer W1 pins 1 / 2 re-fed by `w_wash_neg` / `w_wash_pos`. Check at the car whether the pump has a pin 3 |
+| Rear wiper motor and relay, rear washer outlet W1 pin 3 [90/92] | 1-3; W1-3 | back door wire -> J/B1 1F-10, rear wiper switch (1993 code TBD) | 1992 p.150 | cut + cap | remove (R54); front washer W1 pins 1 / 2 re-fed by `w_wash_neg` / `w_wash_pos`. TBD: look up in the 1993 EWD / FSM whether the pump has a pin 3 |
 | Igniter, ECU plugs B / C, DLC1, cruise actuator, compressor clutch lead, back-up SW lead | all | only through IG1 / IG2 / IH1 / EB1 / EB2 | - | leave with the Engine Wire | remove; back-up SW wires re-fed by `w_rev_feed_c` / `w_rev_lamps` at the IG2-4 / IG2-13 pigtails (circuit 11) |
 
 Open from the draft: the ABS ECU ground pin labels in Mitchell Fig.13 are partly illegible, and the front airbag sensor
-leads are taken to be Cowl Wire (no joint drawn). Confirm at the car.
+leads are taken to be Cowl Wire (no joint drawn). TBD: look up in the 1993 EWD / FSM.
 
 ### Group 8 - Engine Room Main Wire branches
 

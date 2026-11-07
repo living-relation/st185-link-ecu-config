@@ -401,11 +401,12 @@ docs/harness/MASTER-wirelist.csv   the ONE wiring SoT (R221)
       +-- docs/harness/wirelists/      generated per-harness wire lists, xlsx + CSV (build_drawings.py --check reads them back)
       +-- harness.design files         ST185-<harness> Rev X, built from the master by gen_*.py (B6); never a source
       +-- sot/fuse-relay-map.csv       box seat -> circuit; wins over the parked fuse-box CAD (row 107)
-      +-- docs/harness/routes/ + placement editors   device spots and lengths (B8)
+      +-- docs/harness/tools/ST185-harness.layout.json   the layout tree: owns every wire length (N69 a); --write-lengths copies them into the master
+      +-- docs/harness/routes/ + placement editors   device spots (B8)
       +-- docs/sourcing/PROJECT-BOM.*  generated shopping list
 ```
 
-New wiring facts go into the master row first; `channels.csv`, the IO table, the drawings and the BOM follow. Device pin, pin name and whether that device gets a shield go into `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` (one shield flag per device). Which ECU pin a device wire lands on is owned by the ECU; ECU pins never move. If anything disagrees with the master on a pin, the other thing is wrong. No script writes the master or `channels.csv`. `python tools/check_all.py` must pass before every commit.
+New wiring facts go into the master row first; `channels.csv`, the IO table, the drawings and the BOM follow. Device pin, pin name and whether that device gets a shield go into `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md` (one shield flag per device). Which ECU pin a device wire lands on is owned by the ECU; ECU pins never move. If anything disagrees with the master on a pin, the other thing is wrong. No script writes the master or `channels.csv`, except `build_drawings.py --write-lengths`, which writes the placed harnesses' `est_length_mm` from the layout tree ("Placement and lengths (B8)", Dan N69 a). `python tools/check_all.py` must pass before every commit.
 
 A wire on an ECU pin is also checked against the Link G4X Quick Start Guide and the G4X plug-in guides (plug-in wins): pin function and mode, what the pin may connect to, current limits, wire gauge. `check_wiring.py` fails on any far end the pin's class does not allow (R212), any ground that breaks the ground classes (R213, R216), any relay driven the wrong way (R219).
 
@@ -419,7 +420,8 @@ A wire on an ECU pin is also checked against the Link G4X Quick Start Guide and 
 | `docs/harness/wirelists/` | Generated per-harness wire lists (xlsx + CSV); `build_drawings.py --check` reads them back |
 | harness.design files (`ST185-<harness> Rev X`) | Built from the master by `gen_*.py` (B6); never a source |
 | `sot/fuse-relay-map.csv` | Box seat -> circuit; wins over the parked fuse-box CAD (row 107) |
-| `docs/harness/routes/` + placement editors | Device spots and lengths (B8) |
+| `docs/harness/tools/ST185-harness.layout.json` | The layout tree: owns every wire length (Dan N69 a); `build_drawings.py --write-lengths` writes them into the master for the placed harnesses, `--check` fails on a difference |
+| `docs/harness/routes/` + placement editors | Device spots (B8) |
 | `docs/sourcing/PROJECT-BOM.csv` | Generated — re-run `build_project_bom.py` |
 | This file | Binding rules B1-B30 and the procedure on this page |
 | `docs/sourcing/te-on-hand-bom.csv` | Parts already owned — check before speccing anything new |
@@ -498,6 +500,7 @@ Moved here from rule B10 on 2026-11-02 (Dan L3 = a); binding as part of B10.
 - The ignition coil ground goes to the POWER box NEG bar through bulkhead cavity 4 and the cabin ground splice `SP-CABIN-GND`, not the engine block (Dan 2026-10-29; N60 a 2026-11-07).
 - ECU +8V Out feeds the cam sensor and the gearbox speed sensor only; the VSS returns on Gnd Out, DI 8 pull-up off (Dan 2026-11-01).
 - Alarm grounds (Dan N43 b, 2026-11-06): ring terminal `T-AT-GND` at the alarm spot (the `AL-GND` lead and the siren ground pull-wire) to a chassis ground point Dan picks at install, a named exception to B10.
+- Dash LED ground `w_led_gnd_out` (Dan N74 a, 2026-11-07): asked at the Dash harness.design step (OPEN-ITEMS row 183): re-land it on the cabin ground splice `SP-CABIN-GND` or keep ground point ID; until then `check_wiring.py` lists it as pending E3. `w_at_gnd_a1` (the alarm ground above) is a permanent named exception.
 
 ## Bus bars and fuse box ends
 
@@ -553,11 +556,11 @@ Binding as part of B17. Dan's design, 2026-11-07 09:23, verbatim:
 
 `check_wiring.py` S1-S3 enforces the drain and floating-screen rules (R207). Device pin, pin name, and whether that device gets a shield: `docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md`.
 
-**B14 detail.** Same cable and colours on both sides of the firewall (Dan 2026-10-31; row 171; moved here from rule B14 on 2026-11-02, Dan L3 = a). Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, ETB, APS pedal, the CAN-Lambda run and every CAN pair (one exception: the spur to the CAN-Lambda end terminator plug `CAN-TERM-END` is 2 plain wires, CAN-H and CAN-L, no shield, Dan 2026-11-03); injectors, coils, the gearbox VSS (plain wires, Dan 2026-11-01) and flex fuel (Dan N31 b, 2026-11-06) get none. Across the firewall a circuit keeps its colour and gauge on both halves; only the wire type changes (TXL in the cabin, Tefzel in the bay; Dan N30, 2026-11-06). A drain is its own `M22759/16-20-06` wire, found by its part, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one OUT plug; its board is isolated from the case.
+**B14 detail.** Same cable and colours on both sides of the firewall (Dan 2026-10-31; row 171; moved here from rule B14 on 2026-11-02, Dan L3 = a). Cable: TE Raychem Spec 55. Shielded: crank, cam, knock, wheel speed, VRC outputs, turbo speed, ETB, APS pedal, the CAN-Lambda run and every CAN pair (one exception: the spur to the CAN-Lambda end terminator plug `CAN-TERM-END` is 2 plain wires, CAN-H and CAN-L, no shield, Dan 2026-11-03); injectors, coils, the gearbox VSS (plain wires, Dan 2026-11-01) and flex fuel (Dan N31 b, 2026-11-06) get none. Across the firewall a circuit keeps its colour and gauge on both halves; only the wire type changes (TXL in the cabin, Tefzel in the bay; Dan N30, 2026-11-06). A drain is the shielded cable's own drain wire, bought with the cable, so it has no wire part number (R32 stands; Dan N71, 2026-11-07); it is found by its master row, never its colour; no connector shell, and no sleeve just to end one screen. A cabin device that joins a loom part-way splices its drain where its signal wires join; a bulkhead device keeps its own drain and bulkhead pin up to the splice at the ECU plug. Each VRC box has one 5-pin CNLINKO LP-16 IN plug (pin 3 = both screens) and one OUT plug; its board is isolated from the case.
 
 **No connector shells (R33).** Every drain lands on a regular pin; no shell, backshell or shielding plate ever carries a screen (the VRC LP-16 plugs included).
 
-**Shared drain pin: one splice (R29, R30, R32).** Every shielded cable is drawn as if it had a drain wire, straight to its pin. Two or more screens on one pin share ONE `GENERIC SOLDER SPLICE` (no covering), with one drain wire (no wire part number, R32) to the pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into its own named branch splice on the trunk drain (`SP-CAN-SH-*`, R207; the one exception to "one splice"). **CAN branch splices (Dan 2026-10-25):** where each CAN node branches off the trunk for power and CAN signal, that node's shield splices onto the main trunk shield at that same point, one splice per branch point, never all in one lump. Each branch splice is a solder sleeve that takes a drain lead (Raychem / TE type); part number TBD (row 166).
+**Shared drain pin: one splice (R29, R30, R32).** Every shielded cable is drawn as if it had a drain wire, straight to its pin. Two or more screens on one pin share ONE `GENERIC SOLDER SPLICE` (no covering), with one drain wire (the cable's own, no wire part number, R32 / N71) to the pin. The T-splice is how it is built, not drawn (R30). Every CAN node branch shield goes into its own named branch splice on the trunk drain (`SP-CAN-SH-*`, R207; the one exception to "one splice"). **CAN branch splices (Dan 2026-10-25):** where each CAN node branches off the trunk for power and CAN signal, that node's shield splices onto the main trunk shield at that same point, one splice per branch point, never all in one lump. Each branch splice is a solder sleeve that takes a drain lead (Raychem / TE type); part number TBD (row 166).
 
 | Pin | Screens into the one splice | Splice |
 |---|---|---|
@@ -569,7 +572,7 @@ Binding as part of B17. Dan's design, 2026-11-07 09:23, verbatim:
 
 Every bulkhead drain has its own cavity. Both sensor screens of a VRC share its input plug pin 3.
 
-**Vocabulary.** Screen means shield. A drain is the wire that connects the shield to the pin (no wire part number, R32). Shields exist only on cables; a device or sensor gets one shield flag (never per pin or per wire).
+**Vocabulary.** Screen means shield. A drain is the shielded cable's own drain wire, bought with the cable, that connects the shield to the pin (no wire part number, R32 / N71). Shields exist only on cables; a device or sensor gets one shield flag (never per pin or per wire).
 
 **Absolute rules (R27, R28, R33).** A shield floats at the sensor, runs unbroken as a multi-conductor Raychem cable, and terminates at an ECU shield pin (A7 / B17); the only device-end landing is the wheel-speed sensor shields on VRC IN pin 3 (R31). A shield that crosses the firewall does so on its own bulkhead pin, wired on both halves, never on a shell. Do not invent break points. The ABS wheel-speed sensors have two wires: no third conductor, no shield connection at the sensor.
 
@@ -597,6 +600,7 @@ Moved here from rule B22 on 2026-11-02 (Dan L3 = a); binding as part of B22.
 - Each wire end says where that end lands (device, connector, pin, signal; OEM end + EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`.
 - Only asked-for parts.
 - Every connector, splice, bus, relay and box has a plain name; any code follows in parentheses (Dan 2026-10-31; row 172).
+- Where the row 172 name map (`docs/harness/PLAN-2026-10-31-audit.md`) and the master disagree, the master's current name wins; a new splice is named by the map's catch-all rule, "<what> splice: <what it joins>" (Dan N75 b, 2026-11-07).
 
 ## Wire lists (Option A, Dan 2026-10-26)
 
@@ -677,11 +681,13 @@ Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
 
 - Lengths live in the layout tree only (Dan N69 a, 2026-11-07): `est_length_mm` in the master is written by the tool from the tree, never by hand, for every harness Dan has placed; `build_drawings.py --check` fails when a placed harness's master length differs from its tree length. A harness not placed yet keeps its estimate until placed. The placed list is `PLACED` in `build_drawings.py` (a harness joins at its lengths step, below); `--lengths` prints the before -> after list, `--write-lengths` writes it. Why: one length source, no drift (`w204_e` / `w10` drifted 1 mm after #522).
 - Placement editor rule (Dan 2026-11-01): every harness gets a placement-editor pass (Dan places each device and draws its branch lines on the map) before its layout is built or it goes into harness.design; the saved placement becomes that harness's route and replaces its old route files and images in the repo (deleted, git history is the archive).
+- Old route pages (Dan N72 b, 2026-11-07): a harness's old page in `docs/harness/routes/` is deleted at that harness's harness.design step, once every still-open fact on it is in its SoT: Route 1 (HeavyDC, built) now (held for one fact with no other home, OPEN-ITEMS row 180), Routes 8 / 12 / 13 at Dash's step, Route 14 at AntiTheft's.
+- No tape-measure pass (Dan N73 a, 2026-11-07): a placed harness's lengths are its tree lengths (N69 a); every other harness gets its lengths at its own lengths step (OPEN-ITEMS row 183).
 - Top views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
 - Dan's saves are his (Dan 2026-11-02): no agent overwrites a saved placement, editor save or route without showing Dan the change and getting his OK first; the old save is kept as a backup either way.
 - Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed plugs are splices (no number, anywhere between ECU and bulkhead); a device outside the map's area is a hand-off point where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
 - Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17 front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot in one file (a moved one is marked REMOVED in the other).
-- Lengths from a route map: map length x 5.3 mm per EWD point (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until measured at the car.
+- Lengths from a route map: map length x 5.3 mm per EWD point (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until that harness's lengths step (N73 a).
 - End allowance (Dan 2026-11-03, N3 = a): every tree length adds 100 mm at each wire end (2 x 100 mm per wire; `end_allowance_mm` in the layout file) for termination and service loop.
 - AB-cabin (Dan 2026-11-02, A2-A4 = a): placed on the body manual under-body plan (DI-7), front right, driver up, in real mm (8.49 mm per PDF point from the 2525 mm wheelbase), plus an optional drop in mm per device; EWD p.44 (faded) is a look-only tab, since a 3-D view gives no lengths.
 - The ECU engine harness tree and its master lengths are built from Route 16, harness C's from Route 17 (`route_trees` in the layout file), HeavyDC's from its own Route 1 segments (a Route 16 device marked `moved_to` is skipped, B6 b); a splice sits where its legs part, unless the layout `place` pins it (the AB-engine bulkhead splices sit at the trunk junction below the bulkhead, as Dan approved, #499).
@@ -715,10 +721,7 @@ The device and its wire set the circuit.
   fuse (Dan 2026-11-04; ECU-B pin 28 takes contact 3-1447221-3, 18-16 AWG). Known exception (Dan 2026-11-04, accepted):
   the CAN-Lambda's DTM size 20 contacts are rated 7.5 A (Link's own plug takes no larger contact) against its 8.1 A peak
   (manual p.5), a peak only during heater warm-up.
-- CAN branch cables (Dan 2026-11-07, "CAN wiring (B17)"): a 20 AWG core of a node's 4-core branch cable sits only behind a
-  fuse of 5 A or less (20 AWG 8 A cabin): cluster DEV 5 A (N52 a), CSB3 CSB 5 A, Pi inline `F-PI` 5 A (N58 a). The feed legs
-  to the trunk start keep their own size (DEV 16 AWG for the BUS2-6 contact, Pi 16 AWG for the factory 15 A fuse) and step
-  down to the core at the join. The one trunk ground `w_can_gnd` returns 5 + 5 + 5 = 15 A: 16 AWG Tefzel (15 A cabin), N53 a.
+- CAN branch cables (20 AWG cores, their fuses and feed legs, the trunk ground `w_can_gnd`): "CAN wiring (B17)" N52 a, N53 a, N58 a.
 - Fans (N78, Dan 2026-10-31: 12 in, not bought yet): sized for an 18 A 12 in fan (SPAL high-performance range 14.5-18 A): 10 AWG, size-8 DTHD sockets (8-10 AWG), relay FASTON 280756-4 (12-10 AWG, insulation 3.4-5.1 mm; 280755-4 grips 5.0 mm and up, too big for 10 AWG Tefzel), TE 36161 ring (12-10 AWG) at the AMI studs, AMI FAN and FAN2 30 A. Re-check against the fan's data sheet once bought. Each uprated fan has two single-pin leads, so two DTHD06-1-8S plugs per fan (`FAN-RAD` / `FAN-RAD-GND`, `FAN-COND` / `FAN-COND-GND`) are right (Dan 2026-11-04, Y1 b).
 - Big cable lugs (Dan 2026-11-05): never stack large battery cables (2 AWG and up) on one stud; two 1/0 lugs cannot seat flat. Every big cable gets its own stud (a junction is a bus bar with one stud per cable, never the starter stud). HeavyDC (Dan N11 a, 2026-11-05): the engine-bay junction is a 4-stud bus bar at the OEM battery spot (battery now in the trunk), next to the jump post: Blue Sea PowerBar 600A `2104` (3/8-16 studs, 600 A DC; stud splices `SP-JUMP-1` .. `-4`, "Bus bars and fuse box ends"): stud 1 RADLOK + 1/0 in, stud 2 1/0 to the starter B+ (its one lug), stud 3 the alternator fuse block (no lug; below), stud 4 2 AWG to the jump post. Lengths from the Route 1 tree, Dan OK'd 2026-11-05. The alternator lead gets a fuse at the bus bar (Dan N12 a, 2026-11-05): Blue Sea MRBF 175 A `5186` on a Blue Sea MRBF terminal fuse block `5191` bolted to bar stud 3 (3/8 in stud, 300 A block, M8 output stud: the alternator 2 AWG lug, 5/16 in ring, is its one lug; fuse interrupt 10,000 A at 14 V; bluesea.com/products/5191 and /5186) (Dan N26 a, 2026-11-05). Size: 175 A per B11 (fitted alternator 160 A); 2 AWG 105 C in an engine space carries 178 A (Ancor / ABYC temp-rating sheet), so the fuse protects the lead if `BC-2-RED` is 105 C rated: it is SAE J1127 SGX, rated 125 C (`docs/sourcing/harness-parts.csv`; SGX sheet sycor.com "-40 C to 125 C", checked 2026-11-06). In the master the fuse block is the INTEGRAL link `w_alt_fuse` "MRBF fuse (Blue Sea 5191)" from bar stud 3 (`SP-JUMP-3`) to its M8 output stud `SP-ALT-FUSE`, where `w_alt` lands (Dan N61 a, 2026-11-07; replaces the N29 a device and its mate).
 
