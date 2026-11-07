@@ -97,14 +97,14 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
     "power": re.compile(r"relay|fuse|diode|\+12|12\s?V", re.I),
 }
 # Known violations waiting for their wiring fix (OPEN-ITEMS): printed, not failing; a fixed one must be removed.
-# E3:w_at_gnd_a1 is the alarm ground lead (node AL-GND to ring terminal T-AT-GND), a named B10 exception (DECISIONS
-# "Grounds (B10)", Dan N43 b); the accessory grounds went with the accessories (alarm-ready tap points, Dan 2026-11-06).
+# E3:w_at_gnd_a1 is permanent, not pending: the alarm ground lead (node AL-GND to ring terminal T-AT-GND) is a named B10
+# exception (DECISIONS "Grounds (B10)", Dan N43 b); the accessory grounds went with the accessories (alarm-ready tap points,
+# Dan 2026-11-06). E3:w_led_gnd_out waits for the Dash step 5 question (OPEN-ITEMS row 183, Dan N74 a): re-land it on the
+# cabin ground splice SP-CABIN-GND (B10) or keep its ground point ID.
 PENDING = {"E3:w_at_gnd_a1", "E3:w_led_gnd_out"}
 STUD_IDS = re.compile(r"^(KILL-SW|RADLOK-|JUMP-POST|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
-
-
-def is_integral(r):
-    return r.get("wire_pn") == "INTEGRAL"     # build_drawings.is_integral (Dan N55 a): part of a bought part, not a wire
+sys.path.insert(0, HERE)
+from build_drawings import is_integral      # noqa: E402  (Dan N55 a): part of a bought part, not a wire; one definition
 
 
 def box_studs():
