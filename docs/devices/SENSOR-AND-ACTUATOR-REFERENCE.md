@@ -275,7 +275,7 @@ Shield: no
 
 **Remote sensor block.** MAP, fuel pressure and oil pressure sensor bodies all mount on a
 block on the **driver side** of the firewall. Pressure taps stay at the actual source —
-manifold, FPR, OEM head port — with short lines running to the block. Bulkheads A and B are
+manifold, FPR, OEM head port — with short lines running to the block. The firewall bulkhead (one DRB102, B7) is
 on the passenger side, so these four runs cross the bay; route them as one group.
 
 **Temp channel hardware.** Temp 1 and 2 have a selectable pull-up, or none, set in software
@@ -339,7 +339,7 @@ number is still unidentified; `90980-*` family, to confirm.
 ### Relay placement
 
 **Changed 2026-09-28 (Daniel): every relay is in the cabin.** `k_eps` (HCR 150) now sits
-in the glove box beside the POWER box (DECISIONS R75; was HCFB, then the LMI), drawn on `ST185-CabinPower`. The coil wires and the POWER AMI OUT-6 EPS feed (was LMI L7, HCFB H4) are cabin wires; the pump feed from
+in the glove box beside the POWER box (DECISIONS R75; was HCFB, then the LMI), in the CabinPower harness. The coil wires and the POWER AMI OUT-6 EPS feed (was LMI L7, HCFB H4) are cabin wires; the pump feed from
 contact 87 runs point-to-point on loom C through the firewall (no bulkhead), like the fan
 feeds. This replaces the 2026-09-17 "engine bay, next to the pump" placement.
 
@@ -349,15 +349,15 @@ glove box to the pump also makes voltage drop a sizing input once the current is
 
 **Two relays (DECISIONS R22, Daniel 2026-10-04; drawn 2026-10-12).** `k_eps` (HCR 150) carries
 the pump feed: coil+ = 12 V ignition (`sp_sw12`), coil- switched to ground by the pump's own pin
-B5 (net `MRS_RLY`, glove box -> `ST185-ECU-cabin` -> bulkhead -> `ST185-ECU-engine` ->
-`ST185-EngineRoom-C`). `k_eps_en` (TE `6-1419137-4` diode micro relay in LOGIC box M6, fed by
+B5 (net `MRS_RLY`, glove box -> AB-cabin -> firewall cavity 85 -> AB-engine -> MR-S plug B
+pin 5). `k_eps_en` (TE `6-1419137-4` diode micro relay in LOGIC box M6, fed by
 LOGIC EPSEN 5 A at BUS2-7) is the ECU's enable: Link Ign 6 (B12) sinks its coil- (active-low), coil+
 is on SW12, and its 87 runs straight to bulkhead cavity 83 -> pump C1, with no second fuse (E3 a,
 Dan 2026-11-02; the LOGIC MRS fuse at BUS2-12 is dropped). The pin only wakes the pump's control
 logic; the stock MR-S feeds it from the ECU-IG 7.5 A fuse, shared with the ABS (MR-S EWD "Power
 source", mrs-passion.fr; fuse-box.info MR2 Spyder W30 fuse #12). So the ECU switches the pump on,
 and the pump switches its own main relay. Ign 6 runs on above ~400 rpm with a 1-2 s off-delay (setup time, R52). Older text named
-connector B pin 6 "relay request out"; R22 names B5 - see `docs/OPEN-ITEMS.md`.
+connector B pin 6 "relay request out"; the relay pin is B5 (above).
 
 ### Speed signal - it is an ECU output
 
@@ -392,44 +392,9 @@ outranks this note.
 If one of `mrs_ctrl`'s four unused pins turns out to be a load or fault output, that
 replaces the current sensor for the price of one wire. Worth metering before buying.
 
-## Cam sensor resistor - drawn wrong, fix before building
+## Cam sensor pull-up
 
-The component the diagrams call `r_cam` is a **1.8 kOhm resistor** for the cam position
-sensor, currently placed at the sensor in the engine bay. Rename it to `cam_pullup`,
-label "Cam sensor pull-up 1.8k".
-
-**What it is for.** The cam sensor is a Hall-effect type running on 8 V. Its output does
-not drive the line high - it only pulls the line down to ground. Left alone the line floats
-between pulses and the ECU sees noise. A pull-up resistor ties the signal line to the 8 V
-rail so it rests high, and every time the sensor switches it yanks the line low. That gives
-the clean square edge the trigger input needs.
-
-**The fault.** It is drawn in **series** with the signal, not pulling it up:
-
-```
-   drawn now:   cam.c2 --[1.8k]-- bh_eng.c32 == bh_fw.c32 -- ecu_a.a9 (Trig 2)
-```
-
-A9 is Trigger 2. So the resistor sits directly in the cam trigger path, where it attenuates
-and slows the edge instead of conditioning it. That is the opposite of the intent.
-
-**Correct arrangement** - the resistor bridges the 8 V rail to the signal line, and the
-signal runs straight through:
-
-```
-   ECU 8V Out (A6) --[1.8k]--+
-                             |
-   cam signal ---------------+------------- ECU Trig 2 (A9)
-   (sensor sinks this to ground)
-```
-
-**Put it on the ECU side**, in the cabin. Three reasons: it is out of engine-bay heat and
-vibration; the value is easy to change on the bench while setting the trigger up; and it
-needs no bulkhead pins of its own - 8 V already crosses on bulkhead A pin 4 for the
-sensor's supply, and the cam signal already crosses on pin 32. Nothing new is added.
-
-`r_fuellvl` (470 Ohm) and `r_cruise` (1k, DECISIONS S23; drawn 2026-10-14) are wired correctly as pull-ups to A32 and do
-not need this change - only the cam one is wrong.
+Fixed: the 1.8 kOhm cam pull-up is `R-CAM-PULLUP` in AB-cabin, from the 8 V rail to the cam signal (wires in the master).
 
 ## VR conditioner (NCV1124 dual boards)
 
@@ -477,10 +442,10 @@ single pin. Each ABS sensor shield terminates on the VRC connector.
 ## Wheel-speed sensors - their own loom, settled 2026-09-17
 
 All four VR wheel-speed sensors and both dual-channel conditioner boards come out of looms
-A and B into `ST185-WheelSpeed-Front.harness`. **No bulkhead connector** - this loom does not
-cross bulkhead A or B, so the front sensors stop being firewall crossings with nowhere to
-cross. Its only ties to the rest of the car are the conditioner outputs to the ECU and the
-conditioner power and ground, which follow the shared-part rule in plan doc 6.15.
+A and B into the WheelSpeed-Front / -Rear harnesses. **No bulkhead connector** - these looms do not
+use the DRB102, so the front sensors stop being firewall crossings with nowhere to
+cross. Their only ties to the rest of the car are the conditioner outputs to the ECU and the
+conditioner power and ground, through the inline plugs to AB-cabin (DECISIONS "Harness ownership (B8 list)").
 
 ---
 
@@ -503,18 +468,17 @@ Shield: no
 
 **Link CAN-Lambda**
 
-External wideband controller for a Bosch LSU 4.9. On CAN bus 1. Link pinout
-for the CAN pair is recorded in `docs/harness/redesign/DECISIONS.md` B1. The
-other two wires are +12V and ground; those pin numbers are not confirmed here.
-The controller stays in the engine bay; its CAN and power run through bulkhead B,
-shielded the whole run (Daniel, 2026-10-03).
+External wideband controller for a Bosch LSU 4.9. On CAN bus 1. Pinout and wires: the
+master (`CAN-LAMBDA`). The controller stays in the engine bay; its CAN and power cross the
+firewall on the one DRB102 (B7; +12 V and ground on cavities 95 / 96), CAN shielded the
+whole run (Daniel, 2026-10-03).
 
 Shield: yes
 
 | Pin | Name |
 |---|---|
-|  | +12V |
-|  | ground |
+| 1 | +12V |
+| 2 | ground |
 | 3 | CAN L |
 | 4 | CAN H |
 
@@ -547,7 +511,7 @@ Shield: no
 
 The CAN H / CAN L pair between every node on CAN bus 1 (ECU, center cluster,
 CSB3, Pi / RealDash adapter, CAN-Lambda) is shielded on every run (Daniel,
-2026-10-03). The pair is drawn once, in `ST185-CAN.harness`.
+2026-10-03). The backbone and its joins are the Dash harness's; the ECU and CAN-Lambda legs ride AB-cabin / AB-engine.
 
 Shield: yes
 

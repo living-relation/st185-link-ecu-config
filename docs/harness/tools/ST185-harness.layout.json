@@ -155,18 +155,18 @@
     44,
     62
    ],
-   "label": "Anti-theft unit (centre dash, left of the ECU)",
+   "label": "Alarm spot (centre dash, left of the ECU): the alarm-ready tap points AL-*, no alarm fitted yet (Dan 2026-11-06)",
    "end": true,
-   "short": "Anti-theft unit"
+   "short": "Alarm spot (tap points)"
   },
   "CSB3": {
    "xy": [
     22,
     38
    ],
-   "label": "Centre console: CSB3 under the centre cluster, its switch inputs and opto board; alarm status LED (Routes 12, 14)",
+   "label": "Centre console: CSB3 under the centre cluster, its switch inputs and opto board (Route 12)",
    "end": true,
-   "short": "Centre console: CSB3, status LED"
+   "short": "Centre console: CSB3"
   },
   "CANJ": {
    "xy": [
@@ -227,21 +227,12 @@
    "short": "Steering column: cruise stalk",
    "lab": "above"
   },
-  "VALET": {
-   "xy": [
-    48,
-    78
-   ],
-   "label": "Valet / program switch lead, under the carpet to the driver-side carpet centre, service coil (Route 14)",
-   "end": true,
-   "short": "Valet switch (driver carpet)"
-  },
   "RFG": {
    "xy": [
     84,
     3
    ],
-   "label": "Harness C out of the cabin into the RH fender by the hood hinge (Route 17 run 10 start; the harness C tree is built from Route 17 by route_trees); alarm siren leads (Route 14)",
+   "label": "Harness C out of the cabin into the RH fender by the hood hinge (Route 17 run 10 start; the harness C tree is built from Route 17 by route_trees); siren pull-wire (stale: LH pass-through per Dan B19)",
    "end": true,
    "short": "RH fender exit (harness C)",
    "lab": "below"
@@ -300,7 +291,7 @@
     -18,
     52
    ],
-   "label": "Rear panel centre: licence lamp L1, ground point BL, trunk pin switch (Routes 14, 15)",
+   "label": "Rear panel centre: licence lamp L1, ground point BL (Routes 14, 15)",
    "end": true,
    "short": "Rear panel centre: L1, ground BL",
    "lab": "left"
@@ -370,7 +361,7 @@
     118,
     1
    ],
-   "label": "Old Route 2 RH inner fender point: kept only for the alarm hood pin lead and the heavy-cable path to the engine tree (ground studs EA / EB sit on Route 17 devices 24 / 25)",
+   "label": "Old Route 2 RH inner fender point: kept only for the hood pin pull-wire and the heavy-cable path to the engine tree (ground studs EA / EB sit on Route 17 devices 24 / 25)",
    "short": "old RH inner fender point"
   },
   "C_RHC": {
@@ -378,9 +369,9 @@
     140,
     4
    ],
-   "label": "Old Route 2 RH front corner: the alarm hood pin lead (ground stud EA sits on Route 17 device 24)",
+   "label": "Old Route 2 RH front corner: the hood pin pull-wire end AL-HOOD-BAY (ground stud EA sits on Route 17 device 24)",
    "end": true,
-   "short": "old RH front corner: hood pin",
+   "short": "old RH front corner: hood pin pull-wire",
    "lab": "left"
   },
   "C_FRONT": {
@@ -407,9 +398,9 @@
     92,
     50
    ],
-   "label": "Alarm siren: centre of the firewall behind the engine, leads through the RH fender grommet (Route 14)",
+   "label": "Siren pull-wire ends (AL-SIREN-BAY, AL-SIREN-GND-BAY): centre of the firewall behind the engine; the tree still reaches it from the RH fender exit, Dan B19 moves the leads to the LH fender / kick pass-through (placement editor pass)",
    "end": true,
-   "short": "Alarm siren",
+   "short": "Siren pull-wire ends",
    "lab": "left"
   },
   "RL_ENG": {
@@ -585,11 +576,6 @@
    "BP_COL",
    "COLUMN",
    400
-  ],
-  [
-   "ALARM",
-   "VALET",
-   250
   ],
   [
    "GB_T",
@@ -809,7 +795,15 @@
   "CAB-APS1": "PEDAL",
   "CAB-APS2": "PEDAL",
   "SP-SHIELD-A-APS": "BP_COL",
-  "ALARM": "ALARM",
+  "AL-12V": "ALARM",
+  "AL-12V-SHK": "ALARM",
+  "AL-IGN": "ALARM",
+  "AL-DOOR": "ALARM",
+  "AL-HOOD": "ALARM",
+  "AL-IMMOB": "ALARM",
+  "AL-GND": "ALARM",
+  "AL-SIREN": "ALARM",
+  "AL-HAZ": "ALARM",
   "R-CRUISE": "CSB3",
   "SP-CSB-GND": "CSB3",
   "OPTO-8": "CSB3",
@@ -914,20 +908,12 @@
   "SP-CAN-SH-CSB": "CSB3",
   "CAB-CAN-CSB-CSB": "CSB3",
   "T-AT-GND": "ALARM",
-  "T-AT-GND-B": "ALARM",
-  "T-AT-GND-C": "ALARM",
-  "SHOCK-SENSOR": "ALARM",
-  "SIREN": "SIREN",
-  "STATUS-LED": "CSB3",
-  "VALET-SW": "VALET",
-  "SP-PARK": "ALARM",
+  "AL-SIREN-BAY": "SIREN",
+  "AL-SIREN-GND-BAY": "SIREN",
   "SP-DOOR": "ALARM",
   "SP-HOOD": "ALARM",
-  "SP-TRUNK": "ALARM",
-  "T-AT-PARK": "JB1",
   "T-AT-DOOR": "JB1",
-  "T-AT-HOOD": "C_RHC",
-  "T-AT-TRUNK": "RPANEL",
+  "AL-HOOD-BAY": "C_RHC",
   "D-TL": "CLUSTER",
   "D-TR": "CLUSTER",
   "D-HB": "CLUSTER",
@@ -1081,7 +1067,8 @@
   "AB-cabin",
   "AB-engine",
   "HeavyDC",
-  "Dash"
+  "Dash",
+  "AntiTheft"
  ],
  "harnesses": [
   "AB-cabin",
@@ -1101,7 +1088,7 @@
   "EngineRoom-C": "HARNESS C - GLOVE BOX OUT THROUGH THE RH FENDER: FANS, HORNS, LIGHTS, RETRACTS, A/C, EPS",
   "HeavyDC": "HEAVY DC - BATTERY, KILL SWITCH, RADLOK PAIR, STARTER, ALTERNATOR, FUEL PUMP RELAY BLOCK",
   "Dash": "DASH - CAN TRUNK (ECU PLUG C, CLUSTER, REALDASH PI, CSB3, BULKHEAD), CSB3 SWITCH INPUTS, CRUISE LADDER, OPTO BOARD, CLUSTER LEDS",
-  "AntiTheft": "ANTI-THEFT - ALARM MODULE, SIREN, TRIGGERS, STATUS LED",
+  "AntiTheft": "ANTI-THEFT - ALARM-READY TAP POINTS (NO ALARM FITTED): FEEDS, TRIGGERS, IMMOBILISER, GROUND, SIREN AND HOOD PULL-WIRES",
   "WheelSpeed-Front": "FRONT WHEEL SPEED - FL / FR SENSORS TO THE FRONT VRC",
   "WheelSpeed-Rear": "REAR WHEEL SPEED - RL / RR SENSORS TO THE REAR VRC",
   "RearFuel": "REAR FUEL - FUEL PUMP AND LEVEL SENDER"
