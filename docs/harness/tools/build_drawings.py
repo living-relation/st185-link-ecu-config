@@ -380,8 +380,8 @@ def dr25_for(bundle_mm):
 # PLACED (Dan N69 a, 2026-11-07; DECISIONS "Placement and lengths (B8)"): the harnesses Dan has placed whose lengths step
 # (OPEN-ITEMS row 183 phase 4, Dan L2 a) is done. Their master `est_length_mm` is the tree length, written only by
 # --write-lengths, and --check fails on any difference. A harness joins here at its lengths step, once Dan OKs its
-# before -> after list (--lengths <harness>); until then it keeps its estimate.
-PLACED = ("AB-cabin", "AB-engine", "EngineRoom-C", "HeavyDC", "Dash")
+# before -> after list (--lengths <harness>); until then it keeps its estimate. AntiTheft joined 2026-11-07 (Dan N70 a).
+PLACED = ("AB-cabin", "AB-engine", "EngineRoom-C", "HeavyDC", "Dash", "AntiTheft")
 LENGTH_COL = "est_length_mm"
 
 
