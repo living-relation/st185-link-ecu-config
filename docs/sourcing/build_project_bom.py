@@ -98,8 +98,14 @@ import build_drawings as BD   # noqa: E402  (the drawing sets and their DR-25 pe
 MASTER = [r for r in rd(P("docs", "harness", "MASTER-wirelist.csv")) if not BD.is_removal(r)]
 PARTS = rd(P("docs", "sourcing", "harness-parts.csv"))
 LIBP = {q["part_number"]: q for q in PARTS}
-BOX = re.compile(r"^(LOGIC|POWER|POWER-STUDS|BATT-RELAY-BLOCK|K-)")
+BOX = re.compile(r"^(LOGIC|POWER|BATT-RELAY-BLOCK|K-)$|^K-")   # the box's own parts lists count these ends; a box ring
+# terminal (T-PWR-* / T-LOG-*, Dan N64 a) is the harness's lug and is counted here, one per wire (N65 a)
 NOT_PN = re.compile(r"^(TBD|INTEGRAL|none|solder|screw terminal|flying lead|crimp splice|factory|cut-and-cap|heat-shrink)", re.I)
+# the lugs the frozen fuse-box parts lists already buy for the harness wires at the box studs (their "Lugs" group: Klauke 2R5 /
+# 3R5MS / 6R8, TE 36161, Klauke 1R6): a box ring terminal with one of these is counted once, in the Mechanical section, as
+# before the ring terminals existed; a box ring with any other lug (the small GND stud rings) is counted here
+BOX_LUGS = {re.sub(r"^Klauke |MS$", "", r["part_number"]) for f in glob.glob(P("cad", "fusebox", "**", "fusebox-parts-*.csv"), recursive=True)
+            for r in rd(f) if r["group"] == "Lugs"}
 H_NEED, H_TBD = collections.Counter(), collections.Counter()
 seen_conn = set()
 SENSOR_IDS = {
@@ -125,6 +131,8 @@ def h_count(pn, n=1, what=""):
 
 
 for r in MASTER:
+    if BD.is_integral(r):      # a bus bar's copper, the MRBF fuse block, a bussed cap: bought on fixed-quantity lines (Dan N55 a / N62 a)
+        continue
     for s in ("from", "to"):
         t, i = r[s + "_type"], r[s + "_id"]
         if not t or BOX.match(i):
@@ -141,14 +149,16 @@ for r in MASTER:
                     pn = re.sub(r" \(bussed cap\)$", "", (r[s + "_" + col] or "").strip())
                     if pn and pn != "TBD" and not NOT_PN.match(pn):
                         SENSOR_PN.add(pn)
-        elif t == "terminal":
+        elif t == "terminal" and BD.BOX_RING.match(i) and (pn := r[s + "_terminal_pn"]) in BOX_LUGS:
+            pass      # a box ring's lug the frozen box parts list already buys (Mechanical section): counted once, there
+        elif t == "terminal" or (t == "splice" and BD.STUD_SPLICE.match(i)):   # a lug on a bar stud (Dan N65 a)
             h_count(r[s + "_terminal_pn"], what="lug / terminal (%s)" % i)
         elif t in ("resistor", "diode") and ("rd", i) not in seen_conn:
             seen_conn.add(("rd", i))
             h_count(r[s + "_housing_pn"], what="%s (%s)" % (t, i))
 WIRE_MM, CABLE_MM = collections.Counter(), collections.defaultdict(dict)
 for r in MASTER:
-    if not r["wire_id"]:
+    if not r["wire_id"] or BD.is_integral(r):
         continue
     mm = num(r["est_length_mm"]) or 0
     if r["cable"]:
@@ -161,6 +171,8 @@ for s in BD.own_harnesses():
     seg = collections.Counter()
     sq = collections.Counter()
     for r in H.wires:
+        if BD.is_integral(r):
+            continue
         p, _ = H.route(r)
         for a, b in zip(p or [], (p or [])[1:]):
             k = tuple(sorted((a, b)))

@@ -138,14 +138,13 @@ BANK = {'B1': 'New POWER fuse box', 'B2': 'New LOGIC fuse box', 'B3': 'New trunk
 BOX_OF = {f['master_id']: BANK[f['bank']] for f in FRM if f['kind'] == 'relay' and f['master_id'].startswith('K-')}
 BOX_WHOLE = {'POWER': BANK['B1'], 'LOGIC': BANK['B2'], 'BATT-RELAY-BLOCK': BANK['B3']}
 FUSE = {(BANK[f['bank']], f['position']): f['circuit'] for f in FRM if f['kind'] == 'fuse' and f['circuit'] != '(vacant)'}
-BOX_TERM = {'POWER-NEG-BAR': BANK['B1'] + ', NEG bar'}
 def fuse_text(box, pin):
     c = FUSE.get((box, pin))
     return (c + ' fuse' if re.search(r'\d A$', c) else c) if c else pin
 def box_label(i, pin=None):
     if i in BOX_OF: return '%s, %s' % (BOX_OF[i], i)
     if i in BOX_WHOLE: return BOX_WHOLE[i] if pin is None else '%s, %s' % (BOX_WHOLE[i], fuse_text(BOX_WHOLE[i], pin))
-    return BOX_TERM.get(i)
+    return None
 # factory taps (Dan 2026-11-04): the device (the master's name), its code, the pin, and the factory lead it is spliced onto
 OEMNAME = {'A15': 'A/C amplifier', 'A32': 'Auto A/C amplifier', 'A1': 'Ambient air temp sensor', 'JB1': 'J/B No.1',
            'IG2': 'Cowl-side factory plug', 'RB4': 'R/B No.4 starter relay', 'C16': 'Cruise control switch, combination switch plug B', 'A5': 'A/C pressure switch'}
@@ -173,6 +172,7 @@ def oem_label(r, s):
 def plain(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if box_label(i, p if i in BOX_WHOLE else None): return box_label(i, p if i in BOX_WHOLE else None)
+    if t == 'terminal' and B.BOX_RING.match(i): return 'New ' + r[s + '_name']
     if t == 'OEM': return '%s (%s)' % (OEMNAME.get(i, i), OEMCODE.get(i, i))
     if t == 'splice': return '%s (%s)' % (r[s + '_name'].split(' - ')[0], i)
     if t == 'cable screen':
@@ -213,7 +213,7 @@ for c in conn_ids:
     for p in pins:
         cv = {"id": "%s.%s" % (sid(c), sid(p)), "designation": p}
         here = [u for u in use[c].get(p, []) if u[0] == NAME]
-        mine_w = [u for u in here if u[1] and doc_of(u[2]) == DOC]
+        mine_w = sorted([u for u in here if u[1] and doc_of(u[2]) == DOC], key=lambda u: B.is_integral(u[2]))   # the real wire's contact
         theirs_w = [u for u in here if u[1] and doc_of(u[2]) != DOC]
         if mine_w:
             r, s = mine_w[0][2], mine_w[0][3]
@@ -244,7 +244,7 @@ OEM_T = {}        # terminal id of a factory lead -> its plug (A15-8, A15-9 ... 
 def tkey(r, s): return r[s + '_id'] + ('-' + r[s + '_pin'] if r[s + '_type'] == 'OEM' else '')
 def tlabel(r, s):
     i = r[s + '_id']
-    if r[s + '_type'] == 'terminal': return box_label(i) or i
+    if r[s + '_type'] == 'terminal': return 'New ' + r[s + '_name'] if B.BOX_RING.match(i) else (box_label(i) or i)   # a box stud ring (Dan N64 a)
     return oem_label(r, s)
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
@@ -269,9 +269,13 @@ def end(r, s):
     if t == 'cable screen': return None      # the screen floats at that end
     raise SystemExit('end type %r (%s): add it to gen_cabin.py' % (t, r['wire_id']))
 wires, cables, row_of = [], collections.OrderedDict(), {}
+LINK_IDS = set()     # INTEGRAL bridges of a bussed plug (Dan N57 a): drawn pin to pin, no part, no length
 for r in W:
     a, b = end(r, 'from'), end(r, 'to')
     row_of[r['wire_id']] = r
+    if B.is_integral(r):
+        wires.append({"id": "w_" + sid(r['wire_id']), "source": a, "target": b, "color": "Gray", "identLabel": r['wire_id']})
+        LINK_IDS.add(r['wire_id']); continue
     if r['cable']:
         cab = cables.setdefault(r['cable'], {"id": "cab_" + sid(r['cable']), "label": r['cable'], "cores": []})
         cp = part_id('cableParts', r['cable_pn'])
@@ -310,6 +314,7 @@ comp = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 tdesc = collections.defaultdict(list)
 for cond in CONDS:
     r = row_of[lab(cond)]
+    if B.is_integral(r): continue      # a cap bridge has no pin text of its own
     for s in ('from', 'to'):
         e = end(r, s)
         if not e or e['id'] not in comp or not r[s + '_desc']: continue
@@ -320,6 +325,10 @@ for cond in CONDS:
         assert not cv.get('signal') or cv['signal'] == r[s + '_desc'], (cv['id'], cv.get('signal'), r[s + '_desc'])
         cv['signal'] = r[s + '_desc']
 for i, ds in tdesc.items(): comp[i]['signal'] = '; '.join(ds)
+# a POWER / LOGIC box ring terminal carries its bar's global signal, so every stud on one bar reads as one net (Dan N64 a)
+for r in W:
+    for s in ('from', 'to'):
+        if B.ring_signal(r, s): comp['t_' + sid(tkey(r, s))]['signal'] = B.ring_signal(r, s)
 for c, n in conns.items():      # a new fuse box seat shows its fuse (sot/fuse-relay-map.csv), after the box name on the plug
     if c in BOX_WHOLE:
         for cv in n['cavities']:
@@ -347,7 +356,7 @@ for sp, n in list(splices.items()) + [(c, n) for c, n in conns.items() if c.star
     for r in W:
         for s in ('from', 'to'):
             o = 'to' if s == 'from' else 'from'
-            if r[s + '_id'] == sp and r[s + '_desc']:     # the signal: the wire to an ECU pin, else to a splice, else the first
+            if r[s + '_id'] == sp and r[s + '_desc'] and not B.is_integral(r):     # the signal: the wire to an ECU pin, else to a splice, else the first
                 own.append((r[s + '_desc'], 0 if r[o + '_id'].startswith('ECU-') else 1 if is_splice(r[o + '_type'], r[o + '_id']) else 2))
     own.sort(key=lambda x: x[1])
     lb = ext_label(sp, own)
@@ -757,14 +766,15 @@ def dist(b1, b2):
 
 # ================================================================== checks and emit
 expect = {lab(w): loc[w['source']['id']][1] + loc[w['target']['id']][1] + dist(loc[w['source']['id']][0], loc[w['target']['id']][0])
-          for w in CONDS if 'target' in w}
+          for w in CONDS if 'target' in w and lab(w) not in LINK_IDS}
 bad = {k: (v, hroute[k], row_of[k]['est_length_mm']) for k, v in expect.items() if not (v == hroute[k] == int(float(row_of[k]['est_length_mm'] or -1)))}
 bad.update({lab(w): (None, hroute[lab(w)], row_of[lab(w)]['est_length_mm']) for w in CONDS if 'target' not in w
             and hroute[lab(w)] != int(float(row_of[lab(w)]['est_length_mm'] or -1))})
 assert not bad, 'routed length != tree route != master est_length_mm: %r' % bad
 assert sorted(lab(w) for w in CONDS) == sorted(r['wire_id'] for r in W) and len({lab(w) for w in CONDS}) == len(W)
-cav_n = collections.Counter((e['id'], e['handle']) for w in CONDS for e in ends(w) if e['id'].startswith('c_'))
-cav_m = collections.Counter(("c_" + sid(r[s + '_id']), cav_of[(r[s + '_id'], r[s + '_pin'])]) for r in W for s in ('from', 'to') if r[s + '_type'] == 'connector')
+cav_n = collections.Counter((e['id'], e['handle']) for w in CONDS if lab(w) not in LINK_IDS for e in ends(w) if e['id'].startswith('c_'))
+cav_m = collections.Counter(("c_" + sid(r[s + '_id']), cav_of[(r[s + '_id'], r[s + '_pin'])]) for r in W if not B.is_integral(r)
+                            for s in ('from', 'to') if r[s + '_type'] == 'connector')
 assert cav_n == cav_m and all(v == 1 for v in cav_n.values()), {k: v for k, v in cav_n.items() if v > 1}
 NCONN = len(CONDS) + len(NC_CORES)
 assert NCONN <= 100, 'over the 100-connection plan limit: split by whole circuits into numbered documents (README)'

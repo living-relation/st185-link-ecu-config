@@ -50,7 +50,7 @@ show the name. Apply this map to every row's `from_name` / `to_name` for the id;
 | `K-HL` / `K-HR` / `K-HORN` / `K-ETB` / `K-ACC` / `K-EPS-EN` | Headlight LH / Headlight RH / Horn / Throttle power / A/C clutch / Steering pump enable relay (logic box M1 / M2 / M3 / M4 / M5 / M6) |
 | `K-EPS` | Steering pump relay (beside the power box) |
 | `LOGIC` / `POWER` | Logic fuse box (glove box) / Power fuse box (glove box) |
-| `POWER-STUDS` / `POWER-NEG-BAR` | Power box studs / Power box ground bar (M8) |
+| `T-PWR-*` / `T-LOG-*` | POWER / LOGIC box ring terminals, named by their stud ("POWER box NEG bar, GND ID stud"; DECISIONS "Bus bars and fuse box ends") |
 | `BATT-RELAY-BLOCK` | Trunk relay block |
 | `REV-SW` | Reverse light switch (EWD B1) |
 | `VSS` | Gearbox speed sensor (VSS, Toyota 83181-20040) |

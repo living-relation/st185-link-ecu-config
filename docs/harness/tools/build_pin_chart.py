@@ -39,7 +39,7 @@ FIX = {"BUS-5V": "+5 V bussed plug at the ECU, fed by ECU plug A pin 32 (BUS-5V)
        "IX-FUEL-P": "Fuel sender inline plug, harness side, trunk (IX-FUEL)", "IX-FUEL-S": "Fuel sender inline plug, sender side, trunk (IX-FUEL)",
        "R-CRUISE": "Cruise resistor on the CSB3", "F-PI": "RealDash Pi 5 A inline fuse",
        "CAN-TERM-END": "120 ohm CAN terminator plug, Lambda end", "POWER": "POWER fuse box", "LOGIC": "LOGIC fuse box",
-       "BATT-RELAY-BLOCK": "Trunk relay box", "POWER-STUDS": "POWER fuse box", "CSB3": "ECUMaster CSB3",
+       "BATT-RELAY-BLOCK": "Trunk relay box", "CSB3": "ECUMaster CSB3",
        "COIL-1": "Coil 1", "COIL-2": "Coil 2", "COIL-3": "Coil 3", "COIL-4": "Coil 4"}
 FUSE = {}
 for r in rows:
@@ -77,8 +77,6 @@ def where(i, name, typ, pin):
         p = pin[:-3] if side else pin
         f = FUSE.get((i, p))
         return d + " · fuse %s%s%s" % (p, " (%s)" % f if f else "", side)
-    if i == "POWER-STUDS":
-        return d + " · %s stud" % pin
     if i == "BATT-RELAY-BLOCK":
         return d + (" · FP fuse (40 A)" if pin == "FP" else " · battery + stud")
     return d + " · pin " + pin
@@ -119,6 +117,8 @@ def goes_to(r, o):
 # ---- gather every connector end
 con = collections.OrderedDict()
 for r in rows:
+    if BD.is_integral(r):      # a bussed cap's pin-to-pin bridge or a bus bar link (Dan N55 a / N57 a): no pin of its own
+        continue
     for s, o in (("from", "to"), ("to", "from")):
         if r[s + "_type"] != "connector":
             continue

@@ -5,21 +5,26 @@ Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide,
 lengths from HeavyDC's own Route 1 tree (Dan's approved placement, 2026-11-04), checked here against the master
 est_length_mm. The RADLOK pass-through pair (`w_rl_pos` / `w_rln`, blank length, Dan D2) is the firewall connector itself:
 no wire is drawn; each cabin RADLOK plug is MATED to its engine plug (Dan 2026-11-05), so the harness is two pieces joined
-by the two mates, drawn nose to nose. Stops if a length differs from the master or the file passes 100 connections (plan
+by the two mates, drawn nose to nose. The engine-bay jump bus bar (Blue Sea 2104) is one splice per stud (SP-JUMP-1 .. -4)
+joined by INTEGRAL links in stud order, and the alternator fuse block (Blue Sea MRBF 5191) is the INTEGRAL link "MRBF fuse
+(Blue Sea 5191)" from stud 3 to its output stud SP-ALT-FUSE (Dan 2026-11-07, N61 a); an INTEGRAL link is drawn as a wire with
+no part and no length check. The POWER box studs are ring terminals named by their stud, each carrying its bar's global signal
+("POWER box NEG bar", "POWER box + bar"; Dan N64 a). Stops if a length differs from the master or the file passes 100 connections (plan
 limit). gen_engc.py runs on import, so its helpers are not imported."""
 import sys, os, json, re, collections, math, csv
 REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'C', '2026-11-06'
+NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'D', '2026-11-07'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
 # connector itself, not a wire to cut: not drawn, listed in a note
 def is_pt(r): return not r['est_length_mm'] and r['from_type'] == r['to_type'] == 'connector' and r['from_housing_pn'] == r['to_housing_pn'] and r['from_housing_pn'].startswith('RL00801')
 PT = [r for r in ROWS if r['wire_id'] and is_pt(r)]
-W = [r for r in ROWS if r['wire_id'] and not is_pt(r)]
+LINKS = [r for r in ROWS if r['wire_id'] and B.is_integral(r)]     # bar copper / the MRBF fuse block (Dan N55 a): no length
+W = [r for r in ROWS if r['wire_id'] and not is_pt(r) and not B.is_integral(r)]
 assert all(r['est_length_mm'] for r in W), 'a HeavyDC wire has no length: %s' % [r['wire_id'] for r in W if not r['est_length_mm']]
 SPARE = [r for r in ROWS if not r['wire_id']]
 PASS = [r for r in ALL if r['harness'] != NAME and NAME in (r.get('passes_through') or '')]
@@ -53,8 +58,6 @@ NEW = {   # library 5LO8 parts this generator added (manufacturer / description 
     '5191': {"id": "cp_bluesea_5191", "url": "https://www.bluesea.com/products/5191", "hasShell": False, "numberOfCavities": 1,
              "configurations": [{"id": "cfg", "accessories": [{"id": "cfg-1", "type": "ContactPart", "partId": "ct_lug_stud"}]}]},
 }
-# a part bolted straight onto a stud of another part (no wire between): drawn as a mate, the stud takes no lug
-BOLTED = [('ALT-FUSE', 'JUMP-BAR', '3')]     # the alternator fuse block on bar stud 3 (DECISIONS Gauge cases (B12), Dan N29 a)
 def part_id(kind, pn):
     """library part id for this part number (a NEW part is added from harness-parts.csv); None for TBD / factory / unknown."""
     if not pn or pn.upper().startswith('TBD') or pn.startswith('factory'): return None
@@ -118,13 +121,14 @@ cav_of = {(c, cv['designation']): cv['id'] for c, n in conns.items() for cv in n
 # ------------------------------------------------------------------ other ends, wires
 terms, splices = collections.OrderedDict(), collections.OrderedDict()
 SPLP = {'solder splice': 'GENERIC SOLDER SPLICE', 'crimp splice': 'GENERIC CRIMP SPLICE 14-10'}
+def stud_splice(i): return bool(B.STUD_SPLICE.match(i))     # a bar stud drawn as a splice: no splice part (its lugs are TBD)
 def tkey(r, s):
     t, i, p, nm = r[s + '_type'], r[s + '_id'], r[s + '_pin'], r[s + '_name']
     if t == 'terminal': return i
     return '%s-%s' % (i, p) + (' cowl' if 'cowl lead' in nm.lower() and i == 'W1' else '')
 def tlabel(r, s):
     t, i, p, nm = r[s + '_type'], r[s + '_id'], r[s + '_pin'], r[s + '_name']
-    if t == 'terminal': return i
+    if t == 'terminal': return nm if B.BOX_RING.match(i) else i     # a box ring: its stud name, box first (Dan N64 a)
     if i == 'W1': return 'W1 pin %s (%s)' % (p, 'factory cowl lead' if 'cowl lead' in nm.lower() else 'washer motor')
     # a front device's lead names its device, the master's name before "<id> pin", code in parentheses (B22):
     # "LH headlamp (H1) pin 3 (factory lead)" (Dan 2026-11-03); cabin leads (IE1, J/B No.1, IG2, R/B No.4: master
@@ -143,7 +147,7 @@ def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
     if t == 'splice':
-        tp = r[s + '_terminal_pn']; pid = part_id('spliceParts', SPLP.get(tp, tp))
+        tp = r[s + '_terminal_pn']; pid = None if stud_splice(i) else part_id('spliceParts', SPLP.get(tp, tp))
         sp = splices.setdefault(i, {"id": "s_" + sid(i), "label": i})
         if pid: sp['partId'] = pid
         return {"id": sp['id'], "handle": "Splice"}
@@ -160,6 +164,12 @@ for r in W:
     if wp: w['partId'] = wp
     if r['colour'] == 'Red': w['stripeColor'] = STRIPE[r['circuit_id']][0]   # a new +12 V circuit needs a STRIPE entry
     wires.append(w); wire_row[r['wire_id']] = r
+# INTEGRAL links (Dan N55 a / N61 a): splice to splice, no part, labelled with what they are (the bar copper, "MRBF fuse (Blue Sea 5191)")
+link_ids = set()
+for r in LINKS:
+    lb = '%s: %s' % (r['wire_id'], r['from_desc'])
+    wires.append({"id": "w_" + sid(r['wire_id']), "source": end(r, 'from'), "target": end(r, 'to'), "color": "Gray", "identLabel": lb})
+    wire_row[lb] = r; link_ids.add(lb)
 # pin text (Dan 2026-11-01): each end shows its own master end description; a stud lists every description that lands on it
 desc = collections.defaultdict(list)
 for w in wires:
@@ -170,6 +180,10 @@ for w in wires:
 comp = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 for (i, hd), ds in desc.items():
     if i.startswith('t_'): comp[i]['signal'] = '; '.join(ds)
+# a POWER box ring terminal carries its bar's global signal, so every stud on one bar reads as one net (Dan N64 a)
+for r in W:
+    for s in ('from', 'to'):
+        if B.ring_signal(r, s): comp['t_' + sid(tkey(r, s))]['signal'] = B.ring_signal(r, s)
     else: next(cv for cv in comp[i]['cavities'] if cv['id'] == hd)['signal'] = '; '.join(ds)   # a stud cavity lists every lug's text
 
 # ================================================================== schematic: trunk / cabin ends left, engine bay right
@@ -177,11 +191,12 @@ def node_of(nm): return conns.get(nm) or terms.get(nm)
 # trunk and glove-box ends left (outer column: kill switch, trunk relay block, fuel pump relay, POWER box studs; inner column:
 # battery posts, ground points), the RADLOK firewall pairs in the middle (cabin plug, mated to its engine plug: Dan 2026-11-05,
 # a mate, not a wire), engine-bay ends right
-LEFT = [['KILL-SW', 'BATT-RELAY-BLOCK', 'K-FP', 'POWER-STUDS'],
+BOX_T = sorted({tkey(r, s) for r in W for s in ('from', 'to') if r[s + '_type'] == 'terminal' and B.BOX_RING.match(r[s + '_id'])})
+LEFT = [['KILL-SW', 'BATT-RELAY-BLOCK', 'K-FP'] + BOX_T,
         ['BATT-POS', 'T-TRUNK-NEG', 'GND-IG', 'GND-ID']]
 MID = [(r['from_id'], r['to_id']) for r in PT]          # (cabin plug, engine plug), POS before NEG
 MID.sort(key=lambda m: ('NEG' in m[0], m[0]))
-RIGHT = [['T-STARTER-B', 'T-ALT-B', 'JUMP-BAR', 'ALT-FUSE', 'JUMP-POST'],
+RIGHT = [['T-STARTER-B', 'T-ALT-B', 'JUMP-POST'],
          ['T-ENG-BLOCK']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
@@ -205,8 +220,9 @@ def stack(names, x, y0, skip=()):
 # the factory cabin taps inside; a box pin's wire runs out between the taps (no tap sits on a used box row)
 XO = -90 - 240 - 180     # the 180 gap holds the OEM splice notes of the cabin taps (below), clear of the box column
 stack(LEFT[0], XO, 0)
-box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)]
-            for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')}
+box_rows = {n['schematicPosition']['y'] + 30 * (i + 1) + 15 for nm in LEFT[0] for n in [node_of(nm)] if 'cavities' in n
+            for i, cv in enumerate(n['cavities']) if not cv.get('notConnected')} | \
+           {node_of(nm)['schematicPosition']['y'] + 15 for nm in LEFT[0] if 'cavities' not in node_of(nm)}   # a box ring terminal's row
 LEFT_BOTTOM = max(stack(LEFT[1], -90, 0, box_rows), max(node_of(nm)['schematicPosition']['y'] + h(node_of(nm)) for nm in LEFT[0]))
 # the firewall column: each cabin RADLOK plug takes its wire on its left (from the boxes), its mated engine plug sends its wire
 # right (to the engine bay); the pair sits on one row so the mate line is short and level; genroute reads `_exit`
@@ -216,11 +232,6 @@ for k, (cab, eng) in enumerate(MID):
     conns[cab]['schematicPosition'] = {"x": MX, "y": y}; conns[cab]['_exit'] = 'L'
     conns[eng]['schematicPosition'] = {"x": MX + 360, "y": y}; conns[eng]['_exit'] = 'R'
 mates = [{"id": "m_" + sid(r['wire_id']), "sourceId": conns[r['from_id']]['id'], "targetId": conns[r['to_id']]['id']} for r in PT]
-for blk, bar, stud in BOLTED:
-    assert blk in conns and bar in conns, (blk, bar)
-    cv = next(cv for cv in conns[bar]['cavities'] if cv['designation'] == stud)
-    assert cv.get('notConnected') and not cv.get('signal'), (bar, stud, 'a bolted-on part sits on this stud: no lug may land here')
-    mates.append({"id": "m_" + sid(blk), "sourceId": conns[blk]['id'], "targetId": conns[bar]['id']})
 NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 LEFT_IDS = {node_of(n)['id'] for g in LEFT for n in g}
 RIGHT_IDS = {node_of(n)['id'] for g in RIGHT for n in g}
@@ -267,7 +278,18 @@ def place_right(devx):
         y = stack(g, devx, y) + 60
     for n in pending:   # a splice with only front ends sits just left of the front column, on the row of its top front pin
         rys = [cav_y(NODES[o['id']], o['handle']) for w, x, o in links[n['id']] if o['id'] in RIGHT_IDS]
-        n['schematicPosition'] = {"x": devx - 240, "y": min(rys) - 15}
+        if rys: n['schematicPosition'] = {"x": devx - 240, "y": min(rys) - 15}
+    # a bar stud splice with no front end (jump bar studs 1 and 3): beside its linked neighbour, on the nearest free row of the column
+    for it in range(len(pending)):
+        for n in pending:
+            if 'schematicPosition' in n and n['schematicPosition']['x'] == devx - 240: continue
+            nb = [INLN[o['id']]['schematicPosition']['y'] for w, x, o in links[n['id']] if o['id'] in INLN
+                  and INLN[o['id']].get('schematicPosition', {}).get('x') == devx - 240]
+            if not nb: continue
+            busy = {m['schematicPosition']['y'] for m in pending if m is not n and m.get('schematicPosition', {}).get('x') == devx - 240}
+            yy = min((v for v in range(-15, 6000, 30) if v not in busy), key=lambda v: (abs(v - (min(nb) - 30)), v))
+            n['schematicPosition'] = {"x": devx - 240, "y": yy}
+    assert all(n.get('schematicPosition', {}).get('x') == devx - 240 for n in pending), [n['label'] for n in pending]
     return y - 60
 import copy, genroute
 def route_cost(devx):    # (unrouted wires, wires that need two lanes) with the front column at devx
@@ -289,12 +311,15 @@ print('schematic top y: left', TOPS[:2], '| right', TOPS[2], '| bottom left', LE
 assert TOPS[0] == TOPS[1] == TOPS[2] - 15, TOPS
 for n in inl: n.pop('_row', None)
 notes = []
-# the bolted-on part's stud: a note beside the bar, not a cavity signal (a signal on an N/C cavity is a validate warning)
-for blk, bar, stud in BOLTED:
-    p = conns[bar]['schematicPosition']
-    notes.append({"id": "n_" + sid(blk), "width": 360, "schematicPosition": {"x": p['x'] + 270, "y": p['y']},
-                  "text": "%s stud %s: %s (Blue Sea MRBF terminal fuse block 5191 with the 175 A fuse 5186) bolts on this stud, drawn as a "
-                          "mate; no lug lands here. The alternator lead w_alt lands on the block's M8 stud (Dan N26 a / N29 a)." % (bar, stud, blk)})
+# the jump bus bar: what its stud splices and INTEGRAL links are (Dan 2026-11-07)
+if LINKS:
+    p = splices['SP-JUMP-1']['schematicPosition'] if 'SP-JUMP-1' in splices else {"x": DEVX, "y": 0}
+    notes.append({"id": "n_jumpbar", "width": 360, "schematicPosition": {"x": DEVX + 270, "y": RIGHT_BOTTOM + 60},
+                  "text": "Jump bus bar (Blue Sea PowerBar 600A 2104): one splice per stud, SP-JUMP-1 .. SP-JUMP-4, each with its own lug; "
+                          "neighbours joined by INTEGRAL links (the bar's own copper) in stud order - the 1-4 numbering's order along the bar "
+                          "is not recorded. Stud 3 carries the Blue Sea MRBF terminal fuse block 5191 with the 175 A fuse 5186, drawn as the "
+                          "INTEGRAL link 'MRBF fuse (Blue Sea 5191)' to its output stud SP-ALT-FUSE, where the alternator lead w_alt lands "
+                          "(Dan 2026-11-07, N61 a). INTEGRAL links: no length, not bought by the cut list (Dan N55 a)."})
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
 # "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a); it sits on the
 # wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
@@ -337,8 +362,10 @@ pt_txt = '; '.join('%s (%s %s to %s %s)' % (r['wire_id'], r['from_id'], r['from_
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
               "text": TITLE + " Rev " + REV + " (" + DATE + ", HeavyDC's own Route 1 tree from Dan's approved placement 2026-11-04, Dan's format rules): "
                       "the battery cables (trunk battery, kill switch, trunk relay block feed, POWER box studs, ground points ID / IG, the RADLOK "
-                      "firewall pair, starter, alternator, engine block stud, jump bus bar, jump post; the alternator lead ends on its 175 A fuse block "
-                      "ALT-FUSE, drawn mated to the jump bus bar because it bolts on bar stud 3, Dan N26 a / N29 a). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+                      "firewall pair, starter, alternator, engine block stud, jump bus bar, jump post; the jump bus bar is one splice per stud joined by "
+                      "INTEGRAL links, and the alternator lead ends on the output stud of its 175 A fuse block, the INTEGRAL link 'MRBF fuse "
+                      "(Blue Sea 5191)' from bar stud 3, Dan 2026-11-07). The POWER box studs are ring terminals named by their stud, each "
+                      "carrying its bar's signal (Dan N64 a). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = HeavyDC) by docs/harness/tools/gen_heavydc.py; never a source. Schematic: trunk and glove-box ends left (boxes and "
                       "kill switch outside, battery posts and ground points inside), the RADLOK firewall pairs in the middle, engine-bay ends right. Each pin shows its own "
                       "master end text. Shared connectors are drawn whole; cavities wired by other harnesses are N/C with a note. The RADLOK "
@@ -362,7 +389,7 @@ def cid_of(r, s):
     if t == 'connector': return conns[r[s + '_id']]['id']
     if t in ('terminal', 'OEM'): return terms[tkey(r, s)]['id']
     return splices[r[s + '_id']]['id']
-for r in W + SPARE:
+for r in W + SPARE + LINKS:
     for s in ('from', 'to'):
         if not r[s + '_type']: continue
         cid = cid_of(r, s)
@@ -522,14 +549,15 @@ def dist(b1, b2):
     return sum(blen[(nodepar[x], x)] for c in (c1, c2) for x in c[:c.index(common)])
 
 # ================================================================== checks and emit
-expect = {w['identLabel']: loc[w['source']['id']][1] + loc[w['target']['id']][1] + dist(loc[w['source']['id']][0], loc[w['target']['id']][0]) for w in wires}
+expect = {w['identLabel']: loc[w['source']['id']][1] + loc[w['target']['id']][1] + dist(loc[w['source']['id']][0], loc[w['target']['id']][0])
+          for w in wires if w['identLabel'] not in link_ids}
 bad = {k: (v, hroute[k], wire_row[k]['est_length_mm']) for k, v in expect.items() if not (v == hroute[k] == int(float(wire_row[k]['est_length_mm'] or -1)))}
 assert not bad, 'routed length != tree route != master est_length_mm: %r' % bad
-assert sorted(w['identLabel'] for w in wires) == sorted(r['wire_id'] for r in W) and len({w['identLabel'] for w in wires}) == len(W)
+assert sorted(w['identLabel'] for w in wires if w['identLabel'] not in link_ids) == sorted(r['wire_id'] for r in W) and len(link_ids) == len(LINKS)
 cav_n = collections.Counter((e['id'], e['handle']) for w in wires for e in (w['source'], w['target']) if e['id'].startswith('c_'))
 cav_m = collections.Counter(("c_" + sid(r[s + '_id']), cav_of[(r[s + '_id'], r[s + '_pin'])]) for r in W for s in ('from', 'to') if r[s + '_type'] == 'connector')
-# a stud (POWER box NEG bar, kill switch main stud) takes several cable lugs; every other cavity takes one wire
-STUD_CAV = {('c_POWER_STUDS', 'POWER_STUDS.NEG'), ('c_KILL_SW', 'KILL_SW.MAIN2')}
+# a stud (kill switch main stud) takes several cable lugs; every other cavity takes one wire (the POWER box studs are one ring each)
+STUD_CAV = {('c_KILL_SW', 'KILL_SW.MAIN2')}
 assert cav_n == cav_m and all(v == 1 or k in STUD_CAV for k, v in cav_n.items()), {k: v for k, v in cav_n.items() if v > 1}
 doc = {"version": 1.3, "currency": "$", "lengthUnit": "mm", "gaugeUnit": "AWG", "schematic": {"connectorWidth": 240, "terminalWidth": 240},
        "connectors": list(conns.values()), "terminals": list(terms.values()), "splices": list(splices.values()),
