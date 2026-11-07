@@ -5,10 +5,12 @@ Harnesses are BUILT in harness.design (Dan 2026-11-01); this script makes no dra
 used to write are retired (git history keeps them). What it still does, for the master and the other scripts:
 
   1. LAYOUT TREE  `tools/<set>.layout.json` (nodes, xy, segments, place / place_oem) plus `route_trees` built from the
-                  approved route data (Routes 16 / 17; B8): every wire end is placed, every wire is routed, and the
-                  master `est_length_mm` must equal its tree length; an INTEGRAL row (`is_integral`: a bus bar's copper,
-                  the MRBF fuse block, a bussed cap; Dan N55 a) has both ends placed but no route and no length.
-                  harness.design generators import `Harness` /
+                  approved route data (Routes 16 / 17; B8): every wire end is placed and every wire is routed. The tree
+                  is the ONLY length source (Dan N69 a): for each harness in PLACED the master `est_length_mm` is the
+                  tree length, written by --write-lengths, never by hand, and --check fails on any difference; a
+                  harness not in PLACED keeps its estimate. An INTEGRAL row (`is_integral`: a bus bar's copper, the
+                  MRBF fuse block, a bussed cap; Dan N55 a) and a through-connector pair (`is_connector_pass`, the
+                  RADLOK pairs) have both ends placed but no length. harness.design generators import `Harness` /
                   `route()` from here for the same tree.
   2. WIRE LISTS   the per-harness wire lists in docs/harness/wirelists/ (Option A, DECISIONS "Wire lists"): an .xlsx and
                   a .csv (the Wires sheet, master ids and names) per harness, removal rows skipped (`is_removal`); both
@@ -18,8 +20,14 @@ used to write are retired (git history keeps them). What it still does, for the 
   Also: `od()` / `dr25_for()` give the DR-25 size per segment for docs/sourcing/build_project_bom.py.
 
     python docs/harness/tools/build_drawings.py [set]          write the wire lists and the DRB102 map
-    python docs/harness/tools/build_drawings.py --check [set]  fail if a wire end is not on the tree, a length is off,
-                                                              or a wire list / the DRB102 map is stale
+    python docs/harness/tools/build_drawings.py --check [set]  fail if a wire end is not on the tree, a PLACED harness's
+                                                              master length differs from its tree length, or a wire
+                                                              list / the DRB102 map is stale
+    python docs/harness/tools/build_drawings.py --lengths [harness ...]        the before -> after list (default PLACED;
+                                                              any harness, for its lengths step); writes nothing
+    python docs/harness/tools/build_drawings.py --write-lengths [harness ...]  write it into the master (PLACED only, after
+                                                              Dan OKs the list, L2 a), then rewrite the wire lists
+    python docs/harness/tools/build_drawings.py --self-test    prove the length check fails on a broken copy (CI)
 """
 import collections
 import csv
@@ -368,6 +376,133 @@ def dr25_for(bundle_mm):
     return next((pn for pn, exp, rec in DR25 if exp >= bundle_mm * 1.15), DR25[-1][0])
 
 
+# ------------------------------------------------------------------------------------------------ master lengths from the tree
+# PLACED (Dan N69 a, 2026-11-07; DECISIONS "Placement and lengths (B8)"): the harnesses Dan has placed whose lengths step
+# (OPEN-ITEMS row 183 phase 4, Dan L2 a) is done. Their master `est_length_mm` is the tree length, written only by
+# --write-lengths, and --check fails on any difference. A harness joins here at its lengths step, once Dan OKs its
+# before -> after list (--lengths <harness>); until then it keeps its estimate.
+PLACED = ("AB-cabin", "AB-engine", "EngineRoom-C", "HeavyDC", "Dash")
+LENGTH_COL = "est_length_mm"
+
+
+def is_connector_pass(r):
+    """A row joining the two halves of one through-connector (the RADLOK cabin / engine plug pairs `w_rl_pos` / `w_rln`,
+    Dan D2 2026-11-04): it is the connector itself, not a wire to cut, so it has no length (blank in the master)."""
+    return (r["from_type"] == r["to_type"] == "connector" and r["from_id"] != r["to_id"]
+            and r["from_housing_pn"] not in ("", "TBD") and r["from_housing_pn"] == r["to_housing_pn"])
+
+
+def _mm_text(v):
+    return "" if v in (None, "") else str(int(round(float(v))))
+
+
+def tree_lengths(H, only=PLACED):
+    """[(wire_id, harness, master, tree)] for every wire owned by a harness in `only`: the master `est_length_mm` and the
+    tree length as the master writes it (route(): tree path + `end_allowance_mm` at each end); '' for an INTEGRAL row or
+    a through-connector pair (no length); None when the wire does not route (H.problems says why)."""
+    out = []
+    for r in H.wires:
+        if r["harness"] not in only:
+            continue
+        if is_integral(r) or is_connector_pass(r):
+            tree = ""
+        else:
+            tree = H.route(r)[1]
+            tree = None if tree is None else _mm_text(tree)
+        out.append((r["wire_id"], r["harness"], r[LENGTH_COL].strip(), tree))
+    return out
+
+
+def length_changes(H, only=PLACED):
+    """The rows of tree_lengths() whose master length is not the tree length (unrouted wires left to H.problems)."""
+    return [x for x in tree_lengths(H, only) if x[3] is not None and _mm_text(x[2] or None) != x[3]]
+
+
+def _field_spans(line):
+    """(start, end) of each field of one CSV line, quotes kept, so one field is replaced without re-quoting the rest."""
+    spans, i, n = [], 0, len(line)
+    while True:
+        j = i
+        if j < n and line[j] == '"':
+            j += 1
+            while True:
+                k = line.index('"', j)
+                if k + 1 < n and line[k + 1] == '"':
+                    j = k + 2
+                    continue
+                j = k + 1
+                break
+        while j < n and line[j] != ",":
+            j += 1
+        spans.append((i, j))
+        if j >= n:
+            return spans
+        i = j + 1
+
+
+def set_master_lengths(text, new):
+    """The master text with `est_length_mm` set per {wire_id: mm text}; only that field of those lines changes (line
+    endings and every other field's quoting kept). Fails if a wire id is not found or a line is not one whole record."""
+    eol = "\r\n" if "\r\n" in text else "\n"
+    lines = text.split(eol)
+    head = next(csv.reader([lines[0]]))
+    wi, li = head.index("wire_id"), head.index(LENGTH_COL)
+    left = dict(new)
+    for k, line in enumerate(lines[1:], 1):
+        if not line:
+            continue
+        rec = next(csv.reader([line]))
+        if len(rec) != len(head):
+            raise SystemExit("master line %d is not one whole record (%d fields): not written" % (k + 1, len(rec)))
+        if rec[wi] in left:
+            a, b = _field_spans(line)[li]
+            lines[k] = line[:a] + left.pop(rec[wi]) + line[b:]
+    if left:
+        raise SystemExit("not written: wire id(s) not in the master: %s" % ", ".join(sorted(left)))
+    return eol.join(lines)
+
+
+def lengths_list(changes):
+    for wid, hn, before, after in changes:
+        print("   %-16s %-22s %6s -> %s" % (hn, wid, before or "(blank)", after or "(blank)"))
+
+
+def lengths_run(argv):
+    """--lengths [harness ...]: print the before -> after list (default PLACED; any harness for its lengths step, L2 a).
+    --write-lengths [harness ...]: write it into the master (PLACED harnesses only), then rewrite the wire lists."""
+    write = "--write-lengths" in argv
+    hs = tuple(a for a in argv if not a.startswith("-")) or PLACED
+    unknown = [h for h in hs if h not in {r["harness"] for r in master_rows()}]
+    if unknown:
+        raise SystemExit("no such harness in the master: %s" % ", ".join(unknown))
+    if write and set(hs) - set(PLACED):
+        raise SystemExit("not written: %s not in PLACED; add it there once Dan OKs its before -> after list (L2 a, N69 a)"
+                         % ", ".join(sorted(set(hs) - set(PLACED))))
+    changes, problems = [], []
+    for s in own_harnesses():
+        if not set(hs) & set(set_harnesses(s)):
+            continue
+        H = Harness(s)
+        changes += length_changes(H, hs)
+        problems += H.problems
+    for p in problems:
+        print("PROBLEM", p)
+    print("master lengths from the tree (%s): %d change(s)" % (", ".join(hs), len(changes)))
+    lengths_list(changes)
+    if not write or not changes:
+        return 1 if problems else 0
+    if problems:
+        raise SystemExit("not written: %d problem(s)" % len(problems))
+    with open(MASTER, encoding="utf-8", newline="") as f:
+        text = f.read()
+    with open(MASTER, "w", encoding="utf-8", newline="") as f:
+        f.write(set_master_lengths(text, {wid: after for wid, hn, before, after in changes}))
+    print("wrote", os.path.relpath(MASTER, REPO))
+    for s in own_harnesses():
+        build(s)
+    return 0
+
+
 # ------------------------------------------------------------------------------------------------ checks
 def check(h):
     H = Harness(h)
@@ -375,6 +510,9 @@ def check(h):
     for r in H.wires:
         H.route(r)
     bad += [x for x in H.problems if x not in bad]
+    for wid, hn, before, after in length_changes(H):
+        bad.append("%s (%s): master est_length_mm %s, tree length %s - lengths come from the tree only (N69 a): show Dan "
+                   "the list (build_drawings.py --lengths), then --write-lengths" % (wid, hn, before or "blank", after or "blank"))
     for name in wirelist_harnesses(H):
         have, want_wl = xlsx_digest(wirelist_path(name)), wirelist_digest(H, name)
         if have != want_wl:
@@ -1199,7 +1337,59 @@ def drb_render(rows, path):
     plt.close(fig)
 
 
+def self_test():
+    """Prove the N69 a length check fails on a broken copy (in memory; nothing is written). CI runs it."""
+    cases = []
+    H = Harness(own_harnesses()[0])
+    base = length_changes(H)
+    cases.append(("the committed master matches the tree for every placed harness", base == []))
+    def flagged(mutate, only=PLACED):
+        rows = {r["wire_id"]: r for r in H.wires}
+        saved = {k: dict(v) for k, v in rows.items()}
+        mutate(rows)
+        got = {x[0] for x in length_changes(H, only)} - {x[0] for x in base}
+        for k, v in saved.items():
+            rows[k].update(v)
+        return got
+    plain = lambda h: next(r for r in H.wires if r["harness"] == h and not is_integral(r) and not is_connector_pass(r))
+    w = plain(PLACED[0])
+    cases.append(("a placed wire 1 mm off its tree length",
+                  flagged(lambda rs: rs[w["wire_id"]].update(est_length_mm=str(int(float(w["est_length_mm"])) + 1))) == {w["wire_id"]}))
+    cases.append(("a placed wire with a blank length", flagged(lambda rs: rs[w["wire_id"]].update(est_length_mm="")) == {w["wire_id"]}))
+    link = next(r for r in H.wires if r["harness"] in PLACED and is_integral(r))
+    cases.append(("an INTEGRAL link given a length",
+                  flagged(lambda rs: rs[link["wire_id"]].update(est_length_mm="200")) == {link["wire_id"]}))
+    pt = [r for r in H.wires if r["harness"] in PLACED and is_connector_pass(r)]
+    cases.append(("the RADLOK pass-through pair stays blank", len(pt) == 2 and not {r["wire_id"] for r in pt} & {x[0] for x in base}))
+    other = next((r for r in H.wires if r["harness"] not in PLACED and not is_integral(r) and r["est_length_mm"]), None)
+    cases.append(("a harness not placed yet keeps its estimate", other is None or not flagged(
+        lambda rs: rs[other["wire_id"]].update(est_length_mm=str(int(float(other["est_length_mm"])) + 7)))))
+    with open(MASTER, encoding="utf-8", newline="") as f:
+        text = f.read()
+    rows = list(csv.reader(io.StringIO(text, newline="")))
+    head = rows[0]
+    wi, li = head.index("wire_id"), head.index(LENGTH_COL)
+    q = next(r for r in rows[1:] if r[wi] and r[li] and '"' in text.split("\n")[rows.index(r)])
+    same = set_master_lengths(text, {q[wi]: q[li]})
+    new = set_master_lengths(text, {q[wi]: "12345"})
+    got = list(csv.reader(io.StringIO(new, newline="")))
+    want = [list(r) for r in rows]
+    want[rows.index(q)][li] = "12345"
+    diff_lines = [k for k, (a, b) in enumerate(zip(text.split("\n"), new.split("\n"))) if a != b]
+    cases.append(("--write-lengths changes only that one field (quoting and line endings kept)",
+                  same == text and got == want and diff_lines == [rows.index(q)] and new.count("\r\n") == text.count("\r\n")))
+    bad = [n for n, ok in cases if not ok]
+    for n, ok in cases:
+        print("%-5s %s" % ("ok" if ok else "FAIL", n))
+    print("%d self-test failure(s)." % len(bad))
+    return 1 if bad else 0
+
+
 def main(argv):
+    if "--self-test" in argv:
+        return self_test()
+    if "--lengths" in argv or "--write-lengths" in argv:
+        return lengths_run(argv)
     check_mode = "--check" in argv
     want = [a for a in argv if not a.startswith("-")]
     hs = want or own_harnesses()

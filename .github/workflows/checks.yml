@@ -90,6 +90,9 @@ jobs:
       - name: Wiring check self-test (every check fails on a broken copy)
         if: steps.scope.outputs.run == 'true'
         run: python docs/harness/tools/check_wiring.py --self-test
+      - name: Length check self-test (placed harness lengths = layout tree, N69 a)
+        if: steps.scope.outputs.run == 'true'
+        run: python docs/harness/tools/build_drawings.py --self-test
       - name: Byte-compile CAN tooling
         if: steps.scope.outputs.run == 'true'
         run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
