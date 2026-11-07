@@ -20,7 +20,7 @@ that B9 points to).
 | `tools/gen_heavydc.py` | builds the harness.design HeavyDC document (`ST185-HeavyDC`; current rev: `docs/OPEN-ITEMS.md` "Current state") from the master; `python gen_heavydc.py <repo> <out>`, needs `<out>/lib_hdc.json` (part library 5LO8 dump); writes `hdc.json` (already routed with `genroute.py`, upload as is) and `hdc_lib_ops.json`. Built from HeavyDC's own Route 1 tree (Dan's approved placement); stops if a routed length differs from the master or the document passes 100 connections. The RADLOK pass-through is two mates, not wires; the jump bar's stud splices and `SP-ALT-FUSE` share one stub, so their INTEGRAL links have no bundle path (no length). Layout = formboard in two pieces mated at the RADLOK plugs; schematic = trunk and glove-box ends left, the RADLOK pairs in the middle, engine-bay ends right | Never by hand-editing its output |
 | `tools/genroute.py` | orthogonal schematic routing for a harness.design document JSON (Dan's format rules); keeps node positions, rewrites wire / core / shield points; `python genroute.py <doc.json> <out.json>` | Only with the format rules |
 | `tools/router.py` | the lane router `genroute.py` uses (box collision, a line along a box edge counts as a hit, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
-| `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout and deleted at its harness.design step (DECISIONS B8, Dan N72 b) | Only from Dan's markup or placement |
+| `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout and deleted at its harness.design step (DECISIONS B8, Dan N72 b); Route 1 (HeavyDC) is gone (Dan N77 b), its route is the layout tree | Only from Dan's markup or placement |
 | `PLAN-2026-10-31-audit.md` | temporary hand-off plan for OPEN-ITEMS row 172 (Dan 2026-10-31); deleted when it closes | No - closed to additions |
 | `circuit-plan.md` | the 21 circuits and the cut-list groups 1-8 wire by wire (remove / keep / re-fed by a master wire) | Yes, when a circuit decision changes |
 | `redesign/DECISIONS.md` | the one rules and decisions file (B1-B30, retire map, reconcile / shield / drawing / dispatch) | Only for a new Dan rule |
@@ -149,10 +149,11 @@ Ten harnesses today. Purpose restored from `git show e2ec9d7^:docs/harness/READM
 
 Alternator (Dan 2026-11-02): all 3 wires of the round 3-pin plug G2 (B) (1 S battery sense, 2 L charge lamp, 3 IG excite; ground through the case; 1993 EWD p.74-75) stay in one harness, EngineRoom-C (harness C, RH fender grommet to Route 16 line 9, no bulkhead pins); the heavy B+ cable stays in HeavyDC. Plug confirmed at the car (Dan 2026-11-02): the fitted 160 A alternator has the round G2 (B) plug, so the pinout above stands (the All-Trac grey G2 (A) plug, 1 L, 2 IG, 3 S, is not used).
 
-Routes 1 and 8-14 are the old route pages; no tool reads them since #456 (`check_wiring.py` R1 only lints them). Each is
+Routes 8-14 are the old route pages; no tool reads them since #456 (`check_wiring.py` R1 only lints them). Each is
 replaced by that harness's placement-editor layout at its pass and deleted at its harness.design step (B8; Dan N72 b,
-2026-11-07): Routes 8 / 12 / 13 at Dash's, 14 at AntiTheft's; Route 1 (HeavyDC) is held for one fact with no other home
-(`docs/OPEN-ITEMS.md` row 180). Only Routes 16 / 17 carry device spots today. Deleted routes, for a harness's
+2026-11-07): Routes 8 / 12 / 13 at Dash's, 14 at AntiTheft's. Route 1's page (HeavyDC) is gone (Dan N77 b, 2026-11-07; git history
+keeps it: `git show 432ca34:docs/harness/routes/<file>`, file `ROUTE-1-HEAVYDC.html`); HeavyDC's route is the layout tree
+`tools/ST185-harness.layout.json`. Only Routes 16 / 17 carry device spots today. Deleted routes, for a harness's
 starting map at its pass (all hand-drawn pictures, no route data, so their lines are traced into the editor): Routes 2-7
 from `801c1f3^` (#402: 2 old harness C rev 12, 3 / 4 A- / B-engine, 5 / 6 A- / B-cabin = AB-cabin, 7 CabinPower, its
 redraw approved in `5e5f21b`), read with `git show 801c1f3^:docs/harness/routes/<file>` (e.g. `ROUTE-7-CABINPOWER.html`); Route 15 rear lights
