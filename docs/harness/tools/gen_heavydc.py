@@ -8,7 +8,8 @@ no wire is drawn; each cabin RADLOK plug is MATED to its engine plug (Dan 2026-1
 by the two mates, drawn nose to nose. The engine-bay jump bus bar (Blue Sea 2104) is one splice per stud (SP-JUMP-1 .. -4)
 joined by INTEGRAL links in stud order, and the alternator fuse block (Blue Sea MRBF 5191) is the INTEGRAL link "MRBF fuse
 (Blue Sea 5191)" from stud 3 to its output stud SP-ALT-FUSE (Dan 2026-11-07, N61 a); an INTEGRAL link is drawn as a wire with
-no part and no length check. The POWER box studs are ring terminals named by their stud, each carrying its bar's global signal
+no part, no length check and no bundle path: the splices it joins share one stub and location, as gen_cabin.py's bus-plug
+bridges join two pins of one plug (0 mm). The POWER box studs are ring terminals named by their stud, each carrying its bar's global signal
 ("POWER box NEG bar", "POWER box + bar"; Dan N64 a). Stops if a length differs from the master or the file passes 100 connections (plan
 limit). gen_engc.py runs on import, so its helpers are not imported."""
 import sys, os, json, re, collections, math, csv
@@ -20,11 +21,10 @@ NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'D', '2026-11-07'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
-# connector itself, not a wire to cut: not drawn, listed in a note
-def is_pt(r): return not r['est_length_mm'] and r['from_type'] == r['to_type'] == 'connector' and r['from_housing_pn'] == r['to_housing_pn'] and r['from_housing_pn'].startswith('RL00801')
-PT = [r for r in ROWS if r['wire_id'] and is_pt(r)]
+# connector itself, not a wire to cut: not drawn, listed in a note (build_drawings.is_connector_pass)
+PT = [r for r in ROWS if r['wire_id'] and B.is_connector_pass(r)]
 LINKS = [r for r in ROWS if r['wire_id'] and B.is_integral(r)]     # bar copper / the MRBF fuse block (Dan N55 a): no length
-W = [r for r in ROWS if r['wire_id'] and not is_pt(r) and not B.is_integral(r)]
+W = [r for r in ROWS if r['wire_id'] and not B.is_connector_pass(r) and not B.is_integral(r)]
 assert all(r['est_length_mm'] for r in W), 'a HeavyDC wire has no length: %s' % [r['wire_id'] for r in W if not r['est_length_mm']]
 SPARE = [r for r in ROWS if not r['wire_id']]
 PASS = [r for r in ALL if r['harness'] != NAME and NAME in (r.get('passes_through') or '')]
@@ -52,10 +52,6 @@ def use_lib(kind, part):
 NEW = {   # library 5LO8 parts this generator added (manufacturer / description come from harness-parts.csv)
     # Blue Sea PowerBar 600A jump bus bar (Dan N15 a 2026-11-05): 4 studs 1-4 like the master pins, a lug per stud
     '2104': {"id": "cp_bluesea_2104", "url": "https://www.bluesea.com/products/2104", "hasShell": False, "numberOfCavities": 4,
-             "configurations": [{"id": "cfg", "accessories": [{"id": "cfg-1", "type": "ContactPart", "partId": "ct_lug_stud"}]}]},
-    # Blue Sea MRBF terminal fuse block, the alternator fuse on jump bus bar stud 3 (Dan N26 a / N29 a 2026-11-06): one M8 stud,
-    # the alternator lug is its one lug
-    '5191': {"id": "cp_bluesea_5191", "url": "https://www.bluesea.com/products/5191", "hasShell": False, "numberOfCavities": 1,
              "configurations": [{"id": "cfg", "accessories": [{"id": "cfg-1", "type": "ContactPart", "partId": "ct_lug_stud"}]}]},
 }
 def part_id(kind, pn):
@@ -396,6 +392,23 @@ for r in W + SPARE + LINKS:
         if cid in seen: continue
         nd = H.place(r, s); assert nd, (r['wire_id'], s)
         seen.add(cid); (node_items if cid[:2] in ('c_', 't_') else inline_at)[nd].append(cid)
+# INTEGRAL links (Dan N55 a) have no bundle path, as gen_cabin.py's bus-plug bridges: the splices one chain of links joins
+# (the jump bar studs SP-JUMP-1 .. -4 and SP-ALT-FUSE) share ONE stub and location, so each link runs 0 mm; every real
+# cable on those splices keeps its 100 mm stub plus its tree path
+grp = {}
+def gfind(x):
+    while grp.get(x, x) != x: x = grp[x]
+    return x
+for r in LINKS:
+    assert H.place(r, 'from') == H.place(r, 'to'), ('an INTEGRAL link whose ends sit on two tree nodes', r['wire_id'])
+    a, b = gfind(cid_of(r, 'from')), gfind(cid_of(r, 'to'))
+    if a != b: grp[b] = a
+co_loc = {}      # splice id -> the linked splice whose stub and location it shares
+for nd, items in inline_at.items():
+    first = {}
+    for cid in items: first.setdefault(gfind(cid), cid)
+    co_loc.update({cid: first[gfind(cid)] for cid in items if first[gfind(cid)] != cid})
+    inline_at[nd] = [cid for cid in items if cid not in co_loc]
 MATE_ORDER = {conns[n]['id']: k for k, m in enumerate(MID) for n in m}
 for nd in node_items: node_items[nd].sort(key=lambda c: MATE_ORDER.get(c, -1))
 segs, hroute = collections.Counter(), {}
@@ -536,6 +549,8 @@ for cid, (nd, q, pts) in stubs.items():
     ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
     if cid[:2] == 's_':
         bps.append({"id": "bp_" + cid, "layoutPosition": {"x": q[0], "y": q[1]}}); ALLC[cid]['locationId'] = "bp_" + cid; INL_AT[cid] = "bp_" + sid(nd)
+for cid, rep in co_loc.items():     # a linked stud splice on its neighbour's stub (no bundle path for the link)
+    ALLC[cid]['layoutPosition'] = dict(ALLC[rep]['layoutPosition']); ALLC[cid]['locationId'] = ALLC[rep]['locationId']; INL_AT[cid] = INL_AT[rep]
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
 loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] in ('c_', 't_')}
