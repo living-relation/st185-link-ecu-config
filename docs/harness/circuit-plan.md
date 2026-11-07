@@ -33,7 +33,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 
 ETB hold power is all cabin and J/B No.1 stays: Aux 6 (A28) holds K-EFI; DI 9 (B28) senses IG2; the IG2 wake diode feeds A5 from J/B1 1H-7; K-ETB on Aux 2 (A20) feeds B5.
 
-CAN node power: DECISIONS B17 and "Relays (B15)" (Dan 2026-11-04; wires in the master; factory feed path and the stereo reservation: README "Power injection").
+CAN node power: DECISIONS B17, "CAN wiring (B17)" and "Relays (B15)" (Dan 2026-11-04 / 2026-11-07: each node's own fused feed and ground join the CAN trunk start at ECU plug C and ride its 4-core branch cable; wires in the master; factory feed path and the stereo reservation: README "Power injection").
 
 Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS).
 
