@@ -514,6 +514,7 @@ Binding as part of B10, B12 and B27. Basis (Dan 2026-11-07): the harness.design 
 - N57 a (Dan 2026-11-07): the bus plugs (`BUS-5V`, `BUS-5V-2`, `BUS-GNDOUT-A`, `BUS-GNDOUT-B`, `BUS-SW12`) stay real DT06 plugs with their bussed caps; their used pins are bridged pin to pin in number order with INTEGRAL rows (`br_*`), so each reads as one circuit (`check_wiring.py` B1). Each cap busses every cavity: DT04-12PA-P021 "One 12-Pin Buss", DT04-08PA-P021 "One 8-Pin Buss" (Del City DT bussed receptacle pages; Amphenol AT04-12PA-P021 drawing note 3 "12 pin busbar", rev A2 ref DT04-12PA-P021).
 - N62 a (Dan 2026-11-07): the Blue Sea 2104 bar, MRBF block 5191 and fuse 5186 are fixed-quantity lines of `docs/sourcing/harness-parts.csv`; the ring terminals are counted from the master.
 - Frozen fuse boxes (Dan 2026-11-07 10:05): the fuse box CAD is largely frozen; relay and fuse slots "removed" during harness changes stay in the model as spares and can be used any time; they are not stale and cleanup sweeps must not flag them (e.g. 100L item 16 K-REV seat, 100P item 16 POWER relay, item 21 heater 87a, `cad/fusebox/rev7/wiring_plan.json` `t_pdb_gnd_*`). Never edit `cad/` to delete them.
+- N67 a (Dan 2026-11-07): the frozen LOGIC box parts list (`cad/fusebox/fusebox-parts-logic.csv` line 12) still counts the cluster DEV fuse as 15 A; it stays as is until the fuse box revisit (row 107); the fuse map (`sot/fuse-relay-map.csv`, DEV 5 A) wins (B27).
 
 ## Relays (B15)
 
