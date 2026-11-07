@@ -176,11 +176,11 @@ for w in wires:
 comp = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 for (i, hd), ds in desc.items():
     if i.startswith('t_'): comp[i]['signal'] = '; '.join(ds)
+    else: next(cv for cv in comp[i]['cavities'] if cv['id'] == hd)['signal'] = '; '.join(ds)   # a stud cavity lists every lug's text
 # a POWER box ring terminal carries its bar's global signal, so every stud on one bar reads as one net (Dan N64 a)
 for r in W:
     for s in ('from', 'to'):
         if B.ring_signal(r, s): comp['t_' + sid(tkey(r, s))]['signal'] = B.ring_signal(r, s)
-    else: next(cv for cv in comp[i]['cavities'] if cv['id'] == hd)['signal'] = '; '.join(ds)   # a stud cavity lists every lug's text
 
 # ================================================================== schematic: trunk / cabin ends left, engine bay right
 def node_of(nm): return conns.get(nm) or terms.get(nm)
