@@ -6,7 +6,9 @@ used to write are retired (git history keeps them). What it still does, for the 
 
   1. LAYOUT TREE  `tools/<set>.layout.json` (nodes, xy, segments, place / place_oem) plus `route_trees` built from the
                   approved route data (Routes 16 / 17; B8): every wire end is placed, every wire is routed, and the
-                  master `est_length_mm` must equal its tree length. harness.design generators import `Harness` /
+                  master `est_length_mm` must equal its tree length; an INTEGRAL row (`is_integral`: a bus bar's copper,
+                  the MRBF fuse block, a bussed cap; Dan N55 a) has both ends placed but no route and no length.
+                  harness.design generators import `Harness` /
                   `route()` from here for the same tree.
   2. WIRE LISTS   the per-harness wire lists in docs/harness/wirelists/ (Option A, DECISIONS "Wire lists"): an .xlsx and
                   a .csv (the Wires sheet, master ids and names) per harness, removal rows skipped (`is_removal`); both
@@ -57,6 +59,29 @@ def is_removal(r):
     check_wiring.py audits it; no generator builds, routes, sizes or buys it."""
     return (r.get("oem_method") or "").strip().lower().startswith("remove") or \
         (r.get("wire_pn") or "").startswith("none (removed)")
+
+
+def is_integral(r):
+    """An INTEGRAL row (Dan N55 a, 2026-11-07): a link that is part of a bought part, not a wire to cut - a bus bar's copper
+    between two stud splices, the MRBF fuse block between bar stud 3 and its output stud, a bussed cap joining two pins of a
+    bussed plug. `wire_pn` INTEGRAL: no length, no route, no BOM or cut-list line, no length check."""
+    return (r.get("wire_pn") or "") == "INTEGRAL"
+
+
+# a fuse-box end (Dan N64 a, 2026-11-07): one ring terminal per wire on a POWER / LOGIC box stud, named "<bar or fuse>, <stud> stud"
+BOX_RING = re.compile(r"^T-(PWR|LOG)-")
+# a stud of a bought bar drawn as a splice (the engine-bay jump bar 2104 studs and the MRBF fuse block 5191 output stud, Dan
+# 2026-11-07): each wire end on it is its own lug (its terminal_pn), and its neighbours join through INTEGRAL links
+STUD_SPLICE = re.compile(r"^SP-(JUMP-\d|ALT-FUSE)$")
+
+
+def ring_signal(r, s):
+    """The global signal of a fuse-box ring terminal: the part of its master name before ", " ("POWER box NEG bar", "POWER box
+    + bar", "LOGIC box Bus 1", "POWER box AMI OUT-3 fuse"); every stud on one bar shares it, so harness.design reads them as one
+    net (Dan N64 a). None for any other end."""
+    if r[s + "_type"] != "terminal" or not BOX_RING.match(r[s + "_id"]):
+        return None
+    return r[s + "_name"].split(", ")[0]
 
 
 # B9 6 in OEM pigtails: the new wire is spliced onto the factory lead at these front devices (lamps, pop-ups, ambient
@@ -317,6 +342,8 @@ class Harness:
             if n is None:
                 self.problems.append("%s: %s end %s %s is not placed on the layout (add it to %s.layout.json place)" % (
                     r["wire_id"], s, r[s + "_type"], r[s + "_conn"], self.h))
+        if is_integral(r):      # both ends must still be placed (a splice reached only by links too); no route, no length
+            return [], None
         if a is None or b is None:
             return None, None
         p = self.path(a, b)
@@ -382,7 +409,7 @@ WL_COLS = [("Wire", 14), ("From", 20), ("From Pin", 9), ("To", 20), ("To Pin", 9
            ("Cable Part Number", 20), ("From Contact PN", 17), ("To Contact PN", 17), ("From Device", 38),
            ("To Device", 38), ("Circuit", 10), ("Built With", 14), ("Net", 18), ("Continues", 50), ("Route Branch", 34),
            ("OEM Ref", 40), ("Notes", 60)]
-AWG_MM2 = {"4": 21.15, "6": 13.3, "8": 8.37, "10": 5.26, "12": 3.31, "14": 2.08, "16": 1.31, "18": 0.823, "20": 0.519,
+AWG_MM2 = {"1/0": 53.5, "2": 33.6, "4": 21.15, "6": 13.3, "8": 8.37, "10": 5.26, "12": 3.31, "14": 2.08, "16": 1.31, "18": 0.823, "20": 0.519,
            "22": 0.324, "24": 0.205}
 
 
@@ -555,7 +582,7 @@ def wirelist_rows(H, name, nets=None):
         if ft == "splice" and tt == "splice":
             fr, to = ("legs of %s" % r["from_id"], "-"), ("legs of %s" % r["to_id"], "-")
             splices, branch, dev, oth = [r["from_id"], r["to_id"]], "link", None, None
-            fc = tc = "solder splice"
+            fc = tc = "INTEGRAL" if is_integral(r) else "solder splice"
             fd, td = r["from_name"], r["to_name"]
         elif "splice" in (ft, tt):
             sp_side = "from" if ft == "splice" else "to"
@@ -573,7 +600,7 @@ def wirelist_rows(H, name, nets=None):
                 fd, td = r[dev + "_name"], "via %s" % " > ".join(splices)
         else:
             fr, to, splices = _end(r, "from"), _end(r, "to"), []
-            branch = "drain" if "cable screen" in (ft, tt) else ("core" if r["cable"] else "wire")
+            branch = "drain" if "cable screen" in (ft, tt) else ("core" if r["cable"] else ("link" if is_integral(r) else "wire"))
             fc, tc, fd, td = r["from_terminal_pn"], r["to_terminal_pn"], r["from_name"], r["to_name"]
             if tt == "cable screen" or ft == "cable screen":
                 if ft == "cable screen":
@@ -589,7 +616,7 @@ def wirelist_rows(H, name, nets=None):
         out.append({"Wire": r["wire_id"], "From": fr[0], "From Pin": fr[1], "To": to[0], "To Pin": to[1],
                     "Splice": " > ".join(splices), "Branch": branch, "Signal": sig,
                     "Colour": r["colour"], "Gauge (AWG)": r["gauge_awg"],
-                    "Length (mm)": r["est_length_mm"] or "TBD", "Wire Type": r["wire_pn"] or ("(cable core)" if r["cable"] else "TBD"),
+                    "Length (mm)": "none (INTEGRAL)" if is_integral(r) else (r["est_length_mm"] or "TBD"), "Wire Type": r["wire_pn"] or ("(cable core)" if r["cable"] else "TBD"),
                     "Cable": r["cable"], "Cable Part Number": r["cable_pn"], "From Contact PN": fc, "To Contact PN": tc,
                     "From Device": fd, "To Device": td, "Circuit": r["circuit"], "Built With": "ST185-" + r["harness"],
                     "Net": r["net"] or r["circuit"], "Continues": continues(r, [fr, to], splices),

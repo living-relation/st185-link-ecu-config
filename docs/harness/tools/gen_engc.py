@@ -14,6 +14,7 @@ NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'D', '2026-11-05'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
+assert not [r['wire_id'] for r in W if B.is_integral(r) or any(B.ring_signal(r, s) for s in ('from', 'to'))], 'EngineRoom-C has an INTEGRAL link or a fuse-box ring terminal now: draw it as gen_heavydc.py / gen_cabin.py do (no length check, the ring carries its bar signal, Dan N55 a / N64 a)'
 SPARE = [r for r in ROWS if not r['wire_id']]
 PASS = [r for r in ALL if r['harness'] != NAME and NAME in (r.get('passes_through') or '')]
 assert not any(r['cable'] for r in W), 'EngineRoom-C has a cable now: draw it as gen_cabin.py does (cores, shield, cores without ends)'

@@ -17,6 +17,7 @@ NAME, TITLE, REV = 'AB-engine', 'ST185-AB-engine', 'C'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
+assert not [r['wire_id'] for r in W if B.is_integral(r) or any(B.ring_signal(r, s) for s in ('from', 'to'))], 'AB-engine has an INTEGRAL link or a fuse-box ring terminal now: draw it as gen_heavydc.py / gen_cabin.py do (no length check, the ring carries its bar signal, Dan N55 a / N64 a)'
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): AB-engine has no factory-lead end today (every wire ends at a new
 # plug or the bulkhead), so it gets none; one that appears must be drawn with its "Splice to OEM wire" note as gen_engc.py does
 assert not [r['wire_id'] for r in W if B.oem_splices(r)], 'AB-engine has an OEM splice now: draw its factory lead and note as gen_engc.py does'

@@ -10,7 +10,10 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   F2  every connector end has an ID, a name, a housing PN, a pin, a pin source and a terminal PN (TBD allowed - listed);
       every splice / terminal / OEM end has an ID and a name; pins are numbers or letters (BUS2-1, 87a, IN3 ...), never a sign
   F3  nets = splices only: a wire has a net exactly when it lands on a splice or a bussed DT plug, and the net names it
-  F4  one wire per cavity (studs and splices excepted)
+  F4  one wire per cavity (studs and splices excepted; an INTEGRAL bridge of a bussed plug is no wire)
+  I1  an INTEGRAL row (Dan N55 a, 2026-11-07: a bus bar's copper, the MRBF fuse block, a bussed cap) has no length and no gauge
+      and joins two splices or two pins of one bussed plug
+  B1  every bussed plug (BUS-*) bridges its used pins pin to pin in number order with INTEGRAL rows, and only those (Dan N57 a)
   E1  every ECU pin a wire lands on is a live pin in sot/channels.csv, and every live ECU pin there has a wire
   E2  the far ends of each ECU power / ground / Gnd Out / sensor-supply / screen pin are of the class the Link G4X guide
       allows (R212); the ECU power grounds join only each other and one wire to the POWER box NEG bar (R216)
@@ -23,7 +26,10 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   M1  every DRB102 cavity and inline-pair cavity wired on one half is wired on the other
   M2  DRB102 contacts: size 16 cavities take 16-20 AWG, size 12 take 12-14 AWG, size 8 / 4 stay spare (TE drawing
       DRB12-102PXE-L018 rev C3); a contact the maker does not list for the housing fails (MAKER_CONTACTS)
-  P1  a fuse-box end exists in the fuse-box design (cad/fusebox/rev7/wiring_plan.json, R204) with the same gauge
+  P1  a fuse-box end exists in the fuse-box design (cad/fusebox/rev7/wiring_plan.json, R204) with the same gauge; a POWER /
+      LOGIC box ring terminal (T-PWR-* / T-LOG-*, "<bar or fuse>, <stud> stud", Dan N64 a) names a stud of the box design
+      (cad/fusebox/src/spec.py REV7 neg_studs / pos_studs, AMI_ROWS, FEEDS): a 1/0 stud takes one 1/0 lug, the small GND stud
+      up to 3 small rings, the + bar spare stud none, and every other bar stud is used
   R1  the approved route drawings (routes/*.html) lint clean (red lines unfilled, attributes sound, a top view after every
       figure, no overlapping labels); overlapping numbered markers are listed as warnings, since the routes are Dan's (R47)
   X1  XTREMEX-IO-TABLE.html's generated pin map is current with sot/channels.csv (--write-io-table rewrites it)
@@ -66,7 +72,9 @@ PIN_RE = re.compile(r"[A-Za-z0-9]+([ -][A-Za-z0-9]+)*")
 ECU = {"ECU-A": "ecu_a", "ECU-B": "ecu_b", "ECU-C": "ecu_com"}
 SCREEN_PINS = {("ECU-A", "7"), ("ECU-B", "17"), ("ECU-C", "1")}
 GROUND_PINS = {("ECU-A", "25"), ("ECU-A", "34"), ("ECU-B", "25"), ("ECU-B", "34")}
-NEG_BAR = "POWER-NEG-BAR"
+NEG_BAR = re.compile(r"^T-PWR-NEG-")      # the ring terminals on the POWER box battery-negative bar (Dan N64 a)
+BOX_RING = re.compile(r"^T-(PWR|LOG)-")     # a ring terminal on a POWER / LOGIC box stud (Dan N64 a, 2026-11-07)
+SPEC_DIR = os.path.join(REPO, "cad", "fusebox", "src")   # the frozen box design: read only
 # mated pairs: the two halves of one connector (cavity n mates cavity n)
 MATES = {"DRB102-CABIN": "DRB102-ENGINE", "IX-WS-F-S": "IX-WS-F-P", "IX-WS-R-S": "IX-WS-R-P", "IX-FUEL-S": "IX-FUEL-P"}
 MATES.update({v: k for k, v in list(MATES.items())})
@@ -77,8 +85,8 @@ DRB_SIZE.update({n: 12 for n in list(range(1, 9)) + list(range(95, 103))})
 DRB_SIZE.update({48: 8, 49: 8, 54: 8, 55: 8, 43: 4, 60: 4})
 DRB_RANGE = {16: (16, 20), 12: (12, 14)}
 # fuse-box ends: master ID -> the id the fuse-box design uses
-FB_IDS = {"LOGIC": "fb_logic", "POWER": "fb_power", "BATT-RELAY-BLOCK": "fb_batt", "POWER-STUDS": "pdb"}
-FB_PIN = {"BAT": "BAT+", "ALT": "ALT/STR", "NEG": "GND", "BATT": "BATT +", "FP": "FP 40A"}
+FB_IDS = {"LOGIC": "fb_logic", "POWER": "fb_power", "BATT-RELAY-BLOCK": "fb_batt"}
+FB_PIN = {"BATT": "BATT +", "FP": "FP 40A"}
 PLAN_GAUGE = {"53.5": "1/0"}     # the fuse-box design writes 1/0 battery cable as 53.5 (mm2, unit Metric)
 ELECTRONICS = re.compile(r"\bLED\b|CAN[- ]?LAMBDA|cluster|RealDash|\bPi\b|CSB3|opto|alarm|valet|shock|status|buck converter|cruise", re.I)
 CHASSIS = re.compile(r"^GND-|^T-AT-GND|^T-RL-GND|^ENG-GND|^T-ENG-BLOCK|^T-TRUNK-NEG|chassis", re.I)
@@ -92,7 +100,38 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
 # E3:w_at_gnd_a1 is the alarm ground lead (node AL-GND to ring terminal T-AT-GND), a named B10 exception (DECISIONS
 # "Grounds (B10)", Dan N43 b); the accessory grounds went with the accessories (alarm-ready tap points, Dan 2026-11-06).
 PENDING = {"E3:w_at_gnd_a1", "E3:w_led_gnd_out"}
-STUD_IDS = re.compile(r"^(POWER-STUDS|KILL-SW|RADLOK-|JUMP-POST|JUMP-BAR|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
+STUD_IDS = re.compile(r"^(KILL-SW|RADLOK-|JUMP-POST|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
+
+
+def is_integral(r):
+    return r.get("wire_pn") == "INTEGRAL"     # build_drawings.is_integral (Dan N55 a): part of a bought part, not a wire
+
+
+def box_studs():
+    """{(signal, stud): kind} from the frozen box design (cad/fusebox/src/spec.py), kind '1/0', 'small', 'spare', 'fuse' or
+    'feed'; None when the design is not on disk."""
+    if not os.path.exists(os.path.join(SPEC_DIR, "spec.py")):
+        return None
+    sys.path.insert(0, SPEC_DIR)
+    try:
+        import spec as S
+    finally:
+        sys.path.remove(SPEC_DIR)
+    out = {}
+    for _x, nm, _h, g in S.REV7["neg_studs"]:
+        out[("POWER box NEG bar", nm)] = g
+    for _y, nm, h in S.REV7["pos_studs"]:
+        out[("POWER box + bar", nm)] = "1/0" if h else "spare"
+    for row, fuses in S.AMI_ROWS.items():
+        for n, (nm, _a) in enumerate(fuses[:S.AMI_SLOTS[row]], 1):
+            if nm != "SP":
+                out[("POWER box AMI %s-%d fuse" % (row, n), "output")] = "fuse"
+    for bus in S.FEEDS:
+        out[("LOGIC box Bus %s" % bus[-1], "feed")] = "feed"
+    return out
+
+
+RING_NAME = re.compile(r"^(.+), (.+) stud$")
 
 
 def read_csv(path, text=None):
@@ -169,7 +208,7 @@ def far_ends(g, start_rows):
 WIRELIST_CSV = re.compile(r"docs/harness/wirelists/ST185-[A-Za-z0-9-]+-wirelist\.csv")
 
 
-def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=None, routes=True, io_table=True):
+def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=None, routes=True, io_table=True, studs=None):
     bad, tbd, pend = [], collections.defaultdict(set), set()
     warn = []
 
@@ -211,9 +250,7 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                         tbd[col].add("%s %s" % (eid, r[s + "_pin"]) if col != "housing_pn" else eid)
                 if r[s + "_pin"] and not PIN_RE.fullmatch(r[s + "_pin"]):
                     fail("F2", "%s %s pin %r is not a number / letter" % (where, eid, r[s + "_pin"]))
-                if r["wire_id"] and not eid.startswith("BUS-"):
-                    at[(eid, r[s + "_pin"])].append(r["wire_id"])
-                if r["wire_id"] and eid.startswith("BUS-"):
+                if r["wire_id"] and not is_integral(r):
                     at[(eid, r[s + "_pin"])].append(r["wire_id"])
             elif t in ("OEM", "resistor", "diode"):
                 if r[s + "_pin"] and not PIN_RE.fullmatch(r[s + "_pin"]):
@@ -234,6 +271,27 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
     for (eid, pin), ws in at.items():
         if len(ws) > 1 and not STUD_IDS.search(eid):
             fail("F4", "%s pin %s has %d wires: %s" % (eid, pin, len(ws), ", ".join(ws)))
+    # ---- I1 INTEGRAL rows / B1 bussed plugs bridged pin to pin (Dan N55 a / N57 a, 2026-11-07)
+    bridged = collections.defaultdict(set)
+    for r in wires:
+        if not is_integral(r):
+            continue
+        ft, tt, fi, ti = r["from_type"], r["to_type"], r["from_id"], r["to_id"]
+        if r["est_length_mm"] or r["gauge_awg"] or r["cable"]:
+            fail("I1", "%s is INTEGRAL: it has no length, gauge or cable (Dan N55 a)" % r["wire_id"])
+        if ft == tt == "splice" and fi != ti:
+            continue
+        if ft == tt == "connector" and fi == ti and fi.startswith("BUS-") and r["from_pin"] != r["to_pin"]:
+            bridged[fi].add(tuple(sorted((int(r["from_pin"]), int(r["to_pin"])))))
+            continue
+        fail("I1", "%s is INTEGRAL but joins %s %s to %s %s: only two splices or two pins of one bussed plug" % (
+            r["wire_id"], fi, r["from_pin"], ti, r["to_pin"]))
+    for bus in sorted({r[s + "_id"] for r in wires for s in ("from", "to") if r[s + "_id"].startswith("BUS-")}):
+        used = sorted({int(r[s + "_pin"]) for r in wires if not is_integral(r) for s in ("from", "to") if r[s + "_id"] == bus})
+        want = set(zip(used, used[1:]))
+        if bridged[bus] != want:
+            fail("B1", "%s: its used pins %s must be bridged pin to pin in number order (INTEGRAL, Dan N57 a): missing %s, extra %s"
+                 % (bus, used, sorted(want - bridged[bus]), sorted(bridged[bus] - want)))
     # ---- E1: ECU pins against channels.csv
     ch = {(c["conn"], c["pin"].lower()): c for c in channels if c["owner"] == "ECU"}
     live = {k for k, c in ch.items() if c["class"] not in ("nc", "spare", "N/A") and c["status"] == "set"}
@@ -292,7 +350,7 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                     continue
                 text = "%s %s %s" % (x[xs + "_desc"], x[xs + "_name"], x["circuit"])
                 if kind == "ground":
-                    if not ((xid, xpin) in GROUND_PINS or xid == NEG_BAR):
+                    if not ((xid, xpin) in GROUND_PINS or NEG_BAR.match(xid)):
                         fail("E2", "ECU ground %s %s reaches %s %s (%s): the ECU grounds join only each other and the NEG bar (R216)"
                              % (eid, pin, xid, xpin, x[xs + "_desc"]))
                 elif kind == "screen":
@@ -300,7 +358,7 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                         fail("E2", "screen pin %s %s reaches %s %s (%s): drains only (R212)" % (eid, pin, xid, xpin, x[xs + "_desc"]))
                 elif xt != "resistor" and not QSG_ENDS[kind].search(text):
                     fail("E2", "%s %s (%s) reaches %s %s (%s) (R212)" % (eid, pin, c["channel"], xid, xpin, x[xs + "_desc"]))
-    STUDS = re.compile(r"^(POWER-STUDS|BATT-RELAY-BLOCK|KILL-SW|RADLOK|POWER-NEG-BAR|JUMP-POST|JUMP-BAR)")
+    STUDS = re.compile(r"^(BATT-RELAY-BLOCK|KILL-SW|RADLOK|JUMP-POST|SP-JUMP-|T-PWR-|T-LOG-)")
     for r in wires:
         for s, o in ends(r):
             if r[s + "_type"] == "terminal" and CHASSIS.search(r[s + "_id"] + " " + r[s + "_name"]):
@@ -360,7 +418,7 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                         fail("M2", "%s cavity %s is size %d: stays spare" % (eid, pin, size))
                     elif r["gauge_awg"].isdigit() and not DRB_RANGE[size][0] <= int(r["gauge_awg"]) <= DRB_RANGE[size][1]:
                         fail("M2", "%s %s: %s AWG in a size-%d cavity (%d-%d AWG)" % (eid, pin, r["gauge_awg"], size, *DRB_RANGE[size]))
-            if r["wire_id"] and r[s + "_type"] == "connector":
+            if r["wire_id"] and r[s + "_type"] == "connector" and not is_integral(r):   # a cap bridge has no contact (I1)
                 hp, tp = r[s + "_housing_pn"], r[s + "_terminal_pn"]
                 if hp in MAKER_CONTACTS and tp not in ("TBD", "") and tp not in MAKER_CONTACTS[hp]["contacts"]:
                     fail("M2", "%s %s: contact %s is not one %s lists for %s" % (eid, pin, tp, "the maker", hp))
@@ -377,16 +435,64 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
         for r in wires:
             for s, o in ends(r):
                 eid = r[s + "_id"]
-                old = FB_IDS.get(eid) or (eid.lower().replace("-", "_") if eid.startswith("K-") else None)
-                if not old or r[s + "_type"] != "connector":
-                    continue
-                pin = FB_PIN.get(r[s + "_pin"], r[s + "_pin"]) if eid in ("POWER-STUDS", "BATT-RELAY-BLOCK") else r[s + "_pin"]
+                ring = RING_NAME.match(r[s + "_name"]) if r[s + "_type"] == "terminal" and BOX_RING.match(eid) else None
+                if ring:     # a box ring terminal -> the design's end: the bar studs are pdb BAT+ / ALT/STR / GND (Dan N64 a)
+                    sig, stud = ring.groups()
+                    m = re.match(r"POWER box AMI (IN|OUT)-(\d+) fuse$|LOGIC box Bus ([12])$", sig)
+                    if sig == "POWER box NEG bar":
+                        old, pin = "pdb", "GND"
+                    elif sig == "POWER box + bar":
+                        old, pin = "pdb", {"BAT+ IN": "BAT+", "RADLOK+": "ALT/STR"}.get(stud, stud)
+                    elif m and m.group(1):
+                        old, pin = "fb_power", "AMI %s-%s" % (m.group(1), m.group(2))
+                    elif m:
+                        old, pin = "fb_logic", "BUS" + m.group(3)
+                    else:
+                        fail("P1", "%s: %s names no POWER / LOGIC box bar or fuse (Dan N64 a)" % (r["wire_id"], r[s + "_name"]))
+                        continue
+                    if pin == "GND" and stud == "GND":
+                        continue    # the small GND stud: the box design lists the old relay grounds (frozen spares, B27), not these
+                else:
+                    old = FB_IDS.get(eid) or (eid.lower().replace("-", "_") if eid.startswith("K-") else None)
+                    if not old or r[s + "_type"] != "connector":
+                        continue
+                    pin = FB_PIN.get(r[s + "_pin"], r[s + "_pin"]) if eid == "BATT-RELAY-BLOCK" else r[s + "_pin"]
                 ws = plan_end.get((old, pin))
                 if not ws and old in ("fb_logic", "fb_power", "fb_batt", "pdb"):
                     fail("P1", "%s: fuse-box design has no wire at %s %s (R204)" % (r["wire_id"], eid, r[s + "_pin"]))
                 elif ws and r["gauge_awg"] and r["gauge_awg"] not in {PLAN_GAUGE.get(str(w.get("gauge")), str(w.get("gauge"))) for w in ws}:
                     fail("P1", "%s: %s %s is %s AWG in the fuse-box design, %s AWG in the master (R204)" % (
                         r["wire_id"], eid, r[s + "_pin"], "/".join(sorted({PLAN_GAUGE.get(str(w.get("gauge")), str(w.get("gauge"))) for w in ws})), r["gauge_awg"]))
+    # ---- P1 box ring terminals against the box design's studs (cad/fusebox/src/spec.py; Dan N64 a / N65 a, N60 a)
+    if studs:
+        on = collections.defaultdict(list)
+        for r in wires:
+            for s in ("from", "to"):
+                eid = r[s + "_id"]
+                if r[s + "_type"] != "terminal" or not BOX_RING.match(eid):
+                    continue
+                m = RING_NAME.match(r[s + "_name"])
+                key = m.groups() if m else None
+                if key not in studs:
+                    fail("P1", "%s: ring %s %r is no stud of the box design (spec.py REV7 / AMI_ROWS / FEEDS; Dan N64 a)"
+                         % (r["wire_id"], eid, r[s + "_name"]))
+                    continue
+                on[key].append((r, s))
+        rid = collections.Counter(r[s + "_id"] for v in on.values() for r, s in v)
+        for t, n in rid.items():
+            if n > 1:
+                fail("P1", "ring terminal %s takes %d wires: one ring per wire (Dan N65 a)" % (t, n))
+        for key, kind in sorted(studs.items()):
+            got = on.get(key, [])
+            want = {"1/0": (1, 1), "small": (1, 3), "spare": (0, 0)}.get(kind, (0, 1))
+            if not want[0] <= len(got) <= want[1]:
+                fail("P1", "%s, %s stud carries %d ring(s); the box design takes %s (spec.py; Dan N60 a)" % (
+                    key[0], key[1], len(got), "%d-%d" % want if want[0] != want[1] else str(want[0])))
+            for r, s in got:
+                if kind == "1/0" and r["gauge_awg"] != "1/0":
+                    fail("P1", "%s: %s AWG on the 1/0 stud %s, %s" % (r["wire_id"], r["gauge_awg"], *key))
+                if kind == "small" and r["gauge_awg"] == "1/0":
+                    fail("P1", "%s: a 1/0 cable on the small GND stud" % r["wire_id"])
     # ---- R1 routes
     if routes:
         for f in sorted(glob.glob(os.path.join(ROUTES, "*.html"))):
@@ -519,19 +625,19 @@ def load_all():
         tracked = subprocess.run(["git", "ls-files", "docs/harness"], cwd=REPO, capture_output=True, text=True).stdout.split()
     except OSError:
         tracked = None
-    return head, rows, ch_head, channels, plan, lib, tracked
+    return head, rows, ch_head, channels, plan, lib, tracked, box_studs()
 
 
 def self_test():
-    head, rows, ch_head, channels, plan, lib, tracked = load_all()
+    head, rows, ch_head, channels, plan, lib, tracked, studs = load_all()
     import copy
-    base, _, _ = check(rows, channels, head, ch_head, tracked, plan, lib, routes=False, io_table=False)
+    base, _, _ = check(rows, channels, head, ch_head, tracked, plan, lib, routes=False, io_table=False, studs=studs)
     cases = []
 
     def mutate(name, code, fn):
         rs = copy.deepcopy(rows)
         fn(rs)
-        got, _, _ = check(rs, channels, head, ch_head, None, plan, lib, routes=False, io_table=False)
+        got, _, _ = check(rs, channels, head, ch_head, None, plan, lib, routes=False, io_table=False, studs=studs)
         new = [x for x in got if x not in base]
         cases.append((name, any(x.startswith(code) for x in new)))
 
@@ -543,8 +649,17 @@ def self_test():
         from_pin="2"))
     mutate("a dead ECU pin wired", "E1", lambda rs: first(rs, lambda r: r["from_id"] == "ECU-A" and r["from_pin"] == "1").update(
         from_pin="18") if False else first(rs, lambda r: r["to_id"] == "ECU-B" and r["to_pin"] == "28").update(to_pin="1"))
-    mutate("the ECU ground to chassis", "E2", lambda rs: first(rs, lambda r: r["to_id"] == NEG_BAR and r["from_id"] == "SP-GND-ECU")
+    mutate("the ECU ground to chassis", "E2", lambda rs: first(rs, lambda r: NEG_BAR.match(r["to_id"]) and r["from_id"] == "SP-GND-ECU")
            .update(to_id="GND-IF", to_name="Ground point IF"))
+    mutate("an INTEGRAL link with a length", "I1", lambda rs: first(rs, lambda r: is_integral(r) and r["from_type"] == "splice")
+           .update(est_length_mm="200"))
+    mutate("a bussed plug pin left unbridged", "B1", lambda rs: rs.remove(first(rs, lambda r: is_integral(r) and r["from_id"] == "BUS-SW12")))
+    mutate("a ring on a stud the box design does not have", "P1", lambda rs: first(rs, lambda r: r["to_id"] == "T-PWR-NEG-BAT")
+           .update(to_name="POWER box NEG bar, BAT2 stud"))
+    mutate("two lugs on one 1/0 stud", "P1", lambda rs: first(rs, lambda r: r["from_id"] == "T-PWR-NEG-ID")
+           .update(from_name="POWER box NEG bar, GND IG stud", from_id="T-PWR-NEG-IG2"))
+    mutate("a fourth ring on the small GND stud", "P1", lambda rs: first(rs, lambda r: r["wire_id"] == "w_can_gnd")
+           .update(to_type="terminal", to_id="T-PWR-NEG-GND-4", to_name="POWER box NEG bar, GND stud", net=""))
     mutate("a relay coil driven on 86", "E4", lambda rs: first(rs, lambda r: r["from_id"] == "K-FAN" and r["from_pin"] == "85")
            .update(from_pin="86"))
     mutate("a screen landed on a device pin", "S2", lambda rs: first(rs, lambda r: r["from_type"] == "cable screen").update(
@@ -556,7 +671,8 @@ def self_test():
     for name, extra, want in (("a stray wiring CSV under docs/harness", "docs/harness/extra-wires.csv", True),
                               ("a CSV in wirelists/ not named like a wire list", "docs/harness/wirelists/notes.csv", True),
                               ("a generated wire list CSV (allowed)", "docs/harness/wirelists/ST185-Test-wirelist.csv", False)):
-        got, _, _ = check(rows, channels, head, ch_head, list(tracked or []) + [extra], plan, lib, routes=False, io_table=False)
+        got, _, _ = check(rows, channels, head, ch_head, list(tracked or []) + [extra], plan, lib, routes=False, io_table=False,
+                          studs=studs)
         new = [x for x in got if x not in base]
         cases.append((name, any(x.startswith("F1") for x in new) == want))
     bad = [n for n, ok in cases if not ok]
@@ -569,7 +685,7 @@ def self_test():
 def main(argv):
     if "--self-test" in argv:
         return self_test()
-    head, rows, ch_head, channels, plan, lib, tracked = load_all()
+    head, rows, ch_head, channels, plan, lib, tracked, studs = load_all()
     if "--write-io-table" in argv:
         cur, new = io_table_texts(channels)
         if cur != new:
@@ -577,7 +693,7 @@ def main(argv):
                 f.write(new)
             print("rewrote the pin map in XTREMEX-IO-TABLE.html")
         return 0
-    bad, tbd, pend = check(rows, channels, head, ch_head, tracked, plan, lib)
+    bad, tbd, pend = check(rows, channels, head, ch_head, tracked, plan, lib, studs=studs)
     nw = sum(1 for r in rows if r["wire_id"])
     print("master: %d rows (%d wires, %d spare cavities) in %d harnesses" % (len(rows), nw, len(rows) - nw,
                                                                             len({r["harness"] for r in rows})))
