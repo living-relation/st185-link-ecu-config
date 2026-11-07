@@ -151,7 +151,7 @@ OEMNAME = {'A15': 'A/C amplifier', 'A32': 'Auto A/C amplifier', 'A1': 'Ambient a
            'IG2': 'Cowl-side factory plug', 'RB4': 'R/B No.4 starter relay', 'C16': 'Cruise control switch, combination switch plug B', 'A5': 'A/C pressure switch'}
 OEMCODE = {}
 # far ends of legs drawn elsewhere, named for a splice label (the master's device names, plain)
-PLAIN = {'R-CRUISE': 'cruise ladder resistor', 'R-TERM-ECU': 'ECU-end CAN 120 ohm resistor', 'CSB3': 'ECUMaster CSB3',
+PLAIN = {'R-CRUISE': 'cruise ladder resistor', 'F-PI': 'RealDash Pi 5 A inline fuse', 'CSB3': 'ECUMaster CSB3',
          'T-CLUSTER-CAN': 'centre cluster CAN board', 'T-REALDASH-CAN': 'RealDash Pi USB-CAN adapter', 'OPTO-8': 'opto board'}
 def oem_lead(r, s):
     """the factory lead an OEM end is spliced onto: its colour and job from the master (oem_method / oem_location)"""

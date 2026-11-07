@@ -179,6 +179,19 @@ All multi-byte fields are **BigEndian**.
 
 ---
 
+## CAN bus termination check
+
+The bus has no extra ECU-end resistor: the ECU's built-in 120 ohm terminator is the ECU end (Dan N49 b, 2026-11-07;
+source Link forum moderator Adamw, not confirmed in Link's own manuals; DECISIONS "CAN wiring (B17)"). Check it once,
+before the first start:
+
+- ECU and CAN-Lambda (with its `CAN-TERM-END` terminator plug) both on the bus, everything **unpowered**.
+- Ohmmeter CAN H to CAN L (at any node branch, or ECU plug C pins 3 / 4).
+- About **60 ohm**: two terminators, as designed. Pass.
+- About **120 ohm**: the ECU has no built-in terminator. Stop: the ECU-end resistor `R-TERM-ECU` must come back (ask Dan).
+
+---
+
 ## 6. Command quick reference
 
 ```text

@@ -39,8 +39,8 @@ B2,BUS2-1,fuse,(vacant),,vacant,"was LAM 7.5 A to the CAN-Lambda (w_lam12_cp); t
 B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V); master 5 A vs fuse-box design 7.5 A
 B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A); fuse-box design still says 15 A
 B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A); fuse-box design still says 15 A
-B2,BUS2-5,fuse,CSB 5 A,LOGIC,assigned,w_csb12 to CSB3 pin 1
-B2,BUS2-6,fuse,DEV 15 A,LOGIC,assigned,"w_dev_clu to the centre cluster supply (the RealDash Pi moved to the factory CIG & RADIO 15 A ACC feed, SP-DEV dropped: Dan 2026-11-04, N5 a / N6)"
+B2,BUS2-5,fuse,CSB 5 A,LOGIC,assigned,"w_csb12 to the CSB3 +12 V join SP-CSB-12V at the CAN trunk start by ECU plug C, then the 20 AWG red core wc_12v_csb to CSB3 pin 1 (Dan 2026-11-07, N50 b)"
+B2,BUS2-6,fuse,DEV 5 A,LOGIC,assigned,"w_dev_clu to the cluster +12 V join SP-CLU-12V at the CAN trunk start by ECU plug C, then the 20 AWG red core wc_12v_clu of the cluster branch cable (DEV 15 A -> 5 A, Dan 2026-11-07 N52 a; the fuse-box CAD still shows DEV 15 until the row 107 revisit, B27); the RealDash Pi moved to the factory CIG & RADIO 15 A ACC feed, SP-DEV dropped: Dan 2026-11-04, N5 a / N6"
 B2,BUS2-7,fuse,EPSEN 5 A,LOGIC,assigned,K-EPS-EN 30; the only EPS enable fuse (E3 a, Dan 2026-11-02, was 7.5 A); fuse-box design still says 7.5 A
 B2,BUS2-8,fuse,ACC 10 A,LOGIC,assigned,K-ACC 30 and 86 via SP-ACC12
 B2,BUS2-9,fuse,ALMIG 2 A,LOGIC,assigned,w_at_ig_tie_cp to alarm-ready node AL-IGN

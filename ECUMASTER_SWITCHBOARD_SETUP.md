@@ -235,12 +235,12 @@ The CSB3 needs no configuration for the heartbeat. PCLink side: see `CAN-BUS-MAS
 
 Exactly two 120Ω termination resistors go on the bus — one at each physical end. **Settled
 (2026-09-27): the two ends are the ECU and the Link CAN-Lambda**, as drawn in
-`docs/harness/MASTER-wirelist.csv` (resistor `R-TERM-ECU` in harness `Dash`; at the CAN-Lambda end the AT04-2P-R120YEL terminator in plug `CAN-TERM-END`, harness `AB-engine`, Dan 2026-11-03). See the topology bullets in
+`docs/harness/MASTER-wirelist.csv` (at the ECU end the ECU's own built-in terminator, no extra resistor, Dan N49 b 2026-11-07, checked on the bench per `BENCH-TEST.md` "CAN bus termination check"; at the CAN-Lambda end the AT04-2P-R120YEL terminator in plug `CAN-TERM-END`, harness `AB-engine`, Dan 2026-11-03). See the topology bullets in
 `CAN-BUS-MASTER-DESIGN.md` §2 and §7.
 
 | Node | Position | Termination |
 |---|---|---|
-| Link G4X XtremeX ECU | Bus end 1 | **ON** — 120Ω in the Dash harness at the ECU end |
+| Link G4X XtremeX ECU | Bus end 1 | **ON** — 120Ω built into the ECU (no extra resistor) |
 | Link CAN-Lambda | Bus end 2 | **ON** — 120Ω in the AB-engine harness at the CAN-Lambda end |
 | center-cluster-esp32-p4 | Mid-bus stub | **None** (SN65HVD230 has no termination) |
 | ECUMaster CSB3 | Mid-bus stub | **Jumper OFF** — do not close onboard termination |
