@@ -192,7 +192,7 @@ new feed on J/B1 1A-1G. Superseded from that plan: R/B No.2 / No.4 removed, `k_s
 | NEG bar GND ID / GND IG studs | battery negative | `w_gnd_id`, `w_gnd_ig` (1/0) | ground ID (LH kick) and IG (R/B No.4 set bolt, RH kick) | cabin body grounds | p.234 / p.42 (ground points and their locations; checked at HeavyDC step 2, 2026-11-04) | current (HeavyDC) |
 | POS bar spare stud (M8, the third after BAT+ IN and RADLOK+) | reserved: audio amplifier | - | - | constant battery bus lug for a future amplifier: no fuse, no relay, no wiring yet (Dan 2026-11-04 09:07) | - | reserved (free in the box design, no CAD change) |
 | + bar BAT+ IN / RADLOK+ studs, NEG bar BAT- / RADLOK- studs | trunk battery in, out to the bay | `w_ks_h1`, `w_h3_radlok_pos`, `w_trunk_neg`, `w_h6a_radlok_neg` (1/0) | kill switch and battery -; RADLOK + / - to the starter B+ and block | HeavyDC | - | current |
-| NEG bar GND stud (3 rings, Dan N60 a) | battery negative | `w66` (10, ECU power ground), `w_k_on_85_cp` (20, K-ON coil 85), `w_cabin_gnd` (8, from the cabin ground splice `SP-CABIN-GND`: CAN-Lambda, coils, flex fuel, A/C amp, CAN nodes) | - | the small grounds | - | current; the 10 / 8 AWG rings TBD (no maker ring found narrow enough) |
+| NEG bar GND stud (3 rings, Dan N60 a) | battery negative | `w66` (10, ECU power ground), `w_k_on_85_cp` (20, K-ON coil 85), `w_cabin_gnd` (8, from the cabin ground splice `SP-CABIN-GND`: CAN-Lambda, coils, flex fuel, A/C amp, CAN nodes) | - | the small grounds | - | current; rings Panduit PV10-56R (`w66`), TE 320572 (`w_k_on_85_cp`), Klauke 2R8 (`w_cabin_gnd`), Dan N68 a |
 
 **B2 LOGIC box (glove box, inboard).** Bus 1 is permanent (from AMI OUT-1); Bus 2 is switched (K-EFI 30).
 
