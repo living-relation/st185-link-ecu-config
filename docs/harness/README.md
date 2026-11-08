@@ -176,6 +176,16 @@ No.4 fuses); J/B1 1H-7 (IGN) comes alive from AM2 through the ignition switch, s
 new feed on J/B1 1A-1G. Superseded from that plan: R/B No.2 / No.4 removed, `k_str` / `k_htr` / `k_pwr` / `k_rev`, the
 1990 / 1992 pin pages, the kept ER Main (see `circuit-plan.md` groups 6-8).
 
+**Factory boxes (B11).** The factory engine-room fuse and relay boxes are gone with the Engine Room Main Wire: J/B No.2
+(near the battery, with fusible-link block F11) and R/B No.5 (front right of the engine bay). The only factory boxes still
+used are the four cabin ones: J/B No.1 (left kick panel), J/B No.3 (behind the combination meter), R/B No.2 (left kick
+panel) and R/B No.4 (right kick panel) (1993 EWD relay locations p.20-27; Mitchell 1993 component locator). Every wire
+forward of the firewall is new, and every new circuit is fed from the glove-box POWER / LOGIC boxes (or the trunk `k_fp`).
+A kept factory circuit stays on its cabin box, even where its new wire runs forward of the firewall: front turn and
+clearance lamps (J/B No.1 1H-4 / 1H-6 / 1H-8), wiper (1H-5), starter solenoid (R/B No.4 starter relay), A/C pressure
+switch (R/B No.4 10 A A/C fuse); one that lost its feed with the engine-room boxes gets a glove-box feed (tables below)
+or a listed tap (J/B No.1 1H-7 IGN, never fed). The master row of each is the source.
+
 **B1 POWER box (glove box, outboard)**
 
 | Seat | Fuse / relay | Master wire (AWG) | Lands on | Powers | EWD | Status |

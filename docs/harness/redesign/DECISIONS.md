@@ -41,8 +41,8 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 
 - **B10 Grounds.** ECU power grounds splice to one wire to the POWER box battery-negative bar; Gnd Out takes only the
   return of a sensor the ECU powers, 12 V devices ground on the battery-negative bus. Detail: "Grounds (B10)" below.
-- **B11 Power.** New circuits: glove-box POWER / LOGIC boxes (+ trunk `k_fp`, 40 A). Kept OEM circuits stay on their J/B
-  fuses; one that lost its feed gets a glove-box feed or a listed J/B tap. Alternator fuse 175 A (MRBF, Gauge cases); stop: kill or ACC.
+- **B11 Power.** No factory fuse / relay box is left in the engine bay; factory boxes used: cabin J/B No.1, J/B No.3, R/B No.2, R/B No.4 only.
+  New feeds: glove-box POWER / LOGIC (+ trunk `k_fp`, 40 A); README "Factory boxes (B11)". Alternator fuse 175 A (MRBF, Gauge cases); stop: kill or ACC.
 - **B12 Wire gauge (Dan 2026-10-30).** The device and its wire set the circuit: size for the realistic peak load, drop to what
   the device's own contacts take; every contact end to end takes that wire and the fuse protects it. Steps and cases: "Gauge cases" below.
 - **B13 Splices, seals, covering.** Bussed DT plugs only where the master has them; other splices soldered. Seals only
