@@ -166,6 +166,25 @@ comp = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 for (i, hd), ds in desc.items():
     if i.startswith('t_'): comp[i]['signal'] = '; '.join(ds)
     else: next(cv for cv in comp[i]['cavities'] if cv['id'] == hd)['signal'] = ds[0]
+# the notes that sit on an end's row, known before placing so each end gets room for its text (Dan N99 a): OEM splice notes
+# (README "Pin text", Dan 2026-11-04 Y6 / N16 a; a blank colour gets no note and is listed) and a connector's N/C / spare note
+oem_col, oem_txt, oem_skip = {}, {}, []
+for r in W:
+    for s, c in B.oem_splices(r):
+        tid = 't_' + sid(tkey(r, s))
+        if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
+        assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
+        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+CONN_NOTE = collections.OrderedDict()
+for c, lst in other_owned.items():
+    by = collections.defaultdict(list)
+    for pin, own in lst: by[own].append(pin)
+    CONN_NOTE[c] = '%s: N/C cavities belong to other harnesses - ' % c + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items()))
+spares = collections.defaultdict(list)
+for r in SPARE: spares[r['from_id']].append(r['from_pin'])
+for c, pins in spares.items():
+    t = '%s: pins %s are EngineRoom-C spares (sealing plug TBD in the master).' % (c, ', '.join(sorted(pins, key=pkey)))
+    CONN_NOTE[c] = t + ' ' + CONN_NOTE[c] if c in CONN_NOTE else t
 
 # ================================================================== schematic: cabin ends left, splices middle, front right
 def node_of(nm): return conns.get(nm) or terms.get(nm)
@@ -185,15 +204,21 @@ assert sorted(placed) == sorted(set(conns) | set(terms)), (set(conns) | set(term
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
 def tap_plug(nm):     # factory leads of one plug (H1-1, H1-2, ...) stack touching, like the cavities of a connector
     m = re.match(r'(.*)-\d+( cowl)?$', nm); return m.group(1) if m else nm
+def span(nm):         # an end's box with its label tag and the notes on its row (build_drawings.end_span)
+    n = node_of(nm)
+    return B.end_span(n, [oem_txt[n['id']]] if n['id'] in oem_txt else [CONN_NOTE[nm]] if nm in CONN_NOTE else [])
 def stack(names, x, y0, skip=()):
-    """one column, top at y0: 30 between parts, factory leads of one plug touching; never a part on a row in skip"""
+    """one column, top at y0: 30 between parts, factory leads of one plug touching; never a part (with its label and notes)
+    on a row in skip. Where an end has text (a terminal's label tag, a note on its row) the step grows to keep it clear of
+    the next end (Dan N99 a, 2026-11-08: spread out only where the text is)"""
     y, prev = y0, None
     for nm in names:
-        n = node_of(nm)
+        n = node_of(nm); sp = span(nm); top, bot = B.span_rows(sp)
         if prev is not None:
             pn = node_of(prev)
-            y += h(pn) + (0 if 'cavities' not in n and 'cavities' not in pn and tap_plug(nm) == tap_plug(prev) else 30)
-        while any(y < r < y + h(n) for r in skip): y += 30
+            y += max(h(pn) + (0 if 'cavities' not in n and 'cavities' not in pn and tap_plug(nm) == tap_plug(prev) else 30),
+                     B.text_step(span(prev), sp))
+        while any(y + top < r < y + bot for r in skip): y += 30
         n['schematicPosition'] = {"x": x, "y": y}; prev = nm
     return y + h(node_of(prev)) if prev else y0
 # compact (README "Schematic", Dan 2026-11-02): the cabin end is two columns, the fuse / relay boxes and kill switch outside,
@@ -273,39 +298,29 @@ notes = []
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
 # "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a); it sits on the
 # wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
-# it covers no lane; genroute.py keeps wires out of it. A blank colour gets no note and is listed.
-oem_col, oem_txt, oem_skip = {}, {}, []
-for r in W:
-    for s, c in B.oem_splices(r):
-        tid = 't_' + sid(tkey(r, s))
-        if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
-        assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
-        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+# it covers no lane; genroute.py keeps wires out of it. A blank colour gets no note and is listed (texts: oem_txt, above).
 OEMW = 360                       # the full N16 a note at harness.design's widest note (60-360): about 50 characters a line, three lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; left = tid in LEFT_IDS
     notes.append({"id": "n_oem_" + tid, "text": oem_txt[tid], "width": OEMW, "alignment": "Right" if left else "Left",
                   "schematicPosition": {"x": p['x'] - OEMW if left else p['x'] + NODES[tid]['width'], "y": p['y']}})
 print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oem_skip) or 'none')
-for c, lst in other_owned.items():
-    n = conns[c]; by = collections.defaultdict(list)
-    for pin, own in lst: by[own].append(pin)
-    txt = '%s: N/C cavities belong to other harnesses - ' % c + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items()))
-    notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": XO - 390 if n['id'] in LEFT_IDS else DEVX + 270, "y": n['schematicPosition']['y']}})
-spares = collections.defaultdict(list)
-for r in SPARE: spares[r['from_id']].append(r['from_pin'])
-for c, pins in spares.items():
-    t = '%s: pins %s are EngineRoom-C spares (sealing plug TBD in the master).' % (c, ', '.join(sorted(pins, key=pkey)))
-    ex = next((x for x in notes if x['id'] == 'n_' + sid(c)), None)
-    if ex: ex['text'] = t + ' ' + ex['text']
-    else: notes.append({"id": "n_" + sid(c), "text": t, "width": 360, "schematicPosition": {"x": DEVX + 270, "y": conns[c]['schematicPosition']['y']}})
+for c, txt in CONN_NOTE.items():      # N/C and spare notes (texts above): beside the box column, or right of the front column
+    n = conns[c]
+    notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": XO - 390 if c in other_owned and n['id'] in LEFT_IDS else DEVX + 270, "y": n['schematicPosition']['y']}})
 for sname, sp in splices.items():     # a splice shared with another harness: say where its other legs are
     oth = sorted({(r['harness'], r['wire_id']) for r in ALL if r['harness'] != NAME and r['wire_id']
                   and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
     if oth:
-        notes.append({"id": "n_" + sid(sname), "width": 360, "schematicPosition": {"x": DEVX + 270, "y": sp['schematicPosition']['y']},
-                      "text": '%s: its other legs are in other harnesses - %s (the splice is drawn here with its EngineRoom-C leg only).'
-                              % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth))})
+        t = ('%s: its other legs are in other harnesses - %s (the splice is drawn here with its EngineRoom-C leg only).'
+             % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth)))
+        def clear(x, y):    # no other note's text where this one would sit (Dan N99 a)
+            return not any(abs(o['schematicPosition']['x'] - x) < 360 and abs(o['schematicPosition']['y'] - y) < (B.note_h(o['text']) + B.note_h(t)) / 2 + 5
+                           for o in notes)
+        y0 = sp['schematicPosition']['y']     # on the splice's row, else beside the front-column notes, else a little lower
+        x, y = next(((x, y0 + dy) for dy in range(0, 181, 30) for x in (DEVX + 270, DEVX + 270 + 390) if clear(x, y0 + dy)), (None, y0))
+        if x is None: x = DEVX + 270 + 390; print('note overlap left:', sname)
+        notes.append({"id": "n_" + sid(sname), "width": 360, "schematicPosition": {"x": x, "y": y}, "text": t})
 pass_by = collections.defaultdict(list)
 for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},

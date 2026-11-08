@@ -386,12 +386,21 @@ DEV_IDS = {i for i in NODES if i not in LEFT_IDS}
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
 def cab_h(c): return 30 + 30 * len(cseq(c))
 def tap_plug(i): return OEM_T.get(i, i)     # factory leads of one plug (A15-8, A15-9, ...) stack touching, like cavities
+# OEM splice notes (texts here, placed below), known before placing so each tap gets room for its label and note (Dan N99 a)
+oem_col, oem_txt, oem_skip = collections.OrderedDict(), {}, []
+for r in W:
+    for s, c in B.oem_splices(r):
+        tid = 't_' + sid(tkey(r, s))
+        if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
+        assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
+        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+def span(i): return B.end_span(NODES[i], [oem_txt[i]] if i in oem_txt else [])
 y, prev = 0, None
-for i in LEFT_IDS:
+for i in LEFT_IDS:     # where an end has text (a label tag, a note on its row) the step grows to keep it clear (Dan N99 a)
     n = NODES[i]
     if prev is not None:
-        y += h(NODES[prev]) + (0 if tap_plug(i) == tap_plug(prev) and 'cavities' not in n else
-                               (30 if place_of(i) == place_of(prev) else 60))
+        y += max(h(NODES[prev]) + (0 if tap_plug(i) == tap_plug(prev) and 'cavities' not in n else
+                                   (30 if place_of(i) == place_of(prev) else 60)), B.text_step(span(prev), span(i)))
     n['schematicPosition'] = {"x": 0, "y": y}; prev = i
 LEFT_BOTTOM = y + h(NODES[prev])
 def cav_y(n, handle):
@@ -613,14 +622,7 @@ NOTES = list(head)
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
 # "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a), on the wire's row
 # just left of its factory tap (text right-aligned); genroute.py keeps the other wires out of it, so the left-to-left wires run
-# down the outside left of the notes. A blank colour gets no note and is listed.
-oem_col, oem_txt, oem_skip = collections.OrderedDict(), {}, []
-for r in W:
-    for s, c in B.oem_splices(r):
-        tid = 't_' + sid(tkey(r, s))
-        if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
-        assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
-        oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+# down the outside left of the notes. A blank colour gets no note and is listed (texts: oem_txt, above).
 OEMW = 360                       # the full N16 a note at harness.design's widest note (60-360): about 50 characters a line, three lines
 for tid, c in oem_col.items():
     p = NODES[tid]['schematicPosition']; assert tid in LEFT_IDS, tid

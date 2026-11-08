@@ -292,6 +292,55 @@ def oem_splice_note(r, s, col):
     return 'Splice to OEM wire %s - %s, %s, %s' % (col, what_where, circ, loc or 'location TBD')
 
 
+# Schematic text sizes in harness.design (measured in the app, Dan N99 a, 2026-11-08): a terminal's label tag sits 25 px
+# above its 30-high box (a connector's label is inside its header row); a note's text (xs font, line height 14.4 px, 0.6 em
+# padding top and bottom) is centred on its 30-high row, about 50 characters a line at the widest width, 360.
+LABEL_H, LINE_H = 25, 14.4
+
+
+def note_lines(text, width=360):
+    """Estimated number of text lines of a schematic note (word-wrapped, about 50 characters a line at width 360)."""
+    import textwrap
+    return max(1, len(textwrap.wrap(text or '', max(10, width * 50 // 360))))
+
+
+def note_h(text, width=360):
+    """Estimated drawn height (px) of a schematic note, its text plus the 0.6 em padding above and below."""
+    return LINE_H * (note_lines(text, width) + 1)
+
+
+def end_span(node, notes=()):
+    """An end's extent relative to its y, as ((top, bottom) of its box with a terminal's label tag above it, (top, bottom)
+    of the text of the notes on its top row or None, (top, bottom) of a label tag wider than the box or None). The notes
+    (an OEM splice note, a connector's N/C note) sit in their own column beside the end, their text centred on its top row;
+    a terminal's label tag is centred over its box, about 30 + 5.3 px a character wide, so a long one reaches into the
+    note column."""
+    box = (0, 30 + 30 * len(node['cavities']) + (30 if node.get('shell') else 0)) if 'cavities' in node else (-LABEL_H, 30)
+    txt = None
+    for t in notes:
+        half = LINE_H * note_lines(t) / 2
+        txt = (min(15 - half, txt[0]), max(15 + half, txt[1])) if txt else (15 - half, 15 + half)
+    wide = 'cavities' not in node and 30 + 5.3 * len(node.get('label') or '') > node.get('width', 150) + 20
+    return box, txt, ((-LABEL_H, -4) if wide else None)
+
+
+def text_step(prev_span, span, gap=5, note_gap=8, tag_gap=3):
+    """The smallest grid step (a multiple of 30) from one stacked end's y to the next's that keeps their boxes and label
+    tags `gap` apart, their notes' text `note_gap` apart and a wide label tag `tag_gap` clear of the note above it (Dan
+    N99 a, 2026-11-08: spread out only where the text is)."""
+    (b1, t1, _), (b2, t2, w2) = prev_span, span
+    need = b1[1] - b2[0] + gap
+    if t1 and t2: need = max(need, t1[1] - t2[0] + note_gap)
+    if t1 and w2: need = max(need, t1[1] - w2[0] + tag_gap)
+    return int(math.ceil(need / 30.0)) * 30
+
+
+def span_rows(span):
+    """(top, bottom) of everything an end draws (box, label tag, note text), for keeping other wires' rows out of it."""
+    parts = [p for p in span if p]
+    return min(p[0] for p in parts), max(p[1] for p in parts)
+
+
 # A new fuse box's harness wire landings, in cavity order, for its harness.design part (library 5LO8): the box drawing's
 # "harness wires at the fuses" sheet is the source. LOGIC (B2): ST185-FB-100L rev V.01 sheet 3 (models folder
 # st185_fusebox_1101 revB = cad/fusebox rev 7): the two M5 bus feed lugs, the 21 mini fuse outputs, the two own fuse inputs.
