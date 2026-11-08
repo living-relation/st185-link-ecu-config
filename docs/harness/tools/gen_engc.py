@@ -163,15 +163,15 @@ for (i, hd), ds in desc.items():
 
 # ================================================================== schematic: cabin ends left, splices middle, front right
 def node_of(nm): return conns.get(nm) or terms.get(nm)
-LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN', 'KILL-SW'],
+LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN', 'K-DRL', 'KILL-SW'],
         ['IE1-6', 'IE1-13', 'IE1-20', 'JB1-1H-5', 'IE1-7', 'IE1-8', 'IE1-9', 'IE1-14', 'IE1-15', 'IE1-16', 'IE1-11', 'IE1-18',
          'JB1-1H-4', 'JB1-1H-6', 'JB1-1H-8', 'RB4-AC-2', 'IG2-16', 'W1-1 cowl', 'W1-2 cowl']]
 # a factory tap's key is '<locator>-<pin id>' with the master's own pin id (R/B No.4 'AC-2', J/B No.1 '1H-5'; phase 2)
 # front devices by side of the car, driver (LH) side up: a ground stud sits with the side its wires go to (EB LH, EA RH)
-RIGHT = [['H1-1', 'H1-2', 'H1-3', 'R2-1', 'R2-2', 'R2-3', 'R2-4', 'R2-5', 'F7-1', 'F7-2', 'F7-3', 'F5-1', 'F5-2', 'GND-EB', 'GND-EB-2'],
+RIGHT = [['H1-1', 'H1-2', 'H1-3', 'H1-DRL', 'H1-TURN', 'R2-1', 'R2-2', 'R2-3', 'R2-4', 'R2-5', 'F7-1', 'F7-2', 'F7-3', 'F5-1', 'F5-2', 'GND-EB', 'GND-EB-2'],
          ['F9-1', 'F9-2', 'F9-3', 'F9-4', 'HORN-LH', 'HORN-RH', 'FAN-RAD', 'FAN-RAD-GND', 'FAN-COND', 'FAN-COND-GND', 'A4-4', 'A5-1', 'A5-4',
           'ALT-PLUG', 'MRS-A', 'MRS-B', 'MRS-C', 'T-ENG-BLOCK-2'],
-         ['GND-EA', 'H2-1', 'H2-2', 'H2-3', 'R3-1', 'R3-2', 'R3-3', 'R3-4', 'R3-5', 'F8-1', 'F8-2', 'F8-3', 'F6-1', 'F6-2', 'W1-1', 'W1-2']]
+         ['GND-EA', 'H2-1', 'H2-2', 'H2-3', 'H2-DRL', 'H2-TURN', 'R3-1', 'R3-2', 'R3-3', 'R3-4', 'R3-5', 'F8-1', 'F8-2', 'F8-3', 'F6-1', 'F6-2', 'W1-1', 'W1-2']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
 placed = [n for g in LEFT + RIGHT for n in g]

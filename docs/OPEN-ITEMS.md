@@ -18,9 +18,6 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| N84 | Headlamp wiring for the HWSTAR H6054 LED lamps (Dan 2026-11-08) | The lamps (high / low / common plug + white DRL 0.24 A + yellow turn 0.2 A per lamp; ~1.6 A low, 3.2 A high) want switched +12 V and a ground common; the 1993 car switches the beams on the ground side (EWD p.116; plug H1 / H2 pin 3 +12 V, pin 1 R-L low ground, pin 2 R-W high ground). The factory headlight relay and HEAD / RTR fuses were in J/B No.2, now removed; the LOGIC box relays K-HL / K-HR replace them. Dan bought the RENMAII REN012 H4 relay kit (2 relays, own 30 A battery feed). | A) no relay kit: harness C feeds the lamps +12 V-switched from LOGIC box relays (low / high), lamp common to the same-side ground stud, the factory dimmer only drives the relay coils; B) use the relay kit as bought | A |
-| N85 | DRL behaviour with the headlamps on | A separate ignition-fed DRL switch raises the pop-ups (a changeover relay on retract relay R8 pin 8, R-Y, so the beams stay off; EWD p.116-117) and lights the lamps' DRL wires. | A) DRL off when the headlamps are on; B) DRL stays on | A |
-| N86 | LH horn ground side | Both horn grounds land on EA (front RH body point); the master's side convention is LH = EB, RH = EA (README). Factory horns ground through their case / bracket (EWD p.185), both near the front centre, slightly left (p.29). | A) LH horn ground to EB, RH stays EA; B) both on EA as one short run, with a note naming the exception; C) both to EB | A |
 
 ## Status (2026-11-08)
 

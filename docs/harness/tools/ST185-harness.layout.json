@@ -879,6 +879,17 @@
   "SP-HR": "GB",
   "SP-HZ": "GB",
   "SP-HEAD-COIL": "GB",
+  "K-DRL": "GB",
+  "SP-HL-ON": "GB",
+  "SP-HR-HI": "GB",
+  "R-HB": "GB",
+  "SP-DRL12": "GB",
+  "SP-HORN-GND": "HORNS",
+  "SP-R8-UP": "JB1",
+  "D-R8-1": "JB1",
+  "D-R8-2": "JB1",
+  "DRL-SW": "COLUMN",
+  "SP-DRL-SW": "COLUMN",
   "SP-AT-12V": "ALARM",
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",
@@ -1086,6 +1097,10 @@
   [
    "LH front side marker lamp",
    "MARK_LH"
+  ],
+  [
+   "retract control relay R8",
+   "JB1"
   ]
  ],
  "wirelists": [

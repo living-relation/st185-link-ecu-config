@@ -100,7 +100,7 @@ BOX_GROUPS = (
     ("gFB100P", "POWER box (ST185-FB-100P)", "gp_fb_100p",
      lambda i: i.startswith("T-PWR-") or i in ("K-EFI", "K-FAN", "K-FAN2")),
     ("gFB100L", "LOGIC box (ST185-FB-100L)", "gp_fb_100l",
-     lambda i: i == "LOGIC" or i.startswith("T-LOG-") or i in ("K-HL", "K-HR", "K-HORN", "K-ETB", "K-ACC", "K-EPS-EN", "K-ON")),
+     lambda i: i == "LOGIC" or i.startswith("T-LOG-") or i in ("K-HL", "K-HR", "K-HORN", "K-ETB", "K-ACC", "K-EPS-EN", "K-ON", "K-DRL")),
 )
 BOX_GROUP_PARTS = {
     "gp_fb_100p": {"id": "gp_fb_100p", "color": "Yellow", "partNumber": "ST185-FB-100P",
