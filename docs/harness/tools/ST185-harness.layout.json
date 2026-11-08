@@ -1111,7 +1111,11 @@
   "HeavyDC",
   "Dash",
   "AntiTheft",
-  "EngineRoom-C"
+  "EngineRoom-C",
+  "CabinPower",
+  "WheelSpeed-Front",
+  "WheelSpeed-Rear",
+  "RearFuel"
  ],
  "harnesses": [
   "AB-cabin",
