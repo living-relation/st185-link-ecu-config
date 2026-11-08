@@ -92,6 +92,118 @@ def ring_signal(r, s):
     return r[s + "_name"].split(", ")[0]
 
 
+# The two frozen fuse boxes are devices (Dan N81 a, 2026-11-07; DECISIONS "Bus bars and fuse box ends"): each is one
+# harness.design Group with a Group Part, excludeFromBom on the group, because the box parts lists in cad/fusebox buy the box
+# and its relays. Members (master ids): the box ring terminals, the LOGIC connector (fuse slots) and the box relays.
+# (group id - alphanumeric only, name, group part, member test)
+BOX_GROUPS = (
+    ("gFB100P", "POWER box (ST185-FB-100P)", "gp_fb_100p",
+     lambda i: i.startswith("T-PWR-") or i in ("K-EFI", "K-FAN", "K-FAN2")),
+    ("gFB100L", "LOGIC box (ST185-FB-100L)", "gp_fb_100l",
+     lambda i: i == "LOGIC" or i.startswith("T-LOG-") or i in ("K-HL", "K-HR", "K-HORN", "K-ETB", "K-ACC", "K-EPS-EN", "K-ON")),
+)
+BOX_GROUP_PARTS = {
+    "gp_fb_100p": {"id": "gp_fb_100p", "color": "Yellow", "partNumber": "ST185-FB-100P",
+                   "description": "FUSE BOX, POWER BOX (bought on cad/fusebox parts list)"},
+    "gp_fb_100l": {"id": "gp_fb_100l", "color": "Yellow", "partNumber": "ST185-FB-100L",
+                   "description": "FUSE BOX, LOGIC BOX (bought on cad/fusebox parts list)"},
+}
+# Dan N80 a (2026-11-07): K-ACC stays outside the LOGIC group in AB-cabin 2 until CabinPower is built (grouping it there pulls
+# splice SP-ACC12 in and breaks wire W36's route); everywhere else it is in the group. K-EPS (B4) is in neither box.
+BOX_GROUP_OUTSIDE = {"AB-cabin 2": ("K-ACC",)}
+
+
+def box_groups(doc, outside=()):
+    """Emit the fuse-box device groups in a generated harness.design document (Dan N81 a / N80 a, 2026-11-07), in the format
+    the app writes: the members move into groups[].document with their own ids, and every reference from outside reads
+    "<group id>-<id>" (a connector cavity handle too); groupParts carries the Group Parts. The LOGIC connector and the box
+    relay connectors are excludeFromBom (each part is the whole box assembly or the relay, which the box parts list buys;
+    the parts stay for identification), even a relay kept outside its group (`outside`, N80 a). The ring terminals stay
+    counted (N65 a). Members are found by the generators' ids: "c_" / "t_" + the master id with "-" as "_"."""
+    groups, qual = [], {}
+    for gid, name, gp, member in BOX_GROUPS:
+        sub = {}
+        for key, pre in (("terminals", "t_"), ("connectors", "c_")):
+            for n in doc.get(key, []):
+                mid = n["id"][len(pre):].replace("_", "-") if n["id"].startswith(pre) else None
+                if mid is None or not member(mid):
+                    continue
+                if key == "connectors":
+                    n["excludeFromBom"] = True
+                if mid in outside:
+                    continue
+                sub.setdefault(key, []).append(n)
+        if not sub:
+            continue
+        for key, ns in sub.items():
+            doc[key] = [n for n in doc[key] if n not in ns]
+            if not doc[key]:
+                del doc[key]
+            for n in ns:
+                qual[n["id"]] = (gid, {cv["id"] for cv in n.get("cavities", [])})
+        groups.append({"id": gid, "name": name, "partId": gp, "document": sub, "excludeFromBom": True})
+        doc.setdefault("groupParts", []).append(dict(BOX_GROUP_PARTS[gp]))
+
+    def fix(x):
+        if isinstance(x, dict):
+            if x.get("id") in qual and "handle" in x:
+                gid, cavs = qual[x["id"]]
+                x["id"] = gid + "-" + x["id"]
+                if x["handle"] in cavs:
+                    x["handle"] = gid + "-" + x["handle"]
+            for k in ("sourceId", "targetId"):
+                if x.get(k) in qual:
+                    x[k] = qual[x[k]][0] + "-" + x[k]
+            for v in x.values():
+                fix(v)
+        elif isinstance(x, list):
+            for v in x:
+                fix(v)
+    for key, v in doc.items():
+        if not key.endswith("Parts") and key != "groups":
+            fix(v)
+    if groups:
+        doc["groups"] = doc.get("groups", []) + groups
+    return doc
+
+
+def ungroup(doc):
+    """genroute.py: lift every group member to the root under the id the rest of the document uses for it ("<group id>-<id>",
+    cavities too), so the router sees every node; regroup() puts them back. Returns what regroup() needs."""
+    saved = []
+    for g in doc.get("groups", []):
+        keep = {}
+        for key, ns in g["document"].items():
+            for n in ns:
+                m = dict(n, id=g["id"] + "-" + n["id"])
+                if "cavities" in n:
+                    m["cavities"] = [dict(cv, id=g["id"] + "-" + cv["id"]) for cv in n["cavities"]]
+                doc.setdefault(key, []).append(m)
+            keep[key] = [g["id"] + "-" + n["id"] for n in ns]
+        saved.append((g, keep))
+    return saved
+
+
+def regroup(doc, saved):
+    """Undo ungroup(): each lifted member goes back into its group under its own id (positions as they are now)."""
+    for g, keep in saved:
+        pre = g["id"] + "-"
+        for key, ids in keep.items():
+            byid = {n["id"]: n for n in doc[key]}
+            out = []
+            for q in ids:
+                n = byid[q]
+                m = dict(n, id=q[len(pre):])
+                if "cavities" in n:
+                    m["cavities"] = [dict(cv, id=cv["id"][len(pre):]) for cv in n["cavities"]]
+                out.append(m)
+            g["document"][key] = out
+            doc[key] = [n for n in doc[key] if n["id"] not in set(ids)]
+            if not doc[key]:
+                del doc[key]
+    return doc
+
+
 # B9 6 in OEM pigtails: the new wire is spliced onto the factory lead at these front devices (lamps, pop-ups, ambient
 # sensor, wiper; README "What stays and what goes"), even where an older oem_method says "terminated at the device's plug"
 PIGTAIL_DEVICES = {'H1', 'H2', 'R2', 'R3', 'F5', 'F6', 'F7', 'F8', 'F9', 'A1'}
@@ -1378,6 +1490,30 @@ def self_test():
     diff_lines = [k for k, (a, b) in enumerate(zip(text.split("\n"), new.split("\n"))) if a != b]
     cases.append(("--write-lengths changes only that one field (quoting and line endings kept)",
                   same == text and got == want and diff_lines == [rows.index(q)] and new.count("\r\n") == text.count("\r\n")))
+    # the fuse-box groups (Dan N81 a / N80 a): members move in, outside references are qualified, ungroup / regroup round-trips
+    doc = {"connectors": [{"id": "c_LOGIC", "cavities": [{"id": "LOGIC.BUS2_3"}]}, {"id": "c_K_ACC", "cavities": [{"id": "K_ACC.87"}]},
+                          {"id": "c_K_EPS", "cavities": [{"id": "K_EPS.87"}]}, {"id": "c_ECU_A", "cavities": [{"id": "ECU_A.1"}]}],
+           "terminals": [{"id": "t_T_PWR_NEG_GND_1"}],
+           "wires": [{"id": "w1", "source": {"id": "c_LOGIC", "handle": "LOGIC.BUS2_3"}, "target": {"id": "c_ECU_A", "handle": "ECU_A.1"}},
+                     {"id": "w2", "source": {"id": "t_T_PWR_NEG_GND_1", "handle": "Terminal"}, "target": {"id": "c_K_ACC", "handle": "K_ACC.87"}}],
+           "bundles": [{"id": "b1", "sourceId": "bp1", "targetId": "c_LOGIC"}]}
+    g = box_groups(json.loads(json.dumps(doc)), outside=("K-ACC",))
+    flat = json.loads(json.dumps(g))
+    saved = ungroup(flat)
+    back = regroup(json.loads(json.dumps(flat)), saved)
+    ex = {n["id"]: n.get("excludeFromBom") for k in ("connectors",) for n in g["connectors"]}
+    ex.update({n["id"]: n.get("excludeFromBom") for gr in g["groups"] for n in gr["document"].get("connectors", [])})
+    cases.append(("box_groups: members grouped, K-ACC kept outside (N80 a), K-EPS in neither, LOGIC and relays excludeFromBom",
+                  [(x["id"], x["name"], sorted(n["id"] for v in x["document"].values() for n in v)) for x in g["groups"]] ==
+                  [("gFB100P", "POWER box (ST185-FB-100P)", ["t_T_PWR_NEG_GND_1"]), ("gFB100L", "LOGIC box (ST185-FB-100L)", ["c_LOGIC"])]
+                  and ex == {"c_K_ACC": True, "c_K_EPS": None, "c_ECU_A": None, "c_LOGIC": True}
+                  and all(x["excludeFromBom"] for x in g["groups"]) and [p["id"] for p in g["groupParts"]] == ["gp_fb_100p", "gp_fb_100l"]))
+    cases.append(("box_groups: outside references read <group id>-<id>, cavity handles too",
+                  g["wires"][0]["source"] == {"id": "gFB100L-c_LOGIC", "handle": "gFB100L-LOGIC.BUS2_3"}
+                  and g["wires"][1]["source"]["id"] == "gFB100P-t_T_PWR_NEG_GND_1" and g["bundles"][0]["targetId"] == "gFB100L-c_LOGIC"))
+    cases.append(("ungroup lifts members under their qualified ids; regroup restores the grouped document",
+                  any(n["id"] == "gFB100L-c_LOGIC" and n["cavities"][0]["id"] == "gFB100L-LOGIC.BUS2_3" for n in flat["connectors"])
+                  and back == g))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))

@@ -496,6 +496,7 @@ refs = {x['partId'] for x in wires + inl + list(conns.values()) if x.get('partId
        {cv[k] for n in conns.values() for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
+B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a)
 json.dump(doc, open(os.path.join(OUT, 'ld37.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'ld37_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'wires', len(wires), 'cables 0', 'bundles', len(bundles),

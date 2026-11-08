@@ -589,6 +589,7 @@ R_, segs_, res_ = genroute.run(doc)
 unrouted = genroute.apply(doc, segs_, res_)
 assert not unrouted, 'unrouted wires: %r' % unrouted
 for n in conns.values(): n.pop('_exit', None)
+B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a)
 json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)   # routed: upload as is (no separate genroute.py pass)
 json.dump(lib_add, open(os.path.join(OUT, 'hdc_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'wires', len(wires), 'cables 0', 'bundles', len(bundles),
