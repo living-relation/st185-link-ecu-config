@@ -44,6 +44,7 @@ python bench/can_bench.py --interface virtual --channel bench --bitrate 1000000 
 - Keep local `main` in sync with `origin/main` (`git pull --ff-only` at session start and after every merge; DECISIONS B28, Dan 2026-10-31). Always run the session-start skill before starting new work on a new branch (Dan 2026-11-03).
 - `main` is protected: PRs only, the required check (Repo checks) green, squash-merge. Every PR body has a `Rows: <n>, <n>` or `Rows: none` line. Always run the pr-closeout skill before opening a PR (Dan 2026-11-03; B28). Never force-push.
 - Always clean up after yourself: your own worktrees, branches and scratch files, deleted by name (Dan 2026-11-03; DECISIONS "Where data lives (B3)"); the worktree your session is running in stays for `tools/hygiene.ps1` (B28 "Never remove your own worktree").
+- Worktrees live inside the project folder at `.claude/worktrees/<name>` (git-excluded), never as sibling folders (Dan 2026-11-08).
 - Bad data, stale files or drift found: fix it with the cleanup / consolidation / drift tools and skills (repo-cleanup, git-checker, session-sweep, the drift checks in `tools/check_all.py`) (Dan 2026-11-03).
 - Generated: `PROJECT-BOM.*`, `docs/harness/drawings/*` and `docs/harness/wirelists/ST185-*-wirelist.*` come from their generators.
 - Drawing initials always `DG` (`.drawing-initials`). Layout: front RIGHT, driver side up. Dispatch: relay only. Ask Dan decisions with the question tool; a decision that depends on an image is asked in chat text (Dan 2026-11-01).

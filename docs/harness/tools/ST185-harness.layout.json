@@ -977,7 +977,7 @@
   "WSS-FL": "LFP",
   "WSS-FR": "RFP",
   "FUEL-PUMP": "TANK",
-  "T-TRUNK-FP-GND": "TANK",
+  "GND-BL": "TANK",
   "IX-FUEL-S": "FUEL",
   "FUEL-LEVEL": "TANK",
   "SP-ACC12": "GB",
