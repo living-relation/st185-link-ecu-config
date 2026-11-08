@@ -32,10 +32,10 @@ UNPRICED = re.compile(r"^TMS-SCE-")
 ALIAS = {"2R5": "Klauke 2R5"}   # buylist name -> bom-links name
 MARGIN = 1.15
 FT_PER_M = 3.28084
-COLS = ["section", "assembly", "part_number", "maker", "free_sample", "description", "qty_needed", "unit", "qty_on_hand", "qty_to_buy",
+COLS = ["section", "assembly", "part_number", "maker", "free_sample", "description", "crimp_tool", "qty_needed", "unit", "qty_on_hand", "qty_to_buy",
         "unit_price_usd", "line_total_usd", "buy_link", "alt_cheaper_link", "price_basis", "link_status", "notes"]
 NUMCOLS = ("qty_needed", "qty_on_hand", "qty_to_buy", "unit_price_usd", "line_total_usd")
-HEAD = {"free_sample": "Free sample"}   # xlsx header labels; the CSV keeps the column names
+HEAD = {"free_sample": "Free sample", "crimp_tool": "Crimp tool"}   # xlsx header labels; the CSV keeps the column names
 SECTIONS = ("Mechanical assemblies", "Wire harness")
 
 
@@ -273,10 +273,40 @@ for pn, cables in sorted(CABLE_MM.items()):
             notes="%d cable runs, %.1f m + 15%% margin" % (len(cables), mm / 1000.0))
 
 rows.sort(key=lambda r: (SECTIONS.index(r["section"]), r["assembly"], r["part_number"]))
+
+# Crimp tool per crimp line (Dan 2026-11-08; docs/sourcing/README.md "Crimp tools"): the tool model that crimps that contact
+# family, Custom Connector Kits first (collection all-crimp-tools, read 2026-11-08); a crimp line with no known tool reads TBD.
+CCK_TOOL = "https://www.customconnectorkits.com/products/"
+CRIMP_TOOLS = [   # (part-number pattern, tool); first match wins
+    (r"^046[02]-\d{3}-(20|16|12)\d", "HDT-48-00 (DEUTSCH solid contacts, 22-12 AWG) " + CCK_TOOL + "hdt-48-00"),
+    (r"^(12129409-L|15326426|CONN-76270|354404|in kit (CONN-76270|354404))$",
+     "T-18 (Delphi Weather Pack / Metri-Pack 150, 280 / GT 150, 280, 22-12 AWG) " + CCK_TOOL + "t-18"),
+    (r"^(70102|70250)$", "HT-303 (Hillsdale insulated terminals, 22-10 AWG) " + CCK_TOOL + "ht-303"),
+    (r"^82998-", "none (pre-crimped Toyota repair lead)"),
+]
+CRIMP_LINE = re.compile(r"^(CONTACT|TERMINAL|SPLICE, CRIMP|REPAIR WIRE)|receptacle|ring lug|tubular lug|\bcontact\b|solid pin|"
+                        r"part number not confirmed yet: (contact|lug / terminal)", re.I)
+
+
+def crimp_tool(r):
+    pn = r["part_number"]
+    for pat, tool in CRIMP_TOOLS:
+        if re.search(pat, pn):
+            return tool
+    housing = re.search(r"^(PLUG, SEALING|CONNECTOR|WEDGELOCK|RECEPTACLE)|housing|flange receptacle", r["description"], re.I)
+    if pn.startswith("in kit") or (CRIMP_LINE.search(r["description"]) and not housing):
+        return "TBD"
+    return ""
+
+
+for r in rows:
+    r["crimp_tool"] = crimp_tool(r)
+
+
 def advice(r):
     pn, mk = r["part_number"], r["maker"]
     if pn.startswith("M22759/16"):
-        return "buy by the foot (Wings and Wheels / Flight Store); confirm the supplier and the colour code page"
+        return "buy by the foot from the cheaper of Corsa Technic / Custom Connector Kits (README \"Wire supplier\"); confirm the colour code page"
     if pn.startswith("BC-"):
         return "pick a welding / battery cable supplier (no PN exists for this drawn wire); recommend ProWire USA"
     if pn.startswith("GENERIC") or mk == "generic" or pn.startswith("Jump"):
@@ -308,7 +338,7 @@ def write_xlsx(path):
     wb.remove(wb.active)
     hair, thick = Side(style="hair", color="A6A6A6"), Side(style="thick", color="1F1F1F")
     band = (PatternFill("solid", fgColor="E7E6F7"), PatternFill("solid", fgColor="F3F2FB"))
-    widths = dict(free_sample=14, section=14, assembly=22, part_number=24, maker=18, description=60, qty_needed=9, unit=6, qty_on_hand=9,
+    widths = dict(free_sample=14, crimp_tool=36, section=14, assembly=22, part_number=24, maker=18, description=60, qty_needed=9, unit=6, qty_on_hand=9,
                   qty_to_buy=9, unit_price_usd=10, line_total_usd=10, buy_link=48, alt_cheaper_link=40, price_basis=11,
                   link_status=30, notes=40)
 

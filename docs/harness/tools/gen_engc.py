@@ -43,7 +43,13 @@ def use_lib(kind, part):
             assert ap, (part['id'], a)
             doc_parts[ACC[a['type']]][ap['id']] = json.loads(json.dumps(ap))
     return part['id']
-NEW = {'52-45780': {"id": "cp_longacre_52_45780", "hasShell": False, "numberOfCavities": 4}}   # kill switch: 4 stud terminals
+NEW = {'52-45780': {"id": "cp_longacre_52_45780", "hasShell": False, "numberOfCavities": 4},   # kill switch: 4 stud terminals
+       # DRL cut relay RLY-DRL (Dan N90 a): Delphi Metri-Pack 280 relay socket, 5 ways (30, 85, 86, 87, 87a), and its contact
+       '12110539': {"id": "cp_delphi_12110539", "gender": "Female", "hasShell": False, "numberOfCavities": 5},
+       '12129409-L': {"id": "ct_delphi_12129409_l", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
+                      "minGauge": {"value": 16, "unit": "AWG"}, "maxGauge": {"value": 14, "unit": "AWG"}},
+       # horn relay K-HORN (LOGIC box, excludeFromBom with the box, N81 a): TE micro relay, 1 form C, 5 blades
+       '4-1904124-3': {"id": "cp_rly_micro_co_res", "hasShell": False, "numberOfCavities": 5}}
 def part_id(kind, pn):
     """library part id for this part number (a NEW part is added from harness-parts.csv); None for TBD / factory / unknown."""
     if not pn or pn.upper().startswith('TBD') or pn.startswith('factory'): return None
