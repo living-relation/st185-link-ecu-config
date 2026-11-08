@@ -15,14 +15,14 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 | 4 | Cruise | The OEM cruise ECU and actuator are gone; the stalk stays as CSB3 buttons. Cruise control clutch switch C17 pin 2 to CSB3 pin 20 (`w_sw5`) is the one ECU clutch input (flat-shift, via VDI6). C11 completes the starter circuit in hardware; it is not an ECU input. |
 | 5 | SRS | Gone. |
 | 6 | ABS | Gone. The wheel speed sensors get their own mini harnesses to the VRC enclosure. |
-| 7 | Gauges + warning lamps | Gone; replaced by the CAN cluster. LEDs take turn, high beam, charge and park brake from the OEM cluster plugs, oil pressure from CSB3 L4 (cavity 26, 0x643 byte 3). OEM dimmer R10 stays for the rest of the dash lighting. Headlight-sense: tap R10 pin 1 green TAIL through EL814 IN3 to centre-cluster GPIO28 (Dan 2026-10-26: no change; encoder not used). LED polarity checked on the EWD 2026-11-08; the high-beam LED's +12 V comes through the factory low-beam filaments, so any headlamp change rechecks it (DECISIONS "Grounds (B10)", N82 a). |
+| 7 | Gauges + warning lamps | Gone; replaced by the CAN cluster. LEDs take turn, high beam, charge and park brake from the OEM cluster plugs, oil pressure from CSB3 L4 (cavity 26, 0x643 byte 3). OEM dimmer R10 stays for the rest of the dash lighting. Headlight-sense: tap R10 pin 1 green TAIL through EL814 IN3 to centre-cluster GPIO28 (Dan 2026-10-26: no change; encoder not used). LED polarity checked on the EWD 2026-11-08; the high-beam LED sits on the low-beam line R-L; since the LED headlamps (Dan N89 a, 2026-11-08) it gets its +12 V from the high-beam out through `R-HB` ("Headlamps, DRL and pop-ups" below). |
 | 8 | Main power (AM1, AM2, J/B1, dome, hazard, retract) | Trunk battery -> glove-box boxes -> cabin landings. `w_pdb_jb1` is behind the dash to J/B No.1 1I, 6 AWG for our 60 A JB1 fuse (`cad/fusebox/src/spec.py` AMI_AWG). |
 | 9 | Blower | R/B No.4 stays with its heater relay, 40 A HEATER and 10 A A/C fuses; one new feed from B1 AMI IN-1. No `k_htr`. |
 | 10 | A/C | Both amps stay. D16: A15 pin 8 drives `k_acc` coil 85; coil 86 from B2-BUS2-8; Link Aux 4 is the ACT kill only; pin 2 hard-grounded; Ign 8 is tacho to pin 18 and, through 4.7 kΩ, to pin 9 (lock-sensor workaround, N61 2026-10-21 / Dan 2026-10-26). A/C button and evap wires to the Link removed. Cabin sensor-common splice `SP-AC-SG` stays (replaces E10). A/C pressure switch and its yellow-red wire: DECISIONS, the A/C paragraph above B1. |
 | 11 | Reverse + back-up lamps | No K-REV. OEM back-up switch drives the lamps; output tapped through opto IN2. New switch wires splice to the IG2-4 / IG2-13 pigtails. Factory rear lighting stays (no RearLights harness). |
 | 12 | Fuel pump | `k_fp` in the trunk, rear-fuel harness (B3-K1). |
-| 13 | Front lights + pop-ups | Front run (Route 17 line 10), spliced to the 6 in pigtails. |
-| 14 | Horn | Front run, relay in the glove box (B2-M3). |
+| 13 | Front lights + pop-ups | Front run (Route 17 line 10), spliced to the 6 in pigtails. Headlamps, DRL and pop-up switching: "Headlamps, DRL and pop-ups" below (Dan N84 a-N89 a, 2026-11-08). |
+| 14 | Horn | Front run, relay in the glove box (B2-M3); both horns share one ground to EA (`SP-HORN-GND`, Dan N86). |
 | 15 | Radiator + condenser fans | Link-controlled relays, front run. |
 | 16 | Wiper + washer | Wiper on the driver fender run, washer pump on the front run. |
 | 17 | Fog | Removed (Dan 2026-11-02): no fog lamps, relay or wiring. Every fog wire (switch F12, relay R/B No.3, 20 A FR FOG fuse) comes out back to its last live point; the relay and the fuse come out, the R/B No.4 seat stays empty. No spare circuit to the old fog-lamp spots. |
@@ -36,6 +36,38 @@ ETB hold power is all cabin and J/B No.1 stays: Aux 6 (A28) holds K-EFI; DI 9 (B
 CAN node power: DECISIONS B17, "CAN wiring (B17)" and "Relays (B15)" (Dan 2026-11-04 / 2026-11-07: each node's own fused feed and ground join the CAN trunk start at ECU plug C and ride its 4-core branch cable; wires in the master; factory feed path and the stereo reservation: README "Power injection").
 
 Fuse box: parked. Seat-to-circuit assignment is `sot/fuse-relay-map.csv` (B1 POWER, B2 LOGIC, B3 trunk block, B4 EPS).
+
+## Headlamps, DRL and pop-ups (Dan 2026-11-08)
+
+Decisions: DECISIONS "Headlamps, DRL and pop-ups" (N84 a, N85 a, N86, N87 a, N89 a). Lamps: HWSTAR H6054 LED (HW002 / HW2100157), pin 1 low, pin 2 high, pin 3 common (ground), white DRL lead 0.24 A, yellow turn lead 0.2 A. Pins: 1993 EWD p.116-117, p.130, p.185.
+
+| Part | Where | Wired |
+|---|---|---|
+| K-HL (M1) low beams | LOGIC box | 30 / 86 from HL 15 A (`SP-HL`); 85 on R-Y (IE1-2, `SP-HEAD-COIL`); 87 -> `SP-HL-ON` -> H1 / H2 pin 1 and K-HR 86 |
+| K-HR (M2) high beams | LOGIC box | 30 from HR 15 A (`SP-HR`); 86 from `SP-HL-ON`; 85 on R-W (IE1-18, `w_hl_low`); 87 -> `SP-HR-HI` -> H1 / H2 pin 2 and `R-HB` |
+| R-HB 220 ohm 1 W | glove box | `SP-HR-HI` -> R-HB -> R-L line at IE1-11 (`w_hl_high`) -> dash high-beam LED C13 (B) pin 12 |
+| Lamp commons | front | H1 pin 3 -> EB, H2 pin 3 -> EA (N83 a) |
+| K-DRL (M8, spare seat) DRL | LOGIC box | 30 / 86 from BUS2-1 DRL 7.5 A (Bus 2, key on; `SP-DRL12`); 85 -> `SP-DRL-SW` -> DRL switch -> R8 pin 12 W-B (ground); 87 -> RLY-DRL 30 |
+| RLY-DRL DRL cut (N90 a) | beside the LOGIC box | Song Chuan 301-1C-C-R1-U01-12VDC in Metri-Pack 280 socket 12110539; coil 86 from `SP-HL`, 85 on R-Y (`SP-HEAD-COIL`); 30 from K-DRL 87, 87a (NC) -> `SP-DRL` -> both white DRL leads: DRLs off whenever the head lamps are on |
+| K-POD (M10, spare seat) key-on pop-up (N93 a) | LOGIC box | 86 from `SP-DRL12` (key on), 85 -> `SP-DRL-SW`; 30 from D2's cathode, 87 -> `SP-DRL-SW`: the DRL switch raises the pods only with the key on |
+| D1 / D2 (DT04-2P-RT01) | behind the LH dash at R8 | R-Y I2 -> R8 pin 8 cut; D1 R8 pin 8 -> I2 side (stalk UP); D2 R8 pin 8 -> K-POD 30 (DRL UP, key on) |
+| Turn | front | yellow lead on F7 / F8 pin 3 (G-B / G-Y) with the bumper lamp |
+
+Truth table (pods: R8; low / high: lamp beams; DRL: white leads; LED: dash high-beam LED). Low on with high: N89 a / N91 a. DRLs off with the head lamps on: N85 a / N90 a. DRL switch works only with the key on: N93 a; without the key the stalk alone runs the lamps and pods (3 then 1 = pods up, beams off, for maintenance).
+
+| Stalk | DRL switch | Pods | Low | High | DRL | LED |
+|---|---|---|---|---|---|---|
+| 0 (off) | off | down | off | off | off | off |
+| 0 (off) | on, key on | up | off | off | on | off |
+| 1 (hold) | off | stay | off | off | off | off |
+| 1 (hold) | on, key on | up | off | off | on | off |
+| 2 (TAIL) | off | stay | off | off | off | off |
+| 2 (TAIL) | on, key on | up | off | off | on | off |
+| 3 (HEAD), low | either | up | on | off | off | off |
+| 3 (HEAD), high | either | up | on | on | off | on |
+| flash, held (any) | either | up | on | on | off | on |
+| any, released | either | back to the stalk row | | | | |
+| any | on, key off | per stalk (K-POD open) | per stalk | per stalk | off | per stalk |
 
 ## Cut-list groups (row 164)
 
@@ -143,10 +175,10 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 | Plug | Pin | Colour | Signal | Old load | EWD | Draft said | Action |
 |---|---|---|---|---|---|---|---|
 | 2A | 2 | L-R | 30 A CDS FAN out | condenser fan A2 pin 2 | p.210 | re-feed POWER FAN2 | remove; re-fed by `w_fan2_pwr` (K-FAN2, new wire to the uprated fan) |
-| 2A | 3 | R | 15 A HEAD LH out | headlamp H1 pin 3 | p.116 | splice LOGIC HL onto the old R lead | remove; re-fed by `w_pmu_hl` (K-HL, new wire to H1's 6 in pigtail) |
+| 2A | 3 | R | 15 A HEAD LH out | headlamp H1 pin 3 | p.116 | splice LOGIC HL onto the old R lead | remove; H1 pin 3 is now the lamp common to ground EB (`w_h1_gnd`); the lamp's +12 V comes on pins 1 / 2 ("Headlamps, DRL and pop-ups") |
 | 2A | 4 | B-R | Radiator fan + | radiator fan R1 pin 2 | p.210 | re-feed POWER FAN | remove; re-fed by `w_fan_pwr` (K-FAN); fan ground `w_fan_gnd` to EA |
 | 2A | 5 | W-B | Relay / coil ground node | ground EB | p.62, 67, 210 | cut + cap | remove (EB stays as a ground point, new wires only) |
-| 2A | 6 | R-Y | 15 A HEAD RH out | headlamp H2 pin 3 | p.116 | splice LOGIC HR onto the old lead | remove; re-fed by `w_pmu_hr` (K-HR) |
+| 2A | 6 | R-Y | 15 A HEAD RH out | headlamp H2 pin 3 | p.116 | splice LOGIC HR onto the old lead | remove; H2 pin 3 is now the lamp common to ground EA (`w_h2_gnd`) |
 | 2B | 2, 3, 4, 5 | W, B-R, W, W | AM1 in, AM2 in, J/B2 B+ bus, alternator S | F11 / battery / alternator | p.62, 74, 116 | gone with the Engine Wire | remove; AM1 / AM2 re-fed by `w_pdb_am1` / `w_pdb_am2` at IE1; alternator S by `w_alt_s_c` |
 | 2C | 1, 3, 4, 5, 6, 10 | LG-B, W, P, W-B, B-W, B-Y | fan coil, ALT -> engine main relay, EFI BATT, ground, A/C clutch, EFI +B | engine | p.62, 79, 210 | gone | remove (Link owns EFI: `k_efi`) |
 | 2D | 1 | B-W | A/C clutch power hop | R/B5 clutch relay pin 3 | p.210 | cut + cap | remove; clutch is `w_acc_clutch` (K-ACC to A4 pin 4) |
@@ -156,7 +188,7 @@ cabin boxes and stay (circuits 2, 9, 18). R/B No.3 goes (circuit 17).
 | 2E | 4 | L-Y | 20 A DOME out | J/B1 1H-2 | p.132, 200, 207 | re-feed LOGIC DM | remove; re-fed by `w_pmu_dome` at 1H-2 (owner fix: DECISIONS B8 list) |
 | 2E | 5 | W | AM1 out | IE1-10 -> cowl I2 -> ignition SW I13-4 and R/B2 30 A POWER fuse pin 1 | p.62, 66 | re-feed POWER AM1 | remove; re-fed by `w_pdb_am1` at IE1-10. I2 also feeds R/B2, as stock (Dan B17 b) |
 | 2E | 6 | B-R | AM2 out | IE1-17 -> I13-10 | p.62, 66 | re-feed POWER AM2 | remove; re-fed by `w_pdb_am2` at IE1-17 |
-| 2E | 7 | R-Y | Headlight relay coil | IE1-2 -> I2 -> light control SW C15, retract relay R8-8 | p.116 | re-feed LOGIC head relay coils | remove; re-fed by `w_head_coil_cp` (K-HL / K-HR coil 85 via `SP-HEAD-COIL`) |
+| 2E | 7 | R-Y | Headlight relay coil | IE1-2 -> I2 -> light control SW C15, retract relay R8-8 | p.116 | re-feed LOGIC head relay coils | remove; re-fed by `w_head_coil_cp` (K-HL coil 85 via `SP-HEAD-COIL`; Dan N89 a) |
 | 2E | 8 | B-O | IGN 7.5 A to J/B2 relay coils | ER Main splice E13 / E4 <- J/B1 1H-7 | p.210, 79 | cut + cap at J/B2 and R/B5 | remove; 1H-7 itself keeps (tapped by `w_ig2_in`, `w_ign`, `w_k_on_86_cp`) |
 | F11-A | 2, 3, 4, 7 | W, W, B, B-R | AM1, 100 A ALT, FL MAIN in, AM2 | battery, alternator | p.62, 64 | gone | remove (trunk battery and HeavyDC, B11) |
 | F11-C | 1 | W-L | 60 A ABS out | ABS relays (ER Main E12) | p.62; 1992 p.192 | cut + cap | remove (ABS gone, circuit 6) |
@@ -278,7 +310,7 @@ Every row is **remove**; the new wire that takes over each load is listed.
 | ER Main -> ABS actuator / relays / check conn | various | ABS | 1992 p.192 | chop | remove |
 | ER Main splice E13 / E4 IGN branch | B-O | IGN to J/B2 2E-8 and R/B5 relay No.2 | p.210 | chop both ends | remove; J/B1 1H-7 keeps |
 | ER Main ground lead 2A-5 -> EB | W-B | relay / coil ground | p.62 | remove or cap | remove |
-| ER Main outer loop: headlamps H1 / H2 | R, R-Y, R-L, R-W | lamp feed and returns | p.116 | kept (outer loop) | remove to the 6 in pigtails; re-fed by `w_pmu_hl`, `w_pmu_hr`, `w_hl_high` (IE1-11), `w_hl_low` (IE1-18) |
+| ER Main outer loop: headlamps H1 / H2 | R, R-Y, R-L, R-W | lamp feed and returns | p.116 | kept (outer loop) | remove to the 6 in pigtails; re-fed from K-HL / K-HR (`w_pmu_hl`, `w_hl_lo_h2`, `w_hl_hi_h1`, `w_pmu_hr`), commons to EB / EA (`w_h1_gnd`, `w_h2_gnd`); IE1-11 / IE1-18 are now cabin wires (`w_hl_high` LED feed, `w_hl_low` K-HR coil) |
 | ER Main outer loop: front turn / clearance / markers F5-F8 | G-B, G-Y, G | turn and TAIL | p.112, 130 | kept | remove to the pigtails; re-fed by `w_turn_f7` (1H-4), `w_turn_f8` (1H-8), `w_clr` (1H-6) via `SP-CLR` |
 | ER Main outer loop: pop-up motors R2 / R3 | G, G-O, G-Y, G-B, G-W | retract feed and limits | p.117 | kept | remove to the pigtails; re-fed by the `w_rtr_*` wires from IE1-7 / 8 / 9 / 14 / 15 / 16 |
 | ER Main / cowl: wiper F9 and washer W1 | L, L-B, L-O, L-R | wiper +B, LO, HI, park; washer | p.148 | kept | remove to the pigtails; re-fed by `w_wip_b` (1H-5), `w_wip_lo` (IE1-13), `w_wip_hi` (IE1-20), `w_wip_park` (IE1-6), `w_wash_neg` / `w_wash_pos` |

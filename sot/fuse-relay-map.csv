@@ -18,16 +18,18 @@ B1,AMI OUT-4,fuse,AM2 30 A,POWER,assigned,
 B1,AMI OUT-5,fuse,J/B No.1 60 A,POWER,assigned,w_pdb_jb1 behind the dash to 1I-1; 6 AWG for 60 A
 B1,AMI OUT-6,fuse,EPS 50 A,POWER,assigned,B4 K-EPS 30
 B1,ACPS,fuse,(vacant),,vacant,A5 pin 1 now from R/B No.4 10 A A/C
-B2,M1,relay,headlight LH,K-HL,seated,LOGIC micro
-B2,M2,relay,headlight RH,K-HR,seated,
+B2,M1,relay,low beam (both headlamps),K-HL,seated,"LOGIC micro; Dan N89 a 2026-11-08 (per-beam relays): coil 85 on R-Y (IE1-2, light switch HEAD / dimmer FLASH), 86 from SP-HL; 87 -> SP-HL-ON -> both low beams (H1 / H2 pin 1) and the K-HR coil 86"
+B2,M2,relay,high beam (both headlamps),K-HR,seated,"Dan N89 a 2026-11-08: coil 86 from K-HL 87 (SP-HL-ON, so only with the head lamps on), coil 85 on R-W (IE1-18, dimmer HIGH / FLASH); 30 from SP-HR; 87 -> SP-HR-HI -> both high beams (H1 / H2 pin 2) and the dash LED resistor R-HB"
 B2,M3,relay,horn,K-HORN,seated,
 B2,M4,relay,ETB power,K-ETB,seated,
 B2,M5,relay,A/C clutch,K-ACC,seated,coil 85 from A15 pin 8 (D16); coil 86 from B2-BUS2-8
 B2,M6,relay,EPS enable,K-EPS-EN,seated,"TE 6-1419137-4 diode micro relay: 85 from ECU B12 (Ign 6, active-low), 86 from BUS-SW12 9, 30 from BUS2-7, 87 straight to DRB102 cavity 83 (pump C1; E3 a, Dan 2026-11-02)"
 B2,M7,relay,ON-only feed (CAN-Lambda),K-ON,seated,"TE 6-1419137-4 diode micro relay (Dan 2026-11-04, N5 a; DECISIONS B17): 86 from J/B No.1 1H-7 IGN (live at ON and ST), 85 to the POWER box NEG bar, 30 from BUS1-6 LAM 10 A, 87 straight to DRB102 cavity 95 (the CAN-Lambda only; Dan N6); was K-REV (back-up lamps stay on the factory harness)"
+B2,M8,relay,DRL (both headlamps),K-DRL,seated,"spare seat (B27): TE 4-1904124-2 (1 form A, resistor; on hand), Dan N87 a 2026-11-08: 86 and 30 from BUS2-1 DRL 7.5 A via SP-DRL12, 85 to the DRL switch DRL-SW, 87 -> the DRL cut relay RLY-DRL (outside the box, beside it; Dan N90 a: coil on R-Y, 87a NC) -> SP-DRL -> the white DRL leads of both lamps; the DRLs go off whenever the head lamps are on"
+B2,M10,relay,pop-up key-on (DRL switch to R8 pin 8),K-POD,seated,"spare seat (B27): TE 4-1904124-3 (1 form C, resistor; on hand; 87a not wired, no cavity), Dan N93 a 2026-11-08: 86 from BUS2-1 DRL 7.5 A via SP-DRL12 (key on), 85 to the DRL switch; 30 from pop-up diode D2, 87 to the DRL switch: the DRL switch raises the pods only with the key on"
 B2,BUS1-1,fuse,EFI86 5 A,LOGIC,assigned,K-EFI coil+
-B2,BUS1-2,fuse,HL 15 A,LOGIC,assigned,w_hl_cp via SP-HL to K-HL 30 / 86 (headlamp LH)
-B2,BUS1-3,fuse,HR 15 A,LOGIC,assigned,w_hr_cp via SP-HR to K-HR 30 / 86 (headlamp RH)
+B2,BUS1-2,fuse,HL 15 A,LOGIC,assigned,"w_hl_cp via SP-HL to K-HL 30 / 86 (low beams, both lamps; Dan N89 a)"
+B2,BUS1-3,fuse,HR 15 A,LOGIC,assigned,"w_hr_cp via SP-HR to K-HR 30 (high beams, both lamps; Dan N89 a)"
 B2,BUS1-4,fuse,HZ 15 A,LOGIC,assigned,w_hz_cp via SP-HZ to the hazard feed (IE1-12) and K-HORN 30 / 86
 B2,BUS1-5,fuse,DOME 20 A,LOGIC,assigned,
 B2,BUS1-6,fuse,LAM 10 A,LOGIC,assigned,"w_fb_k_on_30_cp to K-ON 30: the CAN-Lambda fuse (Link CAN-Lambda QSG: 10 A through an ignition relay; Dan 2026-11-04, N5 a, LAM 7.5 -> 10 A; K-ON feeds only the CAN-Lambda, N6), load up to 8.1 A; was WL 15 A (w_rb2_wl dropped, Dan B17 = b 2026-11-02), then vacant; fuse-box design still says WL 15 A"
@@ -35,7 +37,7 @@ B2,BUS1-7,fuse,ALM 5 A,LOGIC,assigned,w_at_12v_tie_cp to alarm-ready node AL-12V
 B2,BUS1-8,fuse,ALMS 2 A,LOGIC,assigned,w_at_12v_shk_tie_cp to alarm-ready node AL-12V-SHK
 B2,BUS1-9,fuse,ALTS 2 A,LOGIC,assigned,w_alt_s_c to alternator plug pin 1 S (rating from the fuse-box design wiring_plan.json; the master names no rating)
 B2,BUS1-10,fuse,ETB 7.5 A,LOGIC,assigned,K-ETB 30
-B2,BUS2-1,fuse,(vacant),,vacant,"was LAM 7.5 A to the CAN-Lambda (w_lam12_cp); the CAN-Lambda moved to the ON-only relay K-ON, fuse BUS1-6 LAM 10 A (Dan 2026-11-04, N5 a); fuse-box design still has LAM 7.5 A here"
+B2,BUS2-1,fuse,DRL 7.5 A,LOGIC,assigned,"w_drl_cp (14) via SP-DRL12 to K-DRL 30 / 86 (Dan N87 a 2026-11-08): Bus 2 is live with K-EFI, so the DRLs are ignition-fed; 7.5 A = the fuse the frozen box design (LAM 7.5 A) already buys for this seat; was the CAN-Lambda (moved to BUS1-6 / K-ON, Dan 2026-11-04 N5 a)"
 B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V); master 5 A vs fuse-box design 7.5 A
 B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A); fuse-box design still says 15 A
 B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A); fuse-box design still says 15 A

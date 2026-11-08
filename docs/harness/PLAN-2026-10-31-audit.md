@@ -47,7 +47,7 @@ show the name. Apply this map to every row's `from_name` / `to_name` for the id;
 | `IX-FUEL-S` / `IX-FUEL-P` | Fuel sender inline plug (socket half / pin half) |
 | `K-FP` | Fuel pump relay (trunk relay block, K1) |
 | `K-EFI` / `K-FAN` / `K-FAN2` | EFI main relay / Radiator fan relay / Condenser fan relay (power box R2 / R4 / R5) |
-| `K-HL` / `K-HR` / `K-HORN` / `K-ETB` / `K-ACC` / `K-EPS-EN` | Headlight LH / Headlight RH / Horn / Throttle power / A/C clutch / Steering pump enable relay (logic box M1 / M2 / M3 / M4 / M5 / M6) |
+| `K-HL` / `K-HR` / `K-HORN` / `K-ETB` / `K-ACC` / `K-EPS-EN` / `K-DRL` | Low beam / High beam / Horn / Throttle power / A/C clutch / Steering pump enable / DRL relay (logic box M1 / M2 / M3 / M4 / M5 / M6 / M8) |
 | `K-EPS` | Steering pump relay (beside the power box) |
 | `LOGIC` / `POWER` | Logic fuse box (glove box) / Power fuse box (glove box) |
 | `T-PWR-*` / `T-LOG-*` | POWER / LOGIC box ring terminals, named by their stud ("POWER box NEG bar, GND ID stud"; DECISIONS "Bus bars and fuse box ends") |
@@ -71,7 +71,7 @@ show the name. Apply this map to every row's `from_name` / `to_name` for the id;
 | `R2` / `R3` / `R10` / `S9` / `W1` | LH / RH headlight lift motor (R2 / R3) / Dash dimmer (R10) / Brake light switch (S9) / Washer motor (W1) |
 | `H1` / `H2` | LH / RH headlamp (H1 / H2) |
 | `GND-ID` / `GND-IG` / `GND-EA` / `GND-EB` | Ground stud, LH kick (ID) / RH kick (IG) / RH fender (EA) / LH fender (EB) |
-| all other `SP-*` (`SP-AC-PSW`, `SP-ACC12`, `SP-REV`, `SP-FUEL-LVL`, `SP-HL`, `SP-HR`, `SP-HZ`, `SP-AT-12V`, `SP-12V-SHK`, `SP-DEV`, `SP-IG`, `SP-HEAD-COIL`, `SP-HORN`, `SP-HL-HIGH`, `SP-HL-LOW`, `SP-RTR-*`, `SP-CLR`, `SP-LED-12V`, `SP-LED-GND`, `SP-PARK`, `SP-DOOR`, `SP-HOOD`, `SP-TRUNK`, `SP-CRUISE-LADDER`, `SP-TACH`, `SP-AC-SG`) | "<what> splice: <what it joins>", from the current name text with the id, fuse names and internal codes removed (e.g. `SP-ACC12` "B2-BUS2-8 ACC 10 A to k_acc 30 and 86" -> "A/C clutch relay feed splice: ACC fuse to relay pins 30 + 86") |
+| all other `SP-*` (`SP-AC-PSW`, `SP-ACC12`, `SP-REV`, `SP-FUEL-LVL`, `SP-HL`, `SP-HR`, `SP-HZ`, `SP-AT-12V`, `SP-12V-SHK`, `SP-DEV`, `SP-IG`, `SP-HEAD-COIL`, `SP-HORN`, `SP-HL-ON`, `SP-HR-HI`, `SP-DRL12`, `SP-DRL`, `SP-DRL-SW`, `SP-R8-UP`, `SP-HORN-GND`, `SP-RTR-*`, `SP-CLR`, `SP-LED-12V`, `SP-LED-GND`, `SP-PARK`, `SP-DOOR`, `SP-HOOD`, `SP-TRUNK`, `SP-CRUISE-LADDER`, `SP-TACH`, `SP-AC-SG`) | "<what> splice: <what it joins>", from the current name text with the id, fuse names and internal codes removed (e.g. `SP-ACC12` "B2-BUS2-8 ACC 10 A to k_acc 30 and 86" -> "A/C clutch relay feed splice: ACC fuse to relay pins 30 + 86") |
 | cable screens `CAB-*` "cab_x screen (floats at the device end)" | "<circuit> cable screen (floats at the sensor)" |
 
 Then: no name may contain a seat code (`B1-R4`, `B2-M5`, `B3-K1`, `B2-BUS2-8`), an internal id (`k_acc`, `w_*`) or a
