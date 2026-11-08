@@ -17,7 +17,8 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   E1  every ECU pin a wire lands on is a live pin in sot/channels.csv, and every live ECU pin there has a wire
   E2  the far ends of each ECU power / ground / Gnd Out / sensor-supply / screen pin are of the class the Link G4X guide
       allows (R212); the ECU power grounds join only each other and one wire to the POWER box NEG bar (R216)
-  E3  ground classes (R213): low-voltage electronics never end on a chassis ground (known cases: PENDING)
+  E3  ground classes (R213): low-voltage electronics never end on a chassis ground (known cases: PENDING); a wire tagged
+      factory ground (N83 a) with its 1993 EWD page may, on a body ground stud GND-*, unless it has CAN / ECU / sensor ties
   E4  an ECU output driving a relay lands on coil pin 85 (R219)
   S1  ECU-C 1 carries exactly one plain drain (R207)
   S2  a cable screen floats at the device: its one end is a splice, an ECU screen pin, a bulkhead / inline cavity or the
@@ -98,12 +99,17 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
     "power": re.compile(r"relay|fuse|diode|\+12|12\s?V", re.I),
 }
 # Known violations waiting for their wiring fix (OPEN-ITEMS): printed, not failing; a fixed one must be removed.
-# E3:w_at_gnd_a1 is permanent, not pending: the alarm ground lead (node AL-GND to ring terminal T-AT-GND) is a named B10
+# E3:w_at_gnd_a1 is permanent, not pending: the alarm ground lead (node AL-GND to ring terminal T-AT-GND) is the named B10
 # exception (DECISIONS "Grounds (B10)", Dan N43 b); the accessory grounds went with the accessories (alarm-ready tap points,
-# Dan 2026-11-06). E3:w_led_gnd_out is permanent, not pending: the Dash LED ground (SP-LED-GND to ground point ID) is a
-# named B10 exception (DECISIONS "Grounds (B10)", Dan N82 a, replaces N74 a): it replaces the factory cluster indicator
-# ground C13 (B) pin 1 and carries LED current only.
-PENDING = {"E3:w_at_gnd_a1", "E3:w_led_gnd_out"}
+# Dan 2026-11-06). Factory-load grounds (the Dash LED ground w_led_gnd_out among them) are not listed here: they carry the
+# FACTORY_GND tag in the master note (DECISIONS "Grounds (B10)", Dan N83 a).
+PENDING = {"E3:w_at_gnd_a1"}
+# A factory load, or a part that replaces one, keeps that load's factory ground point (Dan N83 a): the master note carries
+# the tag and the 1993 EWD page; E3 accepts it on a body ground stud, never with CAN / ECU / sensor ties.
+FACTORY_GND = re.compile(r"factory ground \(N83 a\)", re.I)
+FACTORY_PAGE = re.compile(r"\b1993 EWD p\.\s?\d+", re.I)
+BODY_GND = re.compile(r"^GND-")
+TIED = re.compile(r"\bCAN\b|CAN[- ]?LAMBDA|\bECU\b|sensor|RealDash|\bPi\b|CSB3|opto|cruise|buck converter", re.I)
 STUD_IDS = re.compile(r"^(KILL-SW|RADLOK-|JUMP-POST|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
 sys.path.insert(0, HERE)
 from build_drawings import is_integral      # noqa: E402  (Dan N55 a): part of a bought part, not a wire; one definition
@@ -362,6 +368,11 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                     fail("E2", "%s %s (%s) reaches %s %s (%s) (R212)" % (eid, pin, c["channel"], xid, xpin, x[xs + "_desc"]))
     STUDS = re.compile(r"^(BATT-RELAY-BLOCK|KILL-SW|RADLOK|JUMP-POST|SP-JUMP-|T-PWR-|T-LOG-)")
     for r in wires:
+        tag = FACTORY_GND.search(r["notes"])
+        if tag and not any(r[s + "_type"] == "terminal" and BODY_GND.match(r[s + "_id"]) for s in ("from", "to")):
+            fail("E3", "%s is tagged factory ground but ends on no body ground stud GND-* (N83 a)" % r["wire_id"], key=r["wire_id"])
+        if tag and not FACTORY_PAGE.search(r["notes"]):
+            fail("E3", "%s is tagged factory ground without its 1993 EWD page (N83 a)" % r["wire_id"], key=r["wire_id"])
         for s, o in ends(r):
             if r[s + "_type"] == "terminal" and CHASSIS.search(r[s + "_id"] + " " + r[s + "_name"]):
                 if STUDS.search(r[o + "_id"]):
@@ -371,6 +382,11 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                 else:
                     near = [(r, o)]
                 text = " ".join("%s %s %s" % (x[xs + "_id"], x[xs + "_name"], x[xs + "_desc"]) for x, xs in near)
+                if tag and BODY_GND.match(r[s + "_id"]):
+                    if TIED.search(text):
+                        fail("E3", "%s is tagged factory ground but has CAN / ECU / sensor ties: battery-negative bus only (N83 a)"
+                             % r["wire_id"], key=r["wire_id"])
+                    continue        # a factory-load ground on its factory point (DECISIONS "Grounds (B10)", Dan N83 a)
                 if ELECTRONICS.search(text):
                     fail("E3", "%s ends on chassis ground %s with low-voltage electronics on it: battery-negative bus only (R213)"
                          % (r["wire_id"], r[s + "_id"]), key=r["wire_id"])
@@ -668,6 +684,14 @@ def self_test():
         to_type="connector", to_id="MAP", to_pin="1"))
     mutate("a bulkhead cavity wired on one side", "M1", lambda rs: first(rs, lambda r: r["from_id"] == "DRB102-ENGINE").update(
         from_pin="5"))
+    mutate("an LED ground on chassis without the factory-ground tag", "E3", lambda rs: first(
+        rs, lambda r: r["wire_id"] == "w_led_gnd_out").update(notes=""))
+    mutate("the factory-ground tag on CAN / ECU / sensor ties", "E3", lambda rs: first(
+        rs, lambda r: r["wire_id"] == "w_led_gnd_out").update(from_desc="CAN-Lambda sensor ground"))
+    mutate("the factory-ground tag without a 1993 EWD page", "E3", lambda rs: first(
+        rs, lambda r: r["wire_id"] == "w_fan_gnd").update(notes="factory ground (N83 a): radiator fan to EA"))
+    mutate("the factory-ground tag off a body ground stud", "E3", lambda rs: first(
+        rs, lambda r: r["wire_id"] == "w_f5_gnd").update(to_id="T-ENG-BLOCK-3", to_name="Engine block ground stud, lug 3"))
     mutate("12 AWG in a size-16 cavity", "M2", lambda rs: first(rs, lambda r: r["to_id"] == "DRB102-CABIN" and r["to_pin"] == "21")
            .update(gauge_awg="12"))
     for name, extra, want in (("a stray wiring CSV under docs/harness", "docs/harness/extra-wires.csv", True),
