@@ -27,7 +27,8 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   M2  DRB102 contacts: size 16 cavities take 16-20 AWG, size 12 take 12-14 AWG, size 8 / 4 stay spare (TE drawing
       DRB12-102PXE-L018 rev C3); a contact the maker does not list for the housing fails (MAKER_CONTACTS)
   P1  a fuse-box end exists in the fuse-box design (cad/fusebox/rev7/wiring_plan.json, R204) with the same gauge; a POWER /
-      LOGIC box ring terminal (T-PWR-* / T-LOG-*, "<bar or fuse>, <stud> stud", Dan N64 a) names a stud of the box design
+      LOGIC box ring terminal (T-PWR-* / T-LOG-*, "<bar or fuse>, <stud> stud", on a stud with several rings ending
+      ", ring <n> of <m>", Dan N64 a, 2026-11-08) names a stud of the box design
       (cad/fusebox/src/spec.py REV7 neg_studs / pos_studs, AMI_ROWS, FEEDS): a 1/0 stud takes one 1/0 lug, the small GND stud
       up to 3 small rings, the + bar spare stud none, and every other bar stud is used
   R1  the approved route drawings (routes/*.html) lint clean (red lines unfilled, attributes sound, a top view after every
@@ -131,7 +132,7 @@ def box_studs():
     return out
 
 
-RING_NAME = re.compile(r"^(.+), (.+) stud$")
+RING_NAME = re.compile(r"^(.+), (.+) stud(?:, ring \d+ of \d+)?$")   # "..., GND stud, ring 1 of 3" (2026-11-08)
 
 
 def read_csv(path, text=None):
