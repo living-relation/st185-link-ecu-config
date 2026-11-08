@@ -163,7 +163,7 @@ for (i, hd), ds in desc.items():
 
 # ================================================================== schematic: cabin ends left, splices middle, front right
 def node_of(nm): return conns.get(nm) or terms.get(nm)
-LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN', 'K-DRL', 'KILL-SW'],
+LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN', 'K-DRL', 'RLY-DRL', 'KILL-SW'],
         ['IE1-6', 'IE1-13', 'IE1-20', 'JB1-1H-5', 'IE1-7', 'IE1-8', 'IE1-9', 'IE1-14', 'IE1-15', 'IE1-16', 'IE1-11', 'IE1-18',
          'JB1-1H-4', 'JB1-1H-6', 'JB1-1H-8', 'RB4-AC-2', 'IG2-16', 'W1-1 cowl', 'W1-2 cowl']]
 # a factory tap's key is '<locator>-<pin id>' with the master's own pin id (R/B No.4 'AC-2', J/B No.1 '1H-5'; phase 2)

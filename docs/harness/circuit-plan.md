@@ -47,13 +47,15 @@ Decisions: DECISIONS "Headlamps, DRL and pop-ups" (N84 a, N85 a, N86, N87 a, N89
 | K-HR (M2) high beams | LOGIC box | 30 from HR 15 A (`SP-HR`); 86 from `SP-HL-ON`; 85 on R-W (IE1-18, `w_hl_low`); 87 -> `SP-HR-HI` -> H1 / H2 pin 2 and `R-HB` |
 | R-HB 220 ohm 1 W | glove box | `SP-HR-HI` -> R-HB -> R-L line at IE1-11 (`w_hl_high`) -> dash high-beam LED C13 (B) pin 12 |
 | Lamp commons | front | H1 pin 3 -> EB, H2 pin 3 -> EA (N83 a) |
-| K-DRL (M8, spare seat) DRL | LOGIC box | 30 / 86 from BUS2-1 DRL 7.5 A (Bus 2, key on; `SP-DRL12`); 85 -> `SP-DRL-SW` -> DRL switch -> R8 pin 12 W-B (ground); 87 -> `SP-DRL` -> both white DRL leads. N85 a cut: open |
-| D1 / D2 (DT04-2P-RT01) | behind the LH dash at R8 | R-Y I2 -> R8 pin 8 cut; D1 R8 pin 8 -> I2 side (stalk UP); D2 R8 pin 8 -> `SP-DRL-SW` (DRL UP) |
+| K-DRL (M8, spare seat) DRL | LOGIC box | 30 / 86 from BUS2-1 DRL 7.5 A (Bus 2, key on; `SP-DRL12`); 85 -> `SP-DRL-SW` -> DRL switch -> R8 pin 12 W-B (ground); 87 -> RLY-DRL 30 |
+| RLY-DRL DRL cut (N90 a) | beside the LOGIC box | Song Chuan 301-1C-C-R1-U01-12VDC in Metri-Pack 280 socket 12110539; coil 86 from `SP-HL`, 85 on R-Y (`SP-HEAD-COIL`); 30 from K-DRL 87, 87a (NC) -> `SP-DRL` -> both white DRL leads: DRLs off whenever the head lamps are on |
+| K-POD (M10, spare seat) key-on pop-up (N93 a) | LOGIC box | 86 from `SP-DRL12` (key on), 85 -> `SP-DRL-SW`; 30 from D2's cathode, 87 -> `SP-DRL-SW`: the DRL switch raises the pods only with the key on |
+| D1 / D2 (DT04-2P-RT01) | behind the LH dash at R8 | R-Y I2 -> R8 pin 8 cut; D1 R8 pin 8 -> I2 side (stalk UP); D2 R8 pin 8 -> K-POD 30 (DRL UP, key on) |
 | Turn | front | yellow lead on F7 / F8 pin 3 (G-B / G-Y) with the bumper lamp |
 
-Truth table (pods: R8; low / high: lamp beams; DRL: white leads; LED: dash high-beam LED). Low on with high is N89 a; "DRL on" with beams on is N85 a, still open (the design without the cut would light it).
+Truth table (pods: R8; low / high: lamp beams; DRL: white leads; LED: dash high-beam LED). Low on with high: N89 a / N91 a. DRLs off with the head lamps on: N85 a / N90 a. DRL switch works only with the key on: N93 a; without the key the stalk alone runs the lamps and pods (3 then 1 = pods up, beams off, for maintenance).
 
-| Stalk | DRL switch | Pods | Low | High | DRL (N85 a) | LED |
+| Stalk | DRL switch | Pods | Low | High | DRL | LED |
 |---|---|---|---|---|---|---|
 | 0 (off) | off | down | off | off | off | off |
 | 0 (off) | on, key on | up | off | off | on | off |
@@ -61,14 +63,11 @@ Truth table (pods: R8; low / high: lamp beams; DRL: white leads; LED: dash high-
 | 1 (hold) | on, key on | up | off | off | on | off |
 | 2 (TAIL) | off | stay | off | off | off | off |
 | 2 (TAIL) | on, key on | up | off | off | on | off |
-| 3 (HEAD), low | off | up | on | off | off | off |
-| 3 (HEAD), low | on, key on | up | on | off | off | off |
-| 3 (HEAD), high | off | up | on | on | off | on |
-| 3 (HEAD), high | on, key on | up | on | on | off | on |
-| flash, held (any) | off | up | on | on | off | on |
-| flash, held (any) | on, key on | up | on | on | off | on |
+| 3 (HEAD), low | either | up | on | off | off | off |
+| 3 (HEAD), high | either | up | on | on | off | on |
+| flash, held (any) | either | up | on | on | off | on |
 | any, released | either | back to the stalk row | | | | |
-| any | on, key off | up (switch grounds R8 pin 8) | per stalk | per stalk | off | per stalk |
+| any | on, key off | per stalk (K-POD open) | per stalk | per stalk | off | per stalk |
 
 ## Cut-list groups (row 164)
 
