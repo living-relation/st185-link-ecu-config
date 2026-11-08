@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev D" (viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev E" (viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -10,7 +10,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'D', '2026-11-05'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'E', '2026-11-08'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -27,8 +27,8 @@ def col(c): return c if c in COLORS else "Gray"
 STRIPE = {'RTM': ('White', 'retract motor feeds'), 'HHI': ('Blue', 'high beam'), 'HLO': ('Green', 'low beam'),
           'CLR': ('Violet', 'clearance and marker lamps'), 'TURN': ('Light Blue', 'front turn lamps'), 'WIP': ('Black', 'wiper'),
           'WSH': ('Orange', 'washer'), 'HZ': ('Brown', 'horns'), 'ACC': ('Gray', 'A/C clutch'), 'FAN': ('Pink', 'radiator fan'),
-          'FAN2': ('Light Green', 'condenser fan'), 'HL': ('Tan', 'LH headlight feed'), 'HR': ('Maroon', 'RH headlight feed'),
-          'EPS': ('Light Yellow', 'steering pump'),
+          'FAN2': ('Light Green', 'condenser fan'), 'HL': ('Tan', 'low beams (K-HL)'), 'HR': ('Maroon', 'RH headlight feed'),
+          'EPS': ('Light Yellow', 'steering pump'), 'DRL': ('Light Gray', 'DRL feed (K-DRL, RLY-DRL)'),
           'ALTIG': ('Yellow', 'alternator IG')}
 
 # ------------------------------------------------------------------ parts (library wins; new = from harness-parts.csv)
