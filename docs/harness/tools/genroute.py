@@ -155,6 +155,9 @@ if __name__ == '__main__':
     # python docs/harness/tools/genroute.py <doc.json> <out.json>   (a harness.design document JSON, schematic view)
     src, dst = sys.argv[1:3]
     d = json.load(open(src))
+    import build_drawings as B      # the fuse-box groups (Dan N81 a): route their members too, then put them back
+    saved = B.ungroup(d)
     R, segs, res = run(d)
     print('unrouted', apply(d, segs, res))
+    B.regroup(d, saved)
     json.dump(d, open(dst, 'w'))
