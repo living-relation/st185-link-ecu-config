@@ -741,9 +741,9 @@ def dr25_for(bundle_mm):
 # (OPEN-ITEMS row 183 phase 4, Dan L2 a) is done. Their master `est_length_mm` is the tree length, written only by
 # --write-lengths, and --check fails on any difference. A harness joins here at its lengths step, once Dan OKs its
 # before -> after list (--lengths <harness>); until then it keeps its estimate. AntiTheft joined 2026-11-07 (Dan N70 a).
-# CabinPower joined 2026-11-08 (Dan approved the N120 seed layout as is; H1 a).
+# CabinPower joined 2026-11-08 (Dan approved the N120 seed layout as is; H1 a). RearFuel joined 2026-11-09 (Dan O1 a).
 PLACED = ("AB-cabin", "AB-engine", "EngineRoom-C", "HeavyDC", "Dash", "AntiTheft", "CabinPower", "WheelSpeed-Front",
-          "WheelSpeed-Rear")
+          "WheelSpeed-Rear", "RearFuel")
 LENGTH_COL = "est_length_mm"
 
 
