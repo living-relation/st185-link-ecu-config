@@ -400,7 +400,7 @@ Fixed: the 1.8 kOhm cam pull-up is `R-CAM-PULLUP` in AB-cabin, from the 8 V rail
 
 Two separate enclosures, side by side above the ECU (Dan 2026-11-04): VRC front (`VRC-F-IN` / `VRC-F-OUT`) and VRC rear
 (`VRC-R-IN` / `VRC-R-OUT`). Each takes its own wheel-speed sensors and sends the conditioned signals to the ECU through
-its own inline plug (`IX-WS-F-*`, `IX-WS-R-*`). They sit at one spot, so neither plug gets a breakout (U2 a).
+its OUT plug, which the AB-cabin spur plugs into directly (no inline pair, Dan J1 a 2026-11-08; DECISIONS "VR conditioner boxes").
 CSB3 (ECUMaster CAN Switch Board V3) is another enclosure and a CAN node.
 
 Write-up: `docs/devices/VR-WHEEL-SPEED-CONDITIONER.md`. Pins below are the

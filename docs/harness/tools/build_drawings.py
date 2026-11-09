@@ -218,8 +218,7 @@ OEM_DEV = {'JB1': 'J/B No.1', 'IE1': 'Cowl plug IE1', 'IG2': 'Cowl plug IG2', 'I
            'F7': 'LH front turn lamp F7', 'F8': 'RH front turn lamp F8', 'F9': 'Wiper motor F9', 'R2': 'LH pop-up motor R2',
            'R3': 'RH pop-up motor R3', 'W1': 'Washer motor W1', 'R8': 'Pop-up relay R8'}
 CABLE_NAMES = {'CAB-RSPUR': 'Rear wheel speed cable (cabin)', 'CAB-ETBS': 'Throttle sensor cable', 'CAB-CAN-CSB': 'Switch board CAN cable',
-               'CAB-CAN-CLU': 'Cluster CAN cable', 'CAB-CAN-RD': 'RealDash Pi CAN cable', 'CAB-ROUT': 'Rear VR conditioner output cable',
-               'CAB-FOUT': 'Front VR conditioner output cable', 'CAB-TURBO-C': 'Turbo speed cable (cabin)',
+               'CAB-CAN-CLU': 'Cluster CAN cable', 'CAB-CAN-RD': 'RealDash Pi CAN cable', 'CAB-TURBO-C': 'Turbo speed cable (cabin)',
                'CAB-ETBS-C': 'Throttle sensor cable (cabin)', 'CAB-CAM-C': 'Cam sensor cable (cabin)', 'CAB-APS1': 'Pedal sensor 1 cable',
                'CAB-APS2': 'Pedal sensor 2 cable', 'CAB-FSPUR': 'Front wheel speed cable (cabin)', 'CAB-CAM': 'Cam sensor cable',
                'CAB-TURBO': 'Turbo speed cable', 'CAB-CRANK-C': 'Crank sensor cable (cabin)', 'CAB-KNOCK1-C': 'Knock sensor cable (cabin)',

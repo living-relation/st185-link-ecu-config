@@ -79,7 +79,7 @@ NEG_BAR = re.compile(r"^T-PWR-NEG-")      # the ring terminals on the POWER box 
 BOX_RING = re.compile(r"^T-(PWR|LOG)-")     # a ring terminal on a POWER / LOGIC box stud (Dan N64 a, 2026-11-07)
 SPEC_DIR = os.path.join(REPO, "cad", "fusebox", "src")   # the frozen box design: read only
 # mated pairs: the two halves of one connector (cavity n mates cavity n)
-MATES = {"DRB102-CABIN": "DRB102-ENGINE", "IX-WS-F-S": "IX-WS-F-P", "IX-WS-R-S": "IX-WS-R-P", "IX-FUEL-S": "IX-FUEL-P"}
+MATES = {"DRB102-CABIN": "DRB102-ENGINE", "IX-FUEL-S": "IX-FUEL-P"}  # wheel speed inline pairs dropped (Dan J1 a, 2026-11-08)
 MATES.update({v: k for k, v in list(MATES.items())})
 # inside the VRC boxes the input screen pin is wired to the output screen pin (DECISIONS R31)
 INTERNAL = [(("VRC-F-IN", "3"), ("VRC-F-OUT", "5")), (("VRC-R-IN", "3"), ("VRC-R-OUT", "5"))]  # OUT screen = pin 5 (CAD BOM, Dan G2 a 2026-11-08)
