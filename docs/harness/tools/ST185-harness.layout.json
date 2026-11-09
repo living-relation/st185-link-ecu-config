@@ -163,7 +163,7 @@
     38,
     52
    ],
-   "label": "CAN trunk start by ECU plug C: CAN H / L joins, the node branch screen splices, the node +12 V joins and ground join, the Pi inline 5 A fuse (Dan 2026-11-07; the ECU end of the bus is the ECU's own terminator)",
+   "label": "By ECU plug C: the CAN trunk leaves ECU plug C here and runs out past the switch board, cluster and Pi taps, then on to the bulkhead; the CAN node ground splice sits here (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
    "end": true,
    "short": "CAN trunk start (ECU plug C)"
   },
@@ -420,6 +420,30 @@
    "end": true,
    "short": "Engine block ground stud",
    "lab": "below"
+  },
+  "TAP_CSB": {
+   "xy": [
+    26.0,
+    41.5
+   ],
+   "label": "CAN trunk switch board tap: CAN H / L, shield and ground splices; the switch board drop cable leaves here (80 mm to the switch board) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
+   "short": "switch board CAN tap"
+  },
+  "TAP_CLU": {
+   "xy": [
+    26.8,
+    74.4
+   ],
+   "label": "CAN trunk cluster tap: CAN H / L, shield and ground splices; the cluster drop cable leaves here (80 mm to the cluster) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
+   "short": "cluster CAN tap"
+  },
+  "TAP_RD": {
+   "xy": [
+    33.9,
+    62.9
+   ],
+   "label": "CAN trunk RealDash Pi tap: CAN H / L, shield and ground splices; the RealDash Pi drop cable leaves here (80 mm to the RealDash Pi) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
+   "short": "RealDash Pi CAN tap"
   }
  },
  "segments": [
@@ -510,8 +534,13 @@
   ],
   [
    "CANJ",
+   "TAP_CSB",
+   240
+  ],
+  [
+   "TAP_CSB",
    "CSB3",
-   320
+   80
   ],
   [
    "ECU",
@@ -525,13 +554,23 @@
   ],
   [
    "CANJ",
+   "TAP_CLU",
+   320
+  ],
+  [
+   "TAP_CLU",
    "CLUSTER",
-   400
+   80
   ],
   [
    "CANJ",
+   "TAP_RD",
+   170
+  ],
+  [
+   "TAP_RD",
    "PI",
-   250
+   80
   ],
   [
    "BP_COL",
@@ -764,12 +803,9 @@
   "SP-CSB-5V": "CSB3",
   "SP-CSB-SGND": "CSB3",
   "OPTO-8": "CSB3",
-  "SP-CANH": "CANJ",
-  "SP-CANL": "CANJ",
-  "SP-CAN-SH-BH": "CANJ",
   "SP-CAN-GND": "CANJ",
-  "SP-CLU-12V": "CANJ",
-  "SP-CSB-12V": "CANJ",
+  "SP-CLU-12V": "TAP_CLU",
+  "SP-CSB-12V": "TAP_CSB",
   "F-PI": "PI",
   "DRB102-ENGINE": "BH_ENG",
   "CRANK": "CRANK",
@@ -869,7 +905,7 @@
   "SP-CRUISE-LADDER": "CSB3",
   "ECU-C": "ECU",
   "CAB-CAN-ECU": "ECU",
-  "SP-CAN-SH-CLU": "CANJ",
+  "SP-CAN-SH-CLU": "TAP_CLU",
   "CAB-CAN-CLU": "CLUSTER",
   "T-CLUSTER-CAN": "CLUSTER",
   "T-CLUSTER-PWR": "CLUSTER",
@@ -877,9 +913,9 @@
   "T-REALDASH-CAN": "PI",
   "T-REALDASH-PWR": "PI",
   "T-REALDASH-GND-LEAD": "PI",
-  "SP-CAN-SH-RD": "CANJ",
+  "SP-CAN-SH-RD": "TAP_RD",
   "CAB-CAN-RD": "PI",
-  "SP-CAN-SH-CSB": "CANJ",
+  "SP-CAN-SH-CSB": "TAP_CSB",
   "CAB-CAN-CSB-CSB": "CSB3",
   "T-AT-GND": "ALARM",
   "AL-SIREN-BAY": "SIREN",
@@ -918,7 +954,16 @@
   "T-CLUSTER-HL": "CLUSTER",
   "GND-EB-2": "GND_EB_S",
   "SP-GNDOUT-ENG": "J_BH_ENG_drop",
-  "SP-SW12-ENG": "J_BH_ENG_drop"
+  "SP-SW12-ENG": "J_BH_ENG_drop",
+  "SP-CANH-CSB": "TAP_CSB",
+  "SP-CANL-CSB": "TAP_CSB",
+  "SP-CAN-GND-CSB": "TAP_CSB",
+  "SP-CANH-CLU": "TAP_CLU",
+  "SP-CANL-CLU": "TAP_CLU",
+  "SP-CAN-GND-CLU": "TAP_CLU",
+  "SP-CANH-RD": "TAP_RD",
+  "SP-CANL-RD": "TAP_RD",
+  "SP-CAN-GND-RD": "TAP_RD"
  },
  "place_oem": [
   [
