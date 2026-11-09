@@ -989,7 +989,7 @@
  },
  "place_oem": [
   [
-   "cowl plug II1",
+   "Cowl plug II1",
    "PI"
   ],
   [
@@ -1005,7 +1005,7 @@
    "COLUMN"
   ],
   [
-   "cluster plug C1",
+   "Cluster plug C1",
    "CLUSTER"
   ],
   [
@@ -1033,7 +1033,7 @@
    "TURN_LH"
   ],
   [
-   "LH retract motor",
+   "LH pop-up motor",
    "RTR_LH"
   ],
   [
@@ -1045,7 +1045,7 @@
    "TURN_RH"
   ],
   [
-   "RH retract motor",
+   "RH pop-up motor",
    "RTR_RH"
   ],
   [
@@ -1053,7 +1053,7 @@
    "WIPER"
   ],
   [
-   "IG2 OEM IG2",
+   "Cowl plug IG2",
    "ECU"
   ],
   [
@@ -1093,15 +1093,15 @@
    "ACAMP"
   ],
   [
-   "RH front side marker lamp",
+   "RH side marker lamp",
    "MARK_RH"
   ],
   [
-   "LH front side marker lamp",
+   "LH side marker lamp",
    "MARK_LH"
   ],
   [
-   "retract control relay R8",
+   "Pop-up relay R8",
    "JB1"
   ]
  ],

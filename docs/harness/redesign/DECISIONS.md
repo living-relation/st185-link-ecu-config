@@ -502,7 +502,7 @@ Labels and names (Dan 2026-11-08, standing; these win over any older text on thi
 - Layout view = formboard (README).
 - `build_drawings.py --check` keeps the layout tree, master lengths, the Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout.
 - The OEM splice notes come from the master via `build_drawings.oem_splice_note` (the OEM splice reference was retired, Dan N22 a, #534).
-- N118 b (Dan 2026-11-08, for the 2026-11-08 label pass): where Dan's own live edits in a harness.design file (his labels, opto pin texts) clash with the label ops generated from the master, the generated ops win and overwrite them; files are built from the master.
+- N118 b (Dan 2026-11-08, for the 2026-11-08 label pass): where Dan's own live edits in a harness.design file (his labels, opto pin texts) clash with the label ops generated from the master, the generated ops win and overwrite them; files are built from the master. Dan 2026-11-08: his live edits were tests, so the generated files overwrite them and none of his deletions (AB-cabin 1 ECU plug C, bridges, the Dash CAN shield splice and its wires, his key-B plug and jumper wires) go into the master.
 
 ## Grounds (B10)
 

@@ -27,20 +27,8 @@ LIGHT = {"White", "Yellow", ""}
 FRM = list(csv.DictReader(open(os.path.join(REPO, "sot/fuse-relay-map.csv"), encoding="utf-8")))
 BOX = {"B1": "POWER fuse box", "B2": "LOGIC fuse box", "B3": "Trunk relay box", "B4": "beside the POWER fuse box"}
 RELAY = {r["master_id"]: (r["bank"], r["position"], r["circuit"]) for r in FRM if r["kind"] == "relay" and r["master_id"].startswith("K-")}
-FIX = {"BUS-5V": "+5 V bussed plug at the ECU, fed by ECU plug A pin 32 (BUS-5V)",
-       "BUS-5V-2": "+5 V bussed plug 2 at the ECU, fed from BUS-5V pin 12 (BUS-5V-2)",
-       "BUS-GNDOUT-A": "Sensor-ground bussed plug A at the ECU, to ECU plug A pin 24 (BUS-GNDOUT-A)",
-       "BUS-GNDOUT-B": "Sensor-ground bussed plug B at the ECU, to ECU plug B pin 22 (BUS-GNDOUT-B)",
-       "BUS-SW12": "Switched 12 V bussed plug in the glove box by the LOGIC fuse box, fed by LOGIC fuse BUS2-2 (BUS-SW12)",
-       "DRB102-ENGINE": "DRB102 bulkhead, engine side", "DRB102-CABIN": "DRB102 bulkhead, cabin side",
-       "ECU-A": "Link G4X plug A", "ECU-B": "Link G4X plug B",
-       "IX-WS-F-P": "Front wheel-speed inline plug, sensor side (IX-WS-F)", "IX-WS-F-S": "Front wheel-speed inline plug, VRC side (IX-WS-F)",
-       "IX-WS-R-P": "Rear wheel-speed inline plug, sensor side (IX-WS-R)", "IX-WS-R-S": "Rear wheel-speed inline plug, VRC side, dash above the ECU (IX-WS-R)",
-       "IX-FUEL-P": "Fuel sender inline plug, harness side, trunk (IX-FUEL)", "IX-FUEL-S": "Fuel sender inline plug, sender side, trunk (IX-FUEL)",
-       "R-CRUISE": "Cruise resistor on the CSB3", "F-PI": "RealDash Pi 5 A inline fuse",
-       "CAN-TERM-END": "120 ohm CAN terminator plug, Lambda end", "POWER": "POWER fuse box", "LOGIC": "LOGIC fuse box",
-       "BATT-RELAY-BLOCK": "Trunk relay box", "CSB3": "ECUMaster CSB3",
-       "COIL-1": "Coil 1", "COIL-2": "Coil 2", "COIL-3": "Coil 3", "COIL-4": "Coil 4"}
+# Dan C1 b (2026-11-08, DECISIONS B22): plain names only, from the master; no codes (relays keep theirs after the name).
+FIX = {"POWER": "POWER fuse box"}
 FUSE = {}
 for r in rows:
     for s in ("from", "to"):
@@ -56,11 +44,13 @@ def dev(i, name, typ):
     if typ == "cable screen":
         return "Shield, not connected at the device end"
     if i in RELAY:
-        b, pos, circ = RELAY[i]
-        return ("%s relay (%s)" % (circ[0].upper() + circ[1:], BOX[b])) if b == "B4" else "%s relay %s (%s)" % (BOX[b], pos, circ)
+        b, pos, _circ = RELAY[i]
+        nm = re.split(r" - ", name or i)[0].strip() or i
+        return "%s (%s, %s)" % (nm, i, BOX[b]) if b == "B4" else "%s (%s, %s seat %s)" % (nm, i, BOX[b], pos)
     if i in FIX:
         return FIX[i]
-    return re.split(r" - ", name or i)[0].strip() or i
+    nm = re.split(r" - ", name or i)[0].strip() or i
+    return "%s (%s)" % (nm, i) if i.startswith(("K-", "RLY-")) and i not in nm else nm
 
 
 def where(i, name, typ, pin):
@@ -128,8 +118,8 @@ for r in rows:
         c["harness"].add(r["harness"])
         other = goes_to(r, o) if (r[o + "_id"] or r[o + "_type"]) else ""
         c["pins"][r[s + "_pin"]].append({
-            "wire": r["wire_id"], "awg": r["gauge_awg"], "colour": r["colour"],
-            "desc": r[s + "_desc"] or r["circuit"], "other": other if r["wire_id"] else "", "term": r[s + "_terminal_pn"],
+            "wire": r["wire_label"] or r[s + "_desc"] if r["wire_id"] else "", "awg": r["gauge_awg"], "colour": r["colour"],
+            "desc": r[s + "_desc"] or r["wire_label"], "other": other if r["wire_id"] else "", "term": r[s + "_terminal_pn"],
             "spare": not r["wire_id"]})
 
 
@@ -302,14 +292,14 @@ for c in con.values():
     key = hs[0]
     pname = dev(c["id"], c["name"], "connector")
     hay = " ".join([c["id"], pname, c["name"], c["pn"]] + [e["other"] for v in c["pins"].values() for e in v] + [e["wire"] + " " + e["desc"] for v in c["pins"].values() for e in v]).lower()
-    card = ('<article class="card" id="c-%s" data-hay="%s"><header><h3>%s</h3><span class="pn">%s · %s</span>'
-            '<span class="chip %s">%s</span></header><p class="nm">%s</p>'
+    card = ('<article class="card" id="c-%s" data-hay="%s"><header><h3>%s</h3><span class="pn">%s</span>'
+            '<span class="chip %s">%s</span></header>'      # Dan C1 b: no master code on the card
             '<div class="faceWrap">%s</div><p class="view">%s%s</p>%s'
-            '<div class="tw"><table><thead><tr><th>Pin</th><th>Wire</th><th>Wire ID</th><th>What it does</th><th>Goes to</th><th>Contact</th></tr></thead>'
+            '<div class="tw"><table><thead><tr><th>Pin</th><th>Wire</th><th>Wire label</th><th>What it does</th><th>Goes to</th><th>Contact</th></tr></thead>'
             '<tbody>%s</tbody></table></div><p class="doc">Pin numbers: %s · harness %s</p></article>') % (
-        html.escape(c["id"]), html.escape(hay), html.escape(pname), html.escape(c["id"]), html.escape(c["pn"] + (" + " + c["extra"] if c["extra"] else "")),
+        html.escape(c["id"]), html.escape(hay), html.escape(pname), html.escape(c["pn"] + (" + " + c["extra"] if c["extra"] else "")),
         status, "face sourced" if status == "sourced" else "face not sourced",
-        html.escape(c["name"]), svg, html.escape(view),
+        svg, html.escape(view),
         (' · <a href="%s" target="_blank" rel="noopener">source</a>' % html.escape(src)) if src.startswith("http") else "",
         ('<details class="nt"><summary>Drawing notes</summary>%s</details>' % html.escape(note)) if note else "",
         "".join(trs), html.escape(c["doc"] or "TBD"), html.escape(", ".join(hs)))
@@ -328,13 +318,13 @@ for r in rows:
         own[i].add(r["harness"]); dname.setdefault(i, dev(i, r[s_ + "_name"], r[s_ + "_type"]))
 idx = []
 for h in ORDER + sorted({x for v in own.values() for x in v} - set(ORDER)):
-    items = sorted(i for i, hs in own.items() if len(hs) == 1 and h in hs)
-    if items:
+    items = sorted((i for i, hs in own.items() if len(hs) == 1 and h in hs), key=lambda i: dname[i])
+    if items:      # Dan C1 b: plain names only (relays keep their code inside dev())
         idx.append('<tr><td class="mono"><b>%s</b></td><td>%s</td></tr>' % (html.escape(h), "; ".join(
-            "%s (%s)" % (html.escape(dname[i]), html.escape(i)) if dname[i] != i else html.escape(i) for i in items)))
-hubs = sorted(i for i, hs in own.items() if len(hs) > 1)
+            html.escape(dname[i]) for i in items)))
+hubs = sorted((i for i, hs in own.items() if len(hs) > 1), key=lambda i: dname[i])
 idx.append('<tr><td class="mono"><b>Shared hubs</b></td><td>%s</td></tr>' % "; ".join(
-    "%s: %s" % (html.escape(i), html.escape(", ".join(sorted(own[i])))) for i in hubs))
+    "%s: %s" % (html.escape(dname[i]), html.escape(", ".join(sorted(own[i])))) for i in hubs))
 body = ('<section id="s-index"><h2>Devices by harness</h2><p class="view">Each plug belongs to one harness (Dan 2026-11-01). '
         'Fuse boxes, relays, buses, studs and factory taps are hubs: several harnesses land on them.</p>'
         '<div class="tw"><table><thead><tr><th>Harness</th><th>Devices and plugs</th></tr></thead><tbody>%s</tbody></table></div></section>'
