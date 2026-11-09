@@ -55,26 +55,39 @@ button:disabled{opacity:.45;cursor:default}
 button.primary{background:var(--panel);color:var(--muted);border-color:var(--line)}
 button.primary.due{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);opacity:1;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
 button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-header{display:flex;align-items:center;gap:8px;padding-block:6px;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+/* Phone (Dan 2026-11-08 "car view too small"): one-line header, the map takes the rest, the sheet is a 56 px peek bar
+   that grows to a short card (<= 120 px) when a device is picked and to the full list only when Dan opens it. */
+header{display:flex;align-items:center;gap:8px;padding-block:4px;
+  padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));
   background:var(--panel);border-bottom:1px solid var(--line);z-index:3}
-header h1{font-size:17px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-wrap:balance}
-header h1 small{display:block;font-size:12px;font-weight:400;color:var(--muted)}
-#status{font-size:12px;color:var(--muted);padding-block:4px;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
-  background:var(--panel);border-bottom:1px solid var(--line)}
-#status.warn{color:var(--warn)}
+header h1{font-size:16px;margin:0;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #mapwrap{position:relative;flex:1;min-height:0;background:var(--paper)}
 svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-webkit-user-select:none}
-.compass{position:absolute;left:max(12px,env(safe-area-inset-left,0px));top:10px;display:flex;gap:10px;align-items:center;padding:4px 10px;border-radius:999px;
-  background:#fbfbf8e6;color:#101418;border:1px solid #c9ced3;font:600 12px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
-.zoom{position:absolute;right:max(12px,env(safe-area-inset-right,0px));bottom:12px;display:grid;gap:8px}
-.zoom button{width:48px;height:48px;padding:0;font-size:22px;font-family:var(--f-num);box-shadow:0 1px 3px #0003}
+.compass{position:absolute;left:max(10px,env(safe-area-inset-left,0px));top:8px;display:flex;gap:10px;align-items:center;padding:3px 10px;border-radius:999px;
+  background:#fbfbf8e6;color:#101418;border:1px solid #c9ced3;font:600 11px var(--f-ui);letter-spacing:.06em;text-transform:uppercase;pointer-events:none}
+#status{position:absolute;top:40px;left:max(10px,env(safe-area-inset-left,0px));right:max(64px,calc(env(safe-area-inset-right,0px) + 64px));
+  display:flex;align-items:center;gap:4px;width:max-content;max-width:calc(100% - 74px);
+  padding:2px 2px 2px 12px;border-radius:999px;background:var(--panel);color:var(--muted);border:1px solid var(--line);
+  box-shadow:0 1px 3px #0002;font-size:12px;z-index:2}
+#status[hidden]{display:none}
+#status span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#status.warn{color:var(--warn);border-color:var(--warn)}
+#status.warn span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+#status button{min-height:32px;min-width:32px;padding:0;border:0;border-radius:999px;background:transparent;color:inherit;font-size:16px;flex:none}
+.zoom{position:absolute;right:max(10px,env(safe-area-inset-right,0px));bottom:10px;display:grid;gap:6px}
+.zoom button{width:44px;height:44px;min-width:44px;padding:0;font-size:20px;font-family:var(--f-num);box-shadow:0 1px 3px #0003}
 .sheet{background:var(--panel);border-top:1px solid var(--line);z-index:3;display:flex;flex-direction:column;
-  max-height:62%;padding-bottom:env(safe-area-inset-bottom,0px)}
-.grab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border:0;border-radius:0;
-  background:transparent;color:var(--muted);font-weight:600;width:100%}
-.grab::before{content:"";width:36px;height:4px;border-radius:2px;background:var(--line)}
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.peek{display:flex;align-items:center;gap:10px;min-height:56px;width:100%;border:0;border-radius:0;background:transparent;
+  padding:6px max(12px,env(safe-area-inset-right,0px)) 6px max(12px,env(safe-area-inset-left,0px));text-align:left;font-weight:600;touch-action:none;position:relative}
+.peek::before{content:"";position:absolute;top:5px;left:50%;width:36px;height:4px;margin-left:-18px;border-radius:2px;background:var(--line)}
+.peek .pl{flex:1;min-width:0;display:grid;gap:1px}
+.peek .pn,.peek .pm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.peek .pl.none .pn{font-weight:400;color:var(--muted)}
+.peek .pm{font:500 12px var(--f-num);color:var(--muted)}
+.peek .pm:empty{display:none}
+.peek .pm.w{color:var(--warn);font:600 12px var(--f-ui)}
+.peek .pr{flex:none;font-size:13px;color:var(--accent)}
 .inner{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   padding-block:0 12px;overflow-y:auto;min-height:0;display:grid;gap:12px}
 .card{display:grid;gap:8px}
@@ -99,26 +112,35 @@ svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-web
 .legend{display:grid;gap:4px;font-size:13px}
 .legend span{display:inline-block;width:18px;height:4px;border-radius:2px;margin-right:8px;vertical-align:middle}
 .help{font-size:13px;color:var(--muted);line-height:1.5;margin:0;max-width:70ch}
-@media (max-width:899px){.sheet:not(.open) .note{display:none}.sheet:not(.open){height:clamp(190px,30%,240px);max-height:none}.sheet.open{height:62%}}
+@media (max-width:899px){
+  .sheet:not(.open) .open-only{display:none}
+  .sheet:not(.open) .inner{overflow:hidden;padding-bottom:8px}
+  .sheet:not(.open) .inner:has(.card:empty){display:none}
+  .sheet:not(.open) .row{flex-wrap:nowrap}
+  .sheet:not(.open) .row label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sheet:not(.open) .row input{width:6.5em}
+  .sheet.open{height:70%}
+  .sheet.open .peek .pm{display:none}
+}
 .confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
 @media (min-width:900px){
-  body{display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto auto minmax(0,1fr)}
-  header,#status{grid-column:1/-1}
-  #mapwrap{grid-column:1;grid-row:3}
-  .sheet{grid-column:2;grid-row:3;max-height:none;border-top:0;border-left:1px solid var(--line)}
-  .grab{display:none}
+  body{display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto minmax(0,1fr)}
+  header{grid-column:1/-1}
+  #mapwrap{grid-column:1;grid-row:2}
+  .sheet{grid-column:2;grid-row:2;border-top:0;border-left:1px solid var(--line)}
+  .peek{display:none}
   .sheet .more{display:grid!important}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
 <header>
-  <h1 id="title">Placement editor<small id="sub">Move devices only - routes are drawn by Claude</small></h1>
+  <h1 id="title" title="Move devices only - routes are drawn by Claude">Placement editor</h1>
   <button id="undo" disabled aria-label="Undo last move">Undo</button>
   <button id="save" class="primary" disabled>Saved</button>
 </header>
-<div id="status" role="status">Loading...</div>
 <div id="mapwrap">
+  <div id="status" role="status"><span id="stext">Loading...</span><button id="sx" aria-label="Hide this message">&times;</button></div>
   <svg id="svg" aria-label="Top view map: numbered dots are devices, coloured lines are routes">
     <image id="bg" preserveAspectRatio="none"/>
     <g id="gl"></g><g id="gs"></g><g id="gd"></g>
@@ -131,7 +153,7 @@ svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-web
   </div>
 </div>
 <section class="sheet" id="sheet">
-  <button class="grab" id="grab" aria-expanded="false" aria-controls="more">All devices</button>
+  <button class="peek" id="grab" aria-expanded="false" aria-controls="more"><span class="pl none" id="pl"><span class="pn" id="pn">Tap a dot to pick a device</span><span class="pm" id="pm"></span></span><span class="pr" id="pr">List &#9650;</span></button>
   <div class="inner">
     <div class="card" id="card"></div>
     <div class="more" id="more" hidden>
@@ -158,7 +180,11 @@ const ptrs=new Map();let gest=null;
 document.title=SEED.harness+" placement";
 $("title").firstChild.textContent=SEED.harness+" placement";
 
-function status(t,warn){$("status").textContent=t;$("status").classList.toggle("warn",!!warn)}
+/* status chip over the map: plain notes hide themselves after 4 s, warnings stay until dismissed */
+let stT=null;
+function status(t,warn){const s=$("status");$("stext").textContent=t;s.title=t;s.hidden=false;s.classList.toggle("warn",!!warn);
+  clearTimeout(stT);if(!warn)stT=setTimeout(()=>{s.hidden=true},4000)}
+$("sx").onclick=()=>{$("status").hidden=true};
 function el(tag,a,p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
 function byId(id){return devs.find(d=>d.id===id)}
 function moved(d){const s=START[d.id];return Math.round(Math.hypot(d.x-s.x,d.y-s.y))}
@@ -169,16 +195,19 @@ function attach(d){const l=LINES[d.line];if(!l||l.pts.length<1)return null;if(l.
 /* ---- view box: pan / zoom ---- */
 function bbox(){let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;const add=p=>{x0=Math.min(x0,p[0]);y0=Math.min(y0,p[1]);x1=Math.max(x1,p[0]);y1=Math.max(y1,p[1])};
   devs.forEach(d=>add([d.x,d.y]));(SEED.refs||[]).forEach(r=>add([r.x,r.y]));SEED.lines.forEach(l=>l.pts.forEach(add));if(!isFinite(x0))return[0,0,1000,1000];
-  const pad=Math.max(120,(x1-x0)*.12,(y1-y0)*.12);return[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad]}
-function fit(){const b=bbox(),r=svg.getBoundingClientRect(),ar=r.width/Math.max(1,r.height);let[x,y,w,h]=b;
-  if(w/h<ar){const nw=h*ar;x-=(nw-w)/2;w=nw}else{const nh=w/ar;y-=(nh-h)/2;h=nh}
-  const top=44*w/Math.max(1,r.width);if(y>b[1]-top){const nh=b[3]+top+(h-b[3])/2,nw=nh*ar;x-=(nw-w)/2;y=b[1]-top;w=nw;h=nh}vb=[x,y,w,h];applyVB()}
+  const pad=Math.max(40,(x1-x0)*.04,(y1-y0)*.04);return[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad]}
+/* Fit = the harness's own routes, devices and grey markers fill the map (not the whole car plan), leaving room for the
+   orientation chip (top) and the zoom keys (right) so nothing sits under them. */
+let userView=false;
+function fit(){const b=bbox(),r=svg.getBoundingClientRect(),W=Math.max(1,r.width),H=Math.max(1,r.height);
+  const T=Math.min(44,H*.15),B=Math.min(16,H*.05),L=Math.min(56,W*.15),R=Math.min(60,W*.18),aw=Math.max(1,W-L-R),ah=Math.max(1,H-T-B),s=Math.max(b[2]/aw,b[3]/ah);
+  vb=[b[0]-L*s-(aw*s-b[2])/2,b[1]-T*s-(ah*s-b[3])/2,W*s,H*s];applyVB()}
 function applyVB(){svg.setAttribute("viewBox",vb.join(" "));draw()}
 function mmPerPx(){return vb[2]/Math.max(1,svg.getBoundingClientRect().width)}
 function toMap(cx,cy){const r=svg.getBoundingClientRect();return[vb[0]+(cx-r.left)/r.width*vb[2],vb[1]+(cy-r.top)/r.height*vb[3]]}
-function zoomAt(f,cx,cy){const r=svg.getBoundingClientRect();if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2}
+function zoomAt(f,cx,cy){userView=true;const r=svg.getBoundingClientRect();if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2}
   const p=toMap(cx,cy),nw=Math.min(20000,Math.max(80,vb[2]/f)),k=nw/vb[2];vb=[p[0]-(p[0]-vb[0])*k,p[1]-(p[1]-vb[1])*k,nw,vb[3]*k];applyVB()}
-function centerOn(d){vb=[d.x-vb[2]/2,d.y-vb[3]/2,vb[2],vb[3]];applyVB()}
+function centerOn(d){userView=true;vb=[d.x-vb[2]/2,d.y-vb[3]/2,vb[2],vb[3]];applyVB()}
 
 /* ---- draw ---- */
 function fan(items,s){/* screen-space de-overlap: badges closer than 26 px fan out around their group centre */
@@ -197,7 +226,9 @@ function draw(){
     el("polyline",{points:l.pts.map(p=>p.join(",")).join(" "),fill:"none",stroke:l.color||"#555","stroke-width":4*s,
       "stroke-dasharray":l.dash?`${8*s} ${5*s}`:"none","stroke-linecap":"round","stroke-linejoin":"round",opacity:.9},gl)}
   const refAt=REFS.map((r,i)=>{const p=pos[devs.length+i],t=r.label||r.id,w=(t.length*6.2+4)*s,h=13*s;
-    for(const [x,y] of [[p[0]+16*s,p[1]+4*s],[p[0]-16*s-w,p[1]+4*s],[p[0]-w/2,p[1]-17*s],[p[0]-w/2,p[1]+29*s]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)){boxes.push(bx);return[x,y]}}
+    const inView=bx=>bx[0]>=vb[0]+4*s&&bx[2]<=vb[0]+vb[2]-64*s;   /* keep labels on screen and clear of the zoom keys */
+    for(const [x,y] of [[p[0]+16*s,p[1]+4*s],[p[0]-16*s-w,p[1]+4*s],[p[0]-w/2,p[1]-17*s],[p[0]-w/2,p[1]+29*s]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)&&inView(bx)){boxes.push(bx);return[x,y]}}
+    for(const [x,y] of [[p[0]+16*s,p[1]+4*s],[p[0]-16*s-w,p[1]+4*s]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)){boxes.push(bx);return[x,y]}}
     boxes.push([p[0]+16*s,p[1]-9*s,p[0]+16*s+w,p[1]+7*s]);return[p[0]+16*s,p[1]+4*s]});
   REFS.forEach((r,i)=>{const p=pos[devs.length+i],g=el("g",{"pointer-events":"none"},gd);
     if(p[0]!==r.x||p[1]!==r.y){el("line",{x1:r.x,y1:r.y,x2:p[0],y2:p[1],stroke:"#7d8790","stroke-width":1.2*s},g);el("circle",{cx:r.x,cy:r.y,r:2.5*s,fill:"#7d8790"},g)}
@@ -221,16 +252,20 @@ function draw(){
     const t=el("text",{x:p[0],y:p[1]+4.2*s,"text-anchor":"middle","font-size":12*s,"font-weight":"700",fill:"#101418","font-family":"IBM Plex Mono, monospace"},g);t.textContent=d.n;
     if(on){const lb=el("text",{x:p[0]+22*s,y:p[1]+5*s,"font-size":14*s,"font-weight":"700",fill:"#101418",stroke:"#fbfbf8","stroke-width":4*s,"paint-order":"stroke","font-family":"IBM Plex Sans Condensed, sans-serif"},g);lb.textContent=d.short||d.name}})
 }
+function renderPeek(){const d=byId(sel),pl=$("pl"),pm=$("pm");pl.classList.toggle("none",!d);
+  if(!d){$("pn").textContent=`Tap a dot to pick a device · ${devs.length} devices, ${devs.filter(x=>moved(x)>0).length} moved`;pm.textContent="";pm.className="pm";return}
+  const m=moved(d);$("pn").textContent=`${d.n} · ${d.name}`;pm.className="pm"+(m>WARN?" w":"");
+  pm.textContent=m>WARN?`Moved ${m} mm - more than ${WARN} mm, Claude will check it`:(m?`Moved ${m} mm`:"On Claude's spot")}
 function renderSide(){
-  const c=$("card"),d=byId(sel);
-  if(!d){c.innerHTML=`<p>Tap a numbered dot to pick a device, then drag it to where it really sits. ${devs.length} devices, ${devs.filter(x=>moved(x)>0).length} moved.</p>`}
+  const c=$("card"),d=byId(sel);renderPeek();
+  if(!d){c.innerHTML=""}
   else{const m=moved(d);c.innerHTML="";
-    const top=document.createElement("div");top.className="top";
+    const top=document.createElement("div");top.className="top open-only";
     top.innerHTML=`<span class="num${d.kind==="handoff"?" ho":""}"></span><div style="min-width:0"><h2></h2><div class="meta"></div></div>`;
     top.querySelector(".num").textContent=d.n;top.querySelector("h2").textContent=d.name;
     top.querySelector(".meta").textContent=`x ${Math.round(d.x)}  y ${Math.round(d.y)} mm  ·  route ${d.line?(LINES[d.line]?.short||LINES[d.line]?.name||"-"):"none"}  ·  moved ${m} mm`;c.appendChild(top);
-    if(d.note){const p=document.createElement("p");p.className="note";p.textContent=d.note;c.appendChild(p)}
-    if(m>WARN){const w=document.createElement("div");w.className="far";w.textContent=`Moved ${m} mm from Claude's spot (more than ${WARN} mm). Fine if that's where it really is: Claude will check it after you save.`;c.appendChild(w)}
+    if(d.note){const p=document.createElement("p");p.className="note open-only";p.textContent=d.note;c.appendChild(p)}
+    if(m>WARN){const w=document.createElement("div");w.className="far open-only";w.textContent=`Moved ${m} mm from Claude's spot (more than ${WARN} mm). Fine if that's where it really is: Claude will check it after you save.`;c.appendChild(w)}
     const row=document.createElement("div");row.className="row";
     row.innerHTML=`<label for="drop">Drop to the part, mm</label><input id="drop" type="number" inputmode="numeric" min="0" step="10" placeholder="none"><button id="rst">Back to Claude's spot</button>`;
     c.appendChild(row);const ip=row.querySelector("#drop");ip.value=d.drop??"";
@@ -261,12 +296,12 @@ svg.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId)||!gest)return;p
   if(gest.kind==="pinch"&&ptrs.size===2){const [a,b]=[...ptrs.values()],dd=Math.hypot(a[0]-b[0],a[1]-b[1]);vb=gest.vb0.slice();
     const r=svg.getBoundingClientRect(),c=gest.c,p=[vb[0]+(c[0]-r.left)/r.width*vb[2],vb[1]+(c[1]-r.top)/r.height*vb[3]];
     const nw=Math.min(20000,Math.max(80,gest.vb0[2]*gest.d0/Math.max(1,dd))),k=nw/gest.vb0[2];
-    const mc=[(a[0]+b[0])/2,(a[1]+b[1])/2];vb=[p[0]-(mc[0]-r.left)/r.width*nw,p[1]-(mc[1]-r.top)/r.height*gest.vb0[3]*k,nw,gest.vb0[3]*k];applyVB();return}
+    userView=true;const mc=[(a[0]+b[0])/2,(a[1]+b[1])/2];vb=[p[0]-(mc[0]-r.left)/r.width*nw,p[1]-(mc[1]-r.top)/r.height*gest.vb0[3]*k,nw,gest.vb0[3]*k];applyVB();return}
   const dx=e.clientX-gest.start[0],dy=e.clientY-gest.start[1];if(!gest.moved&&Math.hypot(dx,dy)<6)return;
   if(gest.kind==="drag"){const d=byId(gest.id);if(!gest.moved){push({id:d.id,...gest.from});gest.moved=true}
     const p=toMap(e.clientX,e.clientY);d.x=Math.round(gest.from.x+p[0]-gest.m0[0]);d.y=Math.round(gest.from.y+p[1]-gest.m0[1]);draw();
     const m=moved(d);status(`${d.n} ${d.short||d.name}: moved ${m} mm${m>WARN?" - more than "+WARN+" mm, Claude will check it":""}`,m>WARN)}
-  else if(gest.kind==="pan"){gest.moved=true;const s=mmPerPx();vb=[gest.vb0[0]-dx*s,gest.vb0[1]-dy*s,vb[2],vb[3]];applyVB()}});
+  else if(gest.kind==="pan"){gest.moved=true;userView=true;const s=mmPerPx();vb=[gest.vb0[0]-dx*s,gest.vb0[1]-dy*s,vb[2],vb[3]];applyVB()}});
 function end(e){if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);if(!gest)return;
   if(gest.kind==="pinch"){if(ptrs.size===0)gest=null;return}
   if(gest.kind==="drag"&&gest.moved){mark();renderSide()}
@@ -274,9 +309,16 @@ function end(e){if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);if(!ge
   gest=null}
 svg.addEventListener("pointerup",end);svg.addEventListener("pointercancel",e=>{if(gest&&gest.kind==="drag"&&gest.moved){const d=byId(gest.id);Object.assign(d,gest.from);undo.pop();draw()}end(e)});
 svg.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX,e.clientY)},{passive:false});
-$("zin").onclick=()=>zoomAt(1.4);$("zout").onclick=()=>zoomAt(1/1.4);$("zfit").onclick=fit;
+$("zin").onclick=()=>zoomAt(1.4);$("zout").onclick=()=>zoomAt(1/1.4);$("zfit").onclick=()=>{userView=false;fit()};
 $("undo").onclick=()=>{const u=undo.pop();if(!u)return;const d=byId(u.id);Object.assign(d,{x:u.x,y:u.y,drop:u.drop});sel=d.id;mark();draw();renderSide()};
-$("grab").onclick=()=>{const m=$("more"),open=m.hidden;m.hidden=!open;$("sheet").classList.toggle("open",open);$("grab").setAttribute("aria-expanded",String(open));$("grab").textContent=open?"Hide device list":"All devices"};
+/* peek bar: tap toggles the full list, swipe up opens it, swipe down closes it */
+function setOpen(open){$("more").hidden=!open;$("sheet").classList.toggle("open",open);$("grab").setAttribute("aria-expanded",String(open));$("pr").innerHTML=open?"Close &#9660;":"List &#9650;"}
+let peekY=null;
+$("grab").addEventListener("pointerdown",e=>{peekY=e.clientY;try{$("grab").setPointerCapture(e.pointerId)}catch(_){}});
+$("grab").addEventListener("pointerup",e=>{if(peekY==null)return;const dy=e.clientY-peekY;peekY=null;const open=$("sheet").classList.contains("open");
+  setOpen(dy<-24?true:dy>24?false:!open)});
+$("grab").addEventListener("pointercancel",()=>{peekY=null});
+$("grab").addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setOpen(!$("sheet").classList.contains("open"))}});
 function restoreReset(){$("resetAllRow").innerHTML='<button id="resetAll">Reset all to Claude\'s spots</button>';bindReset()}
 function bindReset(){$("resetAll").onclick=()=>{const row=$("resetAllRow");row.innerHTML='<span>Put every device back on Claude\'s spot?</span><button id="ra-y">Yes, reset all</button><button id="ra-n">Cancel</button>';
   $("ra-n").onclick=restoreReset;$("ra-y").onclick=()=>{devs.forEach(d=>{if(moved(d)||d.drop!==START[d.id].drop){push(d);Object.assign(d,START[d.id])}});mark();draw();renderSide();restoreReset()}}}
@@ -297,7 +339,8 @@ window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault()}});
 
 const bg=$("bg");if(SEED.bg&&SEED.bg.img){bg.setAttribute("href",SEED.bg.img);const[r0,r1,r2,r3]=SEED.bg.rect;bg.setAttribute("x",r0);bg.setAttribute("y",r1);bg.setAttribute("width",r2);bg.setAttribute("height",r3)}
 renderLegend();fit();renderSide();status("Loading your saved spots... (moving unlocks when loaded)");
-new ResizeObserver(()=>{if(vb){const r=svg.getBoundingClientRect(),ar=r.width/Math.max(1,r.height),cx=vb[0]+vb[2]/2,cy=vb[1]+vb[3]/2,h=vb[2]/ar;vb=[vb[0],cy-h/2,vb[2],h];applyVB()}}).observe(svg);
+new ResizeObserver(()=>{if(!vb)return;if(!userView){fit();return}
+  const r=svg.getBoundingClientRect(),ar=r.width/Math.max(1,r.height),cy=vb[1]+vb[3]/2,h=vb[2]/ar;vb=[vb[0],cy-h/2,vb[2],h];applyVB()}).observe(svg);
 (async()=>{let to=setTimeout(()=>{if(!ready)status("Still loading your save... check you are signed in to claude.ai.",true)},10000);
   try{db=await window.claude?.use?.("db")}catch(e){db=null}
   if(!db){clearTimeout(to);ready=true;status("Viewing only: saving needs the page open signed in to claude.ai.",true);renderList();return}
