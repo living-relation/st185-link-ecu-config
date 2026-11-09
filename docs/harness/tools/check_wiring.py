@@ -21,9 +21,9 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   E3  ground classes (R213): low-voltage electronics never end on a chassis ground (known cases: PENDING); a wire tagged
       factory ground (N83 a) with its 1993 EWD page may, on a body ground stud GND-*, unless it has CAN / ECU / sensor ties
   E4  an ECU output driving a relay lands on coil pin 85 (R219)
-  S1  ECU-C 1 carries exactly one plain drain (R207)
-  S2  a cable screen floats at the device: its one end is a splice, an ECU screen pin, a bulkhead / inline cavity or the
-      VRC screen pin, never a device pin
+  S1  ECU-C 1 carries exactly one screen, the ECU CAN cable's own (R207; Dan 2026-11-08)
+  S2  a cable screen floats at the device: its one end is a splice, a bussed plug, an ECU screen pin, a bulkhead / inline
+      cavity or the VRC screen pin, never a device pin
   S3  every screen / drain reaches an ECU screen pin (A7, B17, C1), and no two of those pins meet
   M1  every DRB102 cavity and inline-pair cavity wired on one half is wired on the other
   M2  DRB102 contacts: size 16 cavities take 16-20 AWG, size 12 take 12-14 AWG, size 8 / 4 stay spare (TE drawing
@@ -102,8 +102,9 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
 # Known violations waiting for their wiring fix (OPEN-ITEMS): printed, not failing; a fixed one must be removed.
 # E3:w_at_gnd_a1 is permanent, not pending: the alarm ground lead (node AL-GND to ring terminal T-AT-GND) is the named B10
 # exception (DECISIONS "Grounds (B10)", Dan N43 b); the accessory grounds went with the accessories (alarm-ready tap points,
-# Dan 2026-11-06). Factory-load grounds (the Dash LED ground w_led_gnd_out among them) are not listed here: they carry the
-# FACTORY_GND tag in the master note (DECISIONS "Grounds (B10)", Dan N83 a).
+# Dan 2026-11-06). Factory-load grounds are not listed here: they carry the FACTORY_GND tag in the master note (DECISIONS
+# "Grounds (B10)", Dan N83 a). The A/C amp coolant-OK ground w_ac_cool_gnd on ground point IG is the named N103 exception
+# (Dan 2026-11-08); E3 passes it (no low-voltage electronics text on its ends).
 PENDING = {"E3:w_at_gnd_a1"}
 # A factory load, or a part that replaces one, keeps that load's factory ground point (Dan N83 a): the master note carries
 # the tag and the 1993 EWD page; E3 accepts it on a body ground stud, never with CAN / ECU / sensor ties.
@@ -393,13 +394,15 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                          % (r["wire_id"], r[s + "_id"]), key=r["wire_id"])
     # ---- S1 / S2 / S3
     c1 = [r for r in wires if any(r[s + "_id"] == "ECU-C" and r[s + "_pin"] == "1" for s in ("from", "to"))]
-    if len(c1) != 1 or (c1 and c1[0]["cable"]):
-        fail("S1", "ECU-C 1 must carry exactly one plain drain wire, has %s" % [x["wire_id"] for x in c1])
+    if len(c1) != 1 or (c1 and c1[0]["cable"] and c1[0]["colour"] != "Shield"):
+        fail("S1", "ECU-C 1 must carry exactly one screen: the ECU CAN cable's own screen (Dan 2026-11-08), has %s"
+             % [x["wire_id"] for x in c1])
     for r in wires:
         for s, o in ends(r):
             if r[s + "_type"] == "cable screen":
                 ot, oid = r[o + "_type"], r[o + "_id"]
-                ok = ot == "splice" or (oid, r[o + "_pin"]) in SCREEN_PINS or oid in MATES or oid.startswith("VRC-")
+                ok = ot == "splice" or (oid, r[o + "_pin"]) in SCREEN_PINS or oid in MATES or oid.startswith("VRC-") or \
+                    oid.startswith("BUS-")   # a bussed plug joins its pins like a splice (the shield bus plug, Dan N104 a)
                 if not ok:
                     fail("S2", "%s screen lands on %s %s: a screen floats at the device (R27)" % (r["wire_id"], oid, r[o + "_pin"]))
     screen_rows = [r for r in wires if r["colour"] == "Shield" or r["circuit"] == "SHLD" or
@@ -691,9 +694,10 @@ def self_test():
     mutate("a bulkhead cavity wired on one side", "M1", lambda rs: first(rs, lambda r: r["from_id"] == "DRB102-ENGINE").update(
         from_pin="5"))
     mutate("an LED ground on chassis without the factory-ground tag", "E3", lambda rs: first(
-        rs, lambda r: r["wire_id"] == "w_led_gnd_out").update(notes=""))
+        rs, lambda r: r["wire_id"] == "w_led_gnd_c13").update(to_type="terminal", to_id="GND-ID",
+                                                                to_name="Ground stud ID, LH kick panel", notes=""))
     mutate("the factory-ground tag on CAN / ECU / sensor ties", "E3", lambda rs: first(
-        rs, lambda r: r["wire_id"] == "w_led_gnd_out").update(from_desc="CAN-Lambda sensor ground"))
+        rs, lambda r: r["wire_id"] == "w_fan_gnd").update(from_desc="CAN-Lambda sensor ground"))
     mutate("the factory-ground tag without a 1993 EWD page", "E3", lambda rs: first(
         rs, lambda r: r["wire_id"] == "w_fan_gnd").update(notes="factory ground (N83 a): radiator fan to EA"))
     mutate("the factory-ground tag off a body ground stud", "E3", lambda rs: first(

@@ -34,8 +34,7 @@ show the name. Apply this map to every row's `from_name` / `to_name` for the id;
 | `SP-A5` / `SP-GND-ECU` | ECU main feed splice (SW12 + IG2 wake) / ECU power ground splice |
 | `SP-GNDOUT-ENG` | Sensor ground splice: coolant temp + intake temp + throttle (engine bay) |
 | `SP-GNDOUT-B-ENG` / `-ENG2` | Sensor ground splice: oil temp + charge temp / oil pressure + coolant pressure |
-| `SP-SHIELD-A` / `-B` | Shield drain splice, 6 in behind ECU plug A / B |
-| `SP-SHIELD-A-APS` / `-A-WSF` / `-B-WSR` | Shield drain splice at the pedal / front wheel-speed plug / rear wheel-speed plug |
+| `BUS-SHIELD-A` / `SP-SHIELD-B` | Shield drain bus plug by ECU plug A (N104 a) / shield drain splice, 6 in behind ECU plug B |
 | `SP-WS-F-SHIELD` / `SP-WS-R-SHIELD` | Front / rear wheel-speed sensor screen join |
 | `SP-INJ-ENG` / `SP-COP-ENG` | Injector +12 V splice / Coil +12 V splice |
 | `SP-CHASSIS-ENG` | Coil ground splice (to the POWER box ground bar) |

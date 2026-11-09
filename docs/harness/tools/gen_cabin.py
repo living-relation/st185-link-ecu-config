@@ -43,7 +43,7 @@ ROWS = [r for r in ALL if r['harness'] == NAME]
 W_ALL = [r for r in ROWS if r['wire_id']]
 # the split: union every wire's devices (a shared plug is no link), splices and shielded cable; document 1 = the group(s)
 # holding the sensor rails and screens, document 2 = the rest
-SEEDS = ('BUS-5V', 'BUS-5V-2', 'BUS-GNDOUT-A', 'BUS-GNDOUT-B', 'SP-8V', 'SP-SHIELD-A', 'SP-SHIELD-B')
+SEEDS = ('BUS-5V', 'BUS-5V-2', 'BUS-GNDOUT-A', 'BUS-GNDOUT-B', 'SP-8V', 'BUS-SHIELD-A', 'SP-SHIELD-B')
 def unit(r, s):
     i, t = r[s + '_id'], r[s + '_type']
     if not i or i in SHARED: return None
