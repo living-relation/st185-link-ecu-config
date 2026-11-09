@@ -496,8 +496,9 @@ def build(REPO, OUT, CFG):
         right_txt.append('Cable cores with no %s job (cut back and sealed under heat-shrink at both ends): %s.' % (NAME, '; '.join(
             '%s %s' % (cab_of[co['id']]['label'], co['color'].lower()) for co in NC_CORES)))
     scr = [c['label'] for c in cables.values() if 'shield' in c and 'target' not in c['shield']]
-    if scr: right_txt.append('Cable screens %s: spliced onto the CAN trunk screen at their branch point, cut back and sealed at the '
-                             'device end (DECISIONS "CAN wiring (B17)", Dan 2026-11-07).' % ', '.join(scr))
+    if scr: right_txt.append('Cable screens %s: %s' % (', '.join(scr), CFG.get(      # CFG 'screen_note': a harness whose screens are not CAN
+        'screen_note', 'spliced onto the CAN trunk screen at their branch point, cut back and sealed at the device end '
+                       '(DECISIONS "CAN wiring (B17)", Dan 2026-11-07).')))
     # a splice shared with another harness is drawn with this harness's legs only; its note names the other harness and wires
     shared = []
     for sname, sp in splices.items():
