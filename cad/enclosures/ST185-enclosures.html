@@ -20,7 +20,7 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 .k{font-weight:600}
 </style></head><body><main>
 <h1>ST185 custom enclosures</h1>
-<p class="sub">2 x VRC box (front + rear, same design) and 1 x CSB3 box. PA12, MJF printed (Dan 2026-11-09), O-ring lid seal, countersunk M3 lid screws, slotted tabs. Draft for Dan, 2026-10-13.</p>
+<p class="sub">2 x VRC box (front + rear, same design) and 1 x CSB3 box. PA12, MJF printed (Dan 2026-11-09). D5 corner ears (Dan 2026-11-08): lids 75 x 75 (CSB3) and 95 x 55 (VRC), SPIROL 150419 inserts, Accu SSK-M3-12-A2 lid screws. Issued drawings: CSB3-101 D, CSB3-102 E, CSB3-100 G, VRC-101 F, VRC-102 B, VRC-100 H.</p>
 
 <div class="card warn"><b>Dan's answers (DECISIONS S26) and what is still open</b>
 <ul>
@@ -42,7 +42,7 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 <tr><th>Walls</th><td>7 mm; at each socket a D30 counterbore inside leaves a 3.5 mm panel (LP-16 max 4.5)</td></tr>
 <tr><th>Cutout</th><td>D18.5 +0.2/0 with 16.5 +0.2/0 across the flat, flat up (CNLINKO drawing LP-16-xxxSX-02-1xxx rev A1)</td></tr>
 <tr><th>Weight</th><td>Old machined estimate was about 290 g (6061 at 2.70 g/cm3). PA12 MJF weight is not remeasured.</td></tr>
-<tr><th>Stock</th><td>Body 95 x 80 x 42 block; lid 95 x 55 from 8 mm plate</td></tr>
+<tr><th>Stock</th><td>PA12 MJF. Print from the STEP. Corner ears make the lid 95 x 55; the body tabs stay 74 across.</td></tr>
 </table></div>
 
 <h2>VRC board holder (one per box)</h2>
@@ -64,8 +64,8 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 <tr><th>Inside</th><td>56 x 56 x 45 mm. HD34 ends 15.7 mm below the lid; 14 mm clear to the CSB3 parts.</td></tr>
 <tr><th>Lid cutout</th><td>D43.08 +/-0.13 with 41.45 +0.25/0 flat; inside D54 x 2 seat for the D50.80 flange, panel 4.0 (TE range 1.59-4.76), seat face Ra 0.8</td></tr>
 <tr><th>Outside the lid</th><td>Mating end sticks up 22 mm; nut and washer on top (1-7/8 in socket, 7.4-8.4 N.m). Leave about 70 mm for the mated plug.</td></tr>
-<tr><th>Weight</th><td>About 350 g</td></tr>
-<tr><th>Stock</th><td>Body 75 x 100 x 53 block; lid 75 x 75 from 8 mm plate</td></tr>
+<tr><th>Weight</th><td>Old machined estimate was about 350 g. PA12 MJF weight is not remeasured.</td></tr>
+<tr><th>Stock</th><td>PA12 MJF. Print from the STEP. Corner ears make the lid 75 x 75; the body tabs stay 94 across.</td></tr>
 </table></div>
 
 <h2>Size vs the Hammond options</h2>
@@ -82,7 +82,8 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 <div class="card scroll"><table>
 <tr><th>Part</th><th>PN</th><th>VRC (each)</th><th>CSB3</th><th>Source</th></tr>
 <tr><td>O-ring 69.57 ID x 1.78</td><td>Parker N0674-70 2-039 (AS568-039, NBR 70)</td><td>1</td><td>1</td><td>Parker ORD 5700 Table 9-1</td></tr>
-<tr><td>Lid screw, countersunk</td><td>ISO 10642 M3 x 12, A2 stainless</td><td>4</td><td>4</td><td>dk 6.72 max, k 1.86</td></tr>
+<tr><td>Lid screw, countersunk</td><td>Accu SSK-M3-12-A2 (ISO 10642 M3 x 12, A2)</td><td>4</td><td>4</td><td>dk 6.72 max. Official CAD is account-gated.</td></tr>
+<tr><td>Heat-set insert</td><td>SPIROL 150419, Series 19, M3</td><td>4</td><td>4</td><td>Bore 3.99 x 8. Knurl bands are TBD.</td></tr>
 <tr><td>Panel socket</td><td>CNLINKO LP-16-C05SX-02-101</td><td>2</td><td>-</td><td>DECISIONS S16</td></tr>
 <tr><td>Receptacle + hardware</td><td>TE HD34-24-33PE + lockwasher 112264 + panel nut 112263-90</td><td>-</td><td>1 each</td><td>plan 6.40, TE 114-151014</td></tr>
 <tr><td>Nylon standoff M3 F-F 10 mm (CSB3 only)</td><td>Keystone 25510</td><td>-</td><td>2</td><td>BOMs</td></tr>
@@ -99,14 +100,14 @@ code{font-size:13px}ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
 <li>Lid closes metal-to-metal on the rim. The 4 screws sit in the corners, outside the O-ring.</li>
 </ul></div>
 
-<h2>Machining notes</h2>
+<h2>Print notes</h2>
 <div class="card"><ul>
-<li>3-axis mill. Body setup 1: outside, tabs and slots from the bottom. Setup 2: cavity (R7.7 corners, D12 cutter or smaller), groove (D2 cutter, two passes), tapped holes. Setup 3 (VRC): both end walls, D-holes.</li>
-<li>VRC inside D30 counterbores sit on the inside end walls and stay as modelled. The boxes are PA12 MJF (Dan 2026-11-09), so the counterbore is printed as modelled.</li>
-<li>Ra 0.8 on the groove, the lid underside and the CSB3 flange seat. Lid underside flat to 0.05.</li>
-<li>Threads M3x0.5-6H, 8 deep in the rim (drill 2.5 x 9.5 + 118 deg). Holder bosses (R126, F02 + N4 R131 2026-10-16): D11, top z 12.5, drill D5.0 x 11.5 deep, <b>tap M6x1.0</b> (10.0 full thread, 9.0 engaged = 1.5 x D) at fit - 1.0 mm of floor left, no through holes. CSB3 standoff holes: drill 2.5 x 6.0 + point, M3 x 4.5, with an M3 x 8 set screw as the stud (F03).</li>
-<li>Clear anodize is fine: nothing bonds to the case (DECISIONS R31/R33). Keep the groove and seal faces uncoated or anodize-only.</li>
-<li><b>BREAK SHARP EDGES 0.2-0.5 EXCEPT O-RING / SEAL FACES.</b> Floor-to-wall inside corners: cutter corner OK (square end mill). Tab-to-body corners R3; CSB3 tab corners at x &plusmn;30 R1.9 - <b>cutter r &le; 1.5</b> there. Tab slots 6.6 x 10. Engraved IN / OUT on the VRC ends: Arial Black 4.0, 0.3 deep, upright and readable from outside (strokes about 1.2, a normal engraving cutter).</li>
+<li>Both boxes are PA12, printed on MJF (Dan 2026-11-09). Print from the STEP. The script is <code>cad/enclosures/src/d5_corner_ears.py</code>.</li>
+<li>D5 ears (Dan 2026-11-08, choice a1) add 2.5 mm outside the old outer wall at each corner. The O-ring groove and the cavity are the revA shape. Lid screw axes: CSB3 (±32.5, ±32.5), VRC (±42.5, ±22.5).</li>
+<li>Each corner bore is 3.99 mm x 8 deep for a SPIROL 150419 insert. Lid holes are 3.45 mm through with a 90° countersink to 7.0 for Accu SSK-M3-12-A2.</li>
+<li>VRC floor bosses stay M6 for Lemu 2990806014. CSB3 floor holes take Accu SSF-M8-6-A2 set screws. Those set screws are not a water seal.</li>
+<li>No torque, threadlocker, or sealant on these drawings. Nothing bonds to the case (R31 / R33).</li>
+<li>The Fusion .f3d files are still the revA shape. The release solids are the script output.</li>
 </ul></div>
 
 <h2>Drawings</h2>
