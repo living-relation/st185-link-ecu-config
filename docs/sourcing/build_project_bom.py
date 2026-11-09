@@ -243,8 +243,11 @@ for r in rd(P("docs", "sourcing", "mech-extra.csv")):
 
 # ---------- Wire harness lines ----------
 ASSY = "All harnesses (master wire list)"
+# A PN the Mechanical section also buys is skipped here (the box parts lists buy the box ones), except these, whose
+# harness uses are outside any box: 280919-2 on the DRL switch tabs (Dan K1 a, 2026-11-08).
+ALSO_HARNESS = {"280919-2"}
 for pn, need in sorted(H_NEED.items()):
-    if pn in MECH_PN:
+    if pn in MECH_PN and pn not in ALSO_HARNESS:
         continue
     mk, desc = lib_desc(pn)
     have = need if pn in SENSOR_PN else ONHAND.get(pn, 0)
