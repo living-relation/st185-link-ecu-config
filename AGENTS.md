@@ -46,6 +46,7 @@ python bench/can_bench.py --interface virtual --channel bench --bitrate 1000000 
 - Always clean up after yourself: your own worktrees, branches and scratch files, deleted by name (Dan 2026-11-03; DECISIONS "Where data lives (B3)"); the worktree your session is running in stays for `tools/hygiene.ps1` (B28 "Never remove your own worktree").
 - Worktrees live inside the project folder at `.claude/worktrees/<name>` (git-excluded), never as sibling folders (Dan 2026-11-08).
 - Bad data, stale files or drift found: fix it with the cleanup / consolidation / drift tools and skills (repo-cleanup, git-checker, session-sweep, the drift checks in `tools/check_all.py`) (Dan 2026-11-03).
+- Sanitation sweep (Dan W1 2026-11-09): after every 3 merged PRs, the main session starts a read-only subagent that lists stale files, conflicts, broken pointers and tracker drift against `origin/main` and reports to the main session; the main session fixes the findings in a normal PR (deletions still need Dan's yes).
 - Generated: `PROJECT-BOM.*`, `docs/harness/drawings/*` and `docs/harness/wirelists/ST185-*-wirelist.*` come from their generators.
 - Drawing initials always `DG` (`.drawing-initials`). Layout: front RIGHT, driver side up. Dispatch: relay only. Ask Dan decisions with the question tool; a decision that depends on an image is asked in chat text (Dan 2026-11-01).
 - Do not edit `.claude/settings*.json` or `mcpServers` in normal work.
