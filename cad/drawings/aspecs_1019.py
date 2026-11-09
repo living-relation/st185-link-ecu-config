@@ -7,8 +7,8 @@ import aspecs
 from aspecs_1018 import _by, UNDER
 from specs_1018 import TOL
 
-REV = {'ST185-VRC-100': 'G', 'ST185-CSB3-100': 'F', 'ST185-DRB-100': 'D'}
-LID = 'TIGHTEN THE 4 M3 LID SCREWS A LITTLE AT A TIME, CRISS-CROSS. THE LID SITS METAL TO METAL ON THE RIM.'
+REV = {'ST185-VRC-100': 'H', 'ST185-CSB3-100': 'G', 'ST185-DRB-100': 'D'}
+LID = 'FIT THE 4 M3 LID SCREWS A LITTLE AT A TIME, CRISS-CROSS. THE LID SITS ON THE PRINTED RIM.'
 
 
 def vrc():
@@ -17,7 +17,7 @@ def vrc():
     for i in it:
         if i['item'] in (1, 2):
             i['primary'] = True
-    sp['notes'] = ['QTY 2 ASSEMBLIES PER CAR (FRONT + REAR).', LID, 'TIGHTEN EACH LP-16 REAR NUT TO 1.0 N·m.']
+    sp['notes'] = ['QTY 2 ASSEMBLIES PER CAR (FRONT + REAR).', LID, 'THE LP-16 REAR NUTS HOLD THE SOCKETS.']
     sp.update(tol=TOL, rev=REV['ST185-VRC-100'])
     return sp
 

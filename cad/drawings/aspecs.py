@@ -10,11 +10,11 @@ REV7=os.path.join(CAD,'fusebox','rev7')
 def vrc():
     ch=load_children('src/st185_vrc_1015/VRC_assembly.step')
     g=lambda k:[s for n,v in ch.items() if n.startswith(k) for s in v]
-    lid=[hw.csk_screw(sx*41.1,sy*21.1,45,3,12,6.9) for sx in(-1,1) for sy in(-1,1)]
+    lid=[hw.csk_screw(sx*42.5,sy*22.5,45,3,12,6.9) for sx in(-1,1) for sy in(-1,1)]
     tab=[hw.pan_screw(sx*28,sy*31.5,6,6,30,12,4.6) for sx in(-1,1) for sy in(-1,1)]
     hb=g('VRC_board_holder'); hz=Compound(hb).bounding_box().max.Z
     # holder v2 (R126 / R131): 2 x M6 x 14 into the floor bosses at (23.2, 9.5) / (-18.2, -9.5) - measured from VRC_part_VRC-Body.step (2026-10-18)
-    hsc=[hw.csk_screw(x,y,hz,6,14,12) for x,y in ((23.2,9.5),(-18.2,-9.5))]
+    hsc=[hw.csk_screw(x,y,hz,6,14,12) for x,y in ((20.7,9.5),(-20.7,-9.5))]
     items=[
      dict(item=1,qty=1,pn='ST185-VRC-101',desc='VRC ENCLOSURE BODY',mat='PA12, 3D PRINTED',shapes=g('VRC-Body')),
      dict(item=2,qty=1,pn='ST185-VRC-102',desc='VRC ENCLOSURE LID',mat='PA12, 3D PRINTED',shapes=g('VRC-Lid')),
@@ -24,11 +24,12 @@ def vrc():
      dict(item=6,qty=1,pn='PARKER N0674-70 2-039',desc='O-RING AS568-039 (69.57 ID x 1.78), LID FACE SEAL',mat='NBR 70',shapes=g('ORING')),
      dict(item=7,qty=4,pn='ACCU SSK-M3-12-A2',desc='LID SCREW, ISO 10642 M3 x 12 CSK',mat='A2 STAINLESS',shapes=lid),
      dict(item=8,qty=2,pn='LEMU 2990806014',desc='HOLDER SCREW ISO 10642 M6 x 14, CSK TX30',mat='A2 STAINLESS',shapes=hsc),
+     dict(item=10,qty=4,pn='SPIROL 150419',desc='M3 HEAT-SET INSERT, SERIES 19, IN THE CORNER BORES',mat='BRASS',shapes=g('SPIROL'),no_balloon=True),
     ]
     if not B_REV:
         items.append(dict(item=9,qty=4,pn='ESSENTRA 50M060100P030',desc='TAB SCREW M6 x 1.0 x 30 PAN HEAD (BOX MOUNTS ON NYLON)',mat='NYLON 6/6',shapes=tab))
     stages=[[
-      dict(no=1,title='BOARD + HOLDER INTO BODY',base=[1],move=[(3,(0,0,30)),(4,(0,0,42)),(8,(0,0,58))]),
+      dict(no=1,title='BOARD + HOLDER INTO BODY',base=[1],move=[(3,(0,0,30)),(4,(0,0,42)),(8,(0,0,58)),(10,(0,0,70))]),
       dict(no=2,title='LP-16 SOCKETS INTO END WALLS',base=[1,3,4],move=[(5,(0,0,0))],xmove=True),
       dict(no=3,title='O-RING, LID, LID SCREWS',base=[1,3,4,5],move=[(6,(0,0,18)),(2,(0,0,34)),(7,(0,0,52))]),
     ]]
@@ -46,7 +47,7 @@ ASM={'vrc':vrc}
 def csb3():
     ch=load_children('src/st185_csb3_1015/CSB3_assembly.step')
     g=lambda k:[s for n,v in ch.items() if n.startswith(k) for s in v]
-    lid=[hw.csk_screw(sx*31.1,sy*31.1,56,3,12,6.9) for sx in(-1,1) for sy in(-1,1)]
+    lid=[hw.csk_screw(sx*32.5,sy*32.5,56,3,12,6.9) for sx in(-1,1) for sy in(-1,1)]
     # the 4 nylon M6 tab screws are not part of the assembly (Dan, markup 2026-10-18: he may not use them; R197)
     items=[
      dict(item=1,qty=1,pn='ST185-CSB3-101',desc='CSB3 ENCLOSURE BODY',mat='PA12, 3D PRINTED',shapes=g('CSB3-Body')),
@@ -60,12 +61,13 @@ def csb3():
      dict(item=9,qty=2,pn='ACCU SSF-M8-6-A2',desc='FLOOR SET SCREW, ISO 4026 M8 x 6 FLAT POINT',mat='A2 STAINLESS',shapes=g('Set_screws')),
      dict(item=10,qty=1,pn='PARKER N0674-70 2-039',desc='O-RING AS568-039, LID FACE SEAL',mat='NBR 70',shapes=g('ORING')),
      dict(item=11,qty=4,pn='ACCU SSK-M3-12-A2',desc='LID SCREW, ISO 10642 M3 x 12 CSK',mat='A2 STAINLESS',shapes=lid),
+     dict(item=15,qty=4,pn='SPIROL 150419',desc='M3 HEAT-SET INSERT, SERIES 19, IN THE CORNER BORES',mat='BRASS',shapes=g('SPIROL'),no_balloon=True),
      dict(item=12,qty=1,pn='TE HD36-24-33SE',desc='HD30 PLUG 33S (HARNESS SIDE)',mat='PURCHASED'),
      dict(item=13,qty=26,pn='TE 0462-201-2031',desc='SIZE 20 SOLID SOCKET (IN ITEM 12)',mat='PURCHASED'),
      dict(item=14,qty=7,pn='TE 0413-204-2005',desc='SIZE 20 SEALING PLUG, UNUSED CAVITIES',mat='PURCHASED'),
     ]
     stages=[[
-      dict(no=1,title='SET SCREWS FROM BELOW, LOCK-IN SUPPORTS, CSB3 BOARD',base=[1],move=[(9,(0,0,-22)),(8,(0,0,22)),(3,(0,0,40))]),
+      dict(no=1,title='SET SCREWS FROM BELOW, LOCK-IN SUPPORTS, CSB3 BOARD',base=[1],move=[(9,(0,0,-22)),(8,(0,0,22)),(3,(0,0,40)),(15,(0,0,70))]),
       dict(no=2,title='HD34 RECEPTACLE INTO LID',base=[2],move=[(4,(0,0,55))],note='SECURE WITH PANEL NUT (5) + LOCKWASHER (6) FROM UNDERSIDE (NOT SHOWN)'),
       dict(no=3,title='O-RING, LID, LID SCREWS',base=[1,3,8,9],move=[(10,(0,0,22)),(2,(0,0,45)),(4,(0,0,45)),(11,(0,0,75))]),
     ]]

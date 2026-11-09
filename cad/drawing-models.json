@@ -5,9 +5,9 @@
    "pdf": "enclosures/csb3/ST185-CSB3-100.pdf",
    "revlog": "enclosures/csb3/ST185-CSB3-100.REVLOG.md",
    "steps": {
-    "enclosures/csb3/CSB3_assembly.step": "1d1ffbdcc082b4b2",
-    "enclosures/csb3/CSB3_part_CSB3-Body.step": "f97e8932817c442b",
-    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "4b9be98e04cf5064"
+    "enclosures/csb3/CSB3_assembly.step": "809373a66de427c6",
+    "enclosures/csb3/CSB3_part_CSB3-Body.step": "73df2aebda83a6d2",
+    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "717a266b315372f3"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
@@ -15,34 +15,34 @@
     "src:enclosures/src/real_connectors.py": "d0198444fe374cf2",
     "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "F.01",
-   "pdf_sha": "960d1b652e6f441e"
+   "rev": "G",
+   "pdf_sha": "68d60a3195f56a11"
   },
   "ST185-CSB3-101": {
    "pdf": "enclosures/csb3/ST185-CSB3-101.pdf",
    "revlog": "enclosures/csb3/ST185-CSB3-101.REVLOG.md",
    "steps": {
-    "enclosures/csb3/CSB3_part_CSB3-Body.step": "f97e8932817c442b"
+    "enclosures/csb3/CSB3_part_CSB3-Body.step": "73df2aebda83a6d2"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
     "src:enclosures/src/csb3_lockin.py": "2f8e024fcd5f40e9"
    },
-   "rev": "C.02",
-   "pdf_sha": "4addbb2d51d39786"
+   "rev": "D",
+   "pdf_sha": "c9d6d5311d5ea68d"
   },
   "ST185-CSB3-102": {
    "pdf": "enclosures/csb3/ST185-CSB3-102.pdf",
    "revlog": "enclosures/csb3/ST185-CSB3-102.REVLOG.md",
    "steps": {
-    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "4b9be98e04cf5064"
+    "enclosures/csb3/CSB3_part_CSB3-Lid.step": "717a266b315372f3"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4",
     "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "D.01",
-   "pdf_sha": "0112888b7260d92a"
+   "rev": "E",
+   "pdf_sha": "912a94c62b5f3bc1"
   },
   "ST185-DRB-100": {
    "pdf": "drb102-plate/ST185-DRB-100.pdf",
@@ -397,9 +397,9 @@
    "pdf": "enclosures/vrc/ST185-VRC-100.pdf",
    "revlog": "enclosures/vrc/ST185-VRC-100.REVLOG.md",
    "steps": {
-    "enclosures/vrc/VRC_assembly.step": "e785a61871bf5ea1",
-    "enclosures/vrc/VRC_part_VRC-Body.step": "4b8f75db0d4294b7",
-    "enclosures/vrc/VRC_part_VRC-Lid.step": "85b3d80bfbef3556",
+    "enclosures/vrc/VRC_assembly.step": "c97200bd62d4a3fc",
+    "enclosures/vrc/VRC_part_VRC-Body.step": "96878d9b552e0318",
+    "enclosures/vrc/VRC_part_VRC-Lid.step": "6a5f3280d717210a",
     "enclosures/vrc/print/ST185_VRC_board_holder_PA12.step": "1fff3af2a4a4e26d"
    },
    "ci": {
@@ -409,32 +409,32 @@
     "src:enclosures/src/real_connectors.py": "d0198444fe374cf2",
     "src:enclosures/src/fusion_real_connectors.py": "3c6c47d3e512f9b3"
    },
-   "rev": "G.01",
-   "pdf_sha": "5417430955f4e4ab"
+   "rev": "H",
+   "pdf_sha": "7826ff57fa935479"
   },
   "ST185-VRC-101": {
    "pdf": "enclosures/vrc/ST185-VRC-101.pdf",
    "revlog": "enclosures/vrc/ST185-VRC-101.REVLOG.md",
    "steps": {
-    "enclosures/vrc/VRC_part_VRC-Body.step": "4b8f75db0d4294b7"
+    "enclosures/vrc/VRC_part_VRC-Body.step": "96878d9b552e0318"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
    },
-   "rev": "E.01",
-   "pdf_sha": "dfe358f9606c2464"
+   "rev": "F",
+   "pdf_sha": "c3055647383b3ba0"
   },
   "ST185-VRC-102": {
    "pdf": "enclosures/vrc/ST185-VRC-102.pdf",
    "revlog": "enclosures/vrc/ST185-VRC-102.REVLOG.md",
    "steps": {
-    "enclosures/vrc/VRC_part_VRC-Lid.step": "85b3d80bfbef3556"
+    "enclosures/vrc/VRC_part_VRC-Lid.step": "6a5f3280d717210a"
    },
    "ci": {
     "src:enclosures/src/enclosure_fixes_v3.py": "2579219292f23ad4"
    },
-   "rev": "A.02",
-   "pdf_sha": "7ff9486464dc7eb1"
+   "rev": "B",
+   "pdf_sha": "d1c8819333aa66b5"
   },
   "ST185-VRC-103": {
    "pdf": "enclosures/vrc/ST185-VRC-103.pdf",
