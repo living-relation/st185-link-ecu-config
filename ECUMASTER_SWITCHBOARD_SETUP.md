@@ -150,7 +150,7 @@ receive channel 0x642; canonical map `switchboard_frames.json` "ecu_receive").
 |---|---|---|---|
 | bit0 (LSB) | Switch 1 — unassigned (was evap core) | VDI1 | — |
 | bit1 | Switch 2 — unassigned (was A/C request) | VDI2 | — |
-| bit2 | Switch 3 — cruise MAIN on (CSB3 c17, C16 pin 15) | VDI3 | Cruise master on/off |
+| bit2 | Switch 3 — cruise MAIN on (CSB3 cavity 25, board S3, C16 pin 15) | VDI3 | Cruise master on/off |
 | bit3 | Switch 4 — unassigned (was cruise SET; the stalk has no such wire) | VDI4 | — |
 | bit4 | Switch 5 — unassigned (was cruise RESUME; the stalk has no such wire) | VDI5 | — |
 | bit5 | Switch 6 — clutch pedal down (C17 pin 2, ground-active) | VDI6 | The one ECU clutch input: cruise cancel; flat shift / launch |
@@ -211,7 +211,7 @@ Layout per the CSB3 manual v2.1 §6 (DLC ≥ 4, one **byte** per output, not bit
 | byte0 | L1 ctrl | Unused (LED-only if ever used) |
 | byte1 | L2 ctrl | Unused (LED-only if ever used) |
 | byte2 | L3 ctrl | Unused (LED-only if ever used) |
-| byte3 | L4 ctrl | Oil warning LED (CSB3 cavity 26, `w_oil_k` / D-OIL) |
+| byte3 | L4 ctrl | Oil warning LED (CSB3 cavity 20, board L4, `w_oil_k` / D-OIL) |
 | byte4–7 | — | Send 0x00 |
 
 Each output is rated 0.5 A (manual §2). L4 is assigned, so the PCLink 0x643 stream (50 ms) is in the
