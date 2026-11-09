@@ -1,4 +1,4 @@
-"""harness.design copies of the two wheel speed harnesses, files "ST185-WheelSpeed-Front Rev A" and "ST185-WheelSpeed-Rear Rev A"
+"""harness.design copies of the two wheel speed harnesses, files "ST185-WheelSpeed-Front Rev B" and "ST185-WheelSpeed-Rear Rev B" (Rev B 2026-11-09: screen-end drawing #593, box seats R1 a)
 (viewer only; the master is the source).
 Usage: python gen_wheelspeed.py <repo> <out_dir> [Front|Rear]   (needs <out>/lib.json = a dump of part library 5LO8,
 get_part_library, filtered to the parts these harnesses use). Writes <out>/wheelspeed_front.json / wheelspeed_rear.json (whole
@@ -13,7 +13,7 @@ import sys
 import gen_dash
 
 COMMON = dict(
-    rev='A', date='2026-11-09', script='gen_wheelspeed.py', root='DASH',
+    rev='B', date='2026-11-09', script='gen_wheelspeed.py', root='DASH',
     left_words='the VR conditioner IN plug (the conditioner by the ECU)',
     stripe={},
     screen_note='joined at the conditioner by the shield splice and on to the IN plug pin 3; cut back and sealed under heat-shrink '
