@@ -370,6 +370,9 @@ def relabel(doc, rows=None):
                 if o:
                     other = next((x.get('layoutPosition') for k in ('branchPoints', 'connectors', 'terminals', 'splices')
                                   for x in doc.get(k, []) if x['id'] == o), None)
+                    pts = b.get('layoutPoints') or []
+                    if pts:     # a bent stub: face away from the bend next to the plug, not the far node (Dan 2026-11-09)
+                        other = (pts[-1] if b['targetId'] == c['id'] else pts[0])['layoutPosition']
                     break
             dx, dy = (lp['x'] - other['x'], lp['y'] - other['y']) if other else (1, 0)
             ux, uy = (1 if dx > 0 else -1 if dx < 0 else 0), (1 if dy > 0 else -1 if dy < 0 else 0)
@@ -547,11 +550,23 @@ BOX_CAVITIES = {'LOGIC': ['BUS1'] + ['BUS1-%d' % i for i in range(1, 11)] + ['BU
                 ['BUS2-12', 'BUS2-12 IN', 'BUS2-13', 'BUS2-13 IN']}
 
 
-def master_rows(removed=False):
+BOX_INTERNAL = "FuseBox"
+
+
+def is_box_internal(r):
+    """A fuse box's own wiring (Dan 2026-11-09, "you're not drawing the fuse box guts. Out of scope"; DECISIONS "Fuse box
+    guts"): both ends inside the POWER / LOGIC box (box studs, box relays, box fuse outputs, in-box splices). Marked by
+    harness `FuseBox`; it belongs to the fuse box build (OPEN-ITEMS row 107), so no harness file, harness wire list or
+    harness BOM line carries it. check_wiring.py still audits it."""
+    return (r.get("harness") or "").strip() == BOX_INTERNAL
+
+
+def master_rows(removed=False, box=False):
     """The master as rows, with the field names the drawing code uses (from_conn = the end ID ...). Removal rows are
-    left out (they are not wires to build) unless `removed` is set."""
+    left out (they are not wires to build) unless `removed` is set; fuse box internal rows (is_box_internal) are left out
+    unless `box` is set."""
     with open(MASTER, encoding="utf-8", newline="") as f:
-        rows = [r for r in csv.DictReader(f) if removed or not is_removal(r)]
+        rows = [r for r in csv.DictReader(f) if (removed or not is_removal(r)) and (box or not is_box_internal(r))]
     for r in rows:
         for s in ("from", "to"):
             r[s + "_conn"], r[s + "_conn_name"] = r[s + "_id"], r[s + "_name"]

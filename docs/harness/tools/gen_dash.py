@@ -124,7 +124,9 @@ def build(REPO, OUT, CFG):
     def pkey(p):
         m = re.match(r'(\d+)$', p)
         return (0, int(m.group(1)), '') if m else (1, 0, p)
-    conn_ids = list(dict.fromkeys(r[s + '_id'] for r in W + SPARE for s in ('from', 'to') if r[s + '_type'] == 'connector'))
+    wired = {r[s + '_id'] for r in W for s in ('from', 'to')}     # a connector with only spare rows here is not drawn (R5)
+    conn_ids = list(dict.fromkeys(r[s + '_id'] for r in W + SPARE for s in ('from', 'to')
+                                  if r[s + '_type'] == 'connector' and r[s + '_id'] in wired))
     use, housing = collections.defaultdict(dict), {}
     for r in ALL:
         for s in ('from', 'to'):
@@ -641,6 +643,8 @@ def build(REPO, OUT, CFG):
                for cid in items}
         items = sorted(items, key=lambda cid: grp[cid])     # stable: keeps the master order inside a group
         gofs = [GGAP * sum(1 for a, b in zip(items, items[1:i + 1]) if grp[a] != grp[b]) for i in range(len(items))]
+        pad = CFG.get('comb_pad', {})      # optional extra room before a group (view only), e.g. to keep a live group in place
+        gofs = [g + sum(pad.get(x, 0) for x in sorted({grp[c] for c in items[:i + 1]})) for i, g in enumerate(gofs)]
         rects, P, S = [], {n: (0, 0)}, {}
         ray = [rect((-DV[din][0] * 90, -DV[din][1] * 90), (-DV[din][0] * 10 ** 6, -DV[din][1] * 10 ** 6))] if din else []
         if items:

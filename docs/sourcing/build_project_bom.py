@@ -95,7 +95,8 @@ def add(section, assembly, pn, maker, desc, need, have, unit="ea", notes="", kin
 sys.path.insert(0, P("docs", "harness", "tools"))
 import build_drawings as BD   # noqa: E402  (the drawing sets and their DR-25 per segment; removal rows)
 # a removal row (a factory wire taken out of the car, BD.is_removal) is nothing to buy
-MASTER = [r for r in rd(P("docs", "harness", "MASTER-wirelist.csv")) if not BD.is_removal(r)]
+# a fuse box internal row (BD.is_box_internal, Dan 2026-11-09: box guts are the fuse box build, row 107) is no harness line
+MASTER = [r for r in rd(P("docs", "harness", "MASTER-wirelist.csv")) if not BD.is_removal(r) and not BD.is_box_internal(r)]
 PARTS = rd(P("docs", "sourcing", "harness-parts.csv"))
 LIBP = {q["part_number"]: q for q in PARTS}
 BOX = re.compile(r"^(LOGIC|POWER|BATT-RELAY-BLOCK|K-)$|^K-")   # the box's own parts lists count these ends; a box ring
