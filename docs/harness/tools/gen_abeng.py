@@ -570,6 +570,7 @@ refs = {x['partId'] for x in wires + list(splices.values()) + list(cables.values
        {cv[k] for n in doc['connectors'] for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
+B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
 B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a); AB-engine draws no box member today, so a no-op
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)

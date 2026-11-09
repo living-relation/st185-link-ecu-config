@@ -121,7 +121,7 @@ SENSOR_PN = set()
 
 
 def h_count(pn, n=1, what=""):
-    pn = re.sub(r" \(bussed cap\)$", "", (pn or "").strip())
+    pn = re.sub(r" \(bussed (?:cap|receptacle)\)$", "", (pn or "").strip())
     if not pn:
         return
     if pn == "TBD":
@@ -131,7 +131,7 @@ def h_count(pn, n=1, what=""):
 
 
 for r in MASTER:
-    if BD.is_integral(r):      # a bus bar's copper, the MRBF fuse block, a bussed cap: bought on fixed-quantity lines (Dan N55 a / N62 a)
+    if BD.is_integral(r):      # a bus bar's copper, the MRBF fuse block: bought on fixed-quantity lines (Dan N55 a / N62 a)
         continue
     for s in ("from", "to"):
         t, i = r[s + "_type"], r[s + "_id"]
@@ -146,7 +146,7 @@ for r in MASTER:
             h_count(r[s + "_terminal_pn"], what="contact / plug (%s)" % i)
             if i in SENSOR_IDS:
                 for col in ("housing_pn", "terminal_pn"):
-                    pn = re.sub(r" \(bussed cap\)$", "", (r[s + "_" + col] or "").strip())
+                    pn = re.sub(r" \(bussed (?:cap|receptacle)\)$", "", (r[s + "_" + col] or "").strip())
                     if pn and pn != "TBD" and not NOT_PN.match(pn):
                         SENSOR_PN.add(pn)
         elif t == "terminal" and BD.BOX_RING.match(i) and (pn := r[s + "_terminal_pn"]) in BOX_LUGS:

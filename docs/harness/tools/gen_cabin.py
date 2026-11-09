@@ -270,7 +270,7 @@ def end(r, s):
     if t == 'cable screen': return None      # the screen floats at that end
     raise SystemExit('end type %r (%s): add it to gen_cabin.py' % (t, r['wire_id']))
 wires, cables, row_of = [], collections.OrderedDict(), {}
-LINK_IDS = set()     # INTEGRAL bridges of a bussed plug (Dan N57 a): drawn pin to pin, no part, no length
+LINK_IDS = set()     # INTEGRAL links (none in AB-cabin since Dan R6, 2026-11-08: a bussed plug is mated to its receptacle)
 for r in W:
     a, b = end(r, 'from'), end(r, 'to')
     row_of[r['wire_id']] = r
@@ -793,6 +793,8 @@ refs = {x['partId'] for k in ('wires', 'splices', 'cables', 'connectors', 'resis
        {cv[k] for n in doc['connectors'] for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
+B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
+print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc, B.BOX_GROUP_OUTSIDE.get('AB-cabin %d' % DOC, ()))     # the fuse boxes as device groups (Dan N81 a, N80 a)
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)

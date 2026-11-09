@@ -598,6 +598,8 @@ R_, segs_, res_ = genroute.run(doc)
 unrouted = genroute.apply(doc, segs_, res_)
 assert not unrouted, 'unrouted wires: %r' % unrouted
 for n in conns.values(): n.pop('_exit', None)
+B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
+print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a)
 json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)   # routed: upload as is (no separate genroute.py pass)
 json.dump(lib_add, open(os.path.join(OUT, 'hdc_lib_ops.json'), 'w'), indent=1)
