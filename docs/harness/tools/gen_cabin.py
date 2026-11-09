@@ -1,5 +1,5 @@
 """harness.design copy of ST185-AB-cabin = the ECU harness, cabin half, in two documents (100-connection plan limit):
-"ST185-AB-cabin 1 - sensor rails and screens Rev D" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev E".
+"ST185-AB-cabin 1 - sensor rails and screens Rev E" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev F".
 Split rule (README "harness.design", one device, one file; Dan 2026-11-04 V1 a): the ECU plugs A, B, C and the bulkhead
 DRB102-CABIN are drawn whole in both documents (each wires its own cavities; the others are N/C with a note); every other
 device has all its AB-cabin wires in one document. Document 1 holds every wire joined (through devices, splices and
@@ -30,8 +30,9 @@ import genroute
 H = B.Harness('ST185-harness')
 # each document keeps its own rev letter (a physical change = the next letter, Dan 2026-11-02). 2026-11-07 rebuild (Dan A4 a):
 # doc 1 Rev C -> D (bus plug bridges br_*, Dan N57 a; flex fuel unshielded, N31 b), doc 2 Rev D -> E (cabin ground splice
-# SP-CABIN-GND, N60 a; POWER box GND stud ring, N64 a; flex return, CAN trunk screen)
-REVS, DATES = {1: 'D', 2: 'E'}, {1: '2026-11-07', 2: '2026-11-07'}
+# SP-CABIN-GND, N60 a; POWER box GND stud ring, N64 a; flex return, CAN trunk screen). 2026-11-09 rebuild: doc 1 Rev D -> E,
+# doc 2 Rev E -> F (labels #569, grounds and shields #570, bussed caps R6, inline pairs dropped #580 / #590, box seats #594, CAN #597)
+REVS, DATES = {1: 'E', 2: 'F'}, {1: '2026-11-09', 2: '2026-11-09'}
 NAME, REV, DATE = 'AB-cabin', REVS[DOC], DATES[DOC]
 TITLES = {1: 'ST185-AB-cabin 1 - sensor rails and screens', 2: 'ST185-AB-cabin 2 - straight runs, power, taps and CAN'}
 SHORT = {1: 'AB-cabin 1', 2: 'AB-cabin 2'}
