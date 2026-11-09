@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev D" (viewer only; the master is the source).
+"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev E" (Rev E 2026-11-09: labels #569, POWER box ends #594; viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
 Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
@@ -17,7 +17,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'D', '2026-11-07'
+NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'E', '2026-11-09'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
