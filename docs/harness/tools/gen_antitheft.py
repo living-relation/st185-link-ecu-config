@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-AntiTheft, file "ST185-AntiTheft Rev A" (viewer only; the master is the source).
+"""harness.design copy of ST185-AntiTheft, file "ST185-AntiTheft Rev B" (Rev B 2026-11-09: labels, siren lengths #575, box seats R1 a; viewer only; the master is the source).
 Usage: python gen_antitheft.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/antitheft.json (whole document, already routed with genroute.py: upload as is),
 antitheft_lib_ops.json and antitheft_expect.json. Built by gen_dash.build (same rules: README "harness.design"; text spacing,
@@ -13,7 +13,7 @@ import sys
 import gen_dash
 
 ANTITHEFT = dict(
-    name='AntiTheft', title='ST185-AntiTheft', rev='A', date='2026-11-08', stem='antitheft', script='gen_antitheft.py', root='ECU',
+    name='AntiTheft', title='ST185-AntiTheft', rev='B', date='2026-11-09', stem='antitheft', script='gen_antitheft.py', root='ECU',
     scope="the alarm-ready tap points (Dan 2026-11-06: no alarm picked, so no alarm module, siren, shock sensor, status LED, valet switch "
           "or hood pin switch is drawn): each signal the alarm will need runs from its real source to a labelled, capped node AL-* at "
           "the alarm spot - constant +12 V AL-12V (LOGIC ALM 5 A) and AL-12V-SHK (LOGIC ALMS 2 A), ignition AL-IGN (LOGIC ALMIG 2 A), "
