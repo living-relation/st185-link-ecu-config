@@ -1848,7 +1848,10 @@ def self_test():
     cases.append(("--write-lengths changes only that one field (quoting and line endings kept)",
                   same == text and got == want and diff_lines == [rows.index(q)] and new.count("\r\n") == text.count("\r\n")))
     # the fuse-box groups (Dan N81 a / N80 a): members move in, outside references are qualified, ungroup / regroup round-trips
-    doc = {"connectors": [{"id": "c_LOGIC", "cavities": [{"id": "LOGIC.BUS2_3"}]}, {"id": "c_K_ACC", "cavities": [{"id": "K_ACC.87"}]},
+    # box guts are not drawn (Dan 2026-11-09, R1 a): the LOGIC fuse outputs and box relays become box seat ends (terminals)
+    doc = {"connectors": [{"id": "c_LOGIC", "layoutPosition": {"x": 0, "y": 0}, "schematicPosition": {"x": 0, "y": 0},
+                           "cavities": [{"id": "LOGIC.BUS2_3", "designation": "BUS2-3"}]},
+                          {"id": "c_K_ACC", "label": "A/C clutch relay (K-ACC)", "cavities": [{"id": "K_ACC.87", "designation": "87"}]},
                           {"id": "c_K_EPS", "cavities": [{"id": "K_EPS.87"}]}, {"id": "c_ECU_A", "cavities": [{"id": "ECU_A.1"}]}],
            "terminals": [{"id": "t_T_PWR_NEG_GND_1"}],
            "wires": [{"id": "w1", "source": {"id": "c_LOGIC", "handle": "LOGIC.BUS2_3"}, "target": {"id": "c_ECU_A", "handle": "ECU_A.1"}},
@@ -1858,19 +1861,19 @@ def self_test():
     flat = json.loads(json.dumps(g))
     saved = ungroup(flat)
     back = regroup(json.loads(json.dumps(flat)), saved)
-    ex = {n["id"]: n.get("excludeFromBom") for k in ("connectors",) for n in g["connectors"]}
-    ex.update({n["id"]: n.get("excludeFromBom") for gr in g["groups"] for n in gr["document"].get("connectors", [])})
-    cases.append(("box_groups: members grouped, K-ACC kept outside (N80 a), K-EPS in neither, LOGIC and relays excludeFromBom",
+    seat = {t["id"]: t["label"] for t in g["terminals"]}
+    cases.append(("box_groups: box seat ends grouped, K-ACC kept outside (N80 a), K-EPS a drawn relay, no box connector left",
                   [(x["id"], x["name"], sorted(n["id"] for v in x["document"].values() for n in v)) for x in g["groups"]] ==
-                  [("gFB100P", "POWER box (ST185-FB-100P)", ["t_T_PWR_NEG_GND_1"]), ("gFB100L", "LOGIC box (ST185-FB-100L)", ["c_LOGIC"])]
-                  and ex == {"c_K_ACC": True, "c_K_EPS": None, "c_ECU_A": None, "c_LOGIC": True}
+                  [("gFB100P", "POWER box (ST185-FB-100P)", ["t_T_PWR_NEG_GND_1"]), ("gFB100L", "LOGIC box (ST185-FB-100L)", ["t_LOGIC__BUS2_3"])]
+                  and sorted(c["id"] for c in g["connectors"]) == ["c_ECU_A", "c_K_EPS"]
+                  and seat.get("t_K_ACC__87") == "LOGIC box seat M5, terminal 87 - A/C clutch relay (K-ACC)"
                   and all(x["excludeFromBom"] for x in g["groups"]) and [p["id"] for p in g["groupParts"]] == ["gp_fb_100p", "gp_fb_100l"]))
-    cases.append(("box_groups: outside references read <group id>-<id>, cavity handles too",
-                  g["wires"][0]["source"] == {"id": "gFB100L-c_LOGIC", "handle": "gFB100L-LOGIC.BUS2_3"}
-                  and g["wires"][1]["source"]["id"] == "gFB100P-t_T_PWR_NEG_GND_1" and g["bundles"][0]["targetId"] == "gFB100L-c_LOGIC"))
+    cases.append(("box_groups: outside references read <group id>-<id>; seat ends take the wire on 'Terminal'",
+                  g["wires"][0]["source"] == {"id": "gFB100L-t_LOGIC__BUS2_3", "handle": "Terminal"}
+                  and g["wires"][1]["source"]["id"] == "gFB100P-t_T_PWR_NEG_GND_1"
+                  and g["wires"][1]["target"] == {"id": "t_K_ACC__87", "handle": "Terminal"} and g["bundles"][0]["targetId"] == "bp_LOGIC_seat"))
     cases.append(("ungroup lifts members under their qualified ids; regroup restores the grouped document",
-                  any(n["id"] == "gFB100L-c_LOGIC" and n["cavities"][0]["id"] == "gFB100L-LOGIC.BUS2_3" for n in flat["connectors"])
-                  and back == g))
+                  any(n["id"] == "gFB100L-t_LOGIC__BUS2_3" for n in flat["terminals"]) and back == g))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))
