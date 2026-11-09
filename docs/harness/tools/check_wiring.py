@@ -82,7 +82,7 @@ SPEC_DIR = os.path.join(REPO, "cad", "fusebox", "src")   # the frozen box design
 MATES = {"DRB102-CABIN": "DRB102-ENGINE", "IX-WS-F-S": "IX-WS-F-P", "IX-WS-R-S": "IX-WS-R-P", "IX-FUEL-S": "IX-FUEL-P"}
 MATES.update({v: k for k, v in list(MATES.items())})
 # inside the VRC boxes the input screen pin is wired to the output screen pin (DECISIONS R31)
-INTERNAL = [(("VRC-F-IN", "3"), ("VRC-F-OUT", "3")), (("VRC-R-IN", "3"), ("VRC-R-OUT", "3"))]
+INTERNAL = [(("VRC-F-IN", "3"), ("VRC-F-OUT", "5")), (("VRC-R-IN", "3"), ("VRC-R-OUT", "5"))]  # OUT screen = pin 5 (CAD BOM, Dan G2 a 2026-11-08)
 DRB_SIZE = {n: 16 for n in range(1, 103)}
 DRB_SIZE.update({n: 12 for n in list(range(1, 9)) + list(range(95, 103))})
 DRB_SIZE.update({48: 8, 49: 8, 54: 8, 55: 8, 43: 4, 60: 4})
