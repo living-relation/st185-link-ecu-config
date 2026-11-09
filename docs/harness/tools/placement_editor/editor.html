@@ -198,20 +198,28 @@ function bbox(){let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;const add=
   const pad=Math.max(40,(x1-x0)*.04,(y1-y0)*.04);return[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad]}
 /* Fit = the harness's own routes, devices and grey markers fill the map (not the whole car plan), leaving room for the
    orientation chip (top) and the zoom keys (right) so nothing sits under them. */
-let userView=false;
+let userView=false,fitS=null;
+/* keep the view on the plan: if the view is smaller than the plan in a direction, slide it so no empty band shows */
+function clampToPlan(){if(!SEED.bg||!SEED.bg.rect)return;const[px,py,pw,ph]=SEED.bg.rect;
+  if(vb[2]<=pw)vb[0]=Math.min(Math.max(vb[0],px),px+pw-vb[2]);else vb[0]=px+pw/2-vb[2]/2;
+  if(vb[3]<=ph)vb[1]=Math.min(Math.max(vb[1],py),py+ph-vb[3]);else vb[1]=py+ph/2-vb[3]/2}
+/* widest view allowed: never zoom out past the plan (no empty grey band), but always at least the Fit view */
+function maxW(){const r=svg.getBoundingClientRect(),ar=r.height/Math.max(1,r.width);let m=20000;
+  if(SEED.bg&&SEED.bg.rect){const[, ,pw,ph]=SEED.bg.rect;m=Math.min(pw,ph/Math.max(1e-6,ar))}return Math.max(m,fitS?fitS*r.width:80)}
 function fit(){const b=bbox(),r=svg.getBoundingClientRect(),W=Math.max(1,r.width),H=Math.max(1,r.height);
-  const T=Math.min(44,H*.15),B=Math.min(16,H*.05),L=Math.min(56,W*.15),R=Math.min(60,W*.18),aw=Math.max(1,W-L-R),ah=Math.max(1,H-T-B),s=Math.max(b[2]/aw,b[3]/ah);
-  vb=[b[0]-L*s-(aw*s-b[2])/2,b[1]-T*s-(ah*s-b[3])/2,W*s,H*s];applyVB()}
+  if(r.width<20||r.height<20)return;
+  const T=Math.min(40,H*.12),B=Math.min(12,H*.04),L=Math.min(12,W*.04),R=Math.min(58,W*.16),aw=Math.max(1,W-L-R),ah=Math.max(1,H-T-B),s=Math.max(b[2]/aw,b[3]/ah);
+  vb=[b[0]-L*s-(aw*s-b[2])/2,b[1]-T*s-(ah*s-b[3])/2,W*s,H*s];fitS=s;clampToPlan();applyVB()}
 function applyVB(){svg.setAttribute("viewBox",vb.join(" "));draw()}
 function mmPerPx(){return vb[2]/Math.max(1,svg.getBoundingClientRect().width)}
 function toMap(cx,cy){const r=svg.getBoundingClientRect();return[vb[0]+(cx-r.left)/r.width*vb[2],vb[1]+(cy-r.top)/r.height*vb[3]]}
 function zoomAt(f,cx,cy){userView=true;const r=svg.getBoundingClientRect();if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2}
-  const p=toMap(cx,cy),nw=Math.min(20000,Math.max(80,vb[2]/f)),k=nw/vb[2];vb=[p[0]-(p[0]-vb[0])*k,p[1]-(p[1]-vb[1])*k,nw,vb[3]*k];applyVB()}
-function centerOn(d){userView=true;vb=[d.x-vb[2]/2,d.y-vb[3]/2,vb[2],vb[3]];applyVB()}
+  const p=toMap(cx,cy),nw=Math.min(maxW(),Math.max(80,vb[2]/f)),k=nw/vb[2];vb=[p[0]-(p[0]-vb[0])*k,p[1]-(p[1]-vb[1])*k,nw,vb[3]*k];clampToPlan();applyVB()}
+function centerOn(d){userView=true;vb=[d.x-vb[2]/2,d.y-vb[3]/2,vb[2],vb[3]];clampToPlan();applyVB()}
 
 /* ---- draw ---- */
-function fan(items,s){/* screen-space de-overlap: badges closer than 26 px fan out around their group centre */
-  const R=26*s,out=items.map(i=>[i.x,i.y]),used=items.map(()=>false);
+function fan(items,s,gap){/* screen-space de-overlap: badges closer than gap px fan out around their group centre */
+  const R=gap*s,out=items.map(i=>[i.x,i.y]),used=items.map(()=>false);
   for(let i=0;i<items.length;i++){if(used[i])continue;const g=[i];used[i]=true;
     for(let j=i+1;j<items.length;j++){if(!used[j]&&g.some(k=>Math.hypot(items[k].x-items[j].x,items[k].y-items[j].y)<R)){g.push(j);used[j]=true}}
     if(g.length>1){const cx=g.reduce((a,k)=>a+items[k].x,0)/g.length,cy=g.reduce((a,k)=>a+items[k].y,0)/g.length,rr=Math.max(R,R*g.length/Math.PI*.6);
@@ -220,37 +228,43 @@ function fan(items,s){/* screen-space de-overlap: badges closer than 26 px fan o
 function hit(b,boxes){return boxes.some(o=>b[0]<o[2]&&b[2]>o[0]&&b[1]<o[3]&&b[3]>o[1])}
 function draw(){
   const s=mmPerPx(),gl=$("gl"),gs=$("gs"),gd=$("gd");gl.innerHTML="";gs.innerHTML="";gd.innerHTML="";
-  const REFS=SEED.refs||[],items=[...devs.map(d=>({x:d.x,y:d.y})),...REFS.map(r=>({x:r.x,y:r.y}))],pos=fan(items,s),boxes=[];
-  pos.forEach(p=>boxes.push([p[0]-14*s,p[1]-14*s,p[0]+14*s,p[1]+14*s]));
+  /* Sizes follow the zoom (Dan 2026-11-08 "devices and lines don't scale with zoom"): z = zoom against the Fit view.
+     Lines are LINE_MM wide on the plan (clamped 2-14 px on screen); dots, markers and labels grow and shrink with z
+     inside clamps (0.7x-2x), so they stay readable zoomed out and in proportion zoomed in. Touch targets stay 48 px. */
+  const z=fitS?fitS/s:1,k=Math.min(2,Math.max(.7,z)),kt=Math.min(1.6,Math.max(.85,z)),LINE_MM=9;
+  const DR=10*k,RH=7.5*k,LW=Math.min(14,Math.max(2,LINE_MM/s)),FS=10.5*kt,FD=10*k,OUT=Math.max(1,1.1*k);
+  const REFS=SEED.refs||[],items=[...devs.map(d=>({x:d.x,y:d.y})),...REFS.map(r=>({x:r.x,y:r.y}))],pos=fan(items,s,2*DR+4),boxes=[];
+  pos.forEach(p=>boxes.push([p[0]-(DR+2)*s,p[1]-(DR+2)*s,p[0]+(DR+2)*s,p[1]+(DR+2)*s]));
   for(const l of SEED.lines){if(l.pts.length<2)continue;
-    el("polyline",{points:l.pts.map(p=>p.join(",")).join(" "),fill:"none",stroke:l.color||"#555","stroke-width":4*s,
-      "stroke-dasharray":l.dash?`${8*s} ${5*s}`:"none","stroke-linecap":"round","stroke-linejoin":"round",opacity:.9},gl)}
-  const refAt=REFS.map((r,i)=>{const p=pos[devs.length+i],t=r.label||r.id,w=(t.length*6.2+4)*s,h=13*s;
+    el("polyline",{points:l.pts.map(p=>p.join(",")).join(" "),fill:"none",stroke:l.color||"#555","stroke-width":LW*s,
+      "stroke-dasharray":l.dash?`${2*LW*s} ${1.3*LW*s}`:"none","stroke-linecap":"round","stroke-linejoin":"round",opacity:.9},gl)}
+  const refAt=REFS.map((r,i)=>{const p=pos[devs.length+i],t=r.label||r.id,w=(t.length*FS*.58+4)*s,h=(FS+2)*s,o=RH+5;
     const inView=bx=>bx[0]>=vb[0]+4*s&&bx[2]<=vb[0]+vb[2]-64*s;   /* keep labels on screen and clear of the zoom keys */
-    for(const [x,y] of [[p[0]+16*s,p[1]+4*s],[p[0]-16*s-w,p[1]+4*s],[p[0]-w/2,p[1]-17*s],[p[0]-w/2,p[1]+29*s]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)&&inView(bx)){boxes.push(bx);return[x,y]}}
-    for(const [x,y] of [[p[0]+16*s,p[1]+4*s],[p[0]-16*s-w,p[1]+4*s]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)){boxes.push(bx);return[x,y]}}
-    boxes.push([p[0]+16*s,p[1]-9*s,p[0]+16*s+w,p[1]+7*s]);return[p[0]+16*s,p[1]+4*s]});
+    const c=FS*.38*s;
+    for(const [x,y] of [[p[0]+o*s,p[1]+c],[p[0]-o*s-w,p[1]+c],[p[0]-w/2,p[1]-(o+2)*s],[p[0]-w/2,p[1]+(o+FS)*s]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)&&inView(bx)){boxes.push(bx);return[x,y]}}
+    for(const [x,y] of [[p[0]+o*s,p[1]+c],[p[0]-o*s-w,p[1]+c]]){const bx=[x,y-h+3*s,x+w,y+3*s];if(!hit(bx,boxes)){boxes.push(bx);return[x,y]}}
+    boxes.push([p[0]+o*s,p[1]-h/2,p[0]+o*s+w,p[1]+h/2]);return[p[0]+o*s,p[1]+c]});
   REFS.forEach((r,i)=>{const p=pos[devs.length+i],g=el("g",{"pointer-events":"none"},gd);
-    if(p[0]!==r.x||p[1]!==r.y){el("line",{x1:r.x,y1:r.y,x2:p[0],y2:p[1],stroke:"#7d8790","stroke-width":1.2*s},g);el("circle",{cx:r.x,cy:r.y,r:2.5*s,fill:"#7d8790"},g)}
-    el("rect",{x:p[0]-9*s,y:p[1]-9*s,width:18*s,height:18*s,rx:3*s,fill:"#c9ced3",stroke:"#5d666e","stroke-width":1.2*s},g);
-    const tl=el("text",{x:refAt[i][0],y:refAt[i][1],"font-size":11*s,fill:"#3c444b","font-family":"IBM Plex Sans Condensed, sans-serif",stroke:"#fbfbf8","stroke-width":3*s,"paint-order":"stroke"},g);tl.textContent=r.label||r.id;
+    if(p[0]!==r.x||p[1]!==r.y){el("line",{x1:r.x,y1:r.y,x2:p[0],y2:p[1],stroke:"#7d8790","stroke-width":OUT*s},g);el("circle",{cx:r.x,cy:r.y,r:2*k*s,fill:"#7d8790"},g)}
+    el("rect",{x:p[0]-RH*s,y:p[1]-RH*s,width:2*RH*s,height:2*RH*s,rx:2*k*s,fill:"#c9ced3",stroke:"#5d666e","stroke-width":OUT*s},g);
+    const tl=el("text",{x:refAt[i][0],y:refAt[i][1],"font-size":FS*s,fill:"#3c444b","font-family":"IBM Plex Sans Condensed, sans-serif",stroke:"#fbfbf8","stroke-width":3*s,"paint-order":"stroke"},g);tl.textContent=r.label||r.id;
     const ti=el("title",{},g);ti.textContent=r.name+" (fixed, not part of this harness's moves)"});
-  for(const l of SEED.lines){if(l.pts.length<2)continue;const lt=l.short||"";if(!lt)continue;const w=(lt.length*7.6+6)*s,h=14*s;let at=null;
+  for(const l of SEED.lines){if(l.pts.length<2)continue;const lt=l.short||"";if(!lt)continue;const w=(lt.length*FS*.62+6)*s,h=(FS+3)*s;let at=null;
     for(let i=l.pts.length-2;i>=0&&!at;i--){const a=l.pts[i],b=l.pts[i+1];
       for(const t of [.5,.25,.75])for(const [ox,oy] of [[6,-6],[6,16],[-6-w/s,-6],[-6-w/s,16]]){const x=a[0]+(b[0]-a[0])*t+ox*s,y=a[1]+(b[1]-a[1])*t+oy*s,bx=[x,y-h+3*s,x+w,y+3*s];if(!at&&!hit(bx,boxes))at=[x,y,bx]}}
     if(!at)continue;boxes.push(at[2]);
-    const t=el("text",{x:at[0],y:at[1],"font-size":12*s,fill:l.color||"#555","font-weight":"700","font-family":"IBM Plex Mono, monospace",stroke:"#fbfbf8","stroke-width":3*s,"paint-order":"stroke"},gl);t.textContent=lt}
+    const t=el("text",{x:at[0],y:at[1],"font-size":(FS+1)*s,fill:l.color||"#555","font-weight":"700","font-family":"IBM Plex Mono, monospace",stroke:"#fbfbf8","stroke-width":3*s,"paint-order":"stroke"},gl);t.textContent=lt}
   devs.forEach((d,i)=>{const p=pos[i],a=attach(d),far=moved(d)>WARN,on=d.id===sel;
-    if(a)el("line",{x1:d.x,y1:d.y,x2:a[0],y2:a[1],stroke:"#101418","stroke-width":1.6*s,"stroke-dasharray":`${4*s} ${3*s}`},gs);
+    if(a)el("line",{x1:d.x,y1:d.y,x2:a[0],y2:a[1],stroke:"#101418","stroke-width":1.4*k*s,"stroke-dasharray":`${4*k*s} ${3*k*s}`},gs);
     const g=el("g",{"data-id":d.id,role:"button","aria-label":d.n+" "+d.name},gd);
-    if(p[0]!==d.x||p[1]!==d.y){el("line",{x1:d.x,y1:d.y,x2:p[0],y2:p[1],stroke:"#101418","stroke-width":1.2*s},g);el("circle",{cx:d.x,cy:d.y,r:3*s,fill:"#101418"},g)}
-    el("circle",{cx:p[0],cy:p[1],r:24*s,fill:"#000","fill-opacity":0},g); /* 48 px touch target */
-    if(far)el("circle",{cx:p[0],cy:p[1],r:17*s,fill:"none",stroke:"#d97706","stroke-width":4*s},g);
-    if(on)el("circle",{cx:p[0],cy:p[1],r:19*s,fill:"none",stroke:"#1d5fb4","stroke-width":4*s},g);
-    const r=12*s;if(d.kind==="handoff")el("path",{d:`M${p[0]} ${p[1]-r*1.2}L${p[0]+r*1.2} ${p[1]}L${p[0]} ${p[1]+r*1.2}L${p[0]-r*1.2} ${p[1]}Z`,fill:"#ffd3a8",stroke:"#101418","stroke-width":1.2*s},g);
-    else el("circle",{cx:p[0],cy:p[1],r,fill:"#ffe873",stroke:"#101418","stroke-width":1.2*s},g);
-    const t=el("text",{x:p[0],y:p[1]+4.2*s,"text-anchor":"middle","font-size":12*s,"font-weight":"700",fill:"#101418","font-family":"IBM Plex Mono, monospace"},g);t.textContent=d.n;
-    if(on){const lb=el("text",{x:p[0]+22*s,y:p[1]+5*s,"font-size":14*s,"font-weight":"700",fill:"#101418",stroke:"#fbfbf8","stroke-width":4*s,"paint-order":"stroke","font-family":"IBM Plex Sans Condensed, sans-serif"},g);lb.textContent=d.short||d.name}})
+    if(p[0]!==d.x||p[1]!==d.y){el("line",{x1:d.x,y1:d.y,x2:p[0],y2:p[1],stroke:"#101418","stroke-width":OUT*s},g);el("circle",{cx:d.x,cy:d.y,r:2.4*k*s,fill:"#101418"},g)}
+    el("circle",{cx:p[0],cy:p[1],r:Math.max(24,DR+6)*s,fill:"#000","fill-opacity":0},g); /* >= 48 px touch target */
+    if(far)el("circle",{cx:p[0],cy:p[1],r:(DR+4)*s,fill:"none",stroke:"#d97706","stroke-width":3*k*s},g);
+    if(on)el("circle",{cx:p[0],cy:p[1],r:(DR+5.5)*s,fill:"none",stroke:"#1d5fb4","stroke-width":3*k*s},g);
+    const r=DR*s;if(d.kind==="handoff")el("path",{d:`M${p[0]} ${p[1]-r*1.2}L${p[0]+r*1.2} ${p[1]}L${p[0]} ${p[1]+r*1.2}L${p[0]-r*1.2} ${p[1]}Z`,fill:"#ffd3a8",stroke:"#101418","stroke-width":OUT*s},g);
+    else el("circle",{cx:p[0],cy:p[1],r,fill:"#ffe873",stroke:"#101418","stroke-width":OUT*s},g);
+    const t=el("text",{x:p[0],y:p[1]+FD*.36*s,"text-anchor":"middle","font-size":FD*s,"font-weight":"700",fill:"#101418","font-family":"IBM Plex Mono, monospace"},g);t.textContent=d.n;
+    if(on){const lb=el("text",{x:p[0]+(DR+9)*s,y:p[1]+FS*.4*s,"font-size":(FS+2)*s,"font-weight":"700",fill:"#101418",stroke:"#fbfbf8","stroke-width":4*s,"paint-order":"stroke","font-family":"IBM Plex Sans Condensed, sans-serif"},g);lb.textContent=d.short||d.name}})
 }
 function renderPeek(){const d=byId(sel),pl=$("pl"),pm=$("pm");pl.classList.toggle("none",!d);
   if(!d){$("pn").textContent=`Tap a dot to pick a device · ${devs.length} devices, ${devs.filter(x=>moved(x)>0).length} moved`;pm.textContent="";pm.className="pm";return}
@@ -295,13 +309,13 @@ svg.addEventListener("pointerdown",e=>{svg.setPointerCapture(e.pointerId);ptrs.s
 svg.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId)||!gest)return;ptrs.set(e.pointerId,[e.clientX,e.clientY]);
   if(gest.kind==="pinch"&&ptrs.size===2){const [a,b]=[...ptrs.values()],dd=Math.hypot(a[0]-b[0],a[1]-b[1]);vb=gest.vb0.slice();
     const r=svg.getBoundingClientRect(),c=gest.c,p=[vb[0]+(c[0]-r.left)/r.width*vb[2],vb[1]+(c[1]-r.top)/r.height*vb[3]];
-    const nw=Math.min(20000,Math.max(80,gest.vb0[2]*gest.d0/Math.max(1,dd))),k=nw/gest.vb0[2];
-    userView=true;const mc=[(a[0]+b[0])/2,(a[1]+b[1])/2];vb=[p[0]-(mc[0]-r.left)/r.width*nw,p[1]-(mc[1]-r.top)/r.height*gest.vb0[3]*k,nw,gest.vb0[3]*k];applyVB();return}
+    const nw=Math.min(maxW(),Math.max(80,gest.vb0[2]*gest.d0/Math.max(1,dd))),k=nw/gest.vb0[2];
+    userView=true;const mc=[(a[0]+b[0])/2,(a[1]+b[1])/2];vb=[p[0]-(mc[0]-r.left)/r.width*nw,p[1]-(mc[1]-r.top)/r.height*gest.vb0[3]*k,nw,gest.vb0[3]*k];clampToPlan();applyVB();return}
   const dx=e.clientX-gest.start[0],dy=e.clientY-gest.start[1];if(!gest.moved&&Math.hypot(dx,dy)<6)return;
   if(gest.kind==="drag"){const d=byId(gest.id);if(!gest.moved){push({id:d.id,...gest.from});gest.moved=true}
     const p=toMap(e.clientX,e.clientY);d.x=Math.round(gest.from.x+p[0]-gest.m0[0]);d.y=Math.round(gest.from.y+p[1]-gest.m0[1]);draw();
     const m=moved(d);status(`${d.n} ${d.short||d.name}: moved ${m} mm${m>WARN?" - more than "+WARN+" mm, Claude will check it":""}`,m>WARN)}
-  else if(gest.kind==="pan"){gest.moved=true;userView=true;const s=mmPerPx();vb=[gest.vb0[0]-dx*s,gest.vb0[1]-dy*s,vb[2],vb[3]];applyVB()}});
+  else if(gest.kind==="pan"){gest.moved=true;userView=true;const s=mmPerPx();vb=[gest.vb0[0]-dx*s,gest.vb0[1]-dy*s,vb[2],vb[3]];clampToPlan();applyVB()}});
 function end(e){if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);if(!gest)return;
   if(gest.kind==="pinch"){if(ptrs.size===0)gest=null;return}
   if(gest.kind==="drag"&&gest.moved){mark();renderSide()}
@@ -339,8 +353,10 @@ window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault()}});
 
 const bg=$("bg");if(SEED.bg&&SEED.bg.img){bg.setAttribute("href",SEED.bg.img);const[r0,r1,r2,r3]=SEED.bg.rect;bg.setAttribute("x",r0);bg.setAttribute("y",r1);bg.setAttribute("width",r2);bg.setAttribute("height",r3)}
 renderLegend();fit();renderSide();status("Loading your saved spots... (moving unlocks when loaded)");
+const refit=()=>{if(!userView)fit()};[60,300,1000,2500].forEach(ms=>setTimeout(refit,ms));
+window.addEventListener("resize",refit);window.visualViewport&&window.visualViewport.addEventListener("resize",refit);
 new ResizeObserver(()=>{if(!vb)return;if(!userView){fit();return}
-  const r=svg.getBoundingClientRect(),ar=r.width/Math.max(1,r.height),cy=vb[1]+vb[3]/2,h=vb[2]/ar;vb=[vb[0],cy-h/2,vb[2],h];applyVB()}).observe(svg);
+  const r=svg.getBoundingClientRect(),ar=r.width/Math.max(1,r.height),cy=vb[1]+vb[3]/2,h=vb[2]/ar;vb=[vb[0],cy-h/2,vb[2],h];clampToPlan();applyVB()}).observe(svg);
 (async()=>{let to=setTimeout(()=>{if(!ready)status("Still loading your save... check you are signed in to claude.ai.",true)},10000);
   try{db=await window.claude?.use?.("db")}catch(e){db=null}
   if(!db){clearTimeout(to);ready=true;status("Viewing only: saving needs the page open signed in to claude.ai.",true);renderList();return}
