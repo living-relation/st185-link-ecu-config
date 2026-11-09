@@ -594,6 +594,7 @@ def build(REPO, OUT, CFG):
     DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
     OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
     GAP, MINL, ISP, LBL = 60, 150, 60, 240        # clearance, shortest drawn bundle, comb pitch, room for a part's label
+    GGAP = 180                                     # extra space between comb groups (CFG 'comb_group')
     ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + list(INL.values())}
     XY = H.layout['nodes']
     STUB = H.layout.get('end_allowance_mm', 100)
@@ -614,6 +615,13 @@ def build(REPO, OUT, CFG):
             assert left, ('more branches than directions at', n)
             asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
         items = node_items.get(n, []) + inline_at.get(n, [])
+        # optional comb groups (CFG 'comb_group', view only): the parts at one node combed group by group, with a clear gap
+        # between groups (CabinPower: POWER box ends, then LOGIC box ends, then the rest; Dan 2026-11-08 "separate the two fuse
+        # boxes a little more"); stubs keep their 100 mm length, so no routed length changes
+        grp = {cid: (CFG['comb_group'](*(INFO[cid][:2] if cid in INFO else (None, cid)), BOX_OF) if 'comb_group' in CFG else 0)
+               for cid in items}
+        items = sorted(items, key=lambda cid: grp[cid])     # stable: keeps the master order inside a group
+        gofs = [GGAP * sum(1 for a, b in zip(items, items[1:i + 1]) if grp[a] != grp[b]) for i in range(len(items))]
         rects, P, S = [], {n: (0, 0)}, {}
         ray = [rect((-DV[din][0] * 90, -DV[din][1] * 90), (-DV[din][0] * 10 ** 6, -DV[din][1] * 10 ** 6))] if din else []
         if items:
@@ -621,14 +629,15 @@ def build(REPO, OUT, CFG):
             cd = (din if din in left else next(d for d in ('U', 'D', 'R', 'L') if d in left)) if left else OPP[din]
             k, (dx, dy) = len(items), DV[cd]
             if dy == 0:     # a column of parts across the end of a horizontal stub
-                ys = [ISP * i - 30 * (k - 1) for i in range(k)]; xj = dx * 90
+                ys = [ISP * i - 30 * (k - 1) + gofs[i] for i in range(k)]; xj = dx * 90
                 for cid, yy in zip(items, ys):
                     S[cid] = (n, (dx * 150, yy), [(xj, 0), (xj, yy)] if yy else [])
                 rects += [rect((dx * 90, 0), (dx * 90, 0)), rect((xj, ys[0]), (dx * (150 + LBL), ys[-1]))]
             else:           # parts combed off a vertical spine, to the front (right) side
                 for i, cid in enumerate(items):
-                    yy = dy * (120 + ISP * i); S[cid] = (n, (120, yy), [(0, yy)])
-                rects += [rect((0, dy * 90), (0, dy * (120 + ISP * (k - 1)))), rect((0, dy * 90), (120 + LBL, dy * (120 + ISP * (k - 1) + 30)))]
+                    yy = dy * (120 + ISP * i + gofs[i]); S[cid] = (n, (120, yy), [(0, yy)])
+                last = 120 + ISP * (k - 1) + gofs[-1]
+                rects += [rect((0, dy * 90), (0, dy * last)), rect((0, dy * 90), (120 + LBL, dy * (last + 30)))]
         for c in sorted(kids[n], key=lambda c: (len(sub_nodes(c)), c)):
             d = asg[c]; cr, cp, cs = lay(c, d)
             back = max([-(DV[d][0] * (r[0] if DV[d][0] > 0 else r[2]) + DV[d][1] * (r[1] if DV[d][1] > 0 else r[3])) for r in cr] + [0])
