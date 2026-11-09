@@ -42,7 +42,7 @@ show the name. Apply this map to every row's `from_name` / `to_name` for the id;
 | `SP-CANH` / `SP-CANL` / `-LAM` | CAN high / low join, dash / at the Lambda |
 | `SP-CAN-SH-BH` / `-CLU` / `-CSB` / `-RD` | CAN shield join: firewall / cluster / switch board / RealDash Pi |
 | `SP-CSB-GND` | Switch board ground splice |
-| `IX-FUEL-S` / `IX-FUEL-P` | Fuel sender inline plug (socket half / pin half) |
+| `IX-FUEL-S` / `IX-FUEL-P` | (dropped 2026-11-08, Dan N1 a: the sill run lands on the sender plug) |
 | `K-FP` | Fuel pump relay (trunk relay block, K1) |
 | `K-EFI` / `K-FAN` / `K-FAN2` | EFI main relay / Radiator fan relay / Condenser fan relay (power box R2 / R4 / R5) |
 | `K-HL` / `K-HR` / `K-HORN` / `K-ETB` / `K-ACC` / `K-EPS-EN` / `K-DRL` | Low beam / High beam / Horn / Throttle power / A/C clutch / Steering pump enable / DRL relay (logic box M1 / M2 / M3 / M4 / M5 / M6 / M8) |
