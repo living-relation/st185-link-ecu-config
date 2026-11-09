@@ -267,71 +267,22 @@
    "short": "LH fender pass-through: FL sensor",
    "lab": "above"
   },
-  "LHSILL": {
-   "xy": [
-    10,
-    98
-   ],
-   "label": "LH sill, rear end: under the rear seat (rear wheel-speed legs meet; rear-light run turns to the quarter panel; Routes 10, 15)",
-   "short": "LH sill, rear (under rear seat)",
-   "lab": "below"
-  },
-  "RLJ": {
-   "xy": [
-    -10,
-    86
-   ],
-   "label": "LH quarter panel centre (OEM joint BP1): rear-light splices (Route 15)",
-   "end": true,
-   "short": "LH quarter: rear-light splices",
-   "lab": "left"
-  },
-  "R11": {
-   "xy": [
-    -18,
-    94
-   ],
-   "label": "LH rear lamp R11 (socket pigtails)",
-   "end": true,
-   "short": "LH rear lamp R11",
-   "lab": "above"
-  },
   "RPANEL": {
    "xy": [
     -18,
     52
    ],
-   "label": "Rear panel centre: licence lamp L1, ground point BL (Routes 14, 15)",
+   "label": "Rear panel centre: factory ground point BL (fuel pump ground ring, Dan N97 a); leg length from the tank is an estimate until Dan refines it",
    "end": true,
-   "short": "Rear panel centre: L1, ground BL",
+   "short": "Ground point BL (back panel)",
    "lab": "left"
-  },
-  "HATCH": {
-   "xy": [
-    -6,
-    46
-   ],
-   "label": "High-mount stop light H6 (hatch spoiler)",
-   "end": true,
-   "short": "High-mount stop H6",
-   "lab": "below"
-  },
-  "R12": {
-   "xy": [
-    -18,
-    14
-   ],
-   "label": "RH rear lamp R12 (socket pigtails)",
-   "end": true,
-   "short": "RH rear lamp R12",
-   "lab": "below"
   },
   "WSRL": {
    "xy": [
     2,
     92
    ],
-   "label": "RL ABS sensor plug (rear left; Route 10)",
+   "label": "RL ABS sensor plug (rear left): its cable crosses under the rear seat to the RH sill run (shared trunk with the fuel / battery wires, N120 2026-11-08)",
    "end": true,
    "short": "RL wheel-speed sensor",
    "lab": "left"
@@ -341,7 +292,7 @@
     0,
     24
    ],
-   "label": "RR ABS sensor plug (rear right; its cable crosses under the rear seat to the LH sill, Route 10)",
+   "label": "RR ABS sensor plug (rear right), off the RH sill run (shared trunk with the fuel / battery wires, N120 2026-11-08)",
    "end": true,
    "short": "RR wheel-speed sensor",
    "lab": "left"
@@ -638,46 +589,6 @@
    300
   ],
   [
-   "JB1",
-   "LHSILL",
-   1800
-  ],
-  [
-   "LHSILL",
-   "RLJ",
-   800
-  ],
-  [
-   "RLJ",
-   "R11",
-   300
-  ],
-  [
-   "RLJ",
-   "RPANEL",
-   600
-  ],
-  [
-   "RPANEL",
-   "R12",
-   600
-  ],
-  [
-   "RPANEL",
-   "HATCH",
-   400
-  ],
-  [
-   "LHSILL",
-   "WSRL",
-   400
-  ],
-  [
-   "LHSILL",
-   "WSRR",
-   1300
-  ],
-  [
    "FUEL",
    "TANK",
    300
@@ -711,6 +622,21 @@
    "STARTER_B",
    "JUMP",
    210
+  ],
+  [
+   "RHSILL",
+   "WSRR",
+   400
+  ],
+  [
+   "RHSILL",
+   "WSRL",
+   1500
+  ],
+  [
+   "TANK",
+   "RPANEL",
+   400
   ]
  ],
  "route_trees": [
@@ -990,7 +916,7 @@
   "WSS-FL": "LFP",
   "WSS-FR": "RFP",
   "FUEL-PUMP": "TANK",
-  "GND-BL": "TANK",
+  "GND-BL": "RPANEL",
   "IX-FUEL-S": "FUEL",
   "FUEL-LEVEL": "TANK",
   "SP-ACC12": "GB",
