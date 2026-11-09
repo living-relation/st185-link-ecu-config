@@ -49,7 +49,7 @@ Bucket = Area column (Research counts as Harness wiring; Tooling / Docs as House
 
 | Bucket | Open | In plain words |
 |---|---|---|
-| Harness wiring | 8 | Goal 1, the 2026-10-31 wiring audit (row 172: plain names); the surgical rewire (row 164: decided circuits are in the master; next is overlays, the B-walk, the add list, the bulkhead and the parked fuse box); each harness built in harness.design and Dan's review there (rows 178 / 153); the 1990 / 1992 pin re-check against the 1993 EWD (row 156); per-harness CSV wire lists generated from the master (row 158); the recovery plan (row 183); the placement editors (row 180). |
+| Harness wiring | 7 | Goal 1, the 2026-10-31 wiring audit (row 172: plain names); the surgical rewire (row 164: decided circuits are in the master; next is overlays, the B-walk, the add list, the bulkhead and the parked fuse box); each harness built in harness.design and Dan's review there (rows 178 / 153); the 1990 / 1992 pin re-check against the 1993 EWD (row 156); the recovery plan (row 183); the placement editors (row 180). |
 | Parts | 7 | Goal 1: the K-FAN2 coil spike (row 162), the TBD part numbers and maker pin numbering in the master (row 150), the drain solder sleeves (row 166), the CAN-Lambda fuse to 10 A in the fuse-box model (row 148), the fuse box (row 107, parked), the LOGIC HL 86 short-segment warning (row 123), the CAD drawing / BOM gaps from the move-out (row 181). |
 | CAN | 1 | Goal 3: the knock warning PCLink checks (row 102; 0x3EE now 10 ms, ECU side only, R98). Oil LED stays on CSB3 L4 and 0x643 byte 3 is in the CAN config (row 163 closed). |
 | RealDash | 0 | Nothing in scope: the RealDash bench checks are parked (R102). |
