@@ -490,6 +490,7 @@ Moved here from rule B6 on 2026-11-02 (Dan L3 = a); binding as part of B6.
 - Layout view = formboard (README).
 - `build_drawings.py --check` keeps the layout tree, master lengths, the Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout.
 - The OEM splice notes come from the master via `build_drawings.oem_splice_note` (the OEM splice reference was retired, Dan N22 a, #534).
+- N118 b (Dan 2026-11-08, for the 2026-11-08 label pass): where Dan's own live edits in a harness.design file (his labels, opto pin texts) clash with the label ops generated from the master, the generated ops win and overwrite them; files are built from the master.
 
 ## Grounds (B10)
 
@@ -504,6 +505,11 @@ Moved here from rule B10 on 2026-11-02 (Dan L3 = a); binding as part of B10.
 - Alarm grounds (Dan N43 b, 2026-11-06): ring terminal `T-AT-GND` at the alarm spot (the `AL-GND` lead and the siren ground pull-wire) to a chassis ground point Dan picks at install, a named exception to B10.
 - Example of the factory-load rule, the Dash LED ground (Dan N82 a, 2026-11-08, replaces N74 a; under N83 a since 2026-11-08): `w_led_gnd_out`, from the LED ground splice `SP-LED-GND` (the - legs of the turn LH / RH and high beam cluster LEDs), keeps the factory ground point ID (LH kick): the LEDs replace the factory cluster indicator lamps, whose ground is C13 (B) pin 1, W-B, to ground point ID (1993 EWD Combmeter p.206-208, TSHWL p.130, HdlitUSA p.116; `st185-celica-repair-manual` `manuals-electrical/`). LED current only (mA); on the cabin ground splice `SP-CABIN-GND` it would push `w_cabin_gnd` over 8 AWG by the B12 fuse-sum rule.
 - Dash LED polarity (1993 EWD check, 2026-11-08): LED + on C13 (B) pins 2 (turn LH), 11 (turn RH) and 12 (high beam), LED - to `SP-LED-GND`, is correct. Pin 12 hangs off the low-beam ground R-L at splice I2: ground on LOW, about +12 V through the low-beam filaments on HIGH / FLASH. So the high-beam LED's +12 V comes through the factory low-beam filaments: any headlamp change must recheck it. Rechecked 2026-11-08 (Dan N89 a): no lamp hangs on R-L any more, so the high-beam out feeds the R-L line through R-HB (220 ohm, 1 W) at IE1-11 and the LED lights at HIGH / FLASH only ("Headlamps, DRL and pop-ups" below).
+- Grounds by kind (Dan 2026-11-08, standing): never join grounds just because a wire says "ground": pick the kind (device power ground, shield drain, sensor ground) and its place for each one; layout views show the real ring terminal where one is used.
+- N106 a (Dan 2026-11-08; replaces the `w_led_gnd_out` wire of the N82 a example above; not yet in the master): the LED ground splice `SP-LED-GND` (turn LH / RH and high-beam LEDs only) splices onto the factory cluster ground C13 (B) pin 1 W-B (to ID, N83 a); `w_led_gnd_out` is dropped.
+- N109 a (Dan 2026-11-08; not yet in the master): the opto board input common (COM1) gets its own wire to the cabin ground splice `SP-CABIN-GND`, labelled "Opto input return (brake / reverse / tail signals)", never "COM1".
+- N103 (Dan 2026-11-08; not yet in the master): A/C amp A15 pin 2 ("coolant OK") goes to the nearest body ground by the amp, off `SP-CABIN-GND`; `w_cabin_gnd` then returns 40 A and drops to 10 AWG (B12), replacing the 8 AWG / 50 A sum in N60 a below once the master changes.
+- N102 + N108 a (Dan 2026-11-08; not yet in the master): the cruise stalk return is "CSB3 reference ground" (CSB3 SGND); the cruise ladder pull-up comes from the CSB3's own +5 V, so `w_cru_5v_ac` is dropped; a cut row is added for the factory BR path to body ground IE (EWD page TBD).
 
 ## Bus bars and fuse box ends
 
@@ -554,6 +560,7 @@ Binding as part of B10, B15 and B27. Circuit and truth table: `docs/harness/circ
 - N87 a: a separate DRL switch raises the pods through 2 diodes at R8: the R-Y lead I2 -> R8 pin 8 is cut near R8 (kept cabin lead, solder, B9); D1 anode at R8 pin 8, cathode to the I2 side; D2 anode at R8 pin 8, cathode to the DRL switch, which grounds it and the K-DRL coil on R8's own ground lead (pin 12 W-B, to ID). So the stalk and the DRL switch each command UP, and the DRL never energises K-HL. DRL feed: LOGIC BUS2-1 DRL 7.5 A (Bus 2, live with K-EFI, so key on) -> K-DRL (spare seat M8, TE 4-1904124-2, on hand) 30 / 86; 87 -> both white DRL leads. Switch: SPST, type TBD (Dan); spot left of the steering wheel (Dan 2026-11-08), set in the CabinPower placement editor. Key on only (Dan N93 a, 2026-11-08; replaces N92 a): D2's cathode goes through the NO contact of the key-on relay `K-POD` (spare seat M10, TE 4-1904124-3, on hand; coil 86 from BUS2-1 DRL 7.5 A, coil 85 on the DRL switch), so with the key off D2 cannot be grounded and the pods follow the stalk alone, as stock; the head lamps and pods still work without the key through the stalk (3 then 1 = pods up, beams off, for maintenance). Key on + DRL switch on = pods up and DRLs lit, the DRLs off while the head lamps are on (N90 a). Diodes: DEUTSCH DT04-2P-RT01 (MUR460) from customconnectorkits.com (Dan 2026-11-08); which cavity is the anode is TBD by the TE drawing.
 - Front turn (Dan 2026-11-08): each lamp's yellow lead joins its side's turn feed on the F7 / F8 pin 3 pigtail (G-B LH, G-Y RH; 1993 EWD p.130); the bumper lamps stay.
 - N86 (Dan 2026-11-08): both horns share one ground: `SP-HORN-GND` at the horns, one 14 AWG wire to EA (RH fender apron, out of the bumper opening), tagged factory ground (N83 a), 1993 EWD p.185.
+- N105 a (Dan 2026-11-08; not yet in the master): the DRL switch splice `SP-DRL-SW` moves to the glove box (by the LOGIC box), not at the switch.
 
 ## CAN wiring (B17)
 
@@ -570,6 +577,7 @@ Binding as part of B17. Dan's design, 2026-11-07 09:23, verbatim:
 - N53 a (Dan 2026-11-07 09:47): each node's ground core joins `SP-CAN-GND` at the trunk start; ONE trunk ground wire `w_can_gnd` runs from there to the cabin ground splice `SP-CABIN-GND` by the POWER box, then on to the NEG bar (B10; N60 a 2026-11-07). Size (B12): it returns DEV 5 A + CSB 5 A + Pi 5 A = 15 A: 16 AWG Tefzel (15 A cabin). The CSB3 ground splice `SP-CSB-GND` (CSB3 pin 2, opto board, stalk) reaches it by the CSB3 branch cable's ground core `w_gnd_csb` (replaces `w_csbg_ac`).
 - N54 a (Dan 2026-11-07 09:47): the CSB3 branch comes off the CAN joins like the cluster and the Pi (layout segment `CANJ`-`CSB3` 320 mm, was `ECU`-`CSB3` 370 mm, so the path ECU to CSB3 stays 370 mm), not straight from the ECU.
 - N58 a (Dan 2026-11-07 09:54): the Pi stays on the factory CIG & RADIO ACC feed (II1 pin 3). A 5 A inline fuse `F-PI` (Littelfuse MINI FHM in-line holder `0FHM0003ZXJB`, 16 AWG leads, with an `ATM-5` MINI fuse) sits where the Pi feed joins the trunk start; after it the Pi +12 V rides the 20 AWG red core of its branch cable (`wc_12v_rd`). The feed leg II1 pin 3 to the fuse (`w_pi12`) stays 16 AWG Tefzel for the factory 15 A fuse.
+- N107 a (Dan 2026-11-08; replaces where N58 a puts the fuse; not yet in the master): the Pi fuse `F-PI` sits at the radio ACC tap (cowl plug II1 pin 3) with a short lead to the Pi, not at the trunk start; the Pi branch cable's +12 V core is a spare.
 
 ## Shields
 
@@ -602,6 +610,16 @@ Every bulkhead drain has its own cavity. Both sensor screens of a VRC share its 
 The VRC and its panel sockets are not drawn. Each VRC harness is two separate pieces ending in two non-shielded 5-pin CNLINKO LP-16 plugs (`LP-16-J05PE-02-001`, S8 / R34 / S16). Nothing bonds to the case and no shell carries the screen (R33): the box is not part of the shield path, the PCB sits in a printed holder (S26) and grounds through the output cable only, and the box mounts on nylon hardware.
 
 **ABS routing.** Front (FL, FR) runs through the fenders with loom C. Rear (RL, RR) runs with the fuel pump and level sender. Neither pair gets its own firewall crossing; the wheel-speed loom uses no bulkhead connector — it crosses on a grommet so each screen stays unbroken.
+
+**Shield path (Dan 2026-11-08, standing, no exceptions).** A shield is part of its shielded cable and follows the exact path of the cable's other wires all the way to the destination connector (an ECU A device to `ECU-A`, an ECU B device to `ECU-B`); only there does it split off and splice onto that ECU shield pin's splice. Same-size shielded wires of one device ride in ONE multi-core shielded cable with the right core count, unless no such cable exists.
+
+**2026-11-08 shield fixes (Dan; not yet in the master, they change the table above when applied):**
+- N104 a: the A7 shield splice `SP-SHIELD-A` is a bussed DEUTSCH plug by ECU plug A.
+- Pedal: its screens go straight to `SP-SHIELD-A` (drop `w_shd_a_aps` and `SP-SHIELD-A-APS`); the pedal stays 2 cables.
+- Front wheel speed spur: ONE 4-core `55A1841-20-2/4/5/6-9`, screen to `SP-SHIELD-A` (drop `w_shd_a_wsf` and `SP-SHIELD-A-WSF`).
+- Rear wheel speed screen to `SP-SHIELD-B` (drop `w_shd_b_wsr` and `SP-SHIELD-B-WSR`).
+- The ECU CAN cable screen `cab_can_ecu_sh` ends on ECU plug C pin 1 (drop `w_shd_can_trunk`).
+- Wheel speed sensor screens float at the sensors.
 
 ## Wire and colours (B20)
 
@@ -705,7 +723,7 @@ Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
 - No tape-measure pass (Dan N73 a, 2026-11-07): a placed harness's lengths are its tree lengths (N69 a); every other harness gets its lengths at its own lengths step (OPEN-ITEMS row 183).
 - Top views: front RIGHT, driver side up. No doubling back, overlap, hidden or empty leg; parallel runs spaced.
 - Dan's saves are his (Dan 2026-11-02): no agent overwrites a saved placement, editor save or route without showing Dan the change and getting his OK first; the old save is kept as a backup either way.
-- Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed plugs are splices (no number, anywhere between ECU and bulkhead); a device outside the map's area is a hand-off point where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
+- Editor devices (Dan 2026-11-02): one number per fuse / relay box (its relays in its note) and one for the ECU; bussed plugs are splices (no number; where they sit: "Splice and bussed-plug spots" below); a device outside the map's area is a hand-off point where its wires leave the bundle ("To trunk", "To front"), its far length from the other harness's map.
 - Device spots (Dan 2026-10-28): the `devices` and `runs` in a route file's route data (Route 16 engine bay, Route 17 front) are the one definition of where each device sits and which line or branch it hangs on; a device has one spot in one file (a moved one is marked REMOVED in the other).
 - Lengths from a route map: map length x 5.3 mm per EWD point (the 96 mm cylinder spacing) + 300 mm drop for a low-mounted part (`low: true` in the route data), an estimate until that harness's lengths step (N73 a).
 - End allowance (Dan 2026-11-03, N3 = a): every tree length adds 100 mm at each wire end (2 x 100 mm per wire; `end_allowance_mm` in the layout file) for termination and service loop.
@@ -714,6 +732,12 @@ Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
 - Master lengths step (Dan L2 = a, 2026-11-02): a harness's master lengths are written from the layout tree at phase 4's lengths step, one harness at a time, with a before -> after list for Dan (OPEN-ITEMS row 183).
 - A connector part-way along a line or run breaks out at least 6 in (152 mm) off it; the last connector at the end of a line or run may end it (Dan 2026-10-29).
 - The engine bulkhead sits 16 in (406 mm) from where the trunk meets the firewall (`root_drop_mm`; Dan 2026-11-02 (J1); was 8 in / 203 mm, Dan 2026-10-29). The 6 in breakout rule above is unchanged.
+- Splice and bussed-plug spots (Dan 2026-11-08, standing; replaces "anywhere between ECU and bulkhead", 2026-11-02): a splice sits near the ECU connector, the bulkhead, or the device / branch it serves, nowhere else; bussed plugs sit close to the ECU connector or close to the bulkhead, never mid-run where it can be helped; the ECU power, ground and shield bussed plugs sit as close to the ECU plugs as possible (fuse-box power / ground bussed plugs are exempt); ignition coils, CAN nodes and injectors are exceptions.
+- Own parts only (Dan N112 a, 2026-11-08, standing): a placement editor shows only that harness's own parts; moves of other harnesses' parts in an editor save (the ECU, IG2 and A15 in the CabinPower save) are ignored.
+- Shared trunk (Dan 2026-11-08, standing): wires bound for the same place (e.g. everything to the trunk) share the same trunk run, never split onto separate paths.
+- **Editors refine, agents route (Dan N120, 2026-11-08, standing; overrides "Dan places, saves" as the way routes are made):** the agent draws every harness route itself, in the most efficient, optimal, logical, cleanest straight-line way, and seeds each placement editor with the devices already roughly in the right spots. The editor only refines device placement: Dan nudges where devices sit, he does not trace routes. An editor save never moves a device to another harness, never makes dramatic length or placement changes, and never adds complexity (e.g. running a wire through more than one fuse box for no reason). If a save would do any of these, the agent flags it to Dan instead of applying it.
+- Top view only (Dan 2026-11-08, standing): an editor never has Dan place new devices on an isometric view. Placement happens on the top view only. An isometric view is allowed only once it shows exactly the same devices as the top view, already placed, with every route already drawn the optimal way.
+- Reset (Dan N120, 2026-11-08): the CabinPower, WheelSpeed-Front / -Rear and RearFuel routes go back to before Dan's 2026-11-08 editor saves, and are redone under the rule above. The `cp4` tree work (N110 a box loop GB -> LOGIC -> POWER, N111 a RH kick line, N113 a fuel level tie-in, N114 a fan / EPS feeds by the kick line) is void, and its 135-change length list is not written (N115 a moot). A backup of the voided tree is kept in `_scratch/`.
 
 ## Gauge cases (B12)
 
