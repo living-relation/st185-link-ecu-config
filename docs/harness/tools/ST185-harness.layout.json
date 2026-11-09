@@ -307,6 +307,16 @@
    "short": "Fuel tank: pump + level sender",
    "lab": "left"
   },
+  "PUMP": {
+   "xy": [
+    -10,
+    66
+   ],
+   "label": "Fuel pump at the tank top; its +12 V feed runs straight from the fuel pump relay in the trunk RH relay block (Dan 2026-11-08: relay wires go directly to the pump), its ground on to BL",
+   "end": true,
+   "short": "Fuel pump",
+   "lab": "left"
+  },
   "BATT": {
    "xy": [
     -16,
@@ -599,6 +609,11 @@
    600
   ],
   [
+   "BATT",
+   "PUMP",
+   966
+  ],
+  [
    "FW_STR",
    "RL_ENG",
    0
@@ -634,7 +649,7 @@
    1500
   ],
   [
-   "TANK",
+   "PUMP",
    "RPANEL",
    400
   ]
@@ -911,7 +926,7 @@
   "CAB-FR": "DASH",
   "WSS-FL": "LFP",
   "WSS-FR": "RFP",
-  "FUEL-PUMP": "TANK",
+  "FUEL-PUMP": "PUMP",
   "GND-BL": "RPANEL",
   "IX-FUEL-S": "FUEL",
   "FUEL-LEVEL": "TANK",

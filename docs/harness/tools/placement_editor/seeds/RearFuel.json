@@ -58,8 +58,24 @@
    ]
   },
   {
+   "id": "F5",
+   "name": "Fuel pump relay straight to the fuel pump (pump +12 V feed)",
+   "color": "#c62828",
+   "dash": false,
+   "pts": [
+    [
+     -3250,
+     650
+    ],
+    [
+     -2900,
+     -250
+    ]
+   ]
+  },
+  {
    "id": "F3",
-   "name": "RH sill to the fuel inline and the tank",
+   "name": "RH sill to the fuel level inline and the level sender",
    "color": "#1a47d1",
    "dash": false,
    "pts": [
@@ -79,7 +95,7 @@
   },
   {
    "id": "F4",
-   "name": "Tank to ground point BL, back panel centre",
+   "name": "Fuel pump to ground point BL, back panel centre",
    "color": "#424242",
    "dash": false,
    "pts": [
@@ -125,7 +141,7 @@
    "note": "",
    "x": -2900,
    "y": -250,
-   "line": "F3",
+   "line": "F5",
    "drop": null
   },
   {
