@@ -7,7 +7,7 @@ Part lists for the two enclosure families (the CSVs here are the source for the 
 | VR conditioner (x2 identical) | [vr-conditioner-bom.csv](vr-conditioner-bom.csv) |
 | CSB3 | [csb3-bom.csv](csb3-bom.csv) |
 
-Both boxes are **custom machined 6061-T6** (adopted by Dispatch 2026-10-14, DECISIONS S32; replaces the Hammond 1590WYFL / 1590WUFL): body + lid with an AS568-039 NBR O-ring face seal, 4x ISO 10642 M3 x 12 countersunk lid screws, slotted tabs for M6 nylon screws. VRC box 90 x 50 x 45 mm (74 across the tabs), CSB3 box 70 x 70 x 56 mm (94 across the tabs). Drawings and summary: [`cad/enclosures/`](../../cad/enclosures/) (`ST185-enclosures.html`, `vrc/` and `csb3/` drawing PDFs). Still open: inside vs outside face for the VRC D30 counterbores (OPEN-ITEMS row 114), the LP-16 rear nut size (row 98), the M6 tab screw and the printed board holder model (row 97).
+Both boxes are **PA12, MJF printed** (Dan 2026-11-09; replaces the machined 6061-T6 plan, Dispatch 2026-10-14, DECISIONS S32, and the Hammond 1590WYFL / 1590WUFL): body + lid with an AS568-039 NBR O-ring face seal, 4x ISO 10642 M3 x 12 countersunk lid screws, slotted tabs for M6 nylon screws. VRC box 90 x 50 x 45 mm (74 across the tabs), CSB3 box 70 x 70 x 56 mm (94 across the tabs). Drawings and summary: [`cad/enclosures/`](../../cad/enclosures/) (`ST185-enclosures.html`, `vrc/` and `csb3/` drawing PDFs). Still open: inside vs outside face for the VRC D30 counterbores (OPEN-ITEMS row 114), the LP-16 rear nut size (row 98), the M6 tab screw and the printed board holder model (row 97).
 
 ## Rules
 
@@ -21,7 +21,7 @@ Both boxes are **custom machined 6061-T6** (adopted by Dispatch 2026-10-14, DECI
 - VR: two CNLINKO LP-16 rear-nut panel sockets (IN + OUT, `LP-16-C05SX-02-101`, DECISIONS S16), D cutout 18.5 mm / 16.5 mm across the flat. Nothing bonds to the case (DECISIONS R31 / R33), so there is no landing to mask.
 - VR: the module sits in a 3D-printed holder on the box floor (DECISIONS S26 E1: no carrier board, no standoffs); screens go by pin and join inside the box by wire, nothing bonds to the case (R31 / R33).
 - VR: IN / OUT are engraved on the box ends; the leads carry printed VRC-IN / VRC-OUT heat-shrink labels and a blue (IN) / yellow (OUT) band (DECISIONS S30).
-- Both: the box mounts on nylon (M6 nylon tab screws), clear anodize is fine, keep the O-ring groove and seal faces uncoated or anodize-only.
+- Both: the box mounts on nylon (M6 nylon tab screws). Nothing bonds to the case (R31 / R33).
 - CSB3: on-board 120 ohm terminator jumper stays OPEN.
 - CSB3: signal wire to this box is 20 AWG minimum (HD30 size-20 contacts).
 
