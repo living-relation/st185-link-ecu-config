@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-Dash, file "ST185-Dash Rev A" (viewer only; the master is the source), and the shared builder
+"""harness.design copy of ST185-Dash, file "ST185-Dash Rev B" (Rev B 2026-11-08: CSB3 plug cavities per docs/enclosures/csb3-hd34-pinmap.csv; viewer only; the master is the source), and the shared builder
 gen_antitheft.py uses for "ST185-AntiTheft Rev A" (one small cabin harness each, same rules).
 Usage: python gen_dash.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/dash.json (whole document, wires already routed with genroute.py: upload as
@@ -6,7 +6,7 @@ is), dash_lib_ops.json (part-library add ops, not applied by the generator) and 
 Same rules and helpers' shape as gen_cabin.py (README "harness.design"): connectors and terminals 240 wide, each pin its own
 master end text, display stripes on +12 V wires, parts from library 5LO8 (new ones from harness-parts.csv), shielded cables
 drawn as cables (cores in the cable part's order, the screen to its trunk splice, floating at the device), formboard layout
-of the ST185-harness.layout.json tree (DECISIONS B8: Dan's placement-editor save), compact schematic: sources left (factory
+of the ST185-harness.layout.json tree (DECISIONS B8, N120: route drawn by Claude, devices refined by Dan), compact schematic: sources left (factory
 taps with their full OEM splice notes, the LOGIC box seats, the ECU splice-point bus plug, the inline fuse, ground studs),
 splices and inline parts in the middle, the branch cables right of them, devices right. Text spacing (Dan N99 a, 2026-11-08):
 each end in a column is stepped so its label tag and the note on its row never overlap the next end's (pitch = max(box +
@@ -160,9 +160,15 @@ def build(REPO, OUT, CFG):
                 if ct and ct != cfg_contact: cv['contactPartId'] = ct
             else:
                 cv['notConnected'] = True
-                if here:      # a spare of this harness: its sealing plug from the master (TBD -> none)
-                    pl = part_id('cavityPlugParts', here[0][2][here[0][3] + '_terminal_pn'])
-                    if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
+                if here:      # a spare of this harness: its sealing plug from the master (TBD -> none), or a socket with no wire
+                    r0, s0 = here[0][2], here[0][3]
+                    if 'socket installed' in (r0[s0 + '_desc'] or ''):     # board pad cavity (docs/enclosures/csb3-hd34-pinmap.csv)
+                        ct = part_id('contactParts', r0[s0 + '_terminal_pn'])
+                        if ct: cv['contactPartId'] = ct     # explicit: a socket, not the config's default sealing plug
+                        cv['cavityPlugPartId'] = None
+                    else:
+                        pl = part_id('cavityPlugParts', r0[s0 + '_terminal_pn'])
+                        if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
                 else:
                     owners = sorted({u[0] for u in use[c].get(p, [])})
                     if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
@@ -474,7 +480,7 @@ def build(REPO, OUT, CFG):
         if spares.get(c):
             by = collections.defaultdict(list)
             for p, pl in spares[c]: by[pl if pl and pl != 'TBD' else 'TBD'].append(p)
-            txt.append('%s: %s %s spares (sealing plug from the master: %s).' % (
+            txt.append('%s: %s %s spares (spare cavity part from the master: %s).' % (
                 c, ('pins %s are' if len(spares[c]) > 1 else 'pin %s is') % ', '.join(sorted((p for p, _ in spares[c]), key=pkey)), NAME,
                 '; '.join('%s %s' % (k, ', '.join(sorted(v, key=pkey))) for k, v in sorted(by.items()))))
         if other_owned.get(c):
@@ -513,7 +519,7 @@ def build(REPO, OUT, CFG):
                      "own master end text; a wire spliced onto a factory wire carries the full OEM splice note at its tap (Dan Y6, N16 a); a "
                      "splice shared with another harness is drawn with its %s legs only and a note names the other harness. Shared plugs "
                      "are drawn whole; cavities wired by other harnesses are N/C with a note. %s"
-                     "Layout: a formboard of the ST185-harness.layout.json tree (Dan's placement-editor save), straight orthogonal bundles, "
+                     "Layout: a formboard of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), straight orthogonal bundles, "
                      "front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance "
                      "stub; bundle lengths = the master est_length_mm." % (
                          TITLE, REV, DATE, CFG['scope'], NAME, CFG['script'], CFG['left_words'],
@@ -735,7 +741,7 @@ def build(REPO, OUT, CFG):
 
 # ---------------------------------------------------------------------------------------------- ST185-Dash (Dan B8 = a)
 DASH = dict(
-    name='Dash', title='ST185-Dash', rev='A', date='2026-11-08', stem='dash', script='gen_dash.py', root='ECU',
+    name='Dash', title='ST185-Dash', rev='B', date='2026-11-08', stem='dash', script='gen_dash.py', root='ECU',
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the CAN joins at the trunk start by ECU plug C (CAN H / L, the "
           "node +12 V and ground joins, the screen splices) with one 4-core shielded branch cable each to the centre cluster, the "
           "ECUMaster CSB3 and the RealDash Pi (DECISIONS \"CAN wiring (B17)\"; their feeds LOGIC DEV 5 A, LOGIC CSB 5 A and the factory "
