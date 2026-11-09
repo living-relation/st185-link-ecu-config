@@ -113,6 +113,64 @@ BOX_GROUP_PARTS = {
 BOX_GROUP_OUTSIDE = {"AB-cabin 2": ("K-ACC",)}
 
 
+def _seat_map():
+    """sot/fuse-relay-map.csv: box relay master id -> (box name, seat); the LOGIC fuse outputs by their slot."""
+    rows = list(csv.DictReader(open(os.path.join(os.path.dirname(MASTER), "..", "..", "sot", "fuse-relay-map.csv"), encoding="utf-8")))
+    box = {"B1": "POWER box", "B2": "LOGIC box"}
+    return {r["master_id"]: (box[r["bank"]], r["position"]) for r in rows if r["bank"] in box and r["kind"] == "relay"}
+
+
+def box_seat_ends(doc):
+    """Fuse box guts are not drawn (Dan 2026-11-09, "you're not drawing the fuse box guts"; 2026-11-07 "draw each wire as a wire
+    end coming to the box"; DECISIONS "Bus bars and fuse box ends"): a box relay (a relay seated in the POWER / LOGIC box) and the
+    LOGIC fuse outputs are no connectors in a harness file. Each harness wire that lands on one ends on its own terminal,
+    labelled box, seat and terminal ("LOGIC box seat M8, terminal 86 - DRL relay (K-DRL)"), drawn where that cavity was (its
+    pin sits where the cavity pin sat, so every route stays); in the layout the terminals sit on a branch point at the old
+    connector spot, on the same stub, so no routed length changes. A relay outside the boxes (K-EPS, K-FP, RLY-DRL) stays."""
+    seats = _seat_map()
+    sid_ = lambda s: re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
+    conds = doc.get("wires", []) + [q for c in doc.get("cables", []) for q in c["cores"] + ([c["shield"]] if "shield" in c else [])]
+    keep = []
+    for c in doc.get("connectors", []):
+        mid = c["id"][2:].replace("_", "-") if c["id"].startswith("c_") else None
+        if mid not in seats and mid != "LOGIC":
+            keep.append(c)
+            continue
+        box, seat = seats.get(mid, ("LOGIC box", None))
+        p, lp = c.get("schematicPosition"), c.get("layoutPosition")
+        bp = None
+        if lp is not None:
+            bp = "bp_" + c["id"][2:] + "_seat"
+            doc.setdefault("branchPoints", []).append({"id": bp, "layoutPosition": dict(lp)})
+            for b in doc.get("bundles", []):
+                for k in ("sourceId", "targetId"):
+                    if b.get(k) == c["id"]:
+                        b[k] = bp
+        for i, cv in enumerate(c["cavities"]):
+            ends = [e for w in conds for e in (w.get("source"), w.get("target")) if e and e["id"] == c["id"] and e["handle"] == cv["id"]]
+            if not ends:
+                continue
+            d = cv.get("designation", "")
+            tid = "t_%s__%s" % (c["id"][2:], sid_(d))
+            lab = ("%s seat %s, terminal %s - %s" % (box, seat, d, c.get("label", mid)) if seat
+                   else "%s fuse output %s" % (box, d))
+            t = {"id": tid, "label": lab, "width": c.get("width", 240)}
+            if p is not None:
+                t["schematicPosition"] = {"x": p["x"], "y": p["y"] + 30 * (i + 1)}
+            if lp is not None:
+                t["layoutPosition"] = dict(lp)
+                t["locationId"] = bp
+            doc.setdefault("terminals", []).append(t)
+            for e in ends:
+                e["id"], e["handle"] = tid, "Terminal"
+    doc["connectors"] = keep
+    gone = {c["id"] for c in doc.get("connectors", [])}
+    doc["mates"] = [m for m in doc.get("mates", []) if m["sourceId"] in gone and m["targetId"] in gone] if "mates" in doc else None
+    if doc.get("mates") is None:
+        doc.pop("mates", None)
+    return doc
+
+
 def box_groups(doc, outside=()):
     """Emit the fuse-box device groups in a generated harness.design document (Dan N81 a / N80 a, 2026-11-07), in the format
     the app writes: the members move into groups[].document with their own ids, and every reference from outside reads
@@ -120,12 +178,13 @@ def box_groups(doc, outside=()):
     relay connectors are excludeFromBom (each part is the whole box assembly or the relay, which the box parts list buys;
     the parts stay for identification), even a relay kept outside its group (`outside`, N80 a). The ring terminals stay
     counted (N65 a). Members are found by the generators' ids: "c_" / "t_" + the master id with "-" as "_"."""
+    box_seat_ends(doc)
     groups, qual = [], {}
     for gid, name, gp, member in BOX_GROUPS:
         sub = {}
         for key, pre in (("terminals", "t_"), ("connectors", "c_")):
             for n in doc.get(key, []):
-                mid = n["id"][len(pre):].replace("_", "-") if n["id"].startswith(pre) else None
+                mid = n["id"][len(pre):].split("__")[0].replace("_", "-") if n["id"].startswith(pre) else None   # "t_K_FAN__87": a box seat end
                 if mid is None or not member(mid):
                     continue
                 if key == "connectors":
@@ -370,6 +429,9 @@ def relabel(doc, rows=None):
                 if o:
                     other = next((x.get('layoutPosition') for k in ('branchPoints', 'connectors', 'terminals', 'splices')
                                   for x in doc.get(k, []) if x['id'] == o), None)
+                    pts = b.get('layoutPoints') or []
+                    if pts:     # a bent stub: face away from the bend next to the plug, not the far node (Dan 2026-11-09)
+                        other = (pts[-1] if b['targetId'] == c['id'] else pts[0])['layoutPosition']
                     break
             dx, dy = (lp['x'] - other['x'], lp['y'] - other['y']) if other else (1, 0)
             ux, uy = (1 if dx > 0 else -1 if dx < 0 else 0), (1 if dy > 0 else -1 if dy < 0 else 0)
@@ -1786,7 +1848,10 @@ def self_test():
     cases.append(("--write-lengths changes only that one field (quoting and line endings kept)",
                   same == text and got == want and diff_lines == [rows.index(q)] and new.count("\r\n") == text.count("\r\n")))
     # the fuse-box groups (Dan N81 a / N80 a): members move in, outside references are qualified, ungroup / regroup round-trips
-    doc = {"connectors": [{"id": "c_LOGIC", "cavities": [{"id": "LOGIC.BUS2_3"}]}, {"id": "c_K_ACC", "cavities": [{"id": "K_ACC.87"}]},
+    # box guts are not drawn (Dan 2026-11-09, R1 a): the LOGIC fuse outputs and box relays become box seat ends (terminals)
+    doc = {"connectors": [{"id": "c_LOGIC", "layoutPosition": {"x": 0, "y": 0}, "schematicPosition": {"x": 0, "y": 0},
+                           "cavities": [{"id": "LOGIC.BUS2_3", "designation": "BUS2-3"}]},
+                          {"id": "c_K_ACC", "label": "A/C clutch relay (K-ACC)", "cavities": [{"id": "K_ACC.87", "designation": "87"}]},
                           {"id": "c_K_EPS", "cavities": [{"id": "K_EPS.87"}]}, {"id": "c_ECU_A", "cavities": [{"id": "ECU_A.1"}]}],
            "terminals": [{"id": "t_T_PWR_NEG_GND_1"}],
            "wires": [{"id": "w1", "source": {"id": "c_LOGIC", "handle": "LOGIC.BUS2_3"}, "target": {"id": "c_ECU_A", "handle": "ECU_A.1"}},
@@ -1796,19 +1861,19 @@ def self_test():
     flat = json.loads(json.dumps(g))
     saved = ungroup(flat)
     back = regroup(json.loads(json.dumps(flat)), saved)
-    ex = {n["id"]: n.get("excludeFromBom") for k in ("connectors",) for n in g["connectors"]}
-    ex.update({n["id"]: n.get("excludeFromBom") for gr in g["groups"] for n in gr["document"].get("connectors", [])})
-    cases.append(("box_groups: members grouped, K-ACC kept outside (N80 a), K-EPS in neither, LOGIC and relays excludeFromBom",
+    seat = {t["id"]: t["label"] for t in g["terminals"]}
+    cases.append(("box_groups: box seat ends grouped, K-ACC kept outside (N80 a), K-EPS a drawn relay, no box connector left",
                   [(x["id"], x["name"], sorted(n["id"] for v in x["document"].values() for n in v)) for x in g["groups"]] ==
-                  [("gFB100P", "POWER box (ST185-FB-100P)", ["t_T_PWR_NEG_GND_1"]), ("gFB100L", "LOGIC box (ST185-FB-100L)", ["c_LOGIC"])]
-                  and ex == {"c_K_ACC": True, "c_K_EPS": None, "c_ECU_A": None, "c_LOGIC": True}
+                  [("gFB100P", "POWER box (ST185-FB-100P)", ["t_T_PWR_NEG_GND_1"]), ("gFB100L", "LOGIC box (ST185-FB-100L)", ["t_LOGIC__BUS2_3"])]
+                  and sorted(c["id"] for c in g["connectors"]) == ["c_ECU_A", "c_K_EPS"]
+                  and seat.get("t_K_ACC__87") == "LOGIC box seat M5, terminal 87 - A/C clutch relay (K-ACC)"
                   and all(x["excludeFromBom"] for x in g["groups"]) and [p["id"] for p in g["groupParts"]] == ["gp_fb_100p", "gp_fb_100l"]))
-    cases.append(("box_groups: outside references read <group id>-<id>, cavity handles too",
-                  g["wires"][0]["source"] == {"id": "gFB100L-c_LOGIC", "handle": "gFB100L-LOGIC.BUS2_3"}
-                  and g["wires"][1]["source"]["id"] == "gFB100P-t_T_PWR_NEG_GND_1" and g["bundles"][0]["targetId"] == "gFB100L-c_LOGIC"))
+    cases.append(("box_groups: outside references read <group id>-<id>; seat ends take the wire on 'Terminal'",
+                  g["wires"][0]["source"] == {"id": "gFB100L-t_LOGIC__BUS2_3", "handle": "Terminal"}
+                  and g["wires"][1]["source"]["id"] == "gFB100P-t_T_PWR_NEG_GND_1"
+                  and g["wires"][1]["target"] == {"id": "t_K_ACC__87", "handle": "Terminal"} and g["bundles"][0]["targetId"] == "bp_LOGIC_seat"))
     cases.append(("ungroup lifts members under their qualified ids; regroup restores the grouped document",
-                  any(n["id"] == "gFB100L-c_LOGIC" and n["cavities"][0]["id"] == "gFB100L-LOGIC.BUS2_3" for n in flat["connectors"])
-                  and back == g))
+                  any(n["id"] == "gFB100L-t_LOGIC__BUS2_3" for n in flat["terminals"]) and back == g))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))

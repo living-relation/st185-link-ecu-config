@@ -15,6 +15,8 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
       two splices; a bussed plug has no pin-to-pin bridge (Dan R6, 2026-11-08)
   B1  every used pin of a bussed plug (BUS-*) carries the same signal name (Dan R6, 2026-11-08: the plug is drawn mated to its
       bussed receptacle, no bridges); every real wire has a wire_label that says what it is for, never its wire id (Dan R2)
+  B2  no wire ends on a bussed receptacle (DT04-xxPA-P021, a cap with its pins tied inside): wires land only on the bussed
+      plug half DT06-xxSA (Dan 2026-11-09)
   E1  every ECU pin a wire lands on is a live pin in sot/channels.csv, and every live ECU pin there has a wire
   E2  the far ends of each ECU power / ground / Gnd Out / sensor-supply / screen pin are of the class the Link G4X guide
       allows (R212); the ECU power grounds join only each other and one wire to the POWER box NEG bar (R216)
@@ -296,6 +298,15 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
         sigs = sorted({r[s + "_desc"] for r in wires for s in ("from", "to") if r[s + "_id"] == bus})
         if len(sigs) != 1:
             fail("B1", "%s: every used pin of a bussed plug carries the same signal name (Dan R6), found %s" % (bus, sigs))
+    # B2 (Dan 2026-11-09): a bussed receptacle (DT04-12PA-P021 / DT04-08PA-P021) is a cap with its pins tied inside: wires land
+    # only on the plug half (DT06-12SA / DT06-08SA); no wire ends on the receptacle
+    for r in wires:
+        for s in ("from", "to"):
+            eid, hp = r[s + "_id"], (r[s + "_housing_pn"] or "")
+            if eid.upper().endswith("RCPT") or re.match(r"DT04-\d+PA-P021", hp) or (
+                    eid.startswith("BUS-") and not re.match(r"DT06-\d+SA", hp)):
+                fail("B2", "%s %s end on %s (%s): wires land only on the bussed plug half DT06-xxSA, never on the bussed "
+                     "receptacle (Dan 2026-11-09)" % (r["wire_id"], s, eid, hp))
     for r in wires:
         if (r["wire_pn"] or "").startswith("none"):
             continue      # a removal row is no wire to label
@@ -678,6 +689,8 @@ def self_test():
     mutate("a bussed plug pin with its own signal name", "B1", lambda rs: first(rs, lambda r: r["to_id"] == "BUS-SW12")
            .update(to_desc="Fuel pump relay coil +"))
     mutate("a wire labelled with its wire id", "B1", lambda rs: first(rs, lambda r: r["wire_id"] == "w67").update(wire_label="w67"))
+    mutate("a wire on the bussed receptacle", "B2", lambda rs: first(rs, lambda r: r["from_id"] == "BUS-SW12")
+           .update(from_housing_pn="DT04-12PA-P021"))
     mutate("a pin-to-pin bridge on a bussed plug", "I1", lambda rs: rs.append(dict(first(rs, lambda r: r["wire_id"] == "w67"),
            wire_id="br_x", wire_pn="INTEGRAL", gauge_awg="", est_length_mm="", from_id="BUS-5V", from_type="connector", from_pin="1",
            to_id="BUS-5V", to_type="connector", to_pin="2")))
@@ -685,8 +698,9 @@ def self_test():
            .update(to_name="POWER box NEG bar, BAT2 stud"))
     mutate("two lugs on one 1/0 stud", "P1", lambda rs: first(rs, lambda r: r["from_id"] == "T-PWR-NEG-ID")
            .update(from_name="POWER box NEG bar, GND IG stud", from_id="T-PWR-NEG-IG2"))
-    mutate("a fourth ring on the small GND stud", "P1", lambda rs: first(rs, lambda r: r["wire_id"] == "w_can_gnd")
-           .update(to_type="terminal", to_id="T-PWR-NEG-GND-4", to_name="POWER box NEG bar, GND stud", net=""))
+    mutate("a fourth ring on the small GND stud", "P1", lambda rs: [first(rs, lambda r, w=w: r["wire_id"] == w)
+           .update(to_type="terminal", to_id="T-PWR-NEG-GND-%d" % n, to_name="POWER box NEG bar, GND stud", net="")
+           for n, w in ((4, "w_can_gnd"), (5, "w_lamg_ac"))])     # 2 + 2 rings since the K-ON ground left with the box insides (R1 a)
     mutate("a relay coil driven on 86", "E4", lambda rs: first(rs, lambda r: r["from_id"] == "K-FAN" and r["from_pin"] == "85")
            .update(from_pin="86"))
     mutate("a screen landed on a device pin", "S2", lambda rs: first(rs, lambda r: r["from_type"] == "cable screen").update(
