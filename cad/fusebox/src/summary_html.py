@@ -311,6 +311,8 @@ h.append('<h2>Parts lists (one per box, OWN / BUY)</h2><p class="mut">Order (R38
          'BUY lines are in the repo buy list (docs/harness/NEED-TO-BUY.md). Mount bolts / nuts are not listed: the boxes only (C3).</p>')
 for box, fn in PL.FILES.items():
     rows_ = PARTS_BY_BOX[box]
+    if box == 'POWER':   # rev 6 POWER list deleted 2026-11-09 (Dan V1 a); rev 7 is the build
+        fn = 'rev7/fusebox-parts-power.csv'
     h.append('<h3>%s - <a href="%s">%s</a> - est. $%.2f to buy</h3><div class="wrap"><table><tr><th>Group</th><th>Item</th><th>Part number</th><th>Maker</th>'
              '<th>Need + spare</th><th>OWN</th><th>BUY</th><th>Unit $</th><th>Checked against / note</th></tr>' % (E(PL.BOX_NAME[box]), E(fn), E(fn), PART_TOTALS[box]))
     for r in rows_:
