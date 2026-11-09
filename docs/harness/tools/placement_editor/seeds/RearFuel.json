@@ -75,7 +75,7 @@
   },
   {
    "id": "F3",
-   "name": "RH sill to the fuel level inline and the level sender",
+   "name": "RH sill to the fuel level inline, then its own leg to the level sender",
    "color": "#1a47d1",
    "dash": false,
    "pts": [
@@ -88,14 +88,14 @@
      -170
     ],
     [
-     -2900,
-     -250
+     -2880,
+     -300
     ]
    ]
   },
   {
    "id": "F4",
-   "name": "Fuel pump to ground point BL, back panel centre",
+   "name": "Fuel pump to ground point BL, back panel centre (own leg)",
    "color": "#424242",
    "dash": false,
    "pts": [
