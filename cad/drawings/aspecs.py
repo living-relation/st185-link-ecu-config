@@ -16,13 +16,13 @@ def vrc():
     # holder v2 (R126 / R131): 2 x M6 x 14 into the floor bosses at (23.2, 9.5) / (-18.2, -9.5) - measured from VRC_part_VRC-Body.step (2026-10-18)
     hsc=[hw.csk_screw(x,y,hz,6,14,12) for x,y in ((23.2,9.5),(-18.2,-9.5))]
     items=[
-     dict(item=1,qty=1,pn='ST185-VRC-101',desc='VRC ENCLOSURE BODY',mat='6061-T6 AL, MACHINED',shapes=g('VRC-Body')),
-     dict(item=2,qty=1,pn='ST185-VRC-102',desc='VRC ENCLOSURE LID',mat='6061-T6 AL, MACHINED',shapes=g('VRC-Lid')),
+     dict(item=1,qty=1,pn='ST185-VRC-101',desc='VRC ENCLOSURE BODY',mat='PA12, 3D PRINTED',shapes=g('VRC-Body')),
+     dict(item=2,qty=1,pn='ST185-VRC-102',desc='VRC ENCLOSURE LID',mat='PA12, 3D PRINTED',shapes=g('VRC-Lid')),
      dict(item=3,qty=1,pn='ST185-VRC-103',desc='BOARD HOLDER',mat='PA12, 3D PRINTED (SLS/MJF)',shapes=hb),
      dict(item=4,qty=1,pn='OpenLogicEFI NCV1124 RevB3',desc='DUAL VR CONDITIONER MODULE',mat='PURCHASED',shapes=g('OpenLogicEFI')),
      dict(item=5,qty=2,pn='CNLINKO LP-16-C05SX-02-101',desc='LP-16 MALE PANEL SOCKET, REAR NUT (IN + OUT)',mat='PURCHASED',shapes=g('LP16-IN')+g('LP16-OUT')),
      dict(item=6,qty=1,pn='PARKER N0674-70 2-039',desc='O-RING AS568-039 (69.57 ID x 1.78), LID FACE SEAL',mat='NBR 70',shapes=g('ORING')),
-     dict(item=7,qty=4,pn='ISO 10642 M3 x 12',desc='LID SCREW, COUNTERSUNK SOCKET HEAD',mat='A2 STAINLESS',shapes=lid),
+     dict(item=7,qty=4,pn='ACCU SSK-M3-12-A2',desc='LID SCREW, ISO 10642 M3 x 12 CSK',mat='A2 STAINLESS',shapes=lid),
      dict(item=8,qty=2,pn='LEMU 2990806014',desc='HOLDER SCREW ISO 10642 M6 x 14, CSK TX30',mat='A2 STAINLESS',shapes=hsc),
     ]
     if not B_REV:
@@ -40,7 +40,7 @@ def vrc():
     stages[0][1]['custom']=[(5,s,(40 if s.center().X>0 else -40,0,0)) for s in s5]
     return dict(context=tab if B_REV else [],open_hide=[2,6,7],title='VRC ENCLOSURE - ASSEMBLY',pn='ST185-VRC-100',items=items,stage_sheets=stages,
       source=SRC+'\\\\enclosures\\\\vrc\\\\VRC_assembly.step',revlog=os.path.join(CAD,'enclosures','vrc','ST185-VRC-100.REVLOG.md'),
-      notes=['QTY 2 ASSEMBLIES PER CAR (FRONT + REAR).','TORQUE M3 LID SCREWS EVENLY, CRISS-CROSS; LID CLOSES METAL-TO-METAL ON RIM.','LP-16 REAR NUT: 1.0 N·m.'])
+      notes=['QTY 2 ASSEMBLIES PER CAR (FRONT + REAR).','LID CLOSES ON THE PRINTED RIM.','NO TORQUE, THREADLOCKER, OR SEALANT CALLOUT ON THIS DRAWING.'])
 ASM={'vrc':vrc}
 
 def csb3():
@@ -49,17 +49,17 @@ def csb3():
     lid=[hw.csk_screw(sx*31.1,sy*31.1,56,3,12,6.9) for sx in(-1,1) for sy in(-1,1)]
     # the 4 nylon M6 tab screws are not part of the assembly (Dan, markup 2026-10-18: he may not use them; R197)
     items=[
-     dict(item=1,qty=1,pn='ST185-CSB3-101',desc='CSB3 ENCLOSURE BODY',mat='6061-T6 AL, MACHINED',shapes=g('CSB3-Body')),
-     dict(item=2,qty=1,pn='ST185-CSB3-102',desc='CSB3 ENCLOSURE LID',mat='6061-T6 AL, MACHINED',shapes=g('CSB3-Lid')),
+     dict(item=1,qty=1,pn='ST185-CSB3-101',desc='CSB3 ENCLOSURE BODY',mat='PA12, 3D PRINTED',shapes=g('CSB3-Body')),
+     dict(item=2,qty=1,pn='ST185-CSB3-102',desc='CSB3 ENCLOSURE LID',mat='PA12, 3D PRINTED',shapes=g('CSB3-Lid')),
      dict(item=3,qty=1,pn='ECUMASTER CSB3',desc='CAN SWITCH BOARD (CUSTOMER SUPPLIED)',mat='PURCHASED',shapes=g('ECUMaster')),
      dict(item=4,qty=1,pn='TE HD34-24-33PE',desc='HD30 FLANGE RECEPTACLE 33P',mat='PURCHASED',shapes=g('HD34')),
      dict(item=5,qty=1,pn='TE 112263-90',desc='PANEL NUT SIZE 24 (FOR ITEM 4)',mat='PURCHASED'),
      dict(item=6,qty=1,pn='TE 112264-ZZ',desc='LOCKWASHER SIZE 24 (FOR ITEM 4)',mat='PURCHASED'),
      dict(item=7,qty=26,pn='TE 0460-202-2031',desc='SIZE 20 SOLID PIN (IN ITEM 4)',mat='PURCHASED'),
      dict(item=8,qty=2,pn='CAT. 8847 L=10',desc='PCB SUPPORT, NYLON LOCK-IN, L 10 (R133)',mat='NYLON',shapes=g('Lock-in')),
-     dict(item=9,qty=2,pn='ISO 4026 M8 x 6',desc='FLOOR SEAL SET SCREW, FLAT POINT (R133)',mat='A2 STAINLESS',shapes=g('Set_screws')),
+     dict(item=9,qty=2,pn='ACCU SSF-M8-6-A2',desc='FLOOR SET SCREW, ISO 4026 M8 x 6 FLAT POINT',mat='A2 STAINLESS',shapes=g('Set_screws')),
      dict(item=10,qty=1,pn='PARKER N0674-70 2-039',desc='O-RING AS568-039, LID FACE SEAL',mat='NBR 70',shapes=g('ORING')),
-     dict(item=11,qty=4,pn='ISO 10642 M3 x 12',desc='LID SCREW, CSK SOCKET HEAD',mat='A2 STAINLESS',shapes=lid),
+     dict(item=11,qty=4,pn='ACCU SSK-M3-12-A2',desc='LID SCREW, ISO 10642 M3 x 12 CSK',mat='A2 STAINLESS',shapes=lid),
      dict(item=12,qty=1,pn='TE HD36-24-33SE',desc='HD30 PLUG 33S (HARNESS SIDE)',mat='PURCHASED'),
      dict(item=13,qty=26,pn='TE 0462-201-2031',desc='SIZE 20 SOLID SOCKET (IN ITEM 12)',mat='PURCHASED'),
      dict(item=14,qty=7,pn='TE 0413-204-2005',desc='SIZE 20 SEALING PLUG, UNUSED CAVITIES',mat='PURCHASED'),
@@ -71,7 +71,7 @@ def csb3():
     ]]
     return dict(open_hide=[2,4,10,11],title='CSB3 ENCLOSURE - ASSEMBLY',pn='ST185-CSB3-100',items=items,stage_sheets=stages,
       source=SRC+'\\\\enclosures\\\\csb3\\\\CSB3_assembly.step',revlog=os.path.join(CAD,'enclosures','csb3','ST185-CSB3-100.REVLOG.md'),
-      notes=['ITEMS MARKED (NOT SHOWN) ARE NOT IN THE 3D MODEL.','TORQUE M3 LID SCREWS EVENLY, CRISS-CROSS; LID CLOSES METAL-TO-METAL ON RIM.','PINS (7) ON BOX SIDE; SOCKETS (14) ON HARNESS SO LIVE 12V IS SHROUDED.'])
+      notes=['ITEMS MARKED (NOT SHOWN) ARE NOT IN THE 3D MODEL.','LID CLOSES ON THE PRINTED RIM. THE M8 SET SCREWS ARE NOT A WATER SEAL.','NO TORQUE, THREADLOCKER, OR SEALANT CALLOUT ON THIS DRAWING.','26 PINS IN THE HD34 ON THE BOX. SOCKETS ON THE HARNESS. SEALING PLUGS IN CAVITIES 27-33.'])
 
 def busbar():
     ch=load_children('src/st185_busbar_1015/B_rev3_ASSEMBLY.step')

@@ -1,0 +1,34 @@
+cavity,board_signal,edge,harness_now,wire_id,note
+1,GND,right top,power ground,w_csbg,Was guessed cavity 2. Branch-cable ground.
+2,+12V,right,switched 12 V,wc_12v_csb,Was guessed cavity 1. LOGIC CSB 5 A.
+3,+5V,right,sensor 5 V,w_csb_5v,Stays cavity 3. Opto and ladder pull-up use this net.
+4,SGND,right bottom,switch reference ground,w_csb_sgnd,Stays cavity 4. Manual v2.1: switches and sensors use SGND.
+5,S6,bottom right,clutch pedal,w_sw5,Was guessed cavity 20. SW_MASK bit 5.
+6,A8,bottom,spare signal,,Pin in the box. No harness wire. Socket installed.
+7,A5,bottom,spare signal,,Pin in the box. No harness wire. Socket installed.
+8,S1,bottom,spare signal,,Pin in the box. No harness wire. Socket installed.
+9,A3,bottom,spare signal,,Pin in the box. No harness wire. Socket installed.
+10,A2,bottom,cruise ladder,w_cru_ladder_out,Was guessed cavity 8. Raw mV on 0x640 bytes 2-3.
+11,A1,bottom,spare signal,,Pin in the box. No harness wire. Socket installed.
+12,L2,bottom,spare signal,,Pin in the box. No harness wire. Socket installed.
+13,L1,bottom left,spare signal,,Pin in the box. No harness wire. Socket installed.
+14,CAN H,lower left,CAN H,wc_h_csb,Was guessed cavity 5. Yellow core.
+15,CAN L,lower left,CAN L,wc_l_csb,Was guessed cavity 6. Green core.
+16,S7,left bottom,brake pedal,w_opto_out1,Was guessed cavity 21. SW_MASK bit 6.
+17,S8,left,reverse,w_opto_out2,Was guessed cavity 22. SW_MASK bit 7.
+18,S5,top left,spare signal,,Pin in the box. No harness wire. Socket installed.
+19,L3,top,spare signal,,Pin in the box. No harness wire. Socket installed.
+20,L4,top,oil warning LED,w_oil_k,Was guessed cavity 26. 0x643 byte 3.
+21,A4,top,spare signal,,Pin in the box. No harness wire. Socket installed.
+22,A7,top,spare signal,,Pin in the box. No harness wire. Socket installed.
+23,A6,top,spare signal,,Pin in the box. No harness wire. Socket installed.
+24,S4,top,spare signal,,Pin in the box. No harness wire. Socket installed.
+25,S3,top,cruise MAIN,w_sw2,Was guessed cavity 17. SW_MASK bit 2.
+26,S2,top right,spare signal,,Pin in the box. No harness wire. Socket installed.
+27,(none),,,spare,0413-204-2005 sealing plug. No board pad.
+28,(none),,,spare,0413-204-2005 sealing plug. No board pad.
+29,(none),,,spare,0413-204-2005 sealing plug. No board pad.
+30,(none),,,spare,0413-204-2005 sealing plug. No board pad.
+31,(none),,,spare,0413-204-2005 sealing plug. No board pad.
+32,(none),,,spare,0413-204-2005 sealing plug. No board pad.
+33,(none),,,spare,0413-204-2005 sealing plug. No board pad.
