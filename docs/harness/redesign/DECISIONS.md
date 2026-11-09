@@ -86,7 +86,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 ### Drawings and CAD
 
 - **B22 End labels, clean sheets.** Each wire end says where that end lands, never a generic word or internal id; every
-  part has a plain name, any code in parentheses. Only asked-for parts. Detail: "End labels and names (B22)" below.
+  part has a plain name, no codes where Dan reads (fuse box seats excepted). Only asked-for parts. Detail: "End labels and names (B22)" below.
 - **B23 Models drive drawings.** The CAD model is the master: a physical change goes in the model first, then the drawing is regenerated, never hand-edited. Revs: Drawing rules below.
   Gate `check_drawings_current.py` checks the register, rev letters, issued PDFs and tracked fingerprints; it skips the STEP model files (in Dan's models folder, B26; Dan G2 a).
 - **B24 Initials and revision marks.** DRAWN and every rev-log BY are a person, always `DG` (`.drawing-initials`), never
@@ -636,7 +636,7 @@ Moved here from rule B22 on 2026-11-02 (Dan L3 = a); binding as part of B22.
 
 - Each wire end says where that end lands (device, connector, pin, signal; OEM end + EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`.
 - Only asked-for parts.
-- Every connector, splice, bus, relay and box has a plain name; any code follows in parentheses (Dan 2026-10-31; row 172).
+- Every connector, splice, bus, relay and box has a plain name, unique across the project (Dan 2026-10-31; row 172). No codes in anything Dan reads (Dan C1 b, 2026-11-08: he never uses them): wire lists, pin chart, DRB102 map, harness.design files, editors and chat show the plain name only. The code (`K-FP`, `SP-CABIN-GND`, ...) stays in the master and the scripts as the matching key. Exception: fuse box positions keep their codes (fuse and relay seats, studs, bus pins, e.g. "LOGIC box seat M8", "BUS2-1"), since those are what he builds the boxes by.
 - Where the row 172 name map (`docs/harness/PLAN-2026-10-31-audit.md`) and the master disagree, the master's current name wins; a new splice is named by the map's catch-all rule, "<what> splice: <what it joins>" (Dan N75 b, 2026-11-07).
 
 ## Wire lists (Option A, Dan 2026-10-26)
@@ -736,6 +736,7 @@ Moved here from rule B8 on 2026-11-02 (phase 3, O6); binding as part of B8.
 - Own parts only (Dan N112 a, 2026-11-08, standing): a placement editor shows only that harness's own parts; moves of other harnesses' parts in an editor save (the ECU, IG2 and A15 in the CabinPower save) are ignored.
 - Shared trunk (Dan 2026-11-08, standing): wires bound for the same place (e.g. everything to the trunk) share the same trunk run, never split onto separate paths.
 - **Editors refine, agents route (Dan N120, 2026-11-08, standing; overrides "Dan places, saves" as the way routes are made):** the agent draws every harness route itself, in the most efficient, optimal, logical, cleanest straight-line way, and seeds each placement editor with the devices already roughly in the right spots. The editor only refines device placement: Dan nudges where devices sit, he does not trace routes. An editor save never moves a device to another harness, never makes dramatic length or placement changes, and never adds complexity (e.g. running a wire through more than one fuse box for no reason). If a save would do any of these, the agent flags it to Dan instead of applying it.
+- Simpler is better (Dan 2026-11-08, standing): pick the simplest route and layout that works; fewer nodes, fewer branches, no detours.
 - Top view only (Dan 2026-11-08, standing): an editor never has Dan place new devices on an isometric view. Placement happens on the top view only. An isometric view is allowed only once it shows exactly the same devices as the top view, already placed, with every route already drawn the optimal way.
 - Reset (Dan N120, 2026-11-08): the CabinPower, WheelSpeed-Front / -Rear and RearFuel routes go back to before Dan's 2026-11-08 editor saves, and are redone under the rule above. The `cp4` tree work (N110 a box loop GB -> LOGIC -> POWER, N111 a RH kick line, N113 a fuel level tie-in, N114 a fan / EPS feeds by the kick line) is void, and its 135-change length list is not written (N115 a moot). A backup of the voided tree is kept in `_scratch/`.
 
