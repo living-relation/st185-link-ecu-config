@@ -86,7 +86,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 ### Drawings and CAD
 
 - **B22 End labels, clean sheets.** Each wire end says where that end lands, never a generic word or internal id; every
-  part has a plain name, no codes where Dan reads (fuse box seats excepted). Only asked-for parts. Detail: "End labels and names (B22)" below.
+  part has a plain name, no codes where Dan reads (fuse box and relay codes excepted). Only asked-for parts. Detail: "End labels and names (B22)" below.
 - **B23 Models drive drawings.** The CAD model is the master: a physical change goes in the model first, then the drawing is regenerated, never hand-edited. Revs: Drawing rules below.
   Gate `check_drawings_current.py` checks the register, rev letters, issued PDFs and tracked fingerprints; it skips the STEP model files (in Dan's models folder, B26; Dan G2 a).
 - **B24 Initials and revision marks.** DRAWN and every rev-log BY are a person, always `DG` (`.drawing-initials`), never
@@ -636,7 +636,7 @@ Moved here from rule B22 on 2026-11-02 (Dan L3 = a); binding as part of B22.
 
 - Each wire end says where that end lands (device, connector, pin, signal; OEM end + EWD ID; splice: what it joins), never a generic word or internal id; unknown = `TBD - <what>`.
 - Only asked-for parts.
-- Every connector, splice, bus, relay and box has a plain name, unique across the project (Dan 2026-10-31; row 172). No codes in anything Dan reads (Dan C1 b, 2026-11-08: he never uses them): wire lists, pin chart, DRB102 map, harness.design files, editors and chat show the plain name only. The code (`K-FP`, `SP-CABIN-GND`, ...) stays in the master and the scripts as the matching key. Exception: fuse box positions keep their codes (fuse and relay seats, studs, bus pins, e.g. "LOGIC box seat M8", "BUS2-1"), since those are what he builds the boxes by.
+- Every connector, splice, bus, relay and box has a plain name, unique across the project (Dan 2026-10-31; row 172). No codes in anything Dan reads (Dan C1 b, 2026-11-08: he never uses them): wire lists, pin chart, DRB102 map, harness.design files, editors and chat show the plain name only. The code (`K-FP`, `SP-CABIN-GND`, ...) stays in the master and the scripts as the matching key. Exceptions (Dan 2026-11-08): fuse box and relay codes stay (fuse and relay seats, studs, bus pins, and the relay names themselves, e.g. "LOGIC box seat M8", "BUS2-1", "K-FAN"), shown after the plain name, since those are what he builds the boxes by.
 - Where the row 172 name map (`docs/harness/PLAN-2026-10-31-audit.md`) and the master disagree, the master's current name wins; a new splice is named by the map's catch-all rule, "<what> splice: <what it joins>" (Dan N75 b, 2026-11-07).
 
 ## Wire lists (Option A, Dan 2026-10-26)
