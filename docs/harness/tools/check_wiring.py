@@ -698,8 +698,9 @@ def self_test():
            .update(to_name="POWER box NEG bar, BAT2 stud"))
     mutate("two lugs on one 1/0 stud", "P1", lambda rs: first(rs, lambda r: r["from_id"] == "T-PWR-NEG-ID")
            .update(from_name="POWER box NEG bar, GND IG stud", from_id="T-PWR-NEG-IG2"))
-    mutate("a fourth ring on the small GND stud", "P1", lambda rs: first(rs, lambda r: r["wire_id"] == "w_can_gnd")
-           .update(to_type="terminal", to_id="T-PWR-NEG-GND-4", to_name="POWER box NEG bar, GND stud", net=""))
+    mutate("a fourth ring on the small GND stud", "P1", lambda rs: [first(rs, lambda r, w=w: r["wire_id"] == w)
+           .update(to_type="terminal", to_id="T-PWR-NEG-GND-%d" % n, to_name="POWER box NEG bar, GND stud", net="")
+           for n, w in ((4, "w_can_gnd"), (5, "w_lamg_ac"))])     # 2 + 2 rings since the K-ON ground left with the box insides (R1 a)
     mutate("a relay coil driven on 86", "E4", lambda rs: first(rs, lambda r: r["from_id"] == "K-FAN" and r["from_pin"] == "85")
            .update(from_pin="86"))
     mutate("a screen landed on a device pin", "S2", lambda rs: first(rs, lambda r: r["from_type"] == "cable screen").update(
