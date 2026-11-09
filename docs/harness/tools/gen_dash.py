@@ -12,7 +12,7 @@ splices and inline parts in the middle, the branch cables right of them, devices
 each end in a column is stepped so its label tag and the note on its row never overlap the next end's (pitch = max(box +
 label, note height) + gap, on the 30 grid); notes in the notes column are stacked by their text height. A splice shared with
 another harness is drawn with this harness's legs only and gets a note naming the other harness and its wires; the fuse
-boxes are device groups (build_drawings.box_groups, Dan N81 a). Lengths: every routed length must equal the master
+box seats are plain labelled terminals, no box groups (build_drawings.box_groups, Dan R1 a). Lengths: every routed length must equal the master
 est_length_mm (the harness is in build_drawings.PLACED), else it stops; it also stops past 100 connections (plan limit).
 gen_cabin.py runs on import, so its helpers are not imported."""
 import sys, os, json, re, collections, math, csv, copy
