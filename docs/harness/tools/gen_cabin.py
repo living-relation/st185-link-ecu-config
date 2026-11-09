@@ -566,7 +566,9 @@ spares = collections.defaultdict(list)
 for r in SPARE_ALL:
     if r['from_id'] in conns and spare_doc(r['from_id']) == DOC: spares[r['from_id']].append((r['from_pin'], r['from_terminal_pn']))
 left_txt, right_txt = [], []
+BOX_SEATS = set(B._seat_map()) | {'LOGIC'}     # box guts are not drawn (Dan R1 a): no spare / N/C notes for box seats
 for c in conns:
+    if c in BOX_SEATS: continue
     txt = []
     if spares.get(c):
         by = collections.defaultdict(list)
@@ -798,7 +800,7 @@ refs = {x['partId'] for k in ('wires', 'splices', 'cables', 'connectors', 'resis
 assert refs <= have, refs - have
 B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
 print('empty connectors dropped (R5):', B.relabel.removed)
-B.box_groups(doc, B.BOX_GROUP_OUTSIDE.get('AB-cabin %d' % DOC, ()))     # the fuse boxes as device groups (Dan N81 a, N80 a)
+B.box_groups(doc, B.BOX_GROUP_OUTSIDE.get('AB-cabin %d' % DOC, ()))     # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abcab%d_expect.json' % DOC), 'w'), indent=1)

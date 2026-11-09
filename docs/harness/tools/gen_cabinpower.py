@@ -3,8 +3,8 @@ Usage: python gen_cabinpower.py <repo> <out_dir>   (needs <out>/lib.json = a dum
 to the parts these harnesses use). Writes <out>/cabinpower.json (whole document, already routed with genroute.py: upload as is),
 cabinpower_lib_ops.json and cabinpower_expect.json. Built by gen_dash.build (same rules: README "harness.design"; plain labels
 R1-R9 by build_drawings.relabel; text spacing, Dan N99 a): the cabin power harness in the glove box and across the dash - the
-POWER box stud rings (battery feed, AMI fuses, NEG bar) and the LOGIC fuse and relay box (a device group, Dan N81 a; each wire
-drawn as a wire end at its seat or stud, Dan 2026-11-07), the box relays and the relays beside it (K-*, RLY-DRL), the switched
+POWER box stud rings (battery feed, AMI fuses, NEG bar) and the LOGIC fuse and relay box (no device group: each wire ends at a
+labelled seat or stud terminal and the box insides are not drawn, Dan R1 a 2026-11-09), the relays beside it (K-EPS, RLY-DRL), the switched
 +12 V bus plug, the factory feeds to J/B No.1, cowl plug IE1 / splice I2, R/B No.4 and the pop-up relay R8 (LH and RH kick),
 the headlamp, horn, hazard and DRL circuits (DECISIONS "Headlamps, DRL and pop-ups"), the DRL switch left of the steering wheel
 and the alarm feed ties (CabinPower's legs of the AntiTheft feed splices). Route: the CabinPower tree of ST185-harness.layout.json
@@ -15,7 +15,8 @@ import gen_dash
 CABINPOWER = dict(
     name='CabinPower', title='ST185-CabinPower', rev='A', date='2026-11-09', stem='cabinpower', script='gen_cabinpower.py', root='GB',
     scope="the cabin power harness (glove box and across the dash): the POWER box stud rings (battery feed, AMI fuses, NEG bar) and "
-          "the LOGIC fuse and relay box, the box relays and the relays beside it, the switched +12 V bus plug, the factory feeds to "
+          "the LOGIC fuse and relay box (its relay seats drawn as labelled wire ends; box insides not drawn, Dan R1 a), the relays "
+          "beside it, the switched +12 V bus plug, the factory feeds to "
           "J/B No.1, cowl plug IE1 / splice I2, R/B No.4 and the pop-up relay R8, the headlamp, horn, hazard and DRL circuits "
           "(DECISIONS \"Headlamps, DRL and pop-ups\"), the DRL switch left of the steering wheel and the alarm feed ties (CabinPower's "
           "legs of the AntiTheft feed splices).",
@@ -51,7 +52,11 @@ CABINPOWER = dict(
                                                "minGauge": {"value": 16, "unit": "AWG"}, "maxGauge": {"value": 14, "unit": "AWG"}}),
                '4-1904124-3': ('connectorParts', {"id": "cp_rly_micro_co_res", "hasShell": False, "numberOfCavities": 5}),
                '220R 1W': ('resistorParts', {"id": "rp_220r_1w", "resistance": 220, "resistanceUnit": "ohm"}),
-               'M22759/16-16-9': ('wireParts', {"id": "m16_16_9", "color": "White", "gauge": {"unit": "AWG", "value": 16}})},
+               'M22759/16-16-9': ('wireParts', {"id": "m16_16_9", "color": "White", "gauge": {"unit": "AWG", "value": 16}}),
+               # the DRL switch (Dan K1 a, #586): Arcolectric R13112AAAA round rocker, 2 quick-connect tabs, TE 280919-2 receptacles
+               'R13112AAAA': ('connectorParts', {"id": "cp_arc_r13112aaaa", "gender": "Male", "hasShell": False, "numberOfCavities": 2}),
+               '280919-2': ('contactParts', {"id": "ct_te_280919_2", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
+                                             "minGauge": {"value": 20, "unit": "AWG"}, "maxGauge": {"value": 15, "unit": "AWG"}})},
 )
 
 if __name__ == '__main__':
