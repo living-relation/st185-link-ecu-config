@@ -1,7 +1,7 @@
 """Per-box parts lists for the custom fuse + relay boxes (cad/fusebox).
 
-Writes three CSVs next to the summary page and returns the rows for summary_html.py:
-    cad/fusebox/fusebox-parts-power.csv     POWER box (glove box)
+Writes the CSVs next to the summary page and returns the rows for summary_html.py:
+    cad/fusebox/rev7/fusebox-parts-power.csv POWER box (glove box), rev 7 (--rev 7; the rev 6 POWER list was deleted 2026-11-09)
     cad/fusebox/fusebox-parts-logic.csv     LOGIC box (glove box)
     cad/fusebox/fusebox-parts-battrelay.csv battery relay block (trunk)
 docs/sourcing/build_project_bom.py reads these three files (the ONE project BOM, Mechanical section).
@@ -30,6 +30,9 @@ FB = os.path.dirname(HERE)                                   # cad/fusebox
 REPO = os.path.dirname(os.path.dirname(FB))
 ONHAND_CSV = os.path.join(REPO, 'docs', 'sourcing', 'te-on-hand-bom.csv')
 FILES = {'POWER': 'fusebox-parts-power.csv', 'LOGIC': 'fusebox-parts-logic.csv', 'BATTRELAY': 'fusebox-parts-battrelay.csv'}
+# Written / checked for rev 6: LOGIC + battery block only. The rev 6 POWER list (cad/fusebox/fusebox-parts-power.csv) was deleted
+# 2026-11-09 (Dan V1 a): superseded by rev7/fusebox-parts-power.csv (R155 / N37 C-straps); git history keeps it.
+WRITE6 = {b: fn for b, fn in FILES.items() if b != 'POWER'}
 BOX_NAME = {'POWER': 'POWER box (glove box)', 'LOGIC': 'LOGIC box (glove box)', 'BATTRELAY': 'Battery relay block (trunk)'}
 COLS = ['box', 'group', 'item', 'part_number', 'maker', 'description', 'qty_need', 'qty_spare', 'own', 'buy',
         'unit_usd', 'line_usd', 'price_basis', 'source_url', 'checked_against', 'note']
@@ -538,7 +541,7 @@ def totals(rows):
 
 
 def write(rows, rev=6):
-    for b, fn in (FILES7 if rev == 7 else FILES).items():
+    for b, fn in (FILES7 if rev == 7 else WRITE6).items():
         with open(os.path.join(REV7_DIR if rev == 7 else FB, fn), 'w', encoding='utf-8', newline='') as fh:
             w = csv.DictWriter(fh, fieldnames=COLS, lineterminator='\n')
             w.writeheader()
@@ -582,7 +585,7 @@ if __name__ == '__main__':
     if '--check' in sys.argv[1:]:
         R7 = build(7)
         bad += ['rev 7 ' + m for m in lint(R7)]
-        for (rows, files, d, cmd) in ((build(6), FILES, FB, ''), (R7, FILES7, REV7_DIR, ' --rev 7')):
+        for (rows, files, d, cmd) in ((build(6), WRITE6, FB, ''), (R7, FILES7, REV7_DIR, ' --rev 7')):
             for b, fn in files.items():
                 fp = os.path.join(d, fn)
                 old = open(fp, encoding='utf-8', newline='').read().replace(CRLF, NL) if os.path.exists(fp) else ''

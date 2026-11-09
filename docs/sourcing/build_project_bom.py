@@ -215,8 +215,8 @@ ntb_early = HARNESS_PN   # a part the harness section counts is not added again 
 BOXNAME = {"POWER": "POWER box", "LOGIC": "LOGIC box", "BATTRELAY": "Battery relay block"}
 MECH_PN = set()
 # The selected fuse box is rev 7 (cad/README.md "Selected for build"): its POWER list is cad/fusebox/rev7/; the LOGIC box and
-# battery relay block keep their lists in cad/fusebox/. The rev 6 POWER list there is superseded and not counted.
-FB_LISTS = [f for f in sorted(glob.glob(P("cad", "fusebox", "fusebox-parts-*.csv"))) if not f.endswith("fusebox-parts-power.csv")]
+# battery relay block keep their lists in cad/fusebox/ (the rev 6 POWER list there was deleted 2026-11-09, Dan V1 a).
+FB_LISTS = sorted(glob.glob(P("cad", "fusebox", "fusebox-parts-*.csv")))
 FB_LISTS.append(P("cad", "fusebox", "rev7", "fusebox-parts-power.csv"))
 for f in FB_LISTS:
     for r in rd(f):
