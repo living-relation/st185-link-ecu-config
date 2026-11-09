@@ -9,7 +9,7 @@ used to write are retired (git history keeps them). What it still does, for the 
                   is the ONLY length source (Dan N69 a): for each harness in PLACED the master `est_length_mm` is the
                   tree length, written by --write-lengths, never by hand, and --check fails on any difference; a
                   harness not in PLACED keeps its estimate. An INTEGRAL row (`is_integral`: a bus bar's copper, the
-                  MRBF fuse block, a bussed cap; Dan N55 a) and a through-connector pair (`is_connector_pass`, the
+                  MRBF fuse block; Dan N55 a) and a through-connector pair (`is_connector_pass`, the
                   RADLOK pairs) have both ends placed but no length. harness.design generators import `Harness` /
                   `route()` from here for the same tree.
   2. WIRE LISTS   the per-harness wire lists in docs/harness/wirelists/ (Option A, DECISIONS "Wire lists"): an .xlsx and
@@ -71,8 +71,8 @@ def is_removal(r):
 
 def is_integral(r):
     """An INTEGRAL row (Dan N55 a, 2026-11-07): a link that is part of a bought part, not a wire to cut - a bus bar's copper
-    between two stud splices, the MRBF fuse block between bar stud 3 and its output stud, a bussed cap joining two pins of a
-    bussed plug. `wire_pn` INTEGRAL: no length, no route, no BOM or cut-list line, no length check."""
+    between two stud splices, the MRBF fuse block between bar stud 3 and its output stud (a bussed plug has no bridge since
+    Dan R6, 2026-11-08). `wire_pn` INTEGRAL: no length, no route, no BOM or cut-list line, no length check."""
     return (r.get("wire_pn") or "") == "INTEGRAL"
 
 
@@ -201,6 +201,205 @@ def regroup(doc, saved):
             doc[key] = [n for n in doc[key] if n["id"] not in set(ids)]
             if not doc[key]:
                 del doc[key]
+    return doc
+
+
+# ------------------------------------------------------------------------------------------------ plain labels (Dan 2026-11-08)
+# DECISIONS "harness.design files (B6)" R1-R9: a connector / splice / terminal is named in plain words (the master's
+# <end>_name, no internal code), a pin shows its basic signal (the master's <end>_desc, one name per net), a wire label says
+# what that wire is for (the master's wire_label, never its id), notes never repeat a label, no empty connectors, a bussed plug
+# is drawn mated to its bussed receptacle (no bridges), ring terminals carry their maker part. relabel() applies them to a
+# generated document after placement, so positions stay as placed.
+OEM_DEV = {'JB1': 'J/B No.1', 'IE1': 'Cowl plug IE1', 'IG2': 'Cowl plug IG2', 'II1': 'Cowl plug II1', 'RB4': 'R/B No.4',
+           'I2': 'Cowl splice I2', 'C13': 'Cluster plug C13 (B)', 'C14': 'Cluster plug C14 (C)', 'C16': 'Combination switch plug C16 (B)',
+           'C17': 'Cruise clutch switch C17', 'S9': 'Stop lamp switch S9', 'R10': 'Dimmer R10', 'A15': 'A/C amplifier A15',
+           'A32': 'A/C amplifier A32', 'A1': 'Ambient temp sensor A1', 'A4': 'A/C compressor A4', 'A5': 'A/C pressure switch A5',
+           'H1': 'LH headlamp H1', 'H2': 'RH headlamp H2', 'F5': 'LH side marker F5', 'F6': 'RH side marker F6',
+           'F7': 'LH front turn lamp F7', 'F8': 'RH front turn lamp F8', 'F9': 'Wiper motor F9', 'R2': 'LH pop-up motor R2',
+           'R3': 'RH pop-up motor R3', 'W1': 'Washer motor W1', 'R8': 'Pop-up relay R8'}
+CABLE_NAMES = {'CAB-RSPUR': 'Rear wheel speed cable (cabin)', 'CAB-ETBS': 'Throttle sensor cable', 'CAB-CAN-CSB': 'Switch board CAN cable',
+               'CAB-CAN-CLU': 'Cluster CAN cable', 'CAB-CAN-RD': 'RealDash Pi CAN cable', 'CAB-ROUT': 'Rear VR conditioner output cable',
+               'CAB-FOUT': 'Front VR conditioner output cable', 'CAB-TURBO-C': 'Turbo speed cable (cabin)',
+               'CAB-ETBS-C': 'Throttle sensor cable (cabin)', 'CAB-CAM-C': 'Cam sensor cable (cabin)', 'CAB-APS1': 'Pedal sensor 1 cable',
+               'CAB-APS2': 'Pedal sensor 2 cable', 'CAB-FSPUR': 'Front wheel speed cable (cabin)', 'CAB-CAM': 'Cam sensor cable',
+               'CAB-TURBO': 'Turbo speed cable', 'CAB-CRANK-C': 'Crank sensor cable (cabin)', 'CAB-KNOCK1-C': 'Knock sensor cable (cabin)',
+               'CAB-ETBM-C': 'Throttle motor cable (cabin)', 'CAB-CANBH-BC': 'CAN-Lambda CAN cable (cabin)', 'CAB-CRANK': 'Crank sensor cable',
+               'CAB-ETBM-AE': 'Throttle motor cable', 'CAB-KNOCK1': 'Knock sensor cable', 'CAB-LAMCAN-BE': 'CAN-Lambda CAN cable',
+               'CAB-CAN-ECU': 'ECU CAN cable', 'CAB-RL': 'RL wheel speed sensor cable', 'CAB-RR': 'RR wheel speed sensor cable',
+               'CAB-FL': 'FL wheel speed sensor cable', 'CAB-FR': 'FR wheel speed sensor cable',
+               'CAB-FSPUR-FR-AC': 'Front right wheel speed cable (cabin)'}
+# the mating bussed receptacle of each bussed DT plug (Dan R6; TE DEUTSCH, the master's housing_extra "(bussed receptacle)";
+# Del City DT bussed receptacles "One 12-Pin Buss" / "One 8-Pin Buss"; mates with standard DT plugs). Its wedgelock is TBD by the
+# TE drawing, so the part carries no accessory.
+BUSSED_RCPT = {12: {"id": "cp_dt04_12pa_p021", "partNumber": "DT04-12PA-P021", "manufacturer": "TE Connectivity DEUTSCH",
+                    "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED (ONE 12-PIN BUSS), KEY A", "gender": "Male",
+                    "hasShell": False, "numberOfCavities": 12,
+                    "url": "https://www.digikey.com/en/products/detail/te-connectivity-deutsch-connectors/DT04-12PA-P021/9923072"},
+               8: {"id": "cp_dt04_08pa_p021", "partNumber": "DT04-08PA-P021", "manufacturer": "TE Connectivity DEUTSCH",
+                   "description": "CONNECTOR, RECEPTACLE, DT, 8 POS, BUSSED (ONE 8-PIN BUSS), KEY A", "gender": "Male",
+                   "hasShell": False, "numberOfCavities": 8}}
+
+
+def _sid(s):
+    return re.sub(r'[^A-Za-z0-9]', '_', s)
+
+
+def oem_short(i, p, cowl=False):
+    """A factory lead's terminal label (R4 short, R1 plain): device words, its 1993 code, the pin - "Cluster plug C14 (C) pin 8"."""
+    if i == 'JB1' and '-' in p:
+        return 'J/B No.1 %s pin %s' % tuple(p.split('-', 1))
+    if i == 'W1':
+        return 'Washer motor W1 pin %s (%s)' % (p, 'cowl lead' if cowl else 'at the motor')
+    if i in ('H1', 'H2') and p in ('DRL', 'TURN'):
+        return '%s %s lead' % (OEM_DEV[i], 'DRL' if p == 'DRL' else 'turn')
+    return '%s pin %s' % (OEM_DEV.get(i, i), p)
+
+
+def short_oem_note(t):
+    """R4: an OEM splice note stops at the factory wire and where it lands: "Splice to OEM wire Y - cluster plug C14 (C) pin 8"."""
+    if not t.startswith('Splice to OEM wire '):
+        return t
+    head, _, rest = t.partition(' - ')
+    return head + (' - ' + rest.split(', ')[0] if rest else '')
+
+
+def relabel(doc, rows=None):
+    """Apply Dan's 2026-11-08 label rules (R1-R9, DECISIONS "harness.design files (B6)") to a generated document in place,
+    after placement: plain names, wire labels, short notes, bussed receptacles mated to their plugs, no empty connectors,
+    ring terminal parts. Returns doc."""
+    rows = rows if rows is not None else master_rows()
+    names, oem, label_of, ring_pn = {}, {}, {}, collections.defaultdict(set)
+    for r in rows:
+        if r.get('wire_id') and r.get('wire_label'):
+            label_of[r['wire_id']] = r['wire_label']
+        for s in ('from', 'to'):
+            i, t = r[s + '_id'], r[s + '_type']
+            if not i:
+                continue
+            if t == 'OEM':
+                oem[_sid('%s-%s' % (i, r[s + '_pin']))] = oem_short(i, r[s + '_pin'])
+                oem[_sid('%s-%s cowl' % (i, r[s + '_pin']))] = oem_short(i, r[s + '_pin'], True)
+            elif r[s + '_name']:
+                names.setdefault(_sid(i), r[s + '_name'])
+            if t == 'terminal' and r.get('wire_id') and not is_integral(r):
+                ring_pn[_sid(i)].add(r[s + '_terminal_pn'])
+    names[_sid('T-AT-DOOR')] = 'Door switch line, J/B No.1 1B pin 11'
+    def boxed(mid):
+        for gid, gname, gp, test in BOX_GROUPS:
+            if test(mid):
+                return gname.split(' (')[0]
+    ids = {_sid(r[s + '_id']): r[s + '_id'] for r in rows for s in ('from', 'to') if r[s + '_id']}
+    removed = set()
+    # connectors: plain names; a box relay says which box it sits in; drop a connector with no wired cavity (R5)
+    mated = {m[k] for m in doc.get('mates', []) for k in ('sourceId', 'targetId')}
+    keep = []
+    for c in doc.get('connectors', []):
+        cid = c['id']
+        if cid.endswith('_MATE'):
+            base = names.get(cid[2:-5])
+            c['label'] = '%s, plug-in part' % base if base else c['label']
+        elif cid.startswith('c_') and cid[2:] in names:
+            nm, mid = names[cid[2:]], ids.get(cid[2:], '')
+            box = boxed(mid) if mid.startswith('K-') else None
+            c['label'] = '%s (%s)' % (nm, box) if box else nm
+        if c.get('cavities') and all(cv.get('notConnected') for cv in c['cavities']) and cid not in mated:
+            removed.add(cid)
+            continue
+        keep.append(c)
+    doc['connectors'] = keep
+    for key in ('splices', 'diodes', 'resistors'):
+        for n in doc.get(key, []):
+            nm = names.get(n['id'][2:])
+            if not nm:
+                continue
+            away = re.findall(r'; to ([^,;]+),', n.get('label') or '')
+            n['label'] = nm + (' (continues in %s)' % ' and '.join(dict.fromkeys(a.strip() for a in away)) if away else '')
+    for cab in doc.get('cables', []):
+        k = ids.get(cab['id'][4:], cab.get('label'))
+        cab['label'] = CABLE_NAMES.get(k, cab.get('label'))
+    tparts = {}
+    for t in doc.get('terminals', []):
+        tid = t['id'][2:]
+        if tid in oem:
+            t['label'] = oem[tid]
+        else:
+            base = next((b for b in sorted(names, key=len, reverse=True) if tid == b or tid.startswith(b + '_')), None)
+            if base:
+                rest = tid[len(base):].strip('_')
+                t['label'] = names[base] + (' (%s)' % ('CAN H' if rest.startswith('CAN_H') else 'CAN L' if rest.startswith('CAN_L') else '')
+                                            if rest.startswith(('CAN_H', 'CAN_L')) else '')
+                pns = {p for p in ring_pn.get(base, ()) if p and not p.upper().startswith(('TBD', 'FLYING', 'INTEGRAL'))}
+                if t.get('type') == 'Ring' and len(pns) == 1:      # R7: the ring terminal's maker part (one PN on that stud)
+                    pn = pns.pop()
+                    tparts.setdefault(pn, {"id": "tp_" + _sid(pn).lower(), "partNumber": pn, "type": "Ring",
+                                           "description": "Ring terminal %s (master terminal_pn)" % pn})
+                    t['partId'] = tparts[pn]['id']
+        if '; ' in (t.get('signal') or ''):      # R3: one signal type per stud, never a list of what lands on it
+            t['signal'] = t['signal'].split('; ')[0]
+    if tparts:
+        have = {p['id'] for p in doc.get('terminalParts', [])}
+        doc.setdefault('terminalParts', []).extend(p for p in tparts.values() if p['id'] not in have)
+    for w in doc.get('wires', []):      # R2: a wire label says what that wire is for
+        il = w.get('identLabel') or ''
+        key = il if il in label_of else il.split(': ')[0]      # an INTEGRAL link reads "<id>: <text>" (gen_heavydc)
+        if key in label_of:
+            w['identLabel'] = label_of[key]
+    # R6: a bussed plug, mated to its bussed receptacle; every pin one global signal (the bus), no bridges
+    for c in list(doc.get('connectors', [])):
+        mid = ids.get(c['id'][2:], '')
+        if not mid.startswith('BUS-'):
+            continue
+        n = len(c['cavities'])
+        part = BUSSED_RCPT.get(n)
+        if not part:
+            continue
+        if not any(p['id'] == part['id'] for p in doc.get('connectorParts', [])):
+            doc.setdefault('connectorParts', []).append(dict(part))
+        for cv in c['cavities']:
+            if cv.get('signal'):
+                cv['global'] = True
+        rid = c['id'] + '_RCPT'
+        rc = {"id": rid, "label": "%s, bussed receptacle" % names.get(c['id'][2:], mid), "width": c.get('width', 240), "partId": part['id'],
+              "cavities": [{"id": "%s_RCPT.%d" % (c['id'][2:], k), "designation": str(k)} for k in range(1, n + 1)]}
+        if 'schematicPosition' in c:
+            rc['schematicPosition'] = {"x": c['schematicPosition']['x'] + 330, "y": c['schematicPosition']['y']}
+        if 'layoutPosition' in c:
+            lp, other = c['layoutPosition'], None
+            for b in doc.get('bundles', []):
+                o = b['targetId'] if b['sourceId'] == c['id'] else b['sourceId'] if b['targetId'] == c['id'] else None
+                if o:
+                    other = next((x.get('layoutPosition') for k in ('branchPoints', 'connectors', 'terminals', 'splices')
+                                  for x in doc.get(k, []) if x['id'] == o), None)
+                    break
+            dx, dy = (lp['x'] - other['x'], lp['y'] - other['y']) if other else (1, 0)
+            ux, uy = (1 if dx > 0 else -1 if dx < 0 else 0), (1 if dy > 0 else -1 if dy < 0 else 0)
+            if abs(dx) >= abs(dy): uy = 0
+            else: ux = 0
+            rc['layoutPosition'] = {"x": lp['x'] + 150 * (ux or 1 if not uy else 0), "y": lp['y'] + 150 * uy}
+        doc['connectors'].append(rc)
+        doc.setdefault('mates', []).append({"id": "m_" + c['id'][2:] + "_RCPT", "sourceId": c['id'], "targetId": rid})
+    # notes: R4 short OEM splice notes; plain names for codes; nothing about a removed connector
+    code_ids = sorted({i for i in ids.values() if '-' in i and _sid(i) in names}, key=len, reverse=True)
+    gone = {ids.get(x[2:], x) for x in removed}
+    for key in ('schematicNotes', 'layoutNotes'):
+        for nt in doc.get(key, []):
+            t = short_oem_note(nt.get('text') or '')
+            tid = nt['id'][len('n_oem_t_'):] if nt['id'].startswith('n_oem_t_') else None
+            if tid in oem and t.startswith('Splice to OEM wire '):      # "Splice to OEM wire Y - cluster plug C14 (C) pin 8"
+                lab = oem[tid]
+                lab = lab[0].lower() + lab[1:] if len(lab) > 1 and lab[1].islower() else lab
+                t = '%s - %s' % (t.split(' - ')[0], lab)
+            if gone:
+                parts = re.split(r'(?<=[.]) (?=[A-Z0-9][A-Za-z0-9-]*: )', t)
+                t = ' '.join(p for p in parts if not any(p.startswith(g + ':') for g in gone))
+            if nt['id'] != 'n_title':      # the title note is the file's own story; every other note names parts in plain words
+                for i in code_ids:
+                    t = re.sub(r'(?<![A-Za-z0-9_-])%s(?![A-Za-z0-9_-])' % re.escape(i), names[_sid(i)], t)
+                t = re.sub(r'(?<![A-Za-z0-9_])(?:w|wc|cab)_[a-z0-9_]+(?![A-Za-z0-9_])',
+                           lambda m: '"%s"' % label_of[m.group(0)] if m.group(0) in label_of else m.group(0), t)
+                t = re.sub(r'(?:^|(?<=\. ))(.+?): \1[,;] ', r'\1: ', t)      # R4: never the label twice
+            nt['text'] = t
+    relabel.removed = sorted(removed)      # the empty connectors dropped (R5), for the generator's report
     return doc
 
 

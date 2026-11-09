@@ -11,9 +11,10 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
       every splice / terminal / OEM end has an ID and a name; pins are numbers or letters (BUS2-1, 87a, IN3 ...), never a sign
   F3  nets = splices only: a wire has a net exactly when it lands on a splice or a bussed DT plug, and the net names it
   F4  one wire per cavity (studs and splices excepted; an INTEGRAL bridge of a bussed plug is no wire)
-  I1  an INTEGRAL row (Dan N55 a, 2026-11-07: a bus bar's copper, the MRBF fuse block, a bussed cap) has no length and no gauge
-      and joins two splices or two pins of one bussed plug
-  B1  every bussed plug (BUS-*) bridges its used pins pin to pin in number order with INTEGRAL rows, and only those (Dan N57 a)
+  I1  an INTEGRAL row (Dan N55 a, 2026-11-07: a bus bar's copper, the MRBF fuse block) has no length and no gauge and joins
+      two splices; a bussed plug has no pin-to-pin bridge (Dan R6, 2026-11-08)
+  B1  every used pin of a bussed plug (BUS-*) carries the same signal name (Dan R6, 2026-11-08: the plug is drawn mated to its
+      bussed receptacle, no bridges); every real wire has a wire_label that says what it is for, never its wire id (Dan R2)
   E1  every ECU pin a wire lands on is a live pin in sot/channels.csv, and every live ECU pin there has a wire
   E2  the far ends of each ECU power / ground / Gnd Out / sensor-supply / screen pin are of the class the Link G4X guide
       allows (R212); the ECU power grounds join only each other and one wire to the POWER box NEG bar (R216)
@@ -68,7 +69,7 @@ COLS = ["harness", "circuit", "wire_id", "passes_through",
         "to_type", "to_id", "to_name", "to_housing_pn", "to_housing_extra", "to_pin", "to_pin_doc", "to_terminal_pn",
         "to_desc", "to_note",
         "net", "cable", "cable_pn", "wire_pn", "gauge_awg", "colour",
-        "oem_location", "oem_wire_colour", "oem_ewd_page", "oem_method", "route_branch", "est_length_mm", "notes"]
+        "oem_location", "oem_wire_colour", "oem_ewd_page", "oem_method", "route_branch", "est_length_mm", "notes", "wire_label"]
 CHANNEL_COLS = ["owner", "channel", "conn", "pin", "label", "class", "dir", "type", "pullup", "status", "source", "notes"]
 PIN_RE = re.compile(r"[A-Za-z0-9]+([ -][A-Za-z0-9]+)*")
 ECU = {"ECU-A": "ecu_a", "ECU-B": "ecu_b", "ECU-C": "ecu_com"}
@@ -279,8 +280,7 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
     for (eid, pin), ws in at.items():
         if len(ws) > 1 and not STUD_IDS.search(eid):
             fail("F4", "%s pin %s has %d wires: %s" % (eid, pin, len(ws), ", ".join(ws)))
-    # ---- I1 INTEGRAL rows / B1 bussed plugs bridged pin to pin (Dan N55 a / N57 a, 2026-11-07)
-    bridged = collections.defaultdict(set)
+    # ---- I1 INTEGRAL rows (Dan N55 a, 2026-11-07) / B1 bussed plugs: one signal name, no bridges; wire labels (Dan R2 / R6, 2026-11-08)
     for r in wires:
         if not is_integral(r):
             continue
@@ -289,17 +289,18 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
             fail("I1", "%s is INTEGRAL: it has no length, gauge or cable (Dan N55 a)" % r["wire_id"])
         if ft == tt == "splice" and fi != ti:
             continue
-        if ft == tt == "connector" and fi == ti and fi.startswith("BUS-") and r["from_pin"] != r["to_pin"]:
-            bridged[fi].add(tuple(sorted((int(r["from_pin"]), int(r["to_pin"])))))
-            continue
-        fail("I1", "%s is INTEGRAL but joins %s %s to %s %s: only two splices or two pins of one bussed plug" % (
+        fail("I1", "%s is INTEGRAL but joins %s %s to %s %s: only two splices (a bussed plug has no pin-to-pin bridge, Dan R6)" % (
             r["wire_id"], fi, r["from_pin"], ti, r["to_pin"]))
     for bus in sorted({r[s + "_id"] for r in wires for s in ("from", "to") if r[s + "_id"].startswith("BUS-")}):
-        used = sorted({int(r[s + "_pin"]) for r in wires if not is_integral(r) for s in ("from", "to") if r[s + "_id"] == bus})
-        want = set(zip(used, used[1:]))
-        if bridged[bus] != want:
-            fail("B1", "%s: its used pins %s must be bridged pin to pin in number order (INTEGRAL, Dan N57 a): missing %s, extra %s"
-                 % (bus, used, sorted(want - bridged[bus]), sorted(bridged[bus] - want)))
+        sigs = sorted({r[s + "_desc"] for r in wires for s in ("from", "to") if r[s + "_id"] == bus})
+        if len(sigs) != 1:
+            fail("B1", "%s: every used pin of a bussed plug carries the same signal name (Dan R6), found %s" % (bus, sigs))
+    for r in wires:
+        if (r["wire_pn"] or "").startswith("none"):
+            continue      # a removal row is no wire to label
+        lb = (r.get("wire_label") or "").strip()
+        if not lb or lb == r["wire_id"] or re.search(r"\b(w|wc|cab|br)_[a-z0-9_]+\b", lb):
+            fail("B1", "%s: wire_label %r must say what the wire is for, never its wire id (Dan R2)" % (r["wire_id"], lb))
     # ---- E1: ECU pins against channels.csv
     ch = {(c["conn"], c["pin"].lower()): c for c in channels if c["owner"] == "ECU"}
     live = {k for k, c in ch.items() if c["class"] not in ("nc", "spare", "N/A") and c["status"] == "set"}
@@ -671,7 +672,12 @@ def self_test():
            .update(to_id="GND-IF", to_name="Ground point IF"))
     mutate("an INTEGRAL link with a length", "I1", lambda rs: first(rs, lambda r: is_integral(r) and r["from_type"] == "splice")
            .update(est_length_mm="200"))
-    mutate("a bussed plug pin left unbridged", "B1", lambda rs: rs.remove(first(rs, lambda r: is_integral(r) and r["from_id"] == "BUS-SW12")))
+    mutate("a bussed plug pin with its own signal name", "B1", lambda rs: first(rs, lambda r: r["to_id"] == "BUS-SW12")
+           .update(to_desc="Fuel pump relay coil +"))
+    mutate("a wire labelled with its wire id", "B1", lambda rs: first(rs, lambda r: r["wire_id"] == "w67").update(wire_label="w67"))
+    mutate("a pin-to-pin bridge on a bussed plug", "I1", lambda rs: rs.append(dict(first(rs, lambda r: r["wire_id"] == "w67"),
+           wire_id="br_x", wire_pn="INTEGRAL", gauge_awg="", est_length_mm="", from_id="BUS-5V", from_type="connector", from_pin="1",
+           to_id="BUS-5V", to_type="connector", to_pin="2")))
     mutate("a ring on a stud the box design does not have", "P1", lambda rs: first(rs, lambda r: r["to_id"] == "T-PWR-NEG-BAT")
            .update(to_name="POWER box NEG bar, BAT2 stud"))
     mutate("two lugs on one 1/0 stud", "P1", lambda rs: first(rs, lambda r: r["from_id"] == "T-PWR-NEG-ID")

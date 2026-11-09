@@ -517,6 +517,8 @@ refs = {x['partId'] for x in wires + inl + list(conns.values()) if x.get('partId
        {cv[k] for n in conns.values() for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
+B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
+print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a)
 json.dump(doc, open(os.path.join(OUT, 'ld37.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'ld37_lib_ops.json'), 'w'), indent=1)
