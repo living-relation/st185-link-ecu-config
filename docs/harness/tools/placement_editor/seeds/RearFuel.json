@@ -1,8 +1,8 @@
 {
  "harness": "RearFuel",
  "doc": "layouts/RearFuel",
- "seedVersion": "RearFuel-n120-1",
- "note": "Routes drawn by Claude; move devices only. Pump ground on factory point BL.",
+ "seedVersion": "RearFuel-n120-2",
+ "note": "Routes drawn by Claude; move devices only. Pump feed straight from the relay; pump ground on factory point BL. The fuel level sender is on AB-cabin (Dan N1 a).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -58,18 +58,14 @@
    ]
   },
   {
-   "id": "F3",
-   "name": "RH sill to the fuel inline and the tank",
-   "color": "#1a47d1",
+   "id": "F5",
+   "name": "Fuel pump relay straight to the fuel pump (pump +12 V feed)",
+   "color": "#c62828",
    "dash": false,
    "pts": [
     [
-     -2300,
-     780
-    ],
-    [
-     -2550,
-     -170
+     -3250,
+     650
     ],
     [
      -2900,
@@ -79,7 +75,7 @@
   },
   {
    "id": "F4",
-   "name": "Tank to ground point BL, back panel centre",
+   "name": "Fuel pump to ground point BL, back panel centre",
    "color": "#424242",
    "dash": false,
    "pts": [
@@ -108,39 +104,17 @@
   },
   {
    "n": "2",
-   "id": "IX-FUEL-S",
-   "name": "Inline connector for fuel level sender (sender side)",
-   "group": "Plugs",
-   "note": "Trunk LH; mates with AB-cabin",
-   "x": -2550,
-   "y": -170,
-   "line": "F3",
-   "drop": null
-  },
-  {
-   "n": "3",
    "id": "FUEL-PUMP",
    "name": "Fuel pump",
    "group": "Tank",
    "note": "",
    "x": -2900,
    "y": -250,
-   "line": "F3",
+   "line": "F5",
    "drop": null
   },
   {
-   "n": "4",
-   "id": "FUEL-LEVEL",
-   "name": "Fuel level sender",
-   "group": "Tank",
-   "note": "",
-   "x": -2880,
-   "y": -300,
-   "line": "F3",
-   "drop": null
-  },
-  {
-   "n": "5",
+   "n": "3",
    "id": "GND-BL",
    "name": "Ground point BL, back panel centre",
    "group": "Grounds",
@@ -165,6 +139,13 @@
    "name": "Battery, kill switch (HeavyDC)",
    "x": -3250,
    "y": 720
+  },
+  {
+   "id": "FUEL-LEVEL",
+   "label": "Fuel sender",
+   "name": "Fuel level sender (AB-cabin)",
+   "x": -2880,
+   "y": -300
   }
  ]
 }

@@ -77,16 +77,6 @@
    "short": "RH sill, rear",
    "lab": "below"
   },
-  "FUEL": {
-   "xy": [
-    2,
-    60
-   ],
-   "label": "Trunk LH: IX-FUEL inline to the fuel sender",
-   "end": true,
-   "short": "Trunk LH: IX-FUEL inline",
-   "lab": "above"
-  },
   "ACAMP": {
    "xy": [
     84,
@@ -302,9 +292,19 @@
     -8,
     68
    ],
-   "label": "Fuel tank: fuel pump and the level sender (DT 2-way), trunk LH ground stud (Route 11 rev 2)",
+   "label": "Fuel level sender at the tank top (DT 2-way); the AB-cabin sill run lands straight on its plug, no inline pair (Dan N1 a, 2026-11-08); the pump has its own node PUMP",
    "end": true,
-   "short": "Fuel tank: pump + level sender",
+   "short": "Fuel level sender",
+   "lab": "left"
+  },
+  "PUMP": {
+   "xy": [
+    -10,
+    66
+   ],
+   "label": "Fuel pump at the tank top; its +12 V feed runs straight from the fuel pump relay in the trunk RH relay block (Dan 2026-11-08: relay wires go directly to the pump), its ground on to BL",
+   "end": true,
+   "short": "Fuel pump",
    "lab": "left"
   },
   "BATT": {
@@ -465,8 +465,8 @@
   ],
   [
    "RHSILL",
-   "FUEL",
-   400
+   "TANK",
+   700
   ],
   [
    "BP_AC",
@@ -589,14 +589,14 @@
    300
   ],
   [
-   "FUEL",
-   "TANK",
-   300
-  ],
-  [
    "RHSILL",
    "BATT",
    600
+  ],
+  [
+   "BATT",
+   "PUMP",
+   966
   ],
   [
    "FW_STR",
@@ -634,7 +634,7 @@
    1500
   ],
   [
-   "TANK",
+   "PUMP",
    "RPANEL",
    400
   ]
@@ -744,7 +744,6 @@
   "LOGIC": "GB",
   "BUS-SW12": "GB",
   "K-FP": "BATT",
-  "IX-FUEL-P": "FUEL",
   "SP-AC-PSW": "ACAMP",
   "SP-TACH": "ACAMP",
   "R-LOCK": "ACAMP",
@@ -911,9 +910,8 @@
   "CAB-FR": "DASH",
   "WSS-FL": "LFP",
   "WSS-FR": "RFP",
-  "FUEL-PUMP": "TANK",
+  "FUEL-PUMP": "PUMP",
   "GND-BL": "RPANEL",
-  "IX-FUEL-S": "FUEL",
   "FUEL-LEVEL": "TANK",
   "SP-ACC12": "GB",
   "SP-AC-SG": "ACAMP",
