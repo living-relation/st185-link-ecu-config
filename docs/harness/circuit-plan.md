@@ -44,12 +44,12 @@ Decisions: DECISIONS "Headlamps, DRL and pop-ups" (N84 a, N85 a, N86, N87 a, N89
 | Part | Where | Wired |
 |---|---|---|
 | K-HL (M1) low beams | LOGIC box | 30 / 86 from HL 15 A (`SP-HL`); 85 on R-Y (IE1-2, `SP-HEAD-COIL`); 87 -> `SP-HL-ON` -> H1 / H2 pin 1 and K-HR 86 |
-| K-HR (M2) high beams | LOGIC box | 30 from HR 15 A (`SP-HR`); 86 from `SP-HL-ON`; 85 on R-W (IE1-18, `w_hl_low`); 87 -> `SP-HR-HI` -> H1 / H2 pin 2 and `R-HB` |
+| K-HR (M2) high beams | LOGIC box | 30 from HR 15 A (inside the box, CAD model); 86 from `SP-HL-ON`; 85 on R-W (IE1-18, `w_hl_low`); 87 -> `SP-HR-HI` -> H1 / H2 pin 2 and `R-HB` |
 | R-HB 220 ohm 1 W | glove box | `SP-HR-HI` -> R-HB -> R-L line at IE1-11 (`w_hl_high`) -> dash high-beam LED C13 (B) pin 12 |
 | Lamp commons | front | H1 pin 3 -> EB, H2 pin 3 -> EA (N83 a) |
-| K-DRL (M8, spare seat) DRL | LOGIC box | 30 / 86 from BUS2-1 DRL 7.5 A (Bus 2, key on; `SP-DRL12`); 85 -> `SP-DRL-SW` -> DRL switch -> R8 pin 12 W-B (ground); 87 -> RLY-DRL 30 |
+| K-DRL (M8, spare seat) DRL | LOGIC box | 30 / 86 from BUS2-1 DRL 7.5 A (Bus 2, key on; inside the box, CAD model); 85 -> `SP-DRL-SW` -> DRL switch -> R8 pin 12 W-B (ground); 87 -> RLY-DRL 30 |
 | RLY-DRL DRL cut (N90 a) | beside the LOGIC box | Song Chuan 301-1C-C-R1-U01-12VDC in Metri-Pack 280 socket 12110539; coil 86 from `SP-HL`, 85 on R-Y (`SP-HEAD-COIL`); 30 from K-DRL 87, 87a (NC) -> `SP-DRL` -> both white DRL leads: DRLs off whenever the head lamps are on |
-| K-POD (M10, spare seat) key-on pop-up (N93 a) | LOGIC box | 86 from `SP-DRL12` (key on), 85 -> `SP-DRL-SW`; 30 from D2's cathode, 87 -> `SP-DRL-SW`: the DRL switch raises the pods only with the key on |
+| K-POD (M10, spare seat) key-on pop-up (N93 a) | LOGIC box | 86 from BUS2-1 DRL 7.5 A inside the box (key on), 85 -> `SP-DRL-SW`; 30 from D2's cathode, 87 -> `SP-DRL-SW`: the DRL switch raises the pods only with the key on |
 | D1 / D2 (DT04-2P-RT01) | behind the LH dash at R8 | R-Y I2 -> R8 pin 8 cut; D1 R8 pin 8 -> I2 side (stalk UP); D2 R8 pin 8 -> K-POD 30 (DRL UP, key on) |
 | Turn | front | yellow lead on F7 / F8 pin 3 (G-B / G-Y) with the bumper lamp |
 
