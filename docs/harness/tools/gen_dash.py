@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-Dash, file "ST185-Dash Rev B" (Rev B 2026-11-08: CSB3 plug cavities per docs/enclosures/csb3-hd34-pinmap.csv; viewer only; the master is the source), and the shared builder
+"""harness.design copy of ST185-Dash, file "ST185-Dash Rev C" (Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
 gen_antitheft.py uses for "ST185-AntiTheft Rev A" (one small cabin harness each, same rules).
 Usage: python gen_dash.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/dash.json (whole document, wires already routed with genroute.py: upload as
@@ -768,7 +768,7 @@ def build(REPO, OUT, CFG):
 
 # ---------------------------------------------------------------------------------------------- ST185-Dash (Dan B8 = a)
 DASH = dict(
-    name='Dash', title='ST185-Dash', rev='B', date='2026-11-08', stem='dash', script='gen_dash.py', root='ECU',
+    name='Dash', title='ST185-Dash', rev='C', date='2026-11-09', stem='dash', script='gen_dash.py', root='ECU',
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
           "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
           "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin's; Dash has "
