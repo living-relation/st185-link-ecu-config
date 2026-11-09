@@ -1,0 +1,170 @@
+{
+ "harness": "RearFuel",
+ "doc": "layouts/RearFuel",
+ "seedVersion": "RearFuel-n120-1",
+ "note": "Routes drawn by Claude; move devices only. Pump ground on factory point BL.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "F1",
+   "name": "Glove box to the RH sill rear end (shared sill run)",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -580,
+     650
+    ],
+    [
+     -660,
+     650
+    ],
+    [
+     -660,
+     780
+    ],
+    [
+     -2300,
+     780
+    ]
+   ]
+  },
+  {
+   "id": "F2",
+   "name": "RH sill to the battery relay block (trunk RH rear corner)",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -2300,
+     780
+    ],
+    [
+     -3250,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "F3",
+   "name": "RH sill to the fuel inline and the tank",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -2300,
+     780
+    ],
+    [
+     -2550,
+     -170
+    ],
+    [
+     -2900,
+     -250
+    ]
+   ]
+  },
+  {
+   "id": "F4",
+   "name": "Tank to ground point BL, back panel centre",
+   "color": "#424242",
+   "dash": false,
+   "pts": [
+    [
+     -2900,
+     -250
+    ],
+    [
+     -3300,
+     0
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "K-FP",
+   "name": "Fuel pump relay (K-FP)",
+   "group": "Relays",
+   "note": "In the battery relay block",
+   "x": -3250,
+   "y": 650,
+   "line": "F2",
+   "drop": null
+  },
+  {
+   "n": "2",
+   "id": "IX-FUEL-S",
+   "name": "Inline connector for fuel level sender (sender side)",
+   "group": "Plugs",
+   "note": "Trunk LH; mates with AB-cabin",
+   "x": -2550,
+   "y": -170,
+   "line": "F3",
+   "drop": null
+  },
+  {
+   "n": "3",
+   "id": "FUEL-PUMP",
+   "name": "Fuel pump",
+   "group": "Tank",
+   "note": "",
+   "x": -2900,
+   "y": -250,
+   "line": "F3",
+   "drop": null
+  },
+  {
+   "n": "4",
+   "id": "FUEL-LEVEL",
+   "name": "Fuel level sender",
+   "group": "Tank",
+   "note": "",
+   "x": -2880,
+   "y": -300,
+   "line": "F3",
+   "drop": null
+  },
+  {
+   "n": "5",
+   "id": "GND-BL",
+   "name": "Ground point BL, back panel centre",
+   "group": "Grounds",
+   "note": "Factory ground stud; stud size TBD",
+   "x": -3300,
+   "y": 0,
+   "line": "F4",
+   "drop": null
+  }
+ ],
+ "refs": [
+  {
+   "id": "GB",
+   "label": "Glove box",
+   "name": "POWER / LOGIC boxes, switched +12 V bus plug (glove box)",
+   "x": -580,
+   "y": 480
+  },
+  {
+   "id": "BATT",
+   "label": "Battery",
+   "name": "Battery, kill switch (HeavyDC)",
+   "x": -3250,
+   "y": 720
+  }
+ ]
+}

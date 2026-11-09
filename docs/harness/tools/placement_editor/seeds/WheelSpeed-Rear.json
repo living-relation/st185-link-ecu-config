@@ -1,0 +1,147 @@
+{
+ "harness": "WheelSpeed-Rear",
+ "doc": "layouts/WheelSpeed-Rear",
+ "seedVersion": "WheelSpeed-Rear-n120-1",
+ "note": "Routes drawn by Claude; move devices only. Rear sensors ride the RH sill with the fuel run.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "R1",
+   "name": "Mid-dash to the RH sill rear end (shared with the fuel / battery run)",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -560,
+     -40
+    ],
+    [
+     -580,
+     -40
+    ],
+    [
+     -580,
+     650
+    ],
+    [
+     -660,
+     650
+    ],
+    [
+     -660,
+     780
+    ],
+    [
+     -2300,
+     780
+    ]
+   ]
+  },
+  {
+   "id": "RR",
+   "name": "RH sill to the RR sensor",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -2300,
+     780
+    ],
+    [
+     -2500,
+     600
+    ]
+   ]
+  },
+  {
+   "id": "RL",
+   "name": "RH sill across under the rear seat to the RL sensor",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -2300,
+     780
+    ],
+    [
+     -2300,
+     -600
+    ],
+    [
+     -2500,
+     -600
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "VRC-R-IN",
+   "name": "Rear VR conditioner (input and output plugs, sensor shield splice)",
+   "group": "Conditioner",
+   "note": "Mid-dash, by the ECU",
+   "x": -560,
+   "y": -40,
+   "line": "R1",
+   "drop": null
+  },
+  {
+   "n": "2",
+   "id": "IX-WS-R-P",
+   "name": "Inline connector for rear wheel speed (sensor side)",
+   "group": "Plugs",
+   "note": "Mates with AB-cabin",
+   "x": -540,
+   "y": -40,
+   "line": "R1",
+   "drop": null
+  },
+  {
+   "n": "3",
+   "id": "WSS-RR",
+   "name": "RR wheel speed sensor",
+   "group": "Sensors",
+   "note": "",
+   "x": -2500,
+   "y": 600,
+   "line": "RR",
+   "drop": null
+  },
+  {
+   "n": "4",
+   "id": "WSS-RL",
+   "name": "RL wheel speed sensor",
+   "group": "Sensors",
+   "note": "",
+   "x": -2500,
+   "y": -600,
+   "line": "RL",
+   "drop": null
+  }
+ ],
+ "refs": [
+  {
+   "id": "ECU",
+   "label": "ECU",
+   "name": "Link G4X ECU (AB-cabin)",
+   "x": -580,
+   "y": 0
+  },
+  {
+   "id": "RB4",
+   "label": "R/B 4",
+   "name": "R/B No.4 (RH kick)",
+   "x": -660,
+   "y": 650
+  }
+ ]
+}
