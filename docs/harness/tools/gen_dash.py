@@ -484,7 +484,9 @@ def build(REPO, OUT, CFG):
     for r in SPARE:
         if r['from_type'] == 'connector' and r['from_id'] in conns: spares[r['from_id']].append((r['from_pin'], r['from_terminal_pn']))
     left_txt, right_txt = [], []
+    BOX_SEATS = set(B._seat_map()) | {'LOGIC'}     # box guts are not drawn (Dan R1 a): no spare / N/C notes for box seats
     for c in conns:
+        if c in BOX_SEATS: continue
         txt = []
         if spares.get(c):
             by = collections.defaultdict(list)
@@ -752,12 +754,13 @@ def build(REPO, OUT, CFG):
     assert not unrouted, 'unrouted wires: %r' % unrouted
     B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
     print('empty connectors dropped (R5):', B.relabel.removed)
-    B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a)
+    B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
     json.dump(doc, open(os.path.join(OUT, STEM + '.json'), 'w'), indent=1)   # routed: upload as is
     json.dump(lib_add, open(os.path.join(OUT, STEM + '_lib_ops.json'), 'w'), indent=1)
     json.dump(expect, open(os.path.join(OUT, STEM + '_expect.json'), 'w'), indent=1)
-    print(TITLE, 'Rev', REV, '| connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'resistors', len(resistors),
-          'diodes', len(diodes), 'wires', len(wires), 'cables', len(cables), 'conductors (connections)', NCONN, '(%d cores with no job)' % len(NC_CORES),
+    n_ = lambda k: len(doc.get(k, []))
+    print(TITLE, 'Rev', REV, '| connectors', n_('connectors'), 'terminals', n_('terminals'), 'splices', n_('splices'), 'resistors', n_('resistors'),
+          'diodes', n_('diodes'), 'wires', n_('wires'), 'cables', len(cables), 'conductors (connections)', NCONN, '(%d cores with no job)' % len(NC_CORES),
           'bundles', len(bundles), 'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect),
           '| lib adds (not applied)', [o['value']['partNumber'] for o in lib_add], '| no library part (left unset):', sorted(missing))
     return doc
@@ -766,10 +769,12 @@ def build(REPO, OUT, CFG):
 # ---------------------------------------------------------------------------------------------- ST185-Dash (Dan B8 = a)
 DASH = dict(
     name='Dash', title='ST185-Dash', rev='B', date='2026-11-08', stem='dash', script='gen_dash.py', root='ECU',
-    scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the CAN joins at the trunk start by ECU plug C (CAN H / L, the "
-          "node +12 V and ground joins, the screen splices) with one 4-core shielded branch cable each to the centre cluster, the "
-          "ECUMaster CSB3 and the RealDash Pi (DECISIONS \"CAN wiring (B17)\"; their feeds LOGIC DEV 5 A, LOGIC CSB 5 A and the factory "
-          "CIG & RADIO ACC lead through the 5 A inline fuse F-PI; one trunk ground w_can_gnd to the cabin ground splice); the CSB3 plug, "
+    scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
+          "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
+          "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin's; Dash has "
+          "the two trunk legs between the taps), a 280 mm 2-core shielded drop from each tap to its node, and plain +12 V / ground "
+          "wires per node (feeds LOGIC DEV 5 A, LOGIC CSB 5 A and the factory CIG & RADIO ACC lead through the 5 A inline fuse F-PI; "
+          "each node ground to the cabin ground splice); the CSB3 plug, "
           "the 8-channel opto board, the cruise ladder resistor, the cruise switch, clutch switch, stop switch and dimmer taps; the "
           "cluster warning LEDs on the cluster plug taps, their ground lead to factory ground point ID (Dan N82 a / N83 a).",
     left_words='the sources (factory taps, the LOGIC box seats, the ECU splice-point bus plug, the Pi inline fuse, ground point ID)',

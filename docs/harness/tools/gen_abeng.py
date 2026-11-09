@@ -342,7 +342,9 @@ print('device column x', DEVX, 'bottom', RIGHT_BOTTOM, '| bulkhead bottom', LEFT
 notes, right_notes = [], []
 spares = collections.defaultdict(list)
 for r in SPARE: spares[r['from_id']].append((r['from_pin'], r['from_terminal_pn']))
+BOX_SEATS = set(B._seat_map()) | {'LOGIC'}     # box guts are not drawn (Dan R1 a): no spare / N/C notes for box seats
 for c in conns:
+    if c in BOX_SEATS: continue
     txt = []
     if spares.get(c):
         by = collections.defaultdict(list)
@@ -571,7 +573,7 @@ refs = {x['partId'] for x in wires + list(splices.values()) + list(cables.values
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
 B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
-B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a); AB-engine draws no box member today, so a no-op
+B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abeng_expect.json'), 'w'), indent=1)

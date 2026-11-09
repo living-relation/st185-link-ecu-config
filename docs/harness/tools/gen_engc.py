@@ -179,13 +179,16 @@ for r in W:
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
         oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
 CONN_NOTE = collections.OrderedDict()
+BOX_SEATS = set(B._seat_map()) | {'LOGIC'}     # box guts are not drawn (Dan R1 a): no spare / N/C notes for box seats
 for c, lst in other_owned.items():
+    if c in BOX_SEATS: continue
     by = collections.defaultdict(list)
     for pin, own in lst: by[own].append(pin)
     CONN_NOTE[c] = '%s: N/C cavities belong to other harnesses - ' % c + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items()))
 spares = collections.defaultdict(list)
 for r in SPARE: spares[r['from_id']].append(r['from_pin'])
 for c, pins in spares.items():
+    if c in BOX_SEATS: continue
     t = '%s: pins %s are EngineRoom-C spares (sealing plug TBD in the master).' % (c, ', '.join(sorted(pins, key=pkey)))
     CONN_NOTE[c] = t + ' ' + CONN_NOTE[c] if c in CONN_NOTE else t
 
@@ -522,9 +525,9 @@ refs = {x['partId'] for x in wires + inl + list(conns.values()) if x.get('partId
 assert refs <= have, refs - have
 B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
 print('empty connectors dropped (R5):', B.relabel.removed)
-B.box_groups(doc)       # the fuse boxes as device groups (Dan N81 a)
+B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 json.dump(doc, open(os.path.join(OUT, 'ld37.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'ld37_lib_ops.json'), 'w'), indent=1)
-print('connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'wires', len(wires), 'cables 0', 'bundles', len(bundles),
+print('connectors', len(doc.get('connectors', [])), 'terminals', len(doc.get('terminals', [])), 'splices', len(doc.get('splices', [])), 'wires', len(doc.get('wires', [])), 'cables 0', 'bundles', len(bundles),
       'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect), '| lib adds', [o['value']['partNumber'] for o in lib_add],
       '| no library part (left unset):', sorted(missing))
