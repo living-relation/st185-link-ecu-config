@@ -226,8 +226,7 @@ CABLE_NAMES = {'CAB-RSPUR': 'Rear wheel speed cable (cabin)', 'CAB-ETBS': 'Throt
                'CAB-ETBM-C': 'Throttle motor cable (cabin)', 'CAB-CANBH-BC': 'CAN-Lambda CAN cable (cabin)', 'CAB-CRANK': 'Crank sensor cable',
                'CAB-ETBM-AE': 'Throttle motor cable', 'CAB-KNOCK1': 'Knock sensor cable', 'CAB-LAMCAN-BE': 'CAN-Lambda CAN cable',
                'CAB-CAN-ECU': 'ECU CAN cable', 'CAB-RL': 'RL wheel speed sensor cable', 'CAB-RR': 'RR wheel speed sensor cable',
-               'CAB-FL': 'FL wheel speed sensor cable', 'CAB-FR': 'FR wheel speed sensor cable',
-               'CAB-FSPUR-FR-AC': 'Front right wheel speed cable (cabin)'}
+               'CAB-FL': 'FL wheel speed sensor cable', 'CAB-FR': 'FR wheel speed sensor cable'}
 # the mating bussed receptacle of each bussed DT plug (Dan R6; TE DEUTSCH, the master's housing_extra "(bussed receptacle)";
 # Del City DT bussed receptacles "One 12-Pin Buss" / "One 8-Pin Buss"; mates with standard DT plugs). Its wedgelock is TBD by the
 # TE drawing, so the part carries no accessory.
