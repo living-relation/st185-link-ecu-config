@@ -84,7 +84,7 @@
  ],
  "devices": [
   {
-   "n": "1",
+   "n": 1,
    "id": "VRC-R-IN",
    "name": "Rear VR conditioner (input and output plugs, sensor shield splice)",
    "group": "Conditioner",
@@ -95,18 +95,7 @@
    "drop": null
   },
   {
-   "n": "2",
-   "id": "IX-WS-R-P",
-   "name": "Inline connector for rear wheel speed (sensor side)",
-   "group": "Plugs",
-   "note": "Mates with AB-cabin",
-   "x": -540,
-   "y": -40,
-   "line": "R1",
-   "drop": null
-  },
-  {
-   "n": "3",
+   "n": 2,
    "id": "WSS-RR",
    "name": "RR wheel speed sensor",
    "group": "Sensors",
@@ -117,7 +106,7 @@
    "drop": null
   },
   {
-   "n": "4",
+   "n": 3,
    "id": "WSS-RL",
    "name": "RL wheel speed sensor",
    "group": "Sensors",

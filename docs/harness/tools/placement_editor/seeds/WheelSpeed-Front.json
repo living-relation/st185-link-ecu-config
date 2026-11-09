@@ -68,7 +68,7 @@
  ],
  "devices": [
   {
-   "n": "1",
+   "n": 1,
    "id": "VRC-F-IN",
    "name": "Front VR conditioner (input and output plugs, sensor shield splice)",
    "group": "Conditioner",
@@ -79,18 +79,7 @@
    "drop": null
   },
   {
-   "n": "2",
-   "id": "IX-WS-F-P",
-   "name": "Inline connector for front wheel speed (sensor side)",
-   "group": "Plugs",
-   "note": "Mates with AB-cabin",
-   "x": -540,
-   "y": -80,
-   "line": "FL",
-   "drop": null
-  },
-  {
-   "n": "3",
+   "n": 2,
    "id": "WSS-FL",
    "name": "FL wheel speed sensor",
    "group": "Sensors",
@@ -101,7 +90,7 @@
    "drop": null
   },
   {
-   "n": "4",
+   "n": 3,
    "id": "WSS-FR",
    "name": "FR wheel speed sensor",
    "group": "Sensors",
