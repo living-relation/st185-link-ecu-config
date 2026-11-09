@@ -302,9 +302,9 @@
     -8,
     68
    ],
-   "label": "Fuel tank: fuel pump and the level sender (DT 2-way), trunk LH ground stud (Route 11 rev 2)",
+   "label": "Fuel level sender at the tank top (DT 2-way), its own leg from the fuel level inline (the pump has its own node PUMP, Dan 2026-11-08)",
    "end": true,
-   "short": "Fuel tank: pump + level sender",
+   "short": "Fuel level sender",
    "lab": "left"
   },
   "PUMP": {
