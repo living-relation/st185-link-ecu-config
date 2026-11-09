@@ -182,6 +182,7 @@ def build(REPO, OUT, CFG):
     SPLP = {'solder splice': 'GENERIC SOLDER SPLICE', 'crimp splice': 'GENERIC CRIMP SPLICE 14-10'}
     spl_pn = collections.defaultdict(set)
     OEM_T = {}        # terminal id of a factory lead -> its plug (C13-2, C13-11 ... one plug)
+    SCREEN_T = set()  # the loose sealed end of each one-ended cable screen (at the device)
     # a flying-lead end that takes two different signals (the cluster / Pi CAN board "CANH + CANL pins", no pin numbers in the
     # master) is drawn as one end per signal, so CAN H and CAN L never read as one net; a ring or stud keeps all its wires
     tdescs = collections.defaultdict(set)
@@ -220,7 +221,13 @@ def build(REPO, OUT, CFG):
                 pid = part_id(kind, r[s + '_housing_pn'])
                 if pid: reg[i]['partId'] = pid
             return {"id": pre + sid(i), "handle": "PIN" + p}      # PIN1 / PIN2 -> Left / Right once placed
-        if t == 'cable screen': return None      # the screen floats at that end
+        if t == 'cable screen':     # the screen floats at that end: drawn as a loose, sealed end at the device, so it runs the
+            k = 'scr|' + i          # whole cable with its cores in both views and never stops at nothing (Dan 2026-11-08)
+            terms.setdefault(k, {"id": "t_" + sid(k), "label": r['to_name'] or 'Screen end, %s' % i,
+                                 "signal": 'Cable screen: floats here, cut back and sealed under heat-shrink',
+                                 "type": 'Loose', "width": 240})
+            SCREEN_T.add("t_" + sid(k))
+            return {"id": "t_" + sid(k), "handle": "Terminal"}
         raise SystemExit('end type %r (%s): add it to gen_dash.py' % (t, r['wire_id']))
     wires, cables, row_of = [], collections.OrderedDict(), {}
     for r in W:
@@ -494,15 +501,20 @@ def build(REPO, OUT, CFG):
             right_txt.append('%s: %s, reserved, no wire (not drawn).' % (r['from_id'], r['from_name'] or r['from_id']))
     if NC_CORES:
         right_txt.append('Cable cores with no %s job (cut back and sealed under heat-shrink at both ends): %s.' % (NAME, '; '.join(
-            '%s %s' % (cab_of[co['id']]['label'], co['color'].lower()) for co in NC_CORES)))
-    scr = [c['label'] for c in cables.values() if 'shield' in c and 'target' not in c['shield']]
+            '%s %s' % (B.CABLE_NAMES.get(cab_of[co['id']]['label'], cab_of[co['id']]['label']), co['color'].lower()) for co in NC_CORES)))
+    scr = [B.CABLE_NAMES.get(c['label'], c['label']) for c in cables.values()
+           if 'shield' in c and c['shield'].get('target', {}).get('id') in SCREEN_T]
     if scr: right_txt.append('Cable screens %s: %s' % (', '.join(scr), CFG.get(      # CFG 'screen_note': a harness whose screens are not CAN
         'screen_note', 'spliced onto the CAN trunk screen at their branch point, cut back and sealed at the device end '
                        '(DECISIONS "CAN wiring (B17)", Dan 2026-11-07).')))
     # a splice shared with another harness is drawn with this harness's legs only; its note names the other harness and wires
     shared = []
     for sname, sp in splices.items():
-        oth = sorted({(r['harness'], r['wire_id']) for r in ALL if r['harness'] != NAME and r['wire_id']
+        def far(r):      # the other end of that leg, so the note says where it goes (B22: labels and ends, never wire ids)
+            s = 'to' if r['from_type'] == 'splice' and r['from_id'] == sname else 'from'
+            return '%s%s' % (r[s + '_name'] or r[s + '_id'], (' pin ' + r[s + '_pin']) if r[s + '_pin'] else '')
+        oth = sorted({(r['harness'], '"%s" (to %s)' % (r.get('wire_label') or r['wire_id'], far(r))) for r in ALL
+                      if r['harness'] != NAME and r['wire_id']
                       and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
         if oth:
             by = collections.defaultdict(list)
@@ -709,6 +721,13 @@ def build(REPO, OUT, CFG):
            "connectors": list(conns.values()), "terminals": list(terms.values()), "splices": list(splices.values()),
            "resistors": list(resistors.values()), "diodes": list(diodes.values()), "wires": wires, "cables": list(cables.values()),
            "branchPoints": bps, "bundles": bundles, "schematicNotes": NOTES}
+    if cables:     # the layout view draws a cable's cores one by one (a cable is schematic-only in harness.design): say they are one cable
+        ys_ = [r[1] for r in allrects]
+        doc['layoutNotes'] = [{"id": "n_lay_cables", "width": 360, "layoutPosition": {"x": min(xs) // 30 * 30, "y": (min(ys_) - 360) // 30 * 30},
+            "text": "Shielded cables: the app draws each cable's cores one by one in this view. Each is ONE shielded cable in the build: "
+                    + '; '.join('%s = %s (%s and its screen)' % (B.CABLE_NAMES.get(c['label'], c['label']), doc_parts['cableParts'][c['partId']].get('partNumber', c['partId']),
+                                ', '.join(co['color'].lower() for co in c['cores'])) for c in cables.values())
+                    + ". Each screen runs the whole cable and ends at its 'Screen end' (floats, cut back and sealed under heat-shrink)."}]
     for k, v in doc_parts.items():
         if v: doc[k] = list(v.values())
     for k in [k for k in doc if doc[k] == []]: del doc[k]
