@@ -116,7 +116,7 @@ BOX_GROUP_OUTSIDE = {"AB-cabin 2": ("K-ACC",)}
 def _seat_map():
     """sot/fuse-relay-map.csv: box relay master id -> (box name, seat); the LOGIC fuse outputs by their slot."""
     rows = list(csv.DictReader(open(os.path.join(os.path.dirname(MASTER), "..", "..", "sot", "fuse-relay-map.csv"), encoding="utf-8")))
-    box = {"B1": "POWER box", "B2": "LOGIC box"}
+    box = {"B1": "POWER box", "B2": "LOGIC box", "B3": "Trunk relay block"}   # B3: Dan S1 a 2026-11-09
     return {r["master_id"]: (box[r["bank"]], r["position"]) for r in rows if r["bank"] in box and r["kind"] == "relay"}
 
 
@@ -126,7 +126,7 @@ def box_seat_ends(doc):
     LOGIC fuse outputs are no connectors in a harness file. Each harness wire that lands on one ends on its own terminal,
     labelled box, seat and terminal ("LOGIC box seat M8, terminal 86 - DRL relay (K-DRL)"), drawn where that cavity was (its
     pin sits where the cavity pin sat, so every route stays); in the layout the terminals sit on a branch point at the old
-    connector spot, on the same stub, so no routed length changes. A relay outside the boxes (K-EPS, K-FP, RLY-DRL) stays."""
+    connector spot, on the same stub, so no routed length changes. A relay outside the boxes (K-EPS, RLY-DRL) stays; the trunk relay block is a box too (K-FP, Dan S1 a 2026-11-09)."""
     seats = _seat_map()
     sid_ = lambda s: re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
     conds = doc.get("wires", []) + [q for c in doc.get("cables", []) for q in c["cores"] + ([c["shield"]] if "shield" in c else [])]
