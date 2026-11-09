@@ -227,12 +227,22 @@
    "short": "Steering column: cruise stalk",
    "lab": "above"
   },
+  "DRL_SW": {
+   "xy": [
+    64,
+    90
+   ],
+   "label": "DRL switch, lower dash left of the steering wheel (Dan 2026-11-08; spot rough, Dan refines it in the CabinPower editor; branch length from his 2026-11-08 save)",
+   "end": true,
+   "short": "DRL switch (left of wheel)",
+   "lab": "above"
+  },
   "RFG": {
    "xy": [
     84,
     3
    ],
-   "label": "Harness C out of the cabin into the RH fender by the hood hinge (Route 17 run 10 start; the harness C tree is built from Route 17 by route_trees); siren pull-wire (stale: LH pass-through per Dan B19)",
+   "label": "Harness C out of the cabin into the RH fender by the hood hinge (Route 17 run 10 start; the harness C tree is built from Route 17 by route_trees)",
    "end": true,
    "short": "RH fender exit (harness C)",
    "lab": "below"
@@ -398,7 +408,7 @@
     92,
     50
    ],
-   "label": "Siren pull-wire ends (AL-SIREN-BAY, AL-SIREN-GND-BAY): centre of the firewall behind the engine; the tree still reaches it from the RH fender exit, Dan B19 moves the leads to the LH fender / kick pass-through (placement editor pass)",
+   "label": "Siren pull-wire ends (AL-SIREN-BAY, AL-SIREN-GND-BAY): centre of the firewall behind the engine, reached through the LH kick / fender pass-through (Dan B19, N101 b 2026-11-08; LFP-SIREN 964 mm from Dan's AntiTheft save)",
    "end": true,
    "short": "Siren pull-wire ends",
    "lab": "left"
@@ -608,9 +618,14 @@
    700
   ],
   [
-   "RFG",
+   "LFP",
    "SIREN",
-   500
+   964
+  ],
+  [
+   "BP_COL",
+   "DRL_SW",
+   354
   ],
   [
    "RHKICK",
@@ -888,8 +903,8 @@
   "SP-R8-UP": "JB1",
   "D-R8-1": "JB1",
   "D-R8-2": "JB1",
-  "DRL-SW": "COLUMN",
-  "SP-DRL-SW": "COLUMN",
+  "DRL-SW": "DRL_SW",
+  "SP-DRL-SW": "GB",
   "SP-AT-12V": "ALARM",
   "SP-12V-SHK": "ALARM",
   "SP-IG": "ALARM",
