@@ -141,6 +141,9 @@ def build(REPO, OUT, CFG):
             pins = [str(i) for i in range(1, cpart['numberOfCavities'] + 1)]
         if cpart and c in B.BOX_CAVITIES:     # a new fuse box with its library part: every landing of the box drawing, vacant seats N/C
             assert set(pins) <= set(B.BOX_CAVITIES[c]), (c, set(pins) - set(B.BOX_CAVITIES[c])); pins = list(B.BOX_CAVITIES[c])
+        RELAY_ORDER = ['30', '85', '86', '87', '87a']    # a relay socket is drawn whole: its unused blades (87a) N/C
+        if cpart and set(pins) <= set(RELAY_ORDER) and len(pins) < cpart['numberOfCavities'] <= len(RELAY_ORDER):
+            pins = RELAY_ORDER[:cpart['numberOfCavities']]
         if cpart: assert len(pins) == cpart['numberOfCavities'], (c, pins, cpart['numberOfCavities'])
         cfg_contact = cfg_plug = None
         for a in ((cpart or {}).get('configurations') or [{}])[0].get('accessories', []):
@@ -501,7 +504,7 @@ def build(REPO, OUT, CFG):
                            "text": '%s: its other legs are in another harness - %s (the splice is drawn here with its %s legs only).'
                                    % (sname, '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items())), NAME)})
     pass_by = collections.defaultdict(list)
-    for r in PASS: pass_by[r['harness']].append(r['wire_id'])
+    for r in PASS: pass_by[r['harness']].append('"%s"' % (r.get('wire_label') or r['wire_id']))     # wire labels, never ids (B22)
     used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
     head = [{"id": "n_title", "width": 360,
              "text": "%s Rev %s (%s): %s Viewer copy generated from docs/harness/MASTER-wirelist.csv (harness = %s) by docs/harness/tools/%s; "
