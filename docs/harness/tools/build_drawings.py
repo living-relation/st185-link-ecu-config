@@ -113,6 +113,64 @@ BOX_GROUP_PARTS = {
 BOX_GROUP_OUTSIDE = {"AB-cabin 2": ("K-ACC",)}
 
 
+def _seat_map():
+    """sot/fuse-relay-map.csv: box relay master id -> (box name, seat); the LOGIC fuse outputs by their slot."""
+    rows = list(csv.DictReader(open(os.path.join(os.path.dirname(MASTER), "..", "..", "sot", "fuse-relay-map.csv"), encoding="utf-8")))
+    box = {"B1": "POWER box", "B2": "LOGIC box"}
+    return {r["master_id"]: (box[r["bank"]], r["position"]) for r in rows if r["bank"] in box and r["kind"] == "relay"}
+
+
+def box_seat_ends(doc):
+    """Fuse box guts are not drawn (Dan 2026-11-09, "you're not drawing the fuse box guts"; 2026-11-07 "draw each wire as a wire
+    end coming to the box"; DECISIONS "Bus bars and fuse box ends"): a box relay (a relay seated in the POWER / LOGIC box) and the
+    LOGIC fuse outputs are no connectors in a harness file. Each harness wire that lands on one ends on its own terminal,
+    labelled box, seat and terminal ("LOGIC box seat M8, terminal 86 - DRL relay (K-DRL)"), drawn where that cavity was (its
+    pin sits where the cavity pin sat, so every route stays); in the layout the terminals sit on a branch point at the old
+    connector spot, on the same stub, so no routed length changes. A relay outside the boxes (K-EPS, K-FP, RLY-DRL) stays."""
+    seats = _seat_map()
+    sid_ = lambda s: re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
+    conds = doc.get("wires", []) + [q for c in doc.get("cables", []) for q in c["cores"] + ([c["shield"]] if "shield" in c else [])]
+    keep = []
+    for c in doc.get("connectors", []):
+        mid = c["id"][2:].replace("_", "-") if c["id"].startswith("c_") else None
+        if mid not in seats and mid != "LOGIC":
+            keep.append(c)
+            continue
+        box, seat = seats.get(mid, ("LOGIC box", None))
+        p, lp = c.get("schematicPosition"), c.get("layoutPosition")
+        bp = None
+        if lp is not None:
+            bp = "bp_" + c["id"][2:] + "_seat"
+            doc.setdefault("branchPoints", []).append({"id": bp, "layoutPosition": dict(lp)})
+            for b in doc.get("bundles", []):
+                for k in ("sourceId", "targetId"):
+                    if b.get(k) == c["id"]:
+                        b[k] = bp
+        for i, cv in enumerate(c["cavities"]):
+            ends = [e for w in conds for e in (w.get("source"), w.get("target")) if e and e["id"] == c["id"] and e["handle"] == cv["id"]]
+            if not ends:
+                continue
+            d = cv.get("designation", "")
+            tid = "t_%s__%s" % (c["id"][2:], sid_(d))
+            lab = ("%s seat %s, terminal %s - %s" % (box, seat, d, c.get("label", mid)) if seat
+                   else "%s fuse output %s" % (box, d))
+            t = {"id": tid, "label": lab, "width": c.get("width", 240)}
+            if p is not None:
+                t["schematicPosition"] = {"x": p["x"], "y": p["y"] + 30 * (i + 1)}
+            if lp is not None:
+                t["layoutPosition"] = dict(lp)
+                t["locationId"] = bp
+            doc.setdefault("terminals", []).append(t)
+            for e in ends:
+                e["id"], e["handle"] = tid, "Terminal"
+    doc["connectors"] = keep
+    gone = {c["id"] for c in doc.get("connectors", [])}
+    doc["mates"] = [m for m in doc.get("mates", []) if m["sourceId"] in gone and m["targetId"] in gone] if "mates" in doc else None
+    if doc.get("mates") is None:
+        doc.pop("mates", None)
+    return doc
+
+
 def box_groups(doc, outside=()):
     """Emit the fuse-box device groups in a generated harness.design document (Dan N81 a / N80 a, 2026-11-07), in the format
     the app writes: the members move into groups[].document with their own ids, and every reference from outside reads
@@ -120,12 +178,13 @@ def box_groups(doc, outside=()):
     relay connectors are excludeFromBom (each part is the whole box assembly or the relay, which the box parts list buys;
     the parts stay for identification), even a relay kept outside its group (`outside`, N80 a). The ring terminals stay
     counted (N65 a). Members are found by the generators' ids: "c_" / "t_" + the master id with "-" as "_"."""
+    box_seat_ends(doc)
     groups, qual = [], {}
     for gid, name, gp, member in BOX_GROUPS:
         sub = {}
         for key, pre in (("terminals", "t_"), ("connectors", "c_")):
             for n in doc.get(key, []):
-                mid = n["id"][len(pre):].replace("_", "-") if n["id"].startswith(pre) else None
+                mid = n["id"][len(pre):].split("__")[0].replace("_", "-") if n["id"].startswith(pre) else None   # "t_K_FAN__87": a box seat end
                 if mid is None or not member(mid):
                     continue
                 if key == "connectors":
@@ -550,23 +609,11 @@ BOX_CAVITIES = {'LOGIC': ['BUS1'] + ['BUS1-%d' % i for i in range(1, 11)] + ['BU
                 ['BUS2-12', 'BUS2-12 IN', 'BUS2-13', 'BUS2-13 IN']}
 
 
-BOX_INTERNAL = "FuseBox"
-
-
-def is_box_internal(r):
-    """A fuse box's own wiring (Dan 2026-11-09, "you're not drawing the fuse box guts. Out of scope"; DECISIONS "Fuse box
-    guts"): both ends inside the POWER / LOGIC box (box studs, box relays, box fuse outputs, in-box splices). Marked by
-    harness `FuseBox`; it belongs to the fuse box build (OPEN-ITEMS row 107), so no harness file, harness wire list or
-    harness BOM line carries it. check_wiring.py still audits it."""
-    return (r.get("harness") or "").strip() == BOX_INTERNAL
-
-
-def master_rows(removed=False, box=False):
+def master_rows(removed=False):
     """The master as rows, with the field names the drawing code uses (from_conn = the end ID ...). Removal rows are
-    left out (they are not wires to build) unless `removed` is set; fuse box internal rows (is_box_internal) are left out
-    unless `box` is set."""
+    left out (they are not wires to build) unless `removed` is set."""
     with open(MASTER, encoding="utf-8", newline="") as f:
-        rows = [r for r in csv.DictReader(f) if (removed or not is_removal(r)) and (box or not is_box_internal(r))]
+        rows = [r for r in csv.DictReader(f) if removed or not is_removal(r)]
     for r in rows:
         for s in ("from", "to"):
             r[s + "_conn"], r[s + "_conn_name"] = r[s + "_id"], r[s + "_name"]

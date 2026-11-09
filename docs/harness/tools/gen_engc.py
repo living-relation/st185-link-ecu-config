@@ -83,6 +83,9 @@ for c in conn_ids:
         pins = [str(i) for i in range(1, cpart['numberOfCavities'] + 1)]
     if cpart and c in B.BOX_CAVITIES:     # a new fuse box with its library part: every landing of the box drawing, vacant seats N/C
         assert set(pins) <= set(B.BOX_CAVITIES[c]), (c, set(pins) - set(B.BOX_CAVITIES[c])); pins = list(B.BOX_CAVITIES[c])
+    RELAY_ORDER = ['30', '85', '86', '87', '87a']    # a relay socket is drawn whole: blades with no wire here N/C (as gen_dash)
+    if cpart and set(pins) <= set(RELAY_ORDER) and len(pins) < cpart['numberOfCavities'] <= len(RELAY_ORDER):
+        pins = RELAY_ORDER[:cpart['numberOfCavities']]
     if cpart: assert len(pins) == cpart['numberOfCavities'], (c, pins, cpart['numberOfCavities'])
     cfg_contact = cfg_plug = None
     for a in ((cpart or {}).get('configurations') or [{}])[0].get('accessories', []):
