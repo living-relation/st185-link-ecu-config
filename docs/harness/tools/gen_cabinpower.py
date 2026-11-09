@@ -23,6 +23,12 @@ CABINPOWER = dict(
                'the factory feeds at J/B No.1, IE1 / I2, R/B No.4 and R8 with their splice notes)',
     left=lambda t, i: t in ('terminal', 'OEM') or i in ('LOGIC', 'BUS-SW12'),
     area=['GB', 'RHKICK', 'JB1', 'DRL_SW', 'ALARM'],
+    # formboard comb groups at the glove-box node (view only, Dan 2026-11-08 "separate the two fuse boxes a little more"):
+    # 0 = POWER box ends (AMI / NEG stud rings, its relays), 1 = LOGIC box ends (box, bus plug, Bus studs, its relays, the DRL cut
+    # relay beside it), 2 = the rest (splices, resistor, diodes); a gap between groups, every stub still 100 mm
+    comb_group=lambda t, i, box_of: (0 if i.startswith('T-PWR-') or box_of.get(i) == 'New POWER fuse box' else
+                                     1 if (i.startswith('T-LOG-') or i in ('LOGIC', 'RLY-DRL') or 'BUS-SW12' in i
+                                           or box_of.get(i) == 'New LOGIC fuse box') else 2),
     oem_name={'JB1': 'J/B No.1', 'IE1': 'Cowl plug IE1', 'I2': 'Cowl splice I2', 'R8': 'Pop-up relay R8', 'RB4': 'R/B No.4'},
     # display stripes on +12 V wires, one per circuit (README "Display stripes"; colour is for viewing only)
     stripe={'SW12': ('White', 'switched +12 V bus (relay coils)'), 'EFI': ('Orange', 'EFI relay'), 'ETB': ('Green', 'ETB relay'),
