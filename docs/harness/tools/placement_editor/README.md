@@ -8,7 +8,7 @@ One shared template for every harness's placement editor (CabinPower, WheelSpeed
 ## What Dan sees
 - Plain names only: ids are keys, never shown. Map labels come from each line's and device's `short` field (a line with no `short` gets no map label; the legend lists every line by name).
 - Other harnesses' parts, if shown for context, are grey fixed markers (`refs`), never draggable and never saved.
-- Front of the car to the RIGHT, driver side UP, on every screen, with a "Front → / Driver ↑" marker.
+- Front of the car to the RIGHT, driver side UP, on sideways phones and desktop, with a "Front → / Driver ↑" marker. On a phone held upright the map turns front UP / driver LEFT ("Front ↑ / Driver ←") when that fits the harness at least 10% bigger, e.g. the long rear harnesses (Dan I1 a, 2026-11-08); the turn is view-only, saves stay in car mm.
 
 ## What Dan can do in it
 - Move devices on the top view (tap a dot to pick it, then drag it). Pan with one finger, zoom with two or with the + / - / Fit keys.
