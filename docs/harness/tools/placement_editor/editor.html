@@ -226,9 +226,9 @@ let userView=false,fitS=null;
 function clampToPlan(){const P=planV();if(!P)return;const[px,py,pw,ph]=P;
   if(vb[2]<=pw)vb[0]=Math.min(Math.max(vb[0],px),px+pw-vb[2]);else vb[0]=px+pw/2-vb[2]/2;
   if(vb[3]<=ph)vb[1]=Math.min(Math.max(vb[1],py),py+ph-vb[3]);else vb[1]=py+ph/2-vb[3]/2}
-/* widest view allowed: never zoom out past the plan (no empty grey band), but always at least the Fit view */
+/* widest view allowed (Dan 2026-11-10: zoom out must go past the Fit view): the whole plan plus 10%, and at least 2.5x the Fit view */
 function maxW(){const r=svg.getBoundingClientRect(),ar=r.height/Math.max(1,r.width);let m=20000;
-  const P=planV();if(P){const[, ,pw,ph]=P;m=Math.min(pw,ph/Math.max(1e-6,ar))}return Math.max(m,fitS?fitS*r.width:MINW)}
+  const P=planV();if(P){const[, ,pw,ph]=P;m=Math.max(pw,ph/Math.max(1e-6,ar))*1.1}return Math.max(m,(fitS?fitS*r.width:MINW)*2.5)}
 function margins(W,H){return{t:Math.min(40,H*.12),b:Math.min(12,H*.04),l:Math.min(12,W*.04),r:Math.min(58,W*.16)}}
 function fitScale(rot,W,H){const b=bbox(rot),m=margins(W,H);return Math.max(b[2]/Math.max(1,W-m.l-m.r),b[3]/Math.max(1,H-m.t-m.b))}
 /* turn the view on an upright phone only, and only when the turned view fits the harness clearly bigger. Judged on the
@@ -263,11 +263,11 @@ function fan(items,s,gap){/* screen-space de-overlap: badges closer than gap px 
 function hit(b,boxes){return boxes.some(o=>b[0]<o[2]&&b[2]>o[0]&&b[1]<o[3]&&b[3]>o[1])}
 function draw(){
   const s=mmPerPx(),gl=$("gl"),gs=$("gs"),gd=$("gd");gl.innerHTML="";gs.innerHTML="";gd.innerHTML="";
-  /* Sizes follow the zoom (Dan 2026-11-08 "devices and lines don't scale with zoom"): z = zoom against the Fit view.
-     Lines are LINE_MM wide on the plan (clamped 2-14 px on screen); dots, markers and labels grow and shrink with z
-     inside clamps (0.7x-2x), so they stay readable zoomed out and in proportion zoomed in. Touch targets stay 48 px. */
-  const z=fitS?fitS/s:1,k=Math.min(2,Math.max(.7,z)),kt=Math.min(1.6,Math.max(.85,z)),LINE_MM=9/U,RT=DRAW&&mode==="routes";
-  const DR=10*k,RH=7.5*k,LW=Math.min(14,Math.max(2,LINE_MM/s)),FS=10.5*kt,FD=10*k,OUT=Math.max(1,1.1*k);
+  /* Sizes (Dan 2026-11-10 "zooming in makes them too large to place"): z = zoom against the Fit view. Dots, markers and
+     labels keep their screen size when zooming IN (so close parts spread apart) and shrink a little when zooming OUT
+     (down to 0.6x). Lines are LINE_MM wide on the plan, clamped 2-6 px on screen. Touch targets stay 48 px. */
+  const z=fitS?fitS/s:1,k=Math.min(1,Math.max(.6,z)),kt=Math.min(1,Math.max(.8,z)),LINE_MM=9/U,RT=DRAW&&mode==="routes";
+  const DR=10*k,RH=7.5*k,LW=Math.min(6,Math.max(2,LINE_MM/s)),FS=10.5*kt,FD=10*k,OUT=Math.max(1,1.1*k);
   const REFS=SEED.refs||[],V=p=>T(p),DV=devs.map(d=>V([d.x,d.y])),RV=REFS.map(r=>V([r.x,r.y])),
     items=[...DV.map(p=>({x:p[0],y:p[1]})),...RV.map(p=>({x:p[0],y:p[1]}))],pos=fan(items,s,2*DR+4),boxes=[];
   pos.forEach(p=>boxes.push([p[0]-(DR+2)*s,p[1]-(DR+2)*s,p[0]+(DR+2)*s,p[1]+(DR+2)*s]));
