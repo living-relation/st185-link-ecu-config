@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev H" (Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
+"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev I" (Rev I 2026-11-10: the CAN-Lambda end terminator is a bare 120 ohm resistor behind its plug, Dan S6 b; Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
 master is the source). Usage: python gen_abeng.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8,
 get_part_library). Writes <out>/abeng.json (whole document, wires not yet routed) and <out>/abeng_lib_ops.json (part-library
 add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.json. Same rules and helpers' shape as
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 import genroute
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'AB-engine', 'ST185-AB-engine', 'H', '2026-11-10'
+NAME, TITLE, REV, DATE = 'AB-engine', 'ST185-AB-engine', 'I', '2026-11-10'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -87,7 +87,9 @@ NEW = {'AW2S': ('lockParts', {"id": "lp_aw2s"}),
        '5-965906-1': ('contactParts', {"id": "ct_5_965906_1", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
                                        "minGauge": {"unit": "AWG", "value": 20}, "maxGauge": {"unit": "AWG", "value": 18}}),
        # a Toyota repair wire: a sealed TS 2.3 socket on a lead, like the library's 82998-12500
-       '82998-12440': ('contactParts', {"id": "ct_82998_12440", "type": "Crimp", "gender": "Socket", "contactColor": "Silver"})}
+       '82998-12440': ('contactParts', {"id": "ct_82998_12440", "type": "Crimp", "gender": "Socket", "contactColor": "Silver"}),
+       # the CAN bus end 120 ohm resistor soldered across the CAN-Lambda splices (Dan S6 b, 2026-11-10)
+       '120R 1/4W': ('resistorParts', {"id": "rp_120r"})}
 def lib_pn(kind, pn): return next((p for p in LIB[kind] if p.get('partNumber') == pn), None)
 def part_id(kind, pn):
     """library part id for this part number (a NEW part is added from harness-parts.csv); None for TBD / kit / unknown."""
@@ -168,6 +170,7 @@ for c, pn in mates_pn.items():
 
 # ------------------------------------------------------------------ other ends, wires, cables
 splices = collections.OrderedDict()
+resistors = collections.OrderedDict()     # a resistor sits inline like a splice (Dan S6 b: the CAN end terminator)
 SPLP = {'solder splice': 'GENERIC SOLDER SPLICE', 'crimp splice': 'GENERIC CRIMP SPLICE 14-10'}
 spl_pn = collections.defaultdict(set)
 def end(r, s):
@@ -177,6 +180,12 @@ def end(r, s):
         tp = r[s + '_terminal_pn']; spl_pn[i].add(SPLP.get(tp, tp))
         splices.setdefault(i, {"id": "s_" + sid(i), "label": i})
         return {"id": "s_" + sid(i), "handle": "Splice"}
+    if t == 'resistor':
+        if i not in resistors:
+            resistors[i] = {"id": "r_" + sid(i), "label": i}
+            pid = part_id('resistorParts', r[s + '_housing_pn'])
+            if pid: resistors[i]['partId'] = pid
+        return {"id": "r_" + sid(i), "handle": "Left" if p == '1' else "Right"}
     if t == 'cable screen': return None      # the screen floats at that end
     raise SystemExit('end type %r (%s): add it to gen_abeng.py' % (t, r['wire_id']))
 wires, cables, row_of = [], collections.OrderedDict(), {}
@@ -289,9 +298,14 @@ for it in range(6):
     pending = left
 assert not pending, [n['label'] for n in pending]
 for n in splices.values(): n['schematicPosition'] = {"x": n.pop('_x'), "y": n.pop('_row') - 15}
+for n in resistors.values():      # a resistor between two splices: right of them, on the upper splice's row
+    ys = [INL[e['id']]['schematicPosition']['y'] for cond in CONDS for e in ends(cond) if e['id'] in INL
+          for o in ends(cond) if o['id'] == n['id']]
+    n['schematicPosition'] = {"x": SPX2 + 120, "y": min(ys)}
 def row_of_end(e):
     if e['id'] == BHID: return cav_y(BH, e['handle'])
     if e['id'] in INL: return INL[e['id']]['schematicPosition']['y'] + 15
+    if e['id'].startswith('r_'): return next(n for n in resistors.values() if n['id'] == e['id'])['schematicPosition']['y'] + 15
     return None
 # devices: ordered by the mean row of what feeds them, so lanes cross least (connectors may be reordered, pins never)
 bary = collections.defaultdict(list)
@@ -318,7 +332,7 @@ def place_right(devx):
     return y - 30
 def doc_now():
     return {"connectors": list(conns.values()) + list(mate_conns.values()), "terminals": [], "splices": list(splices.values()),
-            "wires": wires, "cables": list(cables.values())}
+            "resistors": list(resistors.values()), "wires": wires, "cables": list(cables.values())}
 def route_cost(devx):    # (unrouted conductors, conductors that need more than one lane) with the device column at devx
     place_right(devx)
     R_, segs_, res_ = genroute.run(copy.deepcopy(doc_now()))
@@ -336,6 +350,16 @@ while hi - lo > 30:
     print('  try', mid, '->', 'ok' if hi == mid else 'worse', flush=True)
 DEVX = hi
 RIGHT_BOTTOM = place_right(DEVX)
+for rn in resistors.values():     # the resistor's spot: the nearest free spot by its splices where every conductor routes
+    y0, best = rn['schematicPosition']['y'], None
+    for dx in (0, -120, 120, 240):
+        for dy in (0, -60, 60, -90, 90, -120, 120, -180, 180):
+            rn['schematicPosition'] = {"x": SPX2 + 120 + dx, "y": y0 + dy}
+            R_, segs_, res_ = genroute.run(copy.deepcopy(doc_now()))
+            c = (sum(1 for s in segs_ if res_.get(s['k']) is None), sum(1 for v in res_.values() if v and len(v) > 2), abs(dx) + abs(dy))
+            if best is None or c < best[0]: best = (c, dict(rn['schematicPosition']))
+    rn['schematicPosition'] = best[1]
+    print('resistor', rn['label'], 'at', best[1], 'routing (unrouted, multi-lane, offset)', best[0], flush=True)
 print('device column x', DEVX, 'bottom', RIGHT_BOTTOM, '| bulkhead bottom', LEFT_BOTTOM, flush=True)
 
 # ------------------------------------------------------------------ notes
@@ -410,7 +434,7 @@ for r in W + SPARE:
     for s in ('from', 'to'):
         t = r[s + '_type']
         if not t or t == 'cable screen': continue
-        cid = (conns[r[s + '_id']] if t == 'connector' else splices[r[s + '_id']])['id']
+        cid = (conns[r[s + '_id']] if t == 'connector' else resistors[r[s + '_id']] if t == 'resistor' else splices[r[s + '_id']])['id']
         if cid in seen: continue
         nd = H.place(r, s); assert nd in tadj, (r['wire_id'], s, nd)
         seen.add(cid); (node_items if cid[:2] == 'c_' else inline_at)[nd].append(cid)
@@ -455,7 +479,7 @@ for n in [n for n in parent if parent[n] and slen[n] == 0]:   # a 0 mm segment i
 DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
 OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
 GAP, MINL, ISP, LBL = 60, 150, 60, 240        # clearance, shortest drawn bundle, comb pitch, room for a part's label
-ALLC = {x['id']: x for x in list(conns.values()) + list(splices.values())}
+ALLC = {x['id']: x for x in list(conns.values()) + list(splices.values()) + list(resistors.values())}
 XY = LT['nodes']
 def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
 def family(c):      # 'COIL' / 'INJ' when c is the breakout of one ignition coil or one injector
@@ -530,7 +554,7 @@ for cid, (nd, q, pts, ow) in stubs.items():
     if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
     bundles.append(b)
     ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
-    if cid[:2] == 's_':
+    if cid[:2] in ('s_', 'r_'):
         bps.append({"id": "bp_" + cid, "layoutPosition": {"x": q[0], "y": q[1]}}); ALLC[cid]['locationId'] = "bp_" + cid; INL_AT[cid] = "bp_" + sid(nd)
     lbl = ALLC[cid]['label']
     if lbl in mate_conns:    # the plug-in sits against its plug, on the far side of it from the stub
@@ -538,7 +562,7 @@ for cid, (nd, q, pts, ow) in stubs.items():
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
 loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] == 'c_'}
-loc.update({x['id']: (INL_AT[x['id']], STUB) for x in splices.values()})
+loc.update({x['id']: (INL_AT[x['id']], STUB) for x in list(splices.values()) + list(resistors.values())})
 def chain(bp):
     out = []
     while bp: out.append(bp); bp = nodepar[bp]
@@ -562,13 +586,14 @@ NCONN = len(CONDS)
 assert NCONN <= 100, 'over the 100-connection plan limit: split by whole circuits into numbered documents (README)'
 for c in cables.values(): c.pop('_dev')
 doc = {"version": 1.3, "currency": "$", "lengthUnit": "mm", "gaugeUnit": "AWG", "schematic": {"connectorWidth": 240, "terminalWidth": 240},
-       "connectors": list(conns.values()) + list(mate_conns.values()), "splices": list(splices.values()), "wires": wires,
+       "connectors": list(conns.values()) + list(mate_conns.values()), "splices": list(splices.values()),
+       "resistors": list(resistors.values()), "wires": wires,
        "cables": list(cables.values()), "mates": mates, "branchPoints": bps, "bundles": bundles, "schematicNotes": NOTES}
 for k, v in doc_parts.items():
     if v: doc[k] = list(v.values())
 for k in [k for k in doc if doc[k] == []]: del doc[k]
 have = {p['id'] for k, v in doc.items() if k.endswith('Parts') for p in v}
-refs = {x['partId'] for x in wires + list(splices.values()) + list(cables.values()) + doc['connectors'] if x.get('partId')} | \
+refs = {x['partId'] for x in wires + list(splices.values()) + list(resistors.values()) + list(cables.values()) + doc['connectors'] if x.get('partId')} | \
        {cv[k] for n in doc['connectors'] for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
