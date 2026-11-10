@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev E" (viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev F" (Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b - the LH corner fed from the LH pass-through; viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -10,7 +10,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'E', '2026-11-08'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'F', '2026-11-09'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -330,14 +330,14 @@ for sname, sp in splices.items():     # a splice shared with another harness: sa
 pass_by = collections.defaultdict(list)
 for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
-              "text": TITLE + " Rev " + REV + " (" + DATE + ", Route 17 tree from Dan's 2026-11-02 placement, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+              "text": TITLE + " Rev " + REV + " (" + DATE + ", Route 17 tree: Dan's 2026-11-01 device spots, routes redrawn 2026-11-09, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: cabin ends left (fuse / relay boxes and kill switch "
                       "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
                       "connectors are drawn whole; cavities wired by other harnesses are N/C with a note. Wires of other harnesses that only "
                       "pass through EngineRoom-C are not drawn: " + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) +
-                      ". Layout: a formboard of the ST185-harness tree from Route 17 (runs 10 / 11 / 11b; A/C, alternator plug, MR-S pump and block stud via "
-                      "Route 16 lines; EA / EB on Route 17 devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "
+                      ". Layout: a formboard of the ST185-harness tree from Route 17 (run 10 from the RH fender, run 11 from the LH pass-through with the LH corner lamps and EB; the A/C pressure switch and alternator plug via "
+                      "Route 16 line 6; EA / EB on Route 17 devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "
                       "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm "
                       "end-allowance stub; bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
