@@ -1,0 +1,237 @@
+{
+ "harness": "AntiTheft",
+ "doc": "layouts/AntiTheft",
+ "seedVersion": "AntiTheft-z10b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b / Z13 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's 2026-11-08 save. The hood pin lead shares the LH pass-through with the siren leads.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "D1",
+   "name": "Dash run: ECU to the column branch and J/B No.1, LH kick (shared with AB-cabin)",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     -580,
+     0
+    ],
+    [
+     -580,
+     -650
+    ],
+    [
+     -830,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "AL",
+   "name": "Alarm branch: straight back from the dash run to the alarm spot",
+   "short": "Alarm branch",
+   "color": "#6a1b9a",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -159
+    ],
+    [
+     -803,
+     -159
+    ]
+   ]
+  },
+  {
+   "id": "AG",
+   "name": "Alarm spot to the alarm ground ring",
+   "color": "#424242",
+   "dash": false,
+   "pts": [
+    [
+     -803,
+     -159
+    ],
+    [
+     -807,
+     -20
+    ]
+   ]
+  },
+  {
+   "id": "LF",
+   "name": "J/B No.1 to the LH kick / fender pass-through (shared)",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     -830,
+     -650
+    ],
+    [
+     -530,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "FW",
+   "name": "LH pass-through forward to the LH firewall corner",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -530,
+     -650
+    ],
+    [
+     -400,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "SIR",
+   "name": "LH firewall corner along the firewall to the siren lead ends",
+   "short": "Siren leads",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -400,
+     -650
+    ],
+    [
+     -400,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "HD",
+   "name": "LH firewall corner forward along the LH fender to the LH front corner (with harness C)",
+   "short": "Hood pin lead",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -400,
+     -650
+    ],
+    [
+     652,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "HC",
+   "name": "LH front corner across the front to the hood pin lead end",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     652,
+     -650
+    ],
+    [
+     652,
+     20
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "ALARM",
+   "name": "Alarm spot (the alarm-ready tap points)",
+   "group": "Alarm",
+   "note": "No alarm fitted yet; capped, labelled leads",
+   "x": -803,
+   "y": -159,
+   "line": "AL",
+   "drop": null,
+   "short": "Alarm spot"
+  },
+  {
+   "n": "2",
+   "id": "T-AT-GND",
+   "name": "Alarm ground ring",
+   "group": "Grounds",
+   "note": "Chassis point picked at install",
+   "x": -807,
+   "y": -20,
+   "line": "AG",
+   "drop": null,
+   "short": "Alarm ground"
+  },
+  {
+   "n": "3",
+   "id": "AL-SIREN-BAY",
+   "name": "Siren lead ends",
+   "group": "Engine bay",
+   "note": "Capped pull-wire ends; no siren fitted yet",
+   "x": -400,
+   "y": 0,
+   "line": "SIR",
+   "drop": null,
+   "short": "Siren leads"
+  },
+  {
+   "n": "4",
+   "id": "AL-HOOD-BAY",
+   "name": "Hood pin lead end",
+   "group": "Engine bay",
+   "note": "Capped pull-wire end; no hood pin switch fitted yet",
+   "x": 652,
+   "y": 20,
+   "line": "HC",
+   "drop": null,
+   "short": "Hood pin lead"
+  },
+  {
+   "n": "5",
+   "id": "T-AT-DOOR",
+   "name": "Door trigger tap at J/B No.1",
+   "group": "Factory taps",
+   "note": "Factory door switch wire",
+   "x": -823,
+   "y": -656,
+   "line": "D1",
+   "drop": null,
+   "short": "Door tap"
+  }
+ ],
+ "refs": [
+  {
+   "id": "ECU",
+   "label": "ECU",
+   "name": "ECU plugs (AB-cabin)",
+   "x": -580,
+   "y": 0
+  },
+  {
+   "id": "GB",
+   "label": "Glove box",
+   "name": "POWER / LOGIC boxes (glove box)",
+   "x": -580,
+   "y": 480
+  },
+  {
+   "id": "LFP",
+   "label": "LH pass-through",
+   "name": "LH kick / fender pass-through",
+   "x": -530,
+   "y": -650
+  }
+ ]
+}
