@@ -51,7 +51,7 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
 <h2>Route data</h2><p>Polylines in PDF points on EWD p.36 (for generated drawings):</p>
 <script type="application/json" id="route-data">{
  "base": "1993 EWD (EWD160U) book p.36, Electrical Wiring Routing, 3S-GTE engine compartment; coordinates in PDF points of Connector__Ground_and_Splice.pdf page 1 (st185-celica-repair-manual).",
- "source": "Device spots: Dan's placement 2026-10-28 (placement editor) and his Y7 b starter move (2026-11-09); unchanged. Lines and branches: redrawn by the agent 2026-11-09 (Dan Z10 b: device locations are his, the route is the agent's: tidy straight lines, as few branches as possible, shortest possible, no double-backs). Replaces Dan's 2026-10-21 markup of 9 lines and the 2026-10-28 branches N1-N19 (git history keeps them).",
+ "source": "Device spots and overall routes: Dan's AB-engine editor save 2026-11-10 12:09Z (W4 c: he moved parts and drew the overall routes; layouts/route16, seedVersion ABengine-w4c-1; copy kept as _scratch/route16_save_2026-11-10.json until this lands). The agent joined his lines into the named lines and branches below and gave every sensor its own spur off a shared branch (none sits 0 mm from the trunk): the only branch the agent added is the intake sensor branch N5 for the four intake / fuel sensors (FUEL-P, IAT, MAP, FLEX), so none of them breaks out of the trunk by itself. Bulkhead at Dan's spot [224.3, 166.8]. Git history keeps the 2026-11-09 draft.",
  "routes": [
   {
    "n": 1,
@@ -59,12 +59,20 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "colour": "red",
    "path": [
     [
-     213.1,
-     182.0
+     224,
+     180.1
     ],
     [
-     359.9,
-     201.9
+     313.9,
+     181.1
+    ],
+    [
+     338,
+     180.8
+    ],
+    [
+     370.3,
+     193.1
     ]
    ]
   },
@@ -74,12 +82,16 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "colour": "red",
    "path": [
     [
-     345.0,
-     199.88
+     340.9,
+     223.1
     ],
     [
-     372.2,
-     275.1
+     330.2,
+     235.2
+    ],
+    [
+     309.9,
+     256.3
     ]
    ]
   },
@@ -89,31 +101,24 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "colour": "cyan",
    "path": [
     [
-     213.1,
-     247.0
+     224.2,
+     180.8
     ],
     [
-     201.5,
-     280.0
+     179.8,
+     223.7
     ],
     [
-     226.5,
-     309.4
-    ]
-   ]
-  },
-  {
-   "n": 5,
-   "name": "Fuel pressure spur",
-   "colour": "cyan",
-   "path": [
-    [
-     345.0,
-     199.88
+     177.4,
+     290.9
     ],
     [
-     386.9,
-     159.6
+     176.9,
+     304.8
+    ],
+    [
+     193.2,
+     306
     ]
    ]
   },
@@ -123,37 +128,170 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "colour": "blue",
    "path": [
     [
-     213.1,
-     182.0
+     224.2,
+     180
     ],
     [
-     213.1,
-     247.0
+     235,
+     201.2
     ],
     [
-     239.0,
-     268.5
+     224.8,
+     219.6
     ],
     [
-     242.0,
-     285.8
+     221.8,
+     251.3
+    ],
+    [
+     234.5,
+     252.9
+    ],
+    [
+     248.3,
+     272.9
+    ]
+   ]
+  },
+  {
+   "n": 7,
+   "name": "Injector branch",
+   "colour": "yellow",
+   "path": [
+    [
+     251.9,
+     180.9
+    ],
+    [
+     251.8,
+     196.3
+    ],
+    [
+     305.5,
+     196.5
+    ]
+   ]
+  },
+  {
+   "n": 8,
+   "name": "Coil branch",
+   "colour": "purple",
+   "path": [
+    [
+     314.1,
+     181.3
+    ],
+    [
+     315.4,
+     216.7
+    ],
+    [
+     249.8,
+     216.1
     ]
    ]
   }
  ],
- "runs": {},
- "run_from": {},
- "line_ids": "L1, L2, L4, L5, L6 = routes 1, 2, 4, 5, 6 (routes 3, 7, 8 and 9 and the device branches N1-N19 are gone: 2026-11-09 redraw).",
+ "runs": {
+  "BH Bulkhead stub": [
+   [
+    224.3,
+    180.7
+   ],
+   [
+    224.6,
+    166.5
+   ]
+  ],
+  "N19 Turbo branch": [
+   [
+    314.9,
+    181.5
+   ],
+   [
+    340.7,
+    214.4
+   ],
+   [
+    341.3,
+    290.9
+   ]
+  ],
+  "N3 Driver-side sensor branch": [
+   [
+    342.5,
+    265.7
+   ],
+   [
+    323.7,
+    278.4
+   ]
+  ],
+  "N15 Crank branch": [
+   [
+    221.8,
+    251.3
+   ],
+   [
+    202.8,
+    251.7
+   ]
+  ],
+  "N22 Gearbox speed branch": [
+   [
+    314.5,
+    181.5
+   ],
+   [
+    315.2,
+    165.9
+   ]
+  ],
+  "N30 Knock and coolant pressure branch": [
+   [
+    278,
+    180.7
+   ],
+   [
+    278.4,
+    170.5
+   ]
+  ],
+  "N5 Intake sensor branch": [
+   [
+    337.6,
+    180.7
+   ],
+   [
+    337.6,
+    166.0
+   ],
+   [
+    372.0,
+    166.0
+   ]
+  ]
+ },
+ "run_from": {
+  "BH": "L1",
+  "N19": "L1",
+  "N3": "N19",
+  "N15": "L6",
+  "N22": "L1",
+  "N30": "L1",
+  "N5": "L1"
+ },
+ "line_ids": "L1, L2, L4, L6, L7, L8 = routes 1, 2, 4, 6, 7, 8 (Dan's 2026-11-10 lines; L1 = his trunk plus his two throttle-body legs, L4 = his passenger front run plus his oil temp leg, L6 = his belt-end drop plus his CAN-Lambda leg); runs: BH = the bulkhead stub (drawn only: its length is the 16 in bulkhead drop of the layout, root_drop_mm 406), N19 turbo branch, N3 driver-side sensor branch, N15 crank branch (Dan's crank leg), N22 gearbox speed branch, N30 knock and coolant pressure branch, N5 intake sensor branch (agent-added).",
  "devices": [
   {
    "n": 1,
    "name": "INJ-1",
    "id": "INJ-1",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L7",
    "at": [
-    251.5,
-    201.2
+    252.2,
+    205.8
    ]
   },
   {
@@ -161,10 +299,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "INJ-2",
    "id": "INJ-2",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L7",
    "at": [
-    272.7,
-    207.4
+    269.1,
+    205.8
    ]
   },
   {
@@ -172,10 +310,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "INJ-3",
    "id": "INJ-3",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L7",
    "at": [
-    285.9,
-    204.4
+    286.9,
+    206.3
    ]
   },
   {
@@ -183,10 +321,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "INJ-4",
    "id": "INJ-4",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L7",
    "at": [
-    299.3,
-    206.7
+    304.9,
+    205.1
    ]
   },
   {
@@ -194,10 +332,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "IAT",
    "id": "IAT",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "N5",
    "at": [
-    305.8,
-    172.8
+    352,
+    161.4
    ]
   },
   {
@@ -205,10 +343,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "MAP",
    "id": "MAP",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "N5",
    "at": [
-    315.7,
-    165.6
+    366.1,
+    164.7
    ]
   },
   {
@@ -218,8 +356,8 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "harness": "AB-engine",
    "on": "L1",
    "at": [
-    359.9,
-    201.9
+    371.4,
+    192.7
    ]
   },
   {
@@ -227,10 +365,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "FUEL-P",
    "id": "FUEL-P",
    "harness": "AB-engine",
-   "on": "L5",
+   "on": "N5",
    "at": [
-    386.9,
-    159.6
+    337.1,
+    160
    ]
   },
   {
@@ -238,10 +376,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "COIL-1",
    "id": "COIL-1",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L8",
    "at": [
-    255.5,
-    218.1
+    250.9,
+    228
    ]
   },
   {
@@ -249,10 +387,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "COIL-2",
    "id": "COIL-2",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L8",
    "at": [
-    271,
-    218.6
+    270.3,
+    228.5
    ]
   },
   {
@@ -260,10 +398,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "COIL-3",
    "id": "COIL-3",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L8",
    "at": [
     290.4,
-    218.8
+    228.4
    ]
   },
   {
@@ -271,10 +409,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "COIL-4",
    "id": "COIL-4",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "L8",
    "at": [
     310.1,
-    219.1
+    228.7
    ]
   },
   {
@@ -282,10 +420,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "ECT",
    "id": "ECT",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N19",
    "at": [
-    325.2,
-    226.4
+    328.8,
+    216.3
    ]
   },
   {
@@ -293,10 +431,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "CAM",
    "id": "CAM",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "N19",
    "at": [
-    320.6,
-    192
+    335.2,
+    192.7
    ],
    "note": "Dan 2026-10-27: the cam sensor sits at the driver side of the head, the old distributor spot. 2026-11-09 redraw: it breaks out of the trunk there (the coil leg L8 is gone)."
   },
@@ -305,10 +443,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "CRANK",
    "id": "CRANK",
    "harness": "AB-engine",
-   "on": "L6",
+   "on": "N15",
    "at": [
-    242,
-    285.8
+    203.5,
+    251.1
    ],
    "low": true
   },
@@ -319,8 +457,8 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "harness": "AB-engine",
    "on": "L6",
    "at": [
-    239,
-    268.5
+    247.5,
+    271.8
    ]
   },
   {
@@ -328,10 +466,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "STARTER",
    "id": "STARTER-TRIGGER",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N3",
    "at": [
-    335.8,
-    239
+    324.2,
+    277.8
    ],
    "low": true,
    "note": "spot approximate: low on the LH transaxle under the battery / engine relay box (FSM Component_Location p.2, RM305U1 Starter p.2); Dan Y7 b 2026-11-09 put it on the turbo-speed branch N19; since the 2026-11-09 redraw it breaks out of line 2 at the same spot (N19 is gone)"
@@ -341,7 +479,7 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "Engine block ground stud (lug 1)",
    "id": "T-ENG-BLOCK",
    "harness": "HeavyDC",
-   "on": "L2",
+   "on": "N19",
    "at": [
     362.4,
     248.1
@@ -355,10 +493,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "KNOCK-1",
    "id": "KNOCK-1",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "N30",
    "at": [
-    261.6,
-    205.8
+    269.4,
+    167
    ],
    "low": true
   },
@@ -367,10 +505,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "OIL-P",
    "id": "OIL-P",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N19",
    "at": [
-    331.7,
-    220.2
+    346.4,
+    202.7
    ],
    "low": true
   },
@@ -381,8 +519,8 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "harness": "AB-engine",
    "on": "L4",
    "at": [
-    226.5,
-    309.4
+    192.8,
+    306.1
    ],
    "low": true
   },
@@ -391,10 +529,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "VSS",
    "id": "VSS",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N22",
    "at": [
-    320.3,
-    223.4
+    315,
+    167.8
    ],
    "low": true
   },
@@ -403,10 +541,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "REV-SW",
    "id": "REV-SW",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N19",
    "at": [
-    350.2,
-    239.8
+    360.7,
+    213.1
    ],
    "low": true
   },
@@ -417,8 +555,8 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "harness": "AB-engine",
    "on": "L4",
    "at": [
-    198.5,
-    286.5
+    167.7,
+    271.8
    ],
    "note": "MR-S pump plug B: its wires are harness C circuits that ride the AB-engine loom from the bulkhead (master passes_through AB-engine). Plug A (power) is harness C at the same pump."
   },
@@ -429,8 +567,8 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "harness": "AB-engine",
    "on": "L4",
    "at": [
-    204.5,
-    273.8
+    186.4,
+    272.3
    ],
    "note": "MR-S pump plug C: its wires are harness C circuits that ride the AB-engine loom from the bulkhead (master passes_through AB-engine). Plug A (power) is harness C at the same pump."
   },
@@ -441,8 +579,8 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "harness": "AB-engine",
    "on": "L2",
    "at": [
-    322.9,
-    256
+    309.9,
+    255.9
    ]
   },
   {
@@ -450,10 +588,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "BOOST-SOL",
    "id": "BOOST-SOL",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N19",
    "at": [
-    332.4,
-    239.6
+    363.6,
+    225.5
    ]
   },
   {
@@ -461,10 +599,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "CHARGE-IAT",
    "id": "CHARGE-IAT",
    "harness": "AB-engine",
-   "on": "L2",
+   "on": "N19",
    "at": [
-    345.8,
-    287
+    341.2,
+    289.6
    ]
   },
   {
@@ -472,10 +610,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "FLEX",
    "id": "FLEX",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "N5",
    "at": [
-    325.2,
-    174.6
+    372.5,
+    172.3
    ]
   },
   {
@@ -483,10 +621,10 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
    "name": "CLNT-P",
    "id": "CLNT-P",
    "harness": "AB-engine",
-   "on": "L1",
+   "on": "N30",
    "at": [
-    313.9,
-    208.4
+    287.9,
+    166.8
    ]
   },
   {
@@ -525,12 +663,13 @@ Line numbers 1, 2, 4, 5 and 6 keep their old names; lines 3, 7, 8 and 9 are gone
  ],
  "low_note": "low: true = a low-mounted part (block, transaxle, starter, oil cooler); its stub gets the 300 mm drop (DECISIONS B8).",
  "line_from": {
-  "L2": "L1",
-  "L5": "L1",
+  "L2": "N19",
+  "L4": "L1",
   "L6": "L1",
-  "L4": "L6"
+  "L7": "L1",
+  "L8": "L1"
  },
- "line_from_note": "Which line each line hangs on (2026-11-09 redraw, Dan Z10 b: device spots are Dan's, routes are the agent's - straight, fewest branches, shortest, no double-backs): the head loom 7, the firewall spur 5 and the driver-side drop 2 leave the trunk; the belt-end drop 6 leaves the bulkhead (harness C rides it from there to the A/C pressure switch and the alternator plug stub); the passenger front run 4 leaves line 6 at its first corner. Line 2 keeps Dan's outboard path past the old J/B No.2 spot, clear of the turbo.",
+ "line_from_note": "Which line each line hangs on (2026-11-10, Dan's W4 c save): off the trunk L1 from the bulkhead end: the passenger front run 4 and the belt-end drop 6 (at the trunk's start), the injector branch 7, the knock / coolant pressure branch N30, the coil branch 8, the gearbox speed branch N22 and the turbo branch N19 (at the trunk's corner), the intake sensor branch N5 (where the trunk turns to the throttle body); the trunk ends at the throttle body. The driver-side drop 2 and the driver-side sensor branch N3 leave the turbo branch N19; the crank branch N15 leaves the end of the belt-end drop 6. Harness C rides line 6 to the A/C pressure switch and the alternator plug stub, and the turbo branch N19 to the engine block ground.",
  "moved_note": "moved_to = a HeavyDC end moved off this map to HeavyDC's own map, Route 1 (Dan B6 b, 2026-11-02); kept here for reference only, the engine harness tree no longer uses it. Line 9 (alternator and starter) is gone with the 2026-11-09 redraw: harness C reaches the belt-end drop (line 6) from its own RH fender grommet run and the alternator plug hangs on line 6 by a square stub (Route 17 FH1); the starter S end (17) breaks out of line 2 at Dan's Y7 b spot (2026-11-09; the branch N19 is gone)."
 }</script>
 <pre style="white-space:pre-wrap;font-size:12px">{&quot;base&quot;: &quot;1993 EWD (EWD160U) book p.36, Electrical Wiring Routing, 3S-GTE engine compartment; coordinates in PDF points of Connector__Ground_and_Splice.pdf page 1 (st185-celica-repair-manual).&quot;, &quot;source&quot;: &quot;Device spots: Dan&#x27;s placement 2026-10-28 (placement editor) and his Y7 b starter move (2026-11-09); unchanged. Lines and branches: redrawn by the agent 2026-11-09 (Dan Z10 b: device locations are his, the route is the agent&#x27;s: tidy straight lines, as few branches as possible, shortest possible, no double-backs). Replaces Dan&#x27;s 2026-10-21 markup of 9 lines and the 2026-10-28 branches N1-N19 (git history keeps them).&quot;, &quot;routes&quot;: [{&quot;n&quot;: 1, &quot;name&quot;: &quot;Main trunk&quot;, &quot;colour&quot;: &quot;red&quot;, &quot;path&quot;: [[213.1, 182.0], [359.9, 201.9]]}, {&quot;n&quot;: 2, &quot;name&quot;: &quot;Driver-side drop&quot;, &quot;colour&quot;: &quot;red&quot;, &quot;path&quot;: [[345.0, 199.88], [372.2, 275.1]]}, {&quot;n&quot;: 4, &quot;name&quot;: &quot;Passenger front run&quot;, &quot;colour&quot;: &quot;cyan&quot;, &quot;path&quot;: [[213.1, 247.0], [201.5, 280.0], [226.5, 309.4]]}, {&quot;n&quot;: 5, &quot;name&quot;: &quot;Fuel pressure spur&quot;, &quot;colour&quot;: &quot;cyan&quot;, &quot;path&quot;: [[345.0, 199.88], [386.9, 159.6]]}, {&quot;n&quot;: 6, &quot;name&quot;: &quot;Belt-end drop&quot;, &quot;colour&quot;: &quot;blue&quot;, &quot;path&quot;: [[213.1, 182.0], [213.1, 247.0], [239.0, 268.5], [242.0, 285.8]]}], &quot;runs&quot;: {}, &quot;run_from&quot;: {}, &quot;line_ids&quot;: &quot;L1, L2, L4, L5, L6 = routes 1, 2, 4, 5, 6 (routes 3, 7, 8 and 9 and the device branches N1-N19 are gone: 2026-11-09 redraw).&quot;, &quot;devices&quot;: [{&quot;n&quot;: 1, &quot;name&quot;: &quot;INJ-1&quot;, &quot;id&quot;: &quot;INJ-1&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [251.5, 201.2]}, {&quot;n&quot;: 2, &quot;name&quot;: &quot;INJ-2&quot;, &quot;id&quot;: &quot;INJ-2&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [272.7, 207.4]}, {&quot;n&quot;: 3, &quot;name&quot;: &quot;INJ-3&quot;, &quot;id&quot;: &quot;INJ-3&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [285.9, 204.4]}, {&quot;n&quot;: 4, &quot;name&quot;: &quot;INJ-4&quot;, &quot;id&quot;: &quot;INJ-4&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [299.3, 206.7]}, {&quot;n&quot;: 5, &quot;name&quot;: &quot;IAT&quot;, &quot;id&quot;: &quot;IAT&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [305.8, 172.8]}, {&quot;n&quot;: 6, &quot;name&quot;: &quot;MAP&quot;, &quot;id&quot;: &quot;MAP&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [315.7, 165.6]}, {&quot;n&quot;: 7, &quot;name&quot;: &quot;ETB&quot;, &quot;id&quot;: &quot;ETB&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [359.9, 201.9]}, {&quot;n&quot;: 8, &quot;name&quot;: &quot;FUEL-P&quot;, &quot;id&quot;: &quot;FUEL-P&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L5&quot;, &quot;at&quot;: [386.9, 159.6]}, {&quot;n&quot;: 9, &quot;name&quot;: &quot;COIL-1&quot;, &quot;id&quot;: &quot;COIL-1&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [255.5, 218.1]}, {&quot;n&quot;: 10, &quot;name&quot;: &quot;COIL-2&quot;, &quot;id&quot;: &quot;COIL-2&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [271, 218.6]}, {&quot;n&quot;: 11, &quot;name&quot;: &quot;COIL-3&quot;, &quot;id&quot;: &quot;COIL-3&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [290.4, 218.8]}, {&quot;n&quot;: 12, &quot;name&quot;: &quot;COIL-4&quot;, &quot;id&quot;: &quot;COIL-4&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [310.1, 219.1]}, {&quot;n&quot;: 13, &quot;name&quot;: &quot;ECT&quot;, &quot;id&quot;: &quot;ECT&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [325.2, 226.4]}, {&quot;n&quot;: 14, &quot;name&quot;: &quot;CAM&quot;, &quot;id&quot;: &quot;CAM&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [320.6, 192], &quot;note&quot;: &quot;Dan 2026-10-27: the cam sensor sits at the driver side of the head, the old distributor spot. 2026-11-09 redraw: it breaks out of the trunk there (the coil leg L8 is gone).&quot;}, {&quot;n&quot;: 15, &quot;name&quot;: &quot;CRANK&quot;, &quot;id&quot;: &quot;CRANK&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L6&quot;, &quot;at&quot;: [242, 285.8], &quot;low&quot;: true}, {&quot;n&quot;: 16, &quot;name&quot;: &quot;CAN-LAMBDA&quot;, &quot;id&quot;: &quot;CAN-LAMBDA&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L6&quot;, &quot;at&quot;: [239, 268.5]}, {&quot;n&quot;: 17, &quot;name&quot;: &quot;STARTER&quot;, &quot;id&quot;: &quot;STARTER-TRIGGER&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [335.8, 239], &quot;low&quot;: true, &quot;note&quot;: &quot;spot approximate: low on the LH transaxle under the battery / engine relay box (FSM Component_Location p.2, RM305U1 Starter p.2); Dan Y7 b 2026-11-09 put it on the turbo-speed branch N19; since the 2026-11-09 redraw it breaks out of line 2 at the same spot (N19 is gone)&quot;}, {&quot;n&quot;: 18, &quot;name&quot;: &quot;Engine block ground stud (lug 1)&quot;, &quot;id&quot;: &quot;T-ENG-BLOCK&quot;, &quot;harness&quot;: &quot;HeavyDC&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [362.4, 248.1], &quot;low&quot;: true, &quot;note&quot;: &quot;Dan 2026-10-29: the coil ground goes to the POWER box NEG bar (bulkhead pin 4), so the ECU engine harness no longer lands here.&quot;, &quot;moved_to&quot;: &quot;Route 1 (HeavyDC map; Dan B6 b, 2026-11-02)&quot;}, {&quot;n&quot;: 19, &quot;name&quot;: &quot;KNOCK-1&quot;, &quot;id&quot;: &quot;KNOCK-1&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [261.6, 205.8], &quot;low&quot;: true}, {&quot;n&quot;: 20, &quot;name&quot;: &quot;OIL-P&quot;, &quot;id&quot;: &quot;OIL-P&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [331.7, 220.2], &quot;low&quot;: true}, {&quot;n&quot;: 21, &quot;name&quot;: &quot;OIL-T&quot;, &quot;id&quot;: &quot;OIL-T&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L4&quot;, &quot;at&quot;: [226.5, 309.4], &quot;low&quot;: true}, {&quot;n&quot;: 22, &quot;name&quot;: &quot;VSS&quot;, &quot;id&quot;: &quot;VSS&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [320.3, 223.4], &quot;low&quot;: true}, {&quot;n&quot;: 23, &quot;name&quot;: &quot;REV-SW&quot;, &quot;id&quot;: &quot;REV-SW&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [350.2, 239.8], &quot;low&quot;: true}, {&quot;n&quot;: 24, &quot;name&quot;: &quot;MRS-B&quot;, &quot;id&quot;: &quot;MRS-B&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L4&quot;, &quot;at&quot;: [198.5, 286.5], &quot;note&quot;: &quot;MR-S pump plug B: its wires are harness C circuits that ride the AB-engine loom from the bulkhead (master passes_through AB-engine). Plug A (power) is harness C at the same pump.&quot;}, {&quot;n&quot;: 25, &quot;name&quot;: &quot;MRS-C&quot;, &quot;id&quot;: &quot;MRS-C&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L4&quot;, &quot;at&quot;: [204.5, 273.8], &quot;note&quot;: &quot;MR-S pump plug C: its wires are harness C circuits that ride the AB-engine loom from the bulkhead (master passes_through AB-engine). Plug A (power) is harness C at the same pump.&quot;}, {&quot;n&quot;: 26, &quot;name&quot;: &quot;TURBO-SPD&quot;, &quot;id&quot;: &quot;TURBO-SPD&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [322.9, 256]}, {&quot;n&quot;: 27, &quot;name&quot;: &quot;BOOST-SOL&quot;, &quot;id&quot;: &quot;BOOST-SOL&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [332.4, 239.6]}, {&quot;n&quot;: 28, &quot;name&quot;: &quot;CHARGE-IAT&quot;, &quot;id&quot;: &quot;CHARGE-IAT&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L2&quot;, &quot;at&quot;: [345.8, 287]}, {&quot;n&quot;: 29, &quot;name&quot;: &quot;FLEX&quot;, &quot;id&quot;: &quot;FLEX&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [325.2, 174.6]}, {&quot;n&quot;: 30, &quot;name&quot;: &quot;CLNT-P&quot;, &quot;id&quot;: &quot;CLNT-P&quot;, &quot;harness&quot;: &quot;AB-engine&quot;, &quot;on&quot;: &quot;L1&quot;, &quot;at&quot;: [313.9, 208.4]}, {&quot;n&quot;: &quot;H1&quot;, &quot;name&quot;: &quot;Alternator B+ stud&quot;, &quot;id&quot;: &quot;T-ALT-B&quot;, &quot;harness&quot;: &quot;HeavyDC&quot;, &quot;at&quot;: [252, 236], &quot;moved_to&quot;: &quot;Route 1 (HeavyDC map; Dan B6 b, 2026-11-02)&quot;}, {&quot;n&quot;: &quot;H2&quot;, &quot;name&quot;: &quot;Starter B+ stud&quot;, &quot;id&quot;: &quot;T-STARTER-B&quot;, &quot;harness&quot;: &quot;HeavyDC&quot;, &quot;at&quot;: [331, 270], &quot;moved_to&quot;: &quot;Route 1 (HeavyDC map; Dan B6 b, 2026-11-02)&quot;}, {&quot;n&quot;: &quot;H4&quot;, &quot;name&quot;: &quot;RADLOK + / - engine side&quot;, &quot;id&quot;: &quot;RADLOK-POS-ENG / RADLOK-NEG-ENG&quot;, &quot;harness&quot;: &quot;HeavyDC&quot;, &quot;at&quot;: [184, 164], &quot;moved_to&quot;: &quot;Route 1 (HeavyDC map; Dan B6 b, 2026-11-02)&quot;}], &quot;low_note&quot;: &quot;low: true = a low-mounted part (block, transaxle, starter, oil cooler); its stub gets the 300 mm drop (DECISIONS B8).&quot;, &quot;line_from&quot;: {&quot;L2&quot;: &quot;L1&quot;, &quot;L5&quot;: &quot;L1&quot;, &quot;L6&quot;: &quot;L1&quot;, &quot;L4&quot;: &quot;L6&quot;}, &quot;line_from_note&quot;: &quot;Which line each line hangs on (2026-11-09 redraw, Dan Z10 b: device spots are Dan&#x27;s, routes are the agent&#x27;s - straight, fewest branches, shortest, no double-backs): the head loom 7, the firewall spur 5 and the driver-side drop 2 leave the trunk; the belt-end drop 6 leaves the bulkhead (harness C rides it from there to the A/C pressure switch and the alternator plug stub); the passenger front run 4 leaves line 6 at its first corner. Line 2 keeps Dan&#x27;s outboard path past the old J/B No.2 spot, clear of the turbo.&quot;, &quot;moved_note&quot;: &quot;moved_to = a HeavyDC end moved off this map to HeavyDC&#x27;s own map, Route 1 (Dan B6 b, 2026-11-02); kept here for reference only, the engine harness tree no longer uses it. Line 9 (alternator and starter) is gone with the 2026-11-09 redraw: harness C reaches the belt-end drop (line 6) from its own RH fender grommet run and the alternator plug hangs on line 6 by a square stub (Route 17 FH1); the starter S end (17) breaks out of line 2 at Dan&#x27;s Y7 b spot (2026-11-09; the branch N19 is gone).&quot;}</pre>

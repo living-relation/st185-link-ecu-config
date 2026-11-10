@@ -1593,7 +1593,9 @@ def add_route_trees(L):
                                    "label": "%s (%s device %s on %s%s)" % (
                                        dev["name"], dev["_route"], dev["n"], k, ", low: +%d mm drop" % drop if drop else "")}
                     stub = gap * MM_PER_PT + drop
-                    if i_e < len(items) - 1:   # the line goes on past it: a breakout of at least 6 in (Dan 2026-10-29)
+                    # the line goes on past it: a breakout of at least 6 in (Dan 2026-10-29); a device at the end of the
+                    # Route 16 trunk itself gets it too, as no sensor is wired 0 mm from the trunk (Dan W4 c, 2026-11-10)
+                    if i_e < len(items) - 1 or (legacy and k in roots):
                         stub = max(stub, MIN_BREAKOUT_MM)
                     if stub >= 1:
                         tap = "%sT_%s_%s" % (pre, k, node)

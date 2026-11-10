@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev F" (Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev G" (Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -10,7 +10,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'F', '2026-11-09'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'G', '2026-11-10'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -136,10 +136,20 @@ for r in W:
     for s in ('from', 'to'):
         if r[s + '_type'] == 'OEM':
             m = re.match(r'(.+?) %s pin ' % re.escape(r[s + '_id']), r[s + '_name'])
+            if not m: m = re.match(r'(.+?) %s\b' % re.escape(r[s + '_id']), r[s + '_name'])   # "Ambient air temp sensor A1 (front ...)"
             if m and not m.group(1).startswith('OEM'): DEVNAME.setdefault(r[s + '_id'], m.group(1))
+# a wire that continues into another harness file ends on a Loose terminal with its R10 note (DECISIONS R10, Dan 2026-11-09:
+# no one-wire splice); key = the master end id, value = (terminal label, note)
+R10 = {'SP-AC-SG': ('A/C sensor common splice (in AB-cabin 2)',
+                    'to ST185-AB-cabin 2 - straight runs, power, taps and CAN; behind the glove box at the auto A/C amplifier; '
+                    '1993 TIS EWD p.211-212; A/C sensor common splice SP-AC-SG, joined to auto A/C amplifier A32 pin 15 (SG) '
+                    'by wire w_amb_sg; spliced onto Yellow')}
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
+    if i in R10:
+        terms.setdefault(i, {"id": "t_" + sid(i), "label": R10[i][0], "type": "Loose", "width": 240})
+        return {"id": "t_" + sid(i), "handle": "Terminal"}
     if t == 'splice':
         tp = r[s + '_terminal_pn']; pid = part_id('spliceParts', SPLP.get(tp, tp))
         sp = splices.setdefault(i, {"id": "s_" + sid(i), "label": i})
@@ -178,6 +188,8 @@ for r in W:
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
         oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+for k, (lab, txt) in R10.items():     # R10 notes sit where the OEM splice notes do
+    if k in terms: oem_col['t_' + sid(k)], oem_txt['t_' + sid(k)] = 'R10', txt
 CONN_NOTE = collections.OrderedDict()
 BOX_SEATS = set(B._seat_map()) | {'LOGIC'}     # box guts are not drawn (Dan R1 a): no spare / N/C notes for box seats
 for c, lst in other_owned.items():
@@ -196,12 +208,12 @@ for c, pins in spares.items():
 def node_of(nm): return conns.get(nm) or terms.get(nm)
 LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN', 'K-DRL', 'RLY-DRL', 'KILL-SW'],
         ['IE1-6', 'IE1-13', 'IE1-20', 'JB1-1H-5', 'IE1-7', 'IE1-8', 'IE1-9', 'IE1-14', 'IE1-15', 'IE1-16', 'IE1-11', 'IE1-18',
-         'JB1-1H-4', 'JB1-1H-6', 'JB1-1H-8', 'RB4-AC-2', 'IG2-16', 'W1-1 cowl', 'W1-2 cowl']]
+         'JB1-1H-4', 'JB1-1H-6', 'JB1-1H-8', 'RB4-AC-2', 'IG2-16', 'W1-1 cowl', 'W1-2 cowl', 'A32-6', 'SP-AC-SG']]
 # a factory tap's key is '<locator>-<pin id>' with the master's own pin id (R/B No.4 'AC-2', J/B No.1 '1H-5'; phase 2)
 # front devices by side of the car, driver (LH) side up: a ground stud sits with the side its wires go to (EB LH, EA RH)
 RIGHT = [['H1-1', 'H1-2', 'H1-3', 'H1-DRL', 'H1-TURN', 'R2-1', 'R2-2', 'R2-3', 'R2-4', 'R2-5', 'F7-1', 'F7-2', 'F7-3', 'F5-1', 'F5-2', 'GND-EB', 'GND-EB-2'],
          ['F9-1', 'F9-2', 'F9-3', 'F9-4', 'HORN-LH', 'HORN-RH', 'FAN-RAD', 'FAN-RAD-GND', 'FAN-COND', 'FAN-COND-GND', 'A4-4', 'A5-1', 'A5-4',
-          'ALT-PLUG', 'MRS-A', 'MRS-B', 'MRS-C', 'T-ENG-BLOCK-2'],
+          'ALT-PLUG', 'MRS-A', 'MRS-B', 'MRS-C', 'T-ENG-BLOCK-2', 'A1-1', 'A1-2'],
          ['GND-EA', 'H2-1', 'H2-2', 'H2-3', 'H2-DRL', 'H2-TURN', 'R3-1', 'R3-2', 'R3-3', 'R3-4', 'R3-5', 'F8-1', 'F8-2', 'F8-3', 'F6-1', 'F6-2', 'W1-1', 'W1-2']]
 LEFT = [[n for n in g if node_of(n)] for g in LEFT]
 RIGHT = [[n for n in g if node_of(n)] for g in RIGHT]
@@ -352,6 +364,7 @@ def cid_of(r, s):
     t = r[s + '_type']
     if t == 'connector': return conns[r[s + '_id']]['id']
     if t in ('terminal', 'OEM'): return terms[tkey(r, s)]['id']
+    if r[s + '_id'] in R10: return terms[r[s + '_id']]['id']
     return splices[r[s + '_id']]['id']
 for r in W + SPARE:
     for s in ('from', 'to'):

@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev G" (Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
+"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev H" (Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
 master is the source). Usage: python gen_abeng.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8,
 get_part_library). Writes <out>/abeng.json (whole document, wires not yet routed) and <out>/abeng_lib_ops.json (part-library
 add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.json. Same rules and helpers' shape as
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 import genroute
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV = 'AB-engine', 'ST185-AB-engine', 'G'
+NAME, TITLE, REV = 'AB-engine', 'ST185-AB-engine', 'H'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
