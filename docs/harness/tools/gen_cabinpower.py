@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-CabinPower, file "ST185-CabinPower Rev A" (viewer only; the master is the source).
+"""harness.design copy of ST185-CabinPower, file "ST185-CabinPower Rev B" (Rev B 2026-11-09: the three alarm feeds follow the moved alarm spot, 1012 -> 1214 mm; viewer only; the master is the source).
 Usage: python gen_cabinpower.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/cabinpower.json (whole document, already routed with genroute.py: upload as is),
 cabinpower_lib_ops.json and cabinpower_expect.json. Built by gen_dash.build (same rules: README "harness.design"; plain labels
@@ -13,7 +13,7 @@ import sys
 import gen_dash
 
 CABINPOWER = dict(
-    name='CabinPower', title='ST185-CabinPower', rev='A', date='2026-11-09', stem='cabinpower', script='gen_cabinpower.py', root='GB',
+    name='CabinPower', title='ST185-CabinPower', rev='B', date='2026-11-09', stem='cabinpower', script='gen_cabinpower.py', root='GB',
     scope="the cabin power harness (glove box and across the dash): the POWER box stud rings (battery feed, AMI fuses, NEG bar) and "
           "the LOGIC fuse and relay box (its relay seats drawn as labelled wire ends; box insides not drawn, Dan R1 a), the relays "
           "beside it, the switched +12 V bus plug, the factory feeds to "

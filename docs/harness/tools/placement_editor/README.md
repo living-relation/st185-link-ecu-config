@@ -1,6 +1,6 @@
 # Placement editor (refine-only)
 
-One shared template for every harness's placement editor (CabinPower, WheelSpeed-Front, WheelSpeed-Rear, RearFuel and later ones). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
+One shared template for every harness's placement editor (CabinPower, WheelSpeed-Front, WheelSpeed-Rear, RearFuel, AntiTheft and later ones). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
 
 - `editor.html`: the page template. The seed format and the save format are documented in its top comment.
 - `make_editor.py`: fills the template with one harness's seed and the top-view plan image. Device and fixed-marker names are pulled from the master's plain names (`from_id` / `to_id` -> `from_name` / `to_name`), so a rebuild after a master rename shows the new names. It warns on any code left in a name, short label or note (DECISIONS B22: only fuse box / relay codes and factory EWD plug IDs may show).
