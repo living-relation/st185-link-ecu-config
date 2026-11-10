@@ -455,6 +455,8 @@ def relabel(doc, rows=None):
                            lambda m: '"%s"' % label_of[m.group(0)] if m.group(0) in label_of else m.group(0), t)
                 t = re.sub(r'(?:^|(?<=\. ))(.+?): \1[,;] ', r'\1: ', t)      # R4: never the label twice
             nt['text'] = t
+    if removed:      # a dropped connector takes its stub bundle with it (sweep 5, 2026-11-10: gen_cabin left bn_c_ECU_C)
+        doc['bundles'] = [b for b in doc.get('bundles', []) if b['sourceId'] not in removed and b['targetId'] not in removed]
     relabel.removed = sorted(removed)      # the empty connectors dropped (R5), for the generator's report
     return doc
 

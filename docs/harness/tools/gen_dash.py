@@ -1,5 +1,5 @@
 """harness.design copy of ST185-Dash, file "ST185-Dash Rev C" (Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
-gen_antitheft.py uses for "ST185-AntiTheft Rev A" (one small cabin harness each, same rules).
+gen_antitheft.py uses for "ST185-AntiTheft" (one small cabin harness each, same rules).
 Usage: python gen_dash.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/dash.json (whole document, wires already routed with genroute.py: upload as
 is), dash_lib_ops.json (part-library add ops, not applied by the generator) and dash_expect.json (routed length per wire id).
