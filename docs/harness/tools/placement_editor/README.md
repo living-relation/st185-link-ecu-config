@@ -13,8 +13,18 @@ One shared template for every harness's placement editor (CabinPower, WheelSpeed
 ## What Dan can do in it
 - Move devices on the top view (tap a dot to pick it, then drag it). Pan with one finger, zoom with two or with the + / - / Fit keys.
 - Set a device's drop (mm), undo, put one device or all of them back on Claude's spot, and Save.
-- Nothing else: routes, which route a device hangs on, and the device list come from the seed. No isometric view, no drawing lines, no adding or removing devices.
+- Nothing else (except the engine-bay editor, below): routes, which route a device hangs on, and the device list come from the seed. No isometric view, no drawing lines, no adding or removing devices.
 - A device moved more than `warnMm` (300 mm) from its seed spot is flagged on the map, in the list and in the save (`far`), never blocked.
+
+## Engine bay only: parts and overall routes (Dan W4 c, 2026-11-10)
+The AB-engine editor (`seeds/AB-engine.json`, db doc `layouts/route16`, the Route 16 editor link) is the one editor where Dan also draws routes. Its seed sets `drawRoutes: true`.
+
+- Dan can move every part already in the harness; none can be removed or added.
+- "Draw routes" mode: pick a route, drag its points, add points (a tap near another route snaps onto it), remove the last point, delete a route, start a new route, rename a route.
+- Dan draws the overall routes only, never each sensor's spur. After a save the agent hangs every sensor on the nearest of Dan's routes with its own spur; no sensor sits at 0 mm from a trunk or branch (the spur is at least the drawn offset plus the part's drop).
+- Extra seed keys, all optional and off for every other editor: `drawRoutes`, `unitMm` (mm per map unit; Route 16 points are 5.3), `compass` (the two marker labels), `noTurn` (never turn the map on a phone), `pad`, `minView`.
+- The save adds `lines` (the routes as Dan left them), `routesChanged`, `unitMm`, `editor: "parts-and-routes"`, and each device's nearest `line`.
+- Build it with the Route 16 engine-bay picture, not the under-body plan: pass an earlier engine-bay editor page (Harness C's or Route 16's) as the second argument.
 
 ## Make or reseed an editor
 1. Claude draws the harness's route in `ST185-harness.layout.json` (straight, shortest, cleanest) and writes a seed JSON: that harness's own devices on their rough spots, its lines, `doc` = `layouts/<harness>`, and a NEW `seedVersion`. A save made from an older `seedVersion` is not loaded (it stays in the db and is copied to `<doc>_prev` on the next save).
