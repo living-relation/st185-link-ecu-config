@@ -10,7 +10,7 @@ One shared template for every harness's placement editor (CabinPower, WheelSpeed
 - Other harnesses' parts, if shown for context, are grey fixed markers (`refs`), never draggable and never saved.
 - Front of the car to the RIGHT, driver side UP, on sideways phones and desktop, with a "Front → / Driver ↑" marker. On a phone held upright the map turns front UP / driver LEFT ("Front ↑ / Driver ←") when that fits the harness at least 10% bigger, e.g. the long rear harnesses (Dan I1 a, 2026-11-08); the turn is view-only, saves stay in car mm.
 
-- Zoom (Dan 2026-11-10): dots, markers and labels keep their screen size when zooming in, so close parts spread apart and can be placed; they shrink a little when zooming out. Zoom out goes past the Fit view (the whole plan plus 10%, at least 2.5x Fit). An editor built before this fix must be rebuilt to get it.
+- Zoom (Dan 2026-11-10): dots, markers and labels keep their screen size when zooming in, so close parts spread apart and can be placed; they shrink with the map when zooming out, so zooming out never adds overlap. Every dot is drawn on its true spot at every zoom; nothing is fanned out or rearranged. Zoom out goes past the Fit view (the whole plan plus 10%, at least 2.5x Fit). An editor built before this fix must be rebuilt to get it.
 
 ## What Dan can do in it
 - Move devices on the top view (tap a dot to pick it, then drag it). Pan with one finger, zoom with two or with the + / - / Fit keys.
