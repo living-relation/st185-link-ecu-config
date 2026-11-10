@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 import genroute
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV = 'AB-engine', 'ST185-AB-engine', 'H'
+NAME, TITLE, REV, DATE = 'AB-engine', 'ST185-AB-engine', 'H', '2026-11-10'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -375,7 +375,7 @@ pass_by = collections.defaultdict(list)
 for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
 head = [{"id": "n_title", "width": 360,
-         "text": TITLE + " Rev " + REV + " (2026-11-09): the ECU harness, engine-bay half (DRB102-ENGINE to every engine sensor and "
+         "text": TITLE + " Rev " + REV + " (" + DATE + "): the ECU harness, engine-bay half (DRB102-ENGINE to every engine sensor and "
                  "actuator, CAN-Lambda with its plug-in 120 ohm terminator, MR-S plugs B / C, starter S). Viewer copy generated from "
                  "docs/harness/MASTER-wirelist.csv (harness = AB-engine) by docs/harness/tools/gen_abeng.py; never a source. Schematic: "
                  "bulkhead in the centre third, splices beside it, shielded cables by their device, devices right in feed order, columns "
