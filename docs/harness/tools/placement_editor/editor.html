@@ -17,6 +17,12 @@ SEED FORMAT (the <script type="application/json" id="seed"> block):
                "x": -580, "y": 480, "line": "GB", "drop": null, "short": "POWER box"?}],   // only this harness's own parts (draggable); name = the master plain name (make_editor.py fills it), short = map label
   "refs": [{"id": "ECU", "label": "ECU", "name": "...", "x": -580, "y": 0}]   // optional: fixed grey markers for context (other harnesses' parts, factory spots); never moved, never saved
 }
+Optional seed keys (engine-bay editor, Dan W4 c 2026-11-10): "drawRoutes": true lets Dan also draw the overall routes (a "Draw routes"
+mode: pick a route, drag its points, add points, new route, delete route; parts can still only be moved, never removed; each part's
+lead to the nearest route is drawn by the page and built by Claude, Dan does not draw it); "unitMm": mm per map unit (default 1; the
+engine-bay map is in EWD points, 5.3 mm each); "compass": ["Front ...", "Driver ..."] chip texts with "noTurn": true for a map that is
+not front-right; "pad" / "minView": fit padding and closest zoom in map units. With drawRoutes the save holds Dan's lines and each
+device's nearest line id.
 No codes are shown to Dan (DECISIONS B22): ids are keys only; names come from the master. Fuse box / relay codes and factory EWD plug IDs may appear inside names.
 Map units are mm: x forward of the front axle line, y from the car centreline, driver side negative (up); front of the car to the RIGHT, driver side UP (AGENTS.md; a "Front / Driver" marker shows it). Exception (Dan I1 a, 2026-11-08):
 on a phone held upright the map turns 90 degrees (front UP, driver side LEFT) when that fits the harness bigger, e.g. the long rear
@@ -55,6 +61,7 @@ button{min-height:44px;min-width:44px;padding:0 14px;border:1px solid var(--line
   background:var(--panel);cursor:pointer;font-weight:600;touch-action:manipulation}
 button:disabled{opacity:.45;cursor:default}
 button.primary{background:var(--panel);color:var(--muted);border-color:var(--line)}
+button.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
 button.primary.due{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);opacity:1;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--accent)}
 button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 /* Phone (Dan 2026-11-08 "car view too small"): one-line header, the map takes the rest, the sheet is a 56 px peek bar
@@ -125,6 +132,10 @@ svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-web
   .sheet.open .peek .pm{display:none}
 }
 .confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.row.rt{flex-wrap:wrap!important}
+.row.rt input{width:11em;font-family:var(--f-ui)}
+.legend div.pick{cursor:pointer;padding:6px 4px;border-radius:6px}
+.legend div.pick.on{box-shadow:inset 0 0 0 2px var(--accent)}
 @media (min-width:900px){
   body{display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto minmax(0,1fr)}
   header{grid-column:1/-1}
@@ -138,6 +149,7 @@ svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-web
 
 <header>
   <h1 id="title" title="Move devices only - routes are drawn by Claude">Placement editor</h1>
+  <button id="modeb" hidden>Draw routes</button>
   <button id="undo" disabled aria-label="Undo last move">Undo</button>
   <button id="save" class="primary" disabled>Saved</button>
 </header>
@@ -160,8 +172,8 @@ svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-web
     <div class="card" id="card"></div>
     <div class="more" id="more" hidden>
       <div class="list" id="list"></div>
-      <div><h3 style="font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px">Routes (drawn by Claude, read only)</h3><div class="legend" id="legend"></div></div>
-      <p class="help">Tap a numbered dot to pick it, then drag it to where the part really sits. One finger on the map pans, two fingers zoom. The dashed stub shows where the device joins its route. You can't draw or change routes here: if a route looks wrong, tell Claude. A device moved more than the flag distance from where Claude put it is marked, so Claude can check it.</p>
+      <div><h3 id="legh" style="font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px">Routes (drawn by Claude, read only)</h3><div class="legend" id="legend"></div></div>
+      <p class="help" id="helpp">Tap a numbered dot to pick it, then drag it to where the part really sits. One finger on the map pans, two fingers zoom. The dashed stub shows where the device joins its route. You can't draw or change routes here: if a route looks wrong, tell Claude. A device moved more than the flag distance from where Claude put it is marked, so Claude can check it.</p>
       <div class="confirm" id="resetAllRow"><button id="resetAll">Reset all to Claude's spots</button></div>
     </div>
   </div>
@@ -172,11 +184,12 @@ svg{display:block;width:100%;height:100%;touch-action:none;user-select:none;-web
 (()=>{
 const SEED=JSON.parse(document.getElementById("seed").textContent);
 const NS="http://www.w3.org/2000/svg",$=id=>document.getElementById(id);
-const svg=$("svg"),WARN=SEED.warnMm||300;
+const svg=$("svg"),WARN=SEED.warnMm||300,U=SEED.unitMm||1,DRAW=!!SEED.drawRoutes,PAD=SEED.pad??40,MINW=SEED.minView||80,RND=U===1?1:10;
 const START=Object.fromEntries(SEED.devices.map(d=>[d.id,{x:d.x,y:d.y,drop:d.drop??null}]));
-const LINES=Object.fromEntries(SEED.lines.map(l=>[l.id,l]));
+let lines=SEED.lines.map(l=>({...l,pts:l.pts.map(p=>[p[0],p[1]])}));const LINE0=JSON.stringify(lines);
+const LINES=new Proxy({},{get:(_,id)=>lines.find(l=>l.id===id)});
 let devs=SEED.devices.map(d=>({...d,drop:d.drop??null}));
-let sel=null,undo=[],dirty=false,db=null,ready=false,loadedAt=null,vb=null;
+let sel=null,undo=[],dirty=false,db=null,ready=false,loadedAt=null,vb=null,mode="parts",selLine=null,adding=false;
 /* View turn (Dan I1 a): ROT = map drawn front UP / driver LEFT. T maps car mm -> view, TI back. View-only: data stays in car mm. */
 let ROT=false;const T=(p,r=ROT)=>r?[p[1],-p[0]]:[p[0],p[1]],TI=v=>ROT?[-v[1],v[0]]:[v[0],v[1]];
 function planV(r=ROT){if(!SEED.bg||!SEED.bg.rect)return null;const[px,py,pw,ph]=SEED.bg.rect;return r?[py,-(px+pw),ph,pw]:[px,py,pw,ph]}
@@ -192,15 +205,20 @@ function status(t,warn){const s=$("status");$("stext").textContent=t;s.title=t;s
 $("sx").onclick=()=>{$("status").hidden=true};
 function el(tag,a,p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e}
 function byId(id){return devs.find(d=>d.id===id)}
-function moved(d){const s=START[d.id];return Math.round(Math.hypot(d.x-s.x,d.y-s.y))}
+function moved(d){const s=START[d.id];return Math.round(Math.hypot(d.x-s.x,d.y-s.y)*U)}
 function near(p,a,b){const dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy;let t=L?((p[0]-a[0])*dx+(p[1]-a[1])*dy)/L:0;t=Math.max(0,Math.min(1,t));return[a[0]+t*dx,a[1]+t*dy]}
-function attach(d){const l=LINES[d.line];if(!l||l.pts.length<1)return null;if(l.pts.length===1)return l.pts[0];
-  let best=null,bd=Infinity;for(let i=0;i<l.pts.length-1;i++){const q=near([d.x,d.y],l.pts[i],l.pts[i+1]);const dd=Math.hypot(q[0]-d.x,q[1]-d.y);if(dd<bd){bd=dd;best=q}}return best}
+/* where a device joins its route. Refine-only: its own line. drawRoutes: the nearest of all lines (Dan does not draw each part's lead). */
+function attach(d){const cand=DRAW?lines:[LINES[d.line]];let best=null,bd=Infinity;
+  for(const l of cand){if(!l||l.pts.length<1)continue;const n=Math.max(1,l.pts.length-1);
+    for(let i=0;i<n;i++){const q=near([d.x,d.y],l.pts[i],l.pts[Math.min(i+1,l.pts.length-1)]);const dd=Math.hypot(q[0]-d.x,q[1]-d.y);if(dd<bd){bd=dd;best=[q[0],q[1]];best.line=l.id}}}
+  return best}
+function lenMm(l){let t=0;for(let i=0;i<l.pts.length-1;i++)t+=Math.hypot(l.pts[i+1][0]-l.pts[i][0],l.pts[i+1][1]-l.pts[i][1]);return Math.round(t*U)}
+function pushLines(){undo.push({lines:JSON.stringify(lines)});if(undo.length>200)undo.shift()}
 
 /* ---- view box: pan / zoom ---- */
 function bbox(rot=ROT){let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;const add=q=>{const p=T(q,rot);x0=Math.min(x0,p[0]);y0=Math.min(y0,p[1]);x1=Math.max(x1,p[0]);y1=Math.max(y1,p[1])};
-  devs.forEach(d=>add([d.x,d.y]));(SEED.refs||[]).forEach(r=>add([r.x,r.y]));SEED.lines.forEach(l=>l.pts.forEach(add));if(!isFinite(x0))return[0,0,1000,1000];
-  const pad=Math.max(40,(x1-x0)*.04,(y1-y0)*.04);return[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad]}
+  devs.forEach(d=>add([d.x,d.y]));(SEED.refs||[]).forEach(r=>add([r.x,r.y]));lines.forEach(l=>l.pts.forEach(add));if(!isFinite(x0))return[0,0,1000,1000];
+  const pad=Math.max(PAD,(x1-x0)*.04,(y1-y0)*.04);return[x0-pad,y0-pad,x1-x0+2*pad,y1-y0+2*pad]}
 /* Fit = the harness's own routes, devices and grey markers fill the map (not the whole car plan), leaving room for the
    orientation chip (top) and the zoom keys (right) so nothing sits under them. */
 let userView=false,fitS=null;
@@ -210,12 +228,12 @@ function clampToPlan(){const P=planV();if(!P)return;const[px,py,pw,ph]=P;
   if(vb[3]<=ph)vb[1]=Math.min(Math.max(vb[1],py),py+ph-vb[3]);else vb[1]=py+ph/2-vb[3]/2}
 /* widest view allowed: never zoom out past the plan (no empty grey band), but always at least the Fit view */
 function maxW(){const r=svg.getBoundingClientRect(),ar=r.height/Math.max(1,r.width);let m=20000;
-  const P=planV();if(P){const[, ,pw,ph]=P;m=Math.min(pw,ph/Math.max(1e-6,ar))}return Math.max(m,fitS?fitS*r.width:80)}
+  const P=planV();if(P){const[, ,pw,ph]=P;m=Math.min(pw,ph/Math.max(1e-6,ar))}return Math.max(m,fitS?fitS*r.width:MINW)}
 function margins(W,H){return{t:Math.min(40,H*.12),b:Math.min(12,H*.04),l:Math.min(12,W*.04),r:Math.min(58,W*.16)}}
 function fitScale(rot,W,H){const b=bbox(rot),m=margins(W,H);return Math.max(b[2]/Math.max(1,W-m.l-m.r),b[3]/Math.max(1,H-m.t-m.b))}
 /* turn the view on an upright phone only, and only when the turned view fits the harness clearly bigger. Judged on the
    window size (minus header and peek bar), not the map box, so opening the device sheet never flips the turn. */
-function wantRot(){const W=window.innerWidth,H=window.innerHeight-100;if(W<20||H<20)return ROT;
+function wantRot(){if(SEED.noTurn)return false;const W=window.innerWidth,H=window.innerHeight-100;if(W<20||H<20)return ROT;
   if(W>=900||!(H>W))return false;return fitScale(true,W,H)<fitScale(false,W,H)*.9}
 function setRot(r){ROT=r;$("cf").innerHTML=r?"Front &uarr;":"Front &rarr;";$("cd").innerHTML=r?"Driver &larr;":"Driver &uarr;";
   $("compass").setAttribute("aria-label",r?"Map orientation: front of the car up, driver side left":"Map orientation: front of the car to the right, driver side up");
@@ -231,7 +249,7 @@ function applyVB(){svg.setAttribute("viewBox",vb.join(" "));draw()}
 function mmPerPx(){return vb[2]/Math.max(1,svg.getBoundingClientRect().width)}
 function toMap(cx,cy){const r=svg.getBoundingClientRect();return[vb[0]+(cx-r.left)/r.width*vb[2],vb[1]+(cy-r.top)/r.height*vb[3]]}
 function zoomAt(f,cx,cy){userView=true;const r=svg.getBoundingClientRect();if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2}
-  const p=toMap(cx,cy),nw=Math.min(maxW(),Math.max(80,vb[2]/f)),k=nw/vb[2];vb=[p[0]-(p[0]-vb[0])*k,p[1]-(p[1]-vb[1])*k,nw,vb[3]*k];clampToPlan();applyVB()}
+  const p=toMap(cx,cy),nw=Math.min(maxW(),Math.max(MINW,vb[2]/f)),k=nw/vb[2];vb=[p[0]-(p[0]-vb[0])*k,p[1]-(p[1]-vb[1])*k,nw,vb[3]*k];clampToPlan();applyVB()}
 function centerOn(d){userView=true;const c=T([d.x,d.y]);vb=[c[0]-vb[2]/2,c[1]-vb[3]/2,vb[2],vb[3]];clampToPlan();applyVB()}
 
 /* ---- draw ---- */
@@ -248,14 +266,16 @@ function draw(){
   /* Sizes follow the zoom (Dan 2026-11-08 "devices and lines don't scale with zoom"): z = zoom against the Fit view.
      Lines are LINE_MM wide on the plan (clamped 2-14 px on screen); dots, markers and labels grow and shrink with z
      inside clamps (0.7x-2x), so they stay readable zoomed out and in proportion zoomed in. Touch targets stay 48 px. */
-  const z=fitS?fitS/s:1,k=Math.min(2,Math.max(.7,z)),kt=Math.min(1.6,Math.max(.85,z)),LINE_MM=9;
+  const z=fitS?fitS/s:1,k=Math.min(2,Math.max(.7,z)),kt=Math.min(1.6,Math.max(.85,z)),LINE_MM=9/U,RT=DRAW&&mode==="routes";
   const DR=10*k,RH=7.5*k,LW=Math.min(14,Math.max(2,LINE_MM/s)),FS=10.5*kt,FD=10*k,OUT=Math.max(1,1.1*k);
   const REFS=SEED.refs||[],V=p=>T(p),DV=devs.map(d=>V([d.x,d.y])),RV=REFS.map(r=>V([r.x,r.y])),
     items=[...DV.map(p=>({x:p[0],y:p[1]})),...RV.map(p=>({x:p[0],y:p[1]}))],pos=fan(items,s,2*DR+4),boxes=[];
   pos.forEach(p=>boxes.push([p[0]-(DR+2)*s,p[1]-(DR+2)*s,p[0]+(DR+2)*s,p[1]+(DR+2)*s]));
-  for(const l of SEED.lines){if(l.pts.length<2)continue;
-    el("polyline",{points:l.pts.map(p=>V(p).join(",")).join(" "),fill:"none",stroke:l.color||"#555","stroke-width":LW*s,
-      "stroke-dasharray":l.dash?`${2*LW*s} ${1.3*LW*s}`:"none","stroke-linecap":"round","stroke-linejoin":"round",opacity:.9},gl)}
+  for(const l of lines){if(l.pts.length<2)continue;const P=l.pts.map(p=>V(p).join(",")).join(" ");
+    if(RT&&l.id===selLine)el("polyline",{points:P,fill:"none",stroke:"#1d5fb4","stroke-width":(LW+7)*s,"stroke-linecap":"round","stroke-linejoin":"round",opacity:.35},gl);
+    el("polyline",{points:P,fill:"none",stroke:l.color||"#555","stroke-width":LW*s,
+      "stroke-dasharray":l.dash?`${2*LW*s} ${1.3*LW*s}`:"none","stroke-linecap":"round","stroke-linejoin":"round",opacity:.9},gl);
+    if(RT)el("polyline",{points:P,fill:"none",stroke:"#000","stroke-opacity":0,"stroke-width":Math.max(30,LW+16)*s,"data-line":l.id,"stroke-linecap":"round","stroke-linejoin":"round"},gl)}
   const refAt=REFS.map((r,i)=>{const p=pos[devs.length+i],t=r.label||r.id,w=(t.length*FS*.58+4)*s,h=(FS+2)*s,o=RH+5;
     const inView=bx=>bx[0]>=vb[0]+4*s&&bx[2]<=vb[0]+vb[2]-64*s;   /* keep labels on screen and clear of the zoom keys */
     const c=FS*.38*s;
@@ -267,14 +287,14 @@ function draw(){
     el("rect",{x:p[0]-RH*s,y:p[1]-RH*s,width:2*RH*s,height:2*RH*s,rx:2*k*s,fill:"#c9ced3",stroke:"#5d666e","stroke-width":OUT*s},g);
     const tl=el("text",{x:refAt[i][0],y:refAt[i][1],"font-size":FS*s,fill:"#3c444b","font-family":"IBM Plex Sans Condensed, sans-serif",stroke:"#fbfbf8","stroke-width":3*s,"paint-order":"stroke"},g);tl.textContent=r.label||r.id;
     const ti=el("title",{},g);ti.textContent=r.name+" (fixed, not part of this harness's moves)"});
-  for(const l of SEED.lines){if(l.pts.length<2)continue;const lt=l.short||"";if(!lt)continue;const w=(lt.length*FS*.62+6)*s,h=(FS+3)*s;let at=null;
+  for(const l of lines){if(l.pts.length<2)continue;const lt=l.short||"";if(!lt)continue;const w=(lt.length*FS*.62+6)*s,h=(FS+3)*s;let at=null;
     for(let i=l.pts.length-2;i>=0&&!at;i--){const a=V(l.pts[i]),b=V(l.pts[i+1]);
       for(const t of [.5,.25,.75])for(const [ox,oy] of [[6,-6],[6,16],[-6-w/s,-6],[-6-w/s,16]]){const x=a[0]+(b[0]-a[0])*t+ox*s,y=a[1]+(b[1]-a[1])*t+oy*s,bx=[x,y-h+3*s,x+w,y+3*s];if(!at&&!hit(bx,boxes))at=[x,y,bx]}}
     if(!at)continue;boxes.push(at[2]);
     const t=el("text",{x:at[0],y:at[1],"font-size":(FS+1)*s,fill:l.color||"#555","font-weight":"700","font-family":"IBM Plex Mono, monospace",stroke:"#fbfbf8","stroke-width":3*s,"paint-order":"stroke"},gl);t.textContent=lt}
   devs.forEach((d,i)=>{const p=pos[i],q=DV[i],a0=attach(d),a=a0&&V(a0),far=moved(d)>WARN,on=d.id===sel;
     if(a)el("line",{x1:q[0],y1:q[1],x2:a[0],y2:a[1],stroke:"#101418","stroke-width":1.4*k*s,"stroke-dasharray":`${4*k*s} ${3*k*s}`},gs);
-    const g=el("g",{"data-id":d.id,role:"button","aria-label":d.n+" "+d.name},gd);
+    const g=el("g",{"data-id":d.id,role:"button","aria-label":d.n+" "+d.name},gd);if(RT){g.setAttribute("pointer-events","none");g.setAttribute("opacity",.6)}
     if(p[0]!==q[0]||p[1]!==q[1]){el("line",{x1:q[0],y1:q[1],x2:p[0],y2:p[1],stroke:"#101418","stroke-width":OUT*s},g);el("circle",{cx:q[0],cy:q[1],r:2.4*k*s,fill:"#101418"},g)}
     el("circle",{cx:p[0],cy:p[1],r:Math.max(24,DR+6)*s,fill:"#000","fill-opacity":0},g); /* >= 48 px touch target */
     if(far)el("circle",{cx:p[0],cy:p[1],r:(DR+4)*s,fill:"none",stroke:"#d97706","stroke-width":3*k*s},g);
@@ -283,19 +303,39 @@ function draw(){
     else el("circle",{cx:p[0],cy:p[1],r,fill:"#ffe873",stroke:"#101418","stroke-width":OUT*s},g);
     const t=el("text",{x:p[0],y:p[1]+FD*.36*s,"text-anchor":"middle","font-size":FD*s,"font-weight":"700",fill:"#101418","font-family":"IBM Plex Mono, monospace"},g);t.textContent=d.n;
     if(on){const lb=el("text",{x:p[0]+(DR+9)*s,y:p[1]+FS*.4*s,"font-size":(FS+2)*s,"font-weight":"700",fill:"#101418",stroke:"#fbfbf8","stroke-width":4*s,"paint-order":"stroke","font-family":"IBM Plex Sans Condensed, sans-serif"},g);lb.textContent=d.short||d.name}})
+  /* route point handles (Draw routes mode, picked route): drag to move; the last point is ringed while adding */
+  const sl=RT&&LINES[selLine];if(sl)sl.pts.forEach((q,i)=>{const p=V(q),last=i===sl.pts.length-1;
+    el("circle",{cx:p[0],cy:p[1],r:(last&&adding?9:7)*k*s,fill:"#fff",stroke:"#1d5fb4","stroke-width":3*k*s,"pointer-events":"none"},gd);
+    el("circle",{cx:p[0],cy:p[1],r:24*s,fill:"#000","fill-opacity":0,"data-pt":i},gd)})
 }
 function renderPeek(){const d=byId(sel),pl=$("pl"),pm=$("pm");pl.classList.toggle("none",!d);
   if(!d){$("pn").textContent=`Tap a dot to pick a device · ${devs.length} devices, ${devs.filter(x=>moved(x)>0).length} moved`;pm.textContent="";pm.className="pm";return}
   const m=moved(d);$("pn").textContent=`${d.n} · ${d.name}`;pm.className="pm"+(m>WARN?" w":"");
   pm.textContent=m>WARN?`Moved ${m} mm - more than ${WARN} mm, Claude will check it`:(m?`Moved ${m} mm`:"On Claude's spot")}
+function renderRoutes(){const c=$("card"),l=LINES[selLine],pm=$("pm");c.innerHTML="";$("pl").classList.toggle("none",!l);pm.className="pm";
+  $("pn").textContent=l?l.name:"Tap a route to pick it, or make a new one";
+  pm.textContent=l?`${lenMm(l)} mm · ${l.pts.length} points`+(adding?" · tap the map to add points":""):"";
+  if(l){const row=document.createElement("div");row.className="row rt";
+    row.innerHTML='<input id="lname" aria-label="Route name"><button id="ladd" class="primary"></button><button id="lpop">Remove last point</button><button id="ldel">Delete route</button>';c.appendChild(row);
+    const ni=row.querySelector("#lname");ni.value=l.name;ni.onchange=()=>{pushLines();LINES[selLine].name=ni.value.trim()||"Route";mark();renderLegend();renderSide()};
+    const ab=row.querySelector("#ladd");ab.textContent=adding?"Done adding":"Add points";ab.classList.toggle("due",adding);ab.onclick=()=>{adding=!adding;draw();renderSide()};
+    const pb=row.querySelector("#lpop");pb.disabled=!l.pts.length;pb.onclick=()=>{pushLines();LINES[selLine].pts.pop();mark();draw();renderSide()};
+    row.querySelector("#ldel").onclick=()=>{row.innerHTML='<span>Delete this route? Parts stay.</span><button id="ly">Yes, delete</button><button id="ln">Cancel</button>';
+      row.querySelector("#ln").onclick=renderSide;row.querySelector("#ly").onclick=()=>{pushLines();lines=lines.filter(x=>x.id!==selLine);selLine=null;adding=false;mark();draw();renderLegend();renderSide()}}}
+  const r2=document.createElement("div");r2.className="row rt";r2.innerHTML='<button id="lnew">New route</button>';c.appendChild(r2);
+  r2.querySelector("#lnew").onclick=()=>{pushLines();let n=1;while(lines.some(x=>x.id==="U"+n))n++;const cols=["#d10f14","#1d5fb4","#2f7d4a","#e65100","#6a1b9a","#00838f","#795548","#c2185b"];
+    lines.push({id:"U"+n,name:"New route "+n,color:cols[lines.length%cols.length],dash:false,pts:[]});selLine="U"+n;adding=true;mark();renderLegend();draw();renderSide()}}
+function setMode(m){mode=m;sel=null;adding=false;if(m==="parts")selLine=null;const b=$("modeb");b.textContent=m==="routes"?"Move parts":"Draw routes";b.classList.toggle("on",m==="routes");
+  b.setAttribute("aria-pressed",String(m==="routes"));draw();renderLegend();renderSide()}
 function renderSide(){
+  if(DRAW&&mode==="routes"){renderRoutes();renderList();return}
   const c=$("card"),d=byId(sel);renderPeek();
   if(!d){c.innerHTML=""}
   else{const m=moved(d);c.innerHTML="";
     const top=document.createElement("div");top.className="top open-only";
     top.innerHTML=`<span class="num${d.kind==="handoff"?" ho":""}"></span><div style="min-width:0"><h2></h2><div class="meta"></div></div>`;
     top.querySelector(".num").textContent=d.n;top.querySelector("h2").textContent=d.name;
-    top.querySelector(".meta").textContent=`x ${Math.round(d.x)}  y ${Math.round(d.y)} mm  ·  route ${d.line?(LINES[d.line]?.short||LINES[d.line]?.name||"-"):"none"}  ·  moved ${m} mm`;c.appendChild(top);
+    const dl=DRAW?(attach(d)||{}).line:d.line;top.querySelector(".meta").textContent=`x ${Math.round(d.x)}  y ${Math.round(d.y)}${U===1?" mm":""}  ·  route ${dl?(LINES[dl]?.short||LINES[dl]?.name||"-"):"none"}  ·  moved ${m} mm`;c.appendChild(top);
     if(d.note){const p=document.createElement("p");p.className="note open-only";p.textContent=d.note;c.appendChild(p)}
     if(m>WARN){const w=document.createElement("div");w.className="far open-only";w.textContent=`Moved ${m} mm from Claude's spot (more than ${WARN} mm). Fine if that's where it really is: Claude will check it after you save.`;c.appendChild(w)}
     const row=document.createElement("div");row.className="row";
@@ -312,7 +352,8 @@ function renderList(){const L=$("list");L.innerHTML="";let g=null;
     b.querySelector(".num").textContent=d.n;b.querySelector(".nm").textContent=d.name;b.querySelector(".d").textContent=m?`${m} mm`:"";
     b.onclick=()=>{sel=d.id;centerOn(d);renderSide()};L.appendChild(b)}
   $("undo").disabled=!undo.length;const sv=$("save");sv.disabled=!dirty;sv.classList.toggle("due",dirty);sv.textContent=dirty?"Save changes":"Saved"}
-function renderLegend(){const L=$("legend");L.innerHTML="";for(const l of SEED.lines){const r=document.createElement("div");r.innerHTML=`<span style="background:${l.color||"#555"}"></span>`;r.append(l.name);L.appendChild(r)}}
+function renderLegend(){const L=$("legend");L.innerHTML="";for(const l of lines){const r=document.createElement("div");r.innerHTML=`<span style="background:${l.color||"#555"}"></span>`;r.append(DRAW?`${l.name} · ${lenMm(l)} mm`:l.name);
+    if(DRAW){r.className="pick"+(mode==="routes"&&l.id===selLine?" on":"");r.setAttribute("role","button");r.tabIndex=0;r.onclick=()=>{if(mode!=="routes")setMode("routes");selLine=l.id;adding=false;draw();renderLegend();renderSide()}}L.appendChild(r)}}
 function push(d){undo.push({id:d.id,x:d.x,y:d.y,drop:d.drop});if(undo.length>200)undo.shift()}
 function mark(){dirty=true;status("Unsaved changes - press Save changes when done");renderList()}
 
@@ -320,29 +361,48 @@ function mark(){dirty=true;status("Unsaved changes - press Save changes when don
 function devAt(t){const g=t.closest&&t.closest("g[data-id]");return g?g.getAttribute("data-id"):null}
 svg.addEventListener("pointerdown",e=>{svg.setPointerCapture(e.pointerId);ptrs.set(e.pointerId,[e.clientX,e.clientY]);
   if(ptrs.size===2){if(gest&&gest.kind==="drag"&&gest.moved){const d=byId(gest.id);Object.assign(d,gest.from);undo.pop()}
+    if(gest&&gest.kind==="pt"&&gest.moved){lines=JSON.parse(undo.pop().lines)}
     const [a,b]=[...ptrs.values()];gest={kind:"pinch",d0:Math.hypot(a[0]-b[0],a[1]-b[1]),vb0:vb.slice(),c:[(a[0]+b[0])/2,(a[1]+b[1])/2]};draw();return}
+  if(DRAW&&mode==="routes"){const t=e.target,pi=t.getAttribute&&t.getAttribute("data-pt"),li=t.getAttribute&&t.getAttribute("data-line");
+    if(pi!=null&&ready&&LINES[selLine]){const q=LINES[selLine].pts[+pi];gest={kind:"pt",i:+pi,from:[q[0],q[1]],start:[e.clientX,e.clientY],m0:TI(toMap(e.clientX,e.clientY)),moved:false}}
+    else gest={kind:"pan",line:li||null,start:[e.clientX,e.clientY],vb0:vb.slice(),moved:false};return}
   const id=devAt(e.target);
   if(id&&id===sel&&ready){const d=byId(id);gest={kind:"drag",id,from:{x:d.x,y:d.y,drop:d.drop},start:[e.clientX,e.clientY],m0:TI(toMap(e.clientX,e.clientY)),moved:false}}
   else gest={kind:"pan",id,start:[e.clientX,e.clientY],vb0:vb.slice(),moved:false}});
 svg.addEventListener("pointermove",e=>{if(!ptrs.has(e.pointerId)||!gest)return;ptrs.set(e.pointerId,[e.clientX,e.clientY]);
   if(gest.kind==="pinch"&&ptrs.size===2){const [a,b]=[...ptrs.values()],dd=Math.hypot(a[0]-b[0],a[1]-b[1]);vb=gest.vb0.slice();
     const r=svg.getBoundingClientRect(),c=gest.c,p=[vb[0]+(c[0]-r.left)/r.width*vb[2],vb[1]+(c[1]-r.top)/r.height*vb[3]];
-    const nw=Math.min(maxW(),Math.max(80,gest.vb0[2]*gest.d0/Math.max(1,dd))),k=nw/gest.vb0[2];
+    const nw=Math.min(maxW(),Math.max(MINW,gest.vb0[2]*gest.d0/Math.max(1,dd))),k=nw/gest.vb0[2];
     userView=true;const mc=[(a[0]+b[0])/2,(a[1]+b[1])/2];vb=[p[0]-(mc[0]-r.left)/r.width*nw,p[1]-(mc[1]-r.top)/r.height*gest.vb0[3]*k,nw,gest.vb0[3]*k];clampToPlan();applyVB();return}
   const dx=e.clientX-gest.start[0],dy=e.clientY-gest.start[1];if(!gest.moved&&Math.hypot(dx,dy)<6)return;
+  if(gest.kind==="pt"){const l=LINES[selLine];if(!l)return;if(!gest.moved){pushLines();gest.moved=true}const p=TI(toMap(e.clientX,e.clientY));
+    LINES[selLine].pts[gest.i]=[Math.round((gest.from[0]+p[0]-gest.m0[0])*10)/10,Math.round((gest.from[1]+p[1]-gest.m0[1])*10)/10];draw();return}
   if(gest.kind==="drag"){const d=byId(gest.id);if(!gest.moved){push({id:d.id,...gest.from});gest.moved=true}
-    const p=TI(toMap(e.clientX,e.clientY));d.x=Math.round(gest.from.x+p[0]-gest.m0[0]);d.y=Math.round(gest.from.y+p[1]-gest.m0[1]);draw();
+    const p=TI(toMap(e.clientX,e.clientY));d.x=Math.round((gest.from.x+p[0]-gest.m0[0])*RND)/RND;d.y=Math.round((gest.from.y+p[1]-gest.m0[1])*RND)/RND;draw();
     const m=moved(d);status(`${d.n} ${d.short||d.name}: moved ${m} mm${m>WARN?" - more than "+WARN+" mm, Claude will check it":""}`,m>WARN)}
   else if(gest.kind==="pan"){gest.moved=true;userView=true;const s=mmPerPx();vb=[gest.vb0[0]-dx*s,gest.vb0[1]-dy*s,vb[2],vb[3]];clampToPlan();applyVB()}});
 function end(e){if(!ptrs.has(e.pointerId))return;ptrs.delete(e.pointerId);if(!gest)return;
   if(gest.kind==="pinch"){if(ptrs.size===0)gest=null;return}
-  if(gest.kind==="drag"&&gest.moved){mark();renderSide()}
-  else if(gest.kind==="pan"&&!gest.moved){sel=gest.id||null;draw();renderSide()}
+  if(gest.kind==="pt"){if(gest.moved){mark();renderLegend();renderSide()}}
+  else if(gest.kind==="drag"&&gest.moved){mark();renderSide()}
+  else if(gest.kind==="pan"&&!gest.moved){
+    if(DRAW&&mode==="routes"){
+      /* adding: a tap adds a point to the end of the picked route (snapped onto another route when the tap lands on one, for a clean join) */
+      if(adding&&selLine&&ready&&LINES[selLine]){pushLines();let p=TI(toMap(e.clientX,e.clientY));const o=gest.line&&gest.line!==selLine&&LINES[gest.line];
+        if(o&&o.pts.length>1){let b=null,bd=Infinity;for(let i=0;i<o.pts.length-1;i++){const q=near(p,o.pts[i],o.pts[i+1]),dd=Math.hypot(q[0]-p[0],q[1]-p[1]);if(dd<bd){bd=dd;b=q}}p=b}
+        LINES[selLine].pts.push([Math.round(p[0]*10)/10,Math.round(p[1]*10)/10]);mark();renderLegend()}
+      else if(gest.line){selLine=gest.line;renderLegend()}
+      else{selLine=null;adding=false;renderLegend()}
+      draw();renderSide()}
+    else{sel=gest.id||null;draw();renderSide()}}
   gest=null}
-svg.addEventListener("pointerup",end);svg.addEventListener("pointercancel",e=>{if(gest&&gest.kind==="drag"&&gest.moved){const d=byId(gest.id);Object.assign(d,gest.from);undo.pop();draw()}end(e)});
+svg.addEventListener("pointerup",end);svg.addEventListener("pointercancel",e=>{if(gest&&gest.kind==="drag"&&gest.moved){const d=byId(gest.id);Object.assign(d,gest.from);undo.pop();draw()}
+  if(gest&&gest.kind==="pt"&&gest.moved){lines=JSON.parse(undo.pop().lines);gest.moved=false;draw()}if(gest&&gest.kind==="pan")gest.moved=true;end(e)});
 svg.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX,e.clientY)},{passive:false});
 $("zin").onclick=()=>zoomAt(1.4);$("zout").onclick=()=>zoomAt(1/1.4);$("zfit").onclick=()=>{userView=false;fit()};
-$("undo").onclick=()=>{const u=undo.pop();if(!u)return;const d=byId(u.id);Object.assign(d,{x:u.x,y:u.y,drop:u.drop});sel=d.id;mark();draw();renderSide()};
+$("undo").onclick=()=>{const u=undo.pop();if(!u)return;
+  if(u.lines){lines=JSON.parse(u.lines);if(!LINES[selLine]){selLine=null;adding=false}mark();draw();renderLegend();renderSide();return}
+  const d=byId(u.id);Object.assign(d,{x:u.x,y:u.y,drop:u.drop});sel=d.id;mark();draw();renderSide()};
 /* peek bar: tap toggles the full list, swipe up opens it, swipe down closes it */
 function setOpen(open){$("more").hidden=!open;$("sheet").classList.toggle("open",open);$("grab").setAttribute("aria-expanded",String(open));$("pr").innerHTML=open?"Close &#9660;":"List &#9650;"}
 let peekY=null;
@@ -362,15 +422,20 @@ $("save").onclick=async()=>{if(!ready)return;if(!db){status("Can't save here: op
     if(cv&&(cv.savedAt||null)!==loadedAt){status("Not saved: a newer save exists. Reload the page to get it; your moves are still on screen.",true);return}
     if(cv)await db.doc(SEED.doc+"_prev").set(cv);
     const at=new Date().toISOString(),mv=devs.map(d=>({id:d.id,mm:moved(d)})).filter(m=>m.mm>0);
-    await ref.set({lines:SEED.lines,devices:devs.map(d=>({n:d.n,id:d.id,name:d.name,x:d.x,y:d.y,line:d.line||"",drop:d.drop??null})),
-      savedAt:at,savedFrom:SEED.harness+" placement editor (refine-only)",editor:"refine-only",seedVersion:SEED.seedVersion||null,
-      unchangedSeed:!mv.length&&devs.every(d=>(d.drop??null)===(START[d.id].drop??null)),moved:mv,far:mv.filter(m=>m.mm>WARN).map(m=>m.id)});
+    await ref.set({lines:DRAW?lines:SEED.lines,devices:devs.map(d=>({n:d.n,id:d.id,name:d.name,x:d.x,y:d.y,line:DRAW?((attach(d)||{}).line||""):(d.line||""),drop:d.drop??null})),
+      savedAt:at,savedFrom:SEED.harness+" placement editor ("+(DRAW?"parts and routes":"refine-only")+")",editor:DRAW?"parts-and-routes":"refine-only",seedVersion:SEED.seedVersion||null,
+      routesChanged:DRAW?JSON.stringify(lines)!==LINE0:false,unitMm:U,
+      unchangedSeed:!mv.length&&devs.every(d=>(d.drop??null)===(START[d.id].drop??null))&&(!DRAW||JSON.stringify(lines)===LINE0),moved:mv,far:mv.filter(m=>m.mm>WARN).map(m=>m.id)});
     loadedAt=at;dirty=false;renderList();status("Saved "+new Date(at).toLocaleTimeString()+". Your previous save is kept as a backup.")}
   catch(err){status("Save failed: "+(err&&err.message||err)+". Your moves are still on screen.",true)}};
 window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault()}});
 
 const bg=$("bg");if(SEED.bg&&SEED.bg.img){bg.setAttribute("href",SEED.bg.img);const[r0,r1,r2,r3]=SEED.bg.rect;bg.setAttribute("x",r0);bg.setAttribute("y",r1);bg.setAttribute("width",r2);bg.setAttribute("height",r3)}
-window.__pe={T:(p,r)=>T(p,r),TI:v=>TI(v),rot:()=>ROT,devs:()=>devs.map(d=>({id:d.id,x:d.x,y:d.y})),toMap:(x,y)=>toMap(x,y)};
+window.__pe={T:(p,r)=>T(p,r),TI:v=>TI(v),rot:()=>ROT,devs:()=>devs.map(d=>({id:d.id,x:d.x,y:d.y})),toMap:(x,y)=>toMap(x,y),lines:()=>lines,mode:()=>mode};
+if(SEED.compass){$("cf").textContent=SEED.compass[0];$("cd").textContent=SEED.compass[1];$("compass").setAttribute("aria-label","Map orientation: "+SEED.compass.join(", "))}
+if(DRAW){const mb=$("modeb");mb.hidden=false;mb.onclick=()=>setMode(mode==="routes"?"parts":"routes");$("legh").textContent="Routes (tap one to edit it)";
+  $("title").title="Move parts and draw the overall routes";
+  $("helpp").textContent="Move parts: tap a numbered dot to pick it, then drag it to where the part really sits. Draw routes: press Draw routes, tap a route to pick it, then drag its points, or press Add points and tap the map (tap another route to join it cleanly). Draw only the main runs and shared branches: Claude gives every part its own short lead to the nearest route (the dashed stub), so no part is wired at zero length. Parts can't be removed. Undo steps back one change. Press Save changes when done."}
 renderLegend();fit();renderSide();status("Loading your saved spots... (moving unlocks when loaded)");
 const refit=()=>{if(orient()||!userView)fit()};[60,300,1000,2500].forEach(ms=>setTimeout(refit,ms));
 window.addEventListener("resize",refit);window.visualViewport&&window.visualViewport.addEventListener("resize",refit);
@@ -382,6 +447,7 @@ new ResizeObserver(()=>{if(!vb)return;if(orient()||!userView){fit();return}
   try{const snap=await db.doc(SEED.doc).get(),v=snap&&snap.exists?snap.data():null;clearTimeout(to);
     if(v&&v.devices&&(v.seedVersion||null)===(SEED.seedVersion||null)){const by=Object.fromEntries(v.devices.map(d=>[d.id,d]));
       devs.forEach(d=>{const s=by[d.id];if(s&&typeof s.x==="number"&&typeof s.y==="number"){d.x=s.x;d.y=s.y;d.drop=s.drop??null}});
+      if(DRAW&&Array.isArray(v.lines)){lines=v.lines.map(l=>({...l,pts:(l.pts||[]).map(p=>[p[0],p[1]])}));renderLegend()}
       loadedAt=v.savedAt||null;status("Loaded your save"+(v.savedAt?" of "+new Date(v.savedAt).toLocaleString():""))}
     else{loadedAt=v?v.savedAt||null:null;status(v?"New starting spots from Claude. Your older save is kept and will be backed up when you save.":"Claude's starting spots. Move what's off, then Save.")}
     ready=true;draw();renderSide()}

@@ -1,0 +1,582 @@
+{
+ "harness": "AB-engine",
+ "doc": "layouts/route16",
+ "seedVersion": "ABengine-w4c-1",
+ "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-10-28 part spots + the 2026-11-09 shared-branch draft.",
+ "warnMm": 300,
+ "unitMm": 5.3,
+ "drawRoutes": true,
+ "noTurn": true,
+ "compass": [
+  "Front ↓",
+  "Driver →"
+ ],
+ "pad": 8,
+ "minView": 40,
+ "bg": {
+  "rect": [
+   110,
+   85,
+   380,
+   315
+  ]
+ },
+ "lines": [
+  {
+   "id": "L1",
+   "name": "Main trunk",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     213.1,
+     182.0
+    ],
+    [
+     359.9,
+     201.9
+    ]
+   ]
+  },
+  {
+   "id": "L2",
+   "name": "Driver-side drop",
+   "color": "#8e24aa",
+   "dash": false,
+   "pts": [
+    [
+     345.0,
+     199.88
+    ],
+    [
+     372.2,
+     275.1
+    ],
+    [
+     345.8,
+     287.0
+    ]
+   ]
+  },
+  {
+   "id": "L4",
+   "name": "Passenger front run",
+   "color": "#00838f",
+   "dash": false,
+   "pts": [
+    [
+     213.1,
+     247.0
+    ],
+    [
+     201.5,
+     280.0
+    ],
+    [
+     226.5,
+     309.4
+    ]
+   ]
+  },
+  {
+   "id": "L5",
+   "name": "Intake sensor branch",
+   "color": "#00897b",
+   "dash": false,
+   "pts": [
+    [
+     305.8,
+     194.57
+    ],
+    [
+     305.8,
+     170.0
+    ],
+    [
+     386.9,
+     159.6
+    ]
+   ]
+  },
+  {
+   "id": "L6",
+   "name": "Belt-end drop",
+   "color": "#3949ab",
+   "dash": false,
+   "pts": [
+    [
+     213.1,
+     182.0
+    ],
+    [
+     213.1,
+     247.0
+    ],
+    [
+     239.0,
+     268.5
+    ],
+    [
+     242.0,
+     285.8
+    ]
+   ]
+  },
+  {
+   "id": "L7",
+   "name": "Injector branch",
+   "color": "#1565c0",
+   "dash": false,
+   "pts": [
+    [
+     259.1,
+     188.24
+    ],
+    [
+     259.1,
+     204.5
+    ],
+    [
+     299.3,
+     206.7
+    ]
+   ]
+  },
+  {
+   "id": "L8",
+   "name": "Coil branch",
+   "color": "#f9a825",
+   "dash": false,
+   "pts": [
+    [
+     318.0,
+     196.22
+    ],
+    [
+     318.0,
+     219.0
+    ],
+    [
+     255.5,
+     218.1
+    ]
+   ]
+  },
+  {
+   "id": "BH",
+   "name": "Bulkhead stub",
+   "color": "#101418",
+   "dash": false,
+   "pts": [
+    [
+     213.1,
+     182.0
+    ],
+    [
+     213.1,
+     152.0
+    ]
+   ]
+  },
+  {
+   "id": "N3",
+   "name": "Driver-side sensor branch",
+   "color": "#ef6c00",
+   "dash": false,
+   "pts": [
+    [
+     353.0,
+     222.0
+    ],
+    [
+     320.3,
+     223.4
+    ]
+   ]
+  },
+  {
+   "id": "N19",
+   "name": "Turbo branch",
+   "color": "#6d4c41",
+   "dash": false,
+   "pts": [
+    [
+     359.33,
+     239.5
+    ],
+    [
+     332.4,
+     239.6
+    ],
+    [
+     322.9,
+     256.0
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "9",
+   "id": "COIL-1",
+   "name": "COIL-1",
+   "group": "Coils",
+   "note": "",
+   "x": 255.5,
+   "y": 218.1,
+   "line": "L8",
+   "drop": null
+  },
+  {
+   "n": "10",
+   "id": "COIL-2",
+   "name": "COIL-2",
+   "group": "Coils",
+   "note": "",
+   "x": 271,
+   "y": 218.6,
+   "line": "L8",
+   "drop": null
+  },
+  {
+   "n": "11",
+   "id": "COIL-3",
+   "name": "COIL-3",
+   "group": "Coils",
+   "note": "",
+   "x": 290.4,
+   "y": 218.8,
+   "line": "L8",
+   "drop": null
+  },
+  {
+   "n": "12",
+   "id": "COIL-4",
+   "name": "COIL-4",
+   "group": "Coils",
+   "note": "",
+   "x": 310.1,
+   "y": 219.1,
+   "line": "L8",
+   "drop": null
+  },
+  {
+   "n": "14",
+   "id": "CAM",
+   "name": "CAM",
+   "group": "Coils",
+   "note": "",
+   "x": 320.6,
+   "y": 192,
+   "line": "L8",
+   "drop": null
+  },
+  {
+   "n": "30",
+   "id": "CLNT-P",
+   "name": "CLNT-P",
+   "group": "Coils",
+   "note": "",
+   "x": 313.9,
+   "y": 208.4,
+   "line": "L8",
+   "drop": null
+  },
+  {
+   "n": "7",
+   "id": "ETB",
+   "name": "ETB",
+   "group": "Driver side",
+   "note": "",
+   "x": 359.9,
+   "y": 201.9,
+   "line": "L1",
+   "drop": null
+  },
+  {
+   "n": "13",
+   "id": "ECT",
+   "name": "ECT",
+   "group": "Driver side",
+   "note": "",
+   "x": 325.2,
+   "y": 226.4,
+   "line": "N3",
+   "drop": null
+  },
+  {
+   "n": "17",
+   "id": "STARTER-TRIGGER",
+   "name": "STARTER",
+   "group": "Driver side",
+   "note": "Low-mounted part",
+   "x": 335.8,
+   "y": 239,
+   "line": "N19",
+   "drop": null
+  },
+  {
+   "n": "20",
+   "id": "OIL-P",
+   "name": "OIL-P",
+   "group": "Driver side",
+   "note": "Low-mounted part",
+   "x": 331.7,
+   "y": 220.2,
+   "line": "N3",
+   "drop": null
+  },
+  {
+   "n": "22",
+   "id": "VSS",
+   "name": "VSS",
+   "group": "Driver side",
+   "note": "Low-mounted part",
+   "x": 320.3,
+   "y": 223.4,
+   "line": "N3",
+   "drop": null
+  },
+  {
+   "n": "23",
+   "id": "REV-SW",
+   "name": "REV-SW",
+   "group": "Driver side",
+   "note": "Low-mounted part",
+   "x": 350.2,
+   "y": 239.8,
+   "line": "N19",
+   "drop": null
+  },
+  {
+   "n": "26",
+   "id": "TURBO-SPD",
+   "name": "TURBO-SPD",
+   "group": "Driver side",
+   "note": "",
+   "x": 322.9,
+   "y": 256,
+   "line": "N19",
+   "drop": null
+  },
+  {
+   "n": "27",
+   "id": "BOOST-SOL",
+   "name": "BOOST-SOL",
+   "group": "Driver side",
+   "note": "",
+   "x": 332.4,
+   "y": 239.6,
+   "line": "N19",
+   "drop": null
+  },
+  {
+   "n": "28",
+   "id": "CHARGE-IAT",
+   "name": "CHARGE-IAT",
+   "group": "Driver side",
+   "note": "",
+   "x": 345.8,
+   "y": 287,
+   "line": "L2",
+   "drop": null
+  },
+  {
+   "n": "1",
+   "id": "INJ-1",
+   "name": "INJ-1",
+   "group": "Injectors",
+   "note": "",
+   "x": 251.5,
+   "y": 201.2,
+   "line": "L7",
+   "drop": null
+  },
+  {
+   "n": "2",
+   "id": "INJ-2",
+   "name": "INJ-2",
+   "group": "Injectors",
+   "note": "",
+   "x": 272.7,
+   "y": 207.4,
+   "line": "L7",
+   "drop": null
+  },
+  {
+   "n": "3",
+   "id": "INJ-3",
+   "name": "INJ-3",
+   "group": "Injectors",
+   "note": "",
+   "x": 285.9,
+   "y": 204.4,
+   "line": "L7",
+   "drop": null
+  },
+  {
+   "n": "4",
+   "id": "INJ-4",
+   "name": "INJ-4",
+   "group": "Injectors",
+   "note": "",
+   "x": 299.3,
+   "y": 206.7,
+   "line": "L7",
+   "drop": null
+  },
+  {
+   "n": "19",
+   "id": "KNOCK-1",
+   "name": "KNOCK-1",
+   "group": "Injectors",
+   "note": "Low-mounted part",
+   "x": 261.6,
+   "y": 205.8,
+   "line": "L7",
+   "drop": null
+  },
+  {
+   "n": "5",
+   "id": "IAT",
+   "name": "IAT",
+   "group": "Intake side",
+   "note": "",
+   "x": 305.8,
+   "y": 172.8,
+   "line": "L5",
+   "drop": null
+  },
+  {
+   "n": "6",
+   "id": "MAP",
+   "name": "MAP",
+   "group": "Intake side",
+   "note": "",
+   "x": 315.7,
+   "y": 165.6,
+   "line": "L5",
+   "drop": null
+  },
+  {
+   "n": "8",
+   "id": "FUEL-P",
+   "name": "FUEL-P",
+   "group": "Intake side",
+   "note": "",
+   "x": 386.9,
+   "y": 159.6,
+   "line": "L5",
+   "drop": null
+  },
+  {
+   "n": "29",
+   "id": "FLEX",
+   "name": "FLEX",
+   "group": "Intake side",
+   "note": "",
+   "x": 325.2,
+   "y": 174.6,
+   "line": "L5",
+   "drop": null
+  },
+  {
+   "n": "15",
+   "id": "CRANK",
+   "name": "CRANK",
+   "group": "Passenger side",
+   "note": "Low-mounted part",
+   "x": 242,
+   "y": 285.8,
+   "line": "L6",
+   "drop": null
+  },
+  {
+   "n": "16",
+   "id": "CAN-LAMBDA",
+   "name": "CAN-LAMBDA",
+   "group": "Passenger side",
+   "note": "",
+   "x": 239,
+   "y": 268.5,
+   "line": "L6",
+   "drop": null
+  },
+  {
+   "n": "21",
+   "id": "OIL-T",
+   "name": "OIL-T",
+   "group": "Passenger side",
+   "note": "Low-mounted part",
+   "x": 226.5,
+   "y": 309.4,
+   "line": "L4",
+   "drop": null
+  },
+  {
+   "n": "24",
+   "id": "MRS-B",
+   "name": "MRS-B",
+   "group": "Passenger side",
+   "note": "",
+   "x": 198.5,
+   "y": 286.5,
+   "line": "L4",
+   "drop": null
+  },
+  {
+   "n": "25",
+   "id": "MRS-C",
+   "name": "MRS-C",
+   "group": "Passenger side",
+   "note": "",
+   "x": 204.5,
+   "y": 273.8,
+   "line": "L4",
+   "drop": null
+  },
+  {
+   "n": "BH",
+   "id": "BULKHEAD-ENG",
+   "name": "Firewall bulkhead connector (engine side)",
+   "group": "Bulkhead",
+   "note": "Where the engine harness comes through the firewall",
+   "kind": "handoff",
+   "x": 213.1,
+   "y": 152.0,
+   "line": "BH",
+   "drop": null,
+   "short": "Bulkhead"
+  }
+ ],
+ "refs": [
+  {
+   "id": "REF-18",
+   "label": "Block ground",
+   "name": "Engine block ground stud (lug 1) (heavy cable harness)",
+   "x": 362.4,
+   "y": 248.1
+  },
+  {
+   "id": "REF-H1",
+   "label": "Alternator B+",
+   "name": "Alternator B+ stud (heavy cable harness)",
+   "x": 252,
+   "y": 236
+  },
+  {
+   "id": "REF-H2",
+   "label": "Starter B+",
+   "name": "Starter B+ stud (heavy cable harness)",
+   "x": 331,
+   "y": 270
+  },
+  {
+   "id": "REF-H4",
+   "label": "Battery cable plugs",
+   "name": "RADLOK + / - engine side (heavy cable harness)",
+   "x": 184,
+   "y": 164
+  }
+ ]
+}
