@@ -740,9 +740,10 @@
    ],
    "line_from": {
     "RH": "10",
-    "L9": "RH",
-    "FEB": "L9b",
+    "L1": "RH",
+    "FEB": "L2",
     "SBG": "FEB",
+    "F24": "10",
     "SMA": "F24"
    },
    "devices": {
