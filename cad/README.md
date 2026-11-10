@@ -61,7 +61,7 @@ Always shown together, as one package (DECISIONS R84). Every member must be a mo
 
 ## Power package views
 
-Extra renders of the selected fuse boxes. Every harness wire that lands in a box is in place (real gauge, colour, the CAD exit lanes and the bend rule): `cad/fusebox/src/wiring_sim.py` (plan, no Fusion) + `render_wired_rev7.py` (Fusion, render and checks only) + `label_views_rev7.py`. All of them, with the check results, are on the [rev 7 summary page](fusebox/rev7/ST185-fusebox-rev7-summary.html#views).
+Extra renders of the selected fuse boxes. Every harness wire that lands in a box is in place (real gauge, colour, the CAD exit lanes and the bend rule): `cad/fusebox/src/wiring_sim.py` (plan, no Fusion) + `render_wired_rev7.py` (Fusion, render and checks only) + `label_views_rev7.py`. All of them, with the check results, are on the [rev 7 summary page](fusebox/rev7/ST185-fusebox-rev7-summary.html#views), built by `cad/fusebox/src/summary_rev7.py`. Insertion sweeps (R181, run inside Fusion on the built rev 7 document): `cad/fusebox/src/sweep_logic_strips.py` (LOGIC bus strips past their snap hooks) and `sweep_power_straps.py` (POWER C-straps into their wells).
 
 | View | Picture |
 |---|---|
