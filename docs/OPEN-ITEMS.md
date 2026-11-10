@@ -18,7 +18,6 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| U4 | Outside air temp sensor wires | The two outside air temperature sensor wires (`w_amb_sig`, `w_amb_rtn`; A/C amplifier behind the glove box to the sensor low in the front bumper, 3185 mm each) are owned by the AB-cabin file today and only pass through EngineRoom-C. Dan asked 2026-11-10 whether they should move to EngineRoom-C, the front harness that already runs to the bumper. Moving them changes the owner in the master, both files and the cut list; the wire itself stays one piece, and its cabin end gets an R10 note. | A) move both wires to EngineRoom-C; B) leave them in AB-cabin | A |
 
 ## Status (2026-11-09)
 
@@ -164,6 +163,7 @@ goal 1-4 (then it gets its `[Gn]` tag and moves back up).
 
 ## History
 
+- 2026-11-10 - Dan 00:58 U4 a (DECISIONS B8; branch `claude/u4-amb-owner-1110`; Rows: 2): the two outside air temp sensor wires (`w_amb_sig`, `w_amb_rtn`) move from AB-cabin to EngineRoom-C (now pass through AB-cabin); lengths unchanged (3185 mm); per-harness wire lists and BOM rebuilt. harness.design: EngineRoom-C and AB-cabin 1 / 2 pick this up on their next rebuild (cabin rebuild), with the R10 note on the cabin end. Also merged earlier tonight: #623 editor dots stay on their true spot at every zoom.
 - 2026-11-10 - Dan 00:53 (branch `claude/editor-zoom-1110`, tools and docs only): placement editor zoom fixed in the shared template (dots keep their screen size zooming in; zoom out goes past Fit); AB-engine editor republished; other editors get it on their next rebuild. New question U4 (outside air temp sensor wires owner).
 - 2026-11-10 - Dan 00:08 (DECISIONS B8; branch `claude/w4c-engine-editor-1110`): W4 c and X3 b answered. The AB-engine editor (Route 16 link) is rebuilt as a parts-and-overall-routes editor (`drawRoutes` seed key, seed `placement_editor/seeds/AB-engine.json`, starting routes = the `956c1c1` named-branch draft); the AB-engine redraw (Rev H) waits on Dan's save. Embed is tried only where the combined connection count stays under 100, else R10 notes. Lengths, master and harness.design files unchanged.
 - 2026-11-09 - Dan 23:39-23:49 (DECISIONS B8 / B6; this PR, docs only): AB-engine must group sensors on shared named branches (injector branch, coil branch, bulkhead stub; no sensor breaks out of the trunk by itself), redraw waiting on W4; Y9 b ECU on the OEM spot, Q2 LH pass-through behind the kick panel and up through the quarter panel, R2 battery relay block right of the battery about 8 in from the back wall, T3 alarm joins become whole wires, V3 a no new editor, P2 a old `_scratch/hd` upload folders and `spacing-shots` deleted. AGENTS: harness.design conventions come from its docs (editing guide + user docs), re-read each session; README records what the docs say about wires that leave a file (no one-wire splices, `Loose` terminals, notes, Embed).
