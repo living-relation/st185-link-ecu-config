@@ -192,7 +192,10 @@ let devs=SEED.devices.map(d=>({...d,drop:d.drop??null}));
 let sel=null,undo=[],dirty=false,db=null,ready=false,loadedAt=null,vb=null,mode="parts",selLine=null,adding=false;
 /* View turn (Dan I1 a): ROT = map drawn front UP / driver LEFT. T maps car mm -> view, TI back. View-only: data stays in car mm. */
 let ROT=false;const T=(p,r=ROT)=>r?[p[1],-p[0]]:[p[0],p[1]],TI=v=>ROT?[-v[1],v[0]]:[v[0],v[1]];
-function planV(r=ROT){if(!SEED.bg||!SEED.bg.rect)return null;const[px,py,pw,ph]=SEED.bg.rect;return r?[py,-(px+pw),ph,pw]:[px,py,pw,ph]}
+/* the plan, grown to take in this harness's own lines and markers that lie off it (EngineRoom-C's cabin legs above the
+   engine-bay picture, Dan X7 a 2026-11-11), so pan and zoom can reach them; where the harness and its fit margin sit inside the plan, nothing changes */
+function planV(r=ROT){if(!SEED.bg||!SEED.bg.rect)return null;const[px,py,pw,ph]=SEED.bg.rect,p=r?[py,-(px+pw),ph,pw]:[px,py,pw,ph],b=bbox(r),
+  x0=Math.min(p[0],b[0]),y0=Math.min(p[1],b[1]);return[x0,y0,Math.max(p[0]+p[2],b[0]+b[2])-x0,Math.max(p[1]+p[3],b[1]+b[3])-y0]}
 const ptrs=new Map();let gest=null;
 
 document.title=SEED.harness+" placement";

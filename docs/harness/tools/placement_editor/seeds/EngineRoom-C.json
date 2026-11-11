@@ -1,8 +1,8 @@
 {
  "harness": "EngineRoom-C",
  "doc": "layouts/harnessC",
- "seedVersion": "EngineRoomC-z10b-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore), not the 2026-11-02 save that a load bug overwrote.",
+ "seedVersion": "EngineRoomC-x7a-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point.",
  "warnMm": 300,
  "unitMm": 5.3,
  "noTurn": true,
@@ -162,6 +162,123 @@
     [
      418.5,
      286.5
+    ]
+   ]
+  },
+  {
+   "id": "CAB",
+   "name": "Cabin legs, riding the cabin harnesses' dash run: J/B No.1 at the LH kick, along the dash past IG2 and the LOGIC box to the glove box, out the RH fender exit",
+   "short": "Cabin legs",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     409.3,
+     35.7
+    ],
+    [
+     409.3,
+     82.8
+    ],
+    [
+     196.1,
+     82.8
+    ],
+    [
+     196.1,
+     116.8
+    ],
+    [
+     177.3,
+     116.8
+    ]
+   ]
+  },
+  {
+   "id": "CLH",
+   "name": "Cabin leg: dash run at the LH kick out the LH pass-through (wiper wires)",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     409.3,
+     82.8
+    ],
+    [
+     409.3,
+     97.9
+    ]
+   ]
+  },
+  {
+   "id": "CIG",
+   "name": "Cabin leg: cowl plug IG2 under the ECU to the dash run",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     286.7,
+     90.4
+    ],
+    [
+     286.7,
+     82.8
+    ]
+   ]
+  },
+  {
+   "id": "CDR",
+   "name": "Cabin leg: DRL cut relay to the dash run at the LOGIC box",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     203.6,
+     77.2
+    ],
+    [
+     203.6,
+     82.8
+    ]
+   ]
+  },
+  {
+   "id": "CAC",
+   "name": "Cabin leg: the two A/C amplifiers behind the glove box to the dash run",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     188.5,
+     64.0
+    ],
+    [
+     196.1,
+     64.0
+    ],
+    [
+     196.1,
+     82.8
+    ]
+   ]
+  },
+  {
+   "id": "CKK",
+   "name": "Cabin leg: trunk kill switch along the RH sill past R/B No.4 to the glove box",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     164.0,
+     35.7
+    ],
+    [
+     164.0,
+     82.8
+    ],
+    [
+     196.1,
+     82.8
     ]
    ]
   }
@@ -424,7 +541,7 @@
   {
    "id": "RFX",
    "label": "RH fender exit",
-   "name": "Where the front harness leaves the cabin into the RH fender (from the glove box)",
+   "name": "Where the front harness leaves the cabin into the RH fender (from the glove box); the washer motor cowl lead ends here",
    "x": 177.3,
    "y": 116.8
   },
@@ -434,6 +551,69 @@
    "name": "LH kick / fender pass-through (wiper feed, with the alarm leads)",
    "x": 409.3,
    "y": 97.9
+  },
+  {
+   "id": "REF-JB1",
+   "label": "J/B 1",
+   "name": "J/B No.1, LH kick panel: turn, clearance lamp and wiper feeds (cabin)",
+   "x": 409.3,
+   "y": 35.7
+  },
+  {
+   "id": "REF-IE1",
+   "label": "IE1",
+   "name": "Cowl plug IE1, LH kick panel: pop-up motor and wiper wires (cabin)",
+   "x": 409.3,
+   "y": 43.2
+  },
+  {
+   "id": "REF-IG2",
+   "label": "IG2",
+   "name": "Cowl plug IG2 under the ECU: alternator warning lamp wire (cabin)",
+   "x": 286.7,
+   "y": 90.4
+  },
+  {
+   "id": "REF-LOGIC",
+   "label": "LOGIC box",
+   "name": "LOGIC fuse and relay box (glove box): horn, radiator fan, condenser fan, A/C clutch and power steering pump relays, alternator sense, low / high beam output splices (cabin power harness)",
+   "x": 203.6,
+   "y": 82.8
+  },
+  {
+   "id": "REF-RLYDRL",
+   "label": "DRL cut relay",
+   "name": "DRL cut relay beside the LOGIC box: DRL feed (cabin power harness; its spot is set in that editor)",
+   "x": 203.6,
+   "y": 77.2
+  },
+  {
+   "id": "REF-A32",
+   "label": "Auto A/C amp",
+   "name": "Auto A/C amplifier A32 with the A/C sensor common splice: outside air temp sensor wires (cabin)",
+   "x": 196.1,
+   "y": 64.0
+  },
+  {
+   "id": "REF-A15",
+   "label": "A/C amp",
+   "name": "A/C amplifier A15 with the A/C pressure switch signal splice, behind the glove box (cabin)",
+   "x": 188.5,
+   "y": 64.0
+  },
+  {
+   "id": "REF-RB4",
+   "label": "R/B 4",
+   "name": "R/B No.4, RH kick panel: A/C pressure switch feed (cabin)",
+   "x": 164.0,
+   "y": 67.7
+  },
+  {
+   "id": "REF-KILL",
+   "label": "Trunk kill switch, 2.0 m back",
+   "name": "Battery kill switch in the trunk (heavy cable harness), off this map: 2.0 m further back along the RH sill. Its ignition output wire runs up the sill, past R/B No.4 and the glove box, out the RH fender exit to the alternator plug",
+   "x": 164.0,
+   "y": 35.7
   }
  ]
 }

@@ -1,7 +1,7 @@
 {
  "harness": "AB-cabin",
  "doc": "layouts/ABcabin",
- "seedVersion": "ABcabin-z10b-1",
+ "seedVersion": "ABcabin-x8b-1",
  "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey.",
  "warnMm": 300,
  "bg": {
@@ -336,6 +336,42 @@
    "line": "TANK",
    "drop": null,
    "short": "Fuel sender"
+  },
+  {
+   "n": "10",
+   "id": "SP-CANH-RD",
+   "name": "CAN H splice, RealDash Pi tap",
+   "group": "CAN taps",
+   "note": "On the CAN trunk nearest the RealDash Pi; placed by Claude by rule; drag to tweak",
+   "x": -850,
+   "y": -67.8,
+   "line": "CON",
+   "drop": null,
+   "short": "CAN H tap"
+  },
+  {
+   "n": "11",
+   "id": "SP-CANL-RD",
+   "name": "CAN L splice, RealDash Pi tap",
+   "group": "CAN taps",
+   "note": "On the CAN trunk nearest the RealDash Pi; placed by Claude by rule; drag to tweak",
+   "x": -860,
+   "y": -67.8,
+   "line": "CON",
+   "drop": null,
+   "short": "CAN L tap"
+  },
+  {
+   "n": "12",
+   "id": "SP-CAN-SH-RD",
+   "name": "CAN shield splice, RealDash Pi tap",
+   "group": "CAN taps",
+   "note": "On the CAN trunk nearest the RealDash Pi; placed by Claude by rule; drag to tweak",
+   "x": -870,
+   "y": -67.8,
+   "line": "CON",
+   "drop": null,
+   "short": "CAN shield tap"
   }
  ],
  "refs": [
@@ -373,6 +409,13 @@
    "name": "Kill switch and the fuel pump relay in the trunk relay block (heavy cable harness)",
    "x": -2830,
    "y": 650
+  },
+  {
+   "id": "REF-PI",
+   "label": "RealDash Pi",
+   "name": "RealDash Pi (dash harness)",
+   "x": -860,
+   "y": -40
   }
  ]
 }

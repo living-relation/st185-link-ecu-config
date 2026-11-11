@@ -1,360 +1,384 @@
 {
-    "harness":  "CabinPower",
-    "doc":  "layouts/CabinPower",
-    "seedVersion":  "CabinPower-v1b-1",
-    "note":  "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes.",
-    "warnMm":  300,
-    "bg":  {
-               "rect":  [
-                            -3455.6,
-                            -809.1,
-                            4262.1,
-                            1664.1
-                        ]
-           },
-    "lines":  [
-                  {
-                      "id":  "T1",
-                      "name":  "ECU to the glove-box branch",
-                      "color":  "#d10f14",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      0
-                                  ],
-                                  [
-                                      -580,
-                                      330
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "GB",
-                      "name":  "Glove-box branch to the LOGIC / POWER boxes",
-                      "color":  "#d10f14",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      330
-                                  ],
-                                  [
-                                      -580,
-                                      480
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "BH",
-                      "name":  "Glove-box branch to the firewall bulkhead",
-                      "color":  "#7a1f9e",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      330
-                                  ],
-                                  [
-                                      -480,
-                                      330
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "KICK",
-                      "name":  "Glove box to R/B No.4, RH kick",
-                      "color":  "#e65100",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      480
-                                  ],
-                                  [
-                                      -580,
-                                      650
-                                  ],
-                                  [
-                                      -660,
-                                      650
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "AC",
-                      "name":  "Branch to the A/C amplifier A15",
-                      "color":  "#2e7d32",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      220
-                                  ],
-                                  [
-                                      -680,
-                                      220
-                                  ],
-                                  [
-                                      -680,
-                                      520
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "FRONT",
-                      "name":  "Glove box to the front hand-off, RH fender",
-                      "color":  "#00838f",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      480
-                                  ],
-                                  [
-                                      -400,
-                                      480
-                                  ],
-                                  [
-                                      -400,
-                                      600
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "IG2",
-                      "name":  "Stub to the reverse-light plug IG2",
-                      "color":  "#7a1f9e",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      0
-                                  ],
-                                  [
-                                      -540,
-                                      0
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "T2",
-                      "name":  "ECU to the pedal / column branch",
-                      "color":  "#1a47d1",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      0
-                                  ],
-                                  [
-                                      -580,
-                                      -30
-                                  ],
-                                  [
-                                      -580,
-                                      -250
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "JB1",
-                      "name":  "Pedal / column branch to J/B No.1 and IE1, LH kick",
-                      "color":  "#1a47d1",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      -250
-                                  ],
-                                  [
-                                      -580,
-                                      -650
-                                  ],
-                                  [
-                                      -830,
-                                      -650
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "R8",
-                      "name":  "Branch to the pop-up relay R8, behind the LH dash",
-                      "color":  "#c79400",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      -560
-                                  ],
-                                  [
-                                      -700,
-                                      -560
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "COL",
-                      "name":  "Dash run straight back to the steering column (DRL switch; same column run as the dash harness)",
-                      "color":  "#c79400",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      -420
-                                  ],
-                                  [
-                                      -760,
-                                      -420
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "CANJ",
-                      "name":  "ECU to the CAN joins (cluster and CSB3 +12 V)",
-                      "color":  "#008cb3",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      0
-                                  ],
-                                  [
-                                      -610,
-                                      -40
-                                  ]
-                              ]
-                  },
-                  {
-                      "id":  "AL",
-                      "name":  "Dash branch to the alarm spot (alarm +12 V, shock and ignition)",
-                      "color":  "#c62828",
-                      "dash":  false,
-                      "pts":  [
-                                  [
-                                      -580,
-                                      -30
-                                  ],
-                                  [
-                                      -680,
-                                      -30
-                                  ],
-                                  [
-                                      -680,
-                                      -80
-                                  ]
-                              ]
-                  }
-              ],
-    "devices":  [
-                    {
-                        "n":  "1",
-                        "id":  "POWER",
-                        "name":  "POWER fuse box (glove box)",
-                        "group":  "Boxes",
-                        "note":  "Battery feed, AMI fuses, NEG bar",
-                        "x":  -580,
-                        "y":  480,
-                        "line":  "GB",
-                        "drop":  null
-                    },
-                    {
-                        "n":  "2",
-                        "id":  "LOGIC",
-                        "name":  "LOGIC fuse and relay box (glove box)",
-                        "group":  "Boxes",
-                        "note":  "Every cabin relay; the DRL switch splice sits beside it",
-                        "x":  -580,
-                        "y":  440,
-                        "line":  "GB",
-                        "drop":  null
-                    },
-                    {
-                        "n":  "3",
-                        "id":  "R8",
-                        "name":  "Pop-up relay R8 (behind the LH dash)",
-                        "group":  "Factory parts",
-                        "note":  "With pop-up diodes 1 / 2 and the cut I2 lead",
-                        "x":  -700,
-                        "y":  -560,
-                        "line":  "R8",
-                        "drop":  null
-                    },
-                    {
-                        "n":  "4",
-                        "id":  "DRL-SW",
-                        "name":  "DRL switch",
-                        "group":  "Switches",
-                        "note":  "Left of the steering wheel; spot rough",
-                        "x":  -760,
-                        "y":  -420,
-                        "line":  "COL",
-                        "drop":  null
-                    }
-                ],
-    "refs":  [
-                 {
-                     "id":  "ECU",
-                     "label":  "ECU",
-                     "name":  "Link G4X ECU (AB-cabin)",
-                     "x":  -677.2,
-                     "y":  -92.8
-                 },
-                 {
-                     "id":  "JB1",
-                     "label":  "J/B 1",
-                     "name":  "J/B No.1 (LH kick panel)",
-                     "x":  -830,
-                     "y":  -650
-                 },
-                 {
-                     "id":  "RB4",
-                     "label":  "R/B 4",
-                     "name":  "R/B No.4 (RH kick)",
-                     "x":  -660,
-                     "y":  650
-                 },
-                 {
-                     "id":  "BH",
-                     "label":  "Bulkhead",
-                     "name":  "Firewall bulkhead connector (cabin side)",
-                     "x":  -480,
-                     "y":  330
-                 },
-                 {
-                     "id":  "IG2",
-                     "label":  "IG2",
-                     "name":  "Cowl plug IG2 (under the ECU)",
-                     "x":  -540,
-                     "y":  0
-                 },
-                 {
-                     "id":  "IE1",
-                     "label":  "IE1",
-                     "name":  "Cowl plug IE1 (LH kick)",
-                     "x":  -790,
-                     "y":  -650
-                 },
-                 {
-                     "id":  "A15",
-                     "label":  "A15",
-                     "name":  "A/C amplifier A15 (behind the glove box)",
-                     "x":  -680,
-                     "y":  520
-                 },
-                 {
-                     "id":  "FRONT",
-                     "label":  "To front",
-                     "name":  "Hand-off to harness C (RH fender)",
-                     "x":  -400,
-                     "y":  600
-                 },
-                 {
-                     "id":  "ALARM",
-                     "label":  "Alarm",
-                     "name":  "Alarm spot (AntiTheft)",
-                     "x":  -680,
-                     "y":  -80
-                 }
-             ]
+ "harness": "CabinPower",
+ "doc": "layouts/CabinPower",
+ "seedVersion": "CabinPower-x8b-1",
+ "note": "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "T1",
+   "name": "ECU to the glove-box branch",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     0
+    ],
+    [
+     -580,
+     330
+    ]
+   ]
+  },
+  {
+   "id": "GB",
+   "name": "Glove-box branch to the LOGIC / POWER boxes",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     330
+    ],
+    [
+     -580,
+     480
+    ]
+   ]
+  },
+  {
+   "id": "BH",
+   "name": "Glove-box branch to the firewall bulkhead",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     330
+    ],
+    [
+     -480,
+     330
+    ]
+   ]
+  },
+  {
+   "id": "KICK",
+   "name": "Glove box to R/B No.4, RH kick",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -580,
+     650
+    ],
+    [
+     -660,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "AC",
+   "name": "Branch to the A/C amplifier A15",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     220
+    ],
+    [
+     -680,
+     220
+    ],
+    [
+     -680,
+     520
+    ]
+   ]
+  },
+  {
+   "id": "FRONT",
+   "name": "Glove box to the front hand-off, RH fender",
+   "color": "#00838f",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -400,
+     480
+    ],
+    [
+     -400,
+     600
+    ]
+   ]
+  },
+  {
+   "id": "IG2",
+   "name": "Stub to the reverse-light plug IG2",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     0
+    ],
+    [
+     -540,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "T2",
+   "name": "ECU to the pedal / column branch",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     0
+    ],
+    [
+     -580,
+     -30
+    ],
+    [
+     -580,
+     -250
+    ]
+   ]
+  },
+  {
+   "id": "JB1",
+   "name": "Pedal / column branch to J/B No.1 and IE1, LH kick",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -250
+    ],
+    [
+     -580,
+     -650
+    ],
+    [
+     -830,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "R8",
+   "name": "Branch to the pop-up relay R8, behind the LH dash",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -560
+    ],
+    [
+     -700,
+     -560
+    ]
+   ]
+  },
+  {
+   "id": "COL",
+   "name": "Dash run straight back to the steering column (DRL switch; same column run as the dash harness)",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -420
+    ],
+    [
+     -760,
+     -420
+    ]
+   ]
+  },
+  {
+   "id": "CANJ",
+   "name": "ECU to the CAN joins (cluster and CSB3 +12 V)",
+   "color": "#008cb3",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     0
+    ],
+    [
+     -610,
+     -40
+    ]
+   ]
+  },
+  {
+   "id": "AL",
+   "name": "Dash branch to the alarm spot (alarm +12 V, shock and ignition)",
+   "color": "#c62828",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -30
+    ],
+    [
+     -680,
+     -30
+    ],
+    [
+     -680,
+     -80
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "POWER",
+   "name": "POWER fuse box (glove box)",
+   "group": "Boxes",
+   "note": "Battery feed, AMI fuses, NEG bar",
+   "x": -580,
+   "y": 480,
+   "line": "GB",
+   "drop": null
+  },
+  {
+   "n": "2",
+   "id": "LOGIC",
+   "name": "LOGIC fuse and relay box (glove box)",
+   "group": "Boxes",
+   "note": "Every cabin relay; the DRL switch splice sits beside it",
+   "x": -580,
+   "y": 440,
+   "line": "GB",
+   "drop": null
+  },
+  {
+   "n": "3",
+   "id": "R8",
+   "name": "Pop-up relay R8 (behind the LH dash)",
+   "group": "Factory parts",
+   "note": "With pop-up diodes 1 / 2 and the cut I2 lead",
+   "x": -700,
+   "y": -560,
+   "line": "R8",
+   "drop": null
+  },
+  {
+   "n": "4",
+   "id": "DRL-SW",
+   "name": "DRL switch",
+   "group": "Switches",
+   "note": "Left of the steering wheel; spot rough",
+   "x": -760,
+   "y": -420,
+   "line": "COL",
+   "drop": null
+  },
+  {
+   "n": "5",
+   "id": "RLY-DRL",
+   "name": "DRL cut relay (beside the LOGIC box)",
+   "group": "Boxes",
+   "note": "Beside the LOGIC box, as the master says; placed by Claude by rule; drag to tweak",
+   "x": -610,
+   "y": 440,
+   "line": "GB",
+   "drop": null,
+   "short": "DRL cut relay"
+  },
+  {
+   "n": "6",
+   "id": "R-HB",
+   "name": "Dash high-beam LED feed resistor 220 ohm",
+   "group": "Boxes",
+   "note": "On the high-beam output splice by the LOGIC box; placed by Claude by rule; drag to tweak",
+   "x": -610,
+   "y": 470,
+   "line": "GB",
+   "drop": null,
+   "short": "High-beam LED resistor"
+  }
+ ],
+ "refs": [
+  {
+   "id": "ECU",
+   "label": "ECU",
+   "name": "Link G4X ECU (AB-cabin)",
+   "x": -677.2,
+   "y": -92.8
+  },
+  {
+   "id": "JB1",
+   "label": "J/B 1",
+   "name": "J/B No.1 (LH kick panel)",
+   "x": -830,
+   "y": -650
+  },
+  {
+   "id": "RB4",
+   "label": "R/B 4",
+   "name": "R/B No.4 (RH kick)",
+   "x": -660,
+   "y": 650
+  },
+  {
+   "id": "BH",
+   "label": "Bulkhead",
+   "name": "Firewall bulkhead connector (cabin side)",
+   "x": -480,
+   "y": 330
+  },
+  {
+   "id": "IG2",
+   "label": "IG2",
+   "name": "Cowl plug IG2 (under the ECU)",
+   "x": -540,
+   "y": 0
+  },
+  {
+   "id": "IE1",
+   "label": "IE1",
+   "name": "Cowl plug IE1 (LH kick)",
+   "x": -790,
+   "y": -650
+  },
+  {
+   "id": "A15",
+   "label": "A15",
+   "name": "A/C amplifier A15 (behind the glove box)",
+   "x": -680,
+   "y": 520
+  },
+  {
+   "id": "FRONT",
+   "label": "To front",
+   "name": "Hand-off to harness C (RH fender)",
+   "x": -400,
+   "y": 600
+  },
+  {
+   "id": "ALARM",
+   "label": "Alarm",
+   "name": "Alarm spot (AntiTheft)",
+   "x": -680,
+   "y": -80
+  }
+ ]
 }
