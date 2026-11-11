@@ -1,8 +1,8 @@
 {
  "harness": "RearFuel",
  "doc": "layouts/RearFuel",
- "seedVersion": "RearFuel-x5-1",
- "note": "Routes drawn by Claude; move devices only. Pump feed straight from the relay; pump ground on factory point BL. The fuel level sender is on AB-cabin (Dan N1 a). Relay block and battery on the heavy cable editor's spots (Dan's 2026-11-04 save; X5 rule).",
+ "seedVersion": "RearFuel-corr-1",
+ "note": "Routes drawn by Claude; move devices only. The run to the trunk shares the ECU harness's RH sill run (Dan Y5 a); the pump feed and the pump ground go round the inside of the trunk (RH side, back panel) and share the short leg forward to the pump; pump ground on factory point BL. The fuel level sender is on AB-cabin (Dan N1 a). Relay block and battery on the heavy cable editor's spots (Dan's 2026-11-04 save; X5 rule). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -15,7 +15,7 @@
  "lines": [
   {
    "id": "F1",
-   "name": "Glove box to the RH sill rear end (shared sill run)",
+   "name": "Glove box to the RH kick panel, back along the RH sill (shared with the ECU harness's sill run)",
    "color": "#d10f14",
    "dash": false,
    "pts": [
@@ -28,32 +28,20 @@
      650
     ],
     [
-     -660,
-     650
-    ],
-    [
-     -660,
-     780
-    ],
-    [
      -2300,
-     780
+     650
     ]
    ]
   },
   {
    "id": "F2",
-   "name": "RH sill to the battery relay block (trunk RH rear corner)",
+   "name": "RH sill on to the battery relay block (trunk RH side)",
    "color": "#e65100",
    "dash": false,
    "pts": [
     [
      -2300,
-     780
-    ],
-    [
-     -2800,
-     780
+     650
     ],
     [
      -2800,
@@ -63,7 +51,7 @@
   },
   {
    "id": "F5",
-   "name": "Fuel pump relay straight to the fuel pump (pump +12 V feed)",
+   "name": "Fuel pump relay along the trunk's RH side and back panel, then forward to the fuel pump (pump +12 V feed)",
    "color": "#c62828",
    "dash": false,
    "pts": [
@@ -72,7 +60,11 @@
      650
     ],
     [
-     -2800,
+     -3300,
+     650
+    ],
+    [
+     -3300,
      -250
     ],
     [
@@ -83,12 +75,16 @@
   },
   {
    "id": "F4",
-   "name": "Fuel pump to ground point BL, back panel centre",
+   "name": "Fuel pump back to the back panel (with the pump feed), then along it to ground point BL, back panel centre",
    "color": "#424242",
    "dash": false,
    "pts": [
     [
      -2900,
+     -250
+    ],
+    [
+     -3300,
      -250
     ],
     [

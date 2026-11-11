@@ -1,8 +1,8 @@
 {
  "harness": "EngineRoom-C",
  "doc": "layouts/harnessC",
- "seedVersion": "EngineRoomC-y1a-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11).",
+ "seedVersion": "EngineRoomC-corr-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The front run joins the engine harness trunk start along the engine harness passenger front run (corridor 11, RH apron band widened by Dan Y8 a) instead of cutting across the RH rear corner.",
  "warnMm": 300,
  "unitMm": 5.3,
  "noTurn": true,
@@ -69,17 +69,21 @@
   },
   {
    "id": "RH",
-   "name": "Front run across to the start of the engine harness trunk",
+   "name": "Front run across to the start of the engine harness trunk, along the engine harness passenger front run",
    "color": "#1a47d1",
    "dash": false,
    "pts": [
     [
-     169.28,
-     165.0
+     161.79,
+     210.0
     ],
     [
-     224,
-     180.1
+     193.98,
+     210.0
+    ],
+    [
+     224.2,
+     180.0
     ]
    ]
   },

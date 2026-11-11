@@ -1,6 +1,6 @@
 {
- "about": "Wireway corridors (Dan 2026-11-11 09:30, DECISIONS B8 'Wireway corridors'): main trunks stay inside these bands so harnesses keep their runs relative to each other. Each corridor is a centre polyline with a full band width.",
- "status": "PROPOSAL (Dan Y4 a): waiting for Dan's approval; no harness route is redrawn into it yet and no length is written from it.",
+ "about": "Wireway corridors (Dan 2026-11-11 09:30 and 12:19, DECISIONS B8 'Wireway corridors'): main trunks stay inside these bands so harnesses keep their runs relative to each other. Each corridor is a centre polyline with a full band width; a 'widen' band is part of its corridor. This file is the one source.",
+ "status": "APPROVED (Dan 2026-11-11 12:19, \"Corridor approved.\"; with Y5 a, Y6 a, Y7 a, Y8 a, DECISIONS B8 \"Wireway corridors\"): main trunks of every harness stay inside these bands; short branches out to devices may leave them (Y7 a). Checked by check_corridors.py (tools/check_all.py).",
  "frames": {
   "car_mm": "Cabin editors' frame: x fore-aft in mm (front +), y side to side in mm (LH / driver -, RH +); body manual DI-7 under-body plan, rect [-3455.6, -809.1, 4262.1, 1664.1].",
   "ewd_pt": "Engine-bay editors' frame: 1993 EWD p.36 points; x grows toward the LH side, y grows toward the front.",
@@ -11,16 +11,16 @@
    "n": 1,
    "id": "dash",
    "name": "Under the dashboard",
-   "follows": "Cowl wire behind the instrument panel, kick panel to kick panel (1993 EWD p.42 and p.44; J/B No.1, J/B No.3, IG1 / IG2 under the ECU)",
-   "width_mm": 150,
+   "follows": "Cowl wire behind the instrument panel, kick panel to kick panel (1993 EWD p.42 and p.44; J/B No.1, J/B No.3, IG1 / IG2 under the ECU); widened back to the wheel speed conditioners in the centre console and forward to the firewall band (Dan Y6 a, 2026-11-11), so the approved wheel speed routes stay as they are",
+   "width_mm": 360,
    "frame": "car_mm",
    "car_mm": [
     [
-     -580,
+     -650,
      -650
     ],
     [
-     -580,
+     -650,
      650
     ]
    ]
@@ -118,8 +118,8 @@
   {
    "n": 7,
    "id": "sill_rh",
-   "name": "RH sill run (proposal, ask Dan)",
-   "follows": "RH rocker / sill on the body manual DI-7 under-body plan; no factory harness there; the run AB-cabin, HeavyDC and RearFuel already use to the trunk battery corner",
+   "name": "RH sill run",
+   "follows": "RH rocker / sill on the body manual DI-7 under-body plan; no factory harness there; kept by Dan Y5 a (2026-11-11): AB-cabin's and RearFuel's sill runs to the trunk battery corner share it, HeavyDC's battery cables too",
    "width_mm": 150,
    "frame": "car_mm",
    "car_mm": [
@@ -292,6 +292,57 @@
      -393.7,
      -650.0
     ]
+   ],
+   "widen": [
+    {
+     "why": "RH apron band widened inboard to take Dan's AB-engine passenger front run (Dan Y8 a, 2026-11-11): this band follows his W4 c line 4 (Route 16) from the engine harness trunk start to the oil temp leg; harness C joins the trunk start along it",
+     "width_mm": 160,
+     "ewd_pt": [
+      [
+       224.2,
+       180.8
+      ],
+      [
+       179.8,
+       223.7
+      ],
+      [
+       177.4,
+       290.9
+      ],
+      [
+       176.9,
+       304.8
+      ],
+      [
+       193.2,
+       306.0
+      ]
+     ],
+     "width_pt": 30.2,
+     "car_mm": [
+      [
+       -60.9,
+       331.0
+      ],
+      [
+       166.5,
+       566.4
+      ],
+      [
+       522.7,
+       579.1
+      ],
+      [
+       596.3,
+       581.7
+      ],
+      [
+       602.7,
+       495.3
+      ]
+     ]
+    }
    ]
   },
   {

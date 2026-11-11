@@ -1,8 +1,8 @@
 {
  "harness": "AB-cabin",
  "doc": "layouts/ABcabin",
- "seedVersion": "ABcabin-x9-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor).",
+ "seedVersion": "ABcabin-corr-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender leg goes round the inside of the trunk (RH side, back panel), shared with the fuel pump wires, then forward to the sender.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -142,7 +142,7 @@
   },
   {
    "id": "TANK",
-   "name": "Sill run across to the fuel level sender",
+   "name": "Sill run on round the inside of the trunk (RH side, back panel), then forward to the fuel level sender",
    "short": "To fuel sender",
    "color": "#00838f",
    "dash": false,
@@ -150,6 +150,14 @@
     [
      -2880,
      650
+    ],
+    [
+     -3300,
+     650
+    ],
+    [
+     -3300,
+     -300
     ],
     [
      -2880,
@@ -354,7 +362,7 @@
    "id": "FUEL-LEVEL",
    "name": "Fuel level sender",
    "group": "Rear",
-   "note": "At the tank top; the sill run lands straight on its plug",
+   "note": "At the tank top; its leg comes forward from the trunk's back panel",
    "x": -2880,
    "y": -300,
    "line": "TANK",

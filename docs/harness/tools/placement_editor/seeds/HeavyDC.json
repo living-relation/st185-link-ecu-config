@@ -1,8 +1,8 @@
 {
  "harness": "HeavyDC",
  "doc": "layouts/HeavyDC",
- "seedVersion": "HeavyDC-y1a-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11).",
+ "seedVersion": "HeavyDC-corr-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The starter / jump post run goes along the firewall and the LH apron (inner perimeter of the bay), then straight across to the starter and on to the jump post; the block-ground leg goes on along the LH apron and straight across to the stud.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -93,7 +93,7 @@
   },
   {
    "id": "ENG",
-   "name": "Firewall connectors along the firewall, then forward to the starter and the jump post",
+   "name": "Firewall connectors along the firewall to the LH corner, forward along the LH apron, then straight across to the starter and on to the jump post",
    "short": "To starter and jump post",
    "color": "#7a1f9e",
    "dash": false,
@@ -104,11 +104,11 @@
     ],
     [
      -440,
-     -500
+     -600
     ],
     [
      100,
-     -500
+     -600
     ],
     [
      100,
@@ -122,13 +122,17 @@
   },
   {
    "id": "BLK",
-   "name": "Starter run straight across to the engine block ground stud (LH engine mounting stay)",
+   "name": "LH apron run on forward, then straight across to the engine block ground stud (LH engine mounting stay)",
    "color": "#2e7d32",
    "dash": false,
    "pts": [
     [
      100,
-     -401.4
+     -600
+    ],
+    [
+     295.8,
+     -600
     ],
     [
      295.8,
