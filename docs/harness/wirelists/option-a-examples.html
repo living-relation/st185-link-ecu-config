@@ -68,7 +68,7 @@ svg .nc{fill:var(--panel);stroke:var(--shield);stroke-width:1.4}
 <tr class="trunk"><td class="m">w3</td><td>legs of SP-1</td><td class="m">-</td><td>legs of SP-2</td><td class="m">-</td><td class="m">SP-1 &gt; SP-2</td><td>link</td><td class="m">16</td><td class="m">SW12</td></tr>
 <tr><td class="m">w4</td><td class="m">ECU-A</td><td class="m">5</td><td>legs of SP-1</td><td class="m">-</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
 <tr><td class="m">w5</td><td class="m">ECU-B</td><td class="m">5</td><td>legs of SP-1</td><td class="m">-</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
-<tr><td class="m">w6</td><td class="m">CSB3</td><td class="m">1</td><td>legs of SP-1</td><td class="m">-</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
+<tr><td class="m">w6</td><td>legs of SP-1</td><td class="m">-</td><td class="m">CSB3</td><td class="m">1</td><td class="m">SP-2</td><td>leg</td><td class="m">20</td><td class="m">SW12</td></tr>
 </table></div>
 <p class="flag">This is where Option A gets clumsy: with no single home end, "legs of SP-x" stands in for the far side. It still reads, and the Net column ties all six wires together.</p>
 </section>
@@ -91,10 +91,10 @@ svg .nc{fill:var(--panel);stroke:var(--shield);stroke-width:1.4}
 </svg>
 <div class="tw"><table>
 <tr><th>File</th><th>Wire</th><th>From</th><th>Pin</th><th>To</th><th>Pin</th><th>Splice</th><th>Branch</th><th>Net</th><th>Continues</th></tr>
-<tr><td>AB-engine</td><td class="m">w20</td><td class="m">MAP</td><td class="m">3</td><td class="m">BULKHEAD</td><td class="m">12</td><td class="m">-</td><td>wire</td><td class="m">5V</td><td>AB-cabin w21, leg of SP-5V</td></tr>
-<tr><td>AB-cabin</td><td class="m">w21</td><td class="m">BULKHEAD</td><td class="m">12</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">SP-5V</td><td>leg</td><td class="m">5V</td><td>AB-engine w20 to MAP pin 3</td></tr>
-<tr class="trunk"><td>AB-cabin</td><td class="m">w22</td><td>legs of SP-5V</td><td class="m">-</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">SP-5V</td><td>trunk</td><td class="m">5V</td><td class="m">-</td></tr>
-<tr><td>AB-cabin</td><td class="m">w23</td><td class="m">APS</td><td class="m">2</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">SP-5V</td><td>leg</td><td class="m">5V</td><td class="m">-</td></tr>
+<tr><td>AB-engine</td><td class="m">w20</td><td class="m">BULKHEAD</td><td class="m">12</td><td class="m">MAP</td><td class="m">3</td><td class="m">-</td><td>wire</td><td class="m">5V</td><td>AB-cabin w21, leg of SP-5V</td></tr>
+<tr><td>AB-cabin</td><td class="m">w21</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">BULKHEAD</td><td class="m">12</td><td class="m">SP-5V</td><td>leg</td><td class="m">5V</td><td>AB-engine w20 to MAP pin 3</td></tr>
+<tr class="trunk"><td>AB-cabin</td><td class="m">w22</td><td class="m">ECU-A</td><td class="m">15</td><td>legs of SP-5V</td><td class="m">-</td><td class="m">SP-5V</td><td>trunk</td><td class="m">5V</td><td class="m">-</td></tr>
+<tr><td>AB-cabin</td><td class="m">w23</td><td class="m">ECU-A</td><td class="m">15</td><td class="m">APS</td><td class="m">2</td><td class="m">SP-5V</td><td>leg</td><td class="m">5V</td><td class="m">-</td></tr>
 </table></div>
 <p>If the splice sat in the engine file instead, w20 would be the leg (Splice = SP-5V) and w21 would be a plain bulkhead-to-ECU wire. The bulkhead pin is always where one file hands over to the other.</p>
 </section>
@@ -152,9 +152,9 @@ svg .nc{fill:var(--panel);stroke:var(--shield);stroke-width:1.4}
 <tr class="trunk"><td class="m">t_l</td><td class="m">CAB-CAN-T</td><td class="m">X1</td><td class="m">2</td><td>legs of SP-CANL</td><td class="m">-</td><td class="m">SP-CANL</td><td>trunk core</td><td class="m">CAN-L</td><td></td></tr>
 <tr class="trunk"><td class="m">t_sh</td><td class="m">CAB-CAN-T</td><td class="m">X2</td><td class="m">4</td><td>legs of SP-SH</td><td class="m">-</td><td class="m">SP-DRN &gt; SP-SH</td><td>trunk drain</td><td class="m">CAN-SHLD</td><td>Runs past X1 without a pin; joins SP-DRN at X2</td></tr>
 <tr><td class="m">d_x2</td><td class="m">-</td><td class="m">X2</td><td class="m">4</td><td>legs of SP-DRN</td><td class="m">-</td><td class="m">SP-DRN</td><td>leg</td><td class="m">CAN-SHLD</td><td>Short lead from the X2 pin into SP-DRN</td></tr>
-<tr><td class="m">n1_h</td><td class="m">CAB-CAN-N1</td><td class="m">NODE-1</td><td class="m">CAN H</td><td class="m">X1</td><td class="m">1</td><td class="m">SP-CANH</td><td>leg core</td><td class="m">CAN-H</td><td></td></tr>
-<tr><td class="m">n1_l</td><td class="m">CAB-CAN-N1</td><td class="m">NODE-1</td><td class="m">CAN L</td><td class="m">X1</td><td class="m">2</td><td class="m">SP-CANL</td><td>leg core</td><td class="m">CAN-L</td><td></td></tr>
-<tr><td class="m">n1_sh</td><td class="m">CAB-CAN-N1</td><td>NC, floats</td><td class="m">NC</td><td class="m">X2</td><td class="m">4</td><td class="m">SP-SH</td><td>leg drain</td><td class="m">CAN-SHLD</td><td>Shield runs to NODE-1; drain cut back and sealed there</td></tr>
+<tr><td class="m">n1_h</td><td class="m">CAB-CAN-N1</td><td class="m">X1</td><td class="m">1</td><td class="m">NODE-1</td><td class="m">CAN H</td><td class="m">SP-CANH</td><td>leg core</td><td class="m">CAN-H</td><td></td></tr>
+<tr><td class="m">n1_l</td><td class="m">CAB-CAN-N1</td><td class="m">X1</td><td class="m">2</td><td class="m">NODE-1</td><td class="m">CAN L</td><td class="m">SP-CANL</td><td>leg core</td><td class="m">CAN-L</td><td></td></tr>
+<tr><td class="m">n1_sh</td><td class="m">CAB-CAN-N1</td><td class="m">X2</td><td class="m">4</td><td>NC, floats</td><td class="m">NC</td><td class="m">SP-SH</td><td>leg drain</td><td class="m">CAN-SHLD</td><td>Shield runs to NODE-1; drain cut back and sealed there</td></tr>
 <tr><td colspan="10" class="muted">NODE-2 to NODE-5: the same three rows each (n2_h ... n5_sh)</td></tr>
 </table></div>
 <p class="flag">Flag: this layout is a star with five stubs. On a 1 Mbit/s CAN bus (ISO 11898-2) each stub should stay under about 0.3 m, or the reflections corrupt frames. If the branches are longer than that, daisy-chain the nodes instead (the bus goes in and out of each node) and put the two 120 Ω terminators at the two far ends.</p>

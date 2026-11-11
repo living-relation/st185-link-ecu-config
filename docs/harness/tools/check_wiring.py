@@ -35,6 +35,9 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
       ", ring <n> of <m>", Dan N64 a, 2026-11-08) names a stud of the box design
       (cad/fusebox/src/spec.py REV7 neg_studs / pos_studs, AMI_ROWS, FEEDS): a 1/0 stud takes one 1/0 lug, the small GND stud
       up to 3 small rings, the + bar spare stud none, and every other bar stud is used
+  D1  From / To direction (S8 a, DECISIONS B8): From is the end nearer the power or signal source - hubs, then the
+      bulkhead / RADLOK / cowl plugs, then bus plugs and splices, then resistors and diodes, then devices (the per-harness
+      wire lists are held to the same rule by build_drawings.py --check, T8 b)
   R1  the approved route drawings (routes/*.html) lint clean (red lines unfilled, attributes sound, a top view after every
       figure, no overlapping labels); overlapping numbered markers are listed as warnings, since the routes are Dan's (R47)
   X1  XTREMEX-IO-TABLE.html's generated pin map is current with sot/channels.csv (--write-io-table rewrites it)
@@ -116,6 +119,7 @@ BODY_GND = re.compile(r"^GND-")
 TIED = re.compile(r"\bCAN\b|CAN[- ]?LAMBDA|\bECU\b|sensor|RealDash|\bPi\b|CSB3|opto|cruise|buck converter", re.I)
 STUD_IDS = re.compile(r"^(KILL-SW|RADLOK-|JUMP-POST|BATT-RELAY-BLOCK)")   # studs: several lugs on one is normal
 sys.path.insert(0, HERE)
+from build_drawings import s8_rank          # noqa: E402  the From / To order (S8 a): one definition
 from build_drawings import is_integral      # noqa: E402  (Dan N55 a): part of a bought part, not a wire; one definition
 
 
@@ -526,6 +530,12 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                     fail("P1", "%s: %s AWG on the 1/0 stud %s, %s" % (r["wire_id"], r["gauge_awg"], *key))
                 if kind == "small" and r["gauge_awg"] == "1/0":
                     fail("P1", "%s: a 1/0 cable on the small GND stud" % r["wire_id"])
+    # ---- D1 the From / To rule (S8 a, Dan 2026-11-10): one definition, build_drawings.s8_rank
+    for r in wires:
+        a, b = s8_rank(r["from_type"], r["from_id"]), s8_rank(r["to_type"], r["to_id"])
+        if a > b:
+            fail("D1", "%s runs %s -> %s: From is the end nearer the power or signal source, To the device end (S8 a): "
+                 "swap every from_* / to_* column of the row" % (r["wire_id"], r["from_id"], r["to_id"]), r["wire_id"])
     # ---- R1 routes
     if routes:
         for f in sorted(glob.glob(os.path.join(ROUTES, "*.html"))):
@@ -724,6 +734,11 @@ def self_test():
         rs, lambda r: r["wire_id"] == "w_fan_gnd").update(notes="factory ground (N83 a): radiator fan to EA"))
     mutate("the factory-ground tag off a body ground stud", "E3", lambda rs: first(
         rs, lambda r: r["wire_id"] == "w_f5_gnd").update(from_id="T-ENG-BLOCK-3", from_name="Engine block ground stud, lug 3"))
+    def turn_round(rs):
+        r = first(rs, lambda r: r["from_id"].startswith("ECU-") and r["to_id"] == "DRB102-CABIN")
+        r.update({k: r[("to_" if k.startswith("from_") else "from_") + k.split("_", 1)[1]] for k in list(r)
+                  if k.startswith(("from_", "to_"))})
+    mutate("a wire written device end first (bulkhead -> ECU plug)", "D1", turn_round)
     mutate("12 AWG in a size-16 cavity", "M2", lambda rs: at_end(rs, "DRB102-CABIN", "21").update(gauge_awg="12"))
     for name, extra, want in (("a stray wiring CSV under docs/harness", "docs/harness/extra-wires.csv", True),
                               ("a CSV in wirelists/ not named like a wire list", "docs/harness/wirelists/notes.csv", True),
