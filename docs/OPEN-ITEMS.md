@@ -19,7 +19,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
 
-## Status (2026-11-11)
+## Current state (2026-11-11)
 
 **Current state (2026-11-11) - a new chat starts here, then Needs Dan, then History.** Every session updates its own rows and this block in its own PR. This block says where things stand and points: decisions live in DECISIONS, row detail in the rows, what happened in History (one owner per fact).
 
@@ -51,7 +51,7 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 - **BOM** `docs/sourcing/PROJECT-BOM.xlsx`: unpriced and TBD lines are on its "To do" sheet (written by `docs/sourcing/build_project_bom.py`). **CAD:** `cad/check_drawings_current.py` passes for all 34 drawings; the STEP model files are skipped (they are in Dan's models folder; B23, Dan G2 a). CSB3 / VRC enclosures: row 181.
 - **Question IDs:** one letter + one digit (A1-Z9; Dan 2026-11-01), asked with the question tool. IDs come round again, so always cite the date; every answer is in DECISIONS (search the ID or the date), the standing yes Y2 a / Y3 a in AGENTS. Used 2026-11-11: U1 b (plain names before the cabin tree: done, row 172), V1 b, V2 a (DECISIONS B8 / B6), W1 c, W2 a, X1 a (History 2026-11-11). Next free: X2; open: none (the Needs Dan table is empty).
 - **Kept branches:** none (`claude/wire-trace-flowchart` and its worktree were removed 2026-11-11, Dan X1 a).
-- **Last cleanup:** 2026-11-11, sweep 6 (#634) and the tracker scan (History). Next sweep: due after this PR (#635, #636 and this one are the three merged PRs since sweep 6; AGENTS).
+- **Last cleanup:** 2026-11-11, sweep 7 (this PR; after #637-#641): the tracker heading is "Current state" again (AGENTS and 13 other pointers cite it); History left untrimmed (Dan 2026-11-11: no trim); the 11 rows with the word "done" are open rows, no closed rows left. Next sweep: after 3 more merged PRs (AGENTS).
 - **Hook:** state-check PR hook in COMMENT mode (Dan 2026-11-01): `.github/workflows/state-check.yml` + `.github/state-check.sh`, mode in `.state-check-mode`; it only comments, never fails a PR. Automation registry still skipped (Dan 2026-10-28).
 - **Agent-ready, no overlap with the route work:** row 156 (1990 / 1992 pin cites vs the 1993 EWD). It edits the master, so rebase on any route-work change.
 
