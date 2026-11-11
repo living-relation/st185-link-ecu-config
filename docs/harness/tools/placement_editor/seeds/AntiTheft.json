@@ -1,7 +1,7 @@
 {
  "harness": "AntiTheft",
  "doc": "layouts/AntiTheft",
- "seedVersion": "AntiTheft-z10b-1",
+ "seedVersion": "AntiTheft-v1b-1",
  "note": "Routes drawn by Claude (Dan Z10 b / Z13 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's 2026-11-08 save. The hood pin lead shares the LH pass-through with the siren leads.",
  "warnMm": 300,
  "bg": {
@@ -216,8 +216,8 @@
    "id": "ECU",
    "label": "ECU",
    "name": "ECU plugs (AB-cabin)",
-   "x": -580,
-   "y": 0
+   "x": -677.2,
+   "y": -92.8
   },
   {
    "id": "GB",

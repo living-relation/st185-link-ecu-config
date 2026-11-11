@@ -1,8 +1,8 @@
 {
  "harness": "WheelSpeed-Rear",
  "doc": "layouts/WheelSpeed-Rear",
- "seedVersion": "WheelSpeed-Rear-n120-1",
- "note": "Routes drawn by Claude; move devices only. Rear sensors ride the RH sill with the fuel run.",
+ "seedVersion": "WheelSpeed-Rear-v1b-1",
+ "note": "Routes drawn by Claude; move devices only. Rear sensors ride the RH sill with the fuel run. Device spots: Dan's 2026-11-11 save.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -100,8 +100,8 @@
    "name": "RR wheel speed sensor",
    "group": "Sensors",
    "note": "",
-   "x": -2500,
-   "y": 600,
+   "x": -2743,
+   "y": 613,
    "line": "RR",
    "drop": null
   },
@@ -111,8 +111,8 @@
    "name": "RL wheel speed sensor",
    "group": "Sensors",
    "note": "",
-   "x": -2500,
-   "y": -600,
+   "x": -2707,
+   "y": -615,
    "line": "RL",
    "drop": null
   }
@@ -122,8 +122,8 @@
    "id": "ECU",
    "label": "ECU",
    "name": "Link G4X ECU (AB-cabin)",
-   "x": -580,
-   "y": 0
+   "x": -677.2,
+   "y": -92.8
   },
   {
    "id": "RB4",

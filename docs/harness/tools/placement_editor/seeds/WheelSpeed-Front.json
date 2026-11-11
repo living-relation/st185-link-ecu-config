@@ -1,8 +1,8 @@
 {
  "harness": "WheelSpeed-Front",
  "doc": "layouts/WheelSpeed-Front",
- "seedVersion": "WheelSpeed-Front-n120-1",
- "note": "Routes drawn by Claude; move devices only. Conditioner by the ECU.",
+ "seedVersion": "WheelSpeed-Front-v1b-1",
+ "note": "Routes drawn by Claude; move devices only. Conditioner by the ECU. Device spots: Dan's 2026-11-11 save.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -73,8 +73,8 @@
    "name": "Front VR conditioner (input and output plugs, sensor shield splice)",
    "group": "Conditioner",
    "note": "Mid-dash, by the ECU",
-   "x": -560,
-   "y": -80,
+   "x": -538,
+   "y": -84,
    "line": "FL",
    "drop": null
   },
@@ -84,8 +84,8 @@
    "name": "FL wheel speed sensor",
    "group": "Sensors",
    "note": "Plug at the LH fender pass-through",
-   "x": -760,
-   "y": -720,
+   "x": 70,
+   "y": -641,
    "line": "FL",
    "drop": null
   },
@@ -95,8 +95,8 @@
    "name": "FR wheel speed sensor",
    "group": "Sensors",
    "note": "Plug at the RH fender pass-through",
-   "x": -560,
-   "y": 720,
+   "x": 105,
+   "y": 653,
    "line": "FR",
    "drop": null
   }
@@ -106,8 +106,8 @@
    "id": "ECU",
    "label": "ECU",
    "name": "Link G4X ECU (AB-cabin)",
-   "x": -580,
-   "y": 0
+   "x": -677.2,
+   "y": -92.8
   },
   {
    "id": "JB1",
