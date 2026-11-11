@@ -7,13 +7,13 @@ README "harness.design"; plain labels R1-R9; text spacing, Dan N99 a): each harn
 shielded 55A1821-20-6/9-9) from the wheel speed sensors' own plugs to the VR conditioner's IN plug (CNLINKO LP-16-J05PE-02-001,
 pins per the CAD BOM, Dan G2 a), the screens joined at the conditioner by the shield splice and on to IN pin 3, floating at the
 sensors (DECISIONS "VR conditioner boxes (R31, R34)"). The OUT plug is AB-cabin's end (Dan J1 a, 2026-11-08: no inline pair).
-Route: the WheelSpeed trees of ST185-harness.layout.json (N120 redraw, approved as is by Dan 2026-11-08); every routed length =
-the master."""
+Route: the WheelSpeed trees of ST185-harness.layout.json (wheel speed editor, approved by Dan 2026-11-11, Y2 a / Y3 a); every
+routed length = the master."""
 import sys
 import gen_dash
 
 COMMON = dict(
-    rev='B', date='2026-11-09', script='gen_wheelspeed.py', root='DASH',
+    rev='B', date='2026-11-09', script='gen_wheelspeed.py',
     left_words='the VR conditioner IN plug (the conditioner by the ECU)',
     stripe={},
     screen_note='joined at the conditioner by the shield splice and on to the IN plug pin 3; cut back and sealed under heat-shrink '
@@ -28,18 +28,18 @@ FRONT = dict(
     COMMON, name='WheelSpeed-Front', title='ST185-WheelSpeed-Front', stem='wheelspeed_front',
     scope="the front wheel speed sensor cables: FL and FR sensors (their own 2-way plugs) to the front VR conditioner IN plug by the "
           "ECU, each a Raychem 2-core shielded cable, the screens joined at the conditioner and on to IN pin 3, floating at the "
-          "sensors; FL leaves through the LH kick pass-through, FR through the RH kick pass-through.",
+          "sensors; FL leaves through the LH fender pass-through, FR through the RH fender exit, each to the sensor plug on its knuckle.",
     left=lambda t, i: i == 'VRC-F-IN',
-    area=['DASH', 'LFP', 'RFP'],
+    root='VRC_F', area=['VRC_F', 'WSF_LP', 'WSF_RX'],
 )
 
 REAR = dict(
     COMMON, name='WheelSpeed-Rear', title='ST185-WheelSpeed-Rear', stem='wheelspeed_rear',
     scope="the rear wheel speed sensor cables: RL and RR sensors (their own 2-way plugs) to the rear VR conditioner IN plug by the "
-          "ECU, each a Raychem 2-core shielded cable along the RH sill with the fuel and battery wires (shared trunk), RL crossing "
-          "under the rear seat; the screens joined at the conditioner and on to IN pin 3, floating at the sensors.",
+          "ECU, each a Raychem 2-core shielded cable on the factory route: under the dash to the LH kick (joint IF1), back along the "
+          "LH floor, RR crossing under the front edge of the rear seat; the screens joined at the conditioner and on to IN pin 3, floating at the sensors.",
     left=lambda t, i: i == 'VRC-R-IN',
-    area=['DASH', 'WSRR', 'WSRL'],
+    root='VRC_R', area=['VRC_R', 'WSR_K', 'WSR_S'],
 )
 
 if __name__ == '__main__':

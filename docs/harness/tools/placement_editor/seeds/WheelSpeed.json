@@ -6,8 +6,8 @@
   "WheelSpeed-Rear"
  ],
  "doc": "layouts/WheelSpeed",
- "seedVersion": "WheelSpeed-x9-1",
- "note": "One editor for both wheel speed harnesses (Dan X9, 2026-11-11). Routes drawn by Claude in the wireway corridors (Dan 2026-11-11); move devices only. Conditioners in the centre console just behind the ECU (Dan); sensors on each wheel knuckle under the strut tower (body manual under-body plan; 1993 service manual: one sensor on each wheel hub), +300 mm drop; front cables under the dash and the kick panels, out the LH / RH fender pass-throughs; rear cables along the console, under the front edge of the rear seat, then along the floor to each rear knuckle.",
+ "seedVersion": "WheelSpeed-y2-1",
+ "note": "One editor for both wheel speed harnesses (Dan X9, 2026-11-11). Routes drawn by Claude in the wireway corridors (Dan 2026-11-11); move devices only. Conditioners in the centre console just behind the ECU (Dan); sensors on each wheel knuckle under the strut tower (body manual under-body plan; 1993 service manual: one sensor on each wheel hub), +300 mm drop; front cables under the dash and the kick panels, out the LH / RH fender pass-throughs to the sensor plug at each wheel (Dan Y3 a); rear cables on the factory route (Dan Y2 a, 2026-11-11 11:54): across under the dash to the LH kick panel (factory floor-wire joint IF1, 1993 EWD p.43 / p.44), back along the LH floor to the RL knuckle; the RR cable leaves it under the front edge of the rear seat and crosses to the RH side, then back to the RR knuckle.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -77,9 +77,9 @@
    ]
   },
   {
-   "id": "R1",
-   "name": "Rear conditioner back along the centre console to the front edge of the rear seat",
-   "short": "Console to rear seat",
+   "id": "RL",
+   "name": "Rear conditioner across under the dash to the LH kick panel (factory joint IF1), back along the LH floor to the RL knuckle",
+   "short": "To RL wheel",
    "color": "#2e7d32",
    "dash": false,
    "pts": [
@@ -88,21 +88,8 @@
      -145
     ],
     [
-     -1780,
-     -145
-    ]
-   ]
-  },
-  {
-   "id": "RL",
-   "name": "Under the front edge of the rear seat to the LH side, back along the floor to the RL knuckle",
-   "short": "To RL wheel",
-   "color": "#2e7d32",
-   "dash": false,
-   "pts": [
-    [
-     -1780,
-     -145
+     -800,
+     -615
     ],
     [
      -1780,
@@ -116,14 +103,14 @@
   },
   {
    "id": "RR",
-   "name": "Under the front edge of the rear seat to the RH side, back along the floor to the RR knuckle",
+   "name": "Off the LH floor run under the front edge of the rear seat, across to the RH side, back to the RR knuckle",
    "short": "To RR wheel",
    "color": "#c79400",
    "dash": false,
    "pts": [
     [
      -1780,
-     -145
+     -615
     ],
     [
      -1780,
@@ -157,7 +144,7 @@
    "note": "Centre console, just behind the ECU (Dan)",
    "x": -800,
    "y": -145,
-   "line": "R1",
+   "line": "RL",
    "drop": null,
    "short": "Rear conditioner"
   },

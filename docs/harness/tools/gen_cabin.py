@@ -385,7 +385,7 @@ def place_of(cid):
 NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 def is_ecu_side(n): return n['id'].startswith('c_') and place_of(n['id']) in ('ECU', 'SP')     # ECU plugs + the ECU splice-point bus plugs
 # the bulkhead first, then the far ends grouped by where they sit in the car (glove box, the sill run, A/C, front, dash, pedal)
-AREA = ['BH', 'GB', 'RHKICK', 'BATT', 'FUEL', 'ACAMP', 'EVAP', 'AMB', 'ECU', 'CSB3', 'DASH', 'JB1', 'PEDAL']
+AREA = ['BH', 'GB', 'RHKICK', 'BATT', 'FUEL', 'ACAMP', 'EVAP', 'AMB', 'ECU', 'CSB3', 'VRC_F', 'VRC_R', 'JB1', 'PEDAL']
 LEFT_IDS = sorted([i for i, n in NODES.items() if not is_ecu_side(n)],
                   key=lambda i: (AREA.index(place_of(i)) if place_of(i) in AREA else 99, i.startswith('t_'), NODES[i]['label']))
 DEV_IDS = {i for i in NODES if i not in LEFT_IDS}
