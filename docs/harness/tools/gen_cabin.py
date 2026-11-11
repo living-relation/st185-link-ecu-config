@@ -61,6 +61,7 @@ for r in W_ALL:
     for u in us[1:]: _par[_find(u)] = _find(us[0])
 ONE = {_find((False, s)) for s in SEEDS if (False, s) in _par}
 DOC_OF = {r['wire_id']: 1 if any(_find(u) in ONE for u in units(r)) else 2 for r in W_ALL}
+assert DOC_OF == B.abcabin_doc_of(W_ALL), 'the AB-cabin split here and build_drawings.abcabin_doc_of (ghost-wire tags) disagree'
 def doc_of(r): return DOC_OF[r['wire_id']]
 DEV_DOCS = collections.defaultdict(set)
 for r in W_ALL:
@@ -802,10 +803,12 @@ assert refs <= have, refs - have
 B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
 print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc, B.BOX_GROUP_OUTSIDE.get('AB-cabin %d' % DOC, ()))     # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
+NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)
+assert NCONN + NGHOST <= 100, 'ghost wires push AB-cabin %d over the 100-connection limit' % DOC
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abcab%d_expect.json' % DOC), 'w'), indent=1)
 print('doc', DOC, TITLE, 'Rev', REV, '| connectors', len(conns), 'terminals', len(terms), 'splices', len(splices), 'resistors', len(resistors),
-      'diodes', len(diodes), 'wires', len(wires), 'cables', len(cables), 'conductors (connections)', NCONN, '(%d cores with no job)' % len(NC_CORES),
+      'diodes', len(diodes), 'wires', len(wires), 'cables', len(cables), 'conductors (connections)', NCONN, '+ ghosts', NGHOST, '(%d cores with no job)' % len(NC_CORES),
       'bundles', len(bundles), 'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect), 'routed +', len(CONDS) - len(expect),
       'one-ended screens | lib adds', [o['value']['partNumber'] for o in lib_add], '| no library part (left unset):', sorted(missing))

@@ -599,9 +599,11 @@ refs = {x['partId'] for x in wires + list(splices.values()) + list(resistors.val
 assert refs <= have, refs - have
 B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
 B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
+NGHOST = B.add_ghosts(doc, H, NAME, strands=True)      # one ghost strand per other harness and path (Dan T4 a: AB-engine is near the limit)
+assert NCONN + NGHOST <= 100, 'ghost strands push AB-engine over the 100-connection limit'
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abeng_expect.json'), 'w'), indent=1)
-print('connectors', len(doc['connectors']), 'splices', len(splices), 'wires', len(wires), 'cables', len(cables), 'conductors (connections)', NCONN,
+print('connectors', len(doc['connectors']), 'splices', len(splices), 'wires', len(wires), 'cables', len(cables), 'conductors (connections)', NCONN, '+ ghost strands', NGHOST,
       'bundles', len(bundles), 'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect), 'routed +', NCONN - len(expect),
       'one-ended screens | lib adds', [o['value']['partNumber'] for o in lib_add], '| no library part (left unset):', sorted(missing))

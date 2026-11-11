@@ -755,12 +755,14 @@ def build(REPO, OUT, CFG):
     B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
     print('empty connectors dropped (R5):', B.relabel.removed)
     B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
+    NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)
+    assert NCONN + NGHOST <= 100, 'ghost wires push %s over the 100-connection limit' % NAME
     json.dump(doc, open(os.path.join(OUT, STEM + '.json'), 'w'), indent=1)   # routed: upload as is
     json.dump(lib_add, open(os.path.join(OUT, STEM + '_lib_ops.json'), 'w'), indent=1)
     json.dump(expect, open(os.path.join(OUT, STEM + '_expect.json'), 'w'), indent=1)
     n_ = lambda k: len(doc.get(k, []))
     print(TITLE, 'Rev', REV, '| connectors', n_('connectors'), 'terminals', n_('terminals'), 'splices', n_('splices'), 'resistors', n_('resistors'),
-          'diodes', n_('diodes'), 'wires', n_('wires'), 'cables', len(cables), 'conductors (connections)', NCONN, '(%d cores with no job)' % len(NC_CORES),
+          'diodes', n_('diodes'), 'wires', n_('wires'), 'cables', len(cables), 'conductors (connections)', NCONN, '+ ghosts', NGHOST, '(%d cores with no job)' % len(NC_CORES),
           'bundles', len(bundles), 'bps', len(bps), 'DEVX', DEVX, '| lengths = master:', len(expect),
           '| lib adds (not applied)', [o['value']['partNumber'] for o in lib_add], '| no library part (left unset):', sorted(missing))
     return doc
