@@ -431,6 +431,8 @@ OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
 GAP, MINL, ISP, LBL = 60, 150, 60, 240        # clearance, shortest drawn bundle, comb pitch, room for a part's label
 ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + inl}
 STUB = L.get('end_allowance_mm', 100)
+SPL = L.get('splice_allowance_mm', STUB)     # a splice end's allowance (Dan T7 b, 2026-11-10: 25 mm; strip and solder)
+R10T = {'t_' + sid(k) for k in R10}     # an R10 Loose terminal stands in for a splice end, so it gets the splice allowance
 def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
 def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
     pts = [L['nodes'][m]['xy'] for m in sub_nodes(c)]
@@ -500,7 +502,7 @@ for n, p in parent.items():
     bundles.append({"id": "bn_" + sid(n), "sourceId": "bp_" + sid(p), "targetId": "bp_" + sid(n), "length": {"value": int(seglen[n]), "unit": "mm"}})
 INL_AT = {}
 for cid, (nd, q, pts) in stubs.items():
-    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if cid[:2] in ('c_', 't_') else "bp_" + cid, "length": {"value": STUB, "unit": "mm"}}
+    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if cid[:2] in ('c_', 't_') else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" or cid in R10T else STUB, "unit": "mm"}}
     if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
     bundles.append(b)
     ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
@@ -509,7 +511,7 @@ for cid, (nd, q, pts) in stubs.items():
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
 loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] in ('c_', 't_')}
-loc.update({x['id']: (INL_AT[x['id']], STUB) for x in inl})
+loc.update({x['id']: (INL_AT[x['id']], SPL if x['id'][:2] == 's_' else STUB) for x in inl})
 def chain(bp):
     out = []
     while bp: out.append(bp); bp = nodepar[bp]

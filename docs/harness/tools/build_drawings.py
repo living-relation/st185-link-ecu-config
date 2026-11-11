@@ -776,7 +776,9 @@ class Harness:
         if p is None:
             self.problems.append("%s: no layout path from %s to %s" % (r["wire_id"], a, b))
             return None, None
-        mm = sum(self.seg_len(x, y) for x, y in zip(p, p[1:])) + 2 * self.layout.get("end_allowance_mm", 100)
+        end = self.layout.get("end_allowance_mm", 100)      # termination and service loop at a connector / terminal end
+        spl = self.layout.get("splice_allowance_mm", end)    # strip and solder at a splice end (Dan T7 b, 2026-11-10: 25 mm)
+        mm = sum(self.seg_len(x, y) for x, y in zip(p, p[1:])) + sum(spl if r[e + "_type"] == "splice" and not STUD_SPLICE.match(r[e + "_id"]) else end for e in ("from", "to"))
         return p, mm
 
 

@@ -92,6 +92,7 @@ STRIPE = {'INJ': ('Blue', 'injector feed'), 'COP': ('White', 'coil feed'), 'SW12
 
 # ------------------------------------------------------------------ the tree: ST185-harness.layout.json (DECISIONS B8)
 STUB = H.layout.get('end_allowance_mm', 100)
+SPL = H.layout.get('splice_allowance_mm', STUB)     # a splice end's allowance (Dan T7 b, 2026-11-10: 25 mm; strip and solder)
 def troute(r):
     p, mm = H.route(r)
     assert p is not None, (r['wire_id'], H.problems[-1:])
@@ -756,7 +757,7 @@ for n, p in parent.items():
 INL_AT = {}
 for cid, (nd, q, pts, ow) in stubs.items():
     direct = cid[:2] in ('c_', 't_')
-    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": STUB, "unit": "mm"}}
+    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" else STUB, "unit": "mm"}}
     if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
     bundles.append(b)
     ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
@@ -765,7 +766,7 @@ for cid, (nd, q, pts, ow) in stubs.items():
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
 loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] in ('c_', 't_')}
-loc.update({i: (INL_AT[i], STUB) for i in INL})
+loc.update({i: (INL_AT[i], SPL if i[:2] == 's_' else STUB) for i in INL})
 def chain(bp):
     out = []
     while bp: out.append(bp); bp = nodepar[bp]
