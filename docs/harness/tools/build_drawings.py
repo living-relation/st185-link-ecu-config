@@ -1678,6 +1678,147 @@ def add_route_trees(L):
                 place[c] = common[-1][0] if common else top[0]
 
 
+
+# ------------------------------------------------------------------------------------------------ ghost wires (Dan T4 a)
+# Every harness.design file shows the other harnesses' wires that pass through its bundles (Dan T4 a, 2026-11-10): each as a
+# ghost wire in its real colour between two Loose terminals left out of the BOM, one where it joins this file's bundles and one
+# where it leaves, each on a short stub whose end carries a coloured tag naming the file the wire belongs to. With strands=True
+# (AB-engine, near the 100-connection limit) one ghost strand per other harness and path instead, named "<file> x<n>".
+GHOST_COLOUR = {"AB-cabin": "Blue", "AB-engine": "Violet", "EngineRoom-C": "Orange", "CabinPower": "Red", "Dash": "Green",
+                "AntiTheft": "Pink", "HeavyDC": "Black", "RearFuel": "Tan", "WheelSpeed-Front": "Gray", "WheelSpeed-Rear": "Gray"}   # app colour names (labels take no hex)
+GHOST_DX = 150        # a ghost terminal sits this far right of its branch point, one row (30) per ghost below it
+GHOST_SNAP = 10.0     # layout-node units (about 120-150 mm on the car)
+_PART_COLOURS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White", "Pink", "Tan", "Maroon"}
+ABCABIN_SEEDS = ('BUS-5V', 'BUS-5V-2', 'BUS-GNDOUT-A', 'BUS-GNDOUT-B', 'SP-8V', 'BUS-SHIELD-A', 'SP-SHIELD-B')
+ABCABIN_SHARED = ('ECU-A', 'ECU-B', 'ECU-C', 'DRB102-CABIN')
+
+
+def abcabin_doc_of(rows):
+    """AB-cabin's split into two harness.design files (Dan 2026-11-04, V1 a): union every wire's devices (a shared plug is no
+    link), splices and shielded cable; document 1 = the group(s) holding the sensor rails and screens, document 2 = the rest.
+    Returns {wire_id: 1 or 2} for the AB-cabin wires in rows."""
+    W = [r for r in rows if r["harness"] == "AB-cabin" and r["wire_id"]]
+    def unit(r, s):
+        i, t = r[s + "_id"], r[s + "_type"]
+        if not i or i in ABCABIN_SHARED:
+            return None
+        return ("cable", i) if t == "cable screen" else (t == "OEM", i)
+    def units(r):
+        return [u for u in (unit(r, "from"), unit(r, "to"), ("cable", r["cable"]) if r["cable"] else None) if u]
+    par = {}
+    def find(x):
+        par.setdefault(x, x)
+        while par[x] != x:
+            par[x] = par[par[x]]
+            x = par[x]
+        return x
+    for r in W:
+        us = units(r)
+        for u in us:
+            find(u)
+        for u in us[1:]:
+            par[find(u)] = find(us[0])
+    one = {find((False, s)) for s in ABCABIN_SEEDS if (False, s) in par}
+    return {r["wire_id"]: 1 if any(find(u) in one for u in units(r)) else 2 for r in W}
+
+
+def ghost_file(r, doc_of=None):
+    """the harness.design file a master wire is drawn in (name without its rev letter, R10)"""
+    if r["harness"] == "AB-cabin":
+        d = (doc_of or abcabin_doc_of(master_rows())).get(r["wire_id"], 2)
+        return "ST185-AB-cabin %d" % d
+    return "ST185-" + r["harness"]
+
+
+def add_ghosts(doc, H, host, strands=False, rows=None):
+    """Add the ghost wires of `host` to a finished document (after placement, routing, relabel); returns how many conductors
+    were added. Ghost ids start w_gh_ / t_gh_ / bn_gh_, so a length check against the master skips them."""
+    rows = rows if rows is not None else master_rows()
+    doc_of = abcabin_doc_of(rows)
+    bps = {b["id"]: b for b in doc.get("branchPoints", [])}
+    # another harness's tree may run along the same line with its own nodes (EngineRoom-C on Route 16 line 6): a path node
+    # with no branch point of its own here takes the nearest branch point drawn here (layout node xy, within GHOST_SNAP)
+    nodes = H.layout["nodes"]
+    by_sid = {_sid(n): n for n in nodes}
+    bp_xy = [(b, nodes[by_sid[b[3:]]]["xy"]) for b in bps if b[3:] in by_sid and nodes[by_sid[b[3:]]].get("xy")]
+    def host_bp(n):
+        if "bp_" + _sid(n) in bps:
+            return "bp_" + _sid(n)
+        xy = nodes.get(n, {}).get("xy")
+        if not xy or not bp_xy:
+            return None
+        b, q = min(bp_xy, key=lambda t: (t[1][0] - xy[0]) ** 2 + (t[1][1] - xy[1]) ** 2)
+        return b if (q[0] - xy[0]) ** 2 + (q[1] - xy[1]) ** 2 <= GHOST_SNAP ** 2 else None
+    found = []
+    for r in rows:
+        if not r["wire_id"] or r["harness"] == host or host not in [x.strip() for x in r["passes_through"].split("/")]:
+            continue
+        p, _ = H.route(r)
+        on = [b for b in (host_bp(n) for n in (p or [])) if b]
+        if len(on) < 2 or on[0] == on[-1]:
+            print("ghost: %s has no run through %s's bundles, not drawn" % (r["wire_id"], host))
+            continue
+        found.append((r, on[0], on[-1]))
+    if not found:
+        return 0
+    groups = collections.OrderedDict()
+    for r, a, b in found:
+        key = (r["harness"], a, b) if strands else (r["wire_id"],)
+        groups.setdefault(key, []).append((r, a, b))
+    xs = [n["schematicPosition"]["x"] for k in ("connectors", "terminals", "splices", "cables", "resistors", "diodes")
+          for n in doc.get(k, []) if n.get("schematicPosition")]
+    ys = [n["schematicPosition"]["y"] + 30 + 30 * len(n.get("cavities", n.get("cores", []))) for k in
+          ("connectors", "terminals", "splices", "cables", "resistors", "diodes") for n in doc.get(k, []) if n.get("schematicPosition")]
+    x0, y = (min(xs) // 30) * 30, ((max(ys) + 150) // 30) * 30
+    doc.setdefault("schematicNotes", []).append({
+        "id": "n_ghosts", "width": 360, "schematicPosition": {"x": x0, "y": y - 60},
+        "text": "Ghost wires: other harnesses' wires in these bundles (not built with this harness)."})
+    # one ghost terminal per branch point and owner file, every ghost wire of that file lands on it (a tidy tag, no row per wire)
+    terms, sch_rows = collections.OrderedDict(), collections.Counter()
+    taken = [(n["layoutPosition"]["x"], n["layoutPosition"]["y"]) for k_ in ("connectors", "terminals", "splices", "resistors", "diodes")
+             for n in doc.get(k_, []) if n.get("layoutPosition")]
+    def term(bp, owner, fname, side):
+        key = (bp, fname)
+        if key not in terms:
+            k = sum(1 for (b, _f) in terms if b == bp)
+            q = bps[bp]["layoutPosition"]
+            ty = q["y"] + 30 * (k + 1)      # one row per tag; a row another tag (or part) already uses nearby moves down
+            while any(abs(ox - (q["x"] + GHOST_DX)) < 420 and oy == ty for ox, oy in taken):
+                ty += 30
+            taken.append((q["x"] + GHOST_DX, ty))
+            tid = "t_gh_%s_%s" % (_sid(bp[3:]), _sid(fname.replace("ST185-", "")))
+            x = x0 if side == "a" else x0 + 660
+            terms[key] = {"id": tid, "type": "Loose", "label": fname.replace("ST185-", ""), "signal": "", "width": 240,
+                          "excludeFromBom": True, "_n": 0, "_owner": owner,
+                          "schematicPosition": {"x": x, "y": y + 30 * sch_rows[x]},
+                          "layoutPosition": {"x": q["x"] + GHOST_DX, "y": ty}}
+            sch_rows[x] += 1
+            # a square stub: out along the comb line beside the branch point, then across to the terminal
+            doc.setdefault("bundles", []).append({
+                "id": "bn_" + tid[2:], "sourceId": bp, "targetId": tid, "length": {"value": 100, "unit": "mm"},
+                "layoutPoints": [{"id": "bn_%s_p0" % tid[2:], "layoutPosition": {"x": q["x"] + 30, "y": q["y"]}},
+                                 {"id": "bn_%s_p1" % tid[2:], "layoutPosition": {"x": q["x"] + 30, "y": ty}}],
+                "separateLabels": True, "label": "", "endLabel": fname.replace("ST185-", ""),
+                "endLabelColor": GHOST_COLOUR.get(owner, "Gray")})
+        terms[key]["_n"] += 1
+        return terms[key]["id"]
+    n_added = 0
+    for key, items in groups.items():
+        r, a, b = items[0]
+        owner, fname = r["harness"], ghost_file(r, doc_of)
+        gid = _sid("%s_%s_%s" % (owner, a, b)) if strands else _sid(r["wire_id"])
+        label = ("%s x%d" % (fname.replace("ST185-", ""), len(items))) if strands else (r.get("wire_label") or r["wire_id"])
+        colour = GHOST_COLOUR.get(owner, "Gray") if strands else (r["colour"] if r["colour"] in _PART_COLOURS else "Gray")
+        ta, tb = term(a, owner, fname, "a"), term(b, owner, fname, "b")
+        doc.setdefault("wires", []).append({"id": "w_gh_%s" % gid, "source": {"id": ta, "handle": "Terminal"},
+                                            "target": {"id": tb, "handle": "Terminal"}, "color": colour, "identLabel": label})
+        n_added += 1
+    for t in terms.values():
+        nw = t.pop("_n"); t["signal"] = "%d %s wire%s (not built here)" % (nw, t["label"], "" if nw == 1 else "s")
+        t.pop("_owner")
+        doc.setdefault("terminals", []).append(t)
+    return n_added
+
 # ------------------------------------------------------------------------------------------------ build
 def build(h):
     """Route every wire on the layout tree (lengths, problems), then write the per-harness wire lists."""
