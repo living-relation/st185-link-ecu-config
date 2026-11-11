@@ -1,0 +1,439 @@
+{
+ "harness": "EngineRoom-C",
+ "doc": "layouts/harnessC",
+ "seedVersion": "EngineRoomC-z10b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore), not the 2026-11-02 save that a load bug overwrote.",
+ "warnMm": 300,
+ "unitMm": 5.3,
+ "noTurn": true,
+ "compass": [
+  "Front ↓",
+  "Driver →"
+ ],
+ "pad": 8,
+ "minView": 40,
+ "bg": {
+  "rect": [
+   110,
+   85,
+   380,
+   315
+  ]
+ },
+ "lines": [
+  {
+   "id": "10",
+   "name": "Front run: RH fender exit along the radiator support to ground stud EB",
+   "short": "Front run",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     177.3,
+     116.8
+    ],
+    [
+     148.5,
+     289.9
+    ],
+    [
+     166,
+     314
+    ],
+    [
+     418.5,
+     314
+    ],
+    [
+     418.5,
+     286.5
+    ]
+   ]
+  },
+  {
+   "id": "11",
+   "name": "Wiper run: LH pass-through straight to the wiper motor",
+   "short": "Wiper run",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     409.3,
+     97.9
+    ],
+    [
+     367.1,
+     142.6
+    ]
+   ]
+  },
+  {
+   "id": "RH",
+   "name": "Front run across to the start of the engine harness trunk",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     169.28,
+     165.0
+    ],
+    [
+     224,
+     180.1
+    ]
+   ]
+  },
+  {
+   "id": "L6",
+   "name": "Engine harness belt-end drop (shared)",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     224.2,
+     180
+    ],
+    [
+     235,
+     201.2
+    ],
+    [
+     224.8,
+     219.6
+    ],
+    [
+     221.8,
+     251.3
+    ],
+    [
+     234.5,
+     252.9
+    ],
+    [
+     248.3,
+     272.9
+    ]
+   ]
+  },
+  {
+   "id": "FH1",
+   "name": "Belt-end drop straight to the alternator plug",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     223.5,
+     236.0
+    ],
+    [
+     252,
+     236
+    ]
+   ]
+  },
+  {
+   "id": "F24",
+   "name": "Front run straight up to ground stud EA",
+   "short": "EA ground leg",
+   "color": "#424242",
+   "dash": false,
+   "pts": [
+    [
+     169.3,
+     314
+    ],
+    [
+     169.3,
+     259
+    ]
+   ]
+  },
+  {
+   "id": "FEB",
+   "name": "Engine block ground strap straight to ground stud EB",
+   "short": "Block strap",
+   "color": "#424242",
+   "dash": false,
+   "pts": [
+    [
+     352.2,
+     277.5
+    ],
+    [
+     418.5,
+     286.5
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "H2",
+   "name": "RH headlamp H2",
+   "group": "RH front",
+   "note": "",
+   "x": 197.3,
+   "y": 339.7,
+   "line": "10",
+   "drop": null,
+   "short": "RH headlight"
+  },
+  {
+   "n": "2",
+   "id": "R3",
+   "name": "RH pop-up motor R3",
+   "group": "RH front",
+   "note": "",
+   "x": 166.4,
+   "y": 372.4,
+   "line": "10",
+   "drop": null,
+   "short": "RH pop-up motor"
+  },
+  {
+   "n": "3",
+   "id": "WASH",
+   "name": "Washer pump",
+   "group": "RH front",
+   "note": "",
+   "x": 127.1,
+   "y": 323.7,
+   "line": "10",
+   "drop": null,
+   "short": "Washer pump"
+  },
+  {
+   "n": "4",
+   "id": "F8",
+   "name": "RH front turn / clearance lamp F8",
+   "group": "RH front",
+   "note": "",
+   "x": 180.5,
+   "y": 385.5,
+   "line": "10",
+   "drop": null,
+   "short": "RH turn lamp"
+  },
+  {
+   "n": "5",
+   "id": "F6",
+   "name": "RH side marker lamp F6",
+   "group": "RH front",
+   "note": "",
+   "x": 152.9,
+   "y": 336.8,
+   "line": "10",
+   "drop": null,
+   "short": "RH marker lamp"
+  },
+  {
+   "n": "8",
+   "id": "A4",
+   "name": "A/C compressor A4",
+   "group": "RH front",
+   "note": "",
+   "x": 235.1,
+   "y": 291.3,
+   "line": "10",
+   "drop": null,
+   "short": "A/C compressor"
+  },
+  {
+   "n": "9",
+   "id": "FANC",
+   "name": "Condenser fan (power and ground plugs)",
+   "group": "RH front",
+   "note": "",
+   "x": 230.7,
+   "y": 332.1,
+   "line": "10",
+   "drop": null,
+   "short": "Condenser fan"
+  },
+  {
+   "n": "24",
+   "id": "GND-EA",
+   "name": "Ground stud EA, RH front fender",
+   "group": "RH front",
+   "note": "",
+   "x": 169.3,
+   "y": 259,
+   "line": "F24",
+   "drop": null,
+   "short": "Ground EA"
+  },
+  {
+   "n": "MA",
+   "id": "MRS-A",
+   "name": "Power steering pump plug A",
+   "group": "RH front",
+   "note": "",
+   "x": 169.3,
+   "y": 286.3,
+   "line": "F24",
+   "drop": null,
+   "short": "Steering pump plug A"
+  },
+  {
+   "n": "10",
+   "id": "A1",
+   "name": "Ambient air temp sensor A1 (front, 6 in pigtail)",
+   "group": "Front centre",
+   "note": "Low in the front bumper; spot not yet placed by Dan",
+   "x": 307,
+   "y": 350,
+   "line": "10",
+   "drop": null,
+   "short": "Outside air temp"
+  },
+  {
+   "n": "12",
+   "id": "HORNS",
+   "name": "Horns (2)",
+   "group": "Front centre",
+   "note": "With the horn feed and ground splices",
+   "x": 353.6,
+   "y": 350.6,
+   "line": "10",
+   "drop": null,
+   "short": "Horns"
+  },
+  {
+   "n": "13",
+   "id": "FANR",
+   "name": "Radiator fan (power and ground plugs)",
+   "group": "Front centre",
+   "note": "",
+   "x": 323.1,
+   "y": 296.8,
+   "line": "10",
+   "drop": null,
+   "short": "Radiator fan"
+  },
+  {
+   "n": "14",
+   "id": "H1",
+   "name": "LH headlamp H1",
+   "group": "LH front",
+   "note": "",
+   "x": 399.5,
+   "y": 336.8,
+   "line": "10",
+   "drop": null,
+   "short": "LH headlight"
+  },
+  {
+   "n": "15",
+   "id": "R2",
+   "name": "LH pop-up motor R2",
+   "group": "LH front",
+   "note": "",
+   "x": 402,
+   "y": 386.6,
+   "line": "10",
+   "drop": null,
+   "short": "LH pop-up motor"
+  },
+  {
+   "n": "16",
+   "id": "F7",
+   "name": "LH front turn / clearance lamp F7",
+   "group": "LH front",
+   "note": "",
+   "x": 417.3,
+   "y": 386.3,
+   "line": "10",
+   "drop": null,
+   "short": "LH turn lamp"
+  },
+  {
+   "n": "6",
+   "id": "F5",
+   "name": "LH side marker lamp F5",
+   "group": "LH front",
+   "note": "",
+   "x": 438.7,
+   "y": 326.6,
+   "line": "10",
+   "drop": null,
+   "short": "LH marker lamp"
+  },
+  {
+   "n": "25",
+   "id": "GND-EB",
+   "name": "Ground stud EB, LH front fender",
+   "group": "LH front",
+   "note": "Factory bolt; the engine block strap lug goes on the same bolt",
+   "x": 418.5,
+   "y": 286.5,
+   "line": "10",
+   "drop": null,
+   "short": "Ground EB"
+  },
+  {
+   "n": "18",
+   "id": "ACPSW",
+   "name": "A/C pressure switch",
+   "group": "Engine",
+   "note": "",
+   "x": 225.6,
+   "y": 207.1,
+   "line": "L6",
+   "drop": null,
+   "short": "A/C pressure switch"
+  },
+  {
+   "n": "AL",
+   "id": "ALT-PLUG",
+   "name": "Alternator plug",
+   "group": "Engine",
+   "note": "",
+   "x": 252,
+   "y": 236,
+   "line": "FH1",
+   "drop": null,
+   "short": "Alternator plug"
+  },
+  {
+   "n": "BG",
+   "id": "T-ENG-BLOCK-2",
+   "name": "Engine block ground stud, strap lug",
+   "group": "Engine",
+   "note": "",
+   "x": 352.2,
+   "y": 277.5,
+   "line": "FEB",
+   "drop": null,
+   "short": "Block ground"
+  },
+  {
+   "n": "19",
+   "id": "F9",
+   "name": "Front wiper motor F9 (cowl, driver side)",
+   "group": "Cowl",
+   "note": "",
+   "x": 367.1,
+   "y": 142.6,
+   "line": "11",
+   "drop": null,
+   "short": "Wiper motor"
+  }
+ ],
+ "refs": [
+  {
+   "id": "RFX",
+   "label": "RH fender exit",
+   "name": "Where the front harness leaves the cabin into the RH fender (from the glove box)",
+   "x": 177.3,
+   "y": 116.8
+  },
+  {
+   "id": "LFP",
+   "label": "LH pass-through",
+   "name": "LH kick / fender pass-through (wiper feed, with the alarm leads)",
+   "x": 409.3,
+   "y": 97.9
+  }
+ ]
+}

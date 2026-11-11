@@ -1,0 +1,378 @@
+{
+ "harness": "AB-cabin",
+ "doc": "layouts/ABcabin",
+ "seedVersion": "ABcabin-z10b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "ECU",
+   "name": "ECU straight forward to the dash run",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -677.2,
+     -92.8
+    ],
+    [
+     -580,
+     -92.8
+    ]
+   ]
+  },
+  {
+   "id": "T1",
+   "name": "Dash run: ECU to the glove box",
+   "short": "To glove box",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -92.8
+    ],
+    [
+     -580,
+     480
+    ]
+   ]
+  },
+  {
+   "id": "T2",
+   "name": "Dash run: ECU to J/B No.1, LH kick",
+   "short": "To LH kick",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -92.8
+    ],
+    [
+     -580,
+     -650
+    ],
+    [
+     -830,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "BH",
+   "name": "Dash run straight forward to the firewall bulkhead",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     330
+    ],
+    [
+     -480,
+     330
+    ]
+   ]
+  },
+  {
+   "id": "AC",
+   "name": "Glove box straight back to the A/C amplifiers",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -680,
+     480
+    ],
+    [
+     -680,
+     520
+    ]
+   ]
+  },
+  {
+   "id": "KICK",
+   "name": "Glove box to R/B No.4, RH kick",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -580,
+     650
+    ],
+    [
+     -660,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "SILL",
+   "name": "RH kick along the RH sill to the trunk (battery corner)",
+   "short": "RH sill to trunk",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -660,
+     650
+    ],
+    [
+     -2880,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "TANK",
+   "name": "Sill run across to the fuel level sender",
+   "short": "To fuel sender",
+   "color": "#00838f",
+   "dash": false,
+   "pts": [
+    [
+     -2880,
+     650
+    ],
+    [
+     -2880,
+     -300
+    ]
+   ]
+  },
+  {
+   "id": "WS",
+   "name": "Stub to the wheel speed conditioner plugs",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -30
+    ],
+    [
+     -430,
+     -30
+    ]
+   ]
+  },
+  {
+   "id": "IG2",
+   "name": "Stub to the reverse-light plug IG2",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     0
+    ],
+    [
+     -540,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "PED",
+   "name": "Dash run straight forward to the pedal",
+   "short": "To pedal",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -380
+    ],
+    [
+     -430,
+     -380
+    ]
+   ]
+  },
+  {
+   "id": "CON",
+   "name": "ECU straight back to the centre console (CAN to the switch board; shared with the dash harness)",
+   "short": "To console",
+   "color": "#008cb3",
+   "dash": false,
+   "pts": [
+    [
+     -677.2,
+     -92.8
+    ],
+    [
+     -950,
+     -92.8
+    ],
+    [
+     -950,
+     0
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "ECU",
+   "name": "Link G4X ECU (plugs A, B and C)",
+   "group": "ECU",
+   "note": "Factory ECU spot. The bussed plugs, splices, pull-up resistors and wake diode sit beside it",
+   "x": -677.2,
+   "y": -92.8,
+   "line": "ECU",
+   "drop": null,
+   "short": "ECU"
+  },
+  {
+   "n": "2",
+   "id": "DRB102-CABIN",
+   "name": "Firewall bulkhead connector (cabin side)",
+   "group": "Bulkhead",
+   "note": "RH firewall",
+   "x": -480,
+   "y": 330,
+   "line": "BH",
+   "drop": null,
+   "short": "Bulkhead"
+  },
+  {
+   "n": "3",
+   "id": "APS-PEDAL",
+   "name": "Accelerator pedal sensor",
+   "group": "Driver side",
+   "note": "Driver footwell",
+   "x": -430,
+   "y": -380,
+   "line": "PED",
+   "drop": 360,
+   "short": "Pedal"
+  },
+  {
+   "n": "4",
+   "id": "VRC-F-OUT",
+   "name": "Front VR conditioner output plug",
+   "group": "Dash",
+   "note": "Plugs into the front wheel speed conditioner",
+   "x": -430,
+   "y": -30,
+   "line": "WS",
+   "drop": 150,
+   "short": "Front wheel speed plug"
+  },
+  {
+   "n": "5",
+   "id": "VRC-R-OUT",
+   "name": "Rear VR conditioner output plug",
+   "group": "Dash",
+   "note": "Plugs into the rear wheel speed conditioner",
+   "x": -470,
+   "y": -30,
+   "line": "WS",
+   "drop": 150,
+   "short": "Rear wheel speed plug"
+  },
+  {
+   "n": "6",
+   "id": "IG2",
+   "name": "Cowl plug IG2 (under the ECU)",
+   "group": "Factory plugs",
+   "note": "Reverse-light feed and the kill switch ignition leg",
+   "x": -540,
+   "y": 0,
+   "line": "IG2",
+   "drop": null,
+   "short": "IG2"
+  },
+  {
+   "n": "7",
+   "id": "A15",
+   "name": "A/C amplifier A15 (behind the glove box)",
+   "group": "Factory plugs",
+   "note": "With the A/C pressure switch and tacho splices and the lock sensor resistor",
+   "x": -680,
+   "y": 520,
+   "line": "AC",
+   "drop": null,
+   "short": "A/C amplifier"
+  },
+  {
+   "n": "8",
+   "id": "A32",
+   "name": "Auto A/C amplifier A32",
+   "group": "Factory plugs",
+   "note": "Sensor common; the outside air temp sensor wires (front harness) land here too",
+   "x": -680,
+   "y": 480,
+   "line": "AC",
+   "drop": null,
+   "short": "Auto A/C amplifier"
+  },
+  {
+   "n": "9",
+   "id": "FUEL-LEVEL",
+   "name": "Fuel level sender",
+   "group": "Rear",
+   "note": "At the tank top; the sill run lands straight on its plug",
+   "x": -2880,
+   "y": -300,
+   "line": "TANK",
+   "drop": null,
+   "short": "Fuel sender"
+  }
+ ],
+ "refs": [
+  {
+   "id": "GB",
+   "label": "Glove box",
+   "name": "POWER / LOGIC boxes and their relays (glove box)",
+   "x": -580,
+   "y": 480
+  },
+  {
+   "id": "JB1",
+   "label": "J/B 1",
+   "name": "J/B No.1 (LH kick panel)",
+   "x": -830,
+   "y": -650
+  },
+  {
+   "id": "RB4",
+   "label": "R/B 4",
+   "name": "R/B No.4 and ground bolt IG (RH kick)",
+   "x": -660,
+   "y": 650
+  },
+  {
+   "id": "CSB",
+   "label": "CAN tap",
+   "name": "CAN switch board tap (dash harness, centre console)",
+   "x": -950,
+   "y": 0
+  },
+  {
+   "id": "BATT",
+   "label": "Battery corner",
+   "name": "Kill switch and the fuel pump relay in the trunk relay block (heavy cable harness)",
+   "x": -2830,
+   "y": 650
+  }
+ ]
+}

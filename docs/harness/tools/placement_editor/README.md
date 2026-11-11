@@ -1,6 +1,6 @@
 # Placement editor (refine-only)
 
-One shared template for every harness's placement editor (CabinPower, WheelSpeed-Front, WheelSpeed-Rear, RearFuel, AntiTheft and later ones). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
+One shared template for every harness's placement editor: all ten harnesses use it since 2026-11-11 (one seed each in `seeds/`; editor links: `docs/OPEN-ITEMS.md` row 180 and History). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
 
 - `editor.html`: the page template. The seed format and the save format are documented in its top comment.
 - `make_editor.py`: fills the template with one harness's seed and the top-view plan image. Device and fixed-marker names are pulled from the master's plain names (`from_id` / `to_id` -> `from_name` / `to_name`), so a rebuild after a master rename shows the new names. It warns on any code left in a name, short label or note (DECISIONS B22: only fuse box / relay codes and factory EWD plug IDs may show).
@@ -27,9 +27,10 @@ The AB-engine editor (`seeds/AB-engine.json`, db doc `layouts/route16`, the Rout
 - Extra seed keys, all optional and off for every other editor: `drawRoutes`, `unitMm` (mm per map unit; Route 16 points are 5.3), `compass` (the two marker labels), `noTurn` (never turn the map on a phone), `pad`, `minView`.
 - The save adds `lines` (the routes as Dan left them), `routesChanged`, `unitMm`, `editor: "parts-and-routes"`, and each device's nearest `line`.
 - Build it with the Route 16 engine-bay picture, not the under-body plan: pass an earlier engine-bay editor page (Harness C's or Route 16's) as the second argument.
+- The EngineRoom-C editor (`seeds/EngineRoom-C.json`, db doc `layouts/harnessC`, the "Harness C" link) uses the same picture and `unitMm` 5.3 but stays refine-only (no `drawRoutes`).
 
 ## Make or reseed an editor
 1. Claude draws the harness's route in `ST185-harness.layout.json` (straight, shortest, cleanest) and writes a seed JSON: that harness's own devices on their rough spots, its lines, `doc` = `layouts/<harness>`, and a NEW `seedVersion`. A save made from an older `seedVersion` is not loaded (it stays in the db and is copied to `<doc>_prev` on the next save).
-2. `python make_editor.py <seed.json> <topview.png or an earlier editor page> <out.html>`. The top-view plan image is the body manual DI-7 under-body plan already embedded in every earlier editor (its rect: `[-3455.6, -809.1, 4262.1, 1664.1]` mm); passing an earlier editor's saved HTML reuses it.
+2. `python make_editor.py <seed.json> <topview.png or an earlier editor page> <out.html>`. The top-view plan image is the body manual DI-7 under-body plan already embedded in every earlier editor (its rect: `[-3455.6, -809.1, 4262.1, 1664.1]` mm); passing an earlier editor's saved HTML reuses it (the Artifact tool's `read_file` with `paths` saves a published page as a file).
 3. Publish `out.html` with the Artifact tool to that harness's existing editor URL (capabilities `db` and `user`), so the link Dan has keeps working.
 4. After Dan saves: read `layouts/<harness>`, check every `far` device, and copy the moved spots into the layout tree by hand (no script writes the tree from a save).
