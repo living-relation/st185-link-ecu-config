@@ -1648,13 +1648,16 @@ def add_route_trees(L):
                 out.append(n)
                 n = up.get(n)
             return out[::-1]
-        rows = [r for r in master_rows() if r["wire_id"] and spec["harness"] in (r["harness"], r["passes_through"])]
+        rows = [r for r in master_rows() if r["wire_id"] and (spec["harness"] == r["harness"] or spec["harness"] in [x.strip() for x in r["passes_through"].split("/")])]
         def at(r, s):   # a "roots" tree also places factory ends (by `place_oem`, as Harness.place does)
             if legacy or r[s + "_type"] != "OEM":
                 return place.get(r[s + "_id"])
             return next((n for pat, n in L.get("place_oem", []) if pat in r[s + "_id"] + " " + r[s + "_name"]), None)
         for _ in range(4):
-            for c in sorted({r[s + "_id"] for r in rows for s in ("from", "to") if legacy or r[s + "_type"] != "OEM"}
+            # only joins move (splices, resistors, diodes, cable screens): a device end of another harness's wire that
+            # passes through this tree (T5 a) keeps its own place
+            for c in sorted({r[s + "_id"] for r in rows for s in ("from", "to") if (legacy or r[s + "_type"] != "OEM")
+                             and (r["harness"] == spec["harness"] or r[s + "_type"] in ("splice", "resistor", "diode", "cable screen"))}
                             | {r["cable"] for r in rows if r["cable"]}):
                 if not c or place.get(c) in nodes:
                     continue

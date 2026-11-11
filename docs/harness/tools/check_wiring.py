@@ -676,48 +676,55 @@ def self_test():
 
     def first(rs, f):
         return next(r for r in rs if r["wire_id"] and f(r))
-    mutate("a pin written as a sign", "F2", lambda rs: first(rs, lambda r: r["to_id"] == "DRB102-CABIN").update(to_pin="+"))
+
+    def at_end(rs, ident, at_pin=None, **upd):
+        """change the end of the first wire that lands on `ident` (and `pin`), whichever side it is (S8 a, 2026-11-10:
+        From / To follow the source rule, so a test never assumes a side); keys in `upd` are written without the side prefix"""
+        for r in rs:
+            for sd in ("from", "to"):
+                if r["wire_id"] and r[sd + "_id"] == ident and (at_pin is None or r[sd + "_pin"] == at_pin):
+                    r.update({sd + "_" + k: v for k, v in upd.items()})
+                    return r
+        raise StopIteration(ident)
+    mutate("a pin written as a sign", "F2", lambda rs: at_end(rs, "DRB102-CABIN", pin="+"))
     mutate("a net on a plain wire", "F3", lambda rs: first(rs, lambda r: not r["net"]).update(net="5V"))
-    mutate("two wires in one cavity", "F4", lambda rs: first(rs, lambda r: r["from_id"] == "ECU-A" and r["from_pin"] == "1").update(
-        from_pin="2"))
-    mutate("a dead ECU pin wired", "E1", lambda rs: first(rs, lambda r: r["from_id"] == "ECU-A" and r["from_pin"] == "1").update(
-        from_pin="18") if False else first(rs, lambda r: r["to_id"] == "ECU-B" and r["to_pin"] == "28").update(to_pin="1"))
-    mutate("the ECU ground to chassis", "E2", lambda rs: first(rs, lambda r: NEG_BAR.match(r["to_id"]) and r["from_id"] == "SP-GND-ECU")
-           .update(to_id="GND-IF", to_name="Ground point IF"))
-    mutate("an INTEGRAL link with a length", "I1", lambda rs: first(rs, lambda r: is_integral(r) and r["from_type"] == "splice")
+    mutate("two wires in one cavity", "F4", lambda rs: at_end(rs, "ECU-A", "1", pin="2"))
+    mutate("a dead ECU pin wired", "E1", lambda rs: at_end(rs, "ECU-B", "28", pin="1"))
+    def ecu_gnd(rs):
+        r = first(rs, lambda r: {r["from_id"], r["to_id"]} & {"SP-GND-ECU"} and (NEG_BAR.match(r["to_id"]) or NEG_BAR.match(r["from_id"])))
+        sd = "to" if NEG_BAR.match(r["to_id"]) else "from"
+        r.update({sd + "_id": "GND-IF", sd + "_name": "Ground point IF"})
+    mutate("the ECU ground to chassis", "E2", ecu_gnd)
+    mutate("an INTEGRAL link with a length", "I1", lambda rs: first(rs, lambda r: is_integral(r) and "splice" in (r["from_type"], r["to_type"]))
            .update(est_length_mm="200"))
-    mutate("a bussed plug pin with its own signal name", "B1", lambda rs: first(rs, lambda r: r["to_id"] == "BUS-SW12")
-           .update(to_desc="Fuel pump relay coil +"))
+    mutate("a bussed plug pin with its own signal name", "B1", lambda rs: at_end(rs, "BUS-SW12", desc="Fuel pump relay coil +"))
     mutate("a wire labelled with its wire id", "B1", lambda rs: first(rs, lambda r: r["wire_id"] == "w67").update(wire_label="w67"))
-    mutate("a wire on the bussed receptacle", "B2", lambda rs: first(rs, lambda r: r["from_id"] == "BUS-SW12")
-           .update(from_housing_pn="DT04-12PA-P021"))
+    mutate("a wire on the bussed receptacle", "B2", lambda rs: at_end(rs, "BUS-SW12", housing_pn="DT04-12PA-P021"))
     mutate("a pin-to-pin bridge on a bussed plug", "I1", lambda rs: rs.append(dict(first(rs, lambda r: r["wire_id"] == "w67"),
            wire_id="br_x", wire_pn="INTEGRAL", gauge_awg="", est_length_mm="", from_id="BUS-5V", from_type="connector", from_pin="1",
            to_id="BUS-5V", to_type="connector", to_pin="2")))
-    mutate("a ring on a stud the box design does not have", "P1", lambda rs: first(rs, lambda r: r["to_id"] == "T-PWR-NEG-BAT")
-           .update(to_name="POWER box NEG bar, BAT2 stud"))
-    mutate("two lugs on one 1/0 stud", "P1", lambda rs: first(rs, lambda r: r["from_id"] == "T-PWR-NEG-ID")
-           .update(from_name="POWER box NEG bar, GND IG stud", from_id="T-PWR-NEG-IG2"))
+    mutate("a ring on a stud the box design does not have", "P1", lambda rs: at_end(rs, "T-PWR-NEG-BAT", name="POWER box NEG bar, BAT2 stud"))
+    mutate("two lugs on one 1/0 stud", "P1", lambda rs: at_end(rs, "T-PWR-NEG-ID", name="POWER box NEG bar, GND IG stud", id="T-PWR-NEG-IG2"))
     mutate("a fourth ring on the small GND stud", "P1", lambda rs: [first(rs, lambda r, w=w: r["wire_id"] == w)
            .update(to_type="terminal", to_id="T-PWR-NEG-GND-%d" % n, to_name="POWER box NEG bar, GND stud", net="")
            for n, w in ((4, "w_flex_ret_c"), (5, "w_lamg_ac"))])  # 2 + 2 rings since the K-ON ground left with the box insides (R1 a); w_can_gnd gone (T1 a)
-    mutate("a relay coil driven on 86", "E4", lambda rs: first(rs, lambda r: r["from_id"] == "K-FAN" and r["from_pin"] == "85")
-           .update(from_pin="86"))
-    mutate("a screen landed on a device pin", "S2", lambda rs: first(rs, lambda r: r["from_type"] == "cable screen").update(
-        to_type="connector", to_id="MAP", to_pin="1"))
-    mutate("a bulkhead cavity wired on one side", "M1", lambda rs: first(rs, lambda r: r["from_id"] == "DRB102-ENGINE").update(
-        from_pin="5"))
+    mutate("a relay coil driven on 86", "E4", lambda rs: at_end(rs, "K-FAN", "85", pin="86"))
+    def screen_on_pin(rs):
+        r = first(rs, lambda r: "cable screen" in (r["from_type"], r["to_type"]))
+        sd = "to" if r["from_type"] == "cable screen" else "from"
+        r.update({sd + "_type": "connector", sd + "_id": "MAP", sd + "_pin": "1"})
+    mutate("a screen landed on a device pin", "S2", screen_on_pin)
+    mutate("a bulkhead cavity wired on one side", "M1", lambda rs: at_end(rs, "DRB102-ENGINE", pin="5"))
     mutate("an LED ground on chassis without the factory-ground tag", "E3", lambda rs: first(
         rs, lambda r: r["wire_id"] == "w_led_gnd_c13").update(to_type="terminal", to_id="GND-ID",
                                                                 to_name="Ground stud ID, LH kick panel", notes=""))
     mutate("the factory-ground tag on CAN / ECU / sensor ties", "E3", lambda rs: first(
-        rs, lambda r: r["wire_id"] == "w_fan_gnd").update(from_desc="CAN-Lambda sensor ground"))
+        rs, lambda r: r["wire_id"] == "w_fan_gnd").update(to_desc="CAN-Lambda sensor ground"))
     mutate("the factory-ground tag without a 1993 EWD page", "E3", lambda rs: first(
         rs, lambda r: r["wire_id"] == "w_fan_gnd").update(notes="factory ground (N83 a): radiator fan to EA"))
     mutate("the factory-ground tag off a body ground stud", "E3", lambda rs: first(
-        rs, lambda r: r["wire_id"] == "w_f5_gnd").update(to_id="T-ENG-BLOCK-3", to_name="Engine block ground stud, lug 3"))
-    mutate("12 AWG in a size-16 cavity", "M2", lambda rs: first(rs, lambda r: r["to_id"] == "DRB102-CABIN" and r["to_pin"] == "21")
-           .update(gauge_awg="12"))
+        rs, lambda r: r["wire_id"] == "w_f5_gnd").update(from_id="T-ENG-BLOCK-3", from_name="Engine block ground stud, lug 3"))
+    mutate("12 AWG in a size-16 cavity", "M2", lambda rs: at_end(rs, "DRB102-CABIN", "21").update(gauge_awg="12"))
     for name, extra, want in (("a stray wiring CSV under docs/harness", "docs/harness/extra-wires.csv", True),
                               ("a CSV in wirelists/ not named like a wire list", "docs/harness/wirelists/notes.csv", True),
                               ("a generated wire list CSV (allowed)", "docs/harness/wirelists/ST185-Test-wirelist.csv", False)):
