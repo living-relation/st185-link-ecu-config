@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev I" (Rev I 2026-11-10: the CAN-Lambda end terminator is a bare 120 ohm resistor behind its plug, Dan S6 b; Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
+"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev J" (Rev J 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and one ghost strand per other harness, Dan T4 a; Rev I 2026-11-10: the CAN-Lambda end terminator is a bare 120 ohm resistor behind its plug, Dan S6 b; Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
 master is the source). Usage: python gen_abeng.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8,
 get_part_library). Writes <out>/abeng.json (whole document, wires not yet routed) and <out>/abeng_lib_ops.json (part-library
 add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.json. Same rules and helpers' shape as
@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 import genroute
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'AB-engine', 'ST185-AB-engine', 'I', '2026-11-10'
+NAME, TITLE, REV, DATE = 'AB-engine', 'ST185-AB-engine', 'J', '2026-11-11'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -401,15 +401,15 @@ for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
 head = [{"id": "n_title", "width": 360,
          "text": TITLE + " Rev " + REV + " (" + DATE + "): the ECU harness, engine-bay half (DRB102-ENGINE to every engine sensor and "
-                 "actuator, CAN-Lambda with its plug-in 120 ohm terminator, MR-S plugs B / C, starter S). Viewer copy generated from "
+                 "actuator, CAN-Lambda with its bare 120 ohm end resistor behind the plug (Dan S6 b), MR-S plugs B / C, starter S). Viewer copy generated from "
                  "docs/harness/MASTER-wirelist.csv (harness = AB-engine) by docs/harness/tools/gen_abeng.py; never a source. Schematic: "
                  "bulkhead in the centre third, splices beside it, shielded cables by their device, devices right in feed order, columns "
                  "level at the top (device rows half a grid lower, N1 a). Each pin shows its own master end text. Connectors are drawn "
-                 "whole; spare cavities are N/C with a note. " + ("Pass-through wires not drawn: " + '; '.join(
+                 "whole; spare cavities are N/C with a note. " + ("Pass-through wires of other harnesses are drawn as one ghost strand per harness (not built here, not in the BOM; Dan T4 a): " + '; '.join(
                      '%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) + ". " if pass_by else "") +
                  "Layout: a formboard of the Route 16 tree (route_trees; the bulkhead 16 in above where the trunk meets the firewall), "
                  "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on "
-                 "a 100 mm end-allowance stub; bundle lengths = the master est_length_mm (HeavyDC is on its own Route 1 tree, "
+                 "a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm (HeavyDC is on its own Route 1 tree, "
                  "DECISIONS B6 b)."},
         {"id": "n_stripes", "width": 360,
          "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
