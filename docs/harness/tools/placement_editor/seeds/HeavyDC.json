@@ -1,8 +1,8 @@
 {
  "harness": "HeavyDC",
  "doc": "layouts/HeavyDC",
- "seedVersion": "HeavyDC-corr-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The starter / jump post run goes along the firewall and the LH apron (inner perimeter of the bay), then straight across to the starter and on to the jump post; the block-ground leg goes on along the LH apron and straight across to the stud.",
+ "seedVersion": "HeavyDC-jp-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save; the jump post is on his 2026-11-11 save (moved 515 mm to the driver side, the old battery spot; an aftermarket part he moved, so his spot wins, DECISIONS B8 X5 rule), with the jump bus bar and the alternator fuse block beside it. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The main run goes along the firewall and the LH apron (inner perimeter of the bay) to the jump post; the starter cable and the block-ground cable each leave the jump post on one short square leg, so no cable doubles back.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -93,8 +93,8 @@
   },
   {
    "id": "ENG",
-   "name": "Firewall connectors along the firewall to the LH corner, forward along the LH apron, then straight across to the starter and on to the jump post",
-   "short": "To starter and jump post",
+   "name": "Firewall connectors along the firewall to the LH corner, then forward along the LH apron to the jump post",
+   "short": "To jump post",
    "color": "#7a1f9e",
    "dash": false,
    "pts": [
@@ -107,32 +107,49 @@
      -600
     ],
     [
-     100,
+     289,
      -600
+    ],
+    [
+     289,
+     -529
+    ]
+   ]
+  },
+  {
+   "id": "STR",
+   "name": "Jump post straight back, then across to the starter B+ stud",
+   "short": "To starter",
+   "color": "#00838f",
+   "dash": false,
+   "pts": [
+    [
+     289,
+     -529
+    ],
+    [
+     100,
+     -529
     ],
     [
      100,
      -260
-    ],
-    [
-     100,
-     -50
     ]
    ]
   },
   {
    "id": "BLK",
-   "name": "LH apron run on forward, then straight across to the engine block ground stud (LH engine mounting stay)",
+   "name": "Jump post straight inboard to the engine block ground stud (LH engine mounting stay)",
    "color": "#2e7d32",
    "dash": false,
    "pts": [
     [
-     100,
-     -600
+     289,
+     -529
     ],
     [
-     295.8,
-     -600
+     289,
+     -401.4
     ],
     [
      295.8,
@@ -254,7 +271,7 @@
    "note": "",
    "x": 100,
    "y": -260,
-   "line": "ENG",
+   "line": "STR",
    "drop": null,
    "short": "Starter B+"
   },
@@ -276,8 +293,8 @@
    "name": "Jump start post",
    "group": "Engine bay",
    "note": "With the jump bus bar and the alternator fuse block beside it",
-   "x": 100,
-   "y": -50,
+   "x": 289,
+   "y": -529,
    "line": "ENG",
    "drop": null,
    "short": "Jump post"

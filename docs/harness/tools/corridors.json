@@ -1,6 +1,6 @@
 {
  "about": "Wireway corridors (Dan 2026-11-11 09:30 and 12:19, DECISIONS B8 'Wireway corridors'): main trunks stay inside these bands so harnesses keep their runs relative to each other. Each corridor is a centre polyline with a full band width; a 'widen' band is part of its corridor. This file is the one source.",
- "status": "APPROVED (Dan 2026-11-11 12:19, \"Corridor approved.\"; with Y5 a, Y6 a, Y7 a, Y8 a, DECISIONS B8 \"Wireway corridors\"): main trunks of every harness stay inside these bands; short branches out to devices may leave them (Y7 a). Checked by check_corridors.py (tools/check_all.py).",
+ "status": "APPROVED (Dan 2026-11-11 12:19, \"Corridor approved.\"; with Y5 a, Y6 a, Y7 a, Y8 a and Z1 a, DECISIONS B8 \"Wireway corridors\"): main trunks of every harness stay inside these bands; short branches out to devices may leave them (Y7 a). Checked by check_corridors.py (tools/check_all.py).",
  "frames": {
   "car_mm": "Cabin editors' frame: x fore-aft in mm (front +), y side to side in mm (LH / driver -, RH +); body manual DI-7 under-body plan, rect [-3455.6, -809.1, 4262.1, 1664.1].",
   "ewd_pt": "Engine-bay editors' frame: 1993 EWD p.36 points; x grows toward the LH side, y grows toward the front.",
@@ -340,6 +340,31 @@
       [
        602.7,
        495.3
+      ]
+     ]
+    },
+    {
+     "why": "RH rear corner of the engine bay (Dan Z1 a, 2026-11-11): the factory path from the RH fender exit run straight across to the engine harness trunk start; harness C joins the trunk start along it (no V, no double-back)",
+     "width_mm": 160,
+     "ewd_pt": [
+      [
+       169.28,
+       165.0
+      ],
+      [
+       224.2,
+       180.0
+      ]
+     ],
+     "width_pt": 30.2,
+     "car_mm": [
+      [
+       -144.6,
+       622.1
+      ],
+      [
+       -65.1,
+       331.0
       ]
      ]
     }
