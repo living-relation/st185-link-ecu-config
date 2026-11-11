@@ -219,321 +219,350 @@
   {
    "n": "9",
    "id": "COIL-1",
-   "name": "COIL-1",
+   "name": "Ignition coil 1",
    "group": "Coils",
    "note": "",
    "x": 255.5,
    "y": 218.1,
    "line": "L8",
-   "drop": null
+   "drop": null,
+   "short": "Coil 1"
   },
   {
    "n": "10",
    "id": "COIL-2",
-   "name": "COIL-2",
+   "name": "Ignition coil 2",
    "group": "Coils",
    "note": "",
    "x": 271,
    "y": 218.6,
    "line": "L8",
-   "drop": null
+   "drop": null,
+   "short": "Coil 2"
   },
   {
    "n": "11",
    "id": "COIL-3",
-   "name": "COIL-3",
+   "name": "Ignition coil 3",
    "group": "Coils",
    "note": "",
    "x": 290.4,
    "y": 218.8,
    "line": "L8",
-   "drop": null
+   "drop": null,
+   "short": "Coil 3"
   },
   {
    "n": "12",
    "id": "COIL-4",
-   "name": "COIL-4",
+   "name": "Ignition coil 4",
    "group": "Coils",
    "note": "",
    "x": 310.1,
    "y": 219.1,
    "line": "L8",
-   "drop": null
+   "drop": null,
+   "short": "Coil 4"
   },
   {
    "n": "14",
    "id": "CAM",
-   "name": "CAM",
+   "name": "Cam sensor",
    "group": "Coils",
    "note": "",
    "x": 320.6,
    "y": 192,
    "line": "L8",
-   "drop": null
+   "drop": null,
+   "short": "Cam sensor"
   },
   {
    "n": "30",
    "id": "CLNT-P",
-   "name": "CLNT-P",
+   "name": "Coolant pressure sensor",
    "group": "Coils",
    "note": "",
    "x": 313.9,
    "y": 208.4,
    "line": "L8",
-   "drop": null
+   "drop": null,
+   "short": "Coolant pressure"
   },
   {
    "n": "7",
    "id": "ETB",
-   "name": "ETB",
+   "name": "Electronic throttle body",
    "group": "Driver side",
    "note": "",
    "x": 359.9,
    "y": 201.9,
    "line": "L1",
-   "drop": null
+   "drop": null,
+   "short": "ETB"
   },
   {
    "n": "13",
    "id": "ECT",
-   "name": "ECT",
+   "name": "Coolant temp sensor",
    "group": "Driver side",
    "note": "",
    "x": 325.2,
    "y": 226.4,
    "line": "N3",
-   "drop": null
+   "drop": null,
+   "short": "Coolant temp"
   },
   {
    "n": "17",
    "id": "STARTER-TRIGGER",
-   "name": "STARTER",
+   "name": "Starter solenoid trigger plug",
    "group": "Driver side",
    "note": "Low-mounted part",
    "x": 335.8,
    "y": 239,
    "line": "N19",
-   "drop": null
+   "drop": null,
+   "short": "Starter trigger"
   },
   {
    "n": "20",
    "id": "OIL-P",
-   "name": "OIL-P",
+   "name": "Oil pressure sensor",
    "group": "Driver side",
    "note": "Low-mounted part",
    "x": 331.7,
    "y": 220.2,
    "line": "N3",
-   "drop": null
+   "drop": null,
+   "short": "Oil pressure"
   },
   {
    "n": "22",
    "id": "VSS",
-   "name": "VSS",
+   "name": "Gearbox speed sensor",
    "group": "Driver side",
    "note": "Low-mounted part",
    "x": 320.3,
    "y": 223.4,
    "line": "N3",
-   "drop": null
+   "drop": null,
+   "short": "Gearbox speed"
   },
   {
    "n": "23",
    "id": "REV-SW",
-   "name": "REV-SW",
+   "name": "Reverse light switch",
    "group": "Driver side",
    "note": "Low-mounted part",
    "x": 350.2,
    "y": 239.8,
    "line": "N19",
-   "drop": null
+   "drop": null,
+   "short": "Reverse switch"
   },
   {
    "n": "26",
    "id": "TURBO-SPD",
-   "name": "TURBO-SPD",
+   "name": "Turbo speed sensor",
    "group": "Driver side",
    "note": "",
    "x": 322.9,
    "y": 256,
    "line": "N19",
-   "drop": null
+   "drop": null,
+   "short": "Turbo speed"
   },
   {
    "n": "27",
    "id": "BOOST-SOL",
-   "name": "BOOST-SOL",
+   "name": "Boost control solenoid",
    "group": "Driver side",
    "note": "",
    "x": 332.4,
    "y": 239.6,
    "line": "N19",
-   "drop": null
+   "drop": null,
+   "short": "Boost solenoid"
   },
   {
    "n": "28",
    "id": "CHARGE-IAT",
-   "name": "CHARGE-IAT",
+   "name": "Charge pipe air temp sensor",
    "group": "Driver side",
    "note": "",
    "x": 345.8,
    "y": 287,
    "line": "L2",
-   "drop": null
+   "drop": null,
+   "short": "Charge air temp"
   },
   {
    "n": "1",
    "id": "INJ-1",
-   "name": "INJ-1",
+   "name": "Injector 1",
    "group": "Injectors",
    "note": "",
    "x": 251.5,
    "y": 201.2,
    "line": "L7",
-   "drop": null
+   "drop": null,
+   "short": "Injector 1"
   },
   {
    "n": "2",
    "id": "INJ-2",
-   "name": "INJ-2",
+   "name": "Injector 2",
    "group": "Injectors",
    "note": "",
    "x": 272.7,
    "y": 207.4,
    "line": "L7",
-   "drop": null
+   "drop": null,
+   "short": "Injector 2"
   },
   {
    "n": "3",
    "id": "INJ-3",
-   "name": "INJ-3",
+   "name": "Injector 3",
    "group": "Injectors",
    "note": "",
    "x": 285.9,
    "y": 204.4,
    "line": "L7",
-   "drop": null
+   "drop": null,
+   "short": "Injector 3"
   },
   {
    "n": "4",
    "id": "INJ-4",
-   "name": "INJ-4",
+   "name": "Injector 4",
    "group": "Injectors",
    "note": "",
    "x": 299.3,
    "y": 206.7,
    "line": "L7",
-   "drop": null
+   "drop": null,
+   "short": "Injector 4"
   },
   {
    "n": "19",
    "id": "KNOCK-1",
-   "name": "KNOCK-1",
+   "name": "Knock sensor",
    "group": "Injectors",
    "note": "Low-mounted part",
    "x": 261.6,
    "y": 205.8,
    "line": "L7",
-   "drop": null
+   "drop": null,
+   "short": "Knock sensor"
   },
   {
    "n": "5",
    "id": "IAT",
-   "name": "IAT",
+   "name": "Intake air temp sensor (manifold)",
    "group": "Intake side",
    "note": "",
    "x": 305.8,
    "y": 172.8,
    "line": "L5",
-   "drop": null
+   "drop": null,
+   "short": "Intake air temp"
   },
   {
    "n": "6",
    "id": "MAP",
-   "name": "MAP",
+   "name": "MAP sensor",
    "group": "Intake side",
    "note": "",
    "x": 315.7,
    "y": 165.6,
    "line": "L5",
-   "drop": null
+   "drop": null,
+   "short": "MAP sensor"
   },
   {
    "n": "8",
    "id": "FUEL-P",
-   "name": "FUEL-P",
+   "name": "Fuel pressure sensor",
    "group": "Intake side",
    "note": "",
    "x": 386.9,
    "y": 159.6,
    "line": "L5",
-   "drop": null
+   "drop": null,
+   "short": "Fuel pressure"
   },
   {
    "n": "29",
    "id": "FLEX",
-   "name": "FLEX",
+   "name": "Flex fuel sensor",
    "group": "Intake side",
    "note": "",
    "x": 325.2,
    "y": 174.6,
    "line": "L5",
-   "drop": null
+   "drop": null,
+   "short": "Flex fuel"
   },
   {
    "n": "15",
    "id": "CRANK",
-   "name": "CRANK",
+   "name": "Crank sensor",
    "group": "Passenger side",
    "note": "Low-mounted part",
    "x": 242,
    "y": 285.8,
    "line": "L6",
-   "drop": null
+   "drop": null,
+   "short": "Crank sensor"
   },
   {
    "n": "16",
    "id": "CAN-LAMBDA",
-   "name": "CAN-LAMBDA",
+   "name": "CAN-Lambda wideband controller",
    "group": "Passenger side",
    "note": "",
    "x": 239,
    "y": 268.5,
    "line": "L6",
-   "drop": null
+   "drop": null,
+   "short": "Wideband"
   },
   {
    "n": "21",
    "id": "OIL-T",
-   "name": "OIL-T",
+   "name": "Oil temp sensor",
    "group": "Passenger side",
    "note": "Low-mounted part",
    "x": 226.5,
    "y": 309.4,
    "line": "L4",
-   "drop": null
+   "drop": null,
+   "short": "Oil temp"
   },
   {
    "n": "24",
    "id": "MRS-B",
-   "name": "MRS-B",
+   "name": "Power steering pump plug B",
    "group": "Passenger side",
    "note": "",
    "x": 198.5,
    "y": 286.5,
    "line": "L4",
-   "drop": null
+   "drop": null,
+   "short": "Steering pump plug B"
   },
   {
    "n": "25",
    "id": "MRS-C",
-   "name": "MRS-C",
+   "name": "Power steering pump plug C",
    "group": "Passenger side",
    "note": "",
    "x": 204.5,
    "y": 273.8,
    "line": "L4",
-   "drop": null
+   "drop": null,
+   "short": "Steering pump plug C"
   },
   {
    "n": "BH",
