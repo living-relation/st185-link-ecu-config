@@ -1,0 +1,291 @@
+{
+ "harness": "HeavyDC",
+ "doc": "layouts/HeavyDC",
+ "seedVersion": "HeavyDC-z10b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "SILL",
+   "name": "Trunk battery along the RH sill to the RH kick panel",
+   "short": "RH sill",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     -2860,
+     650
+    ],
+    [
+     -660,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "KICK",
+   "name": "RH kick panel up to the POWER box (glove box)",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -660,
+     650
+    ],
+    [
+     -580,
+     650
+    ],
+    [
+     -580,
+     480
+    ]
+   ]
+  },
+  {
+   "id": "ID",
+   "name": "POWER box across the dash to ground stud ID, LH kick",
+   "short": "To ground ID",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -580,
+     -650
+    ],
+    [
+     -830,
+     -650
+    ]
+   ]
+  },
+  {
+   "id": "FW",
+   "name": "POWER box to the firewall battery connectors, RH firewall",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     480
+    ],
+    [
+     -440,
+     480
+    ],
+    [
+     -440,
+     220
+    ]
+   ]
+  },
+  {
+   "id": "ENG",
+   "name": "Firewall connectors along the firewall, then forward to the starter and the jump post",
+   "short": "To starter and jump post",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -440,
+     220
+    ],
+    [
+     -440,
+     -500
+    ],
+    [
+     100,
+     -500
+    ],
+    [
+     100,
+     -260
+    ],
+    [
+     100,
+     -50
+    ]
+   ]
+  },
+  {
+   "id": "BLK",
+   "name": "Firewall run straight forward to the engine block ground stud",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -440,
+     -230
+    ],
+    [
+     -200,
+     -230
+    ]
+   ]
+  },
+  {
+   "id": "ALT",
+   "name": "Firewall connectors to the alternator B+ stud",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -440,
+     220
+    ],
+    [
+     -300,
+     220
+    ],
+    [
+     -300,
+     380
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "BATT",
+   "name": "Trunk battery (+ and - posts)",
+   "group": "Trunk",
+   "note": "",
+   "x": -2860,
+   "y": 650,
+   "line": "SILL",
+   "drop": null,
+   "short": "Battery"
+  },
+  {
+   "n": "2",
+   "id": "KILL-SW",
+   "name": "Battery kill switch (trunk)",
+   "group": "Trunk",
+   "note": "",
+   "x": -2830,
+   "y": 650,
+   "line": "SILL",
+   "drop": null,
+   "short": "Kill switch"
+  },
+  {
+   "n": "3",
+   "id": "BATT-RELAY-BLOCK",
+   "name": "Trunk relay block (fuel pump relay and fuse)",
+   "group": "Trunk",
+   "note": "",
+   "x": -2800,
+   "y": 650,
+   "line": "SILL",
+   "drop": null,
+   "short": "Relay block"
+  },
+  {
+   "n": "4",
+   "id": "GND-IG",
+   "name": "Ground bolt IG, RH kick panel (R/B No.4 set bolt)",
+   "group": "Grounds",
+   "note": "",
+   "x": -660,
+   "y": 650,
+   "line": "KICK",
+   "drop": null,
+   "short": "Ground IG"
+  },
+  {
+   "n": "5",
+   "id": "GND-ID",
+   "name": "Ground stud ID, LH kick panel",
+   "group": "Grounds",
+   "note": "",
+   "x": -830,
+   "y": -650,
+   "line": "ID",
+   "drop": null,
+   "short": "Ground ID"
+  },
+  {
+   "n": "6",
+   "id": "RADLOK",
+   "name": "Firewall battery connectors, + and - (cabin and engine sides)",
+   "group": "Firewall",
+   "note": "RH firewall; one pass-through",
+   "x": -440,
+   "y": 220,
+   "line": "FW",
+   "drop": null,
+   "short": "Firewall connectors"
+  },
+  {
+   "n": "7",
+   "id": "T-ALT-B",
+   "name": "Alternator B+ stud",
+   "group": "Engine bay",
+   "note": "",
+   "x": -300,
+   "y": 380,
+   "line": "ALT",
+   "drop": null,
+   "short": "Alternator B+"
+  },
+  {
+   "n": "8",
+   "id": "T-STARTER-B",
+   "name": "Starter B+ stud",
+   "group": "Engine bay",
+   "note": "",
+   "x": 100,
+   "y": -260,
+   "line": "ENG",
+   "drop": null,
+   "short": "Starter B+"
+  },
+  {
+   "n": "9",
+   "id": "T-ENG-BLOCK",
+   "name": "Engine block ground stud, main lug",
+   "group": "Engine bay",
+   "note": "",
+   "x": -200,
+   "y": -230,
+   "line": "BLK",
+   "drop": null,
+   "short": "Block ground"
+  },
+  {
+   "n": "10",
+   "id": "JUMP-POST",
+   "name": "Jump start post",
+   "group": "Engine bay",
+   "note": "With the jump bus bar and the alternator fuse block beside it",
+   "x": 100,
+   "y": -50,
+   "line": "ENG",
+   "drop": null,
+   "short": "Jump post"
+  }
+ ],
+ "refs": [
+  {
+   "id": "POWER",
+   "label": "POWER box",
+   "name": "POWER fuse box: battery studs and ground bar (glove box)",
+   "x": -580,
+   "y": 480
+  }
+ ]
+}

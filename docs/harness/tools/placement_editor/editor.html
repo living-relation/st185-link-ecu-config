@@ -264,12 +264,13 @@ function hit(b,boxes){return boxes.some(o=>b[0]<o[2]&&b[2]>o[0]&&b[1]<o[3]&&b[3]
 function draw(){
   const s=mmPerPx(),gl=$("gl"),gs=$("gs"),gd=$("gd");gl.innerHTML="";gs.innerHTML="";gd.innerHTML="";
   /* Sizes (Dan 2026-11-10 "zooming in makes them too large to place"): z = zoom against the Fit view. Dots, markers and
-     labels keep their screen size when zooming IN (so close parts spread apart) and shrink a little when zooming OUT
-     (down to 0.6x). Lines are LINE_MM wide on the plan, clamped 2-6 px on screen. Touch targets stay 48 px. */
-  const z=fitS?fitS/s:1,k=Math.min(1,Math.max(.6,z)),kt=Math.min(1,Math.max(.8,z)),LINE_MM=9/U,RT=DRAW&&mode==="routes";
-  const DR=10*k,RH=7.5*k,LW=Math.min(6,Math.max(2,LINE_MM/s)),FS=10.5*kt,FD=10*k,OUT=Math.max(1,1.1*k);
+     labels keep their screen size when zooming IN (so close parts spread apart) and shrink with the map when zooming OUT
+     (down to 0.3x), so zooming out never adds overlap. Every dot is drawn on its true spot at every zoom: nothing is
+     fanned out or rearranged (Dan 2026-11-10 "the editor rearranges everything as you zoom"). Lines are LINE_MM wide on the plan, clamped 2-6 px on screen. Touch targets stay 48 px. */
+  const z=fitS?fitS/s:1,k=Math.min(1,Math.max(.3,z)),kt=Math.min(1,Math.max(.45,z)),LINE_MM=9/U,RT=DRAW&&mode==="routes";
+  const DR=9*k,RH=7.5*k,LW=Math.min(6,Math.max(2,LINE_MM/s)),FS=10.5*kt,FD=10*k,OUT=Math.max(1,1.1*k);
   const REFS=SEED.refs||[],V=p=>T(p),DV=devs.map(d=>V([d.x,d.y])),RV=REFS.map(r=>V([r.x,r.y])),
-    items=[...DV.map(p=>({x:p[0],y:p[1]})),...RV.map(p=>({x:p[0],y:p[1]}))],pos=fan(items,s,2*DR+4),boxes=[];
+    items=[...DV.map(p=>({x:p[0],y:p[1]})),...RV.map(p=>({x:p[0],y:p[1]}))],pos=items.map(i=>[i.x,i.y]),boxes=[];
   pos.forEach(p=>boxes.push([p[0]-(DR+2)*s,p[1]-(DR+2)*s,p[0]+(DR+2)*s,p[1]+(DR+2)*s]));
   for(const l of lines){if(l.pts.length<2)continue;const P=l.pts.map(p=>V(p).join(",")).join(" ");
     if(RT&&l.id===selLine)el("polyline",{points:P,fill:"none",stroke:"#1d5fb4","stroke-width":(LW+7)*s,"stroke-linecap":"round","stroke-linejoin":"round",opacity:.35},gl);

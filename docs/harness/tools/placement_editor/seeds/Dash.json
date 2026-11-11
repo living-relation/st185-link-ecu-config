@@ -1,0 +1,247 @@
+{
+ "harness": "Dash",
+ "doc": "layouts/Dash",
+ "seedVersion": "Dash-z10b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's 2026-11-06 save. The ECU (grey) is on his hand-placed spot (Y9 b). CAN taps are splices: no dot.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "RUN",
+   "name": "Dash run: column branch to the glove box (shared with the ECU harness)",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     -580,
+     -420
+    ],
+    [
+     -580,
+     480
+    ]
+   ]
+  },
+  {
+   "id": "CON",
+   "name": "Dash run straight back past the ECU to the centre console",
+   "short": "Console run",
+   "color": "#008cb3",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -92.8
+    ],
+    [
+     -950,
+     -92.8
+    ],
+    [
+     -950,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "CLU",
+   "name": "Dash run straight back to the centre cluster",
+   "short": "To cluster",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -300
+    ],
+    [
+     -720,
+     -300
+    ],
+    [
+     -720,
+     -330
+    ]
+   ]
+  },
+  {
+   "id": "PED",
+   "name": "Dash run straight forward to the pedal switches (shared with the pedal sensor)",
+   "short": "To pedal",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -380
+    ],
+    [
+     -430,
+     -380
+    ]
+   ]
+  },
+  {
+   "id": "COL",
+   "name": "Dash run straight back to the steering column",
+   "short": "To column",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -420
+    ],
+    [
+     -810,
+     -420
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "CSB3",
+   "name": "ECUMaster CAN switch board",
+   "group": "Centre console",
+   "note": "With the cruise ladder resistor and its splices",
+   "x": -950,
+   "y": 0,
+   "line": "CON",
+   "drop": null,
+   "short": "Switch board"
+  },
+  {
+   "n": "2",
+   "id": "OPTO-8",
+   "name": "8-channel opto board",
+   "group": "Centre console",
+   "note": "",
+   "x": -920,
+   "y": 0,
+   "line": "CON",
+   "drop": null,
+   "short": "Opto board"
+  },
+  {
+   "n": "3",
+   "id": "REALDASH",
+   "name": "RealDash Pi (CAN adapter, +12 V and ground leads)",
+   "group": "Centre console",
+   "note": "With its 5 A inline fuse at the factory accessory tap",
+   "x": -860,
+   "y": -40,
+   "line": "CON",
+   "drop": null,
+   "short": "RealDash Pi"
+  },
+  {
+   "n": "4",
+   "id": "CLUSTER",
+   "name": "Centre cluster boards (CAN board, +12 V, ground, headlight sense)",
+   "group": "Cluster",
+   "note": "Old meter spot",
+   "x": -720,
+   "y": -330,
+   "line": "CLU",
+   "drop": null,
+   "short": "Cluster"
+  },
+  {
+   "n": "5",
+   "id": "CLUSTER-LEDS",
+   "name": "Cluster LED board on the factory meter plugs C13 / C14",
+   "group": "Cluster",
+   "note": "Turn, high beam, charge, oil and park brake LEDs",
+   "x": -720,
+   "y": -300,
+   "line": "CLU",
+   "drop": null,
+   "short": "Cluster LEDs"
+  },
+  {
+   "n": "6",
+   "id": "II1",
+   "name": "Cowl plug II1 (instrument panel centre)",
+   "group": "Factory taps",
+   "note": "Accessory feed for the RealDash Pi",
+   "x": -830,
+   "y": -40,
+   "line": "CON",
+   "drop": null,
+   "short": "II1"
+  },
+  {
+   "n": "7",
+   "id": "C17",
+   "name": "Cruise control clutch switch C17",
+   "group": "Factory taps",
+   "note": "At the pedals",
+   "x": -430,
+   "y": -380,
+   "line": "PED",
+   "drop": 360,
+   "short": "Clutch switch"
+  },
+  {
+   "n": "8",
+   "id": "S9",
+   "name": "Stop lamp switch S9 (pedal)",
+   "group": "Factory taps",
+   "note": "At the pedals",
+   "x": -430,
+   "y": -350,
+   "line": "PED",
+   "drop": 360,
+   "short": "Stop switch"
+  },
+  {
+   "n": "9",
+   "id": "C16",
+   "name": "Combination switch plug C16 (B), cruise switch",
+   "group": "Factory taps",
+   "note": "Steering column",
+   "x": -810,
+   "y": -420,
+   "line": "COL",
+   "drop": null,
+   "short": "Cruise switch"
+  },
+  {
+   "n": "10",
+   "id": "R10",
+   "name": "Dimmer rheostat R10 (left of the steering wheel)",
+   "group": "Factory taps",
+   "note": "Headlight sense tap",
+   "x": -780,
+   "y": -420,
+   "line": "COL",
+   "drop": null,
+   "short": "Dimmer"
+  }
+ ],
+ "refs": [
+  {
+   "id": "ECU",
+   "label": "ECU",
+   "name": "Link G4X ECU (ECU harness)",
+   "x": -677.2,
+   "y": -92.8
+  },
+  {
+   "id": "GB",
+   "label": "Glove box",
+   "name": "LOGIC / POWER boxes and the cabin ground splice (glove box)",
+   "x": -580,
+   "y": 480
+  }
+ ]
+}
