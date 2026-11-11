@@ -45,6 +45,7 @@ tadj = collections.defaultdict(list)
 for a, b, mm in TREE: tadj[a].append((b, mm)); tadj[b].append((a, mm))
 assert len(TREE) == len(tadj) - 1, 'the AB-engine route tree is not a tree'
 STUB = RAW.get('end_allowance_mm', 100)
+SPL = RAW.get('splice_allowance_mm', STUB)     # a splice end's allowance (Dan T7 b, 2026-11-10: 25 mm; strip and solder)
 def tpath(a, b):
     prev, todo = {a: None}, [a]
     while todo:
@@ -58,7 +59,7 @@ def tpath(a, b):
 def seglen(a, b): return next(mm for m, mm in tadj[a] if m == b)
 def troute(r):
     p = tpath(H.place(r, 'from'), H.place(r, 'to'))
-    return p, sum(seglen(x, y) for x, y in zip(p, p[1:])) + 2 * STUB
+    return p, sum(seglen(x, y) for x, y in zip(p, p[1:])) + sum(SPL if r[e + '_type'] == 'splice' and not B.STUD_SPLICE.match(r[e + '_id']) else STUB for e in ('from', 'to'))
 
 # ------------------------------------------------------------------ parts (library wins; new = from harness-parts.csv)
 doc_parts, lib_add, missing = collections.defaultdict(dict), [], set()
@@ -550,7 +551,7 @@ for n, p in parent.items():
     bundles.append({"id": "bn_" + sid(n), "sourceId": "bp_" + sid(p), "targetId": "bp_" + sid(n), "length": {"value": int(slen[n]), "unit": "mm"}})
 INL_AT = {}
 for cid, (nd, q, pts, ow) in stubs.items():
-    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if cid[:2] == 'c_' else "bp_" + cid, "length": {"value": STUB, "unit": "mm"}}
+    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if cid[:2] == 'c_' else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" else STUB, "unit": "mm"}}
     if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
     bundles.append(b)
     ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
@@ -562,7 +563,7 @@ for cid, (nd, q, pts, ow) in stubs.items():
 nodepar = {"bp_" + sid(n): ("bp_" + sid(p) if p else None) for n, p in parent.items()}
 blen = {(b['sourceId'], b['targetId']): b['length']['value'] for b in bundles}
 loc = {b['targetId']: (b['sourceId'], b['length']['value']) for b in bundles if b['targetId'][:2] == 'c_'}
-loc.update({x['id']: (INL_AT[x['id']], STUB) for x in list(splices.values()) + list(resistors.values())})
+loc.update({x['id']: (INL_AT[x['id']], SPL if x['id'][:2] == 's_' else STUB) for x in list(splices.values()) + list(resistors.values())})
 def chain(bp):
     out = []
     while bp: out.append(bp); bp = nodepar[bp]

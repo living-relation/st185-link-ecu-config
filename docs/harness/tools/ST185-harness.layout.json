@@ -775,6 +775,7 @@
   }
  ],
  "end_allowance_mm": 100,
+ "splice_allowance_mm": 25,
  "place": {
   "ECU-A": "ECU",
   "ECU-B": "ECU",
