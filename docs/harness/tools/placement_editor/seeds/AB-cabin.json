@@ -1,8 +1,8 @@
 {
  "harness": "AB-cabin",
  "doc": "layouts/ABcabin",
- "seedVersion": "ABcabin-x8b-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey.",
+ "seedVersion": "ABcabin-x9-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -158,22 +158,6 @@
    ]
   },
   {
-   "id": "WS",
-   "name": "Stub to the wheel speed conditioner plugs",
-   "color": "#c79400",
-   "dash": false,
-   "pts": [
-    [
-     -580,
-     -30
-    ],
-    [
-     -430,
-     -30
-    ]
-   ]
-  },
-  {
    "id": "IG2",
    "name": "Stub to the reverse-light plug IG2",
    "color": "#7a1f9e",
@@ -226,6 +210,46 @@
      0
     ]
    ]
+  },
+  {
+   "id": "WSF",
+   "name": "Console run to the front wheel speed conditioner (output plug)",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -700,
+     -92.8
+    ],
+    [
+     -700,
+     -40
+    ],
+    [
+     -800,
+     -40
+    ]
+   ]
+  },
+  {
+   "id": "WSR",
+   "name": "Console run to the rear wheel speed conditioner (output plug)",
+   "color": "#7a1f9e",
+   "dash": false,
+   "pts": [
+    [
+     -700,
+     -92.8
+    ],
+    [
+     -700,
+     -145
+    ],
+    [
+     -800,
+     -145
+    ]
+   ]
   }
  ],
  "devices": [
@@ -270,10 +294,10 @@
    "id": "VRC-F-OUT",
    "name": "Front VR conditioner output plug",
    "group": "Dash",
-   "note": "Plugs into the front wheel speed conditioner",
-   "x": -430,
-   "y": -30,
-   "line": "WS",
+   "note": "Plugs into the front wheel speed conditioner (centre console, just behind the ECU)",
+   "x": -800,
+   "y": -40,
+   "line": "WSF",
    "drop": 150,
    "short": "Front wheel speed plug"
   },
@@ -282,10 +306,10 @@
    "id": "VRC-R-OUT",
    "name": "Rear VR conditioner output plug",
    "group": "Dash",
-   "note": "Plugs into the rear wheel speed conditioner",
-   "x": -470,
-   "y": -30,
-   "line": "WS",
+   "note": "Plugs into the rear wheel speed conditioner (centre console, just behind the ECU)",
+   "x": -800,
+   "y": -145,
+   "line": "WSR",
    "drop": 150,
    "short": "Rear wheel speed plug"
   },
@@ -416,6 +440,20 @@
    "name": "RealDash Pi (dash harness)",
    "x": -860,
    "y": -40
+  },
+  {
+   "id": "VRC-F-IN",
+   "label": "Front conditioner",
+   "name": "Front VR conditioner (wheel speed harness)",
+   "x": -800,
+   "y": -40
+  },
+  {
+   "id": "VRC-R-IN",
+   "label": "Rear conditioner",
+   "name": "Rear VR conditioner (wheel speed harness)",
+   "x": -800,
+   "y": -145
   }
  ]
 }

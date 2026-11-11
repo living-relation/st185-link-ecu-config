@@ -3,6 +3,9 @@
     python make_editor.py <seed.json> <topview.png | old-editor.html> <out.html> [--master MASTER-wirelist.csv]
 
 The seed JSON is the format documented at the top of editor.html, without "bg.img" (this script fills it).
+Optional seed keys read only here: "title" (the page title, default "<harness> Placement Editor"; keeps an artifact's
+title when one editor serves two harnesses) and "harnesses" (the master harnesses whose parts the editor owns, e.g. the
+one wheel speed editor for WheelSpeed-Front and WheelSpeed-Rear, Dan X9: a device of any other harness is an error).
 The background is either the top-view plan PNG or an earlier editor page whose top-view data URI is reused.
 Device and fixed-marker names come from the master's plain names (from_id / to_id -> from_name / to_name), so a
 rebuild after any master rename shows the new names; ids are keys only and are never shown (DECISIONS B22).
@@ -27,7 +30,7 @@ def bg_uri(path):
     return m.group(1)
 
 
-def master_names(path):
+def master_names(path, owners=None):
     names = {}
     if not os.path.exists(path):
         return names
@@ -36,6 +39,8 @@ def master_names(path):
             i, n = (r.get(s + "_id") or "").strip(), (r.get(s + "_name") or "").strip()
             if i and n and i not in names:
                 names[i] = n
+            if i and owners is not None and r.get("harness"):
+                owners.setdefault(i, set()).add(r["harness"].strip())
     return names
 
 
@@ -58,7 +63,12 @@ def main(seed_path, bg_path, out_path, master=MASTER):
     refs = [r["id"] for r in seed.get("refs", [])]
     if set(refs) & set(ids):
         sys.exit("a fixed marker has the same id as a device: %s" % sorted(set(refs) & set(ids)))
-    names = master_names(master)
+    owners = {}
+    names = master_names(master, owners)
+    if seed.get("harnesses"):
+        for d in seed["devices"]:
+            if d["id"] in owners and not owners[d["id"]] & set(seed["harnesses"]):
+                sys.exit("device %s belongs to %s, not to %s" % (d["id"], sorted(owners[d["id"]]), seed["harnesses"]))
     for d in seed["devices"] + seed.get("refs", []):
         if d["id"] in names:
             d["name"] = names[d["id"]]
@@ -76,7 +86,7 @@ def main(seed_path, bg_path, out_path, master=MASTER):
     seed["bg"]["img"] = bg_uri(bg_path)
     tpl = open(os.path.join(HERE, "editor.html"), encoding="utf-8").read()
     blob = json.dumps(seed, ensure_ascii=False).replace("</", "<\\/")
-    page = tpl.replace("__TITLE__", seed["harness"] + " Placement Editor").replace("__SEED__", blob)
+    page = tpl.replace("__TITLE__", seed.get("title") or seed["harness"] + " Placement Editor").replace("__SEED__", blob)
     open(out_path, "w", encoding="utf-8").write(page)
     print("wrote", out_path, len(page), "bytes,", len(seed["devices"]), "devices,", len(seed["lines"]), "lines,",
           sum(1 for d in seed["devices"] if d["id"] in names), "names from the master,", len(warn), "code warnings")

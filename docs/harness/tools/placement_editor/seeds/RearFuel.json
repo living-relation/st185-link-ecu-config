@@ -1,8 +1,8 @@
 {
  "harness": "RearFuel",
  "doc": "layouts/RearFuel",
- "seedVersion": "RearFuel-n120-2",
- "note": "Routes drawn by Claude; move devices only. Pump feed straight from the relay; pump ground on factory point BL. The fuel level sender is on AB-cabin (Dan N1 a).",
+ "seedVersion": "RearFuel-x5-1",
+ "note": "Routes drawn by Claude; move devices only. Pump feed straight from the relay; pump ground on factory point BL. The fuel level sender is on AB-cabin (Dan N1 a). Relay block and battery on the heavy cable editor's spots (Dan's 2026-11-04 save; X5 rule).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -52,7 +52,11 @@
      780
     ],
     [
-     -3250,
+     -2800,
+     780
+    ],
+    [
+     -2800,
      650
     ]
    ]
@@ -64,8 +68,12 @@
    "dash": false,
    "pts": [
     [
-     -3250,
+     -2800,
      650
+    ],
+    [
+     -2800,
+     -250
     ],
     [
      -2900,
@@ -97,7 +105,7 @@
    "name": "Fuel pump relay (K-FP)",
    "group": "Relays",
    "note": "In the battery relay block",
-   "x": -3250,
+   "x": -2800,
    "y": 650,
    "line": "F2",
    "drop": null
@@ -137,8 +145,8 @@
    "id": "BATT",
    "label": "Battery",
    "name": "Battery, kill switch (HeavyDC)",
-   "x": -3250,
-   "y": 720
+   "x": -2860,
+   "y": 650
   },
   {
    "id": "FUEL-LEVEL",

@@ -1,0 +1,250 @@
+{
+ "harness": "Wheel speed",
+ "title": "WheelSpeed-Front Placement Editor",
+ "harnesses": [
+  "WheelSpeed-Front",
+  "WheelSpeed-Rear"
+ ],
+ "doc": "layouts/WheelSpeed",
+ "seedVersion": "WheelSpeed-x9-1",
+ "note": "One editor for both wheel speed harnesses (Dan X9, 2026-11-11). Routes drawn by Claude in the wireway corridors (Dan 2026-11-11); move devices only. Conditioners in the centre console just behind the ECU (Dan); sensors on each wheel knuckle under the strut tower (body manual under-body plan; 1993 service manual: one sensor on each wheel hub), +300 mm drop; front cables under the dash and the kick panels, out the LH / RH fender pass-throughs; rear cables along the console, under the front edge of the rear seat, then along the floor to each rear knuckle.",
+ "warnMm": 300,
+ "bg": {
+  "rect": [
+   -3455.6,
+   -809.1,
+   4262.1,
+   1664.1
+  ]
+ },
+ "lines": [
+  {
+   "id": "FL",
+   "name": "Front conditioner under the dash to the LH kick panel, out the LH fender pass-through to the FL knuckle",
+   "short": "To FL wheel",
+   "color": "#1a47d1",
+   "dash": false,
+   "pts": [
+    [
+     -800,
+     -40
+    ],
+    [
+     -740,
+     -40
+    ],
+    [
+     -740,
+     -650
+    ],
+    [
+     -530,
+     -650
+    ],
+    [
+     -80,
+     -650
+    ],
+    [
+     -80,
+     -620
+    ]
+   ]
+  },
+  {
+   "id": "FR",
+   "name": "Under the dash to the RH kick panel, out the RH fender exit to the FR knuckle",
+   "short": "To FR wheel",
+   "color": "#d10f14",
+   "dash": false,
+   "pts": [
+    [
+     -740,
+     -40
+    ],
+    [
+     -740,
+     600
+    ],
+    [
+     -80,
+     600
+    ],
+    [
+     -80,
+     620
+    ]
+   ]
+  },
+  {
+   "id": "R1",
+   "name": "Rear conditioner back along the centre console to the front edge of the rear seat",
+   "short": "Console to rear seat",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -800,
+     -145
+    ],
+    [
+     -1780,
+     -145
+    ]
+   ]
+  },
+  {
+   "id": "RL",
+   "name": "Under the front edge of the rear seat to the LH side, back along the floor to the RL knuckle",
+   "short": "To RL wheel",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -1780,
+     -145
+    ],
+    [
+     -1780,
+     -615
+    ],
+    [
+     -2555,
+     -615
+    ]
+   ]
+  },
+  {
+   "id": "RR",
+   "name": "Under the front edge of the rear seat to the RH side, back along the floor to the RR knuckle",
+   "short": "To RR wheel",
+   "color": "#c79400",
+   "dash": false,
+   "pts": [
+    [
+     -1780,
+     -145
+    ],
+    [
+     -1780,
+     615
+    ],
+    [
+     -2555,
+     615
+    ]
+   ]
+  }
+ ],
+ "devices": [
+  {
+   "n": "1",
+   "id": "VRC-F-IN",
+   "name": "Front VR conditioner input plug",
+   "group": "Conditioners",
+   "note": "Centre console, just behind the ECU (Dan)",
+   "x": -800,
+   "y": -40,
+   "line": "FL",
+   "drop": null,
+   "short": "Front conditioner"
+  },
+  {
+   "n": "2",
+   "id": "VRC-R-IN",
+   "name": "Rear VR conditioner input plug",
+   "group": "Conditioners",
+   "note": "Centre console, just behind the ECU (Dan)",
+   "x": -800,
+   "y": -145,
+   "line": "R1",
+   "drop": null,
+   "short": "Rear conditioner"
+  },
+  {
+   "n": "3",
+   "id": "WSS-FL",
+   "name": "FL wheel speed sensor",
+   "group": "Front sensors",
+   "note": "On the FL knuckle; low part, +300 mm drop",
+   "x": -80,
+   "y": -620,
+   "line": "FL",
+   "drop": 300,
+   "short": "FL sensor"
+  },
+  {
+   "n": "4",
+   "id": "WSS-FR",
+   "name": "FR wheel speed sensor",
+   "group": "Front sensors",
+   "note": "On the FR knuckle; low part, +300 mm drop",
+   "x": -80,
+   "y": 620,
+   "line": "FR",
+   "drop": 300,
+   "short": "FR sensor"
+  },
+  {
+   "n": "5",
+   "id": "WSS-RL",
+   "name": "RL wheel speed sensor",
+   "group": "Rear sensors",
+   "note": "On the RL knuckle; low part, +300 mm drop",
+   "x": -2555,
+   "y": -615,
+   "line": "RL",
+   "drop": 300,
+   "short": "RL sensor"
+  },
+  {
+   "n": "6",
+   "id": "WSS-RR",
+   "name": "RR wheel speed sensor",
+   "group": "Rear sensors",
+   "note": "On the RR knuckle; low part, +300 mm drop",
+   "x": -2555,
+   "y": 615,
+   "line": "RR",
+   "drop": 300,
+   "short": "RR sensor"
+  }
+ ],
+ "refs": [
+  {
+   "id": "ECU",
+   "label": "ECU",
+   "name": "Link G4X ECU (ECU harness)",
+   "x": -677.2,
+   "y": -92.8
+  },
+  {
+   "id": "JB1",
+   "label": "J/B 1",
+   "name": "J/B No.1 (LH kick panel)",
+   "x": -830,
+   "y": -650
+  },
+  {
+   "id": "RB4",
+   "label": "R/B 4",
+   "name": "R/B No.4 (RH kick)",
+   "x": -660,
+   "y": 650
+  },
+  {
+   "id": "LFP",
+   "label": "LH pass-through",
+   "name": "LH kick / fender pass-through",
+   "x": -530,
+   "y": -650
+  },
+  {
+   "id": "RFX",
+   "label": "RH fender exit",
+   "name": "RH fender exit (with the front harness)",
+   "x": -400,
+   "y": 600
+  }
+ ]
+}

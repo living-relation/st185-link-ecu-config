@@ -1,8 +1,8 @@
 {
  "harness": "EngineRoom-C",
  "doc": "layouts/harnessC",
- "seedVersion": "EngineRoomC-x7a-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point.",
+ "seedVersion": "EngineRoomC-x5-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point. Engine block ground stud on factory ground point EC (Dan X5, 2026-11-11).",
  "warnMm": 300,
  "unitMm": 5.3,
  "noTurn": true,
@@ -150,14 +150,18 @@
   },
   {
    "id": "FEB",
-   "name": "Engine block ground strap straight to ground stud EB",
+   "name": "Engine block ground strap: along the firewall to the LH side, then forward to ground stud EB",
    "short": "Block strap",
    "color": "#424242",
    "dash": false,
    "pts": [
     [
-     352.2,
-     277.5
+     267.6,
+     178.6
+    ],
+    [
+     418.5,
+     178.6
     ],
     [
      418.5,
@@ -517,9 +521,9 @@
    "id": "T-ENG-BLOCK-2",
    "name": "Engine block ground stud, strap lug",
    "group": "Engine",
-   "note": "",
-   "x": 352.2,
-   "y": 277.5,
+   "note": "On the factory engine ground bolt EC (1993 wiring diagram p.36 and p.230), Dan X5",
+   "x": 267.6,
+   "y": 178.6,
    "line": "FEB",
    "drop": null,
    "short": "Block ground"

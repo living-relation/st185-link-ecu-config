@@ -1,8 +1,8 @@
 {
  "harness": "HeavyDC",
  "doc": "layouts/HeavyDC",
- "seedVersion": "HeavyDC-z10b-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save.",
+ "seedVersion": "HeavyDC-x5-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save. Engine block ground stud on factory ground point EC (Dan X5, 2026-11-11).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -122,17 +122,17 @@
   },
   {
    "id": "BLK",
-   "name": "Firewall run straight forward to the engine block ground stud",
+   "name": "Firewall run straight across to the engine block ground stud (ground point EC)",
    "color": "#2e7d32",
    "dash": false,
    "pts": [
     [
      -440,
-     -230
+     101.0
     ],
     [
-     -200,
-     -230
+     -72.5,
+     101.0
     ]
    ]
   },
@@ -259,9 +259,9 @@
    "id": "T-ENG-BLOCK",
    "name": "Engine block ground stud, main lug",
    "group": "Engine bay",
-   "note": "",
-   "x": -200,
-   "y": -230,
+   "note": "On the factory engine ground bolt EC (1993 wiring diagram p.36), Dan X5",
+   "x": -72.5,
+   "y": 101.0,
    "line": "BLK",
    "drop": null,
    "short": "Block ground"

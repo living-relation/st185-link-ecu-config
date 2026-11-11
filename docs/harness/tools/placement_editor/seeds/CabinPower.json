@@ -227,21 +227,17 @@
   },
   {
    "id": "AL",
-   "name": "Dash branch to the alarm spot (alarm +12 V, shock and ignition)",
+   "name": "Dash run straight back to the alarm spot (alarm +12 V, shock and ignition)",
    "color": "#c62828",
    "dash": false,
    "pts": [
     [
      -580,
-     -30
+     -159
     ],
     [
-     -680,
-     -30
-    ],
-    [
-     -680,
-     -80
+     -803,
+     -159
     ]
    ]
   }
@@ -377,8 +373,8 @@
    "id": "ALARM",
    "label": "Alarm",
    "name": "Alarm spot (AntiTheft)",
-   "x": -680,
-   "y": -80
+   "x": -803,
+   "y": -159
   }
  ]
 }
