@@ -1,9 +1,9 @@
 # Placement editor (refine-only)
 
-One shared template for every harness's placement editor: all ten harnesses use it since 2026-11-11 (one seed each in `seeds/`; editor links: `docs/OPEN-ITEMS.md` row 180 and History). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
+One shared template for every harness's placement editor: all ten harnesses use it since 2026-11-11 (one seed per editor in `seeds/`; one Wheel speed editor, `seeds/WheelSpeed.json`, owns both wheel speed harnesses, DECISIONS B8 "X9"; editor links: `docs/OPEN-ITEMS.md` row 180 and History). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
 
 - `editor.html`: the page template. The seed format and the save format are documented in its top comment.
-- `make_editor.py`: fills the template with one harness's seed and the top-view plan image. Device and fixed-marker names are pulled from the master's plain names (`from_id` / `to_id` -> `from_name` / `to_name`), so a rebuild after a master rename shows the new names. It warns on any code left in a name, short label or note (DECISIONS B22: only fuse box / relay codes and factory EWD plug IDs may show).
+- `make_editor.py`: fills the template with one harness's seed and the top-view plan image. Device and fixed-marker names are pulled from the master's plain names (`from_id` / `to_id` -> `from_name` / `to_name`), so a rebuild after a master rename shows the new names. It warns on any code left in a name, short label or note (DECISIONS B22: only fuse box / relay codes and factory EWD plug IDs may show). Optional seed keys it reads: `title` (the page title, to keep an artifact's title) and `harnesses` (the harnesses one editor owns; a device of any other harness stops the build).
 
 ## What Dan sees
 - Plain names only: ids are keys, never shown. Map labels come from each line's and device's `short` field (a line with no `short` gets no map label; the legend lists every line by name).
@@ -35,4 +35,4 @@ The AB-engine editor (`seeds/AB-engine.json`, db doc `layouts/route16`, the Rout
 1. Claude draws the harness's route in `ST185-harness.layout.json` (straight, shortest, cleanest) and writes a seed JSON: that harness's own devices on their rough spots, its lines, `doc` = `layouts/<harness>`, and a NEW `seedVersion`. A save made from an older `seedVersion` is not loaded (it stays in the db and is copied to `<doc>_prev` on the next save).
 2. `python make_editor.py <seed.json> <topview.png or an earlier editor page> <out.html>`. The top-view plan image is the body manual DI-7 under-body plan already embedded in every earlier editor (its rect: `[-3455.6, -809.1, 4262.1, 1664.1]` mm); passing an earlier editor's saved HTML reuses it (the Artifact tool's `read_file` with `paths` saves a published page as a file).
 3. Publish `out.html` with the Artifact tool to that harness's existing editor URL (capabilities `db` and `user`), so the link Dan has keeps working.
-4. After Dan saves: read `layouts/<harness>`, check every `far` device, and copy the moved spots into the layout tree by hand (no script writes the tree from a save).
+4. One editor at a time (DECISIONS B8): after Dan saves: read `layouts/<harness>`, check every `far` device, and copy the moved spots into the layout tree by hand (no script writes the tree from a save); write that harness's lengths and wire list, then hand Dan the next editor.
