@@ -1068,6 +1068,53 @@ BULKHEAD_MATE = {"DRB102-CABIN": "DRB102-ENGINE", "DRB102-ENGINE": "DRB102-CABIN
 NC = ("NC, floats", "NC")
 SOURCE = re.compile(r"^(LOGIC|POWER|JB\d|RB\d|BUS-|GND|ENG-GND)")   # fuse / relay boxes, J/B, buses, ground points
 
+# The From / To rule (DECISIONS B8 "S8 a", Dan 2026-11-10; wire lists T8 b, Dan 2026-11-11): From = the end nearer the
+# power or signal source, To = the device end. The one definition: check_wiring D1 holds the master to it, the wire
+# lists are written by it (wirelist_rows) and read back against it (wirelist_readback).
+S8_HUB = re.compile(r"^(ECU-|BATT-POS$|T-TRUNK-NEG$|LOGIC$|T-PWR-|K-|RLY-|BATT-RELAY-BLOCK$|KILL-SW$|JUMP-POST$|F-PI$"
+                    r"|JB\d|RB\d|GND-|IE$|T-AT-GND$|T-ENG-BLOCK|T-ALT-B$)")
+S8_PASS = re.compile(r"^(DRB102-|RADLOK-|IE1$|IG2$|II1$|EA1$|I2$|I9$)")
+
+
+def s8_rank(t, i):
+    """Where an end (its master type and id) stands in the S8 a order; the lower rank is From. 0 hubs (ECU plugs, battery
+    posts, POWER / LOGIC boxes and studs, relays, trunk relay block, kill switch, jump post, inline fuse, factory J/B /
+    R/B, ground points and studs, alternator B+), 1 firewall bulkhead, RADLOK plugs, factory cowl plugs / cowl splices,
+    2 bus plugs and splices, 3 resistors and diodes, 4 devices (a floating cable screen is a device end)."""
+    if t == "splice":
+        return 2
+    if S8_HUB.match(i):
+        return 0
+    if S8_PASS.match(i):
+        return 1
+    if i.startswith("BUS-"):
+        return 2
+    return 3 if t in ("resistor", "diode") else 4
+
+
+def s8_types(rows):
+    """End id -> master type, plus how a wire-list end reads ("legs of <splice>" is a splice, 'NC, floats' a screen)."""
+    types = {r[s + "_id"]: r[s + "_type"] for r in rows for s in ("from", "to") if r[s + "_id"]}
+
+    def rank(i):
+        if i.startswith("legs of "):
+            return 2
+        return 4 if i == NC[0] else s8_rank(types.get(i, ""), i)
+    return rank
+
+
+def s8_master_first(m, fr, to):
+    """True when the wire-list ends (fr, to) stand in their master row's own order: the tie-break of S8 a ("a wire whose
+    two ends rank the same keeps its order"). A leg's far end stands on the splice side of its master row."""
+    for s, mine, other in (("from", fr, to), ("to", to, fr)):
+        if m[s + "_type"] == "splice":
+            leg = ("legs of %s" % m[s + "_id"], "-")
+            if leg in (mine, other) and mine != other:
+                return mine == leg
+        elif m[s + "_type"] != "cable screen" and _end(m, s) in (mine, other) and mine != other:
+            return mine == _end(m, s)
+    return True
+
 
 def _end(r, s):
     """One wire end as (connector, pin): never a splice and never a blank pin (DECISIONS "Wire lists")."""
@@ -1173,6 +1220,7 @@ def wirelist_rows(H, name, nets=None):
                 out.append("%s also joins %s" % (names.get(sp, sp), ", ".join("ST185-" + h for h in other)))
         return "; ".join(out)
     first = {"AB-cabin": ["ECU-A", "ECU-B"], "AB-engine": ["DRB102-ENGINE"]}.get(name, [])
+    rank = s8_types(allrows)
     out = []
     for r in wires:
         ft, tt = r["from_type"], r["to_type"]
@@ -1200,9 +1248,10 @@ def wirelist_rows(H, name, nets=None):
             fr, to, splices = _end(r, "from"), _end(r, "to"), []
             branch = "drain" if "cable screen" in (ft, tt) else ("core" if r["cable"] else ("link" if is_integral(r) else "wire"))
             fc, tc, fd, td = r["from_terminal_pn"], r["to_terminal_pn"], r["from_name"], r["to_name"]
-            if tt == "cable screen" or ft == "cable screen":
-                if ft == "cable screen":
-                    fr, to, fc, tc, fd, td = to, fr, tc, fc, td, fd
+        # T8 b (Dan 2026-11-11): every row reads source end first, by the master's own rule (S8 a); a tie keeps the
+        # master row's order
+        if (rank(fr[0]), not s8_master_first(r, fr, to)) > (rank(to[0]), False):
+            fr, to, fc, tc, fd, td = to, fr, tc, fc, td, fd
         if r["cable"] and branch in ("leg", "trunk"):
             branch += " core"
         sig = r["from_desc"] or r["to_desc"]
@@ -1211,7 +1260,7 @@ def wirelist_rows(H, name, nets=None):
             notes.insert(0, "Screen floats at this end: cut back and seal under heat-shrink")
         oem = "; ".join(x for x in (r["oem_location"], r["oem_wire_colour"] and "OEM colour " + r["oem_wire_colour"],
                                     r["oem_ewd_page"] and "EWD " + r["oem_ewd_page"], r["oem_method"]) if x)
-        tc = plain_text(tc, names, labels)
+        fc, tc = plain_text(fc, names, labels), plain_text(tc, names, labels)
         out.append({"Wire": labels[r["wire_id"]], "From": nm(*fr), "From Pin": fr[1], "To": nm(*to), "To Pin": to[1],
                     "Splice": " > ".join(names.get(s, s) for s in splices), "Branch": branch, "Signal": sig,
                     "Colour": r["colour"], "Gauge (AWG)": r["gauge_awg"],
@@ -1280,7 +1329,8 @@ def wirelist_ends(H, name, wires):
 
 def wirelist_readback(name, rows, tag=None):
     """Check a generated wire list against the master (Option A, DECISIONS "Wire lists"): every wire once, both
-    device ends with their pins, gauge and colour; From / To never a splice and never blank; one trunk per splice.
+    device ends with their pins, gauge and colour; From / To never a splice and never blank; one trunk per splice;
+    From is the source end (S8 a / T8 b).
     `rows` are wirelist_rows() rows: since Dan C1 b the printed columns are plain names, so the check reads the master
     ids the rows carry in their "_" keys; the committed CSV / xlsx are held equal to these rows by --check."""
     path = wirelist_path(name)
@@ -1291,6 +1341,7 @@ def wirelist_readback(name, rows, tag=None):
     want = {r["wire_id"]: r for r in allrows
             if r["harness"] == name or name in [x.strip() for x in r["passes_through"].split("/")]}
     bad, seen, trunks = [], collections.Counter(), collections.Counter()
+    rank = s8_types(allrows)
     tag = tag or os.path.basename(path)
     for d in rows:
         w = d.get("Wire", "")
@@ -1302,7 +1353,12 @@ def wirelist_readback(name, rows, tag=None):
         for e in ("From", "To"):
             if d[e] in splices or not d[e] or not d[e + " Pin"]:
                 bad.append("%s: %s %s is a splice or blank (%r / %r)" % (tag, w, e, d[e], d[e + " Pin"]))
-        ends = {(d["From"], d["From Pin"]), (d["To"], d["To Pin"])}
+        fr, to = (d["From"], d["From Pin"]), (d["To"], d["To Pin"])
+        if (rank(fr[0]), not s8_master_first(m, fr, to)) > (rank(to[0]), False):
+            bad.append("%s: %s reads %s -> %s: From is the source end (S8 a / T8 b: hubs, then bulkhead and cowl plugs, "
+                       "then bus plugs and splices, then resistors and diodes, then devices; a tie keeps the master's "
+                       "order)" % (tag, w, fr[0], to[0]))
+        ends = {fr, to}
         col = [x.strip() for x in d["Splice"].split(">") if x.strip()]
         for s in ("from", "to"):
             t = m[s + "_type"]
@@ -1359,13 +1415,17 @@ def write_wirelist(H, name):
                  "never this file." % name,
                  "Wire = what the wire is for (its label). Names are plain words; only relays keep their code after the name "
                  "(Dan 2026-11-08). Fuse box seats, studs and pins keep their numbers.",
-                 "One row per wire segment, From end to To end.",
+                 "One row per wire segment, From end to To end. From = the end nearer the power or signal source, To = the "
+                 "device end (Dan 2026-11-11, the master's rule): fuse / relay boxes, ECU plugs, relays, battery and ground "
+                 "points first, then the firewall bulkhead and factory cowl plugs, then bus plugs and splices, then "
+                 "resistors and diodes, then devices.",
                  "Colour = insulation colour (harness.design colour names). No ident bands (Dan 2026-10-31).",
                  "Length (mm) = the master's estimate; TBD until the tape-measure pass (OPEN-ITEMS row 165).",
                  "Built With = the harness that owns the wire; a wire owned by another harness passes through this one.",
                  "Option A (DECISIONS 'Wire lists'): From / To are only connectors or devices with their pin, never a splice. "
                  "Splice = the splice(s) the wire lands in; Branch = wire, core, leg, trunk, link or drain.",
-                 "A leg's To is where its trunk lands (through any link splices); a trunk or link end in a splice reads 'legs of <splice name>'.",
+                 "A leg's splice end reads as where its trunk lands (through any link splices): its From when that is the source "
+                 "end, else its To; a trunk or link end in a splice reads 'legs of <splice name>'.",
                  "'NC, floats' = a shield drain left unconnected at that end. Pin 'Lug' = a ring or spade lug on a stud.",
                  "Continues = where the wire carries on in another harness file (the mated bulkhead pin, or a shared splice).",
                  "Contact PN 'solder splice' / 'solder onto the factory lead' = no contact; TBD = not confirmed by a maker document.",
@@ -2023,6 +2083,23 @@ def self_test():
     cases.append(("prune_parts: a default contact no cavity uses leaves the part's copy (no quantity-0 BOM row)",
                   sorted(p["id"] for p in g["contactParts"]) == ["ct_own"]
                   and "configurations" not in next(p for p in g["connectorParts"] if p["id"] == "cp_ecu")))
+    # the From / To rule on the wire lists (S8 a / T8 b): the generated rows pass, a row turned round fails
+    s8 = lambda found: [x for x in found if "From is the source end" in x]
+    for hn in own_harnesses():
+        Hn = Harness(hn)
+        for name in wirelist_harnesses(Hn):
+            gen = wirelist_rows(Hn, name)[1]
+            leg = next((d for d in gen if d["Branch"].startswith("leg") and d["_to"] not in (d["_from"], NC[0])), None)
+            if not leg:
+                continue
+
+            def turned(d):
+                return dict(d, _from=d["_to"], _from_pin=d["_to_pin"], _to=d["_from"], _to_pin=d["_from_pin"])
+            cases.append(("wire list %s: every row reads source end first (S8 a / T8 b)" % name,
+                          not s8(wirelist_readback(name, gen, name))))
+            cases.append(("wire list %s: a leg row turned round (device first) is caught" % name,
+                          len(s8(wirelist_readback(name, [turned(d) if d is leg else d for d in gen], name))) == 1))
+    cases.append(("wire list From / To cases ran", any(n.startswith("wire list ") for n, _ok in cases)))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))
