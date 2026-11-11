@@ -775,7 +775,7 @@ DASH = dict(
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
           "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
           "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin's; Dash has "
-          "the two trunk legs between the taps), a 280 mm 2-core shielded drop from each tap to its node, and plain +12 V / ground "
+          "the two trunk legs between the taps), a 205 mm 2-core shielded drop from each tap to its node, and plain +12 V / ground "
           "wires per node (feeds LOGIC DEV 5 A, LOGIC CSB 5 A and the factory CIG & RADIO ACC lead through the 5 A inline fuse F-PI; "
           "each node ground to the cabin ground splice); the CSB3 plug, "
           "the 8-channel opto board, the cruise ladder resistor, the cruise switch, clutch switch, stop switch and dimmer taps; the "

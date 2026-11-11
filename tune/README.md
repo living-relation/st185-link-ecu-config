@@ -3,7 +3,7 @@
 PCLink table seeds and machine-readable engine constants for the ST185 5S-GTE build.
 
 This directory covers **engine calibration only**. It is not an I/O or wiring source — see
-the wire lists in `docs/harness/wirelist/` and `sot/channels.csv`.
+the wire lists in `docs/harness/wirelists/` and `sot/channels.csv`.
 
 ## Files
 

@@ -367,12 +367,12 @@ Clamp".
 
 ## 10. Sources
 
-- Outsider Garage product record, `bosch-74mm-throttle-body-hose-and-hd-clamp-adapters`, retrieved 31 Aug 2026 — filed at `data/throttle-body-plumbing/`
+- Outsider Garage product record, `bosch-74mm-throttle-body-hose-and-hd-clamp-adapters`, retrieved 31 Aug 2026 — filed at `research/data/throttle-body-plumbing/`
 - SpeedFactory SS-850, 3 in inlet / 3 in outlet, 24 × 12 × 3 in bar-and-plate core, 600–850 hp, bead-rolled tube ends
 - Vibrant Performance HD Clamp Weld Ferrules, SKU V1180, sold by matching tube size
 - Vibrant Performance 12516, HD clamp full assembly for 3.00 in OD tubing — clamp, two aluminium weld ferrules with O-rings, union sleeve, locking pin
 - Gmail, Outsider Garage order #7870, 5 January 2026
-- Calculations: `data/throttle-body-plumbing/charge-pipe-math.py` and `verify-dimension-chain.py`
+- Calculations: `research/data/throttle-body-plumbing/charge-pipe-math.py` and `verify-dimension-chain.py`
 
 ---
 
@@ -398,7 +398,7 @@ Clamp".
 7. **The two manifold adapter PDF drawings are still not retrieved.** The Gmail
    connector in this session can see the attachments exist but has no tool to
    download them, and they are not on local disk. Save them out of Gmail by hand
-   into `data/throttle-body-plumbing/`. Message IDs are in that folder's README.
+   into `research/data/throttle-body-plumbing/`. Message IDs are in that folder's README.
 8. **Charge volume is why 3.00 in cold is withdrawn.** At 55.13 lb/min the extra
    2.0 L / ~14 ms is lag with no turbo or engine-flow benefit. Stay at 2.50 in.
 9. **Velocity and ΔP use inside diameter.** `model/pipes.py` scales the Colebrook

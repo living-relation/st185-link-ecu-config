@@ -1359,7 +1359,7 @@ def write_wirelist(H, name):
                  "never this file." % name,
                  "Wire = what the wire is for (its label). Names are plain words; only relays keep their code after the name "
                  "(Dan 2026-11-08). Fuse box seats, studs and pins keep their numbers.",
-                 "One row per wire segment, From end to To end. A splice is its own end: one row per wire into it.",
+                 "One row per wire segment, From end to To end.",
                  "Colour = insulation colour (harness.design colour names). No ident bands (Dan 2026-10-31).",
                  "Length (mm) = the master's estimate; TBD until the tape-measure pass (OPEN-ITEMS row 165).",
                  "Built With = the harness that owns the wire; a wire owned by another harness passes through this one.",
