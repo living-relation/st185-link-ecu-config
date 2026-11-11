@@ -1,0 +1,209 @@
+<title>ST185 Bundle Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+/* Layout: a drawing-sheet strip (title block + legend), the car top view as the main sheet, the selected bundle's wire list below it (beside it on wide screens). */
+:root {
+  --paper: #f3f5f7; --sheet: #fbfcfd; --ink: #18202a; --ink2: #56606c; --rule: #d3d9e0; --grid: #e6eaef; --accent: #1d5fbf; --hi: #ffcf33;
+  --h-ab-cabin: #2f6fd6; --h-ab-engine: #7b4bc4; --h-engineroom-c: #e07a1f; --h-cabinpower: #cf3434; --h-dash: #2e9a4f;
+  --h-antitheft: #d64f9a; --h-heavydc: #222831; --h-rearfuel: #a9824d; --h-wheelspeed-front: #7d8590; --h-wheelspeed-rear: #7d8590;
+  --w-red: #d23a2f; --w-white: #ffffff; --w-black: #15181c; --w-yellow: #f2c919; --w-blue: #2d6fd2; --w-orange: #ee8222; --w-green: #2e9a4f; --w-shield: #b8bfc8;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cond: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #10151b; --sheet: #151b22; --ink: #e4e9ef; --ink2: #98a3b0; --rule: #2b3541; --grid: #1c242d; --accent: #72a6f5; --hi: #ffd84d;
+  --h-ab-cabin: #6ea0ff; --h-ab-engine: #b18cf0; --h-engineroom-c: #f2a35a; --h-cabinpower: #f07a7a; --h-dash: #6fd08c;
+  --h-antitheft: #f08cc4; --h-heavydc: #e3e7ec; --h-rearfuel: #d8b685; --h-wheelspeed-front: #a5adb8; --h-wheelspeed-rear: #a5adb8;
+  --w-white: #f4f6f8; --w-black: #050607; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #10151b; --sheet: #151b22; --ink: #e4e9ef; --ink2: #98a3b0; --rule: #2b3541; --grid: #1c242d; --accent: #72a6f5; --hi: #ffd84d;
+  --h-ab-cabin: #6ea0ff; --h-ab-engine: #b18cf0; --h-engineroom-c: #f2a35a; --h-cabinpower: #f07a7a; --h-dash: #6fd08c;
+  --h-antitheft: #f08cc4; --h-heavydc: #e3e7ec; --h-rearfuel: #d8b685; --h-wheelspeed-front: #a5adb8; --h-wheelspeed-rear: #a5adb8;
+  --w-white: #f4f6f8; --w-black: #050607; color-scheme: dark }
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 16px 40px; }
+.wrap { max-width: 1400px; margin: 0 auto; display: grid; gap: 14px; }
+header { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 8px; }
+h1 { font-family: var(--cond); font-weight: 600; font-size: 1.6rem; letter-spacing: .02em; margin: 0; text-wrap: balance; }
+.meta { font-family: var(--mono); font-size: .78rem; color: var(--ink2); }
+.how { color: var(--ink2); margin: 0; max-width: 70ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink);
+  border-radius: 999px; padding: 4px 11px 4px 8px; font: 500 .82rem var(--sans); cursor: pointer; }
+.chip i { width: 18px; height: 6px; border-radius: 3px; background: var(--c); }
+.chip span { font-family: var(--mono); color: var(--ink2); font-size: .74rem; }
+.chip[aria-pressed="false"] { opacity: .4; }
+.chip:focus-visible, button:focus-visible, input:focus-visible, .row:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tools input[type=search] { flex: 1 1 220px; min-width: 0; font: 400 .9rem var(--sans); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--sheet); color: var(--ink); }
+.btn { font: 500 .82rem var(--sans); padding: 6px 11px; border: 1px solid var(--rule); border-radius: 6px; background: var(--sheet); color: var(--ink); cursor: pointer; }
+.btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+.main { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr) 400px; align-items: start; } .panel { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 40px); overflow: auto; } }
+.sheet { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow: auto; -webkit-overflow-scrolling: touch; }
+svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
+.panel { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; padding: 14px; min-width: 0; }
+.panel h2 { font-family: var(--cond); font-weight: 600; font-size: 1.1rem; margin: 0 0 2px; text-wrap: balance; }
+.panel .sub { font-family: var(--mono); font-size: .78rem; color: var(--ink2); margin-bottom: 10px; }
+.grp { margin-top: 12px; }
+.grp h3 { display: flex; align-items: center; gap: 8px; font: 600 .78rem var(--sans); text-transform: uppercase; letter-spacing: .06em; margin: 0 0 4px; }
+.grp h3 i { width: 22px; height: 6px; border-radius: 3px; background: var(--c); }
+.grp h3 span { font-family: var(--mono); font-weight: 400; color: var(--ink2); letter-spacing: 0; text-transform: none; }
+.row { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 2px 8px; padding: 5px 4px; border-top: 1px solid var(--grid); cursor: pointer; border-radius: 3px; }
+.row:hover { background: var(--grid); }
+.sw { width: 12px; height: 12px; border-radius: 50%; margin-top: 3px; background: var(--wc); border: 1px solid var(--ink2); }
+.sw.shield { background: repeating-linear-gradient(45deg, var(--w-shield) 0 2px, transparent 2px 4px); }
+.row b { font: 500 .8rem var(--mono); }
+.row .ft { grid-column: 2 / 4; color: var(--ink2); font-size: .82rem; overflow-wrap: anywhere; }
+.row .g { font: .74rem var(--mono); color: var(--ink2); }
+.tag { display: inline-block; white-space: nowrap; font: 500 .7rem var(--sans); border-radius: 3px; padding: 0 5px; margin-left: 6px; color: var(--sheet); background: var(--c); }
+.empty { color: var(--ink2); }
+.note { font-size: .8rem; color: var(--ink2); }
+.seg-hit { stroke: transparent; fill: none; cursor: pointer; }
+.dim { opacity: .13; }
+@media (prefers-reduced-motion: no-preference) { .lines g { transition: opacity .15s; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>ST185 BUNDLE MAP</h1>
+    <div class="meta" id="meta"></div>
+  </header>
+  <p class="how">Every harness on one top view of the car: front to the right, driver side up, positions not to scale. A bundle with more than one stripe carries wires from more than one harness. Tap a bundle or a device to list its wires; tap a wire to light its whole route.</p>
+  <div class="legend" id="legend"></div>
+  <div class="tools">
+    <input type="search" id="q" placeholder="Find a wire, circuit or device (e.g. w_amb_rtn, INJ1, ECU)" autocomplete="off">
+    <button class="btn" id="shared" aria-pressed="false">Shared bundles only</button>
+    <button class="btn" id="zout" aria-label="Zoom out">&minus;</button>
+    <button class="btn" id="zin" aria-label="Zoom in">+</button>
+  </div>
+  <div class="main">
+    <div class="sheet" id="sheet"><svg id="map" role="img" aria-label="Top view of the car with every wiring bundle"></svg></div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+</div>
+
+<script>
+const M=/*DATA*/null;
+(() => {
+  const NS = "http://www.w3.org/2000/svg", $ = id => document.getElementById(id);
+  const cv = h => "var(--h-" + h.toLowerCase() + ")";
+  const wv = c => "var(--w-" + (c || "shield").toLowerCase() + ", var(--w-shield))";
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+  const on = new Set(M.order.filter(h => M.count[h]));
+  let sharedOnly = false, focusW = null, zoom = 1;
+
+  // ---- frame (layout units: x toward the front, y toward the driver side)
+  const pts = M.segs.flatMap(s => [s.a, s.b]).concat(M.ends.map(e => e.xy));
+  const x0 = Math.min(...pts.map(p => p[0])) - 6, x1 = Math.max(...pts.map(p => p[0])) + 30;
+  const y0 = Math.min(...pts.map(p => p[1])) - 6, y1 = Math.max(...pts.map(p => p[1])) + 6;
+  const svg = $("map"); svg.setAttribute("viewBox", [x0, -y1, x1 - x0, y1 - y0].join(" "));
+  const P = p => [p[0], -p[1]];
+  const el = (tag, at, parent) => { const e = document.createElementNS(NS, tag); for (const k in at) e.setAttribute(k, at[k]); (parent || svg).appendChild(e); return e; };
+
+  // reference: the drawing's own edges (positions are not to scale, so no body outline) and the firewall at x 90
+  const ref = el("g", {}), cx = (x0 + x1) / 2;
+  el("line", {x1: 90, y1: -y1 + 3, x2: 90, y2: -y0 - 3, stroke: "var(--rule)", "stroke-width": .6, "stroke-dasharray": "2 1.5"}, ref);
+  [["FIREWALL", 91, -y1 + 5, "start"], ["FRONT →", x1 - 2, -y1 + 5, "end"], ["REAR", x0 + 2, -y1 + 5, "start"], ["DRIVER SIDE ↑", cx, -y1 + 2.5, "middle"], ["PASSENGER SIDE ↓", cx, -y0 - 1, "middle"]]
+    .forEach(([t, x, y, a]) => { const e = el("text", {x, y, "text-anchor": a, fill: "var(--ink2)", "font-size": 2.4, "font-family": "IBM Plex Sans Condensed, Arial Narrow, sans-serif", "letter-spacing": .15}, ref); e.textContent = t; });
+
+  // ---- bundles: one stripe per harness, side by side across the bundle
+  const W = .85, lines = el("g", {class: "lines"}), hits = el("g", {}), dots = el("g", {}), segG = [];
+  M.segs.forEach((s, i) => {
+    const [ax, ay] = P(s.a), [bx, by] = P(s.b), L = Math.hypot(bx - ax, by - ay) || 1, nx = -(by - ay) / L, ny = (bx - ax) / L;
+    const g = el("g", {}, lines), n = s.h.length;
+    s.h.forEach((h, k) => { const o = (k - (n - 1) / 2) * W;
+      el("line", {x1: ax + nx * o, y1: ay + ny * o, x2: bx + nx * o, y2: by + ny * o, stroke: cv(h), "stroke-width": W * .92, "stroke-linecap": "round", "data-h": h}, g); });
+    const hit = el("line", {x1: ax, y1: ay, x2: bx, y2: by, class: "seg-hit", "stroke-width": Math.max(4, n * W + 2), tabindex: 0, role: "button", "aria-label": "Bundle " + s.n.join(" to ")}, hits);
+    hit.addEventListener("click", () => showSeg(i)); hit.addEventListener("keydown", e => { if (e.key === "Enter") showSeg(i); });
+    segG.push(g);
+  });
+  const sel = el("g", {}, svg);
+  M.ends.forEach((e, i) => {
+    const [x, y] = P(e.xy), c = el("circle", {cx: x, cy: y, r: e.d ? 1.15 : .7, fill: e.d ? "var(--sheet)" : "var(--ink2)", stroke: "var(--ink)", "stroke-width": .35, tabindex: 0, role: "button", "aria-label": e.l, style: "cursor:pointer"}, dots);
+    if (e.d) { const t = el("text", {x: x + 1.6, y: y + .8, fill: "var(--ink2)", "font-size": 1.9, "font-family": "IBM Plex Mono, monospace", "pointer-events": "none"}, dots); t.textContent = e.s; }
+    c.addEventListener("click", () => showEnd(i)); c.addEventListener("keydown", ev => { if (ev.key === "Enter") showEnd(i); });
+  });
+
+  // ---- filters
+  function paint() {
+    M.segs.forEach((s, i) => {
+      const vis = s.h.some(h => on.has(h)) && (!sharedOnly || s.h.length > 1) && (!focusW || focusW.s.includes(i));
+      segG[i].classList.toggle("dim", !vis);
+      segG[i].querySelectorAll("line").forEach(l => l.classList.toggle("dim", !on.has(l.dataset.h)));
+    });
+    sel.innerHTML = "";
+    if (focusW) { [focusW.fa, focusW.ta].forEach(p => { const [x, y] = P(p); el("circle", {cx: x, cy: y, r: 2.2, fill: "none", stroke: "var(--hi)", "stroke-width": .7}, sel); }); }
+  }
+  const leg = $("legend");
+  M.order.filter(h => M.count[h]).forEach(h => {
+    const b = document.createElement("button"); b.className = "chip"; b.setAttribute("aria-pressed", "true"); b.style.setProperty("--c", cv(h));
+    b.innerHTML = "<i></i>" + esc(h) + " <span>" + M.count[h] + "</span>";
+    b.addEventListener("click", () => { on.has(h) ? on.delete(h) : on.add(h); b.setAttribute("aria-pressed", on.has(h)); paint(); });
+    leg.appendChild(b);
+  });
+  $("shared").addEventListener("click", e => { sharedOnly = !sharedOnly; e.currentTarget.setAttribute("aria-pressed", sharedOnly); paint(); });
+  const setZoom = z => { zoom = Math.max(1, Math.min(4, z)); svg.style.width = (zoom * 100) + "%"; };
+  $("zin").addEventListener("click", () => setZoom(zoom * 1.5)); $("zout").addEventListener("click", () => setZoom(zoom / 1.5));
+
+  // ---- the panel
+  const panel = $("panel");
+  function rows(list) {
+    const by = {}; list.forEach(i => { const w = M.wires[i]; (by[w.h] = by[w.h] || []).push(i); });
+    return M.order.concat(Object.keys(by).filter(h => !M.order.includes(h))).filter(h => by[h]).map(h =>
+      '<div class="grp" style="--c:' + cv(h) + '"><h3><i></i>' + esc(h) + ' <span>' + by[h].length + ' wire' + (by[h].length > 1 ? 's' : '') + '</span></h3>' +
+      by[h].map(i => { const w = M.wires[i];
+        return '<div class="row" tabindex="0" data-w="' + i + '"><span class="sw' + (w.c === "Shield" || !w.c ? ' shield' : '') + '" style="--wc:' + wv(w.c) + '"></span>' +
+          '<b>' + esc(w.id) + (w.pt.length ? w.pt.map(p => '<span class="tag" style="--c:' + cv(p) + '">rides ' + esc(p) + '</span>').join("") : '') + '</b>' +
+          '<span class="g">' + esc(w.c || "screen") + (w.g ? " · " + esc(w.g) + " AWG" : "") + '</span>' +
+          '<span class="ft">' + esc(w.f) + ' → ' + esc(w.t) + (w.cab ? ' · in ' + esc(w.cab) : '') + '</span></div>'; }).join("") + '</div>').join("");
+  }
+  function wire(el) { el.querySelectorAll(".row").forEach(r => { const go = () => showWire(+r.dataset.w); r.addEventListener("click", go); r.addEventListener("keydown", e => { if (e.key === "Enter") go(); }); }); }
+  function showSeg(i) {
+    const s = M.segs[i]; focusW = null; paint(); segG.forEach((g, k) => k !== i && g.classList.add("dim"));
+    panel.innerHTML = '<h2>' + esc(s.n[0]) + ' ↔ ' + esc(s.n[1]) + '</h2><div class="sub">bundle · ' + s.mm + ' mm · ' + s.w.length + ' wires · ' + s.h.length + ' harness' + (s.h.length > 1 ? 'es' : '') + '</div>' +
+      (s.h.length > 1 ? '<div class="note">Wires from ' + s.h.length + ' harnesses share this run: build or tape it so the other harnesses can still go through.</div>' : '') + rows(s.w) + clear();
+    wire(panel); hookClear();
+  }
+  function showEnd(i) {
+    const e = M.ends[i], k = String(e.xy), list = M.wires.map((w, j) => (String(w.fa) === k || String(w.ta) === k) ? j : -1).filter(j => j >= 0);
+    focusW = null; paint();
+    panel.innerHTML = '<h2>' + esc(e.s) + '</h2><div class="sub">' + esc(e.l) + ' · ' + list.length + ' wire end' + (list.length === 1 ? '' : 's') + ' here</div>' + (list.length ? rows(list) : '<p class="empty">No wire ends here.</p>') + clear();
+    wire(panel); hookClear();
+  }
+  function showWire(i) {
+    const w = M.wires[i]; focusW = w; paint();
+    panel.innerHTML = '<h2>' + esc(w.id) + '</h2><div class="sub">' + esc(w.h) + ' · ' + esc(w.c || "screen") + (w.g ? " · " + esc(w.g) + " AWG" : "") + (w.mm ? ' · ' + w.mm + ' mm cut' : '') + '</div>' +
+      '<p>' + esc(w.f) + ' → ' + esc(w.t) + '</p>' + (w.cir ? '<p class="note">Circuit ' + esc(w.cir) + (w.cab ? ' · in cable ' + esc(w.cab) : '') + '</p>' : '') +
+      (w.pt.length ? '<p class="note">Rides in the ' + w.pt.map(esc).join(" and ") + ' bundle' + (w.pt.length > 1 ? 's' : '') + ' for part of its run.</p>' : '') +
+      '<p class="note">Lit on the map: ' + w.s.length + ' bundle' + (w.s.length === 1 ? '' : 's') + ', ends ringed.</p>' + clear();
+    hookClear();
+  }
+  const clear = () => '<p><button class="btn" id="clr">Show everything</button></p>';
+  function hookClear() { const b = $("clr"); if (b) b.addEventListener("click", home); }
+  function home() {
+    focusW = null; paint();
+    const multi = M.segs.map((s, i) => [s, i]).filter(([s]) => s.h.length > 1).sort((a, b) => b[0].h.length - a[0].h.length);
+    panel.innerHTML = '<h2>Shared bundles</h2><div class="sub">' + multi.length + ' of ' + M.segs.length + ' bundles carry more than one harness</div>' +
+      multi.map(([s, i]) => '<div class="row" tabindex="0" data-s="' + i + '"><span></span><b>' + esc(s.n[0]) + ' ↔ ' + esc(s.n[1]) + '</b><span class="g">' + s.w.length + ' wires</span>' +
+        '<span class="ft">' + s.h.map(h => '<span class="tag" style="--c:' + cv(h) + ';margin-left:0;margin-right:4px">' + esc(h) + '</span>').join("") + '</span></div>').join("");
+    panel.querySelectorAll(".row").forEach(r => { const go = () => showSeg(+r.dataset.s); r.addEventListener("click", go); r.addEventListener("keydown", e => { if (e.key === "Enter") go(); }); });
+  }
+
+  // ---- search
+  $("q").addEventListener("input", e => {
+    const q = e.target.value.trim().toLowerCase(); if (!q) return home();
+    const hit = M.wires.map((w, i) => [w, i]).filter(([w]) => [w.id, w.cir, w.f, w.t, w.cab].some(v => v && v.toLowerCase().includes(q))).map(([, i]) => i);
+    focusW = null; paint();
+    panel.innerHTML = '<h2>Search</h2><div class="sub">' + hit.length + ' wire' + (hit.length === 1 ? '' : 's') + ' match “' + esc(q) + '”</div>' + (hit.length ? rows(hit.slice(0, 120)) : '<p class="empty">No wire, circuit or device matches. Try a wire id like w108_c or a device name.</p>') + (hit.length > 120 ? '<p class="note">First 120 shown.</p>' : '');
+    wire(panel);
+  });
+
+  $("meta").textContent = M.wires.length + " wires · " + M.segs.length + " bundles · from MASTER-wirelist.csv";
+  paint(); home();
+  if (innerWidth < 700) { setZoom(2.6); const sh = $("sheet"); sh.scrollLeft = (sh.scrollWidth - sh.clientWidth) * .55; }
+})();
+</script>

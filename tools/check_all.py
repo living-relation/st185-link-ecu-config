@@ -8,6 +8,7 @@ writes, so the tree is untouched and CI can trust it.
   docs/harness/tools/check_wiring.py       the ONE wiring check (DECISIONS R221): the master wire list, sot/channels.csv
                                            (ECU settings), the IO table, the route drawings
   docs/harness/tools/build_drawings.py     layout tree, lengths, wire lists and the DRB102 map are current against the master
+  docs/harness/tools/build_bundle_map.py   the whole-car bundle map page (docs/harness/BUNDLE-MAP.html) is current
   docs/sourcing/build_project_bom.py       the ONE project BOM / shopping list is current
   cad/fusebox/src/parts_lists.py           R82: every fuse box part is real and buyable
   cad/fusebox/src/check_clearance.py       Dan's 3 mm rule: no two live fuse box parts closer than 3 mm
@@ -20,6 +21,7 @@ writes, so the tree is untouched and CI can trust it.
 After a wiring change: edit docs/harness/MASTER-wirelist.csv, then
     python docs/harness/tools/check_wiring.py
     python docs/harness/tools/build_drawings.py <set>
+    python docs/harness/tools/build_bundle_map.py
     python docs/sourcing/build_project_bom.py
 and commit the results with the list.
 """
@@ -30,6 +32,7 @@ import sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HARD = [["docs/harness/tools/check_wiring.py"],
         ["docs/harness/tools/build_drawings.py", "--check"],
+        ["docs/harness/tools/build_bundle_map.py", "--check"],
         ["docs/sourcing/build_project_bom.py", "--check"],
         ["cad/fusebox/src/parts_lists.py", "--check"],
         ["cad/fusebox/src/check_clearance.py"],
