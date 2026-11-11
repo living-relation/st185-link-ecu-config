@@ -1,7 +1,7 @@
-﻿{
+{
     "harness":  "CabinPower",
     "doc":  "layouts/CabinPower",
-    "seedVersion":  "CabinPower-n120-1",
+    "seedVersion":  "CabinPower-v1b-1",
     "note":  "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes.",
     "warnMm":  300,
     "bg":  {
@@ -195,20 +195,12 @@
                   },
                   {
                       "id":  "COL",
-                      "name":  "Branch to the DRL switch, left of the steering wheel (spot rough)",
+                      "name":  "Dash run straight back to the steering column (DRL switch; same column run as the dash harness)",
                       "color":  "#c79400",
                       "dash":  false,
                       "pts":  [
                                   [
                                       -580,
-                                      -250
-                                  ],
-                                  [
-                                      -650,
-                                      -250
-                                  ],
-                                  [
-                                      -650,
                                       -420
                                   ],
                                   [
@@ -305,8 +297,8 @@
                      "id":  "ECU",
                      "label":  "ECU",
                      "name":  "Link G4X ECU (AB-cabin)",
-                     "x":  -580,
-                     "y":  0
+                     "x":  -677.2,
+                     "y":  -92.8
                  },
                  {
                      "id":  "JB1",
