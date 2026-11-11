@@ -1,8 +1,8 @@
 {
  "harness": "HeavyDC",
  "doc": "layouts/HeavyDC",
- "seedVersion": "HeavyDC-x5-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save. Engine block ground stud on factory ground point EC (Dan X5, 2026-11-11).",
+ "seedVersion": "HeavyDC-y1a-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -122,17 +122,17 @@
   },
   {
    "id": "BLK",
-   "name": "Firewall run straight across to the engine block ground stud (ground point EC)",
+   "name": "Starter run straight across to the engine block ground stud (LH engine mounting stay)",
    "color": "#2e7d32",
    "dash": false,
    "pts": [
     [
-     -440,
-     101.0
+     100,
+     -401.4
     ],
     [
-     -72.5,
-     101.0
+     295.8,
+     -401.4
     ]
    ]
   },
@@ -259,9 +259,9 @@
    "id": "T-ENG-BLOCK",
    "name": "Engine block ground stud, main lug",
    "group": "Engine bay",
-   "note": "On the factory engine ground bolt EC (1993 wiring diagram p.36), Dan X5",
-   "x": -72.5,
-   "y": 101.0,
+   "note": "Factory engine ground: the engine-to-body ground strap bolt on the transaxle at the LH engine mounting stay (FSM Cylinder Block 3S-GTE pages 231 step 47 and 259 step 5), Dan Y1 a",
+   "x": 295.8,
+   "y": -401.4,
    "line": "BLK",
    "drop": null,
    "short": "Block ground"

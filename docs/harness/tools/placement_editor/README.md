@@ -3,6 +3,7 @@
 One shared template for every harness's placement editor: all ten harnesses use it since 2026-11-11 (one seed per editor in `seeds/`; one Wheel speed editor, `seeds/WheelSpeed.json`, owns both wheel speed harnesses, DECISIONS B8 "X9"; editor links: `docs/OPEN-ITEMS.md` row 180 and History). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
 
 - `editor.html`: the page template. The seed format and the save format are documented in its top comment.
+- Wireway corridors (DECISIONS B8 "Wireway corridors", Y4 a): the corridor set is `../corridors.json`, a proposal waiting for Dan; routes are not yet checked against it.
 - `make_editor.py`: fills the template with one harness's seed and the top-view plan image. Device and fixed-marker names are pulled from the master's plain names (`from_id` / `to_id` -> `from_name` / `to_name`), so a rebuild after a master rename shows the new names. It warns on any code left in a name, short label or note (DECISIONS B22: only fuse box / relay codes and factory EWD plug IDs may show). Optional seed keys it reads: `title` (the page title, to keep an artifact's title) and `harnesses` (the harnesses one editor owns; a device of any other harness stops the build).
 
 ## What Dan sees

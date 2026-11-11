@@ -1,0 +1,372 @@
+{
+ "about": "Wireway corridors (Dan 2026-11-11 09:30, DECISIONS B8 'Wireway corridors'): main trunks stay inside these bands so harnesses keep their runs relative to each other. Each corridor is a centre polyline with a full band width.",
+ "status": "PROPOSAL (Dan Y4 a): waiting for Dan's approval; no harness route is redrawn into it yet and no length is written from it.",
+ "frames": {
+  "car_mm": "Cabin editors' frame: x fore-aft in mm (front +), y side to side in mm (LH / driver -, RH +); body manual DI-7 under-body plan, rect [-3455.6, -809.1, 4262.1, 1664.1].",
+  "ewd_pt": "Engine-bay editors' frame: 1993 EWD p.36 points; x grows toward the LH side, y grows toward the front.",
+  "conversion": "car_x = 5.3 * y_pt - 1019.1; car_y = 1519.3 - 5.3 * x_pt (5.3 mm per point, pinned on Dan's LH pass-through side to side and RH fender exit fore and aft, X7 a / #640). The EWD view is a perspective drawing, so engine-bay points are about 300 mm out fore and aft at the firewall."
+ },
+ "corridors": [
+  {
+   "n": 1,
+   "id": "dash",
+   "name": "Under the dashboard",
+   "follows": "Cowl wire behind the instrument panel, kick panel to kick panel (1993 EWD p.42 and p.44; J/B No.1, J/B No.3, IG1 / IG2 under the ECU)",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -580,
+     -650
+    ],
+    [
+     -580,
+     650
+    ]
+   ]
+  },
+  {
+   "n": 2,
+   "id": "kick_lh",
+   "name": "LH kick panel",
+   "follows": "J/B No.1, plugs IC1 / IE1 / IF1 and ground ID at the left kick panel (1993 EWD p.42, p.234)",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -850,
+     -650
+    ],
+    [
+     -500,
+     -650
+    ]
+   ]
+  },
+  {
+   "n": 3,
+   "id": "kick_rh",
+   "name": "RH kick panel",
+   "follows": "R/B No.4 with ground IG on its set bolt, plug IK1 at the right kick panel (1993 EWD p.44, p.234)",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -720,
+     650
+    ],
+    [
+     -480,
+     650
+    ]
+   ]
+  },
+  {
+   "n": 4,
+   "id": "console",
+   "name": "Centre console",
+   "follows": "Console box wire on the floor tunnel, II1 at the instrument panel centre (1993 EWD p.44, p.234; body manual DI-7 under-body plan, floor tunnel)",
+   "width_mm": 200,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -580,
+     -75
+    ],
+    [
+     -1780,
+     -75
+    ]
+   ]
+  },
+  {
+   "n": 5,
+   "id": "rear_seat",
+   "name": "Under the front edge of the rear seat",
+   "follows": "Rear floor crossmember No.1 under the front edge of the rear seat (body manual DI-7 under-body plan)",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -1780,
+     -640
+    ],
+    [
+     -1780,
+     640
+    ]
+   ]
+  },
+  {
+   "n": 6,
+   "id": "sill_lh",
+   "name": "LH floor / sill run",
+   "follows": "Factory floor wire: IF1 at the left kick panel, BL1 at the left side of the front floor panel, BP1 at the left quarter panel centre (1993 EWD p.234, p.46); the factory rear wheel speed wires join it at IF1 (1992 EWD p.44, p.192-193; Dan Y2 a)",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -830,
+     -640
+    ],
+    [
+     -2300,
+     -640
+    ]
+   ]
+  },
+  {
+   "n": 7,
+   "id": "sill_rh",
+   "name": "RH sill run (proposal, ask Dan)",
+   "follows": "RH rocker / sill on the body manual DI-7 under-body plan; no factory harness there; the run AB-cabin, HeavyDC and RearFuel already use to the trunk battery corner",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -660,
+     650
+    ],
+    [
+     -2300,
+     650
+    ]
+   ]
+  },
+  {
+   "n": 8,
+   "id": "trunk",
+   "name": "Inside perimeter of the trunk",
+   "follows": "Luggage room wire BP1 at the left quarter panel centre, ground BL at the back panel centre (1993 EWD p.234, p.46); body manual luggage compartment",
+   "width_mm": 150,
+   "frame": "car_mm",
+   "car_mm": [
+    [
+     -2300,
+     650
+    ],
+    [
+     -3300,
+     650
+    ],
+    [
+     -3300,
+     -640
+    ],
+    [
+     -2300,
+     -640
+    ]
+   ]
+  },
+  {
+   "n": 9,
+   "id": "pass_lh",
+   "name": "LH fender pass-through",
+   "follows": "Cowl wire through the LH kick into the engine bay at IE1, up the quarter panel (1993 EWD p.36, p.42; Dan Q2, his 2026-11-01 point)",
+   "width_mm": 100,
+   "frame": "ewd_pt",
+   "ewd_pt": [
+    [
+     409.3,
+     84.0
+    ],
+    [
+     409.3,
+     118.0
+    ]
+   ],
+   "width_pt": 18.9,
+   "car_mm": [
+    [
+     -573.9,
+     -650.0
+    ],
+    [
+     -393.7,
+     -650.0
+    ]
+   ]
+  },
+  {
+   "n": 10,
+   "id": "pass_rh",
+   "name": "RH fender exit",
+   "follows": "Cowl wire / engine room main wire join EA1 at the RH front fender (1993 EWD p.36, p.234; Dan's 2026-11-01 point)",
+   "width_mm": 100,
+   "frame": "ewd_pt",
+   "ewd_pt": [
+    [
+     177.3,
+     99.0
+    ],
+    [
+     177.3,
+     118.0
+    ]
+   ],
+   "width_pt": 18.9,
+   "car_mm": [
+    [
+     -494.4,
+     579.6
+    ],
+    [
+     -393.7,
+     579.6
+    ]
+   ]
+  },
+  {
+   "n": 11,
+   "id": "bay_perimeter",
+   "name": "Inner perimeter of the engine bay",
+   "follows": "Cowl wire along the firewall, engine room main wire and engine room No.2 wire along the RH and LH aprons and the radiator support (1993 EWD p.36)",
+   "width_mm": 160,
+   "frame": "ewd_pt",
+   "ewd_pt": [
+    [
+     409.3,
+     118.0
+    ],
+    [
+     177.3,
+     118.0
+    ],
+    [
+     160.2,
+     173.2
+    ],
+    [
+     150.0,
+     240.0
+    ],
+    [
+     148.5,
+     289.9
+    ],
+    [
+     165.0,
+     314.0
+    ],
+    [
+     409.3,
+     314.0
+    ],
+    [
+     409.3,
+     118.0
+    ]
+   ],
+   "width_pt": 30.2,
+   "car_mm": [
+    [
+     -393.7,
+     -650.0
+    ],
+    [
+     -393.7,
+     579.6
+    ],
+    [
+     -101.1,
+     670.2
+    ],
+    [
+     252.9,
+     724.3
+    ],
+    [
+     517.4,
+     732.2
+    ],
+    [
+     645.1,
+     644.8
+    ],
+    [
+     645.1,
+     -650.0
+    ],
+    [
+     -393.7,
+     -650.0
+    ]
+   ]
+  },
+  {
+   "n": 12,
+   "id": "block",
+   "name": "Outer perimeter of the engine block (never across it)",
+   "follows": "Engine wire around the 3S-GTE block: belt end, intake / firewall side, transaxle end; nothing across the head or the exhaust side (1993 EWD p.36, EB1 / EB2 and splice E5; Dan's 2026-11-10 AB-engine trunk, belt-end drop and turbo branch)",
+   "width_mm": 60,
+   "frame": "ewd_pt",
+   "ewd_pt": [
+    [
+     222.0,
+     272.0
+    ],
+    [
+     222.0,
+     181.0
+    ],
+    [
+     341.0,
+     181.0
+    ],
+    [
+     341.0,
+     291.0
+    ]
+   ],
+   "width_pt": 11.3,
+   "car_mm": [
+    [
+     422.5,
+     342.7
+    ],
+    [
+     -59.8,
+     342.7
+    ],
+    [
+     -59.8,
+     -288.0
+    ],
+    [
+     523.2,
+     -288.0
+    ]
+   ]
+  },
+  {
+   "n": 13,
+   "id": "bumper",
+   "name": "Inside the front bumper",
+   "follows": "Engine room main wire out to the front lamps and the outside air temp sensor, low in the front bumper (1993 EWD p.36; U4 a)",
+   "width_mm": 100,
+   "frame": "ewd_pt",
+   "ewd_pt": [
+    [
+     150.0,
+     352.0
+    ],
+    [
+     440.0,
+     352.0
+    ]
+   ],
+   "width_pt": 18.9,
+   "car_mm": [
+    [
+     846.5,
+     724.3
+    ],
+    [
+     846.5,
+     -812.7
+    ]
+   ]
+  }
+ ]
+}
