@@ -93,6 +93,9 @@ jobs:
       - name: Length check self-test (placed harness lengths = layout tree, N69 a)
         if: steps.scope.outputs.run == 'true'
         run: python docs/harness/tools/build_drawings.py --self-test
+      - name: Corridor check self-test (a trunk outside the corridors fails, B8)
+        if: steps.scope.outputs.run == 'true'
+        run: python docs/harness/tools/check_corridors.py --self-test
       - name: Byte-compile CAN tooling
         if: steps.scope.outputs.run == 'true'
         run: python -m py_compile bench/frames.py bench/can_bench.py apps/trackcluster-can-sender/app.py
