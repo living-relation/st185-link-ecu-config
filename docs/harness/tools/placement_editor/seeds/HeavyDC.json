@@ -1,8 +1,8 @@
 {
  "harness": "HeavyDC",
  "doc": "layouts/HeavyDC",
- "seedVersion": "HeavyDC-a6b-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save; the jump post is on his 2026-11-11 save (moved 515 mm to the driver side, the old battery spot; an aftermarket part he moved, so his spot wins, DECISIONS B8 X5 rule), with the jump bus bar and the alternator fuse block beside it. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The main run goes along the firewall and the LH apron (inner perimeter of the bay) to the jump post; the starter cable and the block-ground cable each leave the jump post on one short square leg, so no cable doubles back. Trunk relay block on Dan's R2 spot (Z3 b, 2026-11-11): just right of the battery, 8 in (203 mm) forward of the trunk's back wall; its fuel pump feed runs back along the RH side from the battery corner. Trunk end on Dan's Z4 b save (2026-11-11 21:58): the battery dragged inboard, 135 mm in from the trunk's RH side run, on one square leg out to it; the relay block (R2: just right of the battery, about 8 in forward of the back wall) and the kill switch on his spots on that run, so every trunk cable runs straight forward or back along it. Kill switch 100 mm forward of the relay block on the same run (Dan A1 b, 2026-11-12: about 100 mm apart, the relay block stays on his spot; was his 2026-11-12 03:14Z save, 5 mm). Alternator B+ stud on the alternator, beside its plug at the belt (RH) end of the block, on its rear face under the intake (SW20 position; Dan A4 b and A6 b, 2026-11-12): its cable runs along the intake side of the block (wireway corridor 12), round the transaxle end and out to the corner of the block-ground leg, then with it to the jump post; nothing crosses the engine. Starter B+ stud on the starter's factory spot (Dan A6 b, X5 rule: 1993 EWD p.29 S3), under the battery on the transaxle; its cable leaves the jump post forward, then inboard to the starter.",
+ "seedVersion": "HeavyDC-a9a-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save; the jump post is on his 2026-11-11 save (moved 515 mm to the driver side, the old battery spot; an aftermarket part he moved, so his spot wins, DECISIONS B8 X5 rule), with the jump bus bar and the alternator fuse block beside it. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The main run goes along the firewall and the LH apron (inner perimeter of the bay) to the jump post; the starter cable and the block-ground cable each leave the jump post on one short square leg, so no cable doubles back. Trunk relay block on Dan's R2 spot (Z3 b, 2026-11-11): just right of the battery, 8 in (203 mm) forward of the trunk's back wall; its fuel pump feed runs back along the RH side from the battery corner. Trunk end on Dan's Z4 b save (2026-11-11 21:58): the battery dragged inboard, 135 mm in from the trunk's RH side run, on one square leg out to it; the relay block (R2: just right of the battery, about 8 in forward of the back wall) and the kill switch on his spots on that run, so every trunk cable runs straight forward or back along it. Kill switch 100 mm forward of the relay block on the same run (Dan A1 b, 2026-11-12: about 100 mm apart, the relay block stays on his spot; was his 2026-11-12 03:14Z save, 5 mm). Alternator B+ stud on the alternator, beside its plug at the belt (RH) end of the block, on its rear face under the intake (SW20 position; Dan A4 b and A6 b, 2026-11-12): its cable runs along the intake side of the block (wireway corridor 12), round the transaxle end and out to the corner of the block-ground leg, then with it to the jump post; nothing crosses the engine. Starter B+ stud on the starter's factory spot (Dan A6 b, X5 rule: 1993 EWD p.29 S3), under the battery on the transaxle; its cable leaves the jump post forward, then inboard to the starter. Alternator and starter B+ studs are low-mounted: 300 mm drop each (Dan A9 a, 2026-11-12).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -281,11 +281,11 @@
    "id": "T-ALT-B",
    "name": "Alternator B+ stud",
    "group": "Engine bay",
-   "note": "On the alternator, 30 mm from its plug. Dan A6 b (2026-11-12): SW20 MR2 position (Hux Racing bracket): belt (RH) end of the block, on its rear (intake) face, low under the intake; terminals on the alternator's rear cover",
+   "note": "On the alternator, 30 mm from its plug. Dan A6 b (2026-11-12): SW20 MR2 position (Hux Racing bracket): belt (RH) end of the block, on its rear (intake) face, low under the intake; terminals on the alternator's rear cover; low-mounted, 300 mm drop (Dan A9 a, 2026-11-12)",
    "x": -80.0,
    "y": 260.0,
    "line": "ALT",
-   "drop": null,
+   "drop": 300,
    "short": "Alternator B+"
   },
   {
@@ -293,11 +293,11 @@
    "id": "T-STARTER-B",
    "name": "Starter B+ stud",
    "group": "Engine bay",
-   "note": "On the starter. FSM spot (X5 rule, Dan A6 b 2026-11-12): 1993 EWD book p.29 'Position of Parts in Engine Compartment' (Component_Location.pdf p.2), starter connectors S2 (S plug) and S3 (B terminal), mapped onto p.36; starter under the battery on the transaxle (Toyota repair manual RM305U1, starter removal)",
+   "note": "On the starter. FSM spot (X5 rule, Dan A6 b 2026-11-12): 1993 EWD book p.29 'Position of Parts in Engine Compartment' (Component_Location.pdf p.2), starter connectors S2 (S plug) and S3 (B terminal), mapped onto p.36; starter under the battery on the transaxle (Toyota repair manual RM305U1, starter removal); low-mounted, 300 mm drop (Dan A9 a, 2026-11-12)",
    "x": 451.6,
    "y": -394.0,
    "line": "STR",
-   "drop": null,
+   "drop": 300,
    "short": "Starter B+"
   },
   {
