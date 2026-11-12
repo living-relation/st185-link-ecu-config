@@ -432,7 +432,7 @@ adj = collections.defaultdict(list)
 for a, b, mm in L['segments']:
     if tuple(sorted((a, b))) in segs: adj[a].append((b, mm)); adj[b].append((a, mm))
 # the harness may be a forest (Route 17, Dan 2026-11-02): the EB block strap is its own piece, and a part whose wires
-# never leave its spot (A5 / SP-AC-PSW at the A/C amp) is a piece of one node; each piece must be a tree, drawn on its own
+# never leave its spot is a piece of one node; each piece must be a tree, drawn on its own
 comp_of = {}
 for s0 in sorted(tree_nodes, key=lambda n: (n != 'GB', n != 'RL_ENG', n)):
     if s0 in comp_of: continue

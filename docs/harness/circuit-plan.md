@@ -159,7 +159,7 @@ column shows the difference:
 | Joint | Pin | Colour | Signal | Kept-side end | EWD | Draft said | Action |
 |---|---|---|---|---|---|---|---|
 | EB2 | 1 | V-R | R/B4 10 A A/C fuse out to pressure switch A5 pin 1 | cowl I9 -> R/B4 10 A A/C fuse pin 2 (also the V-R bus to the A/C amps) | 1993 p.211 | cut + cap; R/B4 gone so the V-R bus needs a re-feed | remove the EB2 leg; A5 pin 1 re-fed by `w_acp_1` from the kept R/B4 A/C fuse; the cabin V-R bus keeps |
-| EB2 | 2 | Y-R | Pressure switch output to the A/C amp | E10 -> IJ1-11 -> A15 pin 13 (and A3 idle-up VSV pin 2) | 1993 p.211 | reuse the cowl side | re-fed by `w_ac_psw_in` (A5 pin 4) + `w_ac_psw_sw` (A15 pin 13) at cabin splice `SP-AC-PSW` (D16) |
+| EB2 | 2 | Y-R | Pressure switch output to the A/C amp | E10 -> IJ1-11 -> A15 pin 13 (and A3 idle-up VSV pin 2) | 1993 p.211 | reuse the cowl side | remove the EB2 leg (goes with the Engine Wire, B9); A5 pin 4 re-fed by new wire `w_ac_psw_in` from the switch's own plug in the bay to cabin splice `SP-AC-PSW`, tied to A15 pin 13 by `w_ac_psw_sw` (D16; DECISIONS B8 "A5 fix") |
 | EB2 | 3, 4 | - | no cavity | - | p.37 | none | none |
 | ES2 | 1-5 | B, BR, Y-B, G, R | STA, ECT ground, oil pressure SW, STJ, THW | none (ER No.2 removed) | 1993 p.66, 80, 207 | remove | remove with the harness; oil pressure is the Link sensor `OIL-P` (AB-engine) and the oil LED on CSB3 L4 (`w_oil_k`) |
 
