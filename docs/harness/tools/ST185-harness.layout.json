@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (every harness of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: these segments are its placement-editor layout, approved as is by Dan 2026-11-03, plus the 6 in (152 mm) glove-box breakout GB_T-GB the editor does not draw (Dan T2 a; editor db `layouts/ABcabin` v4, every line length equal to its segment here; OPEN-ITEMS row 180; Routes 5 / 6 were deleted 2026-10-26); AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit: every front device, ending at ground stud EB) and LFP (run 11, driver kick: wiper), riding Route 16 line 1 (the engine harness trunk along the back, intake side, of the block) from its start to the alternator at the belt end, a low part with a 300 mm drop (SW20 position; Dan A6 b 2026-11-12; his EngineRoom-C save 2026-11-12: the A/C pressure switch on run 10 by the RH rear corner, no harness C wire on the belt-end drop line 6), its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-01; the EB strap lug GND-EB-2 is the same bolt drawn twice; the block strap hangs on Route 16's driver-side lower branch N3 by a link no wire uses (Dan's 2026-11-12 AB-engine save)); routes redrawn 2026-11-09 (Dan Z10 b: device spots are his, the routes are the agent's)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from the old Routes 1, 2 and 7-15 (2026-10-20; Routes 2-7 and 15 since deleted, each harness gets a placement pass, DECISIONS B8). HeavyDC (Dan B6 b, 2026-11-02): its own Route 1 tree, the segments from the old Route 1 page (trunk battery up the RH sill to the glove box, the RADLOK pair through the RH firewall (FW_STR-RL_ENG, 0 mm), then the starter, alternator, block stud and jump post); its Route 16 ends are marked moved_to in Route 16, so no HeavyDC segment reaches the Route 16 tree (OPEN-ITEMS row 179 loops gone); these segments are its placement-editor layout, approved as is by Dan 2026-11-04 22:32 (editor db `layouts/HeavyDC` v1, `unchangedSeed`: every editor line length equal to its segment here, the glove-box run to ground ID riding the AB-cabin dash segments from GB_T; OPEN-ITEMS row 180); its engine-bay segments are the corridor routes with the jump post on Dan's 2026-11-11 save (`layouts/HeavyDC` v4, seed `HeavyDC-jp-1`): the firewall and LH apron run to the jump post, the starter and block-ground legs off it; its trunk end is Dan's Z4 b save (`layouts/HeavyDC` v5, seed `HeavyDC-z4b-1`): the kill switch and the relay block on the trunk's RH side run (RHSILL-KILLSW-RLYBLK-TRK_RC; kill switch 100 mm forward of the relay block, Dan A1 b 2026-11-12), the battery 135 mm inboard of its rear end (TRK_RC-BATT). RearFuel: its editor layout (seed `RearFuel.json` RearFuel-z4b-1, approved by Dan 2026-11-11 20:23 with no save since the N120 reset; segments = its line lengths): the RH sill run shared with AB-cabin's, the trunk relay block on Dan's Z4 b save (R2) on the trunk's RH side run, the kill switch 100 mm forward of it (Dan A1 b, 2026-11-12; KILLSW-RLYBLK, also the HeavyDC fuel pump feed), the pump feed back to the run's rear end and round the back panel (RLYBLK-TRK_RC-TRK_BP) and forward to the pump plug at the factory floor service hole beside the fuel sender (Dan Z8 b, 2026-11-12), the pump ground back to the back panel and along it to BL; back panel run inside the back wall (Z5 a, x -3135), BL on the back panel centre; AB-cabin's turn (Dan's save 2026-11-12 03:14Z, seed ABcabin-z8-1): the fuel sender leg JB1-TANK on the factory LH floor route to Dan's sender spot; the A/C amplifiers on their factory spots (A15 node ACAMP, A32 node ACAMP32), each branch set so the ECU-to-amp tree length equals its seed route in car mm (the cabin tree's other legacy lengths wait for the one mm model, OPEN-ITEMS Current state step 2). CabinPower's turn (Dan approved its seed CabinPower-z8-1 as is, 2026-11-12): the dash run to J/B No.1 split at the DRL switch branch BP_DRL and the pop-up relay branch BP_R8 (the seed's COL and R8 lines), R8 its own node, so every CabinPower length is its seed route. WheelSpeed-Front / -Rear: the wheel speed editor layout (seed `WheelSpeed.json` WheelSpeed-y2-1, approved by Dan 2026-11-11 with no save; segments = its line lengths, + 300 mm drop at each sensor): conditioners in the console behind the ECU (AB-cabin output plugs on the BP_WS spurs), front cables to the sensor plug at each wheel (Y3 a), rear cables on the factory route across under the dash to the LH kick (IF1) and back along the LH floor, RR crossing under the front edge of the rear seat (Y2 a). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. The AB-engine bulkhead splices SP-GNDOUT-ENG / SP-SW12-ENG are placed at J_BH_ENG_drop (the trunk junction 16 in below the bulkhead), where Dan approved them (N2 a / N4 a, #499; README engine harness rule: splices near the bulkhead, never mid-run). Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (every harness of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin and every other cabin / trunk harness: the one mm model `tree_mm` (DECISIONS B8 \"One mm model\", 2026-11-12): each node's `mm` is its placement-editor seed spot, each segment the seed line between them (`via`) plus `extra` (e.g. the 6 in glove-box breakout GB_T-GB, Dan T2 a), written by build_drawings.py --write-tree-mm; AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit: every front device, ending at ground stud EB) and LFP (run 11, driver kick: wiper), riding Route 16 line 1 (the engine harness trunk along the back, intake side, of the block) from its start to the alternator at the belt end, a low part with a 300 mm drop (SW20 position; Dan A6 b 2026-11-12; his EngineRoom-C save 2026-11-12: the A/C pressure switch on run 10 by the RH rear corner, no harness C wire on the belt-end drop line 6), its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-01; the EB strap lug GND-EB-2 is the same bolt drawn twice; the block strap hangs on Route 16's driver-side lower branch N3 by a link no wire uses (Dan's 2026-11-12 AB-engine save)); routes redrawn 2026-11-09 (Dan Z10 b: device spots are his, the routes are the agent's)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from the old Routes 1, 2 and 7-15 (2026-10-20; Routes 2-7 and 15 since deleted, each harness gets a placement pass, DECISIONS B8). HeavyDC (Dan B6 b, 2026-11-02): its own Route 1 tree, the segments from the old Route 1 page (trunk battery up the RH sill to the glove box, the RADLOK pair through the RH firewall (FW_STR-RL_ENG, 0 mm), then the starter, alternator, block stud and jump post); its Route 16 ends are marked moved_to in Route 16, so no HeavyDC segment reaches the Route 16 tree (OPEN-ITEMS row 179 loops gone); these segments are its placement-editor layout, approved as is by Dan 2026-11-04 22:32 (editor db `layouts/HeavyDC` v1, `unchangedSeed`: every editor line length equal to its segment here, the glove-box run to ground ID riding the AB-cabin dash segments from GB_T; OPEN-ITEMS row 180); its engine-bay segments are the corridor routes with the jump post on Dan's 2026-11-11 save (`layouts/HeavyDC` v4, seed `HeavyDC-jp-1`): the firewall and LH apron run to the jump post, the starter and block-ground legs off it; its trunk end is Dan's Z4 b save (`layouts/HeavyDC` v5, seed `HeavyDC-z4b-1`): the kill switch and the relay block on the trunk's RH side run (RHSILL-KILLSW-RLYBLK-TRK_RC; kill switch 100 mm forward of the relay block, Dan A1 b 2026-11-12), the battery 135 mm inboard of its rear end (TRK_RC-BATT). RearFuel: its editor layout (seed `RearFuel.json` RearFuel-z4b-1, approved by Dan 2026-11-11 20:23 with no save since the N120 reset; segments = its line lengths): the RH sill run shared with AB-cabin's, the trunk relay block on Dan's Z4 b save (R2) on the trunk's RH side run, the kill switch 100 mm forward of it (Dan A1 b, 2026-11-12; KILLSW-RLYBLK, also the HeavyDC fuel pump feed), the pump feed back to the run's rear end and round the back panel (RLYBLK-TRK_RC-TRK_BP) and forward to the pump plug at the factory floor service hole beside the fuel sender (Dan Z8 b, 2026-11-12), the pump ground back to the back panel and along it to BL; back panel run inside the back wall (Z5 a, x -3135), BL on the back panel centre; AB-cabin's turn (Dan's save 2026-11-12 03:14Z, seed ABcabin-z8-1): the fuel sender leg JB1-TANK on the factory LH floor route to Dan's sender spot; the A/C amplifiers on their factory spots (A15 node ACAMP, A32 node ACAMP32), each branch set so the ECU-to-amp tree length equals its seed route in car mm (the cabin tree's other legacy lengths wait for the one mm model, OPEN-ITEMS Current state step 2). CabinPower's turn (Dan approved its seed CabinPower-z8-1 as is, 2026-11-12): the dash run to J/B No.1 split at the DRL switch branch BP_DRL and the pop-up relay branch BP_R8 (the seed's COL and R8 lines), R8 its own node, so every CabinPower length is its seed route. WheelSpeed-Front / -Rear: the wheel speed editor layout (seed `WheelSpeed.json` WheelSpeed-y2-1, approved by Dan 2026-11-11 with no save; segments = its line lengths, + 300 mm drop at each sensor): conditioners in the console behind the ECU (AB-cabin output plugs on the BP_WS spurs), front cables to the sensor plug at each wheel (Y3 a), rear cables on the factory route across under the dash to the LH kick (IF1) and back along the LH floor, RR crossing under the front edge of the rear seat (Y2 a). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. The AB-engine bulkhead splices SP-GNDOUT-ENG / SP-SW12-ENG are placed at J_BH_ENG_drop (the trunk junction 16 in below the bulkhead), where Dan approved them (N2 a / N4 a, #499; README engine harness rule: splices near the bulkhead, never mid-run). Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -9,35 +9,51 @@
    "label": "ECU plugs A / B (centre dash, factory ECM spot)",
    "end": true,
    "short": "ECU plugs A / B",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -677.2,
+    -92.8
+   ]
   },
   "SP": {
    "xy": [
     56,
     36
    ],
-   "label": "ECU splice point (bussed DT plugs + soldered splices)",
+   "label": "ECU splice point (bussed DT plugs + soldered splices), where the ECU's 97 mm stub meets the dash run, car mm (-580, -92.8) (one mm model, 2026-11-12; was 110 mm from the ECU on the old dash-centre frame)",
    "end": true,
    "short": "ECU splice point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -92.8
+   ]
   },
   "BP_AC": {
    "xy": [
-    59,
-    28
+    55,
+    19
    ],
-   "label": "A/C branch",
+   "label": "A/C branch on the dash run, car mm (-580, 400), between the bulkhead branch and the glove box: the A/C amplifier A15 40 mm forward of it (AB-cabin seed AC line)",
    "short": "A/C branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    400
+   ]
   },
   "BP_GB": {
    "xy": [
-    62,
-    20
+    60,
+    25
    ],
-   "label": "glove-box branch",
-   "short": "glove-box branch point",
-   "lab": "left"
+   "label": "Bulkhead branch on the dash run, car mm (-580, 330): the DRB102 cabin half 100 mm forward of it (AB-cabin seed BH line)",
+   "short": "bulkhead branch point",
+   "lab": "left",
+   "mm": [
+    -580,
+    330
+   ]
   },
   "BH": {
    "xy": [
@@ -47,7 +63,11 @@
    "label": "DRB102 bulkhead, cabin half (RH firewall)",
    "end": true,
    "short": "Bulkhead (DRB102, RH firewall)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -480,
+    330
+   ]
   },
   "GB": {
    "xy": [
@@ -56,7 +76,11 @@
    ],
    "label": "Glove box: POWER + LOGIC boxes (every cabin fuse and relay), NEG bar, SW12 bus, blower lead",
    "end": true,
-   "short": "Glove box: POWER + LOGIC boxes, NEG bar"
+   "short": "Glove box: POWER + LOGIC boxes, NEG bar",
+   "mm": [
+    -580,
+    480
+   ]
   },
   "RHKICK": {
    "xy": [
@@ -66,7 +90,11 @@
    "label": "RH kick panel (old R/B No.4 spot): ST1 / heater taps, ground IG",
    "short": "RH kick panel (old R/B4, ground IG)",
    "lab": "below",
-   "end": true
+   "end": true,
+   "mm": [
+    -660,
+    650
+   ]
   },
   "RHSILL": {
    "xy": [
@@ -75,7 +103,11 @@
    ],
    "label": "RH sill, rear end (the run turns across the trunk)",
    "short": "RH sill, rear",
-   "lab": "below"
+   "lab": "below",
+   "mm": [
+    -2260,
+    650
+   ]
   },
   "ACAMP": {
    "xy": [
@@ -84,7 +116,11 @@
    ],
    "label": "A/C amplifier A15 taps: behind the glove box on the bottom of the evaporator case (1993 Mitchell component locator; 1993 EWD p.32), car mm (-540, 400), a 40 mm stub forward off the dash run",
    "end": true,
-   "short": "A/C amplifier taps"
+   "short": "A/C amplifier taps",
+   "mm": [
+    -540,
+    400
+   ]
   },
   "ACAMP32": {
    "xy": [
@@ -94,25 +130,24 @@
    "label": "Auto A/C amplifier A32 and the A/C sensor common splice: behind the centre of the dash, bottom left of the heater unit (1993 Mitchell component locator; 1993 EWD p.32), car mm (-540, -130), a 40 mm stub forward off the dash run toward the LH kick",
    "end": true,
    "short": "Auto A/C amplifier",
-   "lab": "left"
-  },
-  "EVAP": {
-   "xy": [
-    72,
-    40
-   ],
-   "label": "Evaporator case: thermistor A24 leads",
-   "end": true,
-   "short": "Evaporator thermistor"
+   "lab": "left",
+   "mm": [
+    -540,
+    -130
+   ]
   },
   "BP_DASH": {
    "xy": [
     56,
     54
    ],
-   "label": "dash branch",
+   "label": "Dash branch on the dash run, car mm (-580, -130): the auto A/C amplifier A32 40 mm forward of it; the dash run goes on toward the driver side (AB-cabin seed AC2 line)",
    "short": "dash branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -130
+   ]
   },
   "BP_AL": {
    "xy": [
@@ -121,7 +156,11 @@
    ],
    "label": "alarm branch (on the dash run, 129 mm past the dash branch toward the column branch; agent-drawn, Dan Z10 b 2026-11-09)",
    "short": "alarm branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -159
+   ]
   },
   "BP_DRL": {
    "xy": [
@@ -130,7 +169,11 @@
    ],
    "label": "DRL switch branch on the dash run to J/B No.1, car mm (-580, -420), 40 mm past the pedal branch BP_PED; the steering column run (Dash seed COL line) leaves here too (CabinPower seed COL line, approved 2026-11-12)",
    "short": "DRL switch branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -420
+   ]
   },
   "BP_R8": {
    "xy": [
@@ -139,7 +182,11 @@
    ],
    "label": "Pop-up relay branch on the dash run to J/B No.1, car mm (-580, -560), 140 mm past the DRL switch branch (CabinPower seed R8 line, approved 2026-11-12)",
    "short": "pop-up relay branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -560
+   ]
   },
   "R8": {
    "xy": [
@@ -149,7 +196,11 @@
    "label": "Pop-up relay R8 behind the LH dash, car mm (-700, -560), 120 mm off the dash run: pop-up diodes D1 / D2, the R8 UP splice and the cut R-Y lead's I2 side (CabinPower seed, approved by Dan 2026-11-12)",
    "end": true,
    "short": "Pop-up relay R8",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -700,
+    -560
+   ]
   },
   "PEDAL": {
    "xy": [
@@ -158,7 +209,11 @@
    ],
    "label": "Accelerator pedal (driver footwell)",
    "end": true,
-   "short": "Accelerator pedal"
+   "short": "Accelerator pedal",
+   "mm": [
+    -430,
+    -380
+   ]
   },
   "JB1": {
    "xy": [
@@ -167,7 +222,11 @@
    ],
    "label": "J/B No.1 + cowl plug IE1, LH kick panel: IG2 / tail / turn taps, door switch lead, ground ID (Routes 2, 7, 15)",
    "end": true,
-   "short": "J/B No.1 + IE1, LH kick"
+   "short": "J/B No.1 + IE1, LH kick",
+   "mm": [
+    -830,
+    -650
+   ]
   },
   "ALARM": {
    "xy": [
@@ -176,7 +235,11 @@
    ],
    "label": "Alarm spot (under the dash, driver side of the ECU, 223 mm straight back from the dash run; Dan's 2026-11-08 placement): the alarm-ready tap points AL-*, no alarm fitted yet (Dan 2026-11-06)",
    "end": true,
-   "short": "Alarm spot (tap points)"
+   "short": "Alarm spot (tap points)",
+   "mm": [
+    -803,
+    -159
+   ]
   },
   "AT_GND": {
    "xy": [
@@ -185,7 +248,11 @@
    ],
    "label": "Alarm ground ring T-AT-GND: chassis point 139 mm from the alarm spot toward the car centre (Dan's 2026-11-08 placement)",
    "end": true,
-   "short": "Alarm ground ring"
+   "short": "Alarm ground ring",
+   "mm": [
+    -807,
+    -20
+   ]
   },
   "CSB3": {
    "xy": [
@@ -194,7 +261,11 @@
    ],
    "label": "Centre console: CSB3 under the centre cluster, its switch inputs and opto board, car mm (-950, 0): 366 mm along the console run from the ECU, the opto board 30 mm beside it on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
-   "short": "Centre console: CSB3"
+   "short": "Centre console: CSB3",
+   "mm": [
+    -950,
+    0
+   ]
   },
   "CANJ": {
    "xy": [
@@ -203,7 +274,11 @@
    ],
    "label": "By ECU plug C: the CAN trunk leaves ECU plug C here and runs out past the switch board, cluster and Pi taps, then on to the bulkhead (Dan P1 / T1 a, 2026-11-09)",
    "end": true,
-   "short": "CAN trunk start (ECU plug C)"
+   "short": "CAN trunk start (ECU plug C)",
+   "mm": [
+    -727.2,
+    -92.8
+   ]
   },
   "BH_ENG": {
    "xy": [
@@ -223,7 +298,11 @@
    "label": "RH firewall: RADLOK pair, cabin side - spot TBD (Route 1 point 1)",
    "short": "RADLOK pair (cabin side)",
    "lab": "below",
-   "end": true
+   "end": true,
+   "mm": [
+    -440,
+    220
+   ]
   },
   "CLUSTER": {
    "xy": [
@@ -233,7 +312,11 @@
    "label": "Centre cluster (old meter spot): LED board on the meter plugs C13 (B) / C14 (C), cluster CAN board + buck, J/B No.3 behind it, car mm (-720, -330): 170 mm off the dash run at BP_CLU, the LED board 30 mm nearer on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "Centre cluster (old meter spot)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -720,
+    -330
+   ]
   },
   "PI": {
    "xy": [
@@ -243,7 +326,11 @@
    "label": "RealDash Pi + USB-CAN adapter, centre dash, and the dash 12 V split, car mm (-860, -40), 53 mm off the console run at BP_PI; cowl plug II1 30 mm away on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "RealDash Pi (centre dash)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -860,
+    -40
+   ]
   },
   "COLUMN": {
    "xy": [
@@ -253,7 +340,11 @@
    "label": "Steering column: combination switch plug C16 (B), cruise control switch pins 5 / 15 / 17 (1993 EWD grid 59), car mm (-810, -420): 230 mm straight back from the dash run at BP_DRL; the dimmer R10 sits 30 mm nearer, on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "Steering column: cruise stalk",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -810,
+    -420
+   ]
   },
   "DRL_SW": {
    "xy": [
@@ -263,7 +354,11 @@
    "label": "DRL switch, lower dash left of the steering wheel (Dan 2026-11-08), car mm (-760, -420): 180 mm straight back from the dash run at BP_DRL (CabinPower seed CabinPower-z8-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "DRL switch (left of wheel)",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -760,
+    -420
+   ]
   },
   "RFG": {
    "xy": [
@@ -273,7 +368,11 @@
    "label": "Harness C out of the cabin into the RH fender by the hood hinge (Route 17 run 10 start; the harness C tree is built from Route 17 by route_trees)",
    "end": true,
    "short": "RH fender exit (harness C)",
-   "lab": "below"
+   "lab": "below",
+   "mm": [
+    -400,
+    600
+   ]
   },
   "LFP": {
    "xy": [
@@ -283,7 +382,11 @@
    "label": "LH fender pass-through by the strut tower, driver kick: FL wheel-speed plug; wiper feed out to the cowl (Routes 2, 9)",
    "end": true,
    "short": "LH fender pass-through: FL sensor",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -530,
+    -650
+   ]
   },
   "RPANEL": {
    "xy": [
@@ -293,7 +396,11 @@
    "label": "Rear panel centre: factory ground point BL (fuel pump ground ring, Dan N97 a; 1993 EWD p.234, location view p.46), car mm (-3200, 0) on the back panel; 250 mm along the back panel run from the pump leg, then 65 mm out to the panel (Z5 a)",
    "end": true,
    "short": "Ground point BL (back panel)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -3200,
+    0
+   ]
   },
   "WSRL": {
    "xy": [
@@ -303,7 +410,11 @@
    "label": "RL wheel speed sensor plug on the RL knuckle ((-2555, -615) mm), low part: +300 mm drop; its cable runs along the LH floor to the LH kick (factory route, Dan Y2 a 2026-11-11)",
    "end": true,
    "short": "RL wheel-speed sensor",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -2555,
+    -615
+   ]
   },
   "WSRR": {
    "xy": [
@@ -313,7 +424,11 @@
    "label": "RR wheel speed sensor plug on the RR knuckle ((-2555, 615) mm), low part: +300 mm drop; its cable crosses under the front edge of the rear seat to the LH floor run (Dan Y2 a 2026-11-11)",
    "end": true,
    "short": "RR wheel-speed sensor",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -2555,
+    615
+   ]
   },
   "TANK": {
    "xy": [
@@ -323,7 +438,11 @@
    "label": "Fuel level sender at the floor service hole (DT 2-way), Dan's spot (AB-cabin save 2026-11-12 03:14Z), car mm (-2973, -319); its leg leaves the dash run at the LH kick and runs back along the LH floor and the trunk's LH side (factory floor wire and luggage room wire route, Z6 a) to x -2973, then 331 mm inboard; the pump has its own node PUMP",
    "end": true,
    "short": "Fuel level sender",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -2973,
+    -319
+   ]
   },
   "PUMP": {
    "xy": [
@@ -333,7 +452,11 @@
    "label": "Fuel pump plug at the factory floor service hole, beside the fuel sender (Dan Z8 b, 2026-11-12; FSM FI-139 / 140: pump and sender connectors under the same luggage-floor service hole cover), car mm (-2973, -250), 69 mm RH of the sender; its +12 V feed runs straight from the fuel pump relay in the trunk RH relay block (Dan 2026-11-08: relay wires go directly to the pump), both run round the trunk's RH side and back panel (corridor 8) and forward 162 mm to the pump; its ground back to the back panel and on to BL",
    "end": true,
    "short": "Fuel pump",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -2973,
+    -250
+   ]
   },
   "BATT": {
    "xy": [
@@ -343,7 +466,11 @@
    "label": "Trunk battery (+ and - posts): Dan's spot (Z4 b save 2026-11-11, dragged inboard), car mm (-3080, 515); one 135 mm leg out to the trunk's RH side run at its rear end (TRK_RC) (Route 1 point 1)",
    "end": true,
    "short": "Trunk battery",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -3080,
+    515
+   ]
   },
   "RLYBLK": {
    "xy": [
@@ -353,7 +480,11 @@
    "label": "Trunk battery relay block (FP 40 A fuse + fuel pump relay K-FP): Dan's spot (Z4 b save 2026-11-11; R2: just right of the battery, about 8 in forward of the trunk's back wall at about x -3210), car mm (-2992, 647), on the trunk's RH side run 88 mm forward of its rear end, 100 mm behind the kill switch (A1 b)",
    "end": true,
    "short": "Trunk relay block (K-FP)",
-   "lab": "below"
+   "lab": "below",
+   "mm": [
+    -2992,
+    650
+   ]
   },
   "KILLSW": {
    "xy": [
@@ -363,7 +494,11 @@
    "label": "Battery kill switch: car mm (-2892, 647), on the trunk's RH side run 100 mm forward of the relay block (Dan A1 b, 2026-11-12: about 100 mm apart; was his 2026-11-12 03:14Z save, 5 mm) (Route 1 point 4)",
    "end": true,
    "short": "Kill switch",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -2892,
+    650
+   ]
   },
   "TRK_RC": {
    "xy": [
@@ -372,7 +507,11 @@
    ],
    "label": "Trunk RH side run, rear end, car mm (-3080, 650): the battery leg goes 135 mm inboard; the pump feed runs on back to the back panel (corridor 8)",
    "short": "Trunk RH, battery leg",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -3080,
+    650
+   ]
   },
   "TRK_BP": {
    "xy": [
@@ -381,7 +520,11 @@
    ],
    "label": "Trunk back panel run, RH-of-centre point (car mm (-3135, -250), inside the back wall, Z5 a): the pump feed (round the trunk's RH side and back panel, corridor 8) and the pump ground part here; the pump leg runs forward 162 mm (Z8 b), the ground on 315 mm along the back panel to BL",
    "short": "Back panel (pump leg)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -3135,
+    -250
+   ]
   },
   "C_FEND": {
    "xy": [
@@ -409,7 +552,11 @@
    "label": "Front centre: the hood pin pull-wire end AL-HOOD-BAY (Dan's 2026-11-08 placement), 670 mm from the LH front corner; the lead shares the LH pass-through with the siren leads (Dan Z13 b 2026-11-09)",
    "short": "hood pin pull-wire end (front centre)",
    "lab": "left",
-   "end": true
+   "end": true,
+   "mm": [
+    652,
+    20
+   ]
   },
   "C_LHC": {
    "xy": [
@@ -418,7 +565,11 @@
    ],
    "label": "LH front corner: the hood pin lead turns here toward the front centre (1052 mm forward of the LH firewall corner)",
    "short": "LH front corner (hood pin lead)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    652,
+    -650
+   ]
   },
   "SIREN": {
    "xy": [
@@ -428,7 +579,11 @@
    "label": "Siren pull-wire ends (AL-SIREN-BAY, AL-SIREN-GND-BAY): centre of the firewall behind the engine, reached through the LH kick / fender pass-through (Dan B19, N101 b 2026-11-08); 130 mm forward to the LH firewall corner, then 650 mm along the firewall, agent-drawn (Dan Z10 b 2026-11-09)",
    "end": true,
    "short": "Siren pull-wire ends",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -400,
+    0
+   ]
   },
   "BP_LFW": {
    "xy": [
@@ -437,7 +592,11 @@
    ],
    "label": "LH firewall corner, engine side of the LH kick / fender pass-through: the siren leads turn along the firewall, the hood pin lead runs on forward (agent-drawn, Dan Z10 b / Z13 b 2026-11-09)",
    "short": "LH firewall corner branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -400,
+    -650
+   ]
   },
   "RL_ENG": {
    "xy": [
@@ -486,7 +645,11 @@
    ],
    "label": "glove-box breakout: POWER / LOGIC boxes leave the glove-box run 6 in (152 mm) off it (DECISIONS 6 in breakout rule; Dan T2 a 2026-11-03)",
    "short": "glove-box breakout",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    480
+   ]
   },
   "ENG_BLOCK": {
    "xy": [
@@ -504,7 +667,11 @@
     41.5
    ],
    "label": "CAN trunk switch board tap: CAN H / L and shield splices; the switch board drop cable leaves here (80 mm to the switch board) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
-   "short": "switch board CAN tap"
+   "short": "switch board CAN tap",
+   "mm": [
+    -950,
+    -79.6
+   ]
   },
   "TAP_CLU": {
    "xy": [
@@ -512,7 +679,11 @@
     74
    ],
    "label": "CAN trunk cluster tap: CAN H / L and shield splices; the cluster drop cable leaves here (80 mm to the cluster) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
-   "short": "cluster CAN tap"
+   "short": "cluster CAN tap",
+   "mm": [
+    -670,
+    -300
+   ]
   },
   "TAP_RD": {
    "xy": [
@@ -520,7 +691,11 @@
     62.9
    ],
    "label": "CAN trunk RealDash Pi tap: CAN H / L and shield splices; the RealDash Pi drop cable leaves here (80 mm to the RealDash Pi) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
-   "short": "RealDash Pi CAN tap"
+   "short": "RealDash Pi CAN tap",
+   "mm": [
+    -833.2,
+    -92.8
+   ]
   },
   "BP_WS": {
    "xy": [
@@ -529,7 +704,11 @@
    ],
    "label": "Wheel speed conditioner branch: the AB-cabin output-plug spurs leave the console run 23 mm behind the ECU (AB-cabin seed lines WSF / WSR)",
    "short": "conditioner branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -700,
+    -92.8
+   ]
   },
   "VRC_F": {
    "xy": [
@@ -539,7 +718,11 @@
    "label": "Front VR conditioner, centre console just behind the ECU ((-800, -40) mm): IN plug (WheelSpeed-Front), OUT plug (AB-cabin, 152 mm breakout + 150 mm drop), sensor shield splice; Wheel speed editor (seed WheelSpeed-y2-1, approved by Dan 2026-11-11; Y2 a / Y3 a)",
    "end": true,
    "short": "Front VR conditioner (console)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -800,
+    -40
+   ]
   },
   "VRC_R": {
    "xy": [
@@ -549,7 +732,11 @@
    "label": "Rear VR conditioner, centre console just behind the ECU ((-800, -145) mm): IN plug (WheelSpeed-Rear), OUT plug (AB-cabin, 152 mm breakout + 150 mm drop), sensor shield splice; Wheel speed editor (seed WheelSpeed-y2-1, approved by Dan 2026-11-11; Y2 a / Y3 a)",
    "end": true,
    "short": "Rear VR conditioner (console)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -800,
+    -145
+   ]
   },
   "WSF_J": {
    "xy": [
@@ -558,7 +745,11 @@
    ],
    "label": "Front wheel speed cables part under the dash ((-740, -40) mm): FL to the LH kick, FR to the RH kick",
    "short": "front WS split (under dash)",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -740,
+    -40
+   ]
   },
   "WSF_LP": {
    "xy": [
@@ -567,7 +758,11 @@
    ],
    "label": "LH fender pass-through, front wheel speed harness's own copy (the tree reaches LFP another way)",
    "short": "LH pass-through (FL cable)",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -530,
+    -650
+   ]
   },
   "WSFL": {
    "xy": [
@@ -577,7 +772,11 @@
    "label": "FL wheel speed sensor plug on the FL knuckle ((-80, -620) mm), low part: +300 mm drop (Dan Y3 a: the cable ends at the sensor plug)",
    "end": true,
    "short": "FL wheel speed sensor",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -80,
+    -620
+   ]
   },
   "WSF_RX": {
    "xy": [
@@ -586,7 +785,11 @@
    ],
    "label": "RH fender exit, front wheel speed harness's own copy ((-400, 600) mm, with the front harness)",
    "short": "RH fender exit (FR cable)",
-   "lab": "below"
+   "lab": "below",
+   "mm": [
+    -400,
+    600
+   ]
   },
   "WSFR": {
    "xy": [
@@ -596,7 +799,11 @@
    "label": "FR wheel speed sensor plug on the FR knuckle ((-80, 620) mm), low part: +300 mm drop (Dan Y3 a)",
    "end": true,
    "short": "FR wheel speed sensor",
-   "lab": "below"
+   "lab": "below",
+   "mm": [
+    -80,
+    620
+   ]
   },
   "WSR_K": {
    "xy": [
@@ -605,7 +812,11 @@
    ],
    "label": "LH kick panel, factory floor-wire joint IF1 (1993 EWD p.43 / p.44): the rear wheel speed cables cross under the dash to here, then run back along the LH floor (Dan Y2 a, 2026-11-11)",
    "short": "LH kick (factory joint IF1)",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -800,
+    -615
+   ]
   },
   "WSR_S": {
    "xy": [
@@ -614,7 +825,11 @@
    ],
    "label": "LH floor at the front edge of the rear seat ((-1780, -615) mm): the RR cable leaves the LH floor run and crosses under the seat edge to the RH side (Dan Y2 a)",
    "short": "rear seat edge (RR split)",
-   "lab": "above"
+   "lab": "above",
+   "mm": [
+    -1780,
+    -615
+   ]
   },
   "BP_CLU": {
    "xy": [
@@ -623,7 +838,11 @@
    ],
    "label": "Cluster branch on the dash run, car mm (-580, -300): the Dash cluster run leaves here, 140 mm straight back then 30 mm to the cluster; 141 mm past the alarm branch (Dash seed Dash-z10b-1 CLU line, approved by Dan 2026-11-12)",
    "short": "cluster branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -300
+   ]
   },
   "BP_PED": {
    "xy": [
@@ -632,7 +851,11 @@
    ],
    "label": "Pedal branch on the dash run, car mm (-580, -380), 80 mm past the cluster branch: the pedal sensor and the clutch / stop lamp switches, 150 mm forward + 360 mm drop (Dash seed PED line, AB-cabin seed PED line)",
    "short": "pedal branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -580,
+    -380
+   ]
   },
   "BP_PI": {
    "xy": [
@@ -641,7 +864,11 @@
    ],
    "label": "RealDash Pi branch on the console run, car mm (-860, -92.8), 183 mm back from the ECU: the Pi and cowl plug II1 sit 53 mm toward the driver side (Dash seed CON line, approved by Dan 2026-11-12)",
    "short": "Pi branch point",
-   "lab": "left"
+   "lab": "left",
+   "mm": [
+    -860,
+    -92.8
+   ]
   },
   "BLK_J": {
    "xy": [
@@ -650,33 +877,73 @@
    ],
    "label": "Corner of the jump post to engine block ground leg, where the alternator B+ cable joins it (A4 b, 2026-11-12)",
    "short": ""
+  },
+  "BP_IG2": {
+   "xy": [
+    58,
+    31
+   ],
+   "label": "IG2 branch on the dash run, car mm (-580, 0): cowl plug IG2 40 mm forward off it (AB-cabin / CabinPower seed IG2 stub)",
+   "short": "IG2 branch point",
+   "mm": [
+    -580,
+    0
+   ]
+  },
+  "IG2C": {
+   "xy": [
+    66,
+    31
+   ],
+   "label": "Cowl plug IG2 (under the ECU), car mm (-540, 0): 40 mm forward off the dash run at BP_IG2 (AB-cabin / CabinPower seed spot; was drawn on the ECU node)",
+   "end": true,
+   "short": "Cowl plug IG2",
+   "mm": [
+    -540,
+    0
+   ]
   }
  },
  "segments": [
   [
    "ECU",
    "SP",
-   110
+   97
   ],
   [
    "SP",
+   "BP_IG2",
+   93
+  ],
+  [
+   "BP_IG2",
+   "IG2C",
+   40
+  ],
+  [
+   "BP_IG2",
+   "BP_GB",
+   330
+  ],
+  [
+   "BP_GB",
    "BP_AC",
-   110
+   70
   ],
   [
    "BP_AC",
-   "BP_GB",
-   110
+   "GB_T",
+   80
+  ],
+  [
+   "SP",
+   "BP_DASH",
+   37
   ],
   [
    "BP_GB",
    "BH",
    100
-  ],
-  [
-   "BP_GB",
-   "GB_T",
-   150
   ],
   [
    "GB_T",
@@ -696,27 +963,17 @@
   [
    "BP_AC",
    "ACAMP",
-   410
-  ],
-  [
-   "BP_AC",
-   "EVAP",
-   450
+   40
   ],
   [
    "BP_DASH",
    "ACAMP32",
-   144
-  ],
-  [
-   "ECU",
-   "BP_DASH",
-   30
+   40
   ],
   [
    "BP_DASH",
    "BP_AL",
-   129
+   29
   ],
   [
    "BP_DRL",
@@ -999,6 +1256,133 @@
    103
   ]
  ],
+ "tree_mm": {
+  "about": "One mm model of the cabin, trunk and car-mm hand-off legs of the tree (DECISIONS B8 \"One mm model\", 2026-11-12): each node with \"mm\" sits on its car-mm spot from the placement-editor seeds (x fore-aft, front +; y side to side, LH / driver -; the DI-7 under-body plan frame). A segment whose two nodes both carry \"mm\" is the polyline node -> via points -> node, plus \"extra\" (a drop or breakout the top view does not draw), rounded to the mm. Its stored length is written by `build_drawings.py --write-tree-mm`, never by hand; `--check` fails when a stored length differs. Engine-bay segments (EWD-point routes, Route 1 engine legs) carry no mm.",
+  "via": {
+   "GB_T|RHKICK": [
+    [
+     -580,
+     650
+    ]
+   ],
+   "BP_R8|JB1": [
+    [
+     -580,
+     -650
+    ]
+   ],
+   "GB_T|FW_STR": [
+    [
+     -440,
+     480
+    ]
+   ],
+   "TAP_CLU|CLUSTER": [
+    [
+     -720,
+     -300
+    ]
+   ],
+   "GB_T|RFG": [
+    [
+     -400,
+     480
+    ]
+   ],
+   "JB1|TANK": [
+    [
+     -2973,
+     -650
+    ]
+   ],
+   "TRK_RC|TRK_BP": [
+    [
+     -3135,
+     650
+    ]
+   ],
+   "TRK_BP|RPANEL": [
+    [
+     -3135,
+     0
+    ]
+   ],
+   "BP_WS|VRC_F": [
+    [
+     -700,
+     -40
+    ]
+   ],
+   "BP_WS|VRC_R": [
+    [
+     -700,
+     -145
+    ]
+   ],
+   "WSF_J|WSF_LP": [
+    [
+     -740,
+     -650
+    ]
+   ],
+   "WSF_LP|WSFL": [
+    [
+     -80,
+     -650
+    ]
+   ],
+   "WSF_J|WSF_RX": [
+    [
+     -740,
+     600
+    ]
+   ],
+   "WSF_RX|WSFR": [
+    [
+     -80,
+     600
+    ]
+   ],
+   "WSR_S|WSRR": [
+    [
+     -1780,
+     615
+    ]
+   ],
+   "BP_PI|TAP_CSB": [
+    [
+     -950,
+     -92.8
+    ]
+   ],
+   "TAP_RD|PI": [
+    [
+     -860,
+     -92.8
+    ]
+   ]
+  },
+  "extra": {
+   "GB_T|GB": 152,
+   "BP_WS|VRC_F": 150,
+   "BP_WS|VRC_R": 150,
+   "WSF_LP|WSFL": 300,
+   "WSF_RX|WSFR": 300,
+   "WSR_S|WSRL": 300,
+   "WSR_S|WSRR": 300,
+   "BP_PED|PEDAL": 360
+  },
+  "extra_why": {
+   "GB_T|GB": "6 in breakout of the POWER / LOGIC boxes off the dash run (Dan T2 a)",
+   "BP_WS|VRC_F": "conditioner output plug drop",
+   "BP_WS|VRC_R": "conditioner output plug drop",
+   "WSF_LP|WSFL": "low part, sensor on the knuckle",
+   "WSF_RX|WSFR": "low part, sensor on the knuckle",
+   "WSR_S|WSRL": "low part, sensor on the knuckle",
+   "WSR_S|WSRR": "low part, sensor on the knuckle",
+   "BP_PED|PEDAL": "pedal drop (Dan's AB-cabin / Dash editor drop)"
+  }
+ },
  "route_trees": [
   {
    "route": "ROUTE-16-ENGINE-MAIN.html",
@@ -1349,7 +1733,7 @@
   ],
   [
    "Cowl plug IG2",
-   "ECU"
+   "IG2C"
   ],
   [
    "RB4 ",

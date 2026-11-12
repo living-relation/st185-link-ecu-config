@@ -20,7 +20,9 @@ used to write are retired (git history keeps them). What it still does, for the 
   Also: `od()` / `dr25_for()` give the DR-25 size per segment for docs/sourcing/build_project_bom.py.
 
     python docs/harness/tools/build_drawings.py [set]          write the wire lists and the DRB102 map
-    python docs/harness/tools/build_drawings.py --check [set]  fail if a wire end is not on the tree, a PLACED harness's
+    python docs/harness/tools/build_drawings.py --write-tree-mm  write the layout's cabin segment lengths from its one mm
+    model (tree_mm: node car-mm spots + via points + extras; DECISIONS B8 "One mm model"); --check fails on a difference
+python docs/harness/tools/build_drawings.py --check [set]  fail if a wire end is not on the tree, a PLACED harness's
                                                               master length differs from its tree length, or a wire
                                                               list / the DRB102 map is stale
     python docs/harness/tools/build_drawings.py --lengths [harness ...]        the before -> after list (default PLACED;
@@ -935,7 +937,7 @@ def lengths_run(argv):
 # ------------------------------------------------------------------------------------------------ checks
 def check(h):
     H = Harness(h)
-    bad = list(H.problems)
+    bad = list(H.problems) + tree_mm_problems(load(H.p["layout"]))
     for r in H.wires:
         H.route(r)
     bad += [x for x in H.problems if x not in bad]
@@ -1751,6 +1753,51 @@ def add_route_trees(L):
 
 
 
+def tree_mm_lengths(L):
+    """{segment index: mm} for every layout segment whose two nodes carry "mm" (car mm, the placement-editor seeds' frame):
+    the polyline node -> tree_mm via points -> node, plus tree_mm extra (a drop or breakout the top view does not draw),
+    rounded to the mm. The one mm model of the cabin (DECISIONS B8 "One mm model", 2026-11-12): the stored segment length
+    is written from it by --write-tree-mm and --check fails on a difference, so a seed change cannot drift."""
+    tm = L.get("tree_mm") or {}
+    via, extra, nodes, out = tm.get("via", {}), tm.get("extra", {}), L["nodes"], {}
+    for i, s in enumerate(L["segments"]):
+        a, b = s[0], s[1]
+        if "mm" not in nodes.get(a, {}) or "mm" not in nodes.get(b, {}):
+            continue
+        k, rk = a + "|" + b, b + "|" + a
+        pts = [nodes[a]["mm"]] + (via[k] if k in via else via[rk][::-1] if rk in via else []) + [nodes[b]["mm"]]
+        mm = sum(math.hypot(q[0] - p[0], q[1] - p[1]) for p, q in zip(pts, pts[1:])) + extra.get(k, extra.get(rk, 0))
+        out[i] = int(round(mm))
+    return out
+
+
+def tree_mm_problems(L):
+    """Stored segment lengths that differ from the one mm model (tree_mm_lengths); [] when all agree."""
+    want = tree_mm_lengths(L)
+    return ["layout segment %s - %s: stored %s mm, mm model %d mm: run build_drawings.py --write-tree-mm"
+            % (L["segments"][i][0], L["segments"][i][1], L["segments"][i][2], mm)
+            for i, mm in sorted(want.items()) if L["segments"][i][2] != mm]
+
+
+def write_tree_mm(path):
+    """--write-tree-mm: write the one mm model's segment lengths into the layout file; print before -> after."""
+    raw = open(path, encoding="utf-8").read()
+    L = json.loads(raw)
+    want = tree_mm_lengths(L)
+    n = 0
+    for i, mm in sorted(want.items()):
+        s = L["segments"][i]
+        if s[2] != mm:
+            print("   %-10s %-10s %6s -> %d" % (s[0], s[1], s[2], mm))
+            s[2] = mm
+            n += 1
+    if n:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(json.dumps(L, indent=1) + "\n")
+    print("tree mm model: %d segment(s) written, %d from the model" % (n, len(want)))
+    return 0
+
+
 def add_node_drops(L):
     """A hand-drawn tree end node with "drop_mm" (a low-mounted part on a top-view map: HeavyDC's alternator and starter B+
     studs, Dan A9 a 2026-11-12) gets that drop as a segment of its own: its one segment ends at "<node>_top" (same spot)
@@ -2057,6 +2104,11 @@ def self_test():
     cases.append(("a placed wire 1 mm off its tree length",
                   flagged(lambda rs: rs[w["wire_id"]].update(est_length_mm=str(int(float(w["est_length_mm"])) + 1))) == {w["wire_id"]}))
     cases.append(("a placed wire with a blank length", flagged(lambda rs: rs[w["wire_id"]].update(est_length_mm="")) == {w["wire_id"]}))
+    lay = load(H.p["layout"])
+    cases.append(("the committed layout matches its one mm model", tree_mm_problems(lay) == []))
+    i_mm = min(tree_mm_lengths(lay))
+    lay["segments"][i_mm][2] += 1
+    cases.append(("a cabin segment 1 mm off its mm model is caught", len(tree_mm_problems(lay)) == 1))
     link = next(r for r in H.wires if r["harness"] in PLACED and is_integral(r))
     cases.append(("an INTEGRAL link given a length",
                   flagged(lambda rs: rs[link["wire_id"]].update(est_length_mm="200")) == {link["wire_id"]}))
@@ -2148,6 +2200,8 @@ def main(argv):
         return self_test()
     if "--lengths" in argv or "--write-lengths" in argv:
         return lengths_run(argv)
+    if "--write-tree-mm" in argv:
+        return write_tree_mm(Harness(own_harnesses()[0]).p["layout"])
     check_mode = "--check" in argv
     want = [a for a in argv if not a.startswith("-")]
     hs = want or own_harnesses()
