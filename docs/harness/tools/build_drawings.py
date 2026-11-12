@@ -1872,6 +1872,37 @@ def ghost_file(r, doc_of=None):
     return "ST185-" + r["harness"]
 
 
+GHOST_REPORT = {}       # host -> the pass-through rows add_ghosts drew / left out (its last call), for the title note
+GHOST_MARK = "{{ghost wires}}"
+
+
+def ghost_sentence(host, label=lambda r: r["wire_id"]):
+    """The title-note sentence on other harnesses' wires in this file, as add_ghosts drew them (Dan T4 a): which are drawn as
+    ghost wires, which touch only one branch point here and are not drawn. Empty when the file has none."""
+    rep = GHOST_REPORT.get(host) or {"drawn": [], "skipped": [], "strands": False}
+    def by_owner(rs):
+        by = collections.defaultdict(list)
+        for r in rs:
+            by[r["harness"]].append(label(r))
+        return "; ".join("%s see %s" % (", ".join(v), k) for k, v in sorted(by.items()))
+    out = []
+    if rep["drawn"]:
+        out.append("Wires of other harnesses in these bundles are drawn as %s between tags naming their file (not built here, "
+                   "not in the BOM; Dan T4 a): %s." % ("one ghost strand per harness" if rep["strands"] else "ghost wires",
+                                                       by_owner(rep["drawn"])))
+    if rep["skipped"]:
+        out.append("Wires of other harnesses that touch only one branch point here are not drawn: %s." % by_owner(rep["skipped"]))
+    return " ".join(out) + (" " if out else "")
+
+
+def fill_ghost_note(doc, host, label=lambda r: r["wire_id"]):
+    """Put ghost_sentence into the title note in place of GHOST_MARK (call after add_ghosts); returns the title note."""
+    t = next(n for n in doc.get("schematicNotes", []) if n["id"] == "n_title")
+    assert t["text"].count(GHOST_MARK) == 1, "the title note has no ghost-wire mark"
+    t["text"] = t["text"].replace(GHOST_MARK, ghost_sentence(host, label))
+    return t
+
+
 def add_ghosts(doc, H, host, strands=False, rows=None):
     """Add the ghost wires of `host` to a finished document (after placement, routing, relabel); returns how many conductors
     were added. Ghost ids start w_gh_ / t_gh_ / bn_gh_, so a length check against the master skips them."""
@@ -1892,6 +1923,7 @@ def add_ghosts(doc, H, host, strands=False, rows=None):
         b, q = min(bp_xy, key=lambda t: (t[1][0] - xy[0]) ** 2 + (t[1][1] - xy[1]) ** 2)
         return b if (q[0] - xy[0]) ** 2 + (q[1] - xy[1]) ** 2 <= GHOST_SNAP ** 2 else None
     found = []
+    GHOST_REPORT[host] = rep = {"drawn": [], "skipped": [], "strands": strands}
     for r in rows:
         if not r["wire_id"] or r["harness"] == host or host not in [x.strip() for x in r["passes_through"].split("/")]:
             continue
@@ -1899,8 +1931,10 @@ def add_ghosts(doc, H, host, strands=False, rows=None):
         on = [b for b in (host_bp(n) for n in (p or [])) if b]
         if len(on) < 2 or on[0] == on[-1]:
             print("ghost: %s has no run through %s's bundles, not drawn" % (r["wire_id"], host))
+            rep["skipped"].append(r)
             continue
         found.append((r, on[0], on[-1]))
+        rep["drawn"].append(r)
     if not found:
         return 0
     groups = collections.OrderedDict()

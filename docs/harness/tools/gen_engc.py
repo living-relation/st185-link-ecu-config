@@ -1,16 +1,16 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev H" (Rev H 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and ghost pass-through wires, Dan T4 a; Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev I" (Rev I 2026-11-12: EngineRoom-C's editor-turn lengths of 2026-11-12 (the A/C pressure switch on Dan's spot; the alternator wires behind the engine on the engine harness trunk start, A6 b), the A/C pressure switch signal to the switch's own plug (A5 fix), the kill switch lead after A1 b, the one mm cabin model (#662), library sync (#664 / #665); Rev H 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and ghost pass-through wires, Dan T4 a; Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
 connectors 240 wide, each pin its own master end text, ground studs drawn on their side of the car (LH at EB, RH at EA),
-bundle lengths from the Route 17 tree (checked here against the master est_length_mm). gen_cabin.py runs on import, so its
+bundle lengths from EngineRoom-C's part of the layout tree (Route 17 node names; checked here against the master est_length_mm). gen_cabin.py runs on import, so its
 helpers are not imported; the tree, routes and lengths come from build_drawings.Harness."""
 import sys, os, json, re, collections, math, csv
 REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'H', '2026-11-11'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'I', '2026-11-12'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -339,17 +339,15 @@ for sname, sp in splices.items():     # a splice shared with another harness: sa
         x, y = next(((x, y0 + dy) for dy in range(0, 181, 30) for x in (DEVX + 270, DEVX + 270 + 390) if clear(x, y0 + dy)), (None, y0))
         if x is None: x = DEVX + 270 + 390; print('note overlap left:', sname)
         notes.append({"id": "n_" + sid(sname), "width": 360, "schematicPosition": {"x": x, "y": y}, "text": t})
-pass_by = collections.defaultdict(list)
-for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
-              "text": TITLE + " Rev " + REV + " (" + DATE + ", Route 17 tree: Dan's 2026-11-01 device spots, routes redrawn 2026-11-09, Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
+              "text": TITLE + " Rev " + REV + " (" + DATE + ", EngineRoom-C's part of the layout tree: Dan's device spots with his 2026-11-12 save, the alternator behind the engine (A6 b), Dan's format rules). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: cabin ends left (fuse / relay boxes and kill switch "
                       "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
-                      "connectors are drawn whole; cavities wired by other harnesses are N/C with a note. Wires of other harnesses that only "
-                      "pass through EngineRoom-C are drawn as ghost wires (not built here, not in the BOM; Dan T4 a): " + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) +
-                      ". Layout: a formboard of the ST185-harness tree from Route 17 (run 10 from the RH fender, run 11 the wiper from the LH pass-through; the A/C pressure switch and alternator plug via "
-                      "Route 16 line 6; EA / EB on Route 17 devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "
+                      "connectors are drawn whole; cavities wired by other harnesses are N/C with a note. " + B.GHOST_MARK +
+                      "Layout: a formboard of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
+                      "LH pass-through; the alternator plug off the engine harness trunk start, behind the engine (Route 16 L1, A6 b); EA / EB on Route 17 "
+                      "devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "
                       "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm "
                       "end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
@@ -543,6 +541,7 @@ print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)
 assert len(W) + NGHOST <= 100, 'ghost wires push EngineRoom-C over the 100-connection limit'
+B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghosts
 print('ghost wires', NGHOST)
 json.dump(doc, open(os.path.join(OUT, 'ld37.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'ld37_lib_ops.json'), 'w'), indent=1)
