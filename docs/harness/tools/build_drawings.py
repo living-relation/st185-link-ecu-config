@@ -605,7 +605,11 @@ def span_rows(span):
 # "harness wires at the fuses" sheet is the source. LOGIC (B2): ST185-FB-100L rev V.01 sheet 3 (models folder
 # st185_fusebox_1101 revB = cad/fusebox rev 7): the two M5 bus feed lugs, the 21 mini fuse outputs, the two own fuse inputs.
 BOX_CAVITIES = {'LOGIC': ['BUS1'] + ['BUS1-%d' % i for i in range(1, 11)] + ['BUS2'] + ['BUS2-%d' % i for i in range(1, 10)] +
-                ['BUS2-12', 'BUS2-12 IN', 'BUS2-13', 'BUS2-13 IN']}
+                ['BUS2-12', 'BUS2-12 IN', 'BUS2-13', 'BUS2-13 IN'],
+                # trunk relay block (B3, part ST185-FB-BATT rev 7, Dan V2 a / A11): drawing ST185-FB-100B; its one harness wire
+                # landing is the battery feed in on the bar's M6 stud (cad/fusebox/rev7/wiring_plan.json fb_batt cav "in", BATT +);
+                # the AMI 40 A fuse, its jumper to the relay and the relay K1 (K-FP, its own part) are not landings of the block
+                'BATT-RELAY-BLOCK': ['BATT']}
 
 
 def master_rows(removed=False):
