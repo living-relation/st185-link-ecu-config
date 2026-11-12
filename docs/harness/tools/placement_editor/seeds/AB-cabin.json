@@ -1,8 +1,8 @@
 {
  "harness": "AB-cabin",
  "doc": "layouts/ABcabin",
- "seedVersion": "ABcabin-z6a-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender sits on the factory floor service hole in the luggage compartment floor, LH of the spare tire well (Dan Z6 a, 2026-11-11; factory manual, fuel pump removal); its leg follows the factory floor wire and luggage room wire: from the LH kick back along the LH floor and the trunk's LH side (corridors 2, 6, 8), then a short branch inboard to the sender.",
+ "seedVersion": "ABcabin-z4b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender sits on the factory floor service hole in the luggage compartment floor, LH of the spare tire well (Dan Z6 a, 2026-11-11; factory manual, fuel pump removal); its leg follows the factory floor wire and luggage room wire: from the LH kick back along the LH floor and the trunk's LH side (corridors 2, 6, 8), then a short branch inboard to the sender. Trunk relay block marker on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58); the RH sill run ends there.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -135,7 +135,7 @@
      650
     ],
     [
-     -3007,
+     -2992,
      650
     ]
    ]
@@ -435,8 +435,8 @@
    "id": "BATT",
    "label": "Relay block",
    "name": "Trunk relay block: the fuel pump relay (heavy cable and rear fuel harnesses)",
-   "x": -3007,
-   "y": 650
+   "x": -2992,
+   "y": 647
   },
   {
    "id": "REF-PI",
