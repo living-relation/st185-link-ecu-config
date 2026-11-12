@@ -131,7 +131,9 @@ skill is not changed for this project):
   library (`compare_parts`). Out of sync: the library wins (pull), unless `docs/sourcing/harness-parts.csv` says
   otherwise. Not in the library: give the part its full maker, description and jacket colour from
   `harness-parts.csv`, then add it to library 5LO8 with its accessories pointing at the library's own lock / contact
-  ids. A `TBD` part is never added.
+  ids. A `TBD` part is never added. A generated document's part is the library part as is (configurations and default
+  contacts kept; ring terminals and bussed receptacles taken from the library by `build_drawings.relabel(doc, lib=LIB)`), so
+  every part comes out InSync (sync 2026-11-12, DECISIONS B6 "Part library").
 
 - **Ghost wires (Dan T4 a, 2026-11-10):** every file also shows the other harnesses' wires that run in its bundles (master `passes_through`). At each branch point where they join or leave there is one Loose terminal per other file, tagged in that file's colour (AB-cabin blue, AB-engine violet, EngineRoom-C orange, CabinPower red, Dash green, AntiTheft pink, HeavyDC black, RearFuel tan), reading "<n> <file> wires (not built here)"; the ghost wires run between those tags in their real colours, so bundle thickness and cross sections include them. Left out of the BOM (terminals `excludeFromBom`, wires without a part). AB-engine (95 connections) gets one ghost strand per other harness. The whole-car view of the same pass-throughs is `BUNDLE-MAP.html`. Ids start `w_gh_` / `t_gh_` / `bn_gh_`, and a length check against the master skips them. Built by `build_drawings.add_ghosts`, called by every generator after relabel; a pass-through wire that only touches one branch point here is not drawn (printed).
 

@@ -753,7 +753,7 @@ def build(REPO, OUT, CFG):
             if R_.free(pts, s['ends'], s['net']): R_.commit(pts, s['net']); res_[s['k']] = pts[1:-1]; break
     unrouted = genroute.apply(doc, segs_, res_)
     assert not unrouted, 'unrouted wires: %r' % unrouted
-    B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
+    B.relabel(doc, lib=LIB)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
     print('empty connectors dropped (R5):', B.relabel.removed)
     B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
     NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)

@@ -659,6 +659,24 @@ segs, hroute = collections.Counter(), {}
 for r in W:
     p, mm = troute(r); hroute[r['wire_id']] = mm
     for a, b in zip(p, p[1:]): segs[tuple(sorted((a, b)))] += 1
+# a node whose items are joined only to each other (a factory tap and its splice on the same node, e.g. the auto A/C amplifier
+# A32 at ACAMP32 in part 2) has no wire run of its own: hang it on the tree by its layout path to the nearest node a wire uses
+# (no wire counted on that path), so the formboard still reaches it (2026-11-12, library sync step: part 2 stopped on it)
+used = {n for k in segs for n in k}
+for n in sorted(set(node_items) | set(inline_at)):
+    if n in used or not used: continue
+    prev, todo = {n: None}, [n]
+    while todo and not (set(todo) & used):
+        nxt = []
+        for x in todo:
+            for m, _ in H.adj[x]:
+                if m not in prev: prev[m] = x; nxt.append(m)
+        todo = nxt
+    hit = sorted(set(todo) & used)
+    assert hit, ('no layout path to the tree', n)
+    x = hit[0]
+    while prev[x] is not None:
+        k = tuple(sorted((x, prev[x]))); segs[k] = segs.get(k, 0); used |= set(k); x = prev[x]
 tree_nodes = {n for k in segs for n in k} | set(node_items) | set(inline_at)
 adj = collections.defaultdict(list)
 for a, b, mm in H.layout['segments']:
@@ -801,7 +819,7 @@ refs = {x['partId'] for k in ('wires', 'splices', 'cables', 'connectors', 'resis
        {cv[k] for n in doc['connectors'] for cv in n['cavities'] for k in ('contactPartId', 'cavityPlugPartId') if cv.get(k)} | \
        {a['partId'] for k, v in doc.items() if k.endswith('Parts') for p in v for c in p.get('configurations', []) for a in c.get('accessories', [])}
 assert refs <= have, refs - have
-B.relabel(doc)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
+B.relabel(doc, lib=LIB)          # Dan's plain-label rules R1-R9 (2026-11-08), after placement so positions stay
 print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc, B.BOX_GROUP_OUTSIDE.get('AB-cabin %d' % DOC, ()))     # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)
