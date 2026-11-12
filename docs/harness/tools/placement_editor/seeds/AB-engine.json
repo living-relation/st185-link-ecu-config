@@ -1,8 +1,8 @@
 {
  "harness": "AB-engine",
  "doc": "layouts/route16",
- "seedVersion": "ABengine-a6b-1",
- "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-11-12 17:31Z save (layouts/route16 v23): his part spots, drops and routes as he left them. Dan A6 b (2026-11-12): three parts on their factory spots, his spots and routes otherwise unchanged (his driver-side lower branch now ends at the starter's new spot, its unused tail past it gone): the starter trigger plug and the knock sensor (1993 EWD p.29), the grey starter B+ stud on the starter; grey alternator B+ stud on the alternator at the belt end, behind the block under the intake (SW20 position).",
+ "seedVersion": "ABengine-a8b-1",
+ "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-11-12 17:31Z save (layouts/route16 v23): his part spots, drops and routes as he left them. Dan A6 b (2026-11-12): three parts on their factory spots, his spots and routes otherwise unchanged (his driver-side lower branch now ends at the starter's new spot, its unused tail past it gone): the starter trigger plug and the knock sensor (1993 EWD p.29), the grey starter B+ stud on the starter; grey alternator B+ stud on the alternator at the belt end, behind the block under the intake (SW20 position). Dan A8 b (2026-11-12): the coolant pressure sensor moved to the driver-side (transaxle) end of the block, by the intake-side corner, at the knock sensor's height; still on the knock / coolant pressure branch.",
  "warnMm": 300,
  "unitMm": 5.3,
  "drawRoutes": true,
@@ -369,9 +369,9 @@
    "id": "CLNT-P",
    "name": "Coolant pressure sensor",
    "group": "Intake side",
-   "note": "Low-mounted part (Dan's drop 300 mm)",
-   "x": 281.2,
-   "y": 165.9,
+   "note": "Low-mounted part (Dan's drop 300 mm). Dan A8 b (2026-11-12): on the driver-side (LH, transaxle) end of the block, by the intake-side corner, inside the block outline (wireway corridor 12), at the knock sensor's height (300 mm drop); aftermarket part, Dan's spot. Hangs on Dan's knock / coolant pressure branch U4 (its own spur).",
+   "x": 337.2,
+   "y": 183.0,
    "line": "U4",
    "drop": 300,
    "short": "Coolant pressure"

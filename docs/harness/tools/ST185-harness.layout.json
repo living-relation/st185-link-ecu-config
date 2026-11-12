@@ -454,19 +454,21 @@
     116.6,
     37.3
    ],
-   "label": "Alternator B+ stud, on the alternator beside its plug: the belt (RH) end of the block, on its rear face low under the intake (SW20 position, Hux Racing bracket), car mm (-80, 260) (Dan A4 b, A6 b 2026-11-12); its cable runs along the intake side of the block, round the transaxle end and joins the block-ground leg to the jump post",
+   "label": "Alternator B+ stud, on the alternator beside its plug: the belt (RH) end of the block, on its rear face low under the intake (SW20 position, Hux Racing bracket), car mm (-80, 260) (Dan A4 b, A6 b 2026-11-12); its cable runs along the intake side of the block, round the transaxle end and joins the block-ground leg to the jump post; low-mounted, 300 mm drop (Dan A9 a, 2026-11-12)",
    "end": true,
    "short": "Alternator B+ stud",
-   "lab": "below"
+   "lab": "below",
+   "drop_mm": 300
   },
   "STARTER_B": {
    "xy": [
     112,
     64
    ],
-   "label": "Starter B+ stud, one lug, on the starter's factory spot (1993 EWD p.29 S3, under the battery on the transaxle), car mm (451.6, -394) (Dan A6 b, 2026-11-12); its cable leaves the jump post forward, then inboard",
+   "label": "Starter B+ stud, one lug, on the starter's factory spot (1993 EWD p.29 S3, under the battery on the transaxle), car mm (451.6, -394) (Dan A6 b, 2026-11-12); its cable leaves the jump post forward, then inboard; low-mounted, 300 mm drop (Dan A9 a, 2026-11-12)",
    "end": true,
-   "short": "Starter B+ stud"
+   "short": "Starter B+ stud",
+   "drop_mm": 300
   },
   "JUMP": {
    "xy": [

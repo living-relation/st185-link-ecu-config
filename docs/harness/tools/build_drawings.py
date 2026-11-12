@@ -658,6 +658,7 @@ class Harness:
         self.p = paths(h)
         self.layout = load(self.p["layout"])
         add_route_trees(self.layout)
+        add_node_drops(self.layout)
         allrows = master_rows()
         self.rows = rows_for(h, allrows)
         self.wires = [r for r in self.rows if r["wire_id"]]
@@ -1748,6 +1749,24 @@ def add_route_trees(L):
                 common = [x for x in zip(*chains) if len(set(x)) == 1]
                 place[c] = common[-1][0] if common else top[0]
 
+
+
+def add_node_drops(L):
+    """A hand-drawn tree end node with "drop_mm" (a low-mounted part on a top-view map: HeavyDC's alternator and starter B+
+    studs, Dan A9 a 2026-11-12) gets that drop as a segment of its own: its one segment ends at "<node>_top" (same spot)
+    and a drop segment runs on to the node, so the master, the drawings and harness.design all count it once. The same
+    rule as a Route 16 device's drop_mm (add_route_trees), for the trees drawn by hand in the layout file."""
+    nodes, segs = L["nodes"], L["segments"]
+    for n in [k for k, v in nodes.items() if v.get("drop_mm")]:
+        mine = [s for s in segs if n in s[:2]]
+        if len(mine) != 1:
+            raise SystemExit("layout: node %s has drop_mm but %d segments (a drop needs a tree end)" % (n, len(mine)))
+        top = n + "_top"
+        nodes[top] = {"xy": nodes[n]["xy"], "label": "%s: top of its %d mm drop" % (nodes[n].get("short") or n,
+                      int(nodes[n]["drop_mm"])), "short": ""}
+        s = mine[0]
+        s[s.index(n)] = top
+        segs.append([top, n, int(nodes[n]["drop_mm"])])
 
 
 # ------------------------------------------------------------------------------------------------ ghost wires (Dan T4 a)
