@@ -1,8 +1,8 @@
 {
  "harness": "CabinPower",
  "doc": "layouts/CabinPower",
- "seedVersion": "CabinPower-z8-1",
- "note": "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes.",
+ "seedVersion": "CabinPower-a2b-1",
+ "note": "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes. Approved by Dan as is, 2026-11-12 07:19 (no save; the seed is the layout; lengths from it). The dash high-beam LED resistor is gone (Dan A2 b, 2026-11-12): the LED is fed straight from the high-beam output by the dash harness.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -294,18 +294,6 @@
    "line": "GB",
    "drop": null,
    "short": "DRL cut relay"
-  },
-  {
-   "n": "6",
-   "id": "R-HB",
-   "name": "Dash high-beam LED feed resistor 220 ohm",
-   "group": "Boxes",
-   "note": "On the high-beam output splice by the LOGIC box; placed by Claude by rule; drag to tweak",
-   "x": -610,
-   "y": 470,
-   "line": "GB",
-   "drop": null,
-   "short": "High-beam LED resistor"
   }
  ],
  "refs": [

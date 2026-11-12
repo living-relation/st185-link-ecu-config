@@ -1,8 +1,8 @@
 {
  "harness": "RearFuel",
  "doc": "layouts/RearFuel",
- "seedVersion": "RearFuel-z8-1",
- "note": "Routes drawn by Claude; move devices only. The run to the trunk shares the ECU harness's RH sill run (Dan Y5 a); the pump feed and the pump ground go round the inside of the trunk (RH side, back panel) and share the short leg forward to the pump; pump ground on factory point BL, back panel centre (1993 EWD p.234, p.46). The back panel run sits inside the back wall (Dan Z5 a, 2026-11-11: corridor 8 back line at x -3135). The fuel level sender is on AB-cabin (Dan N1 a). Relay block, battery and kill switch on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58; R2: the relay block just right of the battery, about 8 in forward of the trunk's back wall; X5 rule); the pump feed runs back from the relay block along the trunk's RH side. Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged.",
+ "seedVersion": "RearFuel-z8b-1",
+ "note": "Routes drawn by Claude; move devices only. The run to the trunk shares the ECU harness's RH sill run (Dan Y5 a); the pump feed and the pump ground go round the inside of the trunk (RH side, back panel) and share the short leg forward to the pump; pump ground on factory point BL, back panel centre (1993 EWD p.234, p.46). The back panel run sits inside the back wall (Dan Z5 a, 2026-11-11: corridor 8 back line at x -3135). The fuel level sender is on AB-cabin (Dan N1 a). Relay block, battery and kill switch on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58; R2: the relay block just right of the battery, about 8 in forward of the trunk's back wall; X5 rule); the pump feed runs back from the relay block along the trunk's RH side. Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. Fuel pump plug moved to the factory floor service hole beside the fuel sender (Dan Z8 b, 2026-11-12; FSM FI-139 / 140: pump and sender connectors under the same luggage-floor service hole cover), 69 mm RH of the sender; feed and ground redrawn to it inside corridor 8 (only the short leg forward off the back panel run leaves it). Kill switch marker 100 mm forward of the relay block (Dan A1 b, 2026-11-12).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -51,7 +51,7 @@
   },
   {
    "id": "F5",
-   "name": "Fuel pump relay along the trunk's RH side and back panel, then forward to the fuel pump (pump +12 V feed)",
+   "name": "Fuel pump relay along the trunk's RH side and back panel, then forward to the fuel pump plug at the floor service hole (pump +12 V feed)",
    "color": "#c62828",
    "dash": false,
    "pts": [
@@ -68,19 +68,19 @@
      -250
     ],
     [
-     -2900,
+     -2973,
      -250
     ]
    ]
   },
   {
    "id": "F4",
-   "name": "Fuel pump back to the back panel (with the pump feed), then along it to ground point BL, back panel centre",
+   "name": "Fuel pump plug back to the back panel (with the pump feed), then along it to ground point BL, back panel centre",
    "color": "#424242",
    "dash": false,
    "pts": [
     [
-     -2900,
+     -2973,
      -250
     ],
     [
@@ -113,10 +113,10 @@
   {
    "n": "2",
    "id": "FUEL-PUMP",
-   "name": "Fuel pump",
+   "name": "Fuel pump plug (floor service hole, beside the fuel sender)",
    "group": "Tank",
-   "note": "",
-   "x": -2900,
+   "note": "Factory floor service hole beside the fuel sender, under the same cover (Dan Z8 b, 2026-11-12; factory manual fuel pump pages)",
+   "x": -2973,
    "y": -250,
    "line": "F5",
    "drop": null
@@ -152,7 +152,7 @@
    "id": "KILL-SW",
    "label": "Kill switch",
    "name": "Battery kill switch (heavy cable harness)",
-   "x": -2987,
+   "x": -2892,
    "y": 647
   },
   {
