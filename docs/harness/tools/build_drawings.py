@@ -917,8 +917,14 @@ def lengths_run(argv):
         raise SystemExit("not written: %d problem(s)" % len(problems))
     with open(MASTER, encoding="utf-8", newline="") as f:
         text = f.read()
-    with open(MASTER, "w", encoding="utf-8", newline="") as f:
-        f.write(set_master_lengths(text, {wid: after for wid, hn, before, after in changes}))
+    # Build the new text first, then swap it in: a failure leaves the master untouched (it used to be emptied).
+    new_text = set_master_lengths(text, {wid: after for wid, hn, before, after in changes})
+    if not new_text.strip():
+        raise SystemExit("not written: the new master text is empty")
+    tmp = MASTER + ".tmp"
+    with open(tmp, "w", encoding="utf-8", newline="") as f:
+        f.write(new_text)
+    os.replace(tmp, MASTER)
     print("wrote", os.path.relpath(MASTER, REPO))
     for s in own_harnesses():
         build(s)
