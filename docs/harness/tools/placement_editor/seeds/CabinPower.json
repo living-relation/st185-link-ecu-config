@@ -1,7 +1,7 @@
 {
  "harness": "CabinPower",
  "doc": "layouts/CabinPower",
- "seedVersion": "CabinPower-x8b-1",
+ "seedVersion": "CabinPower-z8-1",
  "note": "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes.",
  "warnMm": 300,
  "bg": {
@@ -89,15 +89,11 @@
    "pts": [
     [
      -580,
-     220
+     400
     ],
     [
-     -680,
-     220
-    ],
-    [
-     -680,
-     520
+     -540,
+     400
     ]
    ]
   },
@@ -359,8 +355,8 @@
    "id": "A15",
    "label": "A15",
    "name": "A/C amplifier A15 (behind the glove box)",
-   "x": -680,
-   "y": 520
+   "x": -540,
+   "y": 400
   },
   {
    "id": "FRONT",

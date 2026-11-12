@@ -1,7 +1,7 @@
 {
  "harness": "RearFuel",
  "doc": "layouts/RearFuel",
- "seedVersion": "RearFuel-z4b-1",
+ "seedVersion": "RearFuel-z8-1",
  "note": "Routes drawn by Claude; move devices only. The run to the trunk shares the ECU harness's RH sill run (Dan Y5 a); the pump feed and the pump ground go round the inside of the trunk (RH side, back panel) and share the short leg forward to the pump; pump ground on factory point BL, back panel centre (1993 EWD p.234, p.46). The back panel run sits inside the back wall (Dan Z5 a, 2026-11-11: corridor 8 back line at x -3135). The fuel level sender is on AB-cabin (Dan N1 a). Relay block, battery and kill switch on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58; R2: the relay block just right of the battery, about 8 in forward of the trunk's back wall; X5 rule); the pump feed runs back from the relay block along the trunk's RH side. Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged.",
  "warnMm": 300,
  "bg": {
@@ -152,15 +152,15 @@
    "id": "KILL-SW",
    "label": "Kill switch",
    "name": "Battery kill switch (heavy cable harness)",
-   "x": -2963,
-   "y": 650
+   "x": -2987,
+   "y": 647
   },
   {
    "id": "FUEL-LEVEL",
    "label": "Fuel sender",
    "name": "Fuel level sender at the factory floor service hole (AB-cabin)",
-   "x": -2820,
-   "y": -400
+   "x": -2973,
+   "y": -319
   }
  ]
 }
