@@ -182,18 +182,9 @@ def prune_parts(doc):
             for v in x:
                 ids(v, out)
         return out
-    # a connector part's default contact (a ContactPart accessory) counts only for a used cavity with no contact of its own;
-    # when every such cavity names its own contact, the default would be a quantity-0 BOM row, so this document's copy of the
-    # part drops it (the part library is not touched)
-    for p in doc.get("connectorParts", []):
-        users = [c for c in doc.get("connectors", []) if c.get("partId") == p["id"]]
-        if any(not cv.get("notConnected") and not cv.get("contactPartId") for c in users for cv in c.get("cavities", [])):
-            continue
-        for cfg in p.get("configurations", []):
-            cfg["accessories"] = [a for a in cfg.get("accessories", []) if a.get("type") != "ContactPart"]
-        p["configurations"] = [cfg for cfg in p.get("configurations", []) if cfg["accessories"]]
-        if not p["configurations"]:
-            del p["configurations"]
+    # a document's copy of a part is the library part as is, configurations and their default contacts included, so every
+    # part comes out InSync with library 5LO8 (Dan V2 a, 2026-11-11; part library sync 2026-11-12: the old drop of a default
+    # contact no cavity uses made the document part OutOfSync)
     refs = ids({k: v for k, v in doc.items() if not k.endswith("Parts")}, set())
     parts = {p["id"]: p for k, v in doc.items() if k.endswith("Parts") for p in v}
     todo = list(refs & set(parts))
@@ -316,10 +307,18 @@ def short_oem_note(t):
     return head + (' - ' + rest.split(', ')[0] if rest else '')
 
 
-def relabel(doc, rows=None):
+def lib_part(lib, kind, pn):
+    """A copy of library 5LO8's part of this type and part number (`lib` = the generator's library dump parts), or None:
+    a generated part that is in the library is the library's own, so the document is InSync (Dan V2 a)."""
+    p = next((p for p in (lib or {}).get(kind, []) if p.get('partNumber') == pn), None)
+    return json.loads(json.dumps(p)) if p else None
+
+
+def relabel(doc, rows=None, lib=None):
     """Apply Dan's 2026-11-08 label rules (R1-R9, DECISIONS "harness.design files (B6)") to a generated document in place,
     after placement: plain names, wire labels, short notes, bussed receptacles mated to their plugs, no empty connectors,
-    ring terminal parts. Returns doc."""
+    ring terminal parts. `lib`: the library dump's parts; a ring terminal or bussed receptacle part found there is used as is
+    (V2 a). Returns doc."""
     rows = rows if rows is not None else master_rows()
     names, oem, label_of, ring_pn = {}, {}, {}, collections.defaultdict(set)
     for r in rows:
@@ -386,8 +385,9 @@ def relabel(doc, rows=None):
                 pns = {p for p in ring_pn.get(base, ()) if p and not p.upper().startswith(('TBD', 'FLYING', 'INTEGRAL'))}
                 if t.get('type') == 'Ring' and len(pns) == 1:      # R7: the ring terminal's maker part (one PN on that stud)
                     pn = pns.pop()
-                    tparts.setdefault(pn, {"id": "tp_" + _sid(pn).lower(), "partNumber": pn, "type": "Ring",
-                                           "description": "Ring terminal %s (master terminal_pn)" % pn})
+                    tparts.setdefault(pn, lib_part(lib, 'terminalParts', pn) or {
+                        "id": "tp_" + _sid(pn).lower(), "partNumber": pn, "type": "Ring",
+                        "description": "Ring terminal %s (master terminal_pn)" % pn})
                     t['partId'] = tparts[pn]['id']
         if '; ' in (t.get('signal') or ''):      # R3: one signal type per stud, never a list of what lands on it
             t['signal'] = t['signal'].split('; ')[0]
@@ -408,6 +408,7 @@ def relabel(doc, rows=None):
         part = BUSSED_RCPT.get(n)
         if not part:
             continue
+        part = lib_part(lib, 'connectorParts', part['partNumber']) or part
         if not any(p['id'] == part['id'] for p in doc.get('connectorParts', [])):
             doc.setdefault('connectorParts', []).append(dict(part))
         for cv in c['cavities']:
@@ -2160,9 +2161,9 @@ def self_test():
     doc["connectors"][3]["cavities"][0]["contactPartId"] = "ct_own"     # every used cavity names its own contact
     doc["contactParts"].append({"id": "ct_own"})
     g = box_groups(json.loads(json.dumps(doc)))
-    cases.append(("prune_parts: a default contact no cavity uses leaves the part's copy (no quantity-0 BOM row)",
-                  sorted(p["id"] for p in g["contactParts"]) == ["ct_own"]
-                  and "configurations" not in next(p for p in g["connectorParts"] if p["id"] == "cp_ecu")))
+    cases.append(("prune_parts: a used part keeps its library configuration and default contact (InSync, V2 a)",
+                  sorted(p["id"] for p in g["contactParts"]) == ["ct_ecu", "ct_own"]
+                  and "configurations" in next(p for p in g["connectorParts"] if p["id"] == "cp_ecu")))
     # the From / To rule on the wire lists (S8 a / T8 b): the generated rows pass, a row turned round fails
     s8 = lambda found: [x for x in found if "From is the source end" in x]
     for hn in own_harnesses():
