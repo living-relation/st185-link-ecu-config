@@ -1,8 +1,8 @@
 {
  "harness": "CabinPower",
  "doc": "layouts/CabinPower",
- "seedVersion": "CabinPower-a2b-1",
- "note": "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes. Approved by Dan as is, 2026-11-12 07:19 (no save; the seed is the layout; lengths from it). The dash high-beam LED resistor is gone (Dan A2 b, 2026-11-12): the LED is fed straight from the high-beam output by the dash harness.",
+ "seedVersion": "CabinPower-y9b-1",
+ "note": "Claude seed 2026-11-08 (N120): routes drawn by Claude; move devices only. Simple tree, one glove-box spot for both boxes. Approved by Dan as is, 2026-11-12 07:19 (no save; the seed is the layout; lengths from it). The dash high-beam LED resistor is gone (Dan A2 b, 2026-11-12): the LED is fed straight from the high-beam output by the dash harness. The dash run meets the ECU's stub at (-580, -92.8) mm and the CAN-join line runs back along that stub past the ECU to the CAN trunk start, as in AB-cabin's seed (the ECU on Dan's Y9 b spot; sweep 10, 2026-11-12; no length changed).",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -15,13 +15,13 @@
  "lines": [
   {
    "id": "T1",
-   "name": "ECU to the glove-box branch",
+   "name": "ECU stub junction to the glove-box branch",
    "color": "#d10f14",
    "dash": false,
    "pts": [
     [
      -580,
-     0
+     -92.8
     ],
     [
      -580,
@@ -135,17 +135,13 @@
   },
   {
    "id": "T2",
-   "name": "ECU to the pedal / column branch",
+   "name": "ECU stub junction to the pedal / column branch",
    "color": "#1a47d1",
    "dash": false,
    "pts": [
     [
      -580,
-     0
-    ],
-    [
-     -580,
-     -30
+     -92.8
     ],
     [
      -580,
@@ -207,17 +203,21 @@
   },
   {
    "id": "CANJ",
-   "name": "ECU to the CAN joins (cluster and CSB3 +12 V)",
+   "name": "Dash run back along the ECU stub, past the ECU, to the CAN joins (cluster and CSB3 +12 V)",
    "color": "#008cb3",
    "dash": false,
    "pts": [
     [
      -580,
-     0
+     -92.8
     ],
     [
-     -610,
-     -40
+     -677.2,
+     -92.8
+    ],
+    [
+     -727.2,
+     -92.8
     ]
    ]
   },

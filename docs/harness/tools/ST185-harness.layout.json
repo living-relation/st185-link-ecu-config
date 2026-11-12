@@ -17,12 +17,25 @@
   },
   "SP": {
    "xy": [
+    52,
+    41
+   ],
+   "label": "ECU splice point (bussed DT plugs + soldered splices), right at the ECU plugs (Dan A10 b by rule, 2026-11-12: DECISIONS B8 \"Splice and bussed-plug spots\", the ECU power, ground and shield bussed plugs as close to the ECU plugs as possible), car mm (-677.2, -92.8)",
+   "end": true,
+   "short": "ECU splice point",
+   "lab": "left",
+   "mm": [
+    -677.2,
+    -92.8
+   ]
+  },
+  "BP_ECU": {
+   "xy": [
     56,
     36
    ],
-   "label": "ECU splice point (bussed DT plugs + soldered splices), where the ECU's 97 mm stub meets the dash run, car mm (-580, -92.8) (one mm model, 2026-11-12; was 110 mm from the ECU on the old dash-centre frame)",
-   "end": true,
-   "short": "ECU splice point",
+   "label": "ECU stub junction: where the ECU's 97 mm stub meets the dash run, car mm (-580, -92.8) (AB-cabin seed ECU line)",
+   "short": "ECU stub junction",
    "lab": "left",
    "mm": [
     -580,
@@ -908,10 +921,15 @@
   [
    "ECU",
    "SP",
-   97
+   0
   ],
   [
    "SP",
+   "BP_ECU",
+   97
+  ],
+  [
+   "BP_ECU",
    "BP_IG2",
    93
   ],
@@ -936,7 +954,7 @@
    80
   ],
   [
-   "SP",
+   "BP_ECU",
    "BP_DASH",
    37
   ],
