@@ -1,8 +1,8 @@
 {
  "harness": "HeavyDC",
  "doc": "layouts/HeavyDC",
- "seedVersion": "HeavyDC-jp-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save; the jump post is on his 2026-11-11 save (moved 515 mm to the driver side, the old battery spot; an aftermarket part he moved, so his spot wins, DECISIONS B8 X5 rule), with the jump bus bar and the alternator fuse block beside it. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The main run goes along the firewall and the LH apron (inner perimeter of the bay) to the jump post; the starter cable and the block-ground cable each leave the jump post on one short square leg, so no cable doubles back.",
+ "seedVersion": "HeavyDC-z3b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners, no double-backs; move devices only. Device spots are Dan's 2026-11-04 save; the jump post is on his 2026-11-11 save (moved 515 mm to the driver side, the old battery spot; an aftermarket part he moved, so his spot wins, DECISIONS B8 X5 rule), with the jump bus bar and the alternator fuse block beside it. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The main run goes along the firewall and the LH apron (inner perimeter of the bay) to the jump post; the starter cable and the block-ground cable each leave the jump post on one short square leg, so no cable doubles back. Trunk relay block on Dan's R2 spot (Z3 b, 2026-11-11): just right of the battery, 8 in (203 mm) forward of the trunk's back wall; its fuel pump feed runs back along the RH side from the battery corner.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -26,6 +26,22 @@
     ],
     [
      -660,
+     650
+    ]
+   ]
+  },
+  {
+   "id": "RB",
+   "name": "Battery corner back along the trunk's RH side to the trunk relay block (fuel pump feed)",
+   "color": "#c62828",
+   "dash": false,
+   "pts": [
+    [
+     -2860,
+     650
+    ],
+    [
+     -3007,
      650
     ]
    ]
@@ -209,9 +225,9 @@
    "name": "Trunk relay block (fuel pump relay and fuse)",
    "group": "Trunk",
    "note": "",
-   "x": -2800,
+   "x": -3007,
    "y": 650,
-   "line": "SILL",
+   "line": "RB",
    "drop": null,
    "short": "Relay block"
   },
