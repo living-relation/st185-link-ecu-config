@@ -1,8 +1,8 @@
 {
  "harness": "RearFuel",
  "doc": "layouts/RearFuel",
- "seedVersion": "RearFuel-z5a-1",
- "note": "Routes drawn by Claude; move devices only. The run to the trunk shares the ECU harness's RH sill run (Dan Y5 a); the pump feed and the pump ground go round the inside of the trunk (RH side, back panel) and share the short leg forward to the pump; pump ground on factory point BL, back panel centre (1993 EWD p.234, p.46). The back panel run sits inside the back wall (Dan Z5 a, 2026-11-11: corridor 8 back line at x -3135). The fuel level sender is on AB-cabin (Dan N1 a). Relay block on Dan's R2 spot (Z3 b, 2026-11-11): just right of the battery, 8 in (203 mm) forward of the trunk's back wall, the same spot as in the heavy cable editor; battery on the heavy cable editor's spot (Dan's 2026-11-04 save; X5 rule). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged.",
+ "seedVersion": "RearFuel-z4b-1",
+ "note": "Routes drawn by Claude; move devices only. The run to the trunk shares the ECU harness's RH sill run (Dan Y5 a); the pump feed and the pump ground go round the inside of the trunk (RH side, back panel) and share the short leg forward to the pump; pump ground on factory point BL, back panel centre (1993 EWD p.234, p.46). The back panel run sits inside the back wall (Dan Z5 a, 2026-11-11: corridor 8 back line at x -3135). The fuel level sender is on AB-cabin (Dan N1 a). Relay block, battery and kill switch on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58; R2: the relay block just right of the battery, about 8 in forward of the trunk's back wall; X5 rule); the pump feed runs back from the relay block along the trunk's RH side. Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -44,7 +44,7 @@
      650
     ],
     [
-     -3007,
+     -2992,
      650
     ]
    ]
@@ -56,7 +56,7 @@
    "dash": false,
    "pts": [
     [
-     -3007,
+     -2992,
      650
     ],
     [
@@ -105,8 +105,8 @@
    "name": "Fuel pump relay (K-FP)",
    "group": "Relays",
    "note": "In the battery relay block",
-   "x": -3007,
-   "y": 650,
+   "x": -2992,
+   "y": 647,
    "line": "F2",
    "drop": null
   },
@@ -144,8 +144,15 @@
   {
    "id": "BATT",
    "label": "Battery",
-   "name": "Battery, kill switch (HeavyDC)",
-   "x": -2860,
+   "name": "Trunk battery (heavy cable harness)",
+   "x": -3080,
+   "y": 515
+  },
+  {
+   "id": "KILL-SW",
+   "label": "Kill switch",
+   "name": "Battery kill switch (heavy cable harness)",
+   "x": -2963,
    "y": 650
   },
   {
