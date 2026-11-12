@@ -123,21 +123,12 @@
    "short": "alarm branch point",
    "lab": "left"
   },
-  "BP_COL": {
-   "xy": [
-    60,
-    68
-   ],
-   "label": "pedal / column branch",
-   "short": "pedal / column branch point",
-   "lab": "left"
-  },
   "BP_DRL": {
    "xy": [
     56,
     76
    ],
-   "label": "DRL switch branch on the dash run to J/B No.1, car mm (-580, -420), 170 mm past the pedal / column branch (CabinPower seed COL line, approved 2026-11-12)",
+   "label": "DRL switch branch on the dash run to J/B No.1, car mm (-580, -420), 40 mm past the pedal branch BP_PED; the steering column run (Dash seed COL line) leaves here too (CabinPower seed COL line, approved 2026-11-12)",
    "short": "DRL switch branch point",
    "lab": "left"
   },
@@ -201,7 +192,7 @@
     22,
     38
    ],
-   "label": "Centre console: CSB3 under the centre cluster, its switch inputs and opto board (Route 12)",
+   "label": "Centre console: CSB3 under the centre cluster, its switch inputs and opto board, car mm (-950, 0): 366 mm along the console run from the ECU, the opto board 30 mm beside it on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "Centre console: CSB3"
   },
@@ -239,7 +230,7 @@
     24,
     80
    ],
-   "label": "Centre cluster (old meter spot): LED board on the meter plugs C13 (B) / C14 (C), cluster CAN board + buck, J/B No.3 behind it (Routes 8, 13)",
+   "label": "Centre cluster (old meter spot): LED board on the meter plugs C13 (B) / C14 (C), cluster CAN board + buck, J/B No.3 behind it, car mm (-720, -330): 170 mm off the dash run at BP_CLU, the LED board 30 mm nearer on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "Centre cluster (old meter spot)",
    "lab": "left"
@@ -249,7 +240,7 @@
     32,
     68
    ],
-   "label": "RealDash Pi + USB-CAN adapter, centre dash, and the dash 12 V split (Route 8)",
+   "label": "RealDash Pi + USB-CAN adapter, centre dash, and the dash 12 V split, car mm (-860, -40), 53 mm off the console run at BP_PI; cowl plug II1 30 mm away on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "RealDash Pi (centre dash)",
    "lab": "left"
@@ -259,7 +250,7 @@
     76,
     94
    ],
-   "label": "Steering column: combination switch plug C16 (B), cruise control switch pins 5 / 15 / 17 (1993 EWD grid 59; Route 12, spot approximate)",
+   "label": "Steering column: combination switch plug C16 (B), cruise control switch pins 5 / 15 / 17 (1993 EWD grid 59), car mm (-810, -420): 230 mm straight back from the dash run at BP_DRL; the dimmer R10 sits 30 mm nearer, on the same node (Dash seed Dash-z10b-1, approved by Dan 2026-11-12)",
    "end": true,
    "short": "Steering column: cruise stalk",
    "lab": "above"
@@ -515,8 +506,8 @@
   },
   "TAP_CLU": {
    "xy": [
-    26.8,
-    74.4
+    42,
+    74
    ],
    "label": "CAN trunk cluster tap: CAN H / L and shield splices; the cluster drop cable leaves here (80 mm to the cluster) (Dan P1, 2026-11-09, DECISIONS \"CAN wiring (B17)\")",
    "short": "cluster CAN tap"
@@ -622,6 +613,33 @@
    "label": "LH floor at the front edge of the rear seat ((-1780, -615) mm): the RR cable leaves the LH floor run and crosses under the seat edge to the RH side (Dan Y2 a)",
    "short": "rear seat edge (RR split)",
    "lab": "above"
+  },
+  "BP_CLU": {
+   "xy": [
+    60,
+    68
+   ],
+   "label": "Cluster branch on the dash run, car mm (-580, -300): the Dash cluster run leaves here, 140 mm straight back then 30 mm to the cluster; 141 mm past the alarm branch (Dash seed Dash-z10b-1 CLU line, approved by Dan 2026-11-12)",
+   "short": "cluster branch point",
+   "lab": "left"
+  },
+  "BP_PED": {
+   "xy": [
+    58,
+    72
+   ],
+   "label": "Pedal branch on the dash run, car mm (-580, -380), 80 mm past the cluster branch: the pedal sensor and the clutch / stop lamp switches, 150 mm forward + 360 mm drop (Dash seed PED line, AB-cabin seed PED line)",
+   "short": "pedal branch point",
+   "lab": "left"
+  },
+  "BP_PI": {
+   "xy": [
+    30,
+    57
+   ],
+   "label": "RealDash Pi branch on the console run, car mm (-860, -92.8), 183 mm back from the ECU: the Pi and cowl plug II1 sit 53 mm toward the driver side (Dash seed CON line, approved by Dan 2026-11-12)",
+   "short": "Pi branch point",
+   "lab": "left"
   }
  },
  "segments": [
@@ -691,21 +709,6 @@
    129
   ],
   [
-   "BP_AL",
-   "BP_COL",
-   91
-  ],
-  [
-   "BP_COL",
-   "PEDAL",
-   640
-  ],
-  [
-   "BP_COL",
-   "BP_DRL",
-   170
-  ],
-  [
    "BP_DRL",
    "BP_R8",
    140
@@ -731,11 +734,6 @@
    139
   ],
   [
-   "CANJ",
-   "TAP_CSB",
-   240
-  ],
-  [
    "TAP_CSB",
    "CSB3",
    80
@@ -751,29 +749,14 @@
    400
   ],
   [
-   "CANJ",
-   "TAP_CLU",
-   320
-  ],
-  [
    "TAP_CLU",
    "CLUSTER",
    80
   ],
   [
-   "CANJ",
-   "TAP_RD",
-   170
-  ],
-  [
    "TAP_RD",
    "PI",
    80
-  ],
-  [
-   "BP_COL",
-   "COLUMN",
-   400
   ],
   [
    "GB_T",
@@ -949,6 +932,56 @@
    "WSR_S",
    "WSRR",
    2305
+  ],
+  [
+   "BP_AL",
+   "BP_CLU",
+   141
+  ],
+  [
+   "BP_CLU",
+   "BP_PED",
+   80
+  ],
+  [
+   "BP_PED",
+   "BP_DRL",
+   40
+  ],
+  [
+   "BP_PED",
+   "PEDAL",
+   510
+  ],
+  [
+   "BP_DRL",
+   "COLUMN",
+   230
+  ],
+  [
+   "BP_CLU",
+   "TAP_CLU",
+   90
+  ],
+  [
+   "CANJ",
+   "TAP_RD",
+   106
+  ],
+  [
+   "TAP_RD",
+   "BP_PI",
+   27
+  ],
+  [
+   "BP_PI",
+   "PI",
+   53
+  ],
+  [
+   "BP_PI",
+   "TAP_CSB",
+   103
   ]
  ],
  "route_trees": [
