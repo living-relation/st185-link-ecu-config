@@ -1,8 +1,9 @@
-"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev E" (Rev E 2026-11-09: labels #569, POWER box ends #594; viewer only; the master is the source).
+"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev F" (Rev F 2026-11-12: HeavyDC's editor-turn lengths of 2026-11-11 / 11-12 (jump post on Dan's driver-side spot; battery, kill switch and trunk relay block on Dan's Z4 b save; kill switch 100 mm forward of the relay block, A1 b), the alternator B+ stud on the alternator (A4 b / A6 b) and the 300 mm alternator / starter drops (A9 a), the trunk relay block on its own part ST185-FB-BATT rev 7 (A11, #665), library sync (#664); Rev E 2026-11-09: labels #569, POWER box ends #594; viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
 Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
-lengths from HeavyDC's own Route 1 tree (Dan's approved placement, 2026-11-04), checked here against the master
+lengths from HeavyDC's own segments of the layout tree (its placement-editor seed with Dan's saves; "Route 1 point N" names in it are
+node names only, DECISIONS B8), checked here against the master
 est_length_mm. The RADLOK pass-through pair (`w_rl_pos` / `w_rln`, blank length, Dan D2) is the firewall connector itself:
 no wire is drawn; each cabin RADLOK plug is MATED to its engine plug (Dan 2026-11-05), so the harness is two pieces joined
 by the two mates, drawn nose to nose. The engine-bay jump bus bar (Blue Sea 2104) is one splice per stud (SP-JUMP-1 .. -4)
@@ -17,7 +18,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'E', '2026-11-09'
+NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'F', '2026-11-12'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
@@ -364,12 +365,10 @@ for sname, sp in splices.items():     # a splice shared with another harness: sa
         notes.append({"id": "n_" + sid(sname), "width": 360, "schematicPosition": {"x": DEVX + 270, "y": sp['schematicPosition']['y']},
                       "text": '%s: its other legs are in other harnesses - %s (the splice is drawn here with its HeavyDC leg only).'
                               % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth))})
-pass_by = collections.defaultdict(list)
-for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 pt_txt = '; '.join('%s (%s %s to %s %s)' % (r['wire_id'], r['from_id'], r['from_pin'], r['to_id'], r['to_pin']) for r in PT)
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
-              "text": TITLE + " Rev " + REV + " (" + DATE + ", HeavyDC's own Route 1 tree from Dan's approved placement 2026-11-04, Dan's format rules): "
-                      "the battery cables (trunk battery, kill switch, trunk relay block feed, POWER box studs, ground points ID / IG, the RADLOK "
+              "text": TITLE + " Rev " + REV + " (" + DATE + ", HeavyDC's own segments of the layout tree from its placement-editor seed and Dan's saves, Dan's format rules): "
+                      "the battery cables (trunk battery, kill switch, the feed to the trunk relay block's BATT stud, POWER box studs, ground points ID / IG, the RADLOK "
                       "firewall pair, starter, alternator, engine block stud, jump bus bar, jump post; the jump bus bar is one splice per stud joined by "
                       "INTEGRAL links, and the alternator lead ends on the output stud of its 175 A fuse block, the INTEGRAL link 'MRBF fuse "
                       "(Blue Sea 5191)' from bar stud 3, Dan 2026-11-07). The POWER box studs are ring terminals named by their stud, each "
@@ -378,18 +377,18 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "kill switch outside, battery posts and ground points inside), the RADLOK firewall pairs in the middle, engine-bay ends right. Each pin shows its own "
                       "master end text. Shared connectors are drawn whole; cavities wired by other harnesses are N/C with a note. The RADLOK "
                       "pass-through is the firewall connector itself, no cable to cut or buy (Dan D2): " + pt_txt + ", drawn as a mate between "
-                      "the cabin and engine plugs (Dan 2026-11-05), not a wire. Wires of other "
-                      "harnesses that only pass through HeavyDC are not drawn: " + '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) +
-                      ". Layout: a formboard of the Route 1 tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
-                      "piece right of the firewall plugs), straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; the kill switch, trunk relay block, "
-                      "fuel pump relay and battery posts share one trunk node (Dan D3); drawn length is not to scale; each part on a 100 mm "
-                      "end-allowance stub; bundle lengths = the master est_length_mm."})
+                      "the cabin and engine plugs (Dan 2026-11-05), not a wire. " + B.GHOST_MARK +
+                      "Layout: a formboard of HeavyDC's layout tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
+                      "piece right of the firewall plugs), straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; the battery, "
+                      "kill switch and trunk relay block each on its own spot along the trunk RH side (Dan's Z4 b save, A1 b), the alternator and "
+                      "starter studs on 300 mm drops (A9 a); drawn length is not to scale; each part on a 100 mm end-allowance stub (the jump bar "
+                      "and fuse block studs too: ring-terminal ends, DECISIONS B8 End allowance); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
 notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},
               "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
                       "the master wire list and BOM. Stripe per circuit: " + '; '.join('%s = %s' % (STRIPE[k][1], STRIPE[k][0]) for k in used_st) + "."})
 
-# ================================================================== layout (the Route 1 tree; lengths from the master's tree)
+# ================================================================== layout (HeavyDC's layout tree; lengths from the master's tree)
 L = H.layout
 node_items, inline_at, seen = collections.defaultdict(list), collections.defaultdict(list), set()
 def cid_of(r, s):
@@ -607,6 +606,7 @@ print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 NGHOST = B.add_ghosts(doc, H, 'HeavyDC')      # other harnesses' wires in these bundles (Dan T4 a)
 assert len(wires) + NGHOST <= 100, 'ghost wires push HeavyDC over the 100-connection limit'
+B.fill_ghost_note(doc, 'HeavyDC')      # the title note says which pass-through wires are drawn as ghosts
 print('ghost wires', NGHOST)
 json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)   # routed: upload as is (no separate genroute.py pass)
 json.dump(lib_add, open(os.path.join(OUT, 'hdc_lib_ops.json'), 'w'), indent=1)

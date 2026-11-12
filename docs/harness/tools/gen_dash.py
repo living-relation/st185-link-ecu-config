@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-Dash, file "ST185-Dash Rev C" (Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
+"""harness.design copy of ST185-Dash, file "ST185-Dash Rev D" (Rev D 2026-11-12: Dash's editor-turn lengths (2026-11-12), the one mm cabin model (#662), the ECU splice point at the ECU plugs (A10 b, #663), the high-beam LED fed straight from the high-beam output and spliced onto its pigtail (A2 b / A3), 25 mm splice ends (T7 b) and ghost wires (T4 a), library sync (#664 / #665); Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
 gen_antitheft.py uses for "ST185-AntiTheft" (one small cabin harness each, same rules).
 Usage: python gen_dash.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/dash.json (whole document, wires already routed with genroute.py: upload as
@@ -526,8 +526,6 @@ def build(REPO, OUT, CFG):
             shared.append({"id": "n_" + sid(sname), "width": 360, "_want": sp['schematicPosition']['y'],
                            "text": '%s: its other legs are in another harness - %s (the splice is drawn here with its %s legs only).'
                                    % (sname, '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items())), NAME)})
-    pass_by = collections.defaultdict(list)
-    for r in PASS: pass_by[r['harness']].append('"%s"' % (r.get('wire_label') or r['wire_id']))     # wire labels, never ids (B22)
     used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
     head = [{"id": "n_title", "width": 360,
              "text": "%s Rev %s (%s): %s Viewer copy generated from docs/harness/MASTER-wirelist.csv (harness = %s) by docs/harness/tools/%s; "
@@ -538,11 +536,9 @@ def build(REPO, OUT, CFG):
                      "are drawn whole; cavities wired by other harnesses are N/C with a note. %s"
                      "Layout: a formboard of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), straight orthogonal bundles, "
                      "front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance "
-                     "stub; bundle lengths = the master est_length_mm." % (
+                     "stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm." % (
                          TITLE, REV, DATE, CFG['scope'], NAME, CFG['script'], CFG['left_words'],
-                         'the branch cables right of them, ' if cables else '', NAME,
-                         ("Wires of other harnesses that ride %s, not drawn: " % NAME + '; '.join(
-                             '%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) + ". ") if pass_by else "")}]
+                         'the branch cables right of them, ' if cables else '', NAME, B.GHOST_MARK)}]
     if used_st:      # display stripes note, only when the harness has a loose +12 V wire
         head.append({"id": "n_stripes", "width": 360,
              "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
@@ -758,6 +754,13 @@ def build(REPO, OUT, CFG):
     B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
     NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)
     assert NCONN + NGHOST <= 100, 'ghost wires push %s over the 100-connection limit' % NAME
+    # the title note says which pass-through wires are drawn as ghosts (wire labels, never ids, B22); the heading notes are
+    # placed again for the filled text, clear of the top end's label tag (Dan N99 a)
+    B.fill_ghost_note(doc, NAME, label=lambda r: '"%s"' % (r.get('wire_label') or r['wire_id']))
+    head_ids = {n['id'] for n in head}
+    head_now = [n for n in doc['schematicNotes'] if n['id'] in head_ids]
+    HEAD_Y = int(math.floor((-LABEL_H - GAP_TXT - 15 - max(note_half(n['text']) for n in head_now)) / 30.0)) * 30
+    for n in head_now: n['schematicPosition']['y'] = HEAD_Y
     json.dump(doc, open(os.path.join(OUT, STEM + '.json'), 'w'), indent=1)   # routed: upload as is
     json.dump(lib_add, open(os.path.join(OUT, STEM + '_lib_ops.json'), 'w'), indent=1)
     json.dump(expect, open(os.path.join(OUT, STEM + '_expect.json'), 'w'), indent=1)
@@ -771,7 +774,7 @@ def build(REPO, OUT, CFG):
 
 # ---------------------------------------------------------------------------------------------- ST185-Dash (Dan B8 = a)
 DASH = dict(
-    name='Dash', title='ST185-Dash', rev='C', date='2026-11-09', stem='dash', script='gen_dash.py', root='ECU',
+    name='Dash', title='ST185-Dash', rev='D', date='2026-11-12', stem='dash', script='gen_dash.py', root='ECU',
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
           "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
           "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin's; Dash has "
@@ -779,8 +782,8 @@ DASH = dict(
           "wires per node (feeds LOGIC DEV 5 A, LOGIC CSB 5 A and the factory CIG & RADIO ACC lead through the 5 A inline fuse F-PI; "
           "each node ground to the cabin ground splice); the CSB3 plug, "
           "the 8-channel opto board, the cruise ladder resistor, the cruise switch, clutch switch, stop switch and dimmer taps; the "
-          "cluster warning LEDs on the cluster plug taps, their ground lead to factory ground point ID (Dan N82 a / N83 a).",
-    left_words='the sources (factory taps, the LOGIC box seats, the ECU splice-point bus plug, the Pi inline fuse, ground point ID)',
+          "cluster warning LEDs on the cluster plug taps, their common ground spliced onto the factory cluster ground C13 (B) pin 1 (to ground point ID; Dan N106 a / N83 a); the high-beam LED fed straight from the high-beam output splice SP-HR-HI by the LOGIC box, spliced onto the LED's own pigtail (Dan A2 b / A3).",
+    left_words='the sources (factory taps, the LOGIC box seats, the ECU splice-point bus plug, the Pi inline fuse)',
     # a source end: a factory tap, a fuse box, a bus plug, the inline fuse (its OUT feeds the Pi branch cable, so it sits left of
     # the cables, just below the II1 tap that feeds it), a ground stud
     left=lambda t, i: t == 'OEM' or i in ('LOGIC', 'BUS-5V-2', 'F-PI', 'GND-ID'),

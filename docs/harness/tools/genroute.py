@@ -2,7 +2,7 @@
 wire / core / shield layout points. Dan's rules 2026-11-01."""
 import json, sys, collections
 from router import Router, order_groups
-def run(d, mid=None, step=30):
+def run(d, mid=None, step=30, loose=False):
     R=Router(); node={}; anc={}
     W=lambda n: n.get('width',150)
     for c in d['connectors']:
@@ -123,6 +123,14 @@ def run(d, mid=None, step=30):
                     if R.free(pts,s['ends'],s['net']): R.commit(pts,s['net']); res[k]=pts[1:-1]; done=True; break
                 if done: break
             if done: break
+    if loose:    # last resort (the final pass only, never a generator's layout search): one jog on any free grid lane, not only the
+        # lanes clear of every tall box's column (AB-cabin 2's bulkhead-to-cabin-ground wire, 2026-11-12); free() still keeps it off every box
+        for k,v in list(res.items()):
+            if v is not None: continue
+            s=next(t for t in segs if t['k']==k); P,Q=s['P'],s['Q']
+            for x in range(int(P[0])-int(P[0])%30+15,int(Q[0]),step):
+                pts=[P,(x,P[1]),(x,Q[1]),Q]
+                if P[0]<x<Q[0] and R.free(pts,s['ends'],s['net']): R.commit(pts,s['net']); res[k]=pts[1:-1]; break
     return R,segs,res
 def apply(d,segs,res,tag='r'):
     ST=lambda p:{'x':p[0]-15,'y':p[1]-15}
@@ -157,7 +165,7 @@ if __name__ == '__main__':
     d = json.load(open(src))
     import build_drawings as B      # the fuse-box groups (Dan N81 a): route their members too, then put them back
     saved = B.ungroup(d)
-    R, segs, res = run(d)
+    R, segs, res = run(d, loose=True)
     print('unrouted', apply(d, segs, res))
     B.regroup(d, saved)
     json.dump(d, open(dst, 'w'))

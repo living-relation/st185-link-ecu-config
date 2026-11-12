@@ -1,10 +1,10 @@
 """harness.design copy of ST185-AB-cabin = the ECU harness, cabin half, in two documents (100-connection plan limit):
-"ST185-AB-cabin 1 - sensor rails and screens Rev E" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev F".
+"ST185-AB-cabin 1 - sensor rails and screens Rev F" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev G".
 Split rule (README "harness.design", one device, one file; Dan 2026-11-04 V1 a): the ECU plugs A, B, C and the bulkhead
 DRB102-CABIN are drawn whole in both documents (each wires its own cavities; the others are N/C with a note); every other
 device has all its AB-cabin wires in one document. Document 1 holds every wire joined (through devices, splices and
 shielded cables) to the ECU sensor rails and screens: bus plugs BUS-5V, BUS-5V-2, BUS-GNDOUT-A / -B and splices SP-8V,
-SP-SHIELD-A / -B, so the pedal, the wheel-speed and fuel-level inlines, the cam and fuel-level pull-ups and every core of
+SP-SHIELD-A / -B, so the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups and every core of
 those shielded cables. Document 2 holds the rest: the plain ECU-to-bulkhead wires, ECU power and grounds, the relays and
 new fuse boxes, the factory taps and CAN (ECU plug C joined AB-cabin, Dan 2026-11-04 V2 a). Viewer only; the master is
 the source.
@@ -19,7 +19,8 @@ harness carries a label naming its signal and where those legs go ("to Dash, ECU
 signal label. A factory tap names the device, code, pin and the factory lead it is spliced onto; a new fuse / relay box end names
 the box first ("New LOGIC fuse box, K-EPS-EN"; its fuse seats show the fuse). A part with no maker part number that is not
 bought (ECU plug C, a generic round 6-pin plug, Dan 2026-11-04) is excludeFromBom. Lengths: the ST185-harness.layout.json tree
-(AB-cabin's placement-editor layout plus the glove-box breakout GB_T, DECISIONS B8), checked here against the master
+(the one car-mm model from the placement-editor seeds plus the glove-box breakout GB_T, the ECU splice point at the ECU plugs,
+DECISIONS B8 "One mm model" / "A10 b by rule"), checked here against the master
 est_length_mm. gen_abeng.py runs on import, so its helpers are not imported."""
 import sys, os, json, re, collections, math, csv, copy
 REPO, OUT, DOC = sys.argv[1], sys.argv[2], int(sys.argv[3])
@@ -31,12 +32,16 @@ H = B.Harness('ST185-harness')
 # each document keeps its own rev letter (a physical change = the next letter, Dan 2026-11-02). 2026-11-07 rebuild (Dan A4 a):
 # doc 1 Rev C -> D (bus plug bridges br_*, Dan N57 a; flex fuel unshielded, N31 b), doc 2 Rev D -> E (cabin ground splice
 # SP-CABIN-GND, N60 a; POWER box GND stud ring, N64 a; flex return, CAN trunk screen). 2026-11-09 rebuild: doc 1 Rev D -> E,
-# doc 2 Rev E -> F (labels #569, grounds and shields #570, bussed caps R6, inline pairs dropped #580 / #590, box seats #594, CAN #597)
-REVS, DATES = {1: 'E', 2: 'F'}, {1: '2026-11-09', 2: '2026-11-09'}
+# doc 2 Rev E -> F (labels #569, grounds and shields #570, bussed caps R6, inline pairs dropped #580 / #590, box seats #594, CAN #597).
+# 2026-11-12 rebuild (step 4): doc 1 Rev E -> F, doc 2 Rev F -> G (AB-cabin's editor-turn lengths of 2026-11-11 / 11-12: fuel sender
+# leg, A/C amplifiers on their factory spots, kill switch lead after A1 b, the fuel pump relay coil feed; the wheel speed output
+# plugs on the 2026-11-11 conditioner spots; the one mm cabin model #662; the ECU splice point at the ECU plugs A10 b #663; the
+# outside air temp sensor wires now EngineRoom-C's, U4 a; 25 mm splice ends T7 b and ghost wires T4 a; library sync #664 / #665)
+REVS, DATES = {1: 'F', 2: 'G'}, {1: '2026-11-12', 2: '2026-11-12'}
 NAME, REV, DATE = 'AB-cabin', REVS[DOC], DATES[DOC]
 TITLES = {1: 'ST185-AB-cabin 1 - sensor rails and screens', 2: 'ST185-AB-cabin 2 - straight runs, power, taps and CAN'}
 SHORT = {1: 'AB-cabin 1', 2: 'AB-cabin 2'}
-TITLE, OTHER = TITLES[DOC], TITLES[3 - DOC] + ' Rev ' + REVS[3 - DOC]
+TITLE, OTHER = TITLES[DOC], TITLES[3 - DOC]     # the other file's name without its rev letter, so the notes never go stale (R10)
 BHN = 'DRB102-CABIN'
 SHARED = ('ECU-A', 'ECU-B', 'ECU-C', BHN)      # drawn whole in both documents (V1 a)
 ALL = H.rows
@@ -593,31 +598,28 @@ for c, n in conns.items():      # a plug with no maker part that is not bought: 
 if NC_CORES:
     right_txt.append('Cable cores with no AB-cabin job (cut back and sealed under heat-shrink at both ends): %s.' % '; '.join(
         '%s %s' % (cab_of[co['id']]['label'], co['color'].lower()) for co in NC_CORES))
-pass_by = collections.defaultdict(list)
-for r in PASS: pass_by[r['harness']].append(r['wire_id'])
 used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
 head = [{"id": "n_title", "width": 360,
          "text": "%s Rev %s (%s). Part %d of 2 of AB-cabin, the ECU harness cabin half: %s. The rest of AB-cabin is '%s'. Split (Dan "
                  "2026-11-04, V1 a): the ECU plugs A, B, C and the bulkhead DRB102-CABIN are drawn whole in both parts (cavities wired in "
                  "the other part are N/C with a note); every other device has all its AB-cabin wires in one part. A splice whose other "
-                 "legs are elsewhere is labelled with its signal and where they go; a wire spliced onto a factory wire carries the note "
-                 "'Splice to OEM wire <colour>' at its tap (Dan 2026-11-04, Y6). Viewer copy "
+                 "legs are elsewhere is labelled with its signal and where they go; a wire spliced onto a factory wire carries the full "
+                 "OEM splice note at its tap (Dan Y6, N16 a). Viewer copy "
                  "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
                  "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
                  "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text. %s"
-                 "Layout: a formboard of the ST185-harness.layout.json tree (AB-cabin's placement-editor layout, glove-box breakout GB_T), "
-                 "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a "
-                 "100 mm end-allowance stub; bundle lengths = the master est_length_mm." % (
+                 "Layout: a formboard of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
+                 "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), straight orthogonal bundles, front of car RIGHT, rear LEFT, "
+                 "driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
+                 "T7 b); bundle lengths = the master est_length_mm." % (
                      TITLE, REV, DATE, DOC, 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out bus plugs, shield '
-                     'splices) with the pedal, the wheel-speed and fuel-level inlines, the cam and fuel-level pull-ups and their shielded '
-                     'cables' if DOC == 1 else
+                     'splices) with the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups '
+                     'and their shielded cables' if DOC == 1 else
                      'the plain ECU-to-bulkhead wires (injectors, coils, sensor signals with no cabin splice), ECU power and grounds, the '
                      'relays and new fuse boxes, the factory taps (A/C amplifiers, J/B No.1, IG2, R/B No.4), the fuel pump relay and kill switch '
                      'legs of the sill run '
                      'and CAN (ECU plug C)', OTHER,
-                     'the bulkhead and the far ends', 'the ECU plugs and ECU splice-point bus plugs',
-                     ("Wires of other harnesses that ride AB-cabin, not drawn: " + '; '.join(
-                         '%s see %s' % (', '.join(v), k) for k, v in sorted(pass_by.items())) + ". ") if pass_by else "")}]
+                     'the bulkhead and the far ends', 'the ECU plugs and ECU splice-point bus plugs', B.GHOST_MARK)}]
 if used_st:      # display stripes note, only when the part has a +12 V wire
     head.append({"id": "n_stripes", "width": 360,
          "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
@@ -824,6 +826,10 @@ print('empty connectors dropped (R5):', B.relabel.removed)
 B.box_groups(doc, B.BOX_GROUP_OUTSIDE.get('AB-cabin %d' % DOC, ()))     # box seat ends as labelled terminals, no box groups, unused parts pruned (Dan R1 a)
 NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundles (Dan T4 a)
 assert NCONN + NGHOST <= 100, 'ghost wires push AB-cabin %d over the 100-connection limit' % DOC
+B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghosts; the heading notes placed again
+head_now = [n for n in doc['schematicNotes'] if n['id'] in {h['id'] for h in head}]
+HEAD_Y = -30 * ((max(est_h(n['text']) for n in head_now) + 59) // 30)
+for n in head_now: n['schematicPosition']['y'] = HEAD_Y
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abcab%d_expect.json' % DOC), 'w'), indent=1)
