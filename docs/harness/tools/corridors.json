@@ -137,7 +137,7 @@
    "n": 8,
    "id": "trunk",
    "name": "Inside perimeter of the trunk",
-   "follows": "Luggage room wire BP1 at the left quarter panel centre, ground BL at the back panel centre (1993 EWD p.234, p.46); body manual luggage compartment",
+   "follows": "Luggage room wire BP1 at the left quarter panel centre, ground BL at the back panel centre (1993 EWD p.234, p.46); body manual luggage compartment. Back line at x -3135 (Dan Z5 a, 2026-11-11): the band lies fully inside the back wall (DI-7 under-body plan, about x -3211 at the centre, -3203 to -3231 across the car); was -3300, outside the car",
    "width_mm": 150,
    "frame": "car_mm",
    "car_mm": [
@@ -146,11 +146,11 @@
      650
     ],
     [
-     -3300,
+     -3135,
      650
     ],
     [
-     -3300,
+     -3135,
      -640
     ],
     [
