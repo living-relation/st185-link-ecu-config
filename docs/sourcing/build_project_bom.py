@@ -53,6 +53,8 @@ def num(s):
 ONHAND = {}
 for _r in rd(P("docs", "sourcing", "te-on-hand-bom.csv")):
     ONHAND[_r["pn"]] = ONHAND.get(_r["pn"], 0) + int(_r["qty_ordered"] or 0)
+    if _r["description"].startswith("ATUM-"):   # a TE order line (NB number) whose description is the ATUM part number
+        ONHAND[_r["description"]] = ONHAND.get(_r["description"], 0) + int(_r["qty_ordered"] or 0)
 LINKS = {r["pn"]: r for r in rd(P("docs", "sourcing", "bom-links.csv"))}
 rows = []
 
@@ -286,6 +288,7 @@ CRIMP_TOOLS = [   # (part-number pattern, tool); first match wins
      "T-18 (Delphi Weather Pack / Metri-Pack 150, 280 / GT 150, 280, 22-12 AWG) " + CCK_TOOL + "t-18"),
     (r"^(70102|70250)$", "HT-303 (Hillsdale insulated terminals, 22-10 AWG) " + CCK_TOOL + "ht-303"),
     (r"^82998-", "none (pre-crimped Toyota repair lead)"),
+    (r"^ATUM-", "none (hand solder splice: soldering iron, then a heat gun for the adhesive-lined sleeve)"),
 ]
 CRIMP_LINE = re.compile(r"^(CONTACT|TERMINAL|SPLICE, CRIMP|REPAIR WIRE)|receptacle|ring lug|tubular lug|\bcontact\b|solid pin|"
                         r"part number not confirmed yet: (contact|lug / terminal)", re.I)
