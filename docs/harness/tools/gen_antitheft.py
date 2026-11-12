@@ -3,8 +3,8 @@ Usage: python gen_antitheft.py <repo> <out_dir>   (needs <out>/lib.json = a dump
 to the parts these harnesses use). Writes <out>/antitheft.json (whole document, already routed with genroute.py: upload as is),
 antitheft_lib_ops.json and antitheft_expect.json. Built by gen_dash.build (same rules: README "harness.design"; text spacing,
 Dan N99 a): the alarm-ready tap points (Dan 2026-11-06: no alarm picked, so no alarm module or accessories are drawn), each
-signal from its real source to its labelled node AL-* at the alarm spot: the constant and ignition feeds (splices SP-AT-12V,
-SP-12V-SHK, SP-IG, whose LOGIC box legs are CabinPower's: drawn one-sided with a note), the door trigger from the factory tap
+signal from its real source to its labelled node AL-* at the alarm spot: the constant and ignition feeds (one whole wire each
+from its LOGIC box fuse seat, riding CabinPower's glove-box bundle; T3), the door trigger from the factory tap
 T-AT-DOOR (J/B No.1 1B-11 R-W, written as a terminal in the master: its label and full OEM splice note come from the shared
 helpers as a J/B No.1 tap), the hood trigger pull-wire to the front centre (LH side, with the siren leads), the ECU immobiliser input (ECU-B pin 27, Dan B18 a;
 ECU-B drawn whole, its other cavities N/C with a note), the siren pull-wires to the bay (B19) and the alarm ground ring
