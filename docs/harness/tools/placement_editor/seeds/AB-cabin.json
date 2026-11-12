@@ -1,8 +1,8 @@
 {
  "harness": "AB-cabin",
  "doc": "layouts/ABcabin",
- "seedVersion": "ABcabin-z4b-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender sits on the factory floor service hole in the luggage compartment floor, LH of the spare tire well (Dan Z6 a, 2026-11-11; factory manual, fuel pump removal); its leg follows the factory floor wire and luggage room wire: from the LH kick back along the LH floor and the trunk's LH side (corridors 2, 6, 8), then a short branch inboard to the sender. Trunk relay block marker on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58); the RH sill run ends there.",
+ "seedVersion": "ABcabin-z8-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender sits on the factory floor service hole in the luggage compartment floor, LH of the spare tire well (Dan Z6 a, 2026-11-11; factory manual, fuel pump removal); its leg follows the factory floor wire and luggage room wire: from the LH kick back along the LH floor and the trunk's LH side (corridors 2, 6, 8), then a short branch inboard to the sender. Fuel level sender on Dan's AB-cabin save (2026-11-12 03:14Z). The two A/C amplifiers on their factory spots (1993 Mitchell component locator; 1993 EWD p.32 instrument panel parts view): the A/C amplifier behind the glove box on the bottom of the evaporator case, the auto A/C amplifier behind the centre of the dash at the bottom left of the heater unit; each on a short stub forward off the dash run. Trunk relay block marker on Dan's heavy cable editor save (Z4 b, 2026-11-11 21:58); the RH sill run ends there.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -85,21 +85,33 @@
   },
   {
    "id": "AC",
-   "name": "Glove box straight back to the A/C amplifiers",
+   "name": "Dash run forward to the A/C amplifier (bottom of the evaporator case, behind the glove box)",
    "color": "#2e7d32",
    "dash": false,
    "pts": [
     [
      -580,
-     480
+     400
     ],
     [
-     -680,
-     480
+     -540,
+     400
+    ]
+   ]
+  },
+  {
+   "id": "AC2",
+   "name": "Dash run forward to the auto A/C amplifier (bottom left of the heater unit, centre of the dash)",
+   "color": "#2e7d32",
+   "dash": false,
+   "pts": [
+    [
+     -580,
+     -130
     ],
     [
-     -680,
-     520
+     -540,
+     -130
     ]
    ]
   },
@@ -152,12 +164,12 @@
      -650
     ],
     [
-     -2820,
+     -2973,
      -650
     ],
     [
-     -2820,
-     -400
+     -2973,
+     -319
     ]
    ]
   },
@@ -334,9 +346,9 @@
    "id": "A15",
    "name": "A/C amplifier A15 (behind the glove box)",
    "group": "Factory plugs",
-   "note": "With the A/C pressure switch and tacho splices and the lock sensor resistor",
-   "x": -680,
-   "y": 520,
+   "note": "Behind the glove box, on the bottom of the evaporator case (factory spot). With the A/C pressure switch and tacho splices and the lock sensor resistor",
+   "x": -540,
+   "y": 400,
    "line": "AC",
    "drop": null,
    "short": "A/C amplifier"
@@ -346,10 +358,10 @@
    "id": "A32",
    "name": "Auto A/C amplifier A32",
    "group": "Factory plugs",
-   "note": "Sensor common; the outside air temp sensor wires (front harness) land here too",
-   "x": -680,
-   "y": 480,
-   "line": "AC",
+   "note": "Behind the centre of the dash, bottom left of the heater unit (factory spot). Sensor common; the outside air temp sensor wires (front harness) land here too",
+   "x": -540,
+   "y": -130,
+   "line": "AC2",
    "drop": null,
    "short": "Auto A/C amplifier"
   },
@@ -358,9 +370,9 @@
    "id": "FUEL-LEVEL",
    "name": "Fuel level sender",
    "group": "Rear",
-   "note": "At the factory floor service hole in the luggage compartment floor, LH of the spare tire well (factory manual); its leg comes inboard from the trunk's LH side",
-   "x": -2820,
-   "y": -400,
+   "note": "At the floor service hole in the luggage compartment floor, LH of the spare tire well, on Dan's spot; its leg comes inboard from the trunk's LH side",
+   "x": -2973,
+   "y": -319,
    "line": "TANK",
    "drop": null,
    "short": "Fuel sender"
