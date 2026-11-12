@@ -1454,7 +1454,8 @@ def write_wirelist(H, name):
 # ------------------------------------------------------------------------------------------------ layout trees from a route file
 # DECISIONS B8 (Dan 2026-10-28): a route file's devices and runs are the one definition of where each device sits and
 # which line it hangs on; lengths from a route map = map length x 5.3 mm per EWD point (the 96 mm cylinder spacing)
-# + 300 mm drop for a low-mounted part (device "low": true), an estimate until measured at the car.
+# + 300 mm drop for a low-mounted part (device "low": true; "drop_mm" when Dan set the drop in the AB-engine editor,
+# 2026-11-12), an estimate until measured at the car.
 MM_PER_PT = 5.3
 DROP_MM = 300
 MIN_BREAKOUT_MM = 152   # a connector part-way along a line sits at least 6 in off it; the last one on a line may end it
@@ -1659,7 +1660,7 @@ def add_route_trees(L):
                         build_stub(e[2], jn, e[3])
                 else:
                     node, gap, dev = e[2], e[3], e[4]
-                    drop = DROP_MM if dev.get("low") else 0
+                    drop = int(dev.get("drop_mm", DROP_MM)) if dev.get("low") else 0   # Dan's editor drop wins (2026-11-12)
                     old = nodes.get(node, {})
                     nodes[node] = {"xy": fx(dev["at"]), "end": True, "short": old.get("short", dev["name"]),
                                    "label": "%s (%s device %s on %s%s)" % (
