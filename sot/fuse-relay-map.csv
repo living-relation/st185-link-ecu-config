@@ -20,7 +20,7 @@ B1,AMI OUT-5,fuse,J/B No.1 60 A,POWER,assigned,w_pdb_jb1 behind the dash to 1I-1
 B1,AMI OUT-6,fuse,EPS 50 A,POWER,assigned,B4 K-EPS 30
 B1,ACPS,fuse,(vacant),,vacant,A5 pin 1 now from R/B No.4 10 A A/C
 B2,M1,relay,low beam (both headlamps),K-HL,seated,"LOGIC micro; Dan N89 a 2026-11-08 (per-beam relays): coil 85 on R-Y (IE1-2, light switch HEAD / dimmer FLASH), 86 from SP-HL; 87 -> SP-HL-ON -> both low beams (H1 / H2 pin 1) and the K-HR coil 86"
-B2,M2,relay,high beam (both headlamps),K-HR,seated,"Dan N89 a 2026-11-08: coil 86 from K-HL 87 (SP-HL-ON, so only with the head lamps on), coil 85 on R-W (IE1-18, dimmer HIGH / FLASH); 30 from HR 15 A (BUS1-3); 87 -> SP-HR-HI -> both high beams (H1 / H2 pin 2) and the dash LED resistor R-HB"
+B2,M2,relay,high beam (both headlamps),K-HR,seated,"Dan N89 a 2026-11-08: coil 86 from K-HL 87 (SP-HL-ON, so only with the head lamps on), coil 85 on R-W (IE1-18, dimmer HIGH / FLASH); 30 from HR 15 A (BUS1-3); 87 -> SP-HR-HI -> both high beams (H1 / H2 pin 2) and the dash high-beam LED (w_hb_feed; Dan A2 b 2026-11-12)"
 B2,M3,relay,horn,K-HORN,seated,
 B2,M4,relay,ETB power,K-ETB,seated,
 B2,M5,relay,A/C clutch,K-ACC,seated,coil 85 from A15 pin 8 (D16); coil 86 from B2-BUS2-8
