@@ -1,8 +1,8 @@
 {
  "harness": "AB-engine",
  "doc": "layouts/route16",
- "seedVersion": "ABengine-a4b-1",
- "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-11-12 17:31Z save (layouts/route16 v23): his part spots, drops and routes as he left them. Grey alternator B+ stud on the alternator plug's spot (Dan A4 b, 2026-11-12).",
+ "seedVersion": "ABengine-a6b-1",
+ "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-11-12 17:31Z save (layouts/route16 v23): his part spots, drops and routes as he left them. Dan A6 b (2026-11-12): three parts on their factory spots, his spots and routes otherwise unchanged (his driver-side lower branch now ends at the starter's new spot, its unused tail past it gone): the starter trigger plug and the knock sensor (1993 EWD p.29), the grey starter B+ stud on the starter; grey alternator B+ stud on the alternator at the belt end, behind the block under the intake (SW20 position).",
  "warnMm": 300,
  "unitMm": 5.3,
  "drawRoutes": true,
@@ -161,8 +161,8 @@
      253.6
     ],
     [
-     331,
-     270
+     340.9,
+     257.7
     ]
    ]
   },
@@ -405,9 +405,9 @@
    "id": "STARTER-TRIGGER",
    "name": "Starter solenoid trigger plug",
    "group": "Driver side, lower",
-   "note": "Low-mounted part (Dan's drop 500 mm)",
-   "x": 332.4,
-   "y": 270,
+   "note": "Low-mounted part (Dan's drop 500 mm). FSM spot (X5 rule, Dan A6 b 2026-11-12): 1993 EWD book p.29 'Position of Parts in Engine Compartment' (Component_Location.pdf p.2), starter connectors S2 (S plug) and S3 (B terminal), mapped onto p.36; starter under the battery on the transaxle (Toyota repair manual RM305U1, starter removal)",
+   "x": 339.5,
+   "y": 256.5,
    "line": "N3",
    "drop": 500,
    "short": "Starter trigger"
@@ -537,9 +537,9 @@
    "id": "KNOCK-1",
    "name": "Knock sensor",
    "group": "Intake side",
-   "note": "Low-mounted part (Dan's drop 300 mm)",
-   "x": 280.5,
-   "y": 163.8,
+   "note": "Low-mounted part (Dan's drop 300 mm). FSM spot (X5 rule, Dan A6 b 2026-11-12): 1993 EWD book p.29 K1 (Component_Location.pdf p.2), mapped onto p.36; on the intake side of the block (Mitchell 1993 component locator p.19)",
+   "x": 281.7,
+   "y": 183.0,
    "line": "U4",
    "drop": 300,
    "short": "Knock sensor"
@@ -677,16 +677,16 @@
   {
    "id": "REF-H1",
    "label": "Alternator B+",
-   "name": "Alternator B+ stud, on the alternator behind the engine, the alternator plug's spot (heavy cable harness)",
-   "x": 252,
-   "y": 236
+   "name": "Alternator B+ stud, on the alternator at the belt end behind the block (SW20 position) (heavy cable harness)",
+   "x": 237.6,
+   "y": 177.2
   },
   {
    "id": "REF-H2",
    "label": "Starter B+",
-   "name": "Starter B+ stud (heavy cable harness)",
-   "x": 331,
-   "y": 270
+   "name": "Starter B+ stud, on the starter (heavy cable harness)",
+   "x": 361.0,
+   "y": 277.5
   },
   {
    "id": "REF-H4",
