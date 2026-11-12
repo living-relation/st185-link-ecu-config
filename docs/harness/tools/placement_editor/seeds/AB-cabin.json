@@ -1,8 +1,8 @@
 {
  "harness": "AB-cabin",
  "doc": "layouts/ABcabin",
- "seedVersion": "ABcabin-corr-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender leg goes round the inside of the trunk (RH side, back panel), shared with the fuel pump wires, then forward to the sender.",
+ "seedVersion": "ABcabin-z6a-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09): straight runs, square corners; move devices only. Device spots are Dan's approved 2026-11-03 save; the ECU is on his hand-placed 2026-11-02 spot (Y9 b). Parts of other harnesses are grey. Wheel speed conditioners in the centre console just behind the ECU (Dan 2026-11-11): the output plugs sit on them, the conditioners are grey (wheel speed editor). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The fuel level sender sits on the factory floor service hole in the luggage compartment floor, LH of the spare tire well (Dan Z6 a, 2026-11-11; factory manual, fuel pump removal); its leg follows the factory floor wire and luggage room wire: from the LH kick back along the LH floor and the trunk's LH side (corridors 2, 6, 8), then a short branch inboard to the sender.",
  "warnMm": 300,
  "bg": {
   "rect": [
@@ -125,7 +125,7 @@
   },
   {
    "id": "SILL",
-   "name": "RH kick along the RH sill to the trunk (battery corner)",
+   "name": "RH kick along the RH sill to the trunk relay block (fuel pump relay)",
    "short": "RH sill to trunk",
    "color": "#e65100",
    "dash": false,
@@ -135,33 +135,29 @@
      650
     ],
     [
-     -2880,
+     -3007,
      650
     ]
    ]
   },
   {
    "id": "TANK",
-   "name": "Sill run on round the inside of the trunk (RH side, back panel), then forward to the fuel level sender",
+   "name": "LH kick back along the LH floor and the trunk's LH side (the factory floor wire and luggage room wire route), then inboard to the fuel level sender at the floor service hole",
    "short": "To fuel sender",
    "color": "#00838f",
    "dash": false,
    "pts": [
     [
-     -2880,
-     650
+     -830,
+     -650
     ],
     [
-     -3300,
-     650
+     -2820,
+     -650
     ],
     [
-     -3300,
-     -300
-    ],
-    [
-     -2880,
-     -300
+     -2820,
+     -400
     ]
    ]
   },
@@ -362,9 +358,9 @@
    "id": "FUEL-LEVEL",
    "name": "Fuel level sender",
    "group": "Rear",
-   "note": "At the tank top; its leg comes forward from the trunk's back panel",
-   "x": -2880,
-   "y": -300,
+   "note": "At the factory floor service hole in the luggage compartment floor, LH of the spare tire well (factory manual); its leg comes inboard from the trunk's LH side",
+   "x": -2820,
+   "y": -400,
    "line": "TANK",
    "drop": null,
    "short": "Fuel sender"
@@ -437,9 +433,9 @@
   },
   {
    "id": "BATT",
-   "label": "Battery corner",
-   "name": "Kill switch and the fuel pump relay in the trunk relay block (heavy cable harness)",
-   "x": -2830,
+   "label": "Relay block",
+   "name": "Trunk relay block: the fuel pump relay (heavy cable and rear fuel harnesses)",
+   "x": -3007,
    "y": 650
   },
   {
