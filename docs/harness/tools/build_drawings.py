@@ -1149,7 +1149,8 @@ class SpliceNets:
 
     def trunk(self, sp):
         """The heaviest wire if one is heavier than the rest, else the one ECU pin wire, else the one bulkhead wire,
-        else the one link to another splice, else the one wire to a power or ground source, else the one factory tap,
+        else the one link to another splice, else the one wire to a power or ground source, else the one wire to a relay
+        (the relay's output feeding the splice, e.g. K-HR 87 into SP-HR-HI; sweep 9), else the one factory tap,
         else the longest, else the first by wire ID (DECISIONS "Wire lists" rule 4)."""
         if sp in self._trunk:
             return self._trunk[sp]
@@ -1169,6 +1170,7 @@ class SpliceNets:
         pick = pick or one([x for x in ws if far(x)[1] in BULKHEAD_MATE])
         pick = pick or one([x for x in ws if far(x)[0] == "splice"])
         pick = pick or one([x for x in ws if SOURCE.match(far(x)[1])])
+        pick = pick or one([x for x in ws if far(x)[1].startswith("K-")])
         pick = pick or one([x for x in ws if far(x)[0] == "OEM"])
         if not pick:
             lens = [(int(x[0]["est_length_mm"] or 0), x) for x in ws]
@@ -2106,6 +2108,14 @@ def self_test():
             cases.append(("wire list %s: a leg row turned round (device first) is caught" % name,
                           len(s8(wirelist_readback(name, [turned(d) if d is leg else d for d in gen], name))) == 1))
     cases.append(("wire list From / To cases ran", any(n.startswith("wire list ") for n, _ok in cases)))
+    # rule 4 (sweep 9): equal gauges, no box / J/B / bus / ground wire: the one relay output wire is the trunk, not the longest
+    def _w(i, ft, fi, tt, ti, mm):
+        return {"wire_id": i, "from_type": ft, "from_id": fi, "to_type": tt, "to_id": ti, "gauge_awg": "14",
+                "est_length_mm": str(mm)}
+    nets_t = SpliceNets([_w("w_k", "connector", "K-X", "splice", "SP-X", 125), _w("w_l", "splice", "SP-X", "OEM", "H1", 3053),
+                         _w("w_r", "splice", "SP-X", "OEM", "H2", 1982), _w("w_d", "splice", "SP-X", "diode", "D-X", 1227)])
+    cases.append(("splice trunk: the one relay output wire beats the longest (rule 4)",
+                  nets_t.trunk("SP-X")[0]["wire_id"] == "w_k"))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))

@@ -34,6 +34,7 @@ import json
 import math
 import os
 import re
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 
@@ -518,7 +519,28 @@ def check_xml(model, bits):
 
 # --- 7. sender UI device profiles ----------------------------------------------------------
 CLUSTER_FRAMES = {0x3E8, 0x3E9, 0x3EA, 0x3EB, 0x3EE}   # what main/canbus.c decodes
-CLUSTER_DIR = os.environ.get("CLUSTER_DIR") or os.path.join(os.path.dirname(ROOT), "center-cluster-esp32-p4")
+def _cluster_dir():
+    """CLUSTER_DIR (CI: `_cluster`), else the sibling folder of this clone, else (a worktree under .claude/worktrees/)
+    the sibling folder of the main clone, found through `git rev-parse --git-common-dir`."""
+    if os.environ.get("CLUSTER_DIR"):
+        return os.environ["CLUSTER_DIR"]
+    sib = os.path.join(os.path.dirname(ROOT), "center-cluster-esp32-p4")
+    if os.path.isdir(sib):
+        return sib
+    try:
+        common = subprocess.run(["git", "-C", ROOT, "rev-parse", "--git-common-dir"], capture_output=True,
+                                text=True, timeout=10).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        common = ""
+    if common:
+        main_clone = os.path.dirname(os.path.abspath(os.path.join(ROOT, common)))
+        alt = os.path.join(os.path.dirname(main_clone), "center-cluster-esp32-p4")
+        if os.path.isdir(alt):
+            return alt
+    return sib
+
+
+CLUSTER_DIR = _cluster_dir()
 CLUSTER_REQUIRED = os.environ.get("CLUSTER_REQUIRED") == "1"   # CI sets this; locally optional
 
 

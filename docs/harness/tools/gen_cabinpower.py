@@ -51,7 +51,6 @@ CABINPOWER = dict(
                '12129409-L': ('contactParts', {"id": "ct_delphi_12129409_l", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
                                                "minGauge": {"value": 16, "unit": "AWG"}, "maxGauge": {"value": 14, "unit": "AWG"}}),
                '4-1904124-3': ('connectorParts', {"id": "cp_rly_micro_co_res", "hasShell": False, "numberOfCavities": 5}),
-               '220R 1W': ('resistorParts', {"id": "rp_220r_1w", "resistance": 220, "resistanceUnit": "ohm"}),
                'M22759/16-16-9': ('wireParts', {"id": "m16_16_9", "color": "White", "gauge": {"unit": "AWG", "value": 16}}),
                # the DRL switch (Dan K1 a, #586): Arcolectric R13112AAAA round rocker, 2 quick-connect tabs, TE 280919-2 receptacles
                'R13112AAAA': ('connectorParts', {"id": "cp_arc_r13112aaaa", "gender": "Male", "hasShell": False, "numberOfCavities": 2}),
