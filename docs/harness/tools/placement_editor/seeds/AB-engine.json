@@ -1,8 +1,8 @@
 {
  "harness": "AB-engine",
  "doc": "layouts/route16",
- "seedVersion": "ABengine-w4c-1",
- "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-10-28 part spots + the 2026-11-09 shared-branch draft.",
+ "seedVersion": "ABengine-a4b-1",
+ "note": "Dan W4 c (2026-11-10): move parts, draw the overall routes; Claude adds each part's lead. Start = Dan's 2026-11-12 17:31Z save (layouts/route16 v23): his part spots, drops and routes as he left them. Grey alternator B+ stud on the alternator plug's spot (Dan A4 b, 2026-11-12).",
  "warnMm": 300,
  "unitMm": 5.3,
  "drawRoutes": true,
@@ -29,96 +29,72 @@
    "dash": false,
    "pts": [
     [
-     213.1,
-     182.0
+     225.2,
+     176.8
     ],
     [
-     359.9,
-     201.9
-    ]
-   ]
-  },
-  {
-   "id": "L2",
-   "name": "Driver-side drop",
-   "color": "#8e24aa",
-   "dash": false,
-   "pts": [
-    [
-     345.0,
-     199.88
+     250,
+     181.7
     ],
     [
-     372.2,
-     275.1
+     276.2,
+     179.4
     ],
     [
-     345.8,
-     287.0
+     328.9,
+     178.3
+    ],
+    [
+     343.1,
+     177.5
     ]
    ]
   },
   {
    "id": "L4",
-   "name": "Passenger front run",
+   "name": "PS-FENDER",
    "color": "#00838f",
    "dash": false,
    "pts": [
     [
-     213.1,
-     247.0
+     225.3,
+     176.9
     ],
     [
-     201.5,
-     280.0
+     165.2,
+     176.2
     ],
     [
-     226.5,
-     309.4
-    ]
-   ]
-  },
-  {
-   "id": "L5",
-   "name": "Intake sensor branch",
-   "color": "#00897b",
-   "dash": false,
-   "pts": [
-    [
-     305.8,
-     194.57
+     155.7,
+     271.9
     ],
     [
-     305.8,
-     170.0
-    ],
-    [
-     386.9,
-     159.6
+     174.1,
+     286.6
     ]
    ]
   },
   {
    "id": "L6",
-   "name": "Belt-end drop",
+   "name": "OVR-CAM",
    "color": "#3949ab",
    "dash": false,
    "pts": [
     [
-     213.1,
-     182.0
+     223.6,
+     177.9
     ],
     [
-     213.1,
-     247.0
+     230.5,
+     191.5
     ],
     [
-     239.0,
-     268.5
+     224.8,
+     219.6
     ],
     [
-     242.0,
-     285.8
+     221.8,
+     251.3
     ]
    ]
   },
@@ -129,16 +105,16 @@
    "dash": false,
    "pts": [
     [
-     259.1,
-     188.24
+     249.9,
+     181.5
     ],
     [
-     259.1,
-     204.5
+     251.8,
+     196.3
     ],
     [
-     299.3,
-     206.7
+     305.5,
+     196.5
     ]
    ]
   },
@@ -149,68 +125,180 @@
    "dash": false,
    "pts": [
     [
-     318.0,
-     196.22
+     324.4,
+     177.3
     ],
     [
-     318.0,
-     219.0
+     308,
+     216.1
     ],
     [
-     255.5,
-     218.1
-    ]
-   ]
-  },
-  {
-   "id": "BH",
-   "name": "Bulkhead stub",
-   "color": "#101418",
-   "dash": false,
-   "pts": [
-    [
-     213.1,
-     182.0
-    ],
-    [
-     213.1,
-     152.0
+     249.8,
+     216.1
     ]
    ]
   },
   {
    "id": "N3",
-   "name": "Driver-side sensor branch",
+   "name": "DS-LOWER",
    "color": "#ef6c00",
    "dash": false,
    "pts": [
     [
-     353.0,
-     222.0
+     323.2,
+     180.9
     ],
     [
-     320.3,
-     223.4
+     340.7,
+     197.8
+    ],
+    [
+     349.1,
+     226.2
+    ],
+    [
+     344.2,
+     253.6
+    ],
+    [
+     331,
+     270
     ]
    ]
   },
   {
-   "id": "N19",
-   "name": "Turbo branch",
-   "color": "#6d4c41",
+   "id": "U1",
+   "name": "OIL-T",
+   "color": "#2f7d4a",
    "dash": false,
    "pts": [
     [
-     359.33,
-     239.5
+     154.9,
+     271.5
     ],
     [
-     332.4,
-     239.6
+     163.6,
+     338.7
     ],
     [
-     322.9,
-     256.0
+     237.8,
+     339.7
+    ]
+   ]
+  },
+  {
+   "id": "U2",
+   "name": "WB-CPS-DRP",
+   "color": "#e65100",
+   "dash": false,
+   "pts": [
+    [
+     228.3,
+     254.3
+    ],
+    [
+     221.1,
+     252.4
+    ],
+    [
+     225.5,
+     280
+    ],
+    [
+     252.6,
+     286.1
+    ]
+   ]
+  },
+  {
+   "id": "U5",
+   "name": "DS-IM",
+   "color": "#795548",
+   "dash": false,
+   "pts": [
+    [
+     360.2,
+     164.6
+    ],
+    [
+     342.4,
+     178.4
+    ],
+    [
+     370.1,
+     181
+    ]
+   ]
+  },
+  {
+   "id": "U6",
+   "name": "DS-FUL",
+   "color": "#c2185b",
+   "dash": false,
+   "pts": [
+    [
+     249.5,
+     182.4
+    ],
+    [
+     331.1,
+     161.2
+    ]
+   ]
+  },
+  {
+   "id": "U4",
+   "name": "KNK-CLT-PRS",
+   "color": "#795548",
+   "dash": false,
+   "pts": [
+    [
+     279.5,
+     165.3
+    ],
+    [
+     250.3,
+     181.6
+    ]
+   ]
+  },
+  {
+   "id": "U7",
+   "name": "DS-UPPER",
+   "color": "#c2185b",
+   "dash": false,
+   "pts": [
+    [
+     323.2,
+     178
+    ],
+    [
+     333.1,
+     210.5
+    ],
+    [
+     325.4,
+     231.7
+    ],
+    [
+     312.8,
+     270.3
+    ]
+   ]
+  },
+  {
+   "id": "U3",
+   "name": "GB-VSS",
+   "color": "#00838f",
+   "dash": false,
+   "pts": [
+    [
+     341.9,
+     178.1
+    ],
+    [
+     373.5,
+     212.6
     ]
    ]
   }
@@ -222,8 +310,8 @@
    "name": "Ignition coil 1",
    "group": "Coils",
    "note": "",
-   "x": 255.5,
-   "y": 218.1,
+   "x": 251.6,
+   "y": 224.6,
    "line": "L8",
    "drop": null,
    "short": "Coil 1"
@@ -234,8 +322,8 @@
    "name": "Ignition coil 2",
    "group": "Coils",
    "note": "",
-   "x": 271,
-   "y": 218.6,
+   "x": 269.9,
+   "y": 224,
    "line": "L8",
    "drop": null,
    "short": "Coil 2"
@@ -246,8 +334,8 @@
    "name": "Ignition coil 3",
    "group": "Coils",
    "note": "",
-   "x": 290.4,
-   "y": 218.8,
+   "x": 289.3,
+   "y": 224.2,
    "line": "L8",
    "drop": null,
    "short": "Coil 3"
@@ -258,8 +346,8 @@
    "name": "Ignition coil 4",
    "group": "Coils",
    "note": "",
-   "x": 310.1,
-   "y": 219.1,
+   "x": 306.4,
+   "y": 223.2,
    "line": "L8",
    "drop": null,
    "short": "Coil 4"
@@ -268,11 +356,11 @@
    "n": "14",
    "id": "CAM",
    "name": "Cam sensor",
-   "group": "Coils",
+   "group": "Driver side, upper",
    "note": "",
-   "x": 320.6,
-   "y": 192,
-   "line": "L8",
+   "x": 332.5,
+   "y": 212.5,
+   "line": "U7",
    "drop": null,
    "short": "Cam sensor"
   },
@@ -280,23 +368,23 @@
    "n": "30",
    "id": "CLNT-P",
    "name": "Coolant pressure sensor",
-   "group": "Coils",
-   "note": "",
-   "x": 313.9,
-   "y": 208.4,
-   "line": "L8",
-   "drop": null,
+   "group": "Intake side",
+   "note": "Low-mounted part (Dan's drop 300 mm)",
+   "x": 281.2,
+   "y": 165.9,
+   "line": "U4",
+   "drop": 300,
    "short": "Coolant pressure"
   },
   {
    "n": "7",
    "id": "ETB",
    "name": "Electronic throttle body",
-   "group": "Driver side",
+   "group": "Intake side",
    "note": "",
-   "x": 359.9,
-   "y": 201.9,
-   "line": "L1",
+   "x": 372.5,
+   "y": 180.9,
+   "line": "U5",
    "drop": null,
    "short": "ETB"
   },
@@ -304,11 +392,11 @@
    "n": "13",
    "id": "ECT",
    "name": "Coolant temp sensor",
-   "group": "Driver side",
+   "group": "Driver side, upper",
    "note": "",
-   "x": 325.2,
-   "y": 226.4,
-   "line": "N3",
+   "x": 327.1,
+   "y": 228.5,
+   "line": "U7",
    "drop": null,
    "short": "Coolant temp"
   },
@@ -316,23 +404,23 @@
    "n": "17",
    "id": "STARTER-TRIGGER",
    "name": "Starter solenoid trigger plug",
-   "group": "Driver side",
-   "note": "Low-mounted part",
-   "x": 335.8,
-   "y": 239,
-   "line": "N19",
-   "drop": null,
+   "group": "Driver side, lower",
+   "note": "Low-mounted part (Dan's drop 500 mm)",
+   "x": 332.4,
+   "y": 270,
+   "line": "N3",
+   "drop": 500,
    "short": "Starter trigger"
   },
   {
    "n": "20",
    "id": "OIL-P",
    "name": "Oil pressure sensor",
-   "group": "Driver side",
+   "group": "Driver side, upper",
    "note": "Low-mounted part",
-   "x": 331.7,
-   "y": 220.2,
-   "line": "N3",
+   "x": 320.8,
+   "y": 243.4,
+   "line": "U7",
    "drop": null,
    "short": "Oil pressure"
   },
@@ -340,35 +428,35 @@
    "n": "22",
    "id": "VSS",
    "name": "Gearbox speed sensor",
-   "group": "Driver side",
-   "note": "Low-mounted part",
-   "x": 320.3,
-   "y": 223.4,
-   "line": "N3",
-   "drop": null,
+   "group": "Driver side, lower",
+   "note": "Low-mounted part (Dan's drop 500 mm)",
+   "x": 373.8,
+   "y": 212.1,
+   "line": "U3",
+   "drop": 500,
    "short": "Gearbox speed"
   },
   {
    "n": "23",
    "id": "REV-SW",
    "name": "Reverse light switch",
-   "group": "Driver side",
-   "note": "Low-mounted part",
-   "x": 350.2,
-   "y": 239.8,
-   "line": "N19",
-   "drop": null,
+   "group": "Driver side, lower",
+   "note": "Low-mounted part (Dan's drop 300 mm)",
+   "x": 346.8,
+   "y": 220.5,
+   "line": "N3",
+   "drop": 300,
    "short": "Reverse switch"
   },
   {
    "n": "26",
    "id": "TURBO-SPD",
    "name": "Turbo speed sensor",
-   "group": "Driver side",
+   "group": "Driver side, upper",
    "note": "",
-   "x": 322.9,
-   "y": 256,
-   "line": "N19",
+   "x": 312.6,
+   "y": 269.5,
+   "line": "U7",
    "drop": null,
    "short": "Turbo speed"
   },
@@ -376,11 +464,11 @@
    "n": "27",
    "id": "BOOST-SOL",
    "name": "Boost control solenoid",
-   "group": "Driver side",
+   "group": "Driver side, lower",
    "note": "",
-   "x": 332.4,
-   "y": 239.6,
-   "line": "N19",
+   "x": 346,
+   "y": 244.8,
+   "line": "N3",
    "drop": null,
    "short": "Boost solenoid"
   },
@@ -388,12 +476,12 @@
    "n": "28",
    "id": "CHARGE-IAT",
    "name": "Charge pipe air temp sensor",
-   "group": "Driver side",
-   "note": "",
-   "x": 345.8,
-   "y": 287,
-   "line": "L2",
-   "drop": null,
+   "group": "Driver side, lower",
+   "note": "Low-mounted part (Dan's drop 500 mm)",
+   "x": 347.3,
+   "y": 245.2,
+   "line": "N3",
+   "drop": 500,
    "short": "Charge air temp"
   },
   {
@@ -402,8 +490,8 @@
    "name": "Injector 1",
    "group": "Injectors",
    "note": "",
-   "x": 251.5,
-   "y": 201.2,
+   "x": 254.1,
+   "y": 200.8,
    "line": "L7",
    "drop": null,
    "short": "Injector 1"
@@ -414,8 +502,8 @@
    "name": "Injector 2",
    "group": "Injectors",
    "note": "",
-   "x": 272.7,
-   "y": 207.4,
+   "x": 271.3,
+   "y": 200.9,
    "line": "L7",
    "drop": null,
    "short": "Injector 2"
@@ -426,8 +514,8 @@
    "name": "Injector 3",
    "group": "Injectors",
    "note": "",
-   "x": 285.9,
-   "y": 204.4,
+   "x": 288.6,
+   "y": 200.8,
    "line": "L7",
    "drop": null,
    "short": "Injector 3"
@@ -438,8 +526,8 @@
    "name": "Injector 4",
    "group": "Injectors",
    "note": "",
-   "x": 299.3,
-   "y": 206.7,
+   "x": 305.5,
+   "y": 200.7,
    "line": "L7",
    "drop": null,
    "short": "Injector 4"
@@ -448,12 +536,12 @@
    "n": "19",
    "id": "KNOCK-1",
    "name": "Knock sensor",
-   "group": "Injectors",
-   "note": "Low-mounted part",
-   "x": 261.6,
-   "y": 205.8,
-   "line": "L7",
-   "drop": null,
+   "group": "Intake side",
+   "note": "Low-mounted part (Dan's drop 300 mm)",
+   "x": 280.5,
+   "y": 163.8,
+   "line": "U4",
+   "drop": 300,
    "short": "Knock sensor"
   },
   {
@@ -462,9 +550,9 @@
    "name": "Intake air temp sensor (manifold)",
    "group": "Intake side",
    "note": "",
-   "x": 305.8,
-   "y": 172.8,
-   "line": "L5",
+   "x": 357.9,
+   "y": 165.9,
+   "line": "U5",
    "drop": null,
    "short": "Intake air temp"
   },
@@ -474,9 +562,9 @@
    "name": "MAP sensor",
    "group": "Intake side",
    "note": "",
-   "x": 315.7,
-   "y": 165.6,
-   "line": "L5",
+   "x": 360,
+   "y": 169.3,
+   "line": "U5",
    "drop": null,
    "short": "MAP sensor"
   },
@@ -486,9 +574,9 @@
    "name": "Fuel pressure sensor",
    "group": "Intake side",
    "note": "",
-   "x": 386.9,
-   "y": 159.6,
-   "line": "L5",
+   "x": 332.9,
+   "y": 160.4,
+   "line": "U6",
    "drop": null,
    "short": "Fuel pressure"
   },
@@ -498,9 +586,9 @@
    "name": "Flex fuel sensor",
    "group": "Intake side",
    "note": "",
-   "x": 325.2,
-   "y": 174.6,
-   "line": "L5",
+   "x": 331.2,
+   "y": 160.7,
+   "line": "U6",
    "drop": null,
    "short": "Flex fuel"
   },
@@ -509,11 +597,11 @@
    "id": "CRANK",
    "name": "Crank sensor",
    "group": "Passenger side",
-   "note": "Low-mounted part",
-   "x": 242,
-   "y": 285.8,
-   "line": "L6",
-   "drop": null,
+   "note": "Low-mounted part (Dan's drop 300 mm)",
+   "x": 228.5,
+   "y": 254.4,
+   "line": "U2",
+   "drop": 300,
    "short": "Crank sensor"
   },
   {
@@ -522,9 +610,9 @@
    "name": "CAN-Lambda wideband controller",
    "group": "Passenger side",
    "note": "",
-   "x": 239,
-   "y": 268.5,
-   "line": "L6",
+   "x": 253.6,
+   "y": 287.1,
+   "line": "U2",
    "drop": null,
    "short": "Wideband"
   },
@@ -533,11 +621,11 @@
    "id": "OIL-T",
    "name": "Oil temp sensor",
    "group": "Passenger side",
-   "note": "Low-mounted part",
-   "x": 226.5,
-   "y": 309.4,
-   "line": "L4",
-   "drop": null,
+   "note": "Low-mounted part (Dan's drop 450 mm)",
+   "x": 237.5,
+   "y": 338.4,
+   "line": "U1",
+   "drop": 450,
    "short": "Oil temp"
   },
   {
@@ -546,8 +634,8 @@
    "name": "Power steering pump plug B",
    "group": "Passenger side",
    "note": "",
-   "x": 198.5,
-   "y": 286.5,
+   "x": 178.5,
+   "y": 284.1,
    "line": "L4",
    "drop": null,
    "short": "Steering pump plug B"
@@ -558,8 +646,8 @@
    "name": "Power steering pump plug C",
    "group": "Passenger side",
    "note": "",
-   "x": 204.5,
-   "y": 273.8,
+   "x": 177.2,
+   "y": 289.4,
    "line": "L4",
    "drop": null,
    "short": "Steering pump plug C"
@@ -571,9 +659,9 @@
    "group": "Bulkhead",
    "note": "Where the engine harness comes through the firewall",
    "kind": "handoff",
-   "x": 213.1,
-   "y": 152.0,
-   "line": "BH",
+   "x": 222.2,
+   "y": 175.8,
+   "line": "L1",
    "drop": null,
    "short": "Bulkhead"
   }
@@ -589,7 +677,7 @@
   {
    "id": "REF-H1",
    "label": "Alternator B+",
-   "name": "Alternator B+ stud (heavy cable harness)",
+   "name": "Alternator B+ stud, on the alternator behind the engine, the alternator plug's spot (heavy cable harness)",
    "x": 252,
    "y": 236
   },

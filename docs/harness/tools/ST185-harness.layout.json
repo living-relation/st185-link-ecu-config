@@ -1,5 +1,5 @@
 {
- "_doc": "Physical layout of the ST185-harness drawing set (every harness of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: these segments are its placement-editor layout, approved as is by Dan 2026-11-03, plus the 6 in (152 mm) glove-box breakout GB_T-GB the editor does not draw (Dan T2 a; editor db `layouts/ABcabin` v4, every line length equal to its segment here; OPEN-ITEMS row 180; Routes 5 / 6 were deleted 2026-10-26); AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit: every front device, ending at ground stud EB) and LFP (run 11, driver kick: wiper), riding Route 16 line 1 (the engine harness trunk along the back, intake side, of the block) to the alternator plug drop behind the engine (SW20-style rear mount; Dan 2026-11-12, his EngineRoom-C save: the A/C pressure switch on run 10 by the RH rear corner, no harness C wire on the belt-end drop line 6), its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-01; the EB strap lug GND-EB-2 is the same bolt drawn twice; the block strap hangs on Route 16 line 2 by a link no wire uses); routes redrawn 2026-11-09 (Dan Z10 b: device spots are his, the routes are the agent's)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from the old Routes 1, 2 and 7-15 (2026-10-20; Routes 2-7 and 15 since deleted, each harness gets a placement pass, DECISIONS B8). HeavyDC (Dan B6 b, 2026-11-02): its own Route 1 tree, the segments from the old Route 1 page (trunk battery up the RH sill to the glove box, the RADLOK pair through the RH firewall (FW_STR-RL_ENG, 0 mm), then the starter, alternator, block stud and jump post); its Route 16 ends are marked moved_to in Route 16, so no HeavyDC segment reaches the Route 16 tree (OPEN-ITEMS row 179 loops gone); these segments are its placement-editor layout, approved as is by Dan 2026-11-04 22:32 (editor db `layouts/HeavyDC` v1, `unchangedSeed`: every editor line length equal to its segment here, the glove-box run to ground ID riding the AB-cabin dash segments from GB_T; OPEN-ITEMS row 180); its engine-bay segments are the corridor routes with the jump post on Dan's 2026-11-11 save (`layouts/HeavyDC` v4, seed `HeavyDC-jp-1`): the firewall and LH apron run to the jump post, the starter and block-ground legs off it; its trunk end is Dan's Z4 b save (`layouts/HeavyDC` v5, seed `HeavyDC-z4b-1`): the kill switch and the relay block on the trunk's RH side run (RHSILL-KILLSW-RLYBLK-TRK_RC; kill switch 100 mm forward of the relay block, Dan A1 b 2026-11-12), the battery 135 mm inboard of its rear end (TRK_RC-BATT). RearFuel: its editor layout (seed `RearFuel.json` RearFuel-z4b-1, approved by Dan 2026-11-11 20:23 with no save since the N120 reset; segments = its line lengths): the RH sill run shared with AB-cabin's, the trunk relay block on Dan's Z4 b save (R2) on the trunk's RH side run, the kill switch 100 mm forward of it (Dan A1 b, 2026-11-12; KILLSW-RLYBLK, also the HeavyDC fuel pump feed), the pump feed back to the run's rear end and round the back panel (RLYBLK-TRK_RC-TRK_BP) and forward to the pump plug at the factory floor service hole beside the fuel sender (Dan Z8 b, 2026-11-12), the pump ground back to the back panel and along it to BL; back panel run inside the back wall (Z5 a, x -3135), BL on the back panel centre; AB-cabin's turn (Dan's save 2026-11-12 03:14Z, seed ABcabin-z8-1): the fuel sender leg JB1-TANK on the factory LH floor route to Dan's sender spot; the A/C amplifiers on their factory spots (A15 node ACAMP, A32 node ACAMP32), each branch set so the ECU-to-amp tree length equals its seed route in car mm (the cabin tree's other legacy lengths wait for the one mm model, OPEN-ITEMS Current state step 2). CabinPower's turn (Dan approved its seed CabinPower-z8-1 as is, 2026-11-12): the dash run to J/B No.1 split at the DRL switch branch BP_DRL and the pop-up relay branch BP_R8 (the seed's COL and R8 lines), R8 its own node, so every CabinPower length is its seed route. WheelSpeed-Front / -Rear: the wheel speed editor layout (seed `WheelSpeed.json` WheelSpeed-y2-1, approved by Dan 2026-11-11 with no save; segments = its line lengths, + 300 mm drop at each sensor): conditioners in the console behind the ECU (AB-cabin output plugs on the BP_WS spurs), front cables to the sensor plug at each wheel (Y3 a), rear cables on the factory route across under the dash to the LH kick (IF1) and back along the LH floor, RR crossing under the front edge of the rear seat (Y2 a). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. The AB-engine bulkhead splices SP-GNDOUT-ENG / SP-SW12-ENG are placed at J_BH_ENG_drop (the trunk junction 16 in below the bulkhead), where Dan approved them (N2 a / N4 a, #499; README engine harness rule: splices near the bulkhead, never mid-run). Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
+ "_doc": "Physical layout of the ST185-harness drawing set (every harness of the master in one drawing set) for build_drawings.py: the trunk and branches as a tree, top view (front of the car to the RIGHT, driver side UP; DECISIONS R140 / R153), with segment lengths in mm. Whole-car frame: x -20 (rear bumper) .. 90 (firewall) .. 140 (front bumper), y 0 passenger edge .. 100 driver edge. Lengths come from the approved routes (AB-cabin: these segments are its placement-editor layout, approved as is by Dan 2026-11-03, plus the 6 in (152 mm) glove-box breakout GB_T-GB the editor does not draw (Dan T2 a; editor db `layouts/ABcabin` v4, every line length equal to its segment here; OPEN-ITEMS row 180; Routes 5 / 6 were deleted 2026-10-26); AB-engine: built at run time from Route 16 by `route_trees`, DECISIONS B8: map length x 5.3 mm per EWD point + 300 mm drop for a low part; each bulkhead-to-device path = the master est_length_mm; EngineRoom-C (harness C): built the same way from Route 17, rooted at RFG (run 10, RH fender exit: every front device, ending at ground stud EB) and LFP (run 11, driver kick: wiper), riding Route 16 line 1 (the engine harness trunk along the back, intake side, of the block) to the alternator plug drop behind the engine (SW20-style rear mount; Dan 2026-11-12, his EngineRoom-C save: the A/C pressure switch on run 10 by the RH rear corner, no harness C wire on the belt-end drop line 6), its own copies of those nodes (prefix C_), and ground studs EA / EB on their factory bolts (Dan 2026-11-01; the EB strap lug GND-EB-2 is the same bolt drawn twice; the block strap hangs on Route 16's driver-side lower branch N3 by a link no wire uses (Dan's 2026-11-12 AB-engine save)); routes redrawn 2026-11-09 (Dan Z10 b: device spots are his, the routes are the agent's)) and the old A-cabin / B-cabin bundle lengths (2026-10-19); the other harnesses from the old Routes 1, 2 and 7-15 (2026-10-20; Routes 2-7 and 15 since deleted, each harness gets a placement pass, DECISIONS B8). HeavyDC (Dan B6 b, 2026-11-02): its own Route 1 tree, the segments from the old Route 1 page (trunk battery up the RH sill to the glove box, the RADLOK pair through the RH firewall (FW_STR-RL_ENG, 0 mm), then the starter, alternator, block stud and jump post); its Route 16 ends are marked moved_to in Route 16, so no HeavyDC segment reaches the Route 16 tree (OPEN-ITEMS row 179 loops gone); these segments are its placement-editor layout, approved as is by Dan 2026-11-04 22:32 (editor db `layouts/HeavyDC` v1, `unchangedSeed`: every editor line length equal to its segment here, the glove-box run to ground ID riding the AB-cabin dash segments from GB_T; OPEN-ITEMS row 180); its engine-bay segments are the corridor routes with the jump post on Dan's 2026-11-11 save (`layouts/HeavyDC` v4, seed `HeavyDC-jp-1`): the firewall and LH apron run to the jump post, the starter and block-ground legs off it; its trunk end is Dan's Z4 b save (`layouts/HeavyDC` v5, seed `HeavyDC-z4b-1`): the kill switch and the relay block on the trunk's RH side run (RHSILL-KILLSW-RLYBLK-TRK_RC; kill switch 100 mm forward of the relay block, Dan A1 b 2026-11-12), the battery 135 mm inboard of its rear end (TRK_RC-BATT). RearFuel: its editor layout (seed `RearFuel.json` RearFuel-z4b-1, approved by Dan 2026-11-11 20:23 with no save since the N120 reset; segments = its line lengths): the RH sill run shared with AB-cabin's, the trunk relay block on Dan's Z4 b save (R2) on the trunk's RH side run, the kill switch 100 mm forward of it (Dan A1 b, 2026-11-12; KILLSW-RLYBLK, also the HeavyDC fuel pump feed), the pump feed back to the run's rear end and round the back panel (RLYBLK-TRK_RC-TRK_BP) and forward to the pump plug at the factory floor service hole beside the fuel sender (Dan Z8 b, 2026-11-12), the pump ground back to the back panel and along it to BL; back panel run inside the back wall (Z5 a, x -3135), BL on the back panel centre; AB-cabin's turn (Dan's save 2026-11-12 03:14Z, seed ABcabin-z8-1): the fuel sender leg JB1-TANK on the factory LH floor route to Dan's sender spot; the A/C amplifiers on their factory spots (A15 node ACAMP, A32 node ACAMP32), each branch set so the ECU-to-amp tree length equals its seed route in car mm (the cabin tree's other legacy lengths wait for the one mm model, OPEN-ITEMS Current state step 2). CabinPower's turn (Dan approved its seed CabinPower-z8-1 as is, 2026-11-12): the dash run to J/B No.1 split at the DRL switch branch BP_DRL and the pop-up relay branch BP_R8 (the seed's COL and R8 lines), R8 its own node, so every CabinPower length is its seed route. WheelSpeed-Front / -Rear: the wheel speed editor layout (seed `WheelSpeed.json` WheelSpeed-y2-1, approved by Dan 2026-11-11 with no save; segments = its line lengths, + 300 mm drop at each sensor): conditioners in the console behind the ECU (AB-cabin output plugs on the BP_WS spurs), front cables to the sensor plug at each wheel (Y3 a), rear cables on the factory route across under the dash to the LH kick (IF1) and back along the LH floor, RR crossing under the front edge of the rear seat (Y2 a). Each harness is its own bundle and the layout must stay a tree, so a place reached two ways is drawn twice (the starter: S post on the engine tree, through bulkhead cavity 3, B+ stud on the heavy-cable tree); they are estimates until measured at the car (OPEN-ITEMS row 143). Positions (`xy`, a 0-100 frame: x toward the front, y toward the driver side) are drawing positions only, not to scale; `short` is the name drawn on the sheet. The AB-engine bulkhead splices SP-GNDOUT-ENG / SP-SW12-ENG are placed at J_BH_ENG_drop (the trunk junction 16 in below the bulkhead), where Dan approved them (N2 a / N4 a, #499; README engine harness rule: splices near the bulkhead, never mid-run). Every wire end of the wire list is placed on a node by `place` (the master end ID) or `place_oem` (text in the factory end's name); build_drawings.py --check fails on an end it cannot place. `lab` (left / below / above) moves a node name off its segments.",
  "nodes": {
   "ECU": {
    "xy": [
@@ -451,10 +451,10 @@
   },
   "ALT_B": {
    "xy": [
-    106,
-    26
+    116.6,
+    37.3
    ],
-   "label": "Alternator B+ stud, rear RH of the engine (Route 1 point 3)",
+   "label": "Alternator B+ stud, on the alternator behind the engine under the intake (SW20-style rear mount), the alternator plug's spot, EWD point (252, 236) = car mm (231.7, 183.7) (Dan A4 b, 2026-11-12); its cable runs back along the intake side of the block, round the transaxle end and joins the block-ground leg to the jump post",
    "end": true,
    "short": "Alternator B+ stud",
    "lab": "below"
@@ -640,6 +640,14 @@
    "label": "RealDash Pi branch on the console run, car mm (-860, -92.8), 183 mm back from the ECU: the Pi and cowl plug II1 sit 53 mm toward the driver side (Dash seed CON line, approved by Dan 2026-11-12)",
    "short": "Pi branch point",
    "lab": "left"
+  },
+  "BLK_J": {
+   "xy": [
+    127,
+    72
+   ],
+   "label": "Corner of the jump post to engine block ground leg, where the alternator B+ cable joins it (A4 b, 2026-11-12)",
+   "short": ""
   }
  },
  "segments": [
@@ -850,8 +858,13 @@
   ],
   [
    "JUMP",
+   "BLK_J",
+   127
+  ],
+  [
+   "BLK_J",
    "ENG_BLOCK",
-   134
+   7
   ],
   [
    "RL_ENG",
@@ -859,9 +872,9 @@
    1620
   ],
   [
+   "BLK_J",
    "ALT_B",
-   "RL_ENG",
-   300
+   1225
   ],
   [
    "JUMP",
@@ -1007,7 +1020,7 @@
     "L6": "RH",
     "L1": "RH",
     "FH1": "L1",
-    "FEB": "N19",
+    "FEB": "N3",
     "SBG": "FEB",
     "F24": "10",
     "SMA": "F24"

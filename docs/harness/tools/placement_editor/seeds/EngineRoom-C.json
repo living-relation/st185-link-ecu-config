@@ -1,8 +1,8 @@
 {
  "harness": "EngineRoom-C",
  "doc": "layouts/harnessC",
- "seedVersion": "EngineRoomC-alt-1",
- "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The front run joins the engine harness trunk start straight across the RH rear corner of the bay, a factory path inside corridor 11 (Dan Z1 a, 2026-11-11; no V, no double-back). Dan's 2026-11-12 save (layouts/harnessC v9): the A/C pressure switch on his new spot by the RH rear corner, on the front run. The alternator is on the SW20-style rear mount behind the engine (Hux Racing bracket), so its three wires ride the engine harness trunk along the back (intake side) of the block and drop straight down behind the block to the alternator plug; the grey dashed belt-end drop is the engine harness's own line down the timing belt end (crank sensor, wideband), shown for context only: no harness C wire rides it.",
+ "seedVersion": "EngineRoomC-a4b-1",
+ "note": "Routes drawn by Claude (Dan Z10 b, 2026-11-09; they follow Dan's 2026-11-10 engine harness routes): move devices only. Device spots are Dan's 2026-11-01 placement (layouts/harnessC_route17_restore). Grey cabin markers and dashed cabin legs (Dan X7 a, 2026-11-11): the cabin ends sit on their AB-cabin / CabinPower spots, turned into this map at 5.3 mm per point. Engine block ground stud on the factory strap bolt at the LH engine mounting stay (Dan Y1 a, 2026-11-11). Main trunks redrawn into the approved wireway corridors (Dan 2026-11-11 12:19, DECISIONS B8 \"Wireway corridors\", corridors.json); device spots unchanged. The front run joins the engine harness trunk start straight across the RH rear corner of the bay, a factory path inside corridor 11 (Dan Z1 a, 2026-11-11; no V, no double-back). Dan's 2026-11-12 save (layouts/harnessC v9): the A/C pressure switch on his new spot by the RH rear corner, on the front run. The alternator is on the SW20-style rear mount behind the engine (Hux Racing bracket), so its three wires ride the engine harness trunk along the back (intake side) of the block and drop straight down behind the block to the alternator plug; the grey dashed belt-end drop is the engine harness's own line down the timing belt end (crank sensor, wideband), shown for context only: no harness C wire rides it. Dan's 2026-11-12 AB-engine save (layouts/route16 v23): the front run meets the new engine harness trunk start, the alternator drop starts on the new trunk, and the grey dashed engine harness lines are his new belt-end drop and crank / wideband branch; no harness C device moved.",
  "warnMm": 300,
  "unitMm": 5.3,
  "noTurn": true,
@@ -78,8 +78,8 @@
      165.0
     ],
     [
-     224.2,
-     180.0
+     225.2,
+     176.8
     ]
    ]
   },
@@ -91,28 +91,32 @@
    "dash": true,
    "pts": [
     [
-     224.2,
-     180.0
+     225.2,
+     176.8
+    ],
+    [
+     250,
+     181.7
     ],
     [
      252,
-     180.4
+     181.5
     ]
    ]
   },
   {
    "id": "L6",
-   "name": "AB-engine belt-end run (timing belt end): the engine harness's own line to the crank sensor and wideband; no harness C wire rides it",
+   "name": "AB-engine belt-end drop (timing belt end): the engine harness's own line; no harness C wire rides it",
    "color": "#8a94a0",
    "dash": true,
    "pts": [
     [
-     224.2,
-     180
+     223.6,
+     177.9
     ],
     [
-     235,
-     201.2
+     230.5,
+     191.5
     ],
     [
      224.8,
@@ -121,17 +125,29 @@
     [
      221.8,
      251.3
-    ],
-    [
-     234.5,
-     252.9
-    ],
-    [
-     248.3,
-     272.9
     ]
    ],
    "short": "AB-engine belt-end run (timing belt end)"
+  },
+  {
+   "id": "U2",
+   "name": "AB-engine crank sensor and wideband branch (engine harness's own line)",
+   "color": "#8a94a0",
+   "dash": true,
+   "pts": [
+    [
+     221.1,
+     252.4
+    ],
+    [
+     225.5,
+     280
+    ],
+    [
+     252.6,
+     286.1
+    ]
+   ]
   },
   {
    "id": "FH1",
@@ -141,7 +157,7 @@
    "pts": [
     [
      252,
-     180.4
+     181.5
     ],
     [
      252,
