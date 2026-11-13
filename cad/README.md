@@ -58,7 +58,7 @@ Always shown together, as one package (DECISIONS R84). Every member must be a mo
 | VRC enclosure | `enclosures/vrc/trimetric.png` | 2 | `model:enclosure-vrc` |
 | CSB3 enclosure | `enclosures/csb3/trimetric.png` | 1 | `model:enclosure-csb3` |
 
-**Frozen fuse-box inputs:** `fusebox/frozen-inputs/*.harness` + `full_text.json` are frozen snapshots of the harness files the rev 6 / 7 fuse-box model was built from (old harness and wire names). Since rev 8 nothing reads them: `fusebox/src/wiring_sim.py` reads the master (Dan A19 a, 2026-11-12); deleting them waits for Dan's yes (OPEN-ITEMS Needs Dan).
+**Frozen fuse-box inputs:** deleted 2026-11-13 (Dan A31 a): the rev 6 / 7 snapshots of the old harness files in `fusebox/frozen-inputs/` are in git history; since rev 8 `fusebox/src/wiring_sim.py` reads the master (A19 a).
 
 **Package renders** (every member together, `cad/render_trimetric.py`): `fusebox/rev7/package-rev7.png` (the selected set above); `fusebox/package-rev6.png` is the superseded rev 6 set (separate B rev3 bus bar + rev 6 POWER box), kept for comparison. Dan picked rev 7 on 2026-10-14 (P7 = A, DECISIONS R91); the universal bar U stays out (U1 = A).
 

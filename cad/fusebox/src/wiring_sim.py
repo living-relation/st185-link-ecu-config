@@ -16,7 +16,8 @@ import spec as S
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 # Inputs (Dan A19 a, 2026-11-12): the ONE wire list, docs/harness/MASTER-wirelist.csv, for every harness wire that ends at a box; the box
 # seats (which relay sits where) from sot/fuse-relay-map.csv; the box insides from spec.BOX_WIRES (Dan R1 a: the model owns them).
-# Until rev 8 the plan was read from frozen copies of the retired harness files (cad/fusebox/frozen-inputs), which lagged the master.
+# Until rev 8 the plan was read from frozen copies of the retired harness files (cad/fusebox/frozen-inputs, deleted 2026-11-13, Dan A31 a;
+# git history keeps them), which lagged the master.
 MASTER = os.path.join(REPO, 'docs', 'harness', 'MASTER-wirelist.csv')
 SEATS = os.path.join(REPO, 'sot', 'fuse-relay-map.csv')
 REV_DIR = os.path.join(REPO, 'cad', 'fusebox', 'rev%d' % S.REV)
