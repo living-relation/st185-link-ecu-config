@@ -30,7 +30,7 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
   M1  every DRB102 cavity and inline-pair cavity wired on one half is wired on the other
   M2  DRB102 contacts: size 16 cavities take 16-20 AWG, size 12 take 12-14 AWG, size 8 / 4 stay spare (TE drawing
       DRB12-102PXE-L018 rev C3); a contact the maker does not list for the housing fails (MAKER_CONTACTS)
-  P1  a fuse-box end exists in the fuse-box design (cad/fusebox/rev7/wiring_plan.json, R204) with the same gauge; a POWER /
+  P1  a fuse-box end exists in the fuse-box design (cad/fusebox/rev8/wiring_plan.json, R204) with the same gauge; a POWER /
       LOGIC box ring terminal (T-PWR-* / T-LOG-*, "<bar or fuse>, <stud> stud", on a stud with several rings ending
       ", ring <n> of <m>", Dan N64 a, 2026-11-08) names a stud of the box design
       (cad/fusebox/src/spec.py REV7 neg_studs / pos_studs, AMI_ROWS, FEEDS): a 1/0 stud takes one 1/0 lug, the small GND stud
@@ -63,7 +63,7 @@ HARNESS = os.path.dirname(HERE)
 REPO = os.path.dirname(os.path.dirname(HARNESS))
 MASTER = os.path.join(HARNESS, "MASTER-wirelist.csv")
 CHANNELS = os.path.join(REPO, "sot", "channels.csv")
-PLAN = os.path.join(REPO, "cad", "fusebox", "rev7", "wiring_plan.json")
+PLAN = os.path.join(REPO, "cad", "fusebox", "rev8", "wiring_plan.json")
 PARTS = os.path.join(REPO, "docs", "sourcing", "harness-parts.csv")   # maker, description (AWG range) per part
 IO_TABLE = os.path.join(REPO, "XTREMEX-IO-TABLE.html")
 ROUTES = os.path.join(HARNESS, "routes")

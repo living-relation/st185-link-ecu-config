@@ -708,6 +708,14 @@ TERM_DEFAULT = {'fuse in': ('1-968851-1', 14), 'fuse out': ('1-968851-1', 14), '
                 'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('280919-2', 18), 'micro 85': ('280919-2', 18),
                 'micro 86': ('280919-2', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
+# The Mini ISO seat (RELAY_B pos, POWER R1) has 6.3 blades, not the F7's 9.5: a spare cavity there takes the 6.3 receptacles it was built for
+# (rev 7 heater relay: 62998-2 on 30 / 87, 10-8 AWG; 42281-1 on the coil). Rev 8: R1 is vacant (A16 a), its cavities and retainer clip stay.
+TERM_DEFAULT_B = {'F7 30': ('62998-2', 8), 'F7 87': ('62998-2', 8), 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
+# Rev 8 spare cavities that keep the cavity rev 7 cut for them (S3: spots unchanged): the BUS2-12 own-input seat is a 20-18 AWG seat
+# (sot/fuse-relay-map.csv), and the vacant R1's 87a stays cut (its web to 85 / 86 is the relay cavity web exemption; without the cavity
+# the PA12 left there is under 2.0, check_printed_solid S4).
+TERM_DEFAULT_CAV = {('LOGIC', 'BUS2-12'): ('1-968849-1', 18), ('LOGIC', 'BUS2-12 IN'): ('1-968849-1', 18)}
+KEEP_CUT = {('POWER', 'R1 87a')}
 FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on solid material than this is floating (Dan's marks: 5-15 %; the rest >= 76 %)
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
 
@@ -1051,3 +1059,104 @@ def real_zones(part, kind, side=1):
         win = to_box(-u_bx, u_bx, bl - yb - c - o, max(bh, wh) - yb + c)
     return out + [(-R_['neck'], -tip) + box_, (-tip, 0.0) + win]
 
+
+
+# ---------- rev 8 (Dan A15 b, 2026-11-12: "do the whole rev 8 now, including Fusion"; DECISIONS "Fuse box rev 8"). The boxes follow the
+# harnesses (B27): every rating, name and seat below is the one in sot/fuse-relay-map.csv and the master. The copper and the number of
+# spots are frozen (S3): the bars, strips, straps and every cavity stay where rev 7 has them; only names, ratings, which seats carry a
+# relay, the box insides (BOX_WIRES) and the GND stud rings change. Vacant seats stay as empty spares (A16 a): their cavities stay cut,
+# no relay, no fuse, no terminal is bought for them. use_rev(rev) puts these values in place (build_fusion.build(rev=8) and every
+# rev 8 script call it); the module loads with CURRENT_REV.
+CURRENT_REV = 8
+REV8 = dict(
+    MINI_COLS={
+        'BUS1': (MINI_COLS['BUS1'][0], [('EFI86', 5), ('HL', 15), ('HR', 15), ('HZ', 15), ('DOME', 20), ('LAM', 10), ('ALM', 5),
+                                         ('ALMS', 2), ('ALTS', 2), ('ETB', 7.5), ('SP', None), ('SP', None)]),          # row 148: LAM 10 A at BUS1-6
+        'BUS2': (MINI_COLS['BUS2'][0], [('DRL', 7.5), ('SW12', 5), ('COP', 10), ('INJ', 7.5), ('CSB', 5), ('DEV', 5), ('EPSEN', 5),
+                                         ('ACC', 10), ('ALMIG', 2), ('SP', None), ('SP', None), ('SP', None), ('B30', 2)]),  # BUS2-12 empty (own-input seat kept)
+    },
+    # LOGIC micro seats M1-M10 (col 0 rows 0-4 = M1-M5, col 1 = M6-M10), sot/fuse-relay-map.csv bank B2
+    MICRO_POS=[('K-HL', '5-1393292-8', 'OWN'), ('K-HR', '5-1393292-8', 'OWN'), ('K-HORN', '4-1904124-3', 'OWN'),
+               ('K-ETB', '4-1904124-2', 'OWN'), ('K-ACC', '6-1419137-4', 'OWN'), ('K-EPS-EN', '6-1419137-4', 'OWN'),
+               ('K-ON', '6-1419137-4', 'BUY'), ('K-DRL', '4-1904124-2', 'OWN'), ('SPARE', None, None), ('K-POD', '4-1904124-3', 'OWN')],
+    # POWER relay seats R1-R6 (bank B1): R1 (was heater), R3 (was start) and R6 (was windows) are vacant (A16 a)
+    RELAY_PN={'heater': (None, None), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': (None, None), 'k_fan': ('1-1414147-0', 'OWN'),
+              'k_fan2': ('1-1393304-0', 'OWN'), 'power': (None, None), 'SPARE': (None, None)},
+    F7_POS=[('k_efi', '1-1414147-0', 'OWN'), ('SPARE', None, None), ('k_fan', '1-1414147-0', 'OWN'),
+            ('k_fan2', '1-1393304-0', 'OWN'), ('SPARE', None, None), ('SPARE', None, None),
+            ('SPARE', None, None), ('ACPS', None, None)],
+    AMI_ROWS={
+        'IN':  [('HTR', 40), ('EFI', 30), ('SP', None), ('FAN', 30), ('FAN2', 30), ('SP', None), ('SP', None), ('SP', None)],   # A17 a: FAN 30 A
+        'OUT': [('BUS1', 50), ('RTR', 30), ('AM1', 40), ('AM2', 30), ('JB1', 60), ('EPS', 50), ('SP', None), ('SP', None)],  # A18 a: EPS 50 A
+    },
+    ACPS=('ACPS', None),                     # vacant seat (A16 a): A5 pin 1 is fed by the kept R/B No.4 10 A A/C fuse
+    # AMI IN-1 (40 A HTR) no longer feeds a box relay: its 8 AWG harness wire w_rb4_feed (ring Klauke 2R5) runs straight out of the box to
+    # factory R/B No.4 (HEATER fuse pin 1). It leaves through the inboard end at its own fuse line, where the R1 heater tails left in rev 7.
+    IN_OUT={'HTR': 'w_rb4_feed'},
+    # the FAN / FAN2 feeds are 10 AWG (BOX_WIRES): the relay end is a 280756-4 (TE: 12-10 AWG); rev 6 / 7 drew 8 AWG there
+    AMI_AWG=dict(AMI_AWG, FAN=10, FAN2=10),
+    OUT_SMALL={'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'B30', 'DRL', 'SW12', 'INJ', 'DEV', 'ETB'},
+)
+# The small GND stud on the NEG bar (Dan N60 a / N68 a / N103): ring 1 w66 (10 AWG, Panduit PV10-56R), ring 2 the K-ON coil 85 ground (box
+# inside, 20 AWG, TE 320572), ring 3 w_cabin_gnd (10 AWG, PV10-56R). PV10-56R: W 13.21 mm (Panduit drawing A41187, the widest of the three;
+# TE 320572 is 11.91). N68 a: on this stud the rule is "ring eyes do not overlap" (one ground node); the 1/0 lugs keep neg_lug_gap.
+REV8_REV7 = dict(small_ring_b=13.21, small_awg=(10, 10, 20), small_rings=(('w66', 'PV10-56R', 10), ('w_k_on_85_cp', '320572', 20),
+                                                                         ('w_cabin_gnd', 'PV10-56R', 10)))
+CHANNEL8 = dict(z=dict(ETB=20.18, HR=24.16, ON=28.86), key={'w_fb_k_etb_30_cp': 'ETB', 'w_hr_cp': 'HR', 'w_fb_k_on_30_cp': 'ON'})
+# A20 (Dan 2026-11-12: "do what you think is best"; chose a, the rev 7 sp_hl precedent): one wire per fuse terminal; where one fuse feeds two or
+# more relay pins inside the LOGIC box its output wire (sized for the full fuse) runs to an in-box solder splice under the deck, in the corridor
+# between the Bus 2 outputs and micro relay column 1, and short legs run on to each pin (sized for the pin, protected by the same fuse, B12).
+# Splice: est. solder joint + adhesive-lined heat shrink over (as the rev 7 channel splices, CHANNEL['splice'] od / L).
+SPLICES8 = {
+    'sp_drl12': dict(x=MICRO_COLS[0] + MICRO_PINS['86'][0] + 4.8, y0=95.0, z=32.0, od=4.5, L=12.5,     # between micro columns 0 and 1
+                     feed='w_drl_cp', legs=('w_drl_30_cp', 'w_drl_86_cp', 'w_pod_86_cp')),
+    'sp_acc12': dict(x=(MINI_COLS['BUS2'][0] + MINI_BLADE_X + MICRO_COLS[0] + MICRO_PINS['85'][0]) / 2, y0=66.0, z=27.0, od=4.5, L=12.5,
+                     feed='w_acc_fuse', legs=('w_fb_k_acc_30_cp', 'w_acc86')),
+}
+# Box insides (Dan R1 a, 2026-11-09: "the box insides are modeled in the model only"): every wire with both ends inside a box (or box to
+# box), from sot/fuse-relay-map.csv and docs/harness/README.md (the dagger rows). (wire, AWG, colour, end a, end b); end = (plan id, cavity,
+# designation, terminal part). B12: a fuse output wire takes the full fuse; TXL in the cabin (B20): 18 AWG 8.8 A, 16 AWG ~12 A, 14 AWG 17.6 A.
+BOX_WIRES = [
+    ('w_hc_fb', 8, 'Red', ('fb_power', 'out1', 'AMI OUT-1', 'Klauke 2R5'), ('fb_logic', 'b1', 'BUS1', 'Klauke 2R5')),
+    ('w77_cp', 10, 'Red', ('k_efi', 'c1', '30', '280756-4'), ('fb_logic', 'b2', 'BUS2', 'Klauke 2R5')),
+    ('w_fb_k_efi_87_cp', 12, 'Red', ('fb_power', 'in2', 'AMI IN-2', 'TE 36161'), ('k_efi', 'c4', '87', '280756-4')),
+    ('w_fb_k_fan_87_cp', 10, 'Red', ('fb_power', 'in4', 'AMI IN-4', 'Klauke 2R5'), ('k_fan', 'c4', '87', '280756-4')),
+    ('w_fb_k_fan2_87_ac', 10, 'Red', ('fb_power', 'in5', 'AMI IN-5', 'Klauke 2R5'), ('k_fan2', 'c4', '87', '280756-4')),
+    ('w_k_efi_86_cp', 18, 'Red', ('fb_logic', 'efi86', 'BUS1-1', '1-968849-1'), ('k_efi', 'c3', '86', '42281-1')),
+    ('w_k_on_85_cp', 20, 'Black', ('k_on', 'c2', '85', '280919-2'), ('pdb', 'NEG-GND-2', 'GND', 'TE 320572')),   # ring 2 of 3 on the GND stud
+    ('w_hr_cp', 14, 'Red', ('fb_logic', 'hr', 'BUS1-3', '1-968851-1'), ('k_hr', 'c1', '30', '42281-1')),
+    ('w_fb_k_etb_30_cp', 16, 'Red', ('fb_logic', 'etb', 'BUS1-10', '1-968851-1'), ('k_etb', 'c1', '30', '42281-1')),
+    ('w_fb_k_on_30_cp', 14, 'Red', ('fb_logic', 'lam', 'BUS1-6', '1-968851-1'), ('k_on', 'c1', '30', '42281-1')),
+    ('w_fb_k_eps_en_30_cp', 18, 'Red', ('fb_logic', 'epsen', 'BUS2-7', '1-968849-1'), ('k_eps_en', 'c1', '30', '42281-1')),
+    ('w_drl_cp', 18, 'Red', ('fb_logic', 'drl', 'BUS2-1', '1-968849-1'), ('sp_drl12', 'Splice', '', None)),
+    ('w_drl_30_cp', 18, 'Red', ('sp_drl12', 'Splice', '', None), ('k_drl', 'c1', '30', '42281-1')),
+    ('w_drl_86_cp', 18, 'Red', ('sp_drl12', 'Splice', '', None), ('k_drl', 'c3', '86', '280919-2')),
+    ('w_pod_86_cp', 18, 'Red', ('sp_drl12', 'Splice', '', None), ('k_pod', 'c3', '86', '280919-2')),
+    ('w_acc_fuse', 16, 'Red', ('fb_logic', 'acc', 'BUS2-8', '1-968851-1'), ('sp_acc12', 'Splice', '', None)),
+    ('w_fb_k_acc_30_cp', 16, 'Red', ('sp_acc12', 'Splice', '', None), ('k_acc', 'c1', '30', '42281-1')),
+    ('w_acc86', 16, 'Red', ('sp_acc12', 'Splice', '', None), ('k_acc', 'c3', '86', '280919-2')),
+    ('w_fp_30', 10, 'Red', ('fb_batt', 'fp', 'FP 40A', 'Klauke 2R5'), ('k_fp', 'c1', '30', 'Klauke 1R6')),
+]
+
+_BASE = {}
+
+
+def use_rev(rev):
+    """Put the values of one rev in place: rev 8 = REV8 (+ REV8_REV7 into REV7), rev 6 / 7 = the values above (as they were built)."""
+    g = globals()
+    if not _BASE:
+        _BASE.update({k: g[k] for k in REV8})
+        _BASE['REV7'] = dict(g['REV7'])
+        _BASE['CHANNEL_SPLICES'] = g['CHANNEL_SPLICES']
+    for k in REV8:
+        g[k] = REV8[k] if rev >= 8 else _BASE[k]
+    g['REV7'].clear()
+    g['REV7'].update(_BASE['REV7'])
+    if rev >= 8:
+        g['REV7'].update(REV8_REV7)
+    g['CHANNEL_SPLICES'] = tuple(SPLICES8) if rev >= 8 else _BASE['CHANNEL_SPLICES']
+    g['REV'] = rev
+
+
+IN_OUT = {}
+use_rev(CURRENT_REV)

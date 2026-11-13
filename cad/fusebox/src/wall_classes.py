@@ -122,7 +122,7 @@ def flag_lines(parts, report=None, features=None):
 
 
 def write_flags_md(path, parts, report=None):
-    """cad/fusebox/rev7/WALL-FLAGS.md: the flag list Dan reads (written by check_printed_walls.py, checked by check_printed_solid.py)."""
+    """cad/fusebox/rev8/WALL-FLAGS.md: the flag list Dan reads (written by check_printed_walls.py, checked by check_printed_solid.py)."""
     ls = flag_lines(parts, report)
     with open(path, 'w', encoding='utf-8', newline='\n') as f:
         f.write('# Printed fuse box walls - flagged for Dan (R151)\n\n')

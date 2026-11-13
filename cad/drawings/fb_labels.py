@@ -1,13 +1,12 @@
 """Fuse box label data for the assembly drawings (DECISIONS R189 / R190), from the source-of-truth chain, never invented:
   - fuse and relay names: cad/fusebox/src/spec.py (MINI_COLS fuse positions, MICRO_POS micro relay positions)
-  - what each one serves and every harness wire that lands in the box: cad/fusebox/rev7/wiring_plan.json (wiring_sim.py, read from
-    the frozen cad/fusebox/frozen-inputs/*.harness files) for the cavity and the far end; the far end's printed name is the SHORT name the harness
-    drawing shows (the .harness file itself: a terminal / splice `label`, or a connector's label + cavity designation + signal; R124 /
-    R156), so the drawing says what the harness drawing says.
+  - what each one serves and every harness wire that lands in the box: cad/fusebox/rev8/wiring_plan.json (wiring_sim.py, read from
+    docs/harness/MASTER-wirelist.csv since rev 8, Dan A19 a) for the cavity and the far end; the far end's printed name is the master's name
+    of that end + its pin (B22: each wire end says where it lands), so the drawing says what the wire list says. A box inside (spec.BOX_WIRES)
+    names the box seat it runs to.
 The LOGIC box sits at the assembly origin (box-local = assembly mm, checked 2026-10-18: every fuse and relay solid of
 ST185_fusebox_rev7_assembly.step is at its spec.py position). The battery relay block lugs are matched to their wire by position.
 Claude Code, 2026-10-18."""
-import glob
 import json
 import os
 import sys
@@ -17,53 +16,37 @@ REPO = os.path.normpath(os.path.join(HERE, '..', '..'))
 sys.path.insert(0, os.path.join(REPO, 'cad', 'fusebox', 'src'))
 import spec as S  # noqa: E402
 
-PLAN = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_plan.json')
-# Inputs: frozen copies of the retired docs/harness/rebuild/*.harness files, restored 2026-10-20 (Dan); they may lag
-# docs/harness/MASTER-wirelist.csv.
-REB = os.path.join(REPO, 'cad', 'fusebox', 'frozen-inputs')
+PLAN = os.path.join(REPO, 'cad', 'fusebox', 'rev%d' % S.REV, 'wiring_plan.json')
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn'}
 PIN = {'c1': '30', 'c2': '85', 'c3': '86', 'c4': '87', 'c5': '87a'}
+BOX_END = {'fb_logic': 'LOGIC', 'fb_power': 'POWER', 'fb_batt': 'Trunk relay block', 'pdb': 'POWER NEG bar'}
 
 
-def _harness_names():
-    """(drawing, id) -> short printed name of every terminal / splice / connector cavity in the harness drawings (an id can be in two
-    drawings - each side of a broken-off wire - so names are kept per drawing)."""
-    out = {}
-    for fn in sorted(glob.glob(os.path.join(REB, '*.harness'))):
-        d = json.load(open(fn, encoding='utf-8'))
-        f = os.path.basename(fn)[6:-8]
-        for t in d.get('terminals', []) + d.get('splices', []):
-            if t.get('label'):
-                out[(f, t['id'])] = t['label']
-        for c in d.get('connectors', []):
-            nm = c.get('label') or c.get('name') or c['id']
-            for cv in c.get('cavities', []):
-                txt = nm + ' ' + (cv.get('designation') or cv['id'])
-                if cv.get('signal'):
-                    txt += ' - ' + cv['signal']
-                out[(f, c['id'], cv['id'])] = txt
-    return out
-
-
-def _far(w, e, names):
+def _far(w, e, names=None):
     o = [x for x in w['ends'] if x is not e]
     if not o:
         return None
     o = o[0]
-    f = w['file']
-    return names.get((f, o['id'], o['cav'])) or names.get((f, o['id'])) or (o.get('des') or o['id'])
+    if o.get('name'):                                     # a master end: its name + pin
+        pin = o.get('cav') or ''
+        return o['name'] + (' ' + pin if pin and pin not in o['name'] else '')
+    if o['id'].startswith('k_'):
+        return '%s %s' % (o['id'].upper().replace('_', '-'), PIN.get(o['cav'], o['cav']))
+    if o['id'].startswith('sp_'):
+        return 'in-box splice %s' % o['id'].upper().replace('_', '-')
+    return '%s %s' % (BOX_END.get(o['id'], o['id']), o.get('des') or o.get('cav') or '')
 
 
 def _wires(box):
     plan = json.load(open(PLAN, encoding='utf-8'))
-    names = _harness_names()
+    names = None
     rows = []
     for w in plan['wires']:
         for e in w['ends']:
             if e['box'] != box or e['id'].startswith('sp_'):
                 continue        # a splice in the front channel is part of the harness, not a box connection point
             far = _far(w, e, names)
-            rows.append(dict(id=e['id'], cav=e['cav'], des=e['des'], at=e.get('at'), far=far, wire=w['wire'], file=w['file']))
+            rows.append(dict(id=e['id'], cav=e['cav'], des=e['des'], at=e.get('at'), far=far, wire=w['wire'], file=w['file'], stud=e.get('stud')))
     return rows
 
 
@@ -75,7 +58,7 @@ def _relay_pos():
             nm, pn, _ = S.MICRO_POS[k]
             k += 1
             if pn:
-                out[RELAY_NAMES.get(nm, nm)] = (cx, cy)
+                out[nm.lower().replace('-', '_') if nm.startswith('K-') else RELAY_NAMES.get(nm, nm)] = (cx, cy)
     return out
 
 
@@ -99,8 +82,11 @@ def logic_fuse_labels(fuse_items, z=60.0):
 def logic_relay_labels(relay_item, z=72.0):
     rp = _relay_pos()
     serves = {'k_hl': 'HEAD LH', 'k_hr': 'HEAD RH', 'k_horn': 'HORN', 'k_etb': 'ETB POWER', 'k_acc': 'A/C CLUTCH',
-              'k_eps_en': 'EPS ENABLE', 'k_rev': 'REVERSE LAMPS'}       # spec.MICRO_POS names, spelled out
-    return [dict(item=relay_item, at=(x, y, z), text='%s (%s)' % (rid, serves.get(rid, rid))) for rid, (x, y) in rp.items()]
+              'k_eps_en': 'EPS ENABLE', 'k_rev': 'REVERSE LAMPS', 'k_on': 'ON-ONLY FEED (CAN-LAMBDA)', 'k_drl': 'DRL', 'k_pod': 'POP-UP KEY-ON'}
+    if S.REV >= 8:      # rev 8 (sot/fuse-relay-map.csv): K-HL = low beams, K-HR = high beams, both lamps
+        serves.update(k_hl='LOW BEAMS', k_hr='HIGH BEAMS')
+    up = (lambda r_: r_.upper().replace('_', '-')) if S.REV >= 8 else (lambda r_: r_)
+    return [dict(item=relay_item, at=(x, y, z), text='%s (%s)' % (up(rid), serves.get(rid, rid))) for rid, (x, y) in rp.items()]
 
 
 def logic_wire_labels(term_item_for, z=40.0, kind=None):
@@ -137,13 +123,12 @@ BATT_POINTS = {   # battery relay block connection points in the assembly (lug /
 
 
 def batt_wire_labels(lug_item, plug_item):
-    names = _harness_names()
     out = []
     for r in _wires('BATT'):
         p = BATT_POINTS.get((r['id'], r['cav']))
         if not p:
             continue
-        here = names.get((r['file'], r['id'], r['cav'])) if r['id'] == 'fb_batt' else 'k_fp %s' % PIN.get(r['cav'], r['cav'])
+        here = ('Trunk relay block %s' % r['des']) if r['id'] == 'fb_batt' else 'K-FP %s' % PIN.get(r['cav'], r['cav'])
         out.append(dict(item=plug_item if r['cav'] in ('c2', 'c3') else lug_item, at=p, text='%s > %s' % (here, r['far'])))
     return out
 
@@ -157,6 +142,12 @@ POWER_SERVES = {   # AMI position -> what its output feeds, from the far end of 
     'OUT-3': 'IGNITION SW AM1 (IE1-10)', 'OUT-4': 'IGNITION SW AM2 (IE1-17)', 'OUT-5': 'J/B 1 MAIN B+ (1I-1)', 'OUT-6': 'EHPS PUMP RELAY 30'}
 POWER_RELAYS = {'k_htr': 'HEATER BLOWER', 'k_efi': 'EFI', 'k_str': 'STARTER', 'k_fan': 'RADIATOR FAN', 'k_fan2': 'CONDENSER FAN',
                 'k_pwr': 'POWER WINDOWS'}
+if S.REV >= 8:      # rev 8 (sot/fuse-relay-map.csv): IN-1 feeds R/B No.4 straight, IN-3 / IN-6 and R1 / R3 / R6 are vacant (A16 a)
+    POWER_SERVES.update({'IN-1': 'R/B No.4 HEATER FUSE (HTR-1)', 'IN-2': 'EFI RELAY K-EFI', 'IN-4': 'RAD FAN RELAY K-FAN', 'IN-5': 'COND FAN RELAY K-FAN2',
+                         'OUT-6': 'EPS PUMP RELAY K-EPS 30'})
+    for k_ in ('IN-3', 'IN-6'):
+        POWER_SERVES.pop(k_)
+    POWER_RELAYS = {'k_efi': 'EFI MAIN', 'k_fan': 'RADIATOR FAN', 'k_fan2': 'CONDENSER FAN'}
 GND_STUD = (('Battery negative', 'BAT-'), ('RADLOK negative', 'RADLOK-'), ('ground point ID', 'GND ID'), ('ground point IG', 'GND IG'))
 
 
@@ -195,14 +186,15 @@ def power_relay_labels(z=60.0):
     for r in _wires('POWER'):
         if r['id'] in POWER_RELAYS and r['at']:
             pts.setdefault(r['id'], []).append((r['at']['x'], r['at']['y']))
-    return [dict(at=_p(sum(x for x, _ in v) / len(v), sum(y for _, y in v) / len(v), z), text='%s (%s)' % (rid, POWER_RELAYS[rid]))
+    up = (lambda r_: r_.upper().replace('_', '-')) if S.REV >= 8 else (lambda r_: r_)
+    return [dict(at=_p(sum(x for x, _ in v) / len(v), sum(y for _, y in v) / len(v), z), text='%s (%s)' % (up(rid), POWER_RELAYS[rid]))
             for rid, v in sorted(pts.items())]
 
 
 def power_wire_labels():
     """[{at, text, side}] one per harness wire end in the POWER box (R190): side 'top' (bus studs, seen with the cover off) or
     'bottom' (relay terminals, ACPS, the AMI output lugs on the C-strap studs, seen from below with the pan off)."""
-    names, ami, out = _harness_names(), power_ami_points(), []
+    names, ami, out = {}, power_ami_points(), []
     pos = {nm: _p(S.POWER['x_bar'], y, S.POWER['bar_top'] + 4.0) for y, nm, _h in S.REV7['pos_studs']}
     neg = {nm: _p(x, S.REV7['neg_bar']['yc'], S.POWER['bar_top']) for x, nm, *_r in S.REV7['neg_studs']}
     for r in _wires('POWER'):
@@ -220,10 +212,13 @@ def power_wire_labels():
                 at = pos['BAT+ IN']
             elif r['des'] == 'ALT/STR':
                 at = pos['RADLOK+']
+            elif S.REV >= 8:     # one ring per stud (N64 a): the stud from the ring's master name ("POWER box NEG bar, GND stud, ring 1 of 3")
+                st_ = (r.get('stud') or '').split(', ')
+                at = neg.get(st_[1][:-5]) if len(st_) > 1 and st_[1].endswith(' stud') else neg['GND']
             else:
                 key = [s for f, s in GND_STUD if f.lower() in (r['far'] or '').lower()]
                 at = neg[key[0]] if key else None
-            here = names.get((r['file'], 'pdb', r['cav'])) or 'pdb ' + r['des']
+            here = (r.get('stud') or 'POWER NEG bar GND stud') if S.REV >= 8 else (names.get((r['file'], 'pdb', r['cav'])) or 'pdb ' + r['des'])
         elif r['id'].startswith('t_pdb_gnd'):
             side, at, here = 'top', neg['GND'], names.get((r['file'], r['id'])) or r['id']
         if at is None:

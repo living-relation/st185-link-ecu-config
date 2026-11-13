@@ -14,8 +14,9 @@ Claude Code, 2026-10-14.
 import adsk.core, adsk.fusion, math, os, sys, json, tempfile, importlib
 
 SRC = os.path.dirname(os.path.abspath(__file__)) if '__file__' in globals() else r'C:\projects\active\st185-link-ecu-config\cad\fusebox\src'
-PLAN = os.path.join(os.path.dirname(SRC), 'rev7', 'wiring_plan.json')
-RAW = os.path.join(tempfile.gettempdir(), 'st185_rev7_wired')
+REV = 8                # rev 8 (Dan A15 b): the rev 8 plan, drawn in the same Fusion document (its rev 8 version)
+PLAN = os.path.join(os.path.dirname(SRC), 'rev%d' % REV, 'wiring_plan.json')
+RAW = os.path.join(tempfile.gettempdir(), 'st185_rev%d_wired' % REV)
 ONLY = None           # e.g. {'logic_wired_routing.png'} while iterating
 CHECK = True
 app = adsk.core.Application.get()
@@ -120,6 +121,7 @@ def run(_context: str):
         sys.path.insert(0, SRC)
     import spec as S
     importlib.reload(S)
+    S.use_rev(REV)
     plan = json.load(open(PLAN, encoding='utf-8'))
     os.makedirs(RAW, exist_ok=True)
     doc = [d for d in app.documents if d.isSaved and d.dataFile and d.dataFile.name == 'ST185_fusebox_rev7'][0]
@@ -205,7 +207,7 @@ def run(_context: str):
             W[box].append((w['wire'] + ('#%d' % k if k else ''), bodies, colour))
             meta[w['wire'] + ('#%d' % k if k else '')] = dict(box=box, od=w['od'], colour=colour, gauge=w['gauge'], end=bp.get('end'))
             BANDS[box] += bands_on(pts[0], nrm(sub(pts[1], pts[0])), w['od'], w.get('bands', []))
-            if bp.get('loop') or bp.get('direct'):
+            if bp.get('loop') or bp.get('direct') or bp.get('spliced'):
                 BANDS[box] += bands_on(pts[-1], nrm(sub(pts[-2], pts[-1])), w['od'], w.get('bands', []))
     # battery block coil plug: 85 (white) and 86 (red), 18 AWG, side by side where the CAD drew one lead
     BX, BY = S.PLACE['BATTRELAY']
@@ -219,7 +221,7 @@ def run(_context: str):
     own_sp = {}
     for w in plan['wires']:
         for e in w['ends']:
-            if e['id'] in ('sp_hl', 'sp_hr'):
+            if e['id'] in S.CHANNEL_SPLICES:
                 own_sp.setdefault(e['id'], set()).add(w['wire'])
     for sp in plan.get('splices', []):
         off = (PL[sp['box']][0], PL[sp['box']][1], 0.0)
@@ -368,12 +370,15 @@ def run(_context: str):
         'logic': ('Logic_', 'LOGIC', (40.0, 90.0, 30.0), (-1, 0, 0.36), (-0.55, -1, 0.3)),
         'battrelay': ('BattRelay_', 'BATT', (BX + 92.0, BY + 46.0, 25.0), (0, -1, 0.36), (-1, -0.5, 0.3)),
     }
+    sp8 = [(sid, sp_) for sid, sp_ in getattr(S, 'SPLICES8', {}).items()] if REV >= 8 else []
     LB = {   # a few labels per box (world points)
-        'logic': [((30.0, S.CHANNEL['y'], S.CHANNEL['floor'][1]), 'J4: front channel - HL, HR, ETB cross in front of the spine, inside the box'),
-                  ((34.0, S.CHANNEL['y_sp'], S.CHANNEL['z']['HR'] + 2.5), 'J3: HL and HR splices in the channel (one wire per fuse terminal)'),
+        'logic': [((30.0, S.CHANNEL['y'], S.CHANNEL['floor'][1]), 'J4: front channel - %s cross in front of the spine, inside the box' % ('HR, ETB, ON' if REV >= 8 else 'HL, HR, ETB')),
+                  ] + ([((sp_['x'], sp_['y0'] + sp_['L'] / 2, sp_['z'] + 2.5), 'A20: in-box splice %s (one wire per fuse terminal)' % sid.upper().replace('_', '-')) for sid, sp_ in sp8]
+                       if REV >= 8 else [((34.0, S.CHANNEL['y_sp'], S.CHANNEL['z']['HR'] + 2.5), 'J3: HL and HR splices in the channel (one wire per fuse terminal)')]) + [
                   ((sum(S.PAN_RIB['x']) / 2, 60.0, S.PAN_RIB['z_top']), 'J2: pan rib between the Bus 1 wires and the strip bolt heads'),
                   ((S.MINI_COLS['BUS1'][0] - S.MINI_BLADE_X, -30.0, 9.0), 'Bus 1 exit: %d wires' % next(x['wires'] for x in plan['exits'] if x['box'] == 'LOGIC' and abs(x['lane'] - (S.MINI_COLS['BUS1'][0] - S.MINI_BLADE_X)) < 0.01))],
-        'power': [((PX - 30.0, 43.0, 8.0), 'relay + ACPS wires: 21 into 12 bundles out of the inboard end')],
+        'power': [((PX - 30.0, 43.0, 8.0), ('relay wires + the R/B No.4 feed: %d out of the inboard end' % sum(x['wires'] for x in plan['exits'] if x['box'] == 'POWER'))
+                   if REV >= 8 else 'relay + ACPS wires: 21 into 12 bundles out of the inboard end')],
         'battrelay': [((214.0, -169.0, 24.5), 'coil plug: 85 white + 86 red, 18 AWG')],
     }
     for key, (pre, box, tgt, e_long, e_end) in BOXES.items():
@@ -458,15 +463,34 @@ def run(_context: str):
     cable('efi86', [s, (s[0], -60, s[2]), (s[0], -80, 30), (96, -80, 30), (96, e[1], 30), e], wcol['w_k_efi_86_cp'][1], 'Red', rf(1.85),
           'k_efi 86 (18 AWG red): LOGIC EFI86 5 A -> POWER k_efi', (40, -80, 30), v='FT')
     stub = (263.5, 273.0, 57.2)
-    s = slot_end[('w_rev_85_cp', 'LOGIC')]
+    k85 = 'w_k_on_85_cp' if REV >= 8 else 'w_rev_85_cp'
+    s = slot_end[(k85, 'LOGIC')]
     cable('krev85', [s, (s[0], -75, s[2]), (s[0], -95, 40), (106, -95, 40), (106, 317, 40), (263.5, 317, 40), (263.5, 290, 58.4), (263.5, 273, 58.4)], 1.57, 'Black', rf(1.57),
-          'k_rev 85 (20 AWG black): LOGIC -> POWER NEG bar ring', (106, 200, 40), v='RT')
-    s = slot_end[('w_htr_87a_cp', 'POWER')]
-    cable('htr87a', [s, (118, s[1], s[2]), (118, s[1] + 12, 30), (118, 311, 30), (262.3, 311, 30), (262.3, 290, 56.6), (262.3, 273, 56.6)], 2.41, 'Black', rs(2.41),
-          'k_htr 87a + k_pwr 85 (black): out of the inboard end, round to the NEG bar ring', (118, 200, 30), v='RT')
-    s = slot_end[('w_pwr_85_cp', 'POWER')]
-    cable('pwr85', [s, (122, s[1], s[2]), (122, s[1] + 10, 30), (122, 305, 30), (264.7, 305, 30), (264.7, 288, 56.6), (264.7, 273, 56.6)], 1.85, 'Black', rs(1.85))
-    BREAK = {('w77_cp', 'POWER'), ('w_k_efi_86_cp', 'LOGIC'), ('w_k_efi_86_cp', 'POWER'), ('w_rev_85_cp', 'LOGIC'), ('w_htr_87a_cp', 'POWER'), ('w_pwr_85_cp', 'POWER')}
+          '%s 85 (20 AWG black): LOGIC -> POWER NEG bar GND stud ring' % ('K-ON' if REV >= 8 else 'k_rev'), (106, 200, 40), v='RT')
+    BREAK = {('w77_cp', 'POWER'), ('w_k_efi_86_cp', 'LOGIC'), ('w_k_efi_86_cp', 'POWER'), (k85, 'LOGIC')}
+    if REV < 8:
+        s = slot_end[('w_htr_87a_cp', 'POWER')]
+        cable('htr87a', [s, (118, s[1], s[2]), (118, s[1] + 12, 30), (118, 311, 30), (262.3, 311, 30), (262.3, 290, 56.6), (262.3, 273, 56.6)], 2.41, 'Black', rs(2.41),
+              'k_htr 87a + k_pwr 85 (black): out of the inboard end, round to the NEG bar ring', (118, 200, 30), v='RT')
+        s = slot_end[('w_pwr_85_cp', 'POWER')]
+        cable('pwr85', [s, (122, s[1], s[2]), (122, s[1] + 10, 30), (122, 305, 30), (264.7, 305, 30), (264.7, 288, 56.6), (264.7, 273, 56.6)], 1.85, 'Black', rs(1.85))
+        BREAK |= {('w_htr_87a_cp', 'POWER'), ('w_pwr_85_cp', 'POWER')}
+    else:
+        # A22 (Dan 2026-11-12): K-EPS (TE HCR150, its own M6 flange) and the DRL cut relay RLY-DRL in an off-the-shelf holder sit in the glove box
+        # beside the POWER box, outboard of it (+x), on the shelf; envelopes from the maker data (spec.HCR, spec.A22_HOLDERS)
+        H_ = S.HCR
+        hx, hy = PXE + 135.0, 40.0                       # outboard of the AMI OUT-row cables (x 434 - 475)
+        body = tb.createBox(adsk.core.OrientedBoundingBox3D.create(P(hx + H_['body_x'] / 2, hy + H_['body_y'] / 2, H_['depth'] / 2), V(1, 0, 0), V(0, 1, 0),
+                                                                   H_['body_x'] / 10.0, H_['body_y'] / 10.0, H_['depth'] / 10.0))
+        fl = tb.createBox(adsk.core.OrientedBoundingBox3D.create(P(hx + H_['body_x'] / 2, hy + H_['body_y'] / 2, H_['flange_t'] / 2), V(1, 0, 0), V(0, 1, 0),
+                                                                 (H_['holes'] + 14.0) / 10.0, H_['body_y'] / 10.0, H_['flange_t'] / 10.0))
+        tb.booleanOperation(body, fl, adsk.fusion.BooleanTypes.UnionBooleanType)
+        arr.append(('KEPS_HCR150', [body], 'loom'))
+        labels.append(((hx + H_['body_x'] / 2, hy, H_['depth']), 'K-EPS (TE HCR150 1416010-1) on its own M6 flange, beside the POWER box', 'FRT'))
+        for (nm_, (dx_, dy_, dz_), (hx2, hy2)) in getattr(S, 'A22_HOLDERS', []):
+            hb = tb.createBox(adsk.core.OrientedBoundingBox3D.create(P(hx2 + dx_ / 2, hy2 + dy_ / 2, dz_ / 2), V(1, 0, 0), V(0, 1, 0), dx_ / 10.0, dy_ / 10.0, dz_ / 10.0))
+            arr.append(('Holder_' + nm_.replace(' ', '_'), [hb], 'clamp'))
+            labels.append(((hx2 + dx_ / 2, hy2, dz_), nm_, 'FRT'))
     # looms: what is left of each exit bundle, grey, forward to the dash (POWER: -x then forward at x 75)
     for ex in plan['exits']:
         box, L0 = ex['box'], ex['lane']
@@ -481,7 +505,7 @@ def run(_context: str):
             cable('loom_P%d' % L0, [(130.0, L0, z), (75.0, L0, z), (75.0, -200.0, z)], d, 'loom', rf(max(ods)) + d / 2 - max(ods) / 2)
         else:
             cable('loom_L%d' % L0, [(L0 + LX, -30.0, z), (L0 + LX, -200.0, z)], d, 'loom', 1.0)
-    labels.append(((75, -160, 7), 'POWER relay + ACPS tails: loom forward to the dash (CabinPower)', 'FT'))
+    labels.append(((75, -160, 7), 'POWER relay tails%s: loom forward to the dash (CabinPower)' % (' + R/B No.4 feed' if REV >= 8 else ' + ACPS'), 'FT'))
     labels.append(((S.MINI_COLS['BUS1'][0] - S.MINI_BLADE_X + LX, -160, 8.4), 'LOGIC tails: 4 looms forward (CabinPower)', 'FT'))
     labels.append(((440, 202, 109.1), 'P-clamp each side of every 1/0 bend (3 x OD supported)', 'FRT'))
     for (name, bodies, colour) in arr:
@@ -499,7 +523,7 @@ def run(_context: str):
     shot('arr_glove_wired_top.png', (0.0, 0.0, 1.0), tgtA, ortho=True, ext=1.15, labels=LV('T'))
     show(lambda n: GLOVE(n) and not (n.startswith(('Power_', 'Logic_')) and kind(n).startswith(('Cover', 'Pan'))))
     shot('arr_glove_wired_open.png', (-0.55, -1.0, 0.75), tgtA, ortho=False, ext=1.2,
-         labels=[(p, t) for (p, t, v) in labels if 'Bus' in t or 'k_efi 86' in t])
+         labels=[(p, t) for (p, t, v) in labels if 'Bus' in t or 'k_efi 86' in t or 'K-EPS' in t])
     # ================================================================ trunk
     tcab = []
     for (name, pts, od, colour, R, label) in (
