@@ -479,7 +479,7 @@ def run(_context: str):
         # A22 (Dan 2026-11-12): K-EPS (TE HCR150, its own M6 flange) and the DRL cut relay RLY-DRL in an off-the-shelf holder sit in the glove box
         # beside the POWER box, outboard of it (+x), on the shelf; envelopes from the maker data (spec.HCR, spec.A22_HOLDERS)
         H_ = S.HCR
-        hx, hy = PXE + 60.0, 40.0
+        hx, hy = PXE + 135.0, 40.0                       # outboard of the AMI OUT-row cables (x 434 - 475)
         body = tb.createBox(adsk.core.OrientedBoundingBox3D.create(P(hx + H_['body_x'] / 2, hy + H_['body_y'] / 2, H_['depth'] / 2), V(1, 0, 0), V(0, 1, 0),
                                                                    H_['body_x'] / 10.0, H_['body_y'] / 10.0, H_['depth'] / 10.0))
         fl = tb.createBox(adsk.core.OrientedBoundingBox3D.create(P(hx + H_['body_x'] / 2, hy + H_['body_y'] / 2, H_['flange_t'] / 2), V(1, 0, 0), V(0, 1, 0),
