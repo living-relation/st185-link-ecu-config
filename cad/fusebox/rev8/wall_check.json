@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 826.9,
+   "volume_cm3": 826.6,
    "bounds": [
     128.0,
     341.8,
@@ -20,32 +20,18 @@
     244.3
    ],
    "exempt": {
-    "seat lip": 1279,
+    "seat lip": 1315,
     "bar snap tab": 117,
     "pan catch pocket": 116,
     "strap snap tab": 42,
     "A bar snap tab": 10,
-    "A seat lip": 27,
+    "A seat lip": 25,
     "A saddle lip": 6,
-    "A relay cavity web": 1,
+    "A relay cavity web": 2,
     "A strap snap tab": 7
    },
    "attach_skin": 65,
-   "walls": [
-    {
-     "at": [
-      206.0,
-      209.3,
-      38.1,
-      47.9,
-      32.0,
-      35.5
-     ],
-     "sections": 35,
-     "class": "structural",
-     "why": "R127 M1 / M5: R1 cavity group under the deck (Dan-marked)"
-    }
-   ],
+   "walls": [],
    "attach": [],
    "flagged": 0
   },
@@ -116,7 +102,7 @@
   "Logic_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 408.3,
+   "volume_cm3": 408.2,
    "bounds": [
     -32.0,
     121.55,
@@ -140,34 +126,7 @@
     "A strip snap hook": 2
    },
    "attach_skin": 29,
-   "walls": [
-    {
-     "at": [
-      36.0,
-      39.0,
-      118.4,
-      118.8,
-      34.0,
-      35.0
-     ],
-     "sections": 8,
-     "class": "structural",
-     "why": "below the deck underside (z 38.5): legs / feet / block under the deck - load-bearing"
-    },
-    {
-     "at": [
-      36.0,
-      39.0,
-      112.8,
-      113.3,
-      34.0,
-      35.0
-     ],
-     "sections": 8,
-     "class": "structural",
-     "why": "below the deck underside (z 38.5): legs / feet / block under the deck - load-bearing"
-    }
-   ],
+   "walls": [],
    "attach": [],
    "flagged": 0
   },

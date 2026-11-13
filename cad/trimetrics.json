@@ -247,6 +247,61 @@
   },
   "rendered": "2026-10-19"
  },
+ "fusebox-rev8-battrelay": {
+  "png": "cad/fusebox/rev8/trimetric-battrelay.png",
+  "solids": 4,
+  "part_types": 4,
+  "extent_mm": [
+   228.0,
+   101.5,
+   54.0
+  ],
+  "sources": {
+   "./cad/fusebox/rev8/BattRelay_Bar_Power_CuC110_25x6p35.step": 1794544789,
+   "./cad/fusebox/rev8/BattRelay_Base_PA12_printed.step": 1794544789,
+   "./cad/fusebox/rev8/BattRelay_Cover_PA12_printed.step": 1794544790,
+   "./cad/fusebox/rev8/BattRelay_Pad_Out_CuC110_25p4x3p2.step": 1794544790
+  },
+  "rendered": "2026-11-12"
+ },
+ "fusebox-rev8-logic": {
+  "png": "cad/fusebox/rev8/trimetric-logic.png",
+  "solids": 5,
+  "part_types": 4,
+  "extent_mm": [
+   153.6,
+   192.5,
+   89.9
+  ],
+  "sources": {
+   "./cad/fusebox/rev8/Logic_Base_PA12_printed.step": 1794544781,
+   "./cad/fusebox/rev8/Logic_Cover_PA12_printed.step": 1794544783,
+   "./cad/fusebox/rev8/Logic_Pan_PA12_printed.step": 1794544781,
+   "./cad/fusebox/rev8/Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step": 1794544781
+  },
+  "rendered": "2026-11-12"
+ },
+ "fusebox-rev8-power": {
+  "png": "cad/fusebox/rev8/trimetric-power.png",
+  "solids": 21,
+  "part_types": 8,
+  "extent_mm": [
+   218.2,
+   307.0,
+   81.8
+  ],
+  "sources": {
+   "./cad/fusebox/rev8/Power_BarNeg_CuC110_25x6p35_L105.step": 1794544786,
+   "./cad/fusebox/rev8/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": 1794544786,
+   "./cad/fusebox/rev8/Power_Base_PA12_printed.step": 1794544785,
+   "./cad/fusebox/rev8/Power_Cover_PA12_printed.step": 1794544788,
+   "./cad/fusebox/rev8/Power_NutHolder_PA12_printed.step": 1794544785,
+   "./cad/fusebox/rev8/Power_Pan_PA12_printed.step": 1794544786,
+   "./cad/fusebox/rev8/Power_Retainer_R1_PA12_printed.step": 1794544784,
+   "./cad/fusebox/rev8/Power_Strap_Out_CuC110_15x3_C.step": 1794544785
+  },
+  "rendered": "2026-11-12"
+ },
  "package-rev6": {
   "png": "cad/fusebox/package-rev6.png",
   "solids": 535,
