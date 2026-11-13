@@ -51,8 +51,5 @@ cad/fusebox/rev7/renders/closeups/raw/
 cad/vendor/**
 !cad/vendor/INDEX.md
 
-# generated drawing views (xlsx pinout, thumbnails): local only, never committed (R221)
-docs/harness/out/
-
 # Scratch: disposable work only, never committed (Dan 2026-11-03; DECISIONS "Where data lives (B3)")
 _scratch/

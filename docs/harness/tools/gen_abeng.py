@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev K" (Rev K 2026-11-12: Dan's 2026-11-12 editor save - his part spots, drops and overall routes, every sensor on its own spur, and every AB-engine length from the tree; the knock and coolant pressure sensors on their spots (A6 b / A8 b); the A/C pressure switch feed no longer passes through; library sync (#664 / #665); Rev J 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and one ghost strand per other harness, Dan T4 a; Rev I 2026-11-10: the CAN-Lambda end terminator is a bare 120 ohm resistor behind its plug, Dan S6 b; Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
+"""harness.design copy of ST185-AB-engine = the ECU harness, engine-bay half, file "ST185-AB-engine Rev K" (Rev K 2026-11-12: Dan's 2026-11-12 editor save - his part spots, drops and overall routes, every sensor on its own spur, and every AB-engine length from the tree; the knock and coolant pressure sensors on their spots (A6 b / A8 b); the A/C pressure switch feed no longer passes through; library sync (#664 / #665); view only, edited in place 2026-11-12: the CAN-Lambda CAN cable and its CAN H / CAN L splices drawn by the CAN-Lambda, Dan A14 a; Rev J 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and one ghost strand per other harness, Dan T4 a; Rev I 2026-11-10: the CAN-Lambda end terminator is a bare 120 ohm resistor behind its plug, Dan S6 b; Rev H 2026-11-10: Dan's W4 c editor save - his part spots and overall routes, every sensor on its own spur off a shared branch, intake sensor branch added; Rev G 2026-11-09: route redraw, Dan Z10 b - 5 straight lines, each device breaks out of its nearest line, starter S on line 2; Rev F 2026-11-09: starter on the turbo-speed branch, Dan Y7 b; Rev E 2026-11-09: labels #569, screen-end drawing #593, CAN-Lambda end #597) (viewer only; the
 master is the source). Usage: python gen_abeng.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8,
 get_part_library). Writes <out>/abeng.json (whole document, wires not yet routed) and <out>/abeng_lib_ops.json (part-library
 add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.json. Same rules and helpers' shape as
@@ -249,13 +249,28 @@ cab_of = {co['id']: c for c in cables.values() for co in cseq(c)}
 for c in cables.values():
     dv = {e['id'] for co in cseq(c) for e in ends(co) if e['id'] in DEV_IDS}
     assert len(dv) <= 1, (c['label'], dv); c['_dev'] = dv.pop() if dv else None
+# a cable with no device end whose every core ends on a splice, and those splices feed one device (the CAN-Lambda CAN pair and
+# its CAN H / CAN L splices) is drawn by that device like the other shielded cables (Dan A14 a, 2026-11-12): the cable just
+# left of the device column, its splices right of it on its core rows, the resistor between them by them (place_right)
+VIA_SPL, VIA_RES, VCAB = {}, {}, collections.defaultdict(list)
+for c in cables.values():
+    sp = {e['id'] for co in c['cores'] for e in ends(co) if e['id'].startswith('s_')}
+    if c['_dev'] or len(sp) != len(c['cores']): continue
+    dv = {e['id'] for cond in CONDS for e in ends(cond) if e['id'] in DEV_IDS and any(x['id'] in sp for x in ends(cond))}
+    if len(dv) != 1: continue
+    c['_via'] = dv.pop(); VCAB[c['_via']].append(c)
+    for i in sp: VIA_SPL[i] = c
+    for cond in CONDS:
+        es = ends(cond)
+        for e in es:
+            if e['id'].startswith('r_') and any(x['id'] in sp for x in es): VIA_RES[e['id']] = c
 used_rows = {cav_y(BH, e['handle']) for cond in CONDS for e in ends(cond) if e['id'] == BHID}
 taken, cab_rows = set(), set()
 def core_row(c, co): return c['schematicPosition']['y'] + 30 * (cseq(c).index(co) + 1) + 15
-# a cable with no device end (the CAN-Lambda pair from the bulkhead to its splices) sits beside the bulkhead on the nearest
-# run of empty bulkhead rows, so no bulkhead pin's wire runs into it; its splices sit on its core rows
+# any other cable with no device end sits beside the bulkhead on the nearest run of empty bulkhead rows, so no bulkhead pin's
+# wire runs into it; its splices sit on its core rows
 CABLX = 240 + 270
-for c in [c for c in cables.values() if not c['_dev']]:
+for c in [c for c in cables.values() if not c['_dev'] and not c.get('_via')]:
     want = min(cav_y(BH, e['handle']) for co in cseq(c) for e in ends(co) if e['id'] == BHID)
     k = cab_h(c) // 30
     tops = [m for m in range(0, 30 * 104, 30) if not any(m + 30 * j + 15 in used_rows | cab_rows for j in range(k))]
@@ -282,7 +297,7 @@ def free_row(want, bad):
     bad.add(yy); return yy
 INL = {n['id']: n for n in splices.values()}
 pending, col2 = [], set()
-for n in splices.values():      # a splice fed by one left pin (or a core of the bulkhead cable) sits on that row: a straight wire
+for n in [n for n in splices.values() if n['id'] not in VIA_SPL]:      # a splice fed by one left pin (or a core of the bulkhead cable) sits on that row: a straight wire
     st = next((left_row(cond, o) for cond, x, o in links[n['id']] if left_row(cond, o) is not None
                and (cab_of.get(cond['id']) or deg[(o['id'], o['handle'])] == 1) and left_row(cond, o) not in taken), None)
     if st is not None: taken.add(st); n['_row'] = st; n['_x'] = SPX
@@ -298,12 +313,14 @@ for it in range(6):
         else: left.append(n)
     pending = left
 assert not pending, [n['label'] for n in pending]
-for n in splices.values(): n['schematicPosition'] = {"x": n.pop('_x'), "y": n.pop('_row') - 15}
-for n in resistors.values():      # a resistor between two splices: right of them, on the upper splice's row
+for n in splices.values():
+    if n['id'] not in VIA_SPL: n['schematicPosition'] = {"x": n.pop('_x'), "y": n.pop('_row') - 15}
+for n in [n for n in resistors.values() if n['id'] not in VIA_RES]:      # a resistor between two splices: right of them, on the upper splice's row
     ys = [INL[e['id']]['schematicPosition']['y'] for cond in CONDS for e in ends(cond) if e['id'] in INL
           for o in ends(cond) if o['id'] == n['id']]
     n['schematicPosition'] = {"x": SPX2 + 120, "y": min(ys)}
 def row_of_end(e):
+    if e['id'] in VIA_SPL or e['id'] in VIA_RES: return None      # placed with their device (A14 a)
     if e['id'] == BHID: return cav_y(BH, e['handle'])
     if e['id'] in INL: return INL[e['id']]['schematicPosition']['y'] + 15
     if e['id'].startswith('r_'): return next(n for n in resistors.values() if n['id'] == e['id'])['schematicPosition']['y'] + 15
@@ -327,6 +344,17 @@ def place_right(devx):
         n = NODES[d]; n['schematicPosition'] = {"x": devx, "y": y}
         cy = y - 15
         for c in RCAB[d]: c['schematicPosition'] = {"x": devx - CABR_OFF, "y": cy}; cy += cab_h(c) + 30
+        for c in VCAB[d]:   # A14 a: the cable's first core half a grid above the device pin its splice feeds, the splices on the core rows
+            sp0 = next(e for e in ends(c['cores'][0]) if e['id'] in VIA_SPL)['id']
+            pin = next(e for cond in CONDS for e in ends(cond) if e['id'] == d and any(x['id'] == sp0 for x in ends(cond)))
+            vy = cav_y(n, pin['handle']) - 15 - 45
+            c['schematicPosition'] = {"x": devx - CABR_OFF, "y": vy}
+            for co in c['cores']:
+                s_ = INL[next(e for e in ends(co) if e['id'] in VIA_SPL)['id']]
+                s_['schematicPosition'] = {"x": devx - CABR_OFF + 120, "y": core_row(c, co) - 15}
+            for rn in resistors.values():
+                if VIA_RES.get(rn['id']) is c: rn['schematicPosition'] = {"x": devx - CABR_OFF + 180, "y": vy + cab_h(c) + 30}
+            cy = max(cy, vy + cab_h(c) + 30)
         lbl = n['label']
         if lbl in mate_conns: mate_conns[lbl]['schematicPosition'] = {"x": devx + MATE_OFF, "y": y}
         y = max(y + h(n), cy - 15) + 30      # the next device stays on the device rows
@@ -351,11 +379,21 @@ while hi - lo > 30:
     print('  try', mid, '->', 'ok' if hi == mid else 'worse', flush=True)
 DEVX = hi
 RIGHT_BOTTOM = place_right(DEVX)
+def clear_of(x, y, me, g=30):      # a 30 x 30 node at (x, y) keeps a grid square clear of every other node
+    for k in ('connectors', 'splices', 'resistors', 'cables'):
+        for o in doc_now()[k]:
+            if o['id'] == me or 'schematicPosition' not in o: continue
+            ox, oy = o['schematicPosition']['x'], o['schematicPosition']['y']
+            ow, oh = (60, cab_h(o)) if k == 'cables' else (30, 30) if k in ('splices', 'resistors') else (o.get('width', 150), h(o))
+            if x - g < ox + ow and ox - g < x + 30 and y - g < oy + oh and oy - g < y + 30: return False
+    return True
 for rn in resistors.values():     # the resistor's spot: the nearest free spot by its splices where every conductor routes
     y0, best = rn['schematicPosition']['y'], None
-    for dx in (0, -120, 120, 240):
+    x0, dxs = (rn['schematicPosition']['x'], (0, -60, 60)) if rn['id'] in VIA_RES else (SPX2 + 120, (0, -120, 120, 240))
+    for dx in dxs:
         for dy in (0, -60, 60, -90, 90, -120, 120, -180, 180):
-            rn['schematicPosition'] = {"x": SPX2 + 120 + dx, "y": y0 + dy}
+            if rn['id'] in VIA_RES and not clear_of(x0 + dx, y0 + dy, rn['id']): continue
+            rn['schematicPosition'] = {"x": x0 + dx, "y": y0 + dy}
             R_, segs_, res_ = genroute.run(copy.deepcopy(doc_now()))
             c = (sum(1 for s in segs_ if res_.get(s['k']) is None), sum(1 for v in res_.values() if v and len(v) > 2), abs(dx) + abs(dy))
             if best is None or c < best[0]: best = (c, dict(rn['schematicPosition']))
@@ -581,7 +619,7 @@ cav_m = collections.Counter(("c_" + sid(r[s + '_id']), cav_of[(r[s + '_id'], r[s
 assert cav_n == cav_m and all(v == 1 for v in cav_n.values()), {k: v for k, v in cav_n.items() if v > 1}
 NCONN = len(CONDS)
 assert NCONN <= 100, 'over the 100-connection plan limit: split by whole circuits into numbered documents (README)'
-for c in cables.values(): c.pop('_dev')
+for c in cables.values(): c.pop('_dev'); c.pop('_via', None)
 doc = {"version": 1.3, "currency": "$", "lengthUnit": "mm", "gaugeUnit": "AWG", "schematic": {"connectorWidth": 240, "terminalWidth": 240},
        "connectors": list(conns.values()) + list(mate_conns.values()), "splices": list(splices.values()),
        "resistors": list(resistors.values()), "wires": wires,
