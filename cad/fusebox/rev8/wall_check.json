@@ -1,0 +1,289 @@
+{
+ "rule": "R127: walls > 1.95 mm (W, sections every 0.5 mm), features attached by >= 3.0 mm (A, voxels 0.20 mm); R151: fail on structural spots only, flag non-structural / questionable ones",
+ "parts": {
+  "Power_Base_PA12_printed": {
+   "allowed": [],
+   "attach_checked": true,
+   "volume_cm3": 826.9,
+   "bounds": [
+    128.0,
+    341.8,
+    -32.0,
+    275.0,
+    0.0,
+    72.5
+   ],
+   "outline": [
+    158.7,
+    341.8,
+    -1.3,
+    244.3
+   ],
+   "exempt": {
+    "seat lip": 1279,
+    "bar snap tab": 117,
+    "pan catch pocket": 116,
+    "strap snap tab": 42,
+    "A bar snap tab": 10,
+    "A seat lip": 27,
+    "A saddle lip": 6,
+    "A relay cavity web": 1,
+    "A strap snap tab": 7
+   },
+   "attach_skin": 65,
+   "walls": [
+    {
+     "at": [
+      206.0,
+      209.3,
+      38.1,
+      47.9,
+      32.0,
+      35.5
+     ],
+     "sections": 35,
+     "class": "structural",
+     "why": "R127 M1 / M5: R1 cavity group under the deck (Dan-marked)"
+    }
+   ],
+   "attach": [],
+   "flagged": 0
+  },
+  "Power_Pan_PA12_printed": {
+   "allowed": [],
+   "attach_checked": false,
+   "volume_cm3": 158.9,
+   "bounds": [
+    163.45,
+    337.05,
+    2.25,
+    240.75,
+    1.5,
+    36.0
+   ],
+   "exempt": {
+    "pan snap tongue": 4
+   },
+   "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "Power_Cover_PA12_printed": {
+   "allowed": [],
+   "attach_checked": false,
+   "volume_cm3": 198.9,
+   "bounds": [
+    154.25,
+    346.25,
+    -5.75,
+    248.75,
+    39.5,
+    81.8
+   ],
+   "exempt": {
+    "cover screw hole": 87,
+    "cover snap tongue": 9,
+    "label": 1847,
+    "notch at corner": 3
+   },
+   "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "Power_Retainer_R1_PA12_printed": {
+   "allowed": [
+    "snap barb at leg (32.2, 43.0), 0.6 x 1.5 (R123)",
+    "snap barb at leg (59.3, 53.5), 0.6 x 1.5 (R123)"
+   ],
+   "attach_checked": false,
+   "volume_cm3": 1.3,
+   "bounds": [
+    190.37,
+    221.18,
+    29.51,
+    56.49,
+    29.12,
+    38.0
+   ],
+   "exempt": {},
+   "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "Logic_Base_PA12_printed": {
+   "allowed": [],
+   "attach_checked": true,
+   "volume_cm3": 408.3,
+   "bounds": [
+    -32.0,
+    121.55,
+    -1.3,
+    182.3,
+    0.0,
+    60.5
+   ],
+   "outline": [
+    -1.3,
+    90.85,
+    -1.3,
+    182.3
+   ],
+   "exempt": {
+    "pan catch pocket": 116,
+    "seat lip": 1332,
+    "strip lip": 491,
+    "87a slot": 440,
+    "strip snap hook": 4,
+    "A strip snap hook": 2
+   },
+   "attach_skin": 29,
+   "walls": [
+    {
+     "at": [
+      36.0,
+      39.0,
+      118.4,
+      118.8,
+      34.0,
+      35.0
+     ],
+     "sections": 8,
+     "class": "structural",
+     "why": "below the deck underside (z 38.5): legs / feet / block under the deck - load-bearing"
+    },
+    {
+     "at": [
+      36.0,
+      39.0,
+      112.8,
+      113.3,
+      34.0,
+      35.0
+     ],
+     "sections": 8,
+     "class": "structural",
+     "why": "below the deck underside (z 38.5): legs / feet / block under the deck - load-bearing"
+    }
+   ],
+   "attach": [],
+   "flagged": 0
+  },
+  "Logic_Pan_PA12_printed": {
+   "allowed": [],
+   "attach_checked": false,
+   "volume_cm3": 85.1,
+   "bounds": [
+    2.25,
+    87.3,
+    3.45,
+    177.55,
+    1.5,
+    42.5
+   ],
+   "exempt": {
+    "pan snap tongue": 16,
+    "notch at corner": 85
+   },
+   "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "Logic_Cover_PA12_printed": {
+   "allowed": [],
+   "attach_checked": false,
+   "volume_cm3": 103.0,
+   "bounds": [
+    -5.75,
+    95.3,
+    -5.75,
+    186.75,
+    47.5,
+    89.9
+   ],
+   "exempt": {
+    "label": 1190,
+    "cover screw hole": 48,
+    "cover snap tongue": 30
+   },
+   "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "BattRelay_Base_PA12_printed": {
+   "allowed": [],
+   "attach_checked": true,
+   "volume_cm3": 190.4,
+   "bounds": [
+    -22.0,
+    206.0,
+    -175.3,
+    -82.7,
+    0.0,
+    44.5
+   ],
+   "outline": [
+    -0.3,
+    184.3,
+    -175.3,
+    -82.7
+   ],
+   "exempt": {
+    "cover catch pocket": 4,
+    "bar snap tab": 12,
+    "A bar snap tab": 4,
+    "A cover screw insert": 3
+   },
+   "attach_skin": 15,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "BattRelay_Cover_PA12_printed": {
+   "allowed": [],
+   "attach_checked": false,
+   "volume_cm3": 107.4,
+   "bounds": [
+    -4.75,
+    188.75,
+    -179.75,
+    -78.25,
+    6.5,
+    54.0
+   ],
+   "exempt": {
+    "label": 298,
+    "cover screw hole": 12,
+    "notch at corner": 5,
+    "cover snap tongue": 4
+   },
+   "attach_skin": 0,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  },
+  "Power_NutHolder_PA12_printed": {
+   "allowed": [],
+   "attach_checked": true,
+   "volume_cm3": 6.7,
+   "bounds": [
+    247.0,
+    262.4,
+    36.2,
+    49.8,
+    17.0,
+    51.5
+   ],
+   "exempt": {},
+   "attach_skin": 1,
+   "walls": [],
+   "attach": [],
+   "flagged": 0
+  }
+ },
+ "flagged": 0
+}

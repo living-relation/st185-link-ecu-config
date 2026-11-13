@@ -1,0 +1,767 @@
+{
+ "warn": [
+  "w_hl_30_cp: segment 2 too short for its bends (5.6 < 8.5)",
+  "w_drl_cp: segment 1 too short for its bends (6.3 < 6.5)",
+  "w_drl_30_cp: last segment too short",
+  "w_drl_86_cp: segment 1 too short for its bends (1.5 < 3.7)",
+  "w_drl_86_cp: last segment too short",
+  "w_pod_86_cp: segment 1 too short for its bends (1.5 < 6.5)",
+  "w_pod_86_cp: last segment too short"
+ ],
+ "through_printed": [],
+ "cover": [],
+ "pull": [],
+ "wire_wire": {
+  "pairs": 418,
+  "overlaps": [
+   [
+    "w_fan285",
+    "w_k_fan_86_cp"
+   ],
+   [
+    "w_fb_mrs_en",
+    "w_lam12_cp"
+   ],
+   [
+    "w_acc_trig",
+    "w_k_etb_86_cp"
+   ],
+   [
+    "w_acc_trig",
+    "w_acc_clutch"
+   ],
+   [
+    "w_eps_trig",
+    "w_fb_k_eps_en_30_cp"
+   ],
+   [
+    "w_start",
+    "w_start_in_cp"
+   ],
+   [
+    "w_start",
+    "w_at_ig"
+   ],
+   [
+    "w_k_etb_86_cp",
+    "w82_ac"
+   ],
+   [
+    "w_k_etb_86_cp",
+    "w_acc_clutch"
+   ],
+   [
+    "w_hl_cp",
+    "w_hz_cp"
+   ],
+   [
+    "w_hl_cp",
+    "w_k_efi_86_cp"
+   ],
+   [
+    "w_hl_cp",
+    "w_hr_cp"
+   ],
+   [
+    "w_hl_cp",
+    "w_fb_k_etb_30_cp"
+   ],
+   [
+    "w_hl_cp",
+    "w_fb_k_on_30_cp"
+   ],
+   [
+    "w_hz_cp",
+    "w_pmu_dome"
+   ],
+   [
+    "w_hz_cp",
+    "w_fb_k_etb_30_cp"
+   ],
+   [
+    "w_hz_cp",
+    "w_fb_k_on_30_cp"
+   ],
+   [
+    "w_lam12_cp",
+    "w_k_on_86_cp"
+   ],
+   [
+    "w_lam12_cp",
+    "w_drl_85_cp"
+   ],
+   [
+    "w_lam12_cp",
+    "w_k_on_85_cp"
+   ],
+   [
+    "w_k_on_86_cp",
+    "w_drl_85_cp"
+   ],
+   [
+    "w_k_on_86_cp",
+    "w_r8_d2_k_cp"
+   ],
+   [
+    "w_k_on_86_cp",
+    "w_drl_87_cp"
+   ],
+   [
+    "w_k_on_86_cp",
+    "w_pod_87_cp"
+   ],
+   [
+    "w_k_on_86_cp",
+    "w_k_on_85_cp"
+   ],
+   [
+    "w_cp_sw12_in",
+    "w_cop_pwr_ac"
+   ],
+   [
+    "w_cp_sw12_in",
+    "w_dev_clu"
+   ],
+   [
+    "w_cop_pwr_ac",
+    "w_dev_clu"
+   ],
+   [
+    "w_inj_pwr_ac",
+    "w_dev_clu"
+   ],
+   [
+    "w_inj_pwr_ac",
+    "w_at_ig"
+   ],
+   [
+    "w81",
+    "w_horn_85_cp"
+   ],
+   [
+    "w82_ac",
+    "w_horn_85_cp"
+   ],
+   [
+    "w82_ac",
+    "w_pmu_horn_cp"
+   ],
+   [
+    "w82_ac",
+    "w_acc86"
+   ],
+   [
+    "w_hl_85_cp",
+    "w_hr_86_cp"
+   ],
+   [
+    "w_hl_85_cp",
+    "w_hl_on_cp"
+   ],
+   [
+    "w_hl_85_cp",
+    "w_hr_on_cp"
+   ],
+   [
+    "w_horn_85_cp",
+    "w_pmu_horn_cp"
+   ],
+   [
+    "w_horn_85_cp",
+    "w_horn_86_cp"
+   ],
+   [
+    "w_horn_85_cp",
+    "w_acc_clutch"
+   ],
+   [
+    "w_horn_85_cp",
+    "w_acc86"
+   ],
+   [
+    "w_start_in_cp",
+    "w_csb12"
+   ],
+   [
+    "w_hr_86_cp",
+    "w_hr_on_cp"
+   ],
+   [
+    "w_hr_86_cp",
+    "w_horn_30_cp"
+   ],
+   [
+    "w_hr_86_cp",
+    "w_horn_86_cp"
+   ],
+   [
+    "w_hl_on_cp",
+    "w_hr_on_cp"
+   ],
+   [
+    "w_drl_85_cp",
+    "w_r8_d2_k_cp"
+   ],
+   [
+    "w_drl_85_cp",
+    "w_drl_87_cp"
+   ],
+   [
+    "w_drl_85_cp",
+    "w_drl_30_cp"
+   ],
+   [
+    "w_r8_d2_k_cp",
+    "w_pod_85_cp"
+   ],
+   [
+    "w_r8_d2_k_cp",
+    "w_pod_87_cp"
+   ],
+   [
+    "w_drl_87_cp",
+    "w_pod_87_cp"
+   ],
+   [
+    "w_pod_85_cp",
+    "w_pod_87_cp"
+   ],
+   [
+    "w_horn_30_cp",
+    "w_horn_86_cp"
+   ],
+   [
+    "w_dev_clu",
+    "w_csb12"
+   ],
+   [
+    "w_pmu_dome",
+    "w_at_12v"
+   ],
+   [
+    "w_pmu_dome",
+    "w_fb_k_etb_30_cp"
+   ],
+   [
+    "w_pmu_dome",
+    "w_fb_k_on_30_cp"
+   ],
+   [
+    "w_alt_s_c",
+    "w_at_12v_shk"
+   ],
+   [
+    "w_alt_s_c",
+    "w_at_12v"
+   ],
+   [
+    "w_k_efi_86_cp",
+    "w_hr_cp"
+   ],
+   [
+    "w_k_efi_86_cp",
+    "w_fb_k_on_30_cp"
+   ],
+   [
+    "w_hr_cp",
+    "w_fb_k_on_30_cp"
+   ],
+   [
+    "w_fb_k_eps_en_30_cp",
+    "w_acc_fuse"
+   ],
+   [
+    "w_drl_cp",
+    "w_drl_30_cp"
+   ],
+   [
+    "w_drl_30_cp",
+    "w_drl_86_cp"
+   ],
+   [
+    "w_acc_fuse",
+    "w_fb_k_acc_30_cp"
+   ],
+   [
+    "w_acc_fuse",
+    "w_acc86"
+   ],
+   [
+    "w_fb_k_acc_30_cp",
+    "w_acc86"
+   ]
+  ],
+  "min_mm": 0.0
+ },
+ "bare_metal_touch": [],
+ "live_to_live": {},
+ "wires_drawn": {
+  "POWER": 9,
+  "LOGIC": 55,
+  "BATT": 2
+ },
+ "meta": {
+  "w_fb_mrs_en": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_eps_en c4"
+  },
+  "w_fan85": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_fan c2"
+  },
+  "w_acc_trig": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_acc c2"
+  },
+  "w_eps_trig": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_eps_en c2"
+  },
+  "w_start": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Yellow",
+   "gauge": 20,
+   "end": "fb_logic BUS2-13"
+  },
+  "w_fan285": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_fan2 c2"
+  },
+  "w_k_fan_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_fan c3"
+  },
+  "w_k_etb_86_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "k_etb c3"
+  },
+  "w_k_fan2_86_cp": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_fan2 c3"
+  },
+  "w_k_eps_en_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_eps_en c3"
+  },
+  "w_hl_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic BUS1-2"
+  },
+  "w_hz_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic BUS1-4"
+  },
+  "w_lam12_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_on c4"
+  },
+  "w_k_on_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_on c3"
+  },
+  "w_cp_sw12_in": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "fb_logic BUS2-2"
+  },
+  "w_cop_pwr_ac": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic BUS2-3"
+  },
+  "w_inj_pwr_ac": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic BUS2-4"
+  },
+  "w76": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_efi c2"
+  },
+  "w81": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "White",
+   "gauge": 20,
+   "end": "k_etb c2"
+  },
+  "w82_ac": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_etb c4"
+  },
+  "w_hl_85_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_hl c2"
+  },
+  "w_horn_85_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_horn c2"
+  },
+  "w_pmu_horn_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_horn c4"
+  },
+  "w_start_in_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Yellow",
+   "gauge": 20,
+   "end": "fb_logic BUS2-13 IN"
+  },
+  "w_hl_30_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_hl c1"
+  },
+  "w_hl_86_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_hl c3"
+  },
+  "w_hr_86_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_hr c3"
+  },
+  "w_hl_on_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_hl c4"
+  },
+  "w_hr_on_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_hr c4"
+  },
+  "w_drl_85_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "White",
+   "gauge": 20,
+   "end": "k_drl c2"
+  },
+  "w_r8_d2_k_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_pod c1"
+  },
+  "w_drl_87_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_drl c4"
+  },
+  "w_pod_85_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "White",
+   "gauge": 20,
+   "end": "k_pod c2"
+  },
+  "w_pod_87_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_pod c4"
+  },
+  "w_horn_30_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "k_horn c1"
+  },
+  "w_horn_86_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_horn c3"
+  },
+  "w_dev_clu": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "fb_logic BUS2-6"
+  },
+  "w_pmu_dome": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": "fb_logic BUS1-5"
+  },
+  "w_alt_s_c": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "White",
+   "gauge": 20,
+   "end": "fb_logic BUS1-9"
+  },
+  "w_acc_clutch": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": "k_acc c4"
+  },
+  "w_fan_pwr": {
+   "box": "POWER",
+   "od": 3.61,
+   "colour": "Red",
+   "gauge": 10,
+   "end": "k_fan c1"
+  },
+  "w_fan2_pwr": {
+   "box": "POWER",
+   "od": 3.61,
+   "colour": "Red",
+   "gauge": 10,
+   "end": "k_fan2 c1"
+  },
+  "w_hl_low": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_hr c2"
+  },
+  "w_at_12v_shk": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic BUS1-8"
+  },
+  "w_at_12v": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic BUS1-7"
+  },
+  "w_at_ig": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic BUS2-9"
+  },
+  "w_csb12": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Red",
+   "gauge": 20,
+   "end": "fb_logic BUS2-5"
+  },
+  "w77_cp": {
+   "box": "POWER",
+   "od": 3.61,
+   "colour": "Red",
+   "gauge": 10,
+   "end": "k_efi c1"
+  },
+  "w_k_efi_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "fb_logic efi86"
+  },
+  "w_k_efi_86_cp#1": {
+   "box": "POWER",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_efi c3"
+  },
+  "w_k_on_85_cp": {
+   "box": "LOGIC",
+   "od": 1.57,
+   "colour": "Black",
+   "gauge": 20,
+   "end": "k_on c2"
+  },
+  "w_hr_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": null
+  },
+  "w_fb_k_etb_30_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": null
+  },
+  "w_fb_k_on_30_cp": {
+   "box": "LOGIC",
+   "od": 2.41,
+   "colour": "Red",
+   "gauge": 14,
+   "end": null
+  },
+  "w_fb_k_eps_en_30_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_drl_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_drl_30_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_drl_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_pod_86_cp": {
+   "box": "LOGIC",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": null
+  },
+  "w_acc_fuse": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": null
+  },
+  "w_fb_k_acc_30_cp": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": null
+  },
+  "w_acc86": {
+   "box": "LOGIC",
+   "od": 2.06,
+   "colour": "Red",
+   "gauge": 16,
+   "end": null
+  },
+  "w_fp85_h": {
+   "box": "BATT",
+   "od": 1.85,
+   "colour": "White",
+   "gauge": 18,
+   "end": "k_fp coil plug"
+  },
+  "w_fp86_h": {
+   "box": "BATT",
+   "od": 1.85,
+   "colour": "Red",
+   "gauge": 18,
+   "end": "k_fp coil plug"
+  },
+  "sp_drl12": {
+   "box": "LOGIC",
+   "od": 4.5,
+   "colour": "clamp",
+   "gauge": null,
+   "end": "splice (est (solder joint, adhesive-lined heat shrink over; A20 a))"
+  },
+  "sp_acc12": {
+   "box": "LOGIC",
+   "od": 4.5,
+   "colour": "clamp",
+   "gauge": null,
+   "end": "splice (est (solder joint, adhesive-lined heat shrink over; A20 a))"
+  }
+ }
+}
