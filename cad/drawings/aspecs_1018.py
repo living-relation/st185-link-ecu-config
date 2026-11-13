@@ -65,7 +65,7 @@ def _term_item_for(items, pns, box='LOGIC'):
     if not pts:     # rev 8: the assembly STEP carries no terminal bodies; the cavity positions and parts come from wiring_plan.json
         import json
         plan = json.load(open(L.PLAN, encoding='utf-8'))
-        pts = [(np.array((e['x'], e['y'])), i['item']) for e in plan['per_box_wire_ends'] if e['box'] == box
+        pts = [(np.array((e['x'], e['y'])), i['item']) for e in plan['cavities'] if e['box'] == box
                for i in items if i['pn'] == e.get('part') and i['pn'] in pns]
 
     def f(x, y):
