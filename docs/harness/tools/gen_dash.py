@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-Dash, file "ST185-Dash Rev D" (Rev D 2026-11-12: Dash's editor-turn lengths (2026-11-12), the one mm cabin model (#662), the ECU splice point at the ECU plugs (A10 b, #663), the high-beam LED fed straight from the high-beam output and spliced onto its pigtail (A2 b / A3), 25 mm splice ends (T7 b) and ghost wires (T4 a), library sync (#664 / #665); Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
+"""harness.design copy of ST185-Dash, file "ST185-Dash Rev E" (Rev E 2026-11-12: the reverse signal and high-beam output splices, each with one Dash leg, are Loose ends with their R10 notes, no one-wire splice (DECISIONS T3; build_drawings.one_leg_splices; the builder draws any such end this way); Rev D 2026-11-12: Dash's editor-turn lengths (2026-11-12), the one mm cabin model (#662), the ECU splice point at the ECU plugs (A10 b, #663), the high-beam LED fed straight from the high-beam output and spliced onto its pigtail (A2 b / A3), 25 mm splice ends (T7 b) and ghost wires (T4 a), library sync (#664 / #665); Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
 gen_antitheft.py uses for "ST185-AntiTheft" (one small cabin harness each, same rules).
 Usage: python gen_dash.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/dash.json (whole document, wires already routed with genroute.py: upload as
@@ -204,9 +204,15 @@ def build(REPO, OUT, CFG):
         if B.BOX_RING.match(i): return 'New ' + r[s + '_name']     # a box stud ring (Dan N64 a)
         if i in SPLIT_T: return '%s (%s)' % (i, r[s + '_desc'])
         return box_label(i) or i
+    # a shared splice with only one leg in this file (its other legs are in other files) is no splice here: a Loose end with
+    # its R10 note and the 25 mm splice allowance (DECISIONS T3 / R10 / T7 b; build_drawings.one_leg_splices)
+    ONE = B.one_leg_splices(W, TITLE)
     def end(r, s):
         t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
         if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
+        if t == 'splice' and i in ONE:
+            terms.setdefault(i, {"id": "t_" + sid(i), "label": r[s + '_name'] or i, "type": 'Loose', "width": 240})
+            return {"id": "t_" + sid(i), "handle": "Terminal"}
         if t == 'splice':
             tp = r[s + '_terminal_pn']; spl_pn[i].add(SPLP.get(tp, tp))
             splices.setdefault(i, {"id": "s_" + sid(i), "label": i})
@@ -299,6 +305,8 @@ def build(REPO, OUT, CFG):
             if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
             assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
             oem_txt.setdefault(tid, B.oem_splice_note(q, s, c))     # a shared tap keeps its first text
+    for i, txt in ONE.items():      # a one-leg shared splice's R10 note sits where the OEM splice notes do (as gen_engc.py)
+        oem_col['t_' + sid(i)], oem_txt['t_' + sid(i)] = 'R10', txt
 
     # ================================================================== schematic: sources left, splices middle, cables, devices right
     # README "harness.design" (Dan 2026-11-01 / 11-02 / 11-03 N1 a): the sources left (factory taps, fuse box seats, bus plug,
@@ -312,11 +320,12 @@ def build(REPO, OUT, CFG):
             if e and e['id'] not in INFO: INFO[e['id']] = (r[s + '_type'], r[s + '_id'], H.place(r, s))
     NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
     AREA = CFG['area']
-    def is_left(i): return CFG['left'](INFO[i][0], INFO[i][1])
+    def is_left(i): return INFO[i][0] == 'splice' or CFG['left'](INFO[i][0], INFO[i][1])     # a one-leg splice end: its rest is a source
     # by area of the car; in an area the factory taps first, then plugs, then other terminals (a tap feeding a plug in its own
     # area, the II1 tap to the Pi inline fuse, sits right above it)
     LEFT_IDS = sorted([i for i in NODES if is_left(i)],
-                      key=lambda i: (AREA.index(INFO[i][2]) if INFO[i][2] in AREA else 99,
+                      key=lambda i: (INFO[i][0] == 'splice',      # one-leg splice ends at the bottom, below the sources
+                                     AREA.index(INFO[i][2]) if INFO[i][2] in AREA else 99,
                                      0 if INFO[i][0] == 'OEM' else 1 if i.startswith('c_') else 2, NODES[i]['label']))
     DEV_IDS = {i for i in NODES if i not in LEFT_IDS}
     def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
@@ -534,13 +543,13 @@ def build(REPO, OUT, CFG):
                      "column half a grid lower, N1 a); each end spaced so its label and notes clear the next (Dan N99 a). Each pin shows its "
                      "own master end text; a wire spliced onto a factory wire carries the full OEM splice note at its tap (Dan Y6, N16 a); a "
                      "splice shared with another harness file is drawn with its %s legs only and its note says where the rest goes (the "
-                     "other file, where the splice sits, the EWD page, the other legs' far ends and colour; R10). Shared plugs "
+                     "other file, where the splice sits, the EWD page, the other legs' far ends and colour; R10).%s Shared plugs "
                      "are drawn whole; cavities wired by other harnesses are N/C with a note. %s"
                      "Layout: a formboard of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), straight orthogonal bundles, "
                      "front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance "
                      "stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm." % (
                          TITLE, REV, DATE, CFG['scope'], NAME, CFG['script'], CFG['left_words'],
-                         'the branch cables right of them, ' if cables else '', NAME, B.GHOST_MARK)}]
+                         'the branch cables right of them, ' if cables else '', NAME, B.LOOSE_SENTENCE if ONE else '', B.GHOST_MARK)}]
     if used_st:      # display stripes note, only when the harness has a loose +12 V wire
         head.append({"id": "n_stripes", "width": 360,
              "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
@@ -620,6 +629,7 @@ def build(REPO, OUT, CFG):
     XY = H.layout['nodes']
     STUB = H.layout.get('end_allowance_mm', 100)
     SPL = H.layout.get('splice_allowance_mm', STUB)     # a splice end's allowance (Dan T7 b, 2026-11-10: 25 mm; strip and solder)
+    LOOSE_T = {'t_' + sid(i) for i in ONE}     # a one-leg splice's Loose end stands in for the splice end: the splice allowance
     def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
     def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
         pts = [XY[m]['xy'] for m in sub_nodes(c)]
@@ -688,7 +698,7 @@ def build(REPO, OUT, CFG):
     INL_AT = {}
     for cid, (nd, q, pts) in stubs.items():
         direct = cid[:2] in ('c_', 't_')
-        b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" else STUB, "unit": "mm"}}
+        b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" or cid in LOOSE_T else STUB, "unit": "mm"}}
         if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
         bundles.append(b)
         ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}
@@ -776,7 +786,7 @@ def build(REPO, OUT, CFG):
 
 # ---------------------------------------------------------------------------------------------- ST185-Dash (Dan B8 = a)
 DASH = dict(
-    name='Dash', title='ST185-Dash', rev='D', date='2026-11-12', stem='dash', script='gen_dash.py', root='ECU',
+    name='Dash', title='ST185-Dash', rev='E', date='2026-11-12', stem='dash', script='gen_dash.py', root='ECU',
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
           "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
           "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin 2's; Dash has "
