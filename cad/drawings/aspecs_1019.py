@@ -98,11 +98,11 @@ def fb_power():
     sp['label_views'] = [
         dict(title='WHAT EACH FUSE AND RELAY FEEDS (COVER OFF)', view='top', hide=[cover['item']], labels=fuses + relays),
         dict(title='HARNESS WIRES AT THE BUS STUDS (COVER OFF)', view='top', hide=[cover['item']], text_h=1.8, wires=top),
-        dict(title='HARNESS WIRES AT THE C-STRAP LUGS AND THE ACPS FUSE - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
-             hide=hide_under, text_h=1.8, wires=lugs + [w for w in term if w['text'].startswith('ACPS')]),
-        dict(title='HARNESS WIRES AT THE RELAYS - SEEN FROM BELOW, BELLY PAN AND R1 CLIP OFF', view='bottom',
-             hide=hide_under + [_by(it, pn='ST185-FB-104')['item']], text_h=1.8,
-             wires=[w for w in term if not w['text'].startswith('ACPS')]),
+        # rev 8 (Dan A16 a): no ACPS fuse and no heater relay R1, so no R1 clip (FB-104 qty 0) and no ACPS wires
+        dict(title='HARNESS WIRES AT THE C-STRAP LUGS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
+             hide=hide_under, text_h=1.8, wires=lugs),
+        dict(title='HARNESS WIRES AT THE RELAYS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
+             hide=hide_under, text_h=1.8, wires=term),
     ]
     for st in sp['stage_sheets'][0]:
         st['title'] = st['title'].replace(' (NOTE 4)', '')
@@ -118,7 +118,7 @@ def fb_power():
     nut = _by(it, pn='RS 527-268')['item']
     st[3]['balloon_base'] = [nut]       # step 4: the parts it adds, plus the top nut (it is only seen here); base parts were ballooned before
     sp['stage_sheets'] = [st[:2], [st[2]], [st[3]], st[4:]]
-    sp.update(tol=TOL, rev='Z.01')      # Z.01 clerical: step sheets split (Dispatch review 2026-10-19)
+    sp.update(tol=TOL, rev='Z.01')      # Z.01 clerical: step sheets split (Dispatch review 2026-10-19); run_fb_rev8.py sets the rev 8 letter
     return sp
 
 

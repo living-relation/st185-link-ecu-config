@@ -242,11 +242,9 @@ def fb_power():
              'C-STRAPS GO STRAIGHT DOWN INTO THEIR WELLS: THE LIPS PUSH THE SNAP HOOKS OUT (40 DEG LEAD-IN) AND THE HOOKS SNAP BACK OVER THE LIP ENDS (R181).']+TERM_NOTES)
 def fb_logic():
     items=fusebox('LOGIC')
-    for it in items:      # rev 8: the M5 PEM nut sits pressed in the strip end and finds no balloon spot in any view; no balloon, as the VRC inserts
-        if it['pn'].startswith('PEM SS-M5'): it['no_balloon']=True
-    plan=[('LIMITERS; STRIPS SLID IN FROM THE REAR',[('EFC',(0,0,-25)),('ST185-FB-115',(0,90,25)),('S-M4',(0,150,60)),('SS-M5',(0,150,60))]),   # rev 8: further out so the PEM nuts balloon
+    plan=[('LIMITERS; STRIPS SLID IN FROM THE REAR',[('EFC',(0,0,-25)),('ST185-FB-115',(0,60,0)),('S-M4',(0,60,0)),('SS-M5',(0,60,0))]),
           ('TERMINALS UP INTO THE CAVITIES',[('280919',(0,0,-30)),('42281',(0,0,-30)),('968849',(0,0,-30)),('968851',(0,0,-30))]),
-          ('FEED LUGS (NOTE 3) + JUMPERS',[('2R5',(0,0,-35)),('287-3921',(0,0,-45)),('320554',(0,0,-30)),('M22759',(-40,0,-110)),('231-0691',(0,0,-40)),('287-3915',(0,0,-50))]),
+          ('FEED LUGS (NOTE 3) + JUMPERS',[('2R5',(0,0,-35)),('287-3921',(0,0,-45)),('320554',(0,0,-30)),('M22759',(0,0,-30)),('231-0691',(0,0,-40)),('287-3915',(0,0,-50))]),
           ('FUSES + RELAYS',[('ATM',(0,0,45)),('RELAY',(0,0,55))]),
           ('BELLY PAN + COVER',[('ST185-FB-106',(0,0,-50)),('ST185-FB-107',(0,0,70))])]
     st=_stages(items,plan); base=[it['item'] for it in items if it['pn']=='ST185-FB-105']
