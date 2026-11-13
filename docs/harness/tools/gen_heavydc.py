@@ -108,7 +108,7 @@ for c in conn_ids:
                 pl = part_id('cavityPlugParts', here[0][2][here[0][3] + '_terminal_pn'])
                 if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
             else:
-                owners = sorted({u[0] for u in use[c].get(p, [])})
+                owners = sorted({B.file_short(u[2]) for u in use[c].get(p, [])})     # the file, "AB-cabin 2" (DECISIONS B6)
                 if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
         cavs.append(cv)
     conns[c] = {"id": "c_" + sid(c), "label": c, "cavities": cavs, "width": 240}
@@ -358,13 +358,11 @@ print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oe
 for c, txt in CONN_NOTE.items():      # N/C and spare notes (texts above): beside the box column, or right of the front column
     n = conns[c]
     notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": XO - 390 if c in other_owned and n['id'] in LEFT_IDS else DEVX + 270, "y": n['schematicPosition']['y']}})
-for sname, sp in splices.items():     # a splice shared with another harness: say where its other legs are
-    oth = sorted({(r['harness'], r['wire_id']) for r in ALL if r['harness'] != NAME and r['wire_id']
-                  and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
-    if oth:
+for sname, sp in splices.items():     # a splice shared with another harness file: its R10 note (DECISIONS B6 R10)
+    t = B.r10_note(sname, TITLE)
+    if t:
         notes.append({"id": "n_" + sid(sname), "width": 360, "schematicPosition": {"x": DEVX + 270, "y": sp['schematicPosition']['y']},
-                      "text": '%s: its other legs are in other harnesses - %s (the splice is drawn here with its HeavyDC leg only).'
-                              % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth))})
+                      "text": '%s (the splice is drawn here with its HeavyDC legs only).' % t[:-1]})
 pt_txt = '; '.join('%s (%s %s to %s %s)' % (r['wire_id'], r['from_id'], r['from_pin'], r['to_id'], r['to_pin']) for r in PT)
 notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390, "y": -390},
               "text": TITLE + " Rev " + REV + " (" + DATE + ", HeavyDC's own segments of the layout tree from its placement-editor seed and Dan's saves, Dan's format rules): "

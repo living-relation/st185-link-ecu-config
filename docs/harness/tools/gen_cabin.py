@@ -234,14 +234,14 @@ for c in conn_ids:
         else:
             cv['notConnected'] = True
             if theirs_w:
-                other_owned[c].append((p, OTHER)); cv['cavityPlugPartId'] = None
+                other_owned[c].append((p, SHORT[3 - DOC])); cv['cavityPlugPartId'] = None
             elif here and spare_doc(c) != DOC:
-                other_owned[c].append((p, OTHER + ' (an AB-cabin spare, listed there)')); cv['cavityPlugPartId'] = None
+                other_owned[c].append((p, SHORT[3 - DOC] + ' (an AB-cabin spare, listed there)')); cv['cavityPlugPartId'] = None
             elif here:      # an AB-cabin spare: its sealing plug from the master (TBD -> none)
                 pl = part_id('cavityPlugParts', here[0][2][here[0][3] + '_terminal_pn'])
                 if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
             else:
-                owners = sorted({u[0] for u in use[c].get(p, [])})
+                owners = sorted({B.file_short(u[2]) for u in use[c].get(p, [])})     # the file, "AB-cabin 2" (DECISIONS B6)
                 if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
         cavs.append(cv)
     conns[c] = {"id": "c_" + sid(c), "label": box_label(c) or c, "cavities": cavs, "width": 240}
@@ -600,11 +600,12 @@ if NC_CORES:
         '%s %s' % (cab_of[co['id']]['label'], co['color'].lower()) for co in NC_CORES))
 used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
 head = [{"id": "n_title", "width": 360,
-         "text": "%s Rev %s (%s). Part %d of 2 of AB-cabin, the ECU harness cabin half: %s. The rest of AB-cabin is '%s'. Split (Dan "
-                 "2026-11-04, V1 a): the ECU plugs A, B, C and the bulkhead DRB102-CABIN are drawn whole in both parts (cavities wired in "
-                 "the other part are N/C with a note); every other device has all its AB-cabin wires in one part. A splice whose other "
-                 "legs are elsewhere is labelled with its signal and where they go; a wire spliced onto a factory wire carries the full "
-                 "OEM splice note at its tap (Dan Y6, N16 a). Viewer copy "
+         "text": "%s Rev %s (%s). %s of the two AB-cabin files, the ECU harness cabin half: %s. The rest of AB-cabin is %s ('%s'). Split (Dan "
+                 "2026-11-04, V1 a): the ECU plugs A, B, C and the bulkhead DRB102-CABIN are drawn whole in AB-cabin 1 and AB-cabin 2 "
+                 "(cavities wired in the other file are N/C with a note); every other device has all its AB-cabin wires in one file. A "
+                 "splice whose other legs are in another file is labelled with where they go and carries the R10 note (the other file, "
+                 "where the splice sits, the EWD page, the other legs' far ends and colour); a wire spliced onto a factory wire carries the "
+                 "full OEM splice note at its tap (Dan Y6, N16 a). Viewer copy "
                  "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
                  "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
                  "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text. %s"
@@ -612,13 +613,13 @@ head = [{"id": "n_title", "width": 360,
                  "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), straight orthogonal bundles, front of car RIGHT, rear LEFT, "
                  "driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
                  "T7 b); bundle lengths = the master est_length_mm." % (
-                     TITLE, REV, DATE, DOC, 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out bus plugs, shield '
+                     TITLE, REV, DATE, SHORT[DOC], 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out bus plugs, shield '
                      'splices) with the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups '
                      'and their shielded cables' if DOC == 1 else
                      'the plain ECU-to-bulkhead wires (injectors, coils, sensor signals with no cabin splice), ECU power and grounds, the '
                      'relays and new fuse boxes, the factory taps (A/C amplifiers, J/B No.1, IG2, R/B No.4), the fuel pump relay and kill switch '
                      'legs of the sill run '
-                     'and CAN (ECU plug C)', OTHER,
+                     'and CAN (ECU plug C)', SHORT[3 - DOC], OTHER,
                      'the bulkhead and the far ends', 'the ECU plugs and ECU splice-point bus plugs', B.GHOST_MARK)}]
 if used_st:      # display stripes note, only when the part has a +12 V wire
     head.append({"id": "n_stripes", "width": 360,
@@ -643,6 +644,15 @@ N_LL = sum(1 for cond in CONDS if len([e for e in ends(cond) if e['id'] in LEFT_
 LL_X = -420 - (OEMW if oem_col else 0) - 30 * N_LL
 if left_txt: NOTES.append({"id": "n_left", "width": 360, "text": ' '.join(left_txt), "schematicPosition": {"x": LL_X, "y": 0}})
 if right_txt: NOTES.append({"id": "n_right", "width": 360, "text": ' '.join(right_txt), "schematicPosition": {"x": DEVX + 270, "y": 15}})
+# R10 (DECISIONS B6): a splice whose other legs are in another file carries the R10 note, in its own column right of the notes,
+# on the splice's row or the next free row below the note above it
+r10_y = None
+for sp, n in sorted(splices.items(), key=lambda kv: kv[1]['schematicPosition']['y']):
+    t = B.r10_note(sp, 'ST185-' + SHORT[DOC])
+    if not t: continue
+    y = n['schematicPosition']['y'] if r10_y is None else max(n['schematicPosition']['y'], r10_y)
+    NOTES.append({"id": "n_r10_" + sid(sp), "width": 360, "text": t, "schematicPosition": {"x": DEVX + 270 + 390, "y": y}})
+    r10_y = y + est_h(t) + 30
 
 # ================================================================== layout: the layout tree as a formboard
 node_items, inline_at, seen = collections.defaultdict(list), collections.defaultdict(list), set()

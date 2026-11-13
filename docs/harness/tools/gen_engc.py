@@ -106,7 +106,7 @@ for c in conn_ids:
                 pl = part_id('cavityPlugParts', here[0][2][here[0][3] + '_terminal_pn'])
                 if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
             else:
-                owners = sorted({u[0] for u in use[c].get(p, [])})
+                owners = sorted({B.file_short(u[2]) for u in use[c].get(p, [])})     # the file, "AB-cabin 2" (DECISIONS B6)
                 if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
         cavs.append(cv)
     conns[c] = {"id": "c_" + sid(c), "label": c, "cavities": cavs, "width": 240}
@@ -140,10 +140,8 @@ for r in W:
             if m and not m.group(1).startswith('OEM'): DEVNAME.setdefault(r[s + '_id'], m.group(1))
 # a wire that continues into another harness file ends on a Loose terminal with its R10 note (DECISIONS R10, Dan 2026-11-09:
 # no one-wire splice); key = the master end id, value = (terminal label, note)
-R10 = {'SP-AC-SG': ('A/C sensor common splice (in AB-cabin 2)',
-                    'to ST185-AB-cabin 2 - straight runs, power, taps and CAN; behind the glove box at the auto A/C amplifier; '
-                    '1993 TIS EWD p.211-212; A/C sensor common splice SP-AC-SG, joined to auto A/C amplifier A32 pin 15 (SG) '
-                    'by wire w_amb_sg; spliced onto Yellow')}
+# (the note text: build_drawings.r10_note, from the master and the layout node of the splice)
+R10 = {'SP-AC-SG': ('A/C sensor common splice (continues in AB-cabin 2)', B.r10_note('SP-AC-SG', TITLE))}
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
@@ -326,12 +324,10 @@ print('OEM splice notes', len(oem_col), '| blank colour, no note:', ', '.join(oe
 for c, txt in CONN_NOTE.items():      # N/C and spare notes (texts above): beside the box column, or right of the front column
     n = conns[c]
     notes.append({"id": "n_" + sid(c), "text": txt, "width": 360, "schematicPosition": {"x": XO - 390 if c in other_owned and n['id'] in LEFT_IDS else DEVX + 270, "y": n['schematicPosition']['y']}})
-for sname, sp in splices.items():     # a splice shared with another harness: say where its other legs are
-    oth = sorted({(r['harness'], r['wire_id']) for r in ALL if r['harness'] != NAME and r['wire_id']
-                  and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
-    if oth:
-        t = ('%s: its other legs are in other harnesses - %s (the splice is drawn here with its EngineRoom-C leg only).'
-             % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth)))
+for sname, sp in splices.items():     # a splice shared with another harness file: its R10 note (DECISIONS B6 R10)
+    t = B.r10_note(sname, TITLE)
+    if t:
+        t = '%s (the splice is drawn here with its EngineRoom-C legs only).' % t[:-1]
         def clear(x, y):    # no other note's text where this one would sit (Dan N99 a)
             return not any(abs(o['schematicPosition']['x'] - x) < 360 and abs(o['schematicPosition']['y'] - y) < (B.note_h(o['text']) + B.note_h(t)) / 2 + 5
                            for o in notes)

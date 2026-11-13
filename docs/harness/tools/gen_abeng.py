@@ -152,7 +152,7 @@ for c in conn_ids:
                 pl = part_id('cavityPlugParts', here[0][2][here[0][3] + '_terminal_pn'])
                 if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
             else:
-                owners = sorted({u[0] for u in use[c].get(p, [])})
+                owners = sorted({B.file_short(u[2]) for u in use[c].get(p, [])})     # the file, "AB-cabin 2" (DECISIONS B6)
                 if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
         cavs.append(cv)
     conns[c] = {"id": "c_" + sid(c), "label": c, "cavities": cavs, "width": 240}
@@ -385,12 +385,11 @@ for c in conns:
     if txt:
         nt = {"id": "n_" + sid(c), "text": ' '.join(txt), "width": 360}
         (notes if c == BHN else right_notes).append((nt, conns[c]))
-for sname, sp in splices.items():     # a splice shared with another harness: say where its other legs are
-    oth = sorted({(r['harness'], r['wire_id']) for r in ALL if r['harness'] != NAME and r['wire_id']
-                  and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
-    if oth:
-        right_notes.append(({"id": "n_" + sid(sname), "width": 360, "text": '%s: its other legs are in other harnesses - %s.'
-                             % (sname, '; '.join('%s see %s' % (w, h_) for h_, w in oth))}, sp))
+for sname, sp in splices.items():     # a splice shared with another harness file: its R10 note (DECISIONS B6 R10)
+    t = B.r10_note(sname, TITLE)
+    if t:
+        right_notes.append(({"id": "n_" + sid(sname), "width": 360,
+                             "text": '%s (the splice is drawn here with its AB-engine legs only).' % t[:-1]}, sp))
 for c, mc in mate_conns.items():
     pn = mates_pn[c]
     notes.append(({"id": "n_mate_" + sid(c), "width": 360, "text": "%s takes the plug-in %s (%s, %s), drawn mated to it; it carries no "

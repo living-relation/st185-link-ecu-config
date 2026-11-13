@@ -1867,9 +1867,76 @@ def abcabin_doc_of(rows):
 def ghost_file(r, doc_of=None):
     """the harness.design file a master wire is drawn in (name without its rev letter, R10)"""
     if r["harness"] == "AB-cabin":
-        d = (doc_of or abcabin_doc_of(master_rows())).get(r["wire_id"], 2)
+        if doc_of is None:      # one split per run (the master does not change while a generator runs)
+            doc_of = _DOC_OF or _DOC_OF.update(abcabin_doc_of(master_rows())) or _DOC_OF
+        d = doc_of.get(r["wire_id"], 2)
         return "ST185-AB-cabin %d" % d
     return "ST185-" + r["harness"]
+
+
+_DOC_OF = {}
+
+
+def file_short(r, doc_of=None):
+    """the file a master wire is drawn in, as the notes name it: "AB-cabin 1" / "AB-cabin 2" for the two AB-cabin files, else the
+    harness name (DECISIONS B6 "AB-cabin file names"; the ghost tags, labels and notes all use this one form)"""
+    return ghost_file(r, doc_of)[len("ST185-"):]
+
+
+# R10 (DECISIONS B6, Dan 2026-11-09): where each shared splice sits in the car, from its layout node's label in
+# ST185-harness.layout.json (and the book the spot is looked up in, where that label cites one). A new shared splice on a node not
+# listed here stops r10_note: add the node from its label, never a guess.
+R10_PLACE = {
+    "SP": ("centre dash, right at the ECU plugs (the ECU splice point)", ""),
+    "GB": ("glove box, beside the POWER and LOGIC boxes", ""),
+    "ACAMP": ("behind the glove box, at the A/C amplifier A15 on the bottom of the evaporator case",
+              "1993 Mitchell component locator, 1993 EWD p.32"),
+    "ACAMP32": ("behind the centre of the dash, at the auto A/C amplifier A32 (bottom left of the heater unit)",
+                "1993 Mitchell component locator, 1993 EWD p.32"),
+    "TAP_CSB": ("centre console, on the CAN trunk 80 mm from the switch board (ECUMaster CSB3, under the centre cluster)", ""),
+    "TAP_RD": ("centre dash, on the CAN trunk 80 mm from the RealDash Pi", ""),
+}
+_R10_LAYOUT = {}
+
+
+def _ewd_page(txt):
+    m = re.search(r"1993\D{0,12}p\.\s*(\d+(?:\s*-\s*\d+)?)", txt or "")
+    return m.group(1).replace(" ", "") if m else ""
+
+
+def r10_note(sp, host, rows=None):
+    """The R10 note at splice `sp` in file `host` (e.g. "ST185-Dash", "ST185-AB-cabin 2"): for each other file with legs on the
+    splice, "to <file>; <where in the car>; <1993 EWD pages>; <splice>, joined to "<wire>" to <far end> pin <n>, ...; spliced
+    onto <colour>", every part only where it applies (DECISIONS B6 R10). Empty when no other file has a leg there."""
+    rows = rows if rows is not None else master_rows()
+    doc_of = abcabin_doc_of(rows)
+    by = collections.OrderedDict()
+    for r in rows:
+        if not r["wire_id"] or is_removal(r) or is_integral(r):
+            continue
+        for s in ("from", "to"):
+            if r[s + "_type"] == "splice" and r[s + "_id"] == sp and ghost_file(r, doc_of) != host:
+                by.setdefault(file_short(r, doc_of), []).append((r, s))
+    if not by:
+        return ""
+    if not _R10_LAYOUT:
+        _R10_LAYOUT.update(load(os.path.join(HERE, "ST185-harness.layout.json")))
+    node = _R10_LAYOUT["place"].get(sp)
+    assert node in R10_PLACE, "R10: no location text for layout node %s (splice %s): add it to R10_PLACE from its label" % (node, sp)
+    where, spot_cite = R10_PLACE[node]
+    out = []
+    for f, legs in sorted(by.items()):
+        name = legs[0][0][legs[0][1] + "_name"] or sp
+        pages = sorted({_ewd_page(r["oem_ewd_page"]) for r, _s in legs} - {""})
+        books = (["1993 EWD p.%s (circuit)" % ", p.".join(pages)] if pages else []) + (["%s (spot)" % spot_cite] if spot_cite else [])
+        def far(r, s):
+            o = "to" if s == "from" else "from"
+            return (r[o + "_name"] or r[o + "_id"]) + ((" pin " + r[o + "_pin"]) if r[o + "_pin"] and r[o + "_type"] != "splice" else "")
+        joins = ", ".join('"%s" to %s' % (r.get("wire_label") or r[s + "_desc"] or r["wire_id"], far(r, s)) for r, s in legs)
+        cols = " / ".join(dict.fromkeys("the shield drain" if r["colour"] == "Shield" else r["colour"] for r, _s in legs))
+        out.append("; ".join(["to ST185-" + f, where] + (["; ".join(books)] if books else []) +
+                             ["%s, joined to %s" % (name, joins), "spliced onto " + cols]))
+    return ". ".join(out) + "."
 
 
 GHOST_REPORT = {}       # host -> the pass-through rows add_ghosts drew / left out (its last call), for the title note
@@ -1882,8 +1949,9 @@ def ghost_sentence(host, label=lambda r: r["wire_id"]):
     rep = GHOST_REPORT.get(host) or {"drawn": [], "skipped": [], "strands": False}
     def by_owner(rs):
         by = collections.defaultdict(list)
+        doc_of = abcabin_doc_of(master_rows()) if rs else {}
         for r in rs:
-            by[r["harness"]].append(label(r))
+            by[file_short(r, doc_of)].append(label(r))     # the file, as the ghost tags name it ("AB-cabin 2")
         return "; ".join("%s see %s" % (", ".join(v), k) for k, v in sorted(by.items()))
     out = []
     if rep["drawn"]:
