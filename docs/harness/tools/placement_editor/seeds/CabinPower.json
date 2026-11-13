@@ -286,7 +286,7 @@
   {
    "n": "5",
    "id": "RLY-DRL",
-   "name": "DRL cut relay (beside the LOGIC box)",
+   "name": "DRL cut relay (glove box by the POWER box)",
    "group": "Boxes",
    "note": "Beside the LOGIC box, as the master says; placed by Claude by rule; drag to tweak",
    "x": -610,
