@@ -172,7 +172,7 @@ def build(REPO, OUT, CFG):
                         pl = part_id('cavityPlugParts', r0[s0 + '_terminal_pn'])
                         if pl and pl != cfg_plug: cv['cavityPlugPartId'] = pl
                 else:
-                    owners = sorted({u[0] for u in use[c].get(p, [])})
+                    owners = sorted({B.file_short(u[2]) for u in use[c].get(p, [])})     # the file, "AB-cabin 2" (DECISIONS B6)
                     if owners: other_owned[c].append((p, '/'.join(owners))); cv['cavityPlugPartId'] = None
             cavs.append(cv)
         conns[c] = {"id": "c_" + sid(c), "label": box_label(c) or c, "cavities": cavs, "width": 240}
@@ -511,28 +511,30 @@ def build(REPO, OUT, CFG):
     if scr: right_txt.append('Cable screens %s: %s' % (', '.join(scr), CFG.get(      # CFG 'screen_note': a harness whose screens are not CAN
         'screen_note', 'spliced onto the CAN trunk screen at their branch point, cut back and sealed at the device end '
                        '(DECISIONS "CAN wiring (B17)", Dan 2026-11-07).')))
-    # a splice shared with another harness is drawn with this harness's legs only; its note names the other harness and wires
+    # a splice shared with another harness file is drawn with this file's legs only; its note is the R10 note (DECISIONS B6 R10:
+    # the other file, where the splice sits, the EWD pages, its other legs and their far ends, the colour spliced onto)
     shared = []
     for sname, sp in splices.items():
-        def far(r):      # the other end of that leg, so the note says where it goes (B22: labels and ends, never wire ids)
-            s = 'to' if r['from_type'] == 'splice' and r['from_id'] == sname else 'from'
-            return '%s%s' % (r[s + '_name'] or r[s + '_id'], (' pin ' + r[s + '_pin']) if r[s + '_pin'] else '')
-        oth = sorted({(r['harness'], '"%s" (to %s)' % (r.get('wire_label') or r['wire_id'], far(r))) for r in ALL
-                      if r['harness'] != NAME and r['wire_id']
-                      and any(r[s + '_type'] == 'splice' and r[s + '_id'] == sname for s in ('from', 'to'))})
-        if oth:
-            by = collections.defaultdict(list)
-            for h_, w in oth: by[h_].append(w)
+        t = B.r10_note(sname, TITLE)
+        if t:
             shared.append({"id": "n_" + sid(sname), "width": 360, "_want": sp['schematicPosition']['y'],
-                           "text": '%s: its other legs are in another harness - %s (the splice is drawn here with its %s legs only).'
-                                   % (sname, '; '.join('%s see %s' % (', '.join(v), k) for k, v in sorted(by.items())), NAME)})
+                           "text": '%s (the splice is drawn here with its %s legs only).' % (t[:-1], NAME)})
+    # a device pigtail the new wire is spliced onto (not a factory wire, so no OEM splice note): a pin note from the master end
+    # detail on that end's row (Dan A3: the high-beam LED feed onto the LED's own 20 AWG pigtail)
+    for r in W:
+        for s in ('from', 'to'):
+            if r[s + '_type'] == 'diode' and 'pigtail' in r[s + '_desc'] and 'splice' in r[s + '_terminal_pn']:
+                n = INL['d_' + sid(r[s + '_id'])]
+                shared.append({"id": "n_pin_" + sid(r[s + '_id']), "width": 360, "_want": n['schematicPosition']['y'],
+                               "text": '%s pin %s: %s.' % (r[s + '_name'], r[s + '_pin'], re.sub(r'^Detail:\s*', '', r[s + '_note']).rstrip('.'))})
     used_st = sorted({row_of[w['identLabel']]['circuit_id'] for w in wires if 'stripeColor' in w}, key=list(STRIPE).index)
     head = [{"id": "n_title", "width": 360,
              "text": "%s Rev %s (%s): %s Viewer copy generated from docs/harness/MASTER-wirelist.csv (harness = %s) by docs/harness/tools/%s; "
                      "never a source. Schematic: %s left, splices and inline parts middle, %sdevices right; columns level at the top (right "
                      "column half a grid lower, N1 a); each end spaced so its label and notes clear the next (Dan N99 a). Each pin shows its "
                      "own master end text; a wire spliced onto a factory wire carries the full OEM splice note at its tap (Dan Y6, N16 a); a "
-                     "splice shared with another harness is drawn with its %s legs only and a note names the other harness. Shared plugs "
+                     "splice shared with another harness file is drawn with its %s legs only and its note says where the rest goes (the "
+                     "other file, where the splice sits, the EWD page, the other legs' far ends and colour; R10). Shared plugs "
                      "are drawn whole; cavities wired by other harnesses are N/C with a note. %s"
                      "Layout: a formboard of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), straight orthogonal bundles, "
                      "front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance "
@@ -777,7 +779,7 @@ DASH = dict(
     name='Dash', title='ST185-Dash', rev='D', date='2026-11-12', stem='dash', script='gen_dash.py', root='ECU',
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
           "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
-          "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin's; Dash has "
+          "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin 2's; Dash has "
           "the two trunk legs between the taps), a 205 mm 2-core shielded drop from each tap to its node, and plain +12 V / ground "
           "wires per node (feeds LOGIC DEV 5 A, LOGIC CSB 5 A and the factory CIG & RADIO ACC lead through the 5 A inline fuse F-PI; "
           "each node ground to the cabin ground splice); the CSB3 plug, "

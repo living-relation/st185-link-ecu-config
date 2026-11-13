@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-CabinPower, file "ST185-CabinPower Rev C" (Rev C 2026-11-12: CabinPower's editor turn (approved as is: every length from its seed, the DRL switch / pop-up relay branches), the A/C clutch relay wire to the A/C amplifier on its factory spot, the dash high-beam LED fed from the high-beam output by Dash (A2 b: R-HB and its wires gone, the IE1 R-L leg a removal row), the one mm cabin model (#662), 25 mm splice ends (T7 b), ghost wires (T4 a), library sync (#664 / #665); Rev B 2026-11-09: the three alarm feeds follow the moved alarm spot, 1012 -> 1214 mm; viewer only; the master is the source).
+"""harness.design copy of ST185-CabinPower, file "ST185-CabinPower Rev D" (Rev D 2026-11-12: after T3 (#667) the three alarm feeds are whole AntiTheft wires that only pass through, so CabinPower has no alarm feed ties (w_at_12v_tie_cp, w_at_12v_shk_tie_cp, w_at_ig_tie_cp) and no alarm splices; R10 notes on the shared splices; the SW12 bus plug spare cavity 6 with its sealing plug; Rev C 2026-11-12: CabinPower's editor turn (approved as is: every length from its seed, the DRL switch / pop-up relay branches), the A/C clutch relay wire to the A/C amplifier on its factory spot, the dash high-beam LED fed from the high-beam output by Dash (A2 b: R-HB and its wires gone, the IE1 R-L leg a removal row), the one mm cabin model (#662), 25 mm splice ends (T7 b), ghost wires (T4 a), library sync (#664 / #665); Rev B 2026-11-09: the three alarm feeds follow the moved alarm spot, 1012 -> 1214 mm; viewer only; the master is the source).
 Usage: python gen_cabinpower.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/cabinpower.json (whole document, already routed with genroute.py: upload as is),
 cabinpower_lib_ops.json and cabinpower_expect.json. Built by gen_dash.build (same rules: README "harness.design"; plain labels
@@ -7,19 +7,19 @@ POWER box stud rings (battery feed, AMI fuses, NEG bar) and the LOGIC fuse and r
 labelled seat or stud terminal and the box insides are not drawn, Dan R1 a 2026-11-09), the relays beside it (K-EPS, RLY-DRL), the switched
 +12 V bus plug, the factory feeds to J/B No.1, cowl plug IE1 / splice I2, R/B No.4 and the pop-up relay R8 (LH and RH kick),
 the headlamp, horn, hazard and DRL circuits (DECISIONS "Headlamps, DRL and pop-ups"), the DRL switch left of the steering wheel
-and the alarm feed ties (CabinPower's legs of the AntiTheft feed splices). Route: the CabinPower tree of ST185-harness.layout.json
+(the three alarm feeds pass through as AntiTheft ghost wires, T3). Route: the CabinPower tree of ST185-harness.layout.json
 (its placement-editor seed in the one car-mm model, approved as is by Dan 2026-11-12); every routed length = the master."""
 import sys
 import gen_dash
 
 CABINPOWER = dict(
-    name='CabinPower', title='ST185-CabinPower', rev='C', date='2026-11-12', stem='cabinpower', script='gen_cabinpower.py', root='GB',
+    name='CabinPower', title='ST185-CabinPower', rev='D', date='2026-11-12', stem='cabinpower', script='gen_cabinpower.py', root='GB',
     scope="the cabin power harness (glove box and across the dash): the POWER box stud rings (battery feed, AMI fuses, NEG bar) and "
           "the LOGIC fuse and relay box (its relay seats drawn as labelled wire ends; box insides not drawn, Dan R1 a), the relays "
           "beside it, the switched +12 V bus plug, the factory feeds to "
           "J/B No.1, cowl plug IE1 / splice I2, R/B No.4 and the pop-up relay R8, the headlamp, horn, hazard and DRL circuits "
-          "(DECISIONS \"Headlamps, DRL and pop-ups\"), the DRL switch left of the steering wheel and the alarm feed ties (CabinPower's "
-          "legs of the AntiTheft feed splices).",
+          "(DECISIONS \"Headlamps, DRL and pop-ups\") and the DRL switch left of the steering wheel; the three alarm feeds only pass "
+          "through (AntiTheft wires, T3).",
     left_words='the boxes and factory ends (the POWER box stud rings, the LOGIC fuse and relay box, the switched +12 V bus plug, '
                'the factory feeds at J/B No.1, IE1 / I2, R/B No.4 and R8 with their splice notes)',
     left=lambda t, i: t in ('terminal', 'OEM') or i in ('LOGIC', 'BUS-SW12'),
