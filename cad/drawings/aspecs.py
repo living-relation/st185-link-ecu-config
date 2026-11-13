@@ -181,7 +181,7 @@ MAP={
    'Output C-straps':(['Power_Strap_Out'],'ST185-FB-117','OUTPUT C-STRAP 15 x 3 (14 FROM 1 BAR)'),'FHS-M5-12':(['Power_Stud_PEM'],None,None),
    'Top-nut holder':(['Power_NutHolder'],'ST185-FB-118','C-STRAP TOP-NUT HOLDER, PA12 (1 PER STRAP)'),'RS 527-268':(['Power_Nut_DIN934'],None,'HEX NUT M5 DIN 934, TOP NUT IN ITS HOLDER'),
    'AMI-30':(['Power_Fuse_AMI_orange'],None,None),'AMI-40':(['Power_Fuse_AMI_ltgreen'],None,None),'AMI-50':(['Power_Fuse_AMI_red'],None,None),'AMI-60':(['Power_Fuse_AMI_yellow'],None,None),
-   'ATM-10':(['Power_Fuse_ATM'],None,None),'1-1414687-0':(['Power_Relay_TE_PowerB'],None,None),'1-1414147-0':(['Power_Relay_TE_F7'],None,'MAXI ISO F7 RELAY 680 OHM (k_efi/k_str/k_fan)'),
+   'ATM-10':(['Power_Fuse_ATM'],None,None),'1-1414687-0':(['Power_Relay_TE_PowerB'],None,None),'1-1414147-0':(['Power_Relay_TE_F7'],None,'MAXI ISO F7 RELAY 680 OHM (K-EFI, K-FAN)'),
    '1-1393304-0':('same',None,None),'280756-4':(['Power_Terminal_TE_280756'],None,None),'280755-4':(['Power_Terminal_TE_280755'],None,None),
    '87a receptacle':('same',None,None),'42281-1':(['Power_Terminal_TE_42281'],None,None),'62998-2':(['Power_Terminal_TE_62998'],None,None),
    '1-968851-1':(['Power_Terminal_TE_1-968851'],None,None),'1-968849-1':(['Power_Terminal_TE_1-968849'],None,None),
@@ -239,8 +239,7 @@ def fb_power():
       notes=['OVERALL DIMENSIONS ONLY (REFERENCE). ITEMS MARKED (NOT SHOWN) ARE NOT MODELED; WIRES/HARNESS OMITTED FOR CLARITY.',
              'RELAY / FASTENER ITEMS THAT SHARE ONE MODEL BODY ARE BALLOONED ON THE FIRST ITEM OF THE GROUP.',
              'M5 BOLTS AND NUTS 4 N·m MAX (AMI SHEET). C-STRAP: STUD PRESSED AND TOP NUT + HOLDER IN BEFORE INSTALL, SEE FB-117.',
-             'C-STRAPS GO STRAIGHT DOWN INTO THEIR WELLS: THE LIPS PUSH THE SNAP HOOKS OUT (40 DEG LEAD-IN) AND THE HOOKS SNAP BACK OVER THE LIP ENDS (R181).',
-             'THE HEATER RELAY SEAT AND THE ACPS FUSE POSITION ARE EMPTY SPARES. K-EPS (TE HCR150) AND THE DRL CUT RELAY (GEP FRH-A12 HOLDER) MOUNT BESIDE THIS BOX, NOT IN IT.']+TERM_NOTES)
+             'C-STRAPS GO STRAIGHT DOWN INTO THEIR WELLS: THE LIPS PUSH THE SNAP HOOKS OUT (40 DEG LEAD-IN) AND THE HOOKS SNAP BACK OVER THE LIP ENDS (R181).']+TERM_NOTES)
 def fb_logic():
     items=fusebox('LOGIC')
     plan=[('LIMITERS; STRIPS SLID IN FROM THE REAR',[('EFC',(0,0,-25)),('ST185-FB-115',(0,90,25)),('S-M4',(0,150,60)),('SS-M5',(120,40,0))]),   # rev 8: further out so the PEM nuts balloon
