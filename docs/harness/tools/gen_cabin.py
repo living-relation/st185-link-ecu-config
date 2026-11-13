@@ -37,7 +37,9 @@ H = B.Harness('ST185-harness')
 # leg, A/C amplifiers on their factory spots, kill switch lead after A1 b, the fuel pump relay coil feed; the wheel speed output
 # plugs on the 2026-11-11 conditioner spots; the one mm cabin model #662; the ECU splice point at the ECU plugs A10 b #663; the
 # outside air temp sensor wires now EngineRoom-C's, U4 a; 25 mm splice ends T7 b and ghost wires T4 a; library sync #664 / #665)
-REVS, DATES = {1: 'F', 2: 'G'}, {1: '2026-11-12', 2: '2026-11-12'}
+# Rev H of doc 2 (2026-11-12): its eight shared splices with one AB-cabin 2 leg (the A/C pressure switch and A/C sensor common
+# splices, the six CAN tap splices) are Loose ends with their R10 notes, no one-wire splice (DECISIONS T3; one_leg_splices)
+REVS, DATES = {1: 'F', 2: 'H'}, {1: '2026-11-12', 2: '2026-11-12'}
 NAME, REV, DATE = 'AB-cabin', REVS[DOC], DATES[DOC]
 TITLES = {1: 'ST185-AB-cabin 1 - sensor rails and screens', 2: 'ST185-AB-cabin 2 - straight runs, power, taps and CAN'}
 SHORT = {1: 'AB-cabin 1', 2: 'AB-cabin 2'}
@@ -258,9 +260,15 @@ def tlabel(r, s):
     i = r[s + '_id']
     if r[s + '_type'] == 'terminal': return 'New ' + r[s + '_name'] if B.BOX_RING.match(i) else (box_label(i) or i)   # a box stud ring (Dan N64 a)
     return oem_label(r, s)
+# a shared splice with only one leg in this file (its other legs are in another file) is no splice here: a Loose end with its
+# R10 note and the 25 mm splice allowance (DECISIONS T3 / R10 / T7 b; build_drawings.one_leg_splices)
+ONE = B.one_leg_splices(W, 'ST185-' + SHORT[DOC])
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
+    if t == 'splice' and i in ONE:
+        terms.setdefault(i, {"id": "t_" + sid(i), "label": r[s + '_name'] or i, "type": 'Loose', "width": 240})
+        return {"id": "t_" + sid(i), "handle": "Terminal"}
     if t == 'splice':
         tp = r[s + '_terminal_pn']; spl_pn[i].add(SPLP.get(tp, tp))
         splices.setdefault(i, {"id": "s_" + sid(i), "label": i})
@@ -391,7 +399,15 @@ NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 def is_ecu_side(n): return n['id'].startswith('c_') and place_of(n['id']) in ('ECU', 'SP')     # ECU plugs + the ECU splice-point bus plugs
 # the bulkhead first, then the far ends grouped by where they sit in the car (glove box, the sill run, A/C, front, dash, pedal)
 AREA = ['BH', 'GB', 'RHKICK', 'BATT', 'FUEL', 'ACAMP', 'EVAP', 'AMB', 'ECU', 'CSB3', 'VRC_F', 'VRC_R', 'JB1', 'PEDAL']
-LEFT_IDS = sorted([i for i, n in NODES.items() if not is_ecu_side(n)],
+# a one-leg splice's Loose end sits across from its wire's far end, so the wire runs straight over like any other: far end on
+# the left (a factory tap, the bulkhead) -> the end in the right column, far end an ECU plug -> the end in the left column
+def far_ecu(sp):
+    r, s = next((r, s) for r in W for s in ('from', 'to') if r[s + '_type'] == 'splice' and r[s + '_id'] == sp)
+    o = 'to' if s == 'from' else 'from'
+    return r[o + '_type'] == 'connector' and H.layout['place'].get(r[o + '_id']) in ('ECU', 'SP')
+LOOSE_R = {'t_' + sid(i) for i in ONE if not far_ecu(i)}
+LOOSE_L = {'t_' + sid(i) for i in ONE} - LOOSE_R
+LEFT_IDS = sorted([i for i, n in NODES.items() if not is_ecu_side(n) and i not in LOOSE_R],
                   key=lambda i: (AREA.index(place_of(i)) if place_of(i) in AREA else 99, i.startswith('t_'), NODES[i]['label']))
 DEV_IDS = {i for i in NODES if i not in LEFT_IDS}
 def h(n): return 30 + 30 * len(n['cavities']) if 'cavities' in n else 30
@@ -405,6 +421,9 @@ for r in W:
         if not c: oem_skip.append('%s %s %s' % (r['wire_id'], r[s + '_id'], r[s + '_pin'])); continue
         assert oem_col.setdefault(tid, c) == c, (tid, oem_col[tid], c)
         oem_txt.setdefault(tid, B.oem_splice_note(r, s, c))     # full note (Dan N16 a); a shared tap keeps its first text
+for i, txt in ONE.items():      # a left one-leg splice end's R10 note sits where the OEM splice notes do (as gen_engc.py); a
+    if 't_' + sid(i) not in LOOSE_R:     # right one's goes in the R10 note column (below)
+        oem_col['t_' + sid(i)], oem_txt['t_' + sid(i)] = 'R10', txt
 def span(i): return B.end_span(NODES[i], [oem_txt[i]] if i in oem_txt else [])
 y, prev = 0, None
 for i in LEFT_IDS:     # where an end has text (a label tag, a note on its row) the step grows to keep it clear (Dan N99 a)
@@ -427,7 +446,9 @@ def core_row(c, co): return c['schematicPosition']['y'] + 30 * (cseq(c).index(co
 # take a lane of their own between the two columns. A cable with no left end (the ECU CAN cable: ECU plug C to the CAN joins)
 # sits right of the splices, on rows next to what feeds its splices from the left
 CABLX = 240 + 30 * (3 + sum(1 for c in cables.values() for co in cseq(c) for e in ends(co) if e['id'] in LEFT_IDS))
-def lefts_of(c): return [cav_y(NODES[e['id']], e['handle']) for co in cseq(c) for e in ends(co) if e['id'] in LEFT_IDS]
+def lefts_of(c, loose=False):     # a left one-leg splice end does not pull its cable over to the left column (it stood in
+    return [cav_y(NODES[e['id']], e['handle']) for co in cseq(c) for e in ends(co)     # for a middle splice: the ECU CAN cable)
+            if e['id'] in LEFT_IDS and (loose or e['id'] not in LOOSE_L)]
 MID_CABS = [c for c in cables.values() if not lefts_of(c)]
 def put_cable(c, want, x):
     global cab_rows
@@ -448,7 +469,8 @@ for c in MID_CABS:
         cc = cab_of.get(cond['id'])
         if cc is not None and 'schematicPosition' in cc: feeds.append(core_row(cc, cond))
         feeds += [cav_y(NODES[e['id']], e['handle']) for e in es if e['id'] in LEFT_IDS]
-    put_cable(c, min(feeds) if feeds else LEFT_BOTTOM, 0)     # x is set once the splices are placed
+    loose = lefts_of(c, True)      # or beside its one-leg splice ends
+    put_cable(c, min(feeds) if feeds else min(loose) if loose else LEFT_BOTTOM, 0)     # x is set once the splices are placed
 N_CR = sum(1 for c in cables.values() for co in cseq(c) for e in ends(co) if e['id'] not in LEFT_IDS)
 PX = CABLX + 60 + 30 * max(4, N_CR // 2)       # a resistor / diode with one end on the left column (lanes for the cable cores first)
 SPX = PX + 150              # splices fed from the left column (or a cable core)
@@ -540,7 +562,8 @@ for cond in CONDS:
         if e['id'] in DEV_IDS:
             c = cab_of.get(cond['id'])
             bary[e['id']] += [core_row(c, cond)] if c else [row_of_end(o) for o in es if o is not e and row_of_end(o) is not None]
-DEV_ORDER = sorted(DEV_IDS, key=lambda d: (sum(bary[d]) / len(bary[d]) if bary[d] else 10 ** 6, NODES[d]['label']))
+DEV_ORDER = sorted(DEV_IDS, key=lambda d: (d in LOOSE_R,      # one-leg splice ends below the ECU plugs
+                                           sum(bary[d]) / len(bary[d]) if bary[d] else 10 ** 6, NODES[d]['label']))
 def place_right(devx):
     y = 15
     for d in DEV_ORDER:
@@ -565,6 +588,16 @@ while hi - lo > 30:
     if route_cost(mid) <= base: hi = mid
     else: lo = mid
     print('  try', mid, '->', 'ok' if hi == mid else 'worse', flush=True)
+def upload_ok(devx):     # the upload pass (genroute.py: its last-resort jogs, the OEM / R10 notes on their rows, the bussed
+    place_right(devx)    # receptacles relabel adds) routes every conductor of this file
+    d_ = copy.deepcopy(doc_now())
+    d_['schematicNotes'] = [{"id": "n_oem_" + t, "width": 360, "text": "", "schematicPosition": {
+        "x": NODES[t]['schematicPosition']['x'] - 360, "y": NODES[t]['schematicPosition']['y']}} for t in oem_col]
+    B.relabel(d_, lib=LIB)
+    R_, segs_, res_ = genroute.run(d_, loose=True)
+    return not [s for s in segs_ if res_.get(s['k']) is None]
+while ONE and not upload_ok(hi):     # widen a grid step at a time until it does (AB-cabin 2 Rev H, one-leg splice ends: 1560 -> 1650)
+    hi += 30; print('  widen to', hi, flush=True); assert hi < 3000, 'no right column x routes the upload pass'
 DEVX = hi
 RIGHT_BOTTOM = place_right(DEVX)
 print('right column x', DEVX, 'bottom', RIGHT_BOTTOM, '| left bottom', LEFT_BOTTOM, flush=True)
@@ -608,7 +641,7 @@ head = [{"id": "n_title", "width": 360,
                  "full OEM splice note at its tap (Dan Y6, N16 a). Viewer copy "
                  "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
                  "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
-                 "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text. %s"
+                 "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text.%s %s"
                  "Layout: a formboard of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
                  "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), straight orthogonal bundles, front of car RIGHT, rear LEFT, "
                  "driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
@@ -620,7 +653,8 @@ head = [{"id": "n_title", "width": 360,
                      'relays and new fuse boxes, the factory taps (A/C amplifiers, J/B No.1, IG2, R/B No.4), the fuel pump relay and kill switch '
                      'legs of the sill run '
                      'and CAN (ECU plug C)', SHORT[3 - DOC], OTHER,
-                     'the bulkhead and the far ends', 'the ECU plugs and ECU splice-point bus plugs', B.GHOST_MARK)}]
+                     'the bulkhead and the far ends', 'the ECU plugs and ECU splice-point bus plugs',
+                     B.LOOSE_SENTENCE.rstrip() if ONE else '', B.GHOST_MARK)}]
 if used_st:      # display stripes note, only when the part has a +12 V wire
     head.append({"id": "n_stripes", "width": 360,
          "text": "DISPLAY STRIPES ON +12 V WIRES ARE FOR TRACING ONLY (Dan 2026-11-01). Every +12 V wire is plain RED insulation, as in "
@@ -647,8 +681,9 @@ if right_txt: NOTES.append({"id": "n_right", "width": 360, "text": ' '.join(righ
 # R10 (DECISIONS B6): a splice whose other legs are in another file carries the R10 note, in its own column right of the notes,
 # on the splice's row or the next free row below the note above it
 r10_y = None
-for sp, n in sorted(splices.items(), key=lambda kv: kv[1]['schematicPosition']['y']):
-    t = B.r10_note(sp, 'ST185-' + SHORT[DOC])
+for sp, n in sorted(list(splices.items()) + [(i, terms[i]) for i in ONE if 't_' + sid(i) in LOOSE_R],
+                    key=lambda kv: kv[1]['schematicPosition']['y']):
+    t = ONE.get(sp) or B.r10_note(sp, 'ST185-' + SHORT[DOC])     # a right one-leg splice end: its R10 note, on its row
     if not t: continue
     y = n['schematicPosition']['y'] if r10_y is None else max(n['schematicPosition']['y'], r10_y)
     NOTES.append({"id": "n_r10_" + sid(sp), "width": 360, "text": t, "schematicPosition": {"x": DEVX + 270 + 390, "y": y}})
@@ -787,7 +822,7 @@ for n, p in parent.items():
 INL_AT = {}
 for cid, (nd, q, pts, ow) in stubs.items():
     direct = cid[:2] in ('c_', 't_')
-    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" else STUB, "unit": "mm"}}
+    b = {"id": "bn_" + cid, "sourceId": "bp_" + sid(nd), "targetId": cid if direct else "bp_" + cid, "length": {"value": SPL if cid[:2] == "s_" or cid[2:] in {sid(i) for i in ONE} else STUB, "unit": "mm"}}
     if pts: b['layoutPoints'] = [{"id": "%s_p%d" % (b['id'], i), "layoutPosition": {"x": x, "y": y}} for i, (x, y) in enumerate(pts)]
     bundles.append(b)
     ALLC[cid]['layoutPosition'] = {"x": q[0], "y": q[1]}

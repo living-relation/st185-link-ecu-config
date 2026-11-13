@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev I" (Rev I 2026-11-12: EngineRoom-C's editor-turn lengths of 2026-11-12 (the A/C pressure switch on Dan's spot; the alternator wires behind the engine on the engine harness trunk start, A6 b), the A/C pressure switch signal to the switch's own plug (A5 fix), the kill switch lead after A1 b, the one mm cabin model (#662), library sync (#664 / #665); Rev H 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and ghost pass-through wires, Dan T4 a; Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev J" (Rev J 2026-11-12: the A/C pressure switch signal splice, whose only other leg is AB-cabin 2's, is a Loose end with its R10 note like the A/C sensor common, no one-wire splice (DECISIONS T3; build_drawings.one_leg_splices); Rev I 2026-11-12: EngineRoom-C's editor-turn lengths of 2026-11-12 (the A/C pressure switch on Dan's spot; the alternator wires behind the engine on the engine harness trunk start, A6 b), the A/C pressure switch signal to the switch's own plug (A5 fix), the kill switch lead after A1 b, the one mm cabin model (#662), library sync (#664 / #665); Rev H 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and ghost pass-through wires, Dan T4 a; Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -10,7 +10,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'I', '2026-11-12'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'J', '2026-11-12'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -141,7 +141,11 @@ for r in W:
 # a wire that continues into another harness file ends on a Loose terminal with its R10 note (DECISIONS R10, Dan 2026-11-09:
 # no one-wire splice); key = the master end id, value = (terminal label, note)
 # (the note text: build_drawings.r10_note, from the master and the layout node of the splice)
-R10 = {'SP-AC-SG': ('A/C sensor common splice (continues in AB-cabin 2)', B.r10_note('SP-AC-SG', TITLE))}
+# every shared splice with only one EngineRoom-C leg (build_drawings.one_leg_splices: the A/C sensor common and A/C pressure
+# switch splices, whose other legs are AB-cabin 2's; Rev J)
+SPNAME = {r[s + '_id']: r[s + '_name'] for r in W for s in ('from', 'to') if r[s + '_type'] == 'splice'}
+R10 = {sp: ('%s (continues in %s)' % (SPNAME[sp] or sp, ' and '.join(re.findall(r'(?:^|\. )[Tt]o ST185-([^;]+);', t))), t)
+       for sp, t in B.one_leg_splices(W, TITLE).items()}
 def end(r, s):
     t, i, p = r[s + '_type'], r[s + '_id'], r[s + '_pin']
     if t == 'connector': return {"id": "c_" + sid(i), "handle": cav_of[(i, p)]}
@@ -206,7 +210,7 @@ for c, pins in spares.items():
 def node_of(nm): return conns.get(nm) or terms.get(nm)
 LEFT = [['LOGIC', 'K-EPS', 'K-ACC', 'K-FAN', 'K-FAN2', 'K-HL', 'K-HR', 'K-HORN', 'K-DRL', 'RLY-DRL', 'KILL-SW'],
         ['IE1-6', 'IE1-13', 'IE1-20', 'JB1-1H-5', 'IE1-7', 'IE1-8', 'IE1-9', 'IE1-14', 'IE1-15', 'IE1-16', 'IE1-18',
-         'JB1-1H-4', 'JB1-1H-6', 'JB1-1H-8', 'RB4-AC-2', 'IG2-16', 'W1-1 cowl', 'W1-2 cowl', 'A32-6', 'SP-AC-SG']]
+         'JB1-1H-4', 'JB1-1H-6', 'JB1-1H-8', 'RB4-AC-2', 'IG2-16', 'W1-1 cowl', 'W1-2 cowl', 'A32-6', 'SP-AC-SG', 'SP-AC-PSW']]
 # a factory tap's key is '<locator>-<pin id>' with the master's own pin id (R/B No.4 'AC-2', J/B No.1 '1H-5'; phase 2)
 # front devices by side of the car, driver (LH) side up: a ground stud sits with the side its wires go to (EB LH, EA RH)
 RIGHT = [['H1-1', 'H1-2', 'H1-3', 'H1-DRL', 'H1-TURN', 'R2-1', 'R2-2', 'R2-3', 'R2-4', 'R2-5', 'F7-1', 'F7-2', 'F7-3', 'F5-1', 'F5-2', 'GND-EB', 'GND-EB-2'],
@@ -340,7 +344,7 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "(harness = EngineRoom-C) by docs/harness/tools/gen_engc.py; never a source. Schematic: cabin ends left (fuse / relay boxes and kill switch "
                       "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
-                      "connectors are drawn whole; cavities wired by other harnesses are N/C with a note. " + B.GHOST_MARK +
+                      "connectors are drawn whole; cavities wired by other harnesses are N/C with a note." + B.LOOSE_SENTENCE + " " + B.GHOST_MARK +
                       "Layout: a formboard of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
                       "LH pass-through; the alternator plug off the engine harness trunk start, behind the engine (Route 16 L1, A6 b); EA / EB on Route 17 "
                       "devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "

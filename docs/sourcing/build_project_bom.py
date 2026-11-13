@@ -84,8 +84,12 @@ def add(section, assembly, pn, maker, desc, need, have, unit="ea", notes="", kin
                      description=desc, qty_needed=need,
                      unit=unit, qty_on_hand=have, qty_to_buy=buy, unit_price_usd="" if price is None else "%.2f" % price,
                      line_total_usd="" if price is None or not buy else "%.2f" % (price * buy), buy_link=link,
-                     alt_cheaper_link=L.get("alt_url", ""), price_basis=basis, link_status=status,
-                     notes=notes or L.get("note", "")))
+                     # the "Digi-Key qty N" of a price basis is the quoted quantity, max(count, Digi-Key minimum) when
+                     # merge_digikey.py ran; a count that has since grown past it raises it to this line's quantity to buy, so
+                     # the basis never names fewer than are bought (114017 read "qty 58 (Box)" at a count of 61, 2026-11-12); a
+                     # larger N stays (it may be the Digi-Key minimum order)
+                     alt_cheaper_link=L.get("alt_url", ""), link_status=status, notes=notes or L.get("note", ""),
+                     price_basis=re.sub(r"Digi-Key qty (\d+)", lambda m: "Digi-Key qty %d" % max(int(m.group(1)), buy), basis)))
 
 
 # ---------- Wire harness: counted from the ONE master wire list (DECISIONS R221) ----------

@@ -1936,7 +1936,25 @@ def r10_note(sp, host, rows=None):
         cols = " / ".join(dict.fromkeys("the shield drain" if r["colour"] == "Shield" else r["colour"] for r, _s in legs))
         out.append("; ".join(["to ST185-" + f, where] + (["; ".join(books)] if books else []) +
                              ["%s, joined to %s" % (name, joins), "spliced onto " + cols]))
-    return ". ".join(out) + "."
+    # each later block starts a sentence: "... spliced onto Red. To ST185-EngineRoom-C; ..." (the first keeps R10's "to")
+    return ". ".join(out[:1] + [o[0].upper() + o[1:] for o in out[1:]]) + "."
+
+
+LOOSE_SENTENCE = (" A shared splice with only one leg in this file is drawn as a loose end (no one-wire splice, DECISIONS T3) "
+                  "on its 25 mm splice stub (T7 b), carrying the same R10 note.")
+
+
+def one_leg_splices(wires, host, rows=None):
+    """The splices that have only one conductor end among `wires` (the master rows drawn in file `host`): their other legs are in
+    other files, so the file draws that end as a Loose end with its R10 note, never as a one-wire splice (DECISIONS T3: the
+    harness.design editing guide's "a splice joins at least 2 wires"; R10; the end keeps the 25 mm splice allowance, T7 b).
+    Returns {splice id: its R10 note}; stops on a one-leg splice with no leg in any other file (a dead end: fix the master)."""
+    n = collections.Counter(r[s + "_id"] for r in wires if r["wire_id"] for s in ("from", "to") if r[s + "_type"] == "splice")
+    out = collections.OrderedDict()
+    for sp in sorted(k for k, v in n.items() if v == 1):
+        out[sp] = r10_note(sp, host, rows)
+        assert out[sp], "%s: splice %s has one leg here and none in another file (a dead end in the master)" % (host, sp)
+    return out
 
 
 GHOST_REPORT = {}       # host -> the pass-through rows add_ghosts drew / left out (its last call), for the title note
@@ -2295,6 +2313,14 @@ def self_test():
                          _w("w_r", "splice", "SP-X", "OEM", "H2", 1982), _w("w_d", "splice", "SP-X", "diode", "D-X", 1227)])
     cases.append(("splice trunk: the one relay output wire beats the longest (rule 4)",
                   nets_t.trunk("SP-X")[0]["wire_id"] == "w_k"))
+    # T3 / R10: a shared splice with one leg in a file is that file's Loose end with the R10 note (no one-wire splice); a later
+    # R10 block starts a sentence ("To ST185-..."); the high-beam output splice has legs in CabinPower, Dash and EngineRoom-C
+    rows_ = master_rows()
+    dash_w = [r for r in rows_ if r["harness"] == "Dash" and r["wire_id"]]
+    one = one_leg_splices(dash_w, "ST185-Dash", rows_)
+    cases.append(("one-leg splices: Dash's are the reverse and high-beam output splices", sorted(one) == ["SP-HR-HI", "SP-REV"]))
+    cases.append(("R10 note: a later block starts with a capital (To ST185-...)",
+                  ". To ST185-" in one.get("SP-HR-HI", "") and ". to ST185-" not in one.get("SP-HR-HI", "")))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))
