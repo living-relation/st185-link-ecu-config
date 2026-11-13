@@ -8,6 +8,7 @@ devices). Lengths: the Route 16 tree of `route_trees` alone (DECISIONS B8; Heavy
 OPEN-ITEMS row 179), checked here against the master est_length_mm. gen_engc.py runs on import, so its helpers are not
 imported."""
 import sys, os, json, re, collections, math, csv, copy
+import formboard as FB
 REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
@@ -442,7 +443,7 @@ head = [{"id": "n_title", "width": 360,
                  "level at the top (device rows half a grid lower, N1 a). Each pin shows its own master end text. Connectors are drawn "
                  "whole; spare cavities are N/C with a note. " + B.GHOST_MARK +
                  "Layout: a formboard of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), "
-                 "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on "
+                 "front of car RIGHT, rear LEFT, driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on "
                  "a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm (HeavyDC's cables are on its own segments of "
                  "the layout tree, DECISIONS B6 b)."},
         {"id": "n_stripes", "width": 360,
@@ -508,7 +509,7 @@ for n in [n for n in parent if parent[n] and slen[n] == 0]:   # a 0 mm segment i
     del parent[n], slen[n], kids[n]
 # formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles
 # on the 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its
-# part of the car lies); drawn length is not to scale, every bundle keeps its tree length (= the master's). Each part sits on
+# part of the car lies); every bundle keeps its tree length (= the master's); formboard.to_scale then redraws it 1:1 (Dan A25 a). Each part sits on
 # its 100 mm end-allowance stub, combed off the node. Coil and injector breakouts all leave their line on the same side
 # (parallel, Dan 2026-11-02 (J1)). A node whose four sides are all taken by bundles combs its parts along the way in.
 DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
@@ -637,6 +638,10 @@ B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, un
 NGHOST = B.add_ghosts(doc, H, NAME, strands=True)      # one ghost strand per other harness and path (Dan T4 a: AB-engine is near the limit)
 assert NCONN + NGHOST <= 100, 'ghost strands push AB-engine over the 100-connection limit'
 B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghost strands
+FB.to_scale(doc)        # the 1:1 formboard (Dan A25 a): every bundle drawn at its set length, long runs folded
+_fbad = FB.check(doc)
+assert not _fbad, 'formboard: %r' % _fbad[:8]
+print('formboard %dx%d mm, %d A3 panels' % FB.board(doc)[:3])
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abeng_expect.json'), 'w'), indent=1)

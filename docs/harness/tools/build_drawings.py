@@ -119,8 +119,9 @@ def box_seat_ends(doc):
     end coming to the box"; DECISIONS "Bus bars and fuse box ends"): a box relay (a relay seated in the POWER / LOGIC box) and the
     LOGIC fuse outputs are no connectors in a harness file. Each harness wire that lands on one ends on its own terminal,
     labelled box, seat and terminal ("LOGIC box seat M8, terminal 86 - DRL relay (K-DRL)"), drawn where that cavity was (its
-    pin sits where the cavity pin sat, so every route stays); in the layout the terminals sit on a branch point at the old
-    connector spot, on the same stub, so no routed length changes. A relay outside the boxes (K-EPS, RLY-DRL) stays; the trunk relay block is a box too (K-FP, Dan S1 a 2026-11-09)."""
+    pin sits where the cavity pin sat, so every route stays); in the layout each seat end gets its own copy of the connector's
+    stub (same node, same length; Dan A25 a, 2026-11-12: a 0 mm bundle counts as no set length and the formboard flags it), so
+    no routed length changes. A relay outside the boxes (K-EPS, RLY-DRL) stays; the trunk relay block is a box too (K-FP, Dan S1 a 2026-11-09)."""
     seats = _seat_map()
     sid_ = lambda s: re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
     conds = doc.get("wires", []) + [q for c in doc.get("cables", []) for q in c["cores"] + ([c["shield"]] if "shield" in c else [])]
@@ -132,14 +133,9 @@ def box_seat_ends(doc):
             continue
         box, seat = seats.get(mid, ("LOGIC box", None))
         p, lp = c.get("schematicPosition"), c.get("layoutPosition")
-        bp = None
-        if lp is not None:
-            bp = "bp_" + c["id"][2:] + "_seat"
-            doc.setdefault("branchPoints", []).append({"id": bp, "layoutPosition": dict(lp)})
-            for b in doc.get("bundles", []):
-                for k in ("sourceId", "targetId"):
-                    if b.get(k) == c["id"]:
-                        b[k] = bp
+        stubs = [b for b in doc.get("bundles", []) if c["id"] in (b.get("sourceId"), b.get("targetId"))]
+        assert len(stubs) <= 1, "box seat %s is not on one stub" % c["id"]
+        n_at = 0
         for i, cv in enumerate(c["cavities"]):
             ends = [e for w in conds for e in (w.get("source"), w.get("target")) if e and e["id"] == c["id"] and e["handle"] == cv["id"]]
             if not ends:
@@ -152,14 +148,20 @@ def box_seat_ends(doc):
             if p is not None:
                 t["schematicPosition"] = {"x": p["x"], "y": p["y"] + 30 * (i + 1)}
             if lp is not None:
-                # a terminal cannot sit on a branch point: each seat end hangs off the old connector spot on its own 0 mm
-                # bundle, so every routed length stays the stub length (lengths = master)
-                n_at = sum(1 for b in doc.get("bundles", []) if b.get("sourceId") == bp and b["id"].startswith("b_seat_"))
-                t["layoutPosition"] = {"x": lp["x"] + 30 * (n_at + 1), "y": lp["y"]}
-                doc.setdefault("bundles", []).append({"id": "b_seat_" + tid[2:], "sourceId": bp, "targetId": tid, "length": {"value": 0, "unit": "mm"}})
+                # each seat end on its own copy of the stub, side by side at the old connector spot: every routed length
+                # stays the stub length (lengths = master); formboard.to_scale fans them out
+                n_at += 1
+                t["layoutPosition"] = {"x": lp["x"] + 30 * (n_at - 1), "y": lp["y"]}
+                if stubs:
+                    s = {k: v for k, v in stubs[0].items() if k != "layoutPoints"}
+                    s["id"] = "b_seat_" + tid[2:]
+                    s["sourceId" if s["sourceId"] == c["id"] else "targetId"] = tid
+                    doc["bundles"].append(s)
             doc.setdefault("terminals", []).append(t)
             for e in ends:
                 e["id"], e["handle"] = tid, "Terminal"
+        if n_at and stubs:
+            doc["bundles"].remove(stubs[0])
     doc["connectors"] = keep
     gone = {c["id"] for c in doc.get("connectors", [])}
     doc["mates"] = [m for m in doc.get("mates", []) if m["sourceId"] in gone and m["targetId"] in gone] if "mates" in doc else None
@@ -2279,7 +2281,8 @@ def self_test():
     cases.append(("box_groups: seat ends take the wire on 'Terminal'; box ring terminal stays a plain terminal",
                   g["wires"][0]["source"] == {"id": "t_LOGIC__BUS2_3", "handle": "Terminal"}
                   and g["wires"][1]["source"]["id"] == "t_T_PWR_NEG_GND_1"
-                  and g["wires"][1]["target"] == {"id": "t_K_ACC__87", "handle": "Terminal"} and g["bundles"][0]["targetId"] == "bp_LOGIC_seat"))
+                  and g["wires"][1]["target"] == {"id": "t_K_ACC__87", "handle": "Terminal"}
+                  and [(b["id"], b["sourceId"], b["targetId"]) for b in g["bundles"]] == [("b_seat_LOGIC__BUS2_3", "bp1", "t_LOGIC__BUS2_3")]))
     cases.append(("prune_parts: the removed relay's part and its contact go; a used part keeps its accessory",
                   [p["id"] for p in g["connectorParts"]] == ["cp_ecu"] and [p["id"] for p in g["contactParts"]] == ["ct_ecu"]))
     doc["connectors"][3]["cavities"][0]["contactPartId"] = "ct_own"     # every used cavity names its own contact
@@ -2288,6 +2291,28 @@ def self_test():
     cases.append(("prune_parts: a used part keeps its library configuration and default contact (InSync, V2 a)",
                   sorted(p["id"] for p in g["contactParts"]) == ["ct_ecu", "ct_own"]
                   and "configurations" in next(p for p in g["connectorParts"] if p["id"] == "cp_ecu")))
+    # the 1:1 formboard (Dan A25 a, 2026-11-12): every bundle drawn at its set length within 1 mm, none crossing or overlapping
+    import formboard as FB
+    bps = [{"id": n, "layoutPosition": {"x": x, "y": 0}} for n, x in (("bp_r", 0), ("bp_a", 300), ("bp_b", 600))]
+    terms = [{"id": "t%d" % i, "type": "Loose", "layoutPosition": {"x": 300 + 30 * (i % 6), "y": 120 + 30 * (i // 6)}} for i in range(12)]
+    bun = [{"id": "b_ra", "sourceId": "bp_r", "targetId": "bp_a", "length": {"value": 2400, "unit": "mm"}},
+           {"id": "b_ab", "sourceId": "bp_a", "targetId": "bp_b", "length": {"value": 350, "unit": "mm"}}]
+    bun += [{"id": "s%d" % i, "sourceId": ("bp_a", "bp_b", "bp_r")[i % 3], "targetId": "t%d" % i,
+             "length": {"value": 25 if i % 4 == 0 else 100, "unit": "mm"}} for i in range(12)]
+    fdoc = {"version": 1.3, "branchPoints": bps, "terminals": terms, "bundles": bun}
+    FB.to_scale(fdoc)
+    fbad = FB.check(fdoc)
+    snake = len(next(b for b in fdoc["bundles"] if b["id"] == "b_ra").get("layoutPoints", [])) > 2
+    cases.append(("formboard: every bundle at its set length, none crossing, the 2.4 m trunk folded (A25 a)",
+                  fbad == [] and snake and fdoc["formboard"]["panelSize"] == "A3" and FB.board(fdoc)[2] >= 1))
+    worse = json.loads(json.dumps(fdoc))
+    next(b for b in worse["bundles"] if b["id"] == "s1")["length"]["value"] = 102
+    worse["terminals"][2]["layoutPosition"] = dict(worse["terminals"][1]["layoutPosition"])
+    wbad = FB.check(worse)
+    cases.append(("formboard: a bundle 2 mm off its set length and two parts on one spot are caught",
+                  any(x.startswith("s1:") for x in wbad) and any("clash" in x for x in wbad)))
+    zero = json.loads(json.dumps(fdoc)); zero["bundles"][3]["length"]["value"] = 0
+    cases.append(("formboard: a 0 mm bundle is caught (the app draws it as no set length)", any("no set length" in x for x in FB.check(zero))))
     # the From / To rule on the wire lists (S8 a / T8 b): the generated rows pass, a row turned round fails
     s8 = lambda found: [x for x in found if "From is the source end" in x]
     for hn in own_harnesses():
