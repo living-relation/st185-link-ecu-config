@@ -71,6 +71,8 @@ def logic_fuse_labels(fuse_items, z=60.0):
     out = []
     for (col, i, nm, amps, cx, y) in S.mini_list():
         des = '%s-%d' % (col, i + 1)
+        if amps is None:         # rev 8: a vacant / spare position carries no fuse, so no label
+            continue
         a = ('%g' % amps) + 'A'
         it = fuse_items.get(amps)
         if it is None:
