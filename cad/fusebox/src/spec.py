@@ -1107,6 +1107,11 @@ CHANNEL8 = dict(z=dict(ETB=20.18, HR=24.16, ON=28.86), key={'w_fb_k_etb_30_cp': 
 # more relay pins inside the LOGIC box its output wire (sized for the full fuse) runs to an in-box solder splice under the deck, in the corridor
 # between the Bus 2 outputs and micro relay column 1, and short legs run on to each pin (sized for the pin, protected by the same fuse, B12).
 # Splice: est. solder joint + adhesive-lined heat shrink over (as the rev 7 channel splices, CHANNEL['splice'] od / L).
+# A22 / A30 a (Dan 2026-11-12 / 11-13): the DRL cut relay RLY-DRL in a GEP FRH-A12 holder on its FRH-A12-MB-B2 flat bracket, in the glove
+# box beside the POWER box, behind (+y of) the K-EPS HCR150 (render_wired_rev7 hx = PXE + 135, hy = 40; HCR body 45 mm deep in y, so it
+# ends at y 85; 16 mm gap). Envelope = the GEP drawing FRH-A12 PDM series rev 2 sheet 2 reference outline 89.1 x 61.4 x 43.2 mm
+# (reference dims; the bracket and the exact mounting holes are TBD on the drawing's sheet 6). Render envelope only, not a model part.
+A22_HOLDERS = [('RLY-DRL (GEP FRH-A12 holder on FRH-A12-MB-B2, A30 a), beside the POWER box', (89.1, 61.4, 43.2), (370.5 + 135.0, 101.0))]
 SPLICES8 = {
     'sp_drl12': dict(x=MICRO_COLS[0] + MICRO_PINS['86'][0] + 4.8, y0=95.0, z=32.0, od=4.5, L=12.5,     # between micro columns 0 and 1
                      feed='w_drl_cp', legs=('w_drl_30_cp', 'w_drl_86_cp', 'w_pod_86_cp')),
