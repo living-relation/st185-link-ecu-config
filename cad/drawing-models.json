@@ -481,11 +481,17 @@
   "ST185-FB-103": {
    "reason": "fuse box rev 8 (Dan A15 b, 2026-11-12; DECISIONS \"Fuse box rev 8\"): model rebuilt, drawing to regenerate in one pass (R196)"
   },
+  "ST185-FB-104": {
+   "reason": "fuse box rev 8 (Dan A15 b, 2026-11-12): the STEP changed (rev 8 rebuild; 107: the etched cover labels); drawing to regenerate in one pass (R196)"
+  },
   "ST185-FB-105": {
    "reason": "fuse box rev 8 (Dan A15 b, 2026-11-12; DECISIONS \"Fuse box rev 8\"): model rebuilt, drawing to regenerate in one pass (R196)"
   },
   "ST185-FB-106": {
    "reason": "fuse box rev 8 (Dan A15 b, 2026-11-12; DECISIONS \"Fuse box rev 8\"): model rebuilt, drawing to regenerate in one pass (R196)"
+  },
+  "ST185-FB-107": {
+   "reason": "fuse box rev 8 (Dan A15 b, 2026-11-12): the STEP changed (rev 8 rebuild; 107: the etched cover labels); drawing to regenerate in one pass (R196)"
   },
   "ST185-FB-109": {
    "reason": "fuse box rev 8 (Dan A15 b, 2026-11-12; DECISIONS \"Fuse box rev 8\"): model rebuilt, drawing to regenerate in one pass (R196)"

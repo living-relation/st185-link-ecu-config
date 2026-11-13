@@ -462,7 +462,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return [], []
         HO, G = S.HOLE, S.GUIDE
         hs = [dict(c) for c in PLAN7['cavities'] if c['box'] == box_name and c.get('zones')
-              and not (c['kind'].endswith('87a') and c['source'] != 'harness')]
+              and not (c['kind'].endswith('87a') and c['source'] not in ('harness', 'spare (kept cut)'))]
         z0 = z_d - G['h'] - 1.0
         for h in hs:
             zs_ = z_t - S.seat_gap(h['part'], h['kind'])  # fit audit 2026-10-18: seat depth by relay type (spec.SEAT_GAP)
@@ -1309,7 +1309,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             # cuts that face back to the zone edge over the zone's width - never below HOLE min_wall 2.0 (R73); deeper is reported, not cut
             mw_ = S.HOLE['min_wall']
             for c in PLAN7['cavities']:
-                if c['box'] != box_name or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] != 'harness'):
+                if c['box'] != box_name or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] not in ('harness', 'spare (kept cut)')):
                     continue
                 zb_ = c['zones'][0]
                 ax0, ax1, ay0, ay1 = c['x'] + zb_[2], c['x'] + zb_[3], c['y'] + zb_[4], c['y'] + zb_[5]
@@ -2881,7 +2881,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         zt = {'LOGIC': S.LOGIC['z_t'], 'POWER': S.POWER['z_t']}
         by = {}
         for c in PLAN7['cavities']:
-            if c['box'] not in zt or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] != 'harness'):
+            if c['box'] not in zt or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] not in ('harness', 'spare (kept cut)')):
                 continue
             pn = c['part']
             if pn in S.PLACE_HOLD:

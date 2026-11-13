@@ -56,7 +56,7 @@ def required(plan):
         if k in req:
             out[k] = dict(req[k], kind=c['kind'], cav=c['cav'])
         elif c.get('hole'):
-            out[k] = dict(part=c['part'], od=c['wire_od'], wires=[], kind=c['kind'], cav=c['cav'])
+            out[k] = dict(part=c['part'], od=c['wire_od'], wires=[], kind=c['kind'], cav=c['cav'], kept=c['source'] == 'spare (kept cut)')
     return out
 
 
@@ -122,7 +122,7 @@ def main():
     n_ok = 0
     for k, r in sorted(required(plan).items()):
         part, od, ws, kind = r['part'], r['od'], r['wires'], r['kind']
-        if kind.endswith('87a') and not ws:
+        if kind.endswith('87a') and not ws and not r.get('kept'):
             info.append('%s %s: 87a with no harness wire - blade slot only, no terminal cavity' % (k[0], r['cav']))
             continue
         if part not in S.TERM or part not in S.LOCK:
