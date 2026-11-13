@@ -38,6 +38,10 @@ ANNOTATION = 0.5              # labels, notes and part bars at half size (the ha
 CLR = 6.0                     # units: closest two bundles may run (4.5 mm), away from a node they share
 NODE_GAP = 16.0               # units: closest two part symbols may sit, centre to centre (a terminal is about 1 cm = 13 units)
 SHARED_R = 60.0               # units: bundles leaving one node may touch within this of it (45 mm), as they fan out
+# the glove-box breakouts (Dan A35, 2026-11-13): the LOGIC box's ends to the left of the breakout, the POWER box's (and K-EPS,
+# RLY-DRL beside it) to the right, whatever way the generator combed them
+PREFER = {"bp_GB_LOGIC": (-1.0, 0.0), "bp_GB_POWER": (1.0, 0.0), "bp_GB_PBAR": (1.0, 0.0), "bp_GB_KEPS": (1.0, 0.0),
+          "bp_GB_DRL": (1.0, 0.0)}
 
 
 # ------------------------------------------------------------------ the app's length formula (app.harness.design 1221)
@@ -111,15 +115,16 @@ def _clip2(s, at, r0):
 class Shape:
     """drawn bundles (polylines tagged with their two end nodes) and part symbols, in one frame"""
     def __init__(self):
-        self.segs, self.nodes = [], []      # (p, q, ends, bundle id) ; (point, node id)
+        self.segs, self.nodes, self.texts = [], [], []      # (p, q, ends, bundle id) ; (point, node id) ; (polygon, owner)
     def moved(self, o, rot=None):
         s = Shape()
         tf = (lambda p: (p[0] + o[0], p[1] + o[1]))
         s.segs = [(tf(p), tf(q), e, b) for p, q, e, b in self.segs]
         s.nodes = [(tf(p), n) for p, n in self.nodes]
+        s.texts = [([tf(p) for p in poly], w) for poly, w in self.texts]
         return s
     def add(self, other):
-        self.segs += other.segs; self.nodes += other.nodes
+        self.segs += other.segs; self.nodes += other.nodes; self.texts += other.texts
     def bbox(self):
         xs = [c for p, q, *_ in self.segs for c in (p[0], q[0])] + [p[0] for p, _ in self.nodes]
         ys = [c for p, q, *_ in self.segs for c in (p[1], q[1])] + [p[1] for p, _ in self.nodes]
@@ -160,6 +165,20 @@ def clash(new, old, pos, clr=CLR, gap=NODE_GAP, r0=None):
         for y, m in old.nodes:
             if m != n and abs(x[0] - y[0]) < gap and abs(x[1] - y[1]) < gap and math.hypot(x[0] - y[0], x[1] - y[1]) < gap:
                 return ('parts', n, m)
+    return text_clash(new, old)
+
+
+def text_clash(new, old, eps=None):
+    """the first two text boxes (of different owners) of new and old that overlap, or None (Dan 2026-11-13)"""
+    if not new.texts or not old.texts: return None
+    eps = TXT["margin"] + 1.0 if eps is None else eps
+    ob = [(_pbb(p), p, w) for p, w in old.texts]
+    for p, w in new.texts:
+        bb = _pbb(p)
+        for bb2, p2, w2 in ob:
+            if w2 == w or bb2[0] >= bb[2] + eps or bb[0] >= bb2[2] + eps or bb2[1] >= bb[3] + eps or bb[1] >= bb2[3] + eps:
+                continue
+            if _poly_hit(_grow(p, eps / 2), _grow(p2, eps / 2)): return ('texts', w, w2)
     return None
 
 
@@ -216,6 +235,24 @@ class _Tree:
                 for s, t in ((m["sourceId"], m["targetId"]), (m["targetId"], m["sourceId"])):
                     self.adj.setdefault(s, []).append((t, None))
         self.R = radius_units(doc)
+        self.s = ANNOTATION
+        self.mated = {x for m in doc.get("mates", []) or [] for x in (m["sourceId"], m["targetId"])}
+
+    textmode = "all"     # all: end labels and bundle texts kept clear while placing; labels: end labels only; none
+
+    def node_texts(self, n, c, v):
+        """n's details box when its centre is at c and its bundles lie along v (a branch point has none)"""
+        e = self.el.get(n)
+        if e is None or n in self.bps or self.textmode == "none": return []
+        wl, ws = end_text_size(e, self.doc, self.s)
+        box = end_box(c, detail_side(v, n in self.mated, e.get("layoutLabelPosition")), wl, ws, self.s)
+        return [(box, n)] if box else []
+
+    def bundle_texts(self, b, path, spoke=False):
+        """b's length label and label pills along path (path from b's source to its target); an end stub's are kept clear in
+        every mode but none"""
+        if self.textmode == "none" or (self.textmode == "labels" and not spoke): return []
+        return [(p, b["id"]) for p in bundle_texts(b, path, self.s, (b["sourceId"] in self.bps, b["targetId"] in self.bps))]
 
     def old_dir(self, n, c, b):
         """unit vector of the generator's first step from n towards c (its comb point or c itself)"""
@@ -276,7 +313,14 @@ def _paths(L, u, R, snake_first):
     """candidate drawn paths for a branch of drawn length L along u: straight, then serpentines, most compact first"""
     straight = [[(0.0, 0.0), (u[0] * L, u[1] * L)]]
     snakes = []
-    s0 = s1 = LEAD; pitch = 2 * R; amin = 2 * R
+    for s0 in (LEAD, 4 * LEAD, 8 * LEAD):    # a longer lead first runs the fold clear of a crowded node (Dan 2026-11-13 labels)
+        if s0 + LEAD + 2 * R < L - 1: snakes += _snakes(L, u, R, s0)
+    return (snakes + straight) if snake_first else (straight + snakes)
+
+
+def _snakes(L, u, R, s0):
+    snakes = []
+    s1 = LEAD; pitch = 2 * R; amin = 2 * R
     o = s0 + s1 + pitch
     while o < L - 1:
         kmax = int((o - s0 - s1) // pitch)
@@ -294,7 +338,7 @@ def _paths(L, u, R, snake_first):
                 snakes.append(_snake(u, o, k, (lo + hi) / 2, s0, s1, side))
                 break
         o += pitch
-    return (snakes + straight) if snake_first else (straight + snakes)
+    return snakes
 
 
 def _rot(u, deg):
@@ -337,6 +381,8 @@ def _layout(T):
             q = (at[0] + math.cos(a) * L, at[1] + math.sin(a) * L)
             piece = Shape(); piece.segs.append((at, q, (n, c), b["id"]))
             if c not in T.bps: piece.nodes.append((q, c))
+            piece.texts = T.node_texts(c, q, (at[0] - q[0], at[1] - q[1])) + \
+                T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
             allpos = dict(ps); allpos[c] = q
             return None if clash(piece, sh, allpos) is not None else (q, piece)
         # 1: each at the clear angle nearest its own
@@ -367,7 +413,7 @@ def _layout(T):
                     if got: break
                 if not got: return False
                 q, piece = got; sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
-        shape.segs[:] = sh1.segs; shape.nodes[:] = sh1.nodes
+        shape.segs[:] = sh1.segs; shape.nodes[:] = sh1.nodes; shape.texts[:] = sh1.texts
         pos.update(ps1); paths.update(pa1)
         return True
 
@@ -376,7 +422,7 @@ def _layout(T):
         used = []
         for c, b in order_b:
             L = (_mm(b["length"]) / MM_PER_UNIT) if b is not None else 60.0
-            u0 = T.old_dir(n, c, b)
+            u0 = PREFER.get(c) or T.old_dir(n, c, b)
             ax = max([(1, 0), (-1, 0), (0, 1), (0, -1)], key=lambda d: d[0] * u0[0] + d[1] * u0[1])
             # the generator's direction first, then its two square turns, then every 15 degrees nearest it
             cands = [ax, _rot(ax, 90), _rot(ax, -90)]
@@ -386,13 +432,14 @@ def _layout(T):
             cands = [d for d in cands if all(d[0] * e[0] + d[1] * e[1] < 0.95 for e in used)]
             done = None
             for attempt in (0, 1):     # 0: the child's piece as laid on its own; 1: re-laid round what is already here
-                for ci, u in enumerate(cands if attempt == 0 else cands[:12]):
+                for ci, u in enumerate(cands if attempt == 0 or T.textmode == "all" else cands[:12]):
                     paths_u = _paths(L, u, R, L * MM_PER_UNIT > SNAKE_MM) if b is not None else [[(0.0, 0.0), (u[0] * L, u[1] * L)]]
-                    for path in (paths_u if attempt == 0 else paths_u[:9]):
+                    for path in (paths_u if attempt == 0 or T.textmode == "all" else paths_u[:9]):
                         end = path[-1]
                         own = Shape()
                         if b is not None:
                             own.segs = [(path[i], path[i + 1], (n, c), b["id"]) for i in range(len(path) - 1)]
+                            own.texts = T.bundle_texts(b, path if b["sourceId"] == n else path[::-1])
                         if attempt == 0:
                             sub, spos, spaths = lay(c, u)
                         else:
@@ -435,8 +482,9 @@ def _layout(T):
             shape.add(ctx[0]); pos.update(ctx[1])
         elif din is not None:   # the way in, so nothing grows back over the parent's bundle
             shape.segs.append(((0.0, 0.0), (-din[0] * 400, -din[1] * 400), (n, parent[n][0]), '(in)'))
-        nctx = (len(shape.segs), len(shape.nodes), set(pos))
+        nctx = (len(shape.segs), len(shape.nodes), set(pos), len(shape.texts))
         if n not in T.bps: shape.nodes.append(((0.0, 0.0), n))
+        if din is not None: shape.texts += T.node_texts(n, (0.0, 0.0), (-din[0], -din[1]))
         ch = kids.get(n, [])
         spokes = [(c, b) for c, b in ch if b is not None and not kids.get(c) and _mm(b["length"]) <= 200]
         shorts = [(c, b) for c, b in ch if b is not None and kids.get(c) and _mm(b["length"]) / MM_PER_UNIT < SHARED_R
@@ -459,6 +507,8 @@ def _layout(T):
                 q = (math.cos(a) * L, math.sin(a) * L)
                 if din is not None and (q[0] * din[0] + q[1] * din[1]) / L < -0.9: continue
                 piece = Shape(); piece.segs.append(((0.0, 0.0), q, (n, c), b["id"]))
+                piece.texts = T.node_texts(c, q, (-q[0], -q[1])) + \
+                    T.bundle_texts(b, [(0.0, 0.0), q] if b["sourceId"] == n else [q, (0.0, 0.0)], spoke=True)
                 allpos = dict(pos); allpos[c] = q
                 if clash(piece, shape, allpos) is not None: continue
                 tsh = Shape(); tsh.add(shape); tsh.add(piece); tpos = dict(allpos); tpaths = {}
@@ -469,8 +519,8 @@ def _layout(T):
             paths[b["id"]] = [(0.0, 0.0), pos[c]] if b["sourceId"] == n else [pos[c], (0.0, 0.0)]
         assert spokes_at(shape, pos, paths, n, (0.0, 0.0), spokes, din), "no clear spokes at %s" % n
         if ctx is not None:     # hand back only n's own piece
-            k0, k1, p0 = nctx
-            out = Shape(); out.segs = shape.segs[k0:]; out.nodes = shape.nodes[k1:]
+            k0, k1, p0, k2 = nctx
+            out = Shape(); out.segs = shape.segs[k0:]; out.nodes = shape.nodes[k1:]; out.texts = shape.texts[k2:]
             shape = out; pos = {k: v for k, v in pos.items() if k not in p0 or k == n}
         return shape, pos, paths
 
@@ -496,12 +546,228 @@ def _layout(T):
     return roots[0], shape, pos, paths
 
 
+# ------------------------------------------------------------------ text on the board (Dan 2026-11-13: every label readable)
+# Everything that is not the harness is drawn at the annotation scale s (feature/formboard "How the formboard is scaled").
+# The app sizes its text in the browser, so the boxes here are ESTIMATES from the text length, measured in the desktop app
+# (CabinPower Rev F, 2026-11-13, annotation 0.5, then divided by 0.5): sizes below are layout units (px) at s = 1.
+#  - an end's details (connector / terminal; component code: endpointDetailsPosition / previewOrientations): they sit on the
+#    side AWAY from the node's bundles (sum of the vectors to each bundle's first point, the dominant axis wins: Left / Right
+#    when |x| > |y| + 1, else Top / Bottom), or beside it while mated, or on layoutLabelPosition; Left / Right: one row,
+#    the label box (small text, 2.34 per character + 6 padding) then the signal or part bar text (4.8 per character), 13 high,
+#    starting 18 units from the node centre and vertically centred; Top / Bottom: the same two pieces, counted as stacked
+#    (13 + 13 high) AND as wide as both side by side, so the estimate is never smaller than either way the app may draw it;
+#  - a bundle's length label ("100 mm", 4.6 per character, 10 high) on the bundle at the middle of its drawn path, along it;
+#  - a bundle label (the ghost tags' coloured "AB-cabin 2", 12.4 per character + 12, 28 high) along the bundle next to the
+#    node it is drawn at;
+#  - a layout note: its stored width (default 150) by its wrapped lines (6.5 per character, 18 per line, + 16).
+# The boxes keep a small margin; two boxes of different owners must not overlap.
+TXT = dict(lab_ch=2.34, lab_pad=6.0, sig_ch=4.8, row=13.0, gap=6.0, off=18.0, len_ch=4.6, len_h=10.0, pill_ch=12.4,
+           pill_pad=12.0, pill_h=28.0, note_ch=6.5, note_line=18.0, note_pad=16.0, margin=1.0)
+
+
+def _scale(doc):
+    return (doc.get("formboard") or {}).get("annotationScale") or 1.0
+
+
+def _rect(cx, cy, w, h, ux=1.0, uy=0.0):
+    """an oriented rectangle (4 corners) centred on (cx, cy), w along (ux, uy)"""
+    vx, vy = -uy, ux
+    hw, hh = w / 2, h / 2
+    return [(cx + ux * a * hw + vx * b * hh, cy + uy * a * hw + vy * b * hh) for a, b in ((-1, -1), (1, -1), (1, 1), (-1, 1))]
+
+
+def _poly_hit(p, q, eps=0.0):
+    """two convex polygons overlap (separating axis), by more than eps"""
+    for poly in (p, q):
+        for i in range(len(poly)):
+            a, b = poly[i], poly[(i + 1) % len(poly)]
+            nx, ny = b[1] - a[1], a[0] - b[0]
+            L = math.hypot(nx, ny)
+            if L == 0: continue
+            nx, ny = nx / L, ny / L
+            pa = [x * nx + y * ny for x, y in p]; qa = [x * nx + y * ny for x, y in q]
+            if max(pa) <= min(qa) + eps or max(qa) <= min(pa) + eps: return False
+    return True
+
+
+def _pbb(poly):
+    xs, ys = [x for x, _ in poly], [y for _, y in poly]
+    return (min(xs), min(ys), max(xs), max(ys))
+
+
+def _part_number(doc, pid):
+    for k, v in doc.items():
+        if k.endswith("Parts"):
+            for p in v:
+                if p.get("id") == pid: return p.get("partNumber") or ""
+    return ""
+
+
+def detail_side(v, mated=False, override=None):
+    """which side of a node its details sit on; v = sum of the vectors from the node to each bundle's first point"""
+    if override: return override
+    if abs(v[0]) > abs(v[1]) + 1: side = "Left" if v[0] > 0 else "Right"
+    else: side = "Top" if v[1] > 0 else "Bottom"
+    if mated: side = {"Left": "Bottom", "Right": "Bottom", "Top": "Left", "Bottom": "Left"}[side]
+    return side
+
+
+def end_text_size(e, doc=None, s=1.0):
+    """(label box width, text width) of a node's details at annotation scale s"""
+    lab = e.get("label") or ""
+    sig = e.get("signal") or ""
+    if not sig and e.get("partId") and doc is not None: sig = _part_number(doc, e["partId"])
+    wl = (len(lab) * TXT["lab_ch"] + TXT["lab_pad"]) * s if lab else 0.0
+    ws = len(sig) * TXT["sig_ch"] * s
+    return wl, ws
+
+
+def end_box(c, side, wl, ws, s=1.0):
+    """the details box of a node centred at c on that side"""
+    if not (wl or ws): return None
+    off, row, g = TXT["off"], TXT["row"] * s, TXT["gap"] * s
+    w = wl + ws + (g if wl and ws else 0)
+    if side in ("Left", "Right"):
+        x0 = c[0] + off if side == "Right" else c[0] - off - w
+        return _rect(x0 + w / 2, c[1], w, row)
+    h = 2 * row + g
+    y0 = c[1] + off if side == "Bottom" else c[1] - off - h
+    return _rect(c[0], y0 + h / 2, w, h)
+
+
+def _along(pts, frac):
+    """the point at frac of a polyline's length and the unit direction there"""
+    segs = [(pts[i], pts[i + 1], math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1])) for i in range(len(pts) - 1)]
+    tot = sum(L for *_, L in segs) or 1.0
+    want = tot * frac
+    for a, b, L in segs:
+        if L == 0: continue
+        if want <= L or (a, b, L) == segs[-1]:
+            k = min(1.0, want / L)
+            return (a[0] + k * (b[0] - a[0]), a[1] + k * (b[1] - a[1])), ((b[0] - a[0]) / L, (b[1] - a[1]) / L)
+        want -= L
+    return pts[0], (1.0, 0.0)
+
+
+def _len_text(b):
+    v = b["length"]["value"]
+    return "%s %s" % (("%g" % v), b["length"].get("unit", "mm"))
+
+
+def bundle_texts(b, path, s=1.0, end_nodes=()):
+    """the text boxes a bundle draws on the board: its length label, and its label pills"""
+    out = []
+    lw = len(_len_text(b)) * TXT["len_ch"] * s if b.get("length") else 0
+    plen = sum(math.hypot(path[i + 1][0] - path[i][0], path[i + 1][1] - path[i][1]) for i in range(len(path) - 1))
+    # a bundle shorter than its own length label (the 2 mm / 15 mm junction steps of a tree) cannot carry it clear of its
+    # neighbours whatever the layout: it is left out of the gate and counted by short_length_labels()
+    if b.get("length") and len(path) > 1 and plen >= lw + 4:
+        c, u = _along(path, 0.5)
+        if u[0] < 0 or (u[0] == 0 and u[1] < 0): u = (-u[0], -u[1])
+        out.append(_rect(c[0], c[1], lw, TXT["len_h"] * s, *u))
+    pills = []
+    if b.get("separateLabels"):
+        if b.get("label"): pills.append((b["label"], 0))
+        if b.get("endLabel"): pills.append((b["endLabel"], 1))
+    elif b.get("label") and not b.get("middleLabel"):
+        pills += [(b["label"], 0), (b["label"], 1)]
+    for text, end in pills:
+        if not b.get("separateLabels") and end_nodes and end_nodes[end]: continue    # skipped at a branch point
+        w, h = (len(text) * TXT["pill_ch"] + TXT["pill_pad"]) * s, TXT["pill_h"] * s
+        p = path if end == 0 else path[::-1]
+        L = sum(math.hypot(p[i + 1][0] - p[i][0], p[i + 1][1] - p[i][1]) for i in range(len(p) - 1)) or 1.0
+        c, u = _along(p, min(0.5, (HALF + 2 + w / 2) / L))
+        out.append(_rect(c[0], c[1], w, h, *u))
+    return out
+
+
+def short_length_labels(doc):
+    """the bundles too short to carry their own length label (left out of the label gate; see bundle_texts)"""
+    s = _scale(doc)
+    at = {e["id"]: _centre(e) for k in NODE_KINDS for e in doc.get(k, []) if e.get("layoutPosition")}
+    out = []
+    for b in doc.get("bundles", []):
+        if not b.get("length") or b["sourceId"] not in at or b["targetId"] not in at: continue
+        p = bundle_path(doc, b, at)
+        if sum(math.hypot(p[i + 1][0] - p[i][0], p[i + 1][1] - p[i][1]) for i in range(len(p) - 1)) < len(_len_text(b)) * TXT["len_ch"] * s + 4:
+            out.append(b["id"])
+    return out
+
+
+def note_box(n, s=1.0):
+    w = n.get("width") or 150
+    per = max(1, int((w - TXT["note_pad"]) // TXT["note_ch"]))
+    lines = sum(max(1, math.ceil(len(par) / per)) for par in (n.get("text") or "").split("\n"))
+    h = lines * TXT["note_line"] + TXT["note_pad"]
+    x, y = n["layoutPosition"]["x"], n["layoutPosition"]["y"]
+    return _rect(x + w * s / 2, y + h * s / 2, w * s, h * s)
+
+
+def text_boxes(doc):
+    """[(owner, polygon, what)] for every text the layout view draws (estimated, see TXT)"""
+    s = _scale(doc)
+    at = {e["id"]: _centre(e) for k in NODE_KINDS for e in doc.get(k, []) if e.get("layoutPosition")}
+    bps = {e["id"] for e in doc.get("branchPoints", [])}
+    vec = {}
+    out = []
+    for b in doc.get("bundles", []):
+        if b["sourceId"] not in at or b["targetId"] not in at: continue
+        path = bundle_path(doc, b, at)
+        for n, nxt in ((b["sourceId"], path[1]), (b["targetId"], path[-2])):
+            v = vec.get(n, (0.0, 0.0)); vec[n] = (v[0] + nxt[0] - at[n][0], v[1] + nxt[1] - at[n][1])
+        for poly in bundle_texts(b, path, s, (b["sourceId"] in bps, b["targetId"] in bps)):
+            out.append((b["id"], poly, "bundle text"))
+    mated = {x for m in doc.get("mates", []) or [] for x in (m["sourceId"], m["targetId"])}
+    for k in ("connectors", "terminals"):
+        for e in doc.get(k, []):
+            if not e.get("layoutPosition"): continue
+            side = detail_side(vec.get(e["id"], (0.0, 0.0)), e["id"] in mated, e.get("layoutLabelPosition"))
+            wl, ws = end_text_size(e, doc, s)
+            box = end_box(at[e["id"]], side, wl, ws, s)
+            if box: out.append((e["id"], box, "label"))
+    for n in doc.get("layoutNotes", []) or []:
+        if n.get("layoutPosition"): out.append((n["id"], note_box(n, s), "note"))
+    return out
+
+
+def label_overlaps(doc, eps=None):
+    """[(a, b)] pairs of text boxes of different owners that overlap (TXT margin): the label gate"""
+    eps = TXT["margin"] if eps is None else eps
+    boxes = [(o, p, w, _pbb(p)) for o, p, w in text_boxes(doc)]
+    boxes.sort(key=lambda t: t[3][0])
+    bad = []
+    for i, (o, p, w, bb) in enumerate(boxes):
+        for o2, p2, w2, bb2 in boxes[i + 1:]:
+            if bb2[0] >= bb[2] + eps: break
+            if o2 == o or bb2[1] >= bb[3] + eps or bb[1] >= bb2[3] + eps: continue
+            if _poly_hit(_grow(p, eps / 2), _grow(p2, eps / 2)): bad.append(("%s %s" % (w, o), "%s %s" % (w2, o2)))
+    return bad
+
+
+def _grow(poly, d):
+    cx, cy = sum(x for x, _ in poly) / 4, sum(y for _, y in poly) / 4
+    out = []
+    for x, y in poly:
+        L = math.hypot(x - cx, y - cy) or 1.0
+        out.append((x + (x - cx) / L * d * 1.42, y + (y - cy) / L * d * 1.42))
+    return out
+
+
 def _r2(v): return round(v + 0.0, 2)
 
 def to_scale(doc, panel="A3", annotation=ANNOTATION):
     """redraw doc's layout view as a 1:1 formboard in place (view only) and turn formboard mode on; returns doc"""
     T = _Tree(doc)
-    root, shape, pos, paths = _layout(T)
+    T.s = annotation
+    for mode in ("all", "labels", "none"):     # every text kept clear while placing; else the end labels only; else none
+        T.textmode = mode
+        try:
+            root, shape, pos, paths = _layout(T)
+            break
+        except AssertionError as e:      # repair_labels turns the end labels that still overlap afterwards
+            if mode == "none": raise
+            print("formboard: layout keeping %s texts clear failed (%s); trying with fewer" % (mode, e))
+            T = _Tree(doc); T.s = annotation
     R = T.R
     bundles = {b["id"]: b for b in doc.get("bundles", [])}
     # mated plugs that carry no bundle (bussed receptacle caps, the CAN-Lambda terminator plug) sit against their plug
@@ -513,11 +779,32 @@ def to_scale(doc, panel="A3", annotation=ANNOTATION):
                 d = (pos[a][0] - pos[par][0], pos[a][1] - pos[par][1]) if par else (1, 0)
                 L = math.hypot(*d) or 1
                 extra[c] = (pos[a][0] + 45 * d[0] / L, pos[a][1] + 45 * d[1] / L)
+                # face to face with its plug, turned or moved out only as far as its label needs to stay clear (Dan 2026-11-13)
+                for dist in (45, 60, 75, 90, 120):
+                    hit = None
+                    for rot in (0, 30, -30, 60, -60, 90, -90):
+                        u = _rot((d[0] / L, d[1] / L), rot)
+                        q = (pos[a][0] + dist * u[0], pos[a][1] + dist * u[1])
+                        piece = Shape(); piece.nodes = [(q, c)]
+                        piece.texts = T.node_texts(c, q, (pos[a][0] - q[0], pos[a][1] - q[1]))
+                        if clash(piece, shape, dict(pos, **{c: q})) is None:
+                            hit = (q, piece); break
+                    if hit: break
+                if hit:
+                    extra[c] = hit[0]; shape.add(hit[1])
     allpos = dict(pos); allpos.update(extra)
-    # board: A3 panels, landscape or portrait (fewer panels), the harness centred on the grid (the app centres it on 0, 0)
-    xs = [p[0] for p in allpos.values()] + [q[0] for v in paths.values() for q in v]
-    ys = [p[1] for p in allpos.values()] + [q[1] for v in paths.values() for q in v]
+    # board: A3 panels, landscape or portrait (fewer panels), the harness and every text on it centred on the grid (the app
+    # centres it on 0, 0); the layout notes stacked above it all, top left, each clear of the next
+    xs = [p[0] for p in allpos.values()] + [q[0] for v in paths.values() for q in v] + [x for poly, _ in shape.texts for x, _ in poly]
+    ys = [p[1] for p in allpos.values()] + [q[1] for v in paths.values() for q in v] + [y for poly, _ in shape.texts for _, y in poly]
     m = MARGIN_MM / MM_PER_UNIT
+    top, left = min(ys), min(xs)
+    for n in reversed(doc.get("layoutNotes", []) or []):
+        n["layoutPosition"] = {"x": 0.0, "y": 0.0}
+        h = _pbb(note_box(n, annotation))[3]
+        top -= 20 + h
+        n["_at"] = (left, top)
+        xs += [left, left + (n.get("width") or 150) * annotation]; ys += [top]
     w, h = (max(xs) - min(xs) + 2 * m) * MM_PER_UNIT, (max(ys) - min(ys) + 2 * m) * MM_PER_UNIT
     pl, ps = PANEL[panel]
     best = None
@@ -548,13 +835,79 @@ def to_scale(doc, panel="A3", annotation=ANNOTATION):
                 near = min((i for i in allpos if i in T.old), key=lambda i: math.hypot(T.old[i][0] - c[0], T.old[i][1] - c[1]))
                 q = P(allpos[near]); d = (c[0] - T.old[near][0], c[1] - T.old[near][1])
                 e["layoutPosition"] = {"x": _r2(q[0] + d[0] - HALF), "y": _r2(q[1] + d[1] - HALF)}
-    bx0, by0 = min(xs) + off[0], min(ys) + off[1]
-    for i, n in enumerate(doc.get("layoutNotes", []) or []):     # notes above the harness, top left
-        n["layoutPosition"] = {"x": _r2(bx0), "y": _r2(by0 - m - 20 - 150 * i)}
+    for n in doc.get("layoutNotes", []) or []:     # notes above the harness, top left
+        q = P(n.pop("_at"))
+        n["layoutPosition"] = {"x": _r2(q[0]), "y": _r2(q[1])}
     doc["formboard"] = {"panelSize": panel, "panelOrientation": orient,
                         "panelWidth": {"value": pw, "unit": "mm"}, "panelHeight": {"value": ph, "unit": "mm"},
                         "rows": rows, "columns": cols, "defaultCornerRadius": {"value": RADIUS_MM, "unit": "mm"},
                         "annotationScale": annotation}
+    if label_overlaps(doc):
+        repair_labels(doc)
+    fit_board(doc, panel)
+    return doc
+
+
+SIDES = ("Left", "Right", "Top", "Bottom")
+
+
+def repair_labels(doc, rounds=6):
+    """turn the details of an end whose label still overlaps another text to the side (layoutLabelPosition) that clears it,
+    never making the count worse: the app's own per-end label side (editing guide, terminals / connectors)"""
+    el = {e["id"]: e for k in ("connectors", "terminals") for e in doc.get(k, [])}
+    for _ in range(rounds):
+        bad = label_overlaps(doc)
+        if not bad: return
+        moved = False
+        for a, b in bad:
+            for x in (a, b):
+                w, o = x.split(" ", 1)
+                if w != "label" or o not in el: continue
+                e = el[o]
+                was = e.get("layoutLabelPosition")
+                now = len(label_overlaps(doc))
+                best = (now, was)
+                for side in SIDES:
+                    e["layoutLabelPosition"] = side
+                    n = len(label_overlaps(doc))
+                    if n < best[0]: best = (n, side)
+                if best[1] is None: e.pop("layoutLabelPosition", None)
+                else: e["layoutLabelPosition"] = best[1]
+                if best[1] != was: moved = True; break
+            else:
+                continue
+            break
+        if not moved: return
+
+
+def fit_board(doc, panel="A3"):
+    """the panel grid round everything drawn (parts, bundles, every text), harness centred on it (the app centres on 0, 0)"""
+    m = 20 / MM_PER_UNIT      # 20 mm clear round the outermost text or part
+    xs, ys = [], []
+    for k in NODE_KINDS + INLINE_KINDS:
+        for e in doc.get(k, []):
+            if e.get("layoutPosition"): xs += [e["layoutPosition"]["x"], e["layoutPosition"]["x"] + 2 * HALF]; ys += [e["layoutPosition"]["y"], e["layoutPosition"]["y"] + 2 * HALF]
+    for b in doc.get("bundles", []):
+        for p in b.get("layoutPoints") or []: xs.append(p["layoutPosition"]["x"] + HALF); ys.append(p["layoutPosition"]["y"] + HALF)
+    for _, poly, _ in text_boxes(doc):
+        x0, y0, x1, y1 = _pbb(poly); xs += [x0, x1]; ys += [y0, y1]
+    off = (-(max(xs) + min(xs)) / 2, -(max(ys) + min(ys)) / 2)
+    mv = lambda p: {"x": _r2(p["x"] + off[0]), "y": _r2(p["y"] + off[1])}
+    for k in NODE_KINDS + INLINE_KINDS:
+        for e in doc.get(k, []):
+            if e.get("layoutPosition"): e["layoutPosition"] = mv(e["layoutPosition"])
+    for b in doc.get("bundles", []):
+        for p in b.get("layoutPoints") or []: p["layoutPosition"] = mv(p["layoutPosition"])
+    for n in doc.get("layoutNotes", []) or []: n["layoutPosition"] = mv(n["layoutPosition"])
+    w, h = (max(xs) - min(xs) + 2 * m) * MM_PER_UNIT, (max(ys) - min(ys) + 2 * m) * MM_PER_UNIT
+    pl, ps = PANEL[panel]
+    best = None
+    for orient, (pw, ph) in (("Landscape", (pl, ps)), ("Portrait", (ps, pl))):
+        cols, rows = max(1, math.ceil(w / pw)), max(1, math.ceil(h / ph))
+        if best is None or cols * rows < best[0]: best = (cols * rows, orient, pw, ph, cols, rows)
+    _, orient, pw, ph, cols, rows = best
+    doc["formboard"].update({"panelOrientation": orient, "panelWidth": {"value": pw, "unit": "mm"},
+                             "panelHeight": {"value": ph, "unit": "mm"}, "rows": rows, "columns": cols})
     return doc
 
 
@@ -596,4 +949,8 @@ def check(doc, tol_mm=1.0):
     W, H = fb["columns"] * _mm(fb["panelWidth"]) / MM_PER_UNIT, fb["rows"] * _mm(fb["panelHeight"]) / MM_PER_UNIT
     for n, p in at.items():
         if not (-W / 2 <= p[0] <= W / 2 and -H / 2 <= p[1] <= H / 2): bad.append("%s is off the panel grid" % n)
+    for o, poly, what in text_boxes(doc):      # every text on the panels too
+        x0, y0, x1, y1 = _pbb(poly)
+        if x0 < -W / 2 or y0 < -H / 2 or x1 > W / 2 or y1 > H / 2: bad.append("%s %s is off the panel grid" % (what, o))
+    bad += ["labels overlap: %s / %s" % ab for ab in label_overlaps(doc)]     # Dan 2026-11-13: every label readable
     return bad
