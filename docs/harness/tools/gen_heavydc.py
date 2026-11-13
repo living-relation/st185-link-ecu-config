@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev F" (Rev F 2026-11-12: HeavyDC's editor-turn lengths of 2026-11-11 / 11-12 (jump post on Dan's driver-side spot; battery, kill switch and trunk relay block on Dan's Z4 b save; kill switch 100 mm forward of the relay block, A1 b), the alternator B+ stud on the alternator (A4 b / A6 b) and the 300 mm alternator / starter drops (A9 a), the trunk relay block on its own part ST185-FB-BATT rev 7 (A11, #665), library sync (#664); Rev E 2026-11-09: labels #569, POWER box ends #594; viewer only; the master is the source).
+"""harness.design copy of ST185-HeavyDC (battery cables), file "ST185-HeavyDC Rev G" (Rev G 2026-11-13: Dan A35 - every box seat wire reaches its rev 8 seat or stud: glove-box breakouts GB_LOGIC / GB_POWER / GB_PBAR / GB_KEPS / GB_DRL in the layout tree (box_breakouts), the master lengths from --write-lengths; each box seat end carries its real crimp contact (master terminal PN, library 5LO8); formboard labels kept clear (label gate); Rev F 2026-11-12: HeavyDC's editor-turn lengths of 2026-11-11 / 11-12 (jump post on Dan's driver-side spot; battery, kill switch and trunk relay block on Dan's Z4 b save; kill switch 100 mm forward of the relay block, A1 b), the alternator B+ stud on the alternator (A4 b / A6 b) and the 300 mm alternator / starter drops (A9 a), the trunk relay block on its own part ST185-FB-BATT rev 7 (A11, #665), library sync (#664); Rev E 2026-11-09: labels #569, POWER box ends #594; viewer only; the master is the source).
 Usage: python gen_heavydc.py <repo> <out_dir>   (needs <out>/lib_hdc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/hdc.json (whole document, wires routed with genroute.py) and <out>/hdc_lib_ops.json (part-library add ops).
 Built on the gen_engc.py pattern (README "harness.design"): connectors 240 wide, each pin its own master end text, bundle
@@ -19,7 +19,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'F', '2026-11-12'
+NAME, TITLE, REV, DATE = 'HeavyDC', 'ST185-HeavyDC', 'G', '2026-11-13'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 # the RADLOK pass-through (Dan D2 2026-11-04): a blank-length row joining the two halves of one firewall connector is the
