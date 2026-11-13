@@ -187,7 +187,7 @@ def _tails_to_terminals(box, items, g):
         x=sum(v.X for v in top)/len(top); y=sum(v.Y for v in top)/len(top)
         d,part=min(((((x-cx)**2+(y-cy)**2)**0.5,pt) for cx,cy,pt in cav), default=(1e9,None))
         if d<4.0 and part in byp:
-            it=byp[part]; it.setdefault('shapes',[]).append(b); it['desc']=it['desc'].replace(' (NOT SHOWN)','')
+            it=byp[part]; it.setdefault('shapes',[]).append(b); it['desc']=it['desc'].replace(' (NOT SHOWN)',''); it['tails']=True
 # Maps follow the rev 8 parts lists (cad/fusebox/rev8/fusebox-parts-*.csv, Dan A15 b 2026-11-12; first written 2026-10-18 for rev 7, R155 C-straps).
 # Rev 8: no heater relay R1 or ACPS fuse (A16 a: empty spares); the box wires (R1 a, TXL), the TE 320572 ground ring and the ATUM sleeve are
 # parts-list rows without a model body (not shown). Keys are matched in order against "item|part number" - a longer key goes before a key it contains.

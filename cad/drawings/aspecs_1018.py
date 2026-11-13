@@ -147,6 +147,11 @@ def fb_logic():
         dict(title='HARNESS WIRES AT THE RELAYS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom', hide=hide_under, text_h=1.8,
              wires=[dict(w, item=w['item']) for w in L.logic_wire_labels(tif, kind='relay')]),
     ]
+    tails = [i['item'] for i in it if i.get('tails')]
+    if tails:   # rev 8: the terminals are drawn as the harness wire tails; on the wire label sheets they are hidden and each label
+        for lv in sp['label_views'][1:]:      # points at its cavity point instead (the tails cross each other seen from below)
+            lv['hide'] = lv['hide'] + tails
+            lv['wires'] = [dict(w, item=None) for w in lv['wires']]
     sp['stage_sheets'] = [_logic_steps(it)]
     sp['notes'] = ['OVERALL SIZES ARE FOR REFERENCE.',
                    'PARTS THAT SHARE ONE MODEL (THE MICRO RELAYS, LUGS, JUMPER WIRES) ARE BALLOONED ON THE FIRST ITEM OF THEIR GROUP.',
