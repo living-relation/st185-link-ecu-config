@@ -2447,6 +2447,34 @@ def self_test():
     off = json.loads(json.dumps(lab)); off["formboard"]["columns"] = off["formboard"]["rows"] = 1
     off["formboard"]["panelWidth"] = off["formboard"]["panelHeight"] = {"value": 50, "unit": "mm"}
     cases.append(("formboard labels: a label off the panels is caught", any("label" in x and "off the panel grid" in x for x in FB.check(off))))
+    # the text model is pinned to the app's own Formboard Panels PDF (CabinPower Rev G, 2026-11-13, annotation 0.5): label box
+    # 142.52 x 7.50 mm, "Pop-up UP (to ground)" 57.10 mm, "210 mm" tag 20.85 x 6.00 mm, details 26.25 mm beside a terminal ...
+    tbad = FB.selftest_text_sizes()
+    cases.append(("formboard text sizes = the app's PDF (label box, signal, length tag, pill, offsets; within 3 %%)%s"
+                  % ("" if not tbad else ": " + "; ".join(tbad)), tbad == []))
+    two = FB.end_text_size({"id": "t", "type": "Ring", "label": "POWER box + bar, BAT+ IN stud", "partId": "p"},
+                           {"terminalParts": [{"id": "p", "partNumber": "6R8"}]}, 0.5, "POWER box + bar")
+    one = FB.end_text_size({"id": "t", "type": "Loose", "label": "POWER box + bar, BAT+ IN stud"}, {}, 0.5, "POWER box + bar")
+    cases.append(("formboard labels: an end with a part bar is two rows high (25 units at 0.5), one without it one row (13)",
+                  abs(two[1] - 25.0) < 1e-6 and abs(one[1] - 13.0) < 1e-6))
+    net = {"terminals": [{"id": "t1", "type": "Loose", "label": "Relay coil"}], "connectors": [
+        {"id": "c1", "cavities": [{"id": "c1.1", "designation": "1", "signal": "Switched +12 V", "global": True},
+                                  {"id": "c1.2", "designation": "2", "signal": "Switched +12 V", "global": True}]},
+        {"id": "c2", "cavities": [{"id": "c2.86", "designation": "86", "signal": "Coil +"}]}],
+        "wires": [{"id": "w1", "source": {"id": "t1", "handle": "Terminal"}, "target": {"id": "c1", "handle": "c1.1"}},
+                  {"id": "w2", "source": {"id": "c2", "handle": "c2.86"}, "target": {"id": "c1", "handle": "c1.2"}}]}
+    cases.append(("formboard labels: a bare end shows every signal on its net, as the app does ('Switched +12 V/Coil +')",
+                  FB.display_signals(net)["t1"] == "Switched +12 V/Coil +"))
+    crowd = json.loads(json.dumps(fdoc))
+    crowd["terminals"] = [{"id": "k%d" % i, "type": "Loose", "label": "LOGIC box seat M%d, terminal 30 - Some relay (K-X%d, LOGIC box)" % (i, i),
+                           "signal": "Switched +12 V feed %d" % i, "partId": "pq", "layoutPosition": {"x": 0, "y": 30 * i}} for i in range(30)]
+    crowd["terminalParts"] = [{"id": "pq", "partNumber": "42281-1"}]
+    crowd["bundles"] = [b for b in crowd["bundles"] if b["id"] in ("b_ra", "b_ab")] + [
+        {"id": "k%d_s" % i, "sourceId": "bp_b", "targetId": "k%d" % i, "length": {"value": 100, "unit": "mm"}} for i in range(30)]
+    FB.to_scale(crowd)
+    let_through, rest = FB.cannot_fit(crowd), [x for x in FB.check(crowd) if x.startswith("labels overlap")]
+    cases.append(("formboard labels: 30 two-row ends on one 100 mm hub are over capacity; only their own overlaps are let through",
+                  "bp_b" in FB.over_capacity(crowd) and let_through and not rest and "bp_b" not in FB.over_capacity(lab)))
     # box breakouts (Dan A35): a segment = right-angle distance + farthest seat beyond the end allowance, rounded up to 10 mm
     bl = {"end_allowance_mm": 100, "segments": [["GB", "GB_X", 0]], "box_breakouts": {"at": {"GB": [0, 0]},
           "nodes": {"GB_X": {"parent": "GB", "at": [30, 40], "seats": [["K-X", "30", "w", 151.0], ["K-X", "85", "w2", 90.0]]}}}}

@@ -7,7 +7,7 @@ Same rules and helpers' shape as gen_cabin.py (README "harness.design"): connect
 master end text, display stripes on +12 V wires, parts from library 5LO8 (new ones from harness-parts.csv), shielded cables
 drawn as cables (cores in the cable part's order, the screen to its trunk splice, floating at the device), formboard layout
 of the ST185-harness.layout.json tree (DECISIONS B8, N120: route drawn by Claude, devices refined by Dan), compact schematic: sources left (factory
-taps with their full OEM splice notes, the LOGIC box seats, the ECU splice-point bus plug, the inline fuse, ground studs),
+taps with their full OEM splice notes, the LOGIC box seats, the inline fuse, ground studs; Dash has no bus plug, A37),
 splices and inline parts in the middle, the branch cables right of them, devices right. Text spacing (Dan N99 a, 2026-11-08):
 each end in a column is stepped so its label tag and the note on its row never overlap the next end's (pitch = max(box +
 label, note height) + gap, on the 30 grid); notes in the notes column are stacked by their text height. A splice shared with
@@ -800,10 +800,10 @@ DASH = dict(
           "each node ground to the cabin ground splice); the CSB3 plug, "
           "the 8-channel opto board, the cruise ladder resistor, the cruise switch, clutch switch, stop switch and dimmer taps; the "
           "cluster warning LEDs on the cluster plug taps, their common ground spliced onto the factory cluster ground C13 (B) pin 1 (to ground point ID; Dan N106 a / N83 a); the high-beam LED fed straight from the high-beam output splice SP-HR-HI by the LOGIC box, spliced onto the LED's own pigtail (Dan A2 b / A3).",
-    left_words='the sources (factory taps, the LOGIC box seats, the ECU splice-point bus plug, the Pi inline fuse)',
-    # a source end: a factory tap, a fuse box, a bus plug, the inline fuse (its OUT feeds the Pi branch cable, so it sits left of
+    left_words='the sources (factory taps, the LOGIC box seats, the Pi inline fuse)',
+    # a source end: a factory tap, a fuse box, the inline fuse (its OUT feeds the Pi branch cable, so it sits left of
     # the cables, just below the II1 tap that feeds it), a ground stud
-    left=lambda t, i: t == 'OEM' or i in ('LOGIC', 'BUS-5V-2', 'F-PI', 'GND-ID'),
+    left=lambda t, i: t == 'OEM' or i in ('LOGIC', 'F-PI', 'GND-ID'),
     area=['PI', 'CANJ', 'GB', 'SP', 'CLUSTER', 'COLUMN', 'PEDAL', 'JB1'],
     oem_name={'C13': 'Combination meter plug B', 'C14': 'Combination meter plug C', 'C16': 'Cruise control switch, combination switch plug B',
               'C17': 'Cruise control clutch switch', 'S9': 'Stop lamp switch', 'R10': 'Dimmer rheostat', 'II1': 'Cowl plug (old radio ACC feed)'},
