@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev J" (Rev J 2026-11-12: the A/C pressure switch signal splice, whose only other leg is AB-cabin 2's, is a Loose end with its R10 note like the A/C sensor common, no one-wire splice (DECISIONS T3; build_drawings.one_leg_splices); Rev I 2026-11-12: EngineRoom-C's editor-turn lengths of 2026-11-12 (the A/C pressure switch on Dan's spot; the alternator wires behind the engine on the engine harness trunk start, A6 b), the A/C pressure switch signal to the switch's own plug (A5 fix), the kill switch lead after A1 b, the one mm cabin model (#662), library sync (#664 / #665); Rev H 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and ghost pass-through wires, Dan T4 a; Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
+"""harness.design copy of ST185-EngineRoom-C = harness C, file "ST185-EngineRoom-C Rev K" (Rev K 2026-11-13: the DRL cut relay RLY-DRL in a GEP FRH-A12 relay holder on its FRH-A12-MB-B2 flat bracket, Dan A30 a (library 5LO8 part); Rev J 2026-11-12: the A/C pressure switch signal splice, whose only other leg is AB-cabin 2's, is a Loose end with its R10 note like the A/C sensor common, no one-wire splice (DECISIONS T3; build_drawings.one_leg_splices); Rev I 2026-11-12: EngineRoom-C's editor-turn lengths of 2026-11-12 (the A/C pressure switch on Dan's spot; the alternator wires behind the engine on the engine harness trunk start, A6 b), the A/C pressure switch signal to the switch's own plug (A5 fix), the kill switch lead after A1 b, the one mm cabin model (#662), library sync (#664 / #665); Rev H 2026-11-11: splice ends on 25 mm stubs, Dan T7 b, and ghost pass-through wires, Dan T4 a; Rev G 2026-11-10: outside air temp sensor wires owned here, U4 a; trunk start, belt-end drop and block ground leg follow Dan's 2026-11-10 AB-engine routes; Rev F 2026-11-09: Dan's 2026-11-01 device spots restored, route redraw, Dan Z10 b; viewer only; the master is the source).
 Usage: python gen_engc.py <repo> <out_dir>   (needs <out>/lib_engc.json = a dump of part library 5LO8, get_part_library)
 Writes <out>/ld37.json (whole document, wires not yet routed) and <out>/ld37_lib_ops.json (part-library add ops); then
 route it: python genroute.py <out>/ld37.json <out>/ld37_final.json. Same rules as gen_cabin.py (README "harness.design"):
@@ -11,7 +11,7 @@ REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
 H = B.Harness('ST185-harness')
-NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'J', '2026-11-12'
+NAME, TITLE, REV, DATE = 'EngineRoom-C', 'ST185-EngineRoom-C', 'K', '2026-11-13'
 ALL = H.rows
 ROWS = [r for r in ALL if r['harness'] == NAME]
 W = [r for r in ROWS if r['wire_id']]
@@ -45,8 +45,7 @@ def use_lib(kind, part):
             doc_parts[ACC[a['type']]][ap['id']] = json.loads(json.dumps(ap))
     return part['id']
 NEW = {'52-45780': {"id": "cp_longacre_52_45780", "hasShell": False, "numberOfCavities": 4},   # kill switch: 4 stud terminals
-       # DRL cut relay RLY-DRL (Dan N90 a): Delphi Metri-Pack 280 relay socket, 5 ways (30, 85, 86, 87, 87a), and its contact
-       '12110539': {"id": "cp_delphi_12110539", "gender": "Female", "hasShell": False, "numberOfCavities": 5},
+       # DRL cut relay RLY-DRL (Dan N90 a): its holder GEP FRH-A12 is a library part (A30 a); its Metri-Pack 280 contact
        '12129409-L': {"id": "ct_delphi_12129409_l", "type": "Crimp", "gender": "Socket", "contactColor": "Silver",
                       "minGauge": {"value": 16, "unit": "AWG"}, "maxGauge": {"value": 14, "unit": "AWG"}},
        # horn relay K-HORN (LOGIC box, excludeFromBom with the box, N81 a): TE micro relay, 1 form C, 5 blades
