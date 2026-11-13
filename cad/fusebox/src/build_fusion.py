@@ -2346,7 +2346,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 # markup 2026-10-18: the rail stops a slot short of the strip's rear end, where the rear snap hook takes over
                 bo(spine, box(xa_, v['y0'] - 0.5, s_z1 + S.HOOK_GAP, xb3, v['y1'] - SH['slot'], s_z1 + S.HOOK_GAP + rail_t), 'u')
             report.setdefault('strip_rail', dict(z=[s_z1 + S.HOOK_GAP, s_z1 + S.HOOK_GAP + rail_t], gap=S.HOOK_GAP))
-            own_in = [(c_, y_) for (c_, nm_, a_, x_, y_, n_, i_) in mini if a_ and not S.mini_stud(c_, i_)]   # MRS / B30: own harness input down the jumper line
+            own_in = [(c_, y_) for (c_, nm_, a_, x_, y_, n_, i_) in mini if (a_ or REV[0] >= 8) and i_ in S.MINI_OWN_IN.get(c_, ())]   # MRS / B30: own harness input down the jumper line; rev 8: the empty BUS2-12 seat keeps its gap (S3)
             strip_hold(strips, studs, own_in, spine, parts, spx, s_z0, s_z1, lip_z0, lip_z1, rail_t, z_d, pre, sh)
         parts.append(spine)
         if REV[0] >= 7:   # J4 = B (R94): the printed channel floor across the front (over the Bus 1 feed lug), joined to the spine
