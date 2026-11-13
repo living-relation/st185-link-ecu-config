@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-100P",
- "pdf_sha": "4b3f6b29e4eb7ea7",
+ "pdf_sha": "3b0d8b6cd11b7bee",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -24,20 +24,18 @@
   },
   {
    "view": "TRIMETRIC - COVER REMOVED",
-   "placed": 1,
+   "placed": 2,
    "overlaps": 0,
    "crowded": 0,
    "crossings": 0,
-   "hidden": [
-    5
-   ]
+   "hidden": []
   },
   {
    "view": "LABELS 1",
-   "placed": 19,
+   "placed": 13,
    "overlaps": 0,
    "crowded": 0,
-   "crossings": 5,
+   "crossings": 0,
    "hidden": [],
    "labels": 0
   },
@@ -57,7 +55,7 @@
    "crowded": 0,
    "crossings": 0,
    "hidden": [],
-   "labels": 14
+   "labels": 10
   },
   {
    "view": "LABELS 4",
@@ -66,7 +64,7 @@
    "crowded": 0,
    "crossings": 0,
    "hidden": [],
-   "labels": 25
+   "labels": 12
   },
   {
    "view": "STEP 1",
@@ -75,7 +73,7 @@
    "crowded": 0,
    "crossings": 0,
    "hidden": [
-    35
+    26
    ]
   },
   {
@@ -90,15 +88,15 @@
   },
   {
    "view": "STEP 3",
-   "placed": 8,
+   "placed": 3,
    "overlaps": 0,
    "crowded": 0,
-   "crossings": 1,
+   "crossings": 0,
    "hidden": []
   },
   {
    "view": "STEP 4",
-   "placed": 15,
+   "placed": 11,
    "overlaps": 0,
    "crowded": 0,
    "crossings": 0,
@@ -106,35 +104,31 @@
   },
   {
    "view": "STEP 5",
-   "placed": 10,
+   "placed": 9,
    "overlaps": 0,
    "crowded": 0,
    "crossings": 0,
    "hidden": [
-    40,
-    35,
+    31,
+    26,
     4,
     5,
     6,
     8,
     7,
-    17,
-    18,
-    19,
-    20,
-    22,
-    23,
+    15,
+    16,
+    25,
     27,
-    30,
-    34,
-    36,
-    33
+    24
    ]
   }
  ],
  "not_ballooned": [],
  "ok": true,
- "rev_marks": {},
+ "rev_marks": {
+  "AA": 3
+ },
  "rev_marks_unplaced": [],
- "rev_marks_accumulate": true
+ "rev_marks_accumulate": false
 }

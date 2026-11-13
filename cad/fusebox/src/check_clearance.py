@@ -16,8 +16,9 @@ import json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
 RULE = 3.0
-REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
-WIRING = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_report.json')
+REV_DIR = os.path.join(REPO, 'cad', 'fusebox', 'rev8')      # the selected build (cad/README.md): rev 8 (Dan A15 b, 2026-11-12)
+REPORT = os.path.join(REV_DIR, 'fusebox_report.json')
+WIRING = os.path.join(REV_DIR, 'wiring_report.json')
 sys.path.insert(0, os.path.join(REPO, 'docs'))
 from needs_dan import open_questions  # noqa: E402
 
@@ -45,13 +46,17 @@ SAME_CIRCUIT = {'logic_jumper_lug_to_lug_min_mm': 'LOGIC: fuse input jumper lug 
                 # SteveCAD v3 F05 (2026-10-16): the GND stud moved to x 100.5 puts its ring edge on the GND IG 6R8 lug at x 84 - every
                 # lug on the NEG bar is the one ground node, so J1 = A applies as on a LOGIC strip; spanner room there is OPEN-2 (Dan)
                 'bus_neg_lug_to_lug_min_mm': 'POWER bus zone: NEG bar lug to lug (one ground bar = one circuit, J1 = A)',
-                'bus_neg_nut_to_nut_min_mm': 'POWER bus zone: NEG bar M8 nut to nut (one ground node)'}
+                'bus_neg_nut_to_nut_min_mm': 'POWER bus zone: NEG bar M8 nut to nut (one ground node)',
+                # rev 8 (Dan N68 a, 2026-11-07): the small GND stud's rings (Panduit PV10-56R, 13.21 wide) to the next 1/0 lug: "ring eyes do
+                # not overlap" (one ground node), so its minimum is above 0, not neg_lug_gap
+                'bus_neg_gnd_ring_to_lug_min_mm': 'POWER bus zone: small GND stud ring to the GND IG 1/0 lug (one ground node, N68 a: no overlap)'}
 # N3 (Dan 2026-10-16, OPEN-2): the NEG stud pitch is accepted if the gap between the NEG lugs / nuts meets a stated spec. They are one
 # ground node, so no electrical clearance applies; the practical spec is spec.REV7 neg_lug_gap (1.5 mm: lugs that turn under torque never
 # touch, the bus looks tidy). Same-circuit keys listed here fail under their own minimum.
 import importlib.util as _ilu
 _sp = _ilu.spec_from_file_location('spec', os.path.join(HERE, 'spec.py')); _S = _ilu.module_from_spec(_sp); _sp.loader.exec_module(_S)
-SAME_CIRCUIT_MIN = {'bus_neg_lug_to_lug_min_mm': _S.REV7['neg_lug_gap'], 'bus_neg_nut_to_nut_min_mm': _S.REV7['neg_lug_gap']}
+SAME_CIRCUIT_MIN = {'bus_neg_lug_to_lug_min_mm': _S.REV7['neg_lug_gap'], 'bus_neg_nut_to_nut_min_mm': _S.REV7['neg_lug_gap'],
+                    'bus_neg_gnd_ring_to_lug_min_mm': 0.01}
 # key -> question id: the key may stay under 3 mm only while that question is open (Dan to decide)
 WAIVERS = {}
 
@@ -86,7 +91,7 @@ def main():
     for (k, v, what, q) in waived:
         print('  WAIVED while %s is open: %s = %.2f mm (%s)' % (q, k, v, what))
     for k in missing:
-        print('  MISSING: %s - re-run the Fusion build (build_fusion.build(rev=7))' % k)
+        print('  MISSING: %s - re-run the Fusion build (build_fusion.build(rev=8))' % k)
     for (k, v, what, q) in bad:
         print('  FAIL: %s = %.2f mm < %.1f (%s)%s' % (k, v, RULE, what, ' - waiver %s needs that question open in OPEN-ITEMS Needs Dan' % q if q else ''))
     if bad or missing:

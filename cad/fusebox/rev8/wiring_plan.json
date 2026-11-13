@@ -1,0 +1,11476 @@
+{
+ "per_box_wire_ends": {
+  "LOGIC": 66,
+  "POWER": 31,
+  "BATT": 6
+ },
+ "kinds": {
+  "external": 65,
+  "cross-box": 4,
+  "internal": 15
+ },
+ "wires": [
+  {
+   "wire": "w_fb_mrs_en",
+   "file": "AB-cabin",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_eps_en",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "Power steering pump enable relay",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 21.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 87",
+      "name": "k_eps_en"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "DRB102-CABIN",
+     "cav": "83",
+     "box": null,
+     "part": "0460-202-1631",
+     "des": "",
+     "sig": "EHPS enable +12 V",
+     "name": "Firewall bulkhead connector (cabin side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      -0.8500000000000001,
+      10.125
+     ],
+     "pts": [
+      [
+       78.05000000000001,
+       21.0,
+       38.3
+      ],
+      [
+       78.05000000000001,
+       21.0,
+       10.125
+      ],
+      [
+       77.20000000000002,
+       7.45,
+       10.125
+      ],
+      [
+       77.20000000000002,
+       -30.0,
+       10.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_eps_en c4"
+    }
+   ]
+  },
+  {
+   "wire": "w66",
+   "file": "AB-cabin",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "pdb",
+     "cav": "NEG-GND-1",
+     "box": "POWER",
+     "part": "PV10-56R",
+     "des": "GND",
+     "sig": "ECU power ground",
+     "name": "POWER box NEG bar, GND stud, ring 1 of 3",
+     "stud": "POWER box NEG bar, GND stud, ring 1 of 3",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-GND-ECU",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "ECU power ground",
+     "name": "ECU power ground splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_cabin_gnd",
+   "file": "AB-cabin",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "pdb",
+     "cav": "NEG-GND-3",
+     "box": "POWER",
+     "part": "PV10-56R",
+     "des": "GND",
+     "sig": "Ground",
+     "name": "POWER box NEG bar, GND stud, ring 3 of 3",
+     "stud": "POWER box NEG bar, GND stud, ring 3 of 3",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-CABIN-GND",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Ground",
+     "name": "Cabin ground splice (glove box, beside the POWER box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_fp85",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_fp",
+     "cav": "c2",
+     "box": "BATT",
+     "part": "282110-1",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Fuel pump relay",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-A",
+     "cav": "19",
+     "box": null,
+     "part": "3-1447221-3",
+     "des": "",
+     "sig": "Fuel pump relay (-)",
+     "name": "ECU plug A",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_fan85",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_fan",
+     "cav": "c2",
+     "box": "POWER",
+     "part": "42281-1",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Radiator fan relay",
+     "at": {
+      "x": 18.35,
+      "y": 88.55,
+      "lane": [
+       "P",
+       88.0
+      ],
+      "kind": "F7 85",
+      "name": "k_fan"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-A",
+     "cav": "29",
+     "box": null,
+     "part": "3-1447221-3",
+     "des": "",
+     "sig": "Rad fan relay (-)",
+     "name": "ECU plug A",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 88.0,
+     "slot": [
+      0.0,
+      5.125
+     ],
+     "pts": [
+      [
+       18.35,
+       88.55,
+       31.8
+      ],
+      [
+       18.35,
+       88.55,
+       5.125
+      ],
+      [
+       -1.0749999999999993,
+       88.0,
+       5.125
+      ],
+      [
+       -30.0,
+       88.0,
+       5.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_fan c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_acc_trig",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_acc",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "A/C clutch relay",
+     "at": {
+      "x": 55.05,
+      "y": 147.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 85",
+      "name": "k_acc"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "A15",
+     "cav": "8",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "A/C clutch relay coil (-)",
+     "name": "A/C amplifier A15 (behind the glove box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      0.0,
+      5.125
+     ],
+     "pts": [
+      [
+       55.05,
+       147.0,
+       38.3
+      ],
+      [
+       55.05,
+       147.0,
+       5.125
+      ],
+      [
+       59.55,
+       127.575,
+       5.125
+      ],
+      [
+       59.55,
+       -30.0,
+       5.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_acc c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_eps_trig",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "ECU-B",
+     "cav": "12",
+     "box": null,
+     "part": "3-1447221-3",
+     "des": "",
+     "sig": "EPS enable relay (-)",
+     "name": "ECU plug B",
+     "at": null
+    },
+    {
+     "id": "k_eps_en",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Power steering pump enable relay",
+     "at": {
+      "x": 73.55000000000001,
+      "y": 27.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 85",
+      "name": "k_eps_en"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      -2.6500000000000004,
+      9.225000000000001
+     ],
+     "pts": [
+      [
+       73.55000000000001,
+       27.0,
+       38.3
+      ],
+      [
+       73.55000000000001,
+       27.0,
+       9.225000000000001
+      ],
+      [
+       75.4,
+       7.574999999999999,
+       9.225000000000001
+      ],
+      [
+       75.4,
+       -30.0,
+       9.225000000000001
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_eps_en c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_start",
+   "file": "AB-cabin",
+   "colour": "Yellow",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-13",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS2-13",
+     "sig": "Start request",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 125.2,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "B30"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-B",
+     "cav": "30",
+     "box": null,
+     "part": "3-1447221-4",
+     "des": "",
+     "sig": "Start request",
+     "name": "ECU plug B",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      0.0,
+      4.985
+     ],
+     "pts": [
+      [
+       46.55,
+       125.2,
+       38.3
+      ],
+      [
+       46.55,
+       125.2,
+       4.985
+      ],
+      [
+       46.55,
+       108.715,
+       4.985
+      ],
+      [
+       46.55,
+       -30.0,
+       4.985
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS2-13"
+    }
+   ]
+  },
+  {
+   "wire": "w_fan285",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_fan2",
+     "cav": "c2",
+     "box": "POWER",
+     "part": "42281-1",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Condenser fan relay",
+     "at": {
+      "x": 47.35,
+      "y": 106.55,
+      "lane": [
+       "P",
+       106.0
+      ],
+      "kind": "F7 85",
+      "name": "k_fan2"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-B",
+     "cav": "13",
+     "box": null,
+     "part": "3-1447221-3",
+     "des": "",
+     "sig": "Cond fan relay (-)",
+     "name": "ECU plug B",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 106.0,
+     "slot": [
+      0.0,
+      5.125
+     ],
+     "pts": [
+      [
+       47.35,
+       106.55,
+       31.8
+      ],
+      [
+       47.35,
+       106.55,
+       5.125
+      ],
+      [
+       27.925,
+       106.0,
+       5.125
+      ],
+      [
+       -30.0,
+       106.0,
+       5.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_fan2 c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_k_fp_86_cp",
+   "file": "RearFuel",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_fp",
+     "cav": "c3",
+     "box": "BATT",
+     "part": "282110-1",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Fuel pump relay",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "BUS-SW12",
+     "cav": "3",
+     "box": null,
+     "part": "0462-201-16141",
+     "des": "",
+     "sig": "Switched +12 V",
+     "name": "Switched +12 V bus plug (glove box, by the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_k_fan_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_fan",
+     "cav": "c3",
+     "box": "POWER",
+     "part": "42281-1",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Radiator fan relay",
+     "at": {
+      "x": 18.35,
+      "y": 105.45,
+      "lane": [
+       "P",
+       106.0
+      ],
+      "kind": "F7 86",
+      "name": "k_fan"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "BUS-SW12",
+     "cav": "4",
+     "box": null,
+     "part": "0462-201-16141",
+     "des": "",
+     "sig": "Switched +12 V",
+     "name": "Switched +12 V bus plug (glove box, by the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 106.0,
+     "slot": [
+      1.1,
+      6.825
+     ],
+     "pts": [
+      [
+       18.35,
+       105.45,
+       31.8
+      ],
+      [
+       18.35,
+       105.45,
+       6.825
+      ],
+      [
+       -1.0749999999999993,
+       107.1,
+       6.825
+      ],
+      [
+       -30.0,
+       107.1,
+       6.825
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_fan c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_k_etb_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "k_etb",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Throttle body power relay",
+     "at": {
+      "x": 64.05,
+      "y": 117.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 86",
+      "name": "k_etb"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "BUS-SW12",
+     "cav": "5",
+     "box": null,
+     "part": "0462-201-16141",
+     "des": "",
+     "sig": "Switched +12 V",
+     "name": "Switched +12 V bus plug (glove box, by the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -1.85,
+      5.385000000000001
+     ],
+     "pts": [
+      [
+       64.05,
+       117.0,
+       38.3
+      ],
+      [
+       64.05,
+       117.0,
+       5.385000000000001
+      ],
+      [
+       57.699999999999996,
+       100.515,
+       5.385000000000001
+      ],
+      [
+       57.699999999999996,
+       -30.0,
+       5.385000000000001
+      ]
+     ],
+     "R": 5.495,
+     "end": "k_etb c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_k_fan2_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_fan2",
+     "cav": "c3",
+     "box": "POWER",
+     "part": "42281-1",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Condenser fan relay",
+     "at": {
+      "x": 47.35,
+      "y": 123.45,
+      "lane": [
+       "P",
+       124.0
+      ],
+      "kind": "F7 86",
+      "name": "k_fan2"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "BUS-SW12",
+     "cav": "7",
+     "box": null,
+     "part": "0462-201-16141",
+     "des": "",
+     "sig": "Switched +12 V",
+     "name": "Switched +12 V bus plug (glove box, by the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 124.0,
+     "slot": [
+      0.0,
+      5.125
+     ],
+     "pts": [
+      [
+       47.35,
+       123.45,
+       31.8
+      ],
+      [
+       47.35,
+       123.45,
+       5.125
+      ],
+      [
+       27.925,
+       124.0,
+       5.125
+      ],
+      [
+       -30.0,
+       124.0,
+       5.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_fan2 c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_k_eps_en_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_eps_en",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Power steering pump enable relay",
+     "at": {
+      "x": 82.55000000000001,
+      "y": 27.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 86",
+      "name": "k_eps_en"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "BUS-SW12",
+     "cav": "9",
+     "box": null,
+     "part": "0462-201-16141",
+     "des": "",
+     "sig": "Switched +12 V",
+     "name": "Switched +12 V bus plug (glove box, by the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      3.25,
+      9.425
+     ],
+     "pts": [
+      [
+       82.55000000000001,
+       27.0,
+       38.3
+      ],
+      [
+       82.55000000000001,
+       27.0,
+       9.425
+      ],
+      [
+       81.30000000000001,
+       7.574999999999999,
+       9.425
+      ],
+      [
+       81.30000000000001,
+       -30.0,
+       9.425
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_eps_en c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_hl_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS1-2",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS1-2",
+     "sig": "Low-beam fuse +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 9.45,
+      "y": 41.05,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "HL"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HL",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Low-beam fuse +12 V",
+     "name": "Low-beam fuse splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      -1.3,
+      11.105
+     ],
+     "pts": [
+      [
+       9.45,
+       41.05,
+       38.3
+      ],
+      [
+       9.45,
+       41.05,
+       11.105
+      ],
+      [
+       8.149999999999999,
+       15.744999999999997,
+       11.105
+      ],
+      [
+       8.149999999999999,
+       -30.0,
+       11.105
+      ]
+     ],
+     "R": 8.435,
+     "end": "fb_logic BUS1-2"
+    }
+   ]
+  },
+  {
+   "wire": "w_hz_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS1-4",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS1-4",
+     "sig": "Hazard and horn fuse +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 9.45,
+      "y": 59.75,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "HZ"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HZ",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Hazard and horn fuse +12 V",
+     "name": "Hazard and horn fuse splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      0.8,
+      9.605
+     ],
+     "pts": [
+      [
+       9.45,
+       59.75,
+       38.3
+      ],
+      [
+       9.45,
+       59.75,
+       9.605
+      ],
+      [
+       10.25,
+       34.445,
+       9.605
+      ],
+      [
+       10.25,
+       -30.0,
+       9.605
+      ]
+     ],
+     "R": 8.435,
+     "end": "fb_logic BUS1-4"
+    }
+   ]
+  },
+  {
+   "wire": "w_lam12_cp",
+   "file": "AB-cabin",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "k_on",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "Ignition-on relay (CAN-Lambda feed)",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 51.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 87",
+      "name": "k_on"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "DRB102-CABIN",
+     "cav": "95",
+     "box": null,
+     "part": "0460-220-1231",
+     "des": "",
+     "sig": "CAN-Lambda +12 V",
+     "name": "Firewall bulkhead connector (cabin side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      0.9500000000000001,
+      8.705
+     ],
+     "pts": [
+      [
+       78.05000000000001,
+       51.0,
+       38.3
+      ],
+      [
+       78.05000000000001,
+       51.0,
+       8.705
+      ],
+      [
+       79.00000000000001,
+       25.695,
+       8.705
+      ],
+      [
+       79.00000000000001,
+       -30.0,
+       8.705
+      ]
+     ],
+     "R": 8.435,
+     "end": "k_on c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_k_on_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "JB1",
+     "cav": "1H-7",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Ignition +12 V (IGN fuse)",
+     "name": "J/B No.1 (LH kick panel)",
+     "at": null
+    },
+    {
+     "id": "k_on",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Ignition-on relay (CAN-Lambda feed)",
+     "at": {
+      "x": 82.55000000000001,
+      "y": 57.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 86",
+      "name": "k_on"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      -3.0,
+      7.225
+     ],
+     "pts": [
+      [
+       82.55000000000001,
+       57.0,
+       38.3
+      ],
+      [
+       82.55000000000001,
+       57.0,
+       7.225
+      ],
+      [
+       75.05000000000001,
+       37.575,
+       7.225
+      ],
+      [
+       75.05000000000001,
+       -30.0,
+       7.225
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_on c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_cp_sw12_in",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-2",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS2-2",
+     "sig": "Switched +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 41.05,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "SW12"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "BUS-SW12",
+     "cav": "1",
+     "box": null,
+     "part": "0462-201-16141",
+     "des": "",
+     "sig": "Switched +12 V",
+     "name": "Switched +12 V bus plug (glove box, by the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      -0.65,
+      8.93
+     ],
+     "pts": [
+      [
+       46.55,
+       41.05,
+       38.3
+      ],
+      [
+       46.55,
+       41.05,
+       8.93
+      ],
+      [
+       45.9,
+       19.419999999999998,
+       8.93
+      ],
+      [
+       45.9,
+       -30.0,
+       8.93
+      ]
+     ],
+     "R": 7.21,
+     "end": "fb_logic BUS2-2"
+    }
+   ]
+  },
+  {
+   "wire": "w_cop_pwr_ac",
+   "file": "AB-cabin",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-3",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS2-3",
+     "sig": "Ignition coil +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 50.4,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "COP"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "DRB102-CABIN",
+     "cav": "1",
+     "box": null,
+     "part": "0460-220-1231",
+     "des": "",
+     "sig": "Ignition coil +12 V",
+     "name": "Firewall bulkhead connector (cabin side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      1.8,
+      8.805
+     ],
+     "pts": [
+      [
+       46.55,
+       50.4,
+       38.3
+      ],
+      [
+       46.55,
+       50.4,
+       8.805
+      ],
+      [
+       48.349999999999994,
+       25.095,
+       8.805
+      ],
+      [
+       48.349999999999994,
+       -30.0,
+       8.805
+      ]
+     ],
+     "R": 8.435,
+     "end": "fb_logic BUS2-3"
+    }
+   ]
+  },
+  {
+   "wire": "w_inj_pwr_ac",
+   "file": "AB-cabin",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-4",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS2-4",
+     "sig": "Injector +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 59.75,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "INJ"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "DRB102-CABIN",
+     "cav": "2",
+     "box": null,
+     "part": "0460-220-1231",
+     "des": "",
+     "sig": "Injector +12 V",
+     "name": "Firewall bulkhead connector (cabin side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      -2.6,
+      7.405
+     ],
+     "pts": [
+      [
+       46.55,
+       59.75,
+       38.3
+      ],
+      [
+       46.55,
+       59.75,
+       7.405
+      ],
+      [
+       43.949999999999996,
+       34.445,
+       7.405
+      ],
+      [
+       43.949999999999996,
+       -30.0,
+       7.405
+      ]
+     ],
+     "R": 8.435,
+     "end": "fb_logic BUS2-4"
+    }
+   ]
+  },
+  {
+   "wire": "w_fb_k_eps_30_ac",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 8,
+   "unit": "AWG",
+   "od": 5.13,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "out6",
+     "box": "POWER",
+     "part": "2R5",
+     "des": "AMI OUT-6",
+     "sig": "EHPS relay feed",
+     "name": "POWER box AMI OUT-6 fuse, output stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "K-EPS",
+     "cav": "30",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "+12 V in",
+     "name": "Power steering pump relay",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w76",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_efi",
+     "cav": "c2",
+     "box": "POWER",
+     "part": "42281-1",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "EFI main relay",
+     "at": {
+      "x": 18.35,
+      "y": 52.55,
+      "lane": [
+       "P",
+       52.0
+      ],
+      "kind": "F7 85",
+      "name": "k_efi"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-A",
+     "cav": "28",
+     "box": null,
+     "part": "3-1447221-3",
+     "des": "",
+     "sig": "EFI relay coil (-)",
+     "name": "ECU plug A",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 52.0,
+     "slot": [
+      0.0,
+      5.125
+     ],
+     "pts": [
+      [
+       18.35,
+       52.55,
+       31.8
+      ],
+      [
+       18.35,
+       52.55,
+       5.125
+      ],
+      [
+       -1.0749999999999993,
+       52.0,
+       5.125
+      ],
+      [
+       -30.0,
+       52.0,
+       5.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_efi c2"
+    }
+   ]
+  },
+  {
+   "wire": "w81",
+   "file": "AB-cabin",
+   "colour": "White",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "k_etb",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Throttle body power relay",
+     "at": {
+      "x": 55.05,
+      "y": 117.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 85",
+      "name": "k_etb"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-A",
+     "cav": "20",
+     "box": null,
+     "part": "3-1447221-4",
+     "des": "",
+     "sig": "ETB relay coil (-)",
+     "name": "ECU plug A",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -3.25,
+      6.385000000000001
+     ],
+     "pts": [
+      [
+       55.05,
+       117.0,
+       38.3
+      ],
+      [
+       55.05,
+       117.0,
+       6.385000000000001
+      ],
+      [
+       56.3,
+       100.515,
+       6.385000000000001
+      ],
+      [
+       56.3,
+       -30.0,
+       6.385000000000001
+      ]
+     ],
+     "R": 5.495,
+     "end": "k_etb c2"
+    }
+   ]
+  },
+  {
+   "wire": "w82_ac",
+   "file": "AB-cabin",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_etb",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "Throttle body power relay",
+     "at": {
+      "x": 59.55,
+      "y": 111.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 87",
+      "name": "k_etb"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ECU-B",
+     "cav": "5",
+     "box": null,
+     "part": "3-1447221-3",
+     "des": "",
+     "sig": "V Ethrottle (ETB H-bridge supply)",
+     "name": "ECU plug B",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -0.65,
+      7.025
+     ],
+     "pts": [
+      [
+       59.55,
+       111.0,
+       38.3
+      ],
+      [
+       59.55,
+       111.0,
+       7.025
+      ],
+      [
+       58.9,
+       91.575,
+       7.025
+      ],
+      [
+       58.9,
+       -30.0,
+       7.025
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_etb c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_hl_85_cp",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_hl",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Low-beam relay",
+     "at": {
+      "x": 55.05,
+      "y": 27.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 85",
+      "name": "k_hl"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HEAD-COIL",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Head lamps on (to ground)",
+     "name": "Headlamp relay coil splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      1.25,
+      10.925
+     ],
+     "pts": [
+      [
+       55.05,
+       27.0,
+       38.3
+      ],
+      [
+       55.05,
+       27.0,
+       10.925
+      ],
+      [
+       60.8,
+       7.574999999999999,
+       10.925
+      ],
+      [
+       60.8,
+       -30.0,
+       10.925
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_hl c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_horn_85_cp",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_horn",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Horn relay",
+     "at": {
+      "x": 55.05,
+      "y": 87.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 85",
+      "name": "k_horn"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "IE1",
+     "cav": "19",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Horn relay coil (-)",
+     "name": "Cowl plug IE1 (LH kick)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      3.6500000000000004,
+      7.125
+     ],
+     "pts": [
+      [
+       55.05,
+       87.0,
+       38.3
+      ],
+      [
+       55.05,
+       87.0,
+       7.125
+      ],
+      [
+       63.199999999999996,
+       67.575,
+       7.125
+      ],
+      [
+       63.199999999999996,
+       -30.0,
+       7.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_horn c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_pmu_horn_cp",
+   "file": "EngineRoom-C",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "k_horn",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "Horn relay",
+     "at": {
+      "x": 59.55,
+      "y": 81.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 87",
+      "name": "k_horn"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HORN",
+     "cav": "",
+     "box": null,
+     "part": "D-436-38",
+     "des": "",
+     "sig": "Horn +12 V",
+     "name": "Horn feed splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -2.5,
+      8.405000000000001
+     ],
+     "pts": [
+      [
+       59.55,
+       81.0,
+       38.3
+      ],
+      [
+       59.55,
+       81.0,
+       8.405000000000001
+      ],
+      [
+       57.05,
+       55.695,
+       8.405000000000001
+      ],
+      [
+       57.05,
+       -30.0,
+       8.405000000000001
+      ]
+     ],
+     "R": 8.435,
+     "end": "k_horn c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_start_in_cp",
+   "file": "CabinPower",
+   "colour": "Yellow",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "RB4",
+     "cav": "ST-1",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Start switch ST1 feed",
+     "name": "R/B No.4 (RH kick)",
+     "at": null
+    },
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-13 IN",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS2-13 IN",
+     "sig": "Start switch ST1 feed",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 38.45,
+      "y": 125.2,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse in",
+      "name": "B30"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      1.6500000000000001,
+      5.485
+     ],
+     "pts": [
+      [
+       38.45,
+       125.2,
+       38.3
+      ],
+      [
+       38.45,
+       125.2,
+       5.485
+      ],
+      [
+       48.199999999999996,
+       108.715,
+       5.485
+      ],
+      [
+       48.199999999999996,
+       -30.0,
+       5.485
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS2-13 IN"
+    }
+   ]
+  },
+  {
+   "wire": "w_hl_30_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "k_hl",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "+12 V in",
+     "name": "Low-beam relay",
+     "at": {
+      "x": 59.55,
+      "y": 13.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 30",
+      "name": "k_hl"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HL",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Low-beam fuse +12 V",
+     "name": "Low-beam fuse splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -0.05,
+      12.805
+     ],
+     "pts": [
+      [
+       59.55,
+       13.0,
+       38.3
+      ],
+      [
+       59.55,
+       13.0,
+       12.805
+      ],
+      [
+       59.5,
+       7.45,
+       12.805
+      ],
+      [
+       59.5,
+       -30.0,
+       12.805
+      ]
+     ],
+     "R": 8.435,
+     "end": "k_hl c1"
+    }
+   ]
+  },
+  {
+   "wire": "w_hl_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "k_hl",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Low-beam relay",
+     "at": {
+      "x": 64.05,
+      "y": 27.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 86",
+      "name": "k_hl"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HL",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Low-beam fuse +12 V",
+     "name": "Low-beam fuse splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      4.4,
+      11.43
+     ],
+     "pts": [
+      [
+       64.05,
+       27.0,
+       38.3
+      ],
+      [
+       64.05,
+       27.0,
+       11.43
+      ],
+      [
+       63.949999999999996,
+       7.45,
+       11.43
+      ],
+      [
+       63.949999999999996,
+       -30.0,
+       11.43
+      ]
+     ],
+     "R": 7.21,
+     "end": "k_hl c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_hr_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "k_hr",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "High-beam relay",
+     "at": {
+      "x": 64.05,
+      "y": 57.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 86",
+      "name": "k_hr"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HL-ON",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Low beam +12 V",
+     "name": "Low-beam output splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -0.25,
+      9.43
+     ],
+     "pts": [
+      [
+       64.05,
+       57.0,
+       38.3
+      ],
+      [
+       64.05,
+       57.0,
+       9.43
+      ],
+      [
+       59.3,
+       35.370000000000005,
+       9.43
+      ],
+      [
+       59.3,
+       -30.0,
+       9.43
+      ]
+     ],
+     "R": 7.21,
+     "end": "k_hr c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_hl_on_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "k_hl",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "Low-beam relay",
+     "at": {
+      "x": 59.55,
+      "y": 21.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 87",
+      "name": "k_hl"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HL-ON",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Low beam +12 V",
+     "name": "Low-beam output splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -4.3,
+      12.305
+     ],
+     "pts": [
+      [
+       59.55,
+       21.0,
+       38.3
+      ],
+      [
+       59.55,
+       21.0,
+       12.305
+      ],
+      [
+       55.25,
+       7.45,
+       12.305
+      ],
+      [
+       55.25,
+       -30.0,
+       12.305
+      ]
+     ],
+     "R": 8.435,
+     "end": "k_hl c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_hr_on_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "k_hr",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "High-beam relay",
+     "at": {
+      "x": 59.55,
+      "y": 51.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 87",
+      "name": "k_hr"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HR-HI",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "High beam +12 V",
+     "name": "High-beam output splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -2.0500000000000003,
+      11.005
+     ],
+     "pts": [
+      [
+       59.55,
+       51.0,
+       38.3
+      ],
+      [
+       59.55,
+       51.0,
+       11.005
+      ],
+      [
+       57.5,
+       25.695,
+       11.005
+      ],
+      [
+       57.5,
+       -30.0,
+       11.005
+      ]
+     ],
+     "R": 8.435,
+     "end": "k_hr c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_drl_85_cp",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "k_drl",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "DRL relay",
+     "at": {
+      "x": 73.55000000000001,
+      "y": 87.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 85",
+      "name": "k_drl"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-DRL-SW",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "DRL switch (to ground)",
+     "name": "DRL switch splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      0.0,
+      6.785
+     ],
+     "pts": [
+      [
+       73.55000000000001,
+       87.0,
+       38.3
+      ],
+      [
+       73.55000000000001,
+       87.0,
+       6.785
+      ],
+      [
+       78.05000000000001,
+       70.515,
+       6.785
+      ],
+      [
+       78.05000000000001,
+       -30.0,
+       6.785
+      ]
+     ],
+     "R": 5.495,
+     "end": "k_drl c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_r8_d2_k_cp",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_pod",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "Switch contact (UP command in)",
+     "name": "Pop-up key-on relay",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 133.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 30",
+      "name": "k_pod"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "D-R8-2",
+     "cav": "2",
+     "box": null,
+     "part": "0462-201-1631",
+     "des": "",
+     "sig": "D2 cathode (DRL switch side)",
+     "name": "Pop-up diode 2 (DRL switch side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      -1.75,
+      5.625
+     ],
+     "pts": [
+      [
+       78.05000000000001,
+       133.0,
+       38.3
+      ],
+      [
+       78.05000000000001,
+       133.0,
+       5.625
+      ],
+      [
+       76.30000000000001,
+       113.575,
+       5.625
+      ],
+      [
+       76.30000000000001,
+       -30.0,
+       5.625
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_pod c1"
+    }
+   ]
+  },
+  {
+   "wire": "w_drl_87_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "k_drl",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "DRL relay",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 81.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 87",
+      "name": "k_drl"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "RLY-DRL",
+     "cav": "30",
+     "box": null,
+     "part": "12129409-L",
+     "des": "",
+     "sig": "+12 V in",
+     "name": "DRL cut relay (beside the LOGIC box)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      3.0,
+      7.33
+     ],
+     "pts": [
+      [
+       78.05000000000001,
+       81.0,
+       38.3
+      ],
+      [
+       78.05000000000001,
+       81.0,
+       7.33
+      ],
+      [
+       81.05000000000001,
+       59.370000000000005,
+       7.33
+      ],
+      [
+       81.05000000000001,
+       -30.0,
+       7.33
+      ]
+     ],
+     "R": 7.21,
+     "end": "k_drl c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_pod_85_cp",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "k_pod",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "Pop-up key-on relay",
+     "at": {
+      "x": 73.55000000000001,
+      "y": 147.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 85",
+      "name": "k_pod"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-DRL-SW",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "DRL switch (to ground)",
+     "name": "DRL switch splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      0.0,
+      4.985
+     ],
+     "pts": [
+      [
+       73.55000000000001,
+       147.0,
+       38.3
+      ],
+      [
+       73.55000000000001,
+       147.0,
+       4.985
+      ],
+      [
+       78.05000000000001,
+       130.515,
+       4.985
+      ],
+      [
+       78.05000000000001,
+       -30.0,
+       4.985
+      ]
+     ],
+     "R": 5.495,
+     "end": "k_pod c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_pod_87_cp",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_pod",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "Switch contact (to the DRL switch)",
+     "name": "Pop-up key-on relay",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 141.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 87",
+      "name": "k_pod"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-DRL-SW",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "DRL switch (to ground)",
+     "name": "DRL switch splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      1.75,
+      5.625
+     ],
+     "pts": [
+      [
+       78.05000000000001,
+       141.0,
+       38.3
+      ],
+      [
+       78.05000000000001,
+       141.0,
+       5.625
+      ],
+      [
+       79.80000000000001,
+       121.575,
+       5.625
+      ],
+      [
+       79.80000000000001,
+       -30.0,
+       5.625
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_pod c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_horn_30_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "k_horn",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "+12 V in",
+     "name": "Horn relay",
+     "at": {
+      "x": 59.55,
+      "y": 73.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 30",
+      "name": "k_horn"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HZ",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Hazard and horn fuse +12 V",
+     "name": "Hazard and horn fuse splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      3.1,
+      9.405000000000001
+     ],
+     "pts": [
+      [
+       59.55,
+       73.0,
+       38.3
+      ],
+      [
+       59.55,
+       73.0,
+       9.405000000000001
+      ],
+      [
+       62.65,
+       47.695,
+       9.405000000000001
+      ],
+      [
+       62.65,
+       -30.0,
+       9.405000000000001
+      ]
+     ],
+     "R": 8.435,
+     "end": "k_horn c1"
+    }
+   ]
+  },
+  {
+   "wire": "w_horn_86_cp",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "k_horn",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "Coil +",
+     "name": "Horn relay",
+     "at": {
+      "x": 64.05,
+      "y": 87.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 86",
+      "name": "k_horn"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "SP-HZ",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Hazard and horn fuse +12 V",
+     "name": "Hazard and horn fuse splice",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      1.3,
+      7.83
+     ],
+     "pts": [
+      [
+       64.05,
+       87.0,
+       38.3
+      ],
+      [
+       64.05,
+       87.0,
+       7.83
+      ],
+      [
+       60.849999999999994,
+       65.37,
+       7.83
+      ],
+      [
+       60.849999999999994,
+       -30.0,
+       7.83
+      ]
+     ],
+     "R": 7.21,
+     "end": "k_horn c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_dev_clu",
+   "file": "Dash",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-6",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS2-6",
+     "sig": "Cluster +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 78.45,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "DEV"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "T-CLUSTER-PWR",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Cluster +12 V",
+     "name": "Centre cluster +12 V input lead",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      0.30000000000000004,
+      6.930000000000001
+     ],
+     "pts": [
+      [
+       46.55,
+       78.45,
+       38.3
+      ],
+      [
+       46.55,
+       78.45,
+       6.930000000000001
+      ],
+      [
+       46.849999999999994,
+       56.82000000000001,
+       6.930000000000001
+      ],
+      [
+       46.849999999999994,
+       -30.0,
+       6.930000000000001
+      ]
+     ],
+     "R": 7.21,
+     "end": "fb_logic BUS2-6"
+    }
+   ]
+  },
+  {
+   "wire": "w_pmu_dome",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS1-5",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS1-5",
+     "sig": "Dome feed to J/B No.1",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 9.45,
+      "y": 69.1,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "DOME"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "JB1",
+     "cav": "1H-2",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Dome feed to J/B No.1",
+     "name": "J/B No.1 (LH kick panel)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      -0.55,
+      7.405
+     ],
+     "pts": [
+      [
+       9.45,
+       69.1,
+       38.3
+      ],
+      [
+       9.45,
+       69.1,
+       7.405
+      ],
+      [
+       8.899999999999999,
+       43.794999999999995,
+       7.405
+      ],
+      [
+       8.899999999999999,
+       -30.0,
+       7.405
+      ]
+     ],
+     "R": 8.435,
+     "end": "fb_logic BUS1-5"
+    }
+   ]
+  },
+  {
+   "wire": "w_alt_s_c",
+   "file": "EngineRoom-C",
+   "colour": "White",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS1-9",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS1-9",
+     "sig": "Alternator battery sense (S)",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 9.45,
+      "y": 106.5,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "ALTS"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "ALT-PLUG",
+     "cav": "1",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "S (battery sense)",
+     "name": "Alternator plug",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      0.0,
+      4.985
+     ],
+     "pts": [
+      [
+       9.45,
+       106.5,
+       38.3
+      ],
+      [
+       9.45,
+       106.5,
+       4.985
+      ],
+      [
+       9.45,
+       90.015,
+       4.985
+      ],
+      [
+       9.45,
+       -30.0,
+       4.985
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS1-9"
+    }
+   ]
+  },
+  {
+   "wire": "w_pmu_rtr",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "out2",
+     "box": "POWER",
+     "part": "2R5",
+     "des": "AMI OUT-2",
+     "sig": "Pop-up relay +12 V (RTR feed)",
+     "name": "POWER box AMI OUT-2 fuse, output stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "IE1",
+     "cav": "3",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Pop-up relay +12 V (RTR feed)",
+     "name": "Cowl plug IE1 (LH kick)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_pdb_am1",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 8,
+   "unit": "AWG",
+   "od": 5.13,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "out3",
+     "box": "POWER",
+     "part": "2R5",
+     "des": "AMI OUT-3",
+     "sig": "AM1 feed to IE1",
+     "name": "POWER box AMI OUT-3 fuse, output stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "IE1",
+     "cav": "10",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "AM1 feed to IE1",
+     "name": "Cowl plug IE1 (LH kick)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_pdb_am2",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "out4",
+     "box": "POWER",
+     "part": "2R5",
+     "des": "AMI OUT-4",
+     "sig": "AM2 feed to IE1",
+     "name": "POWER box AMI OUT-4 fuse, output stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "IE1",
+     "cav": "17",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "AM2 feed to IE1",
+     "name": "Cowl plug IE1 (LH kick)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_pdb_jb1",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 6,
+   "unit": "AWG",
+   "od": 6.43,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "out5",
+     "box": "POWER",
+     "part": "3R5",
+     "des": "AMI OUT-5",
+     "sig": "J/B No.1 main feed",
+     "name": "POWER box AMI OUT-5 fuse, output stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "JB1",
+     "cav": "1I-1",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "J/B No.1 main feed",
+     "name": "J/B No.1 (LH kick panel)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_acc_clutch",
+   "file": "EngineRoom-C",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "k_acc",
+     "cav": "c4",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "A/C clutch relay",
+     "at": {
+      "x": 59.55,
+      "y": 141.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 87",
+      "name": "k_acc"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "A4",
+     "cav": "4",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "+12 V (clutch)",
+     "name": "A/C compressor A4",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      2.0500000000000003,
+      5.73
+     ],
+     "pts": [
+      [
+       59.55,
+       141.0,
+       38.3
+      ],
+      [
+       59.55,
+       141.0,
+       5.73
+      ],
+      [
+       61.599999999999994,
+       119.37,
+       5.73
+      ],
+      [
+       61.599999999999994,
+       -30.0,
+       5.73
+      ]
+     ],
+     "R": 7.21,
+     "end": "k_acc c4"
+    }
+   ]
+  },
+  {
+   "wire": "w_fan_pwr",
+   "file": "EngineRoom-C",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "k_fan",
+     "cav": "c1",
+     "box": "POWER",
+     "part": "280756-4",
+     "des": "30",
+     "sig": "+12 V out",
+     "name": "Radiator fan relay",
+     "at": {
+      "x": 8.85,
+      "y": 97.0,
+      "lane": [
+       "P",
+       97.0
+      ],
+      "kind": "F7 30",
+      "name": "k_fan"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "FAN-RAD",
+     "cav": "1",
+     "box": null,
+     "part": "0462-203-08141",
+     "des": "",
+     "sig": "+12 V",
+     "name": "Radiator fan plug (+)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 97.0,
+     "slot": [
+      0.0,
+      6.005
+     ],
+     "pts": [
+      [
+       8.85,
+       97.0,
+       31.8
+      ],
+      [
+       8.85,
+       97.0,
+       6.005
+      ],
+      [
+       -24.0,
+       97.0,
+       6.005
+      ],
+      [
+       -30.0,
+       97.0,
+       6.005
+      ]
+     ],
+     "R": 12.635,
+     "end": "k_fan c1"
+    }
+   ]
+  },
+  {
+   "wire": "w_fan2_pwr",
+   "file": "EngineRoom-C",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "k_fan2",
+     "cav": "c1",
+     "box": "POWER",
+     "part": "280756-4",
+     "des": "30",
+     "sig": "+12 V out",
+     "name": "Condenser fan relay",
+     "at": {
+      "x": 37.85,
+      "y": 115.0,
+      "lane": [
+       "P",
+       115.0
+      ],
+      "kind": "F7 30",
+      "name": "k_fan2"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "FAN-COND",
+     "cav": "1",
+     "box": null,
+     "part": "0462-203-08141",
+     "des": "",
+     "sig": "+12 V",
+     "name": "Condenser fan plug (+)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 115.0,
+     "slot": [
+      0.0,
+      6.005
+     ],
+     "pts": [
+      [
+       37.85,
+       115.0,
+       31.8
+      ],
+      [
+       37.85,
+       115.0,
+       6.005
+      ],
+      [
+       -0.054999999999999716,
+       115.0,
+       6.005
+      ],
+      [
+       -30.0,
+       115.0,
+       6.005
+      ]
+     ],
+     "R": 12.635,
+     "end": "k_fan2 c1"
+    }
+   ]
+  },
+  {
+   "wire": "w_gnd_id",
+   "file": "HeavyDC",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 53.5,
+   "unit": "Metric",
+   "od": 13.6,
+   "ends": [
+    {
+     "id": "pdb",
+     "cav": "NEG-ID",
+     "box": "POWER",
+     "part": "6R8",
+     "des": "GND",
+     "sig": "Ground ID",
+     "name": "POWER box NEG bar, GND ID stud",
+     "stud": "POWER box NEG bar, GND ID stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "GND-ID",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Ground ID",
+     "name": "Ground stud ID, LH kick panel",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_gnd_ig",
+   "file": "HeavyDC",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 53.5,
+   "unit": "Metric",
+   "od": 13.6,
+   "ends": [
+    {
+     "id": "pdb",
+     "cav": "NEG-IG",
+     "box": "POWER",
+     "part": "6R8",
+     "des": "GND",
+     "sig": "POWER box ground to ground bolt IG",
+     "name": "POWER box NEG bar, GND IG stud",
+     "stud": "POWER box NEG bar, GND IG stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "GND-IG",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "POWER box ground to ground bolt IG",
+     "name": "Ground bolt IG, RH kick panel (R/B No.4 set bolt)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_hl_low",
+   "file": "CabinPower",
+   "colour": "White",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "k_hr",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "Coil (-)",
+     "name": "High-beam relay",
+     "at": {
+      "x": 55.05,
+      "y": 57.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 85",
+      "name": "k_hr"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "IE1",
+     "cav": "18",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "High-beam relay coil (-)",
+     "name": "Cowl plug IE1 (LH kick)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 59.55,
+     "slot": [
+      -4.6000000000000005,
+      9.325
+     ],
+     "pts": [
+      [
+       55.05,
+       57.0,
+       38.3
+      ],
+      [
+       55.05,
+       57.0,
+       9.325
+      ],
+      [
+       54.949999999999996,
+       37.575,
+       9.325
+      ],
+      [
+       54.949999999999996,
+       -30.0,
+       9.325
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_hr c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_fp_feed",
+   "file": "HeavyDC",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "KILL-SW",
+     "cav": "MAIN2",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Battery +",
+     "name": "Battery kill switch (trunk)",
+     "at": null
+    },
+    {
+     "id": "fb_batt",
+     "cav": "in",
+     "box": "BATT",
+     "part": "Klauke 1R6",
+     "des": "BATT +",
+     "sig": "Battery relay box +",
+     "name": "Trunk relay block (fuel pump relay and fuse)",
+     "at": null,
+     "part_from": "parts list"
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_ks_h1",
+   "file": "HeavyDC",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 53.5,
+   "unit": "Metric",
+   "od": 13.6,
+   "ends": [
+    {
+     "id": "KILL-SW",
+     "cav": "MAIN2",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Battery +",
+     "name": "Battery kill switch (trunk)",
+     "at": null
+    },
+    {
+     "id": "pdb",
+     "cav": "c1",
+     "box": "POWER",
+     "part": "6R8",
+     "des": "BAT+",
+     "sig": "Battery +",
+     "name": "POWER box + bar, BAT+ IN stud",
+     "stud": "POWER box + bar, BAT+ IN stud",
+     "at": null,
+     "part_from": "harness"
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_h3_radlok_pos",
+   "file": "HeavyDC",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 53.5,
+   "unit": "Metric",
+   "od": 13.6,
+   "ends": [
+    {
+     "id": "pdb",
+     "cav": "c2",
+     "box": "POWER",
+     "part": "6R8",
+     "des": "ALT/STR",
+     "sig": "Battery +",
+     "name": "POWER box + bar, RADLOK+ stud",
+     "stud": "POWER box + bar, RADLOK+ stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "RADLOK-POS-CAB",
+     "cav": "1",
+     "box": null,
+     "part": "INTEGRAL",
+     "des": "",
+     "sig": "Battery +",
+     "name": "Firewall battery + connector (cabin side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_h6a_radlok_neg",
+   "file": "HeavyDC",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 53.5,
+   "unit": "Metric",
+   "od": 13.6,
+   "ends": [
+    {
+     "id": "pdb",
+     "cav": "NEG-RADLOK",
+     "box": "POWER",
+     "part": "6R8",
+     "des": "GND",
+     "sig": "Engine ground",
+     "name": "POWER box NEG bar, RADLOK- stud",
+     "stud": "POWER box NEG bar, RADLOK- stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "RADLOK-NEG-CAB",
+     "cav": "1",
+     "box": null,
+     "part": "INTEGRAL",
+     "des": "",
+     "sig": "Battery - (engine ground)",
+     "name": "Firewall battery - connector (cabin side)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_trunk_neg",
+   "file": "HeavyDC",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 53.5,
+   "unit": "Metric",
+   "od": 13.6,
+   "ends": [
+    {
+     "id": "T-TRUNK-NEG",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Battery - main",
+     "name": "Battery - post (trunk)",
+     "at": null
+    },
+    {
+     "id": "pdb",
+     "cav": "NEG-BAT",
+     "box": "POWER",
+     "part": "6R8",
+     "des": "GND",
+     "sig": "Battery - main",
+     "name": "POWER box NEG bar, BAT- stud",
+     "stud": "POWER box NEG bar, BAT- stud",
+     "at": null,
+     "part_from": "harness"
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_fpump_r",
+   "file": "RearFuel",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "k_fp",
+     "cav": "c4",
+     "box": "BATT",
+     "part": "Klauke 1R6",
+     "des": "87",
+     "sig": "+12 V out",
+     "name": "Fuel pump relay",
+     "at": null,
+     "part_from": "parts list"
+    },
+    {
+     "id": "FUEL-PUMP",
+     "cav": "1",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Fuel pump +12 V",
+     "name": "Fuel pump",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_at_12v_shk",
+   "file": "AntiTheft",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS1-8",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS1-8",
+     "sig": "Shock sensor +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 9.45,
+      "y": 97.15,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "ALMS"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "AL-12V-SHK",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Shock sensor +12 V",
+     "name": "Shock sensor +12 V point",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      -1.6500000000000001,
+      5.485
+     ],
+     "pts": [
+      [
+       9.45,
+       97.15,
+       38.3
+      ],
+      [
+       9.45,
+       97.15,
+       5.485
+      ],
+      [
+       7.799999999999999,
+       80.665,
+       5.485
+      ],
+      [
+       7.799999999999999,
+       -30.0,
+       5.485
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS1-8"
+    }
+   ]
+  },
+  {
+   "wire": "w_at_12v",
+   "file": "AntiTheft",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS1-7",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS1-7",
+     "sig": "Alarm +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 9.45,
+      "y": 87.8,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "ALM"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "AL-12V",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Alarm +12 V",
+     "name": "Alarm +12 V point",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      1.25,
+      6.1850000000000005
+     ],
+     "pts": [
+      [
+       9.45,
+       87.8,
+       38.3
+      ],
+      [
+       9.45,
+       87.8,
+       6.1850000000000005
+      ],
+      [
+       10.7,
+       71.315,
+       6.1850000000000005
+      ],
+      [
+       10.7,
+       -30.0,
+       6.1850000000000005
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS1-7"
+    }
+   ]
+  },
+  {
+   "wire": "w_at_ig",
+   "file": "AntiTheft",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-9",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS2-9",
+     "sig": "Alarm ignition +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 106.5,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "ALMIG"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "AL-IGN",
+     "cav": "",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "Alarm ignition +12 V",
+     "name": "Alarm ignition point",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      -1.6500000000000001,
+      5.485
+     ],
+     "pts": [
+      [
+       46.55,
+       106.5,
+       38.3
+      ],
+      [
+       46.55,
+       106.5,
+       5.485
+      ],
+      [
+       44.9,
+       90.015,
+       5.485
+      ],
+      [
+       44.9,
+       -30.0,
+       5.485
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS2-9"
+    }
+   ]
+  },
+  {
+   "wire": "w_csb12",
+   "file": "Dash",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "BUS2-5",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS2-5",
+     "sig": "CSB3 +12 V",
+     "name": "LOGIC fuse and relay box (glove box)",
+     "at": {
+      "x": 46.55,
+      "y": 69.1,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "CSB"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "CSB3",
+     "cav": "2",
+     "box": null,
+     "part": "0462-201-2031",
+     "des": "",
+     "sig": "CSB3 +12 V",
+     "name": "ECUMaster CAN switch board",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 46.55,
+     "slot": [
+      2.8000000000000003,
+      6.785
+     ],
+     "pts": [
+      [
+       46.55,
+       69.1,
+       38.3
+      ],
+      [
+       46.55,
+       69.1,
+       6.785
+      ],
+      [
+       49.349999999999994,
+       52.614999999999995,
+       6.785
+      ],
+      [
+       49.349999999999994,
+       -30.0,
+       6.785
+      ]
+     ],
+     "R": 5.495,
+     "end": "fb_logic BUS2-5"
+    }
+   ]
+  },
+  {
+   "wire": "w_rb4_feed",
+   "file": "CabinPower",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 8,
+   "unit": "AWG",
+   "od": 5.13,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "in1",
+     "box": "POWER",
+     "part": "2R5",
+     "des": "AMI IN-1",
+     "sig": "R/B No.4 heater fuse feed",
+     "name": "POWER box AMI IN-1 fuse, output stud",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "RB4",
+     "cav": "HTR-1",
+     "box": null,
+     "part": null,
+     "des": "",
+     "sig": "R/B No.4 heater fuse feed",
+     "name": "R/B No.4 (RH kick)",
+     "at": null
+    }
+   ],
+   "source": "master",
+   "kind": "external",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_hc_fb",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 8,
+   "unit": "AWG",
+   "od": 5.13,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "out1",
+     "box": "POWER",
+     "part": "Klauke 2R5",
+     "des": "AMI OUT-1",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "fb_logic",
+     "cav": "b1",
+     "box": "LOGIC",
+     "part": "Klauke 2R5",
+     "des": "BUS1",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "cross-box",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w77_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "k_efi",
+     "cav": "c1",
+     "box": "POWER",
+     "part": "280756-4",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 8.85,
+      "y": 61.0,
+      "lane": [
+       "P",
+       61.0
+      ],
+      "kind": "F7 30",
+      "name": "k_efi"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "fb_logic",
+     "cav": "b2",
+     "box": "LOGIC",
+     "part": "Klauke 2R5",
+     "des": "BUS2",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "cross-box",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "POWER",
+     "lane": 61.0,
+     "slot": [
+      0.0,
+      6.005
+     ],
+     "pts": [
+      [
+       8.85,
+       61.0,
+       31.8
+      ],
+      [
+       8.85,
+       61.0,
+       6.005
+      ],
+      [
+       -24.0,
+       61.0,
+       6.005
+      ],
+      [
+       -30.0,
+       61.0,
+       6.005
+      ]
+     ],
+     "R": 12.635,
+     "end": "k_efi c1"
+    }
+   ]
+  },
+  {
+   "wire": "w_fb_k_efi_87_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 12,
+   "unit": "AWG",
+   "od": 2.97,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "in2",
+     "box": "POWER",
+     "part": "TE 36161",
+     "des": "AMI IN-2",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "k_efi",
+     "cav": "c4",
+     "box": "POWER",
+     "part": "280756-4",
+     "des": "87",
+     "sig": "",
+     "at": {
+      "x": 26.75,
+      "y": 61.0,
+      "lane": null,
+      "kind": "F7 87",
+      "name": "k_efi"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_fb_k_fan_87_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "in4",
+     "box": "POWER",
+     "part": "Klauke 2R5",
+     "des": "AMI IN-4",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "k_fan",
+     "cav": "c4",
+     "box": "POWER",
+     "part": "280756-4",
+     "des": "87",
+     "sig": "",
+     "at": {
+      "x": 26.75,
+      "y": 97.0,
+      "lane": null,
+      "kind": "F7 87",
+      "name": "k_fan"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_fb_k_fan2_87_ac",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "fb_power",
+     "cav": "in5",
+     "box": "POWER",
+     "part": "Klauke 2R5",
+     "des": "AMI IN-5",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "k_fan2",
+     "cav": "c4",
+     "box": "POWER",
+     "part": "280756-4",
+     "des": "87",
+     "sig": "",
+     "at": {
+      "x": 55.75,
+      "y": 115.0,
+      "lane": null,
+      "kind": "F7 87",
+      "name": "k_fan2"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  },
+  {
+   "wire": "w_k_efi_86_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "efi86",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS1-1",
+     "sig": "",
+     "at": {
+      "x": 9.45,
+      "y": 31.7,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "EFI86"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "k_efi",
+     "cav": "c3",
+     "box": "POWER",
+     "part": "42281-1",
+     "des": "86",
+     "sig": "",
+     "at": {
+      "x": 18.35,
+      "y": 69.45,
+      "lane": [
+       "P",
+       70.0
+      ],
+      "kind": "F7 86",
+      "name": "k_efi"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "cross-box",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 9.45,
+     "slot": [
+      0.8500000000000001,
+      11.925
+     ],
+     "pts": [
+      [
+       9.45,
+       31.7,
+       38.3
+      ],
+      [
+       9.45,
+       31.7,
+       11.925
+      ],
+      [
+       10.299999999999999,
+       12.274999999999999,
+       11.925
+      ],
+      [
+       10.299999999999999,
+       -30.0,
+       11.925
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "fb_logic efi86"
+    },
+    {
+     "box": "POWER",
+     "lane": 70.0,
+     "slot": [
+      0.0,
+      5.125
+     ],
+     "pts": [
+      [
+       18.35,
+       69.45,
+       31.8
+      ],
+      [
+       18.35,
+       69.45,
+       5.125
+      ],
+      [
+       -1.0749999999999993,
+       70.0,
+       5.125
+      ],
+      [
+       -30.0,
+       70.0,
+       5.125
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "end": "k_efi c3"
+    }
+   ]
+  },
+  {
+   "wire": "w_k_on_85_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Black",
+   "bands": [],
+   "gauge": 20,
+   "unit": "AWG",
+   "od": 1.57,
+   "ends": [
+    {
+     "id": "k_on",
+     "cav": "c2",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "85",
+     "sig": "",
+     "at": {
+      "x": 73.55000000000001,
+      "y": 57.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 85",
+      "name": "k_on"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "pdb",
+     "cav": "NEG-GND-2",
+     "box": "POWER",
+     "part": "TE 320572",
+     "des": "GND",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "cross-box",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": 78.05000000000001,
+     "slot": [
+      -1.25,
+      7.985
+     ],
+     "pts": [
+      [
+       73.55000000000001,
+       57.0,
+       38.3
+      ],
+      [
+       73.55000000000001,
+       57.0,
+       7.985
+      ],
+      [
+       76.80000000000001,
+       40.515,
+       7.985
+      ],
+      [
+       76.80000000000001,
+       -30.0,
+       7.985
+      ]
+     ],
+     "R": 5.495,
+     "end": "k_on c2"
+    }
+   ]
+  },
+  {
+   "wire": "w_hr_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "hr",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS1-3",
+     "sig": "",
+     "at": {
+      "x": 9.45,
+      "y": 50.4,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "HR"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "k_hr",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 59.55,
+      "y": 43.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 30",
+      "name": "k_hr"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": true,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       9.45,
+       50.4,
+       38.3
+      ],
+      [
+       9.45,
+       50.4,
+       24.16
+      ],
+      [
+       7.4,
+       40.4,
+       24.16
+      ],
+      [
+       7.4,
+       7.25,
+       24.16
+      ],
+      [
+       50.05,
+       7.25,
+       24.16
+      ],
+      [
+       50.05,
+       33.5,
+       24.16
+      ],
+      [
+       59.55,
+       43.0,
+       24.16
+      ],
+      [
+       59.55,
+       43.0,
+       38.3
+      ]
+     ],
+     "R": 8.435,
+     "channel": "HR"
+    }
+   ]
+  },
+  {
+   "wire": "w_fb_k_etb_30_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "etb",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS1-10",
+     "sig": "",
+     "at": {
+      "x": 9.45,
+      "y": 115.85,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "ETB"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "k_etb",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 59.55,
+      "y": 103.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 30",
+      "name": "k_etb"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": true,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       9.45,
+       115.85,
+       38.3
+      ],
+      [
+       9.45,
+       115.85,
+       20.18
+      ],
+      [
+       7.4,
+       105.85,
+       20.18
+      ],
+      [
+       7.4,
+       7.25,
+       20.18
+      ],
+      [
+       50.05,
+       7.25,
+       20.18
+      ],
+      [
+       50.05,
+       93.5,
+       20.18
+      ],
+      [
+       59.55,
+       103.0,
+       20.18
+      ],
+      [
+       59.55,
+       103.0,
+       38.3
+      ]
+     ],
+     "R": 7.21,
+     "channel": "ETB"
+    }
+   ]
+  },
+  {
+   "wire": "w_fb_k_on_30_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 14,
+   "unit": "AWG",
+   "od": 2.41,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "lam",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS1-6",
+     "sig": "",
+     "at": {
+      "x": 9.45,
+      "y": 78.45,
+      "lane": [
+       "L",
+       9.45
+      ],
+      "kind": "fuse out",
+      "name": "LAM"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "k_on",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 43.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 30",
+      "name": "k_on"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": true,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       9.45,
+       78.45,
+       38.3
+      ],
+      [
+       9.45,
+       78.45,
+       28.86
+      ],
+      [
+       7.4,
+       68.45,
+       28.86
+      ],
+      [
+       7.4,
+       7.25,
+       28.86
+      ],
+      [
+       68.85000000000001,
+       7.25,
+       28.86
+      ],
+      [
+       68.85000000000001,
+       33.8,
+       28.86
+      ],
+      [
+       78.05000000000001,
+       43.0,
+       28.86
+      ],
+      [
+       78.05000000000001,
+       43.0,
+       38.3
+      ]
+     ],
+     "R": 8.435,
+     "channel": "ON"
+    }
+   ]
+  },
+  {
+   "wire": "w_fb_k_eps_en_30_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "epsen",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS2-7",
+     "sig": "",
+     "at": {
+      "x": 46.55,
+      "y": 87.8,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "EPSEN"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "k_eps_en",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 13.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 30",
+      "name": "k_eps_en"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": true,
+   "channel": false,
+   "spliced": false,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       46.55,
+       87.8,
+       38.3
+      ],
+      [
+       46.55,
+       87.8,
+       15.0
+      ],
+      [
+       78.05000000000001,
+       13.0,
+       15.0
+      ],
+      [
+       78.05000000000001,
+       13.0,
+       38.3
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "direct": true
+    }
+   ]
+  },
+  {
+   "wire": "w_drl_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "drl",
+     "box": "LOGIC",
+     "part": "1-968849-1",
+     "des": "BUS2-1",
+     "sig": "",
+     "at": {
+      "x": 46.55,
+      "y": 31.7,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "DRL"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "sp_drl12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 68.85,
+      "y": 95.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_drl12"
+     },
+     "part_from": "parts list"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       46.55,
+       31.7,
+       38.3
+      ],
+      [
+       46.55,
+       31.7,
+       32.0
+      ],
+      [
+       67.85,
+       31.7,
+       32.0
+      ],
+      [
+       67.85,
+       94.5,
+       32.0
+      ],
+      [
+       67.85,
+       96.0,
+       32.0
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_drl_30_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "sp_drl12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 68.85,
+      "y": 95.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_drl12"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "k_drl",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 78.05000000000001,
+      "y": 73.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 30",
+      "name": "k_drl"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       68.85,
+       96.0,
+       32.0
+      ],
+      [
+       68.85,
+       94.5,
+       32.0
+      ],
+      [
+       78.05000000000001,
+       73.0,
+       32.0
+      ],
+      [
+       78.05000000000001,
+       73.0,
+       38.3
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_drl_86_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "sp_drl12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 68.85,
+      "y": 95.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_drl12"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "k_drl",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "",
+     "at": {
+      "x": 82.55000000000001,
+      "y": 87.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 86",
+      "name": "k_drl"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       69.85,
+       96.0,
+       32.0
+      ],
+      [
+       69.85,
+       94.5,
+       32.0
+      ],
+      [
+       82.55000000000001,
+       87.0,
+       32.0
+      ],
+      [
+       82.55000000000001,
+       87.0,
+       38.3
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_pod_86_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 18,
+   "unit": "AWG",
+   "od": 1.85,
+   "ends": [
+    {
+     "id": "sp_drl12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 68.85,
+      "y": 95.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_drl12"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "k_pod",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "",
+     "at": {
+      "x": 82.55000000000001,
+      "y": 147.0,
+      "lane": [
+       "L",
+       78.05000000000001
+      ],
+      "kind": "micro 86",
+      "name": "k_pod"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       68.85,
+       106.5,
+       32.0
+      ],
+      [
+       68.85,
+       108.0,
+       32.0
+      ],
+      [
+       82.55000000000001,
+       108.0,
+       32.0
+      ],
+      [
+       82.55000000000001,
+       147.0,
+       32.0
+      ],
+      [
+       82.55000000000001,
+       147.0,
+       38.3
+      ]
+     ],
+     "R": 6.4750000000000005,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_acc_fuse",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "fb_logic",
+     "cav": "acc",
+     "box": "LOGIC",
+     "part": "1-968851-1",
+     "des": "BUS2-8",
+     "sig": "",
+     "at": {
+      "x": 46.55,
+      "y": 97.15,
+      "lane": [
+       "L",
+       46.55
+      ],
+      "kind": "fuse out",
+      "name": "ACC"
+     },
+     "part_from": "harness"
+    },
+    {
+     "id": "sp_acc12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 50.8,
+      "y": 66.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_acc12"
+     },
+     "part_from": "parts list"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       46.55,
+       97.15,
+       38.3
+      ],
+      [
+       46.55,
+       97.15,
+       27.0
+      ],
+      [
+       49.8,
+       79.0,
+       27.0
+      ],
+      [
+       49.8,
+       77.5,
+       27.0
+      ]
+     ],
+     "R": 7.21,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_fb_k_acc_30_cp",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "sp_acc12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 50.8,
+      "y": 66.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_acc12"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "k_acc",
+     "cav": "c1",
+     "box": "LOGIC",
+     "part": "42281-1",
+     "des": "30",
+     "sig": "",
+     "at": {
+      "x": 59.55,
+      "y": 133.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 30",
+      "name": "k_acc"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       50.8,
+       77.5,
+       27.0
+      ],
+      [
+       50.8,
+       79.0,
+       27.0
+      ],
+      [
+       59.55,
+       133.0,
+       27.0
+      ],
+      [
+       59.55,
+       133.0,
+       38.3
+      ]
+     ],
+     "R": 7.21,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_acc86",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 16,
+   "unit": "AWG",
+   "od": 2.06,
+   "ends": [
+    {
+     "id": "sp_acc12",
+     "cav": "Splice",
+     "box": "LOGIC",
+     "part": null,
+     "des": "",
+     "sig": "",
+     "at": {
+      "x": 50.8,
+      "y": 66.0,
+      "lane": null,
+      "kind": "splice",
+      "name": "sp_acc12"
+     },
+     "part_from": "parts list"
+    },
+    {
+     "id": "k_acc",
+     "cav": "c3",
+     "box": "LOGIC",
+     "part": "280919-2",
+     "des": "86",
+     "sig": "",
+     "at": {
+      "x": 64.05,
+      "y": 147.0,
+      "lane": [
+       "L",
+       59.55
+      ],
+      "kind": "micro 86",
+      "name": "k_acc"
+     },
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": true,
+   "box_paths": [
+    {
+     "box": "LOGIC",
+     "lane": null,
+     "pts": [
+      [
+       51.8,
+       77.5,
+       27.0
+      ],
+      [
+       51.8,
+       79.0,
+       27.0
+      ],
+      [
+       64.05,
+       147.0,
+       27.0
+      ],
+      [
+       64.05,
+       147.0,
+       38.3
+      ]
+     ],
+     "R": 7.21,
+     "spliced": true
+    }
+   ]
+  },
+  {
+   "wire": "w_fp_30",
+   "file": "box (spec.BOX_WIRES)",
+   "colour": "Red",
+   "bands": [],
+   "gauge": 10,
+   "unit": "AWG",
+   "od": 3.61,
+   "ends": [
+    {
+     "id": "fb_batt",
+     "cav": "fp",
+     "box": "BATT",
+     "part": "Klauke 2R5",
+     "des": "FP 40A",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    },
+    {
+     "id": "k_fp",
+     "cav": "c1",
+     "box": "BATT",
+     "part": "Klauke 1R6",
+     "des": "30",
+     "sig": "",
+     "at": null,
+     "part_from": "harness"
+    }
+   ],
+   "source": "box",
+   "kind": "internal",
+   "loop": false,
+   "direct": false,
+   "channel": false,
+   "spliced": false,
+   "box_paths": []
+  }
+ ],
+ "doubles": [],
+ "loops": [],
+ "direct": {
+  "w_fb_k_eps_en_30_cp": 2
+ },
+ "exits": [
+  {
+   "box": "LOGIC",
+   "lane": 9.45,
+   "wires": 7,
+   "d": 6.38,
+   "stack_top": 12.85,
+   "pan_wall_top": 42.5,
+   "deck": 38.5,
+   "cad_wires": 7,
+   "cad_d": 6.4,
+   "opening": 8.0,
+   "margin": 1.62,
+   "fits": true,
+   "what": [
+    "fb_logic BUS1-9",
+    "fb_logic BUS1-8",
+    "fb_logic BUS1-7",
+    "fb_logic BUS1-5",
+    "fb_logic BUS1-4",
+    "fb_logic BUS1-2",
+    "fb_logic efi86"
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "lane": 46.55,
+   "wires": 8,
+   "d": 6.57,
+   "stack_top": 10.01,
+   "pan_wall_top": 42.5,
+   "deck": 38.5,
+   "cad_wires": 8,
+   "cad_d": 6.6,
+   "opening": 8.2,
+   "margin": 1.63,
+   "fits": true,
+   "what": [
+    "fb_logic BUS2-13",
+    "fb_logic BUS2-13 IN",
+    "fb_logic BUS2-9",
+    "fb_logic BUS2-6",
+    "fb_logic BUS2-5",
+    "fb_logic BUS2-4",
+    "fb_logic BUS2-3",
+    "fb_logic BUS2-2"
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "lane": 59.55,
+   "wires": 16,
+   "d": 9.9,
+   "stack_top": 14.01,
+   "pan_wall_top": 42.5,
+   "deck": 38.5,
+   "cad_wires": 16,
+   "cad_d": 9.9,
+   "opening": 11.5,
+   "margin": 1.6,
+   "fits": true,
+   "what": [
+    "k_acc c2",
+    "k_acc c4",
+    "k_etb c3",
+    "k_etb c2",
+    "k_etb c4",
+    "k_horn c2",
+    "k_horn c3",
+    "k_horn c4",
+    "k_horn c1",
+    "k_hr c3",
+    "k_hr c2",
+    "k_hr c4",
+    "k_hl c2",
+    "k_hl c3",
+    "k_hl c4",
+    "k_hl c1"
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "lane": 78.05000000000001,
+   "wires": 11,
+   "d": 7.4,
+   "stack_top": 11.05,
+   "pan_wall_top": 42.5,
+   "deck": 38.5,
+   "cad_wires": 11,
+   "cad_d": 7.4,
+   "opening": 9.0,
+   "margin": 1.6,
+   "fits": true,
+   "what": [
+    "k_pod c2",
+    "k_pod c4",
+    "k_pod c1",
+    "k_drl c2",
+    "k_drl c4",
+    "k_on c3",
+    "k_on c2",
+    "k_on c4",
+    "k_eps_en c2",
+    "k_eps_en c3",
+    "k_eps_en c4"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 52.0,
+   "wires": 1,
+   "d": 1.85,
+   "stack_top": 6.05,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 1.9,
+   "opening": 3.5,
+   "margin": 1.65,
+   "fits": true,
+   "what": [
+    "k_efi c2"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 61.0,
+   "wires": 1,
+   "d": 3.61,
+   "stack_top": 7.81,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 3.6,
+   "opening": 5.2,
+   "margin": 1.59,
+   "fits": true,
+   "what": [
+    "k_efi c1"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 70.0,
+   "wires": 1,
+   "d": 1.85,
+   "stack_top": 6.05,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 1.9,
+   "opening": 3.5,
+   "margin": 1.65,
+   "fits": true,
+   "what": [
+    "k_efi c3"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 88.0,
+   "wires": 1,
+   "d": 1.85,
+   "stack_top": 6.05,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 1.9,
+   "opening": 3.5,
+   "margin": 1.65,
+   "fits": true,
+   "what": [
+    "k_fan c2"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 97.0,
+   "wires": 1,
+   "d": 3.61,
+   "stack_top": 7.81,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 3.6,
+   "opening": 5.2,
+   "margin": 1.59,
+   "fits": true,
+   "what": [
+    "k_fan c1"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 106.0,
+   "wires": 2,
+   "d": 3.14,
+   "stack_top": 7.75,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 2,
+   "cad_d": 3.1,
+   "opening": 4.7,
+   "margin": 1.56,
+   "fits": true,
+   "what": [
+    "k_fan2 c2",
+    "k_fan c3"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 115.0,
+   "wires": 1,
+   "d": 3.61,
+   "stack_top": 7.81,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 3.6,
+   "opening": 5.2,
+   "margin": 1.59,
+   "fits": true,
+   "what": [
+    "k_fan2 c1"
+   ]
+  },
+  {
+   "box": "POWER",
+   "lane": 124.0,
+   "wires": 1,
+   "d": 1.85,
+   "stack_top": 6.05,
+   "pan_wall_top": 36.0,
+   "deck": 32.0,
+   "cad_wires": 1,
+   "cad_d": 1.9,
+   "opening": 3.5,
+   "margin": 1.65,
+   "fits": true,
+   "what": [
+    "k_fan2 c3"
+   ]
+  }
+ ],
+ "channel": {
+  "w_hr_cp": "HR",
+  "w_fb_k_etb_30_cp": "ETB",
+  "w_fb_k_on_30_cp": "ON"
+ },
+ "splices": [
+  {
+   "id": "sp_drl12",
+   "box": "LOGIC",
+   "p0": [
+    68.85,
+    95.0,
+    32.0
+   ],
+   "p1": [
+    68.85,
+    107.5,
+    32.0
+   ],
+   "od": 4.5,
+   "basis": "est (solder joint, adhesive-lined heat shrink over; A20 a)"
+  },
+  {
+   "id": "sp_acc12",
+   "box": "LOGIC",
+   "p0": [
+    50.8,
+    66.0,
+    27.0
+   ],
+   "p1": [
+    50.8,
+    78.5,
+    27.0
+   ],
+   "od": 4.5,
+   "basis": "est (solder joint, adhesive-lined heat shrink over; A20 a)"
+  }
+ ],
+ "spliced": {
+  "w_drl_cp": 1,
+  "w_drl_30_cp": 2,
+  "w_drl_86_cp": 1,
+  "w_pod_86_cp": 0,
+  "w_acc_fuse": 1,
+  "w_fb_k_acc_30_cp": 1,
+  "w_acc86": 3
+ },
+ "cavities": [
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-1",
+   "x": 9.45,
+   "y": 31.7,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_efi_86_cp"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-1 IN",
+   "x": 17.55,
+   "y": 31.7,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-10",
+   "x": 9.45,
+   "y": 115.85,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_etb_30_cp"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-10 IN",
+   "x": 17.55,
+   "y": 115.85,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "CAD jumper 18 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-2",
+   "x": 9.45,
+   "y": 41.05,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hl_cp"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-2 IN",
+   "x": 17.55,
+   "y": 41.05,
+   "kind": "fuse in",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "CAD jumper 16 AWG",
+   "wires": [],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-3",
+   "x": 9.45,
+   "y": 50.4,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hr_cp"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-3 IN",
+   "x": 17.55,
+   "y": 50.4,
+   "kind": "fuse in",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "CAD jumper 16 AWG",
+   "wires": [],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-4",
+   "x": 9.45,
+   "y": 59.75,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hz_cp"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-4 IN",
+   "x": 17.55,
+   "y": 59.75,
+   "kind": "fuse in",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "CAD jumper 16 AWG",
+   "wires": [],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-5",
+   "x": 9.45,
+   "y": 69.1,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_pmu_dome"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-5 IN",
+   "x": 17.55,
+   "y": 69.1,
+   "kind": "fuse in",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "CAD jumper 14 AWG",
+   "wires": [],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-6",
+   "x": 9.45,
+   "y": 78.45,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_on_30_cp"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-6 IN",
+   "x": 17.55,
+   "y": 78.45,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "CAD jumper 18 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-7",
+   "x": 9.45,
+   "y": 87.8,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_at_12v"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-7 IN",
+   "x": 17.55,
+   "y": 87.8,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-8",
+   "x": 9.45,
+   "y": 97.15,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_at_12v_shk"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-8 IN",
+   "x": 17.55,
+   "y": 97.15,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-9",
+   "x": 9.45,
+   "y": 106.5,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_alt_s_c"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS1-9 IN",
+   "x": 17.55,
+   "y": 106.5,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-1",
+   "x": 46.55,
+   "y": 31.7,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_drl_cp"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-1 IN",
+   "x": 38.45,
+   "y": 31.7,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "CAD jumper 18 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-12",
+   "x": 46.55,
+   "y": 115.85,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-12 IN",
+   "x": 38.45,
+   "y": 115.85,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-13",
+   "x": 46.55,
+   "y": 125.2,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_start"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-13 IN",
+   "x": 38.45,
+   "y": 125.2,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_start_in_cp"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-2",
+   "x": 46.55,
+   "y": 41.05,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_cp_sw12_in"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-2 IN",
+   "x": 38.45,
+   "y": 41.05,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-3",
+   "x": 46.55,
+   "y": 50.4,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_cop_pwr_ac"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-3 IN",
+   "x": 38.45,
+   "y": 50.4,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "CAD jumper 18 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-4",
+   "x": 46.55,
+   "y": 59.75,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_inj_pwr_ac"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-4 IN",
+   "x": 38.45,
+   "y": 59.75,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "CAD jumper 18 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-5",
+   "x": 46.55,
+   "y": 69.1,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_csb12"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-5 IN",
+   "x": 38.45,
+   "y": 69.1,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-6",
+   "x": 46.55,
+   "y": 78.45,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_dev_clu"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-6 IN",
+   "x": 38.45,
+   "y": 78.45,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-7",
+   "x": 46.55,
+   "y": 87.8,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_eps_en_30_cp"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-7 IN",
+   "x": 38.45,
+   "y": 87.8,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-8",
+   "x": 46.55,
+   "y": 97.15,
+   "kind": "fuse out",
+   "part": "1-968851-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_acc_fuse"
+   ],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-8 IN",
+   "x": 38.45,
+   "y": 97.15,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.85,
+   "source": "CAD jumper 18 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-9",
+   "x": 46.55,
+   "y": 106.5,
+   "kind": "fuse out",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_at_ig"
+   ],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "BUS2-9 IN",
+   "x": 38.45,
+   "y": 106.5,
+   "kind": "fuse in",
+   "part": "1-968849-1",
+   "wire_od": 1.57,
+   "source": "CAD jumper 20 AWG",
+   "wires": [],
+   "hole": [
+    3.9,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.35,
+     -1.95,
+     1.95,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.35,
+     -6.9,
+     -1.7,
+     1.7,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.9,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 30",
+   "x": 59.55,
+   "y": 13.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hl_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 85",
+   "x": 55.05,
+   "y": 27.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_hl_85_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 86",
+   "x": 64.05,
+   "y": 27.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_hl_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 87",
+   "x": 59.55,
+   "y": 21.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hl_on_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M1 87a",
+   "x": 59.55,
+   "y": 27.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 30",
+   "x": 78.05,
+   "y": 133.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_r8_d2_k_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 85",
+   "x": 73.55,
+   "y": 147.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_pod_85_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 86",
+   "x": 82.55,
+   "y": 147.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_pod_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 87",
+   "x": 78.05,
+   "y": 141.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_pod_87_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M10 87a",
+   "x": 78.05,
+   "y": 147.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 30",
+   "x": 59.55,
+   "y": 43.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hr_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 85",
+   "x": 55.05,
+   "y": 57.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_hl_low"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 86",
+   "x": 64.05,
+   "y": 57.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_hr_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 87",
+   "x": 59.55,
+   "y": 51.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_hr_on_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M2 87a",
+   "x": 59.55,
+   "y": 57.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 30",
+   "x": 59.55,
+   "y": 73.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_horn_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 85",
+   "x": 55.05,
+   "y": 87.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_horn_85_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 86",
+   "x": 64.05,
+   "y": 87.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_horn_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 87",
+   "x": 59.55,
+   "y": 81.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_pmu_horn_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M3 87a",
+   "x": 59.55,
+   "y": 87.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 30",
+   "x": 59.55,
+   "y": 103.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_etb_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 85",
+   "x": 55.05,
+   "y": 117.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w81"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 86",
+   "x": 64.05,
+   "y": 117.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_k_etb_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 87",
+   "x": 59.55,
+   "y": 111.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w82_ac"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M4 87a",
+   "x": 59.55,
+   "y": 117.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 30",
+   "x": 59.55,
+   "y": 133.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_acc_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 85",
+   "x": 55.05,
+   "y": 147.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_acc_trig"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 86",
+   "x": 64.05,
+   "y": 147.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_acc86"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 87",
+   "x": 59.55,
+   "y": 141.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_acc_clutch"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M5 87a",
+   "x": 59.55,
+   "y": 147.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 30",
+   "x": 78.05,
+   "y": 13.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_eps_en_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 85",
+   "x": 73.55,
+   "y": 27.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_eps_trig"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 86",
+   "x": 82.55,
+   "y": 27.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_eps_en_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 87",
+   "x": 78.05,
+   "y": 21.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fb_mrs_en"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 87a",
+   "x": 78.05,
+   "y": 27.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 30",
+   "x": 78.05,
+   "y": 43.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_on_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 85",
+   "x": 73.55,
+   "y": 57.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_k_on_85_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 86",
+   "x": 82.55,
+   "y": 57.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_on_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 87",
+   "x": 78.05,
+   "y": 51.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "harness",
+   "wires": [
+    "w_lam12_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 87a",
+   "x": 78.05,
+   "y": 57.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 30",
+   "x": 78.05,
+   "y": 73.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_drl_30_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 85",
+   "x": 73.55,
+   "y": 87.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.57,
+   "source": "harness",
+   "wires": [
+    "w_drl_85_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 86",
+   "x": 82.55,
+   "y": 87.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_drl_86_cp"
+   ],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 87",
+   "x": 78.05,
+   "y": 81.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.06,
+   "source": "harness",
+   "wires": [
+    "w_drl_87_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 87a",
+   "x": 78.05,
+   "y": 87.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 30",
+   "x": 78.05,
+   "y": 103.0,
+   "kind": "micro 30",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 85",
+   "x": 73.55,
+   "y": 117.0,
+   "kind": "micro 85",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 86",
+   "x": 82.55,
+   "y": 117.0,
+   "kind": "micro 86",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 87",
+   "x": 78.05,
+   "y": 111.0,
+   "kind": "micro 87",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 87a",
+   "x": 78.05,
+   "y": 117.0,
+   "kind": "micro 87a",
+   "part": "280919-2",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    6.4
+   ],
+   "zones": [
+    [
+     null,
+     -12.5,
+     -2.6,
+     2.0,
+     -3.2,
+     3.2
+    ],
+    [
+     -12.5,
+     -5.1,
+     -1.6,
+     1.6,
+     -3.2,
+     3.2
+    ],
+    [
+     -5.1,
+     0.0,
+     -1.6,
+     2.6,
+     -3.2,
+     3.2
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "ACPS",
+   "x": 20.55,
+   "y": 35.0,
+   "kind": "acps out",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "ACPS IN",
+   "x": 12.45,
+   "y": 35.0,
+   "kind": "acps in",
+   "part": "1-968851-1",
+   "wire_od": 2.41,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    4.6,
+    5.2
+   ],
+   "zones": [
+    [
+     null,
+     -18.25,
+     -2.3,
+     2.3,
+     -2.6,
+     2.6
+    ],
+    [
+     -18.25,
+     -6.8,
+     -1.8,
+     1.8,
+     -2.6,
+     2.6
+    ],
+    [
+     -6.8,
+     0.0,
+     -2.42,
+     2.42,
+     -2.6,
+     2.6
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 30",
+   "x": 37.85,
+   "y": 43.0,
+   "kind": "F7 30",
+   "part": "62998-2",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.77,
+    8.77
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.385,
+     4.385,
+     -6.435,
+     2.335
+    ],
+    [
+     -16.0,
+     0.0,
+     -4.17,
+     4.17,
+     -3.535,
+     1.825
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 85",
+   "x": 47.85,
+   "y": 34.6,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 86",
+   "x": 47.85,
+   "y": 51.4,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 87",
+   "x": 55.75,
+   "y": 43.0,
+   "kind": "F7 87",
+   "part": "62998-2",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.77,
+    8.77
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -6.435,
+     2.335,
+     -4.385,
+     4.385
+    ],
+    [
+     -16.0,
+     0.0,
+     -3.535,
+     1.825,
+     -4.17,
+     4.17
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R1 87a",
+   "x": 47.4,
+   "y": 43.0,
+   "kind": "F7 87a",
+   "part": "42281-1",
+   "wire_od": 2.41,
+   "source": "spare (kept cut)",
+   "wires": [],
+   "hole": [
+    5.94,
+    8.24
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -2.43,
+     3.51,
+     -4.12,
+     4.12
+    ],
+    [
+     -16.0,
+     -7.1,
+     -2.05,
+     2.05,
+     -4.12,
+     4.12
+    ],
+    [
+     -7.1,
+     0.0,
+     -3.09,
+     2.05,
+     -4.12,
+     4.12
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 30",
+   "x": 8.85,
+   "y": 61.0,
+   "kind": "F7 30",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w77_cp"
+   ],
+   "hole": [
+    11.93,
+    6.92
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.965,
+     5.965,
+     -3.895,
+     3.025
+    ],
+    [
+     -24.5,
+     -10.8,
+     -5.965,
+     5.965,
+     -2.385,
+     2.385
+    ],
+    [
+     -10.8,
+     0.0,
+     -5.965,
+     5.965,
+     -2.385,
+     3.645
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 85",
+   "x": 18.35,
+   "y": 52.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w76"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 86",
+   "x": 18.35,
+   "y": 69.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_efi_86_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 87",
+   "x": 26.75,
+   "y": 61.0,
+   "kind": "F7 87",
+   "part": "280756-4",
+   "wire_od": 2.97,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_efi_87_cp"
+   ],
+   "hole": [
+    6.92,
+    11.93
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -3.895,
+     3.025,
+     -5.965,
+     5.965
+    ],
+    [
+     -24.5,
+     -10.8,
+     -2.385,
+     2.385,
+     -5.965,
+     5.965
+    ],
+    [
+     -10.8,
+     0.0,
+     -2.385,
+     3.645,
+     -5.965,
+     5.965
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 30",
+   "x": 37.85,
+   "y": 79.0,
+   "kind": "F7 30",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    11.93,
+    8.82
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.965,
+     5.965,
+     -5.795,
+     3.025
+    ],
+    [
+     -24.5,
+     -10.8,
+     -5.965,
+     5.965,
+     -3.535,
+     2.385
+    ],
+    [
+     -10.8,
+     0.0,
+     -5.965,
+     5.965,
+     -3.535,
+     3.645
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 85",
+   "x": 47.35,
+   "y": 70.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 86",
+   "x": 47.35,
+   "y": 87.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R3 87",
+   "x": 55.75,
+   "y": 79.0,
+   "kind": "F7 87",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.82,
+    11.93
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.795,
+     3.025,
+     -5.965,
+     5.965
+    ],
+    [
+     -24.5,
+     -10.8,
+     -3.535,
+     2.385,
+     -5.965,
+     5.965
+    ],
+    [
+     -10.8,
+     0.0,
+     -3.535,
+     3.645,
+     -5.965,
+     5.965
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 30",
+   "x": 8.85,
+   "y": 97.0,
+   "kind": "F7 30",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_fan_pwr"
+   ],
+   "hole": [
+    11.93,
+    6.92
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.965,
+     5.965,
+     -3.895,
+     3.025
+    ],
+    [
+     -24.5,
+     -10.8,
+     -5.965,
+     5.965,
+     -2.385,
+     2.385
+    ],
+    [
+     -10.8,
+     0.0,
+     -5.965,
+     5.965,
+     -2.385,
+     3.645
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 85",
+   "x": 18.35,
+   "y": 88.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fan85"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 86",
+   "x": 18.35,
+   "y": 105.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_fan_86_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 87",
+   "x": 26.75,
+   "y": 97.0,
+   "kind": "F7 87",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_fan_87_cp"
+   ],
+   "hole": [
+    6.92,
+    11.93
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -3.895,
+     3.025,
+     -5.965,
+     5.965
+    ],
+    [
+     -24.5,
+     -10.8,
+     -2.385,
+     2.385,
+     -5.965,
+     5.965
+    ],
+    [
+     -10.8,
+     0.0,
+     -2.385,
+     3.645,
+     -5.965,
+     5.965
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 30",
+   "x": 37.85,
+   "y": 115.0,
+   "kind": "F7 30",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_fan2_pwr"
+   ],
+   "hole": [
+    11.93,
+    6.92
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.965,
+     5.965,
+     -3.895,
+     3.025
+    ],
+    [
+     -24.5,
+     -10.8,
+     -5.965,
+     5.965,
+     -2.385,
+     2.385
+    ],
+    [
+     -10.8,
+     0.0,
+     -5.965,
+     5.965,
+     -2.385,
+     3.645
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 85",
+   "x": 47.35,
+   "y": 106.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_fan285"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 86",
+   "x": 47.35,
+   "y": 123.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "harness",
+   "wires": [
+    "w_k_fan2_86_cp"
+   ],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R5 87",
+   "x": 55.75,
+   "y": 115.0,
+   "kind": "F7 87",
+   "part": "280756-4",
+   "wire_od": 3.61,
+   "source": "harness",
+   "wires": [
+    "w_fb_k_fan2_87_ac"
+   ],
+   "hole": [
+    6.92,
+    11.93
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -3.895,
+     3.025,
+     -5.965,
+     5.965
+    ],
+    [
+     -24.5,
+     -10.8,
+     -2.385,
+     2.385,
+     -5.965,
+     5.965
+    ],
+    [
+     -10.8,
+     0.0,
+     -2.385,
+     3.645,
+     -5.965,
+     5.965
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 30",
+   "x": 8.85,
+   "y": 133.0,
+   "kind": "F7 30",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    11.93,
+    8.82
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.965,
+     5.965,
+     -5.795,
+     3.025
+    ],
+    [
+     -24.5,
+     -10.8,
+     -5.965,
+     5.965,
+     -3.535,
+     2.385
+    ],
+    [
+     -10.8,
+     0.0,
+     -5.965,
+     5.965,
+     -3.535,
+     3.645
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 85",
+   "x": 18.35,
+   "y": 124.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 86",
+   "x": 18.35,
+   "y": 141.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 87",
+   "x": 26.75,
+   "y": 133.0,
+   "kind": "F7 87",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.82,
+    11.93
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.795,
+     3.025,
+     -5.965,
+     5.965
+    ],
+    [
+     -24.5,
+     -10.8,
+     -3.535,
+     2.385,
+     -5.965,
+     5.965
+    ],
+    [
+     -10.8,
+     0.0,
+     -3.535,
+     3.645,
+     -5.965,
+     5.965
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 30",
+   "x": 37.85,
+   "y": 151.0,
+   "kind": "F7 30",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    11.93,
+    8.82
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.965,
+     5.965,
+     -5.795,
+     3.025
+    ],
+    [
+     -24.5,
+     -10.8,
+     -5.965,
+     5.965,
+     -3.535,
+     2.385
+    ],
+    [
+     -10.8,
+     0.0,
+     -5.965,
+     5.965,
+     -3.535,
+     3.645
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 85",
+   "x": 47.35,
+   "y": 142.55,
+   "kind": "F7 85",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -2.43,
+     3.51
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -3.09,
+     2.05
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 86",
+   "x": 47.35,
+   "y": 159.45,
+   "kind": "F7 86",
+   "part": "42281-1",
+   "wire_od": 1.85,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.24,
+    5.94
+   ],
+   "zones": [
+    [
+     null,
+     -16.0,
+     -4.12,
+     4.12,
+     -3.51,
+     2.43
+    ],
+    [
+     -16.0,
+     -7.1,
+     -4.12,
+     4.12,
+     -2.05,
+     2.05
+    ],
+    [
+     -7.1,
+     0.0,
+     -4.12,
+     4.12,
+     -2.05,
+     3.09
+    ]
+   ]
+  },
+  {
+   "box": "POWER",
+   "cav": "R7 87",
+   "x": 55.75,
+   "y": 151.0,
+   "kind": "F7 87",
+   "part": "280755-4",
+   "wire_od": 5.13,
+   "source": "spare (largest wire it takes)",
+   "wires": [],
+   "hole": [
+    8.82,
+    11.93
+   ],
+   "zones": [
+    [
+     null,
+     -24.5,
+     -5.795,
+     3.025,
+     -5.965,
+     5.965
+    ],
+    [
+     -24.5,
+     -10.8,
+     -3.535,
+     2.385,
+     -5.965,
+     5.965
+    ],
+    [
+     -10.8,
+     0.0,
+     -3.535,
+     3.645,
+     -5.965,
+     5.965
+    ]
+   ]
+  }
+ ],
+ "constants": {
+  "EXIT_S": -30.0,
+  "BUNDLE_Z0": 4.8,
+  "LOOP_Y": -28.0,
+  "LOOP_Z": 30.0,
+  "JUMP_Z": 15.0
+ }
+}

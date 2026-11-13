@@ -14,9 +14,9 @@ others with a reason. On-hand quantities are qty_ordered from docs/sourcing/te-o
 (POWER, LOGIC, BATTRELAY) so one shelf quantity is never counted twice. Prices: 'seen' = read on a listing 2026-10-14,
 'est' = typical distributor price, not checked (they move).
 
-    python cad/fusebox/src/parts_lists.py            (rev 6, the selected build)
-    python cad/fusebox/src/parts_lists.py --rev 7    (rev 7 option: cad/fusebox/rev7/fusebox-parts-power.csv only - its LOGIC box
-                                                       and battery block are rev 6 unchanged; --check checks both revs)
+    python cad/fusebox/src/parts_lists.py            (rev 8, the selected build: cad/fusebox/rev8/ all three lists)
+    python cad/fusebox/src/parts_lists.py --rev 7    (rev 7: cad/fusebox/rev7/fusebox-parts-power.csv only; --rev 6: the LOGIC and battery
+                                                       block lists in cad/fusebox/; --check checks all three revs)
 Claude Code, 2026-10-14. Rev 6 (DECISIONS R85): M6 limiters everywhere (C1), no mount bolts / nuts (C3: out of scope - the box
 lists hold the boxes only), mini fuse input jumpers (C4), one 40 mm standoff (B5).
 """
@@ -75,11 +75,17 @@ DS_VCF = 'TE data sheet VCF7-X0000-A001 (Connectors for Mini / Maxi ISO relays)'
 
 REV7_DIR = os.path.join(FB, 'rev7')
 FILES7 = {'POWER': 'fusebox-parts-power.csv'}   # rev 7: only the POWER box (with the bus bar in it) changes
+REV8_DIR = os.path.join(FB, 'rev8')               # rev 8 (Dan A15 b, 2026-11-12): all three lists, from the rev 8 model and its wire plan
+FILES8 = dict(FILES)
+
+
+def rev_dir(rev):
+    return {7: REV7_DIR, 8: REV8_DIR}.get(rev, FB)
 
 
 def load_print(rev):
     try:
-        return json.load(open(os.path.join(REV7_DIR if rev == 7 else FB, 'fusebox_report.json'))).get('printed_parts', {})
+        return json.load(open(os.path.join(rev_dir(rev), 'fusebox_report.json'))).get('printed_parts', {})
     except OSError:
         return {}
 
@@ -96,23 +102,33 @@ def on_hand():
     return out
 
 
-# ---------------------------------------------------------------- counts from spec.py
-IN_USED = [(nm, a) for nm, a in S.AMI_ROWS['IN'][:S.AMI_SLOTS['IN']] if a]
-OUT_USED = [(nm, a) for nm, a in S.AMI_ROWS['OUT'][:S.AMI_SLOTS['OUT']] if a]
-N_IN, N_OUT = S.AMI_SLOTS['IN'], S.AMI_SLOTS['OUT']
-N_POS = N_IN + N_OUT                                        # built positions (14)
-mini_by_rating = {}
-for col, (x, fuses) in S.MINI_COLS.items():
-    for nm, a in fuses:
-        if a:
-            mini_by_rating[a] = mini_by_rating.get(a, 0) + 1
-assert S.ACPS[1] == 10
-MICRO_USED = [p for p in S.MICRO_POS if p[1]]
-F7_USED = [p for p in S.F7_POS if p[1] and p[0] != 'heater']
-n_micro_coil = 2 * len(MICRO_USED)
-# micro relay load terminals: 2 on a form A, 3 on a form C (te-on-hand-bom.csv notes: 1 form A NO / 1 form C CO)
+# ---------------------------------------------------------------- counts from spec.py (per rev: counts(rev) after spec.use_rev)
 MICRO_FORM_C = {'6-1419137-4'}
-n_micro_load = sum(3 if p[1] in MICRO_FORM_C else 2 for p in MICRO_USED)
+
+
+def counts(rev):
+    """Module counts for one rev: spec.use_rev(rev) first (rev 6 / 7 = the values they were built with, rev 8 = spec.REV8)."""
+    global IN_USED, OUT_USED, N_IN, N_OUT, N_POS, mini_by_rating, MICRO_USED, F7_USED, n_micro_coil, n_micro_load, PLAN_REV
+    S.use_rev(rev)
+    PLAN_REV = rev
+    IN_USED = [(nm, a) for nm, a in S.AMI_ROWS['IN'][:S.AMI_SLOTS['IN']] if a]
+    OUT_USED = [(nm, a) for nm, a in S.AMI_ROWS['OUT'][:S.AMI_SLOTS['OUT']] if a]
+    N_IN, N_OUT = S.AMI_SLOTS['IN'], S.AMI_SLOTS['OUT']
+    N_POS = N_IN + N_OUT                                        # built positions (14)
+    mini_by_rating = {}
+    for col, (x, fuses) in S.MINI_COLS.items():
+        for nm, a in fuses:
+            if a:
+                mini_by_rating[a] = mini_by_rating.get(a, 0) + 1
+    assert rev >= 8 or S.ACPS[1] == 10
+    MICRO_USED = [p for p in S.MICRO_POS if p[1]]
+    F7_USED = [p for p in S.F7_POS if p[1] and p[0] != 'heater']
+    n_micro_coil = 2 * len(MICRO_USED)
+    # micro relay load terminals: 2 on a form A, 3 on a form C (te-on-hand-bom.csv notes: 1 form A NO / 1 form C CO)
+    n_micro_load = sum(3 if p[1] in MICRO_FORM_C else 2 for p in MICRO_USED)
+
+
+counts(7)
 
 
 # R120 / OPEN-ITEMS row 121 (Dan M6 = A, 2026-10-15): an RNF-100 build-up sleeve under the insulation crimp of every thin-wall wire end below
@@ -130,7 +146,7 @@ SLEEVE_BUY = {'RNF-100-3/32': ('RNF-100-3/32-0-STK', 2.83, 'est', 'https://www.n
 
 def sleeve_ends():
     """{box: {size: wire ends}} - every harness wire end in a POWER / LOGIC terminal below its insulation range, by build-up layer."""
-    plan = json.load(open(os.path.join(REV7_DIR, 'wiring_plan.json'), encoding='utf-8'))
+    plan = json.load(open(os.path.join(REV8_DIR if PLAN_REV >= 8 else REV7_DIR, 'wiring_plan.json'), encoding='utf-8'))
     out = {}
     for w in plan['wires']:
         for e in w['ends']:
@@ -166,6 +182,84 @@ def cover_screws(L, box, n=4):
           url='https://accu-components.com/us/metric-cap-head-screws/3975-SSCF-M3-10-A4',
           checked='Accu product page SSCF-M3-10-A4 2026-10-15 (title: M3 x 10mm full thread socket head cap screw, DIN 912, 316)',
           note='R122. Optional: through the cover band + wall (3.4 clearance hole) into the insert. Other maker (R38 step 4).')
+
+
+TERM_LINES = {   # terminal part -> (item, description, unit $, link, checked against) - the same lines rev 6 / 7 priced
+    '280756-4': ('Maxi relay load receptacle 9.5 x 1.2, 12-10 AWG', 'FASTON .375 receptacle, uninsulated, 12-10 AWG (3.31-5.26 mm2), phosphor bronze, tin', 0.40,
+                 'TE page (tab 9.53 x 1.22, 12-10 AWG) + ' + DS_VCF + ' (load 3.3-5.3 mm2)'),
+    '280755-4': ('Maxi relay load receptacle 9.5 x 1.2, 10-7 AWG', 'FASTON .375 receptacle, uninsulated, 10-7 AWG (6-10 mm2), tin', 0.50,
+                 'TE page (tab 9.53 x 1.22, 10-7 AWG) + ' + DS_VCF + ' (load 5.3-13.3 mm2)'),
+    '42281-1': ('Relay receptacle 6.3 x 0.8, 18-14 AWG (F7 coils, micro relay loads)', 'FASTON .250 receptacle, uninsulated, 18-14 AWG (0.82-2.08 mm2), brass', 0.10,
+                'TE page 2026-10-14 (tab 6.35 x 0.81, 18-14 AWG = 0.82-2.08 mm2, insulation 2.79-4.32); te-on-hand-bom.csv'),
+    '280919-2': ('Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG, self-locking', 'FASTIN-FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), insulation 2.31-3.3 mm, locking lance 1.2 mm, brass tin', 0.12,
+                 'TE page 280919-2 2026-10-15 (4.75 x 0.81 tab, 20-15 AWG, Locking Lance 1.2 mm) + drawing 280919 rev M2; Newark 70AH7385'),
+    '1-968851-1': ('Mini fuse receptacle MCP 2.8, 16 / 14 AWG', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8', 0.25,
+                   'TE page 1-968851-1; TE application spec 114-18148 Rev D1 Table 7 (16 / 14 AWG, insulation 2.2 - 3.0); TE drawing 1355036; N21'),
+    '1-968849-1': ('Mini fuse receptacle MCP 2.8, 20 / 18 AWG', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8', 0.25,
+                   'TE page 1-968849-1; TE application spec 114-18148 Rev D1 Table 7 (20 / 18 AWG, insulation 1.4 - 2.1); TE drawing 1355036; N21'),
+}
+TERM_URL = {'280919-2': 'https://www.newark.com/search?st=280919-2'}
+
+
+def plan_terminals(L, box):
+    """Rev 8: one receptacle per cavity that carries a wire (harness wire, box inside or CAD input jumper) in the rev 8 wire plan - the vacant
+    seats (A16 a) get none. Counted by part from the plan's cavity list (the part the build cut each cavity for)."""
+    plan = json.load(open(os.path.join(REV8_DIR, 'wiring_plan.json'), encoding='utf-8'))
+    n = {}
+    for c in plan['cavities']:
+        if c['box'] == box and not c['source'].startswith('spare'):
+            n.setdefault(c['part'], []).append(c['cav'])
+    for pn in sorted(n):
+        item, desc, unit, checked = TERM_LINES[pn]
+        k = len(n[pn])
+        L.add(box, 'Terminals', item, pn, 'TE Connectivity', desc, k, spare(k), unit=unit, basis='est', url=TERM_URL.get(pn, TE(pn)), checked=checked,
+              note='One per wired cavity in cad/fusebox/rev8/wiring_plan.json (%d): %s.' % (k, ', '.join(sorted(n[pn]))))
+
+
+TXL_URL = {(18, 'Red'): 'https://www.customconnectorkits.com/products/18txl-red', (16, 'Red'): 'https://www.customconnectorkits.com/products/16txl-red',
+           (10, 'Black'): 'https://www.customconnectorkits.com/products/10txl-black'}
+TXL_SEARCH = 'https://www.customconnectorkits.com/search?q=TXL+wire'
+CROSS_BOX_MM = 400.0      # est. box-to-box run (POWER <-> LOGIC, glove box, LOGIC 55 mm inboard in the arrangement): cut at the fit
+
+
+def box_insides(L, box):
+    """Rev 8 (Dan R1 a, 2026-11-09): the box model's BOM owns the box insides - every spec.BOX_WIRES wire (TXL, B20, by gauge and colour,
+    length from the wire plan + 20 mm a end; a box-to-box cable est. CROSS_BOX_MM, half in each box's list), the K-ON coil ground ring and
+    the A20 a in-box splices (solder + adhesive-lined heat shrink)."""
+    plan = json.load(open(os.path.join(REV8_DIR, 'wiring_plan.json'), encoding='utf-8'))
+    by = {}
+    bx = {'POWER': 'POWER', 'LOGIC': 'LOGIC', 'BATTRELAY': 'BATT'}[box]
+    for w in plan['wires']:
+        if w.get('source') != 'box':
+            continue
+        boxes = [e['box'] for e in w['ends'] if e.get('box')]
+        if bx not in boxes:
+            continue
+        if len(set(boxes)) > 1:
+            mm = CROSS_BOX_MM / 2
+        else:
+            mm = sum(math.dist(p0, p1) for bp in w['box_paths'] for p0, p1 in zip(bp['pts'], bp['pts'][1:])) + 40.0 if w['box_paths'] else 150.0
+        by.setdefault((int(w['gauge']), w['colour']), []).append((w['wire'], mm))
+    for (g, col), ws in sorted(by.items()):
+        mm = sum(m for _, m in ws)
+        url = TXL_URL.get((g, col), TXL_SEARCH)
+        L.add(box, 'Box wiring', 'Box wire TXL %d AWG %s, %d pieces, %.0f mm in all, per foot' % (g, col.lower(), len(ws), mm), 'J1128-TXL-%d-%s' % (g, col.upper()),
+              'Custom Connector Kits (SAE J1128 TXL)', 'Wire, %d AWG, %s, TXL thin-wall XLPE, SAE J1128, -50 to 125 C' % (g, col.lower()),
+              max(1, int(math.ceil(mm / 304.8))), 0, unit=0.95 if g <= 10 else 0.50, basis='est', url=url,
+              checked='Custom Connector Kits TXL listing 2026-11-12 (%s); B20 TXL in the cabin' % ('product page' if url != TXL_SEARCH else 'search page: gauge / colour not opened'),
+              note='Box insides (Dan R1 a; spec.BOX_WIRES): %s. Lengths from the wire plan + 20 mm a end (est.); a box-to-box cable is cut at the fit.' % ', '.join(w_ for w_, _ in ws))
+    if box == 'POWER':
+        L.add(box, 'Box wiring', 'Ring terminal, K-ON coil 85 ground on the NEG bar GND stud (ring 2 of 3)', '320572', 'TE Connectivity',
+              'PIDG ring tongue, 5/16 in (M8) stud, 22-16 AWG, outer width 11.91 mm, tin, insulated', 1, 1, unit=0.30, basis='est', url=TE('320572'),
+              checked='docs/sourcing/harness-parts.csv 320572 (TE PIDG, M8, 22-16 AWG, 11.91 wide); DECISIONS N60 a',
+              note='Box inside w_k_on_85_cp (20 AWG, LOGIC M7 K-ON 85 -> POWER NEG bar GND stud); rings 1 and 3 (PV10-56R) are the harness\'s (w66, w_cabin_gnd).')
+    if box == 'LOGIC':
+        n = len(S.SPLICES8)
+        L.add(box, 'Box wiring', 'Adhesive-lined heat shrink 6.0 / 2.0 mm, one 30 mm piece over each in-box solder splice (%d)' % n, 'ATUM-6/2-0-STK',
+              'TE Connectivity (Raychem)', 'ATUM 3:1 adhesive-lined heat shrink, 6.0 mm expanded / 2.0 mm recovered, black, 1.2 m stick', 1, 0, unit=6.00, basis='est',
+              url='https://uk.farnell.com/raychem-te-connectivity/atum-6-2-0-stk/heat-shrink-6mm-black-1-2m/dp/1210460',
+              checked='Farnell 1210460 / DigiKey 573462 listings 2026-11-12 (ATUM-6/2-0-STK, 6 mm, 3:1, black, 1.2 m); the TE ATUM data sheet range not re-read',
+              note='A20 a (in-box splices, rev 7 sp_hl precedent): %s; solder the feed and legs, shrink over (est. joint 4.5 mm, spec.SPLICES8).' % ', '.join(sorted(S.SPLICES8)))
 
 
 def lug_for(awg):
@@ -209,16 +303,18 @@ def lug(L, box, key, item, need, spare, unit, desc, note='', checked=''):
 
 def build(rev=6):
     global PRINT
+    counts(rev)
     PRINT = load_print(rev)
     # N4 / N5 (SteveCAD v3): the LOGIC box and the battery relay block are built in the rev 7 document too, and the R127 / R128 sweep
     # changed them there (LOGIC base 229 -> 338 cm3, battery base 125 -> 172) - their lists (kept in the rev 6 folder) price the rev 7 parts
     p7 = load_print(7)
-    PRINT = dict(PRINT, **{k: v for k, v in p7.items() if k.startswith(('Logic_', 'BattRelay_'))})
-    R7 = rev == 7
+    if rev < 8:
+        PRINT = dict(PRINT, **{k: v for k, v in p7.items() if k.startswith(('Logic_', 'BattRelay_'))})
+    R7, R8 = rev >= 7, rev >= 8
     L = Lists()
     P, G, B = 'POWER', 'LOGIC', 'BATTRELAY'
     pr = lambda k: mass(k + '_PA12_printed')
-    PRINT_NOTE = 'est. $0.10/cm3 on the printer\'s material cost; file is the STL/STEP in cad/fusebox%s (rule R82: printed parts need no buy link)' % ('/rev7' if R7 else '')
+    PRINT_NOTE = 'est. $0.10/cm3 on the printer\'s material cost; file is the STL/STEP in cad/fusebox%s (rule R82: printed parts need no buy link)' % ('/rev%d' % rev if R7 else '')
 
     def printed(box, key, item, desc):
         L.add(box, 'Printed', item, key + '_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)', desc, 1,
@@ -282,56 +378,62 @@ def build(rev=6):
               unit=5.30, basis='seen (Waytek AMI-30 / -40 / -50 / -60 at 5+: $5.28 / $5.28 / $4.56 / $5.30)', url=AMI_URL[rating],
               checked='Waytek listing; Bussmann AMI sheet (spec.py AMI dims)',
               note='Other maker (R38 step 4): TE sells no bolt-down fuse. Slots: ' + ', '.join(nm for nm, a in IN_USED + OUT_USED if a == rating))
-    L.add(P, 'Fuses', 'ACPS mini blade fuse 10 A', 'ATM-10', 'Eaton Bussmann', 'ATM mini blade fuse, blade 2.8 x 0.8 mm', 1, unit=0.55, basis='est', url=ATM_URL[10],
-          checked='Stanion listing; Littelfuse / Bussmann ATM blade 2.8 x 0.8 mm (ISO 8820-3 mini)', note='Front of relay column B, fed from heater 87.')
-    # relays
-    L.add(P, 'Relays', 'Heater relay k_htr, 1 form C, 12 V, 680 ohm', '1-1414687-0', 'TE Connectivity',
-          'Power Relay F4 A (V23136-A0004-X059), Mini ISO, NO 40 A / NC 30 A at 85 C, silver alloy, coil 90 ohm + 680 ohm resistor', 1, unit=9.0, basis='est',
-          url=TE('1-1414687-0'), checked=DS_V23136 + ' p.1: 1 form C limiting continuous current 40/30 A at 85 C; TE page: Active',
-          note='REPLACES 1-1904020-2 (Power Relay B V23234-A0001-X032): TE lists it and every V23234 1 form C variant as Superseded. 40 A NO = the 40 A AMI HTR fuse, so the 40 A fuse vs 35 A relay mismatch (row 107) is closed without changing the fuse. Mini ISO pin pattern, 6.3 x 0.8 tabs; check the 28.5 mm pocket against the F4 A drawing.')
+    if not R8:
+        L.add(P, 'Fuses', 'ACPS mini blade fuse 10 A', 'ATM-10', 'Eaton Bussmann', 'ATM mini blade fuse, blade 2.8 x 0.8 mm', 1, unit=0.55, basis='est', url=ATM_URL[10],
+              checked='Stanion listing; Littelfuse / Bussmann ATM blade 2.8 x 0.8 mm (ISO 8820-3 mini)', note='Front of relay column B, fed from heater 87.')
+        # relays
+        L.add(P, 'Relays', 'Heater relay k_htr, 1 form C, 12 V, 680 ohm', '1-1414687-0', 'TE Connectivity',
+              'Power Relay F4 A (V23136-A0004-X059), Mini ISO, NO 40 A / NC 30 A at 85 C, silver alloy, coil 90 ohm + 680 ohm resistor', 1, unit=9.0, basis='est',
+              url=TE('1-1414687-0'), checked=DS_V23136 + ' p.1: 1 form C limiting continuous current 40/30 A at 85 C; TE page: Active',
+              note='REPLACES 1-1904020-2 (Power Relay B V23234-A0001-X032): TE lists it and every V23234 1 form C variant as Superseded. 40 A NO = the 40 A AMI HTR fuse, so the 40 A fuse vs 35 A relay mismatch (row 107) is closed without changing the fuse. Mini ISO pin pattern, 6.3 x 0.8 tabs; check the 28.5 mm pocket against the F4 A drawing.')
     n_14147 = sum(1 for p in F7_USED if p[1] == '1-1414147-0')
     n_13304 = sum(1 for p in F7_USED if p[1] == '1-1393304-0')
-    L.add(P, 'Relays', 'Relay k_efi / k_str / k_fan (Maxi ISO F7, 1 form A, 680 ohm)', '1-1414147-0', 'TE Connectivity',
+    who_f7 = lambda pn_: ' / '.join({'k_efi': 'K-EFI', 'k_fan': 'K-FAN', 'k_fan2': 'K-FAN2'}.get(q[0], q[0]) for q in F7_USED if q[1] == pn_)
+    L.add(P, 'Relays', ('Relay %s (Maxi ISO F7, 1 form A, 680 ohm)' % who_f7('1-1414147-0')) if R8 else 'Relay k_efi / k_str / k_fan (Maxi ISO F7, 1 form A, 680 ohm)', '1-1414147-0', 'TE Connectivity',
           'Power Relay F7 (V23134-J0052-X429), Maxi ISO, 50 A, 30/87 blades 9.5 x 1.2, 85/86 blades 6.3 x 0.8', n_14147, url=TE('1-1414147-0'),
           checked='TE page + data sheet V23134X0000A002 (F7 Maxi ISO, QC terminals); te-on-hand-bom.csv qty_ordered 3',
           note='On the shelf (R38 step 1). Earlier pages called the F7 "Mini ISO": the data sheet title is "Maxi ISO".')
-    L.add(P, 'Relays', 'Relay k_fan2 / power (Maxi ISO F7, bracket, 560 ohm)', '1-1393304-0', 'TE Connectivity',
+    L.add(P, 'Relays', ('Relay %s (Maxi ISO F7, bracket, 560 ohm)' % who_f7('1-1393304-0')) if R8 else 'Relay k_fan2 / power (Maxi ISO F7, bracket, 560 ohm)', '1-1393304-0', 'TE Connectivity',
           'Power Relay F7 (V23134-J1052-X281), Maxi ISO, bracket (cut off or fold flat)', n_13304, url=TE('1-1393304-0'),
           checked='te-on-hand-bom.csv qty_ordered 2; same F7 data sheet')
-    # relay terminals
-    awg_87 = {'k_efi': S.AMI_AWG['EFI'], 'k_str': S.AMI_AWG['STR'], 'k_fan': S.AMI_AWG['FAN'], 'k_fan2': S.AMI_AWG['FAN2'], 'power': S.AMI_AWG['PWR']}
-    n95_12_10 = sum(2 for p in F7_USED if awg_87[p[0]] in (12, 10))
-    n95_8 = sum(2 for p in F7_USED if awg_87[p[0]] == 8)
-    L.add(P, 'Terminals', 'Maxi relay load receptacle 9.5 x 1.2, 12-10 AWG', '280756-4', 'TE Connectivity',
-          'FASTON .375 receptacle, uninsulated, 12-10 AWG (3.31-5.26 mm2), phosphor bronze, tin', n95_12_10, spare(n95_12_10), unit=0.40, basis='est',
-          url=TE('280756-4'), checked='TE page (tab 9.53 x 1.22, 12-10 AWG) + ' + DS_VCF + ' (load 3.3-5.3 mm2)', note='30 / 87 of k_efi, k_str, power (12 / 12 / 10 AWG).')
-    L.add(P, 'Terminals', 'Maxi relay load receptacle 9.5 x 1.2, 10-7 AWG', '280755-4', 'TE Connectivity',
-          'FASTON .375 receptacle, uninsulated, 10-7 AWG (6-10 mm2), tin', n95_8, spare(n95_8), unit=0.50, basis='est', url=TE('280755-4'),
-          checked='TE page (tab 9.53 x 1.22, 10-7 AWG) + ' + DS_VCF + ' (load 5.3-13.3 mm2)', note='30 / 87 of k_fan, k_fan2 (8 AWG).')
-    n_f7_coil = 2 * len(F7_USED)
-    L.add(P, 'Terminals', 'Relay coil receptacle 6.3 x 0.8, 18-14 AWG (F7 85/86 + heater 85/86)', '42281-1', 'TE Connectivity',
-          'FASTON .250 receptacle, uninsulated, 18-14 AWG (0.82-2.08 mm2), brass', n_f7_coil + 2, spare(n_f7_coil + 2), unit=0.10, basis='est', url=TE('42281-1'),
-          checked='TE page 2026-10-14 (tab 6.35 x 0.81, 18-14 AWG = 0.82-2.08 mm2); F7 data sheet: 85/86 blades 6.3 x 0.8; ST185-CabinPower: every F7 coil wire is 18 AWG (0.82 mm2)',
-          note='OPEN-ITEMS row 119 (c), J answers 2026-10-14: was 1-1393310-8 (0.5-0.8 mm2, the VCF7 relay socket contact) - too small for the 18 AWG coil wires the harness has, and no VCF7 housing is used (the receptacles seat in the printed cavities). The harness part (42281-1) was right.')
-    L.add(P, 'Terminals', 'Heater relay load receptacle 6.3 x 0.8, 10-8 AWG (30, 87)', '62998-2', 'TE Connectivity',
-          'FASTON .250 receptacle, uninsulated, 10-8 AWG (5-8 mm2), brass tin', 2, spare(2), unit=0.30, basis='est', url=TE('62998-2'),
-          checked='TE page (tab 6.35 x 0.81, 10-8 AWG); relay drawing V23234-A0001-X040: DIN 46244 A6.3-0.8 blades on all 5 terminals; F4 A sheet: Mini ISO pattern',
-          note='Heater 30 / 87 are 8 AWG (ST185-CabinPower k_htr). 87a is 14 AWG: a 42281-1 (next line). A Mini ISO relay has no 9.5 blade.')
-    L.add(P, 'Terminals', 'Heater relay 87a receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', 1, 1,
-          unit=0.10, basis='est', url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); te-on-hand-bom.csv qty_ordered 20; ST185-CabinPower k_htr 87a 14 AWG',
-          note='OPEN-ITEMS row 110 (c).')
-    L.add(P, 'Terminals', 'Mini fuse receptacle MCP 2.8, 16 / 14 AWG (ACPS input, 14 AWG)', '1-968851-1', 'TE Connectivity',
-          'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8', 1, 1, unit=0.25, basis='est', url=TE('1-968851-1'),
-          checked='TE page 1-968851-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 1.0 - 2.5 mm2); TE application spec 114-18148 Rev D1 Table 7 (16 AWG / 14 AWG crimp data, insulation 2.2 - 3.0); TE drawing 1355036; N21 (Dan 2026-10-18)', note='ACPS input from heater 87 (row 110 (c)); replaces 880398-2 (N21). Shop 2026-10-18 (R167): TE distributor panel TTI $0.096 / Mouser $0.101 / Online Components $0.094; eBay lots (350 for $65, 30 for $17.54); Amazon UK OTOTEC 30-pack is labelled OE 1-968851-1 (aftermarket, not TE - not used); AliExpress none; Ballenger CONN-100329 $0.25 (no TE PN given).')
-    L.add(P, 'Terminals', 'Mini fuse receptacle MCP 2.8, 20 / 18 AWG (ACPS output, 18 AWG)', '1-968849-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8',
-          1, 1, unit=0.25, basis='est', url=TE('1-968849-1'), checked='TE page 1-968849-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 0.5 - 1.0 mm2); TE application spec 114-18148 Rev D1 Table 7 (20 AWG / 18 AWG crimp data, insulation 1.4 - 2.1); TE drawing 1355036; N21 (Dan 2026-10-18)',
-          note='Row 110 (c); replaces 1241388-2 (N21). Shop 2026-10-18 (R167): TE distributor panel Mouser $0.250 qty 1 / $0.139, DigiKey $0.129, TTI $0.082; Amazon / eBay / AliExpress: none found; Ballenger CONN-100328 (no TE PN given).')
+    if not R8:
+        # relay terminals
+        awg_87 = {'k_efi': S.AMI_AWG['EFI'], 'k_str': S.AMI_AWG['STR'], 'k_fan': S.AMI_AWG['FAN'], 'k_fan2': S.AMI_AWG['FAN2'], 'power': S.AMI_AWG['PWR']}
+        n95_12_10 = sum(2 for p in F7_USED if awg_87[p[0]] in (12, 10))
+        n95_8 = sum(2 for p in F7_USED if awg_87[p[0]] == 8)
+        L.add(P, 'Terminals', 'Maxi relay load receptacle 9.5 x 1.2, 12-10 AWG', '280756-4', 'TE Connectivity',
+              'FASTON .375 receptacle, uninsulated, 12-10 AWG (3.31-5.26 mm2), phosphor bronze, tin', n95_12_10, spare(n95_12_10), unit=0.40, basis='est',
+              url=TE('280756-4'), checked='TE page (tab 9.53 x 1.22, 12-10 AWG) + ' + DS_VCF + ' (load 3.3-5.3 mm2)', note='30 / 87 of k_efi, k_str, power (12 / 12 / 10 AWG).')
+        L.add(P, 'Terminals', 'Maxi relay load receptacle 9.5 x 1.2, 10-7 AWG', '280755-4', 'TE Connectivity',
+              'FASTON .375 receptacle, uninsulated, 10-7 AWG (6-10 mm2), tin', n95_8, spare(n95_8), unit=0.50, basis='est', url=TE('280755-4'),
+              checked='TE page (tab 9.53 x 1.22, 10-7 AWG) + ' + DS_VCF + ' (load 5.3-13.3 mm2)', note='30 / 87 of k_fan, k_fan2 (8 AWG).')
+        n_f7_coil = 2 * len(F7_USED)
+        L.add(P, 'Terminals', 'Relay coil receptacle 6.3 x 0.8, 18-14 AWG (F7 85/86 + heater 85/86)', '42281-1', 'TE Connectivity',
+              'FASTON .250 receptacle, uninsulated, 18-14 AWG (0.82-2.08 mm2), brass', n_f7_coil + 2, spare(n_f7_coil + 2), unit=0.10, basis='est', url=TE('42281-1'),
+              checked='TE page 2026-10-14 (tab 6.35 x 0.81, 18-14 AWG = 0.82-2.08 mm2); F7 data sheet: 85/86 blades 6.3 x 0.8; ST185-CabinPower: every F7 coil wire is 18 AWG (0.82 mm2)',
+              note='OPEN-ITEMS row 119 (c), J answers 2026-10-14: was 1-1393310-8 (0.5-0.8 mm2, the VCF7 relay socket contact) - too small for the 18 AWG coil wires the harness has, and no VCF7 housing is used (the receptacles seat in the printed cavities). The harness part (42281-1) was right.')
+        L.add(P, 'Terminals', 'Heater relay load receptacle 6.3 x 0.8, 10-8 AWG (30, 87)', '62998-2', 'TE Connectivity',
+              'FASTON .250 receptacle, uninsulated, 10-8 AWG (5-8 mm2), brass tin', 2, spare(2), unit=0.30, basis='est', url=TE('62998-2'),
+              checked='TE page (tab 6.35 x 0.81, 10-8 AWG); relay drawing V23234-A0001-X040: DIN 46244 A6.3-0.8 blades on all 5 terminals; F4 A sheet: Mini ISO pattern',
+              note='Heater 30 / 87 are 8 AWG (ST185-CabinPower k_htr). 87a is 14 AWG: a 42281-1 (next line). A Mini ISO relay has no 9.5 blade.')
+        L.add(P, 'Terminals', 'Heater relay 87a receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', 1, 1,
+              unit=0.10, basis='est', url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); te-on-hand-bom.csv qty_ordered 20; ST185-CabinPower k_htr 87a 14 AWG',
+              note='OPEN-ITEMS row 110 (c).')
+        L.add(P, 'Terminals', 'Mini fuse receptacle MCP 2.8, 16 / 14 AWG (ACPS input, 14 AWG)', '1-968851-1', 'TE Connectivity',
+              'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8', 1, 1, unit=0.25, basis='est', url=TE('1-968851-1'),
+              checked='TE page 1-968851-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 1.0 - 2.5 mm2); TE application spec 114-18148 Rev D1 Table 7 (16 AWG / 14 AWG crimp data, insulation 2.2 - 3.0); TE drawing 1355036; N21 (Dan 2026-10-18)', note='ACPS input from heater 87 (row 110 (c)); replaces 880398-2 (N21). Shop 2026-10-18 (R167): TE distributor panel TTI $0.096 / Mouser $0.101 / Online Components $0.094; eBay lots (350 for $65, 30 for $17.54); Amazon UK OTOTEC 30-pack is labelled OE 1-968851-1 (aftermarket, not TE - not used); AliExpress none; Ballenger CONN-100329 $0.25 (no TE PN given).')
+        L.add(P, 'Terminals', 'Mini fuse receptacle MCP 2.8, 20 / 18 AWG (ACPS output, 18 AWG)', '1-968849-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8',
+              1, 1, unit=0.25, basis='est', url=TE('1-968849-1'), checked='TE page 1-968849-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 0.5 - 1.0 mm2); TE application spec 114-18148 Rev D1 Table 7 (20 AWG / 18 AWG crimp data, insulation 1.4 - 2.1); TE drawing 1355036; N21 (Dan 2026-10-18)',
+              note='Row 110 (c); replaces 1241388-2 (N21). Shop 2026-10-18 (R167): TE distributor panel Mouser $0.250 qty 1 / $0.139, DigiKey $0.129, TTI $0.082; Amazon / eBay / AliExpress: none found; Ballenger CONN-100328 (no TE PN given).')
+    else:
+        plan_terminals(L, P)
     sleeves(L, P)
     L.add(P, 'Printed', 'Retainer clip under the heater relay R1 (R123 B)', 'Power_Retainer_R1_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
           'Plate (2.0) with a hole per R1 wire and two barbed legs that snap into the cavity collar: stops the 62998-2 (no lance made for 8 AWG on a 6.3 blade) '
-          'and the other R1 terminals backing out', 1, unit=0.20, basis='est',
+          'and the other R1 terminals backing out', 0 if R8 else 1, unit=0.20, basis='est',
           checked='est. ~2 cm3 at $0.10/cm3 until the rev 7 rebuild reports its volume (R82: printed parts need no buy link)',
-          note='Threaded onto the 5 R1 wires BEFORE they are crimped; the R1 RNF-100 build-ups are cut to the insulation barrel length so only bare wire goes through.')
+          note=('Rev 8: seat R1 is vacant (A16 a): the clip stays in the model for a future R1 relay; print it only then. ' if R8 else '') +
+               'Threaded onto the 5 R1 wires BEFORE they are crimped; the R1 RNF-100 build-ups are cut to the insulation barrel length so only bare wire goes through.')
     cover_screws(L, P)
     # lugs
     all_lugs = [(nm, S.AMI_AWG[nm]) for nm, a in IN_USED + OUT_USED]
@@ -398,7 +500,9 @@ def build(rev=6):
           checked='EFC comparison table 2026-10-14 (EFC lists no M5 limiter); CAD rev 6 foot: 10.2 press-fit pocket, 6 mm ear',
           note='C1 (Dan): M6 limiters in all 10 mount points. Mount bolts / nuts are not part of the box (C3).')
 
-    if R7:
+    if R8:
+        box_insides(L, P)
+    if R7 and not R8:
         return {P: L.rows[P]}
 
     # ================================================================ LOGIC box
@@ -435,15 +539,7 @@ def build(rev=6):
                 '4-1904124-2': 'Micro Relay A (V23074-A1001-A402) 1 form A, 12 V, resistor', '6-1419137-4': 'Micro Relay A (V23074-A2001-A403) 1 form C, 25 A, 12 V, diode'}[p]
         L.add(G, 'Relays', 'Micro relay: ' + who, p, 'TE Connectivity', desc, k, url=TE(p),
               checked='TE page; customer drawing V23074-A2001-CD sheet 1 rev A (Dan screenshot, R170): terminals 1, 2 coil 4.8 x 0.8, 3, 5 load 6.3 x 0.8, 4 present (87a)' if p == '5-1393292-8' else 'TE page; te-on-hand-bom.csv',
-              note='On the shelf first (R38 step 1); the third 1 form C (k_rev) is the only buy.' if p == '6-1419137-4' else '')
-    L.add(G, 'Terminals', 'Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG, self-locking', '280919-2', 'TE Connectivity',
-          'FASTIN-FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), insulation 2.31-3.3 mm, locking lance 1.2 mm, brass tin',
-          n_micro_coil, spare(n_micro_coil), unit=0.12, basis='est', url='https://www.newark.com/search?st=280919-2',
-          checked='TE page 280919-2 2026-10-15 (4.75 x 0.81 tab, 20-15 AWG, Mating Retention Type: Locking Lance, 1.2 mm; free samples) + drawing 280919 rev M2; Newark 70AH7385',
-          note='DECISIONS R123 (M8 = A): replaces 2293255-1 (dimple, cannot self-lock); same tab and wire range. TE lists it "not currently available" direct: Newark link (or TE free samples). '
-               '2 per micro relay x %d relays; coil wire 20 AWG, except the HEAD LH / HEAD RH / horn 86 feeds, 16 AWG behind their 15 A fuses (L1, DECISIONS R96). The .harness files still name 2293255-1 (follow-up).' % len(MICRO_USED))
-    L.add(G, 'Terminals', 'Micro relay load receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', n_micro_load, spare(n_micro_load), unit=0.10, basis='est',
-          url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
+              note=('On the shelf first (R38 step 1); the third 1 form C (%s) is the only buy.' % ('K-ON' if R8 else 'k_rev')) if p == '6-1419137-4' else '')
     outs = [(nm, a) for c, (x, f) in S.MINI_COLS.items() for nm, a in f if a]
     own_in = [nm for (c, i, nm, a, x, y) in S.mini_list() if a and i in S.MINI_OWN_IN.get(c, ())]
     # markup 2026-10-17 (Dan 23-21): each input jumper sized by its own fuse (spec.jumper); N21: 20 - 18 AWG -> 1-968849-1 + TE 320554, 16 - 14 -> 1-968851-1 + 53941-1
@@ -453,16 +549,29 @@ def build(rev=6):
     j_awg = {}
     for nm, a in jumpers:
         j_awg.setdefault(S.jumper(a)[0], []).append(nm)
-    n_small = sum(1 for nm, a in outs if nm in S.OUT_SMALL) + len(own_in) + len(j_small)
-    n_big = sum(1 for nm, a in outs if nm not in S.OUT_SMALL)
-    L.add(G, 'Terminals', 'Mini fuse receptacle MCP 2.8, 20 / 18 AWG (outputs + MRS / B30 inputs)', '1-968849-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8',
-          n_small, spare(n_small), unit=0.25, basis='est', url=TE('1-968849-1'), checked='TE page 1-968849-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 0.5 - 1.0 mm2); TE application spec 114-18148 Rev D1 Table 7 (20 AWG / 18 AWG crimp data, insulation 1.4 - 2.1); TE drawing 1355036; N21 (Dan 2026-10-18)',
-          note='By wire gauge (row 110 (c)): outputs %s + inputs %s + the 20 / 18 AWG input jumpers %s (markup 2026-10-17). Replaces 1241388-2 (N21). Shop 2026-10-18 (R167): TE distributor panel Mouser $0.250 qty 1 / $0.139, DigiKey $0.129, TTI $0.082; Amazon / eBay / AliExpress: none found; Ballenger CONN-100328 (no TE PN given).' % (
-              ', '.join(sorted(n for n, a in outs if n in S.OUT_SMALL)), ', '.join(own_in), ', '.join(j_small)))
-    L.add(G, 'Terminals', 'Mini fuse receptacle MCP 2.8, 16 / 14 AWG (outputs + the %d 16 / 14 AWG input jumpers)' % len(j_big), '1-968851-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8',
-          n_big + len(j_big), spare(n_big + len(j_big)), unit=0.25, basis='est', url=TE('1-968851-1'), checked='TE page 1-968851-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 1.0 - 2.5 mm2); TE application spec 114-18148 Rev D1 Table 7 (16 AWG / 14 AWG crimp data, insulation 2.2 - 3.0); TE drawing 1355036; N21 (Dan 2026-10-18)',
-          note='Outputs %s (%d) + one per 16 / 14 AWG input jumper (%s). The 15 A circuits stay 16 AWG; DM is 14 AWG. Replaces 880398-2 (N21). Shop 2026-10-18 (R167): TE distributor panel TTI $0.096 / Mouser $0.101 / Online Components $0.094; eBay lots (350 for $65, 30 for $17.54); Amazon UK OTOTEC 30-pack is labelled OE 1-968851-1 (aftermarket, not TE - not used); AliExpress none; Ballenger CONN-100329 $0.25 (no TE PN given).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, ', '.join(j_big)))
+    if not R8:
+        L.add(G, 'Terminals', 'Micro relay coil receptacle 4.8 x 0.8, 20-15 AWG, self-locking', '280919-2', 'TE Connectivity',
+              'FASTIN-FASTON .187 receptacle, uninsulated, 20-15 AWG (0.51-1.65 mm2), insulation 2.31-3.3 mm, locking lance 1.2 mm, brass tin',
+              n_micro_coil, spare(n_micro_coil), unit=0.12, basis='est', url='https://www.newark.com/search?st=280919-2',
+              checked='TE page 280919-2 2026-10-15 (4.75 x 0.81 tab, 20-15 AWG, Mating Retention Type: Locking Lance, 1.2 mm; free samples) + drawing 280919 rev M2; Newark 70AH7385',
+              note='DECISIONS R123 (M8 = A): replaces 2293255-1 (dimple, cannot self-lock); same tab and wire range. TE lists it "not currently available" direct: Newark link (or TE free samples). '
+                   '2 per micro relay x %d relays; coil wire 20 AWG, except the HEAD LH / HEAD RH / horn 86 feeds, 16 AWG behind their 15 A fuses (L1, DECISIONS R96). The .harness files still name 2293255-1 (follow-up).' % len(MICRO_USED))
+        L.add(G, 'Terminals', 'Micro relay load receptacle 6.3 x 0.8, 18-14 AWG', '42281-1', 'TE Connectivity', 'FASTON .250 receptacle, uninsulated, 18-14 AWG, brass', n_micro_load, spare(n_micro_load), unit=0.10, basis='est',
+              url=TE('42281-1'), checked='TE page (6.35 x 0.81, 18-14 AWG); relay drawing load blades 6.3 x 0.8; te-on-hand-bom.csv qty_ordered 20', note='16 AWG loads (MICRO_LOAD_AWG). 2 on a form A, 3 on a form C.')
+        n_small = sum(1 for nm, a in outs if nm in S.OUT_SMALL) + len(own_in) + len(j_small)
+        n_big = sum(1 for nm, a in outs if nm not in S.OUT_SMALL)
+        L.add(G, 'Terminals', 'Mini fuse receptacle MCP 2.8, 20 / 18 AWG (outputs + MRS / B30 inputs)', '1-968849-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 20 / 18 AWG (0.5 - 1.0 mm2), tab 2.8 x 0.8',
+              n_small, spare(n_small), unit=0.25, basis='est', url=TE('1-968849-1'), checked='TE page 1-968849-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 0.5 - 1.0 mm2); TE application spec 114-18148 Rev D1 Table 7 (20 AWG / 18 AWG crimp data, insulation 1.4 - 2.1); TE drawing 1355036; N21 (Dan 2026-10-18)',
+              note='By wire gauge (row 110 (c)): outputs %s + inputs %s + the 20 / 18 AWG input jumpers %s (markup 2026-10-17). Replaces 1241388-2 (N21). Shop 2026-10-18 (R167): TE distributor panel Mouser $0.250 qty 1 / $0.139, DigiKey $0.129, TTI $0.082; Amazon / eBay / AliExpress: none found; Ballenger CONN-100328 (no TE PN given).' % (
+                  ', '.join(sorted(n for n, a in outs if n in S.OUT_SMALL)), ', '.join(own_in), ', '.join(j_small)))
+        L.add(G, 'Terminals', 'Mini fuse receptacle MCP 2.8, 16 / 14 AWG (outputs + the %d 16 / 14 AWG input jumpers)' % len(j_big), '1-968851-1', 'TE Connectivity', 'AMP MCP 2.8 receptacle, pre-tin, locking lance, unsealed, 16 / 14 AWG (1.0 - 2.5 mm2), tab 2.8 x 0.8',
+              n_big + len(j_big), spare(n_big + len(j_big)), unit=0.25, basis='est', url=TE('1-968851-1'), checked='TE page 1-968851-1 (MCP 2.8, tab 2.8 x 0.8, pre-tin, locking lance, unsealed, 1.0 - 2.5 mm2); TE application spec 114-18148 Rev D1 Table 7 (16 AWG / 14 AWG crimp data, insulation 2.2 - 3.0); TE drawing 1355036; N21 (Dan 2026-10-18)',
+              note='Outputs %s (%d) + one per 16 / 14 AWG input jumper (%s). The 15 A circuits stay 16 AWG; DM is 14 AWG. Replaces 880398-2 (N21). Shop 2026-10-18 (R167): TE distributor panel TTI $0.096 / Mouser $0.101 / Online Components $0.094; eBay lots (350 for $65, 30 for $17.54); Amazon UK OTOTEC 30-pack is labelled OE 1-968851-1 (aftermarket, not TE - not used); AliExpress none; Ballenger CONN-100329 $0.25 (no TE PN given).' % (', '.join(n for n, a in outs if n not in S.OUT_SMALL), n_big, ', '.join(j_big)))
+    else:
+        plan_terminals(L, G)
     sleeves(L, G)
+    if R8:
+        box_insides(L, G)
     cover_screws(L, G)
     L.add(G, 'Jumpers', 'Input jumper ring lug, 22-16 AWG, #8 / M4 (the 20 / 18 AWG jumpers)', '320554', 'TE Connectivity',
           'PIDG closed ring tongue terminal, 22-16 AWG, #8 / M4 stud, tin', len(j_small), spare(len(j_small)), unit=0.40, basis='est', url=TE_320554,
@@ -512,6 +621,8 @@ def build(rev=6):
     lug(L, B, '1R6', 'Ring lug 6 mm2, M6 hole (feed in, relay terminal 3, relay terminal 5; 10 AWG)', 3, 1, 0.55, 'Tinned copper tubular ring lug, 6 mm2, M6 stud, hole 6.5, 27.5 long',
         note='10 AWG = 5.3 mm2, inside the 6 mm2 barrel.', checked='Voltus / Galaxus / RS listings; HCR150 sheet: M6 load screws, lug up to 25 mm2')
     lug(L, B, '2R5', 'Tubular lug 10 mm2, M5 hole (AMI out end of the jumper)', 1, 1, 0.70, 'Tinned copper tubular ring lug, 10 mm2, M5, hole 5.3', checked='Buerklin listing 07F2065')
+    if R8:
+        box_insides(L, B)
     hw(L, B, 'Fasteners', 'M6bolt16', 'Hex bolt M6 x 16 (feed stud, 2 flange bolts)', 3, 1, 0.30)
     hw(L, B, 'Fasteners', 'M6nut', 'Hex nut M6 (feed stud, 2 flange nuts captured under the floor)', 3, 1, 0.06)
     hw(L, B, 'Fasteners', 'M6wash', 'Plain washer M6 (feed stud, 2 flange bolts)', 3, 1, 0.05)
@@ -541,8 +652,9 @@ def totals(rows):
 
 
 def write(rows, rev=6):
-    for b, fn in (FILES7 if rev == 7 else WRITE6).items():
-        with open(os.path.join(REV7_DIR if rev == 7 else FB, fn), 'w', encoding='utf-8', newline='') as fh:
+    files = {7: FILES7, 8: FILES8}.get(rev, WRITE6)
+    for b, fn in files.items():
+        with open(os.path.join(rev_dir(rev), fn), 'w', encoding='utf-8', newline='') as fh:
             w = csv.DictWriter(fh, fieldnames=COLS, lineterminator='\n')
             w.writeheader()
             w.writerows(rows[b])
@@ -579,18 +691,18 @@ def render(rows, b):
 
 
 if __name__ == '__main__':
-    REVN = 7 if '--rev' in sys.argv[1:] and sys.argv[sys.argv.index('--rev') + 1] == '7' else 6
+    REVN = int(sys.argv[sys.argv.index('--rev') + 1]) if '--rev' in sys.argv[1:] else 8     # rev 8 = the selected build (cad/README.md)
     R = build(REVN)
     bad = lint(R)
     if '--check' in sys.argv[1:]:
-        R7 = build(7)
-        bad += ['rev 7 ' + m for m in lint(R7)]
-        for (rows, files, d, cmd) in ((build(6), WRITE6, FB, ''), (R7, FILES7, REV7_DIR, ' --rev 7')):
+        R7, R8_ = build(7), build(8)
+        bad += ['rev 7 ' + m for m in lint(R7)] + ['rev 8 ' + m for m in lint(R8_)]
+        for (rows, files, d, cmd) in ((build(6), WRITE6, FB, ' --rev 6'), (R7, FILES7, REV7_DIR, ' --rev 7'), (R8_, FILES8, REV8_DIR, '')):
             for b, fn in files.items():
                 fp = os.path.join(d, fn)
                 old = open(fp, encoding='utf-8', newline='').read().replace(CRLF, NL) if os.path.exists(fp) else ''
                 if old != render(rows, b):
-                    bad.append('%s%s is stale: run python cad/fusebox/src/parts_lists.py%s and commit it' % ('rev7/' if cmd else '', fn, cmd))
+                    bad.append('%s%s is stale: run python cad/fusebox/src/parts_lists.py%s and commit it' % (os.path.relpath(d, FB).replace('.', '') + '/' if d != FB else '', fn, cmd))
         for m in bad:
             print('PARTS LIST:', m)
         print('fuse box parts lists: %d problem(s)' % len(bad))
