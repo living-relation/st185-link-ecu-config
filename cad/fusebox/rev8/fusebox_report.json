@@ -1,0 +1,13307 @@
+{
+ "bends": [
+  {
+   "where": "LOGIC BUS1 EFI86 input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HL input jumper (16 AWG)",
+   "awg": "16",
+   "od": 2.06,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 6.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HR input jumper (16 AWG)",
+   "awg": "16",
+   "od": 2.06,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 6.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HZ input jumper (16 AWG)",
+   "awg": "16",
+   "od": 2.06,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 6.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 DOME input jumper (14 AWG)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 LAM input jumper (18 AWG)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ALM input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ALMS input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ALTS input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 ETB input jumper (18 AWG)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 DRL input jumper (18 AWG)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 SW12 input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 COP input jumper (18 AWG)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 INJ input jumper (18 AWG)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 CSB input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 DEV input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 EPSEN input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 ACC input jumper (18 AWG)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS2 ALMIG input jumper (20 AWG)",
+   "awg": "20",
+   "od": 1.57,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
+   "r_inside": null,
+   "need": 4.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 feed (from AMI BUS1 50 A output)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out the front end, lug axis, under the skirt",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported or >= 51 free"
+  },
+  {
+   "where": "LOGIC BUS2 feed (from k_efi 30)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out the rear end, lug axis, under the skirt",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported or >= 36 free"
+  },
+  {
+   "where": "LOGIC harness bundle at x 9 (7 wires)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 6.4 mm; 22.1 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+  },
+  {
+   "where": "LOGIC harness bundle at x 47 (8 wires)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 6.6 mm; 22.0 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+  },
+  {
+   "where": "LOGIC harness bundle at x 60 (16 wires)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 9.9 mm; 20.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+  },
+  {
+   "where": "LOGIC harness bundle at x 78 (11 wires)",
+   "awg": "14",
+   "od": 2.41,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 7.4 mm; 21.6 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+  },
+  {
+   "where": "LOGIC fuse / micro relay receptacles, largest 14 AWG",
+   "awg": "14",
+   "od": 2.41,
+   "path": "straight down out of the cavity, one bend into its bundle (rows above)",
+   "r_inside": 7.23,
+   "need": 7.2,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "one bundle per fuse column / relay column, straight to the front edge"
+  },
+  {
+   "where": "POWER AMI IN HTR (40A) -> harness w_rb4_feed (seat R1 vacant)",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight -x under the deck, two 6 deg bends down to the bundle height, out of the inboard end",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "shallow bends (> 10 x OD), supported by the belly pan notch"
+  },
+  {
+   "where": "POWER AMI IN EFI (30A) -> k_efi terminal 30",
+   "awg": "12",
+   "od": 2.97,
+   "path": "straight 35 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 8.9,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN FAN (30A) -> k_fan terminal 30",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight 35 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI IN FAN2 (30A) -> k_fan2 terminal 30",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight 6 mm, then 90 deg up round the printed saddle into the cavity",
+   "r_inside": 16.0,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "saddle R16 under the deck sets and supports the bend"
+  },
+  {
+   "where": "POWER AMI OUT BUS1 (50A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER AMI OUT RTR (30A) -> harness",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+  },
+  {
+   "where": "POWER AMI OUT AM1 (40A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "POWER AMI OUT AM2 (30A) -> harness",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+  },
+  {
+   "where": "POWER AMI OUT JB1 (60A) -> harness",
+   "awg": "6",
+   "od": 6.43,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 64.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 19 supported (P-clamp each side) or >= 64 free"
+  },
+  {
+   "where": "POWER AMI OUT EPS (50A) -> harness",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
+   "r_inside": null,
+   "need": 51.3,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend in the harness: >= 15 supported (P-clamp each side) or >= 51 free"
+  },
+  {
+   "where": "BUS POS BAT+ IN (H1, 1/0, M8 on the POS bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover end notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS POS RADLOK+ (H3, 1/0, M8 on the POS bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover end notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG BAT- (H2, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG RADLOK- (H6a, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG GND ID (H7, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG GND IG (H7, 1/0, M8 on the NEG bar)",
+   "awg": "1/0",
+   "od": 13.6,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 136.0,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 41 supported / >= 136 free"
+  },
+  {
+   "where": "BUS NEG GND (relays, 10, M8 on the NEG bar)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out through the cover rear notch, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the box; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "POWER harness bundle at y 52 (1 wires)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 5.550000000000001,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+  },
+  {
+   "where": "POWER harness bundle at y 61 (1 wires)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 10.83,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+  },
+  {
+   "where": "POWER harness bundle at y 70 (1 wires)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 5.550000000000001,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+  },
+  {
+   "where": "POWER harness bundle at y 88 (1 wires)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 5.550000000000001,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+  },
+  {
+   "where": "POWER harness bundle at y 97 (1 wires)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 10.83,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+  },
+  {
+   "where": "POWER harness bundle at y 106 (2 wires)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 5.550000000000001,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.1 mm; 19.2 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+  },
+  {
+   "where": "POWER harness bundle at y 115 (1 wires)",
+   "awg": "10",
+   "od": 3.61,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 10.83,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+  },
+  {
+   "where": "POWER harness bundle at y 124 (1 wires)",
+   "awg": "18",
+   "od": 1.85,
+   "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
+   "r_inside": 5.550000000000001,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+  },
+  {
+   "where": "POWER relay terminals (85 / 86 / 87 / 87a), largest 8 AWG",
+   "awg": "8",
+   "od": 5.13,
+   "path": "straight down out of the cavity, one bend into its bundle (rows above)",
+   "r_inside": 15.39,
+   "need": 15.4,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "bundles run where no feed wire runs (relays turned 90 deg)"
+  },
+  {
+   "where": "BATTERY feed in (kill switch load side) -> M6 stud",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight in at the open -x end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "BATTERY AMI 40 out -> HCR150 terminal 3",
+   "awg": "10",
+   "od": 3.61,
+   "path": "one straight jumper, both lugs at the terminal height",
+   "r_inside": null,
+   "need": 10.8,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend (the fuse pedestal puts its lug level with terminal 3)"
+  },
+  {
+   "where": "BATTERY HCR150 terminal 5 -> pump",
+   "awg": "10",
+   "od": 3.61,
+   "path": "straight out the open +x end, lug axis",
+   "r_inside": null,
+   "need": 36.1,
+   "rule": "10 x OD",
+   "ok": true,
+   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+  },
+  {
+   "where": "BATTERY coil leads (Superseal plug, 2 x 18 AWG) -> Link Aux 3",
+   "awg": "18",
+   "od": 1.85,
+   "path": "one 90 deg turn, then along the front to the +x end",
+   "r_inside": 5.0,
+   "need": 5.6,
+   "rule": "3 x OD, supported",
+   "ok": false,
+   "note": "held by the plug and the cover notch; 3 x OD = 5.6"
+  }
+ ],
+ "labels": {
+  "Logic_Cover_PA12_printed": [
+   "LO BEAM",
+   "HI BEAM",
+   "HORN",
+   "ETB",
+   "A/C",
+   "EPS EN",
+   "ON",
+   "DRL",
+   "SPARE",
+   "POD",
+   "EFI86 5",
+   "HL 15",
+   "HR 15",
+   "HZ 15",
+   "DOME 20",
+   "LAM 10",
+   "ALM 5",
+   "ALMS 2",
+   "ALTS 2",
+   "ETB 7.5",
+   "DRL 7.5",
+   "SW12 5",
+   "COP 10",
+   "INJ 7.5",
+   "CSB 5",
+   "DEV 5",
+   "EPSEN 5",
+   "ACC 10",
+   "ALMIG 2",
+   "SP",
+   "B30 2",
+   "BUS1",
+   "BUS2",
+   "LOGIC"
+  ],
+  "Power_Cover_PA12_printed": [
+   "SPARE",
+   "EFI",
+   "SPARE",
+   "FAN",
+   "FAN 2",
+   "SPARE",
+   "SPARE",
+   "SPARE",
+   "HTR 40A",
+   "EFI 30A",
+   "SPARE",
+   "FAN 30A",
+   "FAN2 30A",
+   "SPARE",
+   "SPARE",
+   "BUS1 50A",
+   "RTR 30A",
+   "AM1 40A",
+   "AM2 30A",
+   "JB1 60A",
+   "EPS 50A",
+   "SPARE",
+   "POWER",
+   "BAT+ IN",
+   "RADLOK+",
+   "SPARE M8",
+   "BAT-",
+   "RADLOK-",
+   "GND ID",
+   "GND IG",
+   "GND",
+   "NEG BUS",
+   "POS BUS"
+  ],
+  "BattRelay_Cover_PA12_printed": [
+   "BATT +",
+   "FP 40A",
+   "K_FP  FUEL PUMP",
+   "3",
+   "5",
+   "PUMP",
+   "COIL"
+  ]
+ },
+ "lanes": {
+  "LOGIC": [
+   {
+    "at": 9.4,
+    "wires": 7,
+    "d": 6.4,
+    "z": 8.0,
+    "what": [
+     "w_hl_cp",
+     "w_hz_cp",
+     "w_pmu_dome",
+     "w_alt_s_c",
+     "w_at_12v_shk",
+     "w_at_12v",
+     "w_k_efi_86_cp"
+    ],
+    "room": 22.1
+   },
+   {
+    "at": 46.5,
+    "wires": 8,
+    "d": 6.6,
+    "z": 8.1,
+    "what": [
+     "w_start",
+     "w_cp_sw12_in",
+     "w_cop_pwr_ac",
+     "w_inj_pwr_ac",
+     "w_start_in_cp",
+     "w_dev_clu",
+     "w_at_ig",
+     "w_csb12"
+    ],
+    "room": 22.0
+   },
+   {
+    "at": 59.5,
+    "wires": 16,
+    "d": 9.9,
+    "z": 9.7,
+    "what": [
+     "w_acc_trig",
+     "w_k_etb_86_cp",
+     "w81",
+     "w82_ac",
+     "w_hl_85_cp",
+     "w_horn_85_cp",
+     "w_pmu_horn_cp",
+     "w_hl_30_cp",
+     "w_hl_86_cp",
+     "w_hr_86_cp",
+     "w_hl_on_cp",
+     "w_hr_on_cp",
+     "w_horn_30_cp",
+     "w_horn_86_cp",
+     "w_acc_clutch",
+     "w_hl_low"
+    ],
+    "room": 20.3
+   },
+   {
+    "at": 78.1,
+    "wires": 11,
+    "d": 7.4,
+    "z": 8.5,
+    "what": [
+     "w_fb_mrs_en",
+     "w_eps_trig",
+     "w_k_eps_en_86_cp",
+     "w_lam12_cp",
+     "w_k_on_86_cp",
+     "w_drl_85_cp",
+     "w_r8_d2_k_cp",
+     "w_drl_87_cp",
+     "w_pod_85_cp",
+     "w_pod_87_cp",
+     "w_k_on_85_cp"
+    ],
+    "room": 21.6
+   }
+  ],
+  "POWER": [
+   {
+    "at": 52.0,
+    "wires": 1,
+    "d": 1.9,
+    "z": 5.7,
+    "what": [
+     "w76"
+    ],
+    "room": 19.8
+   },
+   {
+    "at": 61.0,
+    "wires": 1,
+    "d": 3.6,
+    "z": 6.6,
+    "what": [
+     "w77_cp"
+    ],
+    "room": 12.8
+   },
+   {
+    "at": 70.0,
+    "wires": 1,
+    "d": 1.9,
+    "z": 5.7,
+    "what": [
+     "w_k_efi_86_cp"
+    ],
+    "room": 19.8
+   },
+   {
+    "at": 88.0,
+    "wires": 1,
+    "d": 1.9,
+    "z": 5.7,
+    "what": [
+     "w_fan85"
+    ],
+    "room": 19.8
+   },
+   {
+    "at": 97.0,
+    "wires": 1,
+    "d": 3.6,
+    "z": 6.6,
+    "what": [
+     "w_fan_pwr"
+    ],
+    "room": 12.8
+   },
+   {
+    "at": 106.0,
+    "wires": 2,
+    "d": 3.1,
+    "z": 6.4,
+    "what": [
+     "w_fan285",
+     "w_k_fan_86_cp"
+    ],
+    "room": 19.2
+   },
+   {
+    "at": 115.0,
+    "wires": 1,
+    "d": 3.6,
+    "z": 6.6,
+    "what": [
+     "w_fan2_pwr"
+    ],
+    "room": 12.8
+   },
+   {
+    "at": 124.0,
+    "wires": 1,
+    "d": 1.9,
+    "z": 5.7,
+    "what": [
+     "w_k_fan2_86_cp"
+    ],
+    "room": 19.8
+   }
+  ]
+ },
+ "callouts": {
+  "fusebox_render_routing_power.png": [
+   [
+    1,
+    825.9,
+    334.7,
+    "harness bundles to the inboard edge"
+   ],
+   [
+    2,
+    1043.4,
+    405.9,
+    "relay feed: lug under its copper strap"
+   ],
+   [
+    3,
+    957.2,
+    352.5,
+    "feed bends up R16 into terminal 30"
+   ],
+   [
+    4,
+    1185.9,
+    507.2,
+    "OUT lug under its copper strap"
+   ],
+   [
+    5,
+    1287.2,
+    528.8,
+    "OUT cables straight out the end"
+   ],
+   [
+    6,
+    1148.4,
+    489.4,
+    "1/0 battery feed in"
+   ],
+   [
+    7,
+    608.4,
+    457.5,
+    "NEG bus: grounds straight out the rear"
+   ]
+  ],
+  "fusebox_render_routing_logic.png": [
+   [
+    1,
+    849.4,
+    470.6,
+    "Bus 1 fuse wires"
+   ],
+   [
+    2,
+    969.4,
+    508.1,
+    "Bus 2 fuse wires"
+   ],
+   [
+    3,
+    1065.9,
+    484.7,
+    "micro relay wires, inboard column"
+   ],
+   [
+    4,
+    1129.7,
+    504.4,
+    "micro relay wires, outboard column"
+   ],
+   [
+    5,
+    1141.9,
+    379.7,
+    "all leave the front edge"
+   ],
+   [
+    6,
+    888.8,
+    390.0,
+    "fuse input jumpers drop straight into their lugs"
+   ],
+   [
+    7,
+    885.9,
+    421.9,
+    "bus strips on edge, printed spine between"
+   ],
+   [
+    8,
+    1046.2,
+    308.4,
+    "Bus 1 feed in at the front"
+   ],
+   [
+    9,
+    626.2,
+    690.9,
+    "Bus 2 feed in at the rear"
+   ]
+  ],
+  "fusebox_power_explode.png": [
+   [
+    1,
+    913.1,
+    101.2,
+    "cover (snaps on, 4 tongues)"
+   ],
+   [
+    2,
+    873.8,
+    241.9,
+    "relays plug in from the top"
+   ],
+   [
+    3,
+    990.9,
+    309.4,
+    "AMI fuses on the studs"
+   ],
+   [
+    4,
+    886.9,
+    262.5,
+    "Keps nuts, 4 Nm max"
+   ],
+   [
+    5,
+    974.1,
+    246.6,
+    "M5 x 10 ear bolts into the strap PEM nuts"
+   ],
+   [
+    6,
+    950.6,
+    372.2,
+    "copper bar 25 x 6.35"
+   ],
+   [
+    7,
+    967.5,
+    400.3,
+    "copper C-straps 15 x 3 (14), PEM nuts pressed in"
+   ],
+   [
+    8,
+    897.2,
+    464.1,
+    "base (deck on 4 angular legs)"
+   ],
+   [
+    9,
+    886.9,
+    480.0,
+    "bar bolts up from below"
+   ],
+   [
+    11,
+    974.1,
+    630.9,
+    "cable lugs"
+   ],
+   [
+    12,
+    735.9,
+    598.1,
+    "M5 x 10 lug bolts"
+   ],
+   [
+    13,
+    913.1,
+    708.8,
+    "belly pan (snaps on)"
+   ]
+  ],
+  "fusebox_power_step1.png": [
+   [
+    1,
+    1113.8,
+    198.8,
+    "lay the bar in its pocket"
+   ],
+   [
+    2,
+    1181.2,
+    295.3,
+    "drop the 14 copper straps into their wells (PEM nuts already pressed in): the lips rest on the ledge, the hook snaps over them"
+   ],
+   [
+    3,
+    855.9,
+    490.3,
+    "bar bolts up through the hex head pockets"
+   ],
+   [
+    6,
+    900.0,
+    458.4,
+    "base, right way up"
+   ]
+  ],
+  "fusebox_power_step2.png": [
+   [
+    1,
+    769.7,
+    410.6,
+    "crimp, push each terminal up into its cavity (wire side)"
+   ],
+   [
+    2,
+    963.8,
+    483.8,
+    "relay feed lug palm-up under its strap (M5 x 10 into the PEM nut)"
+   ],
+   [
+    3,
+    897.2,
+    414.4,
+    "feed round its saddle into terminal 30"
+   ],
+   [
+    4,
+    1072.5,
+    568.1,
+    "OUT lug palm-up under its strap (M5 x 10)"
+   ],
+   [
+    5,
+    706.9,
+    415.3,
+    "tie the bundles; they leave the inboard end"
+   ]
+  ],
+  "fusebox_power_step3.png": [
+   [
+    1,
+    1098.8,
+    337.5,
+    "AMI fuses on the studs"
+   ],
+   [
+    2,
+    835.3,
+    289.7,
+    "Keps nuts on the bar studs, M5 x 10 ear bolts into the straps: 4 Nm max"
+   ],
+   [
+    3,
+    804.4,
+    339.4,
+    "relays plug in"
+   ],
+   [
+    4,
+    457.5,
+    834.4,
+    "ACPS mini fuse"
+   ],
+   [
+    5,
+    985.3,
+    332.8,
+    "1/0 lug on the M8 stud"
+   ]
+  ],
+  "fusebox_power_step4.png": [
+   [
+    1,
+    901.9,
+    615.0,
+    "belly pan snaps up into the skirt"
+   ],
+   [
+    2,
+    901.9,
+    182.8,
+    "cover snaps down over the deck"
+   ],
+   [
+    3,
+    960.0,
+    615.9,
+    "M6 through each foot (4), steel limiter"
+   ]
+  ],
+  "fusebox_logic_explode.png": [
+   [
+    1,
+    900.0,
+    104.1,
+    "cover (snaps on)"
+   ],
+   [
+    2,
+    936.6,
+    232.5,
+    "micro relays"
+   ],
+   [
+    3,
+    900.0,
+    313.1,
+    "mini fuses"
+   ],
+   [
+    4,
+    900.0,
+    459.4,
+    "base: deck, cavity towers, spine between the strips"
+   ],
+   [
+    5,
+    893.4,
+    584.1,
+    "Bus 1 / Bus 2 strips on edge, slide in from the rear"
+   ],
+   [
+    6,
+    895.3,
+    581.2,
+    "input jumper lugs, TE PIDG 53941-1"
+   ],
+   [
+    7,
+    895.3,
+    589.7,
+    "M4 x 8 + spring washer into the PEM nut in the strip"
+   ],
+   [
+    8,
+    893.4,
+    592.5,
+    "feed lugs, M5 x 10 into the strip"
+   ],
+   [
+    9,
+    900.0,
+    703.1,
+    "belly pan (snaps on)"
+   ]
+  ]
+ },
+ "standoffs": {
+  "LOGIC": {
+   "feed": null,
+   "note": "rev 6: no standoffs - the feed lugs bolt straight onto the strips",
+   "z_d": 38.5,
+   "z_t": 60.5
+  }
+ },
+ "terminal_holes": {
+  "LOGIC": [
+   {
+    "cav": "BUS1-1",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 31.7,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 0,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-1 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 31.7,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 1,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-10",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 115.85,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 2,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-10 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 115.85,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 3,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "CAD jumper 18 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-2",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 41.05,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 4,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-2 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 41.05,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 5,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "CAD jumper 16 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-3",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 50.4,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 6,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-3 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 50.4,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 7,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "CAD jumper 16 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-4",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 59.75,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 8,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-4 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 59.75,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 9,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "CAD jumper 16 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-5",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 69.1,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 10,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-5 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 69.1,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 11,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "CAD jumper 14 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-6",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 78.45,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 12,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-6 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 78.45,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 13,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "CAD jumper 18 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-7",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 87.8,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 14,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-7 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 87.8,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 15,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-8",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 97.15,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 16,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-8 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 97.15,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 17,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS1-9",
+    "kind": "fuse out",
+    "x": 9.45,
+    "y": 106.5,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 18,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS1-9 IN",
+    "kind": "fuse in",
+    "x": 17.55,
+    "y": 106.5,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 19,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-1",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 31.7,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 20,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-1 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 31.7,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 21,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "CAD jumper 18 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-12",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 115.85,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 22,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS2-12 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 115.85,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 23,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "BUS2-13",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 125.2,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 24,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-13 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 125.2,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 25,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-2",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 41.05,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 26,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-2 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 41.05,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 27,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-3",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 50.4,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 28,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-3 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 50.4,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 29,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "CAD jumper 18 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-4",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 59.75,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 30,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-4 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 59.75,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 31,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "CAD jumper 18 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-5",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 69.1,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 32,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-5 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 69.1,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 33,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-6",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 78.45,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 34,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-6 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 78.45,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 35,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-7",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 87.8,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 36,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-7 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 87.8,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 37,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-8",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 97.15,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 38,
+    "part": "1-968851-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-8 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 97.15,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 39,
+    "part": "1-968849-1",
+    "wire_od": 1.85,
+    "source": "CAD jumper 18 AWG",
+    "est": true
+   },
+   {
+    "cav": "BUS2-9",
+    "kind": "fuse out",
+    "x": 46.55,
+    "y": 106.5,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 40,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "BUS2-9 IN",
+    "kind": "fuse in",
+    "x": 38.45,
+    "y": 106.5,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.35,
+      -1.95,
+      1.95,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.35,
+      -6.9,
+      -1.7,
+      1.7,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.9,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 59.5,
+    "group": 41,
+    "part": "1-968849-1",
+    "wire_od": 1.57,
+    "source": "CAD jumper 20 AWG",
+    "est": true
+   },
+   {
+    "cav": "M1 30",
+    "kind": "micro 30",
+    "x": 59.55,
+    "y": 13.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 42,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M1 85",
+    "kind": "micro 85",
+    "x": 55.05,
+    "y": 27.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 43,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M1 86",
+    "kind": "micro 86",
+    "x": 64.05,
+    "y": 27.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 43,
+    "part": "280919-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M1 87",
+    "kind": "micro 87",
+    "x": 59.55,
+    "y": 21.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 43,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M10 30",
+    "kind": "micro 30",
+    "x": 78.05,
+    "y": 133.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 44,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M10 85",
+    "kind": "micro 85",
+    "x": 73.55,
+    "y": 147.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 45,
+    "part": "280919-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M10 86",
+    "kind": "micro 86",
+    "x": 82.55,
+    "y": 147.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 45,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M10 87",
+    "kind": "micro 87",
+    "x": 78.05,
+    "y": 141.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 45,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M2 30",
+    "kind": "micro 30",
+    "x": 59.55,
+    "y": 43.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 46,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M2 85",
+    "kind": "micro 85",
+    "x": 55.05,
+    "y": 57.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 47,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M2 86",
+    "kind": "micro 86",
+    "x": 64.05,
+    "y": 57.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 47,
+    "part": "280919-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M2 87",
+    "kind": "micro 87",
+    "x": 59.55,
+    "y": 51.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 47,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M3 30",
+    "kind": "micro 30",
+    "x": 59.55,
+    "y": 73.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 48,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M3 85",
+    "kind": "micro 85",
+    "x": 55.05,
+    "y": 87.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 49,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M3 86",
+    "kind": "micro 86",
+    "x": 64.05,
+    "y": 87.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 49,
+    "part": "280919-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M3 87",
+    "kind": "micro 87",
+    "x": 59.55,
+    "y": 81.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 49,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M4 30",
+    "kind": "micro 30",
+    "x": 59.55,
+    "y": 103.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 50,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M4 85",
+    "kind": "micro 85",
+    "x": 55.05,
+    "y": 117.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 51,
+    "part": "280919-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M4 86",
+    "kind": "micro 86",
+    "x": 64.05,
+    "y": 117.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 51,
+    "part": "280919-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M4 87",
+    "kind": "micro 87",
+    "x": 59.55,
+    "y": 111.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 51,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M5 30",
+    "kind": "micro 30",
+    "x": 59.55,
+    "y": 133.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 52,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M5 85",
+    "kind": "micro 85",
+    "x": 55.05,
+    "y": 147.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 53,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M5 86",
+    "kind": "micro 86",
+    "x": 64.05,
+    "y": 147.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 53,
+    "part": "280919-2",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M5 87",
+    "kind": "micro 87",
+    "x": 59.55,
+    "y": 141.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 53,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M6 30",
+    "kind": "micro 30",
+    "x": 78.05,
+    "y": 13.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 54,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M6 85",
+    "kind": "micro 85",
+    "x": 73.55,
+    "y": 27.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 55,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M6 86",
+    "kind": "micro 86",
+    "x": 82.55,
+    "y": 27.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 55,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M6 87",
+    "kind": "micro 87",
+    "x": 78.05,
+    "y": 21.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 55,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M7 30",
+    "kind": "micro 30",
+    "x": 78.05,
+    "y": 43.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 56,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M7 85",
+    "kind": "micro 85",
+    "x": 73.55,
+    "y": 57.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 57,
+    "part": "280919-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M7 86",
+    "kind": "micro 86",
+    "x": 82.55,
+    "y": 57.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 57,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M7 87",
+    "kind": "micro 87",
+    "x": 78.05,
+    "y": 51.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 57,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M8 30",
+    "kind": "micro 30",
+    "x": 78.05,
+    "y": 73.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 58,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M8 85",
+    "kind": "micro 85",
+    "x": 73.55,
+    "y": 87.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 59,
+    "part": "280919-2",
+    "wire_od": 1.57,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M8 86",
+    "kind": "micro 86",
+    "x": 82.55,
+    "y": 87.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 59,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M8 87",
+    "kind": "micro 87",
+    "x": 78.05,
+    "y": 81.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 59,
+    "part": "42281-1",
+    "wire_od": 2.06,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "M9 30",
+    "kind": "micro 30",
+    "x": 78.05,
+    "y": 103.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 60,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M9 85",
+    "kind": "micro 85",
+    "x": 73.55,
+    "y": 117.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 61,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M9 86",
+    "kind": "micro 86",
+    "x": 82.55,
+    "y": 117.0,
+    "sx": 5.2,
+    "sy": 6.4,
+    "zones": [
+     [
+      null,
+      -12.5,
+      -2.6,
+      2.0,
+      -3.2,
+      3.2
+     ],
+     [
+      -12.5,
+      -5.1,
+      -1.6,
+      1.6,
+      -3.2,
+      3.2
+     ],
+     [
+      -5.1,
+      0.0,
+      -1.6,
+      2.6,
+      -3.2,
+      3.2
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 61,
+    "part": "280919-2",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "M9 87",
+    "kind": "micro 87",
+    "x": 78.05,
+    "y": 111.0,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 38.5,
+    "z1": 57.3,
+    "group": 61,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   }
+  ],
+  "POWER": [
+   {
+    "cav": "ACPS",
+    "kind": "acps out",
+    "x": 20.55,
+    "y": 35.0,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 0,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "ACPS IN",
+    "kind": "acps in",
+    "x": 12.45,
+    "y": 35.0,
+    "sx": 4.84,
+    "sy": 5.2,
+    "zones": [
+     [
+      null,
+      -18.25,
+      -2.3,
+      2.3,
+      -2.6,
+      2.6
+     ],
+     [
+      -18.25,
+      -6.8,
+      -1.8,
+      1.8,
+      -2.6,
+      2.6
+     ],
+     [
+      -6.8,
+      0.0,
+      -2.42,
+      2.42,
+      -2.6,
+      2.6
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 1,
+    "part": "1-968851-1",
+    "wire_od": 2.41,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R1 30",
+    "kind": "F7 30",
+    "x": 37.85,
+    "y": 43.0,
+    "sx": 8.77,
+    "sy": 8.77,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.385,
+      4.385,
+      -6.435,
+      2.335
+     ],
+     [
+      -16.0,
+      0.0,
+      -4.17,
+      4.17,
+      -3.535,
+      1.825
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 2,
+    "part": "62998-2",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R1 85",
+    "kind": "F7 85",
+    "x": 47.85,
+    "y": 34.6,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 2,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R1 86",
+    "kind": "F7 86",
+    "x": 47.85,
+    "y": 51.4,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 2,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R1 87",
+    "kind": "F7 87",
+    "x": 55.75,
+    "y": 43.0,
+    "sx": 8.77,
+    "sy": 8.77,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -6.435,
+      2.335,
+      -4.385,
+      4.385
+     ],
+     [
+      -16.0,
+      0.0,
+      -3.535,
+      1.825,
+      -4.17,
+      4.17
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 2,
+    "part": "62998-2",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R1 87a",
+    "kind": "F7 87a",
+    "x": 47.4,
+    "y": 43.0,
+    "sx": 6.6,
+    "sy": 8.24,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -2.43,
+      3.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -16.0,
+      -7.1,
+      -2.05,
+      2.05,
+      -4.12,
+      4.12
+     ],
+     [
+      -7.1,
+      0.0,
+      -3.09,
+      2.05,
+      -4.12,
+      4.12
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 2,
+    "part": "42281-1",
+    "wire_od": 2.41,
+    "source": "spare (kept cut)",
+    "est": true
+   },
+   {
+    "cav": "R2 30",
+    "kind": "F7 30",
+    "x": 8.85,
+    "y": 61.0,
+    "sx": 11.93,
+    "sy": 6.03,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.965,
+      5.965,
+      -3.895,
+      3.025
+     ],
+     [
+      -24.5,
+      -10.8,
+      -5.965,
+      5.965,
+      -2.385,
+      2.385
+     ],
+     [
+      -10.8,
+      0.0,
+      -5.965,
+      5.965,
+      -2.385,
+      3.645
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 3,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R2 85",
+    "kind": "F7 85",
+    "x": 18.35,
+    "y": 52.55,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 4,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R2 86",
+    "kind": "F7 86",
+    "x": 18.35,
+    "y": 69.45,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 4,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R2 87",
+    "kind": "F7 87",
+    "x": 26.75,
+    "y": 61.0,
+    "sx": 6.03,
+    "sy": 11.93,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -3.895,
+      3.025,
+      -5.965,
+      5.965
+     ],
+     [
+      -24.5,
+      -10.8,
+      -2.385,
+      2.385,
+      -5.965,
+      5.965
+     ],
+     [
+      -10.8,
+      0.0,
+      -2.385,
+      3.645,
+      -5.965,
+      5.965
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 4,
+    "part": "280756-4",
+    "wire_od": 2.97,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R3 30",
+    "kind": "F7 30",
+    "x": 37.85,
+    "y": 79.0,
+    "sx": 11.93,
+    "sy": 7.18,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.965,
+      5.965,
+      -5.795,
+      3.025
+     ],
+     [
+      -24.5,
+      -10.8,
+      -5.965,
+      5.965,
+      -3.535,
+      2.385
+     ],
+     [
+      -10.8,
+      0.0,
+      -5.965,
+      5.965,
+      -3.535,
+      3.645
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 5,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R3 85",
+    "kind": "F7 85",
+    "x": 47.35,
+    "y": 70.55,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 5,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R3 86",
+    "kind": "F7 86",
+    "x": 47.35,
+    "y": 87.45,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 5,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R3 87",
+    "kind": "F7 87",
+    "x": 55.75,
+    "y": 79.0,
+    "sx": 7.18,
+    "sy": 11.93,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.795,
+      3.025,
+      -5.965,
+      5.965
+     ],
+     [
+      -24.5,
+      -10.8,
+      -3.535,
+      2.385,
+      -5.965,
+      5.965
+     ],
+     [
+      -10.8,
+      0.0,
+      -3.535,
+      3.645,
+      -5.965,
+      5.965
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 5,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R4 30",
+    "kind": "F7 30",
+    "x": 8.85,
+    "y": 97.0,
+    "sx": 11.93,
+    "sy": 6.03,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.965,
+      5.965,
+      -3.895,
+      3.025
+     ],
+     [
+      -24.5,
+      -10.8,
+      -5.965,
+      5.965,
+      -2.385,
+      2.385
+     ],
+     [
+      -10.8,
+      0.0,
+      -5.965,
+      5.965,
+      -2.385,
+      3.645
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 6,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R4 85",
+    "kind": "F7 85",
+    "x": 18.35,
+    "y": 88.55,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 7,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R4 86",
+    "kind": "F7 86",
+    "x": 18.35,
+    "y": 105.45,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 7,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R4 87",
+    "kind": "F7 87",
+    "x": 26.75,
+    "y": 97.0,
+    "sx": 6.03,
+    "sy": 11.93,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -3.895,
+      3.025,
+      -5.965,
+      5.965
+     ],
+     [
+      -24.5,
+      -10.8,
+      -2.385,
+      2.385,
+      -5.965,
+      5.965
+     ],
+     [
+      -10.8,
+      0.0,
+      -2.385,
+      3.645,
+      -5.965,
+      5.965
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 7,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R5 30",
+    "kind": "F7 30",
+    "x": 37.85,
+    "y": 115.0,
+    "sx": 11.93,
+    "sy": 6.03,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.965,
+      5.965,
+      -3.895,
+      3.025
+     ],
+     [
+      -24.5,
+      -10.8,
+      -5.965,
+      5.965,
+      -2.385,
+      2.385
+     ],
+     [
+      -10.8,
+      0.0,
+      -5.965,
+      5.965,
+      -2.385,
+      3.645
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 8,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R5 85",
+    "kind": "F7 85",
+    "x": 47.35,
+    "y": 106.55,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 9,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R5 86",
+    "kind": "F7 86",
+    "x": 47.35,
+    "y": 123.45,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 9,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "harness",
+    "est": true
+   },
+   {
+    "cav": "R5 87",
+    "kind": "F7 87",
+    "x": 55.75,
+    "y": 115.0,
+    "sx": 6.03,
+    "sy": 11.93,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -3.895,
+      3.025,
+      -5.965,
+      5.965
+     ],
+     [
+      -24.5,
+      -10.8,
+      -2.385,
+      2.385,
+      -5.965,
+      5.965
+     ],
+     [
+      -10.8,
+      0.0,
+      -2.385,
+      3.645,
+      -5.965,
+      5.965
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 9,
+    "part": "280756-4",
+    "wire_od": 3.61,
+    "source": "harness",
+    "est": false
+   },
+   {
+    "cav": "R6 30",
+    "kind": "F7 30",
+    "x": 8.85,
+    "y": 133.0,
+    "sx": 11.93,
+    "sy": 7.18,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.965,
+      5.965,
+      -5.795,
+      3.025
+     ],
+     [
+      -24.5,
+      -10.8,
+      -5.965,
+      5.965,
+      -3.535,
+      2.385
+     ],
+     [
+      -10.8,
+      0.0,
+      -5.965,
+      5.965,
+      -3.535,
+      3.645
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 10,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R6 85",
+    "kind": "F7 85",
+    "x": 18.35,
+    "y": 124.55,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 10,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R6 86",
+    "kind": "F7 86",
+    "x": 18.35,
+    "y": 141.45,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 10,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R6 87",
+    "kind": "F7 87",
+    "x": 26.75,
+    "y": 133.0,
+    "sx": 7.18,
+    "sy": 11.93,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.795,
+      3.025,
+      -5.965,
+      5.965
+     ],
+     [
+      -24.5,
+      -10.8,
+      -3.535,
+      2.385,
+      -5.965,
+      5.965
+     ],
+     [
+      -10.8,
+      0.0,
+      -3.535,
+      3.645,
+      -5.965,
+      5.965
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 10,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R7 30",
+    "kind": "F7 30",
+    "x": 37.85,
+    "y": 151.0,
+    "sx": 11.93,
+    "sy": 7.18,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.965,
+      5.965,
+      -5.795,
+      3.025
+     ],
+     [
+      -24.5,
+      -10.8,
+      -5.965,
+      5.965,
+      -3.535,
+      2.385
+     ],
+     [
+      -10.8,
+      0.0,
+      -5.965,
+      5.965,
+      -3.535,
+      3.645
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 11,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   },
+   {
+    "cav": "R7 85",
+    "kind": "F7 85",
+    "x": 47.35,
+    "y": 142.55,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -2.43,
+      3.51
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -3.09,
+      2.05
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 11,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R7 86",
+    "kind": "F7 86",
+    "x": 47.35,
+    "y": 159.45,
+    "sx": 8.24,
+    "sy": 6.6,
+    "zones": [
+     [
+      null,
+      -16.0,
+      -4.12,
+      4.12,
+      -3.51,
+      2.43
+     ],
+     [
+      -16.0,
+      -7.1,
+      -4.12,
+      4.12,
+      -2.05,
+      2.05
+     ],
+     [
+      -7.1,
+      0.0,
+      -4.12,
+      4.12,
+      -2.05,
+      3.09
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 11,
+    "part": "42281-1",
+    "wire_od": 1.85,
+    "source": "spare (largest wire it takes)",
+    "est": true
+   },
+   {
+    "cav": "R7 87",
+    "kind": "F7 87",
+    "x": 55.75,
+    "y": 151.0,
+    "sx": 7.18,
+    "sy": 11.93,
+    "zones": [
+     [
+      null,
+      -24.5,
+      -5.795,
+      3.025,
+      -5.965,
+      5.965
+     ],
+     [
+      -24.5,
+      -10.8,
+      -3.535,
+      2.385,
+      -5.965,
+      5.965
+     ],
+     [
+      -10.8,
+      0.0,
+      -3.535,
+      3.645,
+      -5.965,
+      5.965
+     ]
+    ],
+    "z0": 32.0,
+    "z1": 51.5,
+    "group": 11,
+    "part": "280755-4",
+    "wire_od": 5.13,
+    "source": "spare (largest wire it takes)",
+    "est": false
+   }
+  ]
+ },
+ "terminal_slots": {
+  "LOGIC": [
+   [
+    "M1 85",
+    "M1 86",
+    "M1 87"
+   ],
+   [
+    "M10 85",
+    "M10 86",
+    "M10 87"
+   ],
+   [
+    "M2 85",
+    "M2 86",
+    "M2 87"
+   ],
+   [
+    "M3 85",
+    "M3 86",
+    "M3 87"
+   ],
+   [
+    "M4 85",
+    "M4 86",
+    "M4 87"
+   ],
+   [
+    "M5 85",
+    "M5 86",
+    "M5 87"
+   ],
+   [
+    "M6 85",
+    "M6 86",
+    "M6 87"
+   ],
+   [
+    "M7 85",
+    "M7 86",
+    "M7 87"
+   ],
+   [
+    "M8 85",
+    "M8 86",
+    "M8 87"
+   ],
+   [
+    "M9 85",
+    "M9 86",
+    "M9 87"
+   ]
+  ],
+  "POWER": [
+   [
+    "R1 30",
+    "R1 85",
+    "R1 86",
+    "R1 87",
+    "R1 87a"
+   ],
+   [
+    "R2 85",
+    "R2 86",
+    "R2 87"
+   ],
+   [
+    "R3 30",
+    "R3 85",
+    "R3 86",
+    "R3 87"
+   ],
+   [
+    "R4 85",
+    "R4 86",
+    "R4 87"
+   ],
+   [
+    "R5 85",
+    "R5 86",
+    "R5 87"
+   ],
+   [
+    "R6 30",
+    "R6 85",
+    "R6 86",
+    "R6 87"
+   ],
+   [
+    "R7 30",
+    "R7 85",
+    "R7 86",
+    "R7 87"
+   ]
+  ]
+ },
+ "guide_walls": {
+  "LOGIC": {
+   "n": 76,
+   "t": 2.0,
+   "h": 3.5,
+   "world_shift": [
+    0.0,
+    0.0
+   ],
+   "webs": 0
+  },
+  "POWER": {
+   "n": 1,
+   "t": 2.0,
+   "h": 3.5,
+   "world_shift": [
+    160.0,
+    0.0
+   ],
+   "webs": 0
+  }
+ },
+ "feature_support": {
+  "LOGIC": [
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     31.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     36.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     36.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     115.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     111.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     111.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     41.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     45.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     45.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     50.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     55.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     55.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     59.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     64.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     64.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     69.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     73.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     73.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     78.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     83.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     83.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     87.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     92.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     92.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     97.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     10.2,
+     101.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     17.6,
+     101.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     13.5,
+     106.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     31.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     36.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     36.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     115.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     120.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     111.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     50.8,
+     116.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     120.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     111.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     125.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     41.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     45.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     45.7
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     50.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     55.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     55.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     59.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     64.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     64.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     69.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     73.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     73.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     78.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     83.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     83.1
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     87.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     92.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     50.8,
+     87.4
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     92.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     97.2
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     46.5,
+     101.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     38.5,
+     101.8
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     42.5,
+     106.5
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     59.5,
+     17.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     68.8,
+     27.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     77.6,
+     137.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     68.8,
+     147.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     59.5,
+     47.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     68.8,
+     57.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     59.5,
+     77.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     68.8,
+     87.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     59.5,
+     107.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     68.8,
+     117.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     59.5,
+     137.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     77.6,
+     17.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     77.6,
+     47.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     77.6,
+     77.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     77.6,
+     107.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   }
+  ],
+  "POWER": [
+   {
+    "kind": "saddle",
+    "at": [
+     36.3,
+     61.0
+    ],
+    "before": 0.153,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     36.7,
+     97.0
+    ],
+    "before": 0.133,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "saddle",
+    "at": [
+     65.7,
+     115.0
+    ],
+    "before": 0.133,
+    "web": true,
+    "after": 1.0
+   },
+   {
+    "kind": "guide wall",
+    "at": [
+     16.5,
+     35.0
+    ],
+    "before": 1.0,
+    "web": false,
+    "after": 1.0
+   }
+  ]
+ },
+ "logic_jumpers": {
+  "strips": {
+   "BUS1": {
+    "x": [
+     20.2,
+     23.4
+    ],
+    "y": [
+     11.5,
+     124.0
+    ]
+   },
+   "BUS2": {
+    "x": [
+     32.6,
+     35.8
+    ],
+    "y": [
+     21.1,
+     140.1
+    ]
+   }
+  },
+  "spine_x": 28.0,
+  "studs": 19,
+  "jumpers": 19,
+  "rows_z": [
+   12.8,
+   17.8
+  ],
+  "ring_lugs": {
+   "320554": [
+    "EFI86",
+    "LAM",
+    "ALM",
+    "ALMS",
+    "ALTS",
+    "ETB",
+    "DRL",
+    "SW12",
+    "COP",
+    "INJ",
+    "CSB",
+    "DEV",
+    "EPSEN",
+    "ACC",
+    "ALMIG"
+   ],
+   "53941-1": [
+    "HL",
+    "HR",
+    "HZ",
+    "DOME"
+   ]
+  },
+  "gauges": {
+   "EFI86": 20,
+   "HL": 16,
+   "HR": 16,
+   "HZ": 16,
+   "DOME": 14,
+   "LAM": 18,
+   "ALM": 20,
+   "ALMS": 20,
+   "ALTS": 20,
+   "ETB": 18,
+   "DRL": 18,
+   "SW12": 20,
+   "COP": 18,
+   "INJ": 18,
+   "CSB": 20,
+   "DEV": 20,
+   "EPSEN": 20,
+   "ACC": 18,
+   "ALMIG": 20
+  }
+ },
+ "wall_exempt": [
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip lip",
+   "only": null,
+   "box": [
+    20.9,
+    28.1,
+    10.9,
+    124.6,
+    4.5,
+    5.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip lip",
+   "only": null,
+   "box": [
+    27.9,
+    35.1,
+    20.5,
+    140.7,
+    4.5,
+    5.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip lip",
+   "only": null,
+   "box": [
+    17.9,
+    28.1,
+    25.0,
+    124.6,
+    4.5,
+    5.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip snap hook",
+   "only": null,
+   "box": [
+    19.4,
+    24.2,
+    124.2,
+    148.8,
+    29.0,
+    38.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip lip",
+   "only": null,
+   "box": [
+    27.9,
+    38.1,
+    20.5,
+    108.45,
+    4.5,
+    5.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "strip snap hook",
+   "only": null,
+   "box": [
+    31.8,
+    36.6,
+    140.3,
+    164.9,
+    29.0,
+    38.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    68.65,
+    15.91,
+    32.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    87.15,
+    135.91,
+    152.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    68.65,
+    45.91,
+    62.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    68.65,
+    75.91,
+    92.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    68.65,
+    105.91,
+    122.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    68.65,
+    135.91,
+    152.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    87.15,
+    15.91,
+    32.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    87.15,
+    45.91,
+    62.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    87.15,
+    75.91,
+    92.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    87.15,
+    105.91,
+    122.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    27.1,
+    36.3,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    27.1,
+    36.3,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    111.25,
+    120.45,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    111.25,
+    120.45,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    36.45,
+    45.65,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    36.45,
+    45.65,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    45.8,
+    55.0,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    45.8,
+    55.0,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    55.15,
+    64.35,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    55.15,
+    64.35,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    64.5,
+    73.7,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    64.5,
+    73.7,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    73.85,
+    83.05,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    73.85,
+    83.05,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    83.2,
+    92.4,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    83.2,
+    92.4,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    92.55,
+    101.75,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    92.55,
+    101.75,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    5.03,
+    13.87,
+    101.9,
+    111.1,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    13.13,
+    21.97,
+    101.9,
+    111.1,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    27.1,
+    36.3,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    27.1,
+    36.3,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    111.25,
+    120.45,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    111.25,
+    120.45,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    120.6,
+    129.8,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    120.6,
+    129.8,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    36.45,
+    45.65,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    36.45,
+    45.65,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    45.8,
+    55.0,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    45.8,
+    55.0,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    55.15,
+    64.35,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    55.15,
+    64.35,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    64.5,
+    73.7,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    64.5,
+    73.7,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    73.85,
+    83.05,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    73.85,
+    83.05,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    83.2,
+    92.4,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    83.2,
+    92.4,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    92.55,
+    101.75,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    92.55,
+    101.75,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    42.13,
+    50.97,
+    101.9,
+    111.1,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    34.03,
+    42.87,
+    101.9,
+    111.1,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    7.91,
+    18.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    59.65,
+    21.8,
+    32.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    59.45,
+    68.65,
+    21.8,
+    32.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    15.91,
+    26.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    127.91,
+    138.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    78.15,
+    141.8,
+    152.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    77.95,
+    87.15,
+    141.8,
+    152.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    135.91,
+    146.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    37.91,
+    48.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    59.65,
+    51.8,
+    62.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    59.45,
+    68.65,
+    51.8,
+    62.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    45.91,
+    56.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    67.91,
+    78.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    59.65,
+    81.8,
+    92.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    59.45,
+    68.65,
+    81.8,
+    92.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    75.91,
+    86.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    97.91,
+    108.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    59.65,
+    111.8,
+    122.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    59.45,
+    68.65,
+    111.8,
+    122.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    105.91,
+    116.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    127.91,
+    138.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    50.45,
+    59.65,
+    141.8,
+    152.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    59.45,
+    68.65,
+    141.8,
+    152.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    53.43,
+    65.67,
+    135.91,
+    146.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    7.91,
+    18.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    78.15,
+    21.8,
+    32.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    77.95,
+    87.15,
+    21.8,
+    32.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    15.91,
+    26.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    37.91,
+    48.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    78.15,
+    51.8,
+    62.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    77.95,
+    87.15,
+    51.8,
+    62.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    45.91,
+    56.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    67.91,
+    78.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    78.15,
+    81.8,
+    92.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    77.95,
+    87.15,
+    81.8,
+    92.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    75.91,
+    86.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    97.91,
+    108.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    68.95,
+    78.15,
+    111.8,
+    122.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    77.95,
+    87.15,
+    111.8,
+    122.2,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    71.93,
+    84.17,
+    105.91,
+    116.51,
+    57.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    13.89,
+    30.89,
+    -1.4,
+    3.1,
+    47.1,
+    53.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    58.66,
+    75.66,
+    -1.4,
+    3.1,
+    47.1,
+    53.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    13.89,
+    30.89,
+    177.9,
+    182.4,
+    47.1,
+    53.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    58.66,
+    75.66,
+    177.9,
+    182.4,
+    47.1,
+    53.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    31.19,
+    39.59,
+    -1.4,
+    7.3,
+    46.8,
+    55.2
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    49.96,
+    58.36,
+    -1.4,
+    7.3,
+    46.8,
+    55.2
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    31.19,
+    39.59,
+    173.7,
+    182.4,
+    46.8,
+    55.2
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    49.96,
+    58.36,
+    173.7,
+    182.4,
+    46.8,
+    55.2
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    -0.1,
+    4.5,
+    54.5,
+    71.5,
+    37.4,
+    43.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    85.05,
+    89.65,
+    54.5,
+    71.5,
+    37.4,
+    43.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    -0.1,
+    4.5,
+    114.5,
+    131.5,
+    37.4,
+    43.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    85.05,
+    89.65,
+    114.5,
+    131.5,
+    37.4,
+    43.9
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    55.05,
+    64.05,
+    22.9,
+    30.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    53.55,
+    65.55,
+    15.0,
+    27.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    55.05,
+    64.05,
+    52.9,
+    60.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    53.55,
+    65.55,
+    45.0,
+    57.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    55.05,
+    64.05,
+    82.9,
+    90.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    53.55,
+    65.55,
+    75.0,
+    87.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    53.55,
+    65.55,
+    105.0,
+    117.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    55.05,
+    64.05,
+    142.9,
+    150.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    53.55,
+    65.55,
+    135.0,
+    147.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    73.55,
+    82.55,
+    22.9,
+    30.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    72.05,
+    84.05,
+    15.0,
+    27.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    73.55,
+    82.55,
+    52.9,
+    60.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    72.05,
+    84.05,
+    45.0,
+    57.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    72.05,
+    84.05,
+    75.0,
+    87.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    73.55,
+    82.55,
+    112.9,
+    120.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    72.05,
+    84.05,
+    105.0,
+    117.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "87a slot",
+   "only": null,
+   "box": [
+    73.55,
+    82.55,
+    142.9,
+    150.4,
+    43.4,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    72.05,
+    84.05,
+    135.0,
+    147.0,
+    38.0,
+    60.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    1.95,
+    7.45,
+    54.8,
+    71.2,
+    30.5,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    82.1,
+    87.6,
+    54.8,
+    71.2,
+    30.5,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    1.95,
+    7.45,
+    114.8,
+    131.2,
+    30.5,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    82.1,
+    87.6,
+    114.8,
+    131.2,
+    30.5,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "notch at corner",
+   "only": null,
+   "box": [
+    2.46,
+    16.44,
+    0.6,
+    8.8,
+    3.9,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "notch at corner",
+   "only": null,
+   "box": [
+    3.1,
+    15.3,
+    0.6,
+    8.8,
+    3.9,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Pan_PA12_printed",
+   "key": "notch at corner",
+   "only": null,
+   "box": [
+    70.55,
+    85.55,
+    0.6,
+    8.8,
+    3.9,
+    42.6
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    14.19,
+    30.59,
+    -5.85,
+    -0.25,
+    47.4,
+    59.5
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    58.96,
+    75.36,
+    -5.85,
+    -0.25,
+    47.4,
+    59.5
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    14.19,
+    30.59,
+    181.25,
+    186.85,
+    47.4,
+    59.5
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    58.96,
+    75.36,
+    181.25,
+    186.85,
+    47.4,
+    59.5
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    31.49,
+    39.29,
+    -5.85,
+    -1.65,
+    47.1,
+    54.9
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    50.26,
+    58.06,
+    -5.85,
+    -1.65,
+    47.1,
+    54.9
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    31.49,
+    39.29,
+    182.65,
+    186.85,
+    47.1,
+    54.9
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    50.26,
+    58.06,
+    182.65,
+    186.85,
+    47.1,
+    54.9
+   ]
+  },
+  {
+   "part": "Logic_Cover_PA12_printed",
+   "key": "label",
+   "only": null,
+   "box": [
+    -5.75,
+    95.3,
+    -5.75,
+    186.75,
+    88.8,
+    90.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "saddle lip",
+   "only": "A",
+   "box": [
+    182.97,
+    204.53,
+    56.72,
+    59.31,
+    6.71,
+    32.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "saddle lip",
+   "only": "A",
+   "box": [
+    182.97,
+    204.53,
+    62.69,
+    65.28,
+    6.71,
+    32.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "saddle lip",
+   "only": "A",
+   "box": [
+    182.65,
+    204.85,
+    92.39,
+    94.99,
+    6.4,
+    32.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "saddle lip",
+   "only": "A",
+   "box": [
+    182.65,
+    204.85,
+    99.01,
+    101.61,
+    6.4,
+    32.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "saddle lip",
+   "only": "A",
+   "box": [
+    211.65,
+    233.86,
+    110.39,
+    112.99,
+    6.4,
+    32.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "saddle lip",
+   "only": "A",
+   "box": [
+    211.65,
+    233.86,
+    117.01,
+    119.61,
+    6.4,
+    32.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    191.47,
+    220.09,
+    29.51,
+    56.49,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    192.39,
+    47.46,
+    74.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    189.88,
+    221.4,
+    65.46,
+    92.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    192.39,
+    83.46,
+    110.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    221.4,
+    101.46,
+    128.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    160.88,
+    192.39,
+    119.46,
+    146.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    189.88,
+    221.4,
+    137.46,
+    164.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    176.13,
+    184.97,
+    30.4,
+    39.6,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    168.03,
+    176.87,
+    30.4,
+    39.6,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    191.47,
+    204.24,
+    34.56,
+    47.34,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.73,
+    213.97,
+    29.51,
+    40.11,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.73,
+    213.97,
+    45.89,
+    56.49,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    207.31,
+    220.09,
+    36.62,
+    49.38,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    202.31,
+    212.91,
+    36.88,
+    49.12,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    160.88,
+    176.81,
+    56.62,
+    66.64,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    184.47,
+    47.46,
+    58.06,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    184.47,
+    63.94,
+    74.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    182.37,
+    192.39,
+    53.03,
+    68.97,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    189.88,
+    205.81,
+    73.47,
+    84.64,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    213.47,
+    65.46,
+    76.06,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    213.47,
+    81.94,
+    92.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    210.22,
+    221.4,
+    71.03,
+    86.97,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    160.88,
+    176.81,
+    92.61,
+    102.64,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    184.47,
+    83.46,
+    94.06,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    184.47,
+    99.94,
+    110.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    182.37,
+    192.39,
+    89.03,
+    104.97,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    189.88,
+    205.81,
+    110.61,
+    120.64,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    213.47,
+    101.46,
+    112.06,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    213.47,
+    117.94,
+    128.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    211.37,
+    221.4,
+    107.03,
+    122.97,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    160.88,
+    176.81,
+    127.47,
+    138.65,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    184.47,
+    119.46,
+    130.06,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    172.23,
+    184.47,
+    135.94,
+    146.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    181.22,
+    192.39,
+    125.03,
+    140.97,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    189.88,
+    205.81,
+    145.47,
+    156.65,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    213.47,
+    137.46,
+    148.06,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    201.23,
+    213.47,
+    153.94,
+    164.54,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    210.22,
+    221.4,
+    143.03,
+    158.97,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    196.62,
+    213.62,
+    -1.4,
+    3.1,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    241.75,
+    258.75,
+    -1.4,
+    3.1,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    286.88,
+    303.88,
+    -1.4,
+    3.1,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    275.5,
+    292.5,
+    239.9,
+    244.4,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    311.5,
+    328.5,
+    239.9,
+    244.4,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    213.93,
+    222.32,
+    -1.4,
+    7.3,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    233.05,
+    241.45,
+    -1.4,
+    7.3,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    278.18,
+    286.57,
+    -1.4,
+    7.3,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    266.8,
+    275.2,
+    235.7,
+    244.4,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    302.8,
+    311.2,
+    235.7,
+    244.4,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    196.62,
+    213.62,
+    -0.1,
+    4.5,
+    30.9,
+    37.4
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    196.62,
+    213.62,
+    238.5,
+    243.1,
+    30.9,
+    37.4
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    286.88,
+    303.88,
+    -0.1,
+    4.5,
+    30.9,
+    37.4
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "pan catch pocket",
+   "only": null,
+   "box": [
+    286.88,
+    303.88,
+    238.5,
+    243.1,
+    30.9,
+    37.4
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    158.8,
+    163.1,
+    43.5,
+    60.5,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    158.6,
+    167.3,
+    60.8,
+    69.2,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    158.8,
+    163.1,
+    115.5,
+    132.5,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    158.6,
+    167.3,
+    106.8,
+    115.2,
+    38.8,
+    47.2
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    337.4,
+    341.7,
+    11.5,
+    28.5,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    337.4,
+    341.7,
+    217.5,
+    234.5,
+    39.1,
+    45.9
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    35.7,
+    50.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    53.7,
+    68.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    71.7,
+    86.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    89.7,
+    104.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    107.7,
+    122.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    125.7,
+    140.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    233.5,
+    243.8,
+    143.7,
+    158.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    35.7,
+    50.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    53.7,
+    68.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    71.7,
+    86.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    89.7,
+    104.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    107.7,
+    122.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    125.7,
+    140.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "strap snap tab",
+   "only": null,
+   "box": [
+    333.2,
+    343.1,
+    143.7,
+    158.3,
+    34.7,
+    58.0
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "relay cavity web",
+   "only": "A",
+   "box": [
+    194.35,
+    214.25,
+    35.0,
+    51.0,
+    31.5,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    284.2,
+    292.8,
+    5.1,
+    12.3,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    270.9,
+    278.1,
+    159.5,
+    168.1,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    182.2,
+    190.8,
+    187.4,
+    194.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    228.2,
+    236.8,
+    187.4,
+    194.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    270.9,
+    278.1,
+    17.7,
+    26.3,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    298.9,
+    306.1,
+    17.7,
+    26.3,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    298.9,
+    306.1,
+    159.7,
+    168.3,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    298.9,
+    306.1,
+    225.7,
+    234.3,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    164.7,
+    173.3,
+    187.4,
+    194.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    253.7,
+    262.3,
+    187.4,
+    194.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    184.1,
+    188.9,
+    215.4,
+    222.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    207.1,
+    211.9,
+    215.4,
+    222.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    230.1,
+    234.9,
+    215.4,
+    222.6,
+    36.2,
+    57.3
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "lug pocket wall",
+   "only": "A",
+   "box": [
+    185.1,
+    187.9,
+    217.8,
+    244.59,
+    53.7,
+    59.8
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "lug pocket wall",
+   "only": "A",
+   "box": [
+    208.1,
+    210.9,
+    217.8,
+    244.59,
+    53.7,
+    59.8
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "lug pocket wall",
+   "only": "A",
+   "box": [
+    231.1,
+    233.9,
+    217.8,
+    244.59,
+    53.7,
+    59.8
+   ]
+  },
+  {
+   "part": "Power_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    196.93,
+    213.32,
+    1.95,
+    7.45,
+    24.0,
+    36.1
+   ]
+  },
+  {
+   "part": "Power_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    196.93,
+    213.32,
+    235.55,
+    241.05,
+    24.0,
+    36.1
+   ]
+  },
+  {
+   "part": "Power_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    287.18,
+    303.57,
+    1.95,
+    7.45,
+    24.0,
+    36.1
+   ]
+  },
+  {
+   "part": "Power_Pan_PA12_printed",
+   "key": "pan snap tongue",
+   "only": null,
+   "box": [
+    287.18,
+    303.57,
+    235.55,
+    241.05,
+    24.0,
+    36.1
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    154.15,
+    159.75,
+    43.8,
+    60.2,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    154.15,
+    158.35,
+    61.1,
+    68.9,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    154.15,
+    159.75,
+    115.8,
+    132.2,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    154.15,
+    158.35,
+    107.1,
+    114.9,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    340.75,
+    346.35,
+    11.8,
+    28.2,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    340.75,
+    346.35,
+    217.8,
+    234.2,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    196.93,
+    213.32,
+    -5.85,
+    -0.25,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    242.05,
+    258.45,
+    -5.85,
+    -0.25,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    287.18,
+    303.57,
+    -5.85,
+    -0.25,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    275.8,
+    292.2,
+    243.25,
+    248.85,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    311.8,
+    328.2,
+    243.25,
+    248.85,
+    39.4,
+    51.5
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    214.22,
+    222.03,
+    -5.85,
+    -1.65,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    233.35,
+    241.15,
+    -5.85,
+    -1.65,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    278.48,
+    286.27,
+    -5.85,
+    -1.65,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    267.1,
+    274.9,
+    244.65,
+    248.85,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    303.1,
+    310.9,
+    244.65,
+    248.85,
+    39.1,
+    46.9
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "notch at corner",
+   "only": null,
+   "box": [
+    164.2,
+    185.8,
+    239.9,
+    252.1,
+    39.4,
+    70.4
+   ]
+  },
+  {
+   "part": "Power_Cover_PA12_printed",
+   "key": "label",
+   "only": null,
+   "box": [
+    154.25,
+    346.25,
+    -5.75,
+    248.75,
+    80.7,
+    82.2
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    37.5,
+    54.5,
+    -175.4,
+    -170.4,
+    5.6,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    37.5,
+    54.5,
+    -87.6,
+    -82.6,
+    5.6,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    129.5,
+    146.5,
+    -175.4,
+    -170.4,
+    5.6,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover catch pocket",
+   "only": null,
+   "box": [
+    129.5,
+    146.5,
+    -87.6,
+    -82.6,
+    5.6,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    28.8,
+    37.2,
+    -175.4,
+    -166.7,
+    3.8,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    146.8,
+    155.2,
+    -175.4,
+    -166.7,
+    3.8,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "cover screw insert",
+   "only": null,
+   "box": [
+    28.8,
+    37.2,
+    -91.3,
+    -82.6,
+    3.8,
+    12.1
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    21.7,
+    36.3,
+    -163.7,
+    -154.4,
+    3.7,
+    42.0
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    61.7,
+    76.3,
+    -163.7,
+    -154.4,
+    3.7,
+    42.0
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    21.7,
+    36.3,
+    -133.6,
+    -124.3,
+    3.7,
+    42.0
+   ]
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "key": "bar snap tab",
+   "only": null,
+   "box": [
+    61.7,
+    76.3,
+    -133.6,
+    -124.3,
+    3.7,
+    42.0
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    37.8,
+    54.2,
+    -179.85,
+    -174.25,
+    6.4,
+    18.5
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    129.8,
+    146.2,
+    -179.85,
+    -174.25,
+    6.4,
+    18.5
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    37.8,
+    54.2,
+    -83.75,
+    -78.15,
+    6.4,
+    18.5
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover snap tongue",
+   "only": null,
+   "box": [
+    129.8,
+    146.2,
+    -83.75,
+    -78.15,
+    6.4,
+    18.5
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    29.1,
+    36.9,
+    -179.85,
+    -175.65,
+    4.1,
+    11.9
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    147.1,
+    154.9,
+    -179.85,
+    -175.65,
+    4.1,
+    11.9
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "cover screw hole",
+   "only": null,
+   "box": [
+    29.1,
+    36.9,
+    -82.35,
+    -78.15,
+    4.1,
+    11.9
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "notch at corner",
+   "only": null,
+   "box": [
+    179.9,
+    192.1,
+    -174.5,
+    -163.5,
+    6.4,
+    27.53
+   ]
+  },
+  {
+   "part": "BattRelay_Cover_PA12_printed",
+   "key": "label",
+   "only": null,
+   "box": [
+    -4.75,
+    188.75,
+    -179.75,
+    -78.25,
+    52.9,
+    54.4
+   ]
+  }
+ ],
+ "strip_rail": {
+  "z": [
+   31.299999999999997,
+   35.01
+  ],
+  "gap": 0.0
+ },
+ "strip_hold": {
+  "BUS1": {
+   "pads_z": [
+    [
+     5.5,
+     8.28
+    ],
+    [
+     22.13,
+     31.3
+    ]
+   ],
+   "kerb": {
+    "x": [
+     18.0,
+     20.0
+    ],
+    "y": [
+     [
+      25.1,
+      124.5
+     ]
+    ],
+    "z": [
+     4.6,
+     7.9
+    ]
+   },
+   "top_lips_y": [
+    [
+     17.02,
+     23.02
+    ],
+    [
+     34.85,
+     37.9
+    ],
+    [
+     44.2,
+     47.25
+    ],
+    [
+     53.55,
+     56.6
+    ],
+    [
+     62.9,
+     65.95
+    ],
+    [
+     72.25,
+     75.3
+    ],
+    [
+     81.6,
+     84.65
+    ],
+    [
+     90.95,
+     94.0
+    ],
+    [
+     100.3,
+     103.35
+    ],
+    [
+     109.65,
+     112.7
+    ],
+    [
+     119.0,
+     123.0
+    ]
+   ],
+   "front_stop": {
+    "y": 11.5,
+    "z": [
+     16.95,
+     18.95
+    ]
+   },
+   "rear_hook": {
+    "catch_y": 124.5,
+    "tooth_z": [
+     29.3,
+     31.7
+    ],
+    "arm_mm": 20.0,
+    "t": 2.5,
+    "w": 4.2,
+    "deflection_mm": 2.4,
+    "strain_pct": 2.25,
+    "limit_pct": 2.6,
+    "lift_room": 4.3,
+    "push_N": 8.4
+   }
+  },
+  "BUS2": {
+   "pads_z": [
+    [
+     5.5,
+     8.28
+    ],
+    [
+     22.13,
+     31.3
+    ]
+   ],
+   "kerb": {
+    "x": [
+     36.0,
+     38.0
+    ],
+    "y": [
+     [
+      20.6,
+      108.35
+     ]
+    ],
+    "z": [
+     4.6,
+     7.9
+    ]
+   },
+   "top_lips_y": [
+    [
+     21.83,
+     27.83
+    ],
+    [
+     34.85,
+     37.9
+    ],
+    [
+     44.2,
+     47.25
+    ],
+    [
+     53.55,
+     56.6
+    ],
+    [
+     62.9,
+     65.95
+    ],
+    [
+     72.25,
+     75.3
+    ],
+    [
+     81.6,
+     84.65
+    ],
+    [
+     90.95,
+     94.0
+    ],
+    [
+     100.3,
+     103.35
+    ],
+    [
+     109.65,
+     112.7
+    ],
+    [
+     119.0,
+     122.05
+    ],
+    [
+     130.72,
+     136.72
+    ]
+   ],
+   "front_stop": {
+    "y": 21.1,
+    "z": [
+     16.95,
+     18.95
+    ]
+   },
+   "rear_hook": {
+    "catch_y": 140.6,
+    "tooth_z": [
+     29.3,
+     31.7
+    ],
+    "arm_mm": 20.0,
+    "t": 2.5,
+    "w": 4.2,
+    "deflection_mm": 2.4,
+    "strain_pct": 2.25,
+    "limit_pct": 2.6,
+    "lift_room": 4.3,
+    "push_N": 8.4
+   }
+  }
+ },
+ "cavity_islands_cut": {
+  "LOGIC": [],
+  "POWER": []
+ },
+ "cavity_strips_cut": {
+  "LOGIC": [
+   [
+    37.5,
+    41.15,
+    6.4,
+    7.5,
+    29.1,
+    34.3
+   ],
+   [
+    41.15,
+    42.95,
+    6.4,
+    7.75,
+    29.1,
+    34.3
+   ],
+   [
+    37.5,
+    41.25,
+    6.4,
+    7.15,
+    113.25,
+    118.45
+   ],
+   [
+    41.25,
+    42.95,
+    6.4,
+    7.65,
+    113.25,
+    118.45
+   ],
+   [
+    37.5,
+    41.25,
+    6.4,
+    7.15,
+    38.45,
+    43.65
+   ],
+   [
+    41.25,
+    42.95,
+    6.4,
+    7.65,
+    38.45,
+    43.65
+   ],
+   [
+    37.5,
+    41.25,
+    6.4,
+    7.15,
+    47.8,
+    53.0
+   ],
+   [
+    41.25,
+    42.95,
+    6.4,
+    7.65,
+    47.8,
+    53.0
+   ],
+   [
+    37.5,
+    41.25,
+    6.4,
+    7.15,
+    57.15,
+    62.35
+   ],
+   [
+    41.25,
+    42.95,
+    6.4,
+    7.65,
+    57.15,
+    62.35
+   ],
+   [
+    37.5,
+    41.25,
+    6.4,
+    7.15,
+    66.5,
+    71.7
+   ],
+   [
+    41.25,
+    42.95,
+    6.4,
+    7.65,
+    66.5,
+    71.7
+   ],
+   [
+    37.5,
+    41.25,
+    6.4,
+    7.15,
+    75.85,
+    81.05
+   ],
+   [
+    41.25,
+    42.95,
+    6.4,
+    7.65,
+    75.85,
+    81.05
+   ],
+   [
+    37.5,
+    41.15,
+    6.4,
+    7.5,
+    85.2,
+    90.4
+   ],
+   [
+    41.15,
+    42.95,
+    6.4,
+    7.75,
+    85.2,
+    90.4
+   ],
+   [
+    37.5,
+    41.15,
+    6.4,
+    7.5,
+    94.55,
+    99.75
+   ],
+   [
+    41.15,
+    42.95,
+    6.4,
+    7.75,
+    94.55,
+    99.75
+   ],
+   [
+    37.5,
+    41.15,
+    6.4,
+    7.5,
+    103.9,
+    109.1
+   ],
+   [
+    41.15,
+    42.95,
+    6.4,
+    7.75,
+    103.9,
+    109.1
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    130.57,
+    136.51
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    130.95,
+    135.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    138.57,
+    143.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    143.05,
+    143.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    138.95,
+    143.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    10.57,
+    16.51
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    10.95,
+    15.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    18.57,
+    23.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    23.05,
+    23.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    18.95,
+    23.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    40.57,
+    46.51
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    40.95,
+    45.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    48.57,
+    53.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    53.05,
+    53.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    48.95,
+    53.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    70.57,
+    76.51
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    70.95,
+    75.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    78.57,
+    83.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    83.05,
+    83.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    78.95,
+    83.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    100.57,
+    106.51
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    100.95,
+    105.05
+   ],
+   [
+    37.5,
+    41.3,
+    82.17,
+    83.15,
+    108.57,
+    113.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    113.05,
+    113.8
+   ],
+   [
+    41.3,
+    42.95,
+    82.17,
+    83.15,
+    108.95,
+    113.05
+   ]
+  ],
+  "POWER": []
+ },
+ "groove_joins": [
+  [
+   7.5,
+   11.4,
+   29.1,
+   34.3,
+   37.5,
+   41.15,
+   1.1
+  ],
+  [
+   7.75,
+   11.15,
+   29.1,
+   34.3,
+   41.15,
+   42.95,
+   1.35
+  ],
+  [
+   7.15,
+   11.75,
+   113.25,
+   118.45,
+   37.5,
+   41.25,
+   0.75
+  ],
+  [
+   7.65,
+   11.25,
+   113.25,
+   118.45,
+   41.25,
+   42.95,
+   1.25
+  ],
+  [
+   7.15,
+   11.75,
+   38.45,
+   43.65,
+   37.5,
+   41.25,
+   0.75
+  ],
+  [
+   7.65,
+   11.25,
+   38.45,
+   43.65,
+   41.25,
+   42.95,
+   1.25
+  ],
+  [
+   7.15,
+   11.75,
+   47.8,
+   53.0,
+   37.5,
+   41.25,
+   0.75
+  ],
+  [
+   7.65,
+   11.25,
+   47.8,
+   53.0,
+   41.25,
+   42.95,
+   1.25
+  ],
+  [
+   7.15,
+   11.75,
+   57.15,
+   62.35,
+   37.5,
+   41.25,
+   0.75
+  ],
+  [
+   7.65,
+   11.25,
+   57.15,
+   62.35,
+   41.25,
+   42.95,
+   1.25
+  ],
+  [
+   7.15,
+   11.75,
+   66.5,
+   71.7,
+   37.5,
+   41.25,
+   0.75
+  ],
+  [
+   7.65,
+   11.25,
+   66.5,
+   71.7,
+   41.25,
+   42.95,
+   1.25
+  ],
+  [
+   7.15,
+   11.75,
+   75.85,
+   81.05,
+   37.5,
+   41.25,
+   0.75
+  ],
+  [
+   7.65,
+   11.25,
+   75.85,
+   81.05,
+   41.25,
+   42.95,
+   1.25
+  ],
+  [
+   7.5,
+   11.4,
+   85.2,
+   90.4,
+   37.5,
+   41.15,
+   1.1
+  ],
+  [
+   7.75,
+   11.15,
+   85.2,
+   90.4,
+   41.15,
+   42.95,
+   1.35
+  ],
+  [
+   7.5,
+   11.4,
+   94.55,
+   99.75,
+   37.5,
+   41.15,
+   1.1
+  ],
+  [
+   7.75,
+   11.15,
+   94.55,
+   99.75,
+   41.15,
+   42.95,
+   1.35
+  ],
+  [
+   7.5,
+   11.4,
+   103.9,
+   109.1,
+   37.5,
+   41.15,
+   1.1
+  ],
+  [
+   7.75,
+   11.15,
+   103.9,
+   109.1,
+   41.15,
+   42.95,
+   1.35
+  ],
+  [
+   73.93,
+   82.17,
+   130.57,
+   136.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   130.95,
+   135.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   138.57,
+   144.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   138.95,
+   143.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   10.57,
+   16.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   10.95,
+   15.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   18.57,
+   24.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   18.95,
+   23.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   40.57,
+   46.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   40.95,
+   45.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   48.57,
+   54.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   48.95,
+   53.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   70.57,
+   76.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   70.95,
+   75.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   78.57,
+   84.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   78.95,
+   83.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   100.57,
+   106.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   100.95,
+   105.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   108.57,
+   114.51,
+   37.5,
+   41.3,
+   0.98
+  ],
+  [
+   73.93,
+   82.17,
+   108.95,
+   113.05,
+   41.3,
+   42.95,
+   0.98
+  ],
+  [
+   154.3,
+   173.3,
+   35.6,
+   50.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   154.3,
+   173.3,
+   53.6,
+   68.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   154.3,
+   173.3,
+   71.6,
+   86.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   154.3,
+   173.3,
+   89.6,
+   104.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   154.3,
+   173.3,
+   107.6,
+   122.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   154.3,
+   173.3,
+   125.6,
+   140.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   154.3,
+   173.3,
+   143.6,
+   158.4,
+   31.0,
+   36.45,
+   0.8
+  ],
+  [
+   7.03,
+   22.97,
+   198.1,
+   211.9,
+   31.0,
+   36.45,
+   0.63
+  ]
+ ],
+ "guide_walls_redundant": {
+  "LOGIC": 3,
+  "POWER": 0
+ },
+ "guide_walls_joined": {
+  "LOGIC": 38
+ },
+ "guide_walls_lone_slanted_dropped": {
+  "LOGIC": [
+   [
+    50.8,
+    29.4
+   ]
+  ]
+ },
+ "micro_87a_join": [
+  [
+   "K-HL",
+   1.2
+  ],
+  [
+   "K-HR",
+   1.2
+  ],
+  [
+   "K-HORN",
+   1.2
+  ],
+  [
+   "K-ACC",
+   1.2
+  ],
+  [
+   "K-EPS-EN",
+   1.2
+  ],
+  [
+   "K-ON",
+   1.2
+  ],
+  [
+   "SPARE",
+   1.2
+  ],
+  [
+   "K-POD",
+   1.2
+  ]
+ ],
+ "micro_underdeck_strip_cut": [
+  [
+   "K-HL",
+   16.51,
+   18.1
+  ],
+  [
+   "K-HR",
+   46.51,
+   48.1
+  ],
+  [
+   "K-HORN",
+   76.51,
+   78.1
+  ],
+  [
+   "K-ETB",
+   106.51,
+   108.1
+  ],
+  [
+   "K-ACC",
+   136.51,
+   138.1
+  ],
+  [
+   "K-EPS-EN",
+   16.51,
+   18.1
+  ],
+  [
+   "K-ON",
+   46.51,
+   48.1
+  ],
+  [
+   "K-DRL",
+   76.51,
+   78.1
+  ],
+  [
+   "SPARE",
+   106.51,
+   108.1
+  ],
+  [
+   "K-POD",
+   136.51,
+   138.1
+  ]
+ ],
+ "edge_break": {
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": {
+   "d": 0.3,
+   "bodies": 2,
+   "failed": 0
+  },
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  },
+  "Power_BarNeg_CuC110_25x6p35_L105": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  },
+  "BattRelay_Bar_Power_CuC110_25x6p35": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  },
+  "BattRelay_Pad_Out_CuC110_25p4x3p2": {
+   "d": 0.3,
+   "bodies": 1,
+   "failed": 0
+  }
+ },
+ "pem_nuts": {
+  "S-M4-2ZI": 19,
+  "SS-M5-2ZI": 2
+ },
+ "pan_exits_joined": [
+  "Logic_y 9.2-9.4",
+  "Logic_y 9.4-16.7",
+  "Power_terminal R6 30 - exit 124.0"
+ ],
+ "logic_group_walls": [
+  [
+   51.22,
+   53.22,
+   5.94,
+   152.0,
+   13.3
+  ],
+  [
+   68.43,
+   70.43,
+   5.94,
+   152.0,
+   13.3
+  ]
+ ],
+ "pan_terminal_relief": [
+  {
+   "box": "LOGIC",
+   "cav": "M10 86",
+   "wall": "+x",
+   "kind": "notch",
+   "need": 0.95,
+   "z": [
+    40.8,
+    42.5
+   ],
+   "width": 6.4
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M6 86",
+   "wall": "+x",
+   "kind": "notch",
+   "need": 0.95,
+   "z": [
+    40.8,
+    42.5
+   ],
+   "width": 6.4
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M7 86",
+   "wall": "+x",
+   "kind": "notch",
+   "need": 0.95,
+   "z": [
+    40.8,
+    42.5
+   ],
+   "width": 6.4
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M8 86",
+   "wall": "+x",
+   "kind": "notch",
+   "need": 0.95,
+   "z": [
+    40.8,
+    42.5
+   ],
+   "width": 6.4
+  },
+  {
+   "box": "LOGIC",
+   "cav": "M9 86",
+   "wall": "+x",
+   "kind": "notch",
+   "need": 0.95,
+   "z": [
+    40.8,
+    42.5
+   ],
+   "width": 6.4
+  },
+  {
+   "box": "POWER",
+   "cav": "R2 30",
+   "wall": "-x",
+   "kind": "notch",
+   "need": 3.07,
+   "z": [
+    22.83,
+    36.0
+   ],
+   "width": 6.92
+  },
+  {
+   "box": "POWER",
+   "cav": "R4 30",
+   "wall": "-x",
+   "kind": "notch",
+   "need": 3.07,
+   "z": [
+    22.83,
+    36.0
+   ],
+   "width": 6.92
+  },
+  {
+   "box": "POWER",
+   "cav": "R6 30",
+   "wall": "-x",
+   "kind": "notch",
+   "need": 3.07,
+   "z": [
+    22.82,
+    36.0
+   ],
+   "width": 8.82
+  }
+ ],
+ "straps": {
+  "z_bl": 14.0,
+  "lug_palm_underside": 12.0,
+  "top": [
+   51.5,
+   54.5
+  ],
+  "z_d": 32.0,
+  "z_t": 52.5,
+  "numbers": {
+   "R_strap_uohm_20C": 24.5,
+   "R_strap_uohm_95C": 31.8,
+   "R_old_conductor_uohm_20C": 58.8,
+   "joints": {
+    "strap": "ear -> strap, strap -> lug: two clamped copper faces, no thread in the path",
+    "old": "ear -> pad, pad -> brass, brass -> lug (3) + the set-screw thread in parallel"
+   },
+   "per_position": {
+    "HTR": {
+     "amps": 40,
+     "awg": 8,
+     "strap_W": 0.051,
+     "old_conductor_W": 0.108,
+     "strap_W_per_m": 0.84,
+     "neck_W_per_m": 1.7,
+     "rise_K_no_end_cooling": 4.1,
+     "worst_strap_C": 89.1
+    },
+    "EFI": {
+     "amps": 30,
+     "awg": 12,
+     "strap_W": 0.029,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "FAN": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.029,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "FAN2": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.029,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "BUS1": {
+     "amps": 50,
+     "awg": 8,
+     "strap_W": 0.079,
+     "old_conductor_W": 0.169,
+     "strap_W_per_m": 1.31,
+     "neck_W_per_m": 2.65,
+     "rise_K_no_end_cooling": 6.3,
+     "worst_strap_C": 91.3
+    },
+    "RTR": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.029,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "AM1": {
+     "amps": 40,
+     "awg": 8,
+     "strap_W": 0.051,
+     "old_conductor_W": 0.108,
+     "strap_W_per_m": 0.84,
+     "neck_W_per_m": 1.7,
+     "rise_K_no_end_cooling": 4.1,
+     "worst_strap_C": 89.1
+    },
+    "AM2": {
+     "amps": 30,
+     "awg": 10,
+     "strap_W": 0.029,
+     "old_conductor_W": 0.061,
+     "strap_W_per_m": 0.47,
+     "neck_W_per_m": 0.95,
+     "rise_K_no_end_cooling": 2.3,
+     "worst_strap_C": 87.3
+    },
+    "JB1": {
+     "amps": 60,
+     "awg": 6,
+     "strap_W": 0.114,
+     "old_conductor_W": 0.243,
+     "strap_W_per_m": 1.88,
+     "neck_W_per_m": 3.82,
+     "rise_K_no_end_cooling": 9.1,
+     "worst_strap_C": 94.1
+    },
+    "EPS": {
+     "amps": 50,
+     "awg": 8,
+     "strap_W": 0.079,
+     "old_conductor_W": 0.169,
+     "strap_W_per_m": 1.31,
+     "neck_W_per_m": 2.65,
+     "rise_K_no_end_cooling": 6.3,
+     "worst_strap_C": 91.3
+    }
+   },
+   "bolt": {
+    "T_Nm": 4.0,
+    "preload_N": 4000,
+    "thread_share_Nm": 2.06,
+    "head_share_Nm": 1.98,
+    "nut_reaction_Nm": 2.06,
+    "stud_torque_out_al_Nm": 3.5,
+    "margin_vs_aluminium": 1.7,
+    "note": "lug end: the FHS stud reacts the thread share of the nut torque; PEM publishes no FH / FHS copper figure, so the margin is against its 1.6 mm 5052 aluminium torque-out (softer than C110) - first-article check on the drawing. Top end: the DIN 934 nut is held by the printed holder, the bolt head share goes into the ear"
+   }
+  },
+  "stud": "FHS-M5-12",
+  "top_nut": "RS 527-268",
+  "positions": 14
+ },
+ "saddle_vs_terminal": [
+  {
+   "relay": "R2",
+   "terminal_end_z": 23.33,
+   "bend_top_z": 27.98,
+   "straight_wire_mm": -4.66
+  },
+  {
+   "relay": "R4",
+   "terminal_end_z": 23.33,
+   "bend_top_z": 28.3,
+   "straight_wire_mm": -4.98
+  },
+  {
+   "relay": "R5",
+   "terminal_end_z": 23.33,
+   "bend_top_z": 28.3,
+   "straight_wire_mm": -4.98
+  }
+ ],
+ "saddle_top_cut": [
+  {
+   "relay": "R2",
+   "x_cut": 32.64,
+   "z_cut": 22.83,
+   "through": [
+    30.64,
+    22.83
+   ]
+  },
+  {
+   "relay": "R4",
+   "x_cut": 32.64,
+   "z_cut": 22.83,
+   "through": [
+    30.64,
+    22.83
+   ]
+  },
+  {
+   "relay": "R5",
+   "x_cut": 61.65,
+   "z_cut": 22.83,
+   "through": [
+    59.65,
+    22.83
+   ]
+  }
+ ],
+ "diagonal_joins_solid": {
+  "POWER": [
+   [
+    "R2 85",
+    "R2 87",
+    1.94,
+    35.5,
+    40.7
+   ],
+   [
+    "R2 85",
+    "R2 87",
+    1.94,
+    40.7,
+    44.4
+   ],
+   [
+    "R2 85",
+    "R2 87",
+    1.94,
+    44.4,
+    51.5
+   ],
+   [
+    "R2 86",
+    "R2 87",
+    1.94,
+    35.5,
+    40.7
+   ],
+   [
+    "R2 86",
+    "R2 87",
+    1.94,
+    40.7,
+    44.4
+   ],
+   [
+    "R2 86",
+    "R2 87",
+    1.94,
+    44.4,
+    51.5
+   ],
+   [
+    "R3 85",
+    "R3 87",
+    0.86,
+    35.5,
+    40.7
+   ],
+   [
+    "R3 85",
+    "R3 87",
+    0.86,
+    40.7,
+    44.4
+   ],
+   [
+    "R3 85",
+    "R3 87",
+    0.86,
+    44.4,
+    51.5
+   ],
+   [
+    "R3 86",
+    "R3 87",
+    0.86,
+    35.5,
+    40.7
+   ],
+   [
+    "R3 86",
+    "R3 87",
+    0.86,
+    40.7,
+    44.4
+   ],
+   [
+    "R3 86",
+    "R3 87",
+    0.86,
+    44.4,
+    51.5
+   ],
+   [
+    "R4 85",
+    "R4 87",
+    1.94,
+    35.5,
+    40.7
+   ],
+   [
+    "R4 85",
+    "R4 87",
+    1.94,
+    40.7,
+    44.4
+   ],
+   [
+    "R4 85",
+    "R4 87",
+    1.94,
+    44.4,
+    51.5
+   ],
+   [
+    "R4 86",
+    "R4 87",
+    1.94,
+    35.5,
+    40.7
+   ],
+   [
+    "R4 86",
+    "R4 87",
+    1.94,
+    40.7,
+    44.4
+   ],
+   [
+    "R4 86",
+    "R4 87",
+    1.94,
+    44.4,
+    51.5
+   ],
+   [
+    "R5 85",
+    "R5 87",
+    1.94,
+    35.5,
+    40.7
+   ],
+   [
+    "R5 85",
+    "R5 87",
+    1.94,
+    40.7,
+    44.4
+   ],
+   [
+    "R5 85",
+    "R5 87",
+    1.94,
+    44.4,
+    51.5
+   ],
+   [
+    "R5 86",
+    "R5 87",
+    1.94,
+    35.5,
+    40.7
+   ],
+   [
+    "R5 86",
+    "R5 87",
+    1.94,
+    40.7,
+    44.4
+   ],
+   [
+    "R5 86",
+    "R5 87",
+    1.94,
+    44.4,
+    51.5
+   ],
+   [
+    "R6 85",
+    "R6 87",
+    0.86,
+    35.5,
+    40.7
+   ],
+   [
+    "R6 85",
+    "R6 87",
+    0.86,
+    40.7,
+    44.4
+   ],
+   [
+    "R6 85",
+    "R6 87",
+    0.86,
+    44.4,
+    51.5
+   ],
+   [
+    "R6 86",
+    "R6 87",
+    0.86,
+    35.5,
+    40.7
+   ],
+   [
+    "R6 86",
+    "R6 87",
+    0.86,
+    40.7,
+    44.4
+   ],
+   [
+    "R6 86",
+    "R6 87",
+    0.86,
+    44.4,
+    51.5
+   ],
+   [
+    "R7 85",
+    "R7 87",
+    0.86,
+    35.5,
+    40.7
+   ],
+   [
+    "R7 85",
+    "R7 87",
+    0.86,
+    40.7,
+    44.4
+   ],
+   [
+    "R7 85",
+    "R7 87",
+    0.86,
+    44.4,
+    51.5
+   ],
+   [
+    "R7 86",
+    "R7 87",
+    0.86,
+    35.5,
+    40.7
+   ],
+   [
+    "R7 86",
+    "R7 87",
+    0.86,
+    40.7,
+    44.4
+   ],
+   [
+    "R7 86",
+    "R7 87",
+    0.86,
+    44.4,
+    51.5
+   ]
+  ]
+ },
+ "bridge_throats_opened": {
+  "POWER": [
+   [
+    "R3 30",
+    "R3 85",
+    0.585,
+    27.5,
+    35.5
+   ],
+   [
+    "R6 30",
+    "R6 85",
+    0.585,
+    27.5,
+    35.5
+   ],
+   [
+    "R7 30",
+    "R7 85",
+    0.585,
+    27.5,
+    35.5
+   ]
+  ]
+ },
+ "retainer_slots": [
+  [
+   "R1 30",
+   5.93,
+   6.89
+  ],
+  [
+   "R1 85",
+   2.65,
+   4.14
+  ],
+  [
+   "R1 86",
+   2.65,
+   4.14
+  ],
+  [
+   "R1 87",
+   5.93,
+   6.89
+  ],
+  [
+   "R1 87a",
+   3.21,
+   3.98
+  ]
+ ],
+ "retainers": {
+  "POWER": [
+   {
+    "relay": "R1",
+    "cavities": [
+     "R1 30",
+     "R1 85",
+     "R1 86",
+     "R1 87",
+     "R1 87a"
+    ],
+    "plate": [
+     31.47,
+     29.51,
+     29.12,
+     60.09,
+     56.49,
+     31.12
+    ],
+    "holes": [
+     [
+      "R1 30",
+      5.93
+     ],
+     [
+      "R1 85",
+      2.65
+     ],
+     [
+      "R1 86",
+      2.65
+     ],
+     [
+      "R1 87",
+      5.93
+     ],
+     [
+      "R1 87a",
+      3.21
+     ]
+    ],
+    "legs": [
+     [
+      32.22,
+      43.0
+     ],
+     [
+      59.34,
+      53.5
+     ]
+    ],
+    "vol_cm3": 1.68
+   }
+  ]
+ },
+ "strap_tabs": [
+  {
+   "row": "IN",
+   "name": "HTR",
+   "y": 43.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "IN",
+   "name": "EFI",
+   "y": 61.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "IN",
+   "name": "SP",
+   "y": 79.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "IN",
+   "name": "FAN",
+   "y": 97.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "IN",
+   "name": "FAN2",
+   "y": 115.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "IN",
+   "name": "SP",
+   "y": 133.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "IN",
+   "name": "SP",
+   "y": 151.0,
+   "arm": [
+    74.8,
+    79.1
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "BUS1",
+   "y": 43.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "RTR",
+   "y": 61.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "AM1",
+   "y": 79.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "AM2",
+   "y": 97.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "JB1",
+   "y": 115.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "EPS",
+   "y": 133.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  },
+  {
+   "row": "OUT",
+   "name": "SP",
+   "y": 151.0,
+   "arm": [
+    177.5,
+    181.8
+   ],
+   "arm_mm": 19.5,
+   "t": 4.3,
+   "strain_pct": 2.54,
+   "push_N": 82.0
+  }
+ ],
+ "bar_tabs": [
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    128.5,
+    10.0
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    115.8,
+    163.8
+   ],
+   "n": [
+    -1,
+    0
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    26.5,
+    192.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    72.5,
+    192.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    115.8,
+    22.0
+   ],
+   "n": [
+    -1,
+    0
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    141.2,
+    22.0
+   ],
+   "n": [
+    1,
+    0
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    141.2,
+    164.0
+   ],
+   "n": [
+    1,
+    0
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    141.2,
+    230.0
+   ],
+   "n": [
+    1,
+    0
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    9.0,
+    192.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    98.0,
+    192.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 6.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 11.2
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    26.5,
+    217.7
+   ],
+   "n": [
+    0,
+    1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 2.200000000000003,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 4.1
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    49.5,
+    217.7
+   ],
+   "n": [
+    0,
+    1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 2.200000000000003,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 4.1
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "at": [
+    72.5,
+    217.7
+   ],
+   "n": [
+    0,
+    1
+   ],
+   "arm_mm": 18.0,
+   "deflection_mm": 2.4,
+   "strain_pct": 2.44,
+   "limit_pct": 2.6,
+   "t": 2.2,
+   "w": 2.1999999999999886,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 4.1
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "at": [
+    29.0,
+    18.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 35.2,
+   "deflection_mm": 2.4,
+   "strain_pct": 1.16,
+   "limit_pct": 2.6,
+   "t": 4.0,
+   "w": 12.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 18.0
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "at": [
+    69.0,
+    18.3
+   ],
+   "n": [
+    0,
+    -1
+   ],
+   "arm_mm": 35.2,
+   "deflection_mm": 2.4,
+   "strain_pct": 1.16,
+   "limit_pct": 2.6,
+   "t": 4.0,
+   "w": 12.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 18.0
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "at": [
+    29.0,
+    43.7
+   ],
+   "n": [
+    0,
+    1
+   ],
+   "arm_mm": 35.2,
+   "deflection_mm": 2.4,
+   "strain_pct": 1.16,
+   "limit_pct": 2.6,
+   "t": 4.0,
+   "w": 12.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 18.0
+  },
+  {
+   "part": "BattRelay_Base_PA12_printed",
+   "at": [
+    69.0,
+    43.7
+   ],
+   "n": [
+    0,
+    1
+   ],
+   "arm_mm": 35.2,
+   "deflection_mm": 2.4,
+   "strain_pct": 1.16,
+   "limit_pct": 2.6,
+   "t": 4.0,
+   "w": 12.0,
+   "over": 2.0,
+   "hook_t": 2.5,
+   "gap": 0.0,
+   "push_N": 18.0
+  }
+ ],
+ "markup_1017": {
+  "pos_pockets": {
+   "lugs": [
+    178.0,
+    202.0
+   ],
+   "slot": 20.8,
+   "wall": 3.2,
+   "floor": 54.2,
+   "wall_top": 72.5,
+   "x": [
+    141.6,
+    181.79
+   ]
+  },
+  "neg_pocket_shared": [
+   {
+    "x": [
+     84.0,
+     102.0
+    ],
+    "gap": 0.59
+   }
+  ],
+  "neg_pockets": {
+   "walls": [
+    [
+     25.4,
+     27.6
+    ],
+    [
+     48.4,
+     50.6
+    ],
+    [
+     71.4,
+     73.6
+    ]
+   ],
+   "outer": [
+    4.6,
+    109.01
+   ],
+   "floor": 54.2,
+   "top": 59.5,
+   "y": [
+    218.1,
+    244.29
+   ]
+  },
+  "neg_front_wall": {
+   "y": [
+    177.5,
+    180.5
+   ],
+   "x": [
+    2.99,
+    110.5
+   ],
+   "top": 72.5,
+   "fillet": 2.0
+  },
+  "under_deck_ribs": {
+   "IN": {
+    "x": [
+     78.9,
+     103.7
+    ],
+    "ribs": [
+     [
+      34.0,
+      32.4,
+      36.6
+     ],
+     [
+      52.0,
+      49.4,
+      54.6
+     ],
+     [
+      70.0,
+      67.4,
+      72.6
+     ],
+     [
+      88.0,
+      85.4,
+      90.6
+     ],
+     [
+      106.0,
+      103.4,
+      108.6
+     ],
+     [
+      124.0,
+      121.4,
+      126.6
+     ],
+     [
+      142.0,
+      139.4,
+      144.6
+     ],
+     [
+      160.0,
+      157.4,
+      161.6
+     ]
+    ],
+    "t": 3.2,
+    "z": [
+     6.0,
+     32.0
+    ],
+    "palm_z": [
+     10.0,
+     13.7
+    ]
+   },
+   "OUT": {
+    "x": [
+     153.3,
+     173.9
+    ],
+    "ribs": [
+     [
+      34.0,
+      32.4,
+      36.6
+     ],
+     [
+      52.0,
+      49.4,
+      54.6
+     ],
+     [
+      70.0,
+      67.4,
+      72.6
+     ],
+     [
+      88.0,
+      85.4,
+      90.6
+     ],
+     [
+      106.0,
+      103.4,
+      108.1
+     ],
+     [
+      124.0,
+      121.9,
+      126.6
+     ],
+     [
+      142.0,
+      139.4,
+      144.6
+     ],
+     [
+      160.0,
+      157.4,
+      161.6
+     ]
+    ],
+    "t": 3.2,
+    "z": [
+     6.0,
+     32.0
+    ],
+    "palm_z": [
+     10.0,
+     13.7
+    ]
+   }
+  },
+  "battrelay": {
+   "pad": {
+    "x": [
+     61.5,
+     77.0
+    ],
+    "w": 25.4,
+    "t": 3.2,
+    "stock": "MECCANIXITY B0CGJC2S1L"
+   },
+   "out_bolt": 12.0,
+   "cradles": [
+    {
+     "lug": "feed",
+     "x": [
+      0.2,
+      7.6
+     ],
+     "trough": 8.0,
+     "floor": 38.9,
+     "wall_top": 43.7
+    },
+    {
+     "lug": "ami_out",
+     "x": [
+      77.4,
+      88.0
+     ],
+     "trough": 8.0,
+     "floor": 39.7,
+     "wall_top": 44.5
+    },
+    {
+     "lug": "pump",
+     "x": [
+      155.4,
+      162.45
+     ],
+     "trough": 8.0,
+     "floor": 39.7,
+     "wall_top": 44.5
+    }
+   ]
+  }
+ },
+ "terminals": {
+  "placed": {},
+  "missing": [
+   "no cad/vendor folder"
+  ]
+ },
+ "live_clearance": {
+  "strap_to_strap_min_mm": 3.0,
+  "bar_to_strap_min_mm": 17.05,
+  "input_lug_to_strap_min_mm": 13.72,
+  "under_deck_lug_to_lug_min_mm": 5.5,
+  "logic_strip_to_strip_mm": 9.2,
+  "logic_feed_lug_to_lug_mm": 103.58,
+  "battrelay_bar_to_pad_mm": 17.0,
+  "battrelay_relay_lug_to_lug_mm": 5.0,
+  "pan_to_nearest_live_power_mm": 0.6,
+  "strap_station_to_station_min_mm": 3.0,
+  "bus_neg_gnd_ring_to_lug_min_mm": 1.39,
+  "bus_pos_lug_to_lug_min_mm": 4.0,
+  "bus_neg_lug_to_lug_min_mm": 3.0,
+  "bus_neg_nut_to_nut_min_mm": 2.99,
+  "bus_neg_nut_to_barrier_mm": 0.99,
+  "bus_neg_to_pos_min_mm": 5.8,
+  "bus_pos_lug_to_out_strap_min_mm": 13.72,
+  "logic_jumper_lug_to_lug_min_mm": 2.6,
+  "logic_jumper_parts_to_printed_min_mm": 0.3,
+  "logic_jumper_parts_to_harness_min_mm": 1.14,
+  "logic_strip_to_printed_min_mm": 0.0,
+  "logic_bolt_to_other_strip_min_mm": 4.41,
+  "logic_pem_nut_to_other_strip_min_mm": 7.2,
+  "logic_bus1_to_bus2_min_mm": 3.13,
+  "logic_pan_rib_to_live_min_mm": 0.6,
+  "logic_base_to_live_min_mm": 0.0
+ },
+ "wire_to_printed_contact": [
+  [
+   "Power_Wire_neg",
+   "Power_Base_PA12_printed",
+   0.0
+  ]
+ ],
+ "printed_parts": {
+  "Logic_Base_PA12_printed": {
+   "size_mm": [
+    153.6,
+    183.6,
+    60.5
+   ],
+   "volume_cm3": 408.3,
+   "mass_g_pa12": 412.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Logic_Pan_PA12_printed": {
+   "size_mm": [
+    85.1,
+    174.1,
+    41.0
+   ],
+   "volume_cm3": 85.1,
+   "mass_g_pa12": 86.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Logic_Cover_PA12_printed": {
+   "size_mm": [
+    101.1,
+    192.5,
+    42.4
+   ],
+   "volume_cm3": 103.1,
+   "mass_g_pa12": 104.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Power_Retainer_R1_PA12_printed": {
+   "size_mm": [
+    30.8,
+    27.0,
+    8.9
+   ],
+   "volume_cm3": 1.3,
+   "mass_g_pa12": 1.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Power_Base_PA12_printed": {
+   "size_mm": [
+    213.8,
+    307.0,
+    72.5
+   ],
+   "volume_cm3": 826.6,
+   "mass_g_pa12": 835.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Power_NutHolder_PA12_printed": {
+   "size_mm": [
+    15.4,
+    13.6,
+    34.5
+   ],
+   "volume_cm3": 6.7,
+   "mass_g_pa12": 7.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Power_Pan_PA12_printed": {
+   "size_mm": [
+    173.6,
+    238.5,
+    34.5
+   ],
+   "volume_cm3": 158.9,
+   "mass_g_pa12": 160.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "Power_Cover_PA12_printed": {
+   "size_mm": [
+    192.0,
+    254.5,
+    42.3
+   ],
+   "volume_cm3": 198.9,
+   "mass_g_pa12": 201.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "BattRelay_Base_PA12_printed": {
+   "size_mm": [
+    228.0,
+    92.6,
+    44.5
+   ],
+   "volume_cm3": 190.4,
+   "mass_g_pa12": 192.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  },
+  "BattRelay_Cover_PA12_printed": {
+   "size_mm": [
+    193.5,
+    101.5,
+    47.5
+   ],
+   "volume_cm3": 107.5,
+   "mass_g_pa12": 109.0,
+   "bodies": 1,
+   "lumps": 1,
+   "shells": 1
+  }
+ },
+ "boxes_mm": {
+  "LOGIC": {
+   "L": 89.6,
+   "D": 181.0,
+   "H": 89.9,
+   "z_d": 38.5,
+   "z_t": 60.5,
+   "cover_top": 89.9,
+   "spine_x": 28.0
+  },
+  "POWER": {
+   "L": 180.5,
+   "D": 243.0,
+   "H": 81.8,
+   "z_d": 32.0,
+   "z_t": 52.5,
+   "cover_top": 81.8,
+   "in_y": 178.0
+  },
+  "BATTRELAY": {
+   "L": 184.0,
+   "D": 92.0,
+   "H": 54.0,
+   "L_with_tabs": 228.0,
+   "D_with_tabs": 92.0
+  }
+ },
+ "bar_metal": "CuC110",
+ "interference": [
+  [
+   "BattRelay_Base_PA12_printed",
+   "BattRelay_Relay_TE_HCR150_1416010-1",
+   0.9
+  ]
+ ],
+ "mass_g": {
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": 153.1,
+  "Power_Strap_Out_CuC110_15x3_C": 327.8,
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": 295.5,
+  "Power_BarNeg_CuC110_25x6p35_L105": 133.0,
+  "BattRelay_Bar_Power_CuC110_25x6p35": 49.2,
+  "BattRelay_Pad_Out_CuC110_25p4x3p2": 10.5
+ },
+ "exported": [
+  "Logic_Base_PA12_printed.step",
+  "Logic_Base_PA12_printed.stl",
+  "Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step",
+  "Logic_Pan_PA12_printed.step",
+  "Logic_Pan_PA12_printed.stl",
+  "Logic_Cover_PA12_printed.step",
+  "Logic_Cover_PA12_printed.stl",
+  "Power_Retainer_R1_PA12_printed.step",
+  "Power_Retainer_R1_PA12_printed.stl",
+  "Power_Base_PA12_printed.step",
+  "Power_Base_PA12_printed.stl",
+  "Power_Strap_Out_CuC110_15x3_C.step",
+  "Power_NutHolder_PA12_printed.step",
+  "Power_NutHolder_PA12_printed.stl",
+  "Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step",
+  "Power_BarNeg_CuC110_25x6p35_L105.step",
+  "Power_Pan_PA12_printed.step",
+  "Power_Pan_PA12_printed.stl",
+  "Power_Cover_PA12_printed.step",
+  "Power_Cover_PA12_printed.stl",
+  "BattRelay_Base_PA12_printed.step",
+  "BattRelay_Base_PA12_printed.stl",
+  "BattRelay_Bar_Power_CuC110_25x6p35.step",
+  "BattRelay_Pad_Out_CuC110_25p4x3p2.step",
+  "BattRelay_Cover_PA12_printed.step",
+  "BattRelay_Cover_PA12_printed.stl",
+  "ST185_fusebox_rev8_assembly.step",
+  "ST185_fusebox_rev8.f3d"
+ ],
+ "image_size": [
+  1800,
+  836
+ ]
+}

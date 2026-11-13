@@ -149,7 +149,7 @@ def _mat(r):
 _FB=None
 def fb_children():
     global _FB
-    if _FB is None: _FB=load_children('src/st185_fusebox_1015/ST185_fusebox_rev7_assembly.step')
+    if _FB is None: _FB=load_children('src/st185_fusebox_rev8/ST185_fusebox_rev8_assembly.step')   # rev 8 (Dan A15 b)
     return _FB
 def fusebox(box):
     ch=fb_children()
@@ -171,23 +171,40 @@ def fusebox(box):
                 if desc: it['desc']=desc
                 break
         items.append(it)
+    _tails_to_terminals(box, items, g)
     return items
-# 2026-10-18 buildability review: maps follow the rev 7 parts lists (POWER: cad/fusebox/rev7/fusebox-parts-power.csv, R155 C-straps;
-# LOGIC / BATTRELAY: cad/fusebox/). Keys are matched in order against "item|part number" - a longer key goes before a key it contains.
+def _tails_to_terminals(box, items, g):
+    """rev 8: the assembly STEP has no terminal bodies, only the harness wire tails at the cavities (<Box>_Harness_wires). Each
+    tail is drawn as the terminal item of the cavity it ends in (wiring_plan.json cavities: part per cavity), so the balloons and the
+    wire label sheets have something to point at."""
+    if box not in ('LOGIC','POWER') or any(it.get('shapes') for it in items if it['pn'] in ('42281-1','1-968849-1')): return
+    import json, fb_labels as L
+    px,py=L.S.PLACE.get(box,(0.0,0.0))
+    cav=[(e['x']+px,e['y']+py,e['part']) for e in json.load(open(L.PLAN,encoding='utf-8'))['cavities'] if e['box']==box]
+    byp={it['pn']:it for it in items}
+    for b in g(box.capitalize()+'_Harness_wires'):
+        bb=b.bounding_box(); top=[v for v in b.vertices() if v.Z>bb.max.Z-2.0] or list(b.vertices())
+        x=sum(v.X for v in top)/len(top); y=sum(v.Y for v in top)/len(top)
+        d,part=min(((((x-cx)**2+(y-cy)**2)**0.5,pt) for cx,cy,pt in cav), default=(1e9,None))
+        if d<4.0 and part in byp:
+            it=byp[part]; it.setdefault('shapes',[]).append(b); it['desc']=it['desc'].replace(' (NOT SHOWN)',''); it['tails']=True
+# Maps follow the rev 8 parts lists (cad/fusebox/rev8/fusebox-parts-*.csv, Dan A15 b 2026-11-12; first written 2026-10-18 for rev 7, R155 C-straps).
+# Rev 8: no heater relay R1 or ACPS fuse (A16 a: empty spares); the box wires (R1 a, TXL), the TE 320572 ground ring and the ATUM sleeve are
+# parts-list rows without a model body (not shown). Keys are matched in order against "item|part number" - a longer key goes before a key it contains.
 MAP={
  'POWER':{'Power Base':(['Power_Base'],'ST185-FB-101',None),'Power Pan':(['Power_Pan'],'ST185-FB-102',None),'Power Cover':(['Power_Cover'],'ST185-FB-103',None),
    'Retainer clip':(['Power_Retainer'],'ST185-FB-104','R1 RETAINER CLIP'),'POS bus bar':(['Power_Bar_Power','Power_BarNeg'],'ST185-FB-113/-114','POS BUS BAR L226 + NEG BAR L105'),
    'Output C-straps':(['Power_Strap_Out'],'ST185-FB-117','OUTPUT C-STRAP 15 x 3 (14 FROM 1 BAR)'),'FHS-M5-12':(['Power_Stud_PEM'],None,None),
    'Top-nut holder':(['Power_NutHolder'],'ST185-FB-118','C-STRAP TOP-NUT HOLDER, PA12 (1 PER STRAP)'),'RS 527-268':(['Power_Nut_DIN934'],None,'HEX NUT M5 DIN 934, TOP NUT IN ITS HOLDER'),
    'AMI-30':(['Power_Fuse_AMI_orange'],None,None),'AMI-40':(['Power_Fuse_AMI_ltgreen'],None,None),'AMI-50':(['Power_Fuse_AMI_red'],None,None),'AMI-60':(['Power_Fuse_AMI_yellow'],None,None),
-   'ATM-10':(['Power_Fuse_ATM'],None,None),'1-1414687-0':(['Power_Relay_TE_PowerB'],None,None),'1-1414147-0':(['Power_Relay_TE_F7'],None,'MAXI ISO F7 RELAY 680 OHM (k_efi/k_str/k_fan)'),
+   'ATM-10':(['Power_Fuse_ATM'],None,None),'1-1414687-0':(['Power_Relay_TE_PowerB'],None,None),'1-1414147-0':(['Power_Relay_TE_F7'],None,'MAXI ISO F7 RELAY 680 OHM (K-EFI, K-FAN)'),
    '1-1393304-0':('same',None,None),'280756-4':(['Power_Terminal_TE_280756'],None,None),'280755-4':(['Power_Terminal_TE_280755'],None,None),
    '87a receptacle':('same',None,None),'42281-1':(['Power_Terminal_TE_42281'],None,None),'62998-2':(['Power_Terminal_TE_62998'],None,None),
    '1-968851-1':(['Power_Terminal_TE_1-968851'],None,None),'1-968849-1':(['Power_Terminal_TE_1-968849'],None,None),
    'Klauke 2R5':(['Power_Lug_Klauke'],None,None),'Klauke 6R8':(['Power_Lug_BusPos','Power_Lug_BusNeg'],None,None),
    'RS 287-3921':(['Power_EarBolt'],None,'HEX BOLT M5 x 10, EAR (DOWN INTO THE TOP NUT)'),'RS 263-2205':(['Power_BarBolt'],None,'HEX BOLT M5 x 16 / M8 x 25, BAR STUDS'),
    'RS 190-276':('same',None,None),'RS 264-6432':(['Power_Nut_Keps','Power_LugNut'],None,'KEPS NUT M5 (BAR STUDS + LUG STUDS) / HEX NUT M8'),'RS 530-769':('same',None,None),
-   'EFC 10S00056':(['Power_Limiter'],None,None)},
+   'EFC 10S00056':(['Power_Limiter'],None,None),'320572':(None,None,'RING TERMINAL, K-ON COIL GROUND ON THE NEG BAR GND STUD')},
  'LOGIC':{'Logic Base':(['Logic_Base'],'ST185-FB-105',None),'Logic Pan':(['Logic_Pan'],'ST185-FB-106',None),'Logic Cover':(['Logic_Cover'],'ST185-FB-107',None),
    'Logic strips':(['Logic_Strip'],'ST185-FB-115/-116','LOGIC BUS STRIPS BUS1 + BUS2'),'S-M4-2ZI':(['Logic_Nut_PEM_S-M4'],None,None),'SS-M5-2ZI':(['Logic_Nut_PEM_SS-M5'],None,None),
    'ATM-20':(['Logic_Fuse_ATM_20A'],None,None),'ATM-2':(['Logic_Fuse_ATM_2A'],None,None),'ATM-5':(['Logic_Fuse_ATM_5A'],None,None),
@@ -233,7 +250,7 @@ def fb_power():
     base=[it['item'] for it in items if it['pn']=='ST185-FB-101']
     for s in st: s['base']=base+s['base']
     return dict(title='POWER FUSE BOX - ASSEMBLY',pn='ST185-FB-100P',items=items,stage_sheets=[st],bom_h=1.6,bom_cols=(8,8,40,74,30),
-      source=SRC+FB+'ST185_fusebox_rev7_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-103',)],open_label='TRIMETRIC - COVER REMOVED',
+      source=SRC+FB+'ST185_fusebox_rev8_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-103',)],open_label='TRIMETRIC - COVER REMOVED',
       revlog=os.path.join(REV7,'ST185-FB-100P.REVLOG.md'),
       notes=['OVERALL DIMENSIONS ONLY (REFERENCE). ITEMS MARKED (NOT SHOWN) ARE NOT MODELED; WIRES/HARNESS OMITTED FOR CLARITY.',
              'RELAY / FASTENER ITEMS THAT SHARE ONE MODEL BODY ARE BALLOONED ON THE FIRST ITEM OF THE GROUP.',
@@ -249,7 +266,7 @@ def fb_logic():
     st=_stages(items,plan); base=[it['item'] for it in items if it['pn']=='ST185-FB-105']
     for s in st: s['base']=base+s['base']
     return dict(title='LOGIC FUSE BOX - ASSEMBLY',pn='ST185-FB-100L',items=items,stage_sheets=[st],bom_h=1.6,bom_cols=(8,8,40,74,30),
-      source=SRC+FB+'ST185_fusebox_rev7_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-107',)],open_label='TRIMETRIC - COVER REMOVED',
+      source=SRC+FB+'ST185_fusebox_rev8_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-107',)],open_label='TRIMETRIC - COVER REMOVED',
       revlog=os.path.join(REV7,'ST185-FB-100L.REVLOG.md'),
       notes=['OVERALL DIMENSIONS ONLY (REFERENCE). ITEMS MARKED (NOT SHOWN) ARE NOT MODELED; WIRES/HARNESS OMITTED FOR CLARITY.',
              'RELAY / LUG / WIRE ITEMS THAT SHARE ONE MODEL BODY ARE BALLOONED ON THE FIRST ITEM OF THE GROUP (ALL 7 MICRO RELAYS SHARE ONE ENVELOPE).',
@@ -263,11 +280,11 @@ def fb_br():
     for s in st: s['base']=base+s['base']
     return dict(title='BATT RELAY BOX - ASSEMBLY',pn='ST185-FB-100B',items=items,stage_sheets=[st],bom_h=1.9,bom_cols=(8,8,40,74,30),
       revlog=os.path.join(REV7,'ST185-FB-100B.REVLOG.md'),
-      source=SRC+FB+'ST185_fusebox_rev7_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-109',)],open_label='TRIMETRIC - COVER REMOVED',
+      source=SRC+FB+'ST185_fusebox_rev8_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-109',)],open_label='TRIMETRIC - COVER REMOVED',
       notes=['OVERALL DIMENSIONS ONLY (REFERENCE). ITEMS MARKED (NOT SHOWN) ARE NOT MODELED; WIRES OMITTED FOR CLARITY.',
              'LUG / NUT / BOLT / LIMITER ITEMS THAT SHARE ONE MODEL BODY ARE BALLOONED ON THE FIRST ITEM OF THE GROUP.',
              'BAR AND PAD: PUSH DOWN PAST THE STANDING SNAP HOOKS (R157); BOTH ARE THEN BOLTED.'])
-FB='\\\\fusebox\\\\rev7\\\\'
+FB='\\\\fusebox\\\\rev8\\\\'
 ASM.update(fb_power=fb_power,fb_logic=fb_logic,fb_br=fb_br)
 
 def fuel_hanger():

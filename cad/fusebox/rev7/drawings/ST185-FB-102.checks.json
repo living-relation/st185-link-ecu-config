@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-102",
- "pdf_sha": "d69cf286300ef824",
+ "pdf_sha": "5acc1edb4ba05621",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -10,5 +10,10 @@
  ],
  "tol_block": "DIMENSIONS ARE IN MILLIMETERS\nTOLERANCES:\n  X     \u00b10.5      X.X  \u00b10.2\n  X.XX  \u00b10.05    ANGLES \u00b10.5\u00b0\nSURFACE FINISH Ra 3.2 \u00b5m\nINTERPRET PER ASME Y14.5-2018",
  "ok": true,
- "tangent_lines_trimetric": 26
+ "tangent_lines_trimetric": 23,
+ "rev_marks": {
+  "J": 1
+ },
+ "rev_marks_unplaced": [],
+ "rev_marks_accumulate": false
 }

@@ -2,13 +2,13 @@
 ribs and the wire radius runners are just floating", DECISIONS R101).
 Two checks, both must pass:
   S1  Fusion: every *_printed component of the selected boxes (POWER rev 7, LOGIC rev 7, battery relay block) has exactly one body,
-      one lump and one shell (cad/fusebox/rev7/fusebox_report.json "printed_parts" - written by build_fusion.build(rev=7); a union of
+      one lump and one shell (cad/fusebox/rev8/fusebox_report.json "printed_parts" - written by build_fusion.build(rev=8); a union of
       two pieces that do not touch stays ONE body with two lumps, so the body count alone cannot see it).
   S3  Not floating: every hanging feature the build lists (guide walls under the deck, POWER bend saddles) has at least
       spec.FLOAT_BACKING of its top face on solid printed material ("feature_support" after). A piece that touches the base only at
       its ends passes S1 / S2 but still bridges a gap; that is what Dan saw (his marks were 5-15 % backed). Features between that and
       fully backed are listed, not changed (Dan: "i like them as they are. just fix the floating pieces i mentioned").
-  S4  Walls > 1.95 mm and S5 features attached by >= 3 mm (R127, Dan 2026-10-15): read from cad/fusebox/rev7/wall_check.json, written
+  S4  Walls > 1.95 mm and S5 features attached by >= 3 mm (R127, Dan 2026-10-15): read from cad/fusebox/rev8/wall_check.json, written
       by cad/check_printed_walls.py (WSL, needs the STLs; CI has none). Fails when the file is missing or stale (a part's volume differs
       from the build report), when anything is found in the spots Dan marked and R127 fixed (MARKED), or when a part has more spots than
       its WALL_BASELINE. R128 (Dan 2026-10-16: "fix the ones you found as long as they don't alter the function and installability of
@@ -18,7 +18,7 @@ Two checks, both must pass:
       something is questionable or unclear, it should be flagged for change or approval."): each spot is classed by wall_classes.py.
       S4 / S5 FAIL on structural spots (the marked spots, attachments, legs / block under the deck, mount ears, outer skins, walls at
       the terminals, shell side walls) over the baseline, and on any marked-spot hit as before. Non-structural and questionable spots
-      are FLAGGED - printed as 'flag' lines and listed in cad/fusebox/rev7/WALL-FLAGS.md for Dan to change or approve - and never
+      are FLAGGED - printed as 'flag' lines and listed in cad/fusebox/rev8/WALL-FLAGS.md for Dan to change or approve - and never
       fail or vanish. wall_check.json must carry the classes (its flagged counts match this gate's own classing) and WALL-FLAGS.md
       must match, or the run fails as stale.
   S2  Mesh: when the exported STL files are on this PC (heavy CAD is gitignored; CI has none), each STL's triangles form one connected
@@ -38,18 +38,18 @@ sys.path.insert(0, HERE)
 import spec as S
 import wall_classes as WCL
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
-REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
+REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'fusebox_report.json')
 # selected parts (cad/README.md "Selected for build") -> folder of their STL: rev 7 POWER, LOGIC and battery relay block
 PARTS = {
-    'Power_Base_PA12_printed': 'rev7', 'Power_Pan_PA12_printed': 'rev7', 'Power_Cover_PA12_printed': 'rev7',
-    'Logic_Base_PA12_printed': 'rev7', 'Logic_Pan_PA12_printed': 'rev7', 'Logic_Cover_PA12_printed': 'rev7',
-    'BattRelay_Base_PA12_printed': 'rev7', 'BattRelay_Cover_PA12_printed': 'rev7',
-    'Power_NutHolder_PA12_printed': 'rev7',     # N37 (2026-10-19): the C-strap top-nut holder (one printed file; 14 per box)
+    'Power_Base_PA12_printed': 'rev8', 'Power_Pan_PA12_printed': 'rev8', 'Power_Cover_PA12_printed': 'rev8',
+    'Logic_Base_PA12_printed': 'rev8', 'Logic_Pan_PA12_printed': 'rev8', 'Logic_Cover_PA12_printed': 'rev8',
+    'BattRelay_Base_PA12_printed': 'rev8', 'BattRelay_Cover_PA12_printed': 'rev8',
+    'Power_NutHolder_PA12_printed': 'rev8',     # N37 (2026-10-19): the C-strap top-nut holder (one printed file; 14 per box)
 }
 MULTI = {}   # parts printed as several separate pieces in one file (none)
 MAIN = r'C:\projects\active\st185-link-ecu-config'   # heavy files live in the main checkout (AGENTS.md "Project files stay in this repo")
-WALLS = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wall_check.json')
-FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'WALL-FLAGS.md')
+WALLS = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'wall_check.json')
+FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'WALL-FLAGS.md')
 # R127 / R128 baseline: (thin-wall spots, attachment spots) per part outside the named exemptions - 0 after the R128 sweep (2026-10-16);
 # it may only go down, so it stays 0. R151: it counts STRUCTURAL spots; non-structural / questionable ones are flagged, not counted.
 WALL_BASELINE = {n: (0, 0) for n in (
@@ -269,10 +269,10 @@ def wall_findings(wcj, pp, rep, flags_md=None):
         want = WCL.flag_lines(wc, rep)
         got = [l[2:] for l in flags_md.splitlines() if l.startswith('- ') and l != '- none']
         if got != want:
-            bad.append('S4 cad/fusebox/rev7/WALL-FLAGS.md is stale (%d listed, %d flagged) - re-run cad/check_printed_walls.py --classify' % (len(got), len(want)))
+            bad.append('S4 cad/fusebox/rev8/WALL-FLAGS.md is stale (%d listed, %d flagged) - re-run cad/check_printed_walls.py --classify' % (len(got), len(want)))
     else:
-        bad.append('S4 no cad/fusebox/rev7/WALL-FLAGS.md - re-run cad/check_printed_walls.py --classify')
-    notes.append('S4 / S5 R151: %d spot(s) flagged for Dan (cad/fusebox/rev7/WALL-FLAGS.md) - change or approve' % len(flags))
+        bad.append('S4 no cad/fusebox/rev8/WALL-FLAGS.md - re-run cad/check_printed_walls.py --classify')
+    notes.append('S4 / S5 R151: %d spot(s) flagged for Dan (cad/fusebox/rev8/WALL-FLAGS.md) - change or approve' % len(flags))
     return bad, notes, flags
 
 
@@ -287,10 +287,10 @@ def main(argv):
             continue
         p = pp.get(name)
         if p is None:
-            bad.append('S1 %s: missing from printed_parts - re-run build_fusion.build(rev=7)' % name)
+            bad.append('S1 %s: missing from printed_parts - re-run build_fusion.build(rev=8)' % name)
             continue
         if 'lumps' not in p:
-            bad.append('S1 %s: no lump / shell count in the report - re-run build_fusion.build(rev=7)' % name)
+            bad.append('S1 %s: no lump / shell count in the report - re-run build_fusion.build(rev=8)' % name)
             continue
         n_ = MULTI.get(name, 1)
         ok = p['bodies'] == n_ and p['lumps'] == n_ and p['shells'] == n_
@@ -298,7 +298,7 @@ def main(argv):
                                                                                '' if ok else ' - FLOATING PIECE'))
     fs = rep.get('feature_support')
     if not fs:
-        bad.append('S3 no feature_support in the report - re-run build_fusion.build(rev=7)')
+        bad.append('S3 no feature_support in the report - re-run build_fusion.build(rev=8)')
     for bx, L in (fs or {}).items():
         weak = [f for f in L if f.get('after', 0.0) < S.FLOAT_BACKING]
         part = [f for f in L if S.FLOAT_BACKING <= f.get('after', 0.0) < 0.999]
@@ -310,7 +310,7 @@ def main(argv):
                 bx, len(L), n_web, ', '.join('%s at %s' % (f['kind'], f['at']) for f in L if f['web']) or '-'))
         notes.extend('S3 %s %s at %s: %.0f %% backed - attached, left as it is' % (bx, f['kind'], f['at'], 100 * f['after']) for f in part)
     if not os.path.isfile(WALLS):
-        bad.append('S4 no cad/fusebox/rev7/wall_check.json - run cad/check_printed_walls.py (WSL) after the build')
+        bad.append('S4 no cad/fusebox/rev8/wall_check.json - run cad/check_printed_walls.py (WSL) after the build')
     else:
         md = open(FLAGS_MD, encoding='utf-8').read() if os.path.isfile(FLAGS_MD) else None
         b_, n_, flags = wall_findings(json.load(open(WALLS, encoding='utf-8')), pp, rep, md)

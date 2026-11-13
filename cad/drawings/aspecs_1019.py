@@ -4,7 +4,7 @@ Drawing-only on top of the merged models (R196): plain machinist notes (R191 / R
 socket note R185), primary-only balloons in the assembled views (R193), hidden screws ballooned in an exploded view (R186 / R194).
 Claude Code, 2026-10-19."""
 import aspecs
-from aspecs_1018 import _by, UNDER
+from aspecs_1018 import _by, UNDER, _term_item_for
 from specs_1018 import TOL
 
 REV = {'ST185-VRC-100': 'H', 'ST185-CSB3-100': 'G', 'ST185-DRB-100': 'D'}
@@ -92,17 +92,20 @@ def fb_power():
     wires = L.power_wire_labels()
     top = [dict(w, item=_nearest(it, w['at'], ('6R8', '6432', '263-2205'))) for w in wires if w['side'] == 'top']
     bot = [w for w in wires if w['side'] == 'bottom']
-    term = [dict(w, item=_nearest(it, w['at'], ('28075', '42281', '62998', '9688'))) for w in bot if not w['text'].startswith('AMI')]
+    tif = _term_item_for(it, ('280756-4', '280755-4', '42281-1', '62998-2', '1-968849-1', '1-968851-1'), 'POWER')   # rev 8: no terminal bodies
+    term = [dict(w, item=_nearest(it, w['at'], ('28075', '42281', '62998', '9688')) or tif(w['at'][0], w['at'][1]))
+            for w in bot if not w['text'].startswith('AMI')]
+    term = [w for w in term if w['item'] is not None]
     lugs = [dict(w, item=_nearest(it, w['at'], ('2R5', 'FHS-M5', '6432', 'ST185-FB-117'))) for w in bot if w['text'].startswith('AMI')]
     hide_under = [cover['item'], pan['item']]
     sp['label_views'] = [
         dict(title='WHAT EACH FUSE AND RELAY FEEDS (COVER OFF)', view='top', hide=[cover['item']], labels=fuses + relays),
         dict(title='HARNESS WIRES AT THE BUS STUDS (COVER OFF)', view='top', hide=[cover['item']], text_h=1.8, wires=top),
-        dict(title='HARNESS WIRES AT THE C-STRAP LUGS AND THE ACPS FUSE - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
-             hide=hide_under, text_h=1.8, wires=lugs + [w for w in term if w['text'].startswith('ACPS')]),
-        dict(title='HARNESS WIRES AT THE RELAYS - SEEN FROM BELOW, BELLY PAN AND R1 CLIP OFF', view='bottom',
-             hide=hide_under + [_by(it, pn='ST185-FB-104')['item']], text_h=1.8,
-             wires=[w for w in term if not w['text'].startswith('ACPS')]),
+        # rev 8 (Dan A16 a): no ACPS fuse and no heater relay R1, so no R1 clip (FB-104 qty 0) and no ACPS wires
+        dict(title='HARNESS WIRES AT THE C-STRAP LUGS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
+             hide=hide_under, text_h=1.8, wires=lugs),
+        dict(title='HARNESS WIRES AT THE RELAYS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
+             hide=hide_under, text_h=1.8, wires=term),
     ]
     for st in sp['stage_sheets'][0]:
         st['title'] = st['title'].replace(' (NOTE 4)', '')
@@ -118,7 +121,7 @@ def fb_power():
     nut = _by(it, pn='RS 527-268')['item']
     st[3]['balloon_base'] = [nut]       # step 4: the parts it adds, plus the top nut (it is only seen here); base parts were ballooned before
     sp['stage_sheets'] = [st[:2], [st[2]], [st[3]], st[4:]]
-    sp.update(tol=TOL, rev='Z.01')      # Z.01 clerical: step sheets split (Dispatch review 2026-10-19)
+    sp.update(tol=TOL, rev='Z.01')      # Z.01 clerical: step sheets split (Dispatch review 2026-10-19); run_fb_rev8.py sets the rev 8 letter
     return sp
 
 

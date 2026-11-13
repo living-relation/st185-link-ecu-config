@@ -110,7 +110,7 @@ NOT_PN = re.compile(r"^(TBD|INTEGRAL|none|solder|screw terminal|flying lead|crim
 # the lugs the frozen fuse-box parts lists already buy for the harness wires at the box studs (their "Lugs" group: Klauke 2R5 /
 # 3R5MS / 6R8, TE 36161, Klauke 1R6): a box ring terminal with one of these is counted once, in the Mechanical section, as
 # before the ring terminals existed; a box ring with any other lug (the small GND stud rings) is counted here
-BOX_LUGS = {re.sub(r"^Klauke |MS$", "", r["part_number"]) for f in glob.glob(P("cad", "fusebox", "**", "fusebox-parts-*.csv"), recursive=True)
+BOX_LUGS = {re.sub(r"^Klauke |MS$", "", r["part_number"]) for f in glob.glob(P("cad", "fusebox", "rev8", "fusebox-parts-*.csv"))
             for r in rd(f) if r["group"] == "Lugs"}
 H_NEED, H_TBD = collections.Counter(), collections.Counter()
 seen_conn = set()
@@ -220,10 +220,9 @@ HARNESS_PN = set(H_NEED) | set(TUBE_MM) | set(WIRE_MM) | set(CABLE_MM)
 ntb_early = HARNESS_PN   # a part the harness section counts is not added again from an enclosure BOM
 BOXNAME = {"POWER": "POWER box", "LOGIC": "LOGIC box", "BATTRELAY": "Battery relay block"}
 MECH_PN = set()
-# The selected fuse box is rev 7 (cad/README.md "Selected for build"): its POWER list is cad/fusebox/rev7/; the LOGIC box and
-# battery relay block keep their lists in cad/fusebox/ (the rev 6 POWER list there was deleted 2026-11-09, Dan V1 a).
-FB_LISTS = sorted(glob.glob(P("cad", "fusebox", "fusebox-parts-*.csv")))
-FB_LISTS.append(P("cad", "fusebox", "rev7", "fusebox-parts-power.csv"))
+# The selected fuse box is rev 8 (cad/README.md "Selected for build"; Dan A15 b, 2026-11-12): its three lists are cad/fusebox/rev8/
+# (written by cad/fusebox/src/parts_lists.py from the rev 8 model and its wire plan).
+FB_LISTS = sorted(glob.glob(P("cad", "fusebox", "rev8", "fusebox-parts-*.csv")))
 for f in FB_LISTS:
     for r in rd(f):
         n = int(r["qty_need"] or 0) + int(r["qty_spare"] or 0)
