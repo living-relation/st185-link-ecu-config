@@ -14,12 +14,12 @@ FS = ImageFont.truetype(r'C:\Windows\Fonts\segoeui.ttf', 19)
 
 NAMES = {   # raw (render_wired_rev7.py) -> (published name in cad/fusebox/rev7, title)
     'power_wired_explode.png': ('fusebox_power_wired_explode.png', 'POWER box rev ' + REVN + ', every wire in place, exploded (cover, relays and fuses up, belly pan down)'),
-    'power_wired_under.png': ('fusebox_power_wired_under.png', 'POWER box rev ' + REVN + ' underneath, belly pan off: every relay wire, the relay feeds, the R/B No.4 feed' if REVN == '8' else 'every relay and ACPS wire, the relay feeds, the OUT row'),
+    'power_wired_under.png': ('fusebox_power_wired_under.png', 'POWER box rev ' + REVN + ' underneath, belly pan off: ' + ('every relay wire, the relay feeds, the R/B No.4 feed' if REVN == '8' else 'every relay and ACPS wire, the relay feeds') + ', the OUT row'),
     'power_wired_side_long.png': ('fusebox_power_wired_side_long.png', 'POWER box rev ' + REVN + ' - long side (outboard), 20 deg above, wired'),
     'power_wired_side_end.png': ('fusebox_power_wired_side_end.png', 'POWER box rev ' + REVN + ' - short end (front), 20 deg above, wired'),
     'power_wired_routing.png': ('fusebox_power_wired_routing.png', 'POWER box rev ' + REVN + ' - wire routing seen from below (pan and cover off)'),
     'logic_wired_explode.png': ('fusebox_logic_wired_explode.png', 'LOGIC box rev ' + REVN + ' (J answers), every wire in place, exploded'),
-    'logic_wired_under.png': ('fusebox_logic_wired_under.png', 'LOGIC box rev ' + REVN + ' underneath, belly pan off: every wire, 4 exit bundles, the J4 front channel and the A20 in-box splices' if REVN == '8' else 'the J4 front channel with the J3 splices'),
+    'logic_wired_under.png': ('fusebox_logic_wired_under.png', 'LOGIC box rev ' + REVN + ' underneath, belly pan off: every wire, 4 exit bundles, ' + ('the J4 front channel and the A20 in-box splices' if REVN == '8' else 'the J4 front channel with the J3 splices')),
     'logic_wired_side_long.png': ('fusebox_logic_wired_side_long.png', 'LOGIC box rev ' + REVN + ' - long side (inboard), 20 deg above, wired'),
     'logic_wired_side_end.png': ('fusebox_logic_wired_side_end.png', 'LOGIC box rev ' + REVN + ' - short end (front), off-axis, wired'),
     'logic_wired_routing.png': ('fusebox_logic_wired_routing.png', 'LOGIC box rev ' + REVN + ' - wire routing seen from below (pan and cover off)'),
