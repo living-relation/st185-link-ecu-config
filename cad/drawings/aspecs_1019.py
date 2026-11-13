@@ -4,7 +4,7 @@ Drawing-only on top of the merged models (R196): plain machinist notes (R191 / R
 socket note R185), primary-only balloons in the assembled views (R193), hidden screws ballooned in an exploded view (R186 / R194).
 Claude Code, 2026-10-19."""
 import aspecs
-from aspecs_1018 import _by, UNDER
+from aspecs_1018 import _by, UNDER, _term_item_for
 from specs_1018 import TOL
 
 REV = {'ST185-VRC-100': 'H', 'ST185-CSB3-100': 'G', 'ST185-DRB-100': 'D'}
@@ -92,7 +92,10 @@ def fb_power():
     wires = L.power_wire_labels()
     top = [dict(w, item=_nearest(it, w['at'], ('6R8', '6432', '263-2205'))) for w in wires if w['side'] == 'top']
     bot = [w for w in wires if w['side'] == 'bottom']
-    term = [dict(w, item=_nearest(it, w['at'], ('28075', '42281', '62998', '9688'))) for w in bot if not w['text'].startswith('AMI')]
+    tif = _term_item_for(it, ('280756-4', '280755-4', '42281-1', '62998-2', '1-968849-1', '1-968851-1'), 'POWER')   # rev 8: no terminal bodies
+    term = [dict(w, item=_nearest(it, w['at'], ('28075', '42281', '62998', '9688')) or tif(w['at'][0], w['at'][1]))
+            for w in bot if not w['text'].startswith('AMI')]
+    term = [w for w in term if w['item'] is not None]
     lugs = [dict(w, item=_nearest(it, w['at'], ('2R5', 'FHS-M5', '6432', 'ST185-FB-117'))) for w in bot if w['text'].startswith('AMI')]
     hide_under = [cover['item'], pan['item']]
     sp['label_views'] = [

@@ -60,8 +60,13 @@ CIRCUIT = {   # what each LOGIC fuse feeds, in words (from its cavity in ST185-C
     'MRS': 'EHPS PUMP ENABLE', 'B30': 'START REQUEST (ECU B30)'}
 
 
-def _term_item_for(items, pns):
+def _term_item_for(items, pns, box='LOGIC'):
     pts = [(np.array(tuple(s.center()))[:2], i['item']) for i in items if i['pn'] in pns for s in (i.get('shapes') or [])]
+    if not pts:     # rev 8: the assembly STEP carries no terminal bodies; the cavity positions and parts come from wiring_plan.json
+        import json
+        plan = json.load(open(L.PLAN, encoding='utf-8'))
+        pts = [(np.array((e['x'], e['y'])), i['item']) for e in plan['per_box_wire_ends'] if e['box'] == box
+               for i in items if i['pn'] == e.get('part') and i['pn'] in pns]
 
     def f(x, y):
         d, it = min(((np.linalg.norm(p - (x, y)), it) for p, it in pts), key=lambda t: t[0])
