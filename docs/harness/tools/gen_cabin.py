@@ -649,14 +649,14 @@ head = [{"id": "n_title", "width": 360,
                  "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), front of car RIGHT, rear LEFT, "
                  "driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
                  "T7 b); bundle lengths = the master est_length_mm." % (
-                     TITLE, REV, DATE, SHORT[DOC], 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out bus plugs, shield '
+                     TITLE, REV, DATE, SHORT[DOC], 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out plugs and their bussed receptacles, shield '
                      'splices) with the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups '
                      'and their shielded cables' if DOC == 1 else
                      'the plain ECU-to-bulkhead wires (injectors, coils, sensor signals with no cabin splice), ECU power and grounds, the '
                      'relays and new fuse boxes, the factory taps (A/C amplifiers, J/B No.1, IG2, R/B No.4), the fuel pump relay and kill switch '
                      'legs of the sill run '
                      'and CAN (ECU plug C)', SHORT[3 - DOC], OTHER,
-                     'the bulkhead and the far ends', 'the ECU plugs and ECU splice-point bus plugs',
+                     'the bulkhead and the far ends', 'the ECU plugs and the ECU splice-point plugs with their bussed receptacles',
                      B.LOOSE_SENTENCE.rstrip() if ONE else '', B.GHOST_MARK)}]
 if used_st:      # display stripes note, only when the part has a +12 V wire
     head.append({"id": "n_stripes", "width": 360,

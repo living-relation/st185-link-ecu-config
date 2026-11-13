@@ -17,6 +17,9 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
       bussed receptacle, no bridges); every real wire has a wire_label that says what it is for, never its wire id (Dan R2)
   B2  no wire ends on a bussed receptacle (DT04-xxPA-P021, a cap with its pins tied inside): wires land only on the bussed
       plug half DT06-xxSA (Dan 2026-11-09)
+  B3  each half of a mated pair is named by its own part number (Dan A37, 2026-11-13): a bussed plug end (BUS-*) is named
+      "<circuit> plug <its DT06 part> (<where>)", never "bus plug" or "bussed" (only the bussed receptacle is); the two
+      bulkhead halves never share one name
   E1  every ECU pin a wire lands on is a live pin in sot/channels.csv, and every live ECU pin there has a wire
   E2  the far ends of each ECU power / ground / Gnd Out / sensor-supply / screen pin are of the class the Link G4X guide
       allows (R212); the ECU power grounds join only each other and one wire to the POWER box NEG bar (R216)
@@ -311,6 +314,19 @@ def check(rows, channels, head=None, ch_head=None, tracked=None, plan=None, lib=
                     eid.startswith("BUS-") and not re.match(r"DT06-\d+SA", hp)):
                 fail("B2", "%s %s end on %s (%s): wires land only on the bussed plug half DT06-xxSA, never on the bussed "
                      "receptacle (Dan 2026-11-09)" % (r["wire_id"], s, eid, hp))
+    # B3 (Dan A37, 2026-11-13): each half of a mated pair is named by its own part number; only the bussed half (the DT04-xxPA-P021
+    # receptacle, drawn by build_drawings.relabel) is called bussed, so the plug half's name says "plug <its DT06 part>" and never
+    # "bus plug" or "bussed"; two mated master ends (the RADLOK pairs) never share one name
+    for r in wires:
+        for s in ("from", "to"):
+            eid, nm, hp = r[s + "_id"], r[s + "_name"] or "", r[s + "_housing_pn"] or ""
+            if eid.startswith("BUS-") and ("plug %s" % hp not in nm or re.search(r"\bbus(sed)?\b", nm, re.I)):
+                fail("B3", "%s %s end %s is named %r: a bussed pair's plug half is named by its own part number, "
+                     "'<circuit> plug %s (<where>)', never 'bus plug' or 'bussed' (Dan A37)" % (r["wire_id"], s, eid, nm, hp))
+    end_name = {r[s + "_id"]: r[s + "_name"] for r in wires for s in ("from", "to") if r[s + "_id"]}
+    for a, b in MATES.items():
+        if a < b and a in end_name and end_name.get(a) == end_name.get(b):
+            fail("B3", "mated halves %s and %s share the name %r (Dan A37)" % (a, b, end_name[a]))
     for r in wires:
         if (r["wire_pn"] or "").startswith("none"):
             continue      # a removal row is no wire to label
@@ -710,6 +726,10 @@ def self_test():
     mutate("a bussed plug pin with its own signal name", "B1", lambda rs: at_end(rs, "BUS-SW12", desc="Fuel pump relay coil +"))
     mutate("a wire labelled with its wire id", "B1", lambda rs: first(rs, lambda r: r["wire_id"] == "w67").update(wire_label="w67"))
     mutate("a wire on the bussed receptacle", "B2", lambda rs: at_end(rs, "BUS-SW12", housing_pn="DT04-12PA-P021"))
+    mutate("a bussed pair's plug half called a bus plug", "B3", lambda rs: at_end(rs, "BUS-SW12", name="Switched +12 V bus plug (glove box)"))
+    mutate("a bussed pair's plug half named without its part number", "B3", lambda rs: at_end(rs, "BUS-5V-2", name="+5 V sensor supply plug (ECU splice point)"))
+    mutate("both bulkhead halves with one name", "B3", lambda rs: [r.update({sd + "_name": "Firewall bulkhead connector"})
+           for r in rs for sd in ("from", "to") if r[sd + "_id"] in ("DRB102-CABIN", "DRB102-ENGINE")])
     mutate("a pin-to-pin bridge on a bussed plug", "I1", lambda rs: rs.append(dict(first(rs, lambda r: r["wire_id"] == "w67"),
            wire_id="br_x", wire_pn="INTEGRAL", gauge_awg="", est_length_mm="", from_id="BUS-5V", from_type="connector", from_pin="1",
            to_id="BUS-5V", to_type="connector", to_pin="2")))
