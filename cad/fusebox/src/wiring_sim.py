@@ -368,7 +368,7 @@ def strip_blocks():
     return out
 
 
-def direct_jumper(a, b, od, risers, z=None):
+def direct_jumper(a, b, od, risers, z=None, first=None):
     """LOGIC fuse -> relay (no strip in between): under the deck at JUMP_Z, the dog-leg with the fewest riser hits."""
     cands = [[a, b], [a, (b[0], a[1]), b], [a, (a[0], b[1]), b]]
     y0, y1 = min(a[1], b[1]) - 25.0, max(a[1], b[1]) + 25.0
@@ -391,6 +391,8 @@ def direct_jumper(a, b, od, risers, z=None):
         segs = [math.hypot(c[i + 1][0] - c[i][0], c[i + 1][1] - c[i][1]) for i in range(len(c) - 1)]
         if min(segs) < 0.01:
             continue
+        if first and (c[1][0] - c[0][0]) * first[0] + (c[1][1] - c[0][1]) * first[1] < -1e-6:
+            continue                                  # it leaves a splice end: never back over the splice (no U-turn)
         hits = 1000 if any(L_ < 2 * R + 0.5 for L_ in segs) else 0     # every bend needs its room (3 x OD): two bends per segment
         for i in range(len(c) - 1):                  # the copper strips stand up to z 31.3, above JUMP_Z: no crossing them
             (xa, ya), (xb, yb) = c[i], c[i + 1]
@@ -409,9 +411,10 @@ def direct_jumper(a, b, od, risers, z=None):
         L = sum(math.hypot(c[i + 1][0] - c[i][0], c[i + 1][1] - c[i][1]) for i in range(len(c) - 1))
         if any(not (7.0 <= x_ <= S.LOGIC['L'] - 7.0 and 7.0 <= y_ <= S.D - 7.0) for (x_, y_) in c):
             continue                                  # stays inside the box
-        if best is None or (hits, L) < best[0]:
-            best = ((hits, L), c)
-    (hits, _), c = best
+        key = (hits, L) if first is None else (hits // 100, hits % 100 * 15.0 + L)   # A20 a legs: short first, a riser touch (insulation) costs 15 mm
+        if best is None or key < best[0]:
+            best = (key, c, hits)
+    _, c, hits = best
     z_d = S.LOGIC['z_d']
     zz = JUMP_Z if z is None else z
     pts = [(a[0], a[1], z_d - 0.2)] + [(x, y, zz) for (x, y) in c] + [(b[0], b[1], z_d - 0.2)]
@@ -434,23 +437,29 @@ def channel_route8(w):
             (c['x'], c['y'], z), (c['x'], c['y'], zc)], k
 
 
-def splice_route(w, risers):
-    """A20 a: fuse -> splice (to its front end), splice rear end -> relay pin, on the splice's level, the dog-leg with the fewest riser hits
-    (direct_jumper's search). Legs fan out 1 mm apart at the splice end so no two start inside each other."""
+def splice_route(w, risers, wires):
+    """A20 a: each wire leaves the splice from the end that faces its other end (no U-turn), on the splice's level; the dog-leg with the
+    fewest riser hits (direct_jumper's search). The wires at one splice end fan out 1 mm apart so no two start inside each other."""
     e_sp = next(e for e in w['ends'] if e['id'] in S.SPLICES8)
-    sp_ = S.SPLICES8[e_sp['id']]
-    other = next(e for e in w['ends'] if e is not e_sp)
-    a = (other['at']['x'], other['at']['y'])
+    sid = e_sp['id']
+    sp_ = S.SPLICES8[sid]
+
+    def far(w_):
+        o = next(e for e in w_['ends'] if e['id'] != sid)
+        return (o['at']['x'], o['at']['y'])
+
+    def end_of(w_):
+        return 'front' if far(w_)[1] < sp_['y0'] + sp_['L'] / 2 else 'rear'
+    mine = end_of(w)
+    same = [w_['wire'] for w_ in wires if any(e['id'] == sid for e in w_['ends']) and end_of(w_) == mine]
+    k = same.index(w['wire'])
+    dx = (k - (len(same) - 1) / 2.0) * 1.0
+    y_in, y_out = (sp_['y0'] + 1.0, sp_['y0'] - 0.5) if mine == 'front' else (sp_['y0'] + sp_['L'] - 1.0, sp_['y0'] + sp_['L'] + 0.5)
+    a = far(w)
+    pts, hits = direct_jumper((sp_['x'] + dx, y_out), a, w['od'], risers, z=sp_['z'], first=(0.0, -1.0) if mine == 'front' else (0.0, 1.0))
+    pts = [(sp_['x'] + dx, y_in, sp_['z'])] + pts[1:]
     if w['wire'] == sp_['feed']:
-        b = (sp_['x'], sp_['y0'] - 0.5)
-        pts, hits = direct_jumper(a, b, w['od'], risers, z=sp_['z'])
-        pts = pts[:-1] + [(sp_['x'], sp_['y0'] + 1.0, sp_['z'])]          # ends 1 mm into the splice
-    else:
-        k = sp_['legs'].index(w['wire'])
-        dx = (k - (len(sp_['legs']) - 1) / 2.0) * 1.0
-        b0 = (sp_['x'] + dx, sp_['y0'] + sp_['L'] + 0.5)
-        pts, hits = direct_jumper(b0, a, w['od'], risers, z=sp_['z'])
-        pts = [(sp_['x'] + dx, sp_['y0'] + sp_['L'] - 1.0, sp_['z'])] + pts[1:]
+        pts = list(reversed(pts))      # the feed runs fuse -> splice
     return pts, hits
 
 
@@ -665,7 +674,7 @@ def main():
         for w in wires:
             if not w['spliced']:
                 continue
-            pts, hits = splice_route(w, risers)
+            pts, hits = splice_route(w, risers, wires)
             spliced[w['wire']] = hits
             box_paths[w['wire']] = [dict(box='LOGIC', lane=None, pts=pts, R=r_sup(w['od']), spliced=True)]
     else:

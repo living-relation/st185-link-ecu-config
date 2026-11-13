@@ -1105,7 +1105,7 @@ CHANNEL8 = dict(z=dict(ETB=20.18, HR=24.16, ON=28.86), key={'w_fb_k_etb_30_cp': 
 SPLICES8 = {
     'sp_drl12': dict(x=MICRO_COLS[0] + MICRO_PINS['86'][0] + 4.8, y0=95.0, z=32.0, od=4.5, L=12.5,     # between micro columns 0 and 1
                      feed='w_drl_cp', legs=('w_drl_30_cp', 'w_drl_86_cp', 'w_pod_86_cp')),
-    'sp_acc12': dict(x=(MINI_COLS['BUS2'][0] + MINI_BLADE_X + MICRO_COLS[0] + MICRO_PINS['85'][0]) / 2, y0=110.0, z=27.0, od=4.5, L=12.5,
+    'sp_acc12': dict(x=(MINI_COLS['BUS2'][0] + MINI_BLADE_X + MICRO_COLS[0] + MICRO_PINS['85'][0]) / 2, y0=66.0, z=27.0, od=4.5, L=12.5,
                      feed='w_acc_fuse', legs=('w_fb_k_acc_30_cp', 'w_acc86')),
 }
 # Box insides (Dan R1 a, 2026-11-09: "the box insides are modeled in the model only"): every wire with both ends inside a box (or box to
