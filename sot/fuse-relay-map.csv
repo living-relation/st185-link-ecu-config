@@ -38,7 +38,7 @@ B2,BUS1-7,fuse,ALM 5 A,LOGIC,assigned,w_at_12v (AntiTheft) to alarm-ready node A
 B2,BUS1-8,fuse,ALMS 2 A,LOGIC,assigned,w_at_12v_shk (AntiTheft) to alarm-ready node AL-12V-SHK
 B2,BUS1-9,fuse,ALTS 2 A,LOGIC,assigned,w_alt_s_c to alternator plug pin 1 S (rating from the fuse-box design wiring_plan.json; the master names no rating)
 B2,BUS1-10,fuse,ETB 7.5 A,LOGIC,assigned,K-ETB 30
-B2,BUS2-1,fuse,DRL 7.5 A,LOGIC,assigned,"to K-DRL 30 / 86 and K-POD 86 (Dan N87 a 2026-11-08): Bus 2 is live with K-EFI, so the DRLs are ignition-fed; 7.5 A = the fuse the frozen box design (LAM 7.5 A) already buys for this seat; was the CAN-Lambda (moved to BUS1-6 / K-ON, Dan 2026-11-04 N5 a)"
+B2,BUS2-1,fuse,DRL 7.5 A,LOGIC,assigned,"to K-DRL 30 / 86 and K-POD 86 (Dan N87 a 2026-11-08): Bus 2 is live with K-EFI, so the DRLs are ignition-fed; 7.5 A = the fuse the frozen box design (LAM 7.5 A) already buys for this seat; was the CAN-Lambda (moved to BUS1-6 / K-ON, Dan 2026-11-04 N5 a). Headroom (A34, Dan 2026-11-13): the HWSTAR H6054 maker gives no DRL current (N84 a); similar LED DRL accents draw about 0.25 A each, so the pair is assumed about 0.5 A plus the K-DRL / K-POD coils; DRL load stays at or under 6 A, so 7.5 A has ample headroom"
 B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V); master 5 A vs fuse-box design 7.5 A
 B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A); fuse-box design still says 15 A
 B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A); fuse-box design still says 15 A
