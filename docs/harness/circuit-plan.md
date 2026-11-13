@@ -48,7 +48,7 @@ Decisions: DECISIONS "Headlamps, DRL and pop-ups" (N84 a, N85 a, N86, N87 a, N89
 | Dash high-beam LED | cluster LED board | `SP-HR-HI` -> `w_hb_feed` (Dash, TXL 14) -> LED +; `R-HB` and the R-L feed are gone (Dan A2 b, 2026-11-12; R-L legs removed: `w_rl_ie1_cut`, `w_rl_c13_cut`, `w_rl_c15_cut`) |
 | Lamp commons | front | H1 pin 3 -> EB, H2 pin 3 -> EA (N83 a) |
 | K-DRL (M8, spare seat) DRL | LOGIC box | 30 / 86 from BUS2-1 DRL 7.5 A (Bus 2, key on; inside the box, CAD model); 85 -> `SP-DRL-SW` -> DRL switch -> R8 pin 12 W-B (ground); 87 -> RLY-DRL 30 |
-| RLY-DRL DRL cut (N90 a) | beside the LOGIC box | Song Chuan 301-1C-C-R1-U01-12VDC in a GEP FRH-A12 holder (Dan A30 a, 2026-11-13; was Metri-Pack 280 socket 12110539); coil 86 from `SP-HL`, 85 on R-Y (`SP-HEAD-COIL`); 30 from K-DRL 87, 87a (NC) -> `SP-DRL` -> both white DRL leads: DRLs off whenever the head lamps are on |
+| RLY-DRL DRL cut (N90 a) | glove box, beside the POWER box (A22, A30 a) | Song Chuan 301-1C-C-R1-U01-12VDC in a GEP FRH-A12 holder (Dan A30 a, 2026-11-13; was Metri-Pack 280 socket 12110539); coil 86 from `SP-HL`, 85 on R-Y (`SP-HEAD-COIL`); 30 from K-DRL 87, 87a (NC) -> `SP-DRL` -> both white DRL leads: DRLs off whenever the head lamps are on |
 | K-POD (M10, spare seat) key-on pop-up (N93 a) | LOGIC box | 86 from BUS2-1 DRL 7.5 A inside the box (key on), 85 -> `SP-DRL-SW`; 30 from D2's cathode, 87 -> `SP-DRL-SW`: the DRL switch raises the pods only with the key on |
 | D1 / D2 (DT04-2P-RT01) | behind the LH dash at R8 | R-Y I2 -> R8 pin 8 cut; D1 R8 pin 8 -> I2 side (stalk UP); D2 R8 pin 8 -> K-POD 30 (DRL UP, key on) |
 | Turn | front | yellow lead on F7 / F8 pin 3 (G-B / G-Y) with the bumper lamp |
