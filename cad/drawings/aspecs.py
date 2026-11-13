@@ -243,9 +243,9 @@ def fb_power():
              'THE HEATER RELAY SEAT AND THE ACPS FUSE POSITION ARE EMPTY SPARES. K-EPS (TE HCR150) AND THE DRL CUT RELAY (GEP FRH-A12 HOLDER) MOUNT BESIDE THIS BOX, NOT IN IT.']+TERM_NOTES)
 def fb_logic():
     items=fusebox('LOGIC')
-    plan=[('LIMITERS; STRIPS SLID IN FROM THE REAR',[('EFC',(0,0,-25)),('ST185-FB-115',(0,60,0)),('S-M4',(0,60,0)),('SS-M5',(0,60,0))]),
+    plan=[('LIMITERS; STRIPS SLID IN FROM THE REAR',[('EFC',(0,0,-25)),('ST185-FB-115',(0,90,25)),('S-M4',(0,90,25)),('SS-M5',(0,90,25))]),   # rev 8: further out so the PEM nuts balloon
           ('TERMINALS UP INTO THE CAVITIES',[('280919',(0,0,-30)),('42281',(0,0,-30)),('968849',(0,0,-30)),('968851',(0,0,-30))]),
-          ('FEED LUGS (NOTE 3) + JUMPERS',[('2R5',(0,0,-35)),('287-3921',(0,0,-45)),('320554',(0,0,-30)),('M22759',(0,0,-30)),('231-0691',(0,0,-40)),('287-3915',(0,0,-50))]),
+          ('FEED LUGS (NOTE 3) + JUMPERS',[('2R5',(0,0,-35)),('287-3921',(0,0,-45)),('320554',(0,0,-30)),('M22759',(0,0,-60)),('231-0691',(0,0,-40)),('287-3915',(0,0,-50))]),
           ('FUSES + RELAYS',[('ATM',(0,0,45)),('RELAY',(0,0,55))]),
           ('BELLY PAN + COVER',[('ST185-FB-106',(0,0,-50)),('ST185-FB-107',(0,0,70))])]
     st=_stages(items,plan); base=[it['item'] for it in items if it['pn']=='ST185-FB-105']
