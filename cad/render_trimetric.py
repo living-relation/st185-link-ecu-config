@@ -55,6 +55,10 @@ MODELS = {
     "fusebox-rev7-logic": ("cad/fusebox/rev7/trimetric-logic.png", ["cad/fusebox/rev7/Logic_*.step"]),
     # rev 7 battery relay block: R122 cover-screw bosses (3; none at the rear catch by the relay flange) - rev 6's picture is history
     "fusebox-rev7-battrelay": ("cad/fusebox/rev7/trimetric-battrelay.png", ["cad/fusebox/rev7/BattRelay_*.step"]),
+    # rev 8 (Dan A15 b, 2026-11-12): all three boxes set to the harnesses (DECISIONS "Fuse box rev 8")
+    "fusebox-rev8-power": ("cad/fusebox/rev8/trimetric-power.png", ["cad/fusebox/rev8/Power_*.step"]),
+    "fusebox-rev8-logic": ("cad/fusebox/rev8/trimetric-logic.png", ["cad/fusebox/rev8/Logic_*.step"]),
+    "fusebox-rev8-battrelay": ("cad/fusebox/rev8/trimetric-battrelay.png", ["cad/fusebox/rev8/BattRelay_*.step"]),
     # Package renders (R84): every member together. "path@x,y" = place that STEP with its bounding box corner at
     # (x, y), z from 0 (the fuse box assembly STEP is already laid out in place).
     "package-rev6":   ("cad/fusebox/package-rev6.png", ["cad/fusebox/ST185_fusebox_rev6_assembly.step",
@@ -62,6 +66,9 @@ MODELS = {
                        "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
                        "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
     "package-rev7":   ("cad/fusebox/rev7/package-rev7.png", ["cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step",
+                       "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
+                       "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
+    "package-rev8":   ("cad/fusebox/rev8/package-rev8.png", ["cad/fusebox/rev8/ST185_fusebox_rev8_assembly.step",
                        "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
                        "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
 }
