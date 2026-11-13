@@ -607,7 +607,7 @@ def span_rows(span):
 BOX_CAVITIES = {'LOGIC': ['BUS1'] + ['BUS1-%d' % i for i in range(1, 11)] + ['BUS2'] + ['BUS2-%d' % i for i in range(1, 10)] +
                 ['BUS2-12', 'BUS2-12 IN', 'BUS2-13', 'BUS2-13 IN'],
                 # trunk relay block (B3, part ST185-FB-BATT rev 7, Dan V2 a / A11): drawing ST185-FB-100B; its one harness wire
-                # landing is the battery feed in on the bar's M6 stud (cad/fusebox/rev7/wiring_plan.json fb_batt cav "in", BATT +);
+                # landing is the battery feed in on the bar's M6 stud (cad/fusebox/rev8/wiring_plan.json fb_batt cav "in", BATT +);
                 # the AMI 40 A fuse, its jumper to the relay and the relay K1 (K-FP, its own part) are not landings of the block
                 'BATT-RELAY-BLOCK': ['BATT']}
 

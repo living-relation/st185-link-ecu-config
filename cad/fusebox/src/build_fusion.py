@@ -26,6 +26,10 @@ DOC = 'ST185_fusebox_rev6'                                                   # r
 DOC_OLD = ('ST185_fusebox_rev5', 'ST185_fusebox_rev4', 'ST185_fusebox_rev3', 'ST185_fusebox_rev2')  # the same Fusion document before the renames (R74)
 DOC7 = 'ST185_fusebox_rev7'   # rev 7 (E2 = A, bus bar POS bar = the AMI bar): its own document, saved-as from rev 6 (2 of 10 Fusion slots in use)
 REV = [6]                     # build(rev=7) builds rev 7; rev 6 output is unchanged
+# rev 8 (Dan A15 b, 2026-11-12): built as a NEW VERSION of the rev 7 document (R74 / B26: reuse a part's document, 10 editable max); the
+# version history keeps rev 7. Same geometry path as rev 7 (copper and spots frozen, DECISIONS S3), spec.use_rev(8) sets the names, ratings,
+# seats and box insides; the wire plan is cad/fusebox/rev8/wiring_plan.json (wiring_sim.py, from the master).
+REV_DOC = {7: 'ST185_fusebox_rev7', 8: 'ST185_fusebox_rev7'}
 
 
 def P(x, y, z):
@@ -356,11 +360,15 @@ def strips(hs, bridges, root_, extra, min_wall=2.0):
 
 
 def doc_name():
-    return DOC7 if REV[0] == 7 else DOC
+    return DOC7 if REV[0] >= 7 else DOC
+
+
+def export_name():
+    return 'ST185_fusebox_rev%d' % REV[0] if REV[0] >= 7 else DOC
 
 
 def open_doc():
-    names = ((DOC7,) if REV[0] == 7 else ()) + (DOC,) + DOC_OLD
+    names = ((DOC7,) if REV[0] >= 7 else ()) + (DOC,) + DOC_OLD
     open_ = {app.documents.item(i).name.split(' v')[0]: app.documents.item(i) for i in range(app.documents.count) if app.documents.item(i).isSaved}
     for n in names:
         if n in open_:
@@ -375,9 +383,10 @@ def open_doc():
 
 def build(out_dir, save=True, renders=True, rev=6, msg=None):
     REV[0] = rev
-    R7 = S.REV7 if rev == 7 else None
+    S.use_rev(rev)
+    R7 = S.REV7 if rev >= 7 else None
     DIM = {'D': S.D, 'snaps_rear': None,   # rev 7: the POWER box is deeper; the shared shell / pan / cover helpers read DIM
-           'so': S.SKIRT_OUT if rev == 7 else 0.0}   # R127 amendment: the skirt grows OUTWARD by so (inner face, cavities, pan fit unchanged)
+           'so': S.SKIRT_OUT if rev >= 7 else 0.0}   # R127 amendment: the skirt grows OUTWARD by so (inner face, cavities, pan fit unchanged)
     os.makedirs(out_dir, exist_ok=True)
     doc = open_doc()
     doc.activate()
@@ -388,8 +397,21 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         root.occurrences.item(i).deleteMe()
     report = {'bends': [], 'labels': {}, 'lanes': {}, 'callouts': {}, 'standoffs': {}, 'terminal_holes': {}, 'terminal_slots': {}, 'guide_walls': {}, 'feature_support': {}}
     PLAN7 = None
-    if rev == 7:   # J2 = B (R94): the wire plan (wiring_sim.py) names the terminal and wire in every cavity
-        PLAN7 = json.load(open(os.path.join(os.path.dirname(SRC), 'rev7', 'wiring_plan.json'), encoding='utf-8'))
+    if rev >= 7:   # J2 = B (R94): the wire plan (wiring_sim.py) names the terminal and wire in every cavity
+        PLAN7 = json.load(open(os.path.join(os.path.dirname(SRC), 'rev%d' % rev, 'wiring_plan.json'), encoding='utf-8'))
+
+    def plan_tails(box_name):
+        """Rev 8: the CAD harness tails = the wire plan's (every wire end that leaves through a lane, its real gauge), so the exit notches are
+        cut for the wires that are really there."""
+        out = []
+        for w in PLAN7['wires']:
+            if any(bp.get('loop') or bp.get('direct') or bp.get('channel') or bp.get('spliced') for bp in w.get('box_paths', [])):
+                continue
+            for e in w['ends']:
+                a = e.get('at')
+                if e.get('box') == box_name and a and a.get('lane'):
+                    out.append(dict(x=a['x'], y=a['y'], awg=int(w['gauge']), what=w['wire'], lane=a['lane'][1]))
+        return out
 
     def backing(foot, z, support):
         """Share (0..1) of a feature's top face (footprint body foot, any z) that has solid printed material right above it (z .. z + 1)
@@ -545,7 +567,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 ox = min(p[1], q[1]) - max(p[0], q[0])      # > 0: the zones overlap in x (side by side in y), < 0: x gap
                 oy = min(p[3], q[3]) - max(p[2], q[2])
                 clip_ = all(c_['cav'].split()[0] in S.RETAIN.get(box_name, []) for c_ in (hs[i], hs[j]))   # R123 clip: its leg pockets open the corners
-                if REV[0] == 7 and ox <= 0 and oy <= 0 and diagonal_solid(p, q, lo, hi, -ox, -oy, clip_):
+                if REV[0] >= 7 and ox <= 0 and oy <= 0 and diagonal_solid(p, q, lo, hi, -ox, -oy, clip_):
                     # SteveCAD sweep C1 / C3 (Dan 2026-10-16: "FILL SOLID"): diagonal neighbours (apart in x AND in y) whose bridge would be a
                     # slit under GAP_OPEN (POWER R2 - R7 85 / 86 to 87: 0.3 / 0.375, under MJF's 0.5 least gap), or would touch a cavity only
                     # along a corner edge with nothing else cut round it (a zero-thickness joint: LOGIC Bus 2 outputs to the micro relay 85,
@@ -555,7 +577,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     continue
                 xs_ = sorted([max(p[0], q[0]), min(p[1], q[1])]) if ox > 0 else sorted([min(p[1], q[1]), max(p[0], q[0])])
                 ys_ = sorted([max(p[2], q[2]), min(p[3], q[3])]) if oy > 0 else sorted([min(p[3], q[3]), max(p[2], q[2])])
-                if REV[0] == 7:   # S6: a bridge whose opening (the zones' shared length) is under GAP_OPEN would be a powder-trap throat
+                if REV[0] >= 7:   # S6: a bridge whose opening (the zones' shared length) is under GAP_OPEN would be a powder-trap throat
                     for (rng, o_) in ((xs_, ox), (ys_, oy)):
                         if 0 < o_ < S.GAP_OPEN:
                             m_ = (rng[0] + rng[1]) / 2
@@ -569,7 +591,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             cuts.append(box(x0_, y0_, lo, x1_, y1_, hi))
             islands.append([round(v, 2) for v in (x0_, y0_, lo, x1_, y1_, hi)])
         report.setdefault('cavity_islands_cut', {})[box_name] = islands
-        if REV[0] == 7:   # R127 sweep: strips under min_wall left between two openings of a joined group, or between a cavity and the pan groove
+        if REV[0] >= 7:   # R127 sweep: strips under min_wall left between two openings of a joined group, or between a cavity and the pan groove
             Lb, Db = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['L'], DIM['D']
             m_, zg_ = S.SKIRT + 2 * W_CL + PN['t'], z_d + PN['over'] + W_CL
             ring = [(z_d - 1, zg_, -1.0, m_, -1.0, Db + 1), (z_d - 1, zg_, Lb - m_, Lb + 1, -1.0, Db + 1),
@@ -609,7 +631,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             for h in rh:            # threaded onto the wires before crimping: bare wire + clr (the build-up ends inside the barrel)
                 dh_ = S.retainer_hole(h['part'], h['wire_od'])[0]
                 bo(plate, cylz(h['x'], h['y'], ztop - RT['t'] - 1, ztop + 1, dh_), 's')
-                if REV[0] == 7:     # markup 2026-10-17 (Dan 23-26: "terminals need to fit through these holes. Or need slots for the wires"):
+                if REV[0] >= 7:     # markup 2026-10-17 (Dan 23-26: "terminals need to fit through these holes. Or need slots for the wires"):
                     # each hole runs on as a slot of the same width to the plate's -y edge - the clip slides onto the finished wires from the
                     # front, and the slot still stops the crimped insulation barrel (larger than the slot)
                     bo(plate, box(h['x'] - dh_ / 2, y0_ - 1.0, ztop - RT['t'] - 1, h['x'] + dh_ / 2, h['y'], ztop + 1), 's')
@@ -692,7 +714,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 continue
             ang = math.degrees(math.atan2(b['y'] - a['y'], b['x'] - a['x'])) + 90.0
             t_fin = G['t']
-            if REV[0] == 7 and (abs(a['y'] - b['y']) < 1e-6 or abs(a['x'] - b['x']) < 1e-6):
+            if REV[0] >= 7 and (abs(a['y'] - b['y']) < 1e-6 or abs(a['x'] - b['x']) < 1e-6):
                 # N21 / fit audit 2026-10-18: holes 4.0 or less apart (the MCP 2.8 sockets at the 8.1 mini fuse pitch: 3.5) - the wall fills the gap
                 # (the holes trim it) instead of a 2.0 fin standing alone in it (R127 A: a lone 2.0 fin hangs by its top only)
                 gap_ = (abs(a['x'] - b['x']) - (a['sx'] + b['sx']) / 2) if abs(a['y'] - b['y']) < 1e-6 else (abs(a['y'] - b['y']) - (a['sy'] + b['sy']) / 2)
@@ -703,7 +725,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             if fd is None:
                 continue
             fin_d.append(fd)
-        if REV[0] == 7:    # R127 sweep: a slanted guide wall that crosses or touches a straight one (a diagonal neighbour pair, e.g. a fuse's
+        if REV[0] >= 7:    # R127 sweep: a slanted guide wall that crosses or touches a straight one (a diagonal neighbour pair, e.g. a fuse's
             # input and the next fuse's output) only adds triangular slivers and slanted tips sticking out of the straight wall - it is left out
             def straight(fd):
                 return abs(math.sin(math.radians(2 * fd[4]))) < 1e-6
@@ -718,7 +740,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             keep = [fd for fd in fin_d if straight(fd) or not any(straight(f2) and on(p_, f2) for f2 in fin_d for p_ in pts(fd))]
             report.setdefault('guide_walls_redundant', {})[box_name] = len(fin_d) - len(keep)
             fin_d = keep
-        if REV[0] == 7:    # N21 / fit audit 2026-10-18 (S6): a straight wall whose end stops under 0.5 short of a crossing straight wall runs on into it
+        if REV[0] >= 7:    # N21 / fit audit 2026-10-18 (S6): a straight wall whose end stops under 0.5 short of a crossing straight wall runs on into it
             def _ext(fd, others):
                 c, s_ = round(math.cos(math.radians(fd[4])), 6), round(math.sin(math.radians(fd[4])), 6)
                 if abs(c * s_) > 1e-6:
@@ -757,7 +779,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         kept_fd = []
         for fd in fin_d:
             f_ = rbox(fd[0], fd[1], z_d - G['h'], z_d + 0.01, fd[2], fd[3], fd[4])
-            if REV[0] == 7 and abs(math.sin(math.radians(2 * fd[4]))) > 1e-6:
+            if REV[0] >= 7 and abs(math.sin(math.radians(2 * fd[4]))) > 1e-6:
                 # R127 sweep: a slanted guide wall that the cavities cut into a stub shorter than min_wall is left out
                 t_ = tb.copy(f_)
                 fb = t_.boundingBox
@@ -899,7 +921,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         ex = c.features.extrudeFeatures
         ei = ex.createInput(coll, adsk.fusion.FeatureOperations.CutFeatureOperation)
         # R127 sweep (rev 7): 0.5 deep leaves the 2.5 cover top 2.0 under every letter (0.6 left 1.9); MJF engraving needs >= 0.5
-        depth = S.LABEL['depth7'] if REV[0] == 7 else S.LABEL['depth']
+        depth = S.LABEL['depth7'] if REV[0] >= 7 else S.LABEL['depth']
         ei.setDistanceExtent(False, adsk.core.ValueInput.createByReal(-depth / 10.0))
         ei.participantBodies = [body]
         ex.add(ei)
@@ -919,7 +941,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
     def exempt(part, key, x0, x1, y0, y1, z0, z1, sh=(0.0, 0.0), only=None):
         """R127 sweep (rev 7): a named spot that stays thin because the part needs it (S.WALL_EXEMPT[key] says why). cad/check_printed_walls.py
         drops the wall pieces / attachment spots that lie inside this box (world coordinates) and lists them by name instead."""
-        if REV[0] == 7:
+        if REV[0] >= 7:
             report.setdefault('wall_exempt', []).append(dict(part=part, key=key, only=only, box=[round(v, 2) for v in (
                 x0 + sh[0], x1 + sh[0], y0 + sh[1], y1 + sh[1], z0, z1)]))
 
@@ -932,7 +954,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         s0 = (S.CLR + TB['slot']) if standing is None else standing[1]     # deck tab: a slot on the bar side too, so the arm flexes its whole length
         if standing is not None:
             TB['t'] = TB['t_stand']
-            if REV[0] == 7:
+            if REV[0] >= 7:
                 TB['w'] = TB['w_stand']     # markup 2026-10-17 (Dan 23-06: "make these 2 tabs bigger")
         if w is not None:
             TB['w'] = w
@@ -948,19 +970,19 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         cuts_ = []
         if standing is None:
             cuts_ += [bx(S.CLR - 0.01, s0 + TB['t'] + TB['slot'], -hw - TB['slot'], hw + TB['slot'], zr, z_t + 1)]   # slot ring round the arm
-        zh0 = btop + (S.HOOK_GAP if REV[0] == 7 else 0.1)    # markup 2026-10-17 (R157): the hook bears on the copper, no gap
+        zh0 = btop + (S.HOOK_GAP if REV[0] >= 7 else 0.1)    # markup 2026-10-17 (R157): the hook bears on the copper, no gap
         zh1 = zh0 + TB['hook_t']
         arm = bx(s0, s0 + TB['t'], -hw, hw, zr - 0.01, zh1)                 # rooted at the slot bottom (deck) / on the floor
         hook = bx(-TB['over'], s0 + TB['t'], -hw, hw, zh0, zh1)
         sx_, sy_ = (n[0], n[1])
-        if REV[0] == 7:     # lead-in at TB['lead'] deg from the vertical (HP: 35 - 40), from the tip's bottom edge + 0.3 up
+        if REV[0] >= 7:     # lead-in at TB['lead'] deg from the vertical (HP: 35 - 40), from the tip's bottom edge + 0.3 up
             ta_ = math.tan(math.radians(TB['lead']))
             half_cut(hook, (xe - sx_ * TB['over'], ye - sy_ * TB['over'], zh0 + 0.3), (-sx_, -sy_, ta_))
         else:
             half_cut(hook, (xe - sx_ * TB['over'], ye - sy_ * TB['over'], zh0 + 0.3), (-sx_, -sy_, 1.0))    # lead-in on the bar side
         bo(arm, hook, 'u')
         L_ = (zh0 - zr)
-        d_ = TB['over'] + (S.CLR if REV[0] == 7 else 0.0)   # the hook tip has to move out to the bar edge (+ the pocket clearance, worst)
+        d_ = TB['over'] + (S.CLR if REV[0] >= 7 else 0.0)   # the hook tip has to move out to the bar edge (+ the pocket clearance, worst)
         I_ = TB['w'] * TB['t'] ** 3 / 12.0
         report.setdefault('bar_tabs', []).append(dict(part=part, at=[round(xe, 1), round(ye, 1)], n=list(n), arm_mm=round(L_, 1), deflection_mm=round(d_, 2),
                                                       strain_pct=round(100 * 1.5 * TB['t'] * d_ / L_ ** 2, 2), limit_pct=S.SNAP_EPS, t=TB['t'], w=TB['w'],
@@ -975,7 +997,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         """R127 sweep (rev 7): a cut (zlo, zhi, x0, x1, y0, y1) that comes closer than min_wall to the groove inside the skirt where the
         belly-pan wall slides up runs on into it over the groove height - no sliver of PA12 left standing between them (the pan wall
         and the cavity keep their sizes; the pan still slides straight up)."""
-        if REV[0] != 7:
+        if REV[0] < 7:
             return []
         m, zg, mw = S.SKIRT + 2 * W_CL + PN['t'], z_d + PN['over'] + W_CL, S.HOLE['min_wall']
         out = []
@@ -995,7 +1017,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         part above the receptacle seat (the cavity below is the R120 hole; the old full-height slot only shaved slivers off its walls).
         Where no terminal sits (an 87a with no wire), it is as deep as the blade can reach - the shortest receptacle that relay's other
         blades seat in (l_min) - and solid below."""
-        if REV[0] != 7:
+        if REV[0] < 7:
             return z_d - 1
         for h in report['terminal_holes'].get(box_name, []):
             if abs(h['x'] - x) < 1.0 and abs(h['y'] - y) < 1.0:
@@ -1051,7 +1073,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 half_cut(b, (qx - tv[0] * nt * off, qy - tv[1] * nt * off, -nz2 * off), (tv[0] * nt, tv[1] * nt, nz2))
             return b
         leg = solid(0)
-        if wall and REV[0] != 7:    # R127 sweep (rev 7): solid buttress - the hollow one left a knife edge where the socket cut its
+        if wall and REV[0] < 7:    # R127 sweep (rev 7): solid buttress - the hollow one left a knife edge where the socket cut its
             # sloped wall and held the foot by sloped 3.0 walls only; the outside, the foot, the hole and the socket are unchanged
             inner = solid(wall)
             bo(inner, sbox(mp, 0.0, LG['out_slope'], u - wb, u + wb, -2.0, z_top + 1), 'i')   # pocket stays outside the skirt
@@ -1186,7 +1208,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         """Belly-pan catch positions: faces 'y' -> two on the front and two on the rear wall (at x), 'x' -> on the end walls (at y)."""
         if faces == 'y':
             return [('y', x) for x in snap_xs(L)]
-        if REV[0] == 7:                       # J2 = B (R94): clear of the reliefs at the outboard micro relay column
+        if REV[0] >= 7:                       # J2 = B (R94): clear of the reliefs at the outboard micro relay column
             return [('x', y_) for y_ in S.PAN_SNAPS_X]
         return [('x', DIM['D'] * 0.3), ('x', DIM['D'] * 0.7)]
 
@@ -1232,7 +1254,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     exempt(part_, 'pan snap tongue', xf - sw['bump'] / 2 - 0.3 - (t if side else 0), xf + sw['bump'] / 2 + 0.3 + (0 if side else t), a0, a1,
                            ztop - sw['len'] - 1.0, ztop + 0.1, sh)
         joins = []
-        if REV[0] == 7:   # R127 sweep: between two exit notches in one wall closer than min_wall the wall is cut away, centre to centre,
+        if REV[0] >= 7:   # R127 sweep: between two exit notches in one wall closer than min_wall the wall is cut away, centre to centre,
             # down to the higher notch bottom (the notches keep their own U shape, so no wire comes closer to the pan)
             ex_ = sorted(exits, key=lambda e: (e[0], e[4], e[1]))
             for e1, e2 in zip(ex_, ex_[1:]):
@@ -1248,7 +1270,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 else:
                     yw_ = y0 + t / 2 if side < 0 else y1 - t / 2
                     exempt(part_, 'notch at corner', u - wd / 2 - 3.0, u + wd / 2 + 3.0, yw_ - 4.1, yw_ + 4.1, zb_ - 0.1, ztop + 0.1, sh)
-            if REV[0] == 7 and PN['z0'] + 0.01 < zb_ < PN['z0'] + t - 0.01:
+            if REV[0] >= 7 and PN['z0'] + 0.01 < zb_ < PN['z0'] + t - 0.01:
                 # R127 sweep: a notch that dips into the floor - the floor under it is thickened downward to min_wall (inside the legs' plane)
                 pad_z0 = max(0.5, zb_ - S.HOLE['min_wall'])
                 if axis == 'x':
@@ -1457,7 +1479,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 bodies.append(w)
             joins.sort(key=lambda j: -j[0])
             acc = []
-            xr_ = S.LANE_X.get((box_name, round(key, 2))) if REV[0] == 7 else None
+            xr_ = S.LANE_X.get((box_name, round(key, 2))) if REV[0] >= 7 else None
             for k, (pos, od) in enumerate(joins):
                 acc.append(od)
                 nxt = joins[k + 1][0] if k + 1 < len(joins) else exit_at - 30.0
@@ -1670,8 +1692,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         saddles = []
         U_sad = [support_union(parts)] if R7 else None
         for a in ami:            # saddles: one per relay feed, the inside of its bend (R_SADDLE), hanging under the deck
-            if a['row'] != 'IN' or not a['amps']:
-                continue
+            if a['row'] != 'IN' or not a['amps'] or not relays[a['i']]['pn']:
+                continue                  # rev 8: an IN fuse whose relay seat is vacant feeds a harness wire straight out (spec.IN_OUT)
             r = relays[a['i']]
             od = S.OD[S.AMI_AWG[a['name']]]
             ccx, ccz = r['x30'] + S.R_SADDLE + od / 2, lug_c + S.R_SADDLE + od / 2
@@ -2004,17 +2026,18 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             by_col.setdefault(S.AMI_COLOUR[a['amps']], []).append(body)
         for colr, bodies in by_col.items():
             comp(pre + 'Fuse_AMI_%s' % colr, bodies, AP[colr], MAT['abs'], sh)
-        comp(pre + 'Fuse_ATM_10A', cbox(acps[0], acps[1], z_t, z_t + S.MINI['h_above'], S.MINI['l'], S.MINI['w']), MINI_AP[10], MAT['abs'], sh)
+        if S.ACPS[1]:                          # rev 8: the ACPS seat is vacant (A16 a)
+            comp(pre + 'Fuse_ATM_10A', cbox(acps[0], acps[1], z_t, z_t + S.MINI['h_above'], S.MINI['l'], S.MINI['w']), MINI_AP[10], MAT['abs'], sh)
         RBd = S.RELAY_B
         comp(pre + 'Relay_TE_F7_V23134', [cbox(r['cx'], r['cy'], z_t, z_t + S.F7['h'], S.F7['body'], S.F7['body']) for r in relays if r['pn'] and not r['B']],
              AP['black'], MAT['abs'], sh)
-        comp(pre + 'Relay_TE_PowerB_V23234_CO', [cbox(r['cx'], r['cy'], z_t, z_t + RBd['h'], RBd['body'], RBd['body']) for r in relays if r['B']],
+        comp(pre + 'Relay_TE_PowerB_V23234_CO', [cbox(r['cx'], r['cy'], z_t, z_t + RBd['h'], RBd['body'], RBd['body']) for r in relays if r['B'] and r['pn']],
              AP['black'], MAT['abs'], sh)
         if not R7:   # markup 2026-10-17 (Dan 23-29 "what is this?"): the grey 1 mm square was a CAD marker for the empty relay spot, not a part - gone
             comp(pre + 'SPARE_positions', [cbox(r['cx'], r['cy'], z_t, z_t + 1.0, S.F7['body'], S.F7['body']) for r in relays if not r['pn']], AP['spare'], None, sh)
 
         # ---- lugs + cables: OUT row straight out +x under the deck plate; IN row straight -x, one bend up round its saddle
-        lugs, wires = [], []
+        lugs, wires, in_out = [], [], []
         for a in ami:
             if a['amps'] is None:
                 continue
@@ -2027,6 +2050,21 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 wires.append(cyl(e, (L + 30.0, a['y'], e[2]), od))
                 bend_row('POWER AMI %s %s (%dA) -> harness' % (a['row'], a['name'], a['amps']), awg, 'straight out through the outboard end, under the skirt (belly pan exit), lug axis',
                          None, False, 'no bend in the box; first bend in the harness: >= %.0f supported (P-clamp each side) or >= %.0f free' % (3 * od, 10 * od))
+            elif not relays[a['i']]['pn']:      # rev 8 (spec.IN_OUT): straight -x under the deck, eased down to the bundle height, out the inboard end
+                zl_ = PN['z0'] + PN['t'] + 0.8 + od / 2
+                x_a = relays[a['i']]['cx'] + 10.0
+                x_b = x_a - 30.0
+                pts_ = [e, (x_a, a['y'], e[2]), (x_b, a['y'], zl_), (-30.0, a['y'], zl_)]
+                w_ = cyl(pts_[0], pts_[1], od)
+                for p0_, p1_ in zip(pts_[1:], pts_[2:]):
+                    bo(w_, cyl(p0_, p1_, od), 'u')
+                for p_ in pts_[1:3]:
+                    bo(w_, tb.createSphere(P(*p_), od / 20.0), 'u')
+                wires.append(w_)
+                in_out.append((a['y'], PN['z0'] + PN['t'], od + 1.6))
+                bend_row('POWER AMI IN %s (%dA) -> harness %s (seat R%d vacant)' % (a['name'], a['amps'], S.IN_OUT.get(a['name'], ''), a['i'] + 1), awg,
+                         'straight -x under the deck, two %.0f deg bends down to the bundle height, out of the inboard end' % math.degrees(math.atan2(e[2] - zl_, 30.0)),
+                         None, False, 'shallow bends (> 10 x OD), supported by the belly pan notch')
             else:
                 r = relays[a['i']]
                 rcw = S.R_SADDLE + od / 2
@@ -2074,7 +2112,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
 
         # ---- harness wires out of every relay / ACPS terminal, to the inboard edge (rev 5, point 5)
         tails = []
-        for r in relays:
+        for r in (relays if REV[0] < 8 else []):
             if not r['pn']:
                 continue
             a87 = S.RELAY87_AWG.get(r['name'], S.AMI_AWG[S.AMI_ROWS['IN'][r['i']][0]])
@@ -2084,13 +2122,15 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             for sg, tn in ((-1, '85'), (1, '86')):
                 tails.append(dict(x=r['cx'] + 0.25, y=r['cy'] + sg * 8.45, awg=S.COIL_AWG, what='%s %s' % (r['name'], tn),
                                   lane=r['cy'] + sg * 9.0))
-        for dx in (-S.MINI_BLADE_X, S.MINI_BLADE_X):
+        for dx in ((-S.MINI_BLADE_X, S.MINI_BLADE_X) if REV[0] < 8 else ()):
             tails.append(dict(x=acps[0] + dx, y=acps[1], awg=S.ACPS_AWG, what='ACPS', lane=acps[1]))
+        if REV[0] >= 8:
+            tails = plan_tails('POWER')
         for t_ in tails:          # coil lanes half way between fuse lines; the heater 85 joins the ACPS lane
             if abs(t_['lane'] - acps[1]) < 1.0 or abs(t_['lane'] - (S.AMI_Y0 - 9.0)) < 0.1:
                 t_['lane'] = acps[1]
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'x', 0.0, pre, sh, 'POWER')
-        pan_exits = [('x', u, zb_, wd, -1) for (u, zb_, wd) in exits]
+        pan_exits = [('x', u, zb_, wd, -1) for (u, zb_, wd) in exits] + [('x', u, zb_, wd, -1) for (u, zb_, wd) in in_out]
         for a in ami:            # rev 6: OUT-row lugs / cables leave under the skirt, through the belly pan's outboard wall
             if a['row'] == 'OUT' and a['amps']:
                 awg = S.AMI_AWG[a['name']]
@@ -2115,8 +2155,8 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         labels = []
         for r in relays:
             labels.append(({'heater': 'HEATER', 'k_efi': 'EFI', 'k_str': 'STARTER', 'k_fan': 'FAN', 'k_fan2': 'FAN 2', 'power': 'WINDOWS',
-                            'SPARE': 'SPARE'}[r['name']], r['cx'], r['cy'], S.LABEL['h_relay']))
-        labels.append(('ACPS 10A', acps[0], acps[1], S.LABEL['h_ami']))
+                            'SPARE': 'SPARE'}[r['name']] if r['pn'] else 'SPARE', r['cx'], r['cy'], S.LABEL['h_relay']))   # rev 8: vacant = SPARE
+        labels.append(('ACPS %dA' % S.ACPS[1] if S.ACPS[1] else 'SPARE', acps[0], acps[1], S.LABEL['h_ami']))
         for a in ami:
             xc = (a['x_in'] + a['x_out']) / 2
             labels.append((('%s %dA' % (a['name'], a['amps'])) if a['amps'] else 'SPARE', xc, a['y'], S.LABEL['h_ami']))
@@ -2297,7 +2337,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             xb_ = v['x1'] if c_ == 'BUS1' else v['x1'] - 0.8
             bo(spine, box(min(xa, spx), v['y0'] - 0.5, lip_z0, max(xb_, spx), v['y1'] + 0.5, lip_z1), 'u')
             exempt(pre + 'Base_PA12_printed', 'strip lip', min(xa, spx) - 0.1, max(xb_, spx) + 0.1, v['y0'] - 0.6, v['y1'] + 0.6, lip_z0 - 0.1, lip_z1 + 0.1, sh)
-        if REV[0] == 7:   # card item 13 (Dan 22-59, R157): the strips rest on the lips (DOWN); a rail on the spine bears on their top edges (UP),
+        if REV[0] >= 7:   # card item 13 (Dan 22-59, R157): the strips rest on the lips (DOWN); a rail on the spine bears on their top edges (UP),
             # 0 gap; they still slide in along the lips. 0.3 off each strip's lug face (the jumper sleeves come up there).
             rail_t = 3.71    # fit audit 2026-10-18: 3.4 left a 0.3 powder gap (S6) under the block at z 35.0 - the rail now fuses into it
             SH = S.STRIP_HOLD
@@ -2309,7 +2349,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             own_in = [(c_, y_) for (c_, nm_, a_, x_, y_, n_, i_) in mini if a_ and not S.mini_stud(c_, i_)]   # MRS / B30: own harness input down the jumper line
             strip_hold(strips, studs, own_in, spine, parts, spx, s_z0, s_z1, lip_z0, lip_z1, rail_t, z_d, pre, sh)
         parts.append(spine)
-        if REV[0] == 7:   # J4 = B (R94): the printed channel floor across the front (over the Bus 1 feed lug), joined to the spine
+        if REV[0] >= 7:   # J4 = B (R94): the printed channel floor across the front (over the Bus 1 feed lug), joined to the spine
             CH = S.CHANNEL
             parts.append(box(CH['floor_x'][0], CH['floor_y'][0], CH['floor'][0], spx + SP['t'] / 2 + 0.01, CH['floor_y'][1], CH['floor'][1]))
             parts.append(box(spx + SP['t'] / 2 - 0.01, CH['floor_y'][0], CH['floor'][0], CH['floor_x'][1], CH['wide_y'], CH['floor'][1]))
@@ -2332,7 +2372,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             bt_, c2_ = 0.8 + 2 * S.CLR, 2 * S.CLR    # fit audit 2026-10-18: blade slots = blade + R120 clr a side (0.8 x 6.3 / 4.8, TE V23074 p.3): with the
             # 280919-2 seated 3.2 down (spec.SEAT_GAP) the slots are 3.2 deep, and the old 2.6-wide slots left 1.9 webs between 85 / 87a / 86 (now 2.9)
             for (u, v, lx, ly) in (MP_['87'] + (6.3 + c2_, bt_), MP_['30'] + (6.3 + c2_, bt_), MP_['85'] + (bt_, 4.8 + c2_), MP_['86'] + (bt_, 4.8 + c2_), MP_['87a'] + (bt_, 4.8 + c2_)):
-                if REV[0] == 7 and (u, v) == MP_['87a'] and pn in S.MICRO_NO:
+                if REV[0] >= 7 and (u, v) == MP_['87a'] and pn in S.MICRO_NO:
                     continue            # R127 sweep: a normally-open micro relay has no 87a blade - no slot, solid there
                 zs0 = slot_z0('LOGIC', cx + u, cy + v, z_d, z_t, S.TERM['280919-2']['L'])
                 if (u, v) == MP_['87a']:
@@ -2348,7 +2388,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 cuts.append(cbox(cx + u, cy + v, zs0, z_t + 1, lx, ly))
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + u - lx / 2, cx + u + lx / 2, cy + v - ly / 2, cy + v + ly / 2)])
             exempt(pre + 'Base_PA12_printed', 'relay cavity web', cx - 6.0, cx + 6.0, cy - 6.0, cy + 6.0, z_d - 0.5, z_t + 0.1, sh, only='A')
-            if REV[0] == 7:          # fit audit 2026-10-18 (R128): under the deck the web left between the 30 crimp hole and the 87 wire exit is 1.48
+            if REV[0] >= 7:          # fit audit 2026-10-18 (R128): under the deck the web left between the 30 crimp hole and the 87 wire exit is 1.48
                 # (30 and 87 now 8 apart, TE pitch) - a thin strip hanging below the deck plate: cut it (the 2.06 wall in the deck stays)
                 c30_ = next((c for c in (PLAN7 or {}).get('cavities', []) if c['box'] == 'LOGIC' and abs(c['x'] - cx) < 0.01
                              and abs(c['y'] - (cy + MP_['30'][1])) < 0.01 and c.get('zones')), None)
@@ -2358,7 +2398,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     report.setdefault('micro_underdeck_strip_cut', []).append([nm, round(y30_, 2), round(cy - 2.9, 2)])
         for s_ in studs:                                        # bolt tips pass the spine
             cuts.append(cyl((sx_lo - 1.0, s_['y'], s_['z']), (sx_hi + 1.0, s_['y'], s_['z']), JB['m'] + 1.6))
-        if REV[0] == 7:   # R127 sweep: two bolt-tip passes at one y closer than min_wall (Bus 1 low row / Bus 2 high row) become one slot
+        if REV[0] >= 7:   # R127 sweep: two bolt-tip passes at one y closer than min_wall (Bus 1 low row / Bus 2 high row) become one slot
             for s1 in studs:
                 for s2 in studs:
                     d_ = JB['m'] + 1.6
@@ -2469,12 +2509,12 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             comp(pre + 'Fuse_ATM_%sA' % str(amps).replace('.', 'p'), bodies, MINI_AP[amps], MAT['abs'], sh)
         comp(pre + 'Relay_TE_MicroA_V23074', [cbox(cx, cy, z_t, z_t + S.MICRO['h'], S.MICRO['x'], S.MICRO['y']) for (nm, pn, own, cx, cy, k_) in micro if pn],
              AP['black'], MAT['abs'], sh)
-        if REV[0] != 7:   # markup 2026-10-17 (23-29): the same CAD-only spare markers (not parts) are gone here too
+        if REV[0] < 7:   # markup 2026-10-17 (23-29): the same CAD-only spare markers (not parts) are gone here too
             comp(pre + 'SPARE_positions', [cbox(cx, cy, z_t, z_t + 1.0, S.MICRO['x'], S.MICRO['y']) for (nm, pn, own, cx, cy, k_) in micro if not pn], AP['spare'], None, sh)
 
         # ---- harness: one load wire per fuse (output blade), MRS / B30 inputs, 5 per micro relay; bundles to the front edge
         tails = []
-        skip = S.CHANNEL_CAD_SKIP if REV[0] == 7 else ()     # J4 = B: these run in the front channel (the wired views draw them)
+        skip = S.CHANNEL_CAD_SKIP if REV[0] >= 7 else ()     # J4 = B: these run in the front channel (the wired views draw them)
         for (col, nm, amps, cx, y, n_, i) in mini:
             if not amps or nm in skip:
                 continue
@@ -2489,12 +2529,14 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             for (u, v, awg, tn) in [S.MICRO_PINS[t_] + (S.COIL_AWG if t_ in ('85', '86') else S.MICRO_LOAD_AWG, t_) for t_ in ('30', '87', '87a', '85', '86')]:
                 if tn == '87a' and pn in S.MICRO_NO:
                     continue                                     # NO relays: no 87a contact
-                if '%s %s' % (nm, tn) in skip or (tn == '87a' and REV[0] == 7):
+                if '%s %s' % (nm, tn) in skip or (tn == '87a' and REV[0] >= 7):
                     continue                                     # rev 7: no harness wire on any 87a (wiring_plan.json)
                 tails.append(dict(x=cx + u, y=cy + v, awg=awg, what='%s %s' % (nm, tn), lane=cx))
+        if REV[0] >= 8:
+            tails = plan_tails('LOGIC')
         exits = harness_tails(tails, lambda t_: t_['lane'], z_d, 'y', 0.0, pre, sh, 'LOGIC')
         pan_exits = [('y', u, zb_, wd, -1) for (u, zb_, wd) in exits] + pan_feed
-        if REV[0] == 7:   # J2 = B (R94): rib between the Bus 1 output wires and the Bus 1 strip bolt heads; reliefs at the outboard relay column
+        if REV[0] >= 7:   # J2 = B (R94): rib between the Bus 1 output wires and the Bus 1 strip bolt heads; reliefs at the outboard relay column
             # markup 2026-10-17 (23-12 / 23-33): a wire-group wall half way between the bundle edges of two neighbouring lanes - the two micro
             # relay columns, and micro column 1 / the Bus 2 outputs - from the pan's front wall back past the last relay
             ln_ = {round(e[0], 2): e[2] - 1.6 for e in exits}
@@ -2512,7 +2554,9 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                  3.0 * S.OD[S.LOGIC_MAX_AWG], True, 'one bundle per fuse column / relay column, straight to the front edge')
 
         z_top = z_t + 25.4 + CV['clear'] + CV['t']          # micro relay 25.4 max (TE 1308028)
-        short = {'HEAD LH': 'HEAD L', 'HEAD RH': 'HEAD R', 'horn': 'HORN', 'k_etb': 'ETB', 'k_acc': 'A/C', 'k_eps_en': 'EPS EN', 'k_rev': 'REV', 'SPARE': 'SPARE'}
+        short = {'HEAD LH': 'HEAD L', 'HEAD RH': 'HEAD R', 'horn': 'HORN', 'k_etb': 'ETB', 'k_acc': 'A/C', 'k_eps_en': 'EPS EN', 'k_rev': 'REV', 'SPARE': 'SPARE',
+                 'K-HL': 'LO BEAM', 'K-HR': 'HI BEAM', 'K-HORN': 'HORN', 'K-ETB': 'ETB', 'K-ACC': 'A/C', 'K-EPS-EN': 'EPS EN', 'K-ON': 'ON',   # rev 8: sot names
+                 'K-DRL': 'DRL', 'K-POD': 'POD'}
         labels = [(short[nm], cx, cy, S.LABEL['h_micro']) for (nm, pn, own, cx, cy, k_) in micro]           # rev 4 etched names, unchanged
         labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_, i) in mini]
         labels += [(col, cx, S.MINI_GRID['y0'] - 11.0, S.LABEL['h_mini']) for col, (cx, fuses) in S.MINI_COLS.items()]
@@ -2529,7 +2573,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         sh = S.PLACE['BATTRELAY']
         Lr, Dr, fl = R['L'], R['D'], R['floor']
         DIM['D'], DIM['snaps_rear'] = Dr, None             # built after POWER: do not inherit its rear catch positions (cover_catches)
-        DIM['so'] = S.RIM_OUT if REV[0] == 7 else 0.0     # R127 amendment: the rim grows outward (3.0 left behind the cover catch pocket)
+        DIM['so'] = S.RIM_OUT if REV[0] >= 7 else 0.0     # R127 amendment: the rim grows outward (3.0 left behind the cover catch pocket)
         so_ = DIM['so']
         zf = 10.0                                          # relay flange face (raised 6 on bosses: captured nut + limiter under it)
         tz0, tz1 = zf + 10.0, zf + 30.0                    # terminal blocks (TE side view: 10 back from the flange face, 20 tall)
@@ -2544,7 +2588,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         btop = tz1 - S.AMI['ear_t']                         # AMI ear top = terminal top: the jumper lug lies at the terminal height
         bz0 = btop - Bb['t']
         RP = S.RB_PAD
-        R7b = REV[0] == 7                                   # markup 2026-10-17 (Dan 23-06): the out pad grows to the bar width, 3.2 stock
+        R7b = REV[0] >= 7                                   # markup 2026-10-17 (Dan 23-06): the out pad grows to the bar width, 3.2 stock
         pad_t = RP['t'] if R7b else S.PAD['t']
         pz0 = btop - pad_t
         a_in, a_out = R['x_ami_in'], R['x_ami_in'] + S.AMI['c']
@@ -2556,7 +2600,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         # ---- base: rounded floor plate, low rim on the long sides only (ends open), relay platform, ONE fuse pedestal, 2 END tabs
         base = rrect(-so_, -so_, Lr + so_, Dr + so_, 0, fl, 10.0 + so_)
         rim = rrect(-so_, -so_, Lr + so_, Dr + so_, fl - 0.01, R['rim'], 10.0 + so_)
-        rw_ = 4.0 if REV[0] == 7 else 3.0     # R127 sweep: rim 4.0 (inward) - a 3.0 wall round the R10 corners was not >= 3 everywhere
+        rw_ = 4.0 if REV[0] >= 7 else 3.0     # R127 sweep: rim 4.0 (inward) - a 3.0 wall round the R10 corners was not >= 3 everywhere
         bo(rim, rrect(rw_, rw_, Lr - rw_, Dr - rw_, 0, R['rim'] + 1, 10.0 - rw_), 's')
         rb_faces = [(x, y) for y in (0.0, Dr) for x in snap_xs(Lr) if (x, y) not in S.SCREW_SKIP_RB(Lr, Dr)]
         rb_zs = (fl + R['rim']) / 2                         # R122: insert bosses standing on the floor against the rim, beside each catch
@@ -2566,7 +2610,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         parts += [rim]
         px0, px1 = rx - H_['body_x'] / 2, rx + H_['body_x'] / 2
         plat = box(hxs[0] - 8.0, yb, fl - 0.01, hxs[1] + 8.0, yb + H_['body_y'], zf)          # relay platform: perimeter + ribs
-        solid_rb = REV[0] == 7     # R127 sweep: platform and fuse pedestal are solid blocks (their 2.5 ribs were attached by < 3 mm)
+        solid_rb = REV[0] >= 7     # R127 sweep: platform and fuse pedestal are solid blocks (their 2.5 ribs were attached by < 3 mm)
         if not solid_rb:
             bo(plat, box(hxs[0] - 8.0 + 2.5, yb + 2.5, fl, hxs[1] + 8.0 - 2.5, yb + H_['body_y'] - 2.5, zf + 1), 's')
         parts.append(plat)
@@ -2656,7 +2700,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return out
 
         rb_tabs = []
-        if REV[0] == 7:   # R155 (Dan N5): snap tabs on both long edges of the bar, between the M6 stud lug and the AMI ear; the bar sits on its
+        if REV[0] >= 7:   # R155 (Dan N5): snap tabs on both long edges of the bar, between the M6 stud lug and the AMI ear; the bar sits on its
             # pedestal (1.0 wider each side), so each arm stands free on the floor, BAR_TAB gap off the pedestal
             for sy_ in (-1, 1):
                 c_, a_ = deck_tab(29.0, tsy + sy_ * Bb['w'] / 2, (0, sy_), fl, btop, pre + 'Base_PA12_printed', sh, standing=(fl, 1.0 + S.BAR_TAB['gap']))
@@ -2925,9 +2969,15 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         yc_neg = (S.REV7['neg_bar']['yc'] + S.PLACE['POWER'][1]) / 10.0
         neg_nuts_ = [b_ for b_ in bodies('Power_Nut_') if abs((b_.boundingBox.minPoint.y + b_.boundingBox.maxPoint.y) / 2 - yc_neg) < 0.05
                      and (b_.boundingBox.maxPoint.y - b_.boundingBox.minPoint.y) > 1.2]
+        small_x = [x_ for (x_, nm_, h_, g_) in S.REV7['neg_studs'] if g_ == 'small']
+        x_of = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5 - S.PLACE['POWER'][0]
+        bn_small = [b_ for b_ in bn_ if REV[0] >= 8 and any(abs(x_of(b_) - sx_) < 5.0 for sx_ in small_x)]
+        bn_big = [b_ for b_ in bn_ if b_ not in bn_small]
+        if bn_small:      # rev 8 (N68 a): the small GND stud's rule is "ring eyes do not overlap"; the 1/0 lugs keep neg_lug_gap
+            report['live_clearance']['bus_neg_gnd_ring_to_lug_min_mm'] = min(dist(a_, b_) for a_ in bn_small for b_ in bn_big)
         report['live_clearance'].update({
             'bus_pos_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bp_) for l2 in bp_[i_ + 1:]),
-            'bus_neg_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bn_) for l2 in bn_[i_ + 1:]),
+            'bus_neg_lug_to_lug_min_mm': min(dist(l1, l2) for i_, l1 in enumerate(bn_big) for l2 in bn_big[i_ + 1:]),
             # N3 (Dan 2026-10-16): the NEG M8 nuts too - nut to nut on the NEG bar, and the end nut to the printed barrier wall
             'bus_neg_nut_to_nut_min_mm': min(dist(n1, n2) for i_, n1 in enumerate(neg_nuts_) for n2 in neg_nuts_[i_ + 1:]),
             'bus_neg_nut_to_barrier_mm': min(dist(n_, bodies('Power_Base_')[0]) for n_ in neg_nuts_),
@@ -2956,7 +3006,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
     xc_ = lambda b_: (b_.boundingBox.minPoint.x + b_.boundingBox.maxPoint.x) * 5
     b1_, b2_ = [b_ for b_ in lg_live if xc_(b_) < spx_], [b_ for b_ in lg_live if xc_(b_) >= spx_]
     report['live_clearance']['logic_bus1_to_bus2_min_mm'] = min(dist(a_, c_) for a_ in b1_ for c_ in b2_)
-    if REV[0] == 7:   # J2 / J4 (R94): the new printed parts against the live LOGIC parts (information: live to plastic)
+    if REV[0] >= 7:   # J2 / J4 (R94): the new printed parts against the live LOGIC parts (information: live to plastic)
         pan_b = bodies('Logic_Pan_')
         report['live_clearance']['logic_pan_rib_to_live_min_mm'] = min(dist(pb, lb) for pb in pan_b for lb in lg_live)
         report['live_clearance']['logic_base_to_live_min_mm'] = min(dist(bb, lb) for bb in bodies('Logic_Base_') for lb in lg_live)
@@ -3012,19 +3062,19 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             so_.meshRefinement = adsk.fusion.MeshRefinementSettings.MeshRefinementHigh
             em.execute(so_)
             exported.append(os.path.basename(p))
-    p = os.path.join(out_dir, '%s_assembly.step' % doc_name())
+    p = os.path.join(out_dir, '%s_assembly.step' % export_name())
     em.execute(em.createSTEPExportOptions(p, root))
     exported.append(os.path.basename(p))
-    em.execute(em.createFusionArchiveExportOptions(os.path.join(out_dir, '%s.f3d' % doc_name())))
-    exported.append('%s.f3d' % doc_name())
+    em.execute(em.createFusionArchiveExportOptions(os.path.join(out_dir, '%s.f3d' % export_name())))
+    exported.append('%s.f3d' % export_name())
     report['exported'] = exported
 
     if renders:
         render_all(out_dir, root, report, sizes)
 
-    if save and REV[0] == 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
-        if doc.dataFile.name == DOC7:
-            doc.save(msg or 'rev 7 rebuild (Claude Code)')
+    if save and REV[0] >= 7:   # rev 7: its own document (rev 6 stays as saved); save-as the first time, R74 slot check done (2 of 10 editable)
+        if doc.dataFile.name == DOC7:      # rev 8: a new version of the same document (A15 b)
+            doc.save(msg or 'rev %d rebuild (Claude Code)' % REV[0])
         else:
             doc.saveAs(DOC7, doc.dataFile.parentFolder, 'rev 7: E2 = A - AMI fuses on the bus bar POS bar, NEG bar in the bus zone (Claude Code 2026-10-14)', '')
             report['saved_as'] = DOC7
@@ -3123,14 +3173,14 @@ def render_all(out_dir, root, report, sizes):
     show(lambda n: GLOVE(n) and not kind(n).startswith('Pan'))
     shot('fusebox_render_under_open.png', eye=(-260, -420, -260), target=(170.0, 90.0, 20.0))
     WIRING = lambda n: kind(n).startswith(('Wire', 'Harness', 'Lug', 'Bar', 'Pad', 'Strip', 'Standoff', 'Strap', 'Nut_PEM', 'Relay', 'Fuse', 'SPARE', 'LugBolt', 'EarBolt', 'Washer'))
-    ST7 = REV[0] == 7     # R155: copper straps instead of pads + standoffs
+    ST7 = REV[0] >= 7     # R155: copper straps instead of pads + standoffs
     PX = S.PLACE['POWER'][0]
     show(lambda n: n.startswith('Power_') and WIRING(n))
     shot('fusebox_render_routing_power.png', eye=(-200, -330, -200), target=(PX + 90.0, 90.0, 25.0), callouts=[
         (1, (PX + 10.0, 52.0, 8.0), 'harness bundles to the inboard edge'), (2, (PX + 92.25, 61.0, 10.0), 'relay feed: lug under its copper strap' if ST7 else 'relay feed: lug on the 40 mm standoff'),
         (3, (PX + 62.0, 61.0, 20.0), 'feed bends up R16 into terminal 30'), (4, (PX + 164.75, 97.0, 11.0), 'OUT lug under its copper strap' if ST7 else 'OUT lug on the 40 mm standoff'),
         (5, (PX + S.POWER['L'] + 20.0, 97.0, 13.0), 'OUT cables straight out the end'), (6, (PX + S.POWER['L'] + 20.0, sizes['POWER']['in_y'], S.POWER['bar_top'] + 8.0), '1/0 battery feed in')]
-        + ([(7, (PX + 50.0, S.REV7['neg_bar']['yc'] + 40.0, S.POWER['bar_top'] + 8.0), 'NEG bus: grounds straight out the rear')] if REV[0] == 7 else []))
+        + ([(7, (PX + 50.0, S.REV7['neg_bar']['yc'] + 40.0, S.POWER['bar_top'] + 8.0), 'NEG bus: grounds straight out the rear')] if REV[0] >= 7 else []))
     show(lambda n: n.startswith('Logic_') and WIRING(n))
     c1, c2 = S.MINI_COLS['BUS1'][0], S.MINI_COLS['BUS2'][0]
     shot('fusebox_render_routing_logic.png', eye=(-230, -330, -200), target=(40.0, 90.0, 20.0), callouts=[
@@ -3231,7 +3281,7 @@ def render_all(out_dir, root, report, sizes):
         (8, l_of('Lug_Klauke'), 'feed lugs, M5 x 10 into the strip'), (9, l_of('Pan'), 'belly pan (snaps on)')],
         eye=(-330, -420, 240), target=(40.0, 90.0, 30.0))
     place({})
-    if REV[0] == 7:
+    if REV[0] >= 7:
         show(lambda n: True)
         return
 

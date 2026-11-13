@@ -1,9 +1,9 @@
 """Gate: fuse box terminal cavities (Dan's J2 = B, 2026-10-14, DECISIONS R94; hole rule R120 and self-locking terminals R121, Dan
 2026-10-15) - every crimped terminal goes up through its hole in the base and snaps in, and no wall between two cavities is thinner than
 the printed minimum.
-Works out on its own, from the wire plan (cad/fusebox/rev7/wiring_plan.json: the harness wire and terminal part at every cavity) and the
+Works out on its own, from the wire plan (cad/fusebox/rev8/wiring_plan.json: the harness wire and terminal part at every cavity) and the
 TE terminal data in spec.py (TERM, LOCK), what every cavity must be, and checks it against what the Fusion build cut
-(cad/fusebox/rev7/fusebox_report.json "terminal_holes"):
+(cad/fusebox/rev8/fusebox_report.json "terminal_holes"):
   H1  every cavity with a terminal has a hole (an 87a with no harness wire keeps its plain blade slot)
   H2  R120: the hole = the largest cross-section along the insertion axis of everything that passes through - contact box, crimped
       barrels on the THICKEST insulation the terminal accepts, the wire behind them (880398-2: its stop flange) - + HOLE['clr'] per side
@@ -31,8 +31,8 @@ sys.path.insert(0, HERE)
 import spec as S
 
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
-REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
-PLAN = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_plan.json')
+REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'fusebox_report.json')
+PLAN = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'wiring_plan.json')
 TOL = 0.005
 LOCK_MIN = 0.3     # mm the lance tip reaches past the ledge edge, at the worst clearance
 

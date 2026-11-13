@@ -18,8 +18,8 @@ CLASSES (DECISIONS R151, Dan 2026-10-17: "Minimum thickness for walls is for cri
 everything. If something is questionable or unclear, it should be flagged for change or approval."): every W / A spot gets a class from
 cad/fusebox/src/wall_classes.py - structural (check_printed_solid.py S4 / S5 fail on it), non-structural or questionable (FLAGGED: listed
 for Dan, never failed, never dropped). Each part also records its x / y / z 'bounds' and, for a base, its deck 'outline' (the map needs
-them); the flag list for Dan goes to cad/fusebox/rev7/WALL-FLAGS.md.
-Writes cad/fusebox/rev7/wall_check.json (tracked; check_printed_solid.py S4 / S5 reads it, CI has no STL) and prints every spot.
+them); the flag list for Dan goes to cad/fusebox/rev8/WALL-FLAGS.md.
+Writes cad/fusebox/rev8/wall_check.json (tracked; check_printed_solid.py S4 / S5 reads it, CI has no STL) and prints every spot.
 Detection is handbuilt-cad's generic tools/checks/check_printed_walls.py (HANDBUILT_CAD, default ~/projects/handbuilt-cad); this file
 keeps st185's settings and outputs. Run in WSL with the handbuilt-cad venv (trimesh, shapely, scipy, PIL), from the repo root,
 --src = the checkout with the STLs,
@@ -48,7 +48,7 @@ OPTS = dict(step=STEP, pitch=PITCH,
             skin=1.5,             # mm: a thin piece must stand this far out of the >= 3 mm body to be a cantilever
             cluster_tol=0.6)
 SHELLS = ('_Cover_', '_Pan_', '_Retainer_')
-FUSEBOX = 'cad/fusebox/rev7'
+FUSEBOX = 'cad/fusebox/rev8'
 PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
          'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']

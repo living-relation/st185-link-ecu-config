@@ -8,38 +8,22 @@ differences). The Fusion script adds the geometric checks (wire through plastic,
     python cad/fusebox/src/wiring_sim.py            # writes the plan + prints the summary
 Claude Code, 2026-10-14.
 """
-import json, glob, os, re, math, sys, collections
+import json, glob, os, re, math, sys, collections, csv
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import spec as S
 REPO = os.path.normpath(os.path.join(HERE, '..', '..', '..'))
-# Inputs: frozen copies of the retired docs/harness/rebuild/ files (*.harness + full_text.json), restored 2026-10-20 (Dan);
-# they may lag docs/harness/MASTER-wirelist.csv.
-REB = os.path.join(REPO, 'cad', 'fusebox', 'frozen-inputs')
-_FULL = json.load(open(os.path.join(REB, 'full_text.json'), encoding='utf-8'))
-
-
-def full_text(d, fn):
-    """R124: the frozen drawings carry short names; put back the long ones (frozen-inputs/full_text.json) this matcher reads."""
-    rec = _FULL.get(os.path.basename(fn))
-    if not rec:
-        return d
-    for c in d.get('connectors', []):
-        r = rec['connectors'].get(c['id'], {})
-        if r.get('label') and (c.get('label') or '') == r['label'][0]:
-            c['label'] = r['label'][1]
-        for x in c.get('cavities', []):
-            p = r.get('cavities', {}).get(x['id'])
-            if p and (x.get('signal') or '') == p[0]:
-                x['signal'] = p[1]
-    for t in d.get('terminals', []):
-        p = rec['terminals'].get(t['id'])
-        if p and (t.get('signal') or '') == p[0]:
-            t['signal'] = p[1]
-    return d
-OUT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'wiring_plan.json')
-CAD_REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
+# Inputs (Dan A19 a, 2026-11-12): the ONE wire list, docs/harness/MASTER-wirelist.csv, for every harness wire that ends at a box; the box
+# seats (which relay sits where) from sot/fuse-relay-map.csv; the box insides from spec.BOX_WIRES (Dan R1 a: the model owns them).
+# Until rev 8 the plan was read from frozen copies of the retired harness files (cad/fusebox/frozen-inputs), which lagged the master.
+MASTER = os.path.join(REPO, 'docs', 'harness', 'MASTER-wirelist.csv')
+SEATS = os.path.join(REPO, 'sot', 'fuse-relay-map.csv')
+REV_DIR = os.path.join(REPO, 'cad', 'fusebox', 'rev%d' % S.REV)
+OUT = os.path.join(REV_DIR, 'wiring_plan.json')
+CAD_REPORT = os.path.join(REV_DIR, 'fusebox_report.json')
+if not os.path.exists(CAD_REPORT):        # first plan of a new rev: the lanes of the rev before (build, then re-run this)
+    CAD_REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
 
 OD = dict(S.OD)
 OD[16] = OD.get(16, 2.06)
@@ -50,6 +34,11 @@ TERM_RANGE = {'1241388-2': (0.5, 1.0), '1241390-1': (1.5, 2.5), '1-968851-1': (1
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn', 'k_etb': 'k_etb', 'k_acc': 'k_acc', 'k_eps_en': 'k_eps_en', 'k_rev': 'k_rev',
                'heater': 'k_htr', 'k_efi': 'k_efi', 'k_str': 'k_str', 'k_fan': 'k_fan', 'k_fan2': 'k_fan2', 'power': 'k_pwr'}
 PIN = {'30': 'c1', '85': 'c2', '86': 'c3', '87': 'c4', '87a': 'c5'}
+
+
+def relay_id(nm):
+    """Plan id of a box relay seat name: rev 8 names are the master ids (K-HL -> k_hl), rev 6 / 7 the old CAD names."""
+    return nm.lower().replace('-', '_') if nm.startswith('K-') else RELAY_NAMES[nm]
 
 
 def od_of(g, unit):
@@ -78,7 +67,7 @@ def logic_cavities():
             k += 1
             if not pn:
                 continue
-            rid = RELAY_NAMES[nm]
+            rid = relay_id(nm)
             for tn, (u, v) in S.MICRO_PINS.items():
                 cav[(rid, PIN[tn])] = dict(x=cx + u, y=cy + v, lane=('L', cx), kind='micro ' + tn, name=rid)
     return cav
@@ -87,7 +76,7 @@ def logic_cavities():
 def power_relays():
     out = []
     for i, nm in enumerate(S.IN_RELAY):
-        if nm == 'SPARE':
+        if nm == 'SPARE' or not S.RELAY_PN[nm][0]:      # rev 8: vacant seats (A16 a) carry no relay
             continue
         cx = S.F7_X[1] if i % 2 == 0 else S.F7_X[0]
         cy = S.AMI_Y0 + i * S.AMI_PITCH
@@ -116,56 +105,74 @@ def power_cavities():
 
 
 # ------------------------------------------------------------------ harness wires per box
-def box_of(ent):
-    i, lab = ent['id'], (ent.get('label') or '') + ' ' + (ent.get('signal') or '')
-    if i in ('fb_power', 'pdb') or i.startswith('t_pdb_gnd'):
-        return 'POWER'
-    if i == 'fb_logic':
-        return 'LOGIC'
-    if i in ('fb_batt', 'k_fp'):
-        return 'BATT'
-    if i in S.CHANNEL_SPLICES:                   # J3 / J4 (R94): the HL / HR splices lie in the LOGIC front channel
-        return 'LOGIC'
-    m = re.search(r'seated in the (POWER|LOGIC) box', lab)
-    return m.group(1) if m else None
+PIN_CAV = {'30': 'c1', '85': 'c2', '86': 'c3', '87': 'c4', '87a': 'c5'}
+BANK_BOX = {'B1': 'POWER', 'B2': 'LOGIC', 'B3': 'BATT'}        # B4 (K-EPS, HCR150) sits beside the POWER box, in no box
+RING = re.compile(r'^T-PWR-(AMI-(IN|OUT)-(\d+)|POS-BAT|POS-RADLOK|NEG-.+)$')
+
+
+def seated():
+    """{relay id: box} of every relay seated in a box (sot/fuse-relay-map.csv kind relay, status seated)."""
+    out = {}
+    for r in csv.DictReader(open(SEATS, encoding='utf-8', newline='')):
+        if r['kind'] == 'relay' and r['status'] == 'seated' and r['master_id'].startswith('K-') and r['bank'] in BANK_BOX:
+            out[r['master_id']] = BANK_BOX[r['bank']]
+    return out
+
+
+def master_end(r, s, relays):
+    """One master wire end -> the plan end (plan ids as the box build names them), or a plain end outside every box."""
+    t, i, pin, part = r[s + '_type'], r[s + '_id'], r[s + '_pin'], r[s + '_terminal_pn']
+    part = None if part in ('', 'TBD') or ' ' in part else part
+    e = dict(id=i, cav=pin, box=None, part=part, des='', sig=(r[s + '_desc'] or '')[:90], name=r[s + '_name'])
+    if t == 'connector' and i == 'LOGIC':
+        e.update(id='fb_logic', box='LOGIC', des=pin)
+    elif t == 'connector' and i in relays:
+        e.update(id=i.lower().replace('-', '_'), box=relays[i], cav=PIN_CAV.get(pin, pin), des=pin)
+    elif t == 'connector' and i == 'BATT-RELAY-BLOCK':
+        e.update(id='fb_batt', box='BATT', cav={'BATT': 'in', 'FP': 'fp'}.get(pin, pin), des={'BATT': 'BATT +', 'FP': 'FP 40A'}.get(pin, pin))
+    elif t == 'terminal' and RING.match(i):
+        m = RING.match(i)
+        if m.group(2):
+            e.update(id='fb_power', cav='%s%s' % (m.group(2).lower(), m.group(3)), des='AMI %s-%s' % (m.group(2), m.group(3)))
+        else:
+            e.update(id='pdb', cav={'POS-BAT': 'c1', 'POS-RADLOK': 'c2'}.get(m.group(1), m.group(1)),     # one ring per wire (N65 a): its own cavity
+                     des={'POS-BAT': 'BAT+', 'POS-RADLOK': 'ALT/STR'}.get(m.group(1), 'GND'), stud=r[s + '_name'])
+        e['box'] = 'POWER'
+    return e
+
+
+def gauge_of(g):
+    return (53.5, 'Metric') if g == '1/0' else (int(g), 'AWG')
 
 
 def harness_wires():
+    """Every master wire with an end in a box, then the box insides (spec.BOX_WIRES)."""
+    relays = seated()
     rows = {}
-    for fn in sorted(glob.glob(os.path.join(REB, '*.harness'))):
-        d = json.load(open(fn, encoding='utf-8'))
-        d = full_text(d, fn)     # R124: the drawings carry short names; the long ones this matcher reads come back from full_text.json
-        name = os.path.basename(fn)[6:-8]
-        wp = {p['id']: p for p in d.get('wireParts', [])}
-        cp = {p['id']: p for p in d.get('contactParts', [])}
-        tp = {p['id']: p for p in d.get('terminalParts', [])}
-        ents = {c['id']: ('conn', c, {cv['id']: cv for cv in c.get('cavities', [])}) for c in d.get('connectors', [])}
-        ents.update({t['id']: ('term', t, {}) for t in d.get('terminals', [])})
-        ents.update({t['id']: ('splice', t, {}) for t in d.get('splices', [])})
-        for w in d['wires']:
-            ends = []
-            for side in ('source', 'target'):
-                e = w[side]
-                ent = ents.get(e['id'])
-                if not ent:
-                    ends.append(dict(id=e['id'], cav=e.get('handle'), box=None, part=None, des=''))
-                    continue
-                kind, obj, cavs = ent
-                cv = cavs.get(e.get('handle'), {})
-                if kind == 'conn':
-                    pp = cp.get(cv.get('contactPartId'))
-                elif kind == 'splice':
-                    pp = None
-                else:
-                    pp = tp.get(obj.get('partId'))
-                ends.append(dict(id=e['id'], cav=e.get('handle'), box=box_of(obj), part=pp.get('partNumber') if pp else None,
-                                 des=cv.get('designation') or '', sig=(cv.get('signal') or obj.get('signal') or '')[:90]))
-            if not any(x['box'] for x in ends):
-                continue
-            p = wp.get(w.get('partId'), {})
-            g = p.get('gauge', {})
-            rows[w['id']] = dict(wire=w['id'], file=name, colour=w.get('color') or 'Red', bands=[],
-                                 gauge=g.get('value'), unit=g.get('unit'), od=od_of(g.get('value'), g.get('unit')), ends=ends)
+    for r in csv.DictReader(open(MASTER, encoding='utf-8', newline='')):
+        if not r['wire_id'] or not r['gauge_awg'] or r['wire_pn'] == 'INTEGRAL':
+            continue
+        ends = [master_end(r, s, relays) for s in ('from', 'to')]
+        if not any(x['box'] for x in ends):
+            continue
+        g, unit = gauge_of(r['gauge_awg'])
+        rows[r['wire_id']] = dict(wire=r['wire_id'], file=r['harness'], colour=r['colour'] or 'Red', bands=[], gauge=g, unit=unit,
+                                  od=od_of(g, unit), ends=ends, source='master')
+    for (wid, g, colour, a, b) in S.BOX_WIRES:
+        ends = []
+        for (i, cav, des, part) in (a, b):
+            box = ('LOGIC' if i in S.CHANNEL_SPLICES else None)
+            if i in ('fb_power', 'pdb'):
+                box = 'POWER'
+            elif i == 'fb_logic':
+                box = 'LOGIC'
+            elif i in ('fb_batt', 'k_fp'):
+                box = 'BATT'
+            elif i.startswith('k_'):
+                box = relays.get(i.upper().replace('_', '-'))
+            ends.append(dict(id=i, cav=cav, box=box, part=part, des=des, sig=''))
+        rows[wid] = dict(wire=wid, file='box (spec.BOX_WIRES)', colour=colour, bands=[], gauge=g, unit='AWG', od=od_of(g, 'AWG'),
+                         ends=ends, source='box')
     return list(rows.values())
 
 
@@ -206,7 +213,11 @@ def plan():
                 at = pc['ACPS' if e['cav'] == 'acps' else 'ACPS IN']
             elif e['id'] in S.CHANNEL_SPLICES:
                 CH = S.CHANNEL
-                at = dict(x=CH['splice']['x0'], y=CH['y_sp'], lane=None, kind='splice', name=e['id'])
+                if S.REV >= 8:      # A20 a: the in-box splices under the deck (spec.SPLICES8)
+                    sp_ = S.SPLICES8[e['id']]
+                    at = dict(x=sp_['x'], y=sp_['y0'], lane=None, kind='splice', name=e['id'])
+                else:
+                    at = dict(x=CH['splice']['x0'], y=CH['y_sp'], lane=None, kind='splice', name=e['id'])
             part = e['part'] or fallback_part(e['box'], e, w['gauge'], w['unit'])
             if e['box'] in ('LOGIC', 'POWER') and part in S.TERM_SWAP:      # R123: the box takes the self-locking swap (harness follow-up)
                 ends.append(dict(e, at=at, part=S.TERM_SWAP[part], harness_part=part, part_from='R123 swap'))
@@ -357,7 +368,7 @@ def strip_blocks():
     return out
 
 
-def direct_jumper(a, b, od, risers):
+def direct_jumper(a, b, od, risers, z=None):
     """LOGIC fuse -> relay (no strip in between): under the deck at JUMP_Z, the dog-leg with the fewest riser hits."""
     cands = [[a, b], [a, (b[0], a[1]), b], [a, (a[0], b[1]), b]]
     y0, y1 = min(a[1], b[1]) - 25.0, max(a[1], b[1]) + 25.0
@@ -402,7 +413,44 @@ def direct_jumper(a, b, od, risers):
             best = ((hits, L), c)
     (hits, _), c = best
     z_d = S.LOGIC['z_d']
-    pts = [(a[0], a[1], z_d - 0.2)] + [(x, y, JUMP_Z) for (x, y) in c] + [(b[0], b[1], z_d - 0.2)]
+    zz = JUMP_Z if z is None else z
+    pts = [(a[0], a[1], z_d - 0.2)] + [(x, y, zz) for (x, y) in c] + [(b[0], b[1], z_d - 0.2)]
+    return pts, hits
+
+
+def channel_route8(w):
+    """Rev 8 (J4 = B): a Bus 1 fuse -> relay 30 wire that crosses the strips. Down out of the fuse cavity, sideways to x_fwd, forward,
+    along the front in front of the spine, rearward between the Bus 2 outputs and micro column 0 (x_etb, for a column 0 relay) or between
+    the micro columns (x_hr, column 1), then 45 deg into the relay cavity; each wire on its own level (spec.CHANNEL8)."""
+    C = S.CHANNEL
+    k = S.CHANNEL8['key'][w['wire']]
+    z, zc = S.CHANNEL8['z'][k], S.LOGIC['z_d'] - 0.2
+    fuse = next(e for e in w['ends'] if e['id'] == 'fb_logic' and e.get('at'))
+    rel = next(e for e in w['ends'] if e['id'].startswith('k_') and e.get('at'))
+    x, y = fuse['at']['x'], fuse['at']['y']
+    c = rel['at']
+    xr = C['x_etb'] if c['x'] < sum(S.MICRO_COLS) / 2 else C['x_hr']
+    return [(x, y, zc), (x, y, z), (C['x_fwd'], y - 10.0, z), (C['x_fwd'], C['y'], z), (xr, C['y'], z), (xr, c['y'] - abs(c['x'] - xr), z),
+            (c['x'], c['y'], z), (c['x'], c['y'], zc)], k
+
+
+def splice_route(w, risers):
+    """A20 a: fuse -> splice (to its front end), splice rear end -> relay pin, on the splice's level, the dog-leg with the fewest riser hits
+    (direct_jumper's search). Legs fan out 1 mm apart at the splice end so no two start inside each other."""
+    e_sp = next(e for e in w['ends'] if e['id'] in S.SPLICES8)
+    sp_ = S.SPLICES8[e_sp['id']]
+    other = next(e for e in w['ends'] if e is not e_sp)
+    a = (other['at']['x'], other['at']['y'])
+    if w['wire'] == sp_['feed']:
+        b = (sp_['x'], sp_['y0'] - 0.5)
+        pts, hits = direct_jumper(a, b, w['od'], risers, z=sp_['z'])
+        pts = pts[:-1] + [(sp_['x'], sp_['y0'] + 1.0, sp_['z'])]          # ends 1 mm into the splice
+    else:
+        k = sp_['legs'].index(w['wire'])
+        dx = (k - (len(sp_['legs']) - 1) / 2.0) * 1.0
+        b0 = (sp_['x'] + dx, sp_['y0'] + sp_['L'] + 0.5)
+        pts, hits = direct_jumper(b0, a, w['od'], risers, z=sp_['z'])
+        pts = [(sp_['x'] + dx, sp_['y0'] + sp_['L'] - 1.0, sp_['z'])] + pts[1:]
     return pts, hits
 
 
@@ -524,8 +572,14 @@ def main():
     for w in wires:
         ats = [e for e in w['ends'] if e.get('at')]
         w['ats'] = ats
-        w['loop'] = w['direct'] = w['channel'] = False
-        if w['kind'] == 'internal' and len(ats) == 2 and all(e['box'] == 'LOGIC' for e in ats):
+        w['loop'] = w['direct'] = w['channel'] = w['spliced'] = False
+        if S.REV >= 8 and w['kind'] == 'internal' and len(ats) == 2 and all(e['box'] == 'LOGIC' for e in ats):
+            # rev 8: the Bus 1 -> relay wires that cross the strips run in the front channel (J4 = B, levels spec.CHANNEL8); the A20 a splice
+            # wires on their splice's level; the rest are direct jumpers under the deck
+            w['channel'] = w['wire'] in S.CHANNEL8['key']
+            w['spliced'] = any(e['id'] in S.SPLICES8 for e in ats)
+            w['direct'] = not (w['channel'] or w['spliced'])
+        elif w['kind'] == 'internal' and len(ats) == 2 and all(e['box'] == 'LOGIC' for e in ats):
             xs = sorted(e['at']['x'] for e in ats)
             crosses = any(xs[0] < sx < xs[1] for sx in (strip_x['BUS1'] + 6.0, strip_x['BUS2'] - 6.0))
             # J4 = B (R94): a wire that crosses the strips, or ends at a channel splice, runs in the front channel
@@ -534,7 +588,7 @@ def main():
     # ---- lane members (one per wire end that leaves through an exit)
     lanes = collections.defaultdict(list)
     for w in wires:
-        if w['direct'] or w['channel']:
+        if w['direct'] or w['channel'] or w['spliced']:
             continue
         for e in w['ats']:
             if e['at']['lane'] is None:
@@ -597,17 +651,30 @@ def main():
     for w in wires:
         if not w['channel']:
             continue
-        pts, k = channel_route(w)
+        pts, k = channel_route8(w) if S.REV >= 8 else channel_route(w)
         channel[w['wire']] = k
         box_paths[w['wire']] = [dict(box='LOGIC', lane=None, pts=pts, R=r_sup(w['od']), channel=k)]
     CH = S.CHANNEL
-    splices = [dict(id=sid, box='LOGIC', p0=(CH['splice']['x0'], CH['y_sp'], CH['z'][k]), p1=(CH['splice']['x1'], CH['y_sp'], CH['z'][k]),
-                    od=CH['splice']['od'], basis='est (generic solder splice, adhesive heat shrink over)') for sid, k in (('sp_hl', 'HL'), ('sp_hr', 'HR'))]
+    if S.REV >= 8:      # A20 a: the in-box splices, each along y under the deck; feed and legs on the splice's own level
+        splices, spliced = [], {}
+        for sid, sp_ in S.SPLICES8.items():
+            splices.append(dict(id=sid, box='LOGIC', p0=(sp_['x'], sp_['y0'], sp_['z']), p1=(sp_['x'], sp_['y0'] + sp_['L'], sp_['z']), od=sp_['od'],
+                                basis='est (solder joint, adhesive-lined heat shrink over; A20 a)'))
+        for w in wires:
+            if not w['spliced']:
+                continue
+            pts, hits = splice_route(w, risers)
+            spliced[w['wire']] = hits
+            box_paths[w['wire']] = [dict(box='LOGIC', lane=None, pts=pts, R=r_sup(w['od']), spliced=True)]
+    else:
+        spliced = {}
+        splices = [dict(id=sid, box='LOGIC', p0=(CH['splice']['x0'], CH['y_sp'], CH['z'][k]), p1=(CH['splice']['x1'], CH['y_sp'], CH['z'][k]),
+                        od=CH['splice']['od'], basis='est (generic solder splice, adhesive heat shrink over)') for sid, k in (('sp_hl', 'HL'), ('sp_hr', 'HR'))]
     for w in wires:
         w['box_paths'] = box_paths.get(w['wire'], [])
         w.pop('ats', None)
     res = dict(per_box_wire_ends=per_box, kinds=collections.Counter(w['kind'] for w in wires), wires=wires, doubles=doubles,
-               loops=[w['wire'] for w in wires if w['loop']], direct=jumper_hits, exits=exits, channel=channel, splices=splices,
+               loops=[w['wire'] for w in wires if w['loop']], direct=jumper_hits, exits=exits, channel=channel, splices=splices, spliced=spliced,
                cavities=terminal_cavities(wires),
                constants=dict(EXIT_S=EXIT_S, BUNDLE_Z0=BUNDLE_Z0, LOOP_Y=LOOP_Y, LOOP_Z=LOOP_Z, JUMP_Z=JUMP_Z))
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
@@ -616,6 +683,7 @@ def main():
     print('LOGIC wires that loop out of the front exit and back in (they cannot cross the strips):', res['loops'])
     print('LOGIC direct jumpers under the deck (riser hits):', jumper_hits)
     print('LOGIC front channel (J4 = B):', channel)
+    print('LOGIC in-box splice wires (A20 a, riser hits):', spliced)
     for d_ in doubles:
         print('two wires in one terminal: %(box)s %(cavity)s %(wires)s = %(mm2)s mm2 in %(part)s range %(range)s over=%(over)s' % d_)
     for x in exits:
