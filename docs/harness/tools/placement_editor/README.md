@@ -1,10 +1,23 @@
 # Placement editor (refine-only)
 
-One shared template for every harness's placement editor: all ten harnesses use it since 2026-11-11 (one seed per editor in `seeds/`; one Wheel speed editor, `seeds/WheelSpeed.json`, owns both wheel speed harnesses, DECISIONS B8 "X9"; editor links: `docs/OPEN-ITEMS.md` row 180 and History). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
+One shared template for every harness's placement editor: all ten harnesses use it since 2026-11-11 (one seed per editor in `seeds/`; one Wheel speed editor, `seeds/WheelSpeed.json`, owns both wheel speed harnesses, DECISIONS B8 "X9"; editor links: "Editor links" below). Rules: DECISIONS "Placement and lengths (B8)": N120 "Editors refine, agents route", "Top view only", "Simpler is better", own parts only.
 
 - `editor.html`: the page template. The seed format and the save format are documented in its top comment.
 - Wireway corridors (DECISIONS B8 "Wireway corridors", approved by Dan 2026-11-11 12:19 with Y5 a-Y8 a): the corridor set is `../corridors.json`, the one source; every main trunk in a seed stays inside it (short device branches may leave, Y7 a). `python ../check_corridors.py` checks every seed (AB-engine: its Route 16 lines) and runs in `tools/check_all.py`; run it after any seed route change.
 - `make_editor.py`: fills the template with one harness's seed and the top-view plan image. Device and fixed-marker names are pulled from the master's plain names (`from_id` / `to_id` -> `from_name` / `to_name`), so a rebuild after a master rename shows the new names. It warns on any code left in a name, short label or note (DECISIONS B22: only fuse box / relay codes and factory EWD plug IDs may show). Optional seed keys it reads: `title` (the page title, to keep an artifact's title) and `harnesses` (the harnesses one editor owns; a device of any other harness stops the build).
+
+## Editor links
+Each editor is republished at its same link (step 3 below); all read live 2026-11-12.
+- AB-engine ("AB-engine Placement Editor", the Route 16 editor; `layouts/route16`): https://claude.ai/artifact/CZpVoJkJeGmt79GpnvaBFQ
+- EngineRoom-C ("Harness C Placement Editor"; `layouts/harnessC`): https://claude.ai/artifact/4zPmkU3EpfBvQbbYXp8ety
+- AB-cabin (`layouts/ABcabin`): https://claude.ai/artifact/6zGBDwDCbJDphXSEU8DrW9
+- CabinPower (`layouts/CabinPower`): https://claude.ai/artifact/BRjW5LP7PKJxXeyPDtGngp
+- Dash (`layouts/Dash`): https://claude.ai/artifact/4X4Q9yFxAWAfHJgU2asUUu
+- AntiTheft (`layouts/AntiTheft`): https://claude.ai/artifact/NVt9Cb2LJUFgz5ELUEqMzy
+- HeavyDC (`layouts/HeavyDC`): https://claude.ai/artifact/WzLXtPmhNEXecZi62AutCj
+- RearFuel (`layouts/RearFuel`): https://claude.ai/artifact/X7aCnybNrv1atSeJXLqjcJ
+- Wheel speed, both harnesses ("WheelSpeed-Front Placement Editor"; `layouts/WheelSpeed`): https://claude.ai/artifact/HxyAzsouQvKcsxWMRrEHx9 (the WheelSpeed-Rear page https://claude.ai/artifact/XB6Nk8Dazz22Vd2N3mRN6J points to it)
+- Wireway corridors review page (`../corridors.json`): https://claude.ai/artifact/7191hoJLe9EJPuppYxjNBd
 
 ## What Dan sees
 - Plain names only: ids are keys, never shown. Map labels come from each line's and device's `short` field (a line with no `short` gets no map label; the legend lists every line by name).
