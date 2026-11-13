@@ -171,7 +171,23 @@ def fusebox(box):
                 if desc: it['desc']=desc
                 break
         items.append(it)
+    _tails_to_terminals(box, items, g)
     return items
+def _tails_to_terminals(box, items, g):
+    """rev 8: the assembly STEP has no terminal bodies, only the harness wire tails at the cavities (<Box>_Harness_wires). Each
+    tail is drawn as the terminal item of the cavity it ends in (wiring_plan.json cavities: part per cavity), so the balloons and the
+    wire label sheets have something to point at."""
+    if box not in ('LOGIC','POWER') or any(it.get('shapes') for it in items if it['pn'] in ('42281-1','1-968849-1')): return
+    import json, fb_labels as L
+    px,py=L.S.PLACE.get(box,(0.0,0.0))
+    cav=[(e['x']+px,e['y']+py,e['part']) for e in json.load(open(L.PLAN,encoding='utf-8'))['cavities'] if e['box']==box]
+    byp={it['pn']:it for it in items}
+    for b in g(box.capitalize()+'_Harness_wires'):
+        bb=b.bounding_box(); top=[v for v in b.vertices() if v.Z>bb.max.Z-2.0] or list(b.vertices())
+        x=sum(v.X for v in top)/len(top); y=sum(v.Y for v in top)/len(top)
+        d,part=min(((((x-cx)**2+(y-cy)**2)**0.5,pt) for cx,cy,pt in cav), default=(1e9,None))
+        if d<4.0 and part in byp:
+            it=byp[part]; it.setdefault('shapes',[]).append(b); it['desc']=it['desc'].replace(' (NOT SHOWN)','')
 # Maps follow the rev 8 parts lists (cad/fusebox/rev8/fusebox-parts-*.csv, Dan A15 b 2026-11-12; first written 2026-10-18 for rev 7, R155 C-straps).
 # Rev 8: no heater relay R1 or ACPS fuse (A16 a: empty spares); the box wires (R1 a, TXL), the TE 320572 ground ring and the ATUM sleeve are
 # parts-list rows without a model body (not shown). Keys are matched in order against "item|part number" - a longer key goes before a key it contains.
