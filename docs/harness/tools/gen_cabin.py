@@ -1,5 +1,5 @@
 """harness.design copy of ST185-AB-cabin = the ECU harness, cabin half, in two documents (100-connection plan limit):
-"ST185-AB-cabin 1 - sensor rails and screens Rev F" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev G".
+"ST185-AB-cabin 1 - sensor rails and screens Rev F" and "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev I".
 Split rule (README "harness.design", one device, one file; Dan 2026-11-04 V1 a): the ECU plugs A, B, C and the bulkhead
 DRB102-CABIN are drawn whole in both documents (each wires its own cavities; the others are N/C with a note); every other
 device has all its AB-cabin wires in one document. Document 1 holds every wire joined (through devices, splices and
@@ -40,7 +40,9 @@ H = B.Harness('ST185-harness')
 # outside air temp sensor wires now EngineRoom-C's, U4 a; 25 mm splice ends T7 b and ghost wires T4 a; library sync #664 / #665)
 # Rev H of doc 2 (2026-11-12): its eight shared splices with one AB-cabin 2 leg (the A/C pressure switch and A/C sensor common
 # splices, the six CAN tap splices) are Loose ends with their R10 notes, no one-wire splice (DECISIONS T3; one_leg_splices)
-REVS, DATES = {1: 'F', 2: 'H'}, {1: '2026-11-12', 2: '2026-11-12'}
+# Rev I of doc 2 (2026-11-13, Dan A35): its box seat wires reach their rev 8 seats (glove-box breakouts, box_breakouts in the
+# layout tree; 15 lengths up) and each box seat end carries its real crimp contact; formboard labels kept clear (label gate)
+REVS, DATES = {1: 'F', 2: 'I'}, {1: '2026-11-12', 2: '2026-11-13'}
 NAME, REV, DATE = 'AB-cabin', REVS[DOC], DATES[DOC]
 TITLES = {1: 'ST185-AB-cabin 1 - sensor rails and screens', 2: 'ST185-AB-cabin 2 - straight runs, power, taps and CAN'}
 SHORT = {1: 'AB-cabin 1', 2: 'AB-cabin 2'}
@@ -390,12 +392,12 @@ for sp, n in list(splices.items()) + [(c, n) for c, n in conns.items() if c.star
 # column half a grid lower.
 CID = {n['id']: c for c, n in conns.items()}
 def place_of(cid):
-    if cid in CID: return H.layout['place'].get(CID[cid])
+    if cid in CID: return B.area_node(H.layout['place'].get(CID[cid]))
     for r in W:
         for s in ('from', 'to'):
             if r[s + '_type'] in ('connector', 'terminal', 'OEM') and \
                     ("c_" + sid(r[s + '_id']) if r[s + '_type'] == 'connector' else "t_" + sid(tkey(r, s))) == cid:
-                return H.place(r, s)
+                return B.area_node(H.place(r, s))     # a box seat's breakout node sorts with the glove box (Dan A35)
 NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
 def is_ecu_side(n): return n['id'].startswith('c_') and place_of(n['id']) in ('ECU', 'SP')     # ECU plugs + the ECU splice-point bus plugs
 # the bulkhead first, then the far ends grouped by where they sit in the car (glove box, the sill run, A/C, front, dash, pedal)

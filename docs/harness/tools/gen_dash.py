@@ -1,4 +1,4 @@
-"""harness.design copy of ST185-Dash, file "ST185-Dash Rev E" (Rev E 2026-11-12: the reverse signal and high-beam output splices, each with one Dash leg, are Loose ends with their R10 notes, no one-wire splice (DECISIONS T3; build_drawings.one_leg_splices; the builder draws any such end this way); Rev D 2026-11-12: Dash's editor-turn lengths (2026-11-12), the one mm cabin model (#662), the ECU splice point at the ECU plugs (A10 b, #663), the high-beam LED fed straight from the high-beam output and spliced onto its pigtail (A2 b / A3), 25 mm splice ends (T7 b) and ghost wires (T4 a), library sync (#664 / #665); Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
+"""harness.design copy of ST185-Dash, file "ST185-Dash Rev F" (Rev F 2026-11-13: Dan A35 - every box seat wire reaches its rev 8 seat or stud: glove-box breakouts GB_LOGIC / GB_POWER / GB_PBAR / GB_KEPS / GB_DRL in the layout tree (box_breakouts), the master lengths from --write-lengths; each box seat end carries its real crimp contact (master terminal PN, library 5LO8); formboard labels kept clear (label gate); Rev E 2026-11-12: the reverse signal and high-beam output splices, each with one Dash leg, are Loose ends with their R10 notes, no one-wire splice (DECISIONS T3; build_drawings.one_leg_splices; the builder draws any such end this way); Rev D 2026-11-12: Dash's editor-turn lengths (2026-11-12), the one mm cabin model (#662), the ECU splice point at the ECU plugs (A10 b, #663), the high-beam LED fed straight from the high-beam output and spliced onto its pigtail (A2 b / A3), 25 mm splice ends (T7 b) and ghost wires (T4 a), library sync (#664 / #665); Rev C 2026-11-09: CAN trunk taps and 2-core drops, Dan P1 / T1 a; box seats as plain terminals, Dan R1 a; viewer only; the master is the source), and the shared builder
 gen_antitheft.py uses for "ST185-AntiTheft" (one small cabin harness each, same rules).
 Usage: python gen_dash.py <repo> <out_dir>   (needs <out>/lib.json = a dump of part library 5LO8, get_part_library, filtered
 to the parts these harnesses use). Writes <out>/dash.json (whole document, wires already routed with genroute.py: upload as
@@ -318,7 +318,7 @@ def build(REPO, OUT, CFG):
     for r in W:
         for s in ('from', 'to'):
             e = end(r, s)
-            if e and e['id'] not in INFO: INFO[e['id']] = (r[s + '_type'], r[s + '_id'], H.place(r, s))
+            if e and e['id'] not in INFO: INFO[e['id']] = (r[s + '_type'], r[s + '_id'], B.area_node(H.place(r, s)))   # Dan A35
     NODES = {n['id']: n for n in list(conns.values()) + list(terms.values())}
     AREA = CFG['area']
     def is_left(i): return INFO[i][0] == 'splice' or CFG['left'](INFO[i][0], INFO[i][1])     # a one-leg splice end: its rest is a source
@@ -791,7 +791,7 @@ def build(REPO, OUT, CFG):
 
 # ---------------------------------------------------------------------------------------------- ST185-Dash (Dan B8 = a)
 DASH = dict(
-    name='Dash', title='ST185-Dash', rev='E', date='2026-11-12', stem='dash', script='gen_dash.py', root='ECU',
+    name='Dash', title='ST185-Dash', rev='F', date='2026-11-13', stem='dash', script='gen_dash.py', root='ECU',
     scope="the Dash harness (was CAN + CSB3 + ClusterLED, Dan B8 = a): the cabin CAN trunk (Dan P1, T1 a) - one shielded trunk "
           "from ECU plug C past a tap splice at each node, ECUMaster CSB3 tap, then the cluster tap, then the RealDash Pi tap, then on "
           "through the firewall bulkhead to the CAN-Lambda (the ECU C - CSB3 tap and Pi tap - bulkhead legs are AB-cabin 2's; Dash has "

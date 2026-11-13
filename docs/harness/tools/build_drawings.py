@@ -124,6 +124,8 @@ def box_seat_ends(doc):
     no routed length changes. A relay outside the boxes (K-EPS, RLY-DRL) stays; the trunk relay block is a box too (K-FP, Dan S1 a 2026-11-09)."""
     seats = _seat_map()
     sid_ = lambda s: re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
+    pn_of = {(r["wire_id"], r[s + "_id"], r[s + "_pin"]): r[s + "_terminal_pn"] for r in master_rows() for s in ("from", "to")
+             if r.get("wire_id") and r[s + "_terminal_pn"] and not r[s + "_terminal_pn"].upper().startswith(("TBD", "NONE"))}
     conds = doc.get("wires", []) + [q for c in doc.get("cables", []) for q in c["cores"] + ([c["shield"]] if "shield" in c else [])]
     keep = []
     for c in doc.get("connectors", []):
@@ -144,7 +146,21 @@ def box_seat_ends(doc):
             tid = "t_%s__%s" % (c["id"][2:], sid_(d))
             lab = ("%s seat %s, terminal %s - %s" % (box, seat, d, c.get("label", mid)) if seat
                    else "%s fuse output %s" % (box, d))
-            t = {"id": tid, "type": "Loose", "label": lab, "width": c.get("width", 240)}     # the contact is a box part
+            t = {"id": tid, "type": "Loose", "label": lab, "width": c.get("width", 240)}
+            # Dan A35 (2026-11-13): the seat end carries its real crimp contact (the master's terminal PN; relabel() takes the
+            # part from library 5LO8 and sets the terminal type; a PN not in the library stays a plain end)
+            pns = {pn_of.get((w["id"][2:], mid, d)) for w in conds for e in (w.get("source"), w.get("target"))
+                   if e and e["id"] == c["id"] and e["handle"] == cv["id"]} - {None}
+            if len(pns) == 1:
+                t["_pn"] = pns.pop()
+                tp = lib_part(_LAYOUT_CACHE.get("lib"), "terminalParts", t["_pn"])
+                if tp:      # relabel() already ran (its library is known): the part goes on now
+                    del t["_pn"]
+                    t["type"], t["partId"] = tp["type"], tp["id"]
+                    if tp["id"] not in {p["id"] for p in doc.get("terminalParts", [])}:
+                        doc.setdefault("terminalParts", []).append(tp)
+                elif "lib" in _LAYOUT_CACHE:
+                    del t["_pn"]
             if p is not None:
                 t["schematicPosition"] = {"x": p["x"], "y": p["y"] + 30 * (i + 1)}
             if lp is not None:
@@ -322,6 +338,8 @@ def relabel(doc, rows=None, lib=None):
     ring terminal parts. `lib`: the library dump's parts; a ring terminal or bussed receptacle part found there is used as is
     (V2 a). Returns doc."""
     rows = rows if rows is not None else master_rows()
+    if lib is not None:
+        _LAYOUT_CACHE["lib"] = lib      # box_seat_ends takes its seat contacts from the same library (Dan A35)
     names, oem, label_of, ring_pn = {}, {}, {}, collections.defaultdict(set)
     for r in rows:
         if r.get('wire_id') and r.get('wire_label'):
@@ -391,6 +409,11 @@ def relabel(doc, rows=None, lib=None):
                         "id": "tp_" + _sid(pn).lower(), "partNumber": pn, "type": "Ring",
                         "description": "Ring terminal %s (master terminal_pn)" % pn})
                     t['partId'] = tparts[pn]['id']
+        pn = t.pop('_pn', None)      # a box seat end's crimp contact (Dan A35, box_seat_ends): the library's terminal part
+        tp = lib_part(lib, 'terminalParts', pn) if pn and lib else None
+        if tp:
+            tparts.setdefault(pn, tp)
+            t['type'], t['partId'] = tp['type'], tp['id']
         if '; ' in (t.get('signal') or ''):      # R3: one signal type per stud, never a list of what lands on it
             t['signal'] = t['signal'].split('; ')[0]
     if tparts:
@@ -1775,6 +1798,46 @@ def tree_mm_lengths(L):
         pts = [nodes[a]["mm"]] + (via[k] if k in via else via[rk][::-1] if rk in via else []) + [nodes[b]["mm"]]
         mm = sum(math.hypot(q[0] - p[0], q[1] - p[1]) for p, q in zip(pts, pts[1:])) + extra.get(k, extra.get(rk, 0))
         out[i] = int(round(mm))
+    out.update(box_breakout_lengths(L))
+    return out
+
+
+def area_node(n, L=None):
+    """the layout node a box breakout node belongs to (GB_LOGIC -> GB), so a schematic sorted by area of the car keeps the box
+    seats with the glove box (Dan A35); any other node is its own area"""
+    L = L or _LAYOUT_CACHE.setdefault("L", load_layout())
+    nodes = (L.get("box_breakouts") or {}).get("nodes") or {}
+    while n in nodes:
+        n = nodes[n]["parent"]
+    return n
+
+
+_LAYOUT_CACHE = {}
+
+
+def load_layout():
+    return json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ST185-harness.layout.json"), encoding="utf-8"))
+
+
+def box_breakout_lengths(L):
+    """{segment index: mm} for the fuse box breakouts (Dan A35, 2026-11-13: a harness wire into a box must be long enough to
+    reach its seat or stud): each breakout node sits at its box's harness entry in the rev 8 glove-box frame (box_breakouts
+    "frame"); its segment from the parent = the right-angle distance parent -> node + whatever its farthest seat needs beyond
+    the end allowance (seat reach = right-angle distance node -> the box exit + the in-box path, or node -> the stud), rounded
+    UP to 10 mm. Longer is fine; the seats are the box CAD's (box_breakouts "source")."""
+    bo = L.get("box_breakouts") or {}
+    end = L.get("end_allowance_mm", 100)
+    idx = {(s[0], s[1]): i for i, s in enumerate(L["segments"])}
+    man = lambda a, b: abs(a[0] - b[0]) + abs(a[1] - b[1])
+    out = {}
+    for n, v in (bo.get("nodes") or {}).items():
+        par = v["parent"]
+        pat = bo["nodes"][par]["at"] if par in bo["nodes"] else bo["at"][par]
+        far = max([x[3] for x in v["seats"]] + [0])
+        mm = max(10, int(math.ceil((man(pat, v["at"]) + max(0, far - end)) / 10.0 - 1e-9) * 10))     # never a 0 mm segment
+        i = idx.get((par, n), idx.get((n, par)))
+        if i is not None:
+            out[i] = mm
     return out
 
 
@@ -2313,6 +2376,30 @@ def self_test():
                   any(x.startswith("s1:") for x in wbad) and any("clash" in x for x in wbad)))
     zero = json.loads(json.dumps(fdoc)); zero["bundles"][3]["length"]["value"] = 0
     cases.append(("formboard: a 0 mm bundle is caught (the app draws it as no set length)", any("no set length" in x for x in FB.check(zero))))
+    # every label readable (Dan 2026-11-13): a hub of 16 long-labelled ends is laid out with no text overlapping; two ends
+    # stacked so their labels collide, and a label run off the panels, are caught
+    lab = json.loads(json.dumps(fdoc))
+    for i, t in enumerate(lab["terminals"]):
+        t["label"] = "LOGIC box seat M%d, terminal 30 - Some relay (K-X%d, LOGIC box)" % (i, i); t["signal"] = "Switched +12 V feed %d" % i
+    lab["terminals"] += [{"id": "u%d" % i, "type": "Loose", "label": "Seat end %d with a long label" % i, "signal": "Signal %d" % i,
+                          "layoutPosition": {"x": 600, "y": 300 + 30 * i}} for i in range(4)]
+    lab["bundles"] += [{"id": "su%d" % i, "sourceId": "bp_b", "targetId": "u%d" % i, "length": {"value": 100, "unit": "mm"}} for i in range(4)]
+    FB.to_scale(lab)
+    cases.append(("formboard labels: 20 long-labelled ends laid out with no label, length label or note overlapping (label gate)",
+                  FB.check(lab) == [] and len(FB.text_boxes(lab)) >= 30))
+    hit = json.loads(json.dumps(lab))
+    u0, u1 = (next(t for t in hit["terminals"] if t["id"] == k) for k in ("u0", "u1"))
+    u1["layoutLabelPosition"] = u0["layoutLabelPosition"] = "Right"
+    u1["layoutPosition"] = {"x": u0["layoutPosition"]["x"], "y": u0["layoutPosition"]["y"] + 3}
+    cases.append(("formboard labels: two end labels on top of each other are caught", any(x.startswith("labels overlap") for x in FB.check(hit))))
+    off = json.loads(json.dumps(lab)); off["formboard"]["columns"] = off["formboard"]["rows"] = 1
+    off["formboard"]["panelWidth"] = off["formboard"]["panelHeight"] = {"value": 50, "unit": "mm"}
+    cases.append(("formboard labels: a label off the panels is caught", any("label" in x and "off the panel grid" in x for x in FB.check(off))))
+    # box breakouts (Dan A35): a segment = right-angle distance + farthest seat beyond the end allowance, rounded up to 10 mm
+    bl = {"end_allowance_mm": 100, "segments": [["GB", "GB_X", 0]], "box_breakouts": {"at": {"GB": [0, 0]},
+          "nodes": {"GB_X": {"parent": "GB", "at": [30, 40], "seats": [["K-X", "30", "w", 151.0], ["K-X", "85", "w2", 90.0]]}}}}
+    cases.append(("box breakout: 70 mm away + a seat 51 mm past the end allowance -> 130 mm segment (A35)", box_breakout_lengths(bl) == {0: 130}))
+    cases.append(("box breakout: the committed layout's breakout segments match their model", not [x for x in tree_mm_problems(lay) if "GB_" in x]))
     # the From / To rule on the wire lists (S8 a / T8 b): the generated rows pass, a row turned round fails
     s8 = lambda found: [x for x in found if "From is the source end" in x]
     for hn in own_harnesses():

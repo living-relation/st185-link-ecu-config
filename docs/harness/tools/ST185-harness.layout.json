@@ -915,6 +915,51 @@
     -540,
     0
    ]
+  },
+  "GB_LOGIC": {
+   "xy": [
+    44,
+    8
+   ],
+   "label": "LOGIC box breakout (glove box, rev 8 seats; Dan A35)",
+   "end": true,
+   "short": "LOGIC box breakout"
+  },
+  "GB_POWER": {
+   "xy": [
+    44,
+    16
+   ],
+   "label": "POWER box breakout (relays) (glove box, rev 8 seats; Dan A35)",
+   "end": true,
+   "short": "POWER box breakout (relays)"
+  },
+  "GB_PBAR": {
+   "xy": [
+    44,
+    20
+   ],
+   "label": "POWER box bar studs (glove box, rev 8 seats; Dan A35)",
+   "end": true,
+   "short": "POWER box bar studs"
+  },
+  "GB_KEPS": {
+   "xy": [
+    48,
+    16
+   ],
+   "label": "K-EPS relay breakout (glove box, rev 8 seats; Dan A35)",
+   "end": true,
+   "short": "K-EPS relay breakout"
+  },
+  "GB_DRL": {
+   "xy": [
+    48,
+    20
+   ],
+   "label": "DRL cut relay breakout (glove box, rev 8 seats; Dan A35)",
+   "end": true,
+   "short": "DRL cut relay breakout"
   }
  },
  "segments": [
@@ -1272,6 +1317,31 @@
    "BP_PI",
    "TAP_CSB",
    103
+  ],
+  [
+   "GB",
+   "GB_LOGIC",
+   240
+  ],
+  [
+   "GB",
+   "GB_POWER",
+   210
+  ],
+  [
+   "GB_POWER",
+   "GB_PBAR",
+   380
+  ],
+  [
+   "GB_POWER",
+   "GB_KEPS",
+   410
+  ],
+  [
+   "GB_KEPS",
+   "GB_DRL",
+   190
   ]
  ],
  "tree_mm": {
@@ -1476,37 +1546,37 @@
   "R-FUELLVL": "SP",
   "SP-REV": "SP",
   "DRB102-CABIN": "BH",
-  "T-PWR-NEG-BAT": "GB",
-  "T-PWR-NEG-RADLOK": "GB",
-  "T-PWR-NEG-ID": "GB",
-  "T-PWR-NEG-IG": "GB",
-  "T-PWR-NEG-GND-1": "GB",
+  "T-PWR-NEG-BAT": "GB_PBAR",
+  "T-PWR-NEG-RADLOK": "GB_PBAR",
+  "T-PWR-NEG-ID": "GB_PBAR",
+  "T-PWR-NEG-IG": "GB_PBAR",
+  "T-PWR-NEG-GND-1": "GB_PBAR",
   "T-PWR-NEG-GND-2": "GB",
-  "T-PWR-NEG-GND-3": "GB",
-  "T-PWR-POS-BAT": "GB",
-  "T-PWR-POS-RADLOK": "GB",
-  "T-PWR-AMI-IN-1": "GB",
+  "T-PWR-NEG-GND-3": "GB_PBAR",
+  "T-PWR-POS-BAT": "GB_PBAR",
+  "T-PWR-POS-RADLOK": "GB_PBAR",
+  "T-PWR-AMI-IN-1": "GB_PBAR",
   "T-PWR-AMI-IN-2": "GB",
   "T-PWR-AMI-IN-4": "GB",
   "T-PWR-AMI-IN-5": "GB",
   "T-PWR-AMI-OUT-1": "GB",
-  "T-PWR-AMI-OUT-2": "GB",
-  "T-PWR-AMI-OUT-3": "GB",
-  "T-PWR-AMI-OUT-4": "GB",
-  "T-PWR-AMI-OUT-5": "GB",
-  "T-PWR-AMI-OUT-6": "GB",
+  "T-PWR-AMI-OUT-2": "GB_PBAR",
+  "T-PWR-AMI-OUT-3": "GB_PBAR",
+  "T-PWR-AMI-OUT-4": "GB_PBAR",
+  "T-PWR-AMI-OUT-5": "GB_PBAR",
+  "T-PWR-AMI-OUT-6": "GB_PBAR",
   "T-LOG-BUS1": "GB",
   "T-LOG-BUS2": "GB",
   "SP-CABIN-GND": "GB",
-  "K-EFI": "GB",
-  "K-FAN": "GB",
-  "K-FAN2": "GB",
-  "K-EPS": "GB",
-  "K-ETB": "GB",
-  "K-ACC": "GB",
-  "K-EPS-EN": "GB",
-  "K-ON": "GB",
-  "LOGIC": "GB",
+  "K-EFI": "GB_POWER",
+  "K-FAN": "GB_POWER",
+  "K-FAN2": "GB_POWER",
+  "K-EPS": "GB_KEPS",
+  "K-ETB": "GB_LOGIC",
+  "K-ACC": "GB_LOGIC",
+  "K-EPS-EN": "GB_LOGIC",
+  "K-ON": "GB_LOGIC",
+  "LOGIC": "GB_LOGIC",
   "BUS-SW12": "GB",
   "K-FP": "RLYBLK",
   "SP-AC-PSW": "ACAMP",
@@ -1567,16 +1637,16 @@
   "VSS": "VSS",
   "REV-SW": "REVSW",
   "STARTER-TRIGGER": "STARTER",
-  "K-HL": "GB",
-  "K-HR": "GB",
-  "K-HORN": "GB",
+  "K-HL": "GB_LOGIC",
+  "K-HR": "GB_LOGIC",
+  "K-HORN": "GB_LOGIC",
   "SP-HL": "GB",
   "SP-HR": "GB",
   "SP-HZ": "GB",
   "SP-HEAD-COIL": "GB",
-  "K-DRL": "GB",
-  "K-POD": "GB",
-  "RLY-DRL": "GB",
+  "K-DRL": "GB_LOGIC",
+  "K-POD": "GB_LOGIC",
+  "RLY-DRL": "GB_DRL",
   "SP-HL-ON": "GB",
   "SP-HR-HI": "GB",
   "SP-DRL12": "GB",
@@ -1827,5 +1897,477 @@
   "WheelSpeed-Front": "FRONT WHEEL SPEED - FL / FR SENSORS TO THE FRONT VRC",
   "WheelSpeed-Rear": "REAR WHEEL SPEED - RL / RR SENSORS TO THE REAR VRC",
   "RearFuel": "REAR FUEL - FUEL PUMP AND LEVEL SENDER"
+ },
+ "box_breakouts": {
+  "about": "Fuse box breakouts in the glove box (Dan A35, 2026-11-13: every harness wire into a box must be long enough to reach its seat or stud; estimates, nothing placed in the car, orientation unknown; longer is fine). Each node below is a branch off GB at its box's harness entry; build_drawings.box_breakout_lengths writes its segment length (--write-tree-mm; --check fails on a difference): the right-angle distance from its parent + what its farthest seat needs beyond end_allowance_mm, rounded up to 10 mm. seats: [end, pin, wire, reach mm from the node].",
+  "frame": "rev 8 glove-box frame, mm: x along the boxes inboard -> outboard, y firewall (0) -> rearward; LOGIC box origin (-55, 0) (render_wired_rev7 LX), POWER (160, 0) (spec PLACE), K-EPS HCR150 at (505.5, 40), RLY-DRL FRH-A12 holder at (505.5, 101) (spec A22_HOLDERS); GB = the breakout in front of the boxes (78, -30).",
+  "source": "cad/fusebox/src/spec.py rev 8 and cad/fusebox/rev8/wiring_plan.json (branch fusebox-rev8b, 2026-11-13): LOGIC / POWER relay seats = the wiring plan's in-box path to the box exit (box_paths); POWER bar studs from spec AMI / REV7 neg_studs / render BATpos, RADpos; K-EPS terminals from spec HCR; RLY-DRL = the holder's far corner.",
+  "at": {
+   "GB": [
+    78.0,
+    -30.0
+   ]
+  },
+  "nodes": {
+   "GB_LOGIC": {
+    "parent": "GB",
+    "at": [
+     -10.0,
+     -30.0
+    ],
+    "seats": [
+     [
+      "K-ACC",
+      "85",
+      "w_acc_trig",
+      225.2
+     ],
+     [
+      "K-ACC",
+      "87",
+      "w_acc_clutch",
+      220.3
+     ],
+     [
+      "K-DRL",
+      "85",
+      "w_drl_85_cp",
+      182.2
+     ],
+     [
+      "K-DRL",
+      "87",
+      "w_drl_87_cp",
+      178.2
+     ],
+     [
+      "K-EPS-EN",
+      "85",
+      "w_eps_trig",
+      116.6
+     ],
+     [
+      "K-EPS-EN",
+      "86",
+      "w_k_eps_en_86_cp",
+      122.2
+     ],
+     [
+      "K-EPS-EN",
+      "87",
+      "w_fb_mrs_en",
+      111.4
+     ],
+     [
+      "K-ETB",
+      "85",
+      "w81",
+      190.3
+     ],
+     [
+      "K-ETB",
+      "86",
+      "w_k_etb_86_cp",
+      193.8
+     ],
+     [
+      "K-ETB",
+      "87",
+      "w82_ac",
+      186.2
+     ],
+     [
+      "K-HL",
+      "30",
+      "w_hl_30_cp",
+      83.0
+     ],
+     [
+      "K-HL",
+      "85",
+      "w_hl_85_cp",
+      101.0
+     ],
+     [
+      "K-HL",
+      "86",
+      "w_hl_86_cp",
+      102.8
+     ],
+     [
+      "K-HL",
+      "87",
+      "w_hl_on_cp",
+      87.9
+     ],
+     [
+      "K-HORN",
+      "30",
+      "w_horn_30_cp",
+      149.7
+     ],
+     [
+      "K-HORN",
+      "85",
+      "w_horn_85_cp",
+      168.0
+     ],
+     [
+      "K-HORN",
+      "86",
+      "w_horn_86_cp",
+      163.6
+     ],
+     [
+      "K-HORN",
+      "87",
+      "w_pmu_horn_cp",
+      153.1
+     ],
+     [
+      "K-HR",
+      "85",
+      "w_hl_low",
+      125.9
+     ],
+     [
+      "K-HR",
+      "86",
+      "w_hr_86_cp",
+      130.7
+     ],
+     [
+      "K-HR",
+      "87",
+      "w_hr_on_cp",
+      120.9
+     ],
+     [
+      "K-ON",
+      "86",
+      "w_k_on_86_cp",
+      149.5
+     ],
+     [
+      "K-ON",
+      "87",
+      "w_lam12_cp",
+      144.6
+     ],
+     [
+      "K-POD",
+      "30",
+      "w_r8_d2_k_cp",
+      227.1
+     ],
+     [
+      "K-POD",
+      "85",
+      "w_pod_85_cp",
+      244.0
+     ],
+     [
+      "K-POD",
+      "87",
+      "w_pod_87_cp",
+      238.6
+     ],
+     [
+      "LOGIC",
+      "BUS1-2",
+      "w_hl_cp",
+      135.1
+     ],
+     [
+      "LOGIC",
+      "BUS1-4",
+      "w_hz_cp",
+      153.2
+     ],
+     [
+      "LOGIC",
+      "BUS1-5",
+      "w_pmu_dome",
+      166.1
+     ],
+     [
+      "LOGIC",
+      "BUS1-7",
+      "w_at_12v",
+      184.3
+     ],
+     [
+      "LOGIC",
+      "BUS1-8",
+      "w_at_12v_shk",
+      197.2
+     ],
+     [
+      "LOGIC",
+      "BUS1-9",
+      "w_alt_s_c",
+      205.4
+     ],
+     [
+      "LOGIC",
+      "BUS2-13",
+      "w_start",
+      190.1
+     ],
+     [
+      "LOGIC",
+      "BUS2-13 IN",
+      "w_start_in_cp",
+      193.9
+     ],
+     [
+      "LOGIC",
+      "BUS2-2",
+      "w_cp_sw12_in",
+      101.3
+     ],
+     [
+      "LOGIC",
+      "BUS2-3",
+      "w_cop_pwr_ac",
+      113.3
+     ],
+     [
+      "LOGIC",
+      "BUS2-4",
+      "w_inj_pwr_ac",
+      121.8
+     ],
+     [
+      "LOGIC",
+      "BUS2-5",
+      "w_csb12",
+      135.2
+     ],
+     [
+      "LOGIC",
+      "BUS2-6",
+      "w_dev_clu",
+      141.7
+     ],
+     [
+      "LOGIC",
+      "BUS2-9",
+      "w_at_ig",
+      169.5
+     ]
+    ]
+   },
+   "GB_POWER": {
+    "parent": "GB",
+    "at": [
+     130.0,
+     -30.0
+    ],
+    "seats": [
+     [
+      "K-EFI",
+      "85",
+      "w76",
+      157.0
+     ],
+     [
+      "K-FAN",
+      "30",
+      "w_fan_pwr",
+      191.6
+     ],
+     [
+      "K-FAN",
+      "85",
+      "w_fan85",
+      193.0
+     ],
+     [
+      "K-FAN",
+      "86",
+      "w_k_fan_86_cp",
+      210.5
+     ],
+     [
+      "K-FAN2",
+      "30",
+      "w_fan2_pwr",
+      238.6
+     ],
+     [
+      "K-FAN2",
+      "85",
+      "w_fan285",
+      240.0
+     ],
+     [
+      "K-FAN2",
+      "86",
+      "w_k_fan2_86_cp",
+      258.0
+     ]
+    ]
+   },
+   "GB_PBAR": {
+    "parent": "GB_POWER",
+    "at": [
+     130.0,
+     -30.0
+    ],
+    "seats": [
+     [
+      "T-PWR-AMI-IN-1",
+      "",
+      "w_rb4_feed",
+      195.2
+     ],
+     [
+      "T-PWR-AMI-OUT-2",
+      "",
+      "w_pmu_rtr",
+      285.8
+     ],
+     [
+      "T-PWR-AMI-OUT-3",
+      "",
+      "w_pdb_am1",
+      303.8
+     ],
+     [
+      "T-PWR-AMI-OUT-4",
+      "",
+      "w_pdb_am2",
+      321.8
+     ],
+     [
+      "T-PWR-AMI-OUT-5",
+      "",
+      "w_pdb_jb1",
+      339.8
+     ],
+     [
+      "T-PWR-AMI-OUT-6",
+      "",
+      "w_fb_k_eps_30_ac",
+      357.8
+     ],
+     [
+      "T-PWR-NEG-BAT",
+      "",
+      "w_trunk_neg",
+      280.0
+     ],
+     [
+      "T-PWR-NEG-GND-1",
+      "",
+      "w66",
+      365.5
+     ],
+     [
+      "T-PWR-NEG-GND-3",
+      "",
+      "w_cabin_gnd",
+      365.5
+     ],
+     [
+      "T-PWR-NEG-ID",
+      "",
+      "w_gnd_id",
+      326.0
+     ],
+     [
+      "T-PWR-NEG-IG",
+      "",
+      "w_gnd_ig",
+      349.0
+     ],
+     [
+      "T-PWR-NEG-RADLOK",
+      "",
+      "w_h6a_radlok_neg",
+      303.0
+     ],
+     [
+      "T-PWR-POS-BAT",
+      "",
+      "w_ks_h1",
+      448.5
+     ],
+     [
+      "T-PWR-POS-RADLOK",
+      "",
+      "w_h3_radlok_pos",
+      472.5
+     ]
+    ]
+   },
+   "GB_KEPS": {
+    "parent": "GB_POWER",
+    "at": [
+     505.5,
+     -30.0
+    ],
+    "seats": [
+     [
+      "K-EPS",
+      "30",
+      "w_fb_k_eps_30_ac",
+      112.5
+     ],
+     [
+      "K-EPS",
+      "85",
+      "w_eps_rly",
+      80.0
+     ],
+     [
+      "K-EPS",
+      "86",
+      "w_k_eps_86_cp",
+      99.2
+     ],
+     [
+      "K-EPS",
+      "87",
+      "w_eps_pwr_bc",
+      129.5
+     ]
+    ]
+   },
+   "GB_DRL": {
+    "parent": "GB_KEPS",
+    "at": [
+     505.5,
+     -30.0
+    ],
+    "seats": [
+     [
+      "RLY-DRL",
+      "30",
+      "w_drl_87_cp",
+      281.5
+     ],
+     [
+      "RLY-DRL",
+      "85",
+      "w_drlc_85_cp",
+      281.5
+     ],
+     [
+      "RLY-DRL",
+      "86",
+      "w_drlc_86_cp",
+      281.5
+     ],
+     [
+      "RLY-DRL",
+      "87a",
+      "w_pmu_drl",
+      281.5
+     ]
+    ]
+   }
+  }
  }
 }
