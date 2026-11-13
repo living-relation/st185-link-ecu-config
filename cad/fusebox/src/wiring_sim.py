@@ -549,6 +549,8 @@ def terminal_cavities(wires):
             od, src, wl = OD[g_], 'CAD jumper %d AWG' % g_, []
         else:
             part, g = S.TERM_DEFAULT[c['kind']]
+            if c.get('relay') == S.RELAY_B['pos'] and c['kind'] in S.TERM_DEFAULT_B:     # rev 8: the vacant Mini ISO seat R1 keeps its 6.3 receptacles
+                part, g = S.TERM_DEFAULT_B[c['kind']]
             od, src, wl = OD[g], 'spare (largest wire it takes)', []
         out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
                         hole=[round(v, 3) for v in S.hole(part, c['kind'])] if part in S.TERM else None,

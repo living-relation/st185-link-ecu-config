@@ -708,6 +708,9 @@ TERM_DEFAULT = {'fuse in': ('1-968851-1', 14), 'fuse out': ('1-968851-1', 14), '
                 'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('280919-2', 18), 'micro 85': ('280919-2', 18),
                 'micro 86': ('280919-2', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
+# The Mini ISO seat (RELAY_B pos, POWER R1) has 6.3 blades, not the F7's 9.5: a spare cavity there takes the 6.3 receptacles it was built for
+# (rev 7 heater relay: 62998-2 on 30 / 87, 10-8 AWG; 42281-1 on the coil). Rev 8: R1 is vacant (A16 a), its cavities and retainer clip stay.
+TERM_DEFAULT_B = {'F7 30': ('62998-2', 8), 'F7 87': ('62998-2', 8), 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
 FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on solid material than this is floating (Dan's marks: 5-15 %; the rest >= 76 %)
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
 
