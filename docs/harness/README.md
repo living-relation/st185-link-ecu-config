@@ -94,8 +94,8 @@ skill is not changed for this project):
     another, none through a part, every part on the panel grid; each generator stops on a failure; `build_drawings.py
     --self-test` tests it). A box seat end gets its own copy of the seat stub (no 0 mm bundle; `box_seat_ends`).
   - Every label readable (Dan 2026-11-13; DECISIONS B6 "Every label readable"): `to_scale` places every end, branch and
-    stub with its text boxes (end labels, length labels, bundle label pills, notes; estimated from the text and the annotation
-    scale, `formboard.TXT`) kept clear of each other, turns an end's label to another side (`layoutLabelPosition`) where one
+    stub with its text boxes (end labels, length labels, bundle label pills, notes; sized as the app draws them, measured from its
+    Formboard Panels PDF, `formboard.TXT`, crowded fans laid out in label columns) kept clear of each other, turns an end's label to another side (`layoutLabelPosition`) where one
     still collides, and sizes the panel grid round every text; `check` fails on any overlap (`label_overlaps`) or text off the
     panels. Box seat ends hang on their box's breakout node (DECISIONS B6 "A35"): LOGIC box ends left, POWER box, K-EPS and
     RLY-DRL ends right (`formboard.PREFER`), each with its real crimp contact or ring.
