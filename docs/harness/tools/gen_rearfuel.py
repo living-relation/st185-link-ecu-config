@@ -13,11 +13,11 @@ import gen_dash
 
 REARFUEL = dict(
     name='RearFuel', title='ST185-RearFuel', rev='B', date='2026-11-12', stem='rearfuel', script='gen_rearfuel.py', root='GB',
-    scope="the fuel pump circuit: the fuel pump relay (K-FP) seat in the trunk relay block (box insides not drawn), its coil feed from the switched +12 V bus "
-          "plug by the LOGIC box (riding the cabin harness's sill run), the pump +12 V straight from the relay to the pump plug at the "
+    scope="the fuel pump circuit: the fuel pump relay (K-FP) seat in the trunk relay block (box insides not drawn), its coil feed from the switched +12 V plug "
+          "DT06-12SA by the LOGIC box (riding the cabin harness's sill run), the pump +12 V straight from the relay to the pump plug at the "
           "luggage-floor service hole (Dan Z8 b), and the pump ground to factory ground point BL, back panel centre; both run round the "
           "trunk's RH side and the back panel (Z5 a). The fuel level sender belongs to the cabin harness.",
-    left_words='the switched +12 V bus plug (glove box) and the trunk relay block seat (fuel pump relay K-FP)',
+    left_words='the switched +12 V plug DT06-12SA (glove box) and the trunk relay block seat (fuel pump relay K-FP)',
     left=lambda t, i: i in ('BUS-SW12', 'K-FP'),     # K-FP: the trunk relay block seat ends (box_seat_ends keeps the spot)
     area=['GB', 'BATT', 'PUMP', 'RPANEL'],
     # display stripes on +12 V wires, one per circuit (README "Display stripes"; colour is for viewing only)

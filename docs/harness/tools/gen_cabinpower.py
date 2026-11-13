@@ -16,11 +16,11 @@ CABINPOWER = dict(
     name='CabinPower', title='ST185-CabinPower', rev='G', date='2026-11-13', stem='cabinpower', script='gen_cabinpower.py', root='GB',
     scope="the cabin power harness (glove box and across the dash): the POWER box stud rings (battery feed, AMI fuses, NEG bar) and "
           "the LOGIC fuse and relay box (its relay seats drawn as labelled wire ends; box insides not drawn, Dan R1 a), the relays "
-          "beside it, the switched +12 V bus plug, the factory feeds to "
+          "beside it, the switched +12 V plug DT06-12SA and its bussed receptacle, the factory feeds to "
           "J/B No.1, cowl plug IE1 / splice I2, R/B No.4 and the pop-up relay R8, the headlamp, horn, hazard and DRL circuits "
           "(DECISIONS \"Headlamps, DRL and pop-ups\") and the DRL switch left of the steering wheel; the three alarm feeds only pass "
           "through (AntiTheft wires, T3).",
-    left_words='the boxes and factory ends (the POWER box stud rings, the LOGIC fuse and relay box, the switched +12 V bus plug, '
+    left_words='the boxes and factory ends (the POWER box stud rings, the LOGIC fuse and relay box, the switched +12 V plug DT06-12SA, '
                'the factory feeds at J/B No.1, IE1 / I2, R/B No.4 and R8 with their splice notes)',
     left=lambda t, i: t in ('terminal', 'OEM') or i in ('LOGIC', 'BUS-SW12'),
     area=['GB', 'RHKICK', 'JB1', 'DRL_SW', 'ALARM'],

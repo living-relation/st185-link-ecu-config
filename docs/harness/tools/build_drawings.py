@@ -290,15 +290,20 @@ CABLE_NAMES = {'CAB-RSPUR': 'Rear wheel speed cable (cabin)', 'CAB-ETBS': 'Throt
                'CAB-CAN-ECU': 'ECU CAN cable', 'CAB-CAN-T2': 'CAN trunk cable, switch board to cluster',
                'CAB-CAN-T3': 'CAN trunk cable, cluster to Pi', 'CAB-RL': 'RL wheel speed sensor cable', 'CAB-RR': 'RR wheel speed sensor cable',
                'CAB-FL': 'FL wheel speed sensor cable', 'CAB-FR': 'FR wheel speed sensor cable'}
-# the mating bussed receptacle of each bussed DT plug (Dan R6; TE DEUTSCH, the master's housing_extra "(bussed receptacle)";
-# Del City DT bussed receptacles "One 12-Pin Buss" / "One 8-Pin Buss"; mates with standard DT plugs). Its wedgelock is TBD by the
-# TE drawing, so the part carries no accessory.
-BUSSED_RCPT = {12: {"id": "cp_dt04_12pa_p021", "partNumber": "DT04-12PA-P021", "manufacturer": "TE Connectivity DEUTSCH",
-                    "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED (ONE 12-PIN BUSS), KEY A", "gender": "Male",
+# the mating bussed receptacle of each bussed DT plug (Dan R6; TE DEUTSCH, the master's housing_extra "(bussed receptacle)").
+# Sources (A37, 2026-11-13): te.com product pages DT04-12PA-P021 "REC, 12P, GRY, BUSBAR 1X12, NICKEL, A" / DT04-08PA-P021
+# "REC, 8P, GRY, BUSBAR 1X8, NICKEL, A" (one bus joining every pin, 13 A per pin, key A); TE customer drawing DT04-12PA-P021
+# rev C1 (2025-06-25): mates with DT06-12SA, 12 pin busbar 78 A max, wedge lock included (green), no separate part number.
+# The 8-way drawing was not reachable: its wedge lock and bus rating are as library 5LO8 says, unconfirmed. Library 5LO8 wins
+# (relabel takes the part from it); this copy is only the fallback and says the same.
+BUSSED_RCPT = {12: {"id": "cp_dt04_12pa_p021", "partNumber": "DT04-12PA-P021", "manufacturer": "TE DEUTSCH",
+                    "description": "CONNECTOR, RECEPTACLE, DT, 12 POS, BUSSED 1 X 12, NICKEL PINS MOULDED IN, 13 A PER PIN, "
+                                   "78 A BUS, WEDGELOCK INCLUDED, GRAY", "color": "Gray", "gender": "Male",
                     "hasShell": False, "numberOfCavities": 12,
                     "url": "https://www.digikey.com/en/products/detail/te-connectivity-deutsch-connectors/DT04-12PA-P021/9923072"},
-               8: {"id": "cp_dt04_08pa_p021", "partNumber": "DT04-08PA-P021", "manufacturer": "TE Connectivity DEUTSCH",
-                   "description": "CONNECTOR, RECEPTACLE, DT, 8 POS, BUSSED (ONE 8-PIN BUSS), KEY A", "gender": "Male",
+               8: {"id": "cp_dt04_08pa_p021", "partNumber": "DT04-08PA-P021", "manufacturer": "TE DEUTSCH",
+                   "description": "CONNECTOR, RECEPTACLE, DT, 8 POS, BUSSED 1 X 8, NICKEL PINS MOULDED IN, 13 A PER PIN, "
+                                  "52 A BUS, WEDGELOCK INCLUDED, GRAY", "color": "Gray", "gender": "Male",
                    "hasShell": False, "numberOfCavities": 8}}
 
 
@@ -368,8 +373,9 @@ def relabel(doc, rows=None, lib=None):
     for c in doc.get('connectors', []):
         cid = c['id']
         if cid.endswith('_MATE'):
-            base = names.get(cid[2:-5])
-            c['label'] = '%s, plug-in part' % base if base else c['label']
+            base = names.get(cid[2:-5])     # Dan A37: a plug-in part is named by its own part number, never by its host's name
+            mpn = next((p.get('partNumber') for p in doc.get('connectorParts', []) if p['id'] == c.get('partId')), None)
+            c['label'] = ('Plug-in part %s (in %s)' % (mpn or 'TBD', base)) if base else c['label']
         elif cid.startswith('c_') and cid[2:] in names:
             nm, mid = names[cid[2:]], ids.get(cid[2:], '')
             box = boxed(mid) if mid.startswith('K-') else None
@@ -440,7 +446,10 @@ def relabel(doc, rows=None, lib=None):
             if cv.get('signal'):
                 cv['global'] = True
         rid = c['id'] + '_RCPT'
-        rc = {"id": rid, "label": "%s, bussed receptacle" % names.get(c['id'][2:], mid), "width": c.get('width', 240), "partId": part['id'],
+        plug_pn = next((r[s + '_housing_pn'] for r in rows for s in ('from', 'to') if r[s + '_id'] == mid
+                        and r[s + '_housing_pn']), None)      # the master's plug part (the document's part may come later)
+        rc = {"id": rid, "label": bussed_rcpt_name(names.get(c['id'][2:], mid), plug_pn, part['partNumber']),
+              "width": c.get('width', 240), "partId": part['id'],
               "cavities": [{"id": "%s_RCPT.%d" % (c['id'][2:], k), "designation": str(k)} for k in range(1, n + 1)]}
         if 'schematicPosition' in c:
             rc['schematicPosition'] = {"x": c['schematicPosition']['x'] + 330, "y": c['schematicPosition']['y']}
@@ -486,7 +495,50 @@ def relabel(doc, rows=None, lib=None):
     if removed:      # a dropped connector takes its stub bundle with it (sweep 5, 2026-11-10: gen_cabin left bn_c_ECU_C)
         doc['bundles'] = [b for b in doc.get('bundles', []) if b['sourceId'] not in removed and b['targetId'] not in removed]
     relabel.removed = sorted(removed)      # the empty connectors dropped (R5), for the generator's report
+    check_mate_names(doc)
     return doc
+
+
+def bussed_rcpt_name(plug_name, plug_pn, rcpt_pn):
+    """Dan A37 (2026-11-13): each half of a bussed pair is named by its own part number and only the bussed half is called
+    bussed. The plug's master name is "<circuit> plug <its DT06 part> (<where>)" (check_wiring B3); its bussed receptacle is
+    the same circuit and place with its own part: "<circuit> bussed receptacle <its DT04 ...-P021 part> (<where>)"."""
+    key = 'plug %s' % plug_pn
+    if not plug_pn or key not in plug_name or re.search(r'\bbus(sed)?\b', plug_name, re.I):
+        raise ValueError("A37: bussed plug name %r must read '<circuit> plug %s (<where>)'" % (plug_name, plug_pn))
+    return plug_name.replace(key, 'bussed receptacle %s' % rcpt_pn, 1)
+
+
+def _raises(fn):
+    try:
+        fn()
+        return False
+    except ValueError:
+        return True
+
+
+def check_mate_names(doc):
+    """Gate (Dan A37, 2026-11-13): the two halves of every mate are different parts, so they never share one name: neither
+    label equals or starts with the other, and of a bussed pair only the receptacle (a ...-P021 part) says "bussed"."""
+    cons = {c['id']: c for c in doc.get('connectors', [])}
+    pn = {p['id']: p.get('partNumber') or '' for p in doc.get('connectorParts', [])}
+    bad = []
+    for m in doc.get('mates', []) or []:
+        a, b = cons.get(m['sourceId']), cons.get(m['targetId'])
+        if not a or not b:
+            continue
+        la, lb = (a.get('label') or '').strip(), (b.get('label') or '').strip()
+        if not la or not lb or la == lb or la.startswith(lb) or lb.startswith(la):
+            bad.append('%s / %s share the name %r / %r' % (a['id'], b['id'], la, lb))
+        is_bus = {x['id']: pn.get(x.get('partId'), '').endswith('-P021') for x in (a, b)}
+        if any(is_bus.values()):      # a bussed pair: the receptacle says "bussed", the plug never "bussed" or "bus plug"
+            for x, lx in ((a, la), (b, lb)):
+                says = re.search(r'\bbus(sed)?\b', lx, re.I)
+                if bool(says) != is_bus[x['id']] or (is_bus[x['id']] and not re.search(r'\bbussed\b', lx, re.I)):
+                    bad.append('%s %r: only the bussed half (a ...-P021 part) is called bussed' % (x['id'], lx))
+    if bad:
+        raise ValueError('A37 mate names: ' + '; '.join(bad))
+    return True
 
 
 # B9 6 in OEM pigtails: the new wire is spliced onto the factory lead at these front devices (lamps, pop-ups, ambient
@@ -2433,6 +2485,32 @@ def self_test():
     cases.append(("one-leg splices: Dash's are the reverse and high-beam output splices", sorted(one) == ["SP-HR-HI", "SP-REV"]))
     cases.append(("R10 note: a later block starts with a capital (To ST185-...)",
                   ". To ST185-" in one.get("SP-HR-HI", "") and ". to ST185-" not in one.get("SP-HR-HI", "")))
+    # A37 (Dan 2026-11-13): mated halves never share one name; only the bussed half (the ...-P021 receptacle) is called bussed
+    def _pair(la, lb, pa="DT06-12SA", pb="DT04-12PA-P021"):
+        return {"connectorParts": [{"id": "pa", "partNumber": pa}, {"id": "pb", "partNumber": pb}],
+                "connectors": [{"id": "c_a", "label": la, "partId": "pa"}, {"id": "c_b", "label": lb, "partId": "pb"}],
+                "mates": [{"id": "m", "sourceId": "c_a", "targetId": "c_b"}]}
+    def _caught(d):
+        try:
+            check_mate_names(d)
+            return False
+        except ValueError:
+            return True
+    plug = "Switched +12 V plug DT06-12SA (glove box)"
+    rcpt = bussed_rcpt_name(plug, "DT06-12SA", "DT04-12PA-P021")
+    cases.append(("mate names: the bussed receptacle is named by its own part number (A37)",
+                  rcpt == "Switched +12 V bussed receptacle DT04-12PA-P021 (glove box)" and not _caught(_pair(plug, rcpt))))
+    cases.append(("mate names: both halves with one name are caught (A37)", _caught(_pair(plug, plug))))
+    cases.append(("mate names: a half named after its mate ('<plug name>, bussed receptacle') is caught (A37)",
+                  _caught(_pair("Switched +12 V bus plug (glove box)", "Switched +12 V bus plug (glove box), bussed receptacle"))))
+    cases.append(("mate names: a plug half called bussed is caught (A37)",
+                  _caught(_pair("Switched +12 V bussed plug DT06-12SA (glove box)", rcpt))))
+    cases.append(("mate names: a plain pair (RADLOK, cabin / engine side) passes (A37)",
+                  not _caught(_pair("Firewall battery + connector (cabin side)", "Firewall battery + connector (engine side)",
+                                    "RL00801-50RE", "RL00801-50RE"))))
+    cases.append(("mate names: a bus plug name without its part number is refused (A37)",
+                  _caught({"connectors": []}) is False and _raises(lambda: bussed_rcpt_name("+5 V sensor supply bus plug 1", "DT06-12SA",
+                                                                                            "DT04-12PA-P021"))))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))
