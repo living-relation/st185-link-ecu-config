@@ -33,7 +33,7 @@ A/C: both factory A/C amps stay (Dan 2026-10-20). D16 (Dan 2026-10-25): A15 driv
 - **B7 ECU harness and bulkhead.** Loom A + B = ONE harness, `AB-cabin` + `AB-engine`; ECU pins never move. Firewall:
   one DRB102 (Dan B5 a, 2026-11-02; replaces the on-hand smaller-bulkhead option), cavities per Rule 3 below.
 - **B8 Routes and views.** A route (route file or saved placement) changes only from Dan's markup or placement; lengths
-  follow it, the formboard view does not (README). Detail: "Harness ownership (B8 list)" and "Placement and lengths" below.
+  follow it; the formboard draws them 1:1 (A25 a, README). Detail: "Harness ownership (B8 list)" and "Placement and lengths" below.
 - **B9 Boundary.** Forward of the firewall every wire is new, on a named route; OEM wire stays only as 6 in pigtails at
   lamps, pop-ups, ambient sensor and wiper. Kept: cabin wires, J/B1 / J/B3, R/B2 / R/B4. Removed: README. Pins: 1993 EWD.
 
@@ -485,6 +485,15 @@ Binding as part of B3.
 - A12 a (Dan 2026-11-12, answers A12): `docs/procedures/a15-ac-amp-test.html` (the A/C amplifier A15 bench test) stays and is linked from `docs/harness/circuit-plan.md` circuit 10 (A/C).
 - A13 a (Dan 2026-11-12, answers A13): the local-only `docs/harness/out/` (old pinout spreadsheet `ST185-harness-pinout.xlsx` and thumbnail, never in git) is deleted, and its `.gitignore` line with it (no file or script in the repo named it); the two `_research/TASK-*.md` cards stay (`cad/fusebox/src/spec.py` cites `TASK-fusebox-markup-1017.md`).
 
+## Parked rows (R102)
+
+Answers on parked tracker rows (OPEN-ITEMS "Parked (out of scope)"); none of them is in the four goals.
+
+- A24 a (Dan 2026-11-12): rows 8 and 10 closed: the Pi has Dan's current dash file, and it has already been checked on live CAN.
+- Row 9 closed (Dan 2026-11-12): the RealDash build was finished long ago: Cursor reverse-engineered the `.rd` binary with desktop control and Python, and Dan built the layout with the CAN config. New parked row 184: a few RealDash channels may need updating; a backup camera screen is to be designed (later).
+- A23 b (Dan 2026-11-12): the circuit tracer plan of row 117 stays as it is, still parked.
+- Power-fold mirrors, J-spec (Dan 2026-11-12, row 62): A26 a: power from ACC through its own small fuse, size TBD until the mirrors are bench-tested. A27 a: the JDM mirror switch with the fold button, in the stock mirror-switch spot; its pinout TBD. A28 a: new wires through the door boot with a small inline plug at each kick panel; the factory door plugs IC2 (LH) and IK2 (RH) stay stock (each 8 cavities, only cavity 4 spare; US 1992 EWD p.45). A29: the mirrors stay SEPARATE from the current harnesses and the master for now; row 62 stays parked as its own item.
+
 ## harness.design files (B6)
 
 Moved here from rule B6 on 2026-11-02 (Dan L3 = a); binding as part of B6.
@@ -511,6 +520,8 @@ Labels and names (Dan 2026-11-08, standing; these win over any older text on thi
 
 - File names carry a rev letter from Rev A (`ST185-<harness> Rev A`; a physical change = a new file at the next letter; the agent deletes the old in the app once the new one is checked against the master (Dan 2026-11-09 21:21, was: Dan deletes it); a view-only change keeps the file and letter; Dan 2026-11-02).
 - Layout view = formboard (README).
+- A25 a (Dan 2026-11-12, answers A25; replaces Dan 2026-11-02 "drawn length is not to scale", the README formboard rule, now marked "replaced by A25 a"): every layout view is a true 1:1 formboard Dan prints (Export > Formboard Panels) and builds on: formboard mode on ("Use formboard for layout"), A3 panels, as many panel rows and columns as the board needs; every bundle drawn at exactly its set length (the master / tree lengths, never changed); long straight runs fold into serpentines where there is room so long boards shrink; 30 mm bend radius; no bundle crossing or overlapping another; branch order kept. Done in the generators by `docs/harness/tools/formboard.py` (`to_scale`, then the `check` gate: drawn = set within 1 mm the app's way, no crossing or overlap; also in `build_drawings.py --self-test`); how: README "harness.design" Layout view. View only: a box seat end gets its own copy of its seat stub instead of a 0 mm bundle (the app counts 0 mm as no set length), so every wire's routed length is unchanged.
+  - Applied 2026-11-12 (OPEN-ITEMS History): all 11 files edited in place, same rev letters; boards: AB-engine Rev K 1782 x 2100 mm, 30 panels (6 x 5 portrait); EngineRoom-C Rev J 2100 x 2376 mm, 40 (5 x 8); AB-cabin 1 Rev F 1680 x 891 mm, 12 (4 x 3); AB-cabin 2 Rev H 1782 x 1260 mm, 18 (6 x 3 portrait); Dash Rev E 1260 x 1188 mm, 12 (3 x 4); CabinPower Rev E 840 x 1485 mm, 10 (2 x 5); HeavyDC Rev F 1188 x 1680 mm, 16 (4 x 4 portrait); AntiTheft Rev D 1680 x 891 mm, 12 (4 x 3); WheelSpeed-Front Rev C 840 x 1188 mm, 8 (2 x 4); WheelSpeed-Rear Rev C 1260 x 1188 mm, 12 (3 x 4); RearFuel Rev B 1485 x 840 mm, 10 (5 x 2 portrait); A3 panels, landscape unless noted, 180 in all. Each: stored = built, every bundle drawn = set within 1 mm (the app's own rounded-path length), no crossing or overlapping bundle, no 0 mm bundle, routed wire lengths unchanged (= the master est_length_mm), `validate_harness` with no new warning, every part InSync with 5LO8.
 - `build_drawings.py --check` keeps the layout tree, master lengths, the Option A wire lists ("Wire lists" below) and the DRB102 map current; the pin chart is the one pinout.
 - The OEM splice notes come from the master via `build_drawings.oem_splice_note` (the OEM splice reference was retired, Dan N22 a, #534).
 - N118 b (Dan 2026-11-08, for the 2026-11-08 label pass): where Dan's own live edits in a harness.design file (his labels, opto pin texts) clash with the label ops generated from the master, the generated ops win and overwrite them; files are built from the master. Dan 2026-11-08: his live edits were tests, so the generated files overwrite them and none of his deletions (AB-cabin 1 ECU plug C, bridges, the Dash CAN shield splice and its wires, his key-B plug and jumper wires) go into the master.

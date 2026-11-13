@@ -16,6 +16,7 @@ box seats are plain labelled terminals, no box groups (build_drawings.box_groups
 est_length_mm (the harness is in build_drawings.PLACED), else it stops; it also stops past 100 connections (plan limit).
 gen_cabin.py runs on import, so its helpers are not imported."""
 import sys, os, json, re, collections, math, csv, copy
+import formboard as FB
 
 COLORS = {"Black", "Brown", "Red", "Orange", "Yellow", "Green", "Blue", "Violet", "Gray", "White", "Pink", "Tan", "Maroon", "Shield"}
 # text spacing (Dan N99 a, 2026-11-08): the shared helpers in build_drawings (LABEL_H, note_h, end_span, text_step); GAP_TXT is
@@ -545,8 +546,8 @@ def build(REPO, OUT, CFG):
                      "splice shared with another harness file is drawn with its %s legs only and its note says where the rest goes (the "
                      "other file, where the splice sits, the EWD page, the other legs' far ends and colour; R10).%s Shared plugs "
                      "are drawn whole; cavities wired by other harnesses are N/C with a note. %s"
-                     "Layout: a formboard of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), straight orthogonal bundles, "
-                     "front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm end-allowance "
+                     "Layout: a formboard of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), "
+                     "front of car RIGHT, rear LEFT, driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on a 100 mm end-allowance "
                      "stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm." % (
                          TITLE, REV, DATE, CFG['scope'], NAME, CFG['script'], CFG['left_words'],
                          'the branch cables right of them, ' if cables else '', NAME, B.LOOSE_SENTENCE if ONE else '', B.GHOST_MARK)}]
@@ -619,7 +620,7 @@ def build(REPO, OUT, CFG):
         del parent[n], slen[n], kids[n]
     # formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles on the
     # 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its part of
-    # the car lies); drawn length is not to scale, every bundle keeps its tree length (= the master's). Each part sits on its
+    # the car lies); every bundle keeps its tree length (= the master's); formboard.to_scale then redraws it 1:1 (Dan A25 a). Each part sits on its
     # 100 mm end-allowance stub, combed off the node; a node whose four sides are all taken combs its parts along the way in.
     DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
     OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
@@ -773,6 +774,10 @@ def build(REPO, OUT, CFG):
     head_now = [n for n in doc['schematicNotes'] if n['id'] in head_ids]
     HEAD_Y = int(math.floor((-LABEL_H - GAP_TXT - 15 - max(note_half(n['text']) for n in head_now)) / 30.0)) * 30
     for n in head_now: n['schematicPosition']['y'] = HEAD_Y
+    FB.to_scale(doc)        # the 1:1 formboard (Dan A25 a): every bundle drawn at its set length, long runs folded
+    _fbad = FB.check(doc)
+    assert not _fbad, 'formboard: %r' % _fbad[:8]
+    print('formboard %dx%d mm, %d A3 panels' % FB.board(doc)[:3])
     json.dump(doc, open(os.path.join(OUT, STEM + '.json'), 'w'), indent=1)   # routed: upload as is
     json.dump(lib_add, open(os.path.join(OUT, STEM + '_lib_ops.json'), 'w'), indent=1)
     json.dump(expect, open(os.path.join(OUT, STEM + '_expect.json'), 'w'), indent=1)

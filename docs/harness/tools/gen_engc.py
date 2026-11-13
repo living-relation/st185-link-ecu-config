@@ -6,6 +6,7 @@ connectors 240 wide, each pin its own master end text, ground studs drawn on the
 bundle lengths from EngineRoom-C's part of the layout tree (Route 17 node names; checked here against the master est_length_mm). gen_cabin.py runs on import, so its
 helpers are not imported; the tree, routes and lengths come from build_drawings.Harness."""
 import sys, os, json, re, collections, math, csv
+import formboard as FB
 REPO, OUT = sys.argv[1], sys.argv[2]
 sys.path.insert(0, os.path.join(REPO, 'docs/harness/tools'))
 import build_drawings as B
@@ -347,8 +348,8 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "connectors are drawn whole; cavities wired by other harnesses are N/C with a note." + B.LOOSE_SENTENCE + " " + B.GHOST_MARK +
                       "Layout: a formboard of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
                       "LH pass-through; the alternator plug off the engine harness trunk start, behind the engine (Route 16 L1, A6 b); EA / EB on Route 17 "
-                      "devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece below), "
-                      "straight orthogonal bundles, front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on a 100 mm "
+                      "devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece), "
+                      "front of car RIGHT, rear LEFT, driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on a 100 mm "
                       "end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
 notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},
@@ -422,7 +423,7 @@ for n in [n for n in parent if parent[n] and seglen[n] == 0]:   # a 0 mm segment
     del parent[n], seglen[n], kids[n], via[n]
 # formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles
 # on the 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its
-# part of the car lies); drawn length is not to scale, every bundle keeps its tree length (= the master's).
+# part of the car lies); every bundle keeps its tree length (= the master's); formboard.to_scale then redraws it 1:1 (Dan A25 a).
 # Each part sits on its 100 mm end-allowance stub, combed off the node; a node's extra branches never cross.
 DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
 OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
@@ -543,6 +544,10 @@ NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundl
 assert len(W) + NGHOST <= 100, 'ghost wires push EngineRoom-C over the 100-connection limit'
 B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghosts
 print('ghost wires', NGHOST)
+FB.to_scale(doc)        # the 1:1 formboard (Dan A25 a): every bundle drawn at its set length, long runs folded
+_fbad = FB.check(doc)
+assert not _fbad, 'formboard: %r' % _fbad[:8]
+print('formboard %dx%d mm, %d A3 panels' % FB.board(doc)[:3])
 json.dump(doc, open(os.path.join(OUT, 'ld37.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'ld37_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(doc.get('connectors', [])), 'terminals', len(doc.get('terminals', [])), 'splices', len(doc.get('splices', [])), 'wires', len(doc.get('wires', [])), 'cables 0', 'bundles', len(bundles),
