@@ -1,6 +1,6 @@
 """Gate: Dan's 3 mm rule - no two live (bare metal) parts in the selected fuse boxes closer than 3 mm.
-Reads the clearances the Fusion build measured (cad/fusebox/rev7/fusebox_report.json "live_clearance") and, when present,
-the wire simulation (cad/fusebox/rev7/wiring_report.json "live_to_live"). Every live-to-live key listed below fails under
+Reads the clearances the Fusion build measured (cad/fusebox/rev8/fusebox_report.json "live_clearance") and, when present,
+the wire simulation (cad/fusebox/rev8/wiring_report.json "live_to_live"). Every live-to-live key listed below fails under
 3.0 mm. Live-to-plastic / live-to-insulation keys (a printed part or a wire's insulation, not a second live part) are
 printed for information only.
 SAME CIRCUIT (Dan's J1 = A, 2026-10-14, DECISIONS R94): the 3 mm rule is between different circuits. A gap between two live
