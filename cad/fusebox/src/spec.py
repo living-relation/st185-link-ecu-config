@@ -1081,9 +1081,11 @@ REV8 = dict(
                ('K-ON', '6-1419137-4', 'BUY'), ('K-DRL', '4-1904124-2', 'OWN'), ('SPARE', None, None), ('K-POD', '4-1904124-3', 'OWN')],
     # POWER relay seats R1-R6 (bank B1): R1 (was heater), R3 (was start) and R6 (was windows) are vacant (A16 a)
     RELAY_PN={'heater': (None, None), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': (None, None), 'k_fan': ('1-1414147-0', 'OWN'),
-              'k_fan2': ('1-1393304-0', 'OWN'), 'power': (None, None), 'SPARE': (None, None)},
+              'k_fan2': ('1-1414286-0', 'BUY'), 'power': (None, None), 'SPARE': (None, None)},
+    # row 162 (Dan C1a 2026-11-14): K-FAN2 is on ECU Ign 5 (not flywheeled; Link forum 17727), so a diode-coil F7:
+    # TE 1-1414286-0 = V23134-J0052-X439, 1 form A, diode cathode 86 (TE F7 data sheet ordering table); same F7 QC body as 1-1414147-0
     F7_POS=[('k_efi', '1-1414147-0', 'OWN'), ('SPARE', None, None), ('k_fan', '1-1414147-0', 'OWN'),
-            ('k_fan2', '1-1393304-0', 'OWN'), ('SPARE', None, None), ('SPARE', None, None),
+            ('k_fan2', '1-1414286-0', 'BUY'), ('SPARE', None, None), ('SPARE', None, None),
             ('SPARE', None, None), ('ACPS', None, None)],
     AMI_ROWS={
         'IN':  [('HTR', 40), ('EFI', 30), ('SP', None), ('FAN', 30), ('FAN2', 30), ('SP', None), ('SP', None), ('SP', None)],   # A17 a: FAN 30 A

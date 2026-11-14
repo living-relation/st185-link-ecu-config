@@ -763,7 +763,7 @@
   "view": "bottom (terminal side)",
   "latch": null,
   "source": "https://zoro.com/static/cms/enhanced_pdf/Waldom%20Electronics_TExxConnectivityxxxxxxPxxBxx1xx1393304xx8xxdatasheetxx13889f.pdf",
-  "note": "TE 'Power Relay F7' datasheet (Plug-in Maxi ISO family), bottom view TE1103-411: 30 top, 85 left, 86 right, 87 bottom (87 blade horizontal). 1-1414147-0 = V23134-J0052-X429, NO, 680 ohm resistor, no bracket. 1-1393304-0 = V23134-J1052-X281, NO, 560 ohm resistor, bracket at terminal 30. Diode version (not these) has cathode on 86."
+  "note": "TE 'Power Relay F7' datasheet (Plug-in Maxi ISO family), bottom view TE1103-411: 30 top, 85 left, 86 right, 87 bottom (87 blade horizontal). 1-1414147-0 = V23134-J0052-X429, NO, 680 ohm resistor, no bracket. 1-1393304-0 = V23134-J1052-X281, NO, 560 ohm resistor, bracket at terminal 30. 1-1414286-0 = V23134-J0052-X439, NO, diode with cathode on 86, no bracket (K-FAN2, row 162)."
  },
  "TE HCR150 V23132-A2001-B200 (1416010-1)": {
   "shape": "rect",
