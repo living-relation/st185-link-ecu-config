@@ -958,6 +958,7 @@ Shop-drawing rules. Rev letters live in `cad/DRAWING-REVS.md`. Gates: `cad/check
 | Every full-letter rev made from 2026-10-19 on puts its letter in a triangle next to each changed item (and the BOM row of a changed part number); old triangles stay on later revs (N42 = B). Declared in `spec['rev_marks']` or `<pn>.REVMARKS.json` beside the rev log; gate K5; revs before that date exempt (`cad/rev-marks.json`). | R200 (Dan N42 = B) |
 | Every model has a `cad/README.md` row and a trimetric PNG; reuse Fusion documents (10 max). Every fabricated part and assembly has a drawing with a BOM (also as an Excel copy, in sync); each part / body its own model file; OTS parts need a model only, a modified OTS part a drawing + model. | B26 (moved out of the rule 2026-11-02) |
 | Fuse boxes: small, PA12 MJF, no printed threads, live parts >= 3 mm apart, copper to copper (`cad/fusebox/src/spec.py`). | B27 (moved out of the rule 2026-11-02) |
+| Renders of an old model rev go with that rev: when a model rev is replaced, its renders and summary pages are deleted (git keeps them); drawings, rev logs and rev marks stay while a live drawing uses them. | Dan G2a, 2026-11-15 |
 | Row 123 closed: the LOGIC box `w_hl_86_cp` bend (16 AWG, 13.4 mm run segment, shorter than the two 3 x OD bends want) is accepted, the bend radius is not a concern; no CAD change. `wiring_sim.py` only warns on a short segment (its `warn` list); no gate fails on it (`check_clearance.py` reads only `live_to_live`). | Dan 2026-11-12 ("Close item 123. Bend radius not a concern.") |
 
 ## Shipping (B28)
