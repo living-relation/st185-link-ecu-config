@@ -961,7 +961,10 @@ CHANNEL_CAD_SKIP = {'HL', 'HR', 'ETB', 'HEAD LH 30', 'HEAD LH 86', 'HEAD RH 30',
 # (committed) lists PN, source URL and file. TE customer view models (te.com "3D STEP" link on each product page, read 2026-10-18): frame =
 # contact (mating) end at Z 0, the wire running down -Z, blade width along X, the locking lance on the -Y side; y_box = the contact box's Y centre
 # (measured on the STEP over its top 4 mm) - the blade line, put on the cavity centre.
-VENDOR_DIR_MAIN = r'C:\projects\active\st185-link-ecu-config\cad\vendor'
+import os  # noqa: E402  (only for VENDOR_DIR_MAIN)
+VENDOR_DIR_MAIN = os.path.join(os.path.expanduser('~'), '.personal OneDrive', 'OneDrive', 'Desktop', 'models', 'st185_vendor-parts_1101')
+# 2026-11-15 (row 162): the maker models moved to the models folder (B26, cad/vendor/INDEX.md); the old repo path
+# C:\projects\active\st185-link-ecu-config\cad\vendor holds only INDEX.md, so the rev 8 build fell back to envelopes ("no cad/vendor folder")
 TE_DOC = 'https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=%s&DocType=Customer%%20View%%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=%s'
 VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
     '880398-2': ('te', 'c-880398-2-t-3d.stp', 2.24, 'CVM_880398-2'),

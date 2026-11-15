@@ -975,7 +975,7 @@
    [
     2,
     873.8,
-    241.9,
+    251.2,
     "relays plug in from the top"
    ],
    [
@@ -1113,7 +1113,7 @@
    [
     3,
     804.4,
-    339.4,
+    363.8,
     "relays plug in"
    ],
    [
@@ -10476,7 +10476,7 @@
     -174.5,
     -163.5,
     6.4,
-    27.53
+    33.1
    ]
   },
   {
@@ -13064,11 +13064,174 @@
    ]
   }
  },
+ "power": {
+  "relay_models": {
+   "1-1414147-0": "te/1-1414147-0 (3)"
+  }
+ },
+ "battrelay": {
+  "hcr150_model": "cad/vendor/te/1416010-1/c-1416010-1-a-3d.stp"
+ },
  "terminals": {
-  "placed": {},
-  "missing": [
-   "no cad/vendor folder"
-  ]
+  "placed": {
+   "LOGIC BUS1-1": "1-968849-1",
+   "LOGIC BUS1-1 IN": "1-968849-1",
+   "LOGIC BUS1-10": "1-968851-1",
+   "LOGIC BUS1-10 IN": "1-968849-1",
+   "LOGIC BUS1-2": "1-968851-1",
+   "LOGIC BUS1-2 IN": "1-968851-1",
+   "LOGIC BUS1-3": "1-968851-1",
+   "LOGIC BUS1-3 IN": "1-968851-1",
+   "LOGIC BUS1-4": "1-968851-1",
+   "LOGIC BUS1-4 IN": "1-968851-1",
+   "LOGIC BUS1-5": "1-968851-1",
+   "LOGIC BUS1-5 IN": "1-968851-1",
+   "LOGIC BUS1-6": "1-968851-1",
+   "LOGIC BUS1-6 IN": "1-968849-1",
+   "LOGIC BUS1-7": "1-968849-1",
+   "LOGIC BUS1-7 IN": "1-968849-1",
+   "LOGIC BUS1-8": "1-968849-1",
+   "LOGIC BUS1-8 IN": "1-968849-1",
+   "LOGIC BUS1-9": "1-968849-1",
+   "LOGIC BUS1-9 IN": "1-968849-1",
+   "LOGIC BUS2-1": "1-968849-1",
+   "LOGIC BUS2-1 IN": "1-968849-1",
+   "LOGIC BUS2-12": "1-968849-1",
+   "LOGIC BUS2-12 IN": "1-968849-1",
+   "LOGIC BUS2-13": "1-968849-1",
+   "LOGIC BUS2-13 IN": "1-968849-1",
+   "LOGIC BUS2-2": "1-968851-1",
+   "LOGIC BUS2-2 IN": "1-968849-1",
+   "LOGIC BUS2-3": "1-968851-1",
+   "LOGIC BUS2-3 IN": "1-968849-1",
+   "LOGIC BUS2-4": "1-968851-1",
+   "LOGIC BUS2-4 IN": "1-968849-1",
+   "LOGIC BUS2-5": "1-968849-1",
+   "LOGIC BUS2-5 IN": "1-968849-1",
+   "LOGIC BUS2-6": "1-968851-1",
+   "LOGIC BUS2-6 IN": "1-968849-1",
+   "LOGIC BUS2-7": "1-968849-1",
+   "LOGIC BUS2-7 IN": "1-968849-1",
+   "LOGIC BUS2-8": "1-968851-1",
+   "LOGIC BUS2-8 IN": "1-968849-1",
+   "LOGIC BUS2-9": "1-968849-1",
+   "LOGIC BUS2-9 IN": "1-968849-1",
+   "LOGIC M1 30": "42281-1",
+   "LOGIC M1 85": "280919-2",
+   "LOGIC M1 86": "280919-2",
+   "LOGIC M1 87": "42281-1",
+   "LOGIC M10 30": "42281-1",
+   "LOGIC M10 85": "280919-2",
+   "LOGIC M10 86": "280919-2",
+   "LOGIC M10 87": "42281-1",
+   "LOGIC M2 30": "42281-1",
+   "LOGIC M2 85": "280919-2",
+   "LOGIC M2 86": "280919-2",
+   "LOGIC M2 87": "42281-1",
+   "LOGIC M3 30": "42281-1",
+   "LOGIC M3 85": "280919-2",
+   "LOGIC M3 86": "280919-2",
+   "LOGIC M3 87": "42281-1",
+   "LOGIC M4 30": "42281-1",
+   "LOGIC M4 85": "280919-2",
+   "LOGIC M4 86": "280919-2",
+   "LOGIC M4 87": "42281-1",
+   "LOGIC M5 30": "42281-1",
+   "LOGIC M5 85": "280919-2",
+   "LOGIC M5 86": "280919-2",
+   "LOGIC M5 87": "42281-1",
+   "LOGIC M6 30": "42281-1",
+   "LOGIC M6 85": "280919-2",
+   "LOGIC M6 86": "280919-2",
+   "LOGIC M6 87": "42281-1",
+   "LOGIC M7 30": "42281-1",
+   "LOGIC M7 85": "280919-2",
+   "LOGIC M7 86": "280919-2",
+   "LOGIC M7 87": "42281-1",
+   "LOGIC M8 30": "42281-1",
+   "LOGIC M8 85": "280919-2",
+   "LOGIC M8 86": "280919-2",
+   "LOGIC M8 87": "42281-1",
+   "LOGIC M9 30": "42281-1",
+   "LOGIC M9 85": "280919-2",
+   "LOGIC M9 86": "280919-2",
+   "LOGIC M9 87": "42281-1",
+   "POWER ACPS": "1-968851-1",
+   "POWER ACPS IN": "1-968851-1",
+   "POWER R1 30": "62998-2",
+   "POWER R1 85": "42281-1",
+   "POWER R1 86": "42281-1",
+   "POWER R1 87": "62998-2",
+   "POWER R1 87a": "42281-1",
+   "POWER R2 30": "280756-4",
+   "POWER R2 85": "42281-1",
+   "POWER R2 86": "42281-1",
+   "POWER R2 87": "280756-4",
+   "POWER R3 30": "280755-4",
+   "POWER R3 85": "42281-1",
+   "POWER R3 86": "42281-1",
+   "POWER R3 87": "280755-4",
+   "POWER R4 30": "280756-4",
+   "POWER R4 85": "42281-1",
+   "POWER R4 86": "42281-1",
+   "POWER R4 87": "280756-4",
+   "POWER R5 30": "280756-4",
+   "POWER R5 85": "42281-1",
+   "POWER R5 86": "42281-1",
+   "POWER R5 87": "280756-4",
+   "POWER R6 30": "280755-4",
+   "POWER R6 85": "42281-1",
+   "POWER R6 86": "42281-1",
+   "POWER R6 87": "280755-4",
+   "POWER R7 30": "280755-4",
+   "POWER R7 85": "42281-1",
+   "POWER R7 86": "42281-1",
+   "POWER R7 87": "280755-4"
+  },
+  "missing": [],
+  "count": 113,
+  "source": {
+   "880398-2": {
+    "file": "cad/vendor/te/880398-2/c-880398-2-t-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_880398-2&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=880398-2"
+   },
+   "1241388-2": {
+    "file": "cad/vendor/te/1241388-2/c-1241388-2-c6-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1241388-2&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=1241388-2"
+   },
+   "1241390-1": {
+    "file": "cad/vendor/te/1241390-1/c-1241390-1-c6-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1241390-1&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=1241390-1"
+   },
+   "1-968851-1": {
+    "file": "cad/vendor/te/1-968851-1/c-1-968851-1-e-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_1-968851-1&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=1-968851-1"
+   },
+   "1-968849-1": {
+    "file": "cad/vendor/te/1-968849-1/c-1-968849-1-j3-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=1-968849-1&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=1-968849-1"
+   },
+   "42281-1": {
+    "file": "cad/vendor/te/42281-1/c-42281-1-dj-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_42281-1&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=42281-1"
+   },
+   "280919-2": {
+    "file": "cad/vendor/te/280919-2/c-280919-2-m-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_280919-2&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=280919-2"
+   },
+   "280755-4": {
+    "file": "cad/vendor/te/280755-4/c-280755-4-l-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_280755-4&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=280755-4"
+   },
+   "280756-4": {
+    "file": "cad/vendor/te/280756-4/c-280756-4-p-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_280756-4&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=280756-4"
+   },
+   "62998-2": {
+    "file": "cad/vendor/te/62998-2/c-62998-2-w-3d.stp",
+    "url": "https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=CVM_62998-2&DocType=Customer%20View%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=62998-2"
+   }
+  }
  },
  "live_clearance": {
   "strap_to_strap_min_mm": 3.0,
@@ -13220,8 +13383,8 @@
     101.5,
     47.5
    ],
-   "volume_cm3": 107.5,
-   "mass_g_pa12": 109.0,
+   "volume_cm3": 107.4,
+   "mass_g_pa12": 108.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13257,9 +13420,64 @@
  "bar_metal": "CuC110",
  "interference": [
   [
-   "BattRelay_Base_PA12_printed",
-   "BattRelay_Relay_TE_HCR150_1416010-1",
-   0.9
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_42281-1",
+   4.907
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_42281-1",
+   4.907
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_280756-4",
+   7.441
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_280756-4",
+   7.406
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_42281-1",
+   4.907
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_42281-1",
+   4.907
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_280756-4",
+   7.441
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_280756-4",
+   7.406
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_42281-1",
+   4.907
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_42281-1",
+   4.907
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_280756-4",
+   7.441
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414147-0",
+   "Power_Terminal_TE_280756-4",
+   7.406
   ]
  ],
  "mass_g": {

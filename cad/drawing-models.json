@@ -75,18 +75,18 @@
    "revlog": "fusebox/rev7/ST185-FB-100B.REVLOG.md",
    "steps": {
     "fusebox/rev8/BattRelay_Base_PA12_printed.step": "9305bff4f33ba244",
-    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "7d52a093f8750c1c",
+    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "03576b7fa9b8a1da",
     "fusebox/rev8/BattRelay_Bar_Power_CuC110_25x6p35.step": "5b74dd91e4fd5164",
     "fusebox/rev8/BattRelay_Pad_Out_CuC110_25p4x3p2.step": "c9bf1d7e2ff8b8de"
    },
    "ci": {
     "report:fusebox/rev8/fusebox_report.json#printed_parts#BattRelay_Base_PA12_printed": "c3c4bd01fa659983",
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#BattRelay_Cover_PA12_printed": "02bd6d5aadbe5b60",
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#BattRelay_Cover_PA12_printed": "b16c48df9b7aa080",
     "report:fusebox/rev8/fusebox_report.json#mass_g#BattRelay_Bar_Power_CuC110_25x6p35": "fa3969d8f63fc4a5",
     "report:fusebox/rev8/fusebox_report.json#mass_g#BattRelay_Pad_Out_CuC110_25p4x3p2": "80b8062fef2cf5ac"
    },
-   "rev": "P",
-   "pdf_sha": "d7476166d31dbfd3"
+   "rev": "R",
+   "pdf_sha": "b669429cc2bfc50a"
   },
   "ST185-FB-100L": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100L.pdf",
@@ -103,8 +103,8 @@
     "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Cover_PA12_printed": "24f63b35a3ee2c2e",
     "report:fusebox/rev8/fusebox_report.json#mass_g#Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": "62589853cbe97d21"
    },
-   "rev": "W",
-   "pdf_sha": "20599b846440df9f"
+   "rev": "X",
+   "pdf_sha": "cccbcb64a0e3935f"
   },
   "ST185-FB-100P": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100P.pdf",
@@ -131,7 +131,7 @@
     "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
    "rev": "AC",
-   "pdf_sha": "9b1ef48a82ec2849"
+   "pdf_sha": "aa0d1114768d671f"
   },
   "ST185-FB-101": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",
@@ -233,13 +233,13 @@
    "pdf": "fusebox/rev7/drawings/ST185-FB-109.pdf",
    "revlog": "fusebox/rev7/ST185-FB-109.REVLOG.md",
    "steps": {
-    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "7d52a093f8750c1c"
+    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "03576b7fa9b8a1da"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#BattRelay_Cover_PA12_printed": "02bd6d5aadbe5b60"
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#BattRelay_Cover_PA12_printed": "b16c48df9b7aa080"
    },
-   "rev": "H",
-   "pdf_sha": "e979c838641d9db0"
+   "rev": "J",
+   "pdf_sha": "0e08b80f118f119d"
   },
   "ST185-FB-111": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-111.pdf",
