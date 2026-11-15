@@ -393,9 +393,17 @@ def build(rev=6):
           'Power Relay F7 (V23134-J0052-X429), Maxi ISO, 50 A, 30/87 blades 9.5 x 1.2, 85/86 blades 6.3 x 0.8', n_14147, url=TE('1-1414147-0'),
           checked='TE page + data sheet V23134X0000A002 (F7 Maxi ISO, QC terminals); te-on-hand-bom.csv qty_ordered 3',
           note='On the shelf (R38 step 1). Earlier pages called the F7 "Mini ISO": the data sheet title is "Maxi ISO".')
-    L.add(P, 'Relays', ('Relay %s (Maxi ISO F7, bracket, 560 ohm)' % who_f7('1-1393304-0')) if R8 else 'Relay k_fan2 / power (Maxi ISO F7, bracket, 560 ohm)', '1-1393304-0', 'TE Connectivity',
-          'Power Relay F7 (V23134-J1052-X281), Maxi ISO, bracket (cut off or fold flat)', n_13304, url=TE('1-1393304-0'),
-          checked='te-on-hand-bom.csv qty_ordered 2; same F7 data sheet')
+    if n_13304 or not R8:
+        L.add(P, 'Relays', ('Relay %s (Maxi ISO F7, bracket, 560 ohm)' % who_f7('1-1393304-0')) if R8 else 'Relay k_fan2 / power (Maxi ISO F7, bracket, 560 ohm)', '1-1393304-0', 'TE Connectivity',
+              'Power Relay F7 (V23134-J1052-X281), Maxi ISO, bracket (cut off or fold flat)', n_13304, url=TE('1-1393304-0'),
+              checked='te-on-hand-bom.csv qty_ordered 2; same F7 data sheet')
+    n_14286 = sum(1 for p in F7_USED if p[1] == '1-1414286-0')
+    if n_14286:
+        L.add(P, 'Relays', 'Relay %s (Maxi ISO F7, 1 form A, diode)' % who_f7('1-1414286-0'), '1-1414286-0', 'TE Connectivity',
+              'Power Relay F7 (V23134-J0052-X439), Maxi ISO, 70 A, coil diode cathode 86, same QC body as 1-1414147-0', n_14286,
+              url=TE('1-1414286-0'),
+              checked='TE F7 data sheet ordering table: V23134-J0052-X439 Diode (cathode 86) NOD 1-1414286-0; DigiKey A127746-ND "Features: Diode"',
+              note='Row 162 (Dan C1a 2026-11-14): K-FAN2 is driven by ECU Ign 5, which is not flywheeled (Link forum 17727), so it needs a diode-coil part (B15). 86 = coil +12 V (BUS-SW12), 85 = Ign 5: diode the right way round. Replaces 1-1393304-0 (560 ohm); the 2 on hand are spares.')
     if not R8:
         # relay terminals
         awg_87 = {'k_efi': S.AMI_AWG['EFI'], 'k_str': S.AMI_AWG['STR'], 'k_fan': S.AMI_AWG['FAN'], 'k_fan2': S.AMI_AWG['FAN2'], 'power': S.AMI_AWG['PWR']}
