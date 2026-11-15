@@ -18,7 +18,7 @@ rows = [r for r in csv.DictReader(open(os.path.join(REPO, "docs/harness/MASTER-w
 FACES = json.load(open(os.path.join(HERE, "faces.json"), encoding="utf-8")) if os.path.exists(os.path.join(HERE, "faces.json")) else {}
 ALIAS = {"354404": "13519047", "CONN-76270": "EV6", "D 261 205 358-01": "1-967616-1",
          "DT06-2S-CE05": "DT06-2S", "DT06-3S-CE05": "DT06-3S", "5-1393292-8": "V23074", "6-1419137-4": "V23074",
-         "4-1904124-2": "V23074", "4-1904124-3": "V23074", "1-1414147-0": "V23134", "1-1393304-0": "V23134", "1-1414286-0": "V23134",
+         "4-1904124-2": "V23074", "4-1904124-3": "V23074", "1-1414147-0": "V23134", "1-1393304-0": "V23134",
          "V23132-A2001-B200": "HCR150"}
 
 WIRE = {"Red": "#c8312b", "Black": "#2b2b2b", "White": "#f4f4f2", "Blue": "#2a62c9", "Orange": "#e8781e",
@@ -130,7 +130,7 @@ KEYMAP = {"4-1437290-0": "TE Superseal 1.0 34-pos 4-1437290-0 (code 1)", "4-1437
           "DT06-6S": "Deutsch DT06-6S (plug, sockets)", "DT06-08SA": "Deutsch DT06-08SA (plug, sockets)", "DT06-12SA": "Deutsch DT06-12SA (plug, sockets)",
           "DT04-6P": "Deutsch DT04-6P", "DTHD06-1-8S": "Deutsch DTHD06-1-8S", "HD36-24-33SE": "Deutsch HD36-24-33SE (HD30 shell 24, 24-33)",
           "LP-16-J05PE-02-001": "CNLINKO LP-16 5-pin female cable plug LP-16-J05PE-02-001",
-          "1-1414147-0": "TE Power Relay F7 V23134 (1-1414147-0, 1-1393304-0)", "1-1393304-0": "TE Power Relay F7 V23134 (1-1414147-0, 1-1393304-0)", "1-1414286-0": "TE Power Relay F7 V23134 (1-1414147-0, 1-1393304-0)"}
+          "1-1414147-0": "TE Power Relay F7 V23134 (1-1414147-0, 1-1393304-0)", "1-1393304-0": "TE Power Relay F7 V23134 (1-1414147-0, 1-1393304-0)"}
 LETTER = {"A": "1", "B": "2", "C": "3"}
 F2 = json.load(open(os.path.join(HERE, "faces2.json"), encoding="utf-8")) if os.path.exists(os.path.join(HERE, "faces2.json")) else {}
 KEY2 = {"90980-11885": "Toyota 90980-11885", "90980-11062": "Toyota 90980-11062", "90980-11143": "Toyota 90980-11143",

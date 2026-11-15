@@ -294,7 +294,7 @@ ohmmeter from each landing above to its named load.
     comes out of its harness back to its last live point (splice, plug or box).
   - **Circuits decided (Dan 2026-10-21 to 2026-10-25; written into the master, row 164):** starter: the OEM starter relay
     in R/B No.4 stays, coil + from key START, coil - through the clutch start switch C11 (C11 completes the starter
-    circuit in hardware; it is not an ECU input; no `k_str`; Aux 8 spare). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) is the one ECU clutch input (flat-shift, via CSB3 VDI6);
+    circuit in hardware; it is not an ECU input; no `k_str`; Aux 8 now drives the condenser fan relay K-FAN2, row 162). Clutch: the cruise control clutch switch C17 (pin 2, B wire; pin 1 W-B stays on its ground) is the one ECU clutch input (flat-shift, via CSB3 VDI6);
     C11 is hardware starter only. Reverse: no K-REV; the back-up switch drives the lamps as OEM, its output is
     tapped through opto IN2 to the CSB3; the new switch wires (engine harness, through the one firewall plug DRB102, B7) splice to the IG2-4 / IG2-13
     pigtails. Charge lamp: IG2-16 Y stays, the Dash charge LED sinks to OEM cluster plug C14 (C) pin 8 (1993 p.207). IG2-15 B-R

@@ -141,7 +141,7 @@
   <div class="pmc pm-di" title="Wheel speed front left · set"><b>A23</b><span class="pmch">DI 3</span><span class="pmlb">Wheel speed front left</span></div>
   <div class="pmc pm-gnd" title="Sensor return rail · set"><b>A24</b><span class="pmch">Gnd Out</span><span class="pmlb">Sensor return rail</span></div>
   <div class="pmc pm-gnd" title="ECU power ground · set"><b>A25</b><span class="pmch">Ground</span><span class="pmlb">ECU power ground</span></div>
-  <div class="pmc pm-tbd" title="spare · spare"><b>A26</b><span class="pmch">Aux 8</span><span class="pmlb">spare</span></div>
+  <div class="pmc pm-aux" title="Condenser fan relay coil · set"><b>A26</b><span class="pmch">Aux 8</span><span class="pmlb">Condenser fan relay coil</span></div>
   <div class="pmc pm-aux" title="Speed out to MRS pump · set"><b>A27</b><span class="pmch">Aux 7</span><span class="pmlb">Speed out to MRS pump</span></div>
   <div class="pmc pm-aux" title="EFI main relay coil · set"><b>A28</b><span class="pmch">Aux 6</span><span class="pmlb">EFI main relay coil</span></div>
   <div class="pmc pm-aux" title="Rad fan relay coil · set"><b>A29</b><span class="pmch">Aux 5</span><span class="pmlb">Rad fan relay coil</span></div>
@@ -165,7 +165,7 @@
   <div class="pmc pm-ign" title="Tacho to A15 pin 18 and 4.7k lock-sensor tap · set"><b>B10</b><span class="pmch">Ign 8</span><span class="pmlb">Tacho to A15 pin 18 and 4.7k lock-sensor tap</span></div>
   <div class="pmc pm-tbd" title="spare low-side · spare"><b>B11</b><span class="pmch">Ign 7</span><span class="pmlb">spare low-side</span></div>
   <div class="pmc pm-ign" title="EPS enable relay (k_eps_en) trigger · set"><b>B12</b><span class="pmch">Ign 6</span><span class="pmlb">EPS enable relay (k_eps_en) trigger</span></div>
-  <div class="pmc pm-ign" title="Condenser fan relay coil · set"><b>B13</b><span class="pmch">Ign 5</span><span class="pmlb">Condenser fan relay coil</span></div>
+  <div class="pmc pm-tbd" title="spare low-side · spare"><b>B13</b><span class="pmch">Ign 5</span><span class="pmlb">spare low-side</span></div>
   <div class="pmc pm-volt" title="Oil pressure · set"><b>B15</b><span class="pmch">An Volt 6</span><span class="pmlb">Oil pressure</span></div>
   <div class="pmc pm-volt" title="Fuel pressure · set"><b>B16</b><span class="pmch">An Volt 7</span><span class="pmlb">Fuel pressure</span></div>
   <div class="pmc pm-gnd" title="Loom B screen termination · set"><b>B17</b><span class="pmch">Shield/Gnd</span><span class="pmlb">Loom B screen termination</span></div>
@@ -255,12 +255,11 @@
   <tr class="g-aux"><td class="chan">Aux 5</td><td class="pin">A29</td><td>Engine radiator fan relay</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td></td></tr>
   <tr class="g-aux"><td class="chan">Aux 6</td><td class="pin">A28</td><td>EFI main relay (ECU power hold)</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>keeps ECU powered for DBW key-off reset/cooldown. PCLink Hold Power Ignition Switch input is <strong>DI 9 (B28)</strong> from the dummy OEM ignition-switch block.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 7</td><td class="pin">A27</td><td>Speed-out → MRS pump SPD pin</td><td><span class="drive">hi/lo</span></td><td><span class="badge ok">✅</span></td><td>PCLink Speedo Out / GP PWM is a valid Aux 5–8 function. MRS wants ~4 pulses/rev, <strong>0–5 V</strong> (scoped on the RAV4-family PS ECU). Aux 5–8 have an internal ~1.5 kΩ pull-up (high polarity ≈ 5–14 V per the wiring manual) — <strong>scope the high level before adding a second 5 V pull-up</strong>; a 12 V high needs a divider/clamp, a hi-Z-off low-side needs a 5 V pull-up.</td></tr>
-  <tr class="g-aux"><td class="chan">Aux 8</td><td class="pin">A26</td><td>spare</td><td><span class="drive">hi/lo</span></td><td><span class="badge tbd">⬜</span></td><td>Spare: C11 completes the starter circuit in hardware, not an ECU input (Dan 2026-10-26). See <code>sot/channels.csv</code> row a26.</td></tr>
+  <tr class="g-aux"><td class="chan">Aux 8</td><td class="pin">A26</td><td>Condenser fan relay (K-FAN2)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>Sinks K-FAN2 coil 85 (TE 1-1414147-0, 680 Ω coil resistor); flywheeled, so no diode-coil relay. Moved from Ign 5 (B13), Dan A44 a 2026-11-15, row 162. See <code>sot/channels.csv</code> row a26.</td></tr>
   <tr class="g-pwr"><td class="chan">V-Ethrottle 12V switched input</td><td class="pin">B5</td><td>ETB H-bridge supply — <strong>power in, not an output</strong>. Triggered by Aux 2 (A20).</td><td><span class="drive">12V in</span></td><td><span class="badge ok">✅</span></td><td>0.75 mm². Present on the loom but absent from the Quickstart I/O table — always list it explicitly.</td></tr>
   <tr class="g-aux"><td class="chan">Aux 9 / 10</td><td class="pin">B18 · B26</td><td>Bosch ETB motor (H-bridge)</td><td><span class="drive">H-bridge</span></td><td><span class="badge ok">✅</span></td><td>DBW</td></tr>
-  <tr class="g-ign"><td class="chan">Ign 5</td><td class="pin">B13</td><td>2nd rad fan (AC condenser duty)</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>spare ign as aux</td></tr>
   <tr class="g-ign"><td class="chan">Ign 6</td><td class="pin">B12</td><td>EPS pump relay coil</td><td><span class="drive">low-side</span></td><td><span class="badge ok">✅</span></td><td>Spare ign used as aux (per <code>sot/channels.csv</code>). No ECU-driven warning lamps — the replacement cluster handles indicators over CAN.</td></tr>
-  <tr class="g-inj"><td class="chan">Ign 7–8 / Inj 5–8</td><td class="pin">B11 B10 · B4–B1</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>The only spare ECU drives left — the next ECU actuator comes from here (no PMU/PDM, plan 6.48)</td></tr>
+  <tr class="g-inj"><td class="chan">Ign 5, Ign 7 / Inj 5–8</td><td class="pin">B13 B11 · B4–B1</td><td>spare low-side aux</td><td><span class="drive">low-side</span></td><td><span class="badge tbd">⬜</span></td><td>The only spare ECU drives left — the next ECU actuator comes from here (no PMU/PDM, plan 6.48)</td></tr>
 </table>
 
 <h2>AC control (per your AC-amp notes)</h2>
@@ -336,10 +335,10 @@
   <tr><td>Knock</td><td>2</td><td>1</td><td>1 (Knock 2 / B8)</td></tr>
   <tr><td>Digital in</td><td>10</td><td>10</td><td>0 (DI 10 / B27 = anti-theft)</td></tr>
   <tr><td>Injection</td><td>8</td><td>4</td><td>4 → aux (B1–B4)</td></tr>
-  <tr><td>Ignition</td><td>8</td><td>4 coils + 3 aux (Ign 5, Ign 6, Ign 8)</td><td>1 (Ign 7)</td></tr>
-  <tr><td>Aux</td><td>10</td><td>9 (9/10 = ETB)</td><td>1 (Aux 8 / A26, freed 2026-10-26)</td></tr>
+  <tr><td>Ignition</td><td>8</td><td>4 coils + 2 aux (Ign 6, Ign 8)</td><td>2 (Ign 5, Ign 7)</td></tr>
+  <tr><td>Aux</td><td>10</td><td>10 (9/10 = ETB; Aux 8 = condenser fan relay since 2026-11-15)</td><td>0</td></tr>
 </table>
-<div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator comes out of spare Ign 7 / Inj 5–8 (Ign 5 = condenser-fan relay, Ign 6 = EPS enable relay, Ign 8 = A/C clutch relay). <strong>No PMU/PDU</strong>: the glove-box power is the custom POWER and LOGIC boxes (DECISIONS R75, drawn in <code>ST185-CabinPower</code>) with Mini ISO and micro relays, the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Every splice and feed: <code>docs/harness/MASTER-wirelist.csv</code>.</div>
+<div class="note"><strong>Aux is exactly full — zero spare.</strong> Every one of the 10 Aux outputs is allocated. The next <em>ECU</em> actuator comes out of spare Ign 5 / Ign 7 / Inj 5–8 (Ign 6 = EPS enable relay, Ign 8 = tacho out and lock-sensor tap; the condenser-fan relay moved from Ign 5 to Aux 8, Dan A44 a 2026-11-15). <strong>No PMU/PDU</strong>: the glove-box power is the custom POWER and LOGIC boxes (DECISIONS R75, drawn in <code>ST185-CabinPower</code>) with Mini ISO and micro relays, the CSB3 doing the logic. EPS pump, both fans and the fuel pump stay on relay + fuse. Every splice and feed: <code>docs/harness/MASTER-wirelist.csv</code>.</div>
 
 
 <h2>Comms port (6-pin) — USER CAN 1</h2>

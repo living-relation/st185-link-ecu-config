@@ -10,7 +10,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 | # | Circuit | Plan (in the master) |
 |---|---|---|
 | 1 | Engine management (factory ECU, igniter, EFI relays) | Gone. The Link plus the new engine harness replace it. |
-| 2 | Starting | OEM starter relay in R/B No.4 stays. Coil + from key START; coil - through the clutch start switch C11. C11 completes the starter circuit in hardware; it is not an ECU input. No `k_str`. Aux 8 is spare. |
+| 2 | Starting | OEM starter relay in R/B No.4 stays. Coil + from key START; coil - through the clutch start switch C11. C11 completes the starter circuit in hardware; it is not an ECU input. No `k_str`. (Aux 8 drives the condenser fan relay K-FAN2 since 2026-11-15, row 162.) |
 | 3 | Charging | IG2-15 B-R keeps a 6 in pigtail: kill switch, then alternator IG. IG2-16 Y stays and drives the 12 V charge LED in the Dash harness (sinks to OEM cluster plug C14 (C) pin 8). Alternator B+ on the heavy-cable harness. |
 | 4 | Cruise | The OEM cruise ECU and actuator are gone; the stalk stays as CSB3 buttons. Cruise control clutch switch C17 pin 2 to CSB3 cavity 5 (`w_sw5`, board S6) is the one ECU clutch input (flat-shift, via VDI6). C11 completes the starter circuit in hardware; it is not an ECU input. |
 | 5 | SRS | Gone. |
@@ -23,7 +23,7 @@ seat to OEM landing: `README.md` "Power injection". Routes change only per DECIS
 | 12 | Fuel pump | `k_fp` in the trunk, rear-fuel harness (B3-K1). |
 | 13 | Front lights + pop-ups | Front run (Route 17 line 10), spliced to the 6 in pigtails. Headlamps, DRL and pop-up switching: "Headlamps, DRL and pop-ups" below (Dan N84 a-N89 a, 2026-11-08). |
 | 14 | Horn | Front run, relay in the glove box (B2-M3); both horns share one ground to EA (`SP-HORN-GND`, Dan N86). |
-| 15 | Radiator + condenser fans | Link-controlled relays, front run. |
+| 15 | Radiator + condenser fans | Link-controlled relays, front run: K-FAN on Aux 5 (A29), K-FAN2 on Aux 8 (A26). |
 | 16 | Wiper + washer | Wiper on the driver fender run, washer pump on the front run. |
 | 17 | Fog | Removed (Dan 2026-11-02): no fog lamps, relay or wiring. Every fog wire (switch F12, relay R/B No.3, 20 A FR FOG fuse) comes out back to its last live point; the relay and the fuse come out, the R/B No.4 seat stays empty. No spare circuit to the old fog-lamp spots. |
 | 18 | Windows, locks, sunroof, seat | R/B No.2 stays; its 30 A POWER fuse is fed by AM1 (B1 AMI OUT-3, `w_pdb_am1`) through cowl splice I2, as stock (Dan B17 b, 1993 p.62 / p.137-142, US = Canada). No `k_pwr`. |
@@ -139,7 +139,7 @@ job). The draft was written under an older plan; where it disagrees, the current
 column shows the difference:
 
 - R/B No.2 and No.4 stay (the draft removed them); R/B No.3 goes (fog, circuit 17).
-- Starter stays on the OEM R/B No.4 relay through C11 (circuit 2): no `k_str`, C11 is not a Link input, Aux 8 is spare.
+- Starter stays on the OEM R/B No.4 relay through C11 (circuit 2): no `k_str`, C11 is not a Link input (Aux 8 went to the condenser fan relay K-FAN2, row 162).
 - No `k_htr` / `k_pwr` / `k_rev` twins (circuits 9, 11, 18): the OEM relays keep their own coil and contact wiring.
 - The whole Engine Room Main Wire goes, outer loop included (B9; the draft kept the outer loop and reused its leads):
   every bay load is new wire to its device plug or 6 in pigtail.
