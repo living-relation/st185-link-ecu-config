@@ -961,7 +961,10 @@ CHANNEL_CAD_SKIP = {'HL', 'HR', 'ETB', 'HEAD LH 30', 'HEAD LH 86', 'HEAD RH 30',
 # (committed) lists PN, source URL and file. TE customer view models (te.com "3D STEP" link on each product page, read 2026-10-18): frame =
 # contact (mating) end at Z 0, the wire running down -Z, blade width along X, the locking lance on the -Y side; y_box = the contact box's Y centre
 # (measured on the STEP over its top 4 mm) - the blade line, put on the cavity centre.
-VENDOR_DIR_MAIN = r'C:\projects\active\st185-link-ecu-config\cad\vendor'
+import os  # noqa: E402  (only for VENDOR_DIR_MAIN)
+VENDOR_DIR_MAIN = os.path.join(os.path.expanduser('~'), '.personal OneDrive', 'OneDrive', 'Desktop', 'models', 'st185_vendor-parts_1101')
+# 2026-11-15 (row 162): the maker models moved to the models folder (B26, cad/vendor/INDEX.md); the old repo path
+# C:\projects\active\st185-link-ecu-config\cad\vendor holds only INDEX.md, so the rev 8 build fell back to envelopes ("no cad/vendor folder")
 TE_DOC = 'https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=%s&DocType=Customer%%20View%%20Model&DocLang=English&DocFormat=3d_stp.zip&PartCntxt=%s'
 VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
     '880398-2': ('te', 'c-880398-2-t-3d.stp', 2.24, 'CVM_880398-2'),
@@ -1081,11 +1084,12 @@ REV8 = dict(
                ('K-ON', '6-1419137-4', 'BUY'), ('K-DRL', '4-1904124-2', 'OWN'), ('SPARE', None, None), ('K-POD', '4-1904124-3', 'OWN')],
     # POWER relay seats R1-R6 (bank B1): R1 (was heater), R3 (was start) and R6 (was windows) are vacant (A16 a)
     RELAY_PN={'heater': (None, None), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': (None, None), 'k_fan': ('1-1414147-0', 'OWN'),
-              'k_fan2': ('1-1414286-0', 'BUY'), 'power': (None, None), 'SPARE': (None, None)},
-    # row 162 (Dan C1a 2026-11-14): K-FAN2 is on ECU Ign 5 (not flywheeled; Link forum 17727), so a diode-coil F7:
-    # TE 1-1414286-0 = V23134-J0052-X439, 1 form A, diode cathode 86 (TE F7 data sheet ordering table); same F7 QC body as 1-1414147-0
+              'k_fan2': ('1-1414147-0', 'OWN'), 'power': (None, None), 'SPARE': (None, None)},
+    # row 162 (Dan G1a 2026-11-15; on-hand first, R38): K-FAN2 is the third on-hand TE 1-1414147-0 (V23134-J0052-X429, 680 ohm
+    # coil resistor, TE F7 data sheet ordering table), same as K-EFI / K-FAN; its coil trigger moves to ECU Aux 8 (flywheeled,
+    # G4X QSG) - that wire move is handed to the wiring session (OPEN-ITEMS row 162)
     F7_POS=[('k_efi', '1-1414147-0', 'OWN'), ('SPARE', None, None), ('k_fan', '1-1414147-0', 'OWN'),
-            ('k_fan2', '1-1414286-0', 'BUY'), ('SPARE', None, None), ('SPARE', None, None),
+            ('k_fan2', '1-1414147-0', 'OWN'), ('SPARE', None, None), ('SPARE', None, None),
             ('SPARE', None, None), ('ACPS', None, None)],
     AMI_ROWS={
         'IN':  [('HTR', 40), ('EFI', 30), ('SP', None), ('FAN', 30), ('FAN2', 30), ('SP', None), ('SP', None), ('SP', None)],   # A17 a: FAN 30 A

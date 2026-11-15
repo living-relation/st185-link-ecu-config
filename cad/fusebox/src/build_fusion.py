@@ -400,6 +400,26 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
     if rev >= 7:   # J2 = B (R94): the wire plan (wiring_sim.py) names the terminal and wire in every cavity
         PLAN7 = json.load(open(os.path.join(os.path.dirname(SRC), 'rev%d' % rev, 'wiring_plan.json'), encoding='utf-8'))
 
+    _vendor_cache = {}
+
+    def vendor_bodies(maker, pn):
+        """The maker's own STEP of a bought part (R163 / R184) as temporary bodies in the maker's frame (cm), or None. Looks in the repo's
+        cad/vendor first, then spec.VENDOR_DIR_MAIN (the models folder vendor-parts, B26)."""
+        if pn in _vendor_cache:
+            return _vendor_cache[pn]
+        d = next((os.path.join(d_, maker, pn) for d_ in (os.path.join(os.path.dirname(os.path.dirname(SRC)), 'vendor'), S.VENDOR_DIR_MAIN)
+                  if os.path.isdir(os.path.join(d_, maker, pn))), None)
+        stp = sorted(f_ for f_ in os.listdir(d) if f_.lower().endswith(('.stp', '.step'))) if d else []
+        if not stp:
+            _vendor_cache[pn] = None
+            return None
+        occ = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+        app.importManager.importToTarget(app.importManager.createSTEPImportOptions(os.path.join(d, stp[0])), occ.component)
+        bl = [tb.copy(b_) for b_ in occ.component.bRepBodies] + [tb.copy(b_) for o_ in occ.component.allOccurrences for b_ in o_.component.bRepBodies]
+        occ.deleteMe()
+        _vendor_cache[pn] = bl
+        return bl
+
     def plan_tails(box_name):
         """Rev 8: the CAD harness tails = the wire plan's (every wire end that leaves through a lane, its real gauge), so the exit notches are
         cut for the wires that are really there."""
@@ -2029,8 +2049,30 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         if S.ACPS[1]:                          # rev 8: the ACPS seat is vacant (A16 a)
             comp(pre + 'Fuse_ATM_10A', cbox(acps[0], acps[1], z_t, z_t + S.MINI['h_above'], S.MINI['l'], S.MINI['w']), MINI_AP[10], MAT['abs'], sh)
         RBd = S.RELAY_B
-        comp(pre + 'Relay_TE_F7_V23134', [cbox(r['cx'], r['cy'], z_t, z_t + S.F7['h'], S.F7['body'], S.F7['body']) for r in relays if r['pn'] and not r['B']],
-             AP['black'], MAT['abs'], sh)
+        # R184 (row 162, 2026-11-15): each F7 relay is TE's own STEP of its part number (cad/vendor INDEX; models folder vendor-parts),
+        # one component per part number. TE's frame: blade tips at z 0, body base z -17.0, cover top z -41.9; 87 blade at x +10.30
+        # (along y), 30 at x -7.60 (along x), coils at x 1.90 / y +-8.45 = spec.F7_PINS with v = 0.05 - x. Turned 180 deg about x so the
+        # blades point down into the deck: box x = cx + x - 0.05, y = cy - y, z = z_t - 17.0 - z. Envelope only if the STEP is missing.
+        f7_by_pn = {}
+        for r in relays:
+            if r['pn'] and not r['B']:
+                f7_by_pn.setdefault(r['pn'], []).append(r)
+        for pn_, rs_ in sorted(f7_by_pn.items()):
+            src_ = vendor_bodies('te', pn_)
+            if src_:
+                bl_ = []
+                for r in rs_:
+                    m_ = adsk.core.Matrix3D.create()
+                    m_.setWithCoordinateSystem(P(r['cx'] - 0.05, r['cy'], z_t - 17.0), V(1, 0, 0), V(0, -1, 0), V(0, 0, -1))
+                    for b_ in src_:
+                        c_ = tb.copy(b_)
+                        tb.transform(c_, m_)
+                        bl_.append(c_)
+                report.setdefault('power', {}).setdefault('relay_models', {})[pn_] = 'te/%s (%d)' % (pn_, len(rs_))
+            else:
+                bl_ = [cbox(r['cx'], r['cy'], z_t, z_t + S.F7['h'], S.F7['body'], S.F7['body']) for r in rs_]
+                report.setdefault('power', {}).setdefault('relay_models_missing', []).append(pn_)
+            comp(pre + 'Relay_TE_F7_%s' % pn_, bl_, AP['black'], MAT['abs'], sh)
         comp(pre + 'Relay_TE_PowerB_V23234_CO', [cbox(r['cx'], r['cy'], z_t, z_t + RBd['h'], RBd['body'], RBd['body']) for r in relays if r['B'] and r['pn']],
              AP['black'], MAT['abs'], sh)
         if not R7:   # markup 2026-10-17 (Dan 23-29 "what is this?"): the grey 1 mm square was a CAD marker for the empty relay spot, not a part - gone
