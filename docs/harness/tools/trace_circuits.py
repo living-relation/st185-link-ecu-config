@@ -119,7 +119,7 @@ class Model:
         self.ends = collections.defaultdict(list)        # point -> [(row, side)]
         self.cls = {}                                    # (wire id, side) -> class
         self.names, self.hubs = {}, {}                   # point -> plain name; named bars and bodies
-        self.findings, self.unproven = [], []
+        self.findings, self.unproven, self.accepted = [], [], []
         self.sources, self.sinks, self.endpoints = {}, {}, {}   # point -> (volts, name) / name / name
         self.drivers, self.factory_feeds = {}, {}        # ECU outputs; factory feed ends no rule names yet
         self.devices = collections.OrderedDict()         # device id -> {name, harness}
@@ -141,6 +141,12 @@ class Model:
 
     def find(self, code, harness, dev, text, devices=None):
         f = {"code": code, "harness": harness, "device": dev, "text": text, "devices": devices or [dev]}
+        x = next((x for x in self.R.get("exceptions", []) if x["check"] == code and x["device"] == dev), None)
+        if x:      # a named exception Dan accepted (rules "exceptions"): listed, never a finding
+            a = dict(f, why=x["why"], src=x["src"])
+            if a not in self.accepted:
+                self.accepted.append(a)
+            return
         if f not in self.findings:
             self.findings.append(f)
 
@@ -1457,6 +1463,8 @@ def report(M, argv):
         print("NOTE " + n)
     for h, d, t in M.unproven:
         print("NOT PROVEN [%s] %s" % (h, t))
+    for a in M.accepted:
+        print("ACCEPTED %s [%s] %s (exception: %s; %s)" % (a["code"], a["harness"], a["text"], a["why"], a["src"]))
     for f in M.findings:
         print("FINDING %s [%s] %s" % (f["code"], f["harness"], f["text"]))
     print("trace_circuits: %d finding(s), %d not proven (SOFT: never fails the build, Dan A56 a)" % (len(M.findings), len(M.unproven)))
@@ -1572,9 +1580,11 @@ def card_html(M, i, verdict):
             o.append('<p class="small">Off / inactive in the other %d scenario(s).</p>' % quiet)
     fs = [f for f in M.findings if i in f["devices"]]
     ns = [t for _h, dv, t in M.unproven if dv == i]
-    if fs or ns:
-        o.append("<ul>%s%s</ul>" % ("".join('<li class="f"><b>%s</b> %s</li>' % (f["code"], esc(f["text"])) for f in fs),
-                                    "".join('<li class="n"><b>not proven</b> %s</li>' % esc(t) for t in ns)))
+    acc = [a for a in M.accepted if i in a["devices"]]
+    if fs or ns or acc:
+        o.append("<ul>%s%s%s</ul>" % ("".join('<li class="f"><b>%s</b> %s</li>' % (f["code"], esc(f["text"])) for f in fs),
+                                      "".join('<li><b>accepted %s</b> %s <i>(%s; %s)</i></li>' % (a["code"], esc(a["text"]), esc(a["why"]), esc(a["src"])) for a in acc),
+                                      "".join('<li class="n"><b>not proven</b> %s</li>' % esc(t) for t in ns)))
     o.append("</article>")
     return "\n".join(o)
 
@@ -1600,6 +1610,11 @@ def page(M):
         o.append("<ul>%s</ul>" % "".join('<li class="f"><b>%s</b> [%s] %s</li>' % (f["code"], esc(f["harness"] or "-"), esc(f["text"])) for f in M.findings))
     else:
         o.append("<p>None.</p>")
+    if M.accepted:
+        o.append('<h2>Accepted exceptions (%d)</h2><p class="small">What a check would flag, accepted by Dan as a named exception '
+                 '(trace_rules.json "exceptions"); not a finding.</p><ul>%s</ul>' % (len(M.accepted), "".join(
+                     '<li><b>%s</b> [%s] %s <i>Accepted: %s (%s)</i></li>' % (a["code"], esc(a["harness"] or "-"), esc(a["text"]), esc(a["why"]), esc(a["src"]))
+                     for a in M.accepted)))
     o.append('<h2>Truth table: headlamps, DRL, pop-ups (from circuit-plan.md)</h2><table><tr><th>Stalk</th><th>DRL switch</th><th>Pods</th><th>Low</th>'
              '<th>High</th><th>DRL</th><th>LED</th><th>Cases run</th><th>Result</th></tr>%s</table>' % "".join(
                  "<tr>%s<td>%d</td><td>%s</td></tr>" % ("".join("<td>%s</td>" % esc(x) for x in c), n, "match" if not b else esc("; ".join(b[:3])))
@@ -1846,6 +1861,11 @@ def self_test():
     ru["csb3"]["switches"]["S5"] = ru["csb3"]["switches"].pop("S6")
     case("CAN leg: the clutch on a board input the CAN map does not assign", "T9", "clutch", ru=ru)
     case("a one-leg splice is a dead end", "T1", "SP-NOWHERE", reland("w_fpg", "GND-BL", **nowhere))
+    ru = copy.deepcopy(rules)
+    ru["exceptions"] = [x for x in ru.get("exceptions", []) if not (x["check"] == "F1" and x["device"] == "T-STARTER-B")]
+    case("named exception removed: the unfused starter B+ cable is a finding again", "F1", "T-STARTER-B", ru=ru)
+    cases.append(("named exception: the starter B+ cable is listed as accepted, not a finding (Dan A68 a)",
+                  any(a["device"] == "T-STARTER-B" for a in M0.accepted) and not any(f["device"] == "T-STARTER-B" for f in M0.findings)))
     good = [doc_from_master(rows, "RearFuel"), doc_from_master(rows, "CabinPower"), doc_from_master(rows, "HeavyDC")]
     mine = [r for r in rows if r["harness"] in ("RearFuel", "CabinPower", "HeavyDC")]
     cases.append(("as built: files drawn from the master give no finding", asbuilt_compare(mine, good)[1] == []))

@@ -2061,9 +2061,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             src_ = vendor_bodies('te', pn_)
             if src_:
                 bl_ = []
+                fx_, fy_, fz_ = S.F7_STEP_FRAME.get(pn_, (0.0, 0.0, 0.0))   # A65: a maker STEP in another frame (spec.F7_STEP_FRAME)
                 for r in rs_:
                     m_ = adsk.core.Matrix3D.create()
-                    m_.setWithCoordinateSystem(P(r['cx'] - 0.05, r['cy'], z_t - 17.0), V(1, 0, 0), V(0, -1, 0), V(0, 0, -1))
+                    m_.setWithCoordinateSystem(P(r['cx'] - 0.05 - fx_, r['cy'] + fy_, z_t - 17.0 + fz_), V(1, 0, 0), V(0, -1, 0), V(0, 0, -1))
                     for b_ in src_:
                         c_ = tb.copy(b_)
                         tb.transform(c_, m_)
