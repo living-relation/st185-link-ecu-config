@@ -141,7 +141,8 @@ class Model:
 
     def find(self, code, harness, dev, text, devices=None):
         f = {"code": code, "harness": harness, "device": dev, "text": text, "devices": devices or [dev]}
-        x = next((x for x in self.R.get("exceptions", []) if x["check"] == code and x["device"] == dev), None)
+        x = next((x for x in self.R.get("exceptions", []) if x["check"] == code and (
+            x.get("device") == dev if "device" in x else x.get("text_has", "\0") in text)), None)
         if x:      # a named exception Dan accepted (rules "exceptions"): listed, never a finding
             a = dict(f, why=x["why"], src=x["src"])
             if a not in self.accepted:
@@ -1862,10 +1863,17 @@ def self_test():
     case("CAN leg: the clutch on a board input the CAN map does not assign", "T9", "clutch", ru=ru)
     case("a one-leg splice is a dead end", "T1", "SP-NOWHERE", reland("w_fpg", "GND-BL", **nowhere))
     ru = copy.deepcopy(rules)
-    ru["exceptions"] = [x for x in ru.get("exceptions", []) if not (x["check"] == "F1" and x["device"] == "T-STARTER-B")]
+    ru["exceptions"] = [x for x in ru.get("exceptions", []) if not (x["check"] == "F1" and x.get("device") == "T-STARTER-B")]
     case("named exception removed: the unfused starter B+ cable is a finding again", "F1", "T-STARTER-B", ru=ru)
     cases.append(("named exception: the starter B+ cable is listed as accepted, not a finding (Dan A68 a)",
                   any(a["device"] == "T-STARTER-B" for a in M0.accepted) and not any(f["device"] == "T-STARTER-B" for f in M0.findings)))
+    ru = copy.deepcopy(rules)
+    ru["exceptions"] = [x for x in ru.get("exceptions", []) if "Dan A70 a" not in x["src"]]
+    case("named exception removed: the ECU wake diode back-feed on the SW12 bus is a finding again (Dan A70 a)", "BF", "ECU wake diode", ru=ru, pulls=True)
+    case("named exception removed: the SW12 bus loads fed from 2 places are a finding again (Dan A70 a)", "F1", "SW12 5 A", ru=ru)
+    ru = copy.deepcopy(rules)
+    next(w for w in ru["watch"] if w["pin"] == "ECU-B:30").pop("float")
+    case("rule removed: ECU DI 7 (pull-up OFF) floating is a finding again (Dan A73 a)", "T8", "DI 7", ru=ru)
     good = [doc_from_master(rows, "RearFuel"), doc_from_master(rows, "CabinPower"), doc_from_master(rows, "HeavyDC")]
     mine = [r for r in rows if r["harness"] in ("RearFuel", "CabinPower", "HeavyDC")]
     cases.append(("as built: files drawn from the master give no finding", asbuilt_compare(mine, good)[1] == []))
