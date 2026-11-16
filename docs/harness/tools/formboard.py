@@ -1,12 +1,10 @@
-"""formboard.py - lay a generated harness.design document out as a true 1:1 formboard (Dan A25 a, 2026-11-12; A44, 2026-11-15).
+"""formboard.py - lay a generated harness.design document out as a true 1:1 formboard (Dan A25 a, 2026-11-12).
 
 The generators (gen_abeng, gen_engc, gen_cabin, gen_dash and the files built on it, gen_heavydc) first place every part on
-their own formboard; `to_car(doc, build_drawings.car_frame(layout), layout nodes)` then redraws the layout view as the car
-looks from above on the layout-editor routes (Dan A44, 2026-11-15; below, "the car-frame formboard"), every bundle drawn at
-exactly its set length (the master / tree length, never changed), the way harness.design's formboard mode measures it, and
-turns formboard mode on (A1 landscape panels, at least 4 x 4). `check(doc)` is the gate: every drawn bundle length equals its
-set length within 1 mm, no two bundles cross or overlap, nothing is off the panels and no label overlaps another (Dan
-2026-11-13); `report` prints the board, the deviation from the editor spots and the service loops.
+their orthogonal formboard (README "harness.design"); `to_scale(doc)` then redraws the layout view so that every bundle is
+drawn at exactly its set length (the master / tree length, never changed), the way harness.design's formboard mode measures
+it, and turns formboard mode on with A3 panels. `check(doc)` is the gate: every drawn bundle length equals its set length
+within 1 mm and no two bundles cross or overlap.
 
 How harness.design measures a formboard (app.harness.design, read 2026-11-12; docs.harness.design/feature/formboard and
 /feature/local-files/json-format "formboard"): one layout unit is 0.75 mm (FORMBOARD_MM_PER_PX); a bundle's path runs
@@ -17,15 +15,17 @@ lengths differ by less than 0.5 mm, and draws any other bundle, or one with no s
 with black dashes. The panel grid is centred on layout (0, 0).
 
 The drawing (view only: no wire, pin, length or part changes):
-- every branch point on its editor spot, every bundle along its editor route; slack taken up near the far end in one
-  compact place (to_car, below);
-- the end stubs (100 mm end allowances, 25 mm splice stubs) fan out round their node as straight spokes, or in label
-  columns where they are many (_spokes_at);
+- the tree keeps the generator's topology and each branch keeps the direction the generator gave it (front of the car
+  RIGHT, driver side UP); each branch bundle is a straight line of its true length, or, when it is long
+  (> SNAKE_MM) or a straight line would hit another bundle, a serpentine: legs across the run, U-turns at the bend
+  radius, so long trunks fold up and the board shrinks; branches still leave the run only at their own nodes, so the
+  branch order along every trunk is the generator's;
+- the end stubs (100 mm end allowances, 25 mm splice stubs) fan out round their node as straight spokes, each at the
+  angle nearest the way the generator combed it that clears everything else;
 - a box seat is no 0 mm bundle (the app flags 0 mm as no set length): build_drawings.box_groups gives every seat end its
   own copy of the seat stub instead, so every routed wire length stays the same;
 - mated plugs (bussed receptacle caps, the CAN-Lambda terminator plug, the RADLOK firewall pairs) sit face to face.
 """
-import itertools
 import math
 import os
 
@@ -34,6 +34,7 @@ DEBUG = bool(os.environ.get("FB_DEBUG"))
 MM_PER_UNIT = 0.75            # harness.design FORMBOARD_MM_PER_PX
 HALF = 15                     # a layout node is 30 x 30; bundles run from its centre
 RADIUS_MM = 30                # default bend radius (the app's metric default)
+SNAKE_MM = 450                # a branch longer than this folds up into a serpentine
 PANEL = {"A3": (420, 297)}    # mm, landscape
 MARGIN_MM = 60                # room round the harness for labels
 ANNOTATION = 0.5              # labels, notes and part bars at half size (the harness itself is always 1:1)
@@ -172,14 +173,6 @@ def clash(new, old, pos, clr=CLR, gap=NODE_GAP, r0=None):
     return text_clash(new, old)
 
 
-def _self_clash(piece):
-    """an end's own label against its own stub's length label (one piece, two owners): the gate checks those too"""
-    if len(piece.texts) < 2: return False
-    one = Shape(); one.texts = piece.texts[:1]
-    rest = Shape(); rest.texts = piece.texts[1:]
-    return text_clash(one, rest) is not None
-
-
 def text_clash(new, old, eps=None):
     """the first two text boxes (of different owners) of new and old that overlap, or None (Dan 2026-11-13)"""
     if not new.texts or not old.texts: return None
@@ -292,197 +285,412 @@ class _Tree:
         return (d[0] / L, d[1] / L) if L > 1e-6 else (1.0, 0.0)
 
 
+def _snake(u, o, k, A, s0, s1, side=0):
+    """a serpentine along u reaching o: k legs across the run (side 0: legs from +A to -A, centred on the run; side +1 / -1:
+    teeth out to that side and back), straight leads s0 / s1 at the ends"""
+    v = (-u[1], u[0])
+    P = lambda a, l: (u[0] * a + v[0] * l, u[1] * a + v[1] * l)
+    p = (o - s0 - s1) / k
+    pts = [P(0, 0), P(s0, 0)]
+    if side == 0:
+        sd = 1
+        for i in range(k):
+            x = s0 + i * p
+            pts += [P(x, sd * A), P(x + p, sd * A)]
+            sd = -sd
+        pts += [P(s0 + k * p, 0)]
+    else:
+        for i in range(k):
+            x = s0 + i * p
+            pts += ([P(x, side * A), P(x + p, side * A)] if i % 2 == 0 else [P(x, 0), P(x + p, 0)])
+        pts += [P(s0 + k * p, 0)]
+    pts += [P(o, 0)]
+    out = [pts[0]]
+    for q in pts[1:]:
+        if math.hypot(q[0] - out[-1][0], q[1] - out[-1][1]) > 1e-9: out.append(q)
+    # drop points mid-way along a straight run (the app drops them on save)
+    clean = [out[0]]
+    for a, b in zip(out[1:], out[2:] + [None]):
+        if b is not None:
+            c = clean[-1]
+            if abs((a[0] - c[0]) * (b[1] - a[1]) - (a[1] - c[1]) * (b[0] - a[0])) < 1e-6: continue
+        clean.append(a)
+    return clean
+
+
+AMAX = 360.0                  # units: widest serpentine leg, either side of the run (270 mm)
+LEAD = 140.0                  # units: straight run out of a node before a serpentine starts (105 mm), clear of its end stubs
+
+def _paths(L, u, R, snake_first):
+    """candidate drawn paths for a branch of drawn length L along u: straight, then serpentines, most compact first"""
+    straight = [[(0.0, 0.0), (u[0] * L, u[1] * L)]]
+    snakes = []
+    for s0 in (LEAD, 4 * LEAD, 8 * LEAD):    # a longer lead first runs the fold clear of a crowded node (Dan 2026-11-13 labels)
+        if s0 + LEAD + 2 * R < L - 1: snakes += _snakes(L, u, R, s0)
+    return (snakes + straight) if snake_first else (straight + snakes)
+
+
+def _snakes(L, u, R, s0):
+    snakes = []
+    s1 = LEAD; pitch = 2 * R; amin = 2 * R
+    o = s0 + s1 + pitch
+    while o < L - 1:
+        kmax = int((o - s0 - s1) // pitch)
+        for side in (0, 1, -1):
+            for k in range(kmax, 0, -1):
+                if side and k % 2 == 0: continue          # a tooth pattern ends back on the run after an odd count
+                f = lambda A: rounded_length(_snake(u, o, k, A, s0, s1, side), R) - L
+                if f(amin) > 0: continue
+                if f(AMAX) < 0: break
+                lo, hi = amin, AMAX
+                for _ in range(60):
+                    mid = (lo + hi) / 2
+                    if f(mid) < 0: lo = mid
+                    else: hi = mid
+                snakes.append(_snake(u, o, k, (lo + hi) / 2, s0, s1, side))
+                break
+        o += pitch
+    return snakes
+
+
 def _rot(u, deg):
     a = math.radians(deg); c, s = math.cos(a), math.sin(a)
     return (u[0] * c - u[1] * s, u[0] * s + u[1] * c)
 
 
-def _column_fan(T, n, at, spokes, Ls, pref, din, shape, pos):
-    """n's end stubs as two label columns: each end on its spoke's circle, left or right of n, at its own row (pitch = its
-    label stack + margin, at least COL_PITCH so the stubs' length labels clear too), its label turned to read away from n;
-    (shape, positions, paths) or None. Tries the generator's sides first, then all left / all right / balanced"""
-    back = math.degrees(math.atan2(-din[1], -din[0])) if din is not None else None
-    hgt = {c: max(COL_PITCH, end_text_size(T.el[c], T.doc, T.s, T.shown.get(c))[1] + 2 * TXT["margin"] + 2)
-           for c, _ in spokes}
-    def side0(c): return "Left" if math.cos(math.radians(pref[c])) < 0 else "Right"
-    tries = [{c: side0(c) for c, _ in spokes}, {c: "Left" for c, _ in spokes}, {c: "Right" for c, _ in spokes}]
-    bal, tot = {}, {"Left": 0.0, "Right": 0.0}
-    for c, _ in sorted(spokes, key=lambda cb: math.sin(math.radians(pref[cb[0]]))):
-        sd = min(tot, key=lambda k: tot[k]); bal[c] = sd; tot[sd] += hgt[c]
-    tries.append(bal)
-    if any(c in T.crowded for c, _ in spokes): tries = [bal] + tries[:3]     # over capacity: halve the squeeze
-    was = {c: T.el[c].get("layoutLabelPosition") for c, _ in spokes}
-    def undo():
-        for c, v in was.items():
-            if v is None: T.el[c].pop("layoutLabelPosition", None)
-            else: T.el[c]["layoutLabelPosition"] = v
-    for sides, start in [(sd_, st_) for sd_ in tries for st_ in ("want", "low")]:
+def _layout(T):
+    """every piece of the layout (the main tree first, then any separate piece such as a ground strap, stacked below it)"""
+    left, roots = set(T.adj), []
+    parent, kids, order = {}, {}, []
+    while left:
+        cand = [n for n in left if T.old.get(n) == (HALF, HALF)] or sorted(left, key=lambda n: (-len(T.adj[n]), n))
+        root = cand[0]; roots.append(root)
+        parent[root] = None; part = [root]
+        for n in part:
+            for c, b in T.adj[n]:
+                if c in parent:
+                    assert parent[n] and parent[n][0] == c, "the layout is not a tree at %s" % c
+                    continue
+                parent[c] = (n, b); kids.setdefault(n, []).append((c, b)); part.append(c)
+        order += part; left -= set(part)
+    size = {}
+    for n in reversed(order): size[n] = 1 + sum(size[c] for c, _ in kids.get(n, []))
+    R = T.R
+
+    def column_fan(n, at, spokes, Ls, pref, din, shape, pos):
+        """n's end stubs as two label columns: each end on its spoke's circle, left or right of n, at its own row (pitch = its
+        label stack + margin, at least COL_PITCH so the stubs' length labels clear too), its label turned to read away from n;
+        (shape, positions, paths) or None. Tries the generator's sides first, then all left / all right / balanced"""
+        back = math.degrees(math.atan2(-din[1], -din[0])) if din is not None else None
+        hgt = {c: max(COL_PITCH, end_text_size(T.el[c], T.doc, T.s, T.shown.get(c))[1] + 2 * TXT["margin"] + 2)
+               for c, _ in spokes}
+        def side0(c): return "Left" if math.cos(math.radians(pref[c])) < 0 else "Right"
+        tries = [{c: side0(c) for c, _ in spokes}, {c: "Left" for c, _ in spokes}, {c: "Right" for c, _ in spokes}]
+        bal, tot = {}, {"Left": 0.0, "Right": 0.0}
+        for c, _ in sorted(spokes, key=lambda cb: math.sin(math.radians(pref[cb[0]]))):
+            sd = min(tot, key=lambda k: tot[k]); bal[c] = sd; tot[sd] += hgt[c]
+        tries.append(bal)
+        if any(c in T.crowded for c, _ in spokes): tries = [bal] + tries[:3]     # over capacity: halve the squeeze
+        was = {c: T.el[c].get("layoutLabelPosition") for c, _ in spokes}
+        def undo():
+            for c, v in was.items():
+                if v is None: T.el[c].pop("layoutLabelPosition", None)
+                else: T.el[c]["layoutLabelPosition"] = v
+        for sides, start in [(sd_, st_) for sd_ in tries for st_ in ("want", "low")]:
+            sh1, ps1, pa1, ok = Shape(), dict(pos), {}, True
+            sh1.add(shape)
+            for sd in ("Left", "Right"):
+                grp = sorted([(c, b) for c, b in spokes if sides[c] == sd], key=lambda cb: math.sin(math.radians(pref[cb[0]])))
+                if not grp: continue
+                L = min(Ls[c] for c, _ in grp) - 2.0
+                need = sum(hgt[c] for c, _ in grp)
+                sgn = -1 if sd == "Left" else 1
+                def blocked(y, Lc):     # the way in (n's parent bundle) and 15 degrees either side of it stay clear
+                    if back is None: return False
+                    a = math.degrees(math.atan2(y, sgn * math.sqrt(max(0.0, Lc * Lc - y * y))))
+                    return abs((a - back + 180) % 360 - 180) < 15
+                gap = sum(2.0 for yy in range(int(-L), int(L) + 1, 2) if blocked(yy, L))
+                if need > 2 * L - gap and all(c in T.crowded for c, _ in grp):     # over capacity: squeeze the rows evenly
+                    for c, _ in grp: hgt[c] *= (2 * L - gap) / need * 0.97
+                    need = sum(hgt[c] for c, _ in grp)
+                if need > 2 * L:
+                    if DEBUG: print("column_fan %s %s: %d ends need %.0f, room %.0f" % (n, sd, len(grp), need, 2 * L))
+                    ok = False; break
+                want = sum(math.sin(math.radians(pref[c])) for c, _ in grp) / len(grp) * L
+                y0 = -L if start == "low" else max(-L, min(L - need, want - need / 2))
+                for c, b in grp:
+                    Lc = Ls[c]
+                    y, placed = y0 + hgt[c] / 2, None
+                    while y <= Lc - 1 and placed is None:     # the next free row: past the way in and anything already here
+                        if blocked(y, Lc): y += 2.0; continue
+                        x = math.sqrt(max(0.0, Lc * Lc - y * y)) * sgn
+                        q = (at[0] + x, at[1] + y)
+                        e = T.el[c]
+                        nat = detail_side((at[0] - q[0], at[1] - q[1]), c in T.mated)
+                        if nat != sd: e["layoutLabelPosition"] = sd
+                        else: e.pop("layoutLabelPosition", None)
+                        piece = Shape(); piece.segs.append((at, q, (n, c), b["id"]))
+                        if c not in T.bps: piece.nodes.append((q, c))
+                        piece.texts = T.node_texts(c, q, (at[0] - q[0], at[1] - q[1])) + \
+                            T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
+                        allpos = dict(ps1); allpos[c] = q
+                        if clash(piece, sh1, allpos) is None: placed = (q, piece)
+                        else: y += 2.0
+                    if placed is None:
+                        if DEBUG: print("column_fan %s %s (%s): no free row for %s (%d ends need %.0f of %.0f; last hit %s)" % (
+                            n, sd, start, c, len(grp), need, 2 * L, clash(piece, sh1, allpos) if 'piece' in dir() else None))
+                        ok = False; break
+                    q, piece = placed
+                    y0 = y + hgt[c] / 2
+                    sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
+                if not ok: break
+            if ok: return sh1, ps1, pa1
+            undo()
+        return None
+
+    def spokes_at(shape, pos, paths, n, at, spokes, din):
+        """fan n's end stubs (straight spokes of their true length) round it, in the order the generator combed them,
+        spread over the clear angles; adds them to shape / pos / paths; False if they do not fit"""
+        if not spokes: return True
+        Ls = {c: _mm(b["length"]) / MM_PER_UNIT for c, b in spokes}
+        pref = {}
+        for c, b in spokes:
+            u0 = T.old_end_dir(n, c); pref[c] = math.degrees(math.atan2(u0[1], u0[0]))
+        cut = (math.degrees(math.atan2(-din[1], -din[0])) if din is not None else 180.0)   # the way in: the fan starts after it
+        rel = lambda a: (a - cut) % 360.0
+        def tryspoke(c, b, a_deg, sh, ps):
+            a = math.radians(a_deg); L = Ls[c]
+            if din is not None and (math.cos(a) * din[0] + math.sin(a) * din[1]) < -0.97: return None
+            # a splice stub (no part symbol of its own to keep apart) stays STUB_SEP degrees off every other stub here
+            for c2, _ in spokes:
+                if c2 == c or c2 not in ps or (c not in T.bps and c2 not in T.bps): continue
+                a2 = math.atan2(ps[c2][1] - at[1], ps[c2][0] - at[0])
+                if abs((math.degrees(a - a2) + 180) % 360 - 180) < STUB_SEP: return None
+            q = (at[0] + math.cos(a) * L, at[1] + math.sin(a) * L)
+            piece = Shape(); piece.segs.append((at, q, (n, c), b["id"]))
+            if c not in T.bps: piece.nodes.append((q, c))
+            piece.texts = T.node_texts(c, q, (at[0] - q[0], at[1] - q[1])) + \
+                T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
+            allpos = dict(ps); allpos[c] = q
+            return None if clash(piece, sh, allpos) is not None else (q, piece)
+        # 1: each at the clear angle nearest its own (an over-capacity fan goes straight to its evenly squeezed columns, 3)
         sh1, ps1, pa1, ok = Shape(), dict(pos), {}, True
         sh1.add(shape)
-        for sd in ("Left", "Right"):
-            grp = sorted([(c, b) for c, b in spokes if sides[c] == sd], key=lambda cb: math.sin(math.radians(pref[cb[0]])))
-            if not grp: continue
-            L = min(Ls[c] for c, _ in grp) - 2.0
-            need = sum(hgt[c] for c, _ in grp)
-            sgn = -1 if sd == "Left" else 1
-            def blocked(y, Lc):     # the way in (n's parent bundle) and 15 degrees either side of it stay clear
-                if back is None: return False
-                a = math.degrees(math.atan2(y, sgn * math.sqrt(max(0.0, Lc * Lc - y * y))))
-                return abs((a - back + 180) % 360 - 180) < 15
-            gap = sum(2.0 for yy in range(int(-L), int(L) + 1, 2) if blocked(yy, L))
-            if need > 2 * L - gap and all(c in T.crowded for c, _ in grp):     # over capacity: squeeze the rows evenly
-                for c, _ in grp: hgt[c] *= (2 * L - gap) / need * 0.97
-                need = sum(hgt[c] for c, _ in grp)
-            if need > 2 * L:
-                if DEBUG: print("column_fan %s %s: %d ends need %.0f, room %.0f" % (n, sd, len(grp), need, 2 * L))
-                ok = False; break
-            want = sum(math.sin(math.radians(pref[c])) for c, _ in grp) / len(grp) * L
-            y0 = -L if start == "low" else max(-L, min(L - need, want - need / 2))
-            for c, b in grp:
-                Lc = Ls[c]
-                y, placed = y0 + hgt[c] / 2, None
-                while y <= Lc - 1 and placed is None:     # the next free row: past the way in and anything already here
-                    if blocked(y, Lc): y += 2.0; continue
-                    x = math.sqrt(max(0.0, Lc * Lc - y * y)) * sgn
-                    q = (at[0] + x, at[1] + y)
-                    e = T.el[c]
-                    nat = detail_side((at[0] - q[0], at[1] - q[1]), c in T.mated)
-                    if nat != sd: e["layoutLabelPosition"] = sd
-                    else: e.pop("layoutLabelPosition", None)
-                    piece = Shape(); piece.segs.append((at, q, (n, c), b["id"]))
-                    if c not in T.bps: piece.nodes.append((q, c))
-                    piece.texts = T.node_texts(c, q, (at[0] - q[0], at[1] - q[1])) + \
-                        T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
-                    allpos = dict(ps1); allpos[c] = q
-                    if clash(piece, sh1, allpos) is None and not _self_clash(piece): placed = (q, piece)
-                    else: y += 2.0
-                if placed is None:
-                    if DEBUG: print("column_fan %s %s (%s): no free row for %s (%d ends need %.0f of %.0f; last hit %s)" % (
-                        n, sd, start, c, len(grp), need, 2 * L, clash(piece, sh1, allpos) if 'piece' in dir() else None))
-                    ok = False; break
-                q, piece = placed
-                y0 = y + hgt[c] / 2
-                sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
-            if not ok: break
-        if ok: return sh1, ps1, pa1
-        undo()
-    return None
-
-def _spokes_at(T, shape, pos, paths, n, at, spokes, din):
-    """fan n's end stubs (straight spokes of their true length) round it, in the order the generator combed them,
-    spread over the clear angles; adds them to shape / pos / paths; False if they do not fit"""
-    if not spokes: return True
-    Ls = {c: _mm(b["length"]) / MM_PER_UNIT for c, b in spokes}
-    pref = {}
-    for c, b in spokes:
-        u0 = T.old_end_dir(n, c); pref[c] = math.degrees(math.atan2(u0[1], u0[0]))
-    cut = (math.degrees(math.atan2(-din[1], -din[0])) if din is not None else 180.0)   # the way in: the fan starts after it
-    rel = lambda a: (a - cut) % 360.0
-    def tryspoke(c, b, a_deg, sh, ps):
-        a = math.radians(a_deg); L = Ls[c]
-        if din is not None and (math.cos(a) * din[0] + math.sin(a) * din[1]) < -0.97: return None
-        # a splice stub (no part symbol of its own to keep apart) stays STUB_SEP degrees off every other stub here
-        for c2, _ in spokes:
-            if c2 == c or c2 not in ps or (c not in T.bps and c2 not in T.bps): continue
-            a2 = math.atan2(ps[c2][1] - at[1], ps[c2][0] - at[0])
-            if abs((math.degrees(a - a2) + 180) % 360 - 180) < STUB_SEP: return None
-        q = (at[0] + math.cos(a) * L, at[1] + math.sin(a) * L)
-        piece = Shape(); piece.segs.append((at, q, (n, c), b["id"]))
-        if c not in T.bps: piece.nodes.append((q, c))
-        piece.texts = T.node_texts(c, q, (at[0] - q[0], at[1] - q[1])) + \
-            T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
-        allpos = dict(ps); allpos[c] = q
-        return None if clash(piece, sh, allpos) is not None or _self_clash(piece) else (q, piece)
-    # 1: each at the clear angle nearest its own (an over-capacity fan goes straight to its evenly squeezed columns, 3)
-    sh1, ps1, pa1, ok = Shape(), dict(pos), {}, True
-    sh1.add(shape)
-    crowded_fan = any(c in T.crowded for c, _ in spokes)
-    for c, b in ([] if crowded_fan else spokes):
-        got = None
-        for j in range(0, 721):
-            got = tryspoke(c, b, pref[c] + (j + 1) // 2 * (1 if j % 2 else -1) * 0.5, sh1, ps1)
-            if got: break
-        if not got: ok = False; break
-        q, piece = got; sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
-    if crowded_fan: ok = False
-    if not ok and not crowded_fan:
-        # 2: spread them evenly, in their own order round n, over the angles a spoke alone could take
-        Lmax = max(Ls.values())
-        free = [a / 2.0 for a in range(720) if tryspoke(spokes[0][0], spokes[0][1], cut + a / 2.0, shape, pos) is not None
-                and all(tryspoke(c, b, cut + a / 2.0, shape, pos) for c, b in spokes if Ls[c] == Lmax)]
-        ok = len(free) >= len(spokes)
-        if ok:
-            orderd = sorted(spokes, key=lambda cb: rel(pref[cb[0]]))
-            sh1, ps1, pa1 = Shape(), dict(pos), {}
-            sh1.add(shape)
-            k = len(orderd)
-            for i, (c, b) in enumerate(orderd):
-                tgt = free[min(len(free) - 1, int((i + 0.5) * len(free) / k))]
-                got = None
-                for j in range(0, 721):
-                    got = tryspoke(c, b, cut + tgt + (j + 1) // 2 * (1 if j % 2 else -1) * 0.5, sh1, ps1)
-                    if got: break
-                if not got: ok = False; break
-                q, piece = got; sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
-    if not ok:
-        # 3: label columns (Dan 2026-11-13, real label sizes): the ends left and right of n, each on its spoke's circle at
-        # its own row so the labels (turned to read away from n, layoutLabelPosition) stack one above the other
-        # (the splice stubs, no label of their own, then take the clear angles left)
-        labelled = [(c, b) for c, b in spokes if c not in T.bps]
-        got = None
-        for stubs_first in (True, False):
-            sh0, ps0, pa0, good = Shape(), dict(pos), {}, True
-            sh0.add(shape)
-            def put_stubs(sh_, ps_, pa_):
-                stubs = [(c, b) for c, b in spokes if c in T.bps]
-                if not stubs: return True
-                # spread evenly over the angles each could take alone, in their own order round n; else one by one
-                free = sorted({a for c, b in stubs for a in range(0, 360, 2) if tryspoke(c, b, a, sh_, ps_)})
-                k = len(stubs)
-                orderd = sorted(stubs, key=lambda cb: rel(pref[cb[0]]))
-                if len(free) >= k:
-                    for off in range(0, max(1, len(free) // k)):
-                        sh2, ps2, pa2, good = Shape(), dict(ps_), {}, True
-                        sh2.add(sh_)
-                        for i, (c, b) in enumerate(orderd):
-                            a0 = free[(off + i * len(free) // k) % len(free)]
-                            g = None
-                            for j in range(0, 21):
-                                g = tryspoke(c, b, a0 + (j + 1) // 2 * (1 if j % 2 else -1) * 1.0, sh2, ps2)
-                                if g: break
-                            if not g: good = False; break
-                            q, piece = g; sh2.add(piece); ps2[c] = q; pa2[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
-                        if good:
-                            sh_.segs[:] = sh2.segs; sh_.nodes[:] = sh2.nodes; sh_.texts[:] = sh2.texts
-                            ps_.update(ps2); pa_.update(pa2)
-                            return True
-                for c, b in stubs:
-                    g = None
+        crowded_fan = any(c in T.crowded for c, _ in spokes)
+        for c, b in ([] if crowded_fan else spokes):
+            got = None
+            for j in range(0, 721):
+                got = tryspoke(c, b, pref[c] + (j + 1) // 2 * (1 if j % 2 else -1) * 0.5, sh1, ps1)
+                if got: break
+            if not got: ok = False; break
+            q, piece = got; sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
+        if crowded_fan: ok = False
+        if not ok and not crowded_fan:
+            # 2: spread them evenly, in their own order round n, over the angles a spoke alone could take
+            Lmax = max(Ls.values())
+            free = [a / 2.0 for a in range(720) if tryspoke(spokes[0][0], spokes[0][1], cut + a / 2.0, shape, pos) is not None
+                    and all(tryspoke(c, b, cut + a / 2.0, shape, pos) for c, b in spokes if Ls[c] == Lmax)]
+            ok = len(free) >= len(spokes)
+            if ok:
+                orderd = sorted(spokes, key=lambda cb: rel(pref[cb[0]]))
+                sh1, ps1, pa1 = Shape(), dict(pos), {}
+                sh1.add(shape)
+                k = len(orderd)
+                for i, (c, b) in enumerate(orderd):
+                    tgt = free[min(len(free) - 1, int((i + 0.5) * len(free) / k))]
+                    got = None
                     for j in range(0, 721):
-                        g = tryspoke(c, b, pref[c] + (j + 1) // 2 * (1 if j % 2 else -1) * 0.5, sh_, ps_)
-                        if g: break
-                    if not g:
-                        if DEBUG:
-                            for a_ in range(0, 360, 45):
-                                a = math.radians(a_); q = (at[0] + math.cos(a) * Ls[c], at[1] + math.sin(a) * Ls[c])
-                                pc = Shape(); pc.segs.append((at, q, (n, c), b["id"]))
-                                pc.texts = T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
-                                print("   stub %s at %d: %s" % (c, a_, clash(pc, sh_, dict(ps_, **{c: q}))))
-                            print("spokes_at %s: no angle for the splice stub %s (stubs first: %s)" % (n, c, stubs_first))
-                        return False
-                    q, piece = g; sh_.add(piece); ps_[c] = q; pa_[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
-                return True
-            if stubs_first and not put_stubs(sh0, ps0, pa0): continue
-            col = _column_fan(T, n, at, labelled, Ls, pref, din, sh0, ps0)
-            if not col: continue
-            sh0, ps1_, pa1_ = col; ps0.update(ps1_); pa0.update(pa1_)
-            if not stubs_first and not put_stubs(sh0, ps0, pa0): continue
-            got = (sh0, ps0, pa0); break
-        if not got: return False
-        sh1, ps1, pa1 = got
-    shape.segs[:] = sh1.segs; shape.nodes[:] = sh1.nodes; shape.texts[:] = sh1.texts
-    pos.update(ps1); paths.update(pa1)
-    return True
+                        got = tryspoke(c, b, cut + tgt + (j + 1) // 2 * (1 if j % 2 else -1) * 0.5, sh1, ps1)
+                        if got: break
+                    if not got: ok = False; break
+                    q, piece = got; sh1.add(piece); ps1[c] = q; pa1[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
+        if not ok:
+            # 3: label columns (Dan 2026-11-13, real label sizes): the ends left and right of n, each on its spoke's circle at
+            # its own row so the labels (turned to read away from n, layoutLabelPosition) stack one above the other
+            # (the splice stubs, no label of their own, then take the clear angles left)
+            labelled = [(c, b) for c, b in spokes if c not in T.bps]
+            got = None
+            for stubs_first in (True, False):
+                sh0, ps0, pa0, good = Shape(), dict(pos), {}, True
+                sh0.add(shape)
+                def put_stubs(sh_, ps_, pa_):
+                    stubs = [(c, b) for c, b in spokes if c in T.bps]
+                    if not stubs: return True
+                    # spread evenly over the angles each could take alone, in their own order round n; else one by one
+                    free = sorted({a for c, b in stubs for a in range(0, 360, 2) if tryspoke(c, b, a, sh_, ps_)})
+                    k = len(stubs)
+                    orderd = sorted(stubs, key=lambda cb: rel(pref[cb[0]]))
+                    if len(free) >= k:
+                        for off in range(0, max(1, len(free) // k)):
+                            sh2, ps2, pa2, good = Shape(), dict(ps_), {}, True
+                            sh2.add(sh_)
+                            for i, (c, b) in enumerate(orderd):
+                                a0 = free[(off + i * len(free) // k) % len(free)]
+                                g = None
+                                for j in range(0, 21):
+                                    g = tryspoke(c, b, a0 + (j + 1) // 2 * (1 if j % 2 else -1) * 1.0, sh2, ps2)
+                                    if g: break
+                                if not g: good = False; break
+                                q, piece = g; sh2.add(piece); ps2[c] = q; pa2[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
+                            if good:
+                                sh_.segs[:] = sh2.segs; sh_.nodes[:] = sh2.nodes; sh_.texts[:] = sh2.texts
+                                ps_.update(ps2); pa_.update(pa2)
+                                return True
+                    for c, b in stubs:
+                        g = None
+                        for j in range(0, 721):
+                            g = tryspoke(c, b, pref[c] + (j + 1) // 2 * (1 if j % 2 else -1) * 0.5, sh_, ps_)
+                            if g: break
+                        if not g:
+                            if DEBUG:
+                                for a_ in range(0, 360, 45):
+                                    a = math.radians(a_); q = (at[0] + math.cos(a) * Ls[c], at[1] + math.sin(a) * Ls[c])
+                                    pc = Shape(); pc.segs.append((at, q, (n, c), b["id"]))
+                                    pc.texts = T.bundle_texts(b, [at, q] if b["sourceId"] == n else [q, at], spoke=True)
+                                    print("   stub %s at %d: %s" % (c, a_, clash(pc, sh_, dict(ps_, **{c: q}))))
+                                print("spokes_at %s: no angle for the splice stub %s (stubs first: %s)" % (n, c, stubs_first))
+                            return False
+                        q, piece = g; sh_.add(piece); ps_[c] = q; pa_[b["id"]] = [at, q] if b["sourceId"] == n else [q, at]
+                    return True
+                if stubs_first and not put_stubs(sh0, ps0, pa0): continue
+                col = column_fan(n, at, labelled, Ls, pref, din, sh0, ps0)
+                if not col: continue
+                sh0, ps1_, pa1_ = col; ps0.update(ps1_); pa0.update(pa1_)
+                if not stubs_first and not put_stubs(sh0, ps0, pa0): continue
+                got = (sh0, ps0, pa0); break
+            if not got: return False
+            sh1, ps1, pa1 = got
+        shape.segs[:] = sh1.segs; shape.nodes[:] = sh1.nodes; shape.texts[:] = sh1.texts
+        pos.update(ps1); paths.update(pa1)
+        return True
+
+    def place_branches(n, din, order_b, shape, pos, paths):
+        """place n's branches (in this order) into shape / pos / paths; None, or the (child, bundle) that found no place"""
+        used = []
+        for c, b in order_b:
+            L = (_mm(b["length"]) / MM_PER_UNIT) if b is not None else 60.0
+            u0 = PREFER.get(c) or T.old_dir(n, c, b)
+            ax = max([(1, 0), (-1, 0), (0, 1), (0, -1)], key=lambda d: d[0] * u0[0] + d[1] * u0[1])
+            # the generator's direction first, then its two square turns, then every 15 degrees nearest it
+            cands = [ax, _rot(ax, 90), _rot(ax, -90)]
+            cands = [cands[0]] + sorted(cands[1:], key=lambda d: -(d[0] * u0[0] + d[1] * u0[1]))
+            cands += sorted((_rot(ax, a) for a in range(15, 360, 15) if a not in (90, 270)), key=lambda d: -(d[0] * ax[0] + d[1] * ax[1]))
+            if din is not None: cands = [d for d in cands if d[0] * din[0] + d[1] * din[1] > -0.9]
+            cands = [d for d in cands if all(d[0] * e[0] + d[1] * e[1] < 0.95 for e in used)]
+            done = None
+            for attempt in (0, 1):     # 0: the child's piece as laid on its own; 1: re-laid round what is already here
+                for ci, u in enumerate(cands if attempt == 0 or T.textmode == "all" else cands[:12]):
+                    paths_u = _paths(L, u, R, L * MM_PER_UNIT > SNAKE_MM) if b is not None else [[(0.0, 0.0), (u[0] * L, u[1] * L)]]
+                    for path in (paths_u if attempt == 0 or T.textmode == "all" else paths_u[:9]):
+                        end = path[-1]
+                        own = Shape()
+                        if b is not None:
+                            own.segs = [(path[i], path[i + 1], (n, c), b["id"]) for i in range(len(path) - 1)]
+                            own.texts = T.bundle_texts(b, path if b["sourceId"] == n else path[::-1])
+                        if attempt == 0:
+                            sub, spos, spaths = lay(c, u)
+                        else:
+                            if clash(own, shape, dict(pos, **{c: end})) is not None: continue
+                            here = Shape(); here.add(shape); here.add(own)
+                            back = here.moved((-end[0], -end[1]))
+                            bpos = {k: (v[0] - end[0], v[1] - end[1]) for k, v in pos.items()}
+                            try: sub, spos, spaths = lay(c, u, (back, bpos))
+                            except AssertionError: continue
+                        piece = sub.moved(end)
+                        piece.segs = [x for x in piece.segs if x[3] != '(in)']
+                        allpos = dict(pos); allpos.update({m: (q[0] + end[0], q[1] + end[1]) for m, q in spos.items()})
+                        if attempt == 1:     # already laid clear of everything here
+                            done = (u, path, piece, spos, spaths, own); break
+                        if clash(own, piece, allpos) is None and clash(piece, shape, allpos) is None and clash(own, shape, allpos) is None:
+                            done = (u, path, piece, spos, spaths, own); break
+                    if done: break
+                if done: break
+            if not done: return (c, b)
+            u, path, piece, spos, spaths, own = done
+            end = path[-1]; used.append(u)
+            shape.add(piece); shape.add(own)
+            pos.update({m: (q[0] + end[0], q[1] + end[1]) for m, q in spos.items()})
+            paths.update({k: [(q[0] + end[0], q[1] + end[1]) for q in v] for k, v in spaths.items()})
+            if b is not None: paths[b["id"]] = path if b["sourceId"] == n else path[::-1]
+        return None
+
+    memo = {}
+    def lay(n, din, ctx=None):
+        """n's piece of the tree with n at (0, 0): (shape, node positions, bundle paths). ctx: what is already drawn
+        round n (in n's frame), so the piece is laid clear of it; without it the piece is laid on its own (and cached)"""
+        if ctx is not None: return _lay(n, din, ctx)
+        key = (n, None if din is None else (round(din[0], 6), round(din[1], 6)))
+        if key not in memo: memo[key] = _lay(n, din, None)
+        return memo[key]
+
+    def _lay(n, din, ctx):
+        shape, pos, paths = Shape(), {n: (0.0, 0.0)}, {}
+        if ctx is not None:
+            shape.add(ctx[0]); pos.update(ctx[1])
+        elif din is not None:   # the way in, so nothing grows back over the parent's bundle
+            shape.segs.append(((0.0, 0.0), (-din[0] * 400, -din[1] * 400), (n, parent[n][0]), '(in)'))
+        nctx = (len(shape.segs), len(shape.nodes), set(pos), len(shape.texts))
+        if n not in T.bps: shape.nodes.append(((0.0, 0.0), n))
+        if din is not None: shape.texts += T.node_texts(n, (0.0, 0.0), (-din[0], -din[1]))
+        ch = kids.get(n, [])
+        spokes = [(c, b) for c, b in ch if b is not None and not kids.get(c) and _mm(b["length"]) <= 200]
+        shorts = [(c, b) for c, b in ch if b is not None and kids.get(c) and _mm(b["length"]) / MM_PER_UNIT < SHARED_R
+                  and all(x is not None and not kids.get(k) and _mm(x["length"]) <= 200 for k, x in kids[c])]
+        branches = [(c, b) for c, b in ch if (c, b) not in spokes and (c, b) not in shorts]
+        order_b = sorted(branches, key=lambda cb: -size[cb[0]])
+        start = (Shape(), dict(pos), dict(paths)); start[0].add(shape)
+        for retry in range(len(order_b) + 1):
+            shape = Shape(); shape.add(start[0]); pos = dict(start[1]); paths = dict(start[2])
+            stuck = place_branches(n, din, order_b, shape, pos, paths)
+            if stuck is None: break
+            assert retry < len(order_b), "no clear place for the branch %s -> %s (%s)" % (n, stuck[0], stuck[1] and stuck[1]["id"])
+            order_b = [x for x in order_b if x[0] == stuck[0]] + [x for x in order_b if x[0] != stuck[0]]     # place the one that got stuck first, then the rest
+        for c, b in shorts:     # a very short branch whose part(s) end right by n: its spokes are placed here, among n's
+            L = _mm(b["length"]) / MM_PER_UNIT
+            u0 = T.old_dir(n, c, b)
+            done = None
+            for j in range(0, 72):
+                a = math.atan2(u0[1], u0[0]) + math.radians((j + 1) // 2 * (1 if j % 2 else -1) * 5)
+                q = (math.cos(a) * L, math.sin(a) * L)
+                if din is not None and (q[0] * din[0] + q[1] * din[1]) / L < -0.9: continue
+                piece = Shape(); piece.segs.append(((0.0, 0.0), q, (n, c), b["id"]))
+                piece.texts = T.node_texts(c, q, (-q[0], -q[1])) + \
+                    T.bundle_texts(b, [(0.0, 0.0), q] if b["sourceId"] == n else [q, (0.0, 0.0)], spoke=True)
+                allpos = dict(pos); allpos[c] = q
+                if clash(piece, shape, allpos) is not None: continue
+                tsh = Shape(); tsh.add(shape); tsh.add(piece); tpos = dict(allpos); tpaths = {}
+                if spokes_at(tsh, tpos, tpaths, c, q, kids[c], (q[0] / L, q[1] / L)):
+                    done = (tsh, tpos, tpaths); break
+            assert done, "no clear place for the short branch %s -> %s (%s)" % (n, c, b["id"])
+            shape, pos = done[0], done[1]; paths.update(done[2])
+            paths[b["id"]] = [(0.0, 0.0), pos[c]] if b["sourceId"] == n else [pos[c], (0.0, 0.0)]
+        assert spokes_at(shape, pos, paths, n, (0.0, 0.0), spokes, din), "no clear spokes at %s" % n
+        if ctx is not None:     # hand back only n's own piece
+            k0, k1, p0, k2 = nctx
+            out = Shape(); out.segs = shape.segs[k0:]; out.nodes = shape.nodes[k1:]; out.texts = shape.texts[k2:]
+            shape = out; pos = {k: v for k, v in pos.items() if k not in p0 or k == n}
+        return shape, pos, paths
+
+    shape, pos, paths = Shape(), {}, {}
+    for root in roots:
+        sh, ps, pt = lay(root, None)
+        o = (0.0, 0.0)
+        if shape.segs or shape.nodes:      # a separate piece: where it keeps the board smallest, clear of everything else
+            a, b = shape.bbox(), sh.bbox()
+            allp = dict(pos); allp.update(ps)
+            best = None
+            for x in range(int(a[0] - b[0]), int(a[2] - b[0] + 400), 50):
+                for y in range(int(a[1] - b[1]), int(a[3] - b[1] + 400), 50):
+                    area = (max(a[2], b[2] + x) - min(a[0], b[0] + x)) * (max(a[3], b[3] + y) - min(a[1], b[1] + y))
+                    if best and area >= best[0]: continue
+                    q = {k: (v[0] + x, v[1] + y) for k, v in ps.items()}
+                    tp = dict(pos); tp.update(q)
+                    if clash(sh.moved((x, y)), shape, tp, clr=4 * CLR, gap=4 * NODE_GAP) is None: best = (area, (x, y))
+            o = best[1] if best else (a[0] - b[0], a[3] + 200 - b[1])
+        shape.add(sh.moved(o))
+        pos.update({k: (v[0] + o[0], v[1] + o[1]) for k, v in ps.items()})
+        paths.update({k: [(q[0] + o[0], q[1] + o[1]) for q in v] for k, v in pt.items()})
+    return roots[0], shape, pos, paths
 
 
 # ------------------------------------------------------------------ text on the board (Dan 2026-11-13: every label readable)
@@ -882,6 +1090,109 @@ def _grow(poly, d):
 
 def _r2(v): return round(v + 0.0, 2)
 
+def to_scale(doc, panel="A3", annotation=ANNOTATION):
+    """redraw doc's layout view as a 1:1 formboard in place (view only) and turn formboard mode on; returns doc"""
+    T = _Tree(doc)
+    T.s = annotation
+    for mode in ("all", "labels", "none"):     # every text kept clear while placing; else the end labels only; else none
+        T.textmode = mode
+        try:
+            root, shape, pos, paths = _layout(T)
+            break
+        except AssertionError as e:      # repair_labels turns the end labels that still overlap afterwards
+            if mode == "none": raise
+            print("formboard: layout keeping %s texts clear failed (%s); trying with fewer" % (mode, e))
+            T = _Tree(doc); T.s = annotation
+    R = T.R
+    bundles = {b["id"]: b for b in doc.get("bundles", [])}
+    # mated plugs that carry no bundle (bussed receptacle caps, the CAN-Lambda terminator plug) sit against their plug
+    extra = {}
+    for m in doc.get("mates", []) or []:
+        for a, c in ((m["sourceId"], m["targetId"]), (m["targetId"], m["sourceId"])):
+            if a in pos and c not in pos and c in T.el:
+                par = next((p for p, b in T.adj.get(a, []) if b is not None), None)
+                d = (pos[a][0] - pos[par][0], pos[a][1] - pos[par][1]) if par else (1, 0)
+                L = math.hypot(*d) or 1
+                extra[c] = (pos[a][0] + 45 * d[0] / L, pos[a][1] + 45 * d[1] / L)
+                # face to face with its plug, turned or moved out only as far as its label needs to stay clear (Dan 2026-11-13)
+                # (a cap has no bundle, so its label sits where the gate puts it: text_boxes, bundle vector 0; turned to
+                # another side, layoutLabelPosition, before the cap moves further out)
+                ce, hit = T.el[c], None
+                was_side = ce.get("layoutLabelPosition")
+                for dist in (45, 60, 75, 90, 120, 160, 200, 260):
+                    for rot in (0, 30, -30, 60, -60, 90, -90):
+                        u = _rot((d[0] / L, d[1] / L), rot)
+                        q = (pos[a][0] + dist * u[0], pos[a][1] + dist * u[1])
+                        for side in (was_side, "Left", "Right", "Top", "Bottom"):
+                            if side is None: ce.pop("layoutLabelPosition", None)
+                            else: ce["layoutLabelPosition"] = side
+                            piece = Shape(); piece.nodes = [(q, c)]
+                            piece.texts = T.node_texts(c, q, (0.0, 0.0))
+                            if clash(piece, shape, dict(pos, **{c: q})) is None:
+                                hit = (q, piece); break
+                        if hit: break
+                    if hit: break
+                if not hit:
+                    if was_side is None: ce.pop("layoutLabelPosition", None)
+                    else: ce["layoutLabelPosition"] = was_side
+                if hit:
+                    extra[c] = hit[0]; shape.add(hit[1])
+    allpos = dict(pos); allpos.update(extra)
+    # board: A3 panels, landscape or portrait (fewer panels), the harness and every text on it centred on the grid (the app
+    # centres it on 0, 0); the layout notes stacked above it all, top left, each clear of the next
+    xs = [p[0] for p in allpos.values()] + [q[0] for v in paths.values() for q in v] + [x for poly, _ in shape.texts for x, _ in poly]
+    ys = [p[1] for p in allpos.values()] + [q[1] for v in paths.values() for q in v] + [y for poly, _ in shape.texts for _, y in poly]
+    m = MARGIN_MM / MM_PER_UNIT
+    top, left = min(ys), min(xs)
+    for n in reversed(doc.get("layoutNotes", []) or []):
+        n["layoutPosition"] = {"x": 0.0, "y": 0.0}
+        h = _pbb(note_box(n, annotation))[3]
+        top -= 20 + h
+        n["_at"] = (left, top)
+        xs += [left, left + (n.get("width") or 150) * annotation]; ys += [top]
+    w, h = (max(xs) - min(xs) + 2 * m) * MM_PER_UNIT, (max(ys) - min(ys) + 2 * m) * MM_PER_UNIT
+    pl, ps = PANEL[panel]
+    best = None
+    for orient, (pw, ph) in (("Landscape", (pl, ps)), ("Portrait", (ps, pl))):
+        cols, rows = max(1, math.ceil(w / pw)), max(1, math.ceil(h / ph))
+        if best is None or cols * rows < best[0]: best = (cols * rows, orient, pw, ph, cols, rows)
+    _, orient, pw, ph, cols, rows = best
+    off = (-(max(xs) + min(xs)) / 2, -(max(ys) + min(ys)) / 2)
+    P = lambda p: (p[0] + off[0], p[1] + off[1])
+    for i, p in allpos.items():
+        q = P(p); T.el[i]["layoutPosition"] = {"x": _r2(q[0] - HALF), "y": _r2(q[1] - HALF)}
+    for bid, path in paths.items():
+        b = bundles[bid]
+        inner = [P(q) for q in path[1:-1]]
+        if inner:
+            b["layoutPoints"] = [{"id": "%s_p%d" % (bid, i), "layoutPosition": {"x": _r2(q[0] - HALF), "y": _r2(q[1] - HALF)}} for i, q in enumerate(inner)]
+        else:
+            b.pop("layoutPoints", None)
+        b.pop("radius", None)
+    # inline parts sit on their location node; anything else keeps its offset from the nearest node it was by
+    for k in INLINE_KINDS:
+        for e in doc.get(k, []):
+            if not e.get("layoutPosition"): continue
+            if e.get("locationId") in T.el:
+                e["layoutPosition"] = dict(T.el[e["locationId"]]["layoutPosition"])
+            else:
+                c = _centre(e)
+                near = min((i for i in allpos if i in T.old), key=lambda i: math.hypot(T.old[i][0] - c[0], T.old[i][1] - c[1]))
+                q = P(allpos[near]); d = (c[0] - T.old[near][0], c[1] - T.old[near][1])
+                e["layoutPosition"] = {"x": _r2(q[0] + d[0] - HALF), "y": _r2(q[1] + d[1] - HALF)}
+    for n in doc.get("layoutNotes", []) or []:     # notes above the harness, top left
+        q = P(n.pop("_at"))
+        n["layoutPosition"] = {"x": _r2(q[0]), "y": _r2(q[1])}
+    doc["formboard"] = {"panelSize": panel, "panelOrientation": orient,
+                        "panelWidth": {"value": pw, "unit": "mm"}, "panelHeight": {"value": ph, "unit": "mm"},
+                        "rows": rows, "columns": cols, "defaultCornerRadius": {"value": RADIUS_MM, "unit": "mm"},
+                        "annotationScale": annotation}
+    if label_overlaps(doc):
+        repair_labels(doc)
+    fit_board(doc, panel)
+    return doc
+
+
 SIDES = ("Left", "Right", "Top", "Bottom")
 
 
@@ -914,77 +1225,35 @@ def repair_labels(doc, rounds=6):
         if not moved: return
 
 
-def repair_spokes(doc, rounds=6):
-    """an end (on a straight stub of its own) whose label still overlaps another text is swung round its node, each angle
-    with each label side, to where the overlaps drop most and its stub clears every bundle and part (view only; the stub keeps
-    its length)"""
-    el = {e["id"]: e for k in ("connectors", "terminals") for e in doc.get(k, [])}
-    stub = {}
-    deg = {}
+def fit_board(doc, panel="A3"):
+    """the panel grid round everything drawn (parts, bundles, every text), harness centred on it (the app centres on 0, 0)"""
+    m = 20 / MM_PER_UNIT      # 20 mm clear round the outermost text or part
+    xs, ys = [], []
+    for k in NODE_KINDS + INLINE_KINDS:
+        for e in doc.get(k, []):
+            if e.get("layoutPosition"): xs += [e["layoutPosition"]["x"], e["layoutPosition"]["x"] + 2 * HALF]; ys += [e["layoutPosition"]["y"], e["layoutPosition"]["y"] + 2 * HALF]
     for b in doc.get("bundles", []):
-        deg[b["sourceId"]] = deg.get(b["sourceId"], 0) + 1; deg[b["targetId"]] = deg.get(b["targetId"], 0) + 1
+        for p in b.get("layoutPoints") or []: xs.append(p["layoutPosition"]["x"] + HALF); ys.append(p["layoutPosition"]["y"] + HALF)
+    for _, poly, _ in text_boxes(doc):
+        x0, y0, x1, y1 = _pbb(poly); xs += [x0, x1]; ys += [y0, y1]
+    off = (-(max(xs) + min(xs)) / 2, -(max(ys) + min(ys)) / 2)
+    mv = lambda p: {"x": _r2(p["x"] + off[0]), "y": _r2(p["y"] + off[1])}
+    for k in NODE_KINDS + INLINE_KINDS:
+        for e in doc.get(k, []):
+            if e.get("layoutPosition"): e["layoutPosition"] = mv(e["layoutPosition"])
     for b in doc.get("bundles", []):
-        for end, node in ((b["targetId"], b["sourceId"]), (b["sourceId"], b["targetId"])):
-            if end in el and not b.get("layoutPoints") and _mm(b["length"]) <= 200: stub[end] = (node, b)
-    stub = {k: v for k, v in stub.items() if deg.get(k) == 1}
-    cap = {}        # a plug's mated cap with no bundle of its own (bussed receptacle, terminator plug): it moves with the plug
-    for m in doc.get("mates", []) or []:
-        for a, c in ((m["sourceId"], m["targetId"]), (m["targetId"], m["sourceId"])):
-            if a in stub and c in el and not deg.get(c): cap[a] = c
-    capof = {c: a for a, c in cap.items()}
-    mated = {x for m in doc.get("mates", []) or [] for x in (m["sourceId"], m["targetId"])} - set(cap) - set(capof)
-    for _ in range(rounds):
-        bad = label_overlaps(doc)
-        if not bad: return
-        now = len(bad)
-        owners = []
-        for a, b in bad:
-            for x in (a, b):
-                o = x.split(" ", 1)[1]
-                o = capof.get(o, o)
-                o = o if o in stub else next((k for k, (_, bb) in stub.items() if bb["id"] == o), None)
-                if o and o not in owners: owners.append(o)
-        moved = False
-        for o in owners:
-            if o in mated: continue
-            node, b = stub[o]
-            at = {e["id"]: _centre(e) for k in NODE_KINDS for e in doc.get(k, []) if e.get("layoutPosition")}
-            c, L = at[node], _mm(b["length"]) / MM_PER_UNIT
-            rest = Shape()
-            for bb in doc["bundles"]:
-                if bb["id"] == b["id"]: continue
-                p = bundle_path(doc, bb, at)
-                rest.segs += [(p[i], p[i + 1], (bb["sourceId"], bb["targetId"]), bb["id"]) for i in range(len(p) - 1)]
-            bps = {e["id"] for e in doc.get("branchPoints", [])}
-            rest.nodes = [(p, n) for n, p in at.items() if n not in bps and n != o]
-            e = el[o]
-            ce = el.get(cap.get(o))
-            if ce is not None: rest.nodes = [x for x in rest.nodes if x[1] != ce["id"]]
-            was = (dict(e["layoutPosition"]), e.get("layoutLabelPosition"),
-                   dict(ce["layoutPosition"]) if ce else None, ce.get("layoutLabelPosition") if ce else None)
-            best = (now,) + was
-            def setside(x, side):
-                if side is None: x.pop("layoutLabelPosition", None)
-                else: x["layoutLabelPosition"] = side
-            for ang in range(0, 360, 6):
-                u = (math.cos(math.radians(ang)), math.sin(math.radians(ang)))
-                q = (c[0] + u[0] * L, c[1] + u[1] * L)
-                one = Shape(); one.segs = [(c, q, (node, o), b["id"])]; one.nodes = [(q, o)]
-                qc = (q[0] + u[0] * 45, q[1] + u[1] * 45)
-                if ce is not None: one.nodes.append((qc, ce["id"]))
-                if clash(one, rest, dict(at, **{o: q}), clr=CLR, gap=NODE_GAP) is not None: continue
-                e["layoutPosition"] = {"x": _r2(q[0] - HALF), "y": _r2(q[1] - HALF)}
-                if ce is not None: ce["layoutPosition"] = {"x": _r2(qc[0] - HALF), "y": _r2(qc[1] - HALF)}
-                for side in (None,) + SIDES:
-                    setside(e, side)
-                    for cside in ((None,) + SIDES if ce is not None else (None,)):
-                        if ce is not None: setside(ce, cside)
-                        k = len(label_overlaps(doc))
-                        if k < best[0]: best = (k, dict(e["layoutPosition"]), side, dict(ce["layoutPosition"]) if ce else None, cside)
-            e["layoutPosition"] = best[1]; setside(e, best[2])
-            if ce is not None: ce["layoutPosition"] = best[3]; setside(ce, best[4])
-            if best[0] < now: now = best[0]; moved = True
-        if not moved: return
+        for p in b.get("layoutPoints") or []: p["layoutPosition"] = mv(p["layoutPosition"])
+    for n in doc.get("layoutNotes", []) or []: n["layoutPosition"] = mv(n["layoutPosition"])
+    w, h = (max(xs) - min(xs) + 2 * m) * MM_PER_UNIT, (max(ys) - min(ys) + 2 * m) * MM_PER_UNIT
+    pl, ps = PANEL[panel]
+    best = None
+    for orient, (pw, ph) in (("Landscape", (pl, ps)), ("Portrait", (ps, pl))):
+        cols, rows = max(1, math.ceil(w / pw)), max(1, math.ceil(h / ph))
+        if best is None or cols * rows < best[0]: best = (cols * rows, orient, pw, ph, cols, rows)
+    _, orient, pw, ph, cols, rows = best
+    doc["formboard"].update({"panelOrientation": orient, "panelWidth": {"value": pw, "unit": "mm"},
+                             "panelHeight": {"value": ph, "unit": "mm"}, "rows": rows, "columns": cols})
+    return doc
 
 
 def board(doc):
@@ -1035,24 +1304,15 @@ def check(doc, tol_mm=1.0):
     return bad
 
 
-FAN_OF = {}     # while to_car lays a document out: text owner -> its over-capacity fan (fan_owners)
+FAN_OF = {}     # while to_scale lays a document out: text owner -> its over-capacity fan (fan_owners)
 
 
 def fan_owners(doc):
     """{owner: fan node} for the ends of every over_capacity() fan and their own stubs"""
-    oc = over_capacity(doc)
-    fan = {e: n for n, (_, _, ends) in oc.items() for e in ends}
+    fan = {e: n for n, (_, _, ends) in over_capacity(doc).items() for e in ends}
     for b in doc.get("bundles", []):     # each end's own stub (its length label) belongs to the fan too
         for x in (b["sourceId"], b["targetId"]):
             if x in fan: fan[b["id"]] = fan[x]
-    hub = {}
-    for b in doc.get("bundles", []):     # and, on the car-frame board (A44), the fan node's own way in, which the fan sits on
-        if b["id"] not in fan:
-            for x, y in ((b["sourceId"], b["targetId"]), (b["targetId"], b["sourceId"])):
-                if x in oc: fan[b["id"]] = x; hub[y] = x
-    for b in doc.get("bundles", []):     # and the ghost tags at the hub that way in comes from (A43 c: "ghost tags touching")
-        for x, y in ((b["sourceId"], b["targetId"]), (b["targetId"], b["sourceId"])):
-            if x in hub and y.startswith("t_gh_") and y not in fan: fan[y] = hub[x]; fan[b["id"]] = hub[x]
     return fan
 
 
@@ -1065,679 +1325,3 @@ def cannot_fit(doc):
         oa, ob = a.split(" ")[-1], b.split(" ")[-1]
         if fan.get(oa) and fan.get(oa) == fan.get(ob): out.append((a, b))
     return out
-
-
-# ------------------------------------------------------------------ the car-frame formboard (Dan 2026-11-15)
-# Dan 2026-11-15 (DECISIONS B6 "A44", replaces A25 a's "A3 panels" and "serpentines"): every formboard is A1 landscape panels,
-# at least 4 rows x 4 columns (more where the editor route shape needs them: "the number of panels can expand as needed"),
-# 30 mm bend radius, labels readable on an A1 print; the harness laid out as the car looks from above, 1:1, on the
-# layout-editor routes (every device on its editor spot, every bundle along its editor route: the seeds' car-mm lines and
-# the route files' engine-bay lines, front of the car RIGHT, driver side UP); a set length longer than its flat route (3D
-# drops, end allowances, rounded corners) is taken up in one compact place near the bundle's far end: a short straight
-# offset of its far end (up to OFFSET_MM), else one service loop (a square tooth off the route, the fewest teeth that fit);
-# a set length shorter than the route pulls the far end in along it. No whole-trunk serpentines.
-PANEL["A1"] = (841, 594)
-CAR_PANEL = "A1"
-MIN_ROWS, MIN_COLS = 4, 4     # the smallest grid (Dan 2026-11-15); more rows / columns only where the board needs them
-CAR_ANNOTATION = (0.6, 0.55, 0.5)   # annotation scales tried per file, largest first; the first whose labels all stand
-                              # clear is kept. At 0.6 the smallest text (11.2 px label box) prints 5.0 mm (cap height 3.7 mm,
-                              # over the 3.5 mm ISO 3098 / ISO 5455 lettering minimum for A1); 0.5 (the app's 50 %) 4.2 mm
-OFFSET_MM = 40.0              # a far end moved this far or less along its last leg takes up a small slack
-TOOTH_K = 2.4                 # service loop width, in bend radii
-HMAX = 420.0                  # units: deepest service loop tooth (315 mm); deeper slack takes more teeth side by side
-LOOP_H = 240.0                # units: a tooth up to this deep (180 mm) is tried before a deeper one
-BACKTRACK = int(os.environ.get("FB_BACKTRACK", 400))              # drawings tried again (another way for a branch) before a piece is given up
-STATS = {}                    # the last to_car run: {"loops": [...], "offsets": [...], "pulled": [...], "moved": {...}}
-
-
-def _dedupe(pts):
-    out = [pts[0]]
-    for p in pts[1:]:
-        if math.hypot(p[0] - out[-1][0], p[1] - out[-1][1]) > 1e-6: out.append(p)
-    clean = [out[0]]     # the app drops points mid-way along a straight run on save
-    for a, b in zip(out[1:], out[2:] + [None]):
-        if b is not None:
-            c = clean[-1]
-            if abs((a[0] - c[0]) * (b[1] - a[1]) - (a[1] - c[1]) * (b[0] - a[0])) < 1e-6 * max(1.0, math.hypot(b[0] - c[0], b[1] - c[1])) ** 2 \
-                    and (a[0] - c[0]) * (b[0] - a[0]) + (a[1] - c[1]) * (b[1] - a[1]) >= 0:
-                continue
-        clean.append(a)
-    return clean
-
-
-def _unit(p, q):
-    L = math.hypot(q[0] - p[0], q[1] - p[1])
-    return ((q[0] - p[0]) / L, (q[1] - p[1]) / L) if L > 1e-9 else None
-
-
-def _solve(f, lo, hi, n=60):
-    """the x in [lo, hi] where the increasing f crosses 0 (f(lo) <= 0 <= f(hi))"""
-    for _ in range(n):
-        mid = (lo + hi) / 2
-        if f(mid) < 0: lo = mid
-        else: hi = mid
-    return (lo + hi) / 2
-
-
-def _teeth(pts, i, s0, w, k, side, h):
-    """pts with k square teeth of depth h on leg i (pts[i] -> pts[i + 1]), the first starting s0 along it, each w wide and
-    w apart, on side +1 / -1 (left / right of the leg)"""
-    p, q = pts[i], pts[i + 1]
-    u = _unit(p, q); v = (-u[1] * side, u[0] * side)
-    P = lambda a, l: (p[0] + u[0] * a + v[0] * l, p[1] + u[1] * a + v[1] * l)
-    mid = []
-    for j in range(k):
-        a = s0 + j * 2 * w
-        mid += [P(a, 0), P(a, h), P(a + w, h), P(a + w, 0)]
-    return pts[:i + 1] + mid + pts[i + 1:]
-
-
-def _fit(pts, need, R, prefer_end=True):
-    """candidate drawn paths (each [(kind, path)]) for a bundle of drawn length need (units) along the route pts (its first point
-    fixed): the route itself when it is already that long; the far end pulled in along it (route longer than need); the far end
-    moved out along its last leg (a short slack); service loops on each leg, the far end's first, both sides, fewest teeth first"""
-    pts = _dedupe(pts)
-    have = rounded_length(pts, R) if len(pts) > 1 else 0.0
-    out = []
-    if len(pts) > 1 and abs(have - need) < 0.2:
-        return [("route", pts)]
-    if len(pts) > 1 and have > need:
-        p0 = pts[0]
-        f = lambda k: rounded_length([(p0[0] + k * (p[0] - p0[0]), p0[1] + k * (p[1] - p0[1])) for p in pts], R) - need
-        k = _solve(f, 0.0, 1.0)
-        return [("pulled", [(p0[0] + k * (p[0] - p0[0]), p0[1] + k * (p[1] - p0[1])) for p in pts])]
-    slack = need - have
-    if len(pts) > 1 and slack * MM_PER_UNIT <= OFFSET_MM:
-        u = _unit(pts[-2], pts[-1])
-        def moved(d): return pts[:-1] + [(pts[-1][0] + u[0] * d, pts[-1][1] + u[1] * d)]
-        d = _solve(lambda d: rounded_length(moved(d), R) - need, 0.0, slack * 2 + 5)
-        out.append(("offset", moved(d)))
-    if len(pts) > 1 and next(_loops(pts, need, R), None) is not None:
-        out.append(("loop", pts))       # the route as drawn; its service loop is placed last, where it has room (_loops)
-    return out
-
-
-def _loops(pts, need, R, prefer_end=True):
-    """service loop candidates (kind "loop<k>", path) for the route pts taking up need: k square teeth on one leg, the far
-    end's leg first, both sides; shallow teeth first (depth up to LOOP_H), then the fewest teeth"""
-    w = TOOTH_K * R
-    legs = list(range(len(pts) - 1))
-    if prefer_end: legs = legs[::-1]
-    deep = []
-    for k in range(1, 7):
-        for i in legs:
-            L = math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1])
-            e0 = 1.2 * R if i > 0 else max(1.2 * R, 60.0)       # room for the corner before (or the node's other bundles)
-            e1 = 1.2 * R
-            span = (2 * k - 1) * w
-            if L < e0 + span + e1: continue
-            room = L - e1 - span - e0
-            steps = [L - e1 - span - j * 20.0 for j in range(int(room // 20.0) + 1)] + [e0]     # from the far end back
-            for s0 in (steps if prefer_end else [e0 + room / 2, e0] + steps):
-                for side in (1, -1):
-                    f = lambda h: rounded_length(_teeth(pts, i, s0, w, k, side, h), R) - need
-                    if f(HMAX) < 0: continue
-                    h = _solve(f, 0.0, HMAX)
-                    c = ("loop%d" % k, _teeth(pts, i, s0, w, k, side, h))
-                    if h <= LOOP_H: yield c
-                    else: deep.append(c)
-    for c in deep: yield c
-
-
-def _hairpins(pts, need, R, dirs):
-    """service loops at the far end: the route, then a hairpin out along u and back (one U-turn of the bend radius), so the
-    far end lands one hairpin width (2 bend radii) beside its spot; each direction, both sides ("loop1", path)"""
-    pts = _dedupe(pts)
-    P = pts[-1]
-    w = 2.0 * R
-    for u in dirs:
-        if len(pts) > 1:
-            u0 = _unit(pts[-2], P)
-            if u0 and u[0] * u0[0] + u[1] * u0[1] < -0.5: continue      # not straight back over the route
-        for side in (1, -1):
-            v = (-u[1] * side, u[0] * side)
-            mk = lambda h: pts + [(P[0] + u[0] * h, P[1] + u[1] * h), (P[0] + u[0] * h + v[0] * w, P[1] + u[1] * h + v[1] * w),
-                                  (P[0] + v[0] * w, P[1] + v[1] * w)]
-            f = lambda h: rounded_length(_dedupe(mk(h)), R) - need
-            lo = R + 1.0
-            if f(lo) > 0 or f(2 * HMAX) < 0: continue
-            yield ("loop1", mk(_solve(f, lo, 2 * HMAX)))
-
-
-def _straight_cands(p0, need, R, dirs, straight_mm=200):
-    """a far end with no route room (its spot on its parent's, a drop): a straight bundle of the set length off p0, each
-    direction; a long one (over straight_mm) gets a service loop on it instead of moving the far end its whole length"""
-    out = []
-    for u in dirs:
-        if need * MM_PER_UNIT <= straight_mm:
-            out.append(("offset", [p0, (p0[0] + u[0] * need, p0[1] + u[1] * need)]))
-        else:
-            Ls = 2 * 1.2 * R + TOOTH_K * R + 60.0
-            for kind, path in _fit([p0, (p0[0] + u[0] * Ls, p0[1] + u[1] * Ls)], need, R):
-                if kind == "loop": out.append((kind, path))
-    return out
-
-
-def to_car(doc, frame, layout_nodes, panel=CAR_PANEL, annotation=CAR_ANNOTATION, min_rows=MIN_ROWS, min_cols=MIN_COLS):
-    """redraw doc's layout view in place (view only) as a 1:1 formboard laid out as the car looks from above, on the
-    layout-editor routes (Dan 2026-11-15); frame = build_drawings.car_frame(layout) (spots, route); layout_nodes = the
-    layout tree's nodes (a branch point bp_<node> is that node). Turns formboard mode on (A1 landscape, at least
-    min_rows x min_cols panels, 30 mm bend radius, annotation scale). Returns doc; STATS says what was done."""
-    import re as _re
-    spots_mm, route = frame
-    rev = {"bp_" + _re.sub(r"[^A-Za-z0-9]", "_", n): n for n in layout_nodes}
-    pw, ph = PANEL[panel]
-    doc["formboard"] = {"panelSize": panel, "panelOrientation": "Landscape", "panelWidth": {"value": pw, "unit": "mm"},
-                        "panelHeight": {"value": ph, "unit": "mm"}, "rows": min_rows, "columns": min_cols,
-                        "defaultCornerRadius": {"value": RADIUS_MM, "unit": "mm"}, "annotationScale": annotation}
-    import copy as _copy
-    best, errors = None, []
-    scales = annotation if isinstance(annotation, (tuple, list)) else (annotation,)
-    for ann in scales:
-        for strat in STRATEGIES:
-            for mode in ("all", "labels", "none"):
-                d = _copy.deepcopy(doc)
-                d["formboard"]["annotationScale"] = ann
-                try:
-                    st = _to_car_once(d, spots_mm, route, rev, ann, min_rows, min_cols, mode, strat)
-                except AssertionError as e:
-                    errors.append("%s %s %s: %s" % (ann, strat, mode, e)); continue
-                dev = route_deviation(d, frame, layout_nodes)[1][0]
-                score = (len(check(d)), dev, -ann)
-                if best is None or score < best[0]: best = (score, d, st)
-                break
-            if best and best[0][0] == 0 and best[0][1] < 60: break
-        if best and best[0][0] == 0: break
-    if best is None:
-        raise AssertionError("formboard: no car layout (%s)" % "; ".join(errors[-3:]))
-    doc.clear(); doc.update(best[1])
-    STATS.clear(); STATS.update(best[2]); STATS["errors"] = errors
-    return doc
-
-
-STRATEGIES = ({"defer": True}, {"defer": True, "loops_first": True}, {"defer": False}, {"defer": False, "loops_first": True},
-              {"defer": True, "inline_loops": True}, {"defer": False, "inline_loops": True})
-
-
-def _to_car_once(doc, spots_mm, route, rev, annotation, min_rows, min_cols, mode, strat):
-    for k in ("connectors", "terminals"):      # label sides are chosen afresh (the layout does not depend on an old one)
-        for e in doc.get(k, []): e.pop("layoutLabelPosition", None)
-    T = _Tree(doc); T.s = annotation; T.textmode = mode
-    got = _car_layout(T, spots_mm, route, rev, strat)
-    pos, paths, stats = got
-    R = T.R
-    bundles = {b["id"]: b for b in doc.get("bundles", [])}
-    shape = stats.pop("_shape")
-    _mated_caps(T, pos, shape)
-    for i, p in pos.items():
-        if i in T.el: T.el[i]["layoutPosition"] = {"x": _r2(p[0] - HALF), "y": _r2(p[1] - HALF)}
-    for bid, path in paths.items():
-        b = bundles[bid]
-        inner = path[1:-1]
-        if inner:
-            b["layoutPoints"] = [{"id": "%s_p%d" % (bid, i), "layoutPosition": {"x": _r2(q[0] - HALF), "y": _r2(q[1] - HALF)}} for i, q in enumerate(inner)]
-        else:
-            b.pop("layoutPoints", None)
-        b.pop("radius", None)
-    for k in INLINE_KINDS:     # inline parts sit on their location node
-        for e in doc.get(k, []):
-            if e.get("layoutPosition") and e.get("locationId") in T.el:
-                e["layoutPosition"] = dict(T.el[e["locationId"]]["layoutPosition"])
-    # layout notes: above the harness and every text, left aligned, each clear of the next (they never cover the harness)
-    xs, ys = [], []
-    for _, poly, what in text_boxes(doc):
-        if what == "note": continue      # the notes themselves are placed here
-        x0, y0, x1, y1 = _pbb(poly); xs += [x0, x1]; ys += [y0, y1]
-    xs += [p[0] for p in pos.values()]; ys += [p[1] for p in pos.values()]
-    xs += [q[0] for v in paths.values() for q in v]; ys += [q[1] for v in paths.values() for q in v]
-    top, left = min(ys) - 30, min(xs)
-    for n in reversed(doc.get("layoutNotes", []) or []):
-        n["layoutPosition"] = {"x": 0.0, "y": 0.0}
-        h = _pbb(note_box(n, annotation))[3]
-        top -= h
-        n["layoutPosition"] = {"x": _r2(left), "y": _r2(top)}
-        top -= 20
-    if label_overlaps(doc):
-        repair_labels(doc)
-    if label_overlaps(doc):
-        repair_spokes(doc)
-    fit_grid(doc, min_rows, min_cols)
-    stats["mode"], stats["strategy"] = mode, strat
-    return stats
-
-
-def _mated_caps(T, pos, shape):
-    """mated plugs that carry no bundle (bussed receptacle caps, the CAN-Lambda terminator plug) face to face with their plug,
-    turned or moved out only as far as their label needs (Dan 2026-11-13)"""
-    for m in T.doc.get("mates", []) or []:
-        for a, c in ((m["sourceId"], m["targetId"]), (m["targetId"], m["sourceId"])):
-            if a in pos and c not in pos and c in T.el:
-                par = next((p for p, b in T.adj.get(a, []) if b is not None and p in pos), None)
-                d = (pos[a][0] - pos[par][0], pos[a][1] - pos[par][1]) if par else (1, 0)
-                L = math.hypot(*d) or 1
-                ce, hit = T.el[c], None
-                was_side = ce.get("layoutLabelPosition")
-                for dist in (45, 60, 75, 90, 120, 160, 200, 260):
-                    for rot in (0, 30, -30, 60, -60, 90, -90, 120, -120, 180):
-                        u = _rot((d[0] / L, d[1] / L), rot)
-                        q = (pos[a][0] + dist * u[0], pos[a][1] + dist * u[1])
-                        for side in (was_side, "Left", "Right", "Top", "Bottom"):
-                            if side is None: ce.pop("layoutLabelPosition", None)
-                            else: ce["layoutLabelPosition"] = side
-                            piece = Shape(); piece.nodes = [(q, c)]
-                            piece.texts = T.node_texts(c, q, (0.0, 0.0))
-                            if clash(piece, shape, dict(pos, **{c: q})) is None:
-                                hit = (q, piece); break
-                        if hit: break
-                    if hit: break
-                if not hit:
-                    if was_side is None: ce.pop("layoutLabelPosition", None)
-                    else: ce["layoutLabelPosition"] = was_side
-                    hit = ((pos[a][0] + 45 * d[0] / L, pos[a][1] + 45 * d[1] / L), None)
-                pos[c] = hit[0]
-                if hit[1]: shape.add(hit[1])
-
-
-def _car_layout(T, spots_mm, route, rev, strat=None):
-    """(positions, bundle paths, stats) of the car-frame layout; AssertionError when a part finds no clear place"""
-    R = T.R
-    strat = strat or {}
-    all_late = set()
-    U = lambda p: (p[0] / MM_PER_UNIT, p[1] / MM_PER_UNIT)
-    spot = {n: U(spots_mm[rev[n]]) for n in T.adj if n in rev and rev[n] in spots_mm}
-    free = {n for n in spot if rev[n] in getattr(route, "free", ())}     # a borrowed spot (the glove-box breakouts, A35)
-    bundles = [b for b in T.doc.get("bundles", [])]
-    badj = {}
-    for b in bundles:
-        badj.setdefault(b["sourceId"], []).append((b["targetId"], b)); badj.setdefault(b["targetId"], []).append((b["sourceId"], b))
-    # pieces (bundles only); each piece's root: its spotted node with the most bundles
-    left, pieces = set(badj), []
-    while left:
-        nfree = {n for n in spot if rev[n] in getattr(route, "free", ())}
-        cand = sorted([n for n in left if n in spot and n not in nfree],
-                      key=lambda n: (-sum(1 for c, _ in badj[n] if c in spot), n)) or sorted(left)
-        root = cand[0]
-        order, parent = [root], {root: None}
-        for n in order:
-            for c, b in badj[n]:
-                if c not in parent: parent[c] = (n, b); order.append(c)
-        pieces.append((root, order, parent)); left -= set(order)
-    pieces.sort(key=lambda p: -len(p[1]))
-    shape, pos, paths = Shape(), {}, {}
-    stats = {"loops": [], "offsets": [], "pulled": [], "moved": {}, "pieces": len(pieces)}
-    mated = {}
-    for m in T.doc.get("mates", []) or []:
-        mated[m["sourceId"]] = m["targetId"]; mated[m["targetId"]] = m["sourceId"]
-
-    def din_of(n):
-        """unit vector of the drawn way into n from its parent (None for a root)"""
-        for bid, p in paths.items():
-            b = T.bundle[bid]
-            if b["targetId"] == n and len(p) > 1: return _unit(p[-2], p[-1])
-            if b["sourceId"] == n and len(p) > 1 and T.parent_of.get(n) == b["targetId"]: return _unit(p[1], p[0])
-        return None
-
-    T.bundle = {b["id"]: b for b in bundles}
-    T.parent_of = {}
-    pending = []      # bundles whose service loop is drawn last: (bundle, parent, child, route as drawn, set length)
-    deferred = []     # the free breakouts, drawn after the first fans
-    budget, fail = [0], [None]
-
-    def snap():
-        return (len(shape.segs), len(shape.nodes), len(shape.texts), dict(pos), dict(paths), dict(theta), len(pending),
-                {k: list(v) for k, v in stats.items() if isinstance(v, list)})
-
-    def restore(sv):
-        shape.segs[sv[0]:] = []; shape.nodes[sv[1]:] = []; shape.texts[sv[2]:] = []
-        pos.clear(); pos.update(sv[3]); paths.clear(); paths.update(sv[4]); theta.clear(); theta.update(sv[5])
-        pending[sv[6]:] = []
-        for k, v in sv[7].items(): stats[k] = v
-
-    def grow(n, parent, late):
-        """draw every spotted child branch of n (depth first); a child that finds no clear drawing sends the search back
-        to try its parent's next drawing (BACKTRACK tries in all)"""
-        kids = [c for c in parent if parent[c] and parent[c][0] == n and c in spot and c not in late]
-        size = lambda c: sum(1 for x in parent if _is_below(x, c, parent))
-        for c in sorted(kids, key=lambda c: -size(c)):
-            why, ok = [], False
-            for opt in options(c, parent, why):
-                sv = snap()
-                commit(c, parent, opt)
-                if grow(c, parent, late): ok = True; break
-                restore(sv)
-                budget[0] -= 1
-                if budget[0] <= 0: break
-            if not ok:
-                if DEBUG and not why[3:]:
-                    cp = Shape(); cp.add(shape); STATS["_fail"] = (cp, dict(pos), (n, c), [])
-                if fail[0] is None or not why:
-                    fail[0] = (n, c, parent[c][1]["id"], why)
-                return False
-        return True
-    theta = {}        # degrees each placed node's subtree is turned from the car
-    def options(n, parent, why):
-        """every clear way to draw n's bundle from its placed parent, best first (n's route as the editor draws it, then the
-        far end moved a little, then the route turned about the parent): (kind, path, shape piece, turn)"""
-        p, b = parent[n]
-        need = _mm(b["length"]) / MM_PER_UNIT
-        r = route(rev[p], rev[n], _mm(b["length"])) if (p in rev and n in rev) else None
-        base = [U(q) for q in r] if r else [spot[p], spot[n]]
-        th = theta.get(p, 0.0)      # a branch turned to clear another (below) turns its whole subtree with it
-        pts = [(pos[p][0] + v[0], pos[p][1] + v[1]) for v in (_rot((q[0] - spot[p][0], q[1] - spot[p][1]), th) for q in base)]
-        pts[0] = pos[p]
-        if math.hypot(pts[-1][0] - pts[0][0], pts[-1][1] - pts[0][1]) < 1e-6 and len(_dedupe(pts)) < 2:
-            cands = []
-        else:
-            cands = _fit(pts, need, R)
-        # a far end with no room on its route: straight off its parent, first the way its own subtree lies
-        sub = [x for x in parent if x in spot and _is_below(x, n, parent)]
-        cx, cy = _rot((sum(spot[x][0] for x in sub) / len(sub) - spot[n][0] if sub else 0.0,
-                       sum(spot[x][1] for x in sub) / len(sub) - spot[n][1] if sub else 0.0), th)
-        dirs = []
-        # first the widest gap between the parent's own routes (a breakout the top view does not draw leaves its run
-        # square off it, clear of the run), then the way the far end's own subtree lies
-        pd = []
-        for c2, b2 in badj[p]:
-            if c2 == n or c2 not in spot: continue
-            r2 = route(rev[p], rev[c2], _mm(b2["length"])) if (p in rev and c2 in rev) else None
-            q2 = [U(q) for q in r2] if r2 else [spot[p], spot[c2]]
-            q2 = [q for q in q2 if math.hypot(q[0] - spot[p][0], q[1] - spot[p][1]) > 1e-6]
-            if q2: pd.append(_rot(_unit(spot[p], q2[0]), th))
-        if pd: dirs.append(_widest_gap(pd))
-        if math.hypot(cx, cy) > 1: dirs.append((cx / math.hypot(cx, cy), cy / math.hypot(cx, cy)))
-        dirs += [_rot((1.0, 0.0), a) for a in range(0, 360, 30)]
-        din = din_of(p)
-        if din is not None: dirs = [d for d in dirs if d[0] * din[0] + d[1] * din[1] > -0.8]
-        hair = False
-        if not cands or len(_dedupe(pts)) < 2 or math.hypot(pts[-1][0] - pts[0][0], pts[-1][1] - pts[0][1]) < 2 * R:
-            if n not in free and need * MM_PER_UNIT > 200:     # a drop: a hairpin by its spot first, else straight out
-                cands = cands + list(_hairpins([pos[p]], need, R, dirs))
-            cands = cands + _straight_cands(pos[p], need, R, dirs, 2000 if n in free else 200)
-            # no room for a loop there: the far end set out straight at its whole length (an offset near the end)
-            cands = cands + _straight_cands(pos[p], need, R, dirs, 100000)
-        elif any(k == "loop" for k, _ in cands):
-            hair = True
-            # no room for a loop on the route: the far end moved on along its last leg instead
-            q = _dedupe(pts)
-            u = _unit(q[-2], q[-1])
-            if u:
-                mv = lambda d: q[:-1] + [(q[-1][0] + u[0] * d, q[-1][1] + u[1] * d)]
-                d = _solve(lambda d: rounded_length(mv(d), R) - need, 0.0, need * 2 + 10)
-                cands = cands + [("offset", mv(d))]
-        def shifted():
-            """the route moved a little off whatever it runs into (a shared corridor drawn twice): its far part shifted
-            sideways or along, nearest first; the first point stays on the parent"""
-            for rr in (12.0, 24.0, 40.0, 60.0, 90.0, 130.0, 180.0):
-                for a in range(0, 360, 45):
-                    o = _rot((rr, 0.0), a)
-                    sp = [pts[0]] + [(q[0] + o[0], q[1] + o[1]) for q in pts[1:]]
-                    for c in _fit(sp, need, R): yield c + (0,)
-            # routes that cross in the car (one over the other at another height) cannot cross on a flat board: the
-            # route turned about its parent, the least turn first
-            for a in (10, -10, 20, -20, 30, -30, 45, -45, 60, -60, 90, -90, 120, -120, 150, -150, 180):
-                c0 = pts[0]
-                sp = [c0] + [(c0[0] + v[0], c0[1] + v[1]) for v in (_rot((q[0] - c0[0], q[1] - c0[1]), a) for q in pts[1:])]
-                for c in _fit(sp, need, R): yield c + (a,)
-                for c in _straight_cands(pos[p], need, R, [_unit(c0, sp[-1])] if _unit(c0, sp[-1]) else [], 2000): yield c + (a,)
-            if hair:      # last: a hairpin at the far end of the route as the editor draws it
-                for c in _hairpins(pts, need, R, dirs): yield c + (0,)
-        def expand(items):
-            """with the inline-loops strategy a loop candidate is drawn with its teeth now (the search can back out of it)"""
-            for kind, path, turn in items:
-                if kind == "loop" and strat.get("inline_loops"):
-                    for k2, p2 in itertools.islice(_loops(_dedupe(path), need, R), 24): yield (k2, p2, turn)
-                else: yield (kind, path, turn)
-        for kind, path, turn in expand(itertools.chain(((k, q, 0) for k, q in cands), shifted())):
-            path = _dedupe(path)
-            if len(path) < 2 or (kind != "loop" and abs(rounded_length(path, R) - need) > 0.5): continue
-            own = Shape()
-            own.segs = [(path[i], path[i + 1], (p, n), b["id"]) for i in range(len(path) - 1)]
-            if n not in T.bps: own.nodes.append((path[-1], n))
-            own.texts = [] if kind == "loop" else T.bundle_texts(b, path if b["sourceId"] == p else path[::-1])
-            hit = clash(own, shape, dict(pos, **{n: path[-1]}))
-            if hit is None: yield (kind, path, own, th + turn)
-            elif len(why) < 3: why.append(hit)
-
-    def commit(n, parent, opt):
-        p, b = parent[n]
-        kind, path, own, th = opt
-        need = _mm(b["length"]) / MM_PER_UNIT
-        theta[n] = th
-        shape.add(own)
-        pos[n] = path[-1]
-        paths[b["id"]] = path if b["sourceId"] == p else path[::-1]
-        if kind == "loop": pending.append((b, p, n, path, need))
-        elif kind.startswith("loop"): stats["loops"].append((b["id"], int(kind[4:])))
-        elif kind == "offset": stats["offsets"].append(b["id"])
-        elif kind == "pulled": stats["pulled"].append(b["id"])
-
-    for root, order, parent in pieces:
-        # a piece joined to one already drawn by a mate (the RADLOK firewall pairs) is shifted so the mated plugs can face
-        # each other; any other piece sits on its own spots
-        shift = (0.0, 0.0)
-        link = [(x, mated[x]) for x in order if x in mated and T.parent_of.get(mated[x]) in pos]
-        if link and pos:
-            a, b = link[0]
-            pa = parent[a][0] if parent.get(a) else None
-            need = sum(_mm(badj[x][0][1]["length"]) / MM_PER_UNIT for x in (a, b) if badj.get(x)) + 45.0
-            if pa in spot:
-                best = None
-                for ang in range(0, 360, 15):
-                    u = _rot((1.0, 0.0), ang)
-                    sh = (pos[T.parent_of[b]][0] + u[0] * need - spot[pa][0], pos[T.parent_of[b]][1] + u[1] * need - spot[pa][1])
-                    tr = Shape(); tr.nodes = [((spot[x][0] + sh[0], spot[x][1] + sh[1]), x) for x in order if x in spot and x not in T.bps]
-                    for x in order:
-                        if x in spot and parent[x] and parent[x][0] in spot:
-                            tr.segs.append(((spot[parent[x][0]][0] + sh[0], spot[parent[x][0]][1] + sh[1]), (spot[x][0] + sh[0], spot[x][1] + sh[1]), (parent[x][0], x), parent[x][1]["id"]))
-                    hitc = clash(tr, shape, dict(pos, **{x: (spot[x][0] + sh[0], spot[x][1] + sh[1]) for x in order if x in spot}), clr=4 * CLR, gap=4 * NODE_GAP)
-                    cost = math.hypot(*sh) + (1e6 if hitc else 0)
-                    if best is None or cost < best[0]: best = (cost, sh)
-                shift = best[1]
-        # the editor routes first; the free glove-box breakouts later (after the fans of the rest), wherever they have room
-        late = {x for x in order if x in free and all(y in free or y not in spot for y in order if _is_below(y, x, parent))} \
-            if strat.get("defer", True) else set()
-        all_late.update(late)
-        for n in order:
-            if parent[n] and parent[n][0] not in late: T.parent_of[n] = parent[n][0]
-        assert root in spot, "piece root %s has no editor spot" % root
-        pos[root] = (spot[root][0] + shift[0], spot[root][1] + shift[1])
-        if root not in T.bps: shape.nodes.append((pos[root], root))
-        budget[0] = BACKTRACK
-        assert grow(root, parent, late), "no clear drawing for the bundle %s -> %s (%s; first clashes %s)" % fail[0]
-        for n in order:
-            if n in late and parent[n][0] not in late: deferred.append((n, parent))
-    # end stubs fanned round their nodes, the most crowded first; the way they lean: the generator's comb, else the widest gap
-    fans = {}
-    for root, order, parent in pieces:
-        for n in order:
-            if parent[n] and n not in spot:
-                fans.setdefault(parent[n][0], []).append((n, parent[n][1]))
-    def draw_loops():
-        # service loops last, each where it has room (clear of every bundle, part and text already on the board)
-        for b, p, n, base, need in sorted(pending, key=lambda x: -x[4]):
-            shape.segs = [x for x in shape.segs if x[3] != b["id"]]
-            done, why = None, []
-            for kind, path in itertools.chain(_loops(base, need, R), _loops(base, need, R, prefer_end=False)):
-                path = _dedupe(path)
-                if abs(rounded_length(path, R) - need) > 0.5: continue
-                own = Shape()
-                own.segs = [(path[i], path[i + 1], (p, n), b["id"]) for i in range(len(path) - 1)]
-                own.texts = T.bundle_texts(b, path if b["sourceId"] == p else path[::-1])
-                hit = clash(own, shape, pos)
-                if hit is None: done = (kind, path, own); break
-                if len(why) < 3: why.append(hit)
-            if not done and T.textmode != "none":       # no clear loop with its length label: without the label (the gate says)
-                for kind, path in _loops(base, need, R):
-                    path = _dedupe(path)
-                    own = Shape(); own.segs = [(path[i], path[i + 1], (p, n), b["id"]) for i in range(len(path) - 1)]
-                    if abs(rounded_length(path, R) - need) <= 0.5 and clash(own, shape, pos) is None: done = (kind, path, own); break
-            assert done, "no room for the service loop of %s (%s -> %s; first clashes %s)" % (b["id"], p, n, why)
-            kind, path, own = done
-            shape.add(own)
-            paths[b["id"]] = path if b["sourceId"] == p else path[::-1]
-            stats["loops"].append((b["id"], int(kind[4:])))
-
-    def lean(n, at):
-        """point n's end stubs (T.old) the way they should lean: a mate's partner, a box's side (A35), else the widest gap"""
-        dirs = [_unit(at, paths[b["id"]][1] if b["sourceId"] == n else paths[b["id"]][-2])
-                for c, b in badj[n] if b["id"] in paths]
-        gap_dir = _widest_gap([d for d in dirs if d])
-        for c, b in fans[n]:
-            pref = PREFER.get(n)
-            if c in mated and T.parent_of.get(mated[c]) in pos:
-                pref = _unit(at, pos[T.parent_of[mated[c]]]) or pref
-            if pref is None: pref = gap_dir
-            L = _mm(b["length"]) / MM_PER_UNIT
-            T.old[c] = (T.old.get(n, (0.0, 0.0))[0] + pref[0] * L, T.old.get(n, (0.0, 0.0))[1] + pref[1] * L)
-
-    def refan(n):
-        """a device node whose ends cannot all stand clear where its route puts it: its bundle turned about its parent
-        (its length kept), the least turn first, until the whole fan stands clear (the node then sits off its spot)"""
-        p = T.parent_of.get(n)
-        b = next((bb for c, bb in badj[n] if c == p), None)
-        if b is None or b["id"] not in paths: return False
-        cur = paths[b["id"]] if b["sourceId"] == p else paths[b["id"]][::-1]
-        pend = next((i for i, x in enumerate(pending) if x[0]["id"] == b["id"]), None)
-        base = Shape()
-        base.segs = [x for x in shape.segs if x[3] != b["id"]]
-        base.nodes = [x for x in shape.nodes if x[1] != n]
-        base.texts = [x for x in shape.texts if x[1] != b["id"]]
-        c0 = cur[0]
-        for a in (15, -15, 30, -30, 45, -45, 60, -60, 90, -90, 120, -120, 150, -150, 180):
-            path = [c0] + [(c0[0] + v[0], c0[1] + v[1]) for v in (_rot((q[0] - c0[0], q[1] - c0[1]), a) for q in cur[1:])]
-            own = Shape()
-            own.segs = [(path[i], path[i + 1], (p, n), b["id"]) for i in range(len(path) - 1)]
-            if n not in T.bps: own.nodes.append((path[-1], n))
-            own.texts = [] if pend is not None else T.bundle_texts(b, path if b["sourceId"] == p else path[::-1])
-            if clash(own, base, dict(pos, **{n: path[-1]})) is not None: continue
-            trial = Shape(); trial.add(base); trial.add(own)
-            tpos, tpaths = dict(pos), dict(paths)
-            tpos[n] = path[-1]; tpaths[b["id"]] = path if b["sourceId"] == p else path[::-1]
-            was_paths = paths[b["id"]]; paths[b["id"]] = tpaths[b["id"]]
-            lean(n, path[-1])
-            ok = _spokes_at(T, trial, tpos, tpaths, n, path[-1], fans[n], _unit(path[-2], path[-1]))
-            paths[b["id"]] = was_paths
-            if ok:
-                shape.segs[:] = trial.segs; shape.nodes[:] = trial.nodes; shape.texts[:] = trial.texts
-                pos.update(tpos); paths.update(tpaths)
-                if pend is not None: pending[pend] = (b, p, n, path, pending[pend][4])
-                return True
-        lean(n, pos[n])
-        return False
-
-    def do_fan(n):
-        spokes = fans[n]
-        at = pos[n]
-        lean(n, at)
-        was = T.textmode
-        ok = _spokes_at(T, shape, pos, paths, n, at, spokes, din_of(n))
-        tree_leaf = n in spot and T.parent_of.get(n) in pos and not any(c in spot for c, _ in badj[n] if c != T.parent_of[n])
-        if not ok and tree_leaf and was == "all" and refan(n):
-            ok = True; stats.setdefault("turned_for_labels", []).append(n)
-        mode = was
-        if not ok:
-            for mode in [m for m in ("labels", "none") if ("all", "labels", "none").index(m) > ("all", "labels", "none").index(was)]:
-                T.textmode = mode      # a fan that cannot keep every text clear keeps what it can (repair_labels, the gate after)
-                ok = _spokes_at(T, shape, pos, paths, n, pos[n], spokes, din_of(n))
-                if ok: break
-            T.textmode = was
-            if ok: stats.setdefault("fans_relaxed", []).append((n, mode))
-        assert ok, "no clear spokes at %s (%d ends)" % (n, len(spokes))
-
-    late_nodes = set(all_late)
-    if strat.get("loops_first"): draw_loops()
-    for n in sorted([x for x in fans if x not in late_nodes and x in pos], key=lambda n: -len(fans[n])):
-        do_fan(n)
-    for n, parent in deferred:
-        T.parent_of[n] = parent[n][0]
-        budget[0] = BACKTRACK
-        fail[0] = None
-        why = []
-        opt = next(options(n, parent, why), None)
-        assert opt, "no clear drawing for the bundle %s -> %s (%s; first clashes %s)" % (parent[n][0], n, parent[n][1]["id"], why)
-        commit(n, parent, opt)
-        assert grow(n, parent, set()), "no clear drawing for the bundle %s -> %s (%s; first clashes %s)" % fail[0]
-    for n in sorted([x for x in fans if x in late_nodes], key=lambda n: -len(fans[n])):
-        do_fan(n)
-    if not strat.get("loops_first"): draw_loops()
-    # how far each spotted node sits from its editor spot (the whole board moves as one, so the root's offset is none)
-    for n, s in spot.items():
-        if n in pos and n not in free: stats["moved"][n] = math.hypot(pos[n][0] - s[0], pos[n][1] - s[1]) * MM_PER_UNIT
-    stats["_shape"] = shape
-    return pos, paths, stats
-
-
-def _is_below(x, n, parent):
-    while x is not None:
-        if x == n: return True
-        x = parent[x][0] if parent.get(x) else None
-    return False
-
-
-def _widest_gap(dirs):
-    """the unit vector in the middle of the widest angle between the given directions (any direction when there are none)"""
-    if not dirs: return (1.0, 0.0)
-    a = sorted(math.atan2(d[1], d[0]) for d in dirs)
-    best = None
-    for i, x in enumerate(a):
-        y = a[(i + 1) % len(a)] + (2 * math.pi if i == len(a) - 1 else 0)
-        if best is None or y - x > best[0]: best = (y - x, (x + y) / 2)
-    return (math.cos(best[1]), math.sin(best[1]))
-
-
-def fit_grid(doc, min_rows=MIN_ROWS, min_cols=MIN_COLS):
-    """the panel grid (at least min_rows x min_cols panels of the doc's size, landscape) round everything drawn, centred on it"""
-    fb = doc["formboard"]
-    pw, ph = _mm(fb["panelWidth"]), _mm(fb["panelHeight"])
-    m = 20 / MM_PER_UNIT
-    xs, ys = [], []
-    for k in NODE_KINDS + INLINE_KINDS:
-        for e in doc.get(k, []):
-            if e.get("layoutPosition"): xs += [e["layoutPosition"]["x"], e["layoutPosition"]["x"] + 2 * HALF]; ys += [e["layoutPosition"]["y"], e["layoutPosition"]["y"] + 2 * HALF]
-    for b in doc.get("bundles", []):
-        for p in b.get("layoutPoints") or []: xs.append(p["layoutPosition"]["x"] + HALF); ys.append(p["layoutPosition"]["y"] + HALF)
-    for _, poly, _ in text_boxes(doc):
-        x0, y0, x1, y1 = _pbb(poly); xs += [x0, x1]; ys += [y0, y1]
-    off = (-(max(xs) + min(xs)) / 2, -(max(ys) + min(ys)) / 2)
-    mv = lambda p: {"x": _r2(p["x"] + off[0]), "y": _r2(p["y"] + off[1])}
-    for k in NODE_KINDS + INLINE_KINDS:
-        for e in doc.get(k, []):
-            if e.get("layoutPosition"): e["layoutPosition"] = mv(e["layoutPosition"])
-    for b in doc.get("bundles", []):
-        for p in b.get("layoutPoints") or []: p["layoutPosition"] = mv(p["layoutPosition"])
-    for n in doc.get("layoutNotes", []) or []: n["layoutPosition"] = mv(n["layoutPosition"])
-    w, h = (max(xs) - min(xs) + 2 * m) * MM_PER_UNIT, (max(ys) - min(ys) + 2 * m) * MM_PER_UNIT
-    fb.update({"panelOrientation": "Landscape", "columns": max(min_cols, math.ceil(w / pw)), "rows": max(min_rows, math.ceil(h / ph))})
-    return doc
-
-
-def route_deviation(doc, frame, layout_nodes):
-    """{bp id: mm} how far each branch point with an editor spot sits from it, the board's own shift taken out (the median
-    offset: most nodes sit exactly on their spots); plus (mean, max)"""
-    import re as _re
-    spots_mm, _ = frame
-    rev = {"bp_" + _re.sub(r"[^A-Za-z0-9]", "_", n): n for n in layout_nodes}
-    pts = []
-    for e in doc.get("branchPoints", []):
-        n = rev.get(e["id"])
-        if n in spots_mm and e.get("layoutPosition") and n not in getattr(frame[1], "free", ()):
-            c = _centre(e)
-            pts.append((e["id"], (c[0] * MM_PER_UNIT, c[1] * MM_PER_UNIT), spots_mm[n]))
-    if not pts: return {}, (0.0, 0.0)
-    offs = [(d[0] - s[0], d[1] - s[1]) for _, d, s in pts]      # the board's shift: the offset most nodes share (medoid)
-    ox, oy = min(offs, key=lambda o: sum(math.hypot(o[0] - q[0], o[1] - q[1]) for q in offs))
-    dev = {i: math.hypot(d[0] - s[0] - ox, d[1] - s[1] - oy) for i, d, s in pts}
-    return dev, (sum(dev.values()) / len(dev), max(dev.values()))
-
-
-def report(doc, frame, layout_nodes):
-    """the printed formboard metric (Dan 2026-11-15): board and panel grid, annotation scale, how far the branch points sit
-    from their layout-editor spots (mean / max mm, the board's own shift taken out), the service loops of the last to_car run
-    and the label overlaps left (the accepted over-capacity fan, A43 c)"""
-    w, h, n, fb = board(doc)
-    _, (mean, mx) = route_deviation(doc, frame, layout_nodes)
-    loops = STATS.get("loops", [])
-    return ("formboard %dx%d mm, %d rows x %d columns of A1 landscape panels, annotation %.2f; editor-route deviation mean %.0f mm, "
-            "max %.0f mm; %d service loop(s) %s; %d offset end(s); label overlaps left %d (over-capacity fan)"
-            % (w, h, fb["rows"], fb["columns"], fb.get("annotationScale", 1), mean, mx, len(loops),
-               ", ".join("%s x%d" % lp for lp in loops), len(STATS.get("offsets", [])), len(cannot_fit(doc))))

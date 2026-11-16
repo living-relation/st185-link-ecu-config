@@ -24,7 +24,7 @@ that B9 points to).
 | `tools/gen_cabinpower.py` | builds the harness.design CabinPower document (`ST185-CabinPower`; current rev: `docs/OPEN-ITEMS.md` "Current state") with `gen_dash.build`; `python gen_cabinpower.py <repo> <out>`, same `<out>/lib.json`; writes `cabinpower.json` (routed), `cabinpower_lib_ops.json` and `cabinpower_expect.json`. The POWER box stud rings and the LOGIC box seats (plain labelled terminals, R1 a), the box relays, the switched +12 V bus plug, the factory feeds at J/B No.1, IE1 / I2, R/B No.4 and R8 (left, with their splice notes), the headlamp, horn, hazard and DRL circuits; the alarm feed splices are drawn with CabinPower's legs only and a note. Root of the formboard: the glove box. |
 | `tools/gen_rearfuel.py` | builds the harness.design RearFuel document (`ST185-RearFuel`; current rev: `docs/OPEN-ITEMS.md` "Current state") with `gen_dash.build`; `python gen_rearfuel.py <repo> <out>`, same `<out>/lib.json`; writes `rearfuel.json` (routed), `rearfuel_lib_ops.json` and `rearfuel_expect.json`. The fuel pump relay (K-FP) and its coil feed from the switched +12 V bus plug (left), the pump +12 V straight from the relay and the pump ground to BL. Root of the formboard: the glove box. |
 | `tools/gen_wheelspeed.py` | builds the two harness.design wheel speed documents (`ST185-WheelSpeed-Front` / `-Rear`; current rev: `docs/OPEN-ITEMS.md` "Current state") with `gen_dash.build`; `python gen_wheelspeed.py <repo> <out> [Front|Rear]`, same `<out>/lib.json`; writes `wheelspeed_front.json` / `wheelspeed_rear.json` (routed) with their `_lib_ops` / `_expect` files. Each is the two sensor cables from the wheel speed sensors to the VR conditioner IN plug. |
-| `tools/formboard.py` | redraws a generated document's layout view as a true 1:1 formboard (Dan A25 a, A44): the car from above on the layout-editor routes, every bundle at exactly its set length the app's way, slack in one compact place near its far end, end stubs fanned, formboard mode on with A1 panels, at least 4 x 4 (`to_car`; `report` prints the deviation from the editor spots); `check` is the gate (drawn = set within 1 mm, no crossing or overlapping bundles); every generator calls both before it writes its file ("harness.design" below) | Only with the formboard rules |
+| `tools/formboard.py` | redraws a generated document's layout view as a true 1:1 formboard (Dan A25 a): every bundle at exactly its set length the app's way, long runs folded as serpentines, end stubs fanned, formboard mode on with A3 panels (`to_scale`); `check` is the gate (drawn = set within 1 mm, no crossing or overlapping bundles); every generator calls both before it writes its file ("harness.design" below) | Only with the formboard rules |
 | `tools/genroute.py` | orthogonal schematic routing for a harness.design document JSON (Dan's format rules); keeps node positions, rewrites wire / core / shield points (group members, if any, are lifted to the root for routing and put back, `build_drawings.ungroup` / `regroup`; since R1 a there are no box groups); `python genroute.py <doc.json> <out.json>` | Only with the format rules |
 | `tools/router.py` | the lane router `genroute.py` uses (box collision, a line along a box edge counts as a hit, shared lanes per splice or ground-stud net, crossing order) | Only with `genroute.py` |
 | `routes/` | Dan's approved route drawing per harness (one HTML each, current version only); each is replaced by that harness's saved placement-editor layout and deleted at its harness.design step (DECISIONS B8, Dan N72 b); only Routes 16 / 17 (AB-engine, harness C device spots) are left: every other page went at its harness.design step (Routes 1, 8 / 12 / 13, 14, 9 / 10 / 11; README "Harnesses in the master") | Only from Dan's markup or placement |
@@ -81,40 +81,33 @@ skill is not changed for this project):
 - Review a harness by reading 10 random rows: each says what the wire does and its far end matches; never accept a
   harness on counts alone (practice per SAE AS50881 / IPC/WHMA-A-620).
 - Layout view = a FORMBOARD (Dan 2026-11-02; replaces the 2026-10-29 "Route 16 spots, smoothed" rule): the harness
-  drawn laid flat on a build table at 1:1. Since Dan A44 (2026-11-15; replaces "organised for building it, not a copy of
-  the car") it is the car from above on the placement editors' routes; the editors stay where install spots, routes and
-  lengths come from.
+  drawn laid flat on a build table, organised for building it, not a copy of the car. The placement editor / route map
+  is where install spots and lengths come from; the formboard only re-arranges them.
   - TRUE 1:1 (Dan A25 a, 2026-11-12; replaces the 2026-11-02 "drawn length is not to scale"): formboard mode on
-    ("Use formboard for layout"; since Dan A44, 2026-11-15: A1 landscape panels, at least 4 rows x 4 columns, more only
-    where the route shape needs them, 30 mm default bend radius, annotation scale per file, 0.6 / 0.55 / 0.5, the largest
-    whose labels all stand clear), so Export > Formboard Panels prints a to-scale board Dan builds on. Every bundle is
+    ("Use formboard for layout", A3 panels, as many panel rows and columns as the board needs, 30 mm default bend
+    radius, annotation scale 50%), so Export > Formboard Panels prints a to-scale board Dan builds on. Every bundle is
     drawn at exactly its set length (the master / tree length, never changed), measured the app's way: node centre to
     node centre through the layout points, corners rounded at the bend radius, 0.75 mm per layout unit (harness.design
     docs feature/formboard, feature/local-files/json-format; the app flags a bundle off by 0.5 mm or more, or with no
-    or a 0 mm length, yellow / black dashed). `tools/formboard.py` does it for every generator (`to_car`, after the
+    or a 0 mm length, yellow / black dashed). `tools/formboard.py` does it for every generator (`to_scale`, after the
     generator's own placement) and is the gate (`check`: drawn = set within 1 mm, no bundle crossing or overlapping
     another, none through a part, every part on the panel grid; each generator stops on a failure; `build_drawings.py
     --self-test` tests it). A box seat end gets its own copy of the seat stub (no 0 mm bundle; `box_seat_ends`).
-  - Every label readable (Dan 2026-11-13; DECISIONS B6 "Every label readable"): `to_car` places every end, branch and
+  - Every label readable (Dan 2026-11-13; DECISIONS B6 "Every label readable"): `to_scale` places every end, branch and
     stub with its text boxes (end labels, length labels, bundle label pills, notes; sized as the app draws them, measured from its
     Formboard Panels PDF, `formboard.TXT`, crowded fans laid out in label columns) kept clear of each other, turns an end's label to another side (`layoutLabelPosition`) where one
     still collides, and sizes the panel grid round every text; `check` fails on any overlap (`label_overlaps`) or text off the
     panels. Box seat ends hang on their box's breakout node (DECISIONS B6 "A35"): LOGIC box ends left, POWER box, K-EPS and
     RLY-DRL ends right (`formboard.PREFER`), each with its real crimp contact or ring.
-  - The car from above, on the editor routes (Dan A44, 2026-11-15; replaces the serpentines): `formboard.to_car` puts
-    every branch point on its layout-editor spot and draws every bundle along its editor route, both in car mm from
-    `build_drawings.car_frame` (the seeds' `mm` spots and `tree_mm` via points, the route files' engine-bay lines by the
-    corridor conversion, HeavyDC's engine legs from its seed). A set length longer than the flat route is taken up near
-    the far end in one place: the end moved on along its last leg (up to 40 mm), else one service loop (a square tooth
-    off the route or a hairpin at the end); a shorter one pulls the end in along the route; a drop is a hairpin by its
-    spot. Routes that pass over / under each other in the car turn about their parent (the least turn) so nothing
-    crosses; a device whose labels cannot stand clear turns the same way. The glove-box box breakouts (A35) are drawn
-    straight beside the glove box. End stubs fan out round their node; mated plugs sit face to face (HeavyDC's engine
-    piece beside its cabin piece at the RADLOK pair). Each generator prints `formboard.report`: grid, annotation, the
-    deviation from the editor spots (mean / max mm) and the service loops.
+  - Each branch keeps the generator's direction (orthogonal first); a long branch (over 450 mm) or one that would hit
+    another bundle folds into a serpentine (legs across the run, U-turns at the bend radius) so the board shrinks;
+    branches leave a run only at their own node, so the branch order stays the generator's. End stubs fan out round
+    their node as straight spokes in the order the generator combed them. A separate piece (EngineRoom-C's EB block
+    strap) sits where it keeps the board smallest; mated plugs sit face to face.
   - Parallel runs bundled into one line; breakouts that sit close together merged into one branch.
-  - Orientation: front of car RIGHT, rear / trunk LEFT, driver side on top. Each harness sits where it lies in the car
-    (A44: on its editor spots; the 2026-11-02 (J1) "bulkhead near the center third of the page" is replaced by A44).
+  - Orientation: front of car RIGHT, rear / trunk LEFT, driver side on top. Each harness sits where it lies along the
+    car, so harnesses that run the full length (cabin to trunk) fit; engine-bay harnesses have the bulkhead near the
+    center third of the page (Dan 2026-11-02 (J1)). Never put the bulkhead on the left as a blanket rule.
   - A connector part-way along a line breaks out at least 6 in off it; the last one may end the run (B8). Coil and
     injector breakouts run parallel (Dan 2026-11-02 (J1)).
 - Schematic: compact (fits one screen zoomed out); both columns start level at the top; connectors may be reordered

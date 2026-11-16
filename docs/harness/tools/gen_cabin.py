@@ -647,7 +647,7 @@ head = [{"id": "n_title", "width": 360,
                  "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text.%s %s"
                  "Layout: a formboard of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
                  "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), front of car RIGHT, rear LEFT, "
-                 "driver side UP; drawn 1:1 on A1 panels as the car lies, on its editor routes, every bundle at exactly its length (Dan A44); each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
+                 "driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
                  "T7 b); bundle lengths = the master est_length_mm." % (
                      TITLE, REV, DATE, SHORT[DOC], 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out plugs and their bussed receptacles, shield '
                      'splices) with the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups '
@@ -759,7 +759,7 @@ for n in [n for n in parent if parent[n] and slen[n] == 0]:   # a 0 mm segment i
     del parent[n], slen[n], kids[n]
 # formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles on the
 # 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its part of the
-# car lies); every bundle keeps its tree length (= the master's); formboard.to_car then redraws it 1:1 on the editor routes (Dan A44). Each part sits on its 100 mm
+# car lies); every bundle keeps its tree length (= the master's); formboard.to_scale then redraws it 1:1 (Dan A25 a). Each part sits on its 100 mm
 # end-allowance stub, combed off the node. A node whose four sides are all taken by bundles combs its parts along the way in.
 DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
 OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
@@ -878,11 +878,10 @@ B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires
 head_now = [n for n in doc['schematicNotes'] if n['id'] in {h['id'] for h in head}]
 HEAD_Y = -30 * ((max(est_h(n['text']) for n in head_now) + 59) // 30)
 for n in head_now: n['schematicPosition']['y'] = HEAD_Y
-_frame = B.car_frame(H.layout)
-FB.to_car(doc, _frame, H.layout['nodes'])    # 1:1 formboard on the layout-editor routes, A1 (Dan 2026-11-15, A44)
+FB.to_scale(doc)        # the 1:1 formboard (Dan A25 a): every bundle drawn at its set length, long runs folded
 _fbad = FB.check(doc)
 assert not _fbad, 'formboard: %r' % _fbad[:8]
-print(FB.report(doc, _frame, H.layout['nodes']))
+print('formboard %dx%d mm, %d A3 panels' % FB.board(doc)[:3])
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abcab%d_expect.json' % DOC), 'w'), indent=1)
