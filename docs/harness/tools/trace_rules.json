@@ -5,6 +5,7 @@
     "Every line carries its source in 'src': a DECISIONS id, a Dan answer, a datasheet, sot/* or the master's own pin text. Nothing here is guessed: what the repo does not say is 'TBD' and is reported as 'not proven'.",
     "A factory part is only an end point our wire lands on (Dan A57 a): a source, a ground (sink), a switch or a load. Nothing here checks a factory circuit.",
     "A change to this file needs Dan's yes (A54 a).",
+    "'exceptions': a finding Dan accepted by name (check + device). The tracer lists it under 'Accepted exceptions' and does not count it as a finding.",
     "Expressions ('when', 'on_when') use the scenario inputs and the derived names below, plus hot('ID:pin') = that pin is on a hard supply, low('ID:pin') = on a hard ground, on('K-X') = relay closed, lit('DEV.element') = that load is on."
   ],
   "battery": {
@@ -12,6 +13,14 @@
     "neg": "T-TRUNK-NEG",
     "src": "master: 'Battery + post (trunk)' / 'Battery - post (trunk)'"
   },
+  "exceptions": [
+    {
+      "check": "F1",
+      "device": "T-STARTER-B",
+      "why": "the starter B+ cable has no fuse by design: the battery kill switch protects it",
+      "src": "Dan A68 a 2026-11-16"
+    }
+  ],
   "grounds": [
     {
       "match": "^GND-",

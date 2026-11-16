@@ -176,7 +176,7 @@ Source: switchboard manual v2.1 (FW 3.0+), sections 5-6. Machine-readable copy: 
 | 0 | L1 control | unused |
 | 1 | L2 control | unused |
 | 2 | L3 control | unused |
-| 3 | L4 control | oil warning LED (CSB3 cavity 26, `w_oil_k` / D-OIL) |
+| 3 | L4 control | oil warning LED (CSB3 cavity 20, `w_oil_k` / D-OIL) |
 | 4-7 | 0 | reserved |
 
 ---
