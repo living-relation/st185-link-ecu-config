@@ -7,7 +7,7 @@ Run in WSL with handbuilt-cad's .venv from the repo root; the work dir holds cop
     W=<work dir>; R=<repo>/cad
     mkdir -p $W/src/st185_fusebox_rev8 $W/src/csv
     cp $R/fusebox/rev8/*.step $W/src/st185_fusebox_rev8/; cp $R/fusebox/rev8/fusebox-parts-*.csv $W/src/csv/
-    ST185_WORK=$W ~/projects/handbuilt-cad/.venv/bin/python cad/drawings/run_fb_rev8.py [<key> | asm:<key>] ...
+    ST185_WORK=$W ~/.venvs/handbuilt-cad/bin/python cad/drawings/run_fb_rev8.py [<key> | asm:<key>] ...
 
 Writes out/st185_fusebox_rev8/<PN>.pdf + <PN>.checks.json and previews/<PN>_shN.png.
 Claude Code, 2026-11-13."""
