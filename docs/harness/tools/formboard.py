@@ -1,13 +1,14 @@
 """formboard.py - the layout view of a generated harness.design document.
 
-Dan 2026-11-16: regular view, straight runs, on the layout-editor routes ("regular layout view with straight runs, not
-snaked; the layout views should largely match the routes we made using the layout editors"; replaces A25 a and the
-2026-11-15 square tree). Every generator calls `regular(doc, build_drawings.car_frame(layout), layout nodes)` and the gate
-`check_regular(doc, square=False)` (the last sections of this file): formboard mode OFF; the car from above at one scale per
-file (front RIGHT, driver side UP), every branch point on its layout-editor spot, each run between them straight along its
-editor route; the ends (and a node too close to its neighbour to show apart) combed round their spot as the labels need;
-not to scale, set lengths kept, every text clear. The text model (TXT, text_boxes, label_overlaps) is shared. The 1:1
-formboard below (`to_scale`, `check`; Dan A25 a, 2026-11-12) is kept with its self-tests but no generator calls it.
+Dan 2026-11-16 (second, A74 a): the compact look from before #672, ordered like the layout-editor maps ("look just like
+they did before ... EXCEPT the ROUTES they follow should RESEMBLE the layout OVERALL, as if the layout maps were drawn
+perfectly orthogonal with all the bundles together, as it would actually be assembled on the bench"; replaces the #698 car
+view). Every generator lays its own compact orthogonal tree, each branch heading the way it runs on the editor map
+(`map_vector`, `map_dirs`, the section after PREFER), then calls `regular(doc)` (the square view: formboard mode OFF, the
+generator's directions and order kept, ends combed, every run long enough for its texts) and the gate `check_regular(doc)`
+(square runs, no overlap, no label overlap). Not to scale, set lengths kept. The text model (TXT, text_boxes,
+label_overlaps) is shared. The car view (`regular(doc, frame, nodes)`, Dan 2026-11-16 first) and the 1:1 formboard
+(`to_scale`, `check`; Dan A25 a, 2026-11-12) are kept with their self-tests but no generator calls them.
 
 The 1:1 formboard:
 
@@ -59,6 +60,62 @@ COL_PITCH = 26.0              # units: the least row pitch of a label column fan
 # RLY-DRL beside it) to the right, whatever way the generator combed them
 PREFER = {"bp_GB_LOGIC": (-1.0, 0.0), "bp_GB_POWER": (1.0, 0.0), "bp_GB_PBAR": (1.0, 0.0), "bp_GB_KEPS": (1.0, 0.0),
           "bp_GB_DRL": (1.0, 0.0)}
+
+
+# ------------------------------------------------------------------ the compact tree ordered like the layout-editor maps
+# Dan 2026-11-16 (second): "look just like they did before ... EXCEPT the ROUTES they follow should RESEMBLE the layout
+# OVERALL, as if the layout maps were drawn perfectly orthogonal with all the bundles together, as it would actually be
+# assembled on the bench". The generators keep their compact orthogonal tree (not to scale); each branch leaves its node in
+# the axis nearest its direction on the editor map (build_drawings.car_frame spots: car mm, x forward = screen right, y
+# driver side negative = screen up), siblings keep the map's order round their node.
+MAP_NEAR_MM = 60.0     # a branch whose first node is nearer than this on the map (a junction step) heads for its whole part
+
+
+def map_vector(spots, n, sub, fallback=None):
+    """screen vector from node n's editor-map spot towards the branch whose nodes are sub (its first node first): to the
+    branch's own spot when that is MAP_NEAR_MM or more away, else to the middle of the branch's spotted nodes; fallback (the
+    generator's own heading) when n has no spot or the whole branch sits within MAP_NEAR_MM of it (a part on its tap, the
+    glove-box breakouts)"""
+    if n not in spots: return fallback
+    x0, y0 = spots[n]
+    if sub and sub[0] in spots:
+        v = (spots[sub[0]][0] - x0, spots[sub[0]][1] - y0)
+        if math.hypot(*v) >= MAP_NEAR_MM: return v
+    pts = [spots[m] for m in sub if m in spots]
+    if pts:
+        v = (sum(p[0] for p in pts) / len(pts) - x0, sum(p[1] for p in pts) / len(pts) - y0)
+        if math.hypot(*v) >= MAP_NEAR_MM: return v
+    return fallback
+
+
+MAP_OFF = []     # the last file's branches drawn more than MAP_OFF_DEG off their map direction: (node, branch, axis, degrees)
+MAP_OFF_DEG = 60.0
+
+
+def map_dirs(free, vecs, dv, fixed=None, size=None, n=None):
+    """{branch: axis}: each branch its own axis of free (keys of dv, screen unit vectors), the set of axes that best fits
+    the branches' map directions (vecs {branch: screen vector}; most total cosine, each weighted by the square root of its
+    branch's size, so the trunk keeps the map's main direction), so sibling order round the node is the map's; fixed
+    {branch: axis} are taken first. A branch drawn more than MAP_OFF_DEG off its map direction is listed in MAP_OFF"""
+    import itertools
+    out = dict(fixed or {})
+    rest = [c for c in vecs if c not in out]
+    left = [d for d in free if d not in out.values()]
+    assert len(rest) <= len(left), ("more branches than directions", rest, left)
+    def cos(v, d):
+        L = math.hypot(*v) if v else 0.0
+        return (dv[d][0] * v[0] + dv[d][1] * v[1]) / L if L else 0.0
+    w = {c: math.sqrt((size or {}).get(c, 1)) for c in rest}
+    best = None
+    for perm in itertools.permutations(left, len(rest)):
+        s = sum(w[c] * cos(vecs[c], d) for c, d in zip(rest, perm))
+        if best is None or s > best[0] + 1e-9: best = (s, perm)
+    out.update(zip(rest, best[1] if best else ()))
+    for c, d in out.items():
+        if vecs.get(c) and math.hypot(*vecs[c]) >= MAP_NEAR_MM:      # a part on its own tap spot has no map direction
+            deg = math.degrees(math.acos(max(-1.0, min(1.0, cos(vecs[c], d)))))
+            if deg > MAP_OFF_DEG: MAP_OFF.append((n, c, d, round(deg)))
+    return out
 
 
 # ------------------------------------------------------------------ the app's length formula (app.harness.design 1221)
