@@ -10,7 +10,7 @@ never an envelope). Each maker STEP goes where the old placeholder connector bod
         nut is cut out as its own body (the hex between y 2.6 and 6.6, outside its M18 x 1.5 thread, D18.0) and moved 3.0 back onto
         the wall's inner face. The nut ships as a separate part, so this is where it is screwed to. The body inside the wall (the core
         left where the nut was) is trimmed to the panel-hole shape it passes through: D18.0 with flats 16.4 apart, top and bottom
-        (CNLINKO hole D18.5, flats 16.5 +0.2/0, PLAN-notes). Nothing else is changed.
+        (CNLINKO hole D18.5, flats 16.5 +0.2/0, docs/enclosures/README.md "Source facts"). Nothing else is changed.
 
 The Fusion documents ST185-CSB3-Enclosure / ST185-VRC-Enclosure stay the master: `place` writes each connector, already in the
 box's frame, as <box>/<BOX>_part_<connector>.step; `fusion_real_connectors.py` imports those into the Fusion document in place of
