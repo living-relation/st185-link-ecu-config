@@ -638,10 +638,10 @@ B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, un
 NGHOST = B.add_ghosts(doc, H, NAME, strands=True)      # one ghost strand per other harness and path (Dan T4 a: AB-engine is near the limit)
 assert NCONN + NGHOST <= 100, 'ghost strands push AB-engine over the 100-connection limit'
 B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghost strands
-FB.regular(doc)         # the regular layout view (Dan 2026-11-15): formboard mode off, straight square runs, not to scale
-_fbad = FB.check_regular(doc)
+FB.regular(doc, B.car_frame(LT), LT['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
+_fbad = FB.check_regular(doc, square=False)
 assert not _fbad, 'layout: %r' % _fbad[:8]
-print('layout %d x %d units, formboard mode off' % FB.extent(doc))
+print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abeng_expect.json'), 'w'), indent=1)

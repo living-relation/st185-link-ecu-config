@@ -34,6 +34,7 @@ The drawing (view only: no wire, pin, length or part changes):
   own copy of the seat stub instead, so every routed wire length stays the same;
 - mated plugs (bussed receptacle caps, the CAN-Lambda terminator plug, the RADLOK firewall pairs) sit face to face.
 """
+import collections
 import math
 import os
 
@@ -1072,6 +1073,7 @@ def text_boxes(doc):
     for b in doc.get("bundles", []):
         if b["sourceId"] not in at or b["targetId"] not in at: continue
         path = bundle_path(doc, b, at)
+        if len(path) < 2: continue      # drawn with no length (check_regular lists it)
         n0 = len(out)
         for n, nxt in ((b["sourceId"], path[1]), (b["targetId"], path[-2])):
             v = vec.get(n, (0.0, 0.0)); vec[n] = (v[0] + nxt[0] - at[n][0], v[1] + nxt[1] - at[n][1])
@@ -1413,12 +1415,18 @@ R_LW = 2.0        # units: half the width a bundle line is kept clear at
 
 def _mv(r, o): return (r[0] + o[0], r[1] + o[1], r[2] + o[0], r[3] + o[1]) + r[4:]
 
-def _rgap(a, b): return R_TGAP if a[5] == "text" or b[5] == "text" else R_GAP
+def _rgap(a, b):
+    if a[5] == "xline" or b[5] == "xline": return 6.0 if a[5] == "text" or b[5] == "text" else 10.0
+    return R_TGAP if a[5] == "text" or b[5] == "text" else R_GAP
 
 def _rskip(a, b):
     """two drawn things that belong together: one owner, two bundle lines (or comb spines) out of one node, a bundle and
-    the part it ends on"""
+    the part it ends on. An xline (a piece of an anchored bundle of the car view, kept off its own end nodes) is kept clear
+    of everything but other xlines and its own end parts"""
     if a[4] == b[4]: return True
+    if a[5] == "xline" or b[5] == "xline":
+        if a[5] == b[5]: return True
+        return (b[5] == "node" and b[4] in a[6]) or (a[5] == "node" and a[4] in b[6])
     la, lb = a[5] in ("line", "spine"), b[5] in ("line", "spine")
     if la and lb and a[6] & b[6]: return True
     if b[5] == "node" and b[4] in a[6]: return True      # a bundle (or its own tag) and the part it ends on
@@ -1431,9 +1439,18 @@ def _rhit(a, b):
     return a[0] - g < b[2] and b[0] - g < a[2] and a[1] - g < b[3] and b[1] - g < a[3]
 
 
-def regular(doc):
-    """redraw doc's layout view the regular way in place (view only): formboard mode off, straight orthogonal bundles on the
-    grid, ends combed with every text clear; returns doc"""
+def regular(doc, frame=None, layout_nodes=None):
+    """redraw doc's layout view the regular way in place (view only): formboard mode off, ends combed with every text clear;
+    returns doc. With frame (build_drawings.car_frame of the layout tree) and layout_nodes (its nodes; a branch point
+    bp_<node> is that node): the car from above (Dan 2026-11-16), every branch point on its layout-editor spot at one
+    uniform scale for the file (front RIGHT, driver side UP), each bundle a straight run on its editor route; only the ends
+    and the nodes too close to their neighbour to show apart are combed round their spot. Without frame: the tree drawn as
+    straight orthogonal bundles on the grid (the self-tests' toy documents)"""
+    if frame is None: return _regular_once(doc)
+    return _car_regular(doc, frame, layout_nodes)
+
+
+def _regular_once(doc, car=None):
     doc.pop("formboard", None)
     T = _Tree(doc)
     T.s, T.textmode = 1.0, "all"
@@ -1455,6 +1472,68 @@ def regular(doc):
         order += part; left -= set(part)
     size = {}
     for n in reversed(order): size[n] = 1 + sum(size[c] for c, _ in kids.get(n, []))
+    # the car view: a spotted branch point far enough from its nearest anchored ancestor to show apart is anchored on its
+    # spot (car mm times the file's scale); the rest (ends, splices, box breakouts, a tap on its device) are combed round it
+    anch, SPOT, EXT = set(), {}, {}
+    if car:
+        kx = car["k"]
+        SPOT = {n: (car["spot"][n][0] * kx, car["spot"][n][1] * kx) for n in car["spot"]}
+        anc = {}
+        for n in order:
+            p = parent[n]
+            a = anc.get(p[0]) if p else None
+            if p is None and n not in SPOT:      # a piece whose root has no spot: on its first spotted node's spot
+                rest = order[order.index(n) + 1:]
+                nxt = next((i for i, m in enumerate(rest) if parent[m] is None), len(rest))
+                near = next((m for m in rest[:nxt] if m in SPOT), None)
+                SPOT[n] = SPOT[near] if near else (0.0, 0.0)
+            if n in SPOT and (p is None or (p[1] is not None and (a is None or math.hypot(SPOT[n][0] - SPOT[a][0], SPOT[n][1] - SPOT[a][1]) >= car["dmin"]))):
+                anch.add(n); anc[n] = n
+            else:
+                anc[n] = a
+        # a cluster = an anchored node and the nodes combed round it. Its anchor moves to the spotted member with the most
+        # runs to other clusters (a junction whose runs fan out in the car stays on its spot; the box breakouts beside it
+        # are combed instead), and the cluster's own tree is re-rooted there
+        cl = dict(anc)
+        XE = [(parent[n][0], n, parent[n][1]) for n in order if parent[n] and parent[n][1] is not None and cl[parent[n][0]] != cl[n]]
+        nx = collections.Counter(x for u, v, _ in XE for x in (u, v))
+        members = {}
+        for n in order: members.setdefault(cl[n], []).append(n)
+        newp, newk, anch2 = {}, {}, set()
+        for c0, mem in members.items():
+            A = max((m for m in mem if m in SPOT), key=lambda m: (nx[m], m == c0, -mem.index(m)))
+            anch2.add(A)
+            ms = set(mem)
+            newp[A] = None; todo = [A]
+            for x in todo:
+                for y, b in T.adj.get(x, []):
+                    if y in ms and y not in newp:
+                        newp[y] = (x, b); newk.setdefault(x, []).append((y, b)); todo.append(y)
+            for m in mem: cl[m] = A
+        assert set(newp) == set(parent), "car view: a cluster is not connected"
+        parent.clear(); parent.update(newp); kids.clear(); kids.update(newk)
+        o2 = []
+        for c0 in members:      # each cluster's members parent first
+            A = next(x for x in members[c0] if newp[x] is None)
+            seq = [A]
+            for x in seq: seq += [y for y, _ in newk.get(x, [])]
+            o2 += seq
+        order = o2
+        anch = anch2
+        size.clear()
+        for n in reversed(order): size[n] = 1 + sum(size[c] for c, _ in kids.get(n, []))
+        def _cv(a, b):
+            d = (b[0] - a[0], b[1] - a[1]); L = math.hypot(*d)
+            return (d[0] / L, d[1] / L) if L > 1e-6 else None
+        for u, v, b in XE:      # the directions the runs between clusters leave their two nodes (car, first leg of the route)
+            mid = car["via"](u, v, b)
+            for x, q0, q1 in ((u, SPOT[u], mid[0] if mid else SPOT[v]), (v, SPOT[v], mid[-1] if mid else SPOT[u])):
+                w = _cv(q0, q1)
+                if w: EXT.setdefault(x, []).append(w)
+        car["anch"], car["cl"], car["XE"] = anch, cl, XE
+        car["xb"] = {b["id"]: (u, v, b) for u, v, b in XE}
+    def clear_of(n, d):      # degrees between axis d and the nearest anchored bundle leaving n
+        return min([math.degrees(math.acos(max(-1.0, min(1.0, d[0] * v[0] + d[1] * v[1])))) for v in EXT.get(n, [])] + [180.0])
     NO = frozenset()
     inl = {}      # spot -> the inline parts that sit on it (one under the other, R_INLINE apart, each with its texts above it)
     for k in INLINE_KINDS:
@@ -1476,8 +1555,13 @@ def regular(doc):
         return [_pbb(q) + (b["id"] + ("#tag" if k == "tag" else ""), "text", frozenset((b["sourceId"], b["targetId"]))) for q, k in zip(qs, kd)]
 
     memo = {}
+    EXTRA, CUR = [], [None, 0]    # the car view: what is already drawn round the anchored node CUR being laid (its frame)
+    sub_of = {}
+    for n in reversed(order): sub_of[n] = frozenset([n]).union(*[sub_of[c] for c, _ in kids.get(n, [])])
     def lay(n, din, side=None):
-        key = (n, din, side)
+        f = (car or {}).get("force") or {}
+        fz = frozenset((k_, v) for k_, v in f.items() if (k_[0] if isinstance(k_, tuple) else k_) in sub_of.get(n, ()))
+        key = (n, din, side, fz, n == CUR[0] and (CUR[0], CUR[1]))
         if key not in memo: memo[key] = _lay(n, din, side)
         return memo[key]
 
@@ -1515,13 +1599,14 @@ def regular(doc):
                     if lo < ln < hi:
                         if hi >= 1e9: return None
                         ln = int(math.ceil(hi / GRID)) * GRID; moved = True
+            if car and ln > CAR_PUT_MAX: return None
             o = (d[0] * ln, d[1] * ln)
             if b is None: tx = []; break
             tx = btexts(b, n, [(0, 0), o])
             if not any(_rhit(t, r) for t in tx for r in allr) and not any(_rhit(t, _mv(r, o)) for t in tx for r in sub) \
                and not any(_rhit(t, z) for t in tx for z in tx if t is not z): break
             ln += GRID
-            if ln > 90000: return None
+            if ln > (CAR_PUT_MAX if car else 90000): return None
         out = [_mv(r, o) for r in sub] + tx
         paths = {k: [(q[0] + o[0], q[1] + o[1]) for q in v] for k, v in spaths.items()}
         if b is not None:
@@ -1535,6 +1620,7 @@ def regular(doc):
         horiz = cd[1] == 0
         pf = PREFER.get(n)
         sx = cd[0] if horiz else (-1 if pf and pf[0] < 0 else 1)
+        if not horiz and car and (n, "rows") in car["force"]: sx = car["force"][(n, "rows")]     # the car view: rows turned
         old = T.old
         cross = (lambda c: old[c][1]) if horiz else (lambda c: cd[1] * old[c][1])
         rs = sorted(rows, key=lambda cb: (cross(cb[0]), sx * old[cb[0]][0], cb[0]))
@@ -1613,9 +1699,9 @@ def regular(doc):
     def _lay(n, din, side):
         """n's piece of the tree with n at (0, 0), reached along din: (rects, node positions, bundle paths, label sides)"""
         rects, pos, paths, sides = [], {n: (0, 0)}, {}, {}
-        ch = kids.get(n, [])
+        ch = [(c, b) for c, b in kids.get(n, []) if c not in anch]      # an anchored child is drawn from its own spot
         back = (-din[0], -din[1]) if din else None
-        rows = [(c, b) for c, b in ch if b is not None and (c not in T.bps or not kids.get(c))]
+        rows = [(c, b) for c, b in ch if b is not None and (c not in T.bps or (not kids.get(c) and c not in EXT))]
         rowset = {c for c, _ in rows}
         branches = [(c, b) for c, b in ch if b is not None and c not in rowset]
         mates_ = [(c, b) for c, b in ch if b is None]
@@ -1628,19 +1714,30 @@ def regular(doc):
             if mates_: used.append(din or (1, 0))          # its mated half sits straight on
             if first: used.append(first)
             asg = {}
+            # the car view: an axis within 45 degrees of an anchored bundle out of n is taken only when nothing else is free
+            def frees():
+                f = [d for d in AXES if d not in used]
+                return [d for d in f if clear_of(n, d) >= 45] or f
+            force = (car or {}).get("force", {})
             for c, b in sorted(branches, key=lambda cb: (-size[cb[0]], cb[0])):
                 u0 = PREFER.get(c) or (din if (n not in T.bps and din) else T.old_dir(n, c, b))
-                free = [d for d in AXES if d not in used]
+                if car and c in SPOT and n in SPOT and not PREFER.get(c):      # towards its own spot in the car
+                    dv = (SPOT[c][0] - SPOT[n][0], SPOT[c][1] - SPOT[n][1])
+                    if math.hypot(*dv) > 1e-6: u0 = dv
+                if car and (n, c) in force and force[(n, c)] in frees(): u0 = force[(n, c)]
+                free = frees()
                 assert free, "more branches than directions at %s" % n
                 asg[c] = max(free, key=lambda d: d[0] * u0[0] + d[1] * u0[1]); used.append(asg[c])
             cd = first
             if rows and not cd:
-                free = [d for d in AXES if d not in used]
+                free = frees()
                 assert free, "no free side for the ends at %s" % n
                 upright = [d for d in ((0, -1), (0, 1)) if d in free]
-                if pf in free: cd = pf
+                if car and force.get(n) in free: cd = force[n]
+                elif pf in free: cd = pf
                 elif pf and upright: cd = upright[0]          # an upright spine: its rows still run to the box's side (A35)
                 elif din in free: cd = din
+                elif car and EXT.get(n): cd = max(free, key=lambda d: (clear_of(n, d), -AXES.index(d)))
                 else: cd = next(d for d in ((0, -1), (0, 1), (1, 0), (-1, 0)) if d in free)
                 used.append(cd)
             return used, asg, cd
@@ -1672,7 +1769,7 @@ def regular(doc):
             rects.extend(out); pos.update(ps); paths.update(pa); sides.update(sd)
         if rows: take((0,) + comb(n, rows, cd))
         for c, b in mates_:
-            got = put(n, c, None, din or (1, 0), R_MATE, rects + ray)
+            got = put(n, c, None, din or (1, 0), R_MATE, rects + ray + (EXTRA if n == CUR[0] else []))
             assert got, "no clear place for the mated half %s of %s" % (c, n)
             take(got)
         todo = sorted(branches, key=lambda cb: (size[cb[0]], cb[0]))
@@ -1680,7 +1777,7 @@ def regular(doc):
             got = None
             later = [lane(asg[x]) for x, _ in todo[j + 1:]]     # the ways out of the branches still to come stay free
             for d in [asg[c]] + [d for d in AXES if d not in used]:
-                got = put(n, c, b, d, R_MINL, rects + ray + later)
+                got = put(n, c, b, d, R_MINL, rects + ray + later + (EXTRA if n == CUR[0] else []))
                 if got:
                     if d != asg[c]: used.append(d)
                     break
@@ -1689,6 +1786,148 @@ def regular(doc):
         return rects, pos, paths, sides
 
     RECTS, POS, PATHS, SIDES = [], {}, {}, {}
+    if car:      # each cluster's piece round its anchor's spot, then the runs between clusters straight on their editor routes
+        owner = {}
+        force = car["force"]
+        XE = car["XE"]
+        xe_at = {}
+        for u, v, b in XE:
+            xe_at.setdefault(u, []).append((u, v, b)); xe_at.setdefault(v, []).append((u, v, b))
+        def g30(q): return (int(round(q[0] / GRID)) * GRID, int(round(q[1] / GRID)) * GRID)
+        def where(x, at=None):      # a node's drawn spot: placed, or this attempt's, or its own spot (an anchor: on the grid)
+            if at and x in at: return at[x]
+            if x in POS: return POS[x]
+            return g30(SPOT[x]) if x in anch else SPOT[x]
+        def xpath(u, v, b, at=None):
+            return [where(u, at)] + list(car["via"](u, v, b)) + [where(v, at)]
+        def xl_rects(u, v, b, at=None):
+            """a run between two clusters as a chain of small boxes (off its two end nodes) and its length label"""
+            pts = xpath(u, v, b, at)
+            ends, out = frozenset((u, v)), []
+            for a0, a1 in zip(pts, pts[1:]):
+                L = math.hypot(a1[0] - a0[0], a1[1] - a0[1])
+                for i in range(int(L // 12) + 1):
+                    q = (a0[0] + (a1[0] - a0[0]) * i * 12 / (L or 1), a0[1] + (a1[1] - a0[1]) * i * 12 / (L or 1))
+                    if min(math.hypot(q[0] - pts[0][0], q[1] - pts[0][1]), math.hypot(q[0] - pts[-1][0], q[1] - pts[-1][1])) < 40: continue
+                    out.append((q[0] - R_LW, q[1] - R_LW, q[0] + R_LW, q[1] + R_LW, b["id"], "xline", ends))
+            if b["sourceId"] != u: pts = pts[::-1]
+            return out + btexts(b, b["sourceId"], pts)
+        def near(rs, box, g=60):
+            return [x for x in rs if x[0] < box[2] + g and box[0] - g < x[2] and x[1] < box[3] + g and box[1] - g < x[3]]
+        def index(rs, c=240):
+            g = {}
+            for x in rs:
+                for i in range(int(x[0] // c), int(x[2] // c) + 1):
+                    for j in range(int(x[1] // c), int(x[3] // c) + 1): g.setdefault((i, j), []).append(x)
+            return g, c
+        def hits(rr, others):
+            if not rr: return 0
+            if isinstance(others, tuple):      # an index: each box against what lies in its cells
+                g, c = others
+                tot = 0
+                for a in rr:
+                    seen = set()
+                    for i in range(int((a[0] - 30) // c), int((a[2] + 30) // c) + 1):
+                        for j in range(int((a[1] - 30) // c), int((a[3] + 30) // c) + 1):
+                            for x in g.get((i, j), ()):
+                                if id(x) not in seen:
+                                    seen.add(id(x))
+                                    if _rhit(a, x): tot += 1
+                return tot
+            box = (min(x[0] for x in rr), min(x[1] for x in rr), max(x[2] for x in rr), max(x[3] for x in rr))
+            cand = near(others, box)
+            return sum(1 for a in rr for x in cand if _rhit(a, x))
+        def piece_nodes(p):      # the nodes of a piece that comb ends or carry a branch
+            return [m for m in p if kids.get(m)]
+        PIECE, H0 = {}, {}
+        sched = [n for n in order if n in anch]
+        # every piece in turn, then once more each piece that still hits something, against everything drawn by then
+        for n in sched + [None] + sched:
+            if n is None:
+                CUR[1] += 1; continue
+            if n in H0 and not H0[n]: continue
+            o = g30(SPOT[n])
+            CUR[0] = n
+            mem = {m for m in order if car["cl"][m] == n}
+            # what is drawn already, and every run between clusters that does not touch this piece (from where its ends are)
+            XL = [x for u, v, b in XE if u not in mem and v not in mem for x in xl_rects(u, v, b)]
+            world = [x for m, rs in PIECE.items() if m != n for x in rs] + XL
+            WI = index(world)
+            EXTRA[:] = [_mv(x, (-o[0], -o[1])) for x in near(world, (o[0] - 3000, o[1] - 3000, o[0] + 3000, o[1] + 3000))]
+            mine_x = [(u, v, b) for u, v, b in XE if u in mem or v in mem]
+            def attempt():
+                try: got = lay(n, None)
+                except AssertionError: return None, 10 ** 9
+                mine = [_mv(x, o) for x in got[0]]
+                at = {k_: (q[0] + o[0], q[1] + o[1]) for k_, q in got[1].items()}
+                # the runs that leave this piece, from where its nodes now sit
+                fut = [x for u, v, b in mine_x for x in xl_rects(u, v, b, at)]
+                return got, hits(mine, WI) + hits(fut, WI) + hits(fut, mine)
+            got, h = attempt()
+            if h:      # turn combs and local branches (a small beam search over the sides) while anything is hit
+                keys = [key for m in sorted(mem) if kids.get(m) for key in
+                        [m, (m, "rows")] + [(m, c) for c, _ in kids.get(m, []) if kids.get(c) or c in EXT]]
+                vals = lambda key: (1, -1) if isinstance(key, tuple) and key[1] == "rows" else AXES
+                base = {key: force.get(key) for key in keys}
+                def with_(ch):
+                    for key, d in ch.items(): force[key] = d
+                    try: return attempt()
+                    finally:
+                        for key in ch:
+                            if base[key] is None: force.pop(key, None)
+                            else: force[key] = base[key]
+                beam, top = [(h, {})], (h, {})
+                for _depth in range(CAR_BEAM[1]):
+                    new, seen = [], set()
+                    for hb, ch in beam:
+                        for key in keys:
+                            for d in vals(key):
+                                if ch.get(key, base[key]) == d: continue
+                                ch2 = dict(ch); ch2[key] = d
+                                sig = frozenset(ch2.items())
+                                if sig in seen: continue
+                                seen.add(sig)
+                                g2, h2 = with_(ch2)
+                                if g2 is None: continue
+                                new.append((h2, ch2))
+                                if h2 < top[0]: top = (h2, ch2)
+                                if h2 == 0: break
+                            if top[0] == 0: break
+                        if top[0] == 0: break
+                    if top[0] == 0 or not new: break
+                    new.sort(key=lambda t: (t[0], len(t[1])))
+                    beam = new[:CAR_BEAM[0]]
+                if DEBUG: print("  beam %s: keys %s, %d -> %s" % (n, keys, h, top))
+                if top[0] < h:
+                    for key, d in top[1].items(): force[key] = d
+                    got, h = attempt()
+            if got is None:      # nothing clear of what is drawn round it: laid on its own (the final gate decides)
+                CUR[0] = None
+                got, h = attempt()
+            assert got is not None, "no clear piece at %s" % n
+            if DEBUG and h:
+                mine = [_mv(x, o) for x in got[0]]
+                at = {k_: (q[0] + o[0], q[1] + o[1]) for k_, q in got[1].items()}
+                fut = [x for u, v, b in mine_x for x in xl_rects(u, v, b, at)]
+                hp = collections.Counter((a[4], a[5], x[4], x[5]) for a in mine for x in near(world, a, 30) if _rhit(a, x))
+                hp.update((a[4], a[5], x[4], x[5]) for a in fut for x in near(world + mine, a, 30) if _rhit(a, x))
+                print("  piece %s: %d hits %s" % (n, h, hp.most_common(8)))
+            r, p, pa, sd = got
+            PIECE[n] = [_mv(x, o) for x in r]; H0[n] = h
+            for k_ in p: owner[k_] = n
+            for x in r: owner.setdefault(x[4], n)
+            POS.update({k_: (v[0] + o[0], v[1] + o[1]) for k_, v in p.items()})
+            PATHS.update({k_: [(q[0] + o[0], q[1] + o[1]) for q in v] for k_, v in pa.items()})
+            for k_ in pa: owner.setdefault(k_, n)
+            SIDES.update(sd)
+        RECTS = [x for rs in PIECE.values() for x in rs]
+        for u, v, b in XE:
+            mid = [g30(q) for q in car["via"](u, v, b)]
+            path = [POS[u]] + mid + [POS[v]]
+            PATHS[b["id"]] = path if b["sourceId"] == u else path[::-1]
+            owner[b["id"]] = car["cl"][v]
+        car["owner"] = owner
+        roots = []
     for root in roots:      # the main tree, then any separate piece (a ground strap) below it
         r, p, pa, sd = lay(root, None)
         o = (0, 0)
@@ -1733,6 +1972,147 @@ def regular(doc):
     return doc
 
 
+CAR_K = (0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0)   # layout units per car mm tried, smallest first
+CAR_TRIES = 6                 # whole-file tries at one scale (each turns the combs named in the last one's problems)
+CAR_END_MM = 120.0            # a route bend nearer a node than this is left out (the run goes straight in)
+CAR_SIMPLIFY_MM = 40.0        # a route bend nearer than this to the straight line past it is left out (straight runs)
+CAR_BEAM = (10, 4)            # beam width and depth of the comb / branch side search per piece
+CAR_PUT_MAX = 1200            # units: the longest a combed branch is drawn in the car view (else it tries another side)
+CAR_ON_SPOT = 0.8             # share of the spotted nodes drawn on their spots before a scale is taken
+CAR_STATS = {}                # the last car layout: {"k": scale, "anchored": n, "local": [...], "tries": n}
+
+
+def _simplify(pts, tol):
+    """Douglas-Peucker: the bends of a polyline that stand more than tol off the straight run past them"""
+    if len(pts) < 3: return list(pts)
+    a, b = pts[0], pts[-1]
+    i, dm = 0, -1.0
+    for j in range(1, len(pts) - 1):
+        d = _seg_dist(a, b, pts[j], pts[j])
+        if d > dm: i, dm = j, d
+    if dm <= tol: return [a, b]
+    return _simplify(pts[:i + 1], tol)[:-1] + _simplify(pts[i:], tol)
+
+
+def _car_regular(doc, frame, layout_nodes):
+    """the car view (see regular): the smallest scale of CAR_K at which every end comb, label and run stands clear
+    (check_regular with slanted runs); at each scale a crowded node's comb or branch is turned to its next side first"""
+    import copy as _copy, re as _re
+    spots_mm, route = frame
+    rev = {"bp_" + _re.sub(r"[^A-Za-z0-9]", "_", n): n for n in layout_nodes}
+    free = set(getattr(route, "free", ()))
+    bps = {e["id"] for e in doc.get("branchPoints", [])}
+    spot = {b: tuple(spots_mm[rev[b]]) for b in bps if b in rev and rev[b] in spots_mm and rev[b] not in free}
+    vias, straight = {}, set()      # straight: anchored bundles drawn node to node (their route ran on top of another's)
+    def via_mm(p, n, b):
+        key = (p, n, b["id"])
+        if b["id"] in straight: return []
+        if key not in vias:
+            r = route(rev[p], rev[n], _mm(b["length"])) if p in spot and n in spot else None
+            mid = _simplify(r, CAR_SIMPLIFY_MM)[1:-1] if r else []
+            # no bend right by a node: the run goes straight in (its last short jog would lie on the node's own comb)
+            vias[key] = [q for q in mid if min(math.hypot(q[0] - r[0][0], q[1] - r[0][1]), math.hypot(q[0] - r[-1][0], q[1] - r[-1][1])) >= CAR_END_MM]
+        return vias[key]
+    last, tries, best, fallback = None, 0, None, None
+    for k in ([float(os.environ["FB_K"])] if os.environ.get("FB_K") else CAR_K):
+        force, turns, prev_bad = {}, collections.Counter(), None
+        for _ in range(CAR_TRIES):
+            tries += 1
+            d = _copy.deepcopy(doc)
+            car = {"k": k, "spot": spot, "dmin": R_MINL, "force": force,
+                   "via": lambda p, n, b, k=k: [(q[0] * k, q[1] * k) for q in via_mm(p, n, b)]}
+            try:
+                _regular_once(d, car)
+            except AssertionError as e:
+                last = "k %g: %s" % (k, e); break
+            bad = check_regular(d, square=False)
+            if not bad:
+                # on their spots: the anchored nodes and any other spotted node drawn within 60 mm (car) of its spot
+                at = {e["id"]: _centre(e) for e in d.get("branchPoints", [])}
+                onspot = sorted(m for m in spot if m in at and math.hypot(at[m][0] - HALF - spot[m][0] * k, at[m][1] - HALF - spot[m][1] * k) <= max(60 * k, 45))
+                st = dict(k=k, anchored=len(onspot), spotted=len(spot), tries=tries, local=sorted(set(spot) - set(onspot)),
+                          crossings=list(CROSSINGS), straight=sorted(straight))
+                if fallback is None or len(onspot) > fallback[0]["anchored"]: fallback = (st, d)
+                break
+            last = "k %g: %s" % (k, bad[:4])
+            if bad == prev_bad: break      # the turns changed nothing: the next scale
+            prev_bad = bad
+            if DEBUG: print("car k %g try %d: %d problems %s" % (k, _, len(bad), bad[:3]))
+            if os.environ.get("FB_DUMP") and (best is None or len(bad) <= best[0] or os.environ.get("FB_K")):
+                best = (len(bad), k)
+                import json as _json
+                _json.dump(d, open(os.environ["FB_DUMP"], "w"), indent=1)
+            # two anchored bundles whose routes run on top of each other: the one with route bends drawn straight instead
+            xb = {i: len(via_mm(*v)) for i, v in car["xb"].items()}
+            more = False
+            for msg in bad:
+                m_ = _re.match(r"bundles cross or overlap: (\S+) / (\S+)$", msg)
+                if m_ and m_.group(1) in xb and m_.group(2) in xb:
+                    x = max((m_.group(1), m_.group(2)), key=lambda i: (xb[i], i))
+                    if xb[x] and x not in straight: straight.add(x); more = True
+            if more: continue
+            # the anchored nodes whose pieces are in the problems: turn their combs (then a local branch) to the next side
+            own, hit = car["owner"], []
+            for msg in bad:
+                for tok in _re.findall(r"[A-Za-z0-9_\-.:#]+", msg):
+                    n = own.get(tok.split("#")[0])
+                    if n is not None and n not in hit: hit.append(n)
+            if not hit: break
+            for n in hit:
+                turns[n] += 1
+                i = turns[n]
+                force[n] = AXES[i % 4]
+        if fallback and fallback[0]["anchored"] >= CAR_ON_SPOT * len(spot): break
+    if fallback is None: raise AssertionError("car layout: nothing clear up to scale %g (%s)" % (CAR_K[-1], last))
+    doc.clear(); doc.update(fallback[1])
+    CAR_STATS.clear(); CAR_STATS.update(fallback[0])
+    return doc
+
+
+def line_text_hits(doc):
+    """[(bundle, text owner)]: a bundle run through a text that is not its own, its end parts' or a bundle's sharing one of
+    its ends (the car view's slanted runs; the square view keeps these clear while placing)"""
+    at = {e["id"]: _centre(e) for k in NODE_KINDS for e in doc.get(k, []) if e.get("layoutPosition")}
+    near = {}
+    for b in doc.get("bundles", []):
+        for x in (b["sourceId"], b["targetId"]): near.setdefault(x, set()).add(b["id"])
+    onloc = {}
+    for k in INLINE_KINDS:
+        for e in doc.get(k, []):
+            if e.get("locationId"): onloc.setdefault(e["locationId"], set()).add(e["id"])
+    texts = [(o.split("#")[0], _pbb(p), p) for o, p, _ in text_boxes(doc)]
+    out = []
+    for b in doc.get("bundles", []):
+        if b["sourceId"] not in at or b["targetId"] not in at: continue
+        pts = bundle_path(doc, b, at)
+        mine = {b["id"], b["sourceId"], b["targetId"]} | near.get(b["sourceId"], set()) | near.get(b["targetId"], set()) \
+            | onloc.get(b["sourceId"], set()) | onloc.get(b["targetId"], set())
+        for o, bb, poly in texts:
+            if o in mine: continue
+            for a, c in zip(pts, pts[1:]):
+                if max(a[0], c[0]) < bb[0] - R_LW or min(a[0], c[0]) > bb[2] + R_LW or max(a[1], c[1]) < bb[1] - R_LW or min(a[1], c[1]) > bb[3] + R_LW:
+                    continue
+                if _poly_seg_hit(poly, a, c, R_LW): out.append((b["id"], o)); break
+    return out
+
+
+def _poly_seg_hit(poly, a, c, g):
+    """a segment a-c within g of a convex polygon (or inside it)"""
+    n = len(poly)
+    for i in range(n):
+        if _seg_dist(poly[i], poly[(i + 1) % n], a, c) < g: return True
+    def inside(p):
+        sg = 0
+        for i in range(n):
+            x0, y0 = poly[i]; x1, y1 = poly[(i + 1) % n]
+            cr = (x1 - x0) * (p[1] - y0) - (y1 - y0) * (p[0] - x0)
+            if cr != 0:
+                if sg == 0: sg = 1 if cr > 0 else -1
+                elif (cr > 0) != (sg > 0): return False
+        return True
+    return inside(a) or inside(c)
+
+
 def _after_common(p, q):
     """two paths out of one point: what is left of each after the run they share, and the point where they part"""
     p, q = list(p), list(q)
@@ -1761,12 +2141,30 @@ def extent(doc):
     return (round(max(xs) - min(xs)), round(max(ys) - min(ys))) if xs else (0, 0)
 
 
-def check_regular(doc):
+CROSSINGS = []      # the last check_regular(square=False): runs that cross cleanly, as in the car
+
+
+def _clean_cross(s1, s2, min_deg=20.0):
+    """two segments that properly intersect at min_deg or more, each crossing point at least 30 units from every end"""
+    (p, q), (a, b) = s1, s2
+    d1, d2 = (q[0] - p[0], q[1] - p[1]), (b[0] - a[0], b[1] - a[1])
+    den = d1[0] * d2[1] - d1[1] * d2[0]
+    L1, L2 = math.hypot(*d1), math.hypot(*d2)
+    if not L1 or not L2 or abs(den) / (L1 * L2) < math.sin(math.radians(min_deg)): return False
+    t = ((a[0] - p[0]) * d2[1] - (a[1] - p[1]) * d2[0]) / den
+    u = ((a[0] - p[0]) * d1[1] - (a[1] - p[1]) * d1[0]) / den
+    return 30.0 / L1 < t < 1 - 30.0 / L1 and 30.0 / L2 < u < 1 - 30.0 / L2
+
+
+def check_regular(doc, square=True):
     """the regular layout gate: [] when formboard mode is off, every bundle has a set length and runs square (no slant), no
     two bundles cross or overlap (the end stubs of one node may share their comb spine out of it), none runs through a
     part, no two parts share a spot and no text overlaps another (label_overlaps, full-size text); else a list of problems.
-    The 1:1 gates of check() (drawn = set length, panel grid) do not apply: drawn length is not to scale"""
+    The 1:1 gates of check() (drawn = set length, panel grid) do not apply: drawn length is not to scale. square=False: the
+    car view (Dan 2026-11-16), whose runs follow the editor routes at any angle; no bundle may run through a text instead
+    (line_text_hits)"""
     bad = []
+    CROSSINGS.clear()
     if doc.get("formboard"): bad.append("formboard mode is on")
     at = {e["id"]: _centre(e) for k in NODE_KINDS for e in doc.get(k, []) if e.get("layoutPosition")}
     bps = {e["id"] for e in doc.get("branchPoints", [])}
@@ -1780,9 +2178,12 @@ def check_regular(doc):
         pts = bundle_path(doc, b, at)
         if len(pts) < 2:
             bad.append("%s: drawn with no length" % b["id"]); continue
-        if any(abs(p[0] - q[0]) > 1e-6 and abs(p[1] - q[1]) > 1e-6 for p, q in zip(pts, pts[1:])): bad.append("%s: a slanted run" % b["id"])
+        if square and any(abs(p[0] - q[0]) > 1e-6 and abs(p[1] - q[1]) > 1e-6 for p, q in zip(pts, pts[1:])): bad.append("%s: a slanted run" % b["id"])
         P[b["id"]] = (b, pts)
     ids = sorted(P)
+    inl_at = {e.get("locationId") for k in INLINE_KINDS for e in doc.get(k, [])}
+    def is_run(b):       # a run between two junctions (not an end stub, not an inline part's stub)
+        return all(z in bps and z not in inl_at for z in (b["sourceId"], b["targetId"]))
     def stub(b, s):      # b ends, away from s, where nothing else leaves
         return deg.get(b["targetId"] if b["sourceId"] == s else b["sourceId"], 0) == 1
     for i, x in enumerate(ids):
@@ -1797,13 +2198,19 @@ def check_regular(doc):
                 qy = py if by["sourceId"] == s else py[::-1]
                 keep = qx[0]
                 if stub(bx, s) and stub(by, s): qx, qy, keep = _after_common(qx, qy)
-            hit = False
+            hit, clean = False, True
+            # the car view: two runs between branch points that share no node may cross cleanly (they pass over / under
+            # each other in the car); listed in CROSSINGS, not failed
+            trunk = not square and not shared and (is_run(bx) or is_run(by))
             for a0, a1 in zip(qx, qx[1:]):
                 for c0, c1 in zip(qy, qy[1:]):
                     s1, s2 = (a0, a1), (c0, c1)
                     if keep is not None: s1, s2 = _clip2(s1, keep, 20.0), _clip2(s2, keep, 20.0)
-                    if s1 and s2 and _seg_dist(s1[0], s1[1], s2[0], s2[1]) < CLR: hit = True
-            if hit: bad.append("bundles cross or overlap: %s / %s" % (x, y))
+                    if s1 and s2 and _seg_dist(s1[0], s1[1], s2[0], s2[1]) < CLR:
+                        hit = True
+                        if not (trunk and _clean_cross(s1, s2)): clean = False
+            if hit and trunk and clean: CROSSINGS.append((x, y))
+            elif hit: bad.append("bundles cross or overlap: %s / %s" % (x, y))
     parts = sorted((p, n) for n, p in at.items() if n not in bps)
     for x in ids:
         b, pts = P[x]
@@ -1815,4 +2222,5 @@ def check_regular(doc):
             if q[0] - p[0] >= NODE_GAP: break
             if math.hypot(q[0] - p[0], q[1] - p[1]) < NODE_GAP: bad.append("two parts on one spot: %s / %s" % (n, m))
     bad += ["labels overlap: %s / %s" % ab for ab in label_overlaps(doc)]
+    if not square: bad += ["%s runs through the text of %s" % ab for ab in line_text_hits(doc)]
     return bad

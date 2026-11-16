@@ -607,10 +607,10 @@ NGHOST = B.add_ghosts(doc, H, 'HeavyDC')      # other harnesses' wires in these 
 assert len(wires) + NGHOST <= 100, 'ghost wires push HeavyDC over the 100-connection limit'
 B.fill_ghost_note(doc, 'HeavyDC')      # the title note says which pass-through wires are drawn as ghosts
 print('ghost wires', NGHOST)
-FB.regular(doc)         # the regular layout view (Dan 2026-11-15): formboard mode off, straight square runs, not to scale
-_fbad = FB.check_regular(doc)
+FB.regular(doc, B.car_frame(H.layout), H.layout['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
+_fbad = FB.check_regular(doc, square=False)
 assert not _fbad, 'layout: %r' % _fbad[:8]
-print('layout %d x %d units, formboard mode off' % FB.extent(doc))
+print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
 json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)   # routed: upload as is (no separate genroute.py pass)
 json.dump(lib_add, open(os.path.join(OUT, 'hdc_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(doc.get('connectors', [])), 'terminals', len(doc.get('terminals', [])), 'splices', len(doc.get('splices', [])), 'wires', len(doc.get('wires', [])), 'cables 0', 'bundles', len(bundles),

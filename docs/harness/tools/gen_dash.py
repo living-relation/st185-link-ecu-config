@@ -774,10 +774,10 @@ def build(REPO, OUT, CFG):
     head_now = [n for n in doc['schematicNotes'] if n['id'] in head_ids]
     HEAD_Y = int(math.floor((-LABEL_H - GAP_TXT - 15 - max(note_half(n['text']) for n in head_now)) / 30.0)) * 30
     for n in head_now: n['schematicPosition']['y'] = HEAD_Y
-    FB.regular(doc)         # the regular layout view (Dan 2026-11-15): formboard mode off, straight square runs, not to scale
-    _fbad = FB.check_regular(doc)
+    FB.regular(doc, B.car_frame(H.layout), H.layout['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
+    _fbad = FB.check_regular(doc, square=False)
     assert not _fbad, 'layout: %r' % _fbad[:8]
-    print('layout %d x %d units, formboard mode off' % FB.extent(doc))
+    print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
     json.dump(doc, open(os.path.join(OUT, STEM + '.json'), 'w'), indent=1)   # routed: upload as is
     json.dump(lib_add, open(os.path.join(OUT, STEM + '_lib_ops.json'), 'w'), indent=1)
     json.dump(expect, open(os.path.join(OUT, STEM + '_expect.json'), 'w'), indent=1)

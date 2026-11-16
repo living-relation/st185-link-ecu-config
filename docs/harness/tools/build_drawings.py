@@ -1547,6 +1547,103 @@ MIN_BREAKOUT_MM = 152   # a connector part-way along a line sits at least 6 in o
 JOIN_PT = 15.0   # a line or branch end this close to another line joins it
 
 
+def pt_to_car(p):
+    """an engine-bay map point (1993 EWD p.36 points) in car mm (x fore-aft, front +; y side to side, driver -): the
+    corridor conversion of corridors.json / check_corridors.to_car (car_x = 5.3 y - 1019.1, car_y = 1519.3 - 5.3 x)"""
+    return (round(MM_PER_PT * p[1] - 1019.1, 1), round(1519.3 - MM_PER_PT * p[0], 1))
+
+
+# tree junctions that are no seed device: the seed line end they sit on (HeavyDC: the alternator B+ cable joins the block
+# ground leg at the end of its seed line ALT, A4 b)
+SEED_JOINS = {"BLK_J": ("HeavyDC", "ALT", -1)}
+
+
+def car_frame(L):
+    """(spots, route) of the layout tree in car mm, the placement editors' top view (Dan 2026-11-15: the formboard mirrors
+    the editor routes): spots {node: (x, y)} for every node whose spot the editors hold (a seed's `mm`, a route-file node's
+    run-time `car`, a glove-box breakout on its rev 8 box-frame spot, a drop node on its device's spot); route(a, b) = the
+    polyline a -> b along the layout tree (tree_mm via points, the route files' own line shapes), or None when a node on the
+    way has no spot. A segment with no shape of its own is the straight line between its two nodes."""
+    nodes, tm = L["nodes"], L.get("tree_mm") or {}
+    via, shape = tm.get("via", {}), L.get("_route_car", {})
+    spots = {}
+    for n, v in nodes.items():
+        if "mm" in v: spots[n] = tuple(v["mm"])
+        elif "car" in v: spots[n] = tuple(v["car"])
+    # a car-mm seed's own devices and lines (HeavyDC's engine-bay legs carry no mm in the tree: their spots are the seed's)
+    lines = []
+    for f in sorted(glob.glob(os.path.join(HERE, "placement_editor", "seeds", "*.json"))):
+        sd = json.load(open(f, encoding="utf-8"))
+        if sd.get("unitMm"): continue
+        lines += [[tuple(p) for p in ln["pts"]] for ln in sd.get("lines", [])]
+        for n, (h, lid, i) in SEED_JOINS.items():
+            if sd.get("harness") == h and n in nodes and n not in spots:
+                spots[n] = tuple(next(ln for ln in sd["lines"] if ln["id"] == lid)["pts"][i])
+        for d in sd.get("devices", []):
+            n = (L.get("place") or {}).get(d["id"])
+            if n in nodes and n not in spots: spots[n] = (d["x"], d["y"])
+    bo = L.get("box_breakouts") or {}
+    # the glove-box breakouts (A35: "layout doesn't have to match exactly the routing to each fuse box terminal"; the
+    # editors draw no box insides): on the glove box's own spot, free to point any way (formboard: straight at their set
+    # length, wherever their fans have room)
+    free = set()
+    for n in (bo.get("nodes") or {}):
+        if "GB" in spots:
+            spots[n] = spots["GB"]; free.add(n)
+    changed = True
+    while changed:     # a drop node (`<node>_top`) and any node joined to a spotted one by a 0 mm segment share its spot
+        changed = False
+        for a, b, mm in L["segments"]:
+            for x, y in ((a, b), (b, a)):
+                if x in spots and y not in spots and (mm == 0 or y == x + "_top" or x == y + "_top"):
+                    spots[y] = spots[x]; changed = True
+    adj = collections.defaultdict(list)
+    for a, b, mm in L["segments"]:
+        adj[a].append((b, mm)); adj[b].append((a, mm))
+    def seg(a, b):
+        if (a, b) in shape: return [tuple(p) for p in shape[(a, b)]]
+        if (b, a) in shape: return [tuple(p) for p in shape[(b, a)]][::-1]
+        k, rk = a + "|" + b, b + "|" + a
+        if k in via or rk in via:
+            mid = [tuple(p) for p in via[k]] if k in via else [tuple(p) for p in via[rk]][::-1]
+            return [spots[a]] + mid + [spots[b]]
+        best = None
+        for ln in lines:      # the shortest stretch of a seed line that joins the two spots (within 30 mm of it at both ends)
+            if len(ln) < 2: continue
+            ga, da = _along(ln, spots[a]); gb, db = _along(ln, spots[b])
+            if ga > 30 or gb > 30 or abs(da - db) < 1: continue
+            lo, hi = sorted((da, db))
+            run, mid = 0.0, []
+            for p, q in zip(ln, ln[1:]):
+                run += math.hypot(q[0] - p[0], q[1] - p[1])
+                if lo + 1 < run < hi - 1: mid.append(tuple(q))
+            if da > db: mid = mid[::-1]
+            if best is None or hi - lo < best[0]: best = (hi - lo, [spots[a]] + mid + [spots[b]])
+        return best[1] if best else [spots[a], spots[b]]
+    def route(a, b, want=None):
+        """a -> b; with want (the bundle's set length, the sum of its segments) the path whose segments add up to it"""
+        found = []
+        def walk(n, chain, run):
+            if found or len(chain) > 60 or (want is not None and run > want + 1): return
+            if n == b:
+                if want is None or abs(run - want) <= 1: found.append(list(chain))
+                return
+            for m, mm in adj[n]:
+                if m not in chain: chain.append(m); walk(m, chain, run + mm); chain.pop()
+        walk(a, [a], 0)
+        if not found: return None
+        chain = found[0]
+        if any(n not in spots for n in chain): return None
+        out = [spots[chain[0]]]
+        for x, y in zip(chain, chain[1:]):
+            for p in seg(x, y)[1:]:
+                if p != out[-1]: out.append(p)
+        out[0] = spots[a]; out[-1] = spots[b]
+        return out
+    route.free = free
+    return spots, route
+
+
 def _seg_proj(p, a, b):
     dx, dy = b[0] - a[0], b[1] - a[1]
     ll = dx * dx + dy * dy
@@ -1724,10 +1821,34 @@ def add_route_trees(L):
         nodes, segs = L["nodes"], L["segments"]
         first_seg = len(segs)
         fx = lambda p: [round(90 + (p[1] - 160) * 0.35, 1), round((p[0] - 170) * 100.0 / 220.0, 1)]
+        # where each node and segment lies in the car (car mm, the corridor conversion; Dan 2026-11-15 formboards follow the
+        # editor routes): run-time keys only ("car" on a node, "_route_car" per segment), never written to the layout file
+        shape = L.setdefault("_route_car", {})
+        def put(n, p):
+            nodes[n]["car"] = list(pt_to_car(p))
+        def oriented(k):
+            return lines[k] if parent[k][3] == "start" else lines[k][::-1]
+        def piece(k, d0, d1):
+            """the line k between distances d0 and d1 from its root end (EWD points)"""
+            pts, out, run = oriented(k), [], 0.0
+            out.append(_pt_at(pts, d0))
+            for a, b in zip(pts, pts[1:]):
+                run += math.hypot(b[0] - a[0], b[1] - a[1])
+                if d0 < run < d1:
+                    out.append(tuple(b))
+            out.append(_pt_at(pts, d1))
+            return [pt_to_car(p) for p in out]
         if legacy:
             nodes[spec["root"]]["xy"] = fx(root_pt)
+            put(spec["root"], root_pt)
+        elif spec.get("roots"):
+            for k0, n0 in spec["roots"].items():
+                if "car" not in nodes.get(n0, {}) and "mm" not in nodes.get(n0, {}):
+                    put(n0, oriented(k0)[0])
         def build(k, start_node):
             here, at = start_node, 0.0
+            if "car" not in nodes[here] and "mm" not in nodes[here]:
+                put(here, oriented(k)[0])
             items = sorted((e for e in ev[k] if e[1] == "dev" or e[2] in keep), key=lambda e: (e[0], e[1]))
             n_j = 0
             for i_e, e in enumerate(items):
@@ -1737,7 +1858,9 @@ def add_route_trees(L):
                     jn = "%sJ_%s_%d" % (pre, k, n_j)
                     nodes[jn] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
                                  "label": "%s %s: %s joins" % (src[k], k, e[2]), "short": "%s / %s" % (k, e[2])}
+                    put(jn, _pt_at(oriented(k), e[0]))
                     segs.append([here, jn, int(round(step))])
+                    shape[(here, jn)] = piece(k, at, e[0])
                     here, at = jn, e[0]
                     if e[3] * MM_PER_PT < 1:
                         build(e[2], jn)
@@ -1755,20 +1878,25 @@ def add_route_trees(L):
                     # Route 16 trunk itself gets it too, as no sensor is wired 0 mm from the trunk (Dan W4 c, 2026-11-10)
                     if i_e < len(items) - 1 or (legacy and k in roots):
                         stub = max(stub, MIN_BREAKOUT_MM)
+                    put(node, dev["at"])
                     if stub >= 1:
                         tap = "%sT_%s_%s" % (pre, k, node)
                         nodes[tap] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
                                       "label": "%s %s: %s stub" % (src[k], k, node), "short": ""}
+                        put(tap, _pt_at(oriented(k), e[0]))
                         segs.append([here, tap, int(round(step))])
+                        shape[(here, tap)] = piece(k, at, e[0])
                         segs.append([tap, node, int(round(stub))])
                         here, at = tap, e[0]
                     else:
                         segs.append([here, node, int(round(step))])
+                        shape[(here, node)] = piece(k, at, e[0])
                         here, at = node, e[0]
         def build_stub(k, jn, gap):
             sub = "%sS_%s" % (pre, k)
             nodes[sub] = {"xy": nodes[jn]["xy"], "label": "%s %s joins (%.0f mm gap)" % (src[k], k, gap * MM_PER_PT),
                           "short": ""}
+            put(sub, oriented(k)[0])
             segs.append([jn, sub, int(round(gap * MM_PER_PT))])
             build(k, sub)
         start = spec.get("root")
@@ -1776,6 +1904,7 @@ def add_route_trees(L):
             start = "J_%s_drop" % spec["root"]
             nodes[start] = {"xy": nodes[spec["root"]]["xy"], "label": "Route 16: trunk meets the firewall below the bulkhead",
                             "short": ""}
+            nodes[start]["car"] = list(nodes[spec["root"]]["car"])
             segs.append([spec["root"], start, int(spec["root_drop_mm"])])
         for k in [k for k, v in parent.items() if v[0] is None]:
             if k in keep:
