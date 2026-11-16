@@ -919,7 +919,7 @@ def _mid_run(pts):
 REG_LEN_OFF, REG_LEN_H, REG_TOP_W = 15.0, 22.0, 240.0
 
 
-def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True):
+def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True, kinds=None):
     """the text boxes a bundle draws on the board: its length label, and its label pills; n = wires through it. board=False:
     the regular view (formboard mode off), measured in the app's own drawing on 2026-11-16 (ST185-RearFuel Rev B, layout
     view DOM): the length label sits at the middle of the straight run that holds the path's half-way point (not at the
@@ -927,6 +927,7 @@ def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True):
     a bundle label is small text on the bundle itself (Inter SemiBold about 8 px, 10 high: "AntiTheft" 37 wide), ending where
     the node symbol starts (ST185-AB-cabin 1 Rev F, 2026-11-16)"""
     out = []
+    kinds = [] if kinds is None else kinds          # filled in step with the boxes: "len" (length label) or "tag" (label)
     lw = len_label_w(b, s) if b.get("length") else 0
     plen = sum(math.hypot(path[i + 1][0] - path[i][0], path[i + 1][1] - path[i][1]) for i in range(len(path) - 1))
     # a bundle too short for its length label to clear the hub (the 2 mm / 15 mm junction steps of a tree, the 25 mm splice
@@ -940,6 +941,7 @@ def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True):
         d = u if u[0] > 1e-9 else ((-u[0], -u[1]) if u[0] < -1e-9 else (0.0, -1.0))
         off = len_label_offset(n) * s / 0.5 if board else REG_LEN_OFF
         out.append(_rect(c[0] + d[1] * off, c[1] - d[0] * off, lw, (TXT["len_h"] * s + (2.0 if n <= 2 else 6.0)) if board else REG_LEN_H, *d))
+        kinds.append("len")
     pills = []
     if b.get("separateLabels"):
         if b.get("label"): pills.append((b["label"], 0))
@@ -954,6 +956,7 @@ def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True):
         L = sum(math.hypot(p[i + 1][0] - p[i][0], p[i + 1][1] - p[i][1]) for i in range(len(p) - 1)) or 1.0
         c, u = _along(p, min(0.5, (HALF + (2 if board else 0) + w / 2) / L))
         out.append(_rect(c[0], c[1], w, h, *u))
+        kinds.append("tag")
     return out
 
 
@@ -1041,6 +1044,22 @@ def note_box(n, s=1.0):
     return _rect(x + w * s / 2, y + h * s / 2, w * s, h * s)
 
 
+R_INLINE = 90     # units: pitch of the inline parts (splices, resistors, diodes) that share one spot, one under the other
+
+
+def inline_box(e, doc, c):
+    """the text stack an inline part (splice, resistor, diode) draws ABOVE its symbol, centred on it: its label box and, with
+    a part, its part bar over that (measured in the app's layout view, 2026-11-16, ST185-CabinPower Rev G: "Low-beam fuse
+    splice" box 20 high ending 16 units above the symbol centre, the "GENERIC SOLDER SPLICE" bar 20 high 5 above the box)"""
+    lab = e.get("label") or ""
+    pn = _part_number(doc, e["partId"]) if e.get("partId") else ""
+    w1 = (text_w(lab, TXT["id_px"]) + TXT["id_pad"]) if lab else 0.0
+    w2 = (TXT["bar_fixed"] + text_w(pn, TXT["bar_px"])) if pn else 0.0
+    if not (w1 or w2): return None
+    h = (20.0 if w1 else 0.0) + (25.0 if w2 else 0.0)
+    return _rect(c[0], c[1] - 16.0 - h / 2, max(w1, w2), h)
+
+
 def text_boxes(doc):
     """[(owner, polygon, what)] for every text the layout view draws (estimated, see TXT)"""
     s = _scale(doc)
@@ -1053,10 +1072,13 @@ def text_boxes(doc):
     for b in doc.get("bundles", []):
         if b["sourceId"] not in at or b["targetId"] not in at: continue
         path = bundle_path(doc, b, at)
+        n0 = len(out)
         for n, nxt in ((b["sourceId"], path[1]), (b["targetId"], path[-2])):
             v = vec.get(n, (0.0, 0.0)); vec[n] = (v[0] + nxt[0] - at[n][0], v[1] + nxt[1] - at[n][1])
-        for poly in bundle_texts(b, path, s, (b["sourceId"] in bps, b["targetId"] in bps), wc.get(b["id"], 1), board=board):
-            out.append((b["id"], poly, "bundle text"))
+        kd = []
+        for poly in bundle_texts(b, path, s, (b["sourceId"] in bps, b["targetId"] in bps), wc.get(b["id"], 1), board=board, kinds=kd):
+            # the regular view: a bundle's tag is a text of its own, clear of that bundle's own length label too
+            out.append((b["id"] + ("#tag" if not board and kd[len(out) - n0] == "tag" else ""), poly, "bundle text"))
     mated = {x for m in doc.get("mates", []) or [] for x in (m["sourceId"], m["targetId"])}
     if not board:      # a mated half with no bundle (a cap) takes its side from where its other half sits (above it, side by side)
         for m in doc.get("mates", []) or []:
@@ -1071,6 +1093,11 @@ def text_boxes(doc):
             wl, ws = end_text_size(e, doc, s, shown.get(e["id"]))
             box = end_box(at[e["id"]], side, wl, ws, s, e, v, mt, None if board else REG_TOP_W)
             if box: out.append((e["id"], box, "label"))
+    if not board:      # the regular view: an inline part's label and part bar above its symbol
+        for k in INLINE_KINDS:
+            for e in doc.get(k, []):
+                box = inline_box(e, doc, _centre(e)) if e.get("layoutPosition") else None
+                if box: out.append((e["id"], box, "label"))
     for n in doc.get("layoutNotes", []) or []:
         if n.get("layoutPosition"): out.append((n["id"], note_box(n, s), "note"))
     return out
@@ -1429,6 +1456,10 @@ def regular(doc):
     size = {}
     for n in reversed(order): size[n] = 1 + sum(size[c] for c, _ in kids.get(n, []))
     NO = frozenset()
+    inl = {}      # spot -> the inline parts that sit on it (one under the other, R_INLINE apart, each with its texts above it)
+    for k in INLINE_KINDS:
+        for e in doc.get(k, []):
+            if e.get("layoutPosition") and e.get("locationId") in T.el: inl.setdefault(e["locationId"], []).append(e)
 
     def label(n, v, side):
         e = T.el[n]
@@ -1440,8 +1471,9 @@ def regular(doc):
 
     def btexts(b, n, path):
         p = path if b["sourceId"] == n else path[::-1]
-        return [_pbb(q) + (b["id"], "text", frozenset((b["sourceId"], b["targetId"]))) for q in
-                bundle_texts(b, p, 1.0, (b["sourceId"] in T.bps, b["targetId"] in T.bps), T.wcount.get(b["id"], 1), board=False)]
+        kd = []
+        qs = bundle_texts(b, p, 1.0, (b["sourceId"] in T.bps, b["targetId"] in T.bps), T.wcount.get(b["id"], 1), board=False, kinds=kd)
+        return [_pbb(q) + (b["id"] + ("#tag" if k == "tag" else ""), "text", frozenset((b["sourceId"], b["targetId"]))) for q, k in zip(qs, kd)]
 
     memo = {}
     def lay(n, din, side=None):
@@ -1486,7 +1518,8 @@ def regular(doc):
             o = (d[0] * ln, d[1] * ln)
             if b is None: tx = []; break
             tx = btexts(b, n, [(0, 0), o])
-            if not any(_rhit(t, r) for t in tx for r in allr) and not any(_rhit(t, _mv(r, o)) for t in tx for r in sub): break
+            if not any(_rhit(t, r) for t in tx for r in allr) and not any(_rhit(t, _mv(r, o)) for t in tx for r in sub) \
+               and not any(_rhit(t, z) for t in tx for z in tx if t is not z): break
             ln += GRID
             if ln > 90000: return None
         out = [_mv(r, o) for r in sub] + tx
@@ -1532,6 +1565,7 @@ def regular(doc):
                     path = [(0, 0), (0, y), part]
                 q0 = path[-2]
                 own = btexts(b, n, path)
+                tag_hit = next(((a, z) for a in own for z in own if a is not z and _rhit(a, z)), None)     # its tag on its own length label
                 own.append((min(q0[0], part[0]) - R_LW, y - R_LW, max(q0[0], part[0]) + R_LW, y + R_LW, b["id"], "line", frozenset((n, c))))
                 # a mated plug's label below it, its other half's above, so the two sit nose to nose: the row moves down
                 # for that (up to 180) before another label side is tried
@@ -1544,7 +1578,7 @@ def regular(doc):
                     if sd in more and intra_ok: break       # Bottom fits its own row: let the row move down first
                     sub, spos, spaths, ssides = lay(c, (sx, 0), sd)
                     subm = [_mv(r, part) for r in sub]
-                    why = next(((a, s) for a in own for s in subm if _rhit(a, s)), None)
+                    why = tag_hit or next(((a, s) for a in own for s in subm if _rhit(a, s)), None)
                     if why: continue
                     intra_ok = True
                     why = next(((a, r) for a in own + subm for r in acc if _rhit(a, r)), None)
@@ -1585,23 +1619,34 @@ def regular(doc):
         rowset = {c for c, _ in rows}
         branches = [(c, b) for c, b in ch if b is not None and c not in rowset]
         mates_ = [(c, b) for c, b in ch if b is None]
-        used = [back] if back else []
-        if mates_: used.append(din or (1, 0))          # its mated half sits straight on
-        asg = {}
-        for c, b in sorted(branches, key=lambda cb: (-size[cb[0]], cb[0])):
-            u0 = PREFER.get(c) or (din if (n not in T.bps and din) else T.old_dir(n, c, b))
-            free = [d for d in AXES if d not in used]
-            assert free, "more branches than directions at %s" % n
-            asg[c] = max(free, key=lambda d: d[0] * u0[0] + d[1] * u0[1]); used.append(asg[c])
-        cd = None
-        if rows:
-            free = [d for d in AXES if d not in used]
-            assert free, "no free side for the ends at %s" % n
-            pf = PREFER.get(n)
-            if pf in free: cd = free[free.index(pf)]
-            elif din in free: cd = din
-            else: cd = next(d for d in ((0, -1), (0, 1), (1, 0), (-1, 0)) if d in free)
-            used.append(cd)
+        pf = PREFER.get(n)
+        pf = (int(pf[0]), int(pf[1])) if pf else None
+        def assign(first):
+            """a direction for each branch (the generator's, the nearest free one) and for the comb of n's ends; first: the
+            comb takes that direction before the branches choose"""
+            used = [back] if back else []
+            if mates_: used.append(din or (1, 0))          # its mated half sits straight on
+            if first: used.append(first)
+            asg = {}
+            for c, b in sorted(branches, key=lambda cb: (-size[cb[0]], cb[0])):
+                u0 = PREFER.get(c) or (din if (n not in T.bps and din) else T.old_dir(n, c, b))
+                free = [d for d in AXES if d not in used]
+                assert free, "more branches than directions at %s" % n
+                asg[c] = max(free, key=lambda d: d[0] * u0[0] + d[1] * u0[1]); used.append(asg[c])
+            cd = first
+            if rows and not cd:
+                free = [d for d in AXES if d not in used]
+                assert free, "no free side for the ends at %s" % n
+                upright = [d for d in ((0, -1), (0, 1)) if d in free]
+                if pf in free: cd = pf
+                elif pf and upright: cd = upright[0]          # an upright spine: its rows still run to the box's side (A35)
+                elif din in free: cd = din
+                else: cd = next(d for d in ((0, -1), (0, 1), (1, 0), (-1, 0)) if d in free)
+                used.append(cd)
+            return used, asg, cd
+        used, asg, cd = assign(None)
+        if rows and pf and cd == (-pf[0], -pf[1]) and pf != back and not mates_ and len(branches) < 3:
+            used, asg, cd = assign(pf)        # a box's ends on the box's own side (A35), before its branches choose
         if n not in T.bps:
             rects.append((-HALF, -HALF, HALF, HALF, n, "node", NO))
             v = [0.0, 0.0]
@@ -1614,6 +1659,10 @@ def regular(doc):
             if side: sides[n] = side
         elif not ch:
             rects.append((-HALF, -HALF, HALF, HALF, n, "node", NO))     # an inline part's spot (splice, diode, resistor)
+        for j, e in enumerate(inl.get(n, [])):
+            if j: rects.append((-HALF, R_INLINE * j - HALF, HALF, R_INLINE * j + HALF, n, "node", NO))
+            box = inline_box(e, doc, (0.0, float(R_INLINE * j)))
+            if box: rects.append(_pbb(box) + (e["id"], "text", frozenset((n,))))
         def lane(d):      # the straight way out of n along d, kept free
             e = (d[0] * 1e6, d[1] * 1e6)
             return (min(0, e[0]) - R_LW, min(0, e[1]) - R_LW, max(0, e[0]) + R_LW, max(0, e[1]) + R_LW, "(lane)", "line", frozenset((n,)))
@@ -1669,7 +1718,8 @@ def regular(doc):
         for e in doc.get(k, []):
             if not e.get("layoutPosition"): continue
             if e.get("locationId") in T.el:
-                e["layoutPosition"] = dict(T.el[e["locationId"]]["layoutPosition"])
+                at_ = T.el[e["locationId"]]["layoutPosition"]
+                e["layoutPosition"] = {"x": at_["x"], "y": at_["y"] + R_INLINE * inl[e["locationId"]].index(e)}
             else:
                 x, y = e["layoutPosition"]["x"], e["layoutPosition"]["y"]
                 near = min((i for i in POS if i in old_lp), key=lambda i: math.hypot(old_lp[i][0] - x, old_lp[i][1] - y))
