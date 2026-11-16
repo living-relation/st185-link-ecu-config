@@ -385,6 +385,11 @@ MICRO_PINS = {'30': (0.0, -8.0), '87': (0.0, 0.0), '87a': (0.0, 6.0), '85': (-4.
 # box x = cx - v, y = cy + u. The heater relay (Power Relay F4 A 1-1414687-0, STEP; Power Relay B pattern): 87 7.9 from the coil line (85 - 86
 # 16.8), 87a 8.35 from 87, 30 - 87 17.9.
 F7_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '85': (-8.45, -1.85), '86': (8.45, -1.85)}
+# A65 (Dan 2026-11-16, "you do it"): where each maker STEP of an F7 sits in its own file, relative to the 1-1414147-0 frame build_fusion places
+# (blade tips z 0, coil line x 1.90): (dx, dy, dz) in mm. TE 1-1414286-0 STEP rev B1 has its body base at z 0 (tips z +17.0) and the coil line /
+# 87 blade 0.20 further +x; its 30 blade sits at x -4.95, 15.45 from 87, but TE's customer drawing of that part (C-V23134-J0052-X439 rev A2:
+# 30 - 87 17.9, 87 8.4 from the coil line, 85 - 86 16.9) and the F7 data sheet give 17.9, so F7_PINS and the R5 seat stay; only the frame is offset.
+F7_STEP_FRAME = {'1-1414286-0': (0.20, 0.0, 17.0)}
 RELAY_B_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '87a': (0.0, RELAY_B['v87a']), '85': (-8.4, -2.35), '86': (8.4, -2.35)}
 # Which harness pin (sot/channels.csv c1 = 30, c4 = 87) lands on which real blade. The box brings every AMI feed up round its saddle into the FAR
 # blade (v -10.25) = the real 87, and takes the harness out of the NEAR blade = the real 30. The F7s are 1 form A (30 - 87 is one switch, either way
