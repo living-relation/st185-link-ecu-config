@@ -47,4 +47,4 @@ PulseAudio null sink (OpenAL/libvlc), reduced render size via nested Xephyr 800x
 Run RealDash on a **real GPU-backed desktop session** (normal Windows/macOS/Linux
 login, or a VM with genuine hardware-accelerated OpenGL). The tell-tale success
 signal is simple: after login, RealDash reaches the **Garage** screen instead of a
-stuck spinner. From there, follow `PLAN.md` normally.
+stuck spinner. The build was then done on Dan's PC (`README.md`, "As built").

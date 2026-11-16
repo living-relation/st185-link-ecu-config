@@ -1,82 +1,57 @@
-# ST185 RealDash `.rd` build package (local Cursor agent edition)
+# ST185 RealDash `.rd` build folder
 
-Self-contained handoff for building a real RealDash `.rd` dashboard for the 1993 Toyota Celica
-GT-Four ST185 (5S-GTE) "TrackCluster". Hand this whole folder to a **Cursor agent running locally on
-a PC that has RealDash installed and a real GPU-backed desktop**. Everything the agent needs is here.
+The RealDash dashboard is built and done (Dan 2026-11-12, A24 a; DECISIONS "Parked rows (R102)"): the Pi has
+Dan's current dash file, already checked on live CAN. This folder keeps the editor tools and the notes worth
+keeping. The build plan and the build notes were deleted 2026-11-15 (Dan A50 a); git history keeps them.
 
-## Quick start (for the local agent)
+- **Layout spec (the one owner):** repo-root `REALDASH-LAYOUT.md`. Look and feel: repo-root
+  `realdash-simulation.html`.
+- **CAN channel file:** repo-root `link_g4x_realdash.xml` (single copy). Import it so the `ST185:` inputs exist
+  for gauges to bind to.
+- **Dashboard `.rd`:** the file on the Pi is the current one (A24 a). The repo copies, root `st185_dash.rd` and
+  `rd-build/realdash-root/st185_dash.rd`, are older saves and differ from each other.
+- `FINDINGS.md` - why RealDash's editor cannot run on a headless cloud VM (software OpenGL-ES deadlock); it needs
+  a real GPU desktop.
+- `CREDENTIALS.md` - My RealDash login, local only (gitignored).
 
-1. Read `PLAN.md` top to bottom. Start with the Context note and section 0 (prerequisites).
-2. Read `FINDINGS.md` — a prior cloud attempt failed *only* because that VM had no GPU; make sure
-   this PC uses hardware OpenGL (RealDash must reach the **Garage** screen after login, not a stuck
-   spinner).
-3. Install tooling per `tools/SETUP.md` (`pip install -r tools/requirements.txt`).
-4. Launch RealDash, log in with `CREDENTIALS.md` (local only, gitignored), import the repo-root
-   `link_g4x_realdash.xml` (PLAN.md section 3).
-5. Build the single-page dashboard exactly per PLAN.md section 4, validate (section 6), export the
-   `.rd` (+ `_anim.xml`) and hand it back (section 7).
+## As built (2026-07-06, RealDash 2.6.7 on Windows, editor automation)
 
-## Contents
+Where the built dash differs from `REALDASH-LAYOUT.md`:
 
-- `PLAN.md` - the full execution plan, updated for a local Cursor agent: prerequisites, PC setup,
-  the screenshot->click automation loop, the CAN channel import, the exact tile-by-tile dashboard
-  spec (positions, colors, bindings, thresholds), build procedure, validation, delivery, plus an
-  appendix of findings. **Start here.** Sections 3 and 4 (the CAN contract and the dashboard spec)
-  are the dashboard contract.
-- `CREDENTIALS.md` - My RealDash account login (subscription active, 0/3 devices). Requested for
-  this handoff; keep private.
-- `FINDINGS.md` - why this must run on a GPU-backed PC (the software-OpenGL-ES deadlock diagnosis),
-  and everything already ruled out (network, login, subscription, device limit).
-- The CAN channel file is the **repo-root** `link_g4x_realdash.xml` (single copy — there is no
-  `rd-build/link_g4x_realdash.xml` any more). Import it so the `ST185:`-prefixed inputs exist for
-  gauges to bind to (PLAN.md section 3).
-- `tools/` - desktop-automation tooling for the agent:
-  - `automation_helper.py` - PyAutoGUI CLI: screenshot / click / type / key / pixel. This is the
-    only tool the agent needs to drive the editor.
-  - `requirements.txt` - `pip install -r tools/requirements.txt`.
-  - `SETUP.md` - install + per-OS permissions (macOS Accessibility/Screen Recording, Linux
-    scrot/tk), verification steps, and an optional remote (VNC) path.
-  - `mcp.example.json` - OPTIONAL example only; no MCP server is required.
-  - RealDash editor macros (PyAutoGUI; each drives the open editor by fixed screen positions; kept and linked,
-    Dan T9 a, 2026-11-11):
-    - `add_gauge.py` - add a text gauge and set its position, text and colours (fullscreen 1920x1080).
-    - `bind_pill.py` - bind the selected gauge to an input and set its dynamic background colours.
-    - `combo.py` - press one key with the given modifier keys held.
-    - `fix_dyncolor.py` - for each gauge list row given, set its text colour 1 to white (`f3f8ffff`).
-    - `label_paste.py` - paste copies of the copied label gauge, then position each and set its text.
-    - `paste_batch.py` - paste the copied gauge once at each given position.
-    - `rebind.py` - rebind gauges to ST185 inputs, by gauge list row and search term.
-    - `set_levels.py` - set the warning and critical levels of the gauges on the given list rows.
-    - `set_text.py` - set the selected gauge's text (and text colour) in Look'n Feel > Font & Text.
-    - `set_xywh.py` - type up to four values into the editor's four position / size fields (`-` skips one).
-    - `value_paste_bind.py` - paste value-gauge copies and bind each, with its warning / critical levels and
-      dynamic text colour.
+1. Editor canvas 1920 x 1080: spec positions scaled x 2.4 (X / W) and x 2.25 (Y / H); RealDash scales it back to
+   the Pi's 800 x 480.
+2. No mini-bars in the tiles: numbers plus alarm colours carry the function.
+3. No strobe fade on the red pills / alarm states: they turn solid red.
+4. The caution band is a white-to-red blend (RealDash dynamic colour has 2 stops), not a separate amber step.
+5. Title text is solid `#f4f7fb`; the background is flat dark.
+6. Labels carry units in plain ASCII ("CHARGE IAT (C)", "COOLANT P (kPa)", "TURBO (RPM)").
+7. Boost Map / Cruise / A/C show numbers; enum text depends on RealDash's enum rendering.
+8. Gauges are bound with the `185:` search prefix, because plain names matched RealDash core channels first.
+9. The Coolant P tile was first built with its red level at 250 kPa; the spec is 200 (DECISIONS R105;
+   `CAN-BUS-MASTER-DESIGN.md` display note N6).
 
-## Which file is current (declared 2026-10-03; nothing deleted)
+## Tools
 
-| What | Current | Older copies (history only) |
-|---|---|---|
-| Dashboard `.rd` | repo-root `st185_dash.rd` — the delivered build per `BUILD-NOTES.md` (2026-07-06) | `rd-build/realdash-root/st185_dash.rd` (the intermediate editor saves `st185_dash_v2.rd` … `v10.rd` were removed 2026-10-13; git history keeps them) |
-| Simulation / look-and-feel | repo-root `realdash-simulation.html` (no Cabin tile; linked from `REALDASH-LAYOUT.md`) | none (the older `rd-build/realdash-simulation-REFERENCE.html` with a Cabin tile was removed 2026-10-13; git history keeps it) |
-| CAN channel file | repo-root `link_g4x_realdash.xml` | none |
+`tools/` - desktop automation for the RealDash editor (PyAutoGUI; no MCP server needed):
 
-**Open item:** `BUILD-NOTES.md` says the root file and `realdash-root/st185_dash.rd` are the same
-39,248-byte build, but the committed files differ (root 39,548 bytes; `realdash-root/st185_dash.rd`
-99,648 bytes). Confirm which `.rd` is actually on the Pi before building on either. Tracked in
-`docs/OPEN-ITEMS.md`.
+- `automation_helper.py` - PyAutoGUI CLI: screenshot / click / type / key / pixel.
+- `requirements.txt` - `pip install -r tools/requirements.txt`.
+- `SETUP.md` - install, per-OS permissions, checks, and an optional remote (VNC) path.
+- `mcp.example.json` - optional example only.
+- RealDash editor macros (each drives the open editor by fixed screen positions; kept and linked, Dan T9 a,
+  2026-11-11):
+  - `add_gauge.py` - add a text gauge and set its position, text and colours (fullscreen 1920x1080).
+  - `bind_pill.py` - bind the selected gauge to an input and set its dynamic background colours.
+  - `combo.py` - press one key with the given modifier keys held.
+  - `fix_dyncolor.py` - for each gauge list row given, set its text colour 1 to white (`f3f8ffff`).
+  - `label_paste.py` - paste copies of the copied label gauge, then position each and set its text.
+  - `paste_batch.py` - paste the copied gauge once at each given position.
+  - `rebind.py` - rebind gauges to ST185 inputs, by gauge list row and search term.
+  - `set_levels.py` - set the warning and critical levels of the gauges on the given list rows.
+  - `set_text.py` - set the selected gauge's text (and text colour) in Look'n Feel > Font & Text.
+  - `set_xywh.py` - type up to four values into the editor's four position / size fields (`-` skips one).
+  - `value_paste_bind.py` - paste value-gauge copies and bind each, with its warning / critical levels and
+    dynamic text colour.
 
-## Tools / MCP / connectors required
-
-- **Tools:** RealDash (installed on the PC); Python 3 + PyAutoGUI (`tools/requirements.txt`); the
-  shipped `tools/automation_helper.py`.
-- **MCP servers:** none required.
-- **Connectors / remote desktop:** none required (agent + RealDash on the same machine). A remote
-  VNC option is documented in `tools/SETUP.md` only for the case where the agent runs on a different
-  machine.
-
-## Why this exists
-
-RealDash's `.rd` format is an undocumented proprietary binary; the only way to produce a valid one is
-to drive RealDash's own visual editor. This package lets a computer-use-capable Cursor agent do
-exactly that on your PC: install/verify RealDash, import the CAN XML, build every tile per the spec,
-save, and hand back the finished `.rd` (+ animation sidecar) to copy onto your Raspberry Pi.
+RealDash's `.rd` format is an undocumented binary, so a dashboard is made only by driving RealDash's own editor.
+Later RealDash work (a few channel updates, a backup camera screen) is parked: `docs/OPEN-ITEMS.md` row 184.

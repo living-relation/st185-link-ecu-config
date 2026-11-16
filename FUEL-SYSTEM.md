@@ -40,3 +40,12 @@ A single Walbro F90000295 reliably supports roughly 500–550 whp on E85 at stoc
 - A second pump (staged or parallel) for headroom.
 
 The -8 AN feed line sizing above holds either way — it won't be the bottleneck.
+
+## Pump electrical note
+
+Carried from the retired rev 2 fuse box plan page (`cad/fusebox/ST185-fusebox-cad-PLAN.html`, deleted 2026-11-15, Dan A50 a; git history keeps it). That page gave no source for these figures, so confirm them on the pump's data sheet before sizing anything from them:
+
+- Running current: 19.0 A rated at 40 psi / 13.5 V; vendors quote up to 25 A. It rises with fuel pressure and with charging voltage.
+- Inrush: no published figure was found. Measure it on the bench (peak-capture clamp meter, or shunt and scope) before any solid-state switch is picked for the pump.
+
+The pump circuit as built: `docs/harness/MASTER-wirelist.csv` (RearFuel) and `sot/fuse-relay-map.csv` (K-FP).

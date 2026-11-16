@@ -191,7 +191,7 @@ From the STEP / STL headers (`FILE_NAME` originating system), the build scripts 
 | enclosures/vrc/VRC_part_LP16-IN_LP-16-C05SX-02-101.step | build123d | Purchased part: the CNLINKO model, placed by `real_connectors.py` (jam nut on the wall's inside face) (R184). |
 | enclosures/vrc/VRC_part_LP16-OUT_LP-16-C05SX-02-101.step | build123d | Purchased part: the CNLINKO model, placed by `real_connectors.py` (jam nut on the wall's inside face) (R184). |
 | enclosures/vrc/VRC_part_ORING-AS568-039.step | Fusion 360 | Purchased / reference part. Original geometry source unconfirmed. |
-| enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step | Fusion 360 | Purchased / reference part. Board shape from the OpenLogicEFI KiCad file (`cad/enclosures/PLAN-notes.md`); how it got into Fusion is unconfirmed. |
+| enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step | Fusion 360 | Purchased / reference part. Board shape from the OpenLogicEFI KiCad file (`docs/enclosures/README.md` "Source facts"); how it got into Fusion is unconfirmed. |
 | enclosures/vrc/VRC_part_VRC-Board-Holder.step | Fusion 360 |  |
 | enclosures/vrc/VRC_part_VRC-Board-Holder.stl | Fusion 360 |  |
 | enclosures/vrc/VRC_part_VRC-Body.step | Fusion 360 |  |
