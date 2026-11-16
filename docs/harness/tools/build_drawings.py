@@ -2648,6 +2648,31 @@ def self_test():
     gx = {e["id"]: e["layoutPosition"]["x"] for k in FB.NODE_KINDS for e in gb.get(k, [])}
     cases.append(("regular layout: LOGIC box ends left of their breakout, POWER box ends right of theirs (A35, formboard.PREFER)",
                   FB.check_regular(gb) == [] and all(gx["gL%d" % i] < gx["bp_GB_LOGIC"] < gx["bp_GB"] < gx["bp_GB_POWER"] < gx["gP%d" % i] for i in range(3))))
+    # the car view (Dan 2026-11-16: "regular layout view with straight runs ... the layout views should largely match the
+    # routes we made using the layout editors"): engine-bay map points turn into car mm the corridor way; every branch point
+    # on its editor spot at one scale, front RIGHT, driver side UP, straight (slanted) runs, ends combed, every text clear
+    import check_corridors as CC
+    sp_, rt_ = car_frame(Harness("ST185-harness").layout)
+    cases.append(("car frame: map points -> car mm = check_corridors.to_car; the editor spots of the layout tree",
+                  pt_to_car((252, 236)) == tuple(round(v, 1) for v in CC.to_car((252, 236))) and "ACAMP" in sp_ and "GB" in sp_))
+    cv = json.loads(json.dumps(raw0))
+    for i, t in enumerate(cv["terminals"]):
+        t["label"] = "LOGIC box seat M%d, terminal 30 - Some relay (K-X%d, LOGIC box)" % (i, i); t["signal"] = "Switched +12 V feed %d" % i
+    toy_sp = {"r": (0.0, 0.0), "a": (1800.0, -600.0), "b": (2600.0, 300.0)}
+    def toy_route(a, b, want=None): return [toy_sp[a], toy_sp[b]]
+    toy_route.free = set()
+    FB.regular(cv, (toy_sp, toy_route), list(toy_sp))
+    kk, cat = FB.CAR_STATS["k"], {e["id"]: e["layoutPosition"] for e in cv["branchPoints"]}
+    on = all(abs(cat["bp_" + n]["x"] - round(p[0] * kk / 30) * 30) < 1 and abs(cat["bp_" + n]["y"] - round(p[1] * kk / 30) * 30) < 1 for n, p in toy_sp.items())
+    cases.append(("car view: formboard mode off, every branch point on its editor spot at one scale (driver side up), slanted runs, "
+                  "12 long-labelled ends combed with no text overlapping, set lengths kept",
+                  FB.check_regular(cv, square=False) == [] and "formboard" not in cv and on and cat["bp_a"]["y"] < cat["bp_r"]["y"]
+                  and cat["bp_a"]["x"] > cat["bp_r"]["x"] and FB.check_regular(cv) != []
+                  and {b["id"]: b["length"]["value"] for b in cv["bundles"]} == {b["id"]: b["length"]["value"] for b in raw0["bundles"]}))
+    cvb = json.loads(json.dumps(cv))
+    la, lr = cat["bp_a"], cat["bp_r"]      # b_ab first runs back along b_ra, half way to bp_r
+    next(b for b in cvb["bundles"] if b["id"] == "b_ab").update(layoutPoints=[{"id": "x1", "layoutPosition": {"x": (la["x"] + lr["x"]) / 2, "y": (la["y"] + lr["y"]) / 2}}])
+    cases.append(("car view: a run drawn back over another run is caught", any(x.startswith("bundles cross or overlap") for x in FB.check_regular(cvb, square=False))))
     # box breakouts (Dan A35): a segment = right-angle distance + farthest seat beyond the end allowance, rounded up to 10 mm
     bl = {"end_allowance_mm": 100, "segments": [["GB", "GB_X", 0]], "box_breakouts": {"at": {"GB": [0, 0]},
           "nodes": {"GB_X": {"parent": "GB", "at": [30, 40], "seats": [["K-X", "30", "w", 151.0], ["K-X", "85", "w2", 90.0]]}}}}

@@ -345,10 +345,10 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
                       "connectors are drawn whole; cavities wired by other harnesses are N/C with a note." + B.LOOSE_SENTENCE + " " + B.GHOST_MARK +
-                      "Layout: the regular layout view (formboard mode off, Dan 2026-11-15) of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
+                      "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
                       "LH pass-through; the alternator plug off the engine harness trunk start, behind the engine (Route 16 L1, A6 b); EA / EB on Route 17 "
                       "devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece), "
-                      "front of car RIGHT, rear LEFT, driver side UP; straight orthogonal bundles, drawn length is not to scale; each part on a 100 mm "
+                      "front of car RIGHT, rear LEFT, driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on a 100 mm "
                       "end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
 notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},

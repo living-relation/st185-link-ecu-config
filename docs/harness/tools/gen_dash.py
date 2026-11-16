@@ -546,8 +546,8 @@ def build(REPO, OUT, CFG):
                      "splice shared with another harness file is drawn with its %s legs only and its note says where the rest goes (the "
                      "other file, where the splice sits, the EWD page, the other legs' far ends and colour; R10).%s Shared plugs "
                      "are drawn whole; cavities wired by other harnesses are N/C with a note. %s"
-                     "Layout: the regular layout view (formboard mode off, Dan 2026-11-15) of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), "
-                     "front of car RIGHT, rear LEFT, driver side UP; straight orthogonal bundles, drawn length is not to scale; each part on a 100 mm end-allowance "
+                     "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of the ST185-harness.layout.json tree (route drawn by Claude, devices refined by Dan), "
+                     "front of car RIGHT, rear LEFT, driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on a 100 mm end-allowance "
                      "stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm." % (
                          TITLE, REV, DATE, CFG['scope'], NAME, CFG['script'], CFG['left_words'],
                          'the branch cables right of them, ' if cables else '', NAME, B.LOOSE_SENTENCE if ONE else '', B.GHOST_MARK)}]

@@ -442,8 +442,8 @@ head = [{"id": "n_title", "width": 360,
                  "bulkhead in the centre third, splices beside it, shielded cables by their device, devices right in feed order, columns "
                  "level at the top (device rows half a grid lower, N1 a). Each pin shows its own master end text. Connectors are drawn "
                  "whole; spare cavities are N/C with a note. " + B.GHOST_MARK +
-                 "Layout: the regular layout view (formboard mode off, Dan 2026-11-15) of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), "
-                 "front of car RIGHT, rear LEFT, driver side UP; straight orthogonal bundles, drawn length is not to scale; each part on "
+                 "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), "
+                 "front of car RIGHT, rear LEFT, driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on "
                  "a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm (HeavyDC's cables are on its own segments of "
                  "the layout tree, DECISIONS B6 b)."},
         {"id": "n_stripes", "width": 360,

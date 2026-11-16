@@ -1,10 +1,13 @@
 """formboard.py - the layout view of a generated harness.design document.
 
-Since 2026-11-15 (Dan: "I don't want them in the formboard layout. I want them in the regular layout view with straight
-runs instead of the snaked runs"; replaces A25 a) every generator calls `regular(doc)` and the gate `check_regular(doc)`
-(the last section of this file): formboard mode OFF, straight square runs on the grid, not to scale, every text clear. The
-text model (TXT, text_boxes, label_overlaps) is shared. The 1:1 formboard below (`to_scale`, `check`; Dan A25 a,
-2026-11-12) is kept with its self-tests but no generator calls it.
+Dan 2026-11-16: regular view, straight runs, on the layout-editor routes ("regular layout view with straight runs, not
+snaked; the layout views should largely match the routes we made using the layout editors"; replaces A25 a and the
+2026-11-15 square tree). Every generator calls `regular(doc, build_drawings.car_frame(layout), layout nodes)` and the gate
+`check_regular(doc, square=False)` (the last sections of this file): formboard mode OFF; the car from above at one scale per
+file (front RIGHT, driver side UP), every branch point on its layout-editor spot, each run between them straight along its
+editor route; the ends (and a node too close to its neighbour to show apart) combed round their spot as the labels need;
+not to scale, set lengths kept, every text clear. The text model (TXT, text_boxes, label_overlaps) is shared. The 1:1
+formboard below (`to_scale`, `check`; Dan A25 a, 2026-11-12) is kept with its self-tests but no generator calls it.
 
 The 1:1 formboard:
 
@@ -1839,15 +1842,15 @@ def _regular_once(doc, car=None):
             return sum(1 for a in rr for x in cand if _rhit(a, x))
         def piece_nodes(p):      # the nodes of a piece that comb ends or carry a branch
             return [m for m in p if kids.get(m)]
-        PIECE, H0 = {}, {}
+        PIECE, H0, PASS = {}, {}, [0]
         sched = [n for n in order if n in anch]
         # every piece in turn, then once more each piece that still hits something, against everything drawn by then
         for n in sched + [None] + sched:
             if n is None:
-                CUR[1] += 1; continue
+                PASS[0] += 1; continue
             if n in H0 and not H0[n]: continue
             o = g30(SPOT[n])
-            CUR[0] = n
+            CUR[0], CUR[1] = n, (PASS[0], o)
             mem = {m for m in order if car["cl"][m] == n}
             # what is drawn already, and every run between clusters that does not touch this piece (from where its ends are)
             XL = [x for u, v, b in XE if u not in mem and v not in mem for x in xl_rects(u, v, b)]
@@ -1889,6 +1892,8 @@ def _regular_once(doc, car=None):
                                 seen.add(sig)
                                 g2, h2 = with_(ch2)
                                 if g2 is None: continue
+                                # a box's rows turned off its own side (A35) only when nothing else clears it
+                                h2 += 0.5 * sum(1 for k2 in ch2 if isinstance(k2, tuple) and k2[1] == "rows")
                                 new.append((h2, ch2))
                                 if h2 < top[0]: top = (h2, ch2)
                                 if h2 == 0: break
@@ -1901,6 +1906,19 @@ def _regular_once(doc, car=None):
                 if top[0] < h:
                     for key, d in top[1].items(): force[key] = d
                     got, h = attempt()
+            if h and got is not None:      # still hit: the piece a little off its spot (another piece may sit on the same spot)
+                o0, top = o, (h, o, got)
+                for r_ in CAR_SHIFT:
+                    for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1)):
+                        o = (o0[0] + dx * r_, o0[1] + dy * r_)
+                        CUR[1] = (PASS[0], o)
+                        EXTRA[:] = [_mv(x, (-o[0], -o[1])) for x in near(world, (o[0] - 3000, o[1] - 3000, o[0] + 3000, o[1] + 3000))]
+                        g2, h2 = attempt()
+                        if g2 is not None and h2 < top[0]: top = (h2, o, g2)
+                        if h2 == 0: break
+                    if top[0] == 0: break
+                h, o, got = top
+                CUR[1] = (PASS[0], o)
             if got is None:      # nothing clear of what is drawn round it: laid on its own (the final gate decides)
                 CUR[0] = None
                 got, h = attempt()
@@ -1972,12 +1990,15 @@ def _regular_once(doc, car=None):
     return doc
 
 
-CAR_K = (0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0)   # layout units per car mm tried, smallest first
-CAR_TRIES = 6                 # whole-file tries at one scale (each turns the combs named in the last one's problems)
+CAR_K = (0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0)   # layout units per car mm tried, smallest first
+CAR_TRIES = 8                 # whole-file tries at one scale (each turns the combs named in the last one's problems)
 CAR_END_MM = 120.0            # a route bend nearer a node than this is left out (the run goes straight in)
 CAR_SIMPLIFY_MM = 40.0        # a route bend nearer than this to the straight line past it is left out (straight runs)
 CAR_BEAM = (10, 4)            # beam width and depth of the comb / branch side search per piece
 CAR_PUT_MAX = 1200            # units: the longest a combed branch is drawn in the car view (else it tries another side)
+CAR_CROWDED = 12              # more problems than this at one scale: the next scale without turning anything
+CAR_SHIFT = (60, 120, 180, 240)   # units: how far a piece that still hits something is tried off its spot
+CAR_BEND = 36.0               # units: how far a run that lay on top of another is moved off it
 CAR_ON_SPOT = 0.8             # share of the spotted nodes drawn on their spots before a scale is taken
 CAR_STATS = {}                # the last car layout: {"k": scale, "anchored": n, "local": [...], "tries": n}
 
@@ -2003,7 +2024,7 @@ def _car_regular(doc, frame, layout_nodes):
     free = set(getattr(route, "free", ()))
     bps = {e["id"] for e in doc.get("branchPoints", [])}
     spot = {b: tuple(spots_mm[rev[b]]) for b in bps if b in rev and rev[b] in spots_mm and rev[b] not in free}
-    vias, straight = {}, set()      # straight: anchored bundles drawn node to node (their route ran on top of another's)
+    vias, straight, bend = {}, set(), {}    # straight: anchored bundles drawn node to node (their route ran on top of another's)
     def via_mm(p, n, b):
         key = (p, n, b["id"])
         if b["id"] in straight: return []
@@ -2014,13 +2035,25 @@ def _car_regular(doc, frame, layout_nodes):
             vias[key] = [q for q in mid if min(math.hypot(q[0] - r[0][0], q[1] - r[0][1]), math.hypot(q[0] - r[-1][0], q[1] - r[-1][1])) >= CAR_END_MM]
         return vias[key]
     last, tries, best, fallback = None, 0, None, None
-    for k in ([float(os.environ["FB_K"])] if os.environ.get("FB_K") else CAR_K):
+    ks, ki = ([float(os.environ["FB_K"])] if os.environ.get("FB_K") else list(CAR_K)), -1
+    while ki + 1 < len(ks):
+        ki += 1
+        k = ks[ki]
         force, turns, prev_bad = {}, collections.Counter(), None
         for _ in range(CAR_TRIES):
             tries += 1
             d = _copy.deepcopy(doc)
-            car = {"k": k, "spot": spot, "dmin": R_MINL, "force": force,
-                   "via": lambda p, n, b, k=k: [(q[0] * k, q[1] * k) for q in via_mm(p, n, b)]}
+            def via_u(p, n, b, k=k):
+                pts = [(q[0] * k, q[1] * k) for q in via_mm(p, n, b)]
+                s = bend.get(b["id"])
+                if s:      # a run that lay on top of another: moved off it a little, to one side
+                    A, B = spot[p], spot[n]
+                    L = math.hypot(B[0] - A[0], B[1] - A[1]) or 1.0
+                    w = (-(B[1] - A[1]) / L * s * CAR_BEND, (B[0] - A[0]) / L * s * CAR_BEND)
+                    pts = [(q[0] + w[0], q[1] + w[1]) for q in pts] or \
+                          [((A[0] + (B[0] - A[0]) * f) * k + w[0], (A[1] + (B[1] - A[1]) * f) * k + w[1]) for f in (0.2, 0.8)]
+                return pts
+            car = {"k": k, "spot": spot, "dmin": R_MINL, "force": force, "via": via_u}
             try:
                 _regular_once(d, car)
             except AssertionError as e:
@@ -2042,6 +2075,9 @@ def _car_regular(doc, frame, layout_nodes):
                 best = (len(bad), k)
                 import json as _json
                 _json.dump(d, open(os.environ["FB_DUMP"], "w"), indent=1)
+            if len(bad) > CAR_CROWDED:     # far too crowded at this scale: a larger one at once
+                ki += 1 if len(bad) > 3 * CAR_CROWDED else 0
+                break
             # two anchored bundles whose routes run on top of each other: the one with route bends drawn straight instead
             xb = {i: len(via_mm(*v)) for i, v in car["xb"].items()}
             more = False
@@ -2050,6 +2086,11 @@ def _car_regular(doc, frame, layout_nodes):
                 if m_ and m_.group(1) in xb and m_.group(2) in xb:
                     x = max((m_.group(1), m_.group(2)), key=lambda i: (xb[i], i))
                     if xb[x] and x not in straight: straight.add(x); more = True
+                    else:      # already straight: the one not yet moved goes a little to one side, then the other way
+                        for y in (m_.group(1), m_.group(2)):
+                            nxt = {None: 1, 1: -1, -1: 2, 2: -2}.get(bend.get(y), "done")
+                            if nxt != "done":
+                                bend[y] = nxt; more = True; break
             if more: continue
             # the anchored nodes whose pieces are in the problems: turn their combs (then a local branch) to the next side
             own, hit = car["owner"], []
@@ -2202,10 +2243,12 @@ def check_regular(doc, square=True):
             # the car view: two runs between branch points that share no node may cross cleanly (they pass over / under
             # each other in the car); listed in CROSSINGS, not failed
             trunk = not square and not shared and (is_run(bx) or is_run(by))
+            # the car view: two runs out of one junction part within 45 units of it (they leave it at the car's angles)
+            r0 = 45.0 if not square and is_run(bx) and is_run(by) else 20.0
             for a0, a1 in zip(qx, qx[1:]):
                 for c0, c1 in zip(qy, qy[1:]):
                     s1, s2 = (a0, a1), (c0, c1)
-                    if keep is not None: s1, s2 = _clip2(s1, keep, 20.0), _clip2(s2, keep, 20.0)
+                    if keep is not None: s1, s2 = _clip2(s1, keep, r0), _clip2(s2, keep, r0)
                     if s1 and s2 and _seg_dist(s1[0], s1[1], s2[0], s2[1]) < CLR:
                         hit = True
                         if not (trunk and _clean_cross(s1, s2)): clean = False

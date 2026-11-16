@@ -645,9 +645,9 @@ head = [{"id": "n_title", "width": 360,
                  "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
                  "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
                  "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text.%s %s"
-                 "Layout: the regular layout view (formboard mode off, Dan 2026-11-15) of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
+                 "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
                  "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), front of car RIGHT, rear LEFT, "
-                 "driver side UP; straight orthogonal bundles, drawn length is not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
+                 "driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
                  "T7 b); bundle lengths = the master est_length_mm." % (
                      TITLE, REV, DATE, SHORT[DOC], 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out plugs and their bussed receptacles, shield '
                      'splices) with the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups '

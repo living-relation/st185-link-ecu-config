@@ -377,10 +377,10 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "master end text. Shared connectors are drawn whole; cavities wired by other harnesses are N/C with a note. The RADLOK "
                       "pass-through is the firewall connector itself, no cable to cut or buy (Dan D2): " + pt_txt + ", drawn as a mate between "
                       "the cabin and engine plugs (Dan 2026-11-05), not a wire. " + B.GHOST_MARK +
-                      "Layout: the regular layout view (formboard mode off, Dan 2026-11-15) of HeavyDC's layout tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
+                      "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of HeavyDC's layout tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
                       "piece right of the firewall plugs), front of car RIGHT, rear LEFT, driver side UP; the battery, "
                       "kill switch and trunk relay block each on its own spot along the trunk RH side (Dan's Z4 b save, A1 b), the alternator and "
-                      "starter studs on 300 mm drops (A9 a); straight orthogonal bundles, drawn length is not to scale; each part on a 100 mm end-allowance stub (the jump bar "
+                      "starter studs on 300 mm drops (A9 a); each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on a 100 mm end-allowance stub (the jump bar "
                       "and fuse block studs too: ring-terminal ends, DECISIONS B8 End allowance); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
 notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},
