@@ -5,8 +5,8 @@ down from 45 mm above its seat in 1.0 mm steps (0.1 within 6 mm of the hook and 
 strap's own snap hook: its arm and the hook head over the lip ends) must never be hit, and the least OUTWARD shift of the hook that
 clears the strap is recorded - it must grow smoothly (no step over 0.25 per 0.1 mm), stay within the hook's design deflection, and be
 0 at the seat (the hook has snapped back over the lips). Run inside Fusion on the built ST185_fusebox_rev7 document:
-    exec(open(r'<repo>/cad/fusebox/src/sweep_power_straps.py').read(), {'REPORT': r'<repo>/cad/fusebox/rev7/fusebox_report.json',
-         'OUTF': r'<repo>/cad/fusebox/rev7/strap_sweep.json', 'NAMES': ['HTR', 'JB1']})
+    exec(open(r'<repo>/cad/fusebox/src/sweep_power_straps.py').read(), {'REPORT': r'<repo>/cad/fusebox/rev8/fusebox_report.json',
+         'OUTF': r'<repo>/cad/fusebox/rev8/strap_sweep.json', 'NAMES': ['HTR', 'JB1']})
 Claude Code, 2026-10-18.
 """
 import adsk.core, adsk.fusion, json
