@@ -19,6 +19,10 @@ writes, so the tree is untouched and CI can trust it.
   cad/check_drawing_rules.py               R184-R196: balloons, tangent edges, banned notes
   tools/check_doc_claims.py                R211: no stale documents
 
+SOFT (a warning, never a failure):
+  docs/harness/tools/trace_circuits.py     the circuit tracer (row 117): the page docs/harness/CIRCUIT-TRACE.html is current and
+                                           no finding is open. SOFT until Dan says the findings are zero, then HARD (Dan A56 a)
+
 After a wiring change: edit docs/harness/MASTER-wirelist.csv, then
     python docs/harness/tools/check_wiring.py
     python docs/harness/tools/build_drawings.py <set>
@@ -55,7 +59,12 @@ def run(cmd):
     return r.returncode
 
 
+SOFT = [["docs/harness/tools/trace_circuits.py", "--check"]]
+
 fails = [c[0] for c in HARD if run(c)]
+warns = [c[0] for c in SOFT if run(c)]
+if warns:
+    print("WARNING (soft gate, not a failure): " + ", ".join(warns))
 if fails:
     print("FAILED: " + ", ".join(fails))
     sys.exit(1)
