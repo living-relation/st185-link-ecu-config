@@ -130,8 +130,8 @@
     "report:fusebox/rev8/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
     "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
-   "rev": "AD",
-   "pdf_sha": "abf0924482092d7a"
+   "rev": "AE",
+   "pdf_sha": "e83cc34d5e77cb0b"
   },
   "ST185-FB-101": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",

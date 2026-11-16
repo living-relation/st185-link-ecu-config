@@ -13066,7 +13066,8 @@
  },
  "power": {
   "relay_models": {
-   "1-1414147-0": "te/1-1414147-0 (3)"
+   "1-1414147-0": "te/1-1414147-0 (2)",
+   "1-1414286-0": "te/1-1414286-0 (1)"
   }
  },
  "battrelay": {
@@ -13420,24 +13421,9 @@
  "bar_metal": "CuC110",
  "interference": [
   [
-   "Power_Relay_TE_F7_1-1414147-0",
-   "Power_Terminal_TE_42281-1",
-   4.907
-  ],
-  [
-   "Power_Relay_TE_F7_1-1414147-0",
-   "Power_Terminal_TE_42281-1",
-   4.907
-  ],
-  [
-   "Power_Relay_TE_F7_1-1414147-0",
-   "Power_Terminal_TE_280756-4",
-   7.441
-  ],
-  [
-   "Power_Relay_TE_F7_1-1414147-0",
-   "Power_Terminal_TE_280756-4",
-   7.406
+   "Power_Base_PA12_printed",
+   "Power_Relay_TE_F7_1-1414286-0",
+   25.452
   ],
   [
    "Power_Relay_TE_F7_1-1414147-0",
@@ -13478,6 +13464,26 @@
    "Power_Relay_TE_F7_1-1414147-0",
    "Power_Terminal_TE_280756-4",
    7.406
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414286-0",
+   "Power_Terminal_TE_42281-1",
+   4.946
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414286-0",
+   "Power_Terminal_TE_42281-1",
+   4.947
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414286-0",
+   "Power_Terminal_TE_280756-4",
+   14.436
+  ],
+  [
+   "Power_Relay_TE_F7_1-1414286-0",
+   "Power_Terminal_TE_280756-4",
+   7.607
   ]
  ],
  "mass_g": {

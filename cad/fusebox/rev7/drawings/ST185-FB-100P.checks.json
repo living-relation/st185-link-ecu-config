@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-100P",
- "pdf_sha": "abf0924482092d7a",
+ "pdf_sha": "e83cc34d5e77cb0b",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -96,7 +96,7 @@
   },
   {
    "view": "STEP 4",
-   "placed": 11,
+   "placed": 12,
    "overlaps": 0,
    "crowded": 0,
    "crossings": 0,
@@ -120,14 +120,15 @@
     16,
     25,
     27,
-    24
+    24,
+    14
    ]
   }
  ],
  "not_ballooned": [],
  "ok": true,
  "rev_marks": {
-  "AD": 1
+  "AE": 1
  },
  "rev_marks_unplaced": [],
  "rev_marks_accumulate": false
