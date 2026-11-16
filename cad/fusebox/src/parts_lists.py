@@ -402,8 +402,8 @@ def build(rev=6):
         L.add(P, 'Relays', 'Relay %s (Maxi ISO F7, 1 form A, diode)' % who_f7('1-1414286-0'), '1-1414286-0', 'TE Connectivity',
               'Power Relay F7 (V23134-J0052-X439), Maxi ISO, 70 A, coil diode cathode 86, same QC body as 1-1414147-0', n_14286,
               url=TE('1-1414286-0'),
-              checked='TE F7 data sheet ordering table: V23134-J0052-X439 Diode (cathode 86) NOD 1-1414286-0; DigiKey A127746-ND "Features: Diode"',
-              note='Row 162 (Dan C1a 2026-11-14): K-FAN2 is driven by ECU Ign 5, which is not flywheeled (Link forum 17727), so it needs a diode-coil part (B15). 86 = coil +12 V (BUS-SW12), 85 = Ign 5: diode the right way round. Replaces 1-1393304-0 (560 ohm); the 2 on hand are spares.')
+              checked='TE Power Relay F7 data sheet rev 0413 ordering table: V23134-J0052-X439 Diode (cathode 86) NOD 1-1414286-0; DigiKey A127746-ND "Features: Diode"',
+              note='Row 162 (Dan A46 2026-11-15; first C1a 2026-11-14): K-FAN2 stays on ECU Ign 5, which is not flywheeled (Link forum 17727), so it gets the diode-coil part (B15). 86 = coil +12 V (BUS-SW12), 85 = Ign 5: diode the right way round. Not bought yet: Dan buys it. The third on-hand 1-1414147-0 is a spare.')
     if not R8:
         # relay terminals
         awg_87 = {'k_efi': S.AMI_AWG['EFI'], 'k_str': S.AMI_AWG['STR'], 'k_fan': S.AMI_AWG['FAN'], 'k_fan2': S.AMI_AWG['FAN2'], 'power': S.AMI_AWG['PWR']}

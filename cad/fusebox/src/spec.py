@@ -1084,12 +1084,13 @@ REV8 = dict(
                ('K-ON', '6-1419137-4', 'BUY'), ('K-DRL', '4-1904124-2', 'OWN'), ('SPARE', None, None), ('K-POD', '4-1904124-3', 'OWN')],
     # POWER relay seats R1-R6 (bank B1): R1 (was heater), R3 (was start) and R6 (was windows) are vacant (A16 a)
     RELAY_PN={'heater': (None, None), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': (None, None), 'k_fan': ('1-1414147-0', 'OWN'),
-              'k_fan2': ('1-1414147-0', 'OWN'), 'power': (None, None), 'SPARE': (None, None)},
-    # row 162 (Dan G1a 2026-11-15; on-hand first, R38): K-FAN2 is the third on-hand TE 1-1414147-0 (V23134-J0052-X429, 680 ohm
-    # coil resistor, TE F7 data sheet ordering table), same as K-EFI / K-FAN; its coil trigger moves to ECU Aux 8 (flywheeled,
-    # G4X QSG) - that wire move is handed to the wiring session (OPEN-ITEMS row 162)
+              'k_fan2': ('1-1414286-0', 'BUY'), 'power': (None, None), 'SPARE': (None, None)},
+    # row 162 (Dan A46, 2026-11-15 chat; replaces G1a): K-FAN2 stays on ECU Ign 5 (not flywheeled; Link forum 17727) and gets the
+    # diode-coil F7 TE 1-1414286-0 = V23134-J0052-X439, 1 form A, NOD, "Diode (cathode 86)" (TE Power Relay F7 data sheet rev 0413,
+    # ordering table); same quick-connect body, terminals 30 / 85 / 86 / 87 and 9.5 / 6.3 blades as 1-1414147-0 (one QC dimension
+    # drawing for every F7 type), so the seat and model geometry are unchanged. 86 = coil + (BUS-SW12), 85 = Ign 5 (B13).
     F7_POS=[('k_efi', '1-1414147-0', 'OWN'), ('SPARE', None, None), ('k_fan', '1-1414147-0', 'OWN'),
-            ('k_fan2', '1-1414147-0', 'OWN'), ('SPARE', None, None), ('SPARE', None, None),
+            ('k_fan2', '1-1414286-0', 'BUY'), ('SPARE', None, None), ('SPARE', None, None),
             ('SPARE', None, None), ('ACPS', None, None)],
     AMI_ROWS={
         'IN':  [('HTR', 40), ('EFI', 30), ('SP', None), ('FAN', 30), ('FAN2', 30), ('SP', None), ('SP', None), ('SP', None)],   # A17 a: FAN 30 A
