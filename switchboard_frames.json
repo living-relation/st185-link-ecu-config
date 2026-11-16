@@ -81,7 +81,7 @@
         { "byte": 0, "length": 1, "name": "L1 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
         { "byte": 1, "length": 1, "name": "L2 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
         { "byte": 2, "length": 1, "name": "L3 ctrl", "scale": 1, "offset": 0, "assignment": "unused (LED-only if used)" },
-        { "byte": 3, "length": 1, "name": "L4 ctrl", "scale": 1, "offset": 0, "assignment": "oil warning LED (CSB3 cavity 26, w_oil_k / D-OIL)" },
+        { "byte": 3, "length": 1, "name": "L4 ctrl", "scale": 1, "offset": 0, "assignment": "oil warning LED (CSB3 cavity 20, w_oil_k / D-OIL)" },
         { "byte": 4, "length": 0, "name": "(reserved)", "note": "transmit 0x00 in bytes 4-7" }
       ]
     }
