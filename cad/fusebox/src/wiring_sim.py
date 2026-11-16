@@ -2,7 +2,7 @@
 box (ST185-CabinPower, -HeavyDC, -EngineRoom-C, -RearFuel ...), at its real cavity, with its real gauge OD, insulation colour,
 terminal part, routed under the deck into the bundle of its exit (the CAD lanes, which set the belly pan exits)
 with the bend rule (3 x OD where the wire is tied into its bundle, FAA AC 43.13-1B 11-96).
-Pure Python (no Fusion): it writes the plan (cad/fusebox/rev7/wiring_plan.json, read by render_wired_rev7.py inside Fusion)
+Pure Python (no Fusion): it writes the plan (cad/fusebox/rev<N>/wiring_plan.json, N = spec.REV, read by render_wired_rev7.py inside Fusion)
 and the numbers that need no geometry (wires per box, bundle sizes against the exits, two wires in one terminal, terminal part
 differences). The Fusion script adds the geometric checks (wire through plastic, cover, fuse / relay pull, wire to wire).
     python cad/fusebox/src/wiring_sim.py            # writes the plan + prints the summary
@@ -24,7 +24,7 @@ REV_DIR = os.path.join(REPO, 'cad', 'fusebox', 'rev%d' % S.REV)
 OUT = os.path.join(REV_DIR, 'wiring_plan.json')
 CAD_REPORT = os.path.join(REV_DIR, 'fusebox_report.json')
 if not os.path.exists(CAD_REPORT):        # first plan of a new rev: the lanes of the rev before (build, then re-run this)
-    CAD_REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev7', 'fusebox_report.json')
+    CAD_REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev%d' % (S.REV - 1), 'fusebox_report.json')
 
 OD = dict(S.OD)
 OD[16] = OD.get(16, 2.06)

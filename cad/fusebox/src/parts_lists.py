@@ -1,9 +1,11 @@
 """Per-box parts lists for the custom fuse + relay boxes (cad/fusebox).
 
-Writes the CSVs next to the summary page and returns the rows for summary_html.py:
-    cad/fusebox/rev7/fusebox-parts-power.csv POWER box (glove box), rev 7 (--rev 7; the rev 6 POWER list was deleted 2026-11-09)
-    cad/fusebox/fusebox-parts-logic.csv     LOGIC box (glove box)
-    cad/fusebox/fusebox-parts-battrelay.csv battery relay block (trunk)
+Writes the rev 8 CSVs (the selected build):
+    cad/fusebox/rev8/fusebox-parts-power.csv     POWER box (glove box)
+    cad/fusebox/rev8/fusebox-parts-logic.csv     LOGIC box (glove box)
+    cad/fusebox/rev8/fusebox-parts-battrelay.csv battery relay block (trunk)
+The rev 6 / rev 7 lists and the reports they were built from were deleted 2026-11-16 (Dan A59 a; git history keeps them), so
+--rev 6 / --rev 7 are refused; the rev < 8 branches below stay only so the rev 8 output is byte-for-byte unchanged.
 docs/sourcing/build_project_bom.py reads these three files (the ONE project BOM, Mechanical section).
 
 Counts come from spec.py (fuse slots, relay positions, wire gauges) and fusebox_report.json (printed volumes), so a
@@ -15,8 +17,7 @@ others with a reason. On-hand quantities are qty_ordered from docs/sourcing/te-o
 'est' = typical distributor price, not checked (they move).
 
     python cad/fusebox/src/parts_lists.py            (rev 8, the selected build: cad/fusebox/rev8/ all three lists)
-    python cad/fusebox/src/parts_lists.py --rev 7    (rev 7: cad/fusebox/rev7/fusebox-parts-power.csv only; --rev 6: the LOGIC and battery
-                                                       block lists in cad/fusebox/; --check checks all three revs)
+    python cad/fusebox/src/parts_lists.py --check    (rev 8 only: lint + the three CSVs current; Dan A59 a)
 Claude Code, 2026-10-14. Rev 6 (DECISIONS R85): M6 limiters everywhere (C1), no mount bolts / nuts (C3: out of scope - the box
 lists hold the boxes only), mini fuse input jumpers (C4), one 40 mm standoff (B5).
 """
@@ -700,12 +701,13 @@ def render(rows, b):
 
 if __name__ == '__main__':
     REVN = int(sys.argv[sys.argv.index('--rev') + 1]) if '--rev' in sys.argv[1:] else 8     # rev 8 = the selected build (cad/README.md)
+    if REVN < 8:   # Dan A59 a (2026-11-16): the rev 6 / rev 7 lists and reports are in git history only
+        print('parts lists: rev %d is retired (Dan A59 a); only rev 8 is built and checked' % REVN)
+        sys.exit(2)
     R = build(REVN)
     bad = lint(R)
     if '--check' in sys.argv[1:]:
-        R7, R8_ = build(7), build(8)
-        bad += ['rev 7 ' + m for m in lint(R7)] + ['rev 8 ' + m for m in lint(R8_)]
-        for (rows, files, d, cmd) in ((build(6), WRITE6, FB, ' --rev 6'), (R7, FILES7, REV7_DIR, ' --rev 7'), (R8_, FILES8, REV8_DIR, '')):
+        for (rows, files, d, cmd) in ((R, FILES8, REV8_DIR, ''),):
             for b, fn in files.items():
                 fp = os.path.join(d, fn)
                 old = open(fp, encoding='utf-8', newline='').read().replace(CRLF, NL) if os.path.exists(fp) else ''

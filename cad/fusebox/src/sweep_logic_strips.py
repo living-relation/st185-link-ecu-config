@@ -3,8 +3,8 @@ Each strip with its PEM nuts slides in along -y from behind the box (the way it 
 the rigid base (everything but the hook arm + tooth) must never be hit, and the least lift of the hook that clears the strip is recorded -
 it must rise smoothly (no step over 0.25 per 0.1, i.e. no self-locking flat), stay within the hook's design deflection, and be 0 at the
 end (the tooth has dropped behind the strip). Run inside Fusion on the built ST185_fusebox_rev7 document (Fusion MCP execute_python):
-    exec(open(r'<repo>/cad/fusebox/src/sweep_logic_strips.py').read(), {'REPORT': r'<repo>/cad/fusebox/rev7/fusebox_report.json',
-                                                                     'OUTF': r'<repo>/cad/fusebox/rev7/strip_sweep.json'})
+    exec(open(r'<repo>/cad/fusebox/src/sweep_logic_strips.py').read(), {'REPORT': r'<repo>/cad/fusebox/rev8/fusebox_report.json',
+                                                                     'OUTF': r'<repo>/cad/fusebox/rev8/strip_sweep.json'})
 Claude Code, 2026-10-18.
 """
 import adsk.core, adsk.fusion, json, math
