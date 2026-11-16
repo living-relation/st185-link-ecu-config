@@ -7,49 +7,159 @@
     "A change to this file needs Dan's yes (A54 a).",
     "Expressions ('when', 'on_when') use the scenario inputs and the derived names below, plus hot('ID:pin') = that pin is on a hard supply, low('ID:pin') = on a hard ground, on('K-X') = relay closed, lit('DEV.element') = that load is on."
   ],
-  "battery": {"pos": "BATT-POS", "neg": "T-TRUNK-NEG", "src": "master: 'Battery + post (trunk)' / 'Battery - post (trunk)'"},
+  "battery": {
+    "pos": "BATT-POS",
+    "neg": "T-TRUNK-NEG",
+    "src": "master: 'Battery + post (trunk)' / 'Battery - post (trunk)'"
+  },
   "grounds": [
-    {"match": "^GND-", "node": "body", "src": "DECISIONS 'Grounds (B10)' N83 a (factory ground points on the body); circuit-plan #21: the studs stay as ground points"},
-    {"match": "^T-AT-GND$", "node": "body", "src": "DECISIONS 'Grounds (B10)' N43 b: ring terminal T-AT-GND to a chassis ground at the alarm spot"},
-    {"match": "^T-ENG-BLOCK", "node": "block", "src": "master: 'Engine block ground stud, main lug' / 'strap lug' (two lugs on one stud)"}
+    {
+      "match": "^GND-",
+      "node": "body",
+      "src": "DECISIONS 'Grounds (B10)' N83 a (factory ground points on the body); circuit-plan #21: the studs stay as ground points"
+    },
+    {
+      "match": "^T-AT-GND$",
+      "node": "body",
+      "src": "DECISIONS 'Grounds (B10)' N43 b: ring terminal T-AT-GND to a chassis ground at the alarm spot"
+    },
+    {
+      "match": "^T-ENG-BLOCK",
+      "node": "block",
+      "src": "master: 'Engine block ground stud, main lug' / 'strap lug' (two lugs on one stud)"
+    }
   ],
   "hubs": [
-    {"match": "^RADLOK-", "src": "docs/harness/README.md gen_heavydc: the RADLOK pass-through is two mates, not a load"},
-    {"match": "^JUMP-POST$", "src": "master: 'Jump start post' (an access post on the battery + bar, not a load)"}
+    {
+      "match": "^RADLOK-",
+      "src": "docs/harness/README.md gen_heavydc: the RADLOK pass-through is two mates, not a load"
+    },
+    {
+      "match": "^JUMP-POST$",
+      "src": "master: 'Jump start post' (an access post on the battery + bar, not a load)"
+    }
   ],
   "box": {
-    "trunk_block_fuse": {"in": "BATT +", "out": "FP 40A", "label": "B3 FP 40 A (trunk block)",
-                         "src": "DECISIONS 'Bus bars and fuse box ends' S1 a (block fuse FP -> K-FP 30); README 'Power injection' B3: 40 A; cad/fusebox/rev8/wiring_plan.json fb_batt"}
+    "trunk_block_fuse": {
+      "in": "BATT +",
+      "out": "FP 40A",
+      "label": "B3 FP 40 A (trunk block)",
+      "src": "DECISIONS 'Bus bars and fuse box ends' S1 a (block fuse FP -> K-FP 30); README 'Power injection' B3: 40 A; cad/fusebox/rev8/wiring_plan.json fb_batt"
+    }
   },
-  "defaults": {"rail_fed_on_when": "ign", "src": "sot/channels.csv: +5V Out / +8V Out are ECU rails, live while the ECU is powered"},
+  "defaults": {
+    "rail_fed_on_when": "ign",
+    "src": "sot/channels.csv: +5V Out / +8V Out are ECU rails, live while the ECU is powered"
+  },
   "inputs": {
-    "kill": {"default": true, "what": "battery kill switch closed"},
-    "key": {"default": "OFF", "what": "ignition key: OFF / ACC / ON / START"},
-    "stalk": {"default": "0", "what": "light stalk: 0 off, 1 hold, 2 TAIL, 3 HEAD"},
-    "dimmer": {"default": "low", "what": "dimmer: low / high"},
-    "flash": {"default": false, "what": "headlamp flash held"},
-    "drl_sw": {"default": false, "what": "DRL switch on"},
-    "horn": {"default": false, "what": "horn button pressed"},
-    "turn_l": {"default": false, "what": "LH turn / hazard lamps lit"},
-    "turn_r": {"default": false, "what": "RH turn / hazard lamps lit"},
-    "brake": {"default": false, "what": "brake pedal pressed"},
-    "clutch": {"default": false, "what": "clutch pedal down"},
-    "reverse": {"default": false, "what": "reverse gear engaged"},
-    "park_brake": {"default": false, "what": "park brake on"},
-    "engine": {"default": false, "what": "engine running (alternator charging, ECU firing)"},
-    "prime": {"default": false, "what": "ECU fuel pump prime"},
-    "blower": {"default": false, "what": "heater blower on (factory heater relay closed)"},
-    "fan": {"default": false, "what": "ECU asks for the radiator fan"},
-    "fan2": {"default": false, "what": "ECU asks for the condenser fan"},
-    "eps": {"default": false, "what": "ECU enables the power steering pump"},
-    "ac": {"default": false, "what": "A/C amp asks for the compressor clutch"},
-    "ac_psw": {"default": false, "what": "A/C pressure switch closed (pressure OK)"},
-    "ac_kill": {"default": false, "what": "ECU cancels the A/C (ACT)"},
-    "boost": {"default": false, "what": "ECU drives the boost solenoid"},
-    "etb": {"default": false, "what": "ECU drives the throttle motor"},
-    "oil_led": {"default": false, "what": "ECU asks for the oil warning LED (CAN 0x643 byte 3)"},
-    "cruise_main": {"default": false, "what": "cruise MAIN switch on"},
-    "cruise_btn": {"default": false, "what": "a cruise stalk button held (SET / RES / CANCEL)"}
+    "kill": {
+      "default": true,
+      "what": "battery kill switch closed"
+    },
+    "key": {
+      "default": "OFF",
+      "what": "ignition key: OFF / ACC / ON / START"
+    },
+    "stalk": {
+      "default": "0",
+      "what": "light stalk: 0 off, 1 hold, 2 TAIL, 3 HEAD"
+    },
+    "dimmer": {
+      "default": "low",
+      "what": "dimmer: low / high"
+    },
+    "flash": {
+      "default": false,
+      "what": "headlamp flash held"
+    },
+    "drl_sw": {
+      "default": false,
+      "what": "DRL switch on"
+    },
+    "horn": {
+      "default": false,
+      "what": "horn button pressed"
+    },
+    "turn_l": {
+      "default": false,
+      "what": "LH turn / hazard lamps lit"
+    },
+    "turn_r": {
+      "default": false,
+      "what": "RH turn / hazard lamps lit"
+    },
+    "brake": {
+      "default": false,
+      "what": "brake pedal pressed"
+    },
+    "clutch": {
+      "default": false,
+      "what": "clutch pedal down"
+    },
+    "reverse": {
+      "default": false,
+      "what": "reverse gear engaged"
+    },
+    "park_brake": {
+      "default": false,
+      "what": "park brake on"
+    },
+    "engine": {
+      "default": false,
+      "what": "engine running (alternator charging, ECU firing)"
+    },
+    "prime": {
+      "default": false,
+      "what": "ECU fuel pump prime"
+    },
+    "blower": {
+      "default": false,
+      "what": "heater blower on (factory heater relay closed)"
+    },
+    "fan": {
+      "default": false,
+      "what": "ECU asks for the radiator fan"
+    },
+    "fan2": {
+      "default": false,
+      "what": "ECU asks for the condenser fan"
+    },
+    "eps": {
+      "default": false,
+      "what": "ECU enables the power steering pump"
+    },
+    "ac": {
+      "default": false,
+      "what": "A/C amp asks for the compressor clutch"
+    },
+    "ac_psw": {
+      "default": false,
+      "what": "A/C pressure switch closed (pressure OK)"
+    },
+    "ac_kill": {
+      "default": false,
+      "what": "ECU cancels the A/C (ACT)"
+    },
+    "boost": {
+      "default": false,
+      "what": "ECU drives the boost solenoid"
+    },
+    "etb": {
+      "default": false,
+      "what": "ECU drives the throttle motor"
+    },
+    "oil_led": {
+      "default": false,
+      "what": "ECU asks for the oil warning LED (CAN 0x643 byte 3)"
+    },
+    "cruise_main": {
+      "default": false,
+      "what": "cruise MAIN switch on"
+    },
+    "cruise_btn": {
+      "default": false,
+      "what": "a cruise stalk button held (SET / RES / CANCEL)"
+    }
   },
   "derived": {
     "ign": "kill and key in ('ON', 'START')",
@@ -68,246 +178,1987 @@
     "brake_live": "README 'Power injection' AMI OUT-5: J/B No.1 feeds STOP; master: S9 pin 1 'Brake on +12 V'"
   },
   "links": [
-    {"a": "IE1:2", "b": "I2:R-Y", "name": "R-Y through cowl splice I2", "src": "DECISIONS 'Headlamps, DRL and pop-ups': light switch HEAD grounds R-Y (splice I2: head relay coil, R8 pin 8 UP); master: 'EWD 1993 p.116 (cowl splice I2, R-Y: IE1-2, C15 (A) 13 / 14, R8-8)'"},
-    {"a": "C14:8", "b": "IG2:16", "name": "charge lamp Y through cowl splice I5", "src": "circuit-plan IG2-16: cowl splice I5 -> comb meter C14 (C) pin 8; KEEP, the Dash charge LED sinks to C14-8"}
+    {
+      "a": "IE1:2",
+      "b": "I2:R-Y",
+      "name": "R-Y through cowl splice I2",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups': light switch HEAD grounds R-Y (splice I2: head relay coil, R8 pin 8 UP); master: 'EWD 1993 p.116 (cowl splice I2, R-Y: IE1-2, C15 (A) 13 / 14, R8-8)'"
+    },
+    {
+      "a": "C14:8",
+      "b": "IG2:16",
+      "name": "charge lamp Y through cowl splice I5",
+      "src": "circuit-plan IG2-16: cowl splice I5 -> comb meter C14 (C) pin 8; KEEP, the Dash charge LED sinks to C14-8"
+    }
   ],
   "parts": {
-    "KILL-SW": {"kind": "switch", "contacts": [["MAIN1", "MAIN2", "kill"], ["ALT1", "ALT2", "kill"]], "src": "master pin names MAIN1 / MAIN2 (battery +) and ALT1 / ALT2 (alternator IG); circuit-plan #3: IG2-15 keeps a pigtail: kill switch, then alternator IG"},
-    "REV-SW": {"kind": "switch", "contacts": [["2", "1", "reverse"]], "src": "master: pin 2 '+12 V (COM)', pin 1 'Switched +12 V (NO)'; circuit-plan #11"},
-    "DRL-SW": {"kind": "switch", "contacts": [["1", "2", "drl_sw"]], "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: SPST on-off rocker; it grounds on R8's own ground lead"},
-    "A5": {"kind": "switch", "contacts": [["1", "4", "ac_psw"]], "src": "circuit-plan group 5: pressure switch A5 pin 1 from the R/B No.4 10 A A/C fuse, pin 4 its output to A15 pin 13"},
-    "C16": {"kind": "switch", "contacts": [["15", "17", "cruise_main"]], "elements": [{"a": "5", "b": "17", "name": "cruise ladder resistor (a button held)", "kind": "res", "when": "cruise_btn"}],
-            "src": "ECUMASTER_SWITCHBOARD_SETUP.md: pin 15 MAIN is a contact to the pin 17 ground when ON; pin 5 is a resistor to ground per position"},
-    "MRS-B": {"kind": "switch", "contacts": [["5", "MRS-A:2", "lit('MRS-C.pump enable (IG)')"]], "src": "sot/channels.csv MRS Relay b5: 'Pump switches its main relay coil-' (DECISIONS R22); assumed: the pump does so while its enable pin C1 is live",
-              "tbd": "what makes the MR-S pump ground its relay coil (pin B5) is not in the repo; taken as: while its enable pin C1 is live"},
-    "F-PI": {"kind": "fuse", "pins": ["IN", "OUT"], "label": "Pi inline fuse 5 A (F-PI)", "src": "master: 'RealDash Pi inline fuse 5 A'; DECISIONS B17 (Dan N58 a)"},
-    "D-R8-1": {"kind": "diode", "a": "1", "k": "2", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: D1 anode at R8 pin 8, cathode to the I2 side; master pin text", "tbd": "which cavity of the DT04-2P-RT01 diode plug is the anode is TBD by the TE drawing (N87 a); the master's pin 1 = anode is taken as is"},
-    "D-R8-2": {"kind": "diode", "a": "1", "k": "2", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: D2 anode at R8 pin 8, cathode to the DRL switch (through K-POD since N93 a); master pin text", "tbd": "which cavity of the DT04-2P-RT01 diode plug is the anode is TBD by the TE drawing (N87 a); the master's pin 1 = anode is taken as is"},
-    "D-IG2-WAKE": {"kind": "diode", "a": "1", "k": "2", "src": "circuit-plan 'ETB hold power': the IG2 wake diode feeds A5 from J/B1 1H-7; master pin text 'IG2 wake feed' -> 'ECU main +12 V'"},
-
-    "K-EFI": {"kind": "relay", "part": "TE 1-1414147-0", "suppression": "TBD", "on_when": "ign", "src": "cad/fusebox/src/spec.py REV8 F7_POS; circuit-plan: Aux 6 (A28) holds K-EFI"},
-    "K-FAN": {"kind": "relay", "part": "TE 1-1414147-0", "suppression": "TBD", "on_when": "ign and fan", "src": "spec.py REV8 F7_POS; sot/channels.csv Aux 5 'Rad fan relay coil'"},
-    "K-FAN2": {"kind": "relay", "part": "TE 1-1414286-0", "suppression": "diode", "cathode": "86", "on_when": "ign and fan2", "src": "DECISIONS 'Relays (B15)' K-FAN2 (Dan A46): Diode (cathode 86); 86 = coil + from BUS-SW12, 85 = ECU B13"},
-    "K-FP": {"kind": "relay", "part": "TBD", "suppression": "TBD", "on_when": "ign and (engine or prime)", "src": "README 'Power injection' B3: coil 86 from BUS-SW12, coil 85 to ECU plug A pin 19 (Aux 3)"},
-    "K-HL": {"kind": "relay", "part": "TE 5-1393292-8", "suppression": "TBD", "on_when": "kill and ry", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N89 a: K-HL coil 85 on R-Y (HEAD or FLASH), fed from HL 15 A (Bus 1, permanent)"},
-    "K-HR": {"kind": "relay", "part": "TE 5-1393292-8", "suppression": "TBD", "on_when": "kill and ry and rw", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N89 a: K-HR coil 86 from K-HL 87, coil 85 on R-W (HIGH or FLASH)"},
-    "K-HORN": {"kind": "relay", "part": "TE 4-1904124-3", "suppression": "resistor", "on_when": "kill and horn", "src": "sot/fuse-relay-map.csv B2 M3; circuit-plan R/B No.5: K-HORN 85 at IE1-19 (horn switch); harness-parts.csv: coil resistor"},
-    "K-ETB": {"kind": "relay", "part": "TE 4-1904124-2", "suppression": "resistor", "on_when": "ign", "src": "circuit-plan: K-ETB on Aux 2 (A20) feeds B5; harness-parts.csv: coil resistor"},
-    "K-ACC": {"kind": "relay", "part": "TE 6-1419137-4", "suppression": "diode", "cathode": "86", "on_when": "ign and ac", "src": "DECISIONS 'Relays (B15)': K-ACC on the A/C amp is a diode part; spec.py Micro Relay A note (TE data sheet V23074 rev 1119 p.3): coil + is terminal 1, the diode's cathode side = 86"},
-    "K-EPS-EN": {"kind": "relay", "part": "TE 6-1419137-4", "suppression": "diode", "cathode": "86", "on_when": "ign and eps", "src": "sot/fuse-relay-map.csv B2 M6: diode micro relay, 85 from ECU B12 (Ign 6), 86 from BUS-SW12; spec.py Micro Relay A note: cathode side = 86"},
-    "K-ON": {"kind": "relay", "part": "TE 6-1419137-4", "suppression": "diode", "cathode": "86", "on_when": "ign", "src": "DECISIONS 'Relays (B15)' K-ON (Dan N5 a): coil 86 from J/B No.1 1H-7 (live at ON and ST), coil 85 to the POWER box NEG bar; spec.py Micro Relay A note: cathode side = 86"},
-    "K-DRL": {"kind": "relay", "part": "TE 4-1904124-2", "suppression": "resistor", "on_when": "ign and drl_sw", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: 30 / 86 from BUS2-1 (Bus 2, key on), 85 to the DRL switch"},
-    "K-POD": {"kind": "relay", "part": "TE 4-1904124-3", "suppression": "resistor", "on_when": "ign and drl_sw", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N93 a: coil 86 from BUS2-1 (key on), coil 85 on the DRL switch"},
-    "K-EPS": {"kind": "relay", "part": "TE HCR150 1416010-1", "suppression": "resistor", "on_when": "ign and eps", "src": "DECISIONS 'Relays (B15)' K-EPS coil (Dan A47): resistor-suppressed, 86 (+12 V) / 85 (MR-S pump B5)"},
-    "RLY-DRL": {"kind": "relay", "part": "Song Chuan 301-1C-C-R1-U01-12VDC", "suppression": "resistor", "on_when": "kill and ry", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N90 a: coil 86 from the HL fuse, coil 85 on R-Y; NC 87a in the DRL feed; harness-parts.csv: coil resistor"},
-
-    "H1": {"kind": "load", "elements": [["1", "3", "low beam", "kill and ry"], ["2", "3", "high beam", "kill and ry and rw"], ["DRL", "3", "DRL", "ign and drl_sw and not ry"], ["TURN", "3", "turn", "turn_l"]],
-           "src": "circuit-plan 'Headlamps, DRL and pop-ups': HWSTAR H6054, pin 1 low, pin 2 high, pin 3 common (ground), white DRL lead, yellow turn lead; truth table"},
-    "H2": {"kind": "load", "elements": [["1", "3", "low beam", "kill and ry"], ["2", "3", "high beam", "kill and ry and rw"], ["DRL", "3", "DRL", "ign and drl_sw and not ry"], ["TURN", "3", "turn", "turn_r"]],
-           "src": "circuit-plan 'Headlamps, DRL and pop-ups': HWSTAR H6054, pin 1 low, pin 2 high, pin 3 common (ground), white DRL lead, yellow turn lead; truth table"},
-    "F5": {"kind": "load", "elements": [["1", "2", "marker lamp", "tail_live"]], "src": "master pin text 'Marker +12 V' / 'Ground'; circuit-plan group 8: re-fed by w_clr (1H-6) via SP-CLR"},
-    "F6": {"kind": "load", "elements": [["1", "2", "marker lamp", "tail_live"]], "src": "master pin text 'Marker +12 V' / 'Ground'; circuit-plan group 8: re-fed by w_clr (1H-6) via SP-CLR"},
-    "F7": {"kind": "load", "elements": [["3", "2", "turn lamp", "turn_l"], ["1", "2", "clearance lamp", "tail_live"]], "src": "master pin text; circuit-plan group 8: w_turn_f7 (1H-4), w_clr (1H-6)"},
-    "F8": {"kind": "load", "elements": [["3", "2", "turn lamp", "turn_r"], ["1", "2", "clearance lamp", "tail_live"]], "src": "master pin text; circuit-plan group 8: w_turn_f8 (1H-8), w_clr (1H-6)"},
-    "HORN-LH": {"kind": "load", "elements": [["1", "2", "horn", "kill and horn"]], "src": "master pin text; DECISIONS N86: both horns share one ground to EA"},
-    "HORN-RH": {"kind": "load", "elements": [["1", "2", "horn", "kill and horn"]], "src": "master pin text; DECISIONS N86: both horns share one ground to EA"},
-    "FUEL-PUMP": {"kind": "load", "elements": [["1", "2", "pump motor", "ign and (engine or prime)"]], "src": "master pin text 'Fuel pump +12 V' / 'Fuel pump ground'; README 'Power injection' B3"},
-    "FAN-RAD": {"kind": "load", "elements": [["1", "FAN-RAD-GND:1", "fan motor", "ign and fan"]], "src": "master: 'Radiator fan plug (+)' and 'Radiator fan ground plug' are the two leads of one motor; circuit-plan 2A-4: w_fan_pwr (K-FAN), ground w_fan_gnd to EA"},
-    "FAN-RAD-GND": {"kind": "part-of", "of": "FAN-RAD", "src": "master: 'Radiator fan ground plug'"},
-    "FAN-COND": {"kind": "load", "elements": [["1", "FAN-COND-GND:1", "fan motor", "ign and fan2"]], "src": "master: 'Condenser fan plug (+)' and 'Condenser fan ground plug' are the two leads of one motor; circuit-plan 2A-2: w_fan2_pwr (K-FAN2), w_fan2_gnd to EA"},
-    "FAN-COND-GND": {"kind": "part-of", "of": "FAN-COND", "src": "master: 'Condenser fan ground plug'"},
-    "INJ-1": {"kind": "load", "elements": [["1", "2", "injector coil", "ign and engine"]], "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 1 lowside-sat"},
-    "INJ-2": {"kind": "load", "elements": [["1", "2", "injector coil", "ign and engine"]], "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 2 lowside-sat"},
-    "INJ-3": {"kind": "load", "elements": [["1", "2", "injector coil", "ign and engine"]], "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 3 lowside-sat"},
-    "INJ-4": {"kind": "load", "elements": [["1", "2", "injector coil", "ign and engine"]], "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 4 lowside-sat"},
-    "COIL-1": {"kind": "load", "elements": [["1", "4", "coil supply", "ign"]], "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'; DECISIONS 'Grounds (B10)': the coil ground goes to the POWER box NEG bar"},
-    "COIL-2": {"kind": "load", "elements": [["1", "4", "coil supply", "ign"]], "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'"},
-    "COIL-3": {"kind": "load", "elements": [["1", "4", "coil supply", "ign"]], "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'"},
-    "COIL-4": {"kind": "load", "elements": [["1", "4", "coil supply", "ign"]], "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'"},
-    "BOOST-SOL": {"kind": "load", "elements": [["1", "2", "solenoid", "ign and boost"]], "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Aux 1"},
-    "FLEX": {"kind": "load", "elements": [["A", "B", "sensor supply", "ign"]], "src": "master pin text: A '+12 V', B '12 V sensor return', C 'Signal'"},
-    "CAN-LAMBDA": {"kind": "load", "elements": [["1", "2", "controller supply", "ign"]], "src": "master pin text: 1 '+12 V', 2 'Ground'; DECISIONS 'Relays (B15)' K-ON: 87 -> the CAN-Lambda only"},
-    "ETB": {"kind": "load", "elements": [["3", "2", "position sensor supply", "ign"], ["4", "1", "throttle motor", "ign and etb"]], "src": "master pin text: 3 '+5 V', 2 'Ground', 4 'Motor +', 1 'Motor -'; sot/channels.csv Aux 9 / Aux 10 (H-bridge)"},
-    "APS-PEDAL": {"kind": "load", "elements": [["4", "5", "sensor 1 supply", "ign"], ["1", "2", "sensor 2 supply", "ign"]], "src": "master pin text: 4 '+5 V (sensor 1)', 5 'Ground (sensor 1)', 1 '+5 V (sensor 2)', 2 'Ground (sensor 2)'; sot/channels.csv An Volt 4 / 5 notes"},
-    "MRS-A": {"kind": "load", "elements": [["1", "2", "pump motor power", "ign and eps"]], "src": "master pin text: 1 'EHPS pump +12 V', 2 'Ground'; sot/channels.csv MRS a1 / a2"},
-    "MRS-C": {"kind": "load", "elements": [["1", "MRS-A:2", "pump enable (IG)", "ign and eps"]], "src": "sot/channels.csv MRS Enable c1 (switch-12v) from K-EPS-EN 87; the pump's ground is plug A pin 2"},
-    "CSB3": {"kind": "load", "elements": [["2", "1", "board supply", "ign"]],
-             "rails": [["3", "5", "lit('CSB3.board supply')", "+5 V out"], ["4", "0", "lit('CSB3.board supply')", "reference ground SGND"], ["20", "0", "lit('CSB3.board supply') and oil_led", "low-side output L4 (oil LED)"]],
-             "src": "docs/enclosures/csb3-hd34-pinmap.csv: cavity 1 GND, 2 +12V, 3 +5V (sensor 5 V), 4 SGND (switch reference ground), 20 L4 (oil warning LED); switchboard_frames.json 0x643: L4 = oil warning LED",
-             "tbd": "the inside of the CSB3 (its +5 V output, SGND and low-side outputs) is taken from the pin map names; the CSB3 manual is not in the repo"},
-    "OPTO-8": {"kind": "load",
-               "elements": [["VCC", "NEG", "board supply (+5 V)", "ign"], ["IN1", "COM1", "opto input 1 (brake)", "brake_live"], ["IN2", "COM1", "opto input 2 (reverse)", "ign and reverse"], ["IN3", "COM1", "opto input 3 (lights on)", "tail_live"]],
-               "contacts": [["OUT1", "NEG", "lit('OPTO-8.opto input 1 (brake)')"], ["OUT2", "NEG", "lit('OPTO-8.opto input 2 (reverse)')"], ["OUT3", "NEG", "lit('OPTO-8.opto input 3 (lights on)')"]],
-               "src": "master pin text (IN1 / IN2 / IN3, COM1 'Opto input return', VCC, NEG 'Opto out ground', OUT1-3); master note of w_hl_sense_out: 'EL814 OUT3 open-collector ... (active-low)'; DECISIONS N109 a",
-               "tbd": "open-collector outputs (OUT pulled to the opto out ground while its input is lit) are recorded only for OUT3 (master note); OUT1 / OUT2 are taken the same; the bench check is OPEN-ITEMS row 101"},
-    "T-CLUSTER-PWR": {"kind": "load", "elements": [["", "T-CLUSTER-GND-LEAD:", "cluster supply", "ign"]], "src": "master: 'Centre cluster +12 V input lead' / 'Centre cluster ground input lead'; README 'Power injection' BUS2-6 DEV 5 A"},
-    "T-CLUSTER-GND-LEAD": {"kind": "part-of", "of": "T-CLUSTER-PWR", "src": "master: 'Centre cluster ground input lead'"},
-    "T-REALDASH-PWR": {"kind": "load", "elements": [["", "T-REALDASH-GND-LEAD:", "Pi supply", "acc"]], "src": "master: 'RealDash Pi +12 V input lead' / 'RealDash Pi ground input lead'; README 'Power injection': the Pi is on the factory CIG & RADIO 15 A ACC feed"},
-    "T-REALDASH-GND-LEAD": {"kind": "part-of", "of": "T-REALDASH-PWR", "src": "master: 'RealDash Pi ground input lead'"},
-    "D-HB": {"kind": "led", "on_when": "kill and ry and rw", "src": "DECISIONS 'Headlamps, DRL and pop-ups' A2 b: the LED lights while K-HR is on"},
-    "D-CHG": {"kind": "led", "on_when": "ign and not engine", "src": "circuit-plan #3: IG2-16 Y drives the 12 V charge LED (it sinks to C14 pin 8)"},
-    "D-PK": {"kind": "led", "on_when": "ign and park_brake", "src": "circuit-plan #7: LEDs take park brake from the OEM cluster plugs; master: C14 pin 1 'Park brake switch (-)'"},
-    "D-TL": {"kind": "led", "on_when": "turn_l", "src": "circuit-plan #7: LEDs take turn from the OEM cluster plugs; DECISIONS 'Grounds (B10)' dash LED polarity: LED + on C13 (B) pin 2"},
-    "D-TR": {"kind": "led", "on_when": "turn_r", "src": "circuit-plan #7; DECISIONS 'Grounds (B10)' dash LED polarity: LED + on C13 (B) pin 11"},
-    "D-OIL": {"kind": "led", "on_when": "ign and oil_led", "src": "circuit-plan #7: oil pressure from CSB3 L4 (cavity 20, 0x643 byte 3)"},
-
-    "ALT-PLUG": {"kind": "endpoint", "src": "master pin text: 1 'S (battery sense)', 2 'L (charge lamp)', 3 'Alt IG excite'; circuit-plan #3", "pins": {
-      "1": {"role": "load", "name": "battery sense S", "on_when": "kill"},
-      "2": {"role": "sink", "name": "charge lamp L (sinks while not charging)", "when": "not engine", "tbd": "the alternator's L terminal (sinks the charge lamp while not charging) is taken from circuit-plan #3; no alternator datasheet in the repo"},
-      "3": {"role": "load", "name": "IG excite", "on_when": "ign"}}},
-    "T-ALT-B": {"kind": "endpoint", "src": "master: 'Alternator B+ stud'; DECISIONS N61 a: the alternator fuse is the MRBF link w_alt_fuse", "pins": {"": {"role": "load", "name": "alternator B+ (battery side of the charging cable)", "on_when": "kill"}}},
-    "T-STARTER-B": {"kind": "endpoint", "src": "master: 'Starter B+ stud', fed from the jump bar (w_bar_str)", "pins": {"": {"role": "load", "name": "starter B+", "on_when": "kill"}}},
-    "STARTER-TRIGGER": {"kind": "endpoint", "src": "circuit-plan #2 and R/B No.4 starter relay pin 4: re-fed by w_strl_c / w_strl_e to starter S", "pins": {"1": {"role": "load", "name": "starter solenoid S", "on_when": "kill and key == 'START' and clutch"}}},
-    "JB1": {"kind": "endpoint", "src": "README 'Power injection' (B1 / B2 tables, 1993 EWD p.62-63, p.132)", "pins": {
-      "1H-7": {"role": "source", "name": "IGN 7.5 A out (live at ON and START, from AM2)", "when": "key in ('ON', 'START') and hot('IE1:17')", "src": "README 'Power injection': J/B1 1H-7 (IGN) comes alive from AM2 through the ignition switch, so it is tapped, never fed; AMI OUT-4 -> IE1 pin 17 -> ignition switch AM2 (IG2)"},
-      "1H-2": {"role": "load", "name": "dome feed in", "on_when": "kill"},
-      "1I-1": {"role": "load", "name": "J/B No.1 main feed in", "on_when": "kill"},
-      "1H-4": {"role": "source", "name": "LH front turn out", "when": "turn_l", "src": "README 'Power injection': front turn lamps stay on J/B No.1 1H-4 / 1H-8", "tbd": "which of our feeds the factory turn / hazard circuit hangs on is factory wiring, not traced (A57 a)"},
-      "1H-8": {"role": "source", "name": "RH front turn out", "when": "turn_r", "src": "README 'Power injection': front turn lamps stay on J/B No.1 1H-4 / 1H-8", "tbd": "which of our feeds the factory turn / hazard circuit hangs on is factory wiring, not traced (A57 a)"},
-      "1H-6": {"role": "source", "name": "clearance (TAIL) out", "when": "stalk in ('2', '3') and hot('JB1:1I-1')", "src": "README 'Power injection': clearance lamps stay on J/B No.1 1H-6; AMI OUT-5 feeds the taillight relay and tail bus"},
-      "1H-5": {"role": "source", "name": "wiper +B out", "when": "TBD", "src": "README 'Power injection': wiper stays on J/B No.1 1H-5"}}},
-    "IE1": {"kind": "endpoint", "src": "master pin text; README 'Power injection'; DECISIONS 'Headlamps, DRL and pop-ups'; circuit-plan groups 6 and 8", "pins": {
-      "2": {"role": "sink", "name": "R-Y: light switch HEAD / FLASH to ground", "when": "ry"},
-      "18": {"role": "sink", "name": "R-W: dimmer HIGH / FLASH to ground", "when": "rw"},
-      "19": {"role": "sink", "name": "horn switch to ground", "when": "horn", "src": "circuit-plan R/B No.5: horn relay coil - to horn SW C15-10 at IE1-19"},
-      "12": {"role": "load", "name": "hazard feed in (H5-8 / flasher)", "on_when": "kill"},
-      "3": {"role": "load", "name": "RTR feed in (pop-up relay R8 pin 3)", "on_when": "kill"},
-      "10": {"role": "load", "name": "AM1 feed in (ignition switch, R/B No.2)", "on_when": "kill"},
-      "17": {"role": "load", "name": "AM2 feed in (ignition switch)", "on_when": "kill"},
-      "13": {"role": "source", "name": "wiper LOW out", "when": "TBD"},
-      "20": {"role": "source", "name": "wiper HIGH out", "when": "TBD"},
-      "6": {"role": "signal", "name": "wiper park switch"},
-      "7": {"role": "signal", "name": "RH pop-up motor 4 (driven by R8)"},
-      "8": {"role": "signal", "name": "RH pop-up motor 2 (driven by R8)"},
-      "14": {"role": "signal", "name": "LH pop-up motor 4 (driven by R8)"},
-      "15": {"role": "signal", "name": "LH pop-up motor 2 (driven by R8)"},
-      "9": {"role": "signal", "name": "pop-up close limit (to R8)"},
-      "16": {"role": "signal", "name": "pop-up open limit (to R8)"}}},
-    "I2": {"kind": "endpoint", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: the R-Y lead I2 -> R8 pin 8 is cut near R8", "pins": {"R-Y": {"role": "sink", "name": "R-Y: light switch HEAD / FLASH to ground (I2 side)", "when": "ry"}}},
-    "R8": {"kind": "endpoint", "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a; master pin text 'Pop-up UP (to ground)' / 'Ground (R8 ground lead)'", "pins": {
-      "8": {"role": "input", "name": "pop-up UP command (ground = up)", "pull": "IE1:3", "src": "README 'Power injection' AMI OUT-2: RTR feeds retract control relay R8 pin 3; assumed: the UP input is pulled up inside R8 from that feed (R8's inside is factory, not in the repo)"},
-      "12": {"role": "ground", "name": "R8 ground lead (W-B to ID)"}}},
-    "IG2": {"kind": "endpoint", "src": "circuit-plan 'IG1 / IG2' table (IG2-4, IG2-13, IG2-15, IG2-16)", "pins": {
-      "4": {"role": "source", "name": "back-up switch feed (GAUGE 15 A)", "when": "ign", "tbd": "which of our feeds the factory GAUGE fuse hangs on is factory wiring, not traced (A57 a)"},
-      "15": {"role": "source", "name": "ECU-IG 15 A (alternator IG)", "when": "ign", "tbd": "which of our feeds the factory ECU-IG fuse hangs on is factory wiring, not traced (A57 a)"},
-      "13": {"role": "load", "name": "back-up lamps (factory rear wiring)", "on_when": "ign and reverse"},
-      "16": {"role": "link", "name": "charge lamp Y (to C14 pin 8)"}}},
-    "II1": {"kind": "endpoint", "src": "README 'Power injection': CIG & RADIO 15 A at cowl plug II1 pin 3, live at ACC and ON (1993 EWD p.201-202)", "pins": {"3": {"role": "source", "name": "radio ACC +12 V", "when": "acc", "tbd": "which of our feeds the factory CIG & RADIO fuse hangs on is factory wiring, not traced (A57 a)"}}},
-    "RB4": {"kind": "endpoint", "src": "circuit-plan 'R/B No.4' table; README 'Power injection' AMI IN-1 and BUS2-13", "pins": {
-      "ST-1": {"role": "source", "name": "ST1 (key START)", "when": "key == 'START' and hot('IE1:10')", "src": "README 'Power injection' AMI OUT-3: AM1 feeds ignition switch I13-4 (ACC / IG1 / ST1); circuit-plan: starter relay coil + (ST1)"},
-      "ST-4": {"role": "source", "name": "starter relay out", "when": "key == 'START' and clutch and hot('IE1:10')", "src": "circuit-plan #2: coil + from key START, coil - through the clutch start switch C11; relay contact in is ST1"},
-      "AC-2": {"role": "source", "name": "10 A A/C fuse out", "when": "blower and hot('RB4:HTR-1')", "src": "circuit-plan 'R/B No.4': the 10 A A/C fuse is fed from heater relay pin 4; the heater relay contact in is the 40 A HEATER fuse"},
-      "HTR-1": {"role": "load", "name": "40 A HEATER fuse feed in", "on_when": "kill"}}},
-    "C13": {"kind": "endpoint", "src": "DECISIONS 'Grounds (B10)' dash LED polarity (1993 EWD check): LED + on C13 (B) pins 2 (turn LH), 11 (turn RH); N106 a: LED ground on the cluster ground", "pins": {
-      "2": {"role": "source", "name": "turn LH indicator feed", "when": "turn_l", "tbd": "factory turn circuit, not traced (A57 a)"},
-      "11": {"role": "source", "name": "turn RH indicator feed", "when": "turn_r", "tbd": "factory turn circuit, not traced (A57 a)"},
-      "1": {"role": "ground", "name": "cluster ground"}}},
-    "C14": {"kind": "endpoint", "src": "circuit-plan #7 and group 7: C14 (C) pin 9 B-O IGN, pin 8 Y charge, pin 1 R-G park brake", "pins": {
-      "9": {"role": "source", "name": "IGN for the cluster LEDs", "when": "ign", "tbd": "which of our feeds the factory GAUGE / IGN line at C14 pin 9 hangs on is factory wiring, not traced (A57 a)"},
-      "8": {"role": "link", "name": "charge lamp Y (to IG2 pin 16)"},
-      "1": {"role": "sink", "name": "park brake switch to ground", "when": "park_brake"}}},
-    "C17": {"kind": "endpoint", "src": "README 'Factory wiring facts': cruise clutch switch C17 pin 2 is the one ECU clutch input; pin 1 W-B stays on its ground", "pins": {"2": {"role": "sink", "name": "clutch switch to ground", "when": "clutch"}}},
-    "S9": {"kind": "endpoint", "src": "circuit-plan group 7: stop light SW S9 pin 1 keeps, tapped by w_sw6", "pins": {"1": {"role": "source", "name": "brake on +12 V", "when": "brake and hot('JB1:1I-1')"}}},
-    "R10": {"kind": "endpoint", "src": "circuit-plan #7: tap R10 pin 1 green TAIL through opto IN3", "pins": {"1": {"role": "source", "name": "lights on +12 V (TAIL)", "when": "stalk in ('2', '3') and hot('JB1:1I-1')"}}},
-    "A15": {"kind": "endpoint", "src": "circuit-plan #10 (D16) and group 4; sot/channels.csv ACAMP rows", "pins": {
-      "8": {"role": "sink", "name": "MGC: clutch relay coil - (the amp sinks it)", "when": "ac"},
-      "11": {"role": "input", "name": "ACT: compressor cancel (ground = kill)"},
-      "13": {"role": "input", "name": "pressure switch signal"},
-      "18": {"role": "input", "name": "engine speed (tacho)"},
-      "9": {"role": "input", "name": "lock sensor (tacho through 4.7 k)"},
-      "2": {"role": "input", "name": "coolant OK (hard-grounded by w_ac_cool_gnd)"}}},
-    "A32": {"kind": "endpoint", "src": "sot/channels.csv ACAMP TAM / TW return: auto A/C amp A32 pin 6 TAM, pin 15 sensor common SG", "pins": {
-      "15": {"role": "ground", "name": "sensor common SG"},
-      "6": {"role": "input", "name": "ambient temp TAM"}}},
-    "A1": {"kind": "endpoint", "src": "sot/channels.csv ACAMP TAM: ambient sensor A1 pin 2 -> A32 pin 6; pin 1 -> sensor common", "pins": {"2": {"role": "signal", "name": "ambient sensor signal"}, "1": {"role": "signal", "name": "ambient sensor return"}}},
-    "A4": {"kind": "endpoint", "src": "circuit-plan R/B No.5: the clutch is w_acc_clutch (K-ACC to A4 pin 4)", "pins": {"4": {"role": "load", "name": "compressor clutch", "on_when": "ign and ac"}}},
-    "F9": {"kind": "endpoint", "src": "circuit-plan group 8: wiper re-fed by w_wip_b (1H-5), w_wip_lo (IE1-13), w_wip_hi (IE1-20), w_wip_park (IE1-6)", "pins": {
-      "4": {"role": "load", "name": "wiper +B", "on_when": "TBD"}, "2": {"role": "load", "name": "wiper LOW", "on_when": "TBD"},
-      "1": {"role": "load", "name": "wiper HIGH", "on_when": "TBD"}, "3": {"role": "signal", "name": "park switch"}}},
-    "R2": {"kind": "endpoint", "src": "circuit-plan group 8: pop-up motors re-fed by the w_rtr_* wires from IE1-7 / 8 / 9 / 14 / 15 / 16; R8 drives them (factory)", "pins": {
-      "2": {"role": "signal", "name": "motor 2 (driven by R8)"}, "4": {"role": "signal", "name": "motor 4 (driven by R8)"}, "1": {"role": "signal", "name": "open limit"},
-      "3": {"role": "signal", "name": "close limit"}, "5": {"role": "signal", "name": "motor ground lead"}}},
-    "R3": {"kind": "endpoint", "src": "circuit-plan group 8: pop-up motors re-fed by the w_rtr_* wires from IE1-7 / 8 / 9 / 14 / 15 / 16; R8 drives them (factory)", "pins": {
-      "2": {"role": "signal", "name": "motor 2 (driven by R8)"}, "4": {"role": "signal", "name": "motor 4 (driven by R8)"}, "1": {"role": "signal", "name": "open limit"},
-      "3": {"role": "signal", "name": "close limit"}, "5": {"role": "signal", "name": "motor ground lead"}}},
-    "W1": {"kind": "endpoint", "src": "circuit-plan group 7: front washer W1 pins 1 / 2 re-fed by w_wash_neg / w_wash_pos", "pins": {
-      "1": {"role": "signal", "name": "washer switch side"}, "2": {"role": "signal", "name": "washer +12 V"}}},
-    "AL-12V": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: alarm-ready tap points, no alarm picked", "pins": {"": {"role": "load", "name": "alarm constant +12 V tap", "on_when": "kill"}}},
-    "AL-12V-SHK": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: alarm-ready tap points, no alarm picked", "pins": {"": {"role": "load", "name": "shock sensor +12 V tap", "on_when": "kill"}}},
-    "AL-IGN": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: ignition AL-IGN (LOGIC ALMIG 2 A, Bus 2)", "pins": {"": {"role": "load", "name": "alarm ignition tap", "on_when": "ign"}}},
-    "AL-GND": {"kind": "endpoint", "src": "DECISIONS 'Grounds (B10)' N43 b: the AL-GND lead to ring terminal T-AT-GND", "pins": {"": {"role": "tap", "name": "alarm ground tap"}}},
-    "AL-SIREN": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: alarm-ready tap points, no alarm picked", "pins": {"": {"role": "tap", "name": "siren output tap (alarm side)", "tbd": "no alarm is picked: nothing drives or loads this lead yet"}}},
-    "AL-SIREN-BAY": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft", "pins": {"": {"role": "tap", "name": "siren + lead, bay end"}}},
-    "AL-SIREN-GND-BAY": {"kind": "endpoint", "src": "DECISIONS 'Grounds (B10)' N43 b: the siren ground pull-wire to T-AT-GND", "pins": {"": {"role": "tap", "name": "siren ground lead, bay end"}}},
-    "AL-HOOD": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft", "pins": {"": {"role": "tap", "name": "hood trigger tap (alarm side)", "tbd": "no alarm is picked: nothing reads this lead yet"}}},
-    "AL-HOOD-BAY": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft", "pins": {"": {"role": "tap", "name": "hood pin lead, front end"}}},
-    "AL-DOOR": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: door trigger from the factory tap T-AT-DOOR (J/B No.1 1B-11)", "pins": {"": {"role": "tap", "name": "door trigger tap (alarm side)", "tbd": "no alarm is picked: nothing reads this lead yet"}}},
-    "T-AT-DOOR": {"kind": "endpoint", "src": "master: 'Door switch line tap (J/B No.1 1B pin 11)'", "pins": {"": {"role": "tap", "name": "door switch line tap"}}},
-    "AL-IMMOB": {"kind": "endpoint", "src": "DECISIONS 'Harness ownership (B8 list)': alarm immobiliser lead w_at_immob2, ECU-B pin 27", "pins": {"": {"role": "tap", "name": "immobiliser output tap (alarm side)", "tbd": "no alarm is picked: nothing drives ECU DI 10 (anti-theft input) yet"}}},
-    "T-CLUSTER-HL": {"kind": "endpoint", "src": "master note of w_hl_sense_out: cluster J8 pin 15 / GPIO28, active-low", "pins": {"15": {"role": "input", "name": "headlight sense (active low)"}}},
-    "T-CLUSTER-CAN": {"kind": "endpoint", "src": "master: 'Centre cluster CAN board leads'", "pins": {"": {"role": "signal", "name": "CAN H / L"}}},
-    "T-REALDASH-CAN": {"kind": "endpoint", "src": "master: 'RealDash Pi CAN adapter leads'", "pins": {"": {"role": "signal", "name": "CAN H / L"}}}
+    "KILL-SW": {
+      "kind": "switch",
+      "contacts": [
+        [
+          "MAIN1",
+          "MAIN2",
+          "kill"
+        ],
+        [
+          "ALT1",
+          "ALT2",
+          "kill"
+        ]
+      ],
+      "src": "master pin names MAIN1 / MAIN2 (battery +) and ALT1 / ALT2 (alternator IG); circuit-plan #3: IG2-15 keeps a pigtail: kill switch, then alternator IG"
+    },
+    "REV-SW": {
+      "kind": "switch",
+      "contacts": [
+        [
+          "2",
+          "1",
+          "reverse"
+        ]
+      ],
+      "src": "master: pin 2 '+12 V (COM)', pin 1 'Switched +12 V (NO)'; circuit-plan #11"
+    },
+    "DRL-SW": {
+      "kind": "switch",
+      "contacts": [
+        [
+          "1",
+          "2",
+          "drl_sw"
+        ]
+      ],
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: SPST on-off rocker; it grounds on R8's own ground lead"
+    },
+    "A5": {
+      "kind": "switch",
+      "contacts": [
+        [
+          "1",
+          "4",
+          "ac_psw"
+        ]
+      ],
+      "src": "circuit-plan group 5: pressure switch A5 pin 1 from the R/B No.4 10 A A/C fuse, pin 4 its output to A15 pin 13"
+    },
+    "C16": {
+      "kind": "switch",
+      "contacts": [
+        [
+          "15",
+          "17",
+          "cruise_main"
+        ]
+      ],
+      "elements": [
+        {
+          "a": "5",
+          "b": "17",
+          "name": "cruise ladder resistor (a button held)",
+          "kind": "res",
+          "when": "cruise_btn"
+        }
+      ],
+      "src": "ECUMASTER_SWITCHBOARD_SETUP.md: pin 15 MAIN is a contact to the pin 17 ground when ON; pin 5 is a resistor to ground per position"
+    },
+    "MRS-B": {
+      "kind": "switch",
+      "contacts": [
+        [
+          "5",
+          "MRS-A:2",
+          "lit('MRS-C.pump enable (IG)')"
+        ]
+      ],
+      "src": "sot/channels.csv MRS Relay b5: 'Pump switches its main relay coil-' (DECISIONS R22); assumed: the pump does so while its enable pin C1 is live",
+      "tbd": "what makes the MR-S pump ground its relay coil (pin B5) is not in the repo; taken as: while its enable pin C1 is live"
+    },
+    "F-PI": {
+      "kind": "fuse",
+      "pins": [
+        "IN",
+        "OUT"
+      ],
+      "label": "Pi inline fuse 5 A (F-PI)",
+      "src": "master: 'RealDash Pi inline fuse 5 A'; DECISIONS B17 (Dan N58 a)"
+    },
+    "D-R8-1": {
+      "kind": "diode",
+      "a": "1",
+      "k": "2",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: D1 anode at R8 pin 8, cathode to the I2 side; master pin text",
+      "tbd": "which cavity of the DT04-2P-RT01 diode plug is the anode is TBD by the TE drawing (N87 a); the master's pin 1 = anode is taken as is"
+    },
+    "D-R8-2": {
+      "kind": "diode",
+      "a": "1",
+      "k": "2",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: D2 anode at R8 pin 8, cathode to the DRL switch (through K-POD since N93 a); master pin text",
+      "tbd": "which cavity of the DT04-2P-RT01 diode plug is the anode is TBD by the TE drawing (N87 a); the master's pin 1 = anode is taken as is"
+    },
+    "D-IG2-WAKE": {
+      "kind": "diode",
+      "a": "1",
+      "k": "2",
+      "src": "circuit-plan 'ETB hold power': the IG2 wake diode feeds A5 from J/B1 1H-7; master pin text 'IG2 wake feed' -> 'ECU main +12 V'"
+    },
+    "K-EFI": {
+      "kind": "relay",
+      "part": "TE 1-1414147-0",
+      "suppression": "TBD",
+      "on_when": "ign",
+      "src": "cad/fusebox/src/spec.py REV8 F7_POS; circuit-plan: Aux 6 (A28) holds K-EFI"
+    },
+    "K-FAN": {
+      "kind": "relay",
+      "part": "TE 1-1414147-0",
+      "suppression": "TBD",
+      "on_when": "ign and fan",
+      "src": "spec.py REV8 F7_POS; sot/channels.csv Aux 5 'Rad fan relay coil'"
+    },
+    "K-FAN2": {
+      "kind": "relay",
+      "part": "TE 1-1414286-0",
+      "suppression": "diode",
+      "cathode": "86",
+      "on_when": "ign and fan2",
+      "src": "DECISIONS 'Relays (B15)' K-FAN2 (Dan A46): Diode (cathode 86); 86 = coil + from BUS-SW12, 85 = ECU B13"
+    },
+    "K-FP": {
+      "kind": "relay",
+      "part": "TBD",
+      "suppression": "TBD",
+      "on_when": "ign and (engine or prime)",
+      "src": "README 'Power injection' B3: coil 86 from BUS-SW12, coil 85 to ECU plug A pin 19 (Aux 3)"
+    },
+    "K-HL": {
+      "kind": "relay",
+      "part": "TE 5-1393292-8",
+      "suppression": "TBD",
+      "on_when": "kill and ry",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N89 a: K-HL coil 85 on R-Y (HEAD or FLASH), fed from HL 15 A (Bus 1, permanent)"
+    },
+    "K-HR": {
+      "kind": "relay",
+      "part": "TE 5-1393292-8",
+      "suppression": "TBD",
+      "on_when": "kill and ry and rw",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N89 a: K-HR coil 86 from K-HL 87, coil 85 on R-W (HIGH or FLASH)"
+    },
+    "K-HORN": {
+      "kind": "relay",
+      "part": "TE 4-1904124-3",
+      "suppression": "resistor",
+      "on_when": "kill and horn",
+      "src": "sot/fuse-relay-map.csv B2 M3; circuit-plan R/B No.5: K-HORN 85 at IE1-19 (horn switch); harness-parts.csv: coil resistor"
+    },
+    "K-ETB": {
+      "kind": "relay",
+      "part": "TE 4-1904124-2",
+      "suppression": "resistor",
+      "on_when": "ign",
+      "src": "circuit-plan: K-ETB on Aux 2 (A20) feeds B5; harness-parts.csv: coil resistor"
+    },
+    "K-ACC": {
+      "kind": "relay",
+      "part": "TE 6-1419137-4",
+      "suppression": "diode",
+      "cathode": "86",
+      "on_when": "ign and ac",
+      "src": "DECISIONS 'Relays (B15)': K-ACC on the A/C amp is a diode part; spec.py Micro Relay A note (TE data sheet V23074 rev 1119 p.3): coil + is terminal 1, the diode's cathode side = 86"
+    },
+    "K-EPS-EN": {
+      "kind": "relay",
+      "part": "TE 6-1419137-4",
+      "suppression": "diode",
+      "cathode": "86",
+      "on_when": "ign and eps",
+      "src": "sot/fuse-relay-map.csv B2 M6: diode micro relay, 85 from ECU B12 (Ign 6), 86 from BUS-SW12; spec.py Micro Relay A note: cathode side = 86"
+    },
+    "K-ON": {
+      "kind": "relay",
+      "part": "TE 6-1419137-4",
+      "suppression": "diode",
+      "cathode": "86",
+      "on_when": "ign",
+      "src": "DECISIONS 'Relays (B15)' K-ON (Dan N5 a): coil 86 from J/B No.1 1H-7 (live at ON and ST), coil 85 to the POWER box NEG bar; spec.py Micro Relay A note: cathode side = 86"
+    },
+    "K-DRL": {
+      "kind": "relay",
+      "part": "TE 4-1904124-2",
+      "suppression": "resistor",
+      "on_when": "ign and drl_sw",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: 30 / 86 from BUS2-1 (Bus 2, key on), 85 to the DRL switch"
+    },
+    "K-POD": {
+      "kind": "relay",
+      "part": "TE 4-1904124-3",
+      "suppression": "resistor",
+      "on_when": "ign and drl_sw",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N93 a: coil 86 from BUS2-1 (key on), coil 85 on the DRL switch"
+    },
+    "K-EPS": {
+      "kind": "relay",
+      "part": "TE HCR150 1416010-1",
+      "suppression": "resistor",
+      "on_when": "ign and eps",
+      "src": "DECISIONS 'Relays (B15)' K-EPS coil (Dan A47): resistor-suppressed, 86 (+12 V) / 85 (MR-S pump B5)"
+    },
+    "RLY-DRL": {
+      "kind": "relay",
+      "part": "Song Chuan 301-1C-C-R1-U01-12VDC",
+      "suppression": "resistor",
+      "on_when": "kill and ry",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N90 a: coil 86 from the HL fuse, coil 85 on R-Y; NC 87a in the DRL feed; harness-parts.csv: coil resistor"
+    },
+    "H1": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "3",
+          "low beam",
+          "kill and ry"
+        ],
+        [
+          "2",
+          "3",
+          "high beam",
+          "kill and ry and rw"
+        ],
+        [
+          "DRL",
+          "3",
+          "DRL",
+          "ign and drl_sw and not ry"
+        ],
+        [
+          "TURN",
+          "3",
+          "turn",
+          "turn_l"
+        ]
+      ],
+      "src": "circuit-plan 'Headlamps, DRL and pop-ups': HWSTAR H6054, pin 1 low, pin 2 high, pin 3 common (ground), white DRL lead, yellow turn lead; truth table"
+    },
+    "H2": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "3",
+          "low beam",
+          "kill and ry"
+        ],
+        [
+          "2",
+          "3",
+          "high beam",
+          "kill and ry and rw"
+        ],
+        [
+          "DRL",
+          "3",
+          "DRL",
+          "ign and drl_sw and not ry"
+        ],
+        [
+          "TURN",
+          "3",
+          "turn",
+          "turn_r"
+        ]
+      ],
+      "src": "circuit-plan 'Headlamps, DRL and pop-ups': HWSTAR H6054, pin 1 low, pin 2 high, pin 3 common (ground), white DRL lead, yellow turn lead; truth table"
+    },
+    "F5": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "marker lamp",
+          "tail_live"
+        ]
+      ],
+      "src": "master pin text 'Marker +12 V' / 'Ground'; circuit-plan group 8: re-fed by w_clr (1H-6) via SP-CLR"
+    },
+    "F6": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "marker lamp",
+          "tail_live"
+        ]
+      ],
+      "src": "master pin text 'Marker +12 V' / 'Ground'; circuit-plan group 8: re-fed by w_clr (1H-6) via SP-CLR"
+    },
+    "F7": {
+      "kind": "load",
+      "elements": [
+        [
+          "3",
+          "2",
+          "turn lamp",
+          "turn_l"
+        ],
+        [
+          "1",
+          "2",
+          "clearance lamp",
+          "tail_live"
+        ]
+      ],
+      "src": "master pin text; circuit-plan group 8: w_turn_f7 (1H-4), w_clr (1H-6)"
+    },
+    "F8": {
+      "kind": "load",
+      "elements": [
+        [
+          "3",
+          "2",
+          "turn lamp",
+          "turn_r"
+        ],
+        [
+          "1",
+          "2",
+          "clearance lamp",
+          "tail_live"
+        ]
+      ],
+      "src": "master pin text; circuit-plan group 8: w_turn_f8 (1H-8), w_clr (1H-6)"
+    },
+    "HORN-LH": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "horn",
+          "kill and horn"
+        ]
+      ],
+      "src": "master pin text; DECISIONS N86: both horns share one ground to EA"
+    },
+    "HORN-RH": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "horn",
+          "kill and horn"
+        ]
+      ],
+      "src": "master pin text; DECISIONS N86: both horns share one ground to EA"
+    },
+    "FUEL-PUMP": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "pump motor",
+          "ign and (engine or prime)"
+        ]
+      ],
+      "src": "master pin text 'Fuel pump +12 V' / 'Fuel pump ground'; README 'Power injection' B3"
+    },
+    "FAN-RAD": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "FAN-RAD-GND:1",
+          "fan motor",
+          "ign and fan"
+        ]
+      ],
+      "src": "master: 'Radiator fan plug (+)' and 'Radiator fan ground plug' are the two leads of one motor; circuit-plan 2A-4: w_fan_pwr (K-FAN), ground w_fan_gnd to EA"
+    },
+    "FAN-RAD-GND": {
+      "kind": "part-of",
+      "of": "FAN-RAD",
+      "src": "master: 'Radiator fan ground plug'"
+    },
+    "FAN-COND": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "FAN-COND-GND:1",
+          "fan motor",
+          "ign and fan2"
+        ]
+      ],
+      "src": "master: 'Condenser fan plug (+)' and 'Condenser fan ground plug' are the two leads of one motor; circuit-plan 2A-2: w_fan2_pwr (K-FAN2), w_fan2_gnd to EA"
+    },
+    "FAN-COND-GND": {
+      "kind": "part-of",
+      "of": "FAN-COND",
+      "src": "master: 'Condenser fan ground plug'"
+    },
+    "INJ-1": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "injector coil",
+          "ign and engine"
+        ]
+      ],
+      "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 1 lowside-sat"
+    },
+    "INJ-2": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "injector coil",
+          "ign and engine"
+        ]
+      ],
+      "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 2 lowside-sat"
+    },
+    "INJ-3": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "injector coil",
+          "ign and engine"
+        ]
+      ],
+      "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 3 lowside-sat"
+    },
+    "INJ-4": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "injector coil",
+          "ign and engine"
+        ]
+      ],
+      "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Inj 4 lowside-sat"
+    },
+    "COIL-1": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "4",
+          "coil supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'; DECISIONS 'Grounds (B10)': the coil ground goes to the POWER box NEG bar"
+    },
+    "COIL-2": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "4",
+          "coil supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'"
+    },
+    "COIL-3": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "4",
+          "coil supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'"
+    },
+    "COIL-4": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "4",
+          "coil supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: 1 '+12 V', 4 'Ground', 3 'Trigger (IGT)'"
+    },
+    "BOOST-SOL": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "solenoid",
+          "ign and boost"
+        ]
+      ],
+      "src": "master pin text '+12 V' / 'Drive (-)'; sot/channels.csv Aux 1"
+    },
+    "FLEX": {
+      "kind": "load",
+      "elements": [
+        [
+          "A",
+          "B",
+          "sensor supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: A '+12 V', B '12 V sensor return', C 'Signal'"
+    },
+    "CAN-LAMBDA": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "controller supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: 1 '+12 V', 2 'Ground'; DECISIONS 'Relays (B15)' K-ON: 87 -> the CAN-Lambda only"
+    },
+    "ETB": {
+      "kind": "load",
+      "elements": [
+        [
+          "3",
+          "2",
+          "position sensor supply",
+          "ign"
+        ],
+        [
+          "4",
+          "1",
+          "throttle motor",
+          "ign and etb"
+        ]
+      ],
+      "src": "master pin text: 3 '+5 V', 2 'Ground', 4 'Motor +', 1 'Motor -'; sot/channels.csv Aux 9 / Aux 10 (H-bridge)"
+    },
+    "APS-PEDAL": {
+      "kind": "load",
+      "elements": [
+        [
+          "4",
+          "5",
+          "sensor 1 supply",
+          "ign"
+        ],
+        [
+          "1",
+          "2",
+          "sensor 2 supply",
+          "ign"
+        ]
+      ],
+      "src": "master pin text: 4 '+5 V (sensor 1)', 5 'Ground (sensor 1)', 1 '+5 V (sensor 2)', 2 'Ground (sensor 2)'; sot/channels.csv An Volt 4 / 5 notes"
+    },
+    "MRS-A": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "2",
+          "pump motor power",
+          "ign and eps"
+        ]
+      ],
+      "src": "master pin text: 1 'EHPS pump +12 V', 2 'Ground'; sot/channels.csv MRS a1 / a2"
+    },
+    "MRS-C": {
+      "kind": "load",
+      "elements": [
+        [
+          "1",
+          "MRS-A:2",
+          "pump enable (IG)",
+          "ign and eps"
+        ]
+      ],
+      "src": "sot/channels.csv MRS Enable c1 (switch-12v) from K-EPS-EN 87; the pump's ground is plug A pin 2"
+    },
+    "CSB3": {
+      "kind": "load",
+      "elements": [
+        [
+          "2",
+          "1",
+          "board supply",
+          "ign"
+        ]
+      ],
+      "rails": [
+        [
+          "3",
+          "5",
+          "lit('CSB3.board supply')",
+          "+5 V out"
+        ],
+        [
+          "4",
+          "0",
+          "lit('CSB3.board supply')",
+          "reference ground SGND"
+        ],
+        [
+          "20",
+          "0",
+          "lit('CSB3.board supply') and oil_led",
+          "low-side output L4 (oil LED)"
+        ]
+      ],
+      "src": "docs/enclosures/csb3-hd34-pinmap.csv: cavity 1 GND, 2 +12V, 3 +5V (sensor 5 V), 4 SGND (switch reference ground), 20 L4 (oil warning LED); switchboard_frames.json 0x643: L4 = oil warning LED",
+      "tbd": "the inside of the CSB3 (its +5 V output, SGND and low-side outputs) is taken from the pin map names; the CSB3 manual is not in the repo"
+    },
+    "OPTO-8": {
+      "kind": "load",
+      "elements": [
+        [
+          "VCC",
+          "NEG",
+          "board supply (+5 V)",
+          "ign"
+        ],
+        [
+          "IN1",
+          "COM1",
+          "opto input 1 (brake)",
+          "brake_live"
+        ],
+        [
+          "IN2",
+          "COM1",
+          "opto input 2 (reverse)",
+          "ign and reverse"
+        ],
+        [
+          "IN3",
+          "COM1",
+          "opto input 3 (lights on)",
+          "tail_live"
+        ]
+      ],
+      "contacts": [
+        [
+          "OUT1",
+          "NEG",
+          "lit('OPTO-8.opto input 1 (brake)')"
+        ],
+        [
+          "OUT2",
+          "NEG",
+          "lit('OPTO-8.opto input 2 (reverse)')"
+        ],
+        [
+          "OUT3",
+          "NEG",
+          "lit('OPTO-8.opto input 3 (lights on)')"
+        ]
+      ],
+      "src": "master pin text (IN1 / IN2 / IN3, COM1 'Opto input return', VCC, NEG 'Opto out ground', OUT1-3); master note of w_hl_sense_out: 'EL814 OUT3 open-collector ... (active-low)'; DECISIONS N109 a",
+      "tbd": "open-collector outputs (OUT pulled to the opto out ground while its input is lit) are recorded only for OUT3 (master note); OUT1 / OUT2 are taken the same; the bench check is OPEN-ITEMS row 101"
+    },
+    "T-CLUSTER-PWR": {
+      "kind": "load",
+      "elements": [
+        [
+          "",
+          "T-CLUSTER-GND-LEAD:",
+          "cluster supply",
+          "ign"
+        ]
+      ],
+      "src": "master: 'Centre cluster +12 V input lead' / 'Centre cluster ground input lead'; README 'Power injection' BUS2-6 DEV 5 A"
+    },
+    "T-CLUSTER-GND-LEAD": {
+      "kind": "part-of",
+      "of": "T-CLUSTER-PWR",
+      "src": "master: 'Centre cluster ground input lead'"
+    },
+    "T-REALDASH-PWR": {
+      "kind": "load",
+      "elements": [
+        [
+          "",
+          "T-REALDASH-GND-LEAD:",
+          "Pi supply",
+          "acc"
+        ]
+      ],
+      "src": "master: 'RealDash Pi +12 V input lead' / 'RealDash Pi ground input lead'; README 'Power injection': the Pi is on the factory CIG & RADIO 15 A ACC feed"
+    },
+    "T-REALDASH-GND-LEAD": {
+      "kind": "part-of",
+      "of": "T-REALDASH-PWR",
+      "src": "master: 'RealDash Pi ground input lead'"
+    },
+    "D-HB": {
+      "kind": "led",
+      "on_when": "kill and ry and rw",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' A2 b: the LED lights while K-HR is on"
+    },
+    "D-CHG": {
+      "kind": "led",
+      "on_when": "ign and not engine",
+      "src": "circuit-plan #3: IG2-16 Y drives the 12 V charge LED (it sinks to C14 pin 8)"
+    },
+    "D-PK": {
+      "kind": "led",
+      "on_when": "ign and park_brake",
+      "src": "circuit-plan #7: LEDs take park brake from the OEM cluster plugs; master: C14 pin 1 'Park brake switch (-)'"
+    },
+    "D-TL": {
+      "kind": "led",
+      "on_when": "turn_l",
+      "src": "circuit-plan #7: LEDs take turn from the OEM cluster plugs; DECISIONS 'Grounds (B10)' dash LED polarity: LED + on C13 (B) pin 2"
+    },
+    "D-TR": {
+      "kind": "led",
+      "on_when": "turn_r",
+      "src": "circuit-plan #7; DECISIONS 'Grounds (B10)' dash LED polarity: LED + on C13 (B) pin 11"
+    },
+    "D-OIL": {
+      "kind": "led",
+      "on_when": "ign and oil_led",
+      "src": "circuit-plan #7: oil pressure from CSB3 L4 (cavity 20, 0x643 byte 3)"
+    },
+    "ALT-PLUG": {
+      "kind": "endpoint",
+      "src": "master pin text: 1 'S (battery sense)', 2 'L (charge lamp)', 3 'Alt IG excite'; circuit-plan #3",
+      "pins": {
+        "1": {
+          "role": "load",
+          "name": "battery sense S",
+          "on_when": "kill"
+        },
+        "2": {
+          "role": "sink",
+          "name": "charge lamp L (sinks while not charging)",
+          "when": "not engine",
+          "tbd": "the alternator's L terminal (sinks the charge lamp while not charging) is taken from circuit-plan #3; no alternator datasheet in the repo"
+        },
+        "3": {
+          "role": "load",
+          "name": "IG excite",
+          "on_when": "ign"
+        }
+      }
+    },
+    "T-ALT-B": {
+      "kind": "endpoint",
+      "src": "master: 'Alternator B+ stud'; DECISIONS N61 a: the alternator fuse is the MRBF link w_alt_fuse",
+      "pins": {
+        "": {
+          "role": "load",
+          "name": "alternator B+ (battery side of the charging cable)",
+          "on_when": "kill"
+        }
+      }
+    },
+    "T-STARTER-B": {
+      "kind": "endpoint",
+      "src": "master: 'Starter B+ stud', fed from the jump bar (w_bar_str)",
+      "pins": {
+        "": {
+          "role": "load",
+          "name": "starter B+",
+          "on_when": "kill"
+        }
+      }
+    },
+    "STARTER-TRIGGER": {
+      "kind": "endpoint",
+      "src": "circuit-plan #2 and R/B No.4 starter relay pin 4: re-fed by w_strl_c / w_strl_e to starter S",
+      "pins": {
+        "1": {
+          "role": "load",
+          "name": "starter solenoid S",
+          "on_when": "kill and key == 'START' and clutch"
+        }
+      }
+    },
+    "JB1": {
+      "kind": "endpoint",
+      "src": "README 'Power injection' (B1 / B2 tables, 1993 EWD p.62-63, p.132)",
+      "pins": {
+        "1H-7": {
+          "role": "source",
+          "name": "IGN 7.5 A out (live at ON and START, from AM2)",
+          "when": "key in ('ON', 'START') and hot('IE1:17')",
+          "src": "README 'Power injection': J/B1 1H-7 (IGN) comes alive from AM2 through the ignition switch, so it is tapped, never fed; AMI OUT-4 -> IE1 pin 17 -> ignition switch AM2 (IG2)"
+        },
+        "1H-2": {
+          "role": "load",
+          "name": "dome feed in",
+          "on_when": "kill"
+        },
+        "1I-1": {
+          "role": "load",
+          "name": "J/B No.1 main feed in",
+          "on_when": "kill"
+        },
+        "1H-4": {
+          "role": "source",
+          "name": "LH front turn out",
+          "when": "turn_l",
+          "src": "README 'Power injection': front turn lamps stay on J/B No.1 1H-4 / 1H-8",
+          "tbd": "which of our feeds the factory turn / hazard circuit hangs on is factory wiring, not traced (A57 a)"
+        },
+        "1H-8": {
+          "role": "source",
+          "name": "RH front turn out",
+          "when": "turn_r",
+          "src": "README 'Power injection': front turn lamps stay on J/B No.1 1H-4 / 1H-8",
+          "tbd": "which of our feeds the factory turn / hazard circuit hangs on is factory wiring, not traced (A57 a)"
+        },
+        "1H-6": {
+          "role": "source",
+          "name": "clearance (TAIL) out",
+          "when": "stalk in ('2', '3') and hot('JB1:1I-1')",
+          "src": "README 'Power injection': clearance lamps stay on J/B No.1 1H-6; AMI OUT-5 feeds the taillight relay and tail bus"
+        },
+        "1H-5": {
+          "role": "source",
+          "name": "wiper +B out",
+          "when": "TBD",
+          "src": "README 'Power injection': wiper stays on J/B No.1 1H-5"
+        }
+      }
+    },
+    "IE1": {
+      "kind": "endpoint",
+      "src": "master pin text; README 'Power injection'; DECISIONS 'Headlamps, DRL and pop-ups'; circuit-plan groups 6 and 8",
+      "pins": {
+        "2": {
+          "role": "sink",
+          "name": "R-Y: light switch HEAD / FLASH to ground",
+          "when": "ry"
+        },
+        "18": {
+          "role": "sink",
+          "name": "R-W: dimmer HIGH / FLASH to ground",
+          "when": "rw"
+        },
+        "19": {
+          "role": "sink",
+          "name": "horn switch to ground",
+          "when": "horn",
+          "src": "circuit-plan R/B No.5: horn relay coil - to horn SW C15-10 at IE1-19"
+        },
+        "12": {
+          "role": "load",
+          "name": "hazard feed in (H5-8 / flasher)",
+          "on_when": "kill"
+        },
+        "3": {
+          "role": "load",
+          "name": "RTR feed in (pop-up relay R8 pin 3)",
+          "on_when": "kill"
+        },
+        "10": {
+          "role": "load",
+          "name": "AM1 feed in (ignition switch, R/B No.2)",
+          "on_when": "kill"
+        },
+        "17": {
+          "role": "load",
+          "name": "AM2 feed in (ignition switch)",
+          "on_when": "kill"
+        },
+        "13": {
+          "role": "source",
+          "name": "wiper LOW out",
+          "when": "TBD"
+        },
+        "20": {
+          "role": "source",
+          "name": "wiper HIGH out",
+          "when": "TBD"
+        },
+        "6": {
+          "role": "signal",
+          "name": "wiper park switch"
+        },
+        "7": {
+          "role": "signal",
+          "name": "RH pop-up motor 4 (driven by R8)"
+        },
+        "8": {
+          "role": "signal",
+          "name": "RH pop-up motor 2 (driven by R8)"
+        },
+        "14": {
+          "role": "signal",
+          "name": "LH pop-up motor 4 (driven by R8)"
+        },
+        "15": {
+          "role": "signal",
+          "name": "LH pop-up motor 2 (driven by R8)"
+        },
+        "9": {
+          "role": "signal",
+          "name": "pop-up close limit (to R8)"
+        },
+        "16": {
+          "role": "signal",
+          "name": "pop-up open limit (to R8)"
+        }
+      }
+    },
+    "I2": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a: the R-Y lead I2 -> R8 pin 8 is cut near R8",
+      "pins": {
+        "R-Y": {
+          "role": "sink",
+          "name": "R-Y: light switch HEAD / FLASH to ground (I2 side)",
+          "when": "ry"
+        }
+      }
+    },
+    "R8": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Headlamps, DRL and pop-ups' N87 a; master pin text 'Pop-up UP (to ground)' / 'Ground (R8 ground lead)'",
+      "pins": {
+        "8": {
+          "role": "input",
+          "name": "pop-up UP command (ground = up)",
+          "pull": "IE1:3",
+          "src": "README 'Power injection' AMI OUT-2: RTR feeds retract control relay R8 pin 3; assumed: the UP input is pulled up inside R8 from that feed (R8's inside is factory, not in the repo)"
+        },
+        "12": {
+          "role": "ground",
+          "name": "R8 ground lead (W-B to ID)"
+        }
+      }
+    },
+    "IG2": {
+      "kind": "endpoint",
+      "src": "circuit-plan 'IG1 / IG2' table (IG2-4, IG2-13, IG2-15, IG2-16)",
+      "pins": {
+        "4": {
+          "role": "source",
+          "name": "back-up switch feed (GAUGE 15 A)",
+          "when": "ign",
+          "tbd": "which of our feeds the factory GAUGE fuse hangs on is factory wiring, not traced (A57 a)"
+        },
+        "15": {
+          "role": "source",
+          "name": "ECU-IG 15 A (alternator IG)",
+          "when": "ign",
+          "tbd": "which of our feeds the factory ECU-IG fuse hangs on is factory wiring, not traced (A57 a)"
+        },
+        "13": {
+          "role": "load",
+          "name": "back-up lamps (factory rear wiring)",
+          "on_when": "ign and reverse"
+        },
+        "16": {
+          "role": "link",
+          "name": "charge lamp Y (to C14 pin 8)"
+        }
+      }
+    },
+    "II1": {
+      "kind": "endpoint",
+      "src": "README 'Power injection': CIG & RADIO 15 A at cowl plug II1 pin 3, live at ACC and ON (1993 EWD p.201-202)",
+      "pins": {
+        "3": {
+          "role": "source",
+          "name": "radio ACC +12 V",
+          "when": "acc",
+          "tbd": "which of our feeds the factory CIG & RADIO fuse hangs on is factory wiring, not traced (A57 a)"
+        }
+      }
+    },
+    "RB4": {
+      "kind": "endpoint",
+      "src": "circuit-plan 'R/B No.4' table; README 'Power injection' AMI IN-1 and BUS2-13",
+      "pins": {
+        "ST-1": {
+          "role": "source",
+          "name": "ST1 (key START)",
+          "when": "key == 'START' and hot('IE1:10')",
+          "src": "README 'Power injection' AMI OUT-3: AM1 feeds ignition switch I13-4 (ACC / IG1 / ST1); circuit-plan: starter relay coil + (ST1)"
+        },
+        "ST-4": {
+          "role": "source",
+          "name": "starter relay out",
+          "when": "key == 'START' and clutch and hot('IE1:10')",
+          "src": "circuit-plan #2: coil + from key START, coil - through the clutch start switch C11; relay contact in is ST1"
+        },
+        "AC-2": {
+          "role": "source",
+          "name": "10 A A/C fuse out",
+          "when": "blower and hot('RB4:HTR-1')",
+          "src": "circuit-plan 'R/B No.4': the 10 A A/C fuse is fed from heater relay pin 4; the heater relay contact in is the 40 A HEATER fuse"
+        },
+        "HTR-1": {
+          "role": "load",
+          "name": "40 A HEATER fuse feed in",
+          "on_when": "kill"
+        }
+      }
+    },
+    "C13": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Grounds (B10)' dash LED polarity (1993 EWD check): LED + on C13 (B) pins 2 (turn LH), 11 (turn RH); N106 a: LED ground on the cluster ground",
+      "pins": {
+        "2": {
+          "role": "source",
+          "name": "turn LH indicator feed",
+          "when": "turn_l",
+          "tbd": "factory turn circuit, not traced (A57 a)"
+        },
+        "11": {
+          "role": "source",
+          "name": "turn RH indicator feed",
+          "when": "turn_r",
+          "tbd": "factory turn circuit, not traced (A57 a)"
+        },
+        "1": {
+          "role": "ground",
+          "name": "cluster ground"
+        }
+      }
+    },
+    "C14": {
+      "kind": "endpoint",
+      "src": "circuit-plan #7 and group 7: C14 (C) pin 9 B-O IGN, pin 8 Y charge, pin 1 R-G park brake",
+      "pins": {
+        "9": {
+          "role": "source",
+          "name": "IGN for the cluster LEDs",
+          "when": "ign",
+          "tbd": "which of our feeds the factory GAUGE / IGN line at C14 pin 9 hangs on is factory wiring, not traced (A57 a)"
+        },
+        "8": {
+          "role": "link",
+          "name": "charge lamp Y (to IG2 pin 16)"
+        },
+        "1": {
+          "role": "sink",
+          "name": "park brake switch to ground",
+          "when": "park_brake"
+        }
+      }
+    },
+    "C17": {
+      "kind": "endpoint",
+      "src": "README 'Factory wiring facts': cruise clutch switch C17 pin 2 is the one ECU clutch input; pin 1 W-B stays on its ground",
+      "pins": {
+        "2": {
+          "role": "sink",
+          "name": "clutch switch to ground",
+          "when": "clutch"
+        }
+      }
+    },
+    "S9": {
+      "kind": "endpoint",
+      "src": "circuit-plan group 7: stop light SW S9 pin 1 keeps, tapped by w_sw6",
+      "pins": {
+        "1": {
+          "role": "source",
+          "name": "brake on +12 V",
+          "when": "brake and hot('JB1:1I-1')"
+        }
+      }
+    },
+    "R10": {
+      "kind": "endpoint",
+      "src": "circuit-plan #7: tap R10 pin 1 green TAIL through opto IN3",
+      "pins": {
+        "1": {
+          "role": "source",
+          "name": "lights on +12 V (TAIL)",
+          "when": "stalk in ('2', '3') and hot('JB1:1I-1')"
+        }
+      }
+    },
+    "A15": {
+      "kind": "endpoint",
+      "src": "circuit-plan #10 (D16) and group 4; sot/channels.csv ACAMP rows",
+      "pins": {
+        "8": {
+          "role": "sink",
+          "name": "MGC: clutch relay coil - (the amp sinks it)",
+          "when": "ac"
+        },
+        "11": {
+          "role": "input",
+          "name": "ACT: compressor cancel (ground = kill)"
+        },
+        "13": {
+          "role": "input",
+          "name": "pressure switch signal"
+        },
+        "18": {
+          "role": "input",
+          "name": "engine speed (tacho)"
+        },
+        "9": {
+          "role": "input",
+          "name": "lock sensor (tacho through 4.7 k)"
+        },
+        "2": {
+          "role": "input",
+          "name": "coolant OK (hard-grounded by w_ac_cool_gnd)"
+        }
+      }
+    },
+    "A32": {
+      "kind": "endpoint",
+      "src": "sot/channels.csv ACAMP TAM / TW return: auto A/C amp A32 pin 6 TAM, pin 15 sensor common SG",
+      "pins": {
+        "15": {
+          "role": "ground",
+          "name": "sensor common SG"
+        },
+        "6": {
+          "role": "input",
+          "name": "ambient temp TAM"
+        }
+      }
+    },
+    "A1": {
+      "kind": "endpoint",
+      "src": "sot/channels.csv ACAMP TAM: ambient sensor A1 pin 2 -> A32 pin 6; pin 1 -> sensor common",
+      "pins": {
+        "2": {
+          "role": "signal",
+          "name": "ambient sensor signal"
+        },
+        "1": {
+          "role": "signal",
+          "name": "ambient sensor return"
+        }
+      }
+    },
+    "A4": {
+      "kind": "endpoint",
+      "src": "circuit-plan R/B No.5: the clutch is w_acc_clutch (K-ACC to A4 pin 4)",
+      "pins": {
+        "4": {
+          "role": "load",
+          "name": "compressor clutch",
+          "on_when": "ign and ac"
+        }
+      }
+    },
+    "F9": {
+      "kind": "endpoint",
+      "src": "circuit-plan group 8: wiper re-fed by w_wip_b (1H-5), w_wip_lo (IE1-13), w_wip_hi (IE1-20), w_wip_park (IE1-6)",
+      "pins": {
+        "4": {
+          "role": "load",
+          "name": "wiper +B",
+          "on_when": "TBD"
+        },
+        "2": {
+          "role": "load",
+          "name": "wiper LOW",
+          "on_when": "TBD"
+        },
+        "1": {
+          "role": "load",
+          "name": "wiper HIGH",
+          "on_when": "TBD"
+        },
+        "3": {
+          "role": "signal",
+          "name": "park switch"
+        }
+      }
+    },
+    "R2": {
+      "kind": "endpoint",
+      "src": "circuit-plan group 8: pop-up motors re-fed by the w_rtr_* wires from IE1-7 / 8 / 9 / 14 / 15 / 16; R8 drives them (factory)",
+      "pins": {
+        "2": {
+          "role": "signal",
+          "name": "motor 2 (driven by R8)"
+        },
+        "4": {
+          "role": "signal",
+          "name": "motor 4 (driven by R8)"
+        },
+        "1": {
+          "role": "signal",
+          "name": "open limit"
+        },
+        "3": {
+          "role": "signal",
+          "name": "close limit"
+        },
+        "5": {
+          "role": "signal",
+          "name": "motor ground lead"
+        }
+      }
+    },
+    "R3": {
+      "kind": "endpoint",
+      "src": "circuit-plan group 8: pop-up motors re-fed by the w_rtr_* wires from IE1-7 / 8 / 9 / 14 / 15 / 16; R8 drives them (factory)",
+      "pins": {
+        "2": {
+          "role": "signal",
+          "name": "motor 2 (driven by R8)"
+        },
+        "4": {
+          "role": "signal",
+          "name": "motor 4 (driven by R8)"
+        },
+        "1": {
+          "role": "signal",
+          "name": "open limit"
+        },
+        "3": {
+          "role": "signal",
+          "name": "close limit"
+        },
+        "5": {
+          "role": "signal",
+          "name": "motor ground lead"
+        }
+      }
+    },
+    "W1": {
+      "kind": "endpoint",
+      "src": "circuit-plan group 7: front washer W1 pins 1 / 2 re-fed by w_wash_neg / w_wash_pos",
+      "pins": {
+        "1": {
+          "role": "signal",
+          "name": "washer switch side"
+        },
+        "2": {
+          "role": "signal",
+          "name": "washer +12 V"
+        }
+      }
+    },
+    "AL-12V": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: alarm-ready tap points, no alarm picked",
+      "pins": {
+        "": {
+          "role": "load",
+          "name": "alarm constant +12 V tap",
+          "on_when": "kill"
+        }
+      }
+    },
+    "AL-12V-SHK": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: alarm-ready tap points, no alarm picked",
+      "pins": {
+        "": {
+          "role": "load",
+          "name": "shock sensor +12 V tap",
+          "on_when": "kill"
+        }
+      }
+    },
+    "AL-IGN": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: ignition AL-IGN (LOGIC ALMIG 2 A, Bus 2)",
+      "pins": {
+        "": {
+          "role": "load",
+          "name": "alarm ignition tap",
+          "on_when": "ign"
+        }
+      }
+    },
+    "AL-GND": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Grounds (B10)' N43 b: the AL-GND lead to ring terminal T-AT-GND",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "alarm ground tap"
+        }
+      }
+    },
+    "AL-SIREN": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: alarm-ready tap points, no alarm picked",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "siren output tap (alarm side)",
+          "tbd": "no alarm is picked: nothing drives or loads this lead yet"
+        }
+      }
+    },
+    "AL-SIREN-BAY": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "siren + lead, bay end"
+        }
+      }
+    },
+    "AL-SIREN-GND-BAY": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Grounds (B10)' N43 b: the siren ground pull-wire to T-AT-GND",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "siren ground lead, bay end"
+        }
+      }
+    },
+    "AL-HOOD": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "hood trigger tap (alarm side)",
+          "tbd": "no alarm is picked: nothing reads this lead yet"
+        }
+      }
+    },
+    "AL-HOOD-BAY": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "hood pin lead, front end"
+        }
+      }
+    },
+    "AL-DOOR": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)' AntiTheft: door trigger from the factory tap T-AT-DOOR (J/B No.1 1B-11)",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "door trigger tap (alarm side)",
+          "tbd": "no alarm is picked: nothing reads this lead yet"
+        }
+      }
+    },
+    "T-AT-DOOR": {
+      "kind": "endpoint",
+      "src": "master: 'Door switch line tap (J/B No.1 1B pin 11)'",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "door switch line tap"
+        }
+      }
+    },
+    "AL-IMMOB": {
+      "kind": "endpoint",
+      "src": "DECISIONS 'Harness ownership (B8 list)': alarm immobiliser lead w_at_immob2, ECU-B pin 27",
+      "pins": {
+        "": {
+          "role": "tap",
+          "name": "immobiliser output tap (alarm side)",
+          "tbd": "no alarm is picked: nothing drives ECU DI 10 (anti-theft input) yet"
+        }
+      }
+    },
+    "T-CLUSTER-HL": {
+      "kind": "endpoint",
+      "src": "master note of w_hl_sense_out: cluster J8 pin 15 / GPIO28, active-low",
+      "pins": {
+        "15": {
+          "role": "input",
+          "name": "headlight sense (active low)"
+        }
+      }
+    },
+    "T-CLUSTER-CAN": {
+      "kind": "endpoint",
+      "src": "master: 'Centre cluster CAN board leads'",
+      "pins": {
+        "": {
+          "role": "signal",
+          "name": "CAN H / L"
+        }
+      }
+    },
+    "T-REALDASH-CAN": {
+      "kind": "endpoint",
+      "src": "master: 'RealDash Pi CAN adapter leads'",
+      "pins": {
+        "": {
+          "role": "signal",
+          "name": "CAN H / L"
+        }
+      }
+    }
   },
   "ecu": {
     "src": "sot/channels.csv (class, dir, type and pull-up of every ECU pin); Link G4X XtremeX QSG p.3-5 as cited there",
-    "supply": [["ECU-A:5", "main supply (14V+)", "ign"], ["ECU-B:5", "E-throttle supply (V Ethrottle)", "ign"]],
-    "grounds": ["ECU-A:25", "ECU-A:34", "ECU-B:25", "ECU-B:34"],
+    "supply": [
+      [
+        "ECU-A:5",
+        "main supply (14V+)",
+        "ign"
+      ],
+      [
+        "ECU-B:5",
+        "E-throttle supply (V Ethrottle)",
+        "ign"
+      ]
+    ],
+    "grounds": [
+      "ECU-A:25",
+      "ECU-A:34",
+      "ECU-B:25",
+      "ECU-B:34"
+    ],
     "alive": "lit('ECU.main supply (14V+)')",
     "gnd_ok": "low('ECU-A:25')",
     "pullup_ref": "ECU-A:5",
     "pullup_src": "DECISIONS 'Relays (B15)': Aux 1-10 carry a 1.5 kOhm pull-up to regulated 12 V (Link forum 17727); assumed: that regulated rail hangs on the supply pin A5 (the inside of the ECU is not in the repo)",
     "outputs": {
-      "Aux 6": {"drive": "low", "when": "hot('ECU-B:28')", "pclink": "EFI main relay (ECU hold power), active low: on while DI 9 (ignition switch) is on, and through the hold time after key-off", "src": "circuit-plan 'ETB hold power': Aux 6 (A28) holds K-EFI; DI 9 (B28) senses IG2"},
-      "Aux 2": {"drive": "low", "when": "hot('ECU-B:28')", "pclink": "E-throttle relay, active low: on with the ignition (and through the hold time)", "src": "circuit-plan 'ETB hold power': K-ETB on Aux 2 (A20) feeds B5"},
-      "Aux 3": {"drive": "low", "when": "engine or prime", "pclink": "Fuel pump relay, active low: prime at key-on, then while the engine runs", "src": "sot/channels.csv Aux 3 'Fuel pump relay coil'; README 'Power injection' B3"},
-      "Aux 5": {"drive": "low", "when": "fan", "pclink": "Radiator fan relay, active low (Aux 5-8 can drive high or low: must be set low side); the switch-on temperature is a tune setting", "src": "sot/channels.csv Aux 5 'Rad fan relay coil'; DECISIONS 'Relays (B15)': a relay coil is driven low side"},
-      "Ign 5": {"drive": "low", "when": "fan2", "pclink": "Condenser fan relay on a spare ignition output set up as an auxiliary output, active low; what switches it on (A/C request, temperature) is not in the repo: TBD", "src": "sot/channels.csv Ign 5 'Condenser fan relay coil'; DECISIONS 'Relays (B15)' K-FAN2 (A46)"},
-      "Ign 6": {"drive": "low", "when": "eps", "pclink": "EPS enable relay on a spare ignition output set up as an auxiliary output, active low; its switch-on condition is not in the repo: TBD", "src": "sot/channels.csv Ign 6 'EPS enable relay (k_eps_en) trigger' (DECISIONS R22)"},
-      "Aux 4": {"drive": "low", "when": "ac_kill", "pclink": "A/C cancel to the amp (ACT), low side: on = ground = compressor off; off = floating = normal", "src": "sot/channels.csv ACAMP ACT: 'Ground = kill and floating = normal'"},
-      "Aux 1": {"drive": "low", "when": "boost", "pclink": "Boost solenoid, low side PWM", "src": "sot/channels.csv Aux 1 'Boost solenoid'"},
-      "Inj 1": {"drive": "low", "when": "engine", "pclink": "Injector 1, sequential, saturated low side", "src": "sot/channels.csv Inj 1"},
-      "Inj 2": {"drive": "low", "when": "engine", "pclink": "Injector 2, sequential, saturated low side", "src": "sot/channels.csv Inj 2"},
-      "Inj 3": {"drive": "low", "when": "engine", "pclink": "Injector 3, sequential, saturated low side", "src": "sot/channels.csv Inj 3"},
-      "Inj 4": {"drive": "low", "when": "engine", "pclink": "Injector 4, sequential, saturated low side", "src": "sot/channels.csv Inj 4"},
-      "Aux 9": {"drive": "high", "when": "etb and hot('ECU-B:5')", "pclink": "E-throttle motor + (H-bridge, fed from V Ethrottle B5)", "src": "sot/channels.csv Aux 9 'ETB motor +'"},
-      "Aux 10": {"drive": "low", "when": "etb and hot('ECU-B:5')", "pclink": "E-throttle motor - (H-bridge)", "src": "sot/channels.csv Aux 10 'ETB motor -'"},
-      "Ign 1": {"drive": "signal", "when": "engine", "pclink": "Coil 1 trigger (logic-level IGT to a coil with its own igniter); output type TBD in sot/channels.csv (W3 a)", "src": "sot/channels.csv Ign 1"},
-      "Ign 2": {"drive": "signal", "when": "engine", "pclink": "Coil 2 trigger (IGT); output type TBD (W3 a)", "src": "sot/channels.csv Ign 2"},
-      "Ign 3": {"drive": "signal", "when": "engine", "pclink": "Coil 3 trigger (IGT); output type TBD (W3 a)", "src": "sot/channels.csv Ign 3"},
-      "Ign 4": {"drive": "signal", "when": "engine", "pclink": "Coil 4 trigger (IGT); output type TBD (W3 a)", "src": "sot/channels.csv Ign 4"},
-      "Ign 8": {"drive": "signal", "when": "engine", "pclink": "Tacho out to A/C amp A15 pin 18 and, through 4.7 k, pin 9 (spare ignition output set up as a tacho)", "src": "sot/channels.csv Ign 8; circuit-plan #10 (D16)"},
-      "Aux 7": {"drive": "signal", "when": "engine", "pclink": "Vehicle speed out to the MR-S pump (frequency output)", "src": "sot/channels.csv Aux 7 'Speed out to MRS pump'"}
+      "Aux 6": {
+        "drive": "low",
+        "when": "hot('ECU-B:28')",
+        "pclink": "EFI main relay (ECU hold power), active low: on while DI 9 (ignition switch) is on, and through the hold time after key-off",
+        "src": "circuit-plan 'ETB hold power': Aux 6 (A28) holds K-EFI; DI 9 (B28) senses IG2"
+      },
+      "Aux 2": {
+        "drive": "low",
+        "when": "hot('ECU-B:28')",
+        "pclink": "E-throttle relay, active low: on with the ignition (and through the hold time)",
+        "src": "circuit-plan 'ETB hold power': K-ETB on Aux 2 (A20) feeds B5"
+      },
+      "Aux 3": {
+        "drive": "low",
+        "when": "engine or prime",
+        "pclink": "Fuel pump relay, active low: prime at key-on, then while the engine runs",
+        "src": "sot/channels.csv Aux 3 'Fuel pump relay coil'; README 'Power injection' B3"
+      },
+      "Aux 5": {
+        "drive": "low",
+        "when": "fan",
+        "pclink": "Radiator fan relay, active low (Aux 5-8 can drive high or low: must be set low side); the switch-on temperature is a tune setting",
+        "src": "sot/channels.csv Aux 5 'Rad fan relay coil'; DECISIONS 'Relays (B15)': a relay coil is driven low side"
+      },
+      "Ign 5": {
+        "drive": "low",
+        "when": "fan2",
+        "pclink": "Condenser fan relay on a spare ignition output set up as an auxiliary output, active low; what switches it on (A/C request, temperature) is not in the repo: TBD",
+        "src": "sot/channels.csv Ign 5 'Condenser fan relay coil'; DECISIONS 'Relays (B15)' K-FAN2 (A46)"
+      },
+      "Ign 6": {
+        "drive": "low",
+        "when": "eps",
+        "pclink": "EPS enable relay on a spare ignition output set up as an auxiliary output, active low; its switch-on condition is not in the repo: TBD",
+        "src": "sot/channels.csv Ign 6 'EPS enable relay (k_eps_en) trigger' (DECISIONS R22)"
+      },
+      "Aux 4": {
+        "drive": "low",
+        "when": "ac_kill",
+        "pclink": "A/C cancel to the amp (ACT), low side: on = ground = compressor off; off = floating = normal",
+        "src": "sot/channels.csv ACAMP ACT: 'Ground = kill and floating = normal'"
+      },
+      "Aux 1": {
+        "drive": "low",
+        "when": "boost",
+        "pclink": "Boost solenoid, low side PWM",
+        "src": "sot/channels.csv Aux 1 'Boost solenoid'"
+      },
+      "Inj 1": {
+        "drive": "low",
+        "when": "engine",
+        "pclink": "Injector 1, sequential, saturated low side",
+        "src": "sot/channels.csv Inj 1"
+      },
+      "Inj 2": {
+        "drive": "low",
+        "when": "engine",
+        "pclink": "Injector 2, sequential, saturated low side",
+        "src": "sot/channels.csv Inj 2"
+      },
+      "Inj 3": {
+        "drive": "low",
+        "when": "engine",
+        "pclink": "Injector 3, sequential, saturated low side",
+        "src": "sot/channels.csv Inj 3"
+      },
+      "Inj 4": {
+        "drive": "low",
+        "when": "engine",
+        "pclink": "Injector 4, sequential, saturated low side",
+        "src": "sot/channels.csv Inj 4"
+      },
+      "Aux 9": {
+        "drive": "high",
+        "when": "etb and hot('ECU-B:5')",
+        "pclink": "E-throttle motor + (H-bridge, fed from V Ethrottle B5)",
+        "src": "sot/channels.csv Aux 9 'ETB motor +'"
+      },
+      "Aux 10": {
+        "drive": "low",
+        "when": "etb and hot('ECU-B:5')",
+        "pclink": "E-throttle motor - (H-bridge)",
+        "src": "sot/channels.csv Aux 10 'ETB motor -'"
+      },
+      "Ign 1": {
+        "drive": "signal",
+        "when": "engine",
+        "pclink": "Coil 1 trigger (logic-level IGT to a coil with its own igniter); output type TBD in sot/channels.csv (W3 a)",
+        "src": "sot/channels.csv Ign 1"
+      },
+      "Ign 2": {
+        "drive": "signal",
+        "when": "engine",
+        "pclink": "Coil 2 trigger (IGT); output type TBD (W3 a)",
+        "src": "sot/channels.csv Ign 2"
+      },
+      "Ign 3": {
+        "drive": "signal",
+        "when": "engine",
+        "pclink": "Coil 3 trigger (IGT); output type TBD (W3 a)",
+        "src": "sot/channels.csv Ign 3"
+      },
+      "Ign 4": {
+        "drive": "signal",
+        "when": "engine",
+        "pclink": "Coil 4 trigger (IGT); output type TBD (W3 a)",
+        "src": "sot/channels.csv Ign 4"
+      },
+      "Ign 8": {
+        "drive": "signal",
+        "when": "engine",
+        "pclink": "Tacho out to A/C amp A15 pin 18 and, through 4.7 k, pin 9 (spare ignition output set up as a tacho)",
+        "src": "sot/channels.csv Ign 8; circuit-plan #10 (D16)"
+      },
+      "Aux 7": {
+        "drive": "signal",
+        "when": "engine",
+        "pclink": "Vehicle speed out to the MR-S pump (frequency output)",
+        "src": "sot/channels.csv Aux 7 'Speed out to MRS pump'"
+      }
+    },
+    "inputs": {
+      "DI 9": {
+        "pclink": "ignition switch sense, active HIGH (12 V = key on), pull-up OFF; it drives hold power (Aux 6)",
+        "src": "sot/channels.csv DI 9"
+      },
+      "DI 7": {
+        "pclink": "start request, active HIGH (12 V = cranking), pull-up OFF",
+        "src": "sot/channels.csv DI 7"
+      },
+      "DI 10": {
+        "pull": true,
+        "pclink": "anti-theft input, ground = armed, pull-up ON",
+        "src": "sot/channels.csv DI 10: 'Alarm immobiliser out grounds when armed; PCLink Anti-Theft DI with pull-up ON'"
+      },
+      "DI 2": {
+        "pclink": "flex fuel sensor, pull-up ON",
+        "src": "sot/channels.csv DI 2: 'DI pull-up ON'"
+      },
+      "DI 8": {
+        "pclink": "gearbox speed, pull-up OFF (the sensor drives its own high)",
+        "src": "sot/channels.csv DI 8 (Dan 2026-11-01)"
+      }
     }
   },
   "truth_table": {
     "src": "docs/harness/circuit-plan.md 'Headlamps, DRL and pop-ups' truth table (read from that file, not copied here)",
-    "order": ["Pods", "Low", "High", "DRL", "LED"],
+    "order": [
+      "Pods",
+      "Low",
+      "High",
+      "DRL",
+      "LED"
+    ],
     "columns": {
-      "Pods": {"low": "R8:8"},
-      "Low": {"all": ["H1.low beam", "H2.low beam"]},
-      "High": {"all": ["H1.high beam", "H2.high beam"]},
-      "DRL": {"all": ["H1.DRL", "H2.DRL"]},
-      "LED": {"all": ["D-HB.LED"]}
+      "Pods": {
+        "low": "R8:8"
+      },
+      "Low": {
+        "all": [
+          "H1.low beam",
+          "H2.low beam"
+        ]
+      },
+      "High": {
+        "all": [
+          "H1.high beam",
+          "H2.high beam"
+        ]
+      },
+      "DRL": {
+        "all": [
+          "H1.DRL",
+          "H2.DRL"
+        ]
+      },
+      "LED": {
+        "all": [
+          "D-HB.LED"
+        ]
+      }
     }
   },
   "scenarios": [
-    {"id": "kill_off", "name": "kill switch open (key ON, HEAD, horn pressed)", "set": {"kill": false, "key": "ON", "stalk": "3", "horn": true}},
-    {"id": "key_off", "name": "key OFF", "set": {}},
-    {"id": "key_acc", "name": "key ACC", "set": {"key": "ACC"}},
-    {"id": "key_on", "name": "key ON, engine off", "set": {"key": "ON"}},
-    {"id": "key_start", "name": "key START, clutch down", "set": {"key": "START", "clutch": true}},
-    {"id": "running", "name": "engine running (charging)", "set": {"key": "ON", "engine": true}},
-    {"id": "lights_tail", "name": "key OFF, stalk 2 (TAIL)", "set": {"stalk": "2"}},
-    {"id": "lights_low", "name": "key OFF, stalk 3 (HEAD), low", "set": {"stalk": "3"}},
-    {"id": "lights_high", "name": "key OFF, stalk 3 (HEAD), high", "set": {"stalk": "3", "dimmer": "high"}},
-    {"id": "flash", "name": "key OFF, flash held", "set": {"flash": true}},
-    {"id": "drl", "name": "key ON, DRL switch on", "set": {"key": "ON", "drl_sw": true}},
-    {"id": "drl_head", "name": "key ON, DRL switch on, HEAD", "set": {"key": "ON", "drl_sw": true, "stalk": "3"}},
-    {"id": "drl_key_off", "name": "key OFF, DRL switch on", "set": {"drl_sw": true}},
-    {"id": "horn", "name": "key OFF, horn pressed", "set": {"horn": true}},
-    {"id": "turn", "name": "key ON, turn / hazard lamps lit", "set": {"key": "ON", "turn_l": true, "turn_r": true}},
-    {"id": "brake", "name": "key ON, brake pressed", "set": {"key": "ON", "brake": true}},
-    {"id": "reverse", "name": "key ON, reverse engaged", "set": {"key": "ON", "reverse": true}},
-    {"id": "park", "name": "key ON, park brake on", "set": {"key": "ON", "park_brake": true}}
-  ]
+    {
+      "id": "kill_off",
+      "name": "kill switch open (key ON, HEAD, horn pressed)",
+      "set": {
+        "kill": false,
+        "key": "ON",
+        "stalk": "3",
+        "horn": true
+      }
+    },
+    {
+      "id": "key_off",
+      "name": "key OFF",
+      "set": {}
+    },
+    {
+      "id": "key_acc",
+      "name": "key ACC",
+      "set": {
+        "key": "ACC"
+      }
+    },
+    {
+      "id": "key_on",
+      "name": "key ON, engine off",
+      "set": {
+        "key": "ON"
+      }
+    },
+    {
+      "id": "key_start",
+      "name": "key START, clutch down",
+      "set": {
+        "key": "START",
+        "clutch": true
+      }
+    },
+    {
+      "id": "running",
+      "name": "engine running (charging)",
+      "set": {
+        "key": "ON",
+        "engine": true
+      }
+    },
+    {
+      "id": "lights_tail",
+      "name": "key OFF, stalk 2 (TAIL)",
+      "set": {
+        "stalk": "2"
+      }
+    },
+    {
+      "id": "lights_low",
+      "name": "key OFF, stalk 3 (HEAD), low",
+      "set": {
+        "stalk": "3"
+      }
+    },
+    {
+      "id": "lights_high",
+      "name": "key OFF, stalk 3 (HEAD), high",
+      "set": {
+        "stalk": "3",
+        "dimmer": "high"
+      }
+    },
+    {
+      "id": "flash",
+      "name": "key OFF, flash held",
+      "set": {
+        "flash": true
+      }
+    },
+    {
+      "id": "drl",
+      "name": "key ON, DRL switch on",
+      "set": {
+        "key": "ON",
+        "drl_sw": true
+      }
+    },
+    {
+      "id": "drl_head",
+      "name": "key ON, DRL switch on, HEAD",
+      "set": {
+        "key": "ON",
+        "drl_sw": true,
+        "stalk": "3"
+      }
+    },
+    {
+      "id": "drl_key_off",
+      "name": "key OFF, DRL switch on",
+      "set": {
+        "drl_sw": true
+      }
+    },
+    {
+      "id": "horn",
+      "name": "key OFF, horn pressed",
+      "set": {
+        "horn": true
+      }
+    },
+    {
+      "id": "turn",
+      "name": "key ON, turn / hazard lamps lit",
+      "set": {
+        "key": "ON",
+        "turn_l": true,
+        "turn_r": true
+      }
+    },
+    {
+      "id": "brake",
+      "name": "key ON, brake pressed",
+      "set": {
+        "key": "ON",
+        "brake": true
+      }
+    },
+    {
+      "id": "reverse",
+      "name": "key ON, reverse engaged",
+      "set": {
+        "key": "ON",
+        "reverse": true
+      }
+    },
+    {
+      "id": "park",
+      "name": "key ON, park brake on",
+      "set": {
+        "key": "ON",
+        "park_brake": true
+      }
+    },
+    {
+      "id": "prime",
+      "name": "key ON, fuel pump prime",
+      "set": {
+        "key": "ON",
+        "prime": true
+      }
+    },
+    {
+      "id": "fans",
+      "name": "engine running, both fans asked for",
+      "set": {
+        "key": "ON",
+        "engine": true,
+        "fan": true,
+        "fan2": true
+      }
+    },
+    {
+      "id": "ac",
+      "name": "engine running, blower and A/C on",
+      "set": {
+        "key": "ON",
+        "engine": true,
+        "blower": true,
+        "ac": true,
+        "ac_psw": true,
+        "fan2": true
+      }
+    },
+    {
+      "id": "ac_kill",
+      "name": "engine running, A/C on, ECU cancels the A/C",
+      "set": {
+        "key": "ON",
+        "engine": true,
+        "blower": true,
+        "ac_psw": true,
+        "ac_kill": true
+      }
+    },
+    {
+      "id": "eps",
+      "name": "engine running, power steering enabled",
+      "set": {
+        "key": "ON",
+        "engine": true,
+        "eps": true
+      }
+    },
+    {
+      "id": "etb",
+      "name": "key ON, throttle motor and boost solenoid driven",
+      "set": {
+        "key": "ON",
+        "etb": true,
+        "boost": true
+      }
+    },
+    {
+      "id": "clutch",
+      "name": "key ON, clutch down",
+      "set": {
+        "key": "ON",
+        "clutch": true
+      }
+    },
+    {
+      "id": "cruise",
+      "name": "key ON, cruise MAIN on, a stalk button held",
+      "set": {
+        "key": "ON",
+        "cruise_main": true,
+        "cruise_btn": true
+      }
+    },
+    {
+      "id": "oil",
+      "name": "key ON, oil warning LED asked for",
+      "set": {
+        "key": "ON",
+        "oil_led": true
+      }
+    },
+    {
+      "id": "tail_key_on",
+      "name": "key ON, stalk 2 (TAIL)",
+      "set": {
+        "key": "ON",
+        "stalk": "2"
+      }
+    }
+  ],
+  "watch": [
+    {
+      "pin": "ECU-B:28",
+      "dev": "ECU",
+      "name": "ECU DI 9, ignition switch sense",
+      "level": "H",
+      "when": "ign",
+      "alive": "ign",
+      "src": "sot/channels.csv DI 9: senses IG2 (J/B1 1H-7) ahead of the supply diode"
+    },
+    {
+      "pin": "ECU-B:30",
+      "dev": "ECU",
+      "name": "ECU DI 7, start request",
+      "level": "H",
+      "when": "kill and key == 'START'",
+      "alive": "ign",
+      "src": "sot/channels.csv DI 7: 12V-active input from the B-W ST1 wire, pull-up OFF"
+    },
+    {
+      "pin": "ECU-B:27",
+      "dev": "ECU",
+      "name": "ECU DI 10, anti-theft input",
+      "level": "L",
+      "when": "TBD",
+      "alive": "ign",
+      "tbd": "no alarm is picked, so nothing ever pulls this input to ground; with the PCLink pull-up ON it rests high (inactive)",
+      "src": "sot/channels.csv DI 10; DECISIONS 'Harness ownership (B8 list)' AntiTheft"
+    },
+    {
+      "pin": "A15:11",
+      "name": "A/C amp ACT (cancel) input",
+      "level": "L",
+      "when": "ign and ac_kill",
+      "float": "ok",
+      "src": "sot/channels.csv ACAMP ACT: 'Ground = kill and floating = normal'"
+    },
+    {
+      "pin": "A15:13",
+      "name": "A/C amp pressure switch input",
+      "level": "H",
+      "when": "kill and blower and ac_psw",
+      "float": "ok",
+      "src": "circuit-plan group 5: A5 pin 4 -> SP-AC-PSW -> A15 pin 13; an open switch leaves the amp's own input (factory)"
+    },
+    {
+      "pin": "A15:2",
+      "name": "A/C amp coolant-OK input (hard-grounded)",
+      "level": "L",
+      "when": "True",
+      "src": "DECISIONS 'Grounds (B10)' N103: A15 pin 2 goes to the nearest body ground by the amp"
+    },
+    {
+      "pin": "T-CLUSTER-HL:15",
+      "name": "cluster headlight sense (active low)",
+      "level": "L",
+      "when": "ign and tail_live",
+      "float": "ok",
+      "src": "master note of w_hl_sense_out: EL814 OUT3 open-collector to cluster J8 pin 15 / GPIO28 (active-low)"
+    },
+    {
+      "pin": "R8:8",
+      "name": "pop-up UP command (ground = up)",
+      "level": "L",
+      "when": "ry or (ign and drl_sw)",
+      "float": "ok",
+      "src": "circuit-plan 'Headlamps, DRL and pop-ups' truth table, Pods column"
+    }
+  ],
+  "csb3": {
+    "src": "docs/enclosures/csb3-hd34-pinmap.csv (cavity of each board input); switchboard_frames.json (SW_MASK bits, ecu_receive VDIs); bench/frames.py (frame bytes); ECUMASTER_SWITCHBOARD_SETUP.md Step 5",
+    "alive": "CSB3.board supply",
+    "active_level": "L",
+    "tbd": "ground = ON is how the repo wires every CSB3 switch input, but the input polarity and its pull-up are not recorded (ECUMASTER_SWITCHBOARD_SETUP.md Step 4: 'confirm the input polarity and pull in the CSB3 manual'; bench check OPEN-ITEMS row 101)",
+    "switches": {
+      "S3": {
+        "name": "cruise MAIN",
+        "from": "C16",
+        "when": "ign and cruise_main"
+      },
+      "S6": {
+        "name": "clutch",
+        "from": "C17",
+        "when": "ign and clutch"
+      },
+      "S7": {
+        "name": "brake",
+        "from": "S9",
+        "when": "ign and brake"
+      },
+      "S8": {
+        "name": "reverse",
+        "from": "REV-SW",
+        "when": "ign and reverse"
+      }
+    },
+    "analog": {
+      "A2": {
+        "name": "cruise stalk ladder",
+        "from": "C16",
+        "when": "ign and cruise_btn"
+      }
+    },
+    "outputs": {
+      "L4": {
+        "name": "oil warning LED",
+        "to": "D-OIL"
+      }
+    }
+  }
 }
