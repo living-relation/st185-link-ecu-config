@@ -524,6 +524,9 @@ PLACE = {'LOGIC': (0.0, 0.0), 'POWER': (160.0, 0.0), 'BATTRELAY': (0.0, -175.0)}
 OD_RANGE = {20: (1.47, 2.40), 18: (1.75, 2.50), 16: (1.96, 2.90), 14: (2.31, 3.20), 12: (2.82, 3.80), 10: (3.45, 4.70),
             8: (5.13, 5.13), 6: (6.43, 6.43), '1/0': (13.6, 13.6)}
 OD = {k: v[1] for k, v in OD_RANGE.items()}
+# The vacant R1 seat (RETAIN, the R123 clip) is held as built in v53 until Dan answers A86 (A83: the clip retains by the crimped barrel;
+# 62998-2 has no lance and a twist-lock cannot work on it): its spare wire sizes stay the pre-A82 values (M22759/16 max, docstring).
+OD_V53 = {'1/0': 13.6, 6: 6.43, 8: 5.13, 10: 3.61, 12: 2.97, 14: 2.41, 16: 2.06, 18: 1.85, 20: 1.57}
 OD_MIN = {k: v[0] for k, v in OD_RANGE.items()}
 # AWG per AMI position (the CabinPower wire list; a fuse-to-relay jumper takes the relay-in gauge)
 AMI_AWG = {'HTR': 8, 'EFI': 12, 'STR': 12, 'FAN': 8, 'FAN2': 8, 'PWR': 10,
@@ -1098,7 +1101,10 @@ def real_zones(part, kind, side=1):
 # the blade goes 11 - (top_gap 1.0 + 0.9) = 9.1 into the receptacle (8.6 .. 9.6), past the 8.0 mating length and short of the
 # 42281-1 contact box end 10.25 (REAL wz).
 TWIST = dict(d_r=0.6, lift=0.3, t_a=2.0, clr=CLR, bear_min=0.8, blade_len={'F7 85': 11.0, 'F7 86': 11.0}, blade_tol=0.5, mate_min=8.0)
-TWIST_KINDS = {'F7 85', 'F7 86'}       # pilot (Dan 2026-11-16: one seat type first, his OK before the rest)
+# Scope (Dan 2026-11-16): the twist-lock is only for the seats that had the extra R123 retainer clip (RETAIN: POWER R1, the vacant heater
+# relay seat); every other seat keeps its press-in lance retainer. The F7 85 / 86 pilot (Fusion v54 / v55) is undone (v56). R1 is not a
+# twist seat until Dan says so (twist_on still skips RETAIN seats).
+TWIST_KINDS = set()
 # Crimped barrel sizes from the TE application specs, per terminal: wire barrel crimp width ww / height wh (mm, by AWG), insulation
 # barrel crimp width iw ("F" crimp). None = not in a TE document on hand: the barrel is taken as round on its own conductor / insulation
 # (d_max + 2 t, crimp OD + 2 t; est) - those rows are TBD in the report.

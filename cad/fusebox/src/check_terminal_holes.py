@@ -1,4 +1,4 @@
-"""Gate: fuse box terminal cavities (Dan's J2 = B, 2026-10-14, DECISIONS R94; hole rule R120 and self-locking terminals R121, Dan
+﻿"""Gate: fuse box terminal cavities (Dan's J2 = B, 2026-10-14, DECISIONS R94; hole rule R120 and self-locking terminals R121, Dan
 2026-10-15) - every crimped terminal goes up through its hole in the base and snaps in, and no wall between two cavities is thinner than
 the printed minimum.
 Works out on its own, from the wire plan (cad/fusebox/rev8/wiring_plan.json: the harness wire and terminal part at every cavity) and the
@@ -271,8 +271,8 @@ def main():
           'RNF-100 build-up' % (os.path.relpath(REPORT, REPO), n_ok, len(joined), len(shared), thin, S.HOLE['min_wall'], n_sl))
     for x in info:
         print('  info: ' + x)
-    if over:                            # A82: a terminal whose TE insulation range stops below the gauge's GXL OD (Dan to pick a part)
-        print('  NEEDS DAN (A82): %d wire ends whose terminal cannot grip the GXL maximum of their gauge' % len(over))
+    if over:                            # A83: a wiring note only (Dan 2026-11-16)
+        print('  wiring note (A83, parts lists): %d wire ends whose GXL insulation is above the TE grip range of their terminal (the lance holds the terminal)' % len(over))
         for x in over:
             print('    ' + x)
     if retained:

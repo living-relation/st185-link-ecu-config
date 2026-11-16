@@ -172,6 +172,26 @@ def sleeves(L, box):
               'below the terminal insulation range; every end and its layers: python cad/fusebox/src/check_terminal_holes.py --list.')
 
 
+def wiring_notes(L, box):
+    """A83 (Dan 2026-11-16): a wire whose insulation can be thicker than its terminal's TE insulation-grip range (A82: GXL at the top of the
+    gauge) is only a wiring note - the terminal is held by its own lance, the box and the master do not change. One row per terminal and
+    gauge, qty 0 (nothing to buy)."""
+    plan = json.load(open(os.path.join(REV8_DIR if PLAN_REV >= 8 else REV7_DIR, 'wiring_plan.json'), encoding='utf-8'))
+    out = {}
+    for w in plan['wires']:
+        for e in w['ends']:
+            p_ = e.get('part')
+            if e.get('at') and e.get('box') == box and p_ in S.TERM and isinstance(w['gauge'], int) and w['od'] > S.TERM[p_]['ins'][1] + 1e-6:
+                out.setdefault((p_, w['gauge']), []).append(w['wire'])
+    for (p_, g), ws in sorted(out.items()):
+        lo, hi = S.TERM[p_]['ins']
+        L.add(box, 'Wiring notes', 'Wiring note: %d AWG on %s, %d ends' % (g, p_, len(ws)), p_, 'TE Connectivity',
+              'Insulation grip %.1f - %.1f mm; %d AWG GXL is up to %.2f mm (TXL %.2f): with GXL the insulation crimp will not close fully - '
+              'the terminal still locks by its lance (A83); prefer TXL / M22759/16 on these ends' % (lo, hi, g, S.OD[g], {20: 1.90, 18: 2.20, 16: 2.40, 14: 2.70, 12: 3.30, 10: 4.00}.get(g, 0)),
+              0, 0, unit=0.0, basis='est', url='https://www.te.com/en/product-%s.html' % p_, checked='spec.TERM insulation range (TE); spec.OD_RANGE (A82)',
+              note='A83 wiring note, no box or master change. Ends: ' + ', '.join(sorted(set(ws))))
+
+
 def cover_screws(L, box, n=4):
     """R122 (Dan 2026-10-15: "add one small screw hole on each lid and base tab for extra support if needed"): OPTIONAL - one M3 screw into a
     brass heat-set insert beside each of the 4 cover catches (the snaps stay the main hold). R38: TE / the approved suppliers sell no
@@ -440,6 +460,7 @@ def build(rev=6):
     else:
         plan_terminals(L, P)
     sleeves(L, P)
+    wiring_notes(L, P)
     L.add(P, 'Printed', 'Retainer clip under the heater relay R1 (R123 B)', 'Power_Retainer_R1_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
           'Plate (2.0) with a hole per R1 wire and two barbed legs that snap into the cavity collar: stops the 62998-2 (no lance made for 8 AWG on a 6.3 blade) '
           'and the other R1 terminals backing out', 0 if R8 else 1, unit=0.20, basis='est',
@@ -582,6 +603,7 @@ def build(rev=6):
     else:
         plan_terminals(L, G)
     sleeves(L, G)
+    wiring_notes(L, G)
     if R8:
         box_insides(L, G)
     cover_screws(L, G)

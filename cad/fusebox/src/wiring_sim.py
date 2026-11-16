@@ -564,6 +564,8 @@ def terminal_cavities(wires):
                 part, g = S.TERM_DEFAULT_B[c['kind']]
             part, g = S.TERM_DEFAULT_CAV.get((box, key), (part, g)) if S.REV >= 8 else (part, g)
             od, src, wl = OD[g], ('spare (kept cut)' if S.REV >= 8 and (box, key) in S.KEEP_CUT else 'spare (largest wire it takes)'), []
+            if key.split()[0] in S.RETAIN.get(box, []):      # vacant R1 held as built in v53 pending A86 (spec.OD_V53)
+                od = S.OD_V53[g]
         out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
                         hole=[round(v, 3) for v in S.hole(part, c['kind'])] if part in S.TERM else None,
                         zones=None, awg=g))
