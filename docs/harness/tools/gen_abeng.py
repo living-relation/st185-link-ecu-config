@@ -442,8 +442,8 @@ head = [{"id": "n_title", "width": 360,
                  "bulkhead in the centre third, splices beside it, shielded cables by their device, devices right in feed order, columns "
                  "level at the top (device rows half a grid lower, N1 a). Each pin shows its own master end text. Connectors are drawn "
                  "whole; spare cavities are N/C with a note. " + B.GHOST_MARK +
-                 "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), "
-                 "front of car RIGHT, rear LEFT, driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on "
+                 "Layout: Dan 2026-11-16 (second): the compact tree of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), straight orthogonal bundles, formboard mode off, "
+                 "ordered like the layout-editor maps (each branch leaves its node the way it runs on the map), front of car RIGHT, rear LEFT, driver side UP; drawn length is not to scale; each part on "
                  "a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm (HeavyDC's cables are on its own segments of "
                  "the layout tree, DECISIONS B6 b)."},
         {"id": "n_stripes", "width": 360,
@@ -526,10 +526,12 @@ def line_of(nd):     # the route line a junction / tap / stub node is on ('J_L7_
     m = re.match(r'[JTS]_([^_]+)', nd); return m.group(1) if m else None
 def breakout(n, c):  # c leaves n's line (a breakout) rather than carrying the line on
     return line_of(first_hop.get(c, c)) is None or line_of(first_hop.get(c, c)) != line_of(n)
-def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
+SPOTS = B.car_frame(LT)[0]     # the layout-editor map spots, car mm (front right, driver up)
+def heading(n, c):     # screen vector from n towards c's branch on the layout-editor map (Dan 2026-11-16, second)
     pts = [XY[m]['xy'] for m in sub_nodes(c)]
     x0, y0 = XY[n]['xy']
-    return (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+    old = (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+    return FB.map_vector(SPOTS, n, sub_nodes(c), fallback=FB.PREFER.get('bp_' + sid(c)) or old)
 def rect(a, b): return (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a[1], b[1]))
 def hit(r, s, g=GAP): return r[0] - g < s[2] and s[0] - g < r[2] and r[1] - g < s[3] and s[1] - g < r[3]
 def mv(p, o): return (p[0] + o[0], p[1] + o[1])
@@ -537,13 +539,14 @@ def mvr(r, o): return (r[0] + o[0], r[1] + o[1], r[2] + o[0], r[3] + o[1])
 def lay(n, din):
     """n's piece of the tree with n at (0, 0): (rects, node positions, stubs {part id: (node, part xy, stub points, outward)})."""
     free = [d for d in 'RULD' if din is None or d != OPP[din]]
-    asg = {}
-    for c in sorted(kids[n], key=lambda c: (-len(sub_nodes(c)), breakout(n, c), c)):
-        v = heading(n, c); left = [d for d in free if d not in asg.values()]
-        assert left, ('more branches than directions at', n)
+    # map order round n (Dan 2026-11-16, second); a coil or injector breakout keeps its family's side (parallel, J1)
+    fixed = {}
+    for c in kids[n]:
         fm = family(c) if breakout(n, c) else None
-        if fm and FAM.get(fm) in left: asg[c] = FAM[fm]; continue
-        asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
+        if fm and FAM.get(fm) in free and FAM[fm] not in fixed.values(): fixed[c] = FAM[fm]
+    asg = FB.map_dirs(free, {c: heading(n, c) for c in kids[n]}, DV, fixed, size={c: len(sub_nodes(c)) for c in kids[n]}, n=n)
+    for c in kids[n]:
+        fm = family(c) if breakout(n, c) else None
         if fm and din and asg[c] != din: FAM.setdefault(fm, asg[c])
     items = node_items.get(n, []) + inline_at.get(n, [])
     rects, P, S = [], {n: (0, 0)}, {}
@@ -638,10 +641,10 @@ B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, un
 NGHOST = B.add_ghosts(doc, H, NAME, strands=True)      # one ghost strand per other harness and path (Dan T4 a: AB-engine is near the limit)
 assert NCONN + NGHOST <= 100, 'ghost strands push AB-engine over the 100-connection limit'
 B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghost strands
-FB.regular(doc, B.car_frame(LT), LT['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
-_fbad = FB.check_regular(doc, square=False)
+FB.regular(doc)    # the compact tree redrawn with every text clear: formboard off, square runs, not to scale (Dan 2026-11-16, second)
+_fbad = FB.check_regular(doc, square=True)
 assert not _fbad, 'layout: %r' % _fbad[:8]
-print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
+print('layout %d x %d units, formboard mode off; branches off their map direction: %r' % (FB.extent(doc) + (FB.MAP_OFF,)))
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abeng_expect.json'), 'w'), indent=1)

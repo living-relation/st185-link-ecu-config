@@ -645,9 +645,9 @@ head = [{"id": "n_title", "width": 360,
                  "generated from docs/harness/MASTER-wirelist.csv (harness = AB-cabin) by docs/harness/tools/gen_cabin.py; never a source. "
                  "Schematic: %s left, the cabin halves of the shielded runs as cables beside them, splices middle, %s right; columns level "
                  "at the top (right column half a grid lower, N1 a). Each pin shows its own master end text.%s %s"
-                 "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
+                 "Layout: Dan 2026-11-16 (second, A74 a): the compact tree of the ST185-harness.layout.json tree (the one car-mm model from the placement-editor seeds, glove-box "
                  "breakout GB_T, the ECU splice point at the ECU plugs, A10 b), front of car RIGHT, rear LEFT, "
-                 "driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
+                 "driver side UP; straight orthogonal bundles, formboard mode off, ordered like the layout-editor maps (each branch leaves its node the way it runs on the map); drawn length is not to scale; each part on a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan "
                  "T7 b); bundle lengths = the master est_length_mm." % (
                      TITLE, REV, DATE, SHORT[DOC], 'every wire on the ECU sensor rails and screens (+5 V, +8 V, Gnd Out plugs and their bussed receptacles, shield '
                      'splices) with the pedal, the wheel speed conditioner output plugs, the fuel level sender, the cam and fuel-level pull-ups '
@@ -767,10 +767,12 @@ GAP, MINL, ISP, LBL = 60, 150, 60, 240        # clearance, shortest drawn bundle
 ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + list(INL.values())}
 XY = H.layout['nodes']
 def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
-def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
+SPOTS = B.car_frame(H.layout)[0]     # the layout-editor map spots, car mm (front right, driver up)
+def heading(n, c):     # screen vector from n towards c's branch on the layout-editor map (Dan 2026-11-16, second; A74 a)
     pts = [XY[m]['xy'] for m in sub_nodes(c)]
     x0, y0 = XY[n]['xy']
-    return (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+    old = (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+    return FB.map_vector(SPOTS, n, sub_nodes(c), fallback=FB.PREFER.get('bp_' + sid(c)) or old)
 def rect(a, b): return (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a[1], b[1]))
 def hit(r, s, g=GAP): return r[0] - g < s[2] and s[0] - g < r[2] and r[1] - g < s[3] and s[1] - g < r[3]
 def mv(p, o): return (p[0] + o[0], p[1] + o[1])
@@ -778,11 +780,7 @@ def mvr(r, o): return (r[0] + o[0], r[1] + o[1], r[2] + o[0], r[3] + o[1])
 def lay(n, din):
     """n's piece of the tree with n at (0, 0): (rects, node positions, stubs {part id: (node, part xy, stub points, outward)})."""
     free = [d for d in 'RULD' if din is None or d != OPP[din]]
-    asg = {}
-    for c in sorted(kids[n], key=lambda c: (-len(sub_nodes(c)), c)):
-        v = heading(n, c); left = [d for d in free if d not in asg.values()]
-        assert left, ('more branches than directions at', n)
-        asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
+    asg = FB.map_dirs(free, {c: heading(n, c) for c in kids[n]}, DV, size={c: len(sub_nodes(c)) for c in kids[n]}, n=n)   # map order round n (A74 a)
     items = node_items.get(n, []) + inline_at.get(n, [])
     rects, P, S = [], {n: (0, 0)}, {}
     ray = [rect((-DV[din][0] * 90, -DV[din][1] * 90), (-DV[din][0] * 10 ** 6, -DV[din][1] * 10 ** 6))] if din else []   # the way in
@@ -878,10 +876,10 @@ B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires
 head_now = [n for n in doc['schematicNotes'] if n['id'] in {h['id'] for h in head}]
 HEAD_Y = -30 * ((max(est_h(n['text']) for n in head_now) + 59) // 30)
 for n in head_now: n['schematicPosition']['y'] = HEAD_Y
-FB.regular(doc, B.car_frame(H.layout), H.layout['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
-_fbad = FB.check_regular(doc, square=False)
+FB.regular(doc)    # the compact tree redrawn with every text clear: formboard off, square runs, not to scale (Dan 2026-11-16, second; A74 a)
+_fbad = FB.check_regular(doc, square=True)
 assert not _fbad, 'layout: %r' % _fbad[:8]
-print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
+print('layout %d x %d units, formboard mode off; branches off their map direction: %r' % (FB.extent(doc) + (FB.MAP_OFF,)))
 json.dump(doc, open(os.path.join(OUT, 'abcab%d.json' % DOC), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abcab%d_lib_ops.json' % DOC), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abcab%d_expect.json' % DOC), 'w'), indent=1)

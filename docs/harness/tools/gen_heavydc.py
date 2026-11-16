@@ -377,10 +377,10 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "master end text. Shared connectors are drawn whole; cavities wired by other harnesses are N/C with a note. The RADLOK "
                       "pass-through is the firewall connector itself, no cable to cut or buy (Dan D2): " + pt_txt + ", drawn as a mate between "
                       "the cabin and engine plugs (Dan 2026-11-05), not a wire. " + B.GHOST_MARK +
-                      "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of HeavyDC's layout tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
+                      "Layout: Dan 2026-11-16 (second, A74 a): the compact tree of HeavyDC's layout tree in two pieces mated at the RADLOK plugs (cabin / trunk piece left, engine-bay "
                       "piece right of the firewall plugs), front of car RIGHT, rear LEFT, driver side UP; the battery, "
                       "kill switch and trunk relay block each on its own spot along the trunk RH side (Dan's Z4 b save, A1 b), the alternator and "
-                      "starter studs on 300 mm drops (A9 a); each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on a 100 mm end-allowance stub (the jump bar "
+                      "starter studs on 300 mm drops (A9 a); straight orthogonal bundles, formboard mode off, ordered like the layout-editor maps (each branch leaves its node the way it runs on the map); drawn length is not to scale; each part on a 100 mm end-allowance stub (the jump bar "
                       "and fuse block studs too: ring-terminal ends, DECISIONS B8 End allowance); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
 notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},
@@ -481,10 +481,12 @@ ALLC = {x['id']: x for x in list(conns.values()) + list(terms.values()) + inl}
 STUB = L.get('end_allowance_mm', 100)
 SPL = L.get('splice_allowance_mm', STUB)     # a splice end's allowance (Dan T7 b, 2026-11-10: 25 mm; strip and solder)
 def sub_nodes(n): return [n] + [m for k in kids[n] for m in sub_nodes(k)]
-def heading(n, c):     # screen vector from n towards the middle of c's part of the car (front right, driver up)
+SPOTS = B.car_frame(H.layout)[0]     # the layout-editor map spots, car mm (front right, driver up)
+def heading(n, c):     # screen vector from n towards c's branch on the layout-editor map (Dan 2026-11-16, second; A74 a)
     pts = [L['nodes'][m]['xy'] for m in sub_nodes(c)]
     x0, y0 = L['nodes'][n]['xy']
-    return (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+    old = (sum(p[0] for p in pts) / len(pts) - x0, -(sum(p[1] for p in pts) / len(pts) - y0))
+    return FB.map_vector(SPOTS, n, sub_nodes(c), fallback=FB.PREFER.get('bp_' + sid(c)) or old)
 def rect(a, b): return (min(a[0], b[0]), min(a[1], b[1]), max(a[0], b[0]), max(a[1], b[1]))
 def hit(r, s, g=GAP): return r[0] - g < s[2] and s[0] - g < r[2] and r[1] - g < s[3] and s[1] - g < r[3]
 def mv(p, o): return (p[0] + o[0], p[1] + o[1])
@@ -494,11 +496,8 @@ ITEM_SIDE = {}
 def lay(n, din):
     """n's piece of the tree with n at (0, 0): (rects, node positions, stubs {part id: (node, part xy, stub points)})."""
     free = [d for d in 'RULD' if din is None or d != OPP[din]]
-    asg = {}
-    for c in sorted(kids[n], key=lambda c: (-len(sub_nodes(c)), c)):
-        v = heading(n, c); left = [d for d in free if d not in asg.values() and d != ITEM_SIDE.get(n)]
-        assert left, ('more branches than directions at', n)
-        asg[c] = max(left, key=lambda d: (DV[d][0] * v[0] + DV[d][1] * v[1]) / (math.hypot(*v) or 1))
+    asg = FB.map_dirs([d for d in free if d != ITEM_SIDE.get(n)], {c: heading(n, c) for c in kids[n]}, DV,
+                      size={c: len(sub_nodes(c)) for c in kids[n]}, n=n)     # map order round n (Dan 2026-11-16, second; A74 a)
     items = node_items.get(n, []) + inline_at.get(n, [])
     rects, P, S = [], {n: (0, 0)}, {}
     ray = [rect((-DV[din][0] * 90, -DV[din][1] * 90), (-DV[din][0] * 10 ** 6, -DV[din][1] * 10 ** 6))] if din else []   # the way in
@@ -607,10 +606,10 @@ NGHOST = B.add_ghosts(doc, H, 'HeavyDC')      # other harnesses' wires in these 
 assert len(wires) + NGHOST <= 100, 'ghost wires push HeavyDC over the 100-connection limit'
 B.fill_ghost_note(doc, 'HeavyDC')      # the title note says which pass-through wires are drawn as ghosts
 print('ghost wires', NGHOST)
-FB.regular(doc, B.car_frame(H.layout), H.layout['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
-_fbad = FB.check_regular(doc, square=False)
+FB.regular(doc)    # the compact tree redrawn with every text clear: formboard off, square runs, not to scale (Dan 2026-11-16, second; A74 a)
+_fbad = FB.check_regular(doc, square=True)
 assert not _fbad, 'layout: %r' % _fbad[:8]
-print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
+print('layout %d x %d units, formboard mode off; branches off their map direction: %r' % (FB.extent(doc) + (FB.MAP_OFF,)))
 json.dump(doc, open(os.path.join(OUT, 'hdc.json'), 'w'), indent=1)   # routed: upload as is (no separate genroute.py pass)
 json.dump(lib_add, open(os.path.join(OUT, 'hdc_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(doc.get('connectors', [])), 'terminals', len(doc.get('terminals', [])), 'splices', len(doc.get('splices', [])), 'wires', len(doc.get('wires', [])), 'cables 0', 'bundles', len(bundles),
