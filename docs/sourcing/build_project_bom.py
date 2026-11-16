@@ -5,7 +5,7 @@
 
 Inputs, all in git: docs/harness/MASTER-wirelist.csv (every housing, accessory, contact, plug, lug, cable and wire;
 R221), the drawing sets' layouts (DR-25 tubing), docs/sourcing/harness-parts.csv (maker and description of each
-harness part; fixed_qty = boots and labels counted from the retired harness.design files), cad/fusebox/fusebox-parts-*.csv, docs/enclosures/*-bom.csv,
+harness part; fixed_qty = boots and labels counted from the retired harness.design files), cad/fusebox/rev8/fusebox-parts-*.csv, docs/enclosures/*-bom.csv,
 docs/sourcing/mech-extra.csv (machined parts / pump), docs/sourcing/te-on-hand-bom.csv (on hand),
 docs/sourcing/bom-links.csv (hand-kept buy links, prices, link status, te_sample = Y when te.com shows "Get free samples" for that exact TE PN; sample_other = "<maker> <PN>" of a validated drop-in equivalent whose maker offers free samples; both feed the "Free sample" column).
 Nothing is typed in twice: edit the source, rerun. A line with no validated link goes on the To do sheet."""

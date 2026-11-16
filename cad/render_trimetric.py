@@ -40,7 +40,6 @@ MODELS = {
     "busbar-B-rev2":  ("cad/busbar/design-B-rev2/trimetric.png", ["cad/busbar/design-B-rev2/B_rev2_ASSEMBLY.step"]),
     "busbar-B-rev3":  ("cad/busbar/design-B-rev3/trimetric.png", ["cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step"]),
     "fusebox-power":  ("cad/fusebox/trimetric-power.png",     ["cad/fusebox/Power_*.step"]),
-    "fusebox-logic":  ("cad/fusebox/trimetric-logic.png",     ["cad/fusebox/Logic_*.step"]),
     "fusebox-battrelay": ("cad/fusebox/trimetric-battrelay.png", ["cad/fusebox/BattRelay_*.step"]),
     "enclosure-vrc":  ("cad/enclosures/vrc/trimetric.png",    ["cad/enclosures/vrc/VRC_assembly.step"]),
     # printed board holder of the VRC box (OPEN-ITEMS row 97, K7), shown with the board in it
@@ -49,25 +48,15 @@ MODELS = {
     "enclosure-csb3": ("cad/enclosures/csb3/trimetric.png",   ["cad/enclosures/csb3/CSB3_assembly.step"]),
     "drb102-plate":   ("cad/drb102-plate/trimetric.png",      ["cad/drb102-plate/DRB102-firewall-plate-assembly.step"]),
     "fuel-hanger":    ("cad/fuel-hanger/trimetric.png",       ["cad/fuel-hanger/fuel-hanger-assembly.step"]),   # in-repo since 2026-10-17
-    # rev 7 option (E2 = A): POWER box with the bus bar in it; its LOGIC box and battery block are rev 6's pictures
+    # rev 7 (E2 = A): POWER box with the bus bar in it. One picture per old-rev model row (Dan A60 b, 2026-11-16): the rev 6 LOGIC,
+    # rev 7 LOGIC / battery block and the rev 6 / rev 7 package pictures are in git history
     "fusebox-rev7-power": ("cad/fusebox/rev7/trimetric-power.png", ["cad/fusebox/rev7/Power_*.step"]),
-    # rev 7 LOGIC: the 3 mm clearance fix (Bus 2 + relay columns 2.5 mm outboard, box 81.5 wide); rev 6's LOGIC picture is history
-    "fusebox-rev7-logic": ("cad/fusebox/rev7/trimetric-logic.png", ["cad/fusebox/rev7/Logic_*.step"]),
-    # rev 7 battery relay block: R122 cover-screw bosses (3; none at the rear catch by the relay flange) - rev 6's picture is history
-    "fusebox-rev7-battrelay": ("cad/fusebox/rev7/trimetric-battrelay.png", ["cad/fusebox/rev7/BattRelay_*.step"]),
     # rev 8 (Dan A15 b, 2026-11-12): all three boxes set to the harnesses (DECISIONS "Fuse box rev 8")
     "fusebox-rev8-power": ("cad/fusebox/rev8/trimetric-power.png", ["cad/fusebox/rev8/Power_*.step"]),
     "fusebox-rev8-logic": ("cad/fusebox/rev8/trimetric-logic.png", ["cad/fusebox/rev8/Logic_*.step"]),
     "fusebox-rev8-battrelay": ("cad/fusebox/rev8/trimetric-battrelay.png", ["cad/fusebox/rev8/BattRelay_*.step"]),
     # Package renders (R84): every member together. "path@x,y" = place that STEP with its bounding box corner at
     # (x, y), z from 0 (the fuse box assembly STEP is already laid out in place).
-    "package-rev6":   ("cad/fusebox/package-rev6.png", ["cad/fusebox/ST185_fusebox_rev6_assembly.step",
-                       "cad/busbar/design-B-rev3/B_rev3_ASSEMBLY.step@0,280",
-                       "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
-                       "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
-    "package-rev7":   ("cad/fusebox/rev7/package-rev7.png", ["cad/fusebox/rev7/ST185_fusebox_rev7_assembly.step",
-                       "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
-                       "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),
     "package-rev8":   ("cad/fusebox/rev8/package-rev8.png", ["cad/fusebox/rev8/ST185_fusebox_rev8_assembly.step",
                        "cad/enclosures/vrc/VRC_assembly.step@400,-170", "cad/enclosures/vrc/VRC_assembly.step@400,-70",
                        "cad/enclosures/csb3/CSB3_assembly.step@400,30"]),

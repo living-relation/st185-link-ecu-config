@@ -34,16 +34,30 @@ Checks:
   T8  inactive state: the load is OFF in every scenario its rule says it is off
   BF  no back-feed: no load weakly fed through another load, a coil, a lamp or a pull-up; pulling a load's own fuse
       turns it off, and pulling any fuse feeds nothing backwards
+  T9  logic chain: switch -> opto -> CSB3 cavity -> SW_MASK bit -> CAN 0x642 -> ECU VDI, through bench/frames.py and
+      switchboard_frames.json; watched inputs (ECU DI, A/C amp, cluster) read active exactly when they should and
+      never float while their reader is powered
   TT  the headlamp / DRL / pop-up truth table of circuit-plan.md, row by row
+  T0  (--asbuilt, on demand) each harness.design file as built = the master: every master wire drawn once, in a file
+      of its own harness, on the same two ends, with the same wire part and colour; nothing drawn that the master
+      does not have. The documents are pulled read-only into _scratch/asbuilt/ (gitignored) with the harness_design
+      MCP; the tracer and the pull never edit a file
 
-    python docs/harness/tools/trace_circuits.py                 summary and findings (exit 0: SOFT, Dan A56 a)
+    python docs/harness/tools/trace_circuits.py                 summary and findings (exit 0)
+    python docs/harness/tools/trace_circuits.py --write         write docs/harness/CIRCUIT-TRACE.html: one card per device
+                                                                (flowchart, scenario table, trace line, pass / fail / not proven)
+    python docs/harness/tools/trace_circuits.py --check         exit 1 if that page is stale or a finding is open: the SOFT gate
+                                                                of tools/check_all.py (a warning, Dan A56 a; HARD when Dan says so)
     python docs/harness/tools/trace_circuits.py --chains        every static chain
     python docs/harness/tools/trace_circuits.py --chain K-FP    the chains of one device or harness
     python docs/harness/tools/trace_circuits.py --table H1      the scenario table of one device
+    python docs/harness/tools/trace_circuits.py --t9 --pclink   the CSB3 / CAN legs; the PCLink settings this wiring depends on
+    python docs/harness/tools/trace_circuits.py --asbuilt [dir] T0: compare the pulled harness.design documents with the master
     python docs/harness/tools/trace_circuits.py --self-test     prove each check fires on a broken copy
 """
 import collections
 import copy
+import html
 import json
 import os
 import re
@@ -62,6 +76,7 @@ RETURN_RE = re.compile(r"\bground\b|\bgnd\b|\(-\)|\breturn\b|\bsink\b|\bcommon\b
 FEED_RE = re.compile(r"\+\s?(12|5|8) ?V|\+B\b|B\+|battery \+|\bfeed\b|supply|LED \+|motor \+|siren \+|IG excite|"
                      r"battery sense|solenoid S|\+12 V", re.I)
 HIGH = ("12", "5", "8")
+SIG_KINDS = ("res", "pullup", "sense")     # weak elements that are signal parts, not loads
 
 
 class Points(CW.Graph):
@@ -327,7 +342,7 @@ def classify(M, channels):
     M.sinks[M.p(M.BN)] = "battery -"
     M.rails.append((M.BP, "12", None, "battery +"))
     M.rails.append((M.BN, "0", None, "battery -"))
-    gen = collections.defaultdict(lambda: {"feeds": [], "returns": []})
+    gen = collections.defaultdict(lambda: {"feeds": [], "returns": [], "signals": []})
     E = R["ecu"]
     alive = E["alive"]
     for r in M.rows:
@@ -404,8 +419,7 @@ def classify(M, channels):
                     M.unp(r["harness"], i, "%s pin %s (%s): no rule says what this factory end is (source, ground, switch or load)" % (i, p, d))
                 else:
                     c = "load." + role
-                    if role != "signal":
-                        gen[i][role + "s"].append((p, raw))
+                    gen[i][role + "s"].append((p, raw))
                     M.endpoints[k] = "%s %s (%s)" % (i, p, d)
             M.cls[(r["wire_id"], s)] = c
             if not c:
@@ -521,8 +535,11 @@ def classify(M, channels):
                 elem(M, i, "pin %s to %s" % (fp or "lead", rp or "lead"), fk, rk, src="master pin text", on_when="@rail")
         elif d["feeds"]:
             M.unp(h, i, "%s (%s): no return pin in the master and no rule (case ground, another plug or a factory return)" % (nm, i))
-        else:
-            M.unp(h, i, "%s (%s): no feed pin in the master and no rule (a passive sensor, or its feed is on another plug)" % (nm, i))
+        elif d["signals"] and d["returns"]:      # a passive two-wire sensor: signal to an ECU input, return to the sensor ground
+            for (sp, sk), (rp, rk) in zip(d["signals"], d["returns"]):
+                elem(M, i, "sensor (pin %s to %s)" % (sp, rp), sk, rk, kind="sense", src="master pin text")
+        elif d["returns"]:
+            M.unp(h, i, "%s (%s): no feed pin in the master and no rule (its feed is on another plug)" % (nm, i))
     # ---- the ECU: its supply as a load, its outputs as switches, its pull-ups (sot/channels.csv)
     M.dev("ECU", "Link G4X ECU", "AB-cabin")
     gk = [M.ref("", x) for x in E["grounds"]]
@@ -540,6 +557,15 @@ def classify(M, channels):
         raw = ("pin", back[ch["conn"]], ch["pin"][1:])
         o = E["outputs"].get(ch["channel"])
         wired = M.p(raw) in M.drivers
+        if ch["dir"] == "in" and ch["class"] == "signal" and raw in M.ends:
+            i = E.get("inputs", {}).get(ch["channel"], {})
+            if ch["pullup"] not in ("none", "") or i:
+                M.pclink.append("%s (%s %s) %s: input type %s, pull-up %s%s [%s]" % (
+                    ch["channel"], back[ch["conn"]], ch["pin"][1:], ch["label"], ch["type"], ch["pullup"],
+                    ("; " + i["pclink"]) if i.get("pclink") else "", i.get("src", "sot/channels.csv")))
+            if i.get("pull") and E.get("pullup_ref"):
+                elem(M, "ECU", "%s pull-up (inside the ECU, PCLink setting)" % ch["channel"], M.ref("", E["pullup_ref"]), raw, kind="pullup",
+                     src=i.get("src", E["pullup_src"]), assumed=True)
         if ch["dir"] == "out" and ch["class"] == "signal":
             if o and wired:
                 if o["drive"] in ("low", "high"):
@@ -547,7 +573,7 @@ def classify(M, channels):
                 M.pclink.append("%s (%s %s): %s [%s]" % (ch["channel"], back[ch["conn"]], ch["pin"][1:], o["pclink"], o["src"]))
             elif wired:
                 M.unp("AB-cabin", "ECU", "ECU output %s (%s): no rule says when it is on" % (ch["channel"], ch["label"]))
-            if ch["pullup"] == "int-1k5" and wired and E.get("pullup_ref"):
+            if ch["pullup"] == "int-1k5" and wired and E.get("pullup_ref"):   # noqa: E129
                 elem(M, "ECU", "%s pull-up 1.5 k (inside the ECU)" % ch["channel"], M.ref("", E["pullup_ref"]), raw, kind="pullup",
                      src=E["pullup_src"], assumed=True)
 
@@ -707,14 +733,38 @@ def static_checks(M):
     adj = M.adj = adjacency(M)
     fuses = [c for c in M.comps if c.kind == "fuse"]
     multi = collections.OrderedDict()
+    ecu_in = {k for k, n in M.endpoints.items() if n.startswith("ECU ")}
+    deg = collections.Counter()
+    for _w, a, b, _r in M.wires:
+        deg[M.p(a)] += 1
+        deg[M.p(b)] += 1
+    for c in M.comps:
+        for k in c.t.values():
+            deg[M.p(k)] += 1
+    for i, ps in sorted(M.pins.items()):
+        r0, s0 = next(iter(ps.values()))
+        if r0[s0 + "_type"] == "splice" and deg[M.p(M.g.key(r0, s0))] < 2:
+            M.find("T1", r0["harness"], i, "splice %s (%s) has only one wire on it: a dead end" % (i, r0[s0 + "_name"]))
     for e in M.elems:
         if e["kind"] in ("pullup", "res"):
+            continue
+        d = M.devices.get(e["dev"], {"name": e["dev"], "harness": ""})
+        h, nm = d["harness"], "%s (%s), %s" % (d["name"], e["dev"], e["name"])
+        if e["kind"] == "sense":
+            hit = search(M, adj, e["a"], ecu_in, down=True) or search(M, adj, e["a"], ecu_in, down=False)
+            k = M.p(e["b"])
+            rt = (k, []) if k in M.sinks else search(M, adj, k, set(M.sinks), down=True)
+            e["chain"] = {"feed": {"ok": bool(hit), "fuses": [], "first": [], "class": "",
+                                   "path": ([M.endpoints[hit[0]]] + hops(M, hit[1], rev=True)) if hit else []},
+                          "ret": {"ok": bool(rt), "path": (hops(M, rt[1]) + [M.sinks[rt[0]]]) if rt else []}}
+            if not hit:
+                M.find("T1", h, e["dev"], "%s: its signal pin reaches no ECU input" % nm)
+            if not rt:
+                M.find("T1", h, e["dev"], "%s: its return pin reaches no sensor ground" % nm)
             continue
         c = e["chain"] = chain(M, adj, fuses, e)
         if c["feed"].get("class") == "multi":
             multi.setdefault(tuple(c["feed"]["feeders"]), [])
-        d = M.devices.get(e["dev"], {"name": e["dev"], "harness": ""})
-        h, nm = d["harness"], "%s (%s), %s" % (d["name"], e["dev"], e["name"])
         f, r = c["feed"], c["ret"]
         if not f["ok"] and f.get("ends"):
             M.unp(h, e["dev"], "%s: the feed side ends on %s, not on a source the rules name" % (nm, "; ".join(f["ends"])))
@@ -800,6 +850,12 @@ class Sim:
         except Exception as x:      # a rule that does not evaluate is reported once, and counts as false
             self.bad_rules.add("%s (%s)" % (expr, x))
             return False
+
+    def static(self, expr, v):
+        """a rule over the scenario inputs alone (what SHOULD be), with no look at the solved state"""
+        ns = dict(v)
+        ns.update(hot=lambda r: False, low=lambda r: False, on=lambda r: False, lit=lambda r: False)
+        return self.ev(expr, ns)
 
     def vars(self, env):
         v = dict(self.inputs)
@@ -1027,7 +1083,7 @@ def run_scenarios(M, pulls=True):
             M.find("T6", dh(rid), rid,
                    "%s: its coil suppression diode is forward-biased from the supply (coil + and - are the wrong way round for a diode-coil relay)" % rid)
         for _a, _b, e in sim.elems:
-            if e["kind"] in ("res", "pullup"):
+            if e["kind"] in SIG_KINDS:
                 continue
             act, exp = st.elem[e["id"]], expected(M, sim, e, st.vars)
             if exp is True and act != "ON":
@@ -1046,7 +1102,7 @@ def run_scenarios(M, pulls=True):
         e = byid[i]
         M.find("T6" if e["kind"] == "coil" else "T8", dh(e["dev"]), e["dev"], "%s: should be OFF (rule: %s) but is ON, in: %s" % (i, e["on_when"], "; ".join(names)))
     for e in M.elems:
-        if e["kind"] in ("res", "pullup"):
+        if e["kind"] in SIG_KINDS:
             continue
         if e["on_when"] is None or e["on_when"] == "TBD" or (e["on_when"] == "@rail" and expected(M, sim, e, sim.vars({})) is None):
             M.unp(dh(e["dev"]), e["dev"], "%s: no rule says when it should be on (active / inactive state not proven)" % e["id"])
@@ -1062,7 +1118,7 @@ def run_scenarios(M, pulls=True):
             for fz in fuses:
                 st = sim.solve(sc["set"], pulled=(fz,))
                 for _a, _b, e in sim.elems:
-                    if e["kind"] in ("res", "pullup"):
+                    if e["kind"] in SIG_KINDS:
                         continue
                     s2, s1 = st.elem[e["id"]], base.elem[e["id"]]
                     if s2 == "ON" and fz.label in e.get("chain", {}).get("feed", {}).get("fuses", []):
@@ -1099,6 +1155,152 @@ def run_scenarios(M, pulls=True):
             M.unp(dh(first["dev"]), first["dev"], "possible back-feed, not proven because it runs through the inside of a part the repo does not describe (%s): %s" % (why, text))
         else:
             M.find("BF", dh(first["dev"]), first["dev"], "back-feed: " + text, devices=devs)
+
+
+LEVEL = {"H": "a hard supply", "L": "a hard ground", "X": "a short", "h": "pulled high", "l": "pulled low", "m": "a divider (between high and low)",
+         "-": "floating"}
+
+
+def logic_checks(M):
+    """T7 / T8 for inputs: every watched input pin reads its active level exactly when its rule says so, and never floats
+    while its reader is powered (rules "watch"; ECU pins from sot/channels.csv)."""
+    sim = M.sim
+    M.watch = []
+    for w in M.R.get("watch", []):
+        dev = w.get("dev") or w["pin"].split(":")[0]
+        h = M.devices.get(dev, {}).get("harness", "")
+        n = sim.nref(w["pin"])
+        if n is None:
+            M.unp(h, dev, "%s (%s): not wired in the master" % (w["name"], w["pin"]))
+            continue
+        rows, on, off, fl = collections.OrderedDict(), [], [], []
+        for sc in M.R["scenarios"]:
+            st = M.states[sc["id"]]
+            lvl = rows[sc["id"]] = st.level(n)
+            if w["when"] == "TBD":
+                exp = None
+            else:
+                exp = sim.static(w["when"], st.vars)
+            if exp is True and lvl != w["level"]:
+                on.append("%s (reads %s)" % (sc["name"], LEVEL[lvl]))
+            elif exp is False and lvl == w["level"]:
+                off.append(sc["name"])
+            if exp is not True and lvl == "-" and sim.static(w.get("alive", "True"), st.vars):
+                fl.append(sc["name"])
+        M.watch.append((w, dev, rows))
+        if w["when"] == "TBD":
+            M.unp(h, dev, "%s: %s" % (w["name"], w.get("tbd", "no rule says when it is active (TBD)")))
+        if on:
+            M.find("T7", h, dev, "%s (%s): should read %s (rule: %s) but does not, in: %s" % (w["name"], w["pin"], LEVEL[w["level"]], w["when"], "; ".join(on)))
+        if off:
+            M.find("T8", h, dev, "%s (%s): reads active (%s) when it should not, in: %s" % (w["name"], w["pin"], LEVEL[w["level"]], "; ".join(off)))
+        if fl and w.get("float") == "tbd":
+            M.unp(h, dev, "%s (%s) floats while inactive (%s), in: %s" % (w["name"], w["pin"], w.get("float_note", "its pull is TBD"), "; ".join(fl)))
+        elif fl and w.get("float") != "ok":
+            M.find("T8", h, dev, "%s (%s): floating input - nothing holds it at a level while inactive, in: %s" % (w["name"], w["pin"], "; ".join(fl)))
+
+
+def csb3_checks(M):
+    """T9: switch -> (opto) -> CSB3 cavity -> SW_MASK bit -> CAN 0x642 -> ECU VDI, for every scenario. The cavity comes
+    from docs/enclosures/csb3-hd34-pinmap.csv, the bit and the VDI from switchboard_frames.json, the frame bytes from
+    bench/frames.py (the same encoder the bench uses); nothing is copied into the rules."""
+    C = M.R.get("csb3")
+    M.t9 = []
+    if not C:
+        return
+    sim = M.sim
+    sys.path.insert(0, os.path.join(CW.REPO, "bench"))
+    try:
+        import frames
+    finally:
+        sys.path.remove(os.path.join(CW.REPO, "bench"))
+    with open(os.path.join(CW.REPO, "switchboard_frames.json"), encoding="utf-8") as f:
+        sw = json.load(f)
+    cav = {r["board_signal"]: r["cavity"] for r in CW.read_csv(os.path.join(CW.REPO, "docs", "enclosures", "csb3-hd34-pinmap.csv"))[1]}
+    f642 = next(x for x in sw["frames"] if x["id"] == "0x642")
+    bits = next(c for c in f642["channels"] if c["name"] == "SW_MASK")["bits"]
+    rx = {c["bit"]: c for c in sw["ecu_receive"]["channels"] if c["frame"] == "0x642" and "bit" in c}
+    h = M.devices.get("CSB3", {}).get("harness", "")
+    if C.get("tbd"):
+        M.unp(h, "CSB3", "CSB3 switch inputs (their cavities float in the model while a switch is open): " + C["tbd"])
+    items = []
+    for sig, rule in C["switches"].items():
+        bit, c = int(sig[1:]) - 1, cav.get(sig)
+        frm = rule["from"]
+        fh = M.devices.get(frm, {}).get("harness", h)
+        n = sim.nref("CSB3:%s" % c) if c else None
+        r = rx.get(bit)
+        if not c or n is None:
+            M.find("T9", fh, frm, "%s: CSB3 board input %s (cavity %s) is not wired in the master" % (rule["name"], sig, c))
+            continue
+        if not bits.get(str(bit), "").startswith("Switch %d" % (bit + 1)) or "unassigned" in bits.get(str(bit), ""):
+            M.find("T9", fh, frm, "%s: switchboard_frames.json does not assign SW_MASK bit %d to board input %s" % (rule["name"], bit, sig))
+        if not r:
+            M.find("T9", fh, frm, "%s: no ECU receive channel (VDI) for 0x642 byte 4 bit %d in switchboard_frames.json" % (rule["name"], bit))
+            continue
+        items.append((sig, rule, bit, c, n, r, frm, fh))
+    rows = {i[0]: collections.OrderedDict() for i in items}
+    bad = collections.defaultdict(list)
+    for sc in M.R["scenarios"]:
+        st = M.states[sc["id"]]
+        alive = st.elem.get(C["alive"]) == "ON"
+        mask = 0
+        for sig, rule, bit, c, n, r, frm, fh in items:
+            if alive and st.level(n) == C["active_level"]:
+                mask |= 1 << bit
+        payload = frames.encode_sb_rotary_sw(sw_mask=mask)
+        ok = frames.decode_sb_rotary_sw(payload)["sw_mask"] == mask
+        for sig, rule, bit, c, n, r, frm, fh in items:
+            vdi = (payload[r["byte"]] >> r["bit"]) & 1
+            exp = sim.static(rule["when"], st.vars)
+            lvl = st.level(n)
+            rows[sig][sc["id"]] = (lvl, vdi)
+            if not ok or bool(vdi) != exp:
+                bad[sig].append("%s (cavity reads %s, %s = %d)" % (sc["name"], LEVEL[lvl], r["pclink_target"], vdi))
+    for sig, rule, bit, c, n, r, frm, fh in items:
+        line = "%s -> CSB3 cavity %s (board %s) -> 0x642 byte %d bit %d -> ECU %s (%s)" % (
+            M.devices.get(frm, {}).get("name", frm), c, sig, r["byte"], r["bit"], r["pclink_target"], r["name"])
+        M.t9.append({"sig": sig, "name": rule["name"], "from": frm, "line": line, "rows": rows[sig], "ok": sig not in bad})
+        M.pclink.append("CAN receive 0x642 byte %d bit %d -> %s (%s): %s [switchboard_frames.json ecu_receive]" % (r["byte"], r["bit"], r["pclink_target"], r["name"], r.get("use", "")))
+        if sig in bad:
+            M.find("T9", fh, frm, "%s: %s does not follow the switch (rule: %s), in: %s" % (rule["name"], line, rule["when"], "; ".join(bad[sig])), devices=[frm, "CSB3"])
+    for sig, rule in C.get("analog", {}).items():
+        c = cav.get(sig)
+        n = sim.nref("CSB3:%s" % c) if c else None
+        frm = rule["from"]
+        fh = M.devices.get(frm, {}).get("harness", h)
+        if n is None:
+            M.find("T9", fh, frm, "%s: CSB3 analog input %s (cavity %s) is not wired in the master" % (rule["name"], sig, c))
+            continue
+        wrong = []
+        for sc in M.R["scenarios"]:
+            st = M.states[sc["id"]]
+            if st.elem.get(C["alive"]) != "ON":
+                continue
+            want = "m" if sim.static(rule["when"], st.vars) else "h"
+            if st.level(n) != want:
+                wrong.append("%s (reads %s)" % (sc["name"], LEVEL[st.level(n)]))
+        rxa = next((x for x in sw["ecu_receive"]["channels"] if x["frame"] == "0x640"), None)
+        if rxa:
+            M.pclink.append("CAN receive 0x640 bytes %d-%d -> %s: %s [switchboard_frames.json ecu_receive]" % (
+                rxa["byte"], rxa["byte"] + rxa["length"] - 1, rxa["name"], rxa["pclink_target"]))
+        M.t9.append({"sig": sig, "name": rule["name"], "from": frm, "ok": not wrong, "rows": {},
+                     "line": "%s -> pull-up to the switch board +5 V -> CSB3 cavity %s (board %s) -> 0x640 -> ECU" % (M.devices.get(frm, {}).get("name", frm), c, sig)})
+        if wrong:
+            M.find("T9", fh, frm, "%s: CSB3 cavity %s should sit pulled high with no button and on a divider with a button held, but: %s" % (
+                rule["name"], c, "; ".join(wrong)), devices=[frm, "CSB3"])
+    for sig, rule in C.get("outputs", {}).items():
+        c = cav.get(sig)
+        f643 = next(x for x in sw["frames"] if x["id"] == "0x643")
+        byte = int(sig[1:]) - 1
+        ch = next((x for x in f643["channels"] if x["byte"] == byte), {})
+        ok = frames.decode_ls_control(frames.encode_ls_control(**{sig.lower(): 1}))[sig.lower()] == 1 and ch.get("name", "").startswith(sig)
+        M.pclink.append("CAN transmit 0x643 byte %d = %s ctrl: %s [switchboard_frames.json 0x643]" % (byte, sig, ch.get("assignment", "")))
+        M.t9.append({"sig": sig, "name": rule["name"], "from": rule["to"], "ok": ok and sim.nref("CSB3:%s" % c) is not None, "rows": {},
+                     "line": "ECU -> 0x643 byte %d -> CSB3 low-side output %s (cavity %s) -> %s" % (byte, sig, c, M.devices.get(rule["to"], {}).get("name", rule["to"]))})
+        if not ok or sim.nref("CSB3:%s" % c) is None:
+            M.find("T9", h, rule["to"], "%s: 0x643 byte %d / CSB3 output %s (cavity %s) does not line up across switchboard_frames.json, bench/frames.py and the master" % (
+                rule["name"], byte, sig, c))
 
 
 # ------------------------------------------------------------------------------------------------ the truth table
@@ -1193,6 +1395,8 @@ def run(rows, plan, seats, channels, rules, cp, pulls=True):
     relay_checks(M)
     static_checks(M)
     run_scenarios(M, pulls)
+    logic_checks(M)
+    csb3_checks(M)
     truth_table(M, cp)
     return M
 
@@ -1218,6 +1422,10 @@ def report(M, argv):
     if getattr(M, "tt", None):
         print("truth table (circuit-plan.md): %d rows, %d cases, %d rows differ" % (
             len(M.tt), sum(n for _c, n, _b in M.tt), sum(1 for _c, _n, b in M.tt if b)))
+    print("inputs watched: %d; CSB3 / CAN legs (T9): %d, %d ok" % (len(M.watch), len(M.t9), sum(1 for t in M.t9 if t["ok"])))
+    if "--t9" in argv:
+        for t in M.t9:
+            print("  %-4s %s" % ("ok" if t["ok"] else "FAIL", t["line"]))
     v = verdicts(M)
     cnt = collections.Counter(v.values())
     print("devices: %d - pass %d, fail %d, not proven %d" % (len(v), cnt["pass"], cnt["fail"], cnt["not proven"]))
@@ -1252,6 +1460,320 @@ def report(M, argv):
     for f in M.findings:
         print("FINDING %s [%s] %s" % (f["code"], f["harness"], f["text"]))
     print("trace_circuits: %d finding(s), %d not proven (SOFT: never fails the build, Dan A56 a)" % (len(M.findings), len(M.unproven)))
+
+
+# ------------------------------------------------------------------------------------------------ the report page
+PAGE = os.path.join(CW.HARNESS, "CIRCUIT-TRACE.html")
+ORDER = ["HeavyDC", "CabinPower", "AB-cabin", "AB-engine", "EngineRoom-C", "Dash", "AntiTheft", "RearFuel", "WheelSpeed-Front", "WheelSpeed-Rear"]
+CHECKS = [("B1", "box ends exist in the fuse box plan"), ("C1", "every master end is classified"), ("T1", "closed loop, source to ground"),
+          ("T2", "no short"), ("F1", "one fuse per load"), ("T6", "relay logic and suppression"), ("T7", "active state"),
+          ("T8", "inactive state, no floating input"), ("T9", "switch to CSB3 to CAN bit to ECU input"), ("BF", "no back-feed"),
+          ("TT", "headlamp / DRL / pop-up truth table")]
+CSS = """
+body{font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif;margin:0;background:#f4f5f7;color:#1c2330}
+header{background:#1c2330;color:#fff;padding:14px 22px}header h1{margin:0 0 4px;font-size:20px}header p{margin:2px 0;color:#c9d1dc}
+main{padding:14px 22px;max-width:1500px;margin:auto}h2{font-size:17px;margin:22px 0 8px;border-bottom:2px solid #c9d1dc;padding-bottom:3px}
+.sum{display:flex;gap:10px;flex-wrap:wrap}.sum div{background:#fff;border-radius:8px;padding:8px 14px;box-shadow:0 1px 2px #0002}
+.sum b{font-size:22px;display:block}.bar{position:sticky;top:0;background:#f4f5f7;padding:8px 0;z-index:2;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar input{padding:6px 10px;border:1px solid #9aa5b4;border-radius:6px;min-width:240px}.bar button{padding:6px 12px;border:1px solid #9aa5b4;border-radius:6px;background:#fff;cursor:pointer}
+.bar button.on{background:#1c2330;color:#fff}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:12px}
+.card{background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 2px #0002;border-left:6px solid #9aa5b4;overflow-x:auto}
+.card.pass{border-left-color:#2e7d32}.card.fail{border-left-color:#c62828}.card.np{border-left-color:#ef8f00}
+.card h3{margin:0;font-size:15px}.card h3 code{font-size:12px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+.badge{float:right;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;color:#fff;background:#9aa5b4}
+.pass .badge{background:#2e7d32}.fail .badge{background:#c62828}.np .badge{background:#ef8f00}
+.meta{color:#5b6676;font-size:12px;margin:2px 0 6px}.flow{display:flex;flex-wrap:wrap;align-items:center;gap:3px;margin:6px 0 2px}
+.flow span{border:1px solid #9aa5b4;border-radius:5px;padding:2px 6px;font-size:12px;background:#f8f9fb}.flow i{color:#5b6676;font-style:normal}
+.flow .src{background:#fde8e8;border-color:#c62828}.flow .fz{background:#fff3d6;border-color:#ef8f00}.flow .sw{background:#e3ecfb;border-color:#3566b8}
+.flow .ld{background:#1c2330;color:#fff;border-color:#1c2330}.flow .gd{background:#e3f1e4;border-color:#2e7d32}.flow .open{background:#c62828;color:#fff}
+.trace{font:11px/1.4 Consolas,monospace;color:#3b4554;margin:2px 0 6px;word-break:break-word}
+table{border-collapse:collapse;font-size:12px;margin:6px 0}td,th{border:1px solid #d5dbe3;padding:2px 7px;text-align:left}th{background:#eef1f5}
+td.ON{background:#d9f0da;font-weight:700}td.WEAK{background:#ffe2b8;font-weight:700}td.OFF{color:#8b95a3}
+ul{margin:4px 0;padding-left:18px}li{margin:2px 0}li.f{color:#a31515}li.n{color:#8a5a00}.small{font-size:12px;color:#5b6676}
+"""
+JS = """
+const q=document.getElementById('q'),bs=[...document.querySelectorAll('.bar button')];let v='';
+function go(){const t=q.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{
+c.style.display=((!v||c.classList.contains(v))&&(!t||c.textContent.toLowerCase().includes(t)))?'':'none'})}
+q.oninput=go;bs.forEach(b=>b.onclick=()=>{v=b.dataset.v;bs.forEach(x=>x.classList.toggle('on',x===b));go()});
+"""
+
+
+def esc(x):
+    return html.escape(str(x), quote=True)
+
+
+def flow_html(M, e):
+    """source -> protection -> switching -> load -> return, as a row of boxes"""
+    c = e["chain"]
+    out = []
+
+    def box(t):
+        cls = "fz" if ("fuse" in t.lower() or t.startswith("[B")) and t.startswith("[") else "sw" if t.startswith("[") else ""
+        return '<span class="%s">%s</span>' % (cls, esc(t.strip("[]")))
+    f, r = c["feed"], c["ret"]
+    if f["ok"] and f.get("path"):
+        out.append('<span class="src">%s</span>' % esc(f["path"][0]))
+        out += [box(t) for t in f["path"][1:] if t.startswith("[") or t in M.hubs.values()]
+    else:
+        out.append('<span class="open">OPEN: no source</span>')
+    out.append('<span class="ld">%s</span>' % esc(e["id"]))
+    if r["ok"] and r.get("path"):
+        out += [box(t) for t in r["path"][:-1] if t.startswith("[") or t in M.hubs.values()]
+        out.append('<span class="gd">%s</span>' % esc(r["path"][-1]))
+    else:
+        out.append('<span class="open">OPEN: no ground</span>')
+    return '<div class="flow">%s</div>' % "<i>&rarr;</i>".join(out)
+
+
+def card_html(M, i, verdict):
+    d = M.devices[i]
+    es = [e for e in M.elems if e["dev"] == i]
+    rule = M.R.get("parts", {}).get(i, {})
+    comp = next((c for c in M.comps if c.id == i and c.kind == "relay"), None)
+    cls = {"pass": "pass", "fail": "fail", "not proven": "np"}[verdict]
+    o = ['<article class="card %s" id="dev-%s"><span class="badge">%s</span><h3>%s <code>%s</code></h3>' % (cls, esc(i), verdict.upper(), esc(d["name"]), esc(i)),
+         '<p class="meta">%s%s</p>' % (esc(d["harness"] or "no harness"), (" &middot; source: " + esc(rule["src"])) if rule.get("src") else "")]
+    if comp:
+        o.append('<p class="small">Relay part %s; coil suppression: %s%s; coil driven by: %s</p>' % (
+            esc(rule.get("part", "TBD")), esc(rule.get("suppression", "TBD")),
+            (" (cathode on %s)" % esc(rule["cathode"])) if rule.get("cathode") else "", esc(comp.attr.get("driver", "?"))))
+    for e in es:
+        if "chain" not in e:
+            continue
+        o.append(flow_html(M, e))
+        fd = e["chain"]["feed"]
+        fz = ""
+        if fd.get("fuses"):
+            up = [x for x in fd["fuses"] if x not in fd["first"]]
+            fz = " &nbsp; <b>fuse:</b> %s%s" % (esc(" + ".join(fd["first"]) or "-"), (" (upstream: %s)" % esc("; ".join(up))) if up else "")
+        o.append('<p class="trace">%s%s</p>' % (esc(chain_line(M, e)), fz))
+    for t in M.t9:
+        if t["from"] == i:
+            o.append('<p class="trace"><b>%s CAN leg (T9):</b> %s</p>' % ("OK" if t["ok"] else "FAIL", esc(t["line"])))
+    cols = [e for e in es if e["kind"] not in SIG_KINDS]
+    ws = [(w, rows) for w, dev, rows in M.watch if dev == i]
+    t9 = [t for t in M.t9 if t["from"] == i and t["rows"]]
+    if cols or ws or t9:
+        head = ["Scenario"] + [e["name"] for e in cols] + [w["name"] for w, _r in ws] + [t["name"] + " (cavity / VDI)" for t in t9]
+        body, quiet = [], 0
+        for sc in M.R["scenarios"]:
+            st = [M.table[sc["id"]][e["id"]] for e in cols]
+            wl = [rows[sc["id"]] for _w, rows in ws]
+            tl = [t["rows"][sc["id"]] for t in t9]
+            if all(x == "OFF" for x in st) and all(x != w["level"] for x, (w, _r) in zip(wl, ws)) and all(v == 0 for _l, v in tl):
+                quiet += 1
+                continue
+            body.append("<tr><td>%s</td>%s%s%s</tr>" % (
+                esc(sc["name"]), "".join('<td class="%s">%s</td>' % (x, x) for x in st),
+                "".join("<td>%s</td>" % esc(LEVEL[x]) for x in wl), "".join("<td>%s / %d</td>" % (esc(LEVEL[lv]), v) for lv, v in tl)))
+        o.append("<table><tr>%s</tr>%s</table>" % ("".join("<th>%s</th>" % esc(x) for x in head), "".join(body)))
+        if quiet:
+            o.append('<p class="small">Off / inactive in the other %d scenario(s).</p>' % quiet)
+    fs = [f for f in M.findings if i in f["devices"]]
+    ns = [t for _h, dv, t in M.unproven if dv == i]
+    if fs or ns:
+        o.append("<ul>%s%s</ul>" % ("".join('<li class="f"><b>%s</b> %s</li>' % (f["code"], esc(f["text"])) for f in fs),
+                                    "".join('<li class="n"><b>not proven</b> %s</li>' % esc(t) for t in ns)))
+    o.append("</article>")
+    return "\n".join(o)
+
+
+def page(M):
+    v = verdicts(M)
+    cnt = collections.Counter(v.values())
+    o = ['<!DOCTYPE html>', '<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">',
+         '<title>ST185 circuit trace</title><style>%s</style></head><body>' % CSS,
+         '<header><h1>ST185 circuit trace</h1><p>Generated by <code>docs/harness/tools/trace_circuits.py --write</code> from the master wire list, '
+         '<code>sot/</code>, the fuse box wiring plan and <code>docs/harness/tools/trace_rules.json</code>. Never edit this page: rerun the tool.</p>'
+         '<p>It traces the circuits of the new harnesses against electrical principles only (closed loop, no short, no back-feed, relay logic, '
+         'no floating input, one fuse per load). No amps, wire sizes or voltage drop. A factory part is only an end point.</p></header><main>',
+         '<div class="sum"><div><b>%d</b>devices</div><div><b style="color:#2e7d32">%d</b>pass</div><div><b style="color:#c62828">%d</b>fail</div>'
+         '<div><b style="color:#ef8f00">%d</b>not proven</div><div><b>%d</b>findings</div><div><b>%d</b>scenarios x %d fuses pulled</div>'
+         '<div><b>%d / %d</b>truth table rows match</div><div><b>%d / %d</b>CAN legs ok</div></div>' % (
+             len(v), cnt["pass"], cnt["fail"], cnt["not proven"], len(M.findings), len(M.table), len(M.sim.fuses),
+             sum(1 for _c, _n, b in M.tt if not b), len(M.tt), sum(1 for t in M.t9 if t["ok"]), len(M.t9)),
+         '<h2>Checks</h2><table><tr><th>Check</th><th>What it proves</th><th>Findings</th></tr>%s</table>' % "".join(
+             "<tr><td>%s</td><td>%s</td><td>%d</td></tr>" % (c, esc(t), sum(1 for f in M.findings if f["code"] == c)) for c, t in CHECKS),
+         '<h2>Findings (%d)</h2>' % len(M.findings)]
+    if M.findings:
+        o.append("<ul>%s</ul>" % "".join('<li class="f"><b>%s</b> [%s] %s</li>' % (f["code"], esc(f["harness"] or "-"), esc(f["text"])) for f in M.findings))
+    else:
+        o.append("<p>None.</p>")
+    o.append('<h2>Truth table: headlamps, DRL, pop-ups (from circuit-plan.md)</h2><table><tr><th>Stalk</th><th>DRL switch</th><th>Pods</th><th>Low</th>'
+             '<th>High</th><th>DRL</th><th>LED</th><th>Cases run</th><th>Result</th></tr>%s</table>' % "".join(
+                 "<tr>%s<td>%d</td><td>%s</td></tr>" % ("".join("<td>%s</td>" % esc(x) for x in c), n, "match" if not b else esc("; ".join(b[:3])))
+                 for c, n, b in M.tt))
+    o.append('<h2>CAN legs (T9)</h2><ul>%s</ul>' % "".join("<li><b>%s</b> %s</li>" % ("ok" if t["ok"] else "FAIL", esc(t["line"])) for t in M.t9))
+    o.append('<h2>PCLink settings this wiring depends on (%d)</h2><p class="small">The repo holds no PCLink file for these: each line is what the ECU must be '
+             'set to for the wiring to work as traced.</p><ul>%s</ul>' % (len(M.pclink), "".join("<li>%s</li>" % esc(p) for p in M.pclink)))
+    if M.notes:
+        o.append('<h2>Fuse side effects (not findings)</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(n) for n in M.notes))
+    o.append('<h2>Not proven (%d)</h2><ul>%s</ul>' % (len(M.unproven), "".join(
+        '<li class="n">[%s] %s</li>' % (esc(h or "-"), esc(t)) for h, _d, t in M.unproven)))
+    o.append('<h2>Devices</h2><div class="bar"><input id="q" placeholder="search a device, wire or fuse"><button data-v="" class="on">all</button>'
+             '<button data-v="fail">fail</button><button data-v="np">not proven</button><button data-v="pass">pass</button></div>')
+    rank = {h: n for n, h in enumerate(ORDER)}
+    last = None
+    for i in sorted(M.devices, key=lambda x: (rank.get(M.devices[x]["harness"], 99), x)):
+        h = M.devices[i]["harness"] or "no harness"
+        if h != last:
+            if last is not None:
+                o.append("</div>")
+            o.append('<h2>%s</h2><div class="cards">' % esc(h))
+            last = h
+        o.append(card_html(M, i, v[i]))
+    o.append("</div></main><script>%s</script></body></html>" % JS)
+    return "\n".join(o) + "\n"
+
+
+# ------------------------------------------------------------------------------------------------ T0: as built = the master
+ASBUILT = os.path.join(CW.REPO, "_scratch", "asbuilt")       # gitignored: the pulled harness.design documents (never edited)
+TITLE = re.compile(r"^ST185-([A-Za-z]+(?:-[A-Za-z]+)*?)(?: \d+ - .*?)? Rev ([A-Z]+)$")
+
+
+def norm(x):
+    return re.sub(r"[^A-Za-z0-9]", "_", x or "")
+
+
+def end_fits(r, s, e):
+    """does a drawn wire end (a harness.design {id, handle}) sit on this master end? -> '' or what differs"""
+    t, i, p = r[s + "_type"], r[s + "_id"], r[s + "_pin"]
+    if e is None:
+        return "" if t == "cable screen" else "no end drawn"
+    node = e["id"].split("_", 1)[1] if "_" in e["id"] else e["id"]
+    if node.startswith("scr_"):
+        node = node[4:]
+        if t != "cable screen":
+            return "drawn on a cable screen end"
+        return "" if node.startswith(norm(i)) else "screen of %s" % node
+    N, P, h = norm(i), norm(p), e.get("handle", "")
+    if "." in h:
+        return "" if (node == N and norm(h.split(".", 1)[1]) == P) else "%s %s" % (node, h.split(".", 1)[1])
+    if node in (N, N + "_" + P, N + "__" + P):
+        return ""
+    if node.startswith(N + "_" + P + "_") or (not P and node.startswith(N + "_")):
+        return ""            # one drawn end per signal of a flying lead, or the cowl / device end of a lead with one master ID
+    return node
+
+
+def asbuilt_compare(rows, docs):
+    """T0: every wire of the master is drawn once, in a file of its own harness, on the same two ends, with the same wire
+    part and colour; nothing is drawn that the master does not have. -> (per-document lines, findings)"""
+    master = collections.OrderedDict((r["wire_id"], r) for r in rows if r["wire_id"] and not is_removal(r))
+    seen = collections.defaultdict(list)
+    out, lines = [], []
+    for d in docs:
+        title, doc = d.get("title", d["documentId"]), d["document"]
+        m = TITLE.match(title)
+        harness = m.group(1) if m else ""
+        tag = "%s (%s)" % (title, d["documentId"])
+        wp = {p["id"]: p["partNumber"] for p in doc.get("wireParts", [])}
+        cp = {p["id"]: p["partNumber"] for p in doc.get("cableParts", [])}
+        anode_right = {x["id"]: x.get("anodeOnRight") for x in doc.get("diodes", [])}
+        items = [(w["id"][2:], w, wp.get(w.get("partId", ""), ""), "wire") for w in doc.get("wires", [])]
+        for c in doc.get("cables", []):
+            items += [(k["id"][3:], k, cp.get(c.get("partId", ""), ""), "core") for k in c.get("cores", [])]
+            if c.get("shield"):
+                items.append((c["shield"]["id"][3:], c["shield"], "", "screen"))
+        for mt in doc.get("mates", []):
+            if mt["id"][2:] in master:
+                items.append((mt["id"][2:], {"source": {"id": mt["sourceId"], "handle": mt["sourceId"][2:] + "." + master[mt["id"][2:]]["from_pin"]},
+                                             "target": {"id": mt["targetId"], "handle": mt["targetId"][2:] + "." + master[mt["id"][2:]]["to_pin"]}}, "", "mate"))
+        n = bad = ghosts = 0
+        for wid, it, part, kind in items:
+            if wid.startswith("gh_"):          # a ghost: another harness's wire shown where it rides this bundle (Dan T4 a)
+                g = master.get(wid[3:])
+                ghosts += 1
+                if g is None:
+                    out.append((harness, "%s: ghost wire %s names no wire of the master" % (tag, wid[3:])))
+                elif g["harness"] == harness:
+                    out.append((harness, "%s: %s is drawn as a ghost in a file of its own harness" % (tag, wid[3:])))
+                continue
+            r = master.get(wid)
+            if r is None:
+                if "_nc_" in it["id"] or (it.get("source") is None and it.get("target") is None):
+                    continue                                   # a spare core of a cable, drawn unconnected
+                out.append((harness, "%s: %s %s is drawn but is not a wire of the master" % (tag, kind, wid)))
+                bad += 1
+                continue
+            n += 1
+            seen[wid].append(tag)
+            a, b = it.get("source"), it.get("target")
+            fits = [x for x in ((end_fits(r, "from", a), end_fits(r, "to", b)), (end_fits(r, "from", b), end_fits(r, "to", a)))]
+            best = min(fits, key=lambda f: sum(1 for x in f if x))
+            errs = []
+            if any(best):
+                errs.append("ends drawn %s, master has %s %s -> %s %s" % (
+                    " / ".join(x for x in best if x), r["from_id"], r["from_pin"], r["to_id"], r["to_pin"]))
+            if harness and r["harness"] != harness:
+                errs.append("drawn in a %s file, the master puts it in %s" % (harness, r["harness"]))
+            if kind == "wire" and r["wire_pn"] and not is_integral(r) and part != r["wire_pn"]:
+                errs.append("wire part %s, master %s" % (part or "none", r["wire_pn"]))
+            if kind == "core" and r["cable_pn"] and part != r["cable_pn"]:
+                errs.append("cable part %s, master %s" % (part or "none", r["cable_pn"]))
+            if kind in ("wire", "core") and r["colour"] and it.get("color") and it["color"].lower() != r["colour"].lower():
+                errs.append("colour %s, master %s" % (it["color"], r["colour"]))
+            for sd, e in (("from", a), ("to", b)) if not any(fits[0]) else ():
+                if e and e["id"] in anode_right and r[sd + "_pin"] in ("1", "2"):
+                    anode = "Right" if anode_right[e["id"]] else "Left"
+                    if (e.get("handle") == anode) != (r[sd + "_pin"] == "1"):
+                        errs.append("%s is drawn on the wrong side of diode %s (master pin %s; pin 1 is the anode)" % (wid, r[sd + "_id"], r[sd + "_pin"]))
+            if errs:
+                bad += 1
+                out.append((r["harness"], "%s: %s %s - %s" % (tag, kind, wid, "; ".join(errs))))
+        lines.append("%-64s %3d drawn, %3d differ, %2d ghost wires" % (tag, n, bad, ghosts))
+    for wid, r in master.items():
+        if wid not in seen:
+            out.append((r["harness"], "wire %s (%s, %s %s -> %s %s) is in the master but drawn in no harness.design file" % (
+                wid, r["harness"], r["from_id"], r["from_pin"], r["to_id"], r["to_pin"])))
+        elif len(seen[wid]) > 1:
+            out.append((r["harness"], "wire %s is drawn %d times: %s" % (wid, len(seen[wid]), "; ".join(seen[wid]))))
+    return lines, out
+
+
+def doc_from_master(rows, harness, doc_id="TEST", rev="A"):
+    """a harness.design document the way the generators draw one (self-test only)"""
+    wires, parts = [], {}
+
+    def end(r, s):
+        t, i, p = r[s + "_type"], r[s + "_id"], r[s + "_pin"]
+        if t == "connector":
+            return {"id": "c_" + norm(i), "handle": norm(i) + "." + p}
+        if t == "splice":
+            return {"id": "s_" + norm(i), "handle": "Splice"}
+        return {"id": "t_" + norm(i) + ("_" + norm(p) if p else ""), "handle": "Terminal"}
+    for r in rows:
+        if r["wire_id"] and r["harness"] == harness and not is_removal(r) and r["from_type"] != "cable screen" and not r["cable"]:
+            pid = norm(r["wire_pn"])
+            parts[pid] = r["wire_pn"]
+            wires.append({"id": "w_" + r["wire_id"], "color": r["colour"], "partId": pid, "source": end(r, "from"), "target": end(r, "to")})
+    return {"documentId": doc_id, "title": "ST185-%s Rev %s" % (harness, rev),
+            "document": {"wires": wires, "wireParts": [{"id": k, "partNumber": v} for k, v in parts.items()]}}
+
+
+def asbuilt_run(folder):
+    _h, rows = CW.read_csv(CW.MASTER)
+    files = sorted(f for f in os.listdir(folder) if f.endswith(".json")) if os.path.isdir(folder) else []
+    if not files:
+        print("trace_circuits --asbuilt: no documents in %s. Pull each current harness.design file there first (harness_design MCP: "
+              "list_harnesses \"ST185\", get_document_json), one <documentId>.json each; nothing is ever edited." % os.path.relpath(folder, CW.REPO))
+        return 1
+    docs = []
+    for f in files:
+        with open(os.path.join(folder, f), encoding="utf-8") as fh:
+            d = json.load(fh)
+        d.setdefault("documentId", f[:-5])
+        d.setdefault("title", d.get("document", {}).get("title", d["documentId"]))
+        docs.append(d)
+    lines, out = asbuilt_compare(rows, docs)
+    print("T0 - each harness.design file as built = the master (%d documents, pulled into %s)" % (len(docs), os.path.relpath(folder, CW.REPO)))
+    for ln in lines:
+        print("  " + ln)
+    for h, t in out:
+        print("FINDING T0 [%s] %s" % (h, t))
+    print("trace_circuits --asbuilt: %d finding(s)" % len(out))
+    return 1 if out else 0
 
 
 def self_test():
@@ -1317,6 +1839,32 @@ def self_test():
     ru = copy.deepcopy(rules)
     ru["parts"]["KILL-SW"]["contacts"][0][2] = "no_such_input"
     case("a rule that does not evaluate is listed", "C1", "no_such_input", ru=ru)
+    case("floating input: the A/C amp coolant-OK ground wire goes nowhere", "T7", "floating", reland("w_ac_cool_gnd", "GND-IG", **nowhere))
+    case("open input: the ignition sense wire to ECU DI 9 goes nowhere", "T7", "DI 9", reland("w_ign", "JB1", type="splice", id="SP-NOWHERE", pin="", name="x"))
+    case("CAN leg: the opto input return removed (brake never reaches VDI7)", "T9", "brake", [r for r in rows if r["wire_id"] != "w_opto_inc"])
+    ru = copy.deepcopy(rules)
+    ru["csb3"]["switches"]["S5"] = ru["csb3"]["switches"].pop("S6")
+    case("CAN leg: the clutch on a board input the CAN map does not assign", "T9", "clutch", ru=ru)
+    case("a one-leg splice is a dead end", "T1", "SP-NOWHERE", reland("w_fpg", "GND-BL", **nowhere))
+    good = [doc_from_master(rows, "RearFuel"), doc_from_master(rows, "CabinPower"), doc_from_master(rows, "HeavyDC")]
+    mine = [r for r in rows if r["harness"] in ("RearFuel", "CabinPower", "HeavyDC")]
+    cases.append(("as built: files drawn from the master give no finding", asbuilt_compare(mine, good)[1] == []))
+    d = copy.deepcopy(good)
+    d[0]["document"]["wires"][0]["target"] = {"id": "c_FUEL_PUMP", "handle": "FUEL_PUMP.9"}
+    cases.append(("as built: a wire drawn on another cavity is caught", any("ends drawn" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    d = copy.deepcopy(good)
+    gone = d[0]["document"]["wires"].pop()["id"][2:]
+    cases.append(("as built: a master wire drawn in no file is caught", any(gone in t and "drawn in no" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    d = copy.deepcopy(good)
+    d[0]["document"]["wires"].append(dict(d[0]["document"]["wires"][0], id="w_w_not_in_master"))
+    cases.append(("as built: a drawn wire the master does not have is caught", any("not a wire of the master" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    d = copy.deepcopy(good)
+    d[0]["document"]["wireParts"][0]["partNumber"] = "WRONG-PART"
+    cases.append(("as built: a different wire part is caught", any("wire part WRONG-PART" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    text = page(M0)
+    cases.append(("report page: one card per device, the same text on a second build",
+                  text.count('<article class="card') == len(M0.devices) and 'id="dev-FUEL-PUMP"' in text
+                  and text == page(run(rows, plan, seats, channels, rules, cp))))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))
@@ -1327,7 +1875,27 @@ def self_test():
 def main(argv):
     if "--self-test" in argv:
         return self_test()
+    if "--asbuilt" in argv:
+        n = argv.index("--asbuilt")
+        return asbuilt_run(argv[n + 1] if len(argv) > n + 1 and not argv[n + 1].startswith("--") else ASBUILT)
     M = run(*load_all())
+    text = page(M)
+    if "--write" in argv:
+        with open(PAGE, "w", encoding="utf-8", newline="\n") as f:
+            f.write(text)
+        v = collections.Counter(verdicts(M).values())
+        print("wrote %s: %d devices (pass %d, fail %d, not proven %d), %d finding(s)" % (
+            os.path.relpath(PAGE, CW.REPO), len(M.devices), v["pass"], v["fail"], v["not proven"], len(M.findings)))
+        return 0
+    if "--check" in argv:
+        cur = open(PAGE, encoding="utf-8").read().replace("\r\n", "\n") if os.path.exists(PAGE) else ""
+        stale = cur != text
+        if stale:
+            print("trace_circuits --check: docs/harness/CIRCUIT-TRACE.html is stale; run trace_circuits.py --write")
+        for f in M.findings:
+            print("FINDING %s [%s] %s" % (f["code"], f["harness"], f["text"][:300]))
+        print("trace_circuits --check: page %s, %d finding(s), %d not proven" % ("STALE" if stale else "current", len(M.findings), len(M.unproven)))
+        return 1 if stale or M.findings else 0
     report(M, argv)
     return 0
 

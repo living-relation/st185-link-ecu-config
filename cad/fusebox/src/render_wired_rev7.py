@@ -1,5 +1,5 @@
 """Wired fuse boxes (Dan, 2026-10-14: "aren't there going to be more wires in these? can you simulate that?"): EVERY harness
-wire that lands in POWER rev 7, LOGIC and the battery relay block, from cad/fusebox/rev7/wiring_plan.json (wiring_sim.py:
+wire that lands in POWER rev 7, LOGIC and the battery relay block, from cad/fusebox/rev<N>/wiring_plan.json (wiring_sim.py:
 real cavity, gauge OD, insulation colour, the CAD lanes with the bend rule), drawn as Tmp_ bodies in the open
 ST185_fusebox_rev7 document, then
   - checks: every wire against the printed parts (through plastic / the cover closing), against the pull path of every fuse
