@@ -165,7 +165,7 @@ def box_seat_ends(doc):
                 t["schematicPosition"] = {"x": p["x"], "y": p["y"] + 30 * (i + 1)}
             if lp is not None:
                 # each seat end on its own copy of the stub, side by side at the old connector spot: every routed length
-                # stays the stub length (lengths = master); formboard.to_scale fans them out
+                # stays the stub length (lengths = master); formboard.regular combs them out
                 n_at += 1
                 t["layoutPosition"] = {"x": lp["x"] + 30 * (n_at - 1), "y": lp["y"]}
                 if stubs:
@@ -2415,6 +2415,7 @@ def self_test():
     bun += [{"id": "s%d" % i, "sourceId": ("bp_a", "bp_b", "bp_r")[i % 3], "targetId": "t%d" % i,
              "length": {"value": 25 if i % 4 == 0 else 100, "unit": "mm"}} for i in range(12)]
     fdoc = {"version": 1.3, "branchPoints": bps, "terminals": terms, "bundles": bun}
+    raw0 = json.loads(json.dumps(fdoc))      # as a generator places it, before any layout pass
     FB.to_scale(fdoc)
     fbad = FB.check(fdoc)
     snake = len(next(b for b in fdoc["bundles"] if b["id"] == "b_ra").get("layoutPoints", [])) > 2
@@ -2475,6 +2476,49 @@ def self_test():
     let_through, rest = FB.cannot_fit(crowd), [x for x in FB.check(crowd) if x.startswith("labels overlap")]
     cases.append(("formboard labels: 30 two-row ends on one 100 mm hub are over capacity; only their own overlaps are let through",
                   "bp_b" in FB.over_capacity(crowd) and let_through and not rest and "bp_b" not in FB.over_capacity(lab)))
+    # the regular layout view (Dan 2026-11-15, replaces A25 a as what the generators draw): formboard mode off, straight
+    # square runs on the grid, not to scale, every text clear at full size; the 1:1 tests above still test to_scale / check,
+    # which stay in formboard.py but are no longer called by a generator
+    rg = json.loads(json.dumps(raw0))
+    for i, t in enumerate(rg["terminals"]):
+        t["label"] = "LOGIC box seat M%d, terminal 30 - Some relay (K-X%d, LOGIC box)" % (i, i); t["signal"] = "Switched +12 V feed %d" % i
+    FB.regular(rg)
+    rat = {e["id"]: FB._centre(e) for k in FB.NODE_KINDS for e in rg.get(k, [])}
+    square = all(p[0] == q[0] or p[1] == q[1] for b in rg["bundles"] for p, q in zip(FB.bundle_path(rg, b, rat), FB.bundle_path(rg, b, rat)[1:]))
+    grid = all(e["layoutPosition"]["x"] % 30 == 0 and e["layoutPosition"]["y"] % 30 == 0 for k in FB.NODE_KINDS for e in rg.get(k, []))
+    cases.append(("regular layout: formboard mode off, every run square on the 30 grid, 12 long-labelled ends with no text overlapping, set lengths kept",
+                  FB.check_regular(rg) == [] and "formboard" not in rg and square and grid
+                  and {b["id"]: b["length"]["value"] for b in rg["bundles"]} == {b["id"]: b["length"]["value"] for b in raw0["bundles"]}
+                  and len(next(b for b in rg["bundles"] if b["id"] == "b_ra").get("layoutPoints", [])) == 0))
+    back = FB.regular(json.loads(json.dumps(lab)))      # a file that was a 1:1 formboard goes back the same way
+    cases.append(("regular layout: a 1:1 formboard document is redrawn with formboard mode off and passes the regular gate",
+                  "formboard" not in back and FB.check_regular(back) == [] and FB.check(back) == ["formboard mode is off"]))
+    cases.append(("regular layout: a document still in formboard mode is caught", "formboard mode is on" in FB.check_regular(lab)))
+    rbad = json.loads(json.dumps(rg))
+    r0, r1 = (next(t for t in rbad["terminals"] if t["id"] == k) for k in ("t0", "t3"))     # two ends of bp_r, one above the other
+    r1["layoutPosition"] = {"x": r0["layoutPosition"]["x"], "y": r0["layoutPosition"]["y"] + 6}
+    next(b for b in rbad["bundles"] if b["id"] == "b_ab").update(layoutPoints=[{"id": "x0", "layoutPosition": {"x": 450, "y": 600}}])
+    rb = FB.check_regular(rbad)
+    cases.append(("regular layout: two end labels on top of each other, two parts on one spot and a slanted run are caught",
+                  any(x.startswith("labels overlap") for x in rb) and any(x.startswith("two parts on one spot") for x in rb)
+                  and any("slanted" in x for x in rb)))
+    cross = json.loads(json.dumps(rg))
+    ca, cb_ = rat["bp_a"], rat["bp_b"]
+    cross["branchPoints"] += [{"id": "bp_x%d" % i, "layoutPosition": {"x": (ca[0] + cb_[0]) / 2 - 15, "y": ca[1] - 15 + dy}} for i, dy in ((0, -3000), (1, 3000))]
+    cross["bundles"].append({"id": "b_x", "sourceId": "bp_x0", "targetId": "bp_x1", "length": {"value": 10, "unit": "mm"}})
+    cases.append(("regular layout: a bundle drawn across another is caught", any(x.startswith("bundles cross or overlap: b_ab / b_x") for x in FB.check_regular(cross))))
+    gb = {"version": 1.3, "branchPoints": [{"id": n, "layoutPosition": {"x": x, "y": y}} for n, x, y in
+                                           (("bp_GB", 0, 0), ("bp_GB_LOGIC", 150, -150), ("bp_GB_POWER", 150, 150))],
+          "terminals": [{"id": "g%s%d" % (s, i), "type": "Loose", "label": "%s box seat %d" % (s, i), "layoutPosition": {"x": 300 + 30 * i, "y": y}}
+                        for s, y in (("L", -150), ("P", 150)) for i in range(3)],
+          "bundles": [{"id": "b_L", "sourceId": "bp_GB", "targetId": "bp_GB_LOGIC", "length": {"value": 240, "unit": "mm"}},
+                      {"id": "b_P", "sourceId": "bp_GB", "targetId": "bp_GB_POWER", "length": {"value": 210, "unit": "mm"}}]
+                     + [{"id": "b_g%s%d" % (s, i), "sourceId": "bp_GB_" + n, "targetId": "g%s%d" % (s, i), "length": {"value": 100, "unit": "mm"}}
+                        for s, n in (("L", "LOGIC"), ("P", "POWER")) for i in range(3)]}
+    FB.regular(gb)
+    gx = {e["id"]: e["layoutPosition"]["x"] for k in FB.NODE_KINDS for e in gb.get(k, [])}
+    cases.append(("regular layout: LOGIC box ends left of their breakout, POWER box ends right of theirs (A35, formboard.PREFER)",
+                  FB.check_regular(gb) == [] and all(gx["gL%d" % i] < gx["bp_GB_LOGIC"] < gx["bp_GB"] < gx["bp_GB_POWER"] < gx["gP%d" % i] for i in range(3))))
     # box breakouts (Dan A35): a segment = right-angle distance + farthest seat beyond the end allowance, rounded up to 10 mm
     bl = {"end_allowance_mm": 100, "segments": [["GB", "GB_X", 0]], "box_breakouts": {"at": {"GB": [0, 0]},
           "nodes": {"GB_X": {"parent": "GB", "at": [30, 40], "seats": [["K-X", "30", "w", 151.0], ["K-X", "85", "w2", 90.0]]}}}}

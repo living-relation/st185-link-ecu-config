@@ -345,10 +345,10 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
                       "outside, factory cabin taps inside), splices middle, front devices right by side of the car (driver / LH side up, RH down), columns level at the top; each "
                       "ground stud sits with the side its wires go to (EB LH, EA RH). Each pin shows its own master end text. Shared "
                       "connectors are drawn whole; cavities wired by other harnesses are N/C with a note." + B.LOOSE_SENTENCE + " " + B.GHOST_MARK +
-                      "Layout: a formboard of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
+                      "Layout: the regular layout view (formboard mode off, Dan 2026-11-15) of EngineRoom-C's part of the layout tree (run 10 from the RH fender exit, the A/C pressure switch on it; run 11 the wiper from the "
                       "LH pass-through; the alternator plug off the engine harness trunk start, behind the engine (Route 16 L1, A6 b); EA / EB on Route 17 "
                       "devices 24 / 25, the EB bolt drawn twice for the block strap, which is its own piece), "
-                      "front of car RIGHT, rear LEFT, driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on a 100 mm "
+                      "front of car RIGHT, rear LEFT, driver side UP; straight orthogonal bundles, drawn length is not to scale; each part on a 100 mm "
                       "end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm."})
 used_st = sorted({r['circuit_id'] for r in W if r['colour'] == 'Red'}, key=list(STRIPE).index)
 notes.append({"id": "n_stripes", "width": 360, "schematicPosition": {"x": XO - 810, "y": -390},
@@ -422,7 +422,7 @@ for n in [n for n in parent if parent[n] and seglen[n] == 0]:   # a 0 mm segment
     del parent[n], seglen[n], kids[n], via[n]
 # formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles
 # on the 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its
-# part of the car lies); every bundle keeps its tree length (= the master's); formboard.to_scale then redraws it 1:1 (Dan A25 a).
+# part of the car lies); every bundle keeps its tree length (= the master's); formboard.regular then combs each node's ends so every label stands clear (not to scale, Dan 2026-11-15).
 # Each part sits on its 100 mm end-allowance stub, combed off the node; a node's extra branches never cross.
 DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
 OPP = {'R': 'L', 'L': 'R', 'U': 'D', 'D': 'U'}
@@ -543,10 +543,10 @@ NGHOST = B.add_ghosts(doc, H, NAME)      # other harnesses' wires in these bundl
 assert len(W) + NGHOST <= 100, 'ghost wires push EngineRoom-C over the 100-connection limit'
 B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghosts
 print('ghost wires', NGHOST)
-FB.to_scale(doc)        # the 1:1 formboard (Dan A25 a): every bundle drawn at its set length, long runs folded
-_fbad = FB.check(doc)
-assert not _fbad, 'formboard: %r' % _fbad[:8]
-print('formboard %dx%d mm, %d A3 panels' % FB.board(doc)[:3])
+FB.regular(doc)         # the regular layout view (Dan 2026-11-15): formboard mode off, straight square runs, not to scale
+_fbad = FB.check_regular(doc)
+assert not _fbad, 'layout: %r' % _fbad[:8]
+print('layout %d x %d units, formboard mode off' % FB.extent(doc))
 json.dump(doc, open(os.path.join(OUT, 'ld37.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'ld37_lib_ops.json'), 'w'), indent=1)
 print('connectors', len(doc.get('connectors', [])), 'terminals', len(doc.get('terminals', [])), 'splices', len(doc.get('splices', [])), 'wires', len(doc.get('wires', [])), 'cables 0', 'bundles', len(bundles),
