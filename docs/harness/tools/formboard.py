@@ -860,11 +860,11 @@ def end_text_size(e, doc=None, s=1.0, shown=None):
 
 def end_box(c, side, wl, ws, s=1.0, e=None, v=(1.0, 0.0), mated=False, wmax=None):
     """the details box of a node centred at c on that side; wl, ws = end_text_size (width, height, already scaled); e and v
-    (the end and its bundle vector) give the spacing the app keeps from the node; wmax: the width the app cuts a label above
-    or below its node to, with "..." (the regular view: 240, measured in the app 2026-11-16)"""
+    (the end and its bundle vector) give the spacing the app keeps from the node; wmax: the width the app cuts a connector's
+    label (any side) or a label above / below its node to, with "..." (the regular view: 240, measured in the app 2026-11-16)"""
     w, h = wl, ws
     if not (w and h): return None
-    if wmax and side in ("Top", "Bottom"): w = min(w, wmax)
+    if wmax and (side in ("Top", "Bottom") or (e is not None and end_kind(e) == "connector")): w = min(w, wmax)
     sp = SPACING[end_kind(e) if e is not None else "terminal"]
     horiz = abs(v[0]) > abs(v[1]) + 1          # the end's own axis (its orientation)
     if mated: horiz = not horiz                 # details beside it, across its axis (measured 4.5 units nearer: allow 5)
@@ -923,7 +923,9 @@ def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True):
     """the text boxes a bundle draws on the board: its length label, and its label pills; n = wires through it. board=False:
     the regular view (formboard mode off), measured in the app's own drawing on 2026-11-16 (ST185-RearFuel Rev B, layout
     view DOM): the length label sits at the middle of the straight run that holds the path's half-way point (not at the
-    half-way point itself), its centre 14 - 15 units off the line, 20 high ("100 mm" 54 wide, "2734 mm" 64: the TXT widths)"""
+    half-way point itself), its centre 14 - 15 units off the line, 20 high ("100 mm" 54 wide, "2734 mm" 64: the TXT widths);
+    a bundle label is small text on the bundle itself (Inter SemiBold about 8 px, 10 high: "AntiTheft" 37 wide), ending where
+    the node symbol starts (ST185-AB-cabin 1 Rev F, 2026-11-16)"""
     out = []
     lw = len_label_w(b, s) if b.get("length") else 0
     plen = sum(math.hypot(path[i + 1][0] - path[i][0], path[i + 1][1] - path[i][1]) for i in range(len(path) - 1))
@@ -947,9 +949,10 @@ def bundle_texts(b, path, s=1.0, end_nodes=(), n=1, board=True):
     for text, end in pills:
         if not b.get("separateLabels") and end_nodes and end_nodes[end]: continue    # skipped at a branch point
         w, h = (text_w(text, TXT["pill_px"]) * TXT["pill_k"] + TXT["pill_pad"]) * s, TXT["pill_h"] * s
+        if not board: w, h = text_w(text, 8.0) + 2.0, 12.0
         p = path if end == 0 else path[::-1]
         L = sum(math.hypot(p[i + 1][0] - p[i][0], p[i + 1][1] - p[i][1]) for i in range(len(p) - 1)) or 1.0
-        c, u = _along(p, min(0.5, (HALF + 2 + w / 2) / L))
+        c, u = _along(p, min(0.5, (HALF + (2 if board else 0) + w / 2) / L))
         out.append(_rect(c[0], c[1], w, h, *u))
     return out
 
@@ -1066,7 +1069,7 @@ def text_boxes(doc):
             v, mt = vec.get(e["id"], (0.0, 0.0)), e["id"] in mated
             side = detail_side(v, mt, e.get("layoutLabelPosition"))
             wl, ws = end_text_size(e, doc, s, shown.get(e["id"]))
-            box = end_box(at[e["id"]], side, wl, ws, s, e, v, mt, None if board else (e.get("width") or REG_TOP_W))
+            box = end_box(at[e["id"]], side, wl, ws, s, e, v, mt, None if board else REG_TOP_W)
             if box: out.append((e["id"], box, "label"))
     for n in doc.get("layoutNotes", []) or []:
         if n.get("layoutPosition"): out.append((n["id"], note_box(n, s), "note"))
@@ -1433,7 +1436,7 @@ def regular(doc):
         if side: e2["layoutLabelPosition"] = side
         wl, ws = end_text_size(e2, doc, 1.0, T.shown.get(n))
         mt = n in T.mated
-        return end_box((0.0, 0.0), detail_side(v, mt, side), wl, ws, 1.0, e2, v, mt, e.get("width") or REG_TOP_W)
+        return end_box((0.0, 0.0), detail_side(v, mt, side), wl, ws, 1.0, e2, v, mt, REG_TOP_W)
 
     def btexts(b, n, path):
         p = path if b["sourceId"] == n else path[::-1]
@@ -1505,6 +1508,7 @@ def regular(doc):
         k = len(rs)
         # the generator's wider gap between two comb groups (CFG comb_group) is kept
         gaps = [0] + [R_PITCH + max(0, min(180, int(round((cross(q[0]) - cross(p[0]) - 60) / 30.0)) * GRID)) for p, q in zip(rs, rs[1:])]
+        gaps0 = list(gaps)
         lw = max(len_label_w(b) for _, b in rs)
         lead = R_LEAD if horiz else 0
         F = 90
@@ -1529,10 +1533,15 @@ def regular(doc):
                 q0 = path[-2]
                 own = btexts(b, n, path)
                 own.append((min(q0[0], part[0]) - R_LW, y - R_LW, max(q0[0], part[0]) + R_LW, y + R_LW, b["id"], "line", frozenset((n, c))))
-                opts = [None]
-                if c not in T.bps and c in T.mated: opts += ["Bottom", "Top", "Right" if sx > 0 else "Left"]
+                # a mated plug's label below it, its other half's above, so the two sit nose to nose: the row moves down
+                # for that (up to 180) before another label side is tried
+                opts, more = [None], []
+                if c not in T.bps and c in T.mated:
+                    opts, more = ["Bottom"], ["Top", None, "Right" if sx > 0 else "Left"]
+                    if gaps[i] - gaps0[i] >= 180: opts, more = opts + more, []
                 got, intra_ok = None, False
-                for sd in opts:
+                for sd in opts + more:
+                    if sd in more and intra_ok: break       # Bottom fits its own row: let the row move down first
                     sub, spos, spaths, ssides = lay(c, (sx, 0), sd)
                     subm = [_mv(r, part) for r in sub]
                     why = next(((a, s) for a in own for s in subm if _rhit(a, s)), None)
