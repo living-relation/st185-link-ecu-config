@@ -39,7 +39,11 @@ Checks:
       never float while their reader is powered
   TT  the headlamp / DRL / pop-up truth table of circuit-plan.md, row by row
 
-    python docs/harness/tools/trace_circuits.py                 summary and findings (exit 0: SOFT, Dan A56 a)
+    python docs/harness/tools/trace_circuits.py                 summary and findings (exit 0)
+    python docs/harness/tools/trace_circuits.py --write         write docs/harness/CIRCUIT-TRACE.html: one card per device
+                                                                (flowchart, scenario table, trace line, pass / fail / not proven)
+    python docs/harness/tools/trace_circuits.py --check         exit 1 if that page is stale or a finding is open: the SOFT gate
+                                                                of tools/check_all.py (a warning, Dan A56 a; HARD when Dan says so)
     python docs/harness/tools/trace_circuits.py --chains        every static chain
     python docs/harness/tools/trace_circuits.py --chain K-FP    the chains of one device or harness
     python docs/harness/tools/trace_circuits.py --table H1      the scenario table of one device
@@ -48,6 +52,7 @@ Checks:
 """
 import collections
 import copy
+import html
 import json
 import os
 import re
@@ -1452,6 +1457,171 @@ def report(M, argv):
     print("trace_circuits: %d finding(s), %d not proven (SOFT: never fails the build, Dan A56 a)" % (len(M.findings), len(M.unproven)))
 
 
+# ------------------------------------------------------------------------------------------------ the report page
+PAGE = os.path.join(CW.HARNESS, "CIRCUIT-TRACE.html")
+ORDER = ["HeavyDC", "CabinPower", "AB-cabin", "AB-engine", "EngineRoom-C", "Dash", "AntiTheft", "RearFuel", "WheelSpeed-Front", "WheelSpeed-Rear"]
+CHECKS = [("B1", "box ends exist in the fuse box plan"), ("C1", "every master end is classified"), ("T1", "closed loop, source to ground"),
+          ("T2", "no short"), ("F1", "one fuse per load"), ("T6", "relay logic and suppression"), ("T7", "active state"),
+          ("T8", "inactive state, no floating input"), ("T9", "switch to CSB3 to CAN bit to ECU input"), ("BF", "no back-feed"),
+          ("TT", "headlamp / DRL / pop-up truth table")]
+CSS = """
+body{font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif;margin:0;background:#f4f5f7;color:#1c2330}
+header{background:#1c2330;color:#fff;padding:14px 22px}header h1{margin:0 0 4px;font-size:20px}header p{margin:2px 0;color:#c9d1dc}
+main{padding:14px 22px;max-width:1500px;margin:auto}h2{font-size:17px;margin:22px 0 8px;border-bottom:2px solid #c9d1dc;padding-bottom:3px}
+.sum{display:flex;gap:10px;flex-wrap:wrap}.sum div{background:#fff;border-radius:8px;padding:8px 14px;box-shadow:0 1px 2px #0002}
+.sum b{font-size:22px;display:block}.bar{position:sticky;top:0;background:#f4f5f7;padding:8px 0;z-index:2;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar input{padding:6px 10px;border:1px solid #9aa5b4;border-radius:6px;min-width:240px}.bar button{padding:6px 12px;border:1px solid #9aa5b4;border-radius:6px;background:#fff;cursor:pointer}
+.bar button.on{background:#1c2330;color:#fff}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(560px,1fr));gap:12px}
+.card{background:#fff;border-radius:8px;padding:10px 14px;box-shadow:0 1px 2px #0002;border-left:6px solid #9aa5b4;overflow-x:auto}
+.card.pass{border-left-color:#2e7d32}.card.fail{border-left-color:#c62828}.card.np{border-left-color:#ef8f00}
+.card h3{margin:0;font-size:15px}.card h3 code{font-size:12px;background:#eef1f5;padding:1px 5px;border-radius:4px}
+.badge{float:right;font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;color:#fff;background:#9aa5b4}
+.pass .badge{background:#2e7d32}.fail .badge{background:#c62828}.np .badge{background:#ef8f00}
+.meta{color:#5b6676;font-size:12px;margin:2px 0 6px}.flow{display:flex;flex-wrap:wrap;align-items:center;gap:3px;margin:6px 0 2px}
+.flow span{border:1px solid #9aa5b4;border-radius:5px;padding:2px 6px;font-size:12px;background:#f8f9fb}.flow i{color:#5b6676;font-style:normal}
+.flow .src{background:#fde8e8;border-color:#c62828}.flow .fz{background:#fff3d6;border-color:#ef8f00}.flow .sw{background:#e3ecfb;border-color:#3566b8}
+.flow .ld{background:#1c2330;color:#fff;border-color:#1c2330}.flow .gd{background:#e3f1e4;border-color:#2e7d32}.flow .open{background:#c62828;color:#fff}
+.trace{font:11px/1.4 Consolas,monospace;color:#3b4554;margin:2px 0 6px;word-break:break-word}
+table{border-collapse:collapse;font-size:12px;margin:6px 0}td,th{border:1px solid #d5dbe3;padding:2px 7px;text-align:left}th{background:#eef1f5}
+td.ON{background:#d9f0da;font-weight:700}td.WEAK{background:#ffe2b8;font-weight:700}td.OFF{color:#8b95a3}
+ul{margin:4px 0;padding-left:18px}li{margin:2px 0}li.f{color:#a31515}li.n{color:#8a5a00}.small{font-size:12px;color:#5b6676}
+"""
+JS = """
+const q=document.getElementById('q'),bs=[...document.querySelectorAll('.bar button')];let v='';
+function go(){const t=q.value.toLowerCase();document.querySelectorAll('.card').forEach(c=>{
+c.style.display=((!v||c.classList.contains(v))&&(!t||c.textContent.toLowerCase().includes(t)))?'':'none'})}
+q.oninput=go;bs.forEach(b=>b.onclick=()=>{v=b.dataset.v;bs.forEach(x=>x.classList.toggle('on',x===b));go()});
+"""
+
+
+def esc(x):
+    return html.escape(str(x), quote=True)
+
+
+def flow_html(M, e):
+    """source -> protection -> switching -> load -> return, as a row of boxes"""
+    c = e["chain"]
+    out = []
+
+    def box(t):
+        cls = "fz" if ("fuse" in t.lower() or t.startswith("[B")) and t.startswith("[") else "sw" if t.startswith("[") else ""
+        return '<span class="%s">%s</span>' % (cls, esc(t.strip("[]")))
+    f, r = c["feed"], c["ret"]
+    if f["ok"] and f.get("path"):
+        out.append('<span class="src">%s</span>' % esc(f["path"][0]))
+        out += [box(t) for t in f["path"][1:] if t.startswith("[") or t in M.hubs.values()]
+    else:
+        out.append('<span class="open">OPEN: no source</span>')
+    out.append('<span class="ld">%s</span>' % esc(e["id"]))
+    if r["ok"] and r.get("path"):
+        out += [box(t) for t in r["path"][:-1] if t.startswith("[") or t in M.hubs.values()]
+        out.append('<span class="gd">%s</span>' % esc(r["path"][-1]))
+    else:
+        out.append('<span class="open">OPEN: no ground</span>')
+    return '<div class="flow">%s</div>' % "<i>&rarr;</i>".join(out)
+
+
+def card_html(M, i, verdict):
+    d = M.devices[i]
+    es = [e for e in M.elems if e["dev"] == i]
+    rule = M.R.get("parts", {}).get(i, {})
+    comp = next((c for c in M.comps if c.id == i and c.kind == "relay"), None)
+    cls = {"pass": "pass", "fail": "fail", "not proven": "np"}[verdict]
+    o = ['<article class="card %s" id="dev-%s"><span class="badge">%s</span><h3>%s <code>%s</code></h3>' % (cls, esc(i), verdict.upper(), esc(d["name"]), esc(i)),
+         '<p class="meta">%s%s</p>' % (esc(d["harness"] or "no harness"), (" &middot; source: " + esc(rule["src"])) if rule.get("src") else "")]
+    if comp:
+        o.append('<p class="small">Relay part %s; coil suppression: %s%s; coil driven by: %s</p>' % (
+            esc(rule.get("part", "TBD")), esc(rule.get("suppression", "TBD")),
+            (" (cathode on %s)" % esc(rule["cathode"])) if rule.get("cathode") else "", esc(comp.attr.get("driver", "?"))))
+    for e in es:
+        if "chain" not in e:
+            continue
+        o.append(flow_html(M, e))
+        fd = e["chain"]["feed"]
+        fz = ""
+        if fd.get("fuses"):
+            up = [x for x in fd["fuses"] if x not in fd["first"]]
+            fz = " &nbsp; <b>fuse:</b> %s%s" % (esc(" + ".join(fd["first"]) or "-"), (" (upstream: %s)" % esc("; ".join(up))) if up else "")
+        o.append('<p class="trace">%s%s</p>' % (esc(chain_line(M, e)), fz))
+    for t in M.t9:
+        if t["from"] == i:
+            o.append('<p class="trace"><b>%s CAN leg (T9):</b> %s</p>' % ("OK" if t["ok"] else "FAIL", esc(t["line"])))
+    cols = [e for e in es if e["kind"] not in SIG_KINDS]
+    ws = [(w, rows) for w, dev, rows in M.watch if dev == i]
+    t9 = [t for t in M.t9 if t["from"] == i and t["rows"]]
+    if cols or ws or t9:
+        head = ["Scenario"] + [e["name"] for e in cols] + [w["name"] for w, _r in ws] + [t["name"] + " (cavity / VDI)" for t in t9]
+        body, quiet = [], 0
+        for sc in M.R["scenarios"]:
+            st = [M.table[sc["id"]][e["id"]] for e in cols]
+            wl = [rows[sc["id"]] for _w, rows in ws]
+            tl = [t["rows"][sc["id"]] for t in t9]
+            if all(x == "OFF" for x in st) and all(x != w["level"] for x, (w, _r) in zip(wl, ws)) and all(v == 0 for _l, v in tl):
+                quiet += 1
+                continue
+            body.append("<tr><td>%s</td>%s%s%s</tr>" % (
+                esc(sc["name"]), "".join('<td class="%s">%s</td>' % (x, x) for x in st),
+                "".join("<td>%s</td>" % esc(LEVEL[x]) for x in wl), "".join("<td>%s / %d</td>" % (esc(LEVEL[lv]), v) for lv, v in tl)))
+        o.append("<table><tr>%s</tr>%s</table>" % ("".join("<th>%s</th>" % esc(x) for x in head), "".join(body)))
+        if quiet:
+            o.append('<p class="small">Off / inactive in the other %d scenario(s).</p>' % quiet)
+    fs = [f for f in M.findings if i in f["devices"]]
+    ns = [t for _h, dv, t in M.unproven if dv == i]
+    if fs or ns:
+        o.append("<ul>%s%s</ul>" % ("".join('<li class="f"><b>%s</b> %s</li>' % (f["code"], esc(f["text"])) for f in fs),
+                                    "".join('<li class="n"><b>not proven</b> %s</li>' % esc(t) for t in ns)))
+    o.append("</article>")
+    return "\n".join(o)
+
+
+def page(M):
+    v = verdicts(M)
+    cnt = collections.Counter(v.values())
+    o = ['<!DOCTYPE html>', '<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">',
+         '<title>ST185 circuit trace</title><style>%s</style></head><body>' % CSS,
+         '<header><h1>ST185 circuit trace</h1><p>Generated by <code>docs/harness/tools/trace_circuits.py --write</code> from the master wire list, '
+         '<code>sot/</code>, the fuse box wiring plan and <code>docs/harness/tools/trace_rules.json</code>. Never edit this page: rerun the tool.</p>'
+         '<p>It traces the circuits of the new harnesses against electrical principles only (closed loop, no short, no back-feed, relay logic, '
+         'no floating input, one fuse per load). No amps, wire sizes or voltage drop. A factory part is only an end point.</p></header><main>',
+         '<div class="sum"><div><b>%d</b>devices</div><div><b style="color:#2e7d32">%d</b>pass</div><div><b style="color:#c62828">%d</b>fail</div>'
+         '<div><b style="color:#ef8f00">%d</b>not proven</div><div><b>%d</b>findings</div><div><b>%d</b>scenarios x %d fuses pulled</div>'
+         '<div><b>%d / %d</b>truth table rows match</div><div><b>%d / %d</b>CAN legs ok</div></div>' % (
+             len(v), cnt["pass"], cnt["fail"], cnt["not proven"], len(M.findings), len(M.table), len(M.sim.fuses),
+             sum(1 for _c, _n, b in M.tt if not b), len(M.tt), sum(1 for t in M.t9 if t["ok"]), len(M.t9)),
+         '<h2>Checks</h2><table><tr><th>Check</th><th>What it proves</th><th>Findings</th></tr>%s</table>' % "".join(
+             "<tr><td>%s</td><td>%s</td><td>%d</td></tr>" % (c, esc(t), sum(1 for f in M.findings if f["code"] == c)) for c, t in CHECKS),
+         '<h2>Findings (%d)</h2>' % len(M.findings)]
+    if M.findings:
+        o.append("<ul>%s</ul>" % "".join('<li class="f"><b>%s</b> [%s] %s</li>' % (f["code"], esc(f["harness"] or "-"), esc(f["text"])) for f in M.findings))
+    else:
+        o.append("<p>None.</p>")
+    o.append('<h2>Truth table: headlamps, DRL, pop-ups (from circuit-plan.md)</h2><table><tr><th>Stalk</th><th>DRL switch</th><th>Pods</th><th>Low</th>'
+             '<th>High</th><th>DRL</th><th>LED</th><th>Cases run</th><th>Result</th></tr>%s</table>' % "".join(
+                 "<tr>%s<td>%d</td><td>%s</td></tr>" % ("".join("<td>%s</td>" % esc(x) for x in c), n, "match" if not b else esc("; ".join(b[:3])))
+                 for c, n, b in M.tt))
+    o.append('<h2>CAN legs (T9)</h2><ul>%s</ul>' % "".join("<li><b>%s</b> %s</li>" % ("ok" if t["ok"] else "FAIL", esc(t["line"])) for t in M.t9))
+    o.append('<h2>PCLink settings this wiring depends on (%d)</h2><p class="small">The repo holds no PCLink file for these: each line is what the ECU must be '
+             'set to for the wiring to work as traced.</p><ul>%s</ul>' % (len(M.pclink), "".join("<li>%s</li>" % esc(p) for p in M.pclink)))
+    if M.notes:
+        o.append('<h2>Fuse side effects (not findings)</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(n) for n in M.notes))
+    o.append('<h2>Not proven (%d)</h2><ul>%s</ul>' % (len(M.unproven), "".join(
+        '<li class="n">[%s] %s</li>' % (esc(h or "-"), esc(t)) for h, _d, t in M.unproven)))
+    o.append('<h2>Devices</h2><div class="bar"><input id="q" placeholder="search a device, wire or fuse"><button data-v="" class="on">all</button>'
+             '<button data-v="fail">fail</button><button data-v="np">not proven</button><button data-v="pass">pass</button></div>')
+    rank = {h: n for n, h in enumerate(ORDER)}
+    last = None
+    for i in sorted(M.devices, key=lambda x: (rank.get(M.devices[x]["harness"], 99), x)):
+        h = M.devices[i]["harness"] or "no harness"
+        if h != last:
+            if last is not None:
+                o.append("</div>")
+            o.append('<h2>%s</h2><div class="cards">' % esc(h))
+            last = h
+        o.append(card_html(M, i, v[i]))
+    o.append("</div></main><script>%s</script></body></html>" % JS)
+    return "\n".join(o) + "\n"
+
+
 def self_test():
     rows, plan, seats, channels, rules, cp = load_all()
     M0 = run(rows, plan, seats, channels, rules, cp)
@@ -1522,6 +1692,10 @@ def self_test():
     ru["csb3"]["switches"]["S5"] = ru["csb3"]["switches"].pop("S6")
     case("CAN leg: the clutch on a board input the CAN map does not assign", "T9", "clutch", ru=ru)
     case("a one-leg splice is a dead end", "T1", "SP-NOWHERE", reland("w_fpg", "GND-BL", **nowhere))
+    text = page(M0)
+    cases.append(("report page: one card per device, the same text on a second build",
+                  text.count('<article class="card') == len(M0.devices) and 'id="dev-FUEL-PUMP"' in text
+                  and text == page(run(rows, plan, seats, channels, rules, cp))))
     bad = [n for n, ok in cases if not ok]
     for n, ok in cases:
         print("%-5s %s" % ("ok" if ok else "FAIL", n))
@@ -1533,6 +1707,23 @@ def main(argv):
     if "--self-test" in argv:
         return self_test()
     M = run(*load_all())
+    text = page(M)
+    if "--write" in argv:
+        with open(PAGE, "w", encoding="utf-8", newline="\n") as f:
+            f.write(text)
+        v = collections.Counter(verdicts(M).values())
+        print("wrote %s: %d devices (pass %d, fail %d, not proven %d), %d finding(s)" % (
+            os.path.relpath(PAGE, CW.REPO), len(M.devices), v["pass"], v["fail"], v["not proven"], len(M.findings)))
+        return 0
+    if "--check" in argv:
+        cur = open(PAGE, encoding="utf-8").read().replace("\r\n", "\n") if os.path.exists(PAGE) else ""
+        stale = cur != text
+        if stale:
+            print("trace_circuits --check: docs/harness/CIRCUIT-TRACE.html is stale; run trace_circuits.py --write")
+        for f in M.findings:
+            print("FINDING %s [%s] %s" % (f["code"], f["harness"], f["text"][:300]))
+        print("trace_circuits --check: page %s, %d finding(s), %d not proven" % ("STALE" if stale else "current", len(M.findings), len(M.unproven)))
+        return 1 if stale or M.findings else 0
     report(M, argv)
     return 0
 
