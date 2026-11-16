@@ -38,6 +38,10 @@ Checks:
       switchboard_frames.json; watched inputs (ECU DI, A/C amp, cluster) read active exactly when they should and
       never float while their reader is powered
   TT  the headlamp / DRL / pop-up truth table of circuit-plan.md, row by row
+  T0  (--asbuilt, on demand) each harness.design file as built = the master: every master wire drawn once, in a file
+      of its own harness, on the same two ends, with the same wire part and colour; nothing drawn that the master
+      does not have. The documents are pulled read-only into _scratch/asbuilt/ (gitignored) with the harness_design
+      MCP; the tracer and the pull never edit a file
 
     python docs/harness/tools/trace_circuits.py                 summary and findings (exit 0)
     python docs/harness/tools/trace_circuits.py --write         write docs/harness/CIRCUIT-TRACE.html: one card per device
@@ -48,6 +52,7 @@ Checks:
     python docs/harness/tools/trace_circuits.py --chain K-FP    the chains of one device or harness
     python docs/harness/tools/trace_circuits.py --table H1      the scenario table of one device
     python docs/harness/tools/trace_circuits.py --t9 --pclink   the CSB3 / CAN legs; the PCLink settings this wiring depends on
+    python docs/harness/tools/trace_circuits.py --asbuilt [dir] T0: compare the pulled harness.design documents with the master
     python docs/harness/tools/trace_circuits.py --self-test     prove each check fires on a broken copy
 """
 import collections
@@ -1622,6 +1627,155 @@ def page(M):
     return "\n".join(o) + "\n"
 
 
+# ------------------------------------------------------------------------------------------------ T0: as built = the master
+ASBUILT = os.path.join(CW.REPO, "_scratch", "asbuilt")       # gitignored: the pulled harness.design documents (never edited)
+TITLE = re.compile(r"^ST185-([A-Za-z]+(?:-[A-Za-z]+)*?)(?: \d+ - .*?)? Rev ([A-Z]+)$")
+
+
+def norm(x):
+    return re.sub(r"[^A-Za-z0-9]", "_", x or "")
+
+
+def end_fits(r, s, e):
+    """does a drawn wire end (a harness.design {id, handle}) sit on this master end? -> '' or what differs"""
+    t, i, p = r[s + "_type"], r[s + "_id"], r[s + "_pin"]
+    if e is None:
+        return "" if t == "cable screen" else "no end drawn"
+    node = e["id"].split("_", 1)[1] if "_" in e["id"] else e["id"]
+    if node.startswith("scr_"):
+        node = node[4:]
+        if t != "cable screen":
+            return "drawn on a cable screen end"
+        return "" if node.startswith(norm(i)) else "screen of %s" % node
+    N, P, h = norm(i), norm(p), e.get("handle", "")
+    if "." in h:
+        return "" if (node == N and norm(h.split(".", 1)[1]) == P) else "%s %s" % (node, h.split(".", 1)[1])
+    if node in (N, N + "_" + P, N + "__" + P):
+        return ""
+    if node.startswith(N + "_" + P + "_") or (not P and node.startswith(N + "_")):
+        return ""            # one drawn end per signal of a flying lead, or the cowl / device end of a lead with one master ID
+    return node
+
+
+def asbuilt_compare(rows, docs):
+    """T0: every wire of the master is drawn once, in a file of its own harness, on the same two ends, with the same wire
+    part and colour; nothing is drawn that the master does not have. -> (per-document lines, findings)"""
+    master = collections.OrderedDict((r["wire_id"], r) for r in rows if r["wire_id"] and not is_removal(r))
+    seen = collections.defaultdict(list)
+    out, lines = [], []
+    for d in docs:
+        title, doc = d.get("title", d["documentId"]), d["document"]
+        m = TITLE.match(title)
+        harness = m.group(1) if m else ""
+        tag = "%s (%s)" % (title, d["documentId"])
+        wp = {p["id"]: p["partNumber"] for p in doc.get("wireParts", [])}
+        cp = {p["id"]: p["partNumber"] for p in doc.get("cableParts", [])}
+        anode_right = {x["id"]: x.get("anodeOnRight") for x in doc.get("diodes", [])}
+        items = [(w["id"][2:], w, wp.get(w.get("partId", ""), ""), "wire") for w in doc.get("wires", [])]
+        for c in doc.get("cables", []):
+            items += [(k["id"][3:], k, cp.get(c.get("partId", ""), ""), "core") for k in c.get("cores", [])]
+            if c.get("shield"):
+                items.append((c["shield"]["id"][3:], c["shield"], "", "screen"))
+        for mt in doc.get("mates", []):
+            if mt["id"][2:] in master:
+                items.append((mt["id"][2:], {"source": {"id": mt["sourceId"], "handle": mt["sourceId"][2:] + "." + master[mt["id"][2:]]["from_pin"]},
+                                             "target": {"id": mt["targetId"], "handle": mt["targetId"][2:] + "." + master[mt["id"][2:]]["to_pin"]}}, "", "mate"))
+        n = bad = ghosts = 0
+        for wid, it, part, kind in items:
+            if wid.startswith("gh_"):          # a ghost: another harness's wire shown where it rides this bundle (Dan T4 a)
+                g = master.get(wid[3:])
+                ghosts += 1
+                if g is None:
+                    out.append((harness, "%s: ghost wire %s names no wire of the master" % (tag, wid[3:])))
+                elif g["harness"] == harness:
+                    out.append((harness, "%s: %s is drawn as a ghost in a file of its own harness" % (tag, wid[3:])))
+                continue
+            r = master.get(wid)
+            if r is None:
+                if "_nc_" in it["id"] or (it.get("source") is None and it.get("target") is None):
+                    continue                                   # a spare core of a cable, drawn unconnected
+                out.append((harness, "%s: %s %s is drawn but is not a wire of the master" % (tag, kind, wid)))
+                bad += 1
+                continue
+            n += 1
+            seen[wid].append(tag)
+            a, b = it.get("source"), it.get("target")
+            fits = [x for x in ((end_fits(r, "from", a), end_fits(r, "to", b)), (end_fits(r, "from", b), end_fits(r, "to", a)))]
+            best = min(fits, key=lambda f: sum(1 for x in f if x))
+            errs = []
+            if any(best):
+                errs.append("ends drawn %s, master has %s %s -> %s %s" % (
+                    " / ".join(x for x in best if x), r["from_id"], r["from_pin"], r["to_id"], r["to_pin"]))
+            if harness and r["harness"] != harness:
+                errs.append("drawn in a %s file, the master puts it in %s" % (harness, r["harness"]))
+            if kind == "wire" and r["wire_pn"] and not is_integral(r) and part != r["wire_pn"]:
+                errs.append("wire part %s, master %s" % (part or "none", r["wire_pn"]))
+            if kind == "core" and r["cable_pn"] and part != r["cable_pn"]:
+                errs.append("cable part %s, master %s" % (part or "none", r["cable_pn"]))
+            if kind in ("wire", "core") and r["colour"] and it.get("color") and it["color"].lower() != r["colour"].lower():
+                errs.append("colour %s, master %s" % (it["color"], r["colour"]))
+            for sd, e in (("from", a), ("to", b)) if not any(fits[0]) else ():
+                if e and e["id"] in anode_right and r[sd + "_pin"] in ("1", "2"):
+                    anode = "Right" if anode_right[e["id"]] else "Left"
+                    if (e.get("handle") == anode) != (r[sd + "_pin"] == "1"):
+                        errs.append("%s is drawn on the wrong side of diode %s (master pin %s; pin 1 is the anode)" % (wid, r[sd + "_id"], r[sd + "_pin"]))
+            if errs:
+                bad += 1
+                out.append((r["harness"], "%s: %s %s - %s" % (tag, kind, wid, "; ".join(errs))))
+        lines.append("%-64s %3d drawn, %3d differ, %2d ghost wires" % (tag, n, bad, ghosts))
+    for wid, r in master.items():
+        if wid not in seen:
+            out.append((r["harness"], "wire %s (%s, %s %s -> %s %s) is in the master but drawn in no harness.design file" % (
+                wid, r["harness"], r["from_id"], r["from_pin"], r["to_id"], r["to_pin"])))
+        elif len(seen[wid]) > 1:
+            out.append((r["harness"], "wire %s is drawn %d times: %s" % (wid, len(seen[wid]), "; ".join(seen[wid]))))
+    return lines, out
+
+
+def doc_from_master(rows, harness, doc_id="TEST", rev="A"):
+    """a harness.design document the way the generators draw one (self-test only)"""
+    wires, parts = [], {}
+
+    def end(r, s):
+        t, i, p = r[s + "_type"], r[s + "_id"], r[s + "_pin"]
+        if t == "connector":
+            return {"id": "c_" + norm(i), "handle": norm(i) + "." + p}
+        if t == "splice":
+            return {"id": "s_" + norm(i), "handle": "Splice"}
+        return {"id": "t_" + norm(i) + ("_" + norm(p) if p else ""), "handle": "Terminal"}
+    for r in rows:
+        if r["wire_id"] and r["harness"] == harness and not is_removal(r) and r["from_type"] != "cable screen" and not r["cable"]:
+            pid = norm(r["wire_pn"])
+            parts[pid] = r["wire_pn"]
+            wires.append({"id": "w_" + r["wire_id"], "color": r["colour"], "partId": pid, "source": end(r, "from"), "target": end(r, "to")})
+    return {"documentId": doc_id, "title": "ST185-%s Rev %s" % (harness, rev),
+            "document": {"wires": wires, "wireParts": [{"id": k, "partNumber": v} for k, v in parts.items()]}}
+
+
+def asbuilt_run(folder):
+    _h, rows = CW.read_csv(CW.MASTER)
+    files = sorted(f for f in os.listdir(folder) if f.endswith(".json")) if os.path.isdir(folder) else []
+    if not files:
+        print("trace_circuits --asbuilt: no documents in %s. Pull each current harness.design file there first (harness_design MCP: "
+              "list_harnesses \"ST185\", get_document_json), one <documentId>.json each; nothing is ever edited." % os.path.relpath(folder, CW.REPO))
+        return 1
+    docs = []
+    for f in files:
+        with open(os.path.join(folder, f), encoding="utf-8") as fh:
+            d = json.load(fh)
+        d.setdefault("documentId", f[:-5])
+        d.setdefault("title", d.get("document", {}).get("title", d["documentId"]))
+        docs.append(d)
+    lines, out = asbuilt_compare(rows, docs)
+    print("T0 - each harness.design file as built = the master (%d documents, pulled into %s)" % (len(docs), os.path.relpath(folder, CW.REPO)))
+    for ln in lines:
+        print("  " + ln)
+    for h, t in out:
+        print("FINDING T0 [%s] %s" % (h, t))
+    print("trace_circuits --asbuilt: %d finding(s)" % len(out))
+    return 1 if out else 0
+
+
 def self_test():
     rows, plan, seats, channels, rules, cp = load_all()
     M0 = run(rows, plan, seats, channels, rules, cp)
@@ -1692,6 +1846,21 @@ def self_test():
     ru["csb3"]["switches"]["S5"] = ru["csb3"]["switches"].pop("S6")
     case("CAN leg: the clutch on a board input the CAN map does not assign", "T9", "clutch", ru=ru)
     case("a one-leg splice is a dead end", "T1", "SP-NOWHERE", reland("w_fpg", "GND-BL", **nowhere))
+    good = [doc_from_master(rows, "RearFuel"), doc_from_master(rows, "CabinPower"), doc_from_master(rows, "HeavyDC")]
+    mine = [r for r in rows if r["harness"] in ("RearFuel", "CabinPower", "HeavyDC")]
+    cases.append(("as built: files drawn from the master give no finding", asbuilt_compare(mine, good)[1] == []))
+    d = copy.deepcopy(good)
+    d[0]["document"]["wires"][0]["target"] = {"id": "c_FUEL_PUMP", "handle": "FUEL_PUMP.9"}
+    cases.append(("as built: a wire drawn on another cavity is caught", any("ends drawn" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    d = copy.deepcopy(good)
+    gone = d[0]["document"]["wires"].pop()["id"][2:]
+    cases.append(("as built: a master wire drawn in no file is caught", any(gone in t and "drawn in no" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    d = copy.deepcopy(good)
+    d[0]["document"]["wires"].append(dict(d[0]["document"]["wires"][0], id="w_w_not_in_master"))
+    cases.append(("as built: a drawn wire the master does not have is caught", any("not a wire of the master" in t for _h, t in asbuilt_compare(mine, d)[1])))
+    d = copy.deepcopy(good)
+    d[0]["document"]["wireParts"][0]["partNumber"] = "WRONG-PART"
+    cases.append(("as built: a different wire part is caught", any("wire part WRONG-PART" in t for _h, t in asbuilt_compare(mine, d)[1])))
     text = page(M0)
     cases.append(("report page: one card per device, the same text on a second build",
                   text.count('<article class="card') == len(M0.devices) and 'id="dev-FUEL-PUMP"' in text
@@ -1706,6 +1875,9 @@ def self_test():
 def main(argv):
     if "--self-test" in argv:
         return self_test()
+    if "--asbuilt" in argv:
+        n = argv.index("--asbuilt")
+        return asbuilt_run(argv[n + 1] if len(argv) > n + 1 and not argv[n + 1].startswith("--") else ASBUILT)
     M = run(*load_all())
     text = page(M)
     if "--write" in argv:
