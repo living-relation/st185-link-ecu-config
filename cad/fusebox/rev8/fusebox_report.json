@@ -864,348 +864,7 @@
    }
   ]
  },
- "callouts": {
-  "fusebox_render_routing_power.png": [
-   [
-    1,
-    825.9,
-    334.7,
-    "harness bundles to the inboard edge"
-   ],
-   [
-    2,
-    1043.4,
-    405.9,
-    "relay feed: lug under its copper strap"
-   ],
-   [
-    3,
-    957.2,
-    352.5,
-    "feed bends up R16 into terminal 30"
-   ],
-   [
-    4,
-    1185.9,
-    507.2,
-    "OUT lug under its copper strap"
-   ],
-   [
-    5,
-    1287.2,
-    528.8,
-    "OUT cables straight out the end"
-   ],
-   [
-    6,
-    1148.4,
-    489.4,
-    "1/0 battery feed in"
-   ],
-   [
-    7,
-    608.4,
-    457.5,
-    "NEG bus: grounds straight out the rear"
-   ]
-  ],
-  "fusebox_render_routing_logic.png": [
-   [
-    1,
-    849.4,
-    470.6,
-    "Bus 1 fuse wires"
-   ],
-   [
-    2,
-    969.4,
-    508.1,
-    "Bus 2 fuse wires"
-   ],
-   [
-    3,
-    1065.9,
-    484.7,
-    "micro relay wires, inboard column"
-   ],
-   [
-    4,
-    1129.7,
-    504.4,
-    "micro relay wires, outboard column"
-   ],
-   [
-    5,
-    1141.9,
-    379.7,
-    "all leave the front edge"
-   ],
-   [
-    6,
-    888.8,
-    390.0,
-    "fuse input jumpers drop straight into their lugs"
-   ],
-   [
-    7,
-    885.9,
-    421.9,
-    "bus strips on edge, printed spine between"
-   ],
-   [
-    8,
-    1046.2,
-    308.4,
-    "Bus 1 feed in at the front"
-   ],
-   [
-    9,
-    626.2,
-    690.9,
-    "Bus 2 feed in at the rear"
-   ]
-  ],
-  "fusebox_power_explode.png": [
-   [
-    1,
-    913.1,
-    101.2,
-    "cover (snaps on, 4 tongues)"
-   ],
-   [
-    2,
-    873.8,
-    251.2,
-    "relays plug in from the top"
-   ],
-   [
-    3,
-    990.9,
-    309.4,
-    "AMI fuses on the studs"
-   ],
-   [
-    4,
-    886.9,
-    262.5,
-    "Keps nuts, 4 Nm max"
-   ],
-   [
-    5,
-    974.1,
-    246.6,
-    "M5 x 10 ear bolts into the strap PEM nuts"
-   ],
-   [
-    6,
-    950.6,
-    372.2,
-    "copper bar 25 x 6.35"
-   ],
-   [
-    7,
-    967.5,
-    400.3,
-    "copper C-straps 15 x 3 (14), PEM nuts pressed in"
-   ],
-   [
-    8,
-    897.2,
-    464.1,
-    "base (deck on 4 angular legs)"
-   ],
-   [
-    9,
-    886.9,
-    480.0,
-    "bar bolts up from below"
-   ],
-   [
-    11,
-    974.1,
-    630.9,
-    "cable lugs"
-   ],
-   [
-    12,
-    735.9,
-    598.1,
-    "M5 x 10 lug bolts"
-   ],
-   [
-    13,
-    913.1,
-    708.8,
-    "belly pan (snaps on)"
-   ]
-  ],
-  "fusebox_power_step1.png": [
-   [
-    1,
-    1113.8,
-    198.8,
-    "lay the bar in its pocket"
-   ],
-   [
-    2,
-    1181.2,
-    295.3,
-    "drop the 14 copper straps into their wells (PEM nuts already pressed in): the lips rest on the ledge, the hook snaps over them"
-   ],
-   [
-    3,
-    855.9,
-    490.3,
-    "bar bolts up through the hex head pockets"
-   ],
-   [
-    6,
-    900.0,
-    458.4,
-    "base, right way up"
-   ]
-  ],
-  "fusebox_power_step2.png": [
-   [
-    1,
-    769.7,
-    410.6,
-    "crimp, push each terminal up into its cavity (wire side)"
-   ],
-   [
-    2,
-    963.8,
-    483.8,
-    "relay feed lug palm-up under its strap (M5 x 10 into the PEM nut)"
-   ],
-   [
-    3,
-    897.2,
-    414.4,
-    "feed round its saddle into terminal 30"
-   ],
-   [
-    4,
-    1072.5,
-    568.1,
-    "OUT lug palm-up under its strap (M5 x 10)"
-   ],
-   [
-    5,
-    706.9,
-    415.3,
-    "tie the bundles; they leave the inboard end"
-   ]
-  ],
-  "fusebox_power_step3.png": [
-   [
-    1,
-    1098.8,
-    337.5,
-    "AMI fuses on the studs"
-   ],
-   [
-    2,
-    835.3,
-    289.7,
-    "Keps nuts on the bar studs, M5 x 10 ear bolts into the straps: 4 Nm max"
-   ],
-   [
-    3,
-    804.4,
-    363.8,
-    "relays plug in"
-   ],
-   [
-    4,
-    457.5,
-    834.4,
-    "ACPS mini fuse"
-   ],
-   [
-    5,
-    985.3,
-    332.8,
-    "1/0 lug on the M8 stud"
-   ]
-  ],
-  "fusebox_power_step4.png": [
-   [
-    1,
-    901.9,
-    615.0,
-    "belly pan snaps up into the skirt"
-   ],
-   [
-    2,
-    901.9,
-    182.8,
-    "cover snaps down over the deck"
-   ],
-   [
-    3,
-    960.0,
-    615.9,
-    "M6 through each foot (4), steel limiter"
-   ]
-  ],
-  "fusebox_logic_explode.png": [
-   [
-    1,
-    900.0,
-    104.1,
-    "cover (snaps on)"
-   ],
-   [
-    2,
-    936.6,
-    232.5,
-    "micro relays"
-   ],
-   [
-    3,
-    900.0,
-    313.1,
-    "mini fuses"
-   ],
-   [
-    4,
-    900.0,
-    459.4,
-    "base: deck, cavity towers, spine between the strips"
-   ],
-   [
-    5,
-    893.4,
-    584.1,
-    "Bus 1 / Bus 2 strips on edge, slide in from the rear"
-   ],
-   [
-    6,
-    895.3,
-    581.2,
-    "input jumper lugs, TE PIDG 53941-1"
-   ],
-   [
-    7,
-    895.3,
-    589.7,
-    "M4 x 8 + spring washer into the PEM nut in the strip"
-   ],
-   [
-    8,
-    893.4,
-    592.5,
-    "feed lugs, M5 x 10 into the strip"
-   ],
-   [
-    9,
-    900.0,
-    703.1,
-    "belly pan (snaps on)"
-   ]
-  ]
- },
+ "callouts": {},
  "standoffs": {
   "LOGIC": {
    "feed": null,
@@ -1255,7 +914,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-1 IN",
@@ -1296,7 +956,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-10",
@@ -1337,7 +998,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-10 IN",
@@ -1378,7 +1040,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "CAD jumper 18 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-2",
@@ -1419,7 +1082,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-2 IN",
@@ -1460,7 +1124,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "CAD jumper 16 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-3",
@@ -1501,7 +1166,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-3 IN",
@@ -1542,7 +1208,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "CAD jumper 16 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-4",
@@ -1583,7 +1250,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-4 IN",
@@ -1624,7 +1292,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "CAD jumper 16 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-5",
@@ -1665,7 +1334,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-5 IN",
@@ -1706,7 +1376,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "CAD jumper 14 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-6",
@@ -1747,7 +1418,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-6 IN",
@@ -1788,7 +1460,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "CAD jumper 18 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-7",
@@ -1829,7 +1502,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-7 IN",
@@ -1870,7 +1544,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-8",
@@ -1911,7 +1586,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-8 IN",
@@ -1952,7 +1628,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-9",
@@ -1993,7 +1670,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS1-9 IN",
@@ -2034,7 +1712,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-1",
@@ -2075,7 +1754,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-1 IN",
@@ -2116,7 +1796,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "CAD jumper 18 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-12",
@@ -2157,7 +1838,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-12 IN",
@@ -2198,7 +1880,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-13",
@@ -2239,7 +1922,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-13 IN",
@@ -2280,7 +1964,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-2",
@@ -2321,7 +2006,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-2 IN",
@@ -2362,7 +2048,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-3",
@@ -2403,7 +2090,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-3 IN",
@@ -2444,7 +2132,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "CAD jumper 18 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-4",
@@ -2485,7 +2174,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-4 IN",
@@ -2526,7 +2216,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "CAD jumper 18 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-5",
@@ -2567,7 +2258,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-5 IN",
@@ -2608,7 +2300,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-6",
@@ -2649,7 +2342,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-6 IN",
@@ -2690,7 +2384,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-7",
@@ -2731,7 +2426,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-7 IN",
@@ -2772,7 +2468,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-8",
@@ -2813,7 +2510,8 @@
     "part": "1-968851-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-8 IN",
@@ -2854,7 +2552,8 @@
     "part": "1-968849-1",
     "wire_od": 1.85,
     "source": "CAD jumper 18 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-9",
@@ -2895,7 +2594,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "BUS2-9 IN",
@@ -2936,7 +2636,8 @@
     "part": "1-968849-1",
     "wire_od": 1.57,
     "source": "CAD jumper 20 AWG",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M1 30",
@@ -2977,7 +2678,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M1 85",
@@ -3018,7 +2720,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M1 86",
@@ -3059,7 +2762,8 @@
     "part": "280919-2",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M1 87",
@@ -3100,7 +2804,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M10 30",
@@ -3141,7 +2846,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M10 85",
@@ -3182,7 +2888,8 @@
     "part": "280919-2",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M10 86",
@@ -3223,7 +2930,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M10 87",
@@ -3264,7 +2972,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M2 30",
@@ -3305,7 +3014,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M2 85",
@@ -3346,7 +3056,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M2 86",
@@ -3387,7 +3098,8 @@
     "part": "280919-2",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M2 87",
@@ -3428,7 +3140,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M3 30",
@@ -3469,7 +3182,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M3 85",
@@ -3510,7 +3224,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M3 86",
@@ -3551,7 +3266,8 @@
     "part": "280919-2",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M3 87",
@@ -3592,7 +3308,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M4 30",
@@ -3633,7 +3350,8 @@
     "part": "42281-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M4 85",
@@ -3674,7 +3392,8 @@
     "part": "280919-2",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M4 86",
@@ -3715,7 +3434,8 @@
     "part": "280919-2",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M4 87",
@@ -3756,7 +3476,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M5 30",
@@ -3797,7 +3518,8 @@
     "part": "42281-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M5 85",
@@ -3838,7 +3560,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M5 86",
@@ -3879,7 +3602,8 @@
     "part": "280919-2",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M5 87",
@@ -3920,7 +3644,8 @@
     "part": "42281-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M6 30",
@@ -3961,7 +3686,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M6 85",
@@ -4002,7 +3728,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M6 86",
@@ -4043,7 +3770,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M6 87",
@@ -4084,7 +3812,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M7 30",
@@ -4125,7 +3854,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M7 85",
@@ -4166,7 +3896,8 @@
     "part": "280919-2",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M7 86",
@@ -4207,7 +3938,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M7 87",
@@ -4248,7 +3980,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M8 30",
@@ -4289,7 +4022,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M8 85",
@@ -4330,7 +4064,8 @@
     "part": "280919-2",
     "wire_od": 1.57,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M8 86",
@@ -4371,7 +4106,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M8 87",
@@ -4412,7 +4148,8 @@
     "part": "42281-1",
     "wire_od": 2.06,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M9 30",
@@ -4453,7 +4190,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M9 85",
@@ -4494,7 +4232,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M9 86",
@@ -4535,7 +4274,8 @@
     "part": "280919-2",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "M9 87",
@@ -4576,7 +4316,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    }
   ],
   "POWER": [
@@ -4619,7 +4360,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "ACPS IN",
@@ -4660,7 +4402,8 @@
     "part": "1-968851-1",
     "wire_od": 2.41,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "R1 30",
@@ -4693,7 +4436,8 @@
     "part": "62998-2",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "R1 85",
@@ -4734,7 +4478,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "R1 86",
@@ -4775,7 +4520,8 @@
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "R1 87",
@@ -4808,7 +4554,8 @@
     "part": "62998-2",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "R1 87a",
@@ -4849,7 +4596,8 @@
     "part": "42281-1",
     "wire_od": 2.41,
     "source": "spare (kept cut)",
-    "est": true
+    "est": true,
+    "lock": null
    },
    {
     "cav": "R2 30",
@@ -4890,89 +4638,124 @@
     "part": "280756-4",
     "wire_od": 3.61,
     "source": "harness",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R2 85",
     "kind": "F7 85",
     "x": 18.35,
     "y": 52.55,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -2.43,
-      3.51
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.43,
+      2.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.43,
+      2.51,
       -4.12,
-      4.12,
-      -3.09,
-      2.05
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 4,
+    "z1": 50.3,
+    "group": 3,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R2 86",
     "kind": "F7 86",
     "x": 18.35,
     "y": 69.45,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -3.51,
-      2.43
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.51,
+      2.43,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.51,
+      2.43,
       -4.12,
-      4.12,
-      -2.05,
-      3.09
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 4,
+    "z1": 50.3,
+    "group": 3,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R2 87",
@@ -5009,11 +4792,12 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 4,
+    "group": 3,
     "part": "280756-4",
     "wire_od": 2.97,
     "source": "harness",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R3 30",
@@ -5050,93 +4834,128 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 5,
+    "group": 4,
     "part": "280755-4",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R3 85",
     "kind": "F7 85",
     "x": 47.35,
     "y": 70.55,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -2.43,
-      3.51
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.43,
+      2.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.43,
+      2.51,
       -4.12,
-      4.12,
-      -3.09,
-      2.05
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 5,
+    "z1": 50.3,
+    "group": 4,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R3 86",
     "kind": "F7 86",
     "x": 47.35,
     "y": 87.45,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -3.51,
-      2.43
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.51,
+      2.43,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.51,
+      2.43,
       -4.12,
-      4.12,
-      -2.05,
-      3.09
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 5,
+    "z1": 50.3,
+    "group": 4,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R3 87",
@@ -5173,11 +4992,12 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 5,
+    "group": 4,
     "part": "280755-4",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R4 30",
@@ -5214,93 +5034,128 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 6,
+    "group": 5,
     "part": "280756-4",
     "wire_od": 3.61,
     "source": "harness",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R4 85",
     "kind": "F7 85",
     "x": 18.35,
     "y": 88.55,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -2.43,
-      3.51
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.43,
+      2.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.43,
+      2.51,
       -4.12,
-      4.12,
-      -3.09,
-      2.05
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 7,
+    "z1": 50.3,
+    "group": 5,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R4 86",
     "kind": "F7 86",
     "x": 18.35,
     "y": 105.45,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -3.51,
-      2.43
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.51,
+      2.43,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.51,
+      2.43,
       -4.12,
-      4.12,
-      -2.05,
-      3.09
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 7,
+    "z1": 50.3,
+    "group": 5,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R4 87",
@@ -5337,11 +5192,12 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 7,
+    "group": 5,
     "part": "280756-4",
     "wire_od": 3.61,
     "source": "harness",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R5 30",
@@ -5378,93 +5234,128 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 8,
+    "group": 6,
     "part": "280756-4",
     "wire_od": 3.61,
     "source": "harness",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R5 85",
     "kind": "F7 85",
     "x": 47.35,
     "y": 106.55,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -2.43,
-      3.51
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.43,
+      2.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.43,
+      2.51,
       -4.12,
-      4.12,
-      -3.09,
-      2.05
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 9,
+    "z1": 50.3,
+    "group": 6,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R5 86",
     "kind": "F7 86",
     "x": 47.35,
     "y": 123.45,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -3.51,
-      2.43
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.51,
+      2.43,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.51,
+      2.43,
       -4.12,
-      4.12,
-      -2.05,
-      3.09
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 9,
+    "z1": 50.3,
+    "group": 6,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "harness",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R5 87",
@@ -5501,11 +5392,12 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 9,
+    "group": 6,
     "part": "280756-4",
     "wire_od": 3.61,
     "source": "harness",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R6 30",
@@ -5542,93 +5434,128 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 10,
+    "group": 7,
     "part": "280755-4",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R6 85",
     "kind": "F7 85",
     "x": 18.35,
     "y": 124.55,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -2.43,
-      3.51
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.43,
+      2.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.43,
+      2.51,
       -4.12,
-      4.12,
-      -3.09,
-      2.05
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 10,
+    "z1": 50.3,
+    "group": 7,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R6 86",
     "kind": "F7 86",
     "x": 18.35,
     "y": 141.45,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -3.51,
-      2.43
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.51,
+      2.43,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.51,
+      2.43,
       -4.12,
-      4.12,
-      -2.05,
-      3.09
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 10,
+    "z1": 50.3,
+    "group": 7,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R6 87",
@@ -5665,11 +5592,12 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 10,
+    "group": 7,
     "part": "280755-4",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R7 30",
@@ -5706,93 +5634,128 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 11,
+    "group": 8,
     "part": "280755-4",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": false
+    "est": false,
+    "lock": null
    },
    {
     "cav": "R7 85",
     "kind": "F7 85",
     "x": 47.35,
     "y": 142.55,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -2.43,
-      3.51
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.43,
+      2.51,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.43,
+      2.51,
       -4.12,
-      4.12,
-      -3.09,
-      2.05
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 11,
+    "z1": 50.3,
+    "group": 8,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R7 86",
     "kind": "F7 86",
     "x": 47.35,
     "y": 159.45,
-    "sx": 8.24,
-    "sy": 6.6,
+    "sx": 9.982,
+    "sy": 9.982,
     "zones": [
      [
       null,
-      -16.0,
+      -12.25,
+      -3.356,
+      3.356,
       -4.12,
-      4.12,
-      -3.51,
-      2.43
+      4.12
      ],
      [
-      -16.0,
-      -7.1,
+      -12.25,
+      -10.25,
+      -2.51,
+      2.43,
+      -4.12,
+      4.12
+     ],
+     [
+      -10.25,
+      -9.25,
       -4.12,
       4.12,
       -2.05,
       2.05
      ],
      [
-      -7.1,
-      0.0,
+      -10.25,
+      -9.25,
+      -2.51,
+      2.43,
       -4.12,
-      4.12,
-      -2.05,
-      3.09
+      4.12
+     ],
+     [
+      -9.25,
+      1.2,
+      -4.991,
+      4.991,
+      -4.991,
+      4.991
      ]
     ],
     "z0": 32.0,
-    "z1": 51.5,
-    "group": 11,
+    "z1": 50.3,
+    "group": 8,
     "part": "42281-1",
     "wire_od": 1.85,
     "source": "spare (largest wire it takes)",
-    "est": true
+    "est": true,
+    "lock": "twist"
    },
    {
     "cav": "R7 87",
@@ -5829,11 +5792,12 @@
     ],
     "z0": 32.0,
     "z1": 51.5,
-    "group": 11,
+    "group": 8,
     "part": "280755-4",
     "wire_od": 5.13,
     "source": "spare (largest wire it takes)",
-    "est": false
+    "est": false,
+    "lock": null
    }
   ]
  },
@@ -5899,6 +5863,7 @@
     "R1 87a"
    ],
    [
+    "R2 30",
     "R2 85",
     "R2 86",
     "R2 87"
@@ -5910,11 +5875,13 @@
     "R3 87"
    ],
    [
+    "R4 30",
     "R4 85",
     "R4 86",
     "R4 87"
    ],
    [
+    "R5 30",
     "R5 85",
     "R5 86",
     "R5 87"
@@ -8807,10 +8774,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
+    160.88,
     192.39,
-    47.46,
-    74.54,
+    45.56,
+    76.44,
     51.2,
     52.6
    ]
@@ -8822,34 +8789,8 @@
    "box": [
     189.88,
     221.4,
-    65.46,
-    92.54,
-    51.2,
-    52.6
-   ]
-  },
-  {
-   "part": "Power_Base_PA12_printed",
-   "key": "seat lip",
-   "only": null,
-   "box": [
-    172.23,
-    192.39,
-    83.46,
-    110.54,
-    51.2,
-    52.6
-   ]
-  },
-  {
-   "part": "Power_Base_PA12_printed",
-   "key": "seat lip",
-   "only": null,
-   "box": [
-    201.23,
-    221.4,
-    101.46,
-    128.54,
+    63.56,
+    94.44,
     51.2,
     52.6
    ]
@@ -8861,8 +8802,8 @@
    "box": [
     160.88,
     192.39,
-    119.46,
-    146.54,
+    81.56,
+    112.44,
     51.2,
     52.6
    ]
@@ -8874,8 +8815,34 @@
    "box": [
     189.88,
     221.4,
-    137.46,
-    164.54,
+    99.56,
+    130.44,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    160.88,
+    192.39,
+    117.56,
+    148.44,
+    51.2,
+    52.6
+   ]
+  },
+  {
+   "part": "Power_Base_PA12_printed",
+   "key": "seat lip",
+   "only": null,
+   "box": [
+    189.88,
+    221.4,
+    135.56,
+    166.44,
     51.2,
     52.6
    ]
@@ -8989,10 +8956,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
-    184.47,
-    47.46,
-    58.06,
+    171.36,
+    185.34,
+    45.56,
+    59.54,
     51.2,
     52.6
    ]
@@ -9002,10 +8969,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
-    184.47,
-    63.94,
-    74.54,
+    171.36,
+    185.34,
+    62.46,
+    76.44,
     51.2,
     52.6
    ]
@@ -9041,10 +9008,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    201.23,
-    213.47,
-    65.46,
-    76.06,
+    200.36,
+    214.34,
+    63.56,
+    77.54,
     51.2,
     52.6
    ]
@@ -9054,10 +9021,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    201.23,
-    213.47,
-    81.94,
-    92.54,
+    200.36,
+    214.34,
+    80.46,
+    94.44,
     51.2,
     52.6
    ]
@@ -9093,10 +9060,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
-    184.47,
-    83.46,
-    94.06,
+    171.36,
+    185.34,
+    81.56,
+    95.54,
     51.2,
     52.6
    ]
@@ -9106,10 +9073,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
-    184.47,
-    99.94,
-    110.54,
+    171.36,
+    185.34,
+    98.46,
+    112.44,
     51.2,
     52.6
    ]
@@ -9145,10 +9112,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    201.23,
-    213.47,
-    101.46,
-    112.06,
+    200.36,
+    214.34,
+    99.56,
+    113.54,
     51.2,
     52.6
    ]
@@ -9158,10 +9125,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    201.23,
-    213.47,
-    117.94,
-    128.54,
+    200.36,
+    214.34,
+    116.46,
+    130.44,
     51.2,
     52.6
    ]
@@ -9197,10 +9164,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
-    184.47,
-    119.46,
-    130.06,
+    171.36,
+    185.34,
+    117.56,
+    131.54,
     51.2,
     52.6
    ]
@@ -9210,10 +9177,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    172.23,
-    184.47,
-    135.94,
-    146.54,
+    171.36,
+    185.34,
+    134.46,
+    148.44,
     51.2,
     52.6
    ]
@@ -9249,10 +9216,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    201.23,
-    213.47,
-    137.46,
-    148.06,
+    200.36,
+    214.34,
+    135.56,
+    149.54,
     51.2,
     52.6
    ]
@@ -9262,10 +9229,10 @@
    "key": "seat lip",
    "only": null,
    "box": [
-    201.23,
-    213.47,
-    153.94,
-    164.54,
+    200.36,
+    214.34,
+    152.46,
+    166.44,
     51.2,
     52.6
    ]
@@ -11938,10 +11905,31 @@
  "diagonal_joins_solid": {
   "POWER": [
    [
+    "R2 30",
+    "R2 85",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R2 30",
+    "R2 86",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R2 30",
+    "R2 86",
+    1.23,
+    40.7,
+    41.05
+   ],
+   [
     "R2 85",
     "R2 87",
     1.94,
-    35.5,
+    40.05,
     40.7
    ],
    [
@@ -11949,20 +11937,13 @@
     "R2 87",
     1.94,
     40.7,
-    44.4
-   ],
-   [
-    "R2 85",
-    "R2 87",
-    1.94,
-    44.4,
-    51.5
+    41.05
    ],
    [
     "R2 86",
     "R2 87",
     1.94,
-    35.5,
+    40.05,
     40.7
    ],
    [
@@ -11970,249 +11951,315 @@
     "R2 87",
     1.94,
     40.7,
-    44.4
+    41.05
    ],
-   [
-    "R2 86",
-    "R2 87",
-    1.94,
-    44.4,
-    51.5
-   ],
-   [
-    "R3 85",
-    "R3 87",
-    0.86,
-    35.5,
-    40.7
-   ],
-   [
-    "R3 85",
-    "R3 87",
-    0.86,
-    40.7,
-    44.4
-   ],
-   [
-    "R3 85",
-    "R3 87",
-    0.86,
-    44.4,
-    51.5
-   ],
-   [
-    "R3 86",
-    "R3 87",
-    0.86,
-    35.5,
-    40.7
-   ],
-   [
-    "R3 86",
-    "R3 87",
-    0.86,
-    40.7,
-    44.4
-   ],
-   [
-    "R3 86",
-    "R3 87",
-    0.86,
-    44.4,
-    51.5
-   ],
-   [
-    "R4 85",
-    "R4 87",
-    1.94,
-    35.5,
-    40.7
-   ],
-   [
-    "R4 85",
-    "R4 87",
-    1.94,
-    40.7,
-    44.4
-   ],
-   [
-    "R4 85",
-    "R4 87",
-    1.94,
-    44.4,
-    51.5
-   ],
-   [
-    "R4 86",
-    "R4 87",
-    1.94,
-    35.5,
-    40.7
-   ],
-   [
-    "R4 86",
-    "R4 87",
-    1.94,
-    40.7,
-    44.4
-   ],
-   [
-    "R4 86",
-    "R4 87",
-    1.94,
-    44.4,
-    51.5
-   ],
-   [
-    "R5 85",
-    "R5 87",
-    1.94,
-    35.5,
-    40.7
-   ],
-   [
-    "R5 85",
-    "R5 87",
-    1.94,
-    40.7,
-    44.4
-   ],
-   [
-    "R5 85",
-    "R5 87",
-    1.94,
-    44.4,
-    51.5
-   ],
-   [
-    "R5 86",
-    "R5 87",
-    1.94,
-    35.5,
-    40.7
-   ],
-   [
-    "R5 86",
-    "R5 87",
-    1.94,
-    40.7,
-    44.4
-   ],
-   [
-    "R5 86",
-    "R5 87",
-    1.94,
-    44.4,
-    51.5
-   ],
-   [
-    "R6 85",
-    "R6 87",
-    0.86,
-    35.5,
-    40.7
-   ],
-   [
-    "R6 85",
-    "R6 87",
-    0.86,
-    40.7,
-    44.4
-   ],
-   [
-    "R6 85",
-    "R6 87",
-    0.86,
-    44.4,
-    51.5
-   ],
-   [
-    "R6 86",
-    "R6 87",
-    0.86,
-    35.5,
-    40.7
-   ],
-   [
-    "R6 86",
-    "R6 87",
-    0.86,
-    40.7,
-    44.4
-   ],
-   [
-    "R6 86",
-    "R6 87",
-    0.86,
-    44.4,
-    51.5
-   ],
-   [
-    "R7 85",
-    "R7 87",
-    0.86,
-    35.5,
-    40.7
-   ],
-   [
-    "R7 85",
-    "R7 87",
-    0.86,
-    40.7,
-    44.4
-   ],
-   [
-    "R7 85",
-    "R7 87",
-    0.86,
-    44.4,
-    51.5
-   ],
-   [
-    "R7 86",
-    "R7 87",
-    0.86,
-    35.5,
-    40.7
-   ],
-   [
-    "R7 86",
-    "R7 87",
-    0.86,
-    40.7,
-    44.4
-   ],
-   [
-    "R7 86",
-    "R7 87",
-    0.86,
-    44.4,
-    51.5
-   ]
-  ]
- },
- "bridge_throats_opened": {
-  "POWER": [
    [
     "R3 30",
     "R3 85",
-    0.585,
+    0.81,
     27.5,
-    35.5
+    38.05
+   ],
+   [
+    "R3 30",
+    "R3 85",
+    1.36,
+    38.05,
+    40.05
+   ],
+   [
+    "R3 30",
+    "R3 85",
+    1.36,
+    40.05,
+    40.7
+   ],
+   [
+    "R3 30",
+    "R3 85",
+    1.36,
+    40.7,
+    41.05
+   ],
+   [
+    "R3 30",
+    "R3 86",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R3 30",
+    "R3 86",
+    1.23,
+    40.7,
+    41.05
+   ],
+   [
+    "R3 85",
+    "R3 87",
+    0.86,
+    40.05,
+    40.7
+   ],
+   [
+    "R3 85",
+    "R3 87",
+    0.86,
+    40.7,
+    41.05
+   ],
+   [
+    "R3 86",
+    "R3 87",
+    0.86,
+    40.05,
+    40.7
+   ],
+   [
+    "R3 86",
+    "R3 87",
+    0.86,
+    40.7,
+    41.05
+   ],
+   [
+    "R4 30",
+    "R4 85",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R4 30",
+    "R4 86",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R4 30",
+    "R4 86",
+    1.23,
+    40.7,
+    41.05
+   ],
+   [
+    "R4 85",
+    "R4 87",
+    1.94,
+    40.05,
+    40.7
+   ],
+   [
+    "R4 85",
+    "R4 87",
+    1.94,
+    40.7,
+    41.05
+   ],
+   [
+    "R4 86",
+    "R4 87",
+    1.94,
+    40.05,
+    40.7
+   ],
+   [
+    "R4 86",
+    "R4 87",
+    1.94,
+    40.7,
+    41.05
+   ],
+   [
+    "R5 30",
+    "R5 85",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R5 30",
+    "R5 86",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R5 30",
+    "R5 86",
+    1.23,
+    40.7,
+    41.05
+   ],
+   [
+    "R5 85",
+    "R5 87",
+    1.94,
+    40.05,
+    40.7
+   ],
+   [
+    "R5 85",
+    "R5 87",
+    1.94,
+    40.7,
+    41.05
+   ],
+   [
+    "R5 86",
+    "R5 87",
+    1.94,
+    40.05,
+    40.7
+   ],
+   [
+    "R5 86",
+    "R5 87",
+    1.94,
+    40.7,
+    41.05
    ],
    [
     "R6 30",
     "R6 85",
-    0.585,
+    0.81,
     27.5,
-    35.5
+    38.05
+   ],
+   [
+    "R6 30",
+    "R6 85",
+    1.36,
+    38.05,
+    40.05
+   ],
+   [
+    "R6 30",
+    "R6 85",
+    1.36,
+    40.05,
+    40.7
+   ],
+   [
+    "R6 30",
+    "R6 85",
+    1.36,
+    40.7,
+    41.05
+   ],
+   [
+    "R6 30",
+    "R6 86",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R6 30",
+    "R6 86",
+    1.23,
+    40.7,
+    41.05
+   ],
+   [
+    "R6 85",
+    "R6 87",
+    0.86,
+    40.05,
+    40.7
+   ],
+   [
+    "R6 85",
+    "R6 87",
+    0.86,
+    40.7,
+    41.05
+   ],
+   [
+    "R6 86",
+    "R6 87",
+    0.86,
+    40.05,
+    40.7
+   ],
+   [
+    "R6 86",
+    "R6 87",
+    0.86,
+    40.7,
+    41.05
    ],
    [
     "R7 30",
     "R7 85",
-    0.585,
+    0.81,
     27.5,
-    35.5
+    38.05
+   ],
+   [
+    "R7 30",
+    "R7 85",
+    1.36,
+    38.05,
+    40.05
+   ],
+   [
+    "R7 30",
+    "R7 85",
+    1.36,
+    40.05,
+    40.7
+   ],
+   [
+    "R7 30",
+    "R7 85",
+    1.36,
+    40.7,
+    41.05
+   ],
+   [
+    "R7 30",
+    "R7 86",
+    1.95,
+    27.5,
+    38.05
+   ],
+   [
+    "R7 30",
+    "R7 86",
+    1.23,
+    40.7,
+    41.05
+   ],
+   [
+    "R7 85",
+    "R7 87",
+    0.86,
+    40.05,
+    40.7
+   ],
+   [
+    "R7 85",
+    "R7 87",
+    0.86,
+    40.7,
+    41.05
+   ],
+   [
+    "R7 86",
+    "R7 87",
+    0.86,
+    40.05,
+    40.7
+   ],
+   [
+    "R7 86",
+    "R7 87",
+    0.86,
+    40.7,
+    41.05
    ]
   ]
  },
@@ -13324,8 +13371,8 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 826.6,
-   "mass_g_pa12": 835.0,
+   "volume_cm3": 817.6,
+   "mass_g_pa12": 826.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13428,12 +13475,12 @@
   [
    "Power_Relay_TE_F7_1-1414147-0",
    "Power_Terminal_TE_42281-1",
-   4.907
+   4.679
   ],
   [
    "Power_Relay_TE_F7_1-1414147-0",
    "Power_Terminal_TE_42281-1",
-   4.907
+   4.741
   ],
   [
    "Power_Relay_TE_F7_1-1414147-0",
@@ -13448,12 +13495,12 @@
   [
    "Power_Relay_TE_F7_1-1414147-0",
    "Power_Terminal_TE_42281-1",
-   4.907
+   4.679
   ],
   [
    "Power_Relay_TE_F7_1-1414147-0",
    "Power_Terminal_TE_42281-1",
-   4.907
+   4.741
   ],
   [
    "Power_Relay_TE_F7_1-1414147-0",
@@ -13468,12 +13515,12 @@
   [
    "Power_Relay_TE_F7_1-1414286-0",
    "Power_Terminal_TE_42281-1",
-   4.946
+   4.733
   ],
   [
    "Power_Relay_TE_F7_1-1414286-0",
    "Power_Terminal_TE_42281-1",
-   4.947
+   4.733
   ],
   [
    "Power_Relay_TE_F7_1-1414286-0",
@@ -13523,9 +13570,5 @@
   "BattRelay_Cover_PA12_printed.stl",
   "ST185_fusebox_rev8_assembly.step",
   "ST185_fusebox_rev8.f3d"
- ],
- "image_size": [
-  1800,
-  836
  ]
 }

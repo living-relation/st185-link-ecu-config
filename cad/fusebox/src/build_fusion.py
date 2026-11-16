@@ -485,7 +485,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
               and not (c['kind'].endswith('87a') and c['source'] not in ('harness', 'spare (kept cut)'))]
         z0 = z_d - G['h'] - 1.0
         for h in hs:
-            zs_ = z_t - S.seat_gap(h['part'], h['kind'])  # fit audit 2026-10-18: seat depth by relay type (spec.SEAT_GAP)
+            zs_ = z_t - S.seat_gap(h['part'], h['kind'], h.get('lock') == 'twist')  # fit audit 2026-10-18: seat depth by relay type (spec.SEAT_GAP)
             T = S.TERM[h['part']]
             h['z1'] = round(zs_, 2)
             h['est'] = T['t'] is None or h['part'] in S.HEAD_EST or S.LOCK[h['part']].get('est', False)
@@ -832,7 +832,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         sh_ = S.PLACE[box_name]
         report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], sx=round(h['sx'], 3), sy=round(h['sy'], 3),
                                                    zones=h['zones'], z0=round(z_d, 2), z1=h['z1'], group=h['group'], part=h['part'],
-                                                   wire_od=h['wire_od'], source=h['source'], est=h['est'])
+                                                   wire_od=h['wire_od'], source=h['source'], est=h['est'], lock=h.get('lock'))
                                               for h in hs]
         report['terminal_slots'][box_name] = [sorted(h['cav'] for h in hs if h['group'] == g) for g in range(len(gid))
                                               if sum(1 for h in hs if h['group'] == g) > 1]
@@ -1041,7 +1041,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return z_d - 1
         for h in report['terminal_holes'].get(box_name, []):
             if abs(h['x'] - x) < 1.0 and abs(h['y'] - y) < 1.0:
-                return z_t - S.seat_gap(h['part'], h['kind']) - 0.01
+                return z_t - S.seat_gap(h['part'], h['kind'], h.get('lock') == 'twist') - 0.01
         return z_t - S.HOLE['top_gap'] - l_min
 
     def bend_row(where, awg, path, r_inside, supported, note, room=None):
@@ -1345,7 +1345,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                         continue
                     # deeper than the wall can give: a notch open at the wall top down to 0.5 under the terminal's end (as the JB1 lug-tongue notch);
                     # the base skirt still closes the outside
-                    zl_ = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['z_t'] - S.seat_gap(c['part'], c['kind']) - (S.TERM[c['part']]['L'] or S.L_EST) - 0.5
+                    zl_ = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['z_t'] - S.seat_gap(c['part'], c['kind'], c.get('lock') == 'twist') - (S.TERM[c['part']]['L'] or S.L_EST) - 0.5
                     nb_ = {'-x': (x0 - 1.0, ay0, x0 + t + 0.01, ay1), '+x': (x1 - t - 0.01, ay0, x1 + 1.0, ay1),
                            '-y': (ax0, y0 - 1.0, ax1, y0 + t + 0.01), '+y': (ax0, y1 - t - 0.01, ax1, y1 + 1.0)}[side]
                     zn_ = max(zl_, PN['z0'] + t + 1.0)
@@ -2947,7 +2947,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 eW = tuple(-v for v in eW)                       # keep it a rotation (the terminal is symmetric across its blade width)
             yb = S.REAL[pn]['box'][1] / 2 if pn in S.REAL else S.VENDOR_TERM[pn][2]     # the blade line = the box's Y centre (real_zones uses it)
             sx_, sy_ = S.PLACE[c['box']]
-            org = (c['x'] + sx_ - eH[0] * yb, c['y'] + sy_ - eH[1] * yb, zt[c['box']] - S.seat_gap(pn, c['kind']))
+            org = (c['x'] + sx_ - eH[0] * yb, c['y'] + sy_ - eH[1] * yb, zt[c['box']] - S.seat_gap(pn, c['kind'], c.get('lock') == 'twist'))
             m = adsk.core.Matrix3D.create()
             m.setWithCoordinateSystem(P(*org), V(*eW), V(*eH), V(*eZ))
             for b_ in src[pn]:

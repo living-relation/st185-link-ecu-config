@@ -704,7 +704,9 @@ HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)
 SEAT_GAP = {'micro': 3.2}       # by cavity kind prefix
 
 
-def seat_gap(part, kind=''):
+def seat_gap(part, kind='', twist=False):
+    if twist:       # keyed twist-lock seat (TWIST): the box sits d_r + lift lower, so it can lift out of its recess to turn
+        return SEAT_GAP.get(kind.split(' ')[0], HOLE['top_gap']) + TWIST['d_r'] + TWIST['lift']
     return SEAT_GAP.get(kind.split(' ')[0], HOLE['top_gap'])   # terminal hole (R120): slot = terminal envelope + 0.4 per side; walls >= 2.0
                                                                 # (R73) or the two holes join into one slot (Dan); >= 2 mm deep at the mouth;
                                                                 # receptacle top 1 below the deck top
@@ -1066,6 +1068,109 @@ def real_zones(part, kind, side=1):
     else:
         win = to_box(-u_bx, u_bx, bl - yb - c - o, max(bh, wh) - yb + c)
     return out + [(-R_['neck'], -tip) + box_, (-tip, 0.0) + win]
+
+
+# ---------- keyed twist-lock seats (Dan 2026-11-16, OPEN-ITEMS row 107 "terminal slots and holes: check retention and fit"). Dan's
+# finding on a relay-seat section: the R120 / R121 cavity was sized round the TE STEP, whose insulation wings are OPEN (uncrimped); a
+# crimped terminal is only about as wide as the wire insulation behind its box, so the lance ledge alone does not hold it. His fix:
+# the crimped terminal goes up through a slot in ONE orientation only (R, its box turned 90 deg from the seat), turns 90 deg and drops
+# into a box-shaped recess (S, the seat orientation = BLADE_AXIS, the one that mates the relay / fuse blade) on top of that slot: the
+# box ends rest on the ledge each side of the slot (it cannot pull out) and the recess walls stop it turning back. Bands, from the seat
+# (contact end, dz 0) down:  chamber (dz -Lb + d_r .. d_r + lift, the box and its sprung lance turn here)  /  recess (S box) + the R
+# slot through it  /  ledge plate t_a thick with the R slot  /  mouth (the R slot, grown where the crimped barrels turn). Lb = the
+# contact box length (REAL wz[0]); the seat drops d_r + lift below the rev 8 seat so the chamber fits under the same deck skin.
+# The slot is sized from the crimped terminal on the wire that seat really carries (Dan: "crimped on the real wire OD"), not the top of
+# the TE insulation range (R120): a thicker wire there needs a reprint (twist_check reports the crimped OD each slot is cut for).
+TWIST = dict(d_r=1.0, lift=0.2, t_a=2.0, clr=CLR, bear_min=0.8)
+TWIST_KINDS = {'F7 85', 'F7 86'}       # pilot (Dan 2026-11-16: one seat type first, his OK before the rest)
+# Crimped barrel sizes from the TE application specs, per terminal: wire barrel crimp width ww / height wh (mm, by AWG), insulation
+# barrel crimp width iw ("F" crimp). None = not in a TE document on hand: the barrel is taken as round on its own conductor / insulation
+# (d_max + 2 t, crimp OD + 2 t; est) - those rows are TBD in the report.
+#   280756-4: TE 114-20021 rev D16 p.4-5 (applicators 785489 / 1529063 / 1529095): wire 4.06 - 4.57 wide, 2.41 - 3.20 high (4 - 6 mm2),
+#             insulation 6.35 F. 10 AWG (5.26 mm2) between the 4 and 6 mm2 rows: 3.20 taken (the 6 mm2 top).
+#   280755-4: 114-20021 p.5 (782678 / 1529136): wire 4.57 wide, 3.23 - 3.63 high (6 - 10 mm2), insulation 7.62 F.
+#   42281-1, 280919-2, 1-968849-1, 1-968851-1, 62998-2: TBD (42281 / 280919 are FASTIN-FASTON contacts of 114-2025 rev G2, which gives
+#             the crimp only per applicator sheet; 114-18148 for MCP 2.8 is not on hand).
+CRIMP = {'280756-4': dict(ww=4.57, wh={10: 3.20, 12: 3.00}, iw=6.35, src='TE 114-20021 rev D16'),
+         '280755-4': dict(ww=4.57, wh={8: 3.43, 10: 3.63}, iw=7.62, src='TE 114-20021 rev D16')}
+
+
+def twist_on(box_name, cav, kind):
+    """True when this seat is a keyed twist-lock seat (not on a relay held by the R123 retainer clip)."""
+    return kind in TWIST_KINDS and cav.split()[0] not in RETAIN.get(box_name, [])
+
+
+def twist_env(pn, od, awg=None):
+    """Crimped terminal on its real wire, model frame (u across the blade width, v the model Y: box floor 0, blade line H / 2):
+    dict of parts -> (u half, v lo, v hi): box (lance folded), lance (the sprung lance added), wire barrel, insulation barrel."""
+    R_, T_ = REAL[pn], TERM[pn]
+    t = T_['t'] if T_['t'] is not None else T_EST
+    W_, H_ = R_['box']
+    cr = CRIMP.get(pn, {})
+    wh = cr.get('wh', {}).get(awg) or R_['d'] + 2 * t
+    ww = cr.get('ww') or wh
+    ih = crimp_od(pn, od) + 2 * t
+    iw = cr.get('iw') or ih
+    yi = R_['iz'][1]
+    lk = R_['lock']
+    lance = (W_ / 2, 0.0, H_)
+    if lk and lk[0] == 'H':
+        lance = (W_ / 2, -lk[1], H_)
+    elif lk:
+        lance = (W_ / 2 + lk[1], 0.0, H_)
+    return dict(yb=H_ / 2, box=(W_ / 2, 0.0, H_), lance=lance, wire=(ww / 2, 0.0, wh), ins=(iw / 2, yi, yi + ih), Lb=R_['wz'][0],
+                est=not cr)
+
+
+def _r(p, yb):
+    """Radius of a part (u half, v lo, v hi) about the rotation axis (u 0, v yb)."""
+    return math.hypot(p[0], max(abs(p[1] - yb), abs(p[2] - yb)))
+
+
+def twist_zones(part, kind, od, awg=None, side=1):
+    """Zones of a keyed twist-lock seat (format of zones(); several zones may share one band - the build cuts each, so a band can be a
+    cross). R = the box turned 90 deg from its seat (S)."""
+    E, c, P_ = twist_env(part, od, awg), TWIST['clr'], TWIST
+    yb, Lb = E['yb'], E['Lb']
+
+    def rect(parts, rot):        # bounding rect of parts (+ clr), in box x / y, S (rot False) or R (rot True)
+        u = max(E[p][0] for p in parts) + c
+        v0, v1 = min(E[p][1] for p in parts) - yb - c, max(E[p][2] for p in parts) - yb + c
+        h0, h1 = sorted((-side * v0, -side * v1))
+        ax = BLADE_AXIS[kind] if not rot else ('y' if BLADE_AXIS[kind] == 'x' else 'x')
+        return (-u, u, h0, h1) if ax == 'x' else (h0, h1, -u, u)
+
+    def sq(parts):               # square round the circle the parts sweep as they turn (+ clr)
+        r = max(_r(E[p], yb) for p in parts) + c
+        return (-r, r, -r, r)
+
+    def union(a, b):
+        return (min(a[0], b[0]), max(a[1], b[1]), min(a[2], b[2]), max(a[3], b[3]))
+    slot = rect(('box', 'wire', 'ins'), True)
+    lo, hi = -Lb - P_['t_a'], -Lb
+    return [(None, lo) + union(slot, sq(('ins', 'wire'))),
+            (lo, hi) + slot,
+            (hi, hi + P_['d_r']) + rect(('box',), False),
+            (hi, hi + P_['d_r']) + slot,
+            (hi + P_['d_r'], P_['d_r'] + P_['lift']) + sq(('lance', 'wire'))]
+
+
+def twist_check(part, kind, od, awg=None, side=1):
+    """Numbers the gate checks: the box overhang on the ledge each end (S), that the box cannot pass the slot seated, and that every part
+    that turns inside a band fits its zone there."""
+    E, c = twist_env(part, od, awg), TWIST['clr']
+    zs = twist_zones(part, kind, od, awg, side)
+    yb = E['yb']
+    slot, recess, chamber = zs[1], zs[2], zs[4]
+    ax = BLADE_AXIS[kind]
+    s_lo, s_hi = (slot[2], slot[3]) if ax == 'x' else (slot[4], slot[5])      # the slot along the seated blade width
+    bear = min(E['box'][0] + s_lo, E['box'][0] - s_hi)
+    r_wire = _r(E['wire'], yb)
+    s_short = min(slot[3] - slot[2], slot[5] - slot[4])
+    return dict(bear=round(bear, 2), key=round(min(slot[3] - slot[2], slot[5] - slot[4]), 2), box_w=round(2 * E['box'][0], 2),
+                wire_turn=round(2 * r_wire, 2), slot_short=round(s_short, 2), chamber=round(chamber[3] - chamber[2], 2),
+                recess=[round(v, 2) for v in recess[2:]], slot=[round(v, 2) for v in slot[2:]], seat_drop=TWIST['d_r'] + TWIST['lift'],
+                crimp_od=round(crimp_od(part, od), 2), est=E['est'])
 
 
 

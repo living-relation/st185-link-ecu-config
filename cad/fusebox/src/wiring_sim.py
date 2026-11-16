@@ -553,10 +553,11 @@ def terminal_cavities(wires):
             part = parts[0] if parts else S.TERM_DEFAULT[c['kind']][0]
             part = S.TERM_SWAP.get(part, part)          # R123: the box is built with the self-locking swap
             od = max(w['od'] for (w, e) in hits)
+            g = max((w['gauge'] for (w, e) in hits if isinstance(w['gauge'], int)), default=None)
             src, wl = 'harness', [w['wire'] for (w, e) in hits]
         elif c.get('jumper'):
             g_, part, _lug, _d = S.jumper(c['amps'])     # markup 2026-10-17: each jumper sized by its own fuse
-            od, src, wl = OD[g_], 'CAD jumper %d AWG' % g_, []
+            od, src, wl, g = OD[g_], 'CAD jumper %d AWG' % g_, [], g_
         else:
             part, g = S.TERM_DEFAULT[c['kind']]
             if c.get('relay') == S.RELAY_B['pos'] and c['kind'] in S.TERM_DEFAULT_B:     # rev 8: the vacant Mini ISO seat R1 keeps its 6.3 receptacles
@@ -565,9 +566,15 @@ def terminal_cavities(wires):
             od, src, wl = OD[g], ('spare (kept cut)' if S.REV >= 8 and (box, key) in S.KEEP_CUT else 'spare (largest wire it takes)'), []
         out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
                         hole=[round(v, 3) for v in S.hole(part, c['kind'])] if part in S.TERM else None,
-                        zones=None))
+                        zones=None, awg=g))
+        if S.twist_on(box, key, c['kind']) and part in S.REAL:    # keyed twist-lock seat (spec.TWIST, Dan 2026-11-16)
+            out[-1]['lock'] = 'twist'
     for c in out:                        # R121: the zones, the H-lance window opening away from the cavity's neighbours
-        if c['hole']:
+        if c['hole'] and c.get('lock') == 'twist':
+            sd = S.lance_side(c, out)
+            c['zones'] = [[None if v is None else round(v, 3) for v in z] for z in S.twist_zones(c['part'], c['kind'], c['wire_od'], c['awg'], sd)]
+            c['twist'] = S.twist_check(c['part'], c['kind'], c['wire_od'], c['awg'], sd)
+        elif c['hole']:
             c['zones'] = [[None if v is None else round(v, 3) for v in z] for z in S.zones(c['part'], c['kind'], S.lance_side(c, out))]
     return out
 

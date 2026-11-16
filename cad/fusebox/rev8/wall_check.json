@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 826.6,
+   "volume_cm3": 817.5,
    "bounds": [
     128.0,
     341.8,
@@ -20,17 +20,13 @@
     244.3
    ],
    "exempt": {
-    "seat lip": 1315,
+    "seat lip": 1531,
     "bar snap tab": 117,
     "pan catch pocket": 116,
     "strap snap tab": 42,
-    "A bar snap tab": 10,
-    "A seat lip": 25,
-    "A saddle lip": 6,
-    "A relay cavity web": 2,
-    "A strap snap tab": 7
+    "A bar snap tab": 8
    },
-   "attach_skin": 65,
+   "attach_skin": 66,
    "walls": [],
    "attach": [],
    "flagged": 0
