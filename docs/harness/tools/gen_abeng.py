@@ -3,7 +3,7 @@ master is the source). Usage: python gen_abeng.py <repo> <out_dir>   (needs <out
 get_part_library). Writes <out>/abeng.json (whole document, wires not yet routed) and <out>/abeng_lib_ops.json (part-library
 add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.json. Same rules and helpers' shape as
 gen_engc.py (README "harness.design"): connectors 240 wide, each pin its own master end text, display stripes on +12 V wires,
-parts from library 5LO8 (new ones from harness-parts.csv), formboard layout, compact schematic (bulkhead, splices, cables,
+parts from library 5LO8 (new ones from harness-parts.csv), regular layout view, compact schematic (bulkhead, splices, cables,
 devices). Lengths: the Route 16 tree of `route_trees` alone (DECISIONS B8; HeavyDC has its own layout-tree segments since B6 b,
 OPEN-ITEMS row 179), checked here against the master est_length_mm. gen_engc.py runs on import, so its helpers are not
 imported."""
@@ -442,8 +442,8 @@ head = [{"id": "n_title", "width": 360,
                  "bulkhead in the centre third, splices beside it, shielded cables by their device, devices right in feed order, columns "
                  "level at the top (device rows half a grid lower, N1 a). Each pin shows its own master end text. Connectors are drawn "
                  "whole; spare cavities are N/C with a note. " + B.GHOST_MARK +
-                 "Layout: a formboard of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), "
-                 "front of car RIGHT, rear LEFT, driver side UP; drawn 1:1 on A3 panels, every bundle at exactly its length, long runs folded as serpentines (Dan A25 a); each part on "
+                 "Layout: Dan 2026-11-16: regular view, straight runs, on the layout-editor routes (formboard mode off); the car from above at one scale of the Route 16 tree (route_trees, Dan's 2026-11-12 save; the bulkhead 16 in above where the trunk meets the firewall), "
+                 "front of car RIGHT, rear LEFT, driver side UP; each node on its layout-editor spot, ends combed round it, drawn length not to scale; each part on "
                  "a 100 mm end-allowance stub (a splice on a 25 mm stub, Dan T7 b); bundle lengths = the master est_length_mm (HeavyDC's cables are on its own segments of "
                  "the layout tree, DECISIONS B6 b)."},
         {"id": "n_stripes", "width": 360,
@@ -509,7 +509,7 @@ for n in [n for n in parent if parent[n] and slen[n] == 0]:   # a 0 mm segment i
     del parent[n], slen[n], kids[n]
 # formboard (README "harness.design", Dan 2026-11-02): the tree laid flat on a build table. Straight orthogonal bundles
 # on the 30 grid, each branch at 90 degrees; front of the car RIGHT, rear LEFT, driver side UP (each branch heads the way its
-# part of the car lies); every bundle keeps its tree length (= the master's); formboard.to_scale then redraws it 1:1 (Dan A25 a). Each part sits on
+# part of the car lies); every bundle keeps its tree length (= the master's); formboard.regular then combs each node's ends so every label stands clear (not to scale, Dan 2026-11-15). Each part sits on
 # its 100 mm end-allowance stub, combed off the node. Coil and injector breakouts all leave their line on the same side
 # (parallel, Dan 2026-11-02 (J1)). A node whose four sides are all taken by bundles combs its parts along the way in.
 DV = {'R': (1, 0), 'L': (-1, 0), 'U': (0, -1), 'D': (0, 1)}
@@ -638,10 +638,10 @@ B.box_groups(doc)       # box seat ends as labelled terminals, no box groups, un
 NGHOST = B.add_ghosts(doc, H, NAME, strands=True)      # one ghost strand per other harness and path (Dan T4 a: AB-engine is near the limit)
 assert NCONN + NGHOST <= 100, 'ghost strands push AB-engine over the 100-connection limit'
 B.fill_ghost_note(doc, NAME)      # the title note says which pass-through wires are drawn as ghost strands
-FB.to_scale(doc)        # the 1:1 formboard (Dan A25 a): every bundle drawn at its set length, long runs folded
-_fbad = FB.check(doc)
-assert not _fbad, 'formboard: %r' % _fbad[:8]
-print('formboard %dx%d mm, %d A3 panels' % FB.board(doc)[:3])
+FB.regular(doc, B.car_frame(LT), LT['nodes'])   # the regular layout view (Dan 2026-11-16): the car from above on the layout-editor routes, straight runs, not to scale
+_fbad = FB.check_regular(doc, square=False)
+assert not _fbad, 'layout: %r' % _fbad[:8]
+print('layout %d x %d units, formboard mode off, %g units per car mm, %d of %d spotted nodes on their spots' % (FB.extent(doc) + (FB.CAR_STATS['k'], FB.CAR_STATS['anchored'], FB.CAR_STATS['spotted'])))
 json.dump(doc, open(os.path.join(OUT, 'abeng.json'), 'w'), indent=1)
 json.dump(lib_add, open(os.path.join(OUT, 'abeng_lib_ops.json'), 'w'), indent=1)
 json.dump(expect, open(os.path.join(OUT, 'abeng_expect.json'), 'w'), indent=1)

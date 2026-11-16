@@ -165,7 +165,7 @@ def box_seat_ends(doc):
                 t["schematicPosition"] = {"x": p["x"], "y": p["y"] + 30 * (i + 1)}
             if lp is not None:
                 # each seat end on its own copy of the stub, side by side at the old connector spot: every routed length
-                # stays the stub length (lengths = master); formboard.to_scale fans them out
+                # stays the stub length (lengths = master); formboard.regular combs them out
                 n_at += 1
                 t["layoutPosition"] = {"x": lp["x"] + 30 * (n_at - 1), "y": lp["y"]}
                 if stubs:
@@ -1547,6 +1547,103 @@ MIN_BREAKOUT_MM = 152   # a connector part-way along a line sits at least 6 in o
 JOIN_PT = 15.0   # a line or branch end this close to another line joins it
 
 
+def pt_to_car(p):
+    """an engine-bay map point (1993 EWD p.36 points) in car mm (x fore-aft, front +; y side to side, driver -): the
+    corridor conversion of corridors.json / check_corridors.to_car (car_x = 5.3 y - 1019.1, car_y = 1519.3 - 5.3 x)"""
+    return (round(MM_PER_PT * p[1] - 1019.1, 1), round(1519.3 - MM_PER_PT * p[0], 1))
+
+
+# tree junctions that are no seed device: the seed line end they sit on (HeavyDC: the alternator B+ cable joins the block
+# ground leg at the end of its seed line ALT, A4 b)
+SEED_JOINS = {"BLK_J": ("HeavyDC", "ALT", -1)}
+
+
+def car_frame(L):
+    """(spots, route) of the layout tree in car mm, the placement editors' top view (Dan 2026-11-15: the formboard mirrors
+    the editor routes): spots {node: (x, y)} for every node whose spot the editors hold (a seed's `mm`, a route-file node's
+    run-time `car`, a glove-box breakout on its rev 8 box-frame spot, a drop node on its device's spot); route(a, b) = the
+    polyline a -> b along the layout tree (tree_mm via points, the route files' own line shapes), or None when a node on the
+    way has no spot. A segment with no shape of its own is the straight line between its two nodes."""
+    nodes, tm = L["nodes"], L.get("tree_mm") or {}
+    via, shape = tm.get("via", {}), L.get("_route_car", {})
+    spots = {}
+    for n, v in nodes.items():
+        if "mm" in v: spots[n] = tuple(v["mm"])
+        elif "car" in v: spots[n] = tuple(v["car"])
+    # a car-mm seed's own devices and lines (HeavyDC's engine-bay legs carry no mm in the tree: their spots are the seed's)
+    lines = []
+    for f in sorted(glob.glob(os.path.join(HERE, "placement_editor", "seeds", "*.json"))):
+        sd = json.load(open(f, encoding="utf-8"))
+        if sd.get("unitMm"): continue
+        lines += [[tuple(p) for p in ln["pts"]] for ln in sd.get("lines", [])]
+        for n, (h, lid, i) in SEED_JOINS.items():
+            if sd.get("harness") == h and n in nodes and n not in spots:
+                spots[n] = tuple(next(ln for ln in sd["lines"] if ln["id"] == lid)["pts"][i])
+        for d in sd.get("devices", []):
+            n = (L.get("place") or {}).get(d["id"])
+            if n in nodes and n not in spots: spots[n] = (d["x"], d["y"])
+    bo = L.get("box_breakouts") or {}
+    # the glove-box breakouts (A35: "layout doesn't have to match exactly the routing to each fuse box terminal"; the
+    # editors draw no box insides): on the glove box's own spot, free to point any way (formboard: straight at their set
+    # length, wherever their fans have room)
+    free = set()
+    for n in (bo.get("nodes") or {}):
+        if "GB" in spots:
+            spots[n] = spots["GB"]; free.add(n)
+    changed = True
+    while changed:     # a drop node (`<node>_top`) and any node joined to a spotted one by a 0 mm segment share its spot
+        changed = False
+        for a, b, mm in L["segments"]:
+            for x, y in ((a, b), (b, a)):
+                if x in spots and y not in spots and (mm == 0 or y == x + "_top" or x == y + "_top"):
+                    spots[y] = spots[x]; changed = True
+    adj = collections.defaultdict(list)
+    for a, b, mm in L["segments"]:
+        adj[a].append((b, mm)); adj[b].append((a, mm))
+    def seg(a, b):
+        if (a, b) in shape: return [tuple(p) for p in shape[(a, b)]]
+        if (b, a) in shape: return [tuple(p) for p in shape[(b, a)]][::-1]
+        k, rk = a + "|" + b, b + "|" + a
+        if k in via or rk in via:
+            mid = [tuple(p) for p in via[k]] if k in via else [tuple(p) for p in via[rk]][::-1]
+            return [spots[a]] + mid + [spots[b]]
+        best = None
+        for ln in lines:      # the shortest stretch of a seed line that joins the two spots (within 30 mm of it at both ends)
+            if len(ln) < 2: continue
+            ga, da = _along(ln, spots[a]); gb, db = _along(ln, spots[b])
+            if ga > 30 or gb > 30 or abs(da - db) < 1: continue
+            lo, hi = sorted((da, db))
+            run, mid = 0.0, []
+            for p, q in zip(ln, ln[1:]):
+                run += math.hypot(q[0] - p[0], q[1] - p[1])
+                if lo + 1 < run < hi - 1: mid.append(tuple(q))
+            if da > db: mid = mid[::-1]
+            if best is None or hi - lo < best[0]: best = (hi - lo, [spots[a]] + mid + [spots[b]])
+        return best[1] if best else [spots[a], spots[b]]
+    def route(a, b, want=None):
+        """a -> b; with want (the bundle's set length, the sum of its segments) the path whose segments add up to it"""
+        found = []
+        def walk(n, chain, run):
+            if found or len(chain) > 60 or (want is not None and run > want + 1): return
+            if n == b:
+                if want is None or abs(run - want) <= 1: found.append(list(chain))
+                return
+            for m, mm in adj[n]:
+                if m not in chain: chain.append(m); walk(m, chain, run + mm); chain.pop()
+        walk(a, [a], 0)
+        if not found: return None
+        chain = found[0]
+        if any(n not in spots for n in chain): return None
+        out = [spots[chain[0]]]
+        for x, y in zip(chain, chain[1:]):
+            for p in seg(x, y)[1:]:
+                if p != out[-1]: out.append(p)
+        out[0] = spots[a]; out[-1] = spots[b]
+        return out
+    route.free = free
+    return spots, route
+
+
 def _seg_proj(p, a, b):
     dx, dy = b[0] - a[0], b[1] - a[1]
     ll = dx * dx + dy * dy
@@ -1724,10 +1821,34 @@ def add_route_trees(L):
         nodes, segs = L["nodes"], L["segments"]
         first_seg = len(segs)
         fx = lambda p: [round(90 + (p[1] - 160) * 0.35, 1), round((p[0] - 170) * 100.0 / 220.0, 1)]
+        # where each node and segment lies in the car (car mm, the corridor conversion; Dan 2026-11-15 formboards follow the
+        # editor routes): run-time keys only ("car" on a node, "_route_car" per segment), never written to the layout file
+        shape = L.setdefault("_route_car", {})
+        def put(n, p):
+            nodes[n]["car"] = list(pt_to_car(p))
+        def oriented(k):
+            return lines[k] if parent[k][3] == "start" else lines[k][::-1]
+        def piece(k, d0, d1):
+            """the line k between distances d0 and d1 from its root end (EWD points)"""
+            pts, out, run = oriented(k), [], 0.0
+            out.append(_pt_at(pts, d0))
+            for a, b in zip(pts, pts[1:]):
+                run += math.hypot(b[0] - a[0], b[1] - a[1])
+                if d0 < run < d1:
+                    out.append(tuple(b))
+            out.append(_pt_at(pts, d1))
+            return [pt_to_car(p) for p in out]
         if legacy:
             nodes[spec["root"]]["xy"] = fx(root_pt)
+            put(spec["root"], root_pt)
+        elif spec.get("roots"):
+            for k0, n0 in spec["roots"].items():
+                if "car" not in nodes.get(n0, {}) and "mm" not in nodes.get(n0, {}):
+                    put(n0, oriented(k0)[0])
         def build(k, start_node):
             here, at = start_node, 0.0
+            if "car" not in nodes[here] and "mm" not in nodes[here]:
+                put(here, oriented(k)[0])
             items = sorted((e for e in ev[k] if e[1] == "dev" or e[2] in keep), key=lambda e: (e[0], e[1]))
             n_j = 0
             for i_e, e in enumerate(items):
@@ -1737,7 +1858,9 @@ def add_route_trees(L):
                     jn = "%sJ_%s_%d" % (pre, k, n_j)
                     nodes[jn] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
                                  "label": "%s %s: %s joins" % (src[k], k, e[2]), "short": "%s / %s" % (k, e[2])}
+                    put(jn, _pt_at(oriented(k), e[0]))
                     segs.append([here, jn, int(round(step))])
+                    shape[(here, jn)] = piece(k, at, e[0])
                     here, at = jn, e[0]
                     if e[3] * MM_PER_PT < 1:
                         build(e[2], jn)
@@ -1755,20 +1878,25 @@ def add_route_trees(L):
                     # Route 16 trunk itself gets it too, as no sensor is wired 0 mm from the trunk (Dan W4 c, 2026-11-10)
                     if i_e < len(items) - 1 or (legacy and k in roots):
                         stub = max(stub, MIN_BREAKOUT_MM)
+                    put(node, dev["at"])
                     if stub >= 1:
                         tap = "%sT_%s_%s" % (pre, k, node)
                         nodes[tap] = {"xy": fx(_pt_at(lines[k] if parent[k][3] == "start" else lines[k][::-1], e[0])),
                                       "label": "%s %s: %s stub" % (src[k], k, node), "short": ""}
+                        put(tap, _pt_at(oriented(k), e[0]))
                         segs.append([here, tap, int(round(step))])
+                        shape[(here, tap)] = piece(k, at, e[0])
                         segs.append([tap, node, int(round(stub))])
                         here, at = tap, e[0]
                     else:
                         segs.append([here, node, int(round(step))])
+                        shape[(here, node)] = piece(k, at, e[0])
                         here, at = node, e[0]
         def build_stub(k, jn, gap):
             sub = "%sS_%s" % (pre, k)
             nodes[sub] = {"xy": nodes[jn]["xy"], "label": "%s %s joins (%.0f mm gap)" % (src[k], k, gap * MM_PER_PT),
                           "short": ""}
+            put(sub, oriented(k)[0])
             segs.append([jn, sub, int(round(gap * MM_PER_PT))])
             build(k, sub)
         start = spec.get("root")
@@ -1776,6 +1904,7 @@ def add_route_trees(L):
             start = "J_%s_drop" % spec["root"]
             nodes[start] = {"xy": nodes[spec["root"]]["xy"], "label": "Route 16: trunk meets the firewall below the bulkhead",
                             "short": ""}
+            nodes[start]["car"] = list(nodes[spec["root"]]["car"])
             segs.append([spec["root"], start, int(spec["root_drop_mm"])])
         for k in [k for k, v in parent.items() if v[0] is None]:
             if k in keep:
@@ -2415,6 +2544,7 @@ def self_test():
     bun += [{"id": "s%d" % i, "sourceId": ("bp_a", "bp_b", "bp_r")[i % 3], "targetId": "t%d" % i,
              "length": {"value": 25 if i % 4 == 0 else 100, "unit": "mm"}} for i in range(12)]
     fdoc = {"version": 1.3, "branchPoints": bps, "terminals": terms, "bundles": bun}
+    raw0 = json.loads(json.dumps(fdoc))      # as a generator places it, before any layout pass
     FB.to_scale(fdoc)
     fbad = FB.check(fdoc)
     snake = len(next(b for b in fdoc["bundles"] if b["id"] == "b_ra").get("layoutPoints", [])) > 2
@@ -2475,6 +2605,74 @@ def self_test():
     let_through, rest = FB.cannot_fit(crowd), [x for x in FB.check(crowd) if x.startswith("labels overlap")]
     cases.append(("formboard labels: 30 two-row ends on one 100 mm hub are over capacity; only their own overlaps are let through",
                   "bp_b" in FB.over_capacity(crowd) and let_through and not rest and "bp_b" not in FB.over_capacity(lab)))
+    # the regular layout view (Dan 2026-11-15, replaces A25 a as what the generators draw): formboard mode off, straight
+    # square runs on the grid, not to scale, every text clear at full size; the 1:1 tests above still test to_scale / check,
+    # which stay in formboard.py but are no longer called by a generator
+    rg = json.loads(json.dumps(raw0))
+    for i, t in enumerate(rg["terminals"]):
+        t["label"] = "LOGIC box seat M%d, terminal 30 - Some relay (K-X%d, LOGIC box)" % (i, i); t["signal"] = "Switched +12 V feed %d" % i
+    FB.regular(rg)
+    rat = {e["id"]: FB._centre(e) for k in FB.NODE_KINDS for e in rg.get(k, [])}
+    square = all(p[0] == q[0] or p[1] == q[1] for b in rg["bundles"] for p, q in zip(FB.bundle_path(rg, b, rat), FB.bundle_path(rg, b, rat)[1:]))
+    grid = all(e["layoutPosition"]["x"] % 30 == 0 and e["layoutPosition"]["y"] % 30 == 0 for k in FB.NODE_KINDS for e in rg.get(k, []))
+    cases.append(("regular layout: formboard mode off, every run square on the 30 grid, 12 long-labelled ends with no text overlapping, set lengths kept",
+                  FB.check_regular(rg) == [] and "formboard" not in rg and square and grid
+                  and {b["id"]: b["length"]["value"] for b in rg["bundles"]} == {b["id"]: b["length"]["value"] for b in raw0["bundles"]}
+                  and len(next(b for b in rg["bundles"] if b["id"] == "b_ra").get("layoutPoints", [])) == 0))
+    back = FB.regular(json.loads(json.dumps(lab)))      # a file that was a 1:1 formboard goes back the same way
+    cases.append(("regular layout: a 1:1 formboard document is redrawn with formboard mode off and passes the regular gate",
+                  "formboard" not in back and FB.check_regular(back) == [] and FB.check(back) == ["formboard mode is off"]))
+    cases.append(("regular layout: a document still in formboard mode is caught", "formboard mode is on" in FB.check_regular(lab)))
+    rbad = json.loads(json.dumps(rg))
+    r0, r1 = (next(t for t in rbad["terminals"] if t["id"] == k) for k in ("t0", "t3"))     # two ends of bp_r, one above the other
+    r1["layoutPosition"] = {"x": r0["layoutPosition"]["x"], "y": r0["layoutPosition"]["y"] + 6}
+    next(b for b in rbad["bundles"] if b["id"] == "b_ab").update(layoutPoints=[{"id": "x0", "layoutPosition": {"x": 450, "y": 600}}])
+    rb = FB.check_regular(rbad)
+    cases.append(("regular layout: two end labels on top of each other, two parts on one spot and a slanted run are caught",
+                  any(x.startswith("labels overlap") for x in rb) and any(x.startswith("two parts on one spot") for x in rb)
+                  and any("slanted" in x for x in rb)))
+    cross = json.loads(json.dumps(rg))
+    ca, cb_ = rat["bp_a"], rat["bp_b"]
+    cross["branchPoints"] += [{"id": "bp_x%d" % i, "layoutPosition": {"x": (ca[0] + cb_[0]) / 2 - 15, "y": ca[1] - 15 + dy}} for i, dy in ((0, -3000), (1, 3000))]
+    cross["bundles"].append({"id": "b_x", "sourceId": "bp_x0", "targetId": "bp_x1", "length": {"value": 10, "unit": "mm"}})
+    cases.append(("regular layout: a bundle drawn across another is caught", any(x.startswith("bundles cross or overlap: b_ab / b_x") for x in FB.check_regular(cross))))
+    gb = {"version": 1.3, "branchPoints": [{"id": n, "layoutPosition": {"x": x, "y": y}} for n, x, y in
+                                           (("bp_GB", 0, 0), ("bp_GB_LOGIC", 150, -150), ("bp_GB_POWER", 150, 150))],
+          "terminals": [{"id": "g%s%d" % (s, i), "type": "Loose", "label": "%s box seat %d" % (s, i), "layoutPosition": {"x": 300 + 30 * i, "y": y}}
+                        for s, y in (("L", -150), ("P", 150)) for i in range(3)],
+          "bundles": [{"id": "b_L", "sourceId": "bp_GB", "targetId": "bp_GB_LOGIC", "length": {"value": 240, "unit": "mm"}},
+                      {"id": "b_P", "sourceId": "bp_GB", "targetId": "bp_GB_POWER", "length": {"value": 210, "unit": "mm"}}]
+                     + [{"id": "b_g%s%d" % (s, i), "sourceId": "bp_GB_" + n, "targetId": "g%s%d" % (s, i), "length": {"value": 100, "unit": "mm"}}
+                        for s, n in (("L", "LOGIC"), ("P", "POWER")) for i in range(3)]}
+    FB.regular(gb)
+    gx = {e["id"]: e["layoutPosition"]["x"] for k in FB.NODE_KINDS for e in gb.get(k, [])}
+    cases.append(("regular layout: LOGIC box ends left of their breakout, POWER box ends right of theirs (A35, formboard.PREFER)",
+                  FB.check_regular(gb) == [] and all(gx["gL%d" % i] < gx["bp_GB_LOGIC"] < gx["bp_GB"] < gx["bp_GB_POWER"] < gx["gP%d" % i] for i in range(3))))
+    # the car view (Dan 2026-11-16: "regular layout view with straight runs ... the layout views should largely match the
+    # routes we made using the layout editors"): engine-bay map points turn into car mm the corridor way; every branch point
+    # on its editor spot at one scale, front RIGHT, driver side UP, straight (slanted) runs, ends combed, every text clear
+    import check_corridors as CC
+    sp_, rt_ = car_frame(Harness("ST185-harness").layout)
+    cases.append(("car frame: map points -> car mm = check_corridors.to_car; the editor spots of the layout tree",
+                  pt_to_car((252, 236)) == tuple(round(v, 1) for v in CC.to_car((252, 236))) and "ACAMP" in sp_ and "GB" in sp_))
+    cv = json.loads(json.dumps(raw0))
+    for i, t in enumerate(cv["terminals"]):
+        t["label"] = "LOGIC box seat M%d, terminal 30 - Some relay (K-X%d, LOGIC box)" % (i, i); t["signal"] = "Switched +12 V feed %d" % i
+    toy_sp = {"r": (0.0, 0.0), "a": (1800.0, -600.0), "b": (2600.0, 300.0)}
+    def toy_route(a, b, want=None): return [toy_sp[a], toy_sp[b]]
+    toy_route.free = set()
+    FB.regular(cv, (toy_sp, toy_route), list(toy_sp))
+    kk, cat = FB.CAR_STATS["k"], {e["id"]: e["layoutPosition"] for e in cv["branchPoints"]}
+    on = all(abs(cat["bp_" + n]["x"] - round(p[0] * kk / 30) * 30) < 1 and abs(cat["bp_" + n]["y"] - round(p[1] * kk / 30) * 30) < 1 for n, p in toy_sp.items())
+    cases.append(("car view: formboard mode off, every branch point on its editor spot at one scale (driver side up), slanted runs, "
+                  "12 long-labelled ends combed with no text overlapping, set lengths kept",
+                  FB.check_regular(cv, square=False) == [] and "formboard" not in cv and on and cat["bp_a"]["y"] < cat["bp_r"]["y"]
+                  and cat["bp_a"]["x"] > cat["bp_r"]["x"] and FB.check_regular(cv) != []
+                  and {b["id"]: b["length"]["value"] for b in cv["bundles"]} == {b["id"]: b["length"]["value"] for b in raw0["bundles"]}))
+    cvb = json.loads(json.dumps(cv))
+    la, lr = cat["bp_a"], cat["bp_r"]      # b_ab first runs back along b_ra, half way to bp_r
+    next(b for b in cvb["bundles"] if b["id"] == "b_ab").update(layoutPoints=[{"id": "x1", "layoutPosition": {"x": (la["x"] + lr["x"]) / 2, "y": (la["y"] + lr["y"]) / 2}}])
+    cases.append(("car view: a run drawn back over another run is caught", any(x.startswith("bundles cross or overlap") for x in FB.check_regular(cvb, square=False))))
     # box breakouts (Dan A35): a segment = right-angle distance + farthest seat beyond the end allowance, rounded up to 10 mm
     bl = {"end_allowance_mm": 100, "segments": [["GB", "GB_X", 0]], "box_breakouts": {"at": {"GB": [0, 0]},
           "nodes": {"GB_X": {"parent": "GB", "at": [30, 40], "seats": [["K-X", "30", "w", 151.0], ["K-X", "85", "w2", 90.0]]}}}}
