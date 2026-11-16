@@ -5,7 +5,8 @@
     "Every line carries its source in 'src': a DECISIONS id, a Dan answer, a datasheet, sot/* or the master's own pin text. Nothing here is guessed: what the repo does not say is 'TBD' and is reported as 'not proven'.",
     "A factory part is only an end point our wire lands on (Dan A57 a): a source, a ground (sink), a switch or a load. Nothing here checks a factory circuit.",
     "A change to this file needs Dan's yes (A54 a).",
-    "'exceptions': a finding Dan accepted by name (check + device, or check + 'text_has', a piece of the finding text). The tracer lists it under 'Accepted exceptions' and does not count it as a finding.",
+    "'exceptions': a finding Dan accepted by name (check + device, or check + 'text_has', a piece of the finding text or a list of pieces that must all be there). The tracer lists it under 'Accepted exceptions' and does not count it as a finding.",
+    "Overrides (Dan A75 a, 2026-11-16): the tracer blocks merges; each exception is Dan's permission for ONE violation: its 'src' names his question ID and the date ('Dan A70 a 2026-11-16') and it matches exactly one current finding. No Dan ID + date, a stale exception (matches nothing) or one covering more than one finding fails the gate (check EX).",
     "Expressions ('when', 'on_when') use the scenario inputs and the derived names below, plus hot('ID:pin') = that pin is on a hard supply, low('ID:pin') = on a hard ground, on('K-X') = relay closed, lit('DEV.element') = that load is on."
   ],
   "battery": {
@@ -28,8 +29,20 @@
     },
     {
       "check": "BF",
-      "text_has": "[ECU wake diode (ignition feed)]",
-      "why": "with the EFI or SW12 fuse pulled, the IGN fuse back-feeds the SW12 bus through the ECU wake diode D-IG2-WAKE on SP-A5: Link's standard G4X wire-in hold-power wiring",
+      "text_has": [
+        "with fuse B1 AMI IN-2 (EFI 30 A) pulled",
+        "[ECU wake diode (ignition feed)]"
+      ],
+      "why": "with the EFI fuse pulled, the IGN fuse back-feeds the SW12 bus through the ECU wake diode D-IG2-WAKE on SP-A5: Link's standard G4X wire-in hold-power wiring",
+      "src": "Dan A70 a 2026-11-16: Link standard G4X hold-power wiring (G4x forum 13209, 23490)"
+    },
+    {
+      "check": "BF",
+      "text_has": [
+        "with fuse B2 BUS2-2 (SW12 5 A) pulled",
+        "[ECU wake diode (ignition feed)]"
+      ],
+      "why": "with the SW12 fuse pulled, the IGN fuse back-feeds the SW12 bus through the ECU wake diode D-IG2-WAKE on SP-A5: Link's standard G4X wire-in hold-power wiring",
       "src": "Dan A70 a 2026-11-16: Link standard G4X hold-power wiring (G4x forum 13209, 23490)"
     }
   ],

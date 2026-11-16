@@ -18,10 +18,10 @@ writes, so the tree is untouched and CI can trust it.
   cad/check_drawings_current.py            R183: every drawing matches its model
   cad/check_drawing_rules.py               R184-R196: balloons, tangent edges, banned notes
   tools/check_doc_claims.py                R211: no stale documents
-
-SOFT (a warning, never a failure):
   docs/harness/tools/trace_circuits.py     the circuit tracer (row 117): the page docs/harness/CIRCUIT-TRACE.html is current and
-                                           no finding is open. SOFT until Dan says the findings are zero, then HARD (Dan A56 a)
+                                           no finding is open. HARD: it blocks merges (Dan A75 a). An override is one
+                                           trace_rules.json "exceptions" entry per violation, its src naming Dan's question ID
+                                           and date; the tracer fails a stale one or one covering more than one finding (EX)
 
 After a wiring change: edit docs/harness/MASTER-wirelist.csv, then
     python docs/harness/tools/check_wiring.py
@@ -46,7 +46,8 @@ HARD = [["docs/harness/tools/check_wiring.py"],
         ["cad/fusebox/src/check_printed_solid.py"],
         ["cad/check_drawings_current.py"],
         ["cad/check_drawing_rules.py"],
-        ["tools/check_doc_claims.py"]]
+        ["tools/check_doc_claims.py"],
+        ["docs/harness/tools/trace_circuits.py", "--check"]]
 
 
 def run(cmd):
@@ -59,12 +60,7 @@ def run(cmd):
     return r.returncode
 
 
-SOFT = [["docs/harness/tools/trace_circuits.py", "--check"]]
-
 fails = [c[0] for c in HARD if run(c)]
-warns = [c[0] for c in SOFT if run(c)]
-if warns:
-    print("WARNING (soft gate, not a failure): " + ", ".join(warns))
 if fails:
     print("FAILED: " + ", ".join(fails))
     sys.exit(1)

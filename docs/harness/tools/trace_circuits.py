@@ -38,6 +38,9 @@ Checks:
       switchboard_frames.json; watched inputs (ECU DI, A/C amp, cluster) read active exactly when they should and
       never float while their reader is powered
   TT  the headlamp / DRL / pop-up truth table of circuit-plan.md, row by row
+  EX  overrides (Dan A75 a): each trace_rules.json "exceptions" entry names Dan's permission for that one violation
+      (src "Dan <question ID> <date>", e.g. "Dan A70 a 2026-11-16") and matches exactly one current finding: one with
+      no Dan ID and date, one that matches nothing (stale) or one that covers more than one finding is a finding
   T0  (--asbuilt, on demand) each harness.design file as built = the master: every master wire drawn once, in a file
       of its own harness, on the same two ends, with the same wire part and colour; nothing drawn that the master
       does not have. The documents are pulled read-only into _scratch/asbuilt/ (gitignored) with the harness_design
@@ -46,8 +49,8 @@ Checks:
     python docs/harness/tools/trace_circuits.py                 summary and findings (exit 0)
     python docs/harness/tools/trace_circuits.py --write         write docs/harness/CIRCUIT-TRACE.html: one card per device
                                                                 (flowchart, scenario table, trace line, pass / fail / not proven)
-    python docs/harness/tools/trace_circuits.py --check         exit 1 if that page is stale or a finding is open: the SOFT gate
-                                                                of tools/check_all.py (a warning, Dan A56 a; HARD when Dan says so)
+    python docs/harness/tools/trace_circuits.py --check         exit 1 if that page is stale or a finding is open: a HARD gate
+                                                                of tools/check_all.py (Dan A75 a; an override is one "exceptions" entry, EX)
     python docs/harness/tools/trace_circuits.py --chains        every static chain
     python docs/harness/tools/trace_circuits.py --chain K-FP    the chains of one device or harness
     python docs/harness/tools/trace_circuits.py --table H1      the scenario table of one device
@@ -141,10 +144,9 @@ class Model:
 
     def find(self, code, harness, dev, text, devices=None):
         f = {"code": code, "harness": harness, "device": dev, "text": text, "devices": devices or [dev]}
-        x = next((x for x in self.R.get("exceptions", []) if x["check"] == code and (
-            x.get("device") == dev if "device" in x else x.get("text_has", "\0") in text)), None)
+        n, x = next(((n, x) for n, x in enumerate(self.R.get("exceptions", [])) if ex_matches(x, code, dev, text)), (None, None))
         if x:      # a named exception Dan accepted (rules "exceptions"): listed, never a finding
-            a = dict(f, why=x["why"], src=x["src"])
+            a = dict(f, why=x["why"], src=x["src"], ex=n)
             if a not in self.accepted:
                 self.accepted.append(a)
             return
@@ -173,6 +175,37 @@ class Model:
         if harness and not d["harness"]:
             d["harness"] = harness
         return d
+
+
+DAN_OK = re.compile(r"\bDan [A-Z]+\d+ [a-z] \d{4}-\d{2}-\d{2}\b")   # "Dan A70 a 2026-11-16": his answer to one question, dated
+
+
+def ex_matches(x, code, dev, text):
+    """an exception matches by check + device, or check + text_has (one piece, or a list of pieces that must all be there)"""
+    if x["check"] != code:
+        return False
+    if "device" in x:
+        return x["device"] == dev
+    th = x.get("text_has", "\0")
+    return all(t in text for t in (th if isinstance(th, list) else [th]))
+
+
+def exception_checks(M, pulls=True):
+    """EX (Dan A75 a): an override is one entry in "exceptions" with Dan's permission for that one violation: its src names
+    his question ID and the date, and it matches exactly one current finding. A stale one (matches nothing) or a wide one
+    (matches more than one) is a finding. The stale test needs the pulled-fuse scenarios, so it runs only with them."""
+    hits = collections.Counter(a["ex"] for a in M.accepted)
+    for n, x in enumerate(M.R.get("exceptions", [])):
+        who = "exception %d (%s %s)" % (n + 1, x["check"], x.get("device") or x.get("text_has"))
+        if not DAN_OK.search(x.get("src", "")):
+            M.findings.append({"code": "EX", "harness": "", "device": "", "devices": [], "text": who +
+                               ": its src names no Dan question ID and date (e.g. 'Dan A70 a 2026-11-16'); an override needs Dan's permission for that one violation (A75 a)"})
+        if hits[n] > 1:
+            M.findings.append({"code": "EX", "harness": "", "device": "", "devices": [], "text": who +
+                               ": covers %d findings; one exception covers exactly one violation (A75 a)" % hits[n]})
+        elif pulls and not hits[n]:
+            M.findings.append({"code": "EX", "harness": "", "device": "", "devices": [], "text": who +
+                               ": matches no current finding (stale override): remove it (A75 a)"})
 
 
 def read_seats(path=SEATS):
@@ -1405,6 +1438,7 @@ def run(rows, plan, seats, channels, rules, cp, pulls=True):
     logic_checks(M)
     csb3_checks(M)
     truth_table(M, cp)
+    exception_checks(M, pulls)
     return M
 
 
@@ -1468,7 +1502,7 @@ def report(M, argv):
         print("ACCEPTED %s [%s] %s (exception: %s; %s)" % (a["code"], a["harness"], a["text"], a["why"], a["src"]))
     for f in M.findings:
         print("FINDING %s [%s] %s" % (f["code"], f["harness"], f["text"]))
-    print("trace_circuits: %d finding(s), %d not proven (SOFT: never fails the build, Dan A56 a)" % (len(M.findings), len(M.unproven)))
+    print("trace_circuits: %d finding(s), %d not proven (HARD: an open finding fails tools/check_all.py, Dan A75 a)" % (len(M.findings), len(M.unproven)))
 
 
 # ------------------------------------------------------------------------------------------------ the report page
@@ -1477,7 +1511,7 @@ ORDER = ["HeavyDC", "CabinPower", "AB-cabin", "AB-engine", "EngineRoom-C", "Dash
 CHECKS = [("B1", "box ends exist in the fuse box plan"), ("C1", "every master end is classified"), ("T1", "closed loop, source to ground"),
           ("T2", "no short"), ("F1", "one fuse per load"), ("T6", "relay logic and suppression"), ("T7", "active state"),
           ("T8", "inactive state, no floating input"), ("T9", "switch to CSB3 to CAN bit to ECU input"), ("BF", "no back-feed"),
-          ("TT", "headlamp / DRL / pop-up truth table")]
+          ("TT", "headlamp / DRL / pop-up truth table"), ("EX", "each override names Dan's permission and covers exactly one finding")]
 CSS = """
 body{font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif;margin:0;background:#f4f5f7;color:#1c2330}
 header{background:#1c2330;color:#fff;padding:14px 22px}header h1{margin:0 0 4px;font-size:20px}header p{margin:2px 0;color:#c9d1dc}
@@ -1874,6 +1908,20 @@ def self_test():
     ru = copy.deepcopy(rules)
     next(w for w in ru["watch"] if w["pin"] == "ECU-B:30").pop("float")
     case("rule removed: ECU DI 7 (pull-up OFF) floating is a finding again (Dan A73 a)", "T8", "DI 7", ru=ru)
+    # ---- overrides (Dan A75 a): one exception = Dan's permission (question ID + date) for exactly one finding
+    cases.append(("overrides: every current exception names Dan's ID + date and covers exactly one finding (A68 a, A70 a)",
+                  not any(f["code"] == "EX" for f in M0.findings)
+                  and sorted(collections.Counter(a["ex"] for a in M0.accepted).values()) == [1] * len(rules["exceptions"])))
+    ru = copy.deepcopy(rules)
+    next(x for x in ru["exceptions"] if x.get("device") == "T-STARTER-B")["src"] = "Dan said so; starting system 1993 TIS EWD p.66"
+    case("override: an exception whose src has no Dan question ID + date fails", "EX", "no Dan question ID", ru=ru)
+    ru = copy.deepcopy(rules)
+    ru["exceptions"].append({"check": "F1", "text_has": "no finding has this text", "why": "test", "src": "Dan A99 a 2026-11-16"})
+    case("override: a stale exception (matches no current finding) fails", "EX", "stale override", ru=ru, pulls=True)
+    ru = copy.deepcopy(rules)
+    ru["exceptions"] = [x for x in ru["exceptions"] if x["check"] != "BF"] + [
+        {"check": "BF", "text_has": "[ECU wake diode (ignition feed)]", "why": "test", "src": "Dan A70 a 2026-11-16"}]
+    case("override: one exception covering 2 findings (both wake-diode back-feeds) fails", "EX", "covers 2 findings", ru=ru, pulls=True)
     good = [doc_from_master(rows, "RearFuel"), doc_from_master(rows, "CabinPower"), doc_from_master(rows, "HeavyDC")]
     mine = [r for r in rows if r["harness"] in ("RearFuel", "CabinPower", "HeavyDC")]
     cases.append(("as built: files drawn from the master give no finding", asbuilt_compare(mine, good)[1] == []))
