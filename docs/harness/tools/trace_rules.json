@@ -17,8 +17,8 @@
     {
       "check": "F1",
       "device": "T-STARTER-B",
-      "why": "the starter B+ cable has no fuse by design: the battery kill switch protects it",
-      "src": "Dan A68 a 2026-11-16"
+      "why": "the starter B+ cable has no fuse by design: a starter B+ cable is unfused in every car, Toyota's own included; the battery kill switch protects it",
+      "src": "Dan A68 a 2026-11-16; starting system 1993 TIS EWD p.66 (Starting and Ignition, All-Trac)"
     }
   ],
   "grounds": [
