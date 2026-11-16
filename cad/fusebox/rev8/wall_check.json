@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 817.5,
+   "volume_cm3": 818.2,
    "bounds": [
     128.0,
     341.8,
@@ -34,7 +34,7 @@
   "Power_Pan_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 158.9,
+   "volume_cm3": 158.4,
    "bounds": [
     163.45,
     337.05,
@@ -54,7 +54,7 @@
   "Power_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 198.9,
+   "volume_cm3": 198.7,
    "bounds": [
     154.25,
     346.25,
@@ -80,7 +80,7 @@
     "snap barb at leg (59.3, 53.5), 0.6 x 1.5 (R123)"
    ],
    "attach_checked": false,
-   "volume_cm3": 1.3,
+   "volume_cm3": 1.2,
    "bounds": [
     190.37,
     221.18,
@@ -91,7 +91,21 @@
    ],
    "exempt": {},
    "attach_skin": 0,
-   "walls": [],
+   "walls": [
+    {
+     "at": [
+      190.5,
+      192.2,
+      56.0,
+      56.5,
+      29.1,
+      31.1
+     ],
+     "sections": 5,
+     "class": "structural",
+     "why": "R127 M2 / R123: R1 retainer clip - a retention feature (Dan-marked)"
+    }
+   ],
    "attach": [],
    "flagged": 0
   },
@@ -129,7 +143,7 @@
   "Logic_Pan_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 85.1,
+   "volume_cm3": 84.0,
    "bounds": [
     2.25,
     87.3,
@@ -140,7 +154,7 @@
    ],
    "exempt": {
     "pan snap tongue": 16,
-    "notch at corner": 85
+    "notch at corner": 158
    },
    "attach_skin": 0,
    "walls": [],
@@ -201,7 +215,7 @@
   "BattRelay_Cover_PA12_printed": {
    "allowed": [],
    "attach_checked": false,
-   "volume_cm3": 107.4,
+   "volume_cm3": 107.3,
    "bounds": [
     -4.75,
     188.75,

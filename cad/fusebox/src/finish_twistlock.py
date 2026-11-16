@@ -22,9 +22,13 @@ def main():
     info = json.load(open(os.path.join(DIR, 'raw', 'twistlock_render.json')))
     t = info['c86']
     rl = '%s %s' % (info['box'], info['relay'])
-    common = ('TE 42281-1 on %.2f mm wire + RNF-100 build-up (crimp OD %.2f). Slot %.2f x %.2f, ledge %.2f a side, recess %.1f deep, '
-              'chamber %.2f square, seat %.1f lower.' % (info['wire_86'], t['crimp_od'], t['slot'][1] - t['slot'][0], t['slot'][3] - t['slot'][2],
-                                                         t['bear'], 1.0, t['chamber'], t['seat_drop']))
+    e = info['engage']
+    common = ('TE 42281-1, 18 AWG %.2f - %.2f (M22759/16 min to GXL max), crimped %.2f - %.2f with RNF-100 where needed. Slot %.2f x %.2f, '
+              'ledge %.2f a side, recess %.1f deep, chamber %.2f square, gap over the box %.1f.' % (
+                  t['od_range'][0], t['od_range'][1], t['crimp_range'][0], t['crimp_range'][1], t['slot'][1] - t['slot'][0],
+                  t['slot'][3] - t['slot'][2], t['bear'], info['d_r'], t['chamber'], info['gap']))
+    blade = ('Relay blade 6.3 x 0.8, 11 +-0.5 below the body (TE F7 data sheet): it goes %.1f into the box (%.1f - %.1f), '
+             'past the 8.0 tab mating length, short of the 10.25 box end.' % (e[1], e[0], e[2]))
     pages = {
         'twistlock_1_section_85_passing_86_seated.png': ('%s coil terminals, section through 85 and 86' % rl,
                                                           ['Left, 85: PASSING - box turned 90 deg, going up the slot (only way it fits).',
@@ -35,6 +39,7 @@ def main():
         'twistlock_3_section_85_passing_slot.png': ('%s 85 passing, section across the blade' % rl,
                                                     ['Turned 90 deg, the box is narrow enough for the slot; the crimped barrels follow.',
                                                      'Up into the chamber, turn 90 deg, pull the wire back down to seat.', common]),
+        'twistlock_5_section_86_blade_engaged.png': ('%s 86 seated with the relay coil blade in' % rl, [blade, common]),
         'twistlock_4_from_below.png': ('%s from below' % rl, ['Slot (wire way) crossed with the box recess. 86 shown seated.', common]),
     }
     for fn, (title, lines) in pages.items():

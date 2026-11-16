@@ -151,8 +151,11 @@ def sleeve_ends():
     out = {}
     for w in plan['wires']:
         for e in w['ends']:
-            if e.get('at') and e.get('box') in ('LOGIC', 'POWER') and e.get('part') in S.TERM and w['od'] < S.TERM[e['part']]['ins'][0]:
-                seq, _ = S.build_up(e['part'], w['od'])
+            # A82: the plan carries the GXL maximum of the gauge; the sleeves are bought for the thinnest wire it can be (OD_MIN), so a
+            # TXL / M22759/16 end always has its build-up (a thicker wire just uses fewer layers)
+            od_ = S.OD_MIN.get(w['gauge'], w['od']) if isinstance(w['gauge'], int) else w['od']
+            if e.get('at') and e.get('box') in ('LOGIC', 'POWER') and e.get('part') in S.TERM and od_ < S.TERM[e['part']]['ins'][0]:
+                seq, _ = S.build_up(e['part'], od_)
                 for sz in seq or []:
                     out.setdefault(e['box'], {}).setdefault(sz, 0)
                     out[e['box']][sz] += 1

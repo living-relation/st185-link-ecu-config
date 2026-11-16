@@ -515,7 +515,16 @@ OUT_SMALL = {'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'MRS', 'B3
 PLACE = {'LOGIC': (0.0, 0.0), 'POWER': (160.0, 0.0), 'BATTRELAY': (0.0, -175.0)}   # world (x, y) of each box's local origin (renders only)
 
 # ---------- wires at every lug / stud / terminal
-OD = {'1/0': 13.6, 6: 6.43, 8: 5.13, 10: 3.61, 12: 2.97, 14: 2.41, 16: 2.06, 18: 1.85, 20: 1.57}
+# Dan 2026-11-16 (A82): every seat is sized for the whole insulation range its gauge can come in - cabin wires TXL or GXL, M22759/16
+# where shielded. OD_RANGE (min, max) mm: min = the M22759/16 minimum (Wiremasters M22759 guide, /16 table: 20 .058, 18 .069, 16 .077,
+# 14 .091, 12 .111, 10 .136 in; the TXL minimum is TBD - its J1128 sheet gives only a maximum), max = the GXL maximum (SAE J1128 GXL
+# table on Caledonian's GXL sheet: 20 2.40, 18 2.50, 16 2.90, 14 3.20, 12 3.80, 10 4.70). TXL max (same source's TXL sheet): 20 1.90,
+# 18 2.20, 16 2.40, 14 2.70, 12 3.30, 10 4.00. 8 / 6 AWG and 1/0 keep their one value (M22759/16 / SGX, docstring; range TBD).
+# OD = the maximum (bundles, bends, lanes and every "does it fit" use the fattest wire); OD_MIN for the build-up and grip checks.
+OD_RANGE = {20: (1.47, 2.40), 18: (1.75, 2.50), 16: (1.96, 2.90), 14: (2.31, 3.20), 12: (2.82, 3.80), 10: (3.45, 4.70),
+            8: (5.13, 5.13), 6: (6.43, 6.43), '1/0': (13.6, 13.6)}
+OD = {k: v[1] for k, v in OD_RANGE.items()}
+OD_MIN = {k: v[0] for k, v in OD_RANGE.items()}
 # AWG per AMI position (the CabinPower wire list; a fuse-to-relay jumper takes the relay-in gauge)
 AMI_AWG = {'HTR': 8, 'EFI': 12, 'STR': 12, 'FAN': 8, 'FAN2': 8, 'PWR': 10,
            'BUS1': 8, 'RTR': 10, 'AM1': 8, 'AM2': 10, 'JB1': 6, 'EPS': 8}
@@ -1081,7 +1090,14 @@ def real_zones(part, kind, side=1):
 # contact box length (REAL wz[0]); the seat drops d_r + lift below the rev 8 seat so the chamber fits under the same deck skin.
 # The slot is sized from the crimped terminal on the wire that seat really carries (Dan: "crimped on the real wire OD"), not the top of
 # the TE insulation range (R120): a thicker wire there needs a reprint (twist_check reports the crimped OD each slot is cut for).
-TWIST = dict(d_r=1.0, lift=0.2, t_a=2.0, clr=CLR, bear_min=0.8)
+# Recess and lift (Dan A76 a, 2026-11-16: keep the gap over the seated box small so the relay blade still mates). The ledge holds the
+# terminal; the recess only stops it turning back, so it is kept shallow: d_r 0.6 still leaves 0.3 after the HP MJF PA12 tolerance
+# (+-0.3 mm, assumed), and the lift room 0.3 (= that tolerance) still lets the box clear the recess to turn. The gap over the seated box is
+# d_r + lift = 0.9 (was 1.0 + 0.2). Blade check (TE F7 data sheet V23134 rev 2607 p.3: coil blades 6.3 x 0.8, 11 +-0.5 below the body's
+# measurement reference plane = the body base on the deck top; IEC 61210 / DIN 46244 6.3 tab mating length 8.0, Lear 6.3 tab table):
+# the blade goes 11 - (top_gap 1.0 + 0.9) = 9.1 into the receptacle (8.6 .. 9.6), past the 8.0 mating length and short of the
+# 42281-1 contact box end 10.25 (REAL wz).
+TWIST = dict(d_r=0.6, lift=0.3, t_a=2.0, clr=CLR, bear_min=0.8, blade_len={'F7 85': 11.0, 'F7 86': 11.0}, blade_tol=0.5, mate_min=8.0)
 TWIST_KINDS = {'F7 85', 'F7 86'}       # pilot (Dan 2026-11-16: one seat type first, his OK before the rest)
 # Crimped barrel sizes from the TE application specs, per terminal: wire barrel crimp width ww / height wh (mm, by AWG), insulation
 # barrel crimp width iw ("F" crimp). None = not in a TE document on hand: the barrel is taken as round on its own conductor / insulation
@@ -1109,7 +1125,7 @@ def twist_env(pn, od, awg=None):
     cr = CRIMP.get(pn, {})
     wh = cr.get('wh', {}).get(awg) or R_['d'] + 2 * t
     ww = cr.get('ww') or wh
-    ih = crimp_od(pn, od) + 2 * t
+    ih = crimp_max(pn, od, awg) + 2 * t     # A82: the fattest crimp over the gauge's whole insulation range (with its build-up)
     iw = cr.get('iw') or ih
     yi = R_['iz'][1]
     lk = R_['lock']
@@ -1120,6 +1136,19 @@ def twist_env(pn, od, awg=None):
         lance = (W_ / 2 + lk[1], 0.0, H_)
     return dict(yb=H_ / 2, box=(W_ / 2, 0.0, H_), lance=lance, wire=(ww / 2, 0.0, wh), ins=(iw / 2, yi, yi + ih), Lb=R_['wz'][0],
                 est=not cr)
+
+
+def crimp_range(pn, od, awg=None):
+    """(least, largest) OD the insulation barrel closes on, over the gauge's insulation range OD_MIN[awg] .. od (A82), each with its
+    RNF-100 build-up where the wire is below the terminal's range (A21)."""
+    lo = OD_MIN.get(awg, od) if awg is not None else od
+    n = max(1, int(round((od - lo) / 0.05)))
+    v = [crimp_od(pn, lo + (od - lo) * i / n) for i in range(n + 1)]
+    return min(v), max(v)
+
+
+def crimp_max(pn, od, awg=None):
+    return crimp_range(pn, od, awg)[1]
 
 
 def _r(p, yb):
@@ -1170,7 +1199,19 @@ def twist_check(part, kind, od, awg=None, side=1):
     return dict(bear=round(bear, 2), key=round(min(slot[3] - slot[2], slot[5] - slot[4]), 2), box_w=round(2 * E['box'][0], 2),
                 wire_turn=round(2 * r_wire, 2), slot_short=round(s_short, 2), chamber=round(chamber[3] - chamber[2], 2),
                 recess=[round(v, 2) for v in recess[2:]], slot=[round(v, 2) for v in slot[2:]], seat_drop=TWIST['d_r'] + TWIST['lift'],
-                crimp_od=round(crimp_od(part, od), 2), est=E['est'])
+                crimp_od=round(crimp_max(part, od, awg), 2), crimp_range=[round(v, 2) for v in crimp_range(part, od, awg)],
+                od_range=[OD_MIN.get(awg, od), od], est=E['est'], gap=round(TWIST['d_r'] + TWIST['lift'], 2),
+                engage=blade_engage(part, kind, True))
+
+
+def blade_engage(part, kind, twist=False):
+    """(min, nominal, max) depth the relay blade goes into the receptacle (blade length below the body base on the deck top - the seat
+    depth), or None when the blade length is not on file (TWIST['blade_len'])."""
+    L_ = TWIST['blade_len'].get(kind)
+    if L_ is None:
+        return None
+    e = L_ - seat_gap(part, kind, twist)
+    return (round(e - TWIST['blade_tol'], 2), round(e, 2), round(e + TWIST['blade_tol'], 2))
 
 
 

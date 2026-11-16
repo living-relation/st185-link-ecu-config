@@ -184,6 +184,20 @@ def render(out_dir, relay='R2', box_name='POWER'):
         add(n, cut_half(b, *sec3), a)
     shots.append(('twistlock_3_section_85_passing_slot.png', ((x85, y85, z_seat - 8), (0, 150, 15), 30.0)))
     shot(shots[-1][0], *shots[-1][1])
+    # (5) as (2) with the relay's coil blade in: TE F7 data sheet V23134 rev 2607 p.3, 6.3 x 0.8, 11 long below the body base (the body
+    # base sits on the deck top), so the blade tip shows how far it reaches into the receptacle box (spec.blade_engage)
+    clear()
+    add('Base (section)', cut_half(tb.copy(base), *sec2), AP['pa12'])
+    for (n, b, a) in terminal(c86, False, 0.0):
+        add(n, cut_half(b, *sec2), a)
+    bl = S.TWIST['blade_len'][c86['kind']]
+    x86 = c86['x'] + sx_
+    blade = box(x86 - 3.15, y86 - 0.4, zt - bl, x86 + 3.15, y86 + 0.4, zt + 3.0) if S.BLADE_AXIS[c86['kind']] == 'x' else \
+        box(x86 - 0.4, y86 - 3.15, zt - bl, x86 + 0.4, y86 + 3.15, zt + 3.0)
+    add('Relay coil blade 6.3 x 0.8 (F7)', cut_half(blade, 'y', y86 + 0.01, True), AP['cu'])
+    add('Relay body (base on the deck top)', cut_half(box(x86 - 6.0, y86 - 6.0, zt, x86 + 6.0, y86 + 6.0, zt + 4.0), *sec2), AP['sl'])
+    shots.append(('twistlock_5_section_86_blade_engaged.png', ((x85, y86, z_seat - 4), (0, 150, 15), 30.0)))
+    shot(shots[-1][0], *shots[-1][1])
     # (4) from below, no section: the slot (R) and the recess (S) cross, the seated 86 box resting across its slot
     clear()
     add('Base', tb.copy(base), AP['pa12'])
@@ -194,6 +208,7 @@ def render(out_dir, relay='R2', box_name='POWER'):
     tdoc.close(False)
     src_doc[0].activate()
     info = dict(relay=relay, box=box_name, z_seat=round(z_seat, 2), c85=c85.get('twist'), c86=c86.get('twist'),
-                wire_85=c85['wire_od'], wire_86=c86['wire_od'], files=[s_[0] for s_ in shots])
+                wire_85=c85['wire_od'], wire_86=c86['wire_od'], files=[s_[0] for s_ in shots],
+                engage=S.blade_engage(c86['part'], c86['kind'], True), gap=round(S.TWIST['d_r'] + S.TWIST['lift'], 2), d_r=S.TWIST['d_r'])
     json.dump(info, open(os.path.join(raw, 'twistlock_render.json'), 'w'), indent=1)
     return info

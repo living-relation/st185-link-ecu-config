@@ -3,52 +3,8 @@
   {
    "where": "LOGIC BUS1 EFI86 input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
-   "r_inside": null,
-   "need": 4.7,
-   "rule": "3 x OD, supported",
-   "ok": true,
-   "note": "no bend: the lug barrel is right under the input blade"
-  },
-  {
-   "where": "LOGIC BUS1 HL input jumper (16 AWG)",
-   "awg": "16",
-   "od": 2.06,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
-   "r_inside": null,
-   "need": 6.2,
-   "rule": "3 x OD, supported",
-   "ok": true,
-   "note": "no bend: the lug barrel is right under the input blade"
-  },
-  {
-   "where": "LOGIC BUS1 HR input jumper (16 AWG)",
-   "awg": "16",
-   "od": 2.06,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
-   "r_inside": null,
-   "need": 6.2,
-   "rule": "3 x OD, supported",
-   "ok": true,
-   "note": "no bend: the lug barrel is right under the input blade"
-  },
-  {
-   "where": "LOGIC BUS1 HZ input jumper (16 AWG)",
-   "awg": "16",
-   "od": 2.06,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
-   "r_inside": null,
-   "need": 6.2,
-   "rule": "3 x OD, supported",
-   "ok": true,
-   "note": "no bend: the lug barrel is right under the input blade"
-  },
-  {
-   "where": "LOGIC BUS1 DOME input jumper (14 AWG)",
-   "awg": "14",
-   "od": 2.41,
-   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
    "r_inside": null,
    "need": 7.2,
    "rule": "3 x OD, supported",
@@ -56,12 +12,56 @@
    "note": "no bend: the lug barrel is right under the input blade"
   },
   {
+   "where": "LOGIC BUS1 HL input jumper (16 AWG)",
+   "awg": "16",
+   "od": 2.9,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 8.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HR input jumper (16 AWG)",
+   "awg": "16",
+   "od": 2.9,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 8.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 HZ input jumper (16 AWG)",
+   "awg": "16",
+   "od": 2.9,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (4.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 8.7,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
+   "where": "LOGIC BUS1 DOME input jumper (14 AWG)",
+   "awg": "14",
+   "od": 3.2,
+   "path": "straight down from the input receptacle into its PIDG lug barrel (9.0 mm of wire between them)",
+   "r_inside": null,
+   "need": 9.6,
+   "rule": "3 x OD, supported",
+   "ok": true,
+   "note": "no bend: the lug barrel is right under the input blade"
+  },
+  {
    "where": "LOGIC BUS1 LAM input jumper (18 AWG)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 5.6,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -69,10 +69,10 @@
   {
    "where": "LOGIC BUS1 ALM input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -80,10 +80,10 @@
   {
    "where": "LOGIC BUS1 ALMS input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -91,10 +91,10 @@
   {
    "where": "LOGIC BUS1 ALTS input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -102,10 +102,10 @@
   {
    "where": "LOGIC BUS1 ETB input jumper (18 AWG)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 5.6,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -113,10 +113,10 @@
   {
    "where": "LOGIC BUS2 DRL input jumper (18 AWG)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 5.6,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -124,10 +124,10 @@
   {
    "where": "LOGIC BUS2 SW12 input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -135,10 +135,10 @@
   {
    "where": "LOGIC BUS2 COP input jumper (18 AWG)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 5.6,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -146,10 +146,10 @@
   {
    "where": "LOGIC BUS2 INJ input jumper (18 AWG)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
    "r_inside": null,
-   "need": 5.6,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -157,10 +157,10 @@
   {
    "where": "LOGIC BUS2 CSB input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -168,10 +168,10 @@
   {
    "where": "LOGIC BUS2 DEV input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -179,10 +179,10 @@
   {
    "where": "LOGIC BUS2 EPSEN input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -190,10 +190,10 @@
   {
    "where": "LOGIC BUS2 ACC input jumper (18 AWG)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "straight down from the input receptacle into its PIDG lug barrel (9.5 mm of wire between them)",
    "r_inside": null,
-   "need": 5.6,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -201,10 +201,10 @@
   {
    "where": "LOGIC BUS2 ALMIG input jumper (20 AWG)",
    "awg": "20",
-   "od": 1.57,
+   "od": 2.4,
    "path": "straight down from the input receptacle into its PIDG lug barrel (4.5 mm of wire between them)",
    "r_inside": null,
-   "need": 4.7,
+   "need": 7.2,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend: the lug barrel is right under the input blade"
@@ -223,65 +223,65 @@
   {
    "where": "LOGIC BUS2 feed (from k_efi 30)",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "straight out the rear end, lug axis, under the skirt",
    "r_inside": null,
-   "need": 36.1,
+   "need": 47.0,
    "rule": "10 x OD",
    "ok": true,
-   "note": "no bend in the box; first bend in the harness: >= 11 supported or >= 36 free"
+   "note": "no bend in the box; first bend in the harness: >= 14 supported or >= 47 free"
   },
   {
    "where": "LOGIC harness bundle at x 9 (7 wires)",
    "awg": "14",
-   "od": 2.41,
+   "od": 3.2,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
-   "r_inside": 7.23,
-   "need": 7.2,
+   "r_inside": 9.600000000000001,
+   "need": 9.6,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 6.4 mm; 22.1 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+   "note": "bundle 8.8 mm; 18.1 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 32"
   },
   {
    "where": "LOGIC harness bundle at x 47 (8 wires)",
    "awg": "14",
-   "od": 2.41,
+   "od": 3.2,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
-   "r_inside": 7.23,
-   "need": 7.2,
+   "r_inside": 9.600000000000001,
+   "need": 9.6,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 6.6 mm; 22.0 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+   "note": "bundle 9.3 mm; 17.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 32"
   },
   {
    "where": "LOGIC harness bundle at x 60 (16 wires)",
    "awg": "14",
-   "od": 2.41,
+   "od": 3.2,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
-   "r_inside": 7.23,
-   "need": 7.2,
+   "r_inside": 9.600000000000001,
+   "need": 9.6,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 9.9 mm; 20.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+   "note": "bundle 13.6 mm; 15.7 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 32"
   },
   {
    "where": "LOGIC harness bundle at x 78 (11 wires)",
    "awg": "14",
-   "od": 2.41,
+   "od": 3.2,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the front edge",
-   "r_inside": 7.23,
-   "need": 7.2,
+   "r_inside": 9.600000000000001,
+   "need": 9.6,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 7.4 mm; 21.6 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 24"
+   "note": "bundle 10.3 mm; 17.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 32"
   },
   {
    "where": "LOGIC fuse / micro relay receptacles, largest 14 AWG",
    "awg": "14",
-   "od": 2.41,
+   "od": 3.2,
    "path": "straight down out of the cavity, one bend into its bundle (rows above)",
-   "r_inside": 7.23,
-   "need": 7.2,
+   "r_inside": 9.600000000000001,
+   "need": 9.6,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "one bundle per fuse column / relay column, straight to the front edge"
@@ -300,10 +300,10 @@
   {
    "where": "POWER AMI IN EFI (30A) -> k_efi terminal 30",
    "awg": "12",
-   "od": 2.97,
+   "od": 3.8,
    "path": "straight 35 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
-   "need": 8.9,
+   "need": 11.4,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "saddle R16 under the deck sets and supports the bend"
@@ -311,10 +311,10 @@
   {
    "where": "POWER AMI IN FAN (30A) -> k_fan terminal 30",
    "awg": "10",
-   "od": 3.61,
-   "path": "straight 35 mm, then 90 deg up round the printed saddle into the cavity",
+   "od": 4.7,
+   "path": "straight 34 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
-   "need": 10.8,
+   "need": 14.1,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "saddle R16 under the deck sets and supports the bend"
@@ -322,10 +322,10 @@
   {
    "where": "POWER AMI IN FAN2 (30A) -> k_fan2 terminal 30",
    "awg": "10",
-   "od": 3.61,
-   "path": "straight 6 mm, then 90 deg up round the printed saddle into the cavity",
+   "od": 4.7,
+   "path": "straight 5 mm, then 90 deg up round the printed saddle into the cavity",
    "r_inside": 16.0,
-   "need": 10.8,
+   "need": 14.1,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "saddle R16 under the deck sets and supports the bend"
@@ -344,13 +344,13 @@
   {
    "where": "POWER AMI OUT RTR (30A) -> harness",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
    "r_inside": null,
-   "need": 36.1,
+   "need": 47.0,
    "rule": "10 x OD",
    "ok": true,
-   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+   "note": "no bend in the box; first bend in the harness: >= 14 supported (P-clamp each side) or >= 47 free"
   },
   {
    "where": "POWER AMI OUT AM1 (40A) -> harness",
@@ -366,13 +366,13 @@
   {
    "where": "POWER AMI OUT AM2 (30A) -> harness",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "straight out through the outboard end, under the skirt (belly pan exit), lug axis",
    "r_inside": null,
-   "need": 36.1,
+   "need": 47.0,
    "rule": "10 x OD",
    "ok": true,
-   "note": "no bend in the box; first bend in the harness: >= 11 supported (P-clamp each side) or >= 36 free"
+   "note": "no bend in the box; first bend in the harness: >= 14 supported (P-clamp each side) or >= 47 free"
   },
   {
    "where": "POWER AMI OUT JB1 (60A) -> harness",
@@ -465,101 +465,101 @@
   {
    "where": "BUS NEG GND (relays, 10, M8 on the NEG bar)",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "straight out through the cover rear notch, lug axis",
    "r_inside": null,
-   "need": 36.1,
+   "need": 47.0,
    "rule": "10 x OD",
    "ok": true,
-   "note": "no bend in the box; first bend outside >= 11 supported / >= 36 free"
+   "note": "no bend in the box; first bend outside >= 14 supported / >= 47 free"
   },
   {
    "where": "POWER harness bundle at y 52 (1 wires)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 5.550000000000001,
-   "need": 5.6,
+   "r_inside": 7.5,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+   "note": "bundle 2.5 mm; 17.2 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 25"
   },
   {
    "where": "POWER harness bundle at y 61 (1 wires)",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 10.83,
-   "need": 10.8,
+   "r_inside": 14.100000000000001,
+   "need": 14.1,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+   "note": "bundle 4.7 mm; 8.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 47"
   },
   {
    "where": "POWER harness bundle at y 70 (1 wires)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 5.550000000000001,
-   "need": 5.6,
+   "r_inside": 7.5,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+   "note": "bundle 2.5 mm; 17.2 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 25"
   },
   {
    "where": "POWER harness bundle at y 88 (1 wires)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 5.550000000000001,
-   "need": 5.6,
+   "r_inside": 7.5,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+   "note": "bundle 2.5 mm; 17.2 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 25"
   },
   {
    "where": "POWER harness bundle at y 97 (1 wires)",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 10.83,
-   "need": 10.8,
+   "r_inside": 14.100000000000001,
+   "need": 14.1,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+   "note": "bundle 4.7 mm; 8.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 47"
   },
   {
    "where": "POWER harness bundle at y 106 (2 wires)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 5.550000000000001,
-   "need": 5.6,
+   "r_inside": 7.5,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 3.1 mm; 19.2 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+   "note": "bundle 4.2 mm; 16.3 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 25"
   },
   {
    "where": "POWER harness bundle at y 115 (1 wires)",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 10.83,
-   "need": 10.8,
+   "r_inside": 14.100000000000001,
+   "need": 14.1,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 3.6 mm; 12.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 36"
+   "note": "bundle 4.7 mm; 8.4 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 47"
   },
   {
    "where": "POWER harness bundle at y 124 (1 wires)",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "down out of the cavity, one bend at 3 x OD into the bundle, straight to the inboard edge",
-   "r_inside": 5.550000000000001,
-   "need": 5.6,
+   "r_inside": 7.5,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": true,
-   "note": "bundle 1.9 mm; 19.8 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 18"
+   "note": "bundle 2.5 mm; 17.2 mm to spare under the deck; outside: bundle >= 10 x OD of its largest wire = 25"
   },
   {
    "where": "POWER relay terminals (85 / 86 / 87 / 87a), largest 8 AWG",
@@ -575,21 +575,21 @@
   {
    "where": "BATTERY feed in (kill switch load side) -> M6 stud",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "straight in at the open -x end, lug axis",
    "r_inside": null,
-   "need": 36.1,
+   "need": 47.0,
    "rule": "10 x OD",
    "ok": true,
-   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+   "note": "no bend in the block; first bend outside >= 14 supported / >= 47 free"
   },
   {
    "where": "BATTERY AMI 40 out -> HCR150 terminal 3",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "one straight jumper, both lugs at the terminal height",
    "r_inside": null,
-   "need": 10.8,
+   "need": 14.1,
    "rule": "3 x OD, supported",
    "ok": true,
    "note": "no bend (the fuse pedestal puts its lug level with terminal 3)"
@@ -597,24 +597,24 @@
   {
    "where": "BATTERY HCR150 terminal 5 -> pump",
    "awg": "10",
-   "od": 3.61,
+   "od": 4.7,
    "path": "straight out the open +x end, lug axis",
    "r_inside": null,
-   "need": 36.1,
+   "need": 47.0,
    "rule": "10 x OD",
    "ok": true,
-   "note": "no bend in the block; first bend outside >= 11 supported / >= 36 free"
+   "note": "no bend in the block; first bend outside >= 14 supported / >= 47 free"
   },
   {
    "where": "BATTERY coil leads (Superseal plug, 2 x 18 AWG) -> Link Aux 3",
    "awg": "18",
-   "od": 1.85,
+   "od": 2.5,
    "path": "one 90 deg turn, then along the front to the +x end",
-   "r_inside": 5.0,
-   "need": 5.6,
+   "r_inside": 4.3,
+   "need": 7.5,
    "rule": "3 x OD, supported",
    "ok": false,
-   "note": "held by the plug and the cover notch; 3 x OD = 5.6"
+   "note": "held by the plug and the cover notch; 3 x OD = 7.5"
   }
  ],
  "labels": {
@@ -704,8 +704,8 @@
    {
     "at": 9.4,
     "wires": 7,
-    "d": 6.4,
-    "z": 8.0,
+    "d": 8.8,
+    "z": 9.2,
     "what": [
      "w_hl_cp",
      "w_hz_cp",
@@ -715,13 +715,13 @@
      "w_at_12v",
      "w_k_efi_86_cp"
     ],
-    "room": 22.1
+    "room": 18.1
    },
    {
     "at": 46.5,
     "wires": 8,
-    "d": 6.6,
-    "z": 8.1,
+    "d": 9.3,
+    "z": 9.5,
     "what": [
      "w_start",
      "w_cp_sw12_in",
@@ -732,13 +732,13 @@
      "w_at_ig",
      "w_csb12"
     ],
-    "room": 22.0
+    "room": 17.8
    },
    {
     "at": 59.5,
     "wires": 16,
-    "d": 9.9,
-    "z": 9.7,
+    "d": 13.6,
+    "z": 11.6,
     "what": [
      "w_acc_trig",
      "w_k_etb_86_cp",
@@ -757,13 +757,13 @@
      "w_acc_clutch",
      "w_hl_low"
     ],
-    "room": 20.3
+    "room": 15.7
    },
    {
     "at": 78.1,
     "wires": 11,
-    "d": 7.4,
-    "z": 8.5,
+    "d": 10.3,
+    "z": 9.9,
     "what": [
      "w_fb_mrs_en",
      "w_eps_trig",
@@ -777,90 +777,90 @@
      "w_pod_87_cp",
      "w_k_on_85_cp"
     ],
-    "room": 21.6
+    "room": 17.4
    }
   ],
   "POWER": [
    {
     "at": 52.0,
     "wires": 1,
-    "d": 1.9,
-    "z": 5.7,
+    "d": 2.5,
+    "z": 6.0,
     "what": [
      "w76"
     ],
-    "room": 19.8
+    "room": 17.2
    },
    {
     "at": 61.0,
     "wires": 1,
-    "d": 3.6,
-    "z": 6.6,
+    "d": 4.7,
+    "z": 7.2,
     "what": [
      "w77_cp"
     ],
-    "room": 12.8
+    "room": 8.4
    },
    {
     "at": 70.0,
     "wires": 1,
-    "d": 1.9,
-    "z": 5.7,
+    "d": 2.5,
+    "z": 6.0,
     "what": [
      "w_k_efi_86_cp"
     ],
-    "room": 19.8
+    "room": 17.2
    },
    {
     "at": 88.0,
     "wires": 1,
-    "d": 1.9,
-    "z": 5.7,
+    "d": 2.5,
+    "z": 6.0,
     "what": [
      "w_fan85"
     ],
-    "room": 19.8
+    "room": 17.2
    },
    {
     "at": 97.0,
     "wires": 1,
-    "d": 3.6,
-    "z": 6.6,
+    "d": 4.7,
+    "z": 7.2,
     "what": [
      "w_fan_pwr"
     ],
-    "room": 12.8
+    "room": 8.4
    },
    {
     "at": 106.0,
     "wires": 2,
-    "d": 3.1,
-    "z": 6.4,
+    "d": 4.2,
+    "z": 6.9,
     "what": [
      "w_fan285",
      "w_k_fan_86_cp"
     ],
-    "room": 19.2
+    "room": 16.3
    },
    {
     "at": 115.0,
     "wires": 1,
-    "d": 3.6,
-    "z": 6.6,
+    "d": 4.7,
+    "z": 7.2,
     "what": [
      "w_fan2_pwr"
     ],
-    "room": 12.8
+    "room": 8.4
    },
    {
     "at": 124.0,
     "wires": 1,
-    "d": 1.9,
-    "z": 5.7,
+    "d": 2.5,
+    "z": 6.0,
     "what": [
      "w_k_fan2_86_cp"
     ],
-    "room": 19.8
+    "room": 17.2
    }
   ]
  },
@@ -912,7 +912,7 @@
     "z1": 59.5,
     "group": 0,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -954,7 +954,7 @@
     "z1": 59.5,
     "group": 1,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -996,7 +996,7 @@
     "z1": 59.5,
     "group": 2,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1038,7 +1038,7 @@
     "z1": 59.5,
     "group": 3,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "CAD jumper 18 AWG",
     "est": true,
     "lock": null
@@ -1080,7 +1080,7 @@
     "z1": 59.5,
     "group": 4,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1122,7 +1122,7 @@
     "z1": 59.5,
     "group": 5,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "CAD jumper 16 AWG",
     "est": true,
     "lock": null
@@ -1164,7 +1164,7 @@
     "z1": 59.5,
     "group": 6,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1206,7 +1206,7 @@
     "z1": 59.5,
     "group": 7,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "CAD jumper 16 AWG",
     "est": true,
     "lock": null
@@ -1248,7 +1248,7 @@
     "z1": 59.5,
     "group": 8,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1290,7 +1290,7 @@
     "z1": 59.5,
     "group": 9,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "CAD jumper 16 AWG",
     "est": true,
     "lock": null
@@ -1332,7 +1332,7 @@
     "z1": 59.5,
     "group": 10,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1374,7 +1374,7 @@
     "z1": 59.5,
     "group": 11,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "CAD jumper 14 AWG",
     "est": true,
     "lock": null
@@ -1416,7 +1416,7 @@
     "z1": 59.5,
     "group": 12,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1458,7 +1458,7 @@
     "z1": 59.5,
     "group": 13,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "CAD jumper 18 AWG",
     "est": true,
     "lock": null
@@ -1500,7 +1500,7 @@
     "z1": 59.5,
     "group": 14,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1542,7 +1542,7 @@
     "z1": 59.5,
     "group": 15,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -1584,7 +1584,7 @@
     "z1": 59.5,
     "group": 16,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1626,7 +1626,7 @@
     "z1": 59.5,
     "group": 17,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -1668,7 +1668,7 @@
     "z1": 59.5,
     "group": 18,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1710,7 +1710,7 @@
     "z1": 59.5,
     "group": 19,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -1752,7 +1752,7 @@
     "z1": 59.5,
     "group": 20,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1794,7 +1794,7 @@
     "z1": 59.5,
     "group": 21,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "CAD jumper 18 AWG",
     "est": true,
     "lock": null
@@ -1836,7 +1836,7 @@
     "z1": 59.5,
     "group": 22,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -1878,7 +1878,7 @@
     "z1": 59.5,
     "group": 23,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -1920,7 +1920,7 @@
     "z1": 59.5,
     "group": 24,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -1962,7 +1962,7 @@
     "z1": 59.5,
     "group": 25,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2004,7 +2004,7 @@
     "z1": 59.5,
     "group": 26,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2046,7 +2046,7 @@
     "z1": 59.5,
     "group": 27,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -2088,7 +2088,7 @@
     "z1": 59.5,
     "group": 28,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2130,7 +2130,7 @@
     "z1": 59.5,
     "group": 29,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "CAD jumper 18 AWG",
     "est": true,
     "lock": null
@@ -2172,7 +2172,7 @@
     "z1": 59.5,
     "group": 30,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2214,7 +2214,7 @@
     "z1": 59.5,
     "group": 31,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "CAD jumper 18 AWG",
     "est": true,
     "lock": null
@@ -2256,7 +2256,7 @@
     "z1": 59.5,
     "group": 32,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2298,7 +2298,7 @@
     "z1": 59.5,
     "group": 33,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -2340,7 +2340,7 @@
     "z1": 59.5,
     "group": 34,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2382,7 +2382,7 @@
     "z1": 59.5,
     "group": 35,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -2424,7 +2424,7 @@
     "z1": 59.5,
     "group": 36,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2466,7 +2466,7 @@
     "z1": 59.5,
     "group": 37,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -2508,7 +2508,7 @@
     "z1": 59.5,
     "group": 38,
     "part": "1-968851-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2550,7 +2550,7 @@
     "z1": 59.5,
     "group": 39,
     "part": "1-968849-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "CAD jumper 18 AWG",
     "est": true,
     "lock": null
@@ -2592,7 +2592,7 @@
     "z1": 59.5,
     "group": 40,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2634,7 +2634,7 @@
     "z1": 59.5,
     "group": 41,
     "part": "1-968849-1",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "CAD jumper 20 AWG",
     "est": true,
     "lock": null
@@ -2676,7 +2676,7 @@
     "z1": 57.3,
     "group": 42,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2718,7 +2718,7 @@
     "z1": 57.3,
     "group": 43,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2760,7 +2760,7 @@
     "z1": 57.3,
     "group": 43,
     "part": "280919-2",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2802,7 +2802,7 @@
     "z1": 57.3,
     "group": 43,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2844,7 +2844,7 @@
     "z1": 57.3,
     "group": 44,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2886,7 +2886,7 @@
     "z1": 57.3,
     "group": 45,
     "part": "280919-2",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2928,7 +2928,7 @@
     "z1": 57.3,
     "group": 45,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -2970,7 +2970,7 @@
     "z1": 57.3,
     "group": 45,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3012,7 +3012,7 @@
     "z1": 57.3,
     "group": 46,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3054,7 +3054,7 @@
     "z1": 57.3,
     "group": 47,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3096,7 +3096,7 @@
     "z1": 57.3,
     "group": 47,
     "part": "280919-2",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3138,7 +3138,7 @@
     "z1": 57.3,
     "group": 47,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3180,7 +3180,7 @@
     "z1": 57.3,
     "group": 48,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3222,7 +3222,7 @@
     "z1": 57.3,
     "group": 49,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3264,7 +3264,7 @@
     "z1": 57.3,
     "group": 49,
     "part": "280919-2",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3306,7 +3306,7 @@
     "z1": 57.3,
     "group": 49,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3348,7 +3348,7 @@
     "z1": 57.3,
     "group": 50,
     "part": "42281-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3390,7 +3390,7 @@
     "z1": 57.3,
     "group": 51,
     "part": "280919-2",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3432,7 +3432,7 @@
     "z1": 57.3,
     "group": 51,
     "part": "280919-2",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3474,7 +3474,7 @@
     "z1": 57.3,
     "group": 51,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3516,7 +3516,7 @@
     "z1": 57.3,
     "group": 52,
     "part": "42281-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3558,7 +3558,7 @@
     "z1": 57.3,
     "group": 53,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3600,7 +3600,7 @@
     "z1": 57.3,
     "group": 53,
     "part": "280919-2",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3642,7 +3642,7 @@
     "z1": 57.3,
     "group": 53,
     "part": "42281-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3684,7 +3684,7 @@
     "z1": 57.3,
     "group": 54,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3726,7 +3726,7 @@
     "z1": 57.3,
     "group": 55,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3768,7 +3768,7 @@
     "z1": 57.3,
     "group": 55,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3810,7 +3810,7 @@
     "z1": 57.3,
     "group": 55,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3852,7 +3852,7 @@
     "z1": 57.3,
     "group": 56,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3894,7 +3894,7 @@
     "z1": 57.3,
     "group": 57,
     "part": "280919-2",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3936,7 +3936,7 @@
     "z1": 57.3,
     "group": 57,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -3978,7 +3978,7 @@
     "z1": 57.3,
     "group": 57,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "harness",
     "est": true,
     "lock": null
@@ -4020,7 +4020,7 @@
     "z1": 57.3,
     "group": 58,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -4062,7 +4062,7 @@
     "z1": 57.3,
     "group": 59,
     "part": "280919-2",
-    "wire_od": 1.57,
+    "wire_od": 2.4,
     "source": "harness",
     "est": true,
     "lock": null
@@ -4104,7 +4104,7 @@
     "z1": 57.3,
     "group": 59,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": null
@@ -4146,7 +4146,7 @@
     "z1": 57.3,
     "group": 59,
     "part": "42281-1",
-    "wire_od": 2.06,
+    "wire_od": 2.9,
     "source": "harness",
     "est": true,
     "lock": null
@@ -4188,7 +4188,7 @@
     "z1": 57.3,
     "group": 60,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4230,7 +4230,7 @@
     "z1": 57.3,
     "group": 61,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4272,7 +4272,7 @@
     "z1": 57.3,
     "group": 61,
     "part": "280919-2",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4314,7 +4314,7 @@
     "z1": 57.3,
     "group": 61,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4358,7 +4358,7 @@
     "z1": 51.5,
     "group": 0,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4400,7 +4400,7 @@
     "z1": 51.5,
     "group": 1,
     "part": "1-968851-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4476,7 +4476,7 @@
     "z1": 51.5,
     "group": 2,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4518,7 +4518,7 @@
     "z1": 51.5,
     "group": 2,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": null
@@ -4594,7 +4594,7 @@
     "z1": 51.5,
     "group": 2,
     "part": "42281-1",
-    "wire_od": 2.41,
+    "wire_od": 3.2,
     "source": "spare (kept cut)",
     "est": true,
     "lock": null
@@ -4636,7 +4636,7 @@
     "z1": 51.5,
     "group": 3,
     "part": "280756-4",
-    "wire_od": 3.61,
+    "wire_od": 4.7,
     "source": "harness",
     "est": false,
     "lock": null
@@ -4667,7 +4667,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -4675,15 +4675,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.43,
       2.51,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -4691,10 +4691,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 3,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": "twist"
@@ -4725,7 +4725,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -4733,15 +4733,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.51,
       2.43,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -4749,10 +4749,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 3,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": "twist"
@@ -4794,7 +4794,7 @@
     "z1": 51.5,
     "group": 3,
     "part": "280756-4",
-    "wire_od": 2.97,
+    "wire_od": 3.8,
     "source": "harness",
     "est": false,
     "lock": null
@@ -4867,7 +4867,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -4875,15 +4875,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.43,
       2.51,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -4891,10 +4891,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 4,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": "twist"
@@ -4925,7 +4925,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -4933,15 +4933,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.51,
       2.43,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -4949,10 +4949,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 4,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": "twist"
@@ -5036,7 +5036,7 @@
     "z1": 51.5,
     "group": 5,
     "part": "280756-4",
-    "wire_od": 3.61,
+    "wire_od": 4.7,
     "source": "harness",
     "est": false,
     "lock": null
@@ -5067,7 +5067,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5075,15 +5075,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.43,
       2.51,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5091,10 +5091,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 5,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": "twist"
@@ -5125,7 +5125,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5133,15 +5133,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.51,
       2.43,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5149,10 +5149,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 5,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": "twist"
@@ -5194,7 +5194,7 @@
     "z1": 51.5,
     "group": 5,
     "part": "280756-4",
-    "wire_od": 3.61,
+    "wire_od": 4.7,
     "source": "harness",
     "est": false,
     "lock": null
@@ -5236,7 +5236,7 @@
     "z1": 51.5,
     "group": 6,
     "part": "280756-4",
-    "wire_od": 3.61,
+    "wire_od": 4.7,
     "source": "harness",
     "est": false,
     "lock": null
@@ -5267,7 +5267,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5275,15 +5275,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.43,
       2.51,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5291,10 +5291,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 6,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": "twist"
@@ -5325,7 +5325,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5333,15 +5333,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.51,
       2.43,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5349,10 +5349,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 6,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "harness",
     "est": true,
     "lock": "twist"
@@ -5394,7 +5394,7 @@
     "z1": 51.5,
     "group": 6,
     "part": "280756-4",
-    "wire_od": 3.61,
+    "wire_od": 4.7,
     "source": "harness",
     "est": false,
     "lock": null
@@ -5467,7 +5467,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5475,15 +5475,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.43,
       2.51,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5491,10 +5491,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 7,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": "twist"
@@ -5525,7 +5525,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5533,15 +5533,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.51,
       2.43,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5549,10 +5549,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 7,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": "twist"
@@ -5667,7 +5667,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5675,15 +5675,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.43,
       2.51,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5691,10 +5691,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 8,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": "twist"
@@ -5725,7 +5725,7 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -4.12,
       4.12,
       -2.05,
@@ -5733,15 +5733,15 @@
      ],
      [
       -10.25,
-      -9.25,
+      -9.65,
       -2.51,
       2.43,
       -4.12,
       4.12
      ],
      [
-      -9.25,
-      1.2,
+      -9.65,
+      0.9,
       -4.991,
       4.991,
       -4.991,
@@ -5749,10 +5749,10 @@
      ]
     ],
     "z0": 32.0,
-    "z1": 50.3,
+    "z1": 50.6,
     "group": 8,
     "part": "42281-1",
-    "wire_od": 1.85,
+    "wire_od": 2.5,
     "source": "spare (largest wire it takes)",
     "est": true,
     "lock": "twist"
@@ -6689,30 +6689,30 @@
    {
     "kind": "saddle",
     "at": [
-     36.3,
+     36.8,
      61.0
     ],
-    "before": 0.153,
+    "before": 0.127,
     "web": true,
     "after": 1.0
    },
    {
     "kind": "saddle",
     "at": [
-     36.7,
+     37.2,
      97.0
     ],
-    "before": 0.133,
+    "before": 0.098,
     "web": true,
     "after": 1.0
    },
    {
     "kind": "saddle",
     "at": [
-     65.7,
+     66.2,
      115.0
     ],
-    "before": 0.133,
+    "before": 0.098,
     "web": true,
     "after": 1.0
    },
@@ -8527,8 +8527,8 @@
    "key": "notch at corner",
    "only": null,
    "box": [
-    2.46,
-    16.44,
+    1.23,
+    17.67,
     0.6,
     8.8,
     3.9,
@@ -8553,8 +8553,8 @@
    "key": "notch at corner",
    "only": null,
    "box": [
-    70.55,
-    85.55,
+    69.11,
+    86.99,
     0.6,
     8.8,
     3.9,
@@ -8683,11 +8683,11 @@
    "key": "saddle lip",
    "only": "A",
    "box": [
-    182.97,
-    204.53,
-    56.72,
-    59.31,
-    6.71,
+    182.55,
+    204.95,
+    56.3,
+    58.9,
+    6.3,
     32.3
    ]
   },
@@ -8696,11 +8696,11 @@
    "key": "saddle lip",
    "only": "A",
    "box": [
-    182.97,
-    204.53,
-    62.69,
-    65.28,
-    6.71,
+    182.55,
+    204.95,
+    63.1,
+    65.7,
+    6.3,
     32.3
    ]
   },
@@ -8709,11 +8709,11 @@
    "key": "saddle lip",
    "only": "A",
    "box": [
-    182.65,
-    204.85,
-    92.39,
-    94.99,
-    6.4,
+    182.1,
+    205.4,
+    91.85,
+    94.45,
+    5.85,
     32.3
    ]
   },
@@ -8722,11 +8722,11 @@
    "key": "saddle lip",
    "only": "A",
    "box": [
-    182.65,
-    204.85,
-    99.01,
-    101.61,
-    6.4,
+    182.1,
+    205.4,
+    99.55,
+    102.15,
+    5.85,
     32.3
    ]
   },
@@ -8735,11 +8735,11 @@
    "key": "saddle lip",
    "only": "A",
    "box": [
-    211.65,
-    233.86,
-    110.39,
-    112.99,
-    6.4,
+    211.1,
+    234.4,
+    109.85,
+    112.45,
+    5.85,
     32.3
    ]
   },
@@ -8748,11 +8748,11 @@
    "key": "saddle lip",
    "only": "A",
    "box": [
-    211.65,
-    233.86,
-    117.01,
-    119.61,
-    6.4,
+    211.1,
+    234.4,
+    117.55,
+    120.15,
+    5.85,
     32.3
    ]
   },
@@ -10443,7 +10443,7 @@
     -174.5,
     -163.5,
     6.4,
-    33.1
+    33.43
    ]
   },
   {
@@ -11603,19 +11603,20 @@
  "pan_exits_joined": [
   "Logic_y 9.2-9.4",
   "Logic_y 9.4-16.7",
+  "Logic_y 46.5-59.5",
   "Power_terminal R6 30 - exit 124.0"
  ],
  "logic_group_walls": [
   [
-   51.22,
-   53.22,
+   50.99,
+   52.99,
    5.94,
    152.0,
    13.3
   ],
   [
-   68.43,
-   70.43,
+   68.62,
+   70.62,
    5.94,
    152.0,
    13.3
@@ -11857,20 +11858,20 @@
   {
    "relay": "R2",
    "terminal_end_z": 23.33,
-   "bend_top_z": 27.98,
-   "straight_wire_mm": -4.66
+   "bend_top_z": 28.4,
+   "straight_wire_mm": -5.07
   },
   {
    "relay": "R4",
    "terminal_end_z": 23.33,
-   "bend_top_z": 28.3,
-   "straight_wire_mm": -4.98
+   "bend_top_z": 28.85,
+   "straight_wire_mm": -5.52
   },
   {
    "relay": "R5",
    "terminal_end_z": 23.33,
-   "bend_top_z": 28.3,
-   "straight_wire_mm": -4.98
+   "bend_top_z": 28.85,
+   "straight_wire_mm": -5.52
   }
  ],
  "saddle_top_cut": [
@@ -11909,27 +11910,27 @@
     "R2 85",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R2 30",
     "R2 86",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R2 30",
     "R2 86",
     1.23,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R2 85",
     "R2 87",
     1.94,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -11937,13 +11938,13 @@
     "R2 87",
     1.94,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R2 86",
     "R2 87",
     1.94,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -11951,27 +11952,27 @@
     "R2 87",
     1.94,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R3 30",
     "R3 85",
     0.81,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R3 30",
     "R3 85",
     1.36,
-    38.05,
-    40.05
+    38.35,
+    40.35
    ],
    [
     "R3 30",
     "R3 85",
     1.36,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -11979,27 +11980,27 @@
     "R3 85",
     1.36,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R3 30",
     "R3 86",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R3 30",
     "R3 86",
     1.23,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R3 85",
     "R3 87",
     0.86,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12007,13 +12008,13 @@
     "R3 87",
     0.86,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R3 86",
     "R3 87",
     0.86,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12021,34 +12022,34 @@
     "R3 87",
     0.86,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R4 30",
     "R4 85",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R4 30",
     "R4 86",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R4 30",
     "R4 86",
     1.23,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R4 85",
     "R4 87",
     1.94,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12056,13 +12057,13 @@
     "R4 87",
     1.94,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R4 86",
     "R4 87",
     1.94,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12070,34 +12071,34 @@
     "R4 87",
     1.94,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R5 30",
     "R5 85",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R5 30",
     "R5 86",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R5 30",
     "R5 86",
     1.23,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R5 85",
     "R5 87",
     1.94,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12105,13 +12106,13 @@
     "R5 87",
     1.94,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R5 86",
     "R5 87",
     1.94,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12119,27 +12120,27 @@
     "R5 87",
     1.94,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R6 30",
     "R6 85",
     0.81,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R6 30",
     "R6 85",
     1.36,
-    38.05,
-    40.05
+    38.35,
+    40.35
    ],
    [
     "R6 30",
     "R6 85",
     1.36,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12147,27 +12148,27 @@
     "R6 85",
     1.36,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R6 30",
     "R6 86",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R6 30",
     "R6 86",
     1.23,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R6 85",
     "R6 87",
     0.86,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12175,13 +12176,13 @@
     "R6 87",
     0.86,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R6 86",
     "R6 87",
     0.86,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12189,27 +12190,27 @@
     "R6 87",
     0.86,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R7 30",
     "R7 85",
     0.81,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R7 30",
     "R7 85",
     1.36,
-    38.05,
-    40.05
+    38.35,
+    40.35
    ],
    [
     "R7 30",
     "R7 85",
     1.36,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12217,27 +12218,27 @@
     "R7 85",
     1.36,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R7 30",
     "R7 86",
     1.95,
     27.5,
-    38.05
+    38.35
    ],
    [
     "R7 30",
     "R7 86",
     1.23,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R7 85",
     "R7 87",
     0.86,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12245,13 +12246,13 @@
     "R7 87",
     0.86,
     40.7,
-    41.05
+    40.95
    ],
    [
     "R7 86",
     "R7 87",
     0.86,
-    40.05,
+    40.35,
     40.7
    ],
    [
@@ -12259,7 +12260,7 @@
     "R7 87",
     0.86,
     40.7,
-    41.05
+    40.95
    ]
   ]
  },
@@ -12271,13 +12272,13 @@
   ],
   [
    "R1 85",
-   2.65,
-   4.14
+   3.3,
+   4.05
   ],
   [
    "R1 86",
-   2.65,
-   4.14
+   3.3,
+   4.05
   ],
   [
    "R1 87",
@@ -12286,8 +12287,8 @@
   ],
   [
    "R1 87a",
-   3.21,
-   3.98
+   4.0,
+   4.02
   ]
  ],
  "retainers": {
@@ -12316,11 +12317,11 @@
      ],
      [
       "R1 85",
-      2.65
+      3.3
      ],
      [
       "R1 86",
-      2.65
+      3.3
      ],
      [
       "R1 87",
@@ -12328,7 +12329,7 @@
      ],
      [
       "R1 87a",
-      3.21
+      4.0
      ]
     ],
     "legs": [
@@ -13301,7 +13302,7 @@
   "bus_pos_lug_to_out_strap_min_mm": 13.72,
   "logic_jumper_lug_to_lug_min_mm": 2.6,
   "logic_jumper_parts_to_printed_min_mm": 0.3,
-  "logic_jumper_parts_to_harness_min_mm": 1.14,
+  "logic_jumper_parts_to_harness_min_mm": 1.4,
   "logic_strip_to_printed_min_mm": 0.0,
   "logic_bolt_to_other_strip_min_mm": 4.41,
   "logic_pem_nut_to_other_strip_min_mm": 7.2,
@@ -13313,6 +13314,26 @@
   [
    "Power_Wire_neg",
    "Power_Base_PA12_printed",
+   0.0
+  ],
+  [
+   "Logic_Harness_wires",
+   "Logic_Base_PA12_printed",
+   0.0
+  ],
+  [
+   "Logic_Harness_wires",
+   "Logic_Pan_PA12_printed",
+   0.0
+  ],
+  [
+   "BattRelay_Wire_coil",
+   "BattRelay_Cover_PA12_printed",
+   0.0
+  ],
+  [
+   "BattRelay_Wire_coil",
+   "BattRelay_Cover_PA12_printed",
    0.0
   ]
  ],
@@ -13335,8 +13356,8 @@
     174.1,
     41.0
    ],
-   "volume_cm3": 85.1,
-   "mass_g_pa12": 86.0,
+   "volume_cm3": 84.1,
+   "mass_g_pa12": 85.0,
    "bodies": 1,
    "lumps": 1,
    "shells": 1
@@ -13359,7 +13380,7 @@
     27.0,
     8.9
    ],
-   "volume_cm3": 1.3,
+   "volume_cm3": 1.2,
    "mass_g_pa12": 1.0,
    "bodies": 1,
    "lumps": 1,
@@ -13371,7 +13392,7 @@
     307.0,
     72.5
    ],
-   "volume_cm3": 817.6,
+   "volume_cm3": 818.3,
    "mass_g_pa12": 826.0,
    "bodies": 1,
    "lumps": 1,
@@ -13395,7 +13416,7 @@
     238.5,
     34.5
    ],
-   "volume_cm3": 158.9,
+   "volume_cm3": 158.4,
    "mass_g_pa12": 160.0,
    "bodies": 1,
    "lumps": 1,
@@ -13407,7 +13428,7 @@
     254.5,
     42.3
    ],
-   "volume_cm3": 198.9,
+   "volume_cm3": 198.8,
    "mass_g_pa12": 201.0,
    "bodies": 1,
    "lumps": 1,
@@ -13515,12 +13536,12 @@
   [
    "Power_Relay_TE_F7_1-1414286-0",
    "Power_Terminal_TE_42281-1",
-   4.733
+   4.79
   ],
   [
    "Power_Relay_TE_F7_1-1414286-0",
    "Power_Terminal_TE_42281-1",
-   4.733
+   4.79
   ],
   [
    "Power_Relay_TE_F7_1-1414286-0",

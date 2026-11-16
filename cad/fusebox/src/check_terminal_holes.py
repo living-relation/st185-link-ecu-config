@@ -116,7 +116,7 @@ def main():
     rep = json.load(open(REPORT, encoding='utf-8'))
     plan = json.load(open(PLAN, encoding='utf-8'))
     holes = rep.get('terminal_holes') or {}
-    bad, info, recut, retained, rows, resolve, moved = [], [], [], [], [], [], []
+    bad, info, recut, retained, rows, resolve, moved, over = [], [], [], [], [], [], [], []
     if not holes:
         print('check_terminal_holes: MISSING terminal_holes in %s - re-run the Fusion build (build_fusion.build(rev=7))' % os.path.relpath(REPORT, REPO))
         return 1
@@ -138,8 +138,15 @@ def main():
             if not seq:
                 bad.append('G1 %s %s: %s on a %.2f mm wire, below the %.2f mm floor of %s, and no RNF-100 build-up fits' % (
                     k[0], r['cav'], ', '.join(ws), od, lo, part))
+        g_ = r.get('awg')
+        if ws and g_ in S.OD_MIN:          # A82: the thinnest wire of the gauge needs a build-up that fits too; the fattest must fit the terminal
+            lo_ = S.OD_MIN[g_]
+            if lo_ < S.TERM[part]['ins'][0] and not S.build_up(part, lo_)[0]:
+                bad.append('G1 %s %s: %d AWG at its least OD %.2f is below %s (%.2f) and no RNF-100 build-up fits' % (k[0], r['cav'], g_, lo_, part, S.TERM[part]['ins'][0]))
+            if od > S.TERM[part]['ins'][1] + TOL:
+                over.append('%s %s: %s takes insulation to %.2f, %d AWG GXL is %.2f' % (k[0], r['cav'], part, S.TERM[part]['ins'][1], g_, od))
         hx, hy = S.hole(part, kind)
-        cod = S.crimp_od(part, od)
+        cod = S.crimp_max(part, od, r.get('awg'))
         if r.get('lock') == 'twist':        # T1: the slot is the narrow way through
             zt_ = S.twist_zones(part, kind, od, r.get('awg'))
             hx, hy = zt_[1][3] - zt_[1][2], zt_[1][5] - zt_[1][4]
@@ -206,6 +213,11 @@ def main():
                 bad.append('T1 %s %s: box overhangs the ledge %.2f each end (min %.2f)' % (c['box'], c['cav'], tw['bear'], S.TWIST['bear_min']))
             if tw['wire_turn'] > tw['slot_short'] + TOL:
                 bad.append('T1 %s %s: the crimped wire barrel (%.2f turning) does not turn in the %.2f slot' % (c['box'], c['cav'], tw['wire_turn'], tw['slot_short']))
+            eg = tw.get('engage')
+            if eg and eg[0] + TOL < S.TWIST['mate_min']:
+                bad.append('T1 %s %s: the relay blade goes only %.2f into the receptacle (min %.1f mating length)' % (c['box'], c['cav'], eg[0], S.TWIST['mate_min']))
+            if eg and eg[2] > S.twist_env(c['part'], c['od'])['Lb'] + TOL:
+                bad.append('T1 %s %s: the relay blade reaches %.2f, past the %.2f contact box into the crimp' % (c['box'], c['cav'], eg[2], S.twist_env(c['part'], c['od'])['Lb']))
             # the recess stops the seated box turning back only if no void (a neighbour's zone, or the bridge the build cuts when the
             # wall to it is under min_wall) comes inside the circle the box corners sweep, at the recess heights
             E_ = S.twist_env(c['part'], c['od'])
@@ -259,6 +271,10 @@ def main():
           'RNF-100 build-up' % (os.path.relpath(REPORT, REPO), n_ok, len(joined), len(shared), thin, S.HOLE['min_wall'], n_sl))
     for x in info:
         print('  info: ' + x)
+    if over:                            # A82: a terminal whose TE insulation range stops below the gauge's GXL OD (Dan to pick a part)
+        print('  NEEDS DAN (A82): %d wire ends whose terminal cannot grip the GXL maximum of their gauge' % len(over))
+        for x in over:
+            print('    ' + x)
     if retained:
         print('  info: %d cavities held by a printed retainer clip (R123 B: %s)' % (len(retained), ', '.join(
             sorted({'%s %s' % (b, cv.split()[0]) for b, cv, _ in retained}))))
