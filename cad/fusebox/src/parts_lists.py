@@ -461,12 +461,12 @@ def build(rev=6):
         plan_terminals(L, P)
     sleeves(L, P)
     wiring_notes(L, P)
-    L.add(P, 'Printed', 'Retainer clip under the heater relay R1 (R123 B)', 'Power_Retainer_R1_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
-          'Plate (2.0) with a hole per R1 wire and two barbed legs that snap into the cavity collar: stops the 62998-2 (no lance made for 8 AWG on a 6.3 blade) '
-          'and the other R1 terminals backing out', 0 if R8 else 1, unit=0.20, basis='est',
-          checked='est. ~2 cm3 at $0.10/cm3 until the rev 7 rebuild reports its volume (R82: printed parts need no buy link)',
-          note=('Rev 8: seat R1 is vacant (A16 a): the clip stays in the model for a future R1 relay; print it only then. ' if R8 else '') +
-               'Threaded onto the 5 R1 wires BEFORE they are crimped; the R1 RNF-100 build-ups are cut to the insulation barrel length so only bare wire goes through.')
+    if not R8:      # rev 8: the R123 clip is retired (A86 a, Dan 2026-11-16) - R1's terminals hold by their own lances
+        L.add(P, 'Printed', 'Retainer clip under the heater relay R1 (R123 B)', 'Power_Retainer_R1_PA12_printed.stl + .step (PA12)', 'print (your PA12 powder-bed printer)',
+              'Plate (2.0) with a hole per R1 wire and two barbed legs that snap into the cavity collar: stops the 62998-2 (no lance made for 8 AWG on a 6.3 blade) '
+              'and the other R1 terminals backing out', 1, unit=0.20, basis='est',
+              checked='est. ~2 cm3 at $0.10/cm3 until the rev 7 rebuild reports its volume (R82: printed parts need no buy link)',
+              note='Threaded onto the 5 R1 wires BEFORE they are crimped; the R1 RNF-100 build-ups are cut to the insulation barrel length so only bare wire goes through.')
     cover_screws(L, P)
     # lugs
     all_lugs = [(nm, S.AMI_AWG[nm]) for nm, a in IN_USED + OUT_USED]

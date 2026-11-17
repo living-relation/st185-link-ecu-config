@@ -31,7 +31,7 @@ OD[16] = OD.get(16, 2.06)
 METRIC_OD = {53.5: OD['1/0']}            # 1/0 SGX, 53.5 mm2
 MM2 = {20: 0.52, 18: 0.82, 16: 1.31, 14: 2.08, 12: 3.31, 10: 5.26, 8: 8.37, 6: 13.3}
 TERM_RANGE = {'1241388-2': (0.5, 1.0), '1241390-1': (1.5, 2.5), '1-968851-1': (1.0, 2.5), '1-968849-1': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
-              '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '62998-2': (5.0, 8.0)}     # mm2, from the parts list / harness part text
+              '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '63467-1': (2.08, 5.26)}     # mm2, from the parts list / harness part text (63467-1: TE page)
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn', 'k_etb': 'k_etb', 'k_acc': 'k_acc', 'k_eps_en': 'k_eps_en', 'k_rev': 'k_rev',
                'heater': 'k_htr', 'k_efi': 'k_efi', 'k_str': 'k_str', 'k_fan': 'k_fan', 'k_fan2': 'k_fan2', 'power': 'k_pwr'}
 PIN = {'30': 'c1', '85': 'c2', '86': 'c3', '87': 'c4', '87a': 'c5'}
@@ -560,12 +560,10 @@ def terminal_cavities(wires):
             od, src, wl, g = OD[g_], 'CAD jumper %d AWG' % g_, [], g_
         else:
             part, g = S.TERM_DEFAULT[c['kind']]
-            if c.get('relay') == S.RELAY_B['pos'] and c['kind'] in S.TERM_DEFAULT_B:     # rev 8: the vacant Mini ISO seat R1 keeps its 6.3 receptacles
+            if c.get('relay') == S.RELAY_B['pos'] and c['kind'] in S.TERM_DEFAULT_B:     # rev 8: the vacant Mini ISO seat R1, a 30 A / 10 AWG spare (A86 a)
                 part, g = S.TERM_DEFAULT_B[c['kind']]
             part, g = S.TERM_DEFAULT_CAV.get((box, key), (part, g)) if S.REV >= 8 else (part, g)
             od, src, wl = OD[g], ('spare (kept cut)' if S.REV >= 8 and (box, key) in S.KEEP_CUT else 'spare (largest wire it takes)'), []
-            if key.split()[0] in S.RETAIN.get(box, []):      # vacant R1 held as built in v53 pending A86 (spec.OD_V53)
-                od = S.OD_V53[g]
         out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
                         hole=[round(v, 3) for v in S.hole(part, c['kind'])] if part in S.TERM else None,
                         zones=None, awg=g))

@@ -53,11 +53,11 @@ FLAGS_MD = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'WALL-FLAGS.md')
 # R127 / R128 baseline: (thin-wall spots, attachment spots) per part outside the named exemptions - 0 after the R128 sweep (2026-10-16);
 # it may only go down, so it stays 0. R151: it counts STRUCTURAL spots; non-structural / questionable ones are flagged, not counted.
 WALL_BASELINE = {n: (0, 0) for n in (
-    'Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
+    'Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed',
     'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed', 'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed',
     'Power_NutHolder_PA12_printed')}
 # the spots Dan marked on 2026-10-15 (closeup_c2), world mm boxes that must stay clear: the R1 cavity group under the deck (M1, M5),
-# the R1 and R2 bend saddles (M4, M6), and the whole R1 clip (M2) - kept in wall_classes.FEATURES (R151), structural
+# the R1 and R2 bend saddles (M4, M6) - kept (the R1 clip, M2, is retired: A86 a) in wall_classes.FEATURES (R151), structural
 MARKED = WCL.MARKED
 
 

@@ -34,7 +34,7 @@ import trimesh
 
 # Detection (W sections, A voxels, every R127 fix) lives in handbuilt-cad's generic checker, tools/checks/check_printed_walls.py
 # (universal wall check). This file keeps only st185's settings and glue: the parts, the R127 exemption boxes from the build report,
-# the R1 snap barbs, the R151 classes and the outputs check_printed_solid.py S4 / S5 reads in CI (which has no STLs and no
+# the R151 classes and the outputs check_printed_solid.py S4 / S5 reads in CI (which has no STLs and no
 # handbuilt-cad, and never runs this file). handbuilt-cad is found through HANDBUILT_CAD (default ~/projects/handbuilt-cad).
 WALL, ATTACH = 1.95, 3.0          # mm: fail at or under WALL; attachment under ATTACH (R127)
 STEP, PITCH = 0.5, 0.2            # mm: section spacing (W), voxel size (A)
@@ -47,9 +47,9 @@ OPTS = dict(step=STEP, pitch=PITCH,
             graze=4,              # one axis family, under 4 sections = planes grazing a square edge (R127 amendment)
             skin=1.5,             # mm: a thin piece must stand this far out of the >= 3 mm body to be a cantilever
             cluster_tol=0.6)
-SHELLS = ('_Cover_', '_Pan_', '_Retainer_')
+SHELLS = ('_Cover_', '_Pan_')
 FUSEBOX = 'cad/fusebox/rev8'
-PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed', 'Power_Retainer_R1_PA12_printed',
+PARTS = ['Power_Base_PA12_printed', 'Power_Pan_PA12_printed', 'Power_Cover_PA12_printed',
          'Logic_Base_PA12_printed', 'Logic_Pan_PA12_printed', 'Logic_Cover_PA12_printed',
          'BattRelay_Base_PA12_printed', 'BattRelay_Cover_PA12_printed', 'Power_NutHolder_PA12_printed']
 HB = None
@@ -147,21 +147,8 @@ def exempt(name, src):
 
 
 def allowed(name, src):
-    """Named thin features that are not walls: the R1 retainer clip's snap barbs (spec.RETAINER barb x barb_h, at the top of each leg)."""
-    if 'Retainer' not in name:
-        return []
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fusebox', 'src'))   # this checkout's spec (--src may hold STLs only)
-    import spec as S
-    RT = S.RETAINER
-    rr = json.load(open(os.path.join(src, FUSEBOX, 'fusebox_report.json')))['retainers']['POWER'][0]
-    sx, sy = S.PLACE['POWER']
-    zt = S.POWER['z_d'] + RT['leg_h']
-    out = []
-    for (lx, ly) in rr['legs']:
-        r = RT['leg'][0] / 2 + RT['barb'] + 0.6
-        out.append(('snap barb at leg (%.1f, %.1f), %.1f x %.1f (R123)' % (lx, ly, RT['barb'], RT['barb_h']),
-                    [lx + sx - r, lx + sx + r, ly + sy - RT['leg'][1], ly + sy + RT['leg'][1], zt - RT['barb_h'] - 0.6, zt + 0.6]))
-    return out
+    """Named thin features that are not walls: none since the R1 retainer clip and its snap barbs were retired (A86 a, 2026-11-16)."""
+    return []
 
 
 def extents(m, name, report):

@@ -202,30 +202,7 @@ def render(out_dir):
     vw, vh = v.width, v.height
     notes['closeup_b_logic_micro_columns_top.png'] = dict(title='LOGIC micro relay columns 2.0 mm further out (R123)', lines=pts, view=[vw, vh])
 
-    # ---------------------------------------------------------------- (c) heater relay R1 retainer clip, on + exploded
-    rr = json.load(open(os.path.join(out_dir, 'fusebox_report.json'), encoding='utf-8'))['retainers']['POWER'][0]
-    p_ = rr['plate']
-    sx_, sy_ = S.PLACE['POWER']
-    cx_, cy_ = (p_[0] + p_[3]) / 2 + sx_, (p_[1] + p_[4]) / 2 + sy_
-    for (fn, dz) in (('closeup_c1_r1_retainer_on.png', 0.0), ('closeup_c2_r1_retainer_exploded.png', -22.0)):
-        clear()
-        base = tb.copy(bodies['Power_Base_PA12_printed'])
-        bo(base, box(cx_ - 34, cy_ - 30, Z_D['POWER'] - 8, cx_ + 34, cy_ + 30, Z_T['POWER'] + 1), 'i')
-        add('Power base', base, AP['pa12'])
-        for cv in rr['cavities']:
-            for (n, b, a) in terminal(cav[('POWER', cv)], 'POWER'):
-                if dz and n in ('Wire', 'RNF-100 build-up'):
-                    m = adsk.core.Matrix3D.create()
-                    tb.transform(b, m)
-                add(n, b, a)
-        clip = tb.copy(bodies['Power_Retainer_R1_PA12_printed'])
-        if dz:
-            m = adsk.core.Matrix3D.create()
-            m.translation = adsk.core.Vector3D.create(0, 0, dz / 10.0)
-            tb.transform(clip, m)
-        add('R1 retainer clip', clip, AP['clip'])
-        shot(fn, (cx_, cy_, Z_D['POWER'] - 6 + dz / 2), (-110, -150, -95), 78.0 if not dz else 92.0)
-        notes[fn] = dict(title='Heater relay R1 retainer clip (R123 B) - %s' % ('snapped on, from below' if not dz else 'exploded: threaded on the wires, pushed up'), clip=rr)
+    # (c) the heater relay R1 retainer clip close-ups are gone with the clip (A86 a, Dan 2026-11-16)
 
     # ---------------------------------------------------------------- (d) lid catch + optional M3 insert and screw, section
     clear()

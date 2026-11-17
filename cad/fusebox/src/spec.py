@@ -524,9 +524,6 @@ PLACE = {'LOGIC': (0.0, 0.0), 'POWER': (160.0, 0.0), 'BATTRELAY': (0.0, -175.0)}
 OD_RANGE = {20: (1.47, 2.40), 18: (1.75, 2.50), 16: (1.96, 2.90), 14: (2.31, 3.20), 12: (2.82, 3.80), 10: (3.45, 4.70),
             8: (5.13, 5.13), 6: (6.43, 6.43), '1/0': (13.6, 13.6)}
 OD = {k: v[1] for k, v in OD_RANGE.items()}
-# The vacant R1 seat (RETAIN, the R123 clip) is held as built in v53 until Dan answers A86 (A83: the clip retains by the crimped barrel;
-# 62998-2 has no lance and a twist-lock cannot work on it): its spare wire sizes stay the pre-A82 values (M22759/16 max, docstring).
-OD_V53 = {'1/0': 13.6, 6: 6.43, 8: 5.13, 10: 3.61, 12: 2.97, 14: 2.41, 16: 2.06, 18: 1.85, 20: 1.57}
 OD_MIN = {k: v[0] for k, v in OD_RANGE.items()}
 # AWG per AMI position (the CabinPower wire list; a fuse-to-relay jumper takes the relay-in gauge)
 AMI_AWG = {'HTR': 8, 'EFI': 12, 'STR': 12, 'FAN': 8, 'FAN2': 8, 'PWR': 10,
@@ -690,21 +687,25 @@ TERM = {   # L: R163 - from the TE STEP where we have one (42281-1 19.05 -> 20.1
     # spec and drawing are tighter and win). L / head from TE's STEPs (c-1-968851-1-e-3d.stp, c-1-968849-1-j3-3d.stp).
     '1-968851-1': dict(ins=(2.2, 3.0), t=None, L=21.2, head=(3.1, 4.4), what='MCP 2.8 receptacle 16 / 14 AWG (1.0 - 2.5 mm2), unsealed, pre-tin, typical 22 A'),
     '1-968849-1': dict(ins=(1.4, 2.1), t=None, L=20.2, head=(3.1, 4.4), what='MCP 2.8 receptacle 20 / 18 AWG (0.5 - 1.0 mm2), unsealed, pre-tin, typical 15 A'),
-    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=20.18, head=(7.49, 3.45), what='FASTON .250 receptacle 18-14 AWG'),
-    '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, 3.0), what='FASTON .187 receptacle 20-15 AWG'),
-    '280919-2': dict(ins=(2.31, 3.3), t=0.25, L=16.0, head=(5.6, 2.3), what='FASTIN-FASTON .187 receptacle 20-15 AWG, locking lance'),
+    '42281-1': dict(ins=(2.79, 4.32), t=0.41, L=20.18, head=(7.49, 4.70), what='FASTON .250 receptacle 18-14 AWG'),
+    '2293255-1': dict(ins=(2.3, 3.3), t=0.33, L=None, head=(5.6, None), what='FASTON .187 receptacle 20-15 AWG'),
+    '280919-2': dict(ins=(2.31, 3.3), t=0.25, L=16.0, head=(5.6, 3.5), what='FASTIN-FASTON .187 receptacle 20-15 AWG, locking lance'),
     '280755-4': dict(ins=(5.0, 7.0), t=0.51, L=28.18, head=(11.10, 3.80), what='FASTON .375 receptacle 10-7 AWG'),
     '280756-4': dict(ins=(3.4, 5.1), t=0.51, L=28.17, head=(11.10, 3.80), what='FASTON .375 receptacle 12-10 AWG'),
-    '62998-2': dict(ins=(5.84, 7.11), t=0.43, L=19.69, head=(7.62, 3.2), what='FASTON .250 receptacle 10-8 AWG'),
+    # A86 a (Dan 2026-11-16): the spare R1 30 / 87 receptacle. TE page / RS datasheet (docs.rs-online.com/18e8/A700000015081411.pdf):
+    # 14-10 AWG (2.08-5.26 mm2), insulation 5.72-6.99, metal 0.41, length 19.56, locking lance. TE customer drawing C-63467 rev C:
+    # .770 long, section A-A .293 wide, side view .170 over the lance (.135 box + lance), lance tip .275 from the contact end; its
+    # insulation cell reads ".140 (2) MAX" (the two-wire case), so the one-wire range is the TE page's.
+    '63467-1': dict(ins=(5.72, 6.99), t=0.41, L=19.56, head=(7.44, 4.32), what='FASTIN-FASTON .250 receptacle 14-10 AWG, locking lance'),
 }
 # R120 (Dan 2026-10-15, M6): head = the receptacle's widest section (W across the tab, H through it, lance included), max of tolerance,
-# from the TE customer drawings (te.com DocumentDelivery "Customer Drawing", read 2026-10-15): 880398 box 5.4+-0.2 x 3.9+-0.2 (the two
-# retention lances spread 8.21 and fold in as it goes through); 1241437 (MCP 2.8K group drawing that 1241388 refers to) 4.2+-0.2 x 4.4;
-# 42281 rev AN section A-A 7.49, side 4.70 max incl. lance; 2293255 rev A3 section Q-Q 5.6; 280755 / 280756 section A-A 11.10, side
-# 3.80 + 1.25+-0.2 lance; 62998 rev G section A-A 7.62. HEAD_EST: H not dimensioned on the drawing, scaled off it (est.).
-HEAD_EST = {'2293255-1', '62998-2', '42281-1', '280919-2'}
-# R121 (2026-10-15): head = the RIGID contact box, the locking lance folded flat (it springs in as it goes through): 42281-1 4.70 over the
-# lance - 1.25 lance (est: the 280755 / 280756 lance height on their TE pages) = 3.45 est; 280755 / 280756 3.80 (the 1.25 lance is LOCK).
+# from the TE customer drawings (te.com DocumentDelivery "Customer Drawing"; copies in the models folder st185_vendor-parts_1101\te):
+# 880398 box 5.4+-0.2 x 3.9+-0.2 (the two retention lances spread 8.21 and fold in as it goes through); 1241437 (MCP 2.8K group drawing
+# that 1241388 refers to) 4.2+-0.2 x 4.4; 280755 / 280756 section A-A 11.10, side 3.80 + 1.25+-0.2 lance.
+# A81 (2026-11-16, replaces the scaled HEAD_EST heights): 42281 rev AN section A-A 7.49, side view 4.70 max over the lance;
+# 280919 rev M2 5.6 wide, 3.5 over the lance; 63467 rev C .293 x .170 (7.44 x 4.32) over the lance. 2293255 rev A3: section Q-Q 5.6
+# wide, the height is not dimensioned (nor in application spec 114-106242 rev B1): H TBD - no seat uses it (R123 swaps it to 280919-2).
+# The cavities of every REAL terminal below are cut from REAL (its maker STEP + crimp data), not from head.
 T_EST, L_EST = 0.40, 20.0        # est: metal thickness / length where the TE page gives none
 HOLE = dict(clr=CLR, min_wall=2.0, lead_in=2.0, top_gap=1.0)
 # Fit audit 2026-10-18 (Dispatch rule 3, "each blade lands in its terminal's contact zone"): the receptacle's contact end sits SEAT_GAP under the
@@ -727,9 +728,11 @@ TERM_DEFAULT = {'fuse in': ('1-968851-1', 14), 'fuse out': ('1-968851-1', 14), '
                 'micro 30': ('42281-1', 14), 'micro 87': ('42281-1', 14), 'micro 87a': ('280919-2', 18), 'micro 85': ('280919-2', 18),
                 'micro 86': ('280919-2', 18), 'F7 30': ('280755-4', 8), 'F7 87': ('280755-4', 8), 'F7 87a': ('42281-1', 14),
                 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
-# The Mini ISO seat (RELAY_B pos, POWER R1) has 6.3 blades, not the F7's 9.5: a spare cavity there takes the 6.3 receptacles it was built for
-# (rev 7 heater relay: 62998-2 on 30 / 87, 10-8 AWG; 42281-1 on the coil). Rev 8: R1 is vacant (A16 a), its cavities and retainer clip stay.
-TERM_DEFAULT_B = {'F7 30': ('62998-2', 8), 'F7 87': ('62998-2', 8), 'F7 85': ('42281-1', 18), 'F7 86': ('42281-1', 18)}
+# The Mini ISO seat (RELAY_B pos, POWER R1) has 6.3 blades, not the F7's 9.5. Rev 8: R1 is a vacant spare (A16 a). A86 a (Dan 2026-11-16):
+# the spare is capped at 30 A on 10 AWG (relay TE F4 A 1-1414687-0, contacts 40 A NO / 30 A NC at 85 C, TE data sheet V23136-X0000-A004);
+# its 30 / 87 take TE 63467-1 (locking lance, 14-10 AWG) in a normal press-in lance seat sized over the A82 10 AWG range, and its coil
+# seats take 42281-1 at its largest gauge, 14 AWG (A85). The R123 retainer clip (FB-104) and the 10-8 AWG 62998-2 are retired.
+TERM_DEFAULT_B = {'F7 30': ('63467-1', 10), 'F7 87': ('63467-1', 10), 'F7 85': ('42281-1', 14), 'F7 86': ('42281-1', 14)}
 # Rev 8 spare cavities that keep the cavity rev 7 cut for them (S3: spots unchanged): the BUS2-12 own-input seat is a 20-18 AWG seat
 # (sot/fuse-relay-map.csv), and the vacant R1's 87a stays cut (its web to 85 / 86 is the relay cavity web exemption; without the cavity
 # the PA12 left there is under 2.0, check_printed_solid S4).
@@ -805,12 +808,12 @@ BLADE_AXIS = {'fuse in': 'x', 'fuse out': 'x', 'acps in': 'x', 'acps out': 'x', 
 #            width (880398-2: two side lances), 'H' = through it (FASTON / MCP: one lance, the window is cut both sides so the terminal
 #            goes in either way round)
 #   shoulder 880398-2 only: lance tip to its stop flange (3.8, dimensioned) - the printed shoulder between them; flange = flange width
-#   kind 'dimple': no lance (TE "Mating Retention Type: Dimple") - not used in the boxes (R123 swaps it, TERM_SWAP);
-#   kind 'clip': no lance terminal exists for that blade + wire - held by the R123 retainer clip (RETAIN)
-# Sources: 880398 (lance spread 8.21+-0.38 on a 5.4 box, 5.9 to the lance root, 3.8 tip to flange; tip 9.7 and flange 8.6 scaled, est);
+#   kind 'dimple': no lance (TE "Mating Retention Type: Dimple") - not used in the boxes (R123 swaps it, TERM_SWAP)
+#   (A83 / A86 a: every box terminal is held by its own lance; the R123 retainer clip and its 'clip' kind are retired)
+# The est rows below are overwritten from REAL (the maker STEPs) for every terminal a seat uses. Sources: 880398 (lance spread 8.21+-0.38 on a 5.4 box, 5.9 to the lance root, 3.8 tip to flange; tip 9.7 and flange 8.6 scaled, est);
 # 1241437 MCP 2.8K (contact zone 6.3, box 6.3 + 4.2; the steel overspring lance: tip / out est, check on the on-hand sample); 42281 rev AN
 # (19.05 long, 7.37 max contact end to lance tip; lance 1.25 est; insulation barrel ~4 scaled); 280755 / 280756 (TE page "Locking Lance
-# Height 1.25 mm", 10.65 to the tip, 29 long, insulation barrel ~5.5 scaled); 2293255 rev A3 (15 long), 62998 rev G (19.69 long). Release: press the lance flat from the top through the blade
+# Height 1.25 mm", 10.65 to the tip, 29 long, insulation barrel ~5.5 scaled); 2293255 rev A3 (15 long). Release: press the lance flat from the top through the blade
 # slot (MCP: TE extraction tool 5-1579008-7, AMP MCP 2.8 contact-to-wire; the others: TE tool per terminal TBD at the sample check).
 LOCK = {
     '880398-2': dict(kind='lance', axis='W', out=1.6, tip=9.7, shoulder=3.8, flange=8.6, neck=13.5, est=True),
@@ -823,7 +826,7 @@ LOCK = {
     '280756-4': dict(kind='lance', axis='H', out=1.45, tip=10.65, neck=23.5, est=True),
     '2293255-1': dict(kind='dimple', neck=11.8, est=True),
     '280919-2': dict(kind='lance', axis='H', out=1.2, tip=5.0, neck=12.5, est=True),
-    '62998-2': dict(kind='clip', neck=15.3, est=True),     # R123 B: no lance terminal exists for 8 AWG on a 6.3 blade - retainer clip
+    '63467-1': dict(kind='lance', axis='H', out=1.02, tip=7.1, neck=16.5, est=False),   # A86 a: from REAL (drawing C-63467 C + STEP K)
 }
 
 
@@ -933,28 +936,14 @@ SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, bos
 # harness drawing names to the one the box is built and bought with (the .harness files change later - Dan's review; follow-up list).
 # 2293255-1 (dimple) -> TE 280919-2 (FASTIN-FASTON .187, 4.75 x 0.81 tab, 20-15 AWG, ins 2.31-3.3, lance 1.2, 16 long; TE page + drawing
 # 280919 rev M2: box 5.6 wide, 6.4 long, 3.5 over the lance, lance tip 5 from the contact end; box height and neck est.).
-# (B) where no lance terminal exists - 62998-2 (8 AWG on the heater relay's 6.3 blades: TE FASTON / FASTIN-FASTON and Aptiv Metri-Pack 630
-# stop at 10 AWG with a lance) - and where a cavity cannot keep a ledge (the heater relay 87a, in the middle of its pin pattern): a printed
-# RETAINER clip under that relay. It is threaded onto the relay's wires before they are crimped, then pushed up under the deck after the
-# terminals are in; two barbed legs snap into pockets in the cavity collar; its plate stops every terminal on that relay from backing out.
-# Wire holes = the wire there + clr per side (smaller than the crimped insulation barrel it stops; a thicker-wire harness reprints the clip).
+# (B) the printed R123 retainer clip under the heater relay R1 (62998-2, 8 AWG, no lance) is retired by A86 a (Dan 2026-11-16): the vacant
+# R1 is a 30 A / 10 AWG spare whose 30 / 87 take the lance terminal 63467-1, so every box terminal now holds by its own lance (A83).
 TERM_SWAP = {'2293255-1': '280919-2', '880398-2': '1-968851-1', '1241388-2': '1-968849-1'}
 # N21 (Dan 2026-10-18, "MCP 2.8 female receptacles"; DECISIONS R166): every mini fuse / ACPS socket takes a TE AMP MCP 2.8 receptacle by wire
 # gauge - 1-968849-1 for 20 / 18 AWG, 1-968851-1 for 16 / 14 AWG (the 15 A circuits stay 16 AWG). Box-side swap like R123: ST185-CabinPower and
 # ST185.harnesslib still name 880398-2 / 1241388-2 (OPEN-ITEMS follow-up). Dan's lead was Ballenger Motorsports CONN-100329 ("1.25 - 2.5 mm2"):
 # Ballenger names no TE part number; 1-968851-1 is the TE part with that tab, plating and the 16 / 14 AWG crimp data (114-18148 Table 7).
 PLACE_HOLD = {}
-RETAIN = {'POWER': ['R1']}      # relay positions whose terminals are held by a retainer clip (the heater relay k_htr)
-RETAINER = dict(t=2.0, play=0.2, leg=(2.5, 4.0), leg_h=6.0, barb=0.6, barb_h=1.5, clr=CLR, boss=2.0, bear=0.3,
-                leg_shift={'R1': (0.0, 10.5)})   # along the short side, per leg: R1's +x leg clears the heater feed-cable bend saddle (y 38.4-47.6)
-# t plate (R73 wall), play under the lowest terminal end, leg cross-section / height into its collar pocket, barb out / height at the leg
-# top (snaps over the pocket's undercut), boss = collar wall round each leg pocket, bear = least the crimped insulation barrel rests on
-# the plate each side. On a retained end the RNF-100 build-up is cut to the insulation barrel length, so only the bare wire goes through.
-
-
-def retainer_hole(part, wire_od):
-    """(hole d, crimped barrel d) at a retainer clip: the bare wire + clr per side, and the insulation barrel it stops."""
-    return wire_od + 2 * RETAINER['clr'], barrel_od(part, wire_od)
 
 
 # J4 = B: LOGIC front channel. Fuse-side wires come forward along x 7.4 (between the belly pan wall and the Bus 1 output risers), turn
@@ -995,7 +984,7 @@ VENDOR_TERM = {   # pn: (maker dir, file, y_box, TE DocNm)
     '280919-2': ('te', 'c-280919-2-m-3d.stp', 0.85, 'CVM_280919-2'),
     '280755-4': ('te', 'c-280755-4-l-3d.stp', 1.99, 'CVM_280755-4'),
     '280756-4': ('te', 'c-280756-4-p-3d.stp', 1.99, 'CVM_280756-4'),
-    '62998-2': ('te', 'c-62998-2-w-3d.stp', 1.43, 'CVM_62998-2'),
+    '63467-1': ('te', 'c-63467-1-k-3d.stp', 1.65, 'CVM_63467-1'),     # A86 a / A84: TE STEP rev K, fetched 2026-11-16 (box Y 0 .. 3.30)
 }
 
 
@@ -1020,7 +1009,12 @@ REAL = {   # pn: box (W, H), lock (axis, out, tip) or None, neck, L, wire barrel
     '280919-2': dict(box=(5.60, 2.40), lock=('H', 1.00, 5.1), neck=12.5, L=16.0, wz=(8.25, 12.25), iz=(12.5, -0.40), d=1.60, ww=None, iw=None),
     '280755-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.18, wz=(16.5, 22.5), iz=(24.5, -0.64), d=4.10, ww=4.57, iw=6.35),
     '280756-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.17, wz=(16.5, 22.5), iz=(24.5, -0.64), d=2.95, ww=4.06, iw=6.35),
-    '62998-2': dict(box=(7.54, 2.85), lock=None, neck=16.0, L=19.68, wz=(10.5, 14.5), iz=(16.25, -0.51), d=3.70, ww=None, iw=None),
+    # A86 a: TE customer drawing C-63467 rev C (box .293 wide, .135 max high, lance to .170 overall, tip .275, wire barrel .170 long and
+    # .180 / .155 wide x .195 REF high open, insulation barrel .110 long) with the sections of TE STEP c-63467-1-k-3d.stp (box 7.44 x 3.30,
+    # lance 1.02 out to 6.95 deep, wire barrel 10.45 - 14.9, insulation barrel from 16.75, y from -0.51). No TE crimp height for 63467-1 was
+    # found (application spec 114-2065 rev A defers it to the applicator log sheet): the crimped wire barrel is bounded by the drawing's open
+    # barrel (wh 4.95 = .195 REF, ww 4.57 = .180), never smaller - so d is not used.
+    '63467-1': dict(box=(7.44, 3.30), lock=('H', 1.02, 7.1), neck=16.5, L=19.56, wz=(10.45, 14.9), iz=(16.75, -0.51), d=None, wh=4.95, ww=4.57, iw=None),
 }
 
 
@@ -1040,12 +1034,16 @@ def real_env(pn):
     R_, T_ = REAL[pn], TERM[pn]
     t = T_['t'] if T_['t'] is not None else T_EST
     W_, H_ = R_['box']
-    hw = H_ if False else None
-    wh = R_['d'] + 2 * t                                    # crimped wire barrel height (from the floor, Y 0)
+    cr = CRIMP.get(pn, {})
+    # crimped wire barrel height (from the floor, Y 0): A81 (2026-11-16) - the TE crimp height (CRIMP, the largest gauge, top of tolerance)
+    # or the drawing's open-barrel bound (REAL wh); the d_max + 2 t estimate only where neither exists
+    wh = R_.get('wh') or (max(cr['wh'].values()) if cr.get('wh') else R_['d'] + 2 * t)
+    ww = R_['ww'] or cr.get('ww') or 0.0
+    iw = R_['iw'] or cr.get('iw') or 0.0
     ih = T_['ins'][1] + 2 * t                               # crimped insulation barrel height (from its floor)
     y_i = R_['iz'][1]
-    return dict(yb=H_ / 2, box=(W_ / 2, 0.0, H_), wire=(max(R_['ww'] or 0.0, wh) / 2, 0.0, wh),
-                ins=(max(R_['iw'] or 0.0, ih) / 2, y_i, y_i + ih))
+    return dict(yb=H_ / 2, box=(W_ / 2, 0.0, H_), wire=(max(ww, wh) / 2, 0.0, wh),
+                ins=(max(iw, ih) / 2, y_i, y_i + ih))
 
 
 def real_zones(part, kind, side=1):
@@ -1101,25 +1099,35 @@ def real_zones(part, kind, side=1):
 # the blade goes 11 - (top_gap 1.0 + 0.9) = 9.1 into the receptacle (8.6 .. 9.6), past the 8.0 mating length and short of the
 # 42281-1 contact box end 10.25 (REAL wz).
 TWIST = dict(d_r=0.6, lift=0.3, t_a=2.0, clr=CLR, bear_min=0.8, blade_len={'F7 85': 11.0, 'F7 86': 11.0}, blade_tol=0.5, mate_min=8.0)
-# Scope (Dan 2026-11-16): the twist-lock is only for the seats that had the extra R123 retainer clip (RETAIN: POWER R1, the vacant heater
-# relay seat); every other seat keeps its press-in lance retainer. The F7 85 / 86 pilot (Fusion v54 / v55) is undone (v56). R1 is not a
-# twist seat until Dan says so (twist_on still skips RETAIN seats).
+# Scope (Dan 2026-11-16): the twist-lock was only for the seat that had the extra R123 retainer clip (POWER R1); the F7 85 / 86 pilot
+# (Fusion v54 / v55) is undone (v56), and A86 a (Dan 2026-11-16) gives R1 a normal press-in lance seat (TE 63467-1). No seat is a twist
+# seat now; the code stays for a later pick (DECISIONS "Fuse box rev 8").
 TWIST_KINDS = set()
-# Crimped barrel sizes from the TE application specs, per terminal: wire barrel crimp width ww / height wh (mm, by AWG), insulation
-# barrel crimp width iw ("F" crimp). None = not in a TE document on hand: the barrel is taken as round on its own conductor / insulation
-# (d_max + 2 t, crimp OD + 2 t; est) - those rows are TBD in the report.
+# Crimped barrel sizes from TE documents, per terminal: wire barrel crimp width ww / height wh (mm, by AWG, the top of TE's tolerance),
+# insulation barrel crimp width iw. real_env uses them for every cavity (A81, 2026-11-16); a terminal with no row here keeps the drawing
+# bound (REAL wh) or the round d_max + 2 t barrel (est, listed as TBD in the report). Copies in the models folder st185_vendor-parts_1101\te.
 #   280756-4: TE 114-20021 rev D16 p.4-5 (applicators 785489 / 1529063 / 1529095): wire 4.06 - 4.57 wide, 2.41 - 3.20 high (4 - 6 mm2),
 #             insulation 6.35 F. 10 AWG (5.26 mm2) between the 4 and 6 mm2 rows: 3.20 taken (the 6 mm2 top).
 #   280755-4: 114-20021 p.5 (782678 / 1529136): wire 4.57 wide, 3.23 - 3.63 high (6 - 10 mm2), insulation 7.62 F.
-#   42281-1, 280919-2, 1-968849-1, 1-968851-1, 62998-2: TBD (42281 / 280919 are FASTIN-FASTON contacts of 114-2025 rev G2, which gives
-#             the crimp only per applicator sheet; 114-18148 for MCP 2.8 is not on hand).
+#   42281-1: TE customer drawing C-42281 rev AN crimp table: wire barrel F 2.79 wide, 1.40 / 1.55 / 1.78 +-0.51 high at 18 / 16 / 14 AWG;
+#             insulation barrel O 4.57 wide.
+#   280919-2: TE application spec 114-20011 rev C2 p.3 (applicator log 780955): wire F 2.3 wide REF, 1.34 / 1.39 / 1.44 / 1.49 +-0.03 high
+#             at 0.5 / 0.75 / 1.0 / 1.5 mm2; insulation F 3.3 wide REF. AWG -> the next larger mm2 row (20 AWG 0.52 -> 0.75, 18 AWG 0.82 -> 1.0,
+#             16 AWG 1.31 -> 1.5).
+#   1-968849-1 / 1-968851-1: TE application spec 114-18148 rev D1 Table 7 (AWG wires, locking lance 968849 / 968851): wire F CB2max 2.23 /
+#             2.79, CH1 1.08 / 1.23 (20 / 18 AWG) and 1.36 / 1.61 (16 / 14 AWG) +-0.05; insulation OVL CB3 2.54 +0.25 / 3.56 +0.36.
+#   63467-1: none found (114-2065 rev A: crimp per applicator log sheet) - REAL wh / ww from the drawing's open barrel.
 CRIMP = {'280756-4': dict(ww=4.57, wh={10: 3.20, 12: 3.00}, iw=6.35, src='TE 114-20021 rev D16'),
-         '280755-4': dict(ww=4.57, wh={8: 3.43, 10: 3.63}, iw=7.62, src='TE 114-20021 rev D16')}
+         '280755-4': dict(ww=4.57, wh={8: 3.43, 10: 3.63}, iw=7.62, src='TE 114-20021 rev D16'),
+         '42281-1': dict(ww=2.79, wh={18: 1.91, 16: 2.06, 14: 2.29}, iw=4.57, src='TE C-42281 rev AN'),
+         '280919-2': dict(ww=2.3, wh={20: 1.42, 18: 1.47, 16: 1.52}, iw=3.3, src='TE 114-20011 rev C2'),
+         '1-968849-1': dict(ww=2.23, wh={20: 1.13, 18: 1.28}, iw=2.79, src='TE 114-18148 rev D1 Table 7'),
+         '1-968851-1': dict(ww=2.79, wh={16: 1.41, 14: 1.66}, iw=3.92, src='TE 114-18148 rev D1 Table 7')}
 
 
 def twist_on(box_name, cav, kind):
-    """True when this seat is a keyed twist-lock seat (not on a relay held by the R123 retainer clip)."""
-    return kind in TWIST_KINDS and cav.split()[0] not in RETAIN.get(box_name, [])
+    """True when this seat is a keyed twist-lock seat (TWIST_KINDS; none in rev 8 after A86 a)."""
+    return kind in TWIST_KINDS
 
 
 def twist_env(pn, od, awg=None):
@@ -1129,8 +1137,8 @@ def twist_env(pn, od, awg=None):
     t = T_['t'] if T_['t'] is not None else T_EST
     W_, H_ = R_['box']
     cr = CRIMP.get(pn, {})
-    wh = cr.get('wh', {}).get(awg) or R_['d'] + 2 * t
-    ww = cr.get('ww') or wh
+    wh = cr.get('wh', {}).get(awg) or R_.get('wh') or R_['d'] + 2 * t
+    ww = cr.get('ww') or R_['ww'] or wh
     ih = crimp_max(pn, od, awg) + 2 * t     # A82: the fattest crimp over the gauge's whole insulation range (with its build-up)
     iw = cr.get('iw') or ih
     yi = R_['iz'][1]

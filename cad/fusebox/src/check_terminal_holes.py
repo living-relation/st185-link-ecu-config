@@ -10,12 +10,11 @@ TE terminal data in spec.py (TERM, LOCK), what every cavity must be, and checks 
       (spec.hole); every zone above it as spec.zones. Today's wire is never the size: it (and its RNF-100 build-up) only has to fit (S1).
   H3  the hole is at least HOLE['lead_in'] deep at its mouth
   L1  R121 / R123: a terminal with a locking lance keeps at least one ledge (the box-sized stretch under a window the lance springs into,
-      the lance reaching past the ledge edge by >= LOCK_MIN) that no neighbouring cavity is joined onto in its box / lance zones; a cavity
-      on a relay in spec.RETAIN is held by the printed retainer clip instead; any other terminal with no lance fails
+      the lance reaching past the ledge edge by >= LOCK_MIN) that no neighbouring cavity is joined onto in its box / lance zones; a terminal
+      with no lance fails (A83: a terminal is held by its own lance; the R123 retainer clip is retired, A86 a)
   W1  every wall between two cavities, zone by zone where they share a height, is at least HOLE['min_wall'] (R73) - or the two are
       joined into one (Dan: "join the two slots into one"); joins in the box / window zones (the relay and fuse pin spacing) are listed
   S1  the wire, with its RNF-100 build-up, fits the hole
-  R1  R123 B: a retainer clip's wire hole leaves the crimped insulation barrel >= RETAINER['bear'] a side to rest on
   G1  R120 / M6 = A: every wire thinner than its terminal's insulation range has an RNF-100 build-up that brings it into range
   T1  keyed twist-lock seat (spec.TWIST, Dan 2026-11-16): the seated box overhangs the ledge >= TWIST['bear_min'] each end (it cannot
       pull out), the crimped wire barrel turns inside the slot, and no other cavity is joined onto its recess band (it cannot turn back)
@@ -116,7 +115,7 @@ def main():
     rep = json.load(open(REPORT, encoding='utf-8'))
     plan = json.load(open(PLAN, encoding='utf-8'))
     holes = rep.get('terminal_holes') or {}
-    bad, info, recut, retained, rows, resolve, moved, over = [], [], [], [], [], [], [], []
+    bad, info, recut, rows, resolve, moved, over = [], [], [], [], [], [], []
     if not holes:
         print('check_terminal_holes: MISSING terminal_holes in %s - re-run the Fusion build (build_fusion.build(rev=7))' % os.path.relpath(REPORT, REPO))
         return 1
@@ -199,14 +198,6 @@ def main():
     twist_join = []
     for c in cavs:
         L_ = S.LOCK[c['part']]
-        if c['cav'].split()[0] in S.RETAIN.get(c['box'], []):
-            retained.append((c['box'], c['cav'], c['part']))
-            hd, bd = S.retainer_hole(c['part'], c['od'])
-            if hd + 2 * S.RETAINER['bear'] > bd + TOL:
-                bad.append('R1 %s %s: retainer hole %.2f leaves the %.2f crimped barrel under %.1f a side to rest on' % (
-                    c['box'], c['cav'], hd, bd, S.RETAINER['bear']))
-            c['row'][9] = 'retainer clip (R123 B)'
-            continue
         if c.get('lock') == 'twist':
             tw = c['tw']
             if tw['bear'] + TOL < S.TWIST['bear_min']:
@@ -252,7 +243,7 @@ def main():
                 c['row'][9] = 'twist-lock, ledge %.2f a side, slot %.2f, chamber %.2f%s' % (tw['bear'], tw['slot_short'], tw['chamber'], ' (crimp est)' if tw['est'] else '')
             continue
         if L_['kind'] != 'lance':
-            bad.append('L1 %s %s: %s has no locking lance and no retainer clip (R121 / R123)' % (c['box'], c['cav'], c['part']))
+            bad.append('L1 %s %s: %s has no locking lance (R121 / A83)' % (c['box'], c['cav'], c['part']))
             continue
         sides, keep = ledges(c, partners.get((c['box'], c['cav']), []))
         if L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']) + TOL < LOCK_MIN:
@@ -275,9 +266,6 @@ def main():
         print('  wiring note (A83, parts lists): %d wire ends whose GXL insulation is above the TE grip range of their terminal (the lance holds the terminal)' % len(over))
         for x in over:
             print('    ' + x)
-    if retained:
-        print('  info: %d cavities held by a printed retainer clip (R123 B: %s)' % (len(retained), ', '.join(
-            sorted({'%s %s' % (b, cv.split()[0]) for b, cv, _ in retained}))))
     if recut:
         print('  RECUT: %d of %d cavities in the current build are from before R120 / R121 - every one is recut to its zones at the next '
               'rev 7 rebuild (build_fusion.build(rev=7)); --list shows each' % (len(recut), n_ok))

@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 827.3,
+   "volume_cm3": 828.9,
    "bounds": [
     128.0,
     341.8,
@@ -20,17 +20,17 @@
     244.3
    ],
    "exempt": {
-    "seat lip": 1315,
+    "seat lip": 1338,
     "bar snap tab": 117,
     "pan catch pocket": 116,
     "strap snap tab": 42,
     "A bar snap tab": 10,
-    "A seat lip": 25,
+    "A seat lip": 21,
     "A saddle lip": 6,
-    "A relay cavity web": 2,
+    "A relay cavity web": 1,
     "A strap snap tab": 7
    },
-   "attach_skin": 65,
+   "attach_skin": 66,
    "walls": [],
    "attach": [],
    "flagged": 0
@@ -75,41 +75,6 @@
    },
    "attach_skin": 0,
    "walls": [],
-   "attach": [],
-   "flagged": 0
-  },
-  "Power_Retainer_R1_PA12_printed": {
-   "allowed": [
-    "snap barb at leg (32.2, 43.0), 0.6 x 1.5 (R123)",
-    "snap barb at leg (59.3, 53.5), 0.6 x 1.5 (R123)"
-   ],
-   "attach_checked": false,
-   "volume_cm3": 1.3,
-   "bounds": [
-    190.37,
-    221.18,
-    29.51,
-    56.49,
-    29.12,
-    38.0
-   ],
-   "exempt": {},
-   "attach_skin": 0,
-   "walls": [
-    {
-     "at": [
-      190.5,
-      192.2,
-      56.0,
-      56.5,
-      29.1,
-      31.1
-     ],
-     "sections": 5,
-     "class": "structural",
-     "why": "R127 M2 / R123: R1 retainer clip - a retention feature (Dan-marked)"
-    }
-   ],
    "attach": [],
    "flagged": 0
   },
