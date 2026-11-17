@@ -2648,7 +2648,24 @@ def self_test():
     gx = {e["id"]: e["layoutPosition"]["x"] for k in FB.NODE_KINDS for e in gb.get(k, [])}
     cases.append(("regular layout: LOGIC box ends left of their breakout, POWER box ends right of theirs (A35, formboard.PREFER)",
                   FB.check_regular(gb) == [] and all(gx["gL%d" % i] < gx["bp_GB_LOGIC"] < gx["bp_GB"] < gx["bp_GB_POWER"] < gx["gP%d" % i] for i in range(3))))
-    # the car view (Dan 2026-11-16: "regular layout view with straight runs ... the layout views should largely match the
+    # the compact tree ordered like the layout-editor maps (Dan 2026-11-16 second, A74 a; what every generator draws): each
+    # branch leaves its node in the free axis nearest its map direction, siblings in the map's order, the trunk keeping the
+    # map's main direction (bigger branches weigh more); a branch on its node's own map spot falls back to the generator's heading
+    DVt = {"R": (1, 0), "L": (-1, 0), "U": (0, -1), "D": (0, 1)}
+    cases.append(("map order: three branches up-left, right and down of their node leave U, R and D",
+                  FB.map_dirs(["R", "U", "D"], {"a": (-50, -400), "b": (500, 20), "c": (30, 600)}, DVt) == {"a": "U", "b": "R", "c": "D"}))
+    cases.append(("map order: the trunk keeps the map's main direction (up) and the small side branch takes the next side",
+                  FB.map_dirs(["R", "U", "L"], {"trunk": (142, -337), "side": (-108, -432)}, DVt, size={"trunk": 40, "side": 3}) == {"trunk": "U", "side": "L"}))
+    FB.MAP_OFF.clear()
+    FB.map_dirs(["R", "U", "L"], {"a": (100, -10), "b": (90, 20), "c": (95, -30)}, DVt, n="hub")
+    cases.append(("map order: three branches all to the right of their node: one is drawn more than 60 degrees off and listed",
+                  any(x[0] == "hub" and x[3] > 60 for x in FB.MAP_OFF)))
+    FB.MAP_OFF.clear()
+    msp = {"n": (0.0, 0.0), "c": (5.0, 0.0), "g1": (300.0, 40.0), "g2": (300.0, -40.0), "box": (0.0, 0.0)}
+    cases.append(("map order: a branch 5 mm off its node heads for its whole part; one on its node's own spot falls back",
+                  FB.map_vector(msp, "n", ["c", "g1", "g2"]) == (605.0 / 3, 0.0) and FB.map_vector(msp, "n", ["box"], fallback=(-1, 0)) == (-1, 0)))
+    # the car view (kept in formboard.py with these tests; no generator calls it since Dan 2026-11-16 second, A74 a: "regular
+    # layout view with straight runs ... the layout views should largely match the
     # routes we made using the layout editors"): engine-bay map points turn into car mm the corridor way; every branch point
     # on its editor spot at one scale, front RIGHT, driver side UP, straight (slanted) runs, ends combed, every text clear
     import check_corridors as CC
