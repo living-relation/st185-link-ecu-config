@@ -492,6 +492,7 @@ Binding as part of B3.
 - A61 b (Dan 2026-11-16): retry deleting the stray harness.design file "ST185-AB-cabin 2 - straight runs, power, taps and CAN Rev J" (j6qv) in the desktop app with computer use. Done 2026-11-16: deleted in the Cloud tab (the confirm box showed the exact title); `list_harnesses` afterwards shows only Rev I (4V5k), which stays current.
 - A88 a (Dan 2026-11-17): yes to sanitation sweep 14 (docs / tracker only), run after the fuse box retention PR lands, or in parallel if that PR is still open (merge main in, never rebase).
 - A90 b (Dan 2026-11-17): sweep 14 also trims DECISIONS and OPEN-ITEMS losslessly (R211: git history is the archive). DECISIONS: one current line per live decision, grouped by topic; each replaced entry is removed and the line that replaced it gets "replaces <ID> (<date>), git <sha>". OPEN-ITEMS: open rows only; closed rows and History older than 7 days leave the file; one "Retired rows" table keeps ID, one-line title, close date, commit; Current state rewritten short. The PR lists every ID and date that left each file and where it now lives (kept line / pointer / commit); existing docs gates only, no new scripts. Dan sees that list before the PR merges.
+- Sweep 14 cancelled (Dan 2026-11-18, state-migration chat Q20 a): the state migration replaces it, so A88 a and A90 b no longer apply.
 
 ## Parked rows (R102)
 
