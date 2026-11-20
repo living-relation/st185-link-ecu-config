@@ -6,5 +6,23 @@
       "Bash(pip *)",
       "Bash(pytest *)"
     ]
+  },
+  "extraKnownMarketplaces": {
+    "handbuilt-cad-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "living-relation/handbuilt-cad"
+      }
+    },
+    "workstation-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "living-relation/workstation"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "handbuilt-cad@handbuilt-cad-plugins": true,
+    "workstation-core@workstation-plugins": true
   }
 }
