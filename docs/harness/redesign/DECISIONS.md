@@ -1088,7 +1088,7 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Supersedes: none.
   - Reopen if: none.
 - **A96 a (Dan, 2026-11-19): every recommendation of the state-init plan**
-  - Status: current
+  - Status: current; partly superseded by B3 a (2026-11-20: hook install detail)
   - Context: the state-init plan (`_scratch/state-init-plan.md`, 2026-11-19) asked Q1 - Q4 and three flags.
   - Decision: Q1 a: a small repo file, `docs/NEEDS-DAN.md`, holds only the Needs Dan table CI reads; `test_docs_gates.py`, `docs/needs_dan.py` and the `check_clearance.py` waivers read it. Q2 a: the `Rows:` PR line stays (row IDs live on in BACKLOG), beside pr-closeout's `State:` line. Q3 a: "run session-start first" lives only in Dan's claude.ai project instructions, not in `AGENTS.md`. Q4 a: pr-closeout runs right after a PR opens, per the skill. The harness.design file list with links moves to the `docs/harness/README.md` table. The stale store INDEX lines are fixed (progress lines -> archives, handoff gotchas updated). The workstation git hook pack is installed in COMMENT mode (`workstation.stateLint warn`), chained to Cursor's `core.hooksPath`.
   - Rejected: Q1 b (tooling PR first), Q1 c (OPEN-ITEMS stub kept); Q2 b (`State:` line only); Q3 b, Q4 b (Dan's older order kept in AGENTS).
@@ -1101,3 +1101,52 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: an agent removing them.
   - Supersedes: none.
   - Reopen if: Dan asks an agent to do it.
+- **Question IDs (Dan, 2026-11-20): standing rule**
+  - Status: current
+  - Context: the coordinator numbered the state-init questions A98 - A103 (2026-11-19), past the two-character format of `.claude/rules/questions.md`.
+  - Decision: question IDs are two characters only: A1-A9, B1-B9 ... Z9, then wrap to A1. An ID only has to be unique while its question is open; DECISIONS always records the ID with its date. A98 - A103 (2026-11-19) are renamed B1 - B6 (A101 -> B1, A102 -> B2, A103 -> B3, A98 -> B4, A99 -> B5, A100 -> B6) and answered below. Store STATE `Question_Counter` set to B7 (Dan). Enforcer: `.github/scripts/test_docs_gates.py` (every open ID in `docs/NEEDS-DAN.md` is `[A-Z][1-9]`).
+  - Rejected: IDs longer than two characters (A98 and up).
+  - Supersedes: none (restates the 2026-11-01 format in `.claude/rules/questions.md` and adds the wrap and the unique-while-open rule).
+  - Reopen if: Dan changes the format.
+- **B1 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: PR #705 (state-init migration) waited on Dan's approval of its "what left and where" list (was A101, 2026-11-19).
+  - Decision: approved; merge #705 with a merge commit, not a squash.
+  - Rejected: B) Dan reads the list first; a squash merge.
+  - Supersedes: none (the `AGENTS.md` squash-merge line stays for other PRs).
+  - Reopen if: none.
+- **B2 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: the state-init CLAUDE fold deleted `CLAUDE.md` (was A102, 2026-11-19).
+  - Decision: keep a one-line `CLAUDE.md` containing only `@AGENTS.md`. It is kept on purpose: session-start, state-init and repo-cleanup leave it and never fold or delete it (note in `AGENTS.md` "Agent files").
+  - Rejected: B) leave it deleted.
+  - Supersedes: the "delete the CLAUDE file" step of the 2026-11-19 fold, for this one-line `CLAUDE.md` only.
+  - Reopen if: the workstation template loads `AGENTS.md` in Claude Code without it.
+- **B3 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: pointing `core.hooksPath` at the workstation hook pack (A96 a) stopped Cursor's commit-msg / prepare-commit-msg hooks, because the pack has no hooks of those names (was A103, 2026-11-19).
+  - Decision: chain them back in, alongside the pack, per the pack's notes (`hooks/git/README.md` "Copy instead of pointing"): the pack's pre-commit, post-checkout, post-merge and `state-hook-lib.sh` are copied into Cursor's hooks folder (which has none of those names), `core.hooksPath` goes back to that folder, `workstation.chainHooksPath` is unset, `workstation.stateTools` stays. COMMENT mode stays (`workstation.stateLint warn`, `.state-check-mode`). Tested 2026-11-20: one commit ran the pack pre-commit (sot check ok) and Cursor's prepare-commit-msg and commit-msg (co-author trailer). Machine setup only; no repo file holds it.
+  - Rejected: B) leave them off.
+  - Supersedes: the "chained to Cursor's `core.hooksPath`" install detail of A96 a.
+  - Reopen if: Cursor rewrites its hooks folder (copy the four pack files in again) or the pack gains commit-msg hooks.
+- **B4 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: fuse box section views show TE's uncrimped maker models (was A98, 2026-11-19).
+  - Decision: show crimped terminals in the fuse box section views, modelled from TE's official crimp sizes. CAD work, not done in #705: store BACKLOG item.
+  - Rejected: B) uncrimped maker models only.
+  - Supersedes: none.
+  - Reopen if: TE publishes no crimp sizes for a terminal used.
+- **B5 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: POWER R1 87a has a 42281-1 terminal modelled, but A16 a keeps only the cut cavity (was A99, 2026-11-19).
+  - Decision: remove the 42281-1 terminal from POWER R1 87a; keep only the cut cavity. CAD work (model first, then drawings), not done in #705: store BACKLOG item.
+  - Rejected: B) keep the terminal.
+  - Supersedes: none (applies A16 a).
+  - Reopen if: R1 87a gets a load.
+- **B6 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: `sot/fuse-relay-map.csv` row R2 (K-EFI) said "Mini ISO", but the part is the F7 1-1414147-0 (was A100, 2026-11-19).
+  - Decision: change the R2 notes text from "POWER box Mini ISO" to "POWER box F7 (TE 1-1414147-0)". Text only: no value, pin or part cell changes.
+  - Rejected: B) leave it.
+  - Supersedes: none.
+  - Reopen if: none.

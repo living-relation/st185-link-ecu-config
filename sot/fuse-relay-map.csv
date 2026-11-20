@@ -1,6 +1,6 @@
 bank,position,kind,circuit,master_id,status,notes
 B1,R1,relay,R/B No.4 40 A HEATER feed,POWER AMI IN-1,feed,vacant relay seat (was k_htr); AMI IN-1 is the new feed to the kept OEM heater fuse; spare: 30 A max, 10 AWG
-B1,R2,relay,EFI main,K-EFI,seated,POWER box Mini ISO
+B1,R2,relay,EFI main,K-EFI,seated,POWER box F7 (TE 1-1414147-0)
 B1,R3,relay,(vacant),,vacant,was k_str; starter stays on OEM R/B No.4
 B1,R4,relay,radiator fan,K-FAN,seated,
 B1,R5,relay,condenser fan,K-FAN2,seated,
