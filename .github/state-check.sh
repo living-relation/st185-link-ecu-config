@@ -20,12 +20,12 @@ here=$(cd "$(dirname "$0")" && pwd)
 reg=0; for n in automation.yml automation.yaml automation.json; do [ -f "$top/$n" ] && reg=1; done
 # declared outputs (incl. auto-committed ones) never count as "code"
 [ $reg = 1 ] && [ -f "$here/registry-check.py" ] && code=$(echo "$code" | (cd "$top" && python3 "$here/registry-check.py" --not-declared))
-state=$(echo "$files" | grep -E '(^|/)(STATE\.md|DECISIONS\.md|OPEN-ITEMS[^/]*|AGENTS\.md)$' || true)
+state=$(echo "$files" | grep -E '(^|/)(STATE\.md|DECISIONS\.md|NEEDS-DAN\.md|AGENTS\.md)$' || true)
 w=0
-[ -n "$code" ] && [ -z "$state" ] && { echo "WARN: code changed but STATE.md/DECISIONS.md/OPEN-ITEMS not updated (label no-state-change if intended)."; w=1; }
+[ -n "$code" ] && [ -z "$state" ] && { echo "WARN: code changed but STATE.md/DECISIONS.md/NEEDS-DAN.md not updated (live state is in the store) (label no-state-change if intended)."; w=1; }
 txt=$( { [ -n "$body" ] && cat "$body"; [ "$head" != "--staged" ] && git log --format=%B "$base..$head"; } 2>/dev/null )
 if echo "$txt" | grep -qiE 'after merge|not done here'; then
-  echo "$state" | grep -qE 'STATE\.md|OPEN-ITEMS' || { echo "WARN: 'After merge'/'Not done here' step found; record it in STATE.md or OPEN-ITEMS."; w=1; }
+  echo "$state" | grep -qE 'STATE\.md|DECISIONS\.md' || { echo "WARN: 'After merge'/'Not done here' step found; record it in the store STATE / BACKLOG (state-closeout) or DECISIONS."; w=1; }
 fi
 # automation registry (if the repo has automation.yml): same mode
 if [ $reg = 1 ] && [ -f "$here/registry-check.py" ]; then

@@ -107,7 +107,7 @@ QSG_ENDS = {   # far ends each ECU pin class may reach (R212)
     "rail": re.compile(r"\+?\s?[58]\s?V|sensor|cam|pedal|cruise|supply|pull", re.I),
     "power": re.compile(r"relay|fuse|diode|\+12|12\s?V", re.I),
 }
-# Known violations waiting for their wiring fix (OPEN-ITEMS): printed, not failing; a fixed one must be removed.
+# Known violations waiting for their wiring fix (store BACKLOG): printed, not failing; a fixed one must be removed.
 # E3:w_at_gnd_a1 is permanent, not pending: the alarm ground lead (node AL-GND to ring terminal T-AT-GND) is the named B10
 # exception (DECISIONS "Grounds (B10)", Dan N43 b); the accessory grounds went with the accessories (alarm-ready tap points,
 # Dan 2026-11-06). Factory-load grounds are not listed here: they carry the FACTORY_GND tag in the master note (DECISIONS
@@ -799,7 +799,7 @@ def main(argv):
             for x in sorted(v):
                 print("    " + x)
     for k in sorted(pend):
-        print("pending (known, OPEN-ITEMS):", k)
+        print("pending (known, BACKLOG):", k)
     for x in bad:
         print("FAIL", x)
     print("check_wiring: %s" % ("FAIL (%d)" % len(bad) if bad else "OK"))

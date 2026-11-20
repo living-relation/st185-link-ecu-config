@@ -1,4 +1,5 @@
 ---
+description: Preserve RealDash XML input contract
 paths:
   - link_g4x_realdash.xml
   - REALDASH-LAYOUT.md

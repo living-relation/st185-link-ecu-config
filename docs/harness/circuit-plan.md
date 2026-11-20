@@ -4,7 +4,7 @@ Dan reviews the rewire by whole circuits, not single wires (2026-10-21). The 21-
 changes to #2, #9, #11 and #18, then written into `docs/harness/MASTER-wirelist.csv` on 2026-10-25 (row 164). Pins are
 1993 EWD; ECU pins are Link G4X XtremeX. This is a plan file, not a wiring source: the master owns every wire, and each
 action below names the master wire id that carries it. If this file and the master disagree, the master wins and the
-difference goes into `docs/OPEN-ITEMS.md`. Factory keep / gone list: `README.md` "What stays and what goes"; new box
+difference goes into the store `BACKLOG.md`. Factory keep / gone list: `README.md` "What stays and what goes"; new box
 seat to OEM landing: `README.md` "Power injection". Routes change only per DECISIONS B8.
 
 | # | Circuit | Plan (in the master) |
@@ -318,4 +318,4 @@ Every row is **remove**; the new wire that takes over each load is listed.
 
 The cabin-side stubs these land on stay: J/B1 1H-2 / 4 / 5 / 6 / 7 / 8 and 1I-1, IE1 (cowl side). They are ER Main
 plugs at J/B1 (1993 p.63), so they are 6 in stubs of a removed wire; they are not yet on B9's kept-pigtail list (fault C6,
-carried in OPEN-ITEMS row 183: this list is the one to add). Open from the draft: walk the car for anything else taped into the ER Main trunk near J/B2.
+carried in BACKLOG row 183: this list is the one to add). Open from the draft: walk the car for anything else taped into the ER Main trunk near J/B2.

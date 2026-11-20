@@ -1,4 +1,4 @@
-"""Open questions for Dan: the "Needs Dan" table in docs/OPEN-ITEMS.md (DECISIONS R119).
+"""Open questions for Dan: the "Needs Dan" table in docs/NEEDS-DAN.md (DECISIONS R119, A96 a).
 
 One reader for every consumer (fusebox clearance check, fusebox summary):
 
@@ -18,7 +18,7 @@ Standard library only.
 import re
 from pathlib import Path
 
-TRACKER = Path(__file__).resolve().parent / "OPEN-ITEMS.md"
+TRACKER = Path(__file__).resolve().parent / "NEEDS-DAN.md"
 _OPT = re.compile(r";\s*(?=[A-Z]\)\s)")
 
 

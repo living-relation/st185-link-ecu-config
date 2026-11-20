@@ -54,4 +54,4 @@ Where the built dash differs from `REALDASH-LAYOUT.md`:
     dynamic text colour.
 
 RealDash's `.rd` format is an undocumented binary, so a dashboard is made only by driving RealDash's own editor.
-Later RealDash work (a few channel updates, a backup camera screen) is parked: `docs/OPEN-ITEMS.md` row 184.
+Later RealDash work (a few channel updates, a backup camera screen) is parked: store BACKLOG row 184.

@@ -42,7 +42,7 @@ MODELS = {
     "fusebox-power":  ("cad/fusebox/trimetric-power.png",     ["cad/fusebox/Power_*.step"]),
     "fusebox-battrelay": ("cad/fusebox/trimetric-battrelay.png", ["cad/fusebox/BattRelay_*.step"]),
     "enclosure-vrc":  ("cad/enclosures/vrc/trimetric.png",    ["cad/enclosures/vrc/VRC_assembly.step"]),
-    # printed board holder of the VRC box (OPEN-ITEMS row 97, K7), shown with the board in it
+    # printed board holder of the VRC box (old tracker row 97, K7; git history of docs/OPEN-ITEMS.md), shown with the board in it
     "enclosure-vrc-holder": ("cad/enclosures/vrc/trimetric-holder.png", ["cad/enclosures/vrc/VRC_part_VRC-Board-Holder.step",
                              "cad/enclosures/vrc/VRC_part_OpenLogicEFI_NCV1124_VR_module_RevB3.step"]),
     "enclosure-csb3": ("cad/enclosures/csb3/trimetric.png",   ["cad/enclosures/csb3/CSB3_assembly.step"]),

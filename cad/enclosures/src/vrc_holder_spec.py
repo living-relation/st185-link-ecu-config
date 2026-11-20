@@ -1,4 +1,4 @@
-"""VRC board holder (OPEN-ITEMS row 97, Dan K7 = A: "no extra room though ... just make it fit the enclosure with room
+"""VRC board holder (old tracker row 97 (git history), Dan K7 = A: "no extra room though ... just make it fit the enclosure with room
 for the wires") - every number the Fusion build (build_vrc_holder.py) and its checks use, in mm, enclosure axes
 (box floor top z = 5, cavity x +-38 / y +-18 / to the lid at z = 39; IN socket on +x, OUT on -x).
 

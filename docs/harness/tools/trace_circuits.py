@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Circuit tracer (OPEN-ITEMS row 117; DECISIONS "Parked rows (R102)" "Circuit tracer": Dan A53 a - A57 a and his
+"""Circuit tracer (BACKLOG row 117; DECISIONS "Parked rows (R102)" "Circuit tracer": Dan A53 a - A57 a and his
 2026-11-15 scope). READ-ONLY: it reads the master wire list, sot/*, the fuse box wiring plan, circuit-plan.md and its
 own rules file, and never edits them (Dan A48 a). It traces the circuits WE created in the new harnesses and checks
 them against electrical principles. It does not compare anything with the factory circuits: a factory part is only an

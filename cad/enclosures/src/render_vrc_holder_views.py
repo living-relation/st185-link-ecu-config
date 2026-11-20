@@ -1,4 +1,4 @@
-"""Snapshot views of the VRC board holder in the box, with the internal leads (OPEN-ITEMS row 97, K7). Headless, like
+"""Snapshot views of the VRC board holder in the box, with the internal leads (old tracker row 97, K7; git history of docs/OPEN-ITEMS.md). Headless, like
 cad/render_trimetric.py (never a Fusion document, R74): reads VRC_assembly.step from the main checkout, leaves the lid
 and O-ring off, adds the leads from vrc_holder_spec.wires() (M22759/16-20, OD 1.57, 3 x OD bends) as tubes, and draws
 each view with render_trimetric.draw (its fixed style, a different camera per view).

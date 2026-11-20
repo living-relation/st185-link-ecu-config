@@ -5,7 +5,7 @@ one is consolidated into it or deleted - never archived, bannered "superseded" o
   C2  no document outside the keep list says it IS a source of truth (the keep list owns that claim)
   C3  no document opens (first 15 lines) with a superseded / historical / archived / kept-for-reference banner
   C4  no document names a repo file under docs/ or sot/ that no longer exists (a removed SoT or doc that older
-      text still points at); DECISIONS and OPEN-ITEMS history are exempt
+      text still points at); DECISIONS (history) is exempt
 
 HARD: all four. Exit 1 on any finding.
 """
@@ -22,7 +22,7 @@ SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-st
 KEEP = {
     "AGENTS.md", "README.md", "XTREMEX-IO-TABLE.html", "sot/README.md",
     "docs/harness/README.md", "docs/harness/redesign/DECISIONS.md",
-    "docs/OPEN-ITEMS.md", "docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md",
+    "docs/NEEDS-DAN.md", "docs/devices/SENSOR-AND-ACTUATOR-REFERENCE.md",
 }
 IS_SOT = re.compile(r"\b(is|are|as) (the |a |our )?(one |single |only )?(\w+ ){0,2}(source of truth|sources of truth|SoT)\b|"
                     r"\bSoT (for|of) (the )?\w+", re.I)
@@ -32,7 +32,7 @@ ARCHIVE_DIR = re.compile(r"(^|/)(archive|archived|old|legacy|superseded|deprecat
 
 
 PATH_REF = re.compile(r"(?<![\w/.-])((?:docs|sot)/[\w./-]*[\w-]\.(?:md|html|csv|json|py|xlsx|txt))")
-HISTORY = ("docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md")
+HISTORY = ("docs/harness/redesign/DECISIONS.md",)
 
 
 def main():
@@ -60,7 +60,7 @@ def main():
                 bad.append("C4 %s: names %s, which does not exist" % (f, m))
         head = "\n".join(text.split("\n")[:15])
         m = BANNER.search(head)
-        if m and f not in ("docs/harness/redesign/DECISIONS.md", "docs/OPEN-ITEMS.md"):
+        if m and f not in HISTORY:
             bad.append("C3 %s: opens with a '%s' banner" % (f, m.group(0)))
     for b in bad:
         print("FAIL", b)

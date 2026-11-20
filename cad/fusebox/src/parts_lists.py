@@ -132,7 +132,7 @@ def counts(rev):
 counts(7)
 
 
-# R120 / OPEN-ITEMS row 121 (Dan M6 = A, 2026-10-15): an RNF-100 build-up sleeve under the insulation crimp of every thin-wall wire end below
+# R120 / tracker row 121, closed (store archives) (Dan M6 = A, 2026-10-15): an RNF-100 build-up sleeve under the insulation crimp of every thin-wall wire end below
 # its terminal's insulation range (spec.build_up), counted per box from the rev 7 wire plan. Sold as 4 ft (1220 mm) black sticks; one end
 # takes SLEEVE_CUT mm per layer. Newark listings read 2026-10-15 (R38: TE part, through a distributor - not on hand; the on-hand
 # RNF-100-3/64 is too small, 1.2 mm expanded).

@@ -32,8 +32,8 @@ for body, want, name in [
 ]:
     check(f"PR body: {name}", check_pr_rows.has_rows_line(body) == want)
 
-# --- Needs Dan table in OPEN-ITEMS (R119) ---
-real = (ROOT / "docs" / "OPEN-ITEMS.md").read_text(encoding="utf-8")
+# --- Needs Dan table in docs/NEEDS-DAN.md (R119, A96 a) ---
+real = (ROOT / "docs" / "NEEDS-DAN.md").read_text(encoding="utf-8")
 sys.path.insert(0, str(ROOT / "docs"))
 from needs_dan import open_questions  # noqa: E402
 
@@ -52,7 +52,7 @@ with tempfile.TemporaryDirectory() as d:
           and [o["recommended"] for o in q[1]["options"]] == [True, False, True])
 # The real table may hold open questions (it is where they live, R119); each must parse
 # with an ID, at least two options and at least one recommended (several when circumstances differ).
-check("needs-dan: real tracker has the section and every open question parses",
+check("needs-dan: docs/NEEDS-DAN.md has the section and every open question parses",
       "| ID | Topic | Question | Options | Recommended |" in real
       and all(q["id"] and len(q["options"]) >= 2
               and sum(o["recommended"] for o in q["options"]) >= 1 for q in open_questions()))

@@ -394,7 +394,7 @@ RELAY_B_PINS = {'30': (0.0, 7.65), '87': (0.0, -10.25), '87a': (0.0, RELAY_B['v8
 # Which harness pin (sot/channels.csv c1 = 30, c4 = 87) lands on which real blade. The box brings every AMI feed up round its saddle into the FAR
 # blade (v -10.25) = the real 87, and takes the harness out of the NEAR blade = the real 30. The F7s are 1 form A (30 - 87 is one switch, either way
 # round): DECISIONS R168 (N22 = A) puts the feed on 87; the heater (1 form C, DECISIONS R164): 87 = the 40 A feed, 30 = the blower, as on the car
-# (1993 EWD p.215). ST185-CabinPower draws every POWER relay that way (OPEN-ITEMS rows 132 / 137), so harness pin = real blade for all six.
+# (1993 EWD p.215). ST185-CabinPower draws every POWER relay that way (tracker rows 132 / 137, closed; store archives), so harness pin = real blade for all six.
 POWER_ROLE_POS = {'30': 'near', '87': 'far'}
 # ---------- power zone (outboard): one Al bar along y, AMI both sides, M8 1/0 input at the forward end
 BAR_METAL = 'CuC110'   # Y2 decided (Dan, 2026-10-14, R76): tinned copper flat bar stock; machined parts since D6 (Dan 2026-10-16, R76 amended)
@@ -534,7 +534,7 @@ LOGIC_MAX_AWG = 14     # largest wire on a mini fuse / micro relay receptacle (r
 # real gauge. Relay 87 = the gauge of its AMI feed; coils 20 AWG; micro relay loads 16 AWG.
 MINI_AWG = {2: 20, 5: 20, 7.5: 18, 10: 18, 15: 16, 20: 14}   # DM 20 A = 14 AWG (TE 880398-2 takes 13 AWG max; row 107)
 COIL_AWG, MICRO_LOAD_AWG, ACPS_AWG, H87A_AWG = 20, 16, 14, 18
-RELAY87_AWG = {'k_efi': 10}   # 87 tails whose harness gauge differs from the AMI feed (ST185-CabinPower w77_cp 10 AWG; OPEN-ITEMS 119 (a))
+RELAY87_AWG = {'k_efi': 10}   # 87 tails whose harness gauge differs from the AMI feed (ST185-CabinPower w77_cp 10 AWG; old tracker row 119 (a), git history)
 
 # ---------- battery relay block (trunk, passenger side between rear wall and battery, Z4): HCR150 + AMI 40
 # One straight line along x: battery feed (-x end) -> M6 stud -> AMI 40 -> straight jumper -> HCR150 terminal 3;
@@ -742,7 +742,7 @@ FLOAT_BACKING = 0.5   # R101: a hanging feature with less of its top face on sol
 GUIDE = dict(t=2.0, h=3.5, reach=12.0)     # J2: short guide walls under the deck between neighbouring holes (centres closer than reach)
 
 
-# R120 / OPEN-ITEMS row 121 (Dan M6 = A, 2026-10-15): insulation build-up sleeve under the insulation crimp of a thin-wall wire below its
+# R120 / tracker row 121, closed (store archives) (Dan M6 = A, 2026-10-15): insulation build-up sleeve under the insulation crimp of a thin-wall wire below its
 # terminal's insulation range.
 # TE Raychem RNF-100 2:1 polyolefin (TE / distributor data sheets, read 2026-10-15): expanded ID min, recovered ID max, recovered wall nom.
 SLEEVE = {'RNF-100-3/32': (2.4, 1.2, 0.50), 'RNF-100-1/8': (3.2, 1.6, 0.50), 'RNF-100-1/4': (6.4, 3.2, 0.65)}
@@ -941,7 +941,7 @@ SCREW = dict(off=13.0, d_ins=4.0, ins_depth=6.0, boss_w=8.6, boss_depth=5.0, bos
 TERM_SWAP = {'2293255-1': '280919-2', '880398-2': '1-968851-1', '1241388-2': '1-968849-1'}
 # N21 (Dan 2026-10-18, "MCP 2.8 female receptacles"; DECISIONS R166): every mini fuse / ACPS socket takes a TE AMP MCP 2.8 receptacle by wire
 # gauge - 1-968849-1 for 20 / 18 AWG, 1-968851-1 for 16 / 14 AWG (the 15 A circuits stay 16 AWG). Box-side swap like R123: ST185-CabinPower and
-# ST185.harnesslib still name 880398-2 / 1241388-2 (OPEN-ITEMS follow-up). Dan's lead was Ballenger Motorsports CONN-100329 ("1.25 - 2.5 mm2"):
+# ST185.harnesslib still name 880398-2 / 1241388-2 (old tracker follow-up). Dan's lead was Ballenger Motorsports CONN-100329 ("1.25 - 2.5 mm2"):
 # Ballenger names no TE part number; 1-968851-1 is the TE part with that tab, plating and the 16 / 14 AWG crimp data (114-18148 Table 7).
 PLACE_HOLD = {}
 
@@ -1080,7 +1080,7 @@ def real_zones(part, kind, side=1):
     return out + [(-R_['neck'], -tip) + box_, (-tip, 0.0) + win]
 
 
-# ---------- keyed twist-lock seats (Dan 2026-11-16, OPEN-ITEMS row 107 "terminal slots and holes: check retention and fit"). Dan's
+# ---------- keyed twist-lock seats (Dan 2026-11-16, BACKLOG row 107 "terminal slots and holes: check retention and fit"). Dan's
 # finding on a relay-seat section: the R120 / R121 cavity was sized round the TE STEP, whose insulation wings are OPEN (uncrimped); a
 # crimped terminal is only about as wide as the wire insulation behind its box, so the lance ledge alone does not hold it. His fix:
 # the crimped terminal goes up through a slot in ONE orientation only (R, its box turned 90 deg from the seat), turns 90 deg and drops
