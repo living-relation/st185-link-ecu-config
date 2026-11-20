@@ -1,0 +1,151 @@
+{
+  "_notes": [
+    "Source-of-truth registry, added by state-init 2026-11-19 (Dan A93 a, A96 a). Agents change a SoT only with Dan's yes (A48 a).",
+    "Gap: sot-fuse-relay-map has no dedicated check; it is covered only through its readers (build_drawings --check, trace_circuits --check, parts_lists --check, check_all).",
+    "Gap: sot-channels: XTREMEX-IO-TABLE.html is its visual face; whether it is generated or hand-made is not verified.",
+    "Gap: tune-seeds has no fast check marked; validate_tune runs at commit."
+  ],
+  "entries": [
+    {
+      "name": "wirelist",
+      "paths": [
+        "docs/harness/MASTER-wirelist.csv"
+      ],
+      "checks": [
+        {
+          "run": "python docs/harness/tools/check_wiring.py",
+          "fast": true
+        },
+        "python docs/harness/tools/check_wiring.py --self-test",
+        "python docs/harness/tools/build_drawings.py --check",
+        "python docs/harness/tools/trace_circuits.py --check",
+        "python tools/check_all.py"
+      ],
+      "regenerate": [
+        "python docs/harness/tools/build_drawings.py",
+        "python docs/sourcing/build_project_bom.py",
+        "python docs/harness/tools/build_bundle_map.py"
+      ],
+      "derived": [
+        "docs/harness/wirelists/ST185-*-wirelist.*",
+        "docs/harness/drawings/**",
+        "docs/sourcing/PROJECT-BOM.*",
+        "docs/harness/BUNDLE-MAP.html",
+        "docs/harness/CIRCUIT-TRACE.html"
+      ],
+      "report": "cells"
+    },
+    {
+      "name": "sot-channels",
+      "paths": [
+        "sot/channels.csv"
+      ],
+      "checks": [
+        {
+          "run": "python docs/harness/tools/check_wiring.py",
+          "fast": true
+        },
+        "python docs/harness/tools/trace_circuits.py --check",
+        "python tools/check_all.py"
+      ],
+      "report": "cells"
+    },
+    {
+      "name": "sot-fuse-relay-map",
+      "paths": [
+        "sot/fuse-relay-map.csv"
+      ],
+      "checks": [
+        {
+          "run": "python cad/fusebox/src/parts_lists.py --check",
+          "fast": true
+        },
+        "python docs/harness/tools/build_drawings.py --check",
+        "python docs/harness/tools/trace_circuits.py --check",
+        "python tools/check_all.py"
+      ],
+      "report": "cells"
+    },
+    {
+      "name": "layout-tree",
+      "paths": [
+        "docs/harness/tools/ST185-harness.layout.json",
+        "docs/harness/tools/placement_editor/seeds/*.json"
+      ],
+      "checks": [
+        {
+          "run": "python docs/harness/tools/check_corridors.py",
+          "fast": true
+        },
+        "python docs/harness/tools/build_drawings.py --check",
+        "python docs/harness/tools/build_drawings.py --self-test",
+        "python docs/harness/tools/build_bundle_map.py --check"
+      ],
+      "report": "lines"
+    },
+    {
+      "name": "corridors",
+      "paths": [
+        "docs/harness/tools/corridors.json"
+      ],
+      "checks": [
+        {
+          "run": "python docs/harness/tools/check_corridors.py",
+          "fast": true
+        },
+        "python docs/harness/tools/check_corridors.py --self-test"
+      ],
+      "report": "lines"
+    },
+    {
+      "name": "fusebox-spec",
+      "paths": [
+        "cad/fusebox/src/spec.py"
+      ],
+      "checks": [
+        {
+          "run": "python cad/fusebox/src/parts_lists.py --check",
+          "fast": true
+        },
+        "python cad/fusebox/src/check_clearance.py",
+        "python cad/fusebox/src/check_terminal_holes.py",
+        "python cad/fusebox/src/check_printed_solid.py",
+        "python cad/check_drawings_current.py"
+      ],
+      "regenerate": [
+        "python cad/fusebox/src/parts_lists.py"
+      ],
+      "derived": [
+        "cad/fusebox/rev8/fusebox-parts-*.csv"
+      ],
+      "report": "lines"
+    },
+    {
+      "name": "can-contract",
+      "paths": [
+        "link_g4x_can_setup.json",
+        "link_g4x_can_setup.lcs",
+        "switchboard_frames.json",
+        "link_g4x_realdash.xml",
+        "bench/frames.py"
+      ],
+      "checks": [
+        {
+          "run": "python bench/check_parity.py",
+          "fast": true
+        }
+      ],
+      "report": "lines"
+    },
+    {
+      "name": "tune-seeds",
+      "paths": [
+        "tune/**"
+      ],
+      "checks": [
+        "python tune/scripts/validate_tune.py"
+      ],
+      "report": "none"
+    }
+  ]
+}

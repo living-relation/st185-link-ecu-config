@@ -2,7 +2,7 @@
 
     PR_BODY="..." python .github/scripts/check_pr_rows.py     exit 0 = line present
 
-The line says which docs/OPEN-ITEMS.md rows the change touched, so the tracker is
+The line says which store BACKLOG.md rows (IDs kept from the retired docs/OPEN-ITEMS.md; A96 a) the change touched, so the tracker is
 updated by the session that did the work (AGENTS.md "Working rules" and DECISIONS B28, then pr-closeout).
 """
 import os
@@ -20,7 +20,7 @@ def main() -> int:
     if has_rows_line(os.environ.get("PR_BODY", "")):
         print("PR body has a Rows: line.")
         return 0
-    print("::error::PR body needs a line 'Rows: <n>, <n>' (OPEN-ITEMS rows touched) or 'Rows: none'.")
+    print("::error::PR body needs a line 'Rows: <n>, <n>' (BACKLOG rows touched) or 'Rows: none'.")
     return 1
 
 

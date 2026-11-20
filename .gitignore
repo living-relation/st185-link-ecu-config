@@ -53,3 +53,6 @@ cad/vendor/**
 
 # Scratch: disposable work only, never committed (Dan 2026-11-03; DECISIONS "Where data lives (B3)")
 _scratch/
+
+# Branch checklist (workstation-core state-init, A93 a): TASK.md at the worktree root, never committed
+TASK.md

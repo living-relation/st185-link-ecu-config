@@ -60,7 +60,7 @@ Note 2026-10-18: the SoT / DRB102-CAVITY-MAP part numbers are `DRB12-102PAE-L018
 
 ## Dan to download
 
-The one download list (2026-10-18; the earlier lists in OPEN-ITEMS and the research notes are folded in here). te.com,
+The one download list (2026-10-18; the earlier lists in the old tracker (OPEN-ITEMS, retired 2026-11-19) and the research notes are folded in here). te.com,
 littelfuse.com, eaton.com and glenair.com refuse shell downloads (TE 403, Littelfuse 403, Glenair 403, Eaton connection
 reset / timeout, tested 2026-10-18), and agents no longer download through the in-app browser (it left Save dialogs open).
 Save each file into the folder named, in this order (1 first):
@@ -68,7 +68,7 @@ Save each file into the folder named, in this order (1 first):
 | # | Part | Maker page URL | Save to | Why it is needed |
 |---|---|---|---|---|
 | 1 | TE customer drawing V23074-A2001-A402 (HEAD relays 5-1393292-8) | https://www.te.com/en/product-5-1393292-8.html ("Customer Drawing") | `te/specs/` | reference for R170 (HEAD relay has 5 blades, Dan's N26 answer cites this drawing); the number V23074-A2001-CD is Dan's, the file here is the one TE lists for 5-1393292-8; file copy only - applied from Dan's screenshot (shell download still 403, 2026-10-18) |
-| 2 | TE Power Relay F4 A data sheet (V23136X0000A004), heater relay 1-1414687-0 | https://www.te.com/en/product-1-1414687-0.html ("Data Sheet") | `te/specs/` | confirm the heater relay pin pattern (today: the TE STEP + the Power Relay B numbers; OPEN-ITEMS row 132) |
+| 2 | TE Power Relay F4 A data sheet (V23136X0000A004), heater relay 1-1414687-0 | https://www.te.com/en/product-1-1414687-0.html ("Data Sheet") | `te/specs/` | confirm the heater relay pin pattern (today: the TE STEP + the Power Relay B numbers; tracker row 132, closed; store archives) |
 | 3 | TE application spec 114-18022 | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-18022&DocType=SS&DocLang=EN | `te/specs/` | MCP 2.8K crimp heights |
 | 5 | TE customer drawings DT04-4P-EP13, DT04-6P-EP13, DT04-08PA-P021, DT04-08PA-P026 (the 12-way DT04-12PA-P021 was read already) | https://www.te.com/en/product-DT04-4P-EP13.html, https://www.te.com/en/product-DT04-6P-EP13.html, https://www.te.com/en/product-DT04-08PA-P021.html, https://www.te.com/en/product-DT04-08PA-P026.html (each "Customer Drawing") | `te/specs/dt-bussed/` | only if more splices than the three in R169 go bussed: bus layout per cavity and the 8-way pin / socket wording, which the TE page leaves unclear |
 | 6 | TE DT application spec 114-151009 (46 pages) | https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=114-151009&DocType=Specification%20Or%20Standard&DocLang=English&DocFormat=pdf | `te/specs/dt-bussed/` | wire AWG 14-20 and the N-seal (2.23-3.68 mm) / E-seal (1.35-3.05 mm) insulation ranges, for DT plugs forward of the firewall (R173) |

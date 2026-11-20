@@ -1,4 +1,4 @@
-"""Section renders of the keyed twist-lock terminal seats (spec.TWIST, Dan 2026-11-16, OPEN-ITEMS row 107). Run inside Fusion after
+"""Section renders of the keyed twist-lock terminal seats (spec.TWIST, Dan 2026-11-16, BACKLOG row 107). Run inside Fusion after
 build_fusion.build(OUT, rev=8): copies the built POWER base out of the open ST185_fusebox_rev7 document into a scratch design that is
 never saved (closed without saving, R74), cuts the sections there and adds the crimped terminal on its real wire, sized from
 spec.twist_env (box, crimped wire barrel, insulation barrel on the RNF-100 build-up, wire) - simple boxes and cylinders at those sizes,

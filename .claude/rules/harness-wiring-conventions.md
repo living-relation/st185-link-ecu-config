@@ -1,4 +1,5 @@
 ---
+description: Harness drawing conventions, pin SoT hierarchy, and the all-documents reconciliation rule
 paths:
   - sot/**
   - XTREMEX-IO-TABLE.html

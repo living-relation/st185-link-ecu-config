@@ -1,4 +1,5 @@
 ---
+description: Follow established Python tooling patterns
 paths:
   - apps/trackcluster-can-sender/**
   - bench/**

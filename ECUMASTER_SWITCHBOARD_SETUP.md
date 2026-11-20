@@ -110,7 +110,7 @@ to the A2 junction forms the divider with the ladder. **Use 1 kohm, not 10 kohm.
 | SET/COAST | 198 | 827 | 98 |
 | CANCEL | 418 | 1474 | 400 |
 
-Current through the 1 kohm is at most 5 mA, so the A32 +5V budget (OPEN-ITEMS row 69) is untouched. These are
+Current through the 1 kohm is at most 5 mA, so the A32 +5V budget (BACKLOG row 69) is untouched. These are
 the Toyota nominal values ("approx."); measure the real stalk and tune the bands at setup. The CSB3 analog
 input impedance is not in the repo - check it in the CSB3 manual, since it loads the divider.
 
@@ -162,7 +162,7 @@ Opto IN3 / OUT3: headlights-on from dimmer R10 pin 1 (green TAIL +12 V) to the c
 **Mapped 2026-10-14 (DECISIONS R80; wires in the master, Dash harness):** brake (S7, bit 6) and reverse (S8, bit 7) arrive through the
 8-channel opto board (`OPTO-8`, Dash; DECISIONS S17 / R56); clutch (S6, bit 5) is a ground-active contact. All three
 are in the CAN contract and the `.lcs` receive channel now. Left for the bench: confirm a set bit means pressed /
-engaged (opto board check, `docs/OPEN-ITEMS.md` row 101) and that the receive channels import (row 2).
+engaged (opto board check, store BACKLOG row 101) and that the receive channels import (row 2).
 
 **Note:** SET/COAST, RES/ACC and CANCEL do not arrive on SW_MASK or AS_MASK: they are decoded in PCLink from the A2 raw mV (Step 4.1). SW_MASK bit 2 carries only MAIN.
 

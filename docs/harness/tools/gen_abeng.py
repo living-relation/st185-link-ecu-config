@@ -5,7 +5,7 @@ add ops); then route it: python genroute.py <out>/abeng.json <out>/abeng_final.j
 gen_engc.py (README "harness.design"): connectors 240 wide, each pin its own master end text, display stripes on +12 V wires,
 parts from library 5LO8 (new ones from harness-parts.csv), regular layout view, compact schematic (bulkhead, splices, cables,
 devices). Lengths: the Route 16 tree of `route_trees` alone (DECISIONS B8; HeavyDC has its own layout-tree segments since B6 b,
-OPEN-ITEMS row 179), checked here against the master est_length_mm. gen_engc.py runs on import, so its helpers are not
+tracker row 179, closed; store archives), checked here against the master est_length_mm. gen_engc.py runs on import, so its helpers are not
 imported."""
 import sys, os, json, re, collections, math, csv, copy
 import formboard as FB
