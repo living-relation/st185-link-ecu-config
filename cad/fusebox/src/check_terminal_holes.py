@@ -1,4 +1,4 @@
-"""Gate: fuse box terminal cavities (Dan's J2 = B, 2026-10-14, DECISIONS R94; hole rule R120 and self-locking terminals R121, Dan
+﻿"""Gate: fuse box terminal cavities (Dan's J2 = B, 2026-10-14, DECISIONS R94; hole rule R120 and self-locking terminals R121, Dan
 2026-10-15) - every crimped terminal goes up through its hole in the base and snaps in, and no wall between two cavities is thinner than
 the printed minimum.
 Works out on its own, from the wire plan (cad/fusebox/rev8/wiring_plan.json: the harness wire and terminal part at every cavity) and the
@@ -10,13 +10,14 @@ TE terminal data in spec.py (TERM, LOCK), what every cavity must be, and checks 
       (spec.hole); every zone above it as spec.zones. Today's wire is never the size: it (and its RNF-100 build-up) only has to fit (S1).
   H3  the hole is at least HOLE['lead_in'] deep at its mouth
   L1  R121 / R123: a terminal with a locking lance keeps at least one ledge (the box-sized stretch under a window the lance springs into,
-      the lance reaching past the ledge edge by >= LOCK_MIN) that no neighbouring cavity is joined onto in its box / lance zones; a cavity
-      on a relay in spec.RETAIN is held by the printed retainer clip instead; any other terminal with no lance fails
+      the lance reaching past the ledge edge by >= LOCK_MIN) that no neighbouring cavity is joined onto in its box / lance zones; a terminal
+      with no lance fails (A83: a terminal is held by its own lance; the R123 retainer clip is retired, A86 a)
   W1  every wall between two cavities, zone by zone where they share a height, is at least HOLE['min_wall'] (R73) - or the two are
       joined into one (Dan: "join the two slots into one"); joins in the box / window zones (the relay and fuse pin spacing) are listed
   S1  the wire, with its RNF-100 build-up, fits the hole
-  R1  R123 B: a retainer clip's wire hole leaves the crimped insulation barrel >= RETAINER['bear'] a side to rest on
   G1  R120 / M6 = A: every wire thinner than its terminal's insulation range has an RNF-100 build-up that brings it into range
+  T1  keyed twist-lock seat (spec.TWIST, Dan 2026-11-16): the seated box overhangs the ledge >= TWIST['bear_min'] each end (it cannot
+      pull out), the crimped wire barrel turns inside the slot, and no other cavity is joined onto its recess band (it cannot turn back)
 A build from before R121 (report holes without "zones") cannot pass H2: its holes are listed as RECUT for the next rev 7 rebuild
 (build_fusion.build(rev=7)) and the gate stays green, and an L1 cavity left with no ledge is listed as RESOLVE (a layout / question to settle
 before that rebuild); once the build writes the zones both are hard.
@@ -54,9 +55,10 @@ def required(plan):
     for c in plan['cavities']:
         k = (c['box'], round(c['x'], 2), round(c['y'], 2))
         if k in req:
-            out[k] = dict(req[k], kind=c['kind'], cav=c['cav'])
+            out[k] = dict(req[k], kind=c['kind'], cav=c['cav'], lock=c.get('lock'), awg=c.get('awg'))
         elif c.get('hole'):
-            out[k] = dict(part=c['part'], od=c['wire_od'], wires=[], kind=c['kind'], cav=c['cav'], kept=c['source'] == 'spare (kept cut)')
+            out[k] = dict(part=c['part'], od=c['wire_od'], wires=[], kind=c['kind'], cav=c['cav'], kept=c['source'] == 'spare (kept cut)',
+                          lock=c.get('lock'), awg=c.get('awg'))
     return out
 
 
@@ -113,7 +115,7 @@ def main():
     rep = json.load(open(REPORT, encoding='utf-8'))
     plan = json.load(open(PLAN, encoding='utf-8'))
     holes = rep.get('terminal_holes') or {}
-    bad, info, recut, retained, rows, resolve, moved = [], [], [], [], [], [], []
+    bad, info, recut, rows, resolve, moved, over = [], [], [], [], [], [], []
     if not holes:
         print('check_terminal_holes: MISSING terminal_holes in %s - re-run the Fusion build (build_fusion.build(rev=7))' % os.path.relpath(REPORT, REPO))
         return 1
@@ -135,11 +137,21 @@ def main():
             if not seq:
                 bad.append('G1 %s %s: %s on a %.2f mm wire, below the %.2f mm floor of %s, and no RNF-100 build-up fits' % (
                     k[0], r['cav'], ', '.join(ws), od, lo, part))
+        g_ = r.get('awg')
+        if ws and g_ in S.OD_MIN:          # A82: the thinnest wire of the gauge needs a build-up that fits too; the fattest must fit the terminal
+            lo_ = S.OD_MIN[g_]
+            if lo_ < S.TERM[part]['ins'][0] and not S.build_up(part, lo_)[0]:
+                bad.append('G1 %s %s: %d AWG at its least OD %.2f is below %s (%.2f) and no RNF-100 build-up fits' % (k[0], r['cav'], g_, lo_, part, S.TERM[part]['ins'][0]))
+            if od > S.TERM[part]['ins'][1] + TOL:
+                over.append('%s %s: %s takes insulation to %.2f, %d AWG GXL is %.2f' % (k[0], r['cav'], part, S.TERM[part]['ins'][1], g_, od))
         hx, hy = S.hole(part, kind)
-        cod = S.crimp_od(part, od)
+        cod = S.crimp_max(part, od, r.get('awg'))
+        if r.get('lock') == 'twist':        # T1: the slot is the narrow way through
+            zt_ = S.twist_zones(part, kind, od, r.get('awg'))
+            hx, hy = zt_[1][3] - zt_[1][2], zt_[1][5] - zt_[1][4]
         if cod + 2 * S.HOLE['clr'] > min(hx, hy) + TOL:
             bad.append('S1 %s %s: wire / build-up %.2f does not fit the %.2f x %.2f hole' % (k[0], r['cav'], cod, hx, hy))
-        c = dict(box=k[0], x=k[1], y=k[2], kind=kind, part=part, cav=r['cav'], od=od)
+        c = dict(box=k[0], x=k[1], y=k[2], kind=kind, part=part, cav=r['cav'], od=od, lock=r.get('lock'), awg=r.get('awg'))
         cavs.append(c)
         h = built.get(k)
         rows.append([k[0], r['cav'], part, od, cod, ' + '.join(seq) if seq else '-', None, hx, hy, ''])
@@ -156,7 +168,11 @@ def main():
     allc = [dict(box=c['box'], x=c['x'], y=c['y'], kind=c['kind'], part=c['part'], source=c['source']) for c in plan['cavities']]
     for c in cavs:
         me = next(d for d in allc if d['box'] == c['box'] and round(d['x'], 2) == c['x'] and round(d['y'], 2) == c['y'])
-        c['zs'] = S.zones(c['part'], c['kind'], S.lance_side(me, allc))
+        if c.get('lock') == 'twist':
+            c['zs'] = S.twist_zones(c['part'], c['kind'], c['od'], c['awg'], S.lance_side(me, allc))
+            c['tw'] = S.twist_check(c['part'], c['kind'], c['od'], c['awg'], S.lance_side(me, allc))
+        else:
+            c['zs'] = S.zones(c['part'], c['kind'], S.lance_side(me, allc))
         h = c.get('built')
         if not h:
             continue
@@ -179,18 +195,55 @@ def main():
         partners.setdefault((b, a_), []).append(by[(b, c_)])
         partners.setdefault((b, c_), []).append(by[(b, a_)])
     shared = [(b, a_, c_, w) for (b, a_, c_, w, up) in joined if up]
+    twist_join = []
     for c in cavs:
         L_ = S.LOCK[c['part']]
-        if c['cav'].split()[0] in S.RETAIN.get(c['box'], []):
-            retained.append((c['box'], c['cav'], c['part']))
-            hd, bd = S.retainer_hole(c['part'], c['od'])
-            if hd + 2 * S.RETAINER['bear'] > bd + TOL:
-                bad.append('R1 %s %s: retainer hole %.2f leaves the %.2f crimped barrel under %.1f a side to rest on' % (
-                    c['box'], c['cav'], hd, bd, S.RETAINER['bear']))
-            c['row'][9] = 'retainer clip (R123 B)'
+        if c.get('lock') == 'twist':
+            tw = c['tw']
+            if tw['bear'] + TOL < S.TWIST['bear_min']:
+                bad.append('T1 %s %s: box overhangs the ledge %.2f each end (min %.2f)' % (c['box'], c['cav'], tw['bear'], S.TWIST['bear_min']))
+            if tw['wire_turn'] > tw['slot_short'] + TOL:
+                bad.append('T1 %s %s: the crimped wire barrel (%.2f turning) does not turn in the %.2f slot' % (c['box'], c['cav'], tw['wire_turn'], tw['slot_short']))
+            eg = tw.get('engage')
+            if eg and eg[0] + TOL < S.TWIST['mate_min']:
+                bad.append('T1 %s %s: the relay blade goes only %.2f into the receptacle (min %.1f mating length)' % (c['box'], c['cav'], eg[0], S.TWIST['mate_min']))
+            if eg and eg[2] > S.twist_env(c['part'], c['od'])['Lb'] + TOL:
+                bad.append('T1 %s %s: the relay blade reaches %.2f, past the %.2f contact box into the crimp' % (c['box'], c['cav'], eg[2], S.twist_env(c['part'], c['od'])['Lb']))
+            # the recess stops the seated box turning back only if no void (a neighbour's zone, or the bridge the build cuts when the
+            # wall to it is under min_wall) comes inside the circle the box corners sweep, at the recess heights
+            E_ = S.twist_env(c['part'], c['od'])
+            r_box = S._r(E_['box'], E_['yb'])
+            sg_c = S.seat_gap(c['part'], c['kind'], True)
+            rb = [z for z in c['zs'] if z[0] is not None and abs(z[0] + E_['Lb']) < TOL]
+            for o_ in cavs:
+                if o_ is c or o_['box'] != c['box'] or math.hypot(o_['x'] - c['x'], o_['y'] - c['y']) > 40:
+                    continue
+                sg_o = S.seat_gap(o_['part'], o_['kind'], o_.get('lock') == 'twist')
+                for za in rb:
+                    a_lo, a_hi = za[0] - sg_c, za[1] - sg_c          # heights from the deck top
+                    for zb in o_['zs']:
+                        b_lo, b_hi = (-1e9 if zb[0] is None else zb[0] - sg_o), zb[1] - sg_o
+                        if min(a_hi, b_hi) <= max(a_lo, b_lo):
+                            continue
+                        q = absz(o_, zb)
+                        p_ = absz(c, za)
+                        g_ = gap(p_, q)
+                        if g_ + TOL < S.HOLE['min_wall']:      # the void reaches across the gap (bridge), up to this zone's edge
+                            q = (p_[1] if q[0] >= p_[1] else q[0], p_[0] if q[1] <= p_[0] else q[1],
+                                 p_[3] if q[2] >= p_[3] else q[2], p_[2] if q[3] <= p_[2] else q[3])
+                        dx = max(q[0] - c['x'], 0.0, c['x'] - q[1])
+                        dy = max(q[2] - c['y'], 0.0, c['y'] - q[3])
+                        if math.hypot(dx, dy) + TOL < r_box:
+                            twist_join.append('%s %s recess: %s void %.2f from the axis (box corners sweep %.2f)' % (
+                                c['box'], c['cav'], o_['cav'], math.hypot(dx, dy), r_box))
+            for x in twist_join:
+                if x.startswith('%s %s ' % (c['box'], c['cav'])):
+                    bad.append('T1 ' + x)
+            if 'row' in c:
+                c['row'][9] = 'twist-lock, ledge %.2f a side, slot %.2f, chamber %.2f%s' % (tw['bear'], tw['slot_short'], tw['chamber'], ' (crimp est)' if tw['est'] else '')
             continue
         if L_['kind'] != 'lance':
-            bad.append('L1 %s %s: %s has no locking lance and no retainer clip (R121 / R123)' % (c['box'], c['cav'], c['part']))
+            bad.append('L1 %s %s: %s has no locking lance (R121 / A83)' % (c['box'], c['cav'], c['part']))
             continue
         sides, keep = ledges(c, partners.get((c['box'], c['cav']), []))
         if L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']) + TOL < LOCK_MIN:
@@ -200,14 +253,19 @@ def main():
         if 'row' in c:
             c['row'][9] = 'lance, ledge %s%s' % ('/'.join(keep) or 'NONE', (' (%s lost)' % '/'.join(x for x in sides if x not in keep)) if len(keep) < len(sides) else '')
     n_sl = sum(1 for x in rows if x[5] != '-')
+    n_tw = sum(1 for c in cavs if c.get('lock') == 'twist')
+    if n_tw:
+        print('  info: %d keyed twist-lock seats (spec.TWIST_KINDS %s)' % (n_tw, ', '.join(sorted(S.TWIST_KINDS))))
+
     print('fuse box terminal cavities (%s): %d checked against R120 holes + R121 lance locks; %d pairs joined (%d of them in the box / '
           'lance zones: the relay / fuse pin spacing), thinnest wall between separate cavities %.2f mm (min %.1f); %d wire ends carry an '
           'RNF-100 build-up' % (os.path.relpath(REPORT, REPO), n_ok, len(joined), len(shared), thin, S.HOLE['min_wall'], n_sl))
     for x in info:
         print('  info: ' + x)
-    if retained:
-        print('  info: %d cavities held by a printed retainer clip (R123 B: %s)' % (len(retained), ', '.join(
-            sorted({'%s %s' % (b, cv.split()[0]) for b, cv, _ in retained}))))
+    if over:                            # A83: a wiring note only (Dan 2026-11-16)
+        print('  wiring note (A83, parts lists): %d wire ends whose GXL insulation is above the TE grip range of their terminal (the lance holds the terminal)' % len(over))
+        for x in over:
+            print('    ' + x)
     if recut:
         print('  RECUT: %d of %d cavities in the current build are from before R120 / R121 - every one is recut to its zones at the next '
               'rev 7 rebuild (build_fusion.build(rev=7)); --list shows each' % (len(recut), n_ok))

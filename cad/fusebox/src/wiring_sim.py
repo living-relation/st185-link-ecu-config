@@ -31,7 +31,7 @@ OD[16] = OD.get(16, 2.06)
 METRIC_OD = {53.5: OD['1/0']}            # 1/0 SGX, 53.5 mm2
 MM2 = {20: 0.52, 18: 0.82, 16: 1.31, 14: 2.08, 12: 3.31, 10: 5.26, 8: 8.37, 6: 13.3}
 TERM_RANGE = {'1241388-2': (0.5, 1.0), '1241390-1': (1.5, 2.5), '1-968851-1': (1.0, 2.5), '1-968849-1': (0.5, 1.0), '880398-2': (1.0, 2.5), '42281-1': (0.8, 2.0), '2293255-1': (0.51, 1.65), '280919-2': (0.51, 1.65),
-              '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '62998-2': (5.0, 8.0)}     # mm2, from the parts list / harness part text
+              '280756-4': (3.31, 5.26), '280755-4': (6.0, 10.0), '63467-1': (2.08, 5.26)}     # mm2, from the parts list / harness part text (63467-1: TE page)
 RELAY_NAMES = {'HEAD LH': 'k_hl', 'HEAD RH': 'k_hr', 'horn': 'k_horn', 'k_etb': 'k_etb', 'k_acc': 'k_acc', 'k_eps_en': 'k_eps_en', 'k_rev': 'k_rev',
                'heater': 'k_htr', 'k_efi': 'k_efi', 'k_str': 'k_str', 'k_fan': 'k_fan', 'k_fan2': 'k_fan2', 'power': 'k_pwr'}
 PIN = {'30': 'c1', '85': 'c2', '86': 'c3', '87': 'c4', '87a': 'c5'}
@@ -553,21 +553,28 @@ def terminal_cavities(wires):
             part = parts[0] if parts else S.TERM_DEFAULT[c['kind']][0]
             part = S.TERM_SWAP.get(part, part)          # R123: the box is built with the self-locking swap
             od = max(w['od'] for (w, e) in hits)
+            g = max((w['gauge'] for (w, e) in hits if isinstance(w['gauge'], int)), default=None)
             src, wl = 'harness', [w['wire'] for (w, e) in hits]
         elif c.get('jumper'):
             g_, part, _lug, _d = S.jumper(c['amps'])     # markup 2026-10-17: each jumper sized by its own fuse
-            od, src, wl = OD[g_], 'CAD jumper %d AWG' % g_, []
+            od, src, wl, g = OD[g_], 'CAD jumper %d AWG' % g_, [], g_
         else:
             part, g = S.TERM_DEFAULT[c['kind']]
-            if c.get('relay') == S.RELAY_B['pos'] and c['kind'] in S.TERM_DEFAULT_B:     # rev 8: the vacant Mini ISO seat R1 keeps its 6.3 receptacles
+            if c.get('relay') == S.RELAY_B['pos'] and c['kind'] in S.TERM_DEFAULT_B:     # rev 8: the vacant Mini ISO seat R1, a 30 A / 10 AWG spare (A86 a)
                 part, g = S.TERM_DEFAULT_B[c['kind']]
             part, g = S.TERM_DEFAULT_CAV.get((box, key), (part, g)) if S.REV >= 8 else (part, g)
             od, src, wl = OD[g], ('spare (kept cut)' if S.REV >= 8 and (box, key) in S.KEEP_CUT else 'spare (largest wire it takes)'), []
         out.append(dict(box=box, cav=key, x=round(c['x'], 3), y=round(c['y'], 3), kind=c['kind'], part=part, wire_od=od, source=src, wires=wl,
                         hole=[round(v, 3) for v in S.hole(part, c['kind'])] if part in S.TERM else None,
-                        zones=None))
+                        zones=None, awg=g))
+        if S.twist_on(box, key, c['kind']) and part in S.REAL:    # keyed twist-lock seat (spec.TWIST, Dan 2026-11-16)
+            out[-1]['lock'] = 'twist'
     for c in out:                        # R121: the zones, the H-lance window opening away from the cavity's neighbours
-        if c['hole']:
+        if c['hole'] and c.get('lock') == 'twist':
+            sd = S.lance_side(c, out)
+            c['zones'] = [[None if v is None else round(v, 3) for v in z] for z in S.twist_zones(c['part'], c['kind'], c['wire_od'], c['awg'], sd)]
+            c['twist'] = S.twist_check(c['part'], c['kind'], c['wire_od'], c['awg'], sd)
+        elif c['hole']:
             c['zones'] = [[None if v is None else round(v, 3) for v in z] for z in S.zones(c['part'], c['kind'], S.lance_side(c, out))]
     return out
 

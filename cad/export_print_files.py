@@ -13,7 +13,6 @@ import adsk.core, adsk.fusion, os, json
 REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')) if '__file__' in globals() else r'C:\projects\active\st185-link-ecu-config'
 # name, source STEP (relative to the checkout that holds the CAD files), print folder, rotation about X (deg) for the print orientation
 PARTS = [
-    ('ST185_R1_retainer_clip_PA12', 'cad/fusebox/rev7/Power_Retainer_R1_PA12_printed.step', 'cad/fusebox/rev7/print', 0.0),
     ('ST185_VRC_board_holder_PA12', 'cad/enclosures/vrc/VRC_part_VRC-Board-Holder.step', 'cad/enclosures/vrc/print', 0.0),
 ]
 

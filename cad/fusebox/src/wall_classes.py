@@ -7,7 +7,7 @@ feature attached by < 3 mm, A) that cad/check_printed_walls.py finds into one of
 Critical / structural (R151): load-bearing walls, outer skins behind pockets, mounting / clip / retention features, walls between separate
 circuits' terminals, anything sealing. The feature map below is the smallest one that covers that for the printed fuse box parts:
   1. FEATURES  named boxes (world mm) per part, first match wins. Today: the spots Dan marked on 2026-10-15 (R127 M1 - M6, the old
-               MARKED list of check_printed_solid.py) and the whole R1 retainer clip - all structural. A spot Dan approves as
+               MARKED list of check_printed_solid.py) - all structural (the R1 retainer clip, M2, is retired: A86 a). A spot Dan approves as
                non-structural gets a 'non-structural' box here (with his words), or a named exemption in spec.WALL_EXEMPT.
   2. A spots   an attachment under 3 mm is a mounting / clip / retention question by definition: structural.
   3. base rules (Power / Logic / BattRelay bases, from the build report and the part outline wall_check.json records):
@@ -37,9 +37,6 @@ FEATURES = {
         (STRUCTURAL, 'R127 M1 / M5: R1 cavity group under the deck (Dan-marked)', (191.0, 225.0, 30.0, 56.0, 26.0, 38.5)),
         (STRUCTURAL, 'R127 M4: R1 bend saddle (Dan-marked)', (218.0, 236.0, 36.0, 50.0, 10.0, 32.0)),
         (STRUCTURAL, 'R127 M6: R2 bend saddle (Dan-marked)', (188.0, 206.0, 54.0, 68.0, 10.0, 32.0)),
-    ],
-    'Power_Retainer_R1_PA12_printed': [
-        (STRUCTURAL, 'R127 M2 / R123: R1 retainer clip - a retention feature (Dan-marked)', WHOLE),
     ],
 }
 MARKED = {k: [b for (c, why, b) in v if 'Dan-marked' in why] for k, v in FEATURES.items()}   # check_printed_solid.py S4: must stay clear

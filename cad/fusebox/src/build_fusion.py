@@ -485,10 +485,10 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
               and not (c['kind'].endswith('87a') and c['source'] not in ('harness', 'spare (kept cut)'))]
         z0 = z_d - G['h'] - 1.0
         for h in hs:
-            zs_ = z_t - S.seat_gap(h['part'], h['kind'])  # fit audit 2026-10-18: seat depth by relay type (spec.SEAT_GAP)
+            zs_ = z_t - S.seat_gap(h['part'], h['kind'], h.get('lock') == 'twist')  # fit audit 2026-10-18: seat depth by relay type (spec.SEAT_GAP)
             T = S.TERM[h['part']]
             h['z1'] = round(zs_, 2)
-            h['est'] = T['t'] is None or h['part'] in S.HEAD_EST or S.LOCK[h['part']].get('est', False)
+            h['est'] = T['t'] is None or None in T['head'] or S.LOCK[h['part']].get('est', False)
             h['abs'] = []                                   # (z_lo, z_hi, x0, x1, y0, y1) in box coordinates
             for (dlo, dhi, x0_, x1_, y0_, y1_) in h['zones']:
                 lo, hi = (z0 if dlo is None else max(z0, zs_ + dlo)), zs_ + dhi
@@ -586,7 +586,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     continue                                # the zones already overlap
                 ox = min(p[1], q[1]) - max(p[0], q[0])      # > 0: the zones overlap in x (side by side in y), < 0: x gap
                 oy = min(p[3], q[3]) - max(p[2], q[2])
-                clip_ = all(c_['cav'].split()[0] in S.RETAIN.get(box_name, []) for c_ in (hs[i], hs[j]))   # R123 clip: its leg pockets open the corners
+                clip_ = False       # A86 a: the R123 clip (whose leg pockets opened the corners) is retired
                 if REV[0] >= 7 and ox <= 0 and oy <= 0 and diagonal_solid(p, q, lo, hi, -ox, -oy, clip_):
                     # SteveCAD sweep C1 / C3 (Dan 2026-10-16: "FILL SOLID"): diagonal neighbours (apart in x AND in y) whose bridge would be a
                     # slit under GAP_OPEN (POWER R2 - R7 85 / 86 to 87: 0.3 / 0.375, under MJF's 0.5 least gap), or would touch a cavity only
@@ -637,82 +637,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 y0_, y1_ = min(z[4] for z in h['abs']), max(z[5] for z in h['abs'])
                 m = HO['min_wall']
                 collars.append(box(x0_ - m, y0_ - m, z_d, x1_ + m, y1_ + m, plate_b + 0.01))
-        clip_feet = []
-        for rel in S.RETAIN.get(box_name, []):    # R123 B: printed retainer clip under a relay whose terminals cannot self-lock
-            rh = [h for h in hs if h['cav'].split()[0] == rel]
-            if not rh:
-                continue
-            RT, m = S.RETAINER, HO['min_wall']
-            x0_, x1_ = min(z[2] for h in rh for z in h['abs']) - m, max(z[3] for h in rh for z in h['abs']) + m
-            y0_, y1_ = min(z[4] for h in rh for z in h['abs']) - m, max(z[5] for h in rh for z in h['abs']) + m
-            ztop = min(zs_ - (S.TERM[h['part']]['L'] or S.L_EST) for h in rh) - RT['play']    # under the lowest terminal end
-            plate = box(x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)
-            clip_feet.append((x0_ - RT['clr'], x1_ + RT['clr'], y0_ - RT['clr'], y1_ + RT['clr']))
-            for h in rh:            # threaded onto the wires before crimping: bare wire + clr (the build-up ends inside the barrel)
-                dh_ = S.retainer_hole(h['part'], h['wire_od'])[0]
-                bo(plate, cylz(h['x'], h['y'], ztop - RT['t'] - 1, ztop + 1, dh_), 's')
-                if REV[0] >= 7:     # markup 2026-10-17 (Dan 23-26: "terminals need to fit through these holes. Or need slots for the wires"):
-                    # each hole runs on as a slot of the same width to the plate's -y edge - the clip slides onto the finished wires from the
-                    # front, and the slot still stops the crimped insulation barrel (larger than the slot)
-                    bo(plate, box(h['x'] - dh_ / 2, y0_ - 1.0, ztop - RT['t'] - 1, h['x'] + dh_ / 2, h['y'], ztop + 1), 's')
-                    report.setdefault('retainer_slots', []).append([h['cav'], round(dh_, 2), round(S.retainer_hole(h['part'], h['wire_od'])[1], 2)])
-            lw, ld = RT['leg']
-            long_x = (x1_ - x0_) >= (y1_ - y0_)
-            d0, d1 = RT['leg_shift'].get(rel, (0.0, 0.0))
-            ext = max(0.0, lw - m) + 0.5   # fit audit 2026-10-18 (+ 0.5: the plate strip past the outer wire slot stays >= 2.0, R127): the leg's inner face on the hole-zone edge (a 2.5 leg in the 2.0 band stood 0.5 inside it;
-            # the turned R1 30 terminal's insulation barrel reached it) - the plate grows by ext on those two ends to carry the leg
-            if ext > 0 and long_x:     # only the two end strips (the wire holes / slots stay open)
-                bo(plate, box(x0_ - ext, y0_, ztop - RT['t'], x0_ + 0.01, y1_, ztop), 'u')
-                bo(plate, box(x1_ - 0.01, y0_, ztop - RT['t'], x1_ + ext, y1_, ztop), 'u')
-            elif ext > 0:
-                bo(plate, box(x0_, y0_ - ext, ztop - RT['t'], x1_, y0_ + 0.01, ztop), 'u')
-                bo(plate, box(x0_, y1_ - 0.01, ztop - RT['t'], x1_, y1_ + ext, ztop), 'u')
-            legs = [((x0_ + m - lw / 2, (y0_ + y1_) / 2 + d0), -1), ((x1_ - m + lw / 2, (y0_ + y1_) / 2 + d1), 1)] if long_x else                    [(((x0_ + x1_) / 2 + d0, y0_ + m - lw / 2), -1), (((x0_ + x1_) / 2 + d1, y1_ - m + lw / 2), 1)]
-            for ((lx, ly), sg) in legs:
-                sx_, sy_ = (lw, ld) if long_x else (ld, lw)
-                zt_ = z_d + RT['leg_h']
-                bo(plate, box(lx - sx_ / 2, ly - sy_ / 2, ztop - 0.01, lx + sx_ / 2, ly + sy_ / 2, zt_), 'u')     # leg up into the collar
-                bx_ = (lx + sg * (sx_ / 2), lx + sg * (sx_ / 2 + RT['barb'])) if long_x else (lx - sx_ / 2, lx + sx_ / 2)
-                by_ = (ly - sy_ / 2, ly + sy_ / 2) if long_x else (ly + sg * (sy_ / 2), ly + sg * (sy_ / 2 + RT['barb']))
-                bo(plate, box(min(bx_), min(by_), zt_ - RT['barb_h'], max(bx_), max(by_), zt_), 'u')          # barb, outward
-                c_ = RT['clr']           # pocket in a boss on the collar: leg + clr, the barb's undercut at its top
-                collars.append(box(lx - sx_ / 2 - c_ - RT['boss'] - (RT['barb'] if long_x else 0), ly - sy_ / 2 - c_ - RT['boss'] - (0 if long_x else RT['barb']),
-                                   z_d, lx + sx_ / 2 + c_ + RT['boss'] + (RT['barb'] if long_x else 0), ly + sy_ / 2 + c_ + RT['boss'] + (0 if long_x else RT['barb']),
-                                   plate_b + 0.01))
-                pk = [lx - sx_ / 2 - c_, lx + sx_ / 2 + c_, ly - sy_ / 2 - c_, ly + sy_ / 2 + c_]
-                cuts.append(box(pk[0], pk[2], z_d - 1, pk[1], pk[3], zt_ + 0.3))
-                for h in rh:        # R127: a pocket closer than min_wall to a cavity runs on into it (no thin wall hanging between them)
-                    for z in h['abs']:
-                        lo_, hi_ = max(z[0], z_d - 1), min(z[1], zt_ + 0.3)
-                        if hi_ <= lo_:
-                            continue
-                        for (k0, k1, o0, o1) in ((0, 1, 2, 3), (2, 3, 0, 1)):
-                            if min(pk[o1], z[2 + o1]) - max(pk[o0], z[2 + o0]) <= 0:
-                                continue            # no overlap side by side
-                            for (e, f, sg) in ((pk[k1], z[2 + k0], 1), (pk[k0], z[2 + k1], -1)):
-                                g_ = (f - e) * sg
-                                if 0 < g_ < m:
-                                    q = list(pk)
-                                    q[k1 if sg > 0 else k0] = f + sg * 0.01
-                                    cuts.append(box(q[0], q[2], lo_, q[1], q[3], hi_))
-                                    report.setdefault('retainer_pocket_joins', []).append([h['cav'], round(g_, 2), round(lo_, 2), round(hi_, 2)])
-                cuts.append(box(min(bx_) - c_, min(by_) - c_, zt_ - RT['barb_h'] - 0.3, max(bx_) + c_, max(by_) + c_, zt_ + 0.3))
-            band = box(x0_ - 50, y0_ - 50, ztop - RT['t'] - 1.0, x1_ + 50, y1_ + 50, z_d - 0.01)
-            for sp in (support or []):          # notch the PLATE round what hangs under the deck there (the feed-cable bend saddles);
-                t_ = tb.copy(sp)                # only below the deck - the legs go up into their collar pockets and stay whole
-                try:
-                    bo(t_, tb.copy(band), 'i')
-                except RuntimeError:            # nothing of it below the deck
-                    continue
-                if t_.volume > 1e-9:    # R127: notch = its bounding box + clr, a plain rectangle (no curved sliver or hooked tab)
-                    bb_ = t_.boundingBox
-                    bo(plate, box(bb_.minPoint.x * 10 - RT['clr'], bb_.minPoint.y * 10 - RT['clr'], ztop - RT['t'] - 1,
-                                  bb_.maxPoint.x * 10 + RT['clr'], bb_.maxPoint.y * 10 + RT['clr'], ztop + 0.5), 's')
-            comp('%s_Retainer_%s_PA12_printed' % (box_name.capitalize(), rel), plate, AP['pa12_pan'], MAT['pa'], S.PLACE[box_name])
-            report.setdefault('retainers', {}).setdefault(box_name, []).append(dict(
-                relay=rel, cavities=[h['cav'] for h in rh], plate=[round(v, 2) for v in (x0_, y0_, ztop - RT['t'], x1_, y1_, ztop)],
-                holes=[[h['cav'], round(S.retainer_hole(h['part'], h['wire_od'])[0], 2)] for h in rh], legs=[[round(lx, 2), round(ly, 2)] for ((lx, ly), _) in legs],
-                vol_cm3=round(((x1_ - x0_) * (y1_ - y0_) * RT['t'] + 2 * lw * ld * (RT['leg_h'] + z_d - ztop)) / 1000.0, 2)))
+        clip_feet = []      # A86 a (Dan 2026-11-16): the R123 retainer clip (FB-104) is retired - every terminal holds by its own lance
         gid = {}
         grp_ = {}
         for i, h in enumerate(hs):
@@ -832,7 +757,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         sh_ = S.PLACE[box_name]
         report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], sx=round(h['sx'], 3), sy=round(h['sy'], 3),
                                                    zones=h['zones'], z0=round(z_d, 2), z1=h['z1'], group=h['group'], part=h['part'],
-                                                   wire_od=h['wire_od'], source=h['source'], est=h['est'])
+                                                   wire_od=h['wire_od'], source=h['source'], est=h['est'], lock=h.get('lock'))
                                               for h in hs]
         report['terminal_slots'][box_name] = [sorted(h['cav'] for h in hs if h['group'] == g) for g in range(len(gid))
                                               if sum(1 for h in hs if h['group'] == g) > 1]
@@ -1041,7 +966,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             return z_d - 1
         for h in report['terminal_holes'].get(box_name, []):
             if abs(h['x'] - x) < 1.0 and abs(h['y'] - y) < 1.0:
-                return z_t - S.seat_gap(h['part'], h['kind']) - 0.01
+                return z_t - S.seat_gap(h['part'], h['kind'], h.get('lock') == 'twist') - 0.01
         return z_t - S.HOLE['top_gap'] - l_min
 
     def bend_row(where, awg, path, r_inside, supported, note, room=None):
@@ -1345,7 +1270,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                         continue
                     # deeper than the wall can give: a notch open at the wall top down to 0.5 under the terminal's end (as the JB1 lug-tongue notch);
                     # the base skirt still closes the outside
-                    zl_ = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['z_t'] - S.seat_gap(c['part'], c['kind']) - (S.TERM[c['part']]['L'] or S.L_EST) - 0.5
+                    zl_ = (S.LOGIC if box_name == 'LOGIC' else S.POWER)['z_t'] - S.seat_gap(c['part'], c['kind'], c.get('lock') == 'twist') - (S.TERM[c['part']]['L'] or S.L_EST) - 0.5
                     nb_ = {'-x': (x0 - 1.0, ay0, x0 + t + 0.01, ay1), '+x': (x1 - t - 0.01, ay0, x1 + 1.0, ay1),
                            '-y': (ax0, y0 - 1.0, ax1, y0 + t + 0.01), '+y': (ax0, y1 - t - 0.01, ax1, y1 + 1.0)}[side]
                     zn_ = max(zl_, PN['z0'] + t + 1.0)
@@ -1745,13 +1670,11 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             # thin walls near the top"): the saddle keeps its whole curve and both lips (as before #268) and is carried by the block above it
             # (R101 back up into the deck plate); only near the top, where the relay's 30 cavity comes down into it, the saddle is cut away
             # across its full width from the cavity's lower end up and to min_wall past the cavity's +x wall - no thin wall or sliver left
-            # between the curve and the cavity. Under the R1 retainer clip the cut also clears the clip's wire hole by min_wall + clr.
+            # between the curve and the cavity.
             c30 = next((c for c in PLAN7['cavities'] if c['box'] == 'POWER' and c['cav'] == 'R%d 87' % (a['i'] + 1)), None)   # the far blade (real 87) takes the AMI feed (spec.POWER_ROLE_POS) if PLAN7 else None
             if c30:
                 mw = S.HOLE['min_wall']
                 x_cut = c30['x'] + max(max(abs(z_[2]), abs(z_[3])) for z_ in c30['zones']) + mw
-                if 'R%d' % (a['i'] + 1) in S.RETAIN.get('POWER', []):
-                    x_cut = max(x_cut, c30['x'] + S.retainer_hole(c30['part'], c30['wire_od'])[0] / 2 + mw + S.RETAINER['clr'] + 0.05)
                 z_cut = z_d - S.GUIDE['h'] - 1.0          # the cavity's lower end under the deck (crimp_holes z0)
                 if c30['part'] in S.REAL:                  # R163: the real terminal hangs below the deck - the saddle stays clear of all of it
                     z_cut = min(z_cut, z_t - S.seat_gap(c30['part'], c30['kind']) - S.REAL[c30['part']]['L'] - 0.5)
@@ -2947,7 +2870,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 eW = tuple(-v for v in eW)                       # keep it a rotation (the terminal is symmetric across its blade width)
             yb = S.REAL[pn]['box'][1] / 2 if pn in S.REAL else S.VENDOR_TERM[pn][2]     # the blade line = the box's Y centre (real_zones uses it)
             sx_, sy_ = S.PLACE[c['box']]
-            org = (c['x'] + sx_ - eH[0] * yb, c['y'] + sy_ - eH[1] * yb, zt[c['box']] - S.seat_gap(pn, c['kind']))
+            org = (c['x'] + sx_ - eH[0] * yb, c['y'] + sy_ - eH[1] * yb, zt[c['box']] - S.seat_gap(pn, c['kind'], c.get('lock') == 'twist'))
             m = adsk.core.Matrix3D.create()
             m.setWithCoordinateSystem(P(*org), V(*eW), V(*eH), V(*eZ))
             for b_ in src[pn]:

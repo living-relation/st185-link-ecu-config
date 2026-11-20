@@ -92,8 +92,8 @@ def fb_power():
     wires = L.power_wire_labels()
     top = [dict(w, item=_nearest(it, w['at'], ('6R8', '6432', '263-2205'))) for w in wires if w['side'] == 'top']
     bot = [w for w in wires if w['side'] == 'bottom']
-    tif = _term_item_for(it, ('280756-4', '280755-4', '42281-1', '62998-2', '1-968849-1', '1-968851-1'), 'POWER')   # rev 8: no terminal bodies
-    term = [dict(w, item=_nearest(it, w['at'], ('28075', '42281', '62998', '9688')) or tif(w['at'][0], w['at'][1]))
+    tif = _term_item_for(it, ('280756-4', '280755-4', '42281-1', '1-968849-1', '1-968851-1'), 'POWER')   # rev 8: no terminal bodies
+    term = [dict(w, item=_nearest(it, w['at'], ('28075', '42281', '9688')) or tif(w['at'][0], w['at'][1]))
             for w in bot if not w['text'].startswith('AMI')]
     term = [w for w in term if w['item'] is not None]
     lugs = [dict(w, item=_nearest(it, w['at'], ('2R5', 'FHS-M5', '6432', 'ST185-FB-117'))) for w in bot if w['text'].startswith('AMI')]
@@ -101,7 +101,7 @@ def fb_power():
     sp['label_views'] = [
         dict(title='WHAT EACH FUSE AND RELAY FEEDS (COVER OFF)', view='top', hide=[cover['item']], labels=fuses + relays),
         dict(title='HARNESS WIRES AT THE BUS STUDS (COVER OFF)', view='top', hide=[cover['item']], text_h=1.8, wires=top),
-        # rev 8 (Dan A16 a): no ACPS fuse and no heater relay R1, so no R1 clip (FB-104 qty 0) and no ACPS wires
+        # rev 8 (Dan A16 a): no ACPS fuse and no heater relay R1 (a spare; its R123 clip FB-104 is retired, A86 a), so no ACPS wires
         dict(title='HARNESS WIRES AT THE C-STRAP LUGS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',
              hide=hide_under, text_h=1.8, wires=lugs),
         dict(title='HARNESS WIRES AT THE RELAYS - SEEN FROM BELOW, BELLY PAN OFF', view='bottom',

@@ -14,9 +14,7 @@ import trimesh
 
 # name, print folder, expected size (mm, x y z, from the build), [(why, (x0, x1, y0, y1, z0, z1)) thin-feature exceptions, part frame]
 PARTS = [
-    # R127: the clip plate is checked too (its saddle notch is a plain rectangle 2.0 past the R1 30 wire hole); only the snap barbs are exempt
-    ('ST185_R1_retainer_clip_PA12', 'cad/fusebox/rev7/print', (31.87, 27.65, 8.39),
-     [('leg barbs (0.6 x 1.5 snap hooks, spec.RETAINER barb / barb_h)', (-20.0, 20.0, -20.0, 20.0, 8.39 - 1.6, 8.5))]),
+    # (the R1 retainer clip print file is retired with the clip: A86 a, Dan 2026-11-16)
     # VRC board holder v2 (R126): the 4 snap tabs (1.0 arm + 0.6 lip with lead-in, vrc_holder_spec TAB_* / LIP_*) are flex hooks, not
     # walls; print frame = enclosure frame moved down by the floor (z 5) and centred
     # N4 (Dan 2026-10-16): the block 2.5 higher (board top z 17.5), so 13.4 tall and the tab arms reach print z 13.4 (were 10.9 / 11.0)
