@@ -75,7 +75,7 @@
    "revlog": "fusebox/rev7/ST185-FB-100B.REVLOG.md",
    "steps": {
     "fusebox/rev8/BattRelay_Base_PA12_printed.step": "9305bff4f33ba244",
-    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "03576b7fa9b8a1da",
+    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "3cd0ae7f97b33db5",
     "fusebox/rev8/BattRelay_Bar_Power_CuC110_25x6p35.step": "5b74dd91e4fd5164",
     "fusebox/rev8/BattRelay_Pad_Out_CuC110_25p4x3p2.step": "c9bf1d7e2ff8b8de"
    },
@@ -85,34 +85,34 @@
     "report:fusebox/rev8/fusebox_report.json#mass_g#BattRelay_Bar_Power_CuC110_25x6p35": "fa3969d8f63fc4a5",
     "report:fusebox/rev8/fusebox_report.json#mass_g#BattRelay_Pad_Out_CuC110_25p4x3p2": "80b8062fef2cf5ac"
    },
-   "rev": "R",
-   "pdf_sha": "b669429cc2bfc50a"
+   "rev": "S",
+   "pdf_sha": "2d80c7bf1e8e3907"
   },
   "ST185-FB-100L": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100L.pdf",
    "revlog": "fusebox/rev7/ST185-FB-100L.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Logic_Base_PA12_printed.step": "b69aaba070a135af",
-    "fusebox/rev8/Logic_Pan_PA12_printed.step": "c3badb5e054aef24",
+    "fusebox/rev8/Logic_Base_PA12_printed.step": "b9d3475b2be3a46f",
+    "fusebox/rev8/Logic_Pan_PA12_printed.step": "4c1db28b978cf580",
     "fusebox/rev8/Logic_Cover_PA12_printed.step": "62238b94d7932353",
     "fusebox/rev8/Logic_Strip_Logic_CuC110_25p4x3p2_on_edge.step": "eddad9d191437286"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Base_PA12_printed": "a196f5aad3eed0bb",
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Pan_PA12_printed": "12265e03ee267c2a",
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Base_PA12_printed": "078990783ddb33a1",
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Pan_PA12_printed": "2f461b37d571c76f",
     "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Cover_PA12_printed": "24f63b35a3ee2c2e",
     "report:fusebox/rev8/fusebox_report.json#mass_g#Logic_Strip_Logic_CuC110_25p4x3p2_on_edge": "62589853cbe97d21"
    },
-   "rev": "X",
-   "pdf_sha": "cccbcb64a0e3935f"
+   "rev": "Y",
+   "pdf_sha": "d168a3d161a37170"
   },
   "ST185-FB-100P": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-100P.pdf",
    "revlog": "fusebox/rev7/ST185-FB-100P.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Power_Base_PA12_printed.step": "23c3cca20013ab4b",
-    "fusebox/rev8/Power_Pan_PA12_printed.step": "de723b4fb5dc49aa",
-    "fusebox/rev8/Power_Cover_PA12_printed.step": "68f44918d31834a7",
+    "fusebox/rev8/Power_Base_PA12_printed.step": "542565ea27c91ca6",
+    "fusebox/rev8/Power_Pan_PA12_printed.step": "3bd957e7c17547b4",
+    "fusebox/rev8/Power_Cover_PA12_printed.step": "b2a9f0119a24ca7f",
     "fusebox/rev8/Power_BarNeg_CuC110_25x6p35_L105.step": "31adb2d813a35969",
     "fusebox/rev8/Power_Bar_Power_CuC110_25x6p35_POS_bus_L226.step": "49a088679f1ee81b",
     "fusebox/rev8/Power_Strap_Out_CuC110_15x3_C.step": "a44c3e2fc138e42c",
@@ -120,76 +120,76 @@
     "fusebox/rev8/Power_NutHolder_PA12_printed.step": "8d0f0470dc567121"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "a5e89877adff75dd",
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "615158fc4a38777d",
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Cover_PA12_printed": "bdbaeed67a342cf7",
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "b76e06df6bc2aa0c",
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "9101827f8db92abf",
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Cover_PA12_printed": "72d9365e142e70b7",
     "report:fusebox/rev8/fusebox_report.json#mass_g#Power_BarNeg_CuC110_25x6p35_L105": "2d260a611cf2195a",
     "report:fusebox/rev8/fusebox_report.json#mass_g#Power_Bar_Power_CuC110_25x6p35_POS_bus_L226": "32d258988577cf3d",
     "report:fusebox/rev8/fusebox_report.json#mass_g#Power_Strap_Out_CuC110_15x3_C": "49bd751c8a634132",
     "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_NutHolder_PA12_printed": "2cc454081ebf7b66"
    },
-   "rev": "AE",
-   "pdf_sha": "e83cc34d5e77cb0b"
+   "rev": "AF",
+   "pdf_sha": "e106e0b8b5b82ebd"
   },
   "ST185-FB-101": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-101.pdf",
    "revlog": "fusebox/rev7/ST185-FB-101.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Power_Base_PA12_printed.step": "23c3cca20013ab4b"
+    "fusebox/rev8/Power_Base_PA12_printed.step": "542565ea27c91ca6"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "a5e89877adff75dd"
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Base_PA12_printed": "b76e06df6bc2aa0c"
    },
-   "rev": "Y",
-   "pdf_sha": "cd60deb5edbd217b"
+   "rev": "Z",
+   "pdf_sha": "f93abbfc4733bb15"
   },
   "ST185-FB-102": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-102.pdf",
    "revlog": "fusebox/rev7/ST185-FB-102.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Power_Pan_PA12_printed.step": "de723b4fb5dc49aa"
+    "fusebox/rev8/Power_Pan_PA12_printed.step": "3bd957e7c17547b4"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "615158fc4a38777d"
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Pan_PA12_printed": "9101827f8db92abf"
    },
-   "rev": "J",
-   "pdf_sha": "5acc1edb4ba05621"
+   "rev": "K",
+   "pdf_sha": "32d8e26dc7263ec0"
   },
   "ST185-FB-103": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-103.pdf",
    "revlog": "fusebox/rev7/ST185-FB-103.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Power_Cover_PA12_printed.step": "68f44918d31834a7"
+    "fusebox/rev8/Power_Cover_PA12_printed.step": "b2a9f0119a24ca7f"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Cover_PA12_printed": "bdbaeed67a342cf7"
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Power_Cover_PA12_printed": "72d9365e142e70b7"
    },
-   "rev": "H",
-   "pdf_sha": "8d3915bc6ec90fbd"
+   "rev": "J",
+   "pdf_sha": "86a7b8ae8bd8a45d"
   },
   "ST185-FB-105": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-105.pdf",
    "revlog": "fusebox/rev7/ST185-FB-105.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Logic_Base_PA12_printed.step": "b69aaba070a135af"
+    "fusebox/rev8/Logic_Base_PA12_printed.step": "b9d3475b2be3a46f"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Base_PA12_printed": "a196f5aad3eed0bb"
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Base_PA12_printed": "078990783ddb33a1"
    },
-   "rev": "U",
-   "pdf_sha": "c0e0e6b2fa33c6ac"
+   "rev": "V",
+   "pdf_sha": "627afdf6bda3d128"
   },
   "ST185-FB-106": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-106.pdf",
    "revlog": "fusebox/rev7/ST185-FB-106.REVLOG.md",
    "steps": {
-    "fusebox/rev8/Logic_Pan_PA12_printed.step": "c3badb5e054aef24"
+    "fusebox/rev8/Logic_Pan_PA12_printed.step": "4c1db28b978cf580"
    },
    "ci": {
-    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Pan_PA12_printed": "12265e03ee267c2a"
+    "report:fusebox/rev8/fusebox_report.json#printed_parts#Logic_Pan_PA12_printed": "2f461b37d571c76f"
    },
-   "rev": "J",
-   "pdf_sha": "872353be9d7cbf19"
+   "rev": "K",
+   "pdf_sha": "bc40790d654e365c"
   },
   "ST185-FB-107": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-107.pdf",
@@ -219,13 +219,13 @@
    "pdf": "fusebox/rev7/drawings/ST185-FB-109.pdf",
    "revlog": "fusebox/rev7/ST185-FB-109.REVLOG.md",
    "steps": {
-    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "03576b7fa9b8a1da"
+    "fusebox/rev8/BattRelay_Cover_PA12_printed.step": "3cd0ae7f97b33db5"
    },
    "ci": {
     "report:fusebox/rev8/fusebox_report.json#printed_parts#BattRelay_Cover_PA12_printed": "b16c48df9b7aa080"
    },
-   "rev": "J",
-   "pdf_sha": "0e08b80f118f119d"
+   "rev": "K",
+   "pdf_sha": "a7c3a96f1b70c2b2"
   },
   "ST185-FB-111": {
    "pdf": "fusebox/rev7/drawings/ST185-FB-111.pdf",
