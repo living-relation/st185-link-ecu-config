@@ -1,5 +1,5 @@
 bank,position,kind,circuit,master_id,status,notes
-B1,R1,relay,R/B No.4 40 A HEATER feed,POWER AMI IN-1,feed,vacant relay seat (was k_htr); AMI IN-1 is the new feed to the kept OEM heater fuse; spare: 30 A max, 10 AWG
+B1,R1,relay,R/B No.4 40 A HEATER feed,POWER AMI IN-1,feed,"vacant relay seat (was k_htr); AMI IN-1 is the new feed to the kept OEM heater fuse; spare: 30 A max, 10 AWG"
 B1,R2,relay,EFI main,K-EFI,seated,POWER box F7 (TE 1-1414147-0)
 B1,R3,relay,(vacant),,vacant,was k_str; starter stays on OEM R/B No.4
 B1,R4,relay,radiator fan,K-FAN,seated,
@@ -8,8 +8,8 @@ B1,R6,relay,(vacant),,vacant,was k_pwr; R/B No.2 30 A POWER fuse is fed by AM1 (
 B1,AMI IN-1,fuse,R/B No.4 40 A HEATER,POWER,assigned,8 AWG to R/B No.4 HEATER fuse pin 1
 B1,AMI IN-2,fuse,EFI 30 A,POWER,assigned,K-EFI 87
 B1,AMI IN-3,fuse,(vacant),,vacant,was start 30 A
-B1,AMI IN-4,fuse,radiator fan,POWER,assigned,K-FAN
-B1,AMI IN-5,fuse,condenser fan,POWER,assigned,K-FAN2
+B1,AMI IN-4,fuse,radiator fan,POWER,assigned,"K-FAN; 30 A (Dan A17 a; Gauge cases N78)"
+B1,AMI IN-5,fuse,condenser fan,POWER,assigned,"K-FAN2; 30 A (Gauge cases N78)"
 B1,AMI IN-6,fuse,(vacant),,vacant,was R/B No.2 30 A POWER feed (w_rb2_feed dropped: Dan B17 = b 2026-11-02; AM1 feeds R/B No.2 through factory splice I2)
 B1,POS-SPARE,stud,reserved: audio amplifier,,reserved,"the third M8 stud on the POWER box battery-positive bar (spec.py REV7 pos_studs: BAT+ IN, RADLOK+, SPARE), constant battery bus: one lug kept for a future audio amplifier (Dan 2026-11-04 09:07: no fuse, no relay, no wiring yet; the amplifier's own fuse and cable come with the stereo design); free in today's box design, no CAD change"
 B1,AMI OUT-1,fuse,LOGIC Bus 1 feed 50 A,POWER,assigned,"8 AWG POWER box -> LOGIC box Bus 1 feed stud; a box-to-box cable owned by the box model (R1 a), not a harness wire; model cover label BUS1 50A (Dan S2 a 2026-11-09)"
@@ -33,21 +33,23 @@ B2,BUS1-2,fuse,HL 15 A,LOGIC,assigned,"w_hl_cp via SP-HL to K-HL 30 / 86 (low be
 B2,BUS1-3,fuse,HR 15 A,LOGIC,assigned,"to K-HR 30 (high beams, both lamps; Dan N89 a)"
 B2,BUS1-4,fuse,HZ 15 A,LOGIC,assigned,w_hz_cp via SP-HZ to the hazard feed (IE1-12) and K-HORN 30 / 86
 B2,BUS1-5,fuse,DOME 20 A,LOGIC,assigned,
-B2,BUS1-6,fuse,LAM 10 A,LOGIC,assigned,"to K-ON 30: the CAN-Lambda fuse (Link CAN-Lambda QSG: 10 A through an ignition relay; Dan 2026-11-04, N5 a, LAM 7.5 -> 10 A; K-ON feeds only the CAN-Lambda, N6), load up to 8.1 A; was WL 15 A (w_rb2_wl dropped, Dan B17 = b 2026-11-02), then vacant; fuse-box design still says WL 15 A"
+B2,BUS1-6,fuse,LAM 10 A,LOGIC,assigned,"to K-ON 30: the CAN-Lambda fuse (Link CAN-Lambda QSG: 10 A through an ignition relay; Dan 2026-11-04, N5 a, LAM 7.5 -> 10 A; K-ON feeds only the CAN-Lambda, N6), load up to 8.1 A; was WL 15 A (w_rb2_wl dropped, Dan B17 = b 2026-11-02), then vacant"
 B2,BUS1-7,fuse,ALM 5 A,LOGIC,assigned,w_at_12v (AntiTheft) to alarm-ready node AL-12V
 B2,BUS1-8,fuse,ALMS 2 A,LOGIC,assigned,w_at_12v_shk (AntiTheft) to alarm-ready node AL-12V-SHK
 B2,BUS1-9,fuse,ALTS 2 A,LOGIC,assigned,w_alt_s_c to alternator plug pin 1 S (rating from the fuse-box design wiring_plan.json; the master names no rating)
 B2,BUS1-10,fuse,ETB 7.5 A,LOGIC,assigned,K-ETB 30
 B2,BUS2-1,fuse,DRL 7.5 A,LOGIC,assigned,"to K-DRL 30 / 86 and K-POD 86 (Dan N87 a 2026-11-08): Bus 2 is live with K-EFI, so the DRLs are ignition-fed; 7.5 A = the fuse the frozen box design (LAM 7.5 A) already buys for this seat; was the CAN-Lambda (moved to BUS1-6 / K-ON, Dan 2026-11-04 N5 a). Headroom (A34, Dan 2026-11-13): the HWSTAR H6054 maker gives no DRL current (N84 a); similar LED DRL accents draw about 0.25 A each, so the pair is assumed about 0.5 A plus the K-DRL / K-POD coils; DRL load stays at or under 6 A, so 7.5 A has ample headroom"
-B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V); master 5 A vs fuse-box design 7.5 A
-B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A); fuse-box design still says 15 A
-B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A); fuse-box design still says 15 A
+B2,BUS2-2,fuse,SW12 5 A,LOGIC,assigned,w_cp_sw12_in to BUS-SW12 (relay coils 86 and ECU switched 12 V)
+B2,BUS2-3,fuse,COP 10 A,LOGIC,assigned,w_cop_pwr_ac to DRB102 cavity 1 (coils; B12 COP 10 A)
+B2,BUS2-4,fuse,INJ 7.5 A,LOGIC,assigned,w_inj_pwr_ac to DRB102 cavity 2 (injectors; B12 INJ 7.5 A)
 B2,BUS2-5,fuse,CSB 5 A,LOGIC,assigned,"w_csb12 (20 AWG) straight to the CSB3 plug cavity 2 (Dan T1 a, 2026-11-09)"
-B2,BUS2-6,fuse,DEV 5 A,LOGIC,assigned,"w_dev_clu (16 AWG) straight to the cluster +12 V lead (Dan T1 a, 2026-11-09; DEV 15 A -> 5 A, Dan 2026-11-07 N52 a; the fuse-box CAD still shows DEV 15 until the row 107 revisit, B27); the RealDash Pi moved to the factory CIG & RADIO 15 A ACC feed, SP-DEV dropped: Dan 2026-11-04, N5 a / N6"
-B2,BUS2-7,fuse,EPSEN 5 A,LOGIC,assigned,K-EPS-EN 30; the only EPS enable fuse (E3 a, Dan 2026-11-02, was 7.5 A); fuse-box design still says 7.5 A
+B2,BUS2-6,fuse,DEV 5 A,LOGIC,assigned,"w_dev_clu (16 AWG) straight to the cluster +12 V lead (Dan T1 a, 2026-11-09; DEV 15 A -> 5 A, Dan 2026-11-07 N52 a); the RealDash Pi moved to the factory CIG & RADIO 15 A ACC feed, SP-DEV dropped: Dan 2026-11-04, N5 a / N6"
+B2,BUS2-7,fuse,EPSEN 5 A,LOGIC,assigned,"K-EPS-EN 30; the only EPS enable fuse (E3 a, Dan 2026-11-02, was 7.5 A)"
 B2,BUS2-8,fuse,ACC 10 A,LOGIC,assigned,K-ACC 30 and 86
 B2,BUS2-9,fuse,ALMIG 2 A,LOGIC,assigned,w_at_ig (AntiTheft) to alarm-ready node AL-IGN
-B2,BUS2-12,fuse,(vacant),,vacant,"spare own-input seat (off the Bus 2 strip; 20-18 AWG input); briefly PI 5 A (Dan 2026-11-04, N5 a; the Pi moved to the factory ACC feed, N6); was the MRS pump-enable fuse fed by K-EPS-EN 87, dropped (E3 a, Dan 2026-11-02); fuse-box design still says MRS 7.5 A"
-B2,BUS2-13,fuse,start request,LOGIC,assigned,"ST1 tap to Link DI 7; own-input seat that exists in the frozen box model (Bus 2 positions 12 / 13 = MRS / B30 with their own inputs, cad/fusebox/src/spec.py MINI_OWN_IN; checked 2026-11-09 for Dan S3, no new spot needed)"
+B2,BUS2-12,fuse,(vacant),,vacant,"spare own-input seat (off the Bus 2 strip; 20-18 AWG input); briefly PI 5 A (Dan 2026-11-04, N5 a; the Pi moved to the factory ACC feed, N6); was the MRS pump-enable fuse fed by K-EPS-EN 87, dropped (E3 a, Dan 2026-11-02)"
+B2,BUS2-13,fuse,start request,LOGIC,assigned,"2 A (cad/fusebox/src/spec.py rev 8, B30); ST1 tap to Link DI 7; own-input seat that exists in the frozen box model (Bus 2 positions 12 / 13 = MRS / B30 with their own inputs, cad/fusebox/src/spec.py MINI_OWN_IN; checked 2026-11-09 for Dan S3, no new spot needed)"
 B3,K1,relay,fuel pump,K-FP,seated,trunk battery relay block
+B3,FP,fuse,fuel pump 40 A,BATT,assigned,"trunk battery relay block fuse (B11; Gauge cases N79): feeds K-FP 30 inside the block (w_fp_30, box model, S1 a)"
 B4,EPS,relay,EPS pump,K-EPS,seated,HCR150 beside the POWER box
+B5,RLY-DRL,relay,DRL cut (head lamps on = DRLs off),RLY-DRL,seated,"outside the boxes: GEP FRH-A12 holder beside the POWER box (Dan N90 a, A22, A30 a); 30 from K-DRL 87, coil on HL 15 A / R-Y, 87a NC to both DRL leads; every end is a master row"
