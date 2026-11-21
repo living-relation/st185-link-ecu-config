@@ -265,7 +265,7 @@ def fb_logic():
           ('BELLY PAN + COVER',[('ST185-FB-106',(0,0,-50)),('ST185-FB-107',(0,0,70))])]
     st=_stages(items,plan); base=[it['item'] for it in items if it['pn']=='ST185-FB-105']
     for s in st: s['base']=base+s['base']
-    return dict(title='LOGIC FUSE BOX - ASSEMBLY',pn='ST185-FB-100L',items=items,stage_sheets=[st],bom_h=1.6,bom_cols=(8,8,40,74,30),
+    return dict(title='LOGIC FUSE BOX - ASSEMBLY',pn='ST185-FB-100L',items=items,stage_sheets=[st],bom_h=1.4,bom_cols=(8,8,36,80,28),   # 46 rows: 1.6 ran into the title block at row 42
       source=SRC+FB+'ST185_fusebox_rev8_assembly.step',open_hide=[i['item'] for i in items if i['pn'] in ('ST185-FB-107',)],open_label='TRIMETRIC - COVER REMOVED',
       revlog=os.path.join(REV7,'ST185-FB-100L.REVLOG.md'),
       notes=['OVERALL DIMENSIONS ONLY (REFERENCE). ITEMS MARKED (NOT SHOWN) ARE NOT MODELED; WIRES/HARNESS OMITTED FOR CLARITY.',

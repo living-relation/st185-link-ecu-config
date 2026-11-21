@@ -4,7 +4,7 @@
   "Power_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 829.4,
+   "volume_cm3": 831.6,
    "bounds": [
     128.0,
     341.8,
@@ -20,14 +20,14 @@
     244.3
    ],
    "exempt": {
-    "seat lip": 1675,
+    "seat lip": 1521,
     "bar snap tab": 117,
     "pan catch pocket": 116,
     "strap snap tab": 42,
     "A bar snap tab": 10,
-    "A seat lip": 29,
+    "A seat lip": 25,
     "A saddle lip": 6,
-    "A relay cavity web": 1,
+    "A relay cavity web": 2,
     "A strap snap tab": 7
    },
    "attach_skin": 66,
@@ -81,7 +81,7 @@
   "Logic_Base_PA12_printed": {
    "allowed": [],
    "attach_checked": true,
-   "volume_cm3": 408.2,
+   "volume_cm3": 411.2,
    "bounds": [
     -32.0,
     121.55,
@@ -98,9 +98,9 @@
    ],
    "exempt": {
     "pan catch pocket": 116,
-    "seat lip": 1680,
+    "seat lip": 1220,
     "strip lip": 491,
-    "87a slot": 440,
+    "87a slot": 464,
     "strip snap hook": 4,
     "A strip snap hook": 2
    },

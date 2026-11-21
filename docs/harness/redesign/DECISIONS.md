@@ -1199,3 +1199,38 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: B) make them.
   - Supersedes: none.
   - Reopen if: none.
+- **C1 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: the fuse box seats were cut 0.4 mm round the TE STEP's contact box, so a box could move off its lance ledge by its side play (crimp check 2026-11-20: worst-case catch 0.26 - 0.29 mm on the one-lance seats, none on one side of MCP 1-968851-1).
+  - Decision: size each lance window / seat from TE's MAXIMUM contact box height only, with about 0.15 mm at the far wall and at the lance ledge (target worst-case catch about 0.72 - 0.78 mm); MCP 1-968851-1 box-zone width = max(box, crimp width) + the lance clearance; `check_terminal_holes.py` L1 counts the side play. Box heights TE's drawings do not dimension alone (42281-1, 280919-2) are measured on TE's STEP and cited, never estimated (A81). Applied in Fusion `ST185_fusebox_rev7` v60 (`spec.SEAT`, `BOX_H_MAX`, `box_hmax`, `catch`): worst-case catch 42281-1 0.74, 63467-1 0.72, 280919-2 0.70, 280755-4 / 280756-4 0.96 mm; MCP 2.8 0.32 centred each side. Under the deck underside the cavity keeps its earlier section (a lead-in), so the guide walls there are unchanged.
+  - Rejected: not recorded (asked in chat).
+  - Supersedes: the 0.4 mm (`HOLE['clr']`) at the ledge and far wall of the box and window zones (R120 / R163); the hole below the neck and the blade-width direction keep 0.4.
+  - Reopen if: a printed seat is too tight for its crimped terminal at the fit.
+- **C2 a (Dan, 2026-11-20)**
+  - Status: current
+  - Context: the modelled harness tails started 0.2 mm under the deck underside, short of their terminals.
+  - Decision: in the model each wire starts at its terminal's insulation crimp (no gap). Applied in v59 / v60: a wire run from the deck underside into the insulation barrel wherever the tail stopped short (28 LOGIC seats); the longer terminals already reach the tail.
+  - Rejected: not recorded (asked in chat).
+  - Supersedes: none.
+  - Reopen if: the direct jumpers, channel wires and splice legs (drawn by the wiring renders, not Fusion bodies) are modelled in Fusion.
+- **D1 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: which route an agent uses to drive Fusion (A62 a / A64: Dan's add-in on port 8765 against Autodesk's built-in server).
+  - Decision: all Fusion work goes through the Autodesk Fusion MCP (`fusion_mcp_read` / `fusion_mcp_execute` / `fusion_mcp_update`).
+  - Rejected: not recorded (asked in chat).
+  - Supersedes: none recorded.
+  - Reopen if: the Autodesk Fusion MCP cannot run a build.
+- **D4 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: two coordinator chats had fuse box work open.
+  - Decision: the fuse box closeout is run by this chat only; the Wiring-Main chat stands down on the fuse boxes (no second worker, build or PR).
+  - Rejected: not recorded (asked in chat).
+  - Supersedes: none.
+  - Reopen if: Dan hands the fuse boxes to another chat.
+- **T-cutout (Dan, 2026-11-21)**
+  - Status: current
+  - Context: in Fusion v59 (C9 a) a web of 0.60 - 1.07 mm stood between each release-tool hole and its blade hole, under `spec.HOLE['min_wall']` (2.0) and passed only through the seat exemptions. Dan on the v59 pictures: "If easier or tiny wall is too small just make a T-cutout", and of the open slots: "These can't fall through the top when the fuse or relay isn't installed?"
+  - Decision: wherever that web is under the minimum wall (every one-lance seat) it is removed: the release hole is a notch off the blade hole, as wide as the lance + 0.15 a side, one T-shaped opening (`spec.release_cuts`). New gate `check_terminal_holes.py` X1: with nothing plugged in, the deck skin lies over the contact box edge (TE maximum box, pushed to its worst side) by at least `X_MIN` = `LOCK_MIN` 0.3 mm on the far side and on the lance side, on strips at least that wide, read from the openings the build cut (`fusebox_report.json` `blade_slots`, `release`). Built in v60: MCP 2.8 seats 1.25 / 1.25 (1.0 skin), micro 30 / 87 0.90 / 0.90 and micro coil 0.45 / 0.45 (3.2 skin), F7 load 0.91 / 0.91, F7 and R1 coil 0.77 / 0.77, R1 30 / 87 0.90 / 0.77 (1.0 skin); measured on the v60 STEP 0.15 more each (the box centred).
+  - Rejected: accepting the thin web as built.
+  - Supersedes: the separate release hole of C9 a on the one-lance seats (the MCP 2.8 fork slot and the tab slots are unchanged).
+  - Reopen if: a blade hole or release notch changes, or X1 fails.
