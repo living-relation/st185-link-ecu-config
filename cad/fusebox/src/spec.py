@@ -1005,16 +1005,16 @@ REAL = {   # pn: box (W, H), lock (axis, out, tip) or None, neck, L, wire barrel
     # Lance ledge clearance 0.15 (0.47 - 0.15 = 0.32 >= LOCK_MIN 0.3).
     '1-968851-1': dict(box=(3.10, 4.40), lock=('W', 0.47, 6.8), neck=18.25, L=21.2, wz=(13.2, 17.0), iz=(18.5, 0.6), d=2.00, ww=None, iw=None, lclr=0.15),
     '1-968849-1': dict(box=(3.10, 4.40), lock=('W', 0.47, 6.9), neck=18.35, L=20.2, wz=(13.8, 17.1), iz=(18.6, 0.7), d=1.30, ww=None, iw=None, lclr=0.15),
-    '42281-1': dict(box=(7.44, 3.30), lock=('H', 1.04, 7.1), neck=16.0, L=20.18, wz=(10.25, 15.75), iz=(16.25, -0.38), d=1.85, ww=None, iw=None),
-    '280919-2': dict(box=(5.60, 2.40), lock=('H', 1.00, 5.1), neck=12.5, L=16.0, wz=(8.25, 12.25), iz=(12.5, -0.40), d=1.60, ww=None, iw=None),
-    '280755-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.18, wz=(16.5, 22.5), iz=(24.5, -0.64), d=4.10, ww=4.57, iw=6.35),
-    '280756-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.17, wz=(16.5, 22.5), iz=(24.5, -0.64), d=2.95, ww=4.06, iw=6.35),
+    '42281-1': dict(box=(7.44, 3.30), lock=('H', 1.04, 7.1), neck=16.0, L=20.18, wz=(10.25, 15.75), iz=(16.25, -0.38), d=1.85, ww=None, iw=None, lclr=0.15),
+    '280919-2': dict(box=(5.60, 2.40), lock=('H', 1.00, 5.1), neck=12.5, L=16.0, wz=(8.25, 12.25), iz=(12.5, -0.40), d=1.60, ww=None, iw=None, lclr=0.15),
+    '280755-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.18, wz=(16.5, 22.5), iz=(24.5, -0.64), d=4.10, ww=4.57, iw=6.35, lclr=0.15),
+    '280756-4': dict(box=(11.13, 3.97), lock=('H', 1.26, 10.8), neck=24.5, L=28.17, wz=(16.5, 22.5), iz=(24.5, -0.64), d=2.95, ww=4.06, iw=6.35, lclr=0.15),
     # A86 a: TE customer drawing C-63467 rev C (box .293 wide, .135 max high, lance to .170 overall, tip .275, wire barrel .170 long and
     # .180 / .155 wide x .195 REF high open, insulation barrel .110 long) with the sections of TE STEP c-63467-1-k-3d.stp (box 7.44 x 3.30,
     # lance 1.02 out to 6.95 deep, wire barrel 10.45 - 14.9, insulation barrel from 16.75, y from -0.51). No TE crimp height for 63467-1 was
     # found (application spec 114-2065 rev A defers it to the applicator log sheet): the crimped wire barrel is bounded by the drawing's open
     # barrel (wh 4.95 = .195 REF, ww 4.57 = .180), never smaller - so d is not used.
-    '63467-1': dict(box=(7.44, 3.30), lock=('H', 1.02, 7.1), neck=16.5, L=19.56, wz=(10.45, 14.9), iz=(16.75, -0.51), d=None, wh=4.95, ww=4.57, iw=None),
+    '63467-1': dict(box=(7.44, 3.30), lock=('H', 1.02, 7.1), neck=16.5, L=19.56, wz=(10.45, 14.9), iz=(16.75, -0.51), d=None, wh=4.95, ww=4.57, iw=None, lclr=0.15),
 }
 
 
@@ -1027,6 +1027,32 @@ for _pn, _r in REAL.items():          # the lock data the gates read = the real 
         LOCK[_pn].pop('shoulder', None)
     else:
         LOCK[_pn].update(neck=_r['neck'], est=False)
+
+
+# C1 a (Dan 2026-11-20; DECISIONS "C1 a"): every lance window / seat is sized from TE's MAX contact box height, with about 0.15 mm at the
+# far wall and at the lance ledge. BOX_H_MAX = the TE drawing maximum where the drawing dimensions the box alone: 63467 rev C ".135 MAX"
+# (3.43). 280755 / 280756: the drawing shows 3,80, TE's STEP measures 3.97 - the larger (STEP) is used. C-42281 rev AN and 280919 rev M2
+# dimension only the height over the lance (4.70 / 3.5), not the box: their box heights are measured on TE's STEPs (REAL box: 3.30 /
+# 2.40; A81: measured, not estimated). MCP 2.8: TE STEP 4.40 (REAL). Worst-case catch = lance spring-out - ledge - far:
+# 42281-1 0.74, 63467-1 0.72, 280919-2 0.70, 280755 / 6-4 0.96.
+SEAT = dict(far=0.15, ledge=0.15)
+BOX_H_MAX = {'63467-1': 3.43}
+
+
+def box_hmax(pn):
+    """TE's maximum contact box height (model Y): the drawing maximum where there is one, never under the STEP's."""
+    return max(REAL[pn]['box'][1], BOX_H_MAX.get(pn, 0.0))
+
+
+def catch(pn):
+    """(centred, worst) reach of the lance past its ledge edge, mm. One-lance (H): worst = the box pushed to the far wall. Two-lance
+    (W, MCP): centred each side; worst = the better side with the box pushed fully one way (that lance holds it)."""
+    R_ = REAL[pn]
+    ax, o, tip = R_['lock']
+    cl = R_.get('lclr', HOLE['clr'])
+    if ax == 'H':
+        return (round(o - SEAT['ledge'], 3), round(o - SEAT['ledge'] - SEAT['far'], 3))
+    return (round(o - cl, 3), round(o, 3))
 
 
 def real_env(pn):
@@ -1066,6 +1092,24 @@ def real_zones(part, kind, side=1):
     hole = to_box(-u_all, u_all, min(bl, wl, il) - yb - c, max(bh, wh, ih) - yb + c)
     cl = R_.get('lclr', c)
     ax = R_['lock'][0] if R_['lock'] else None
+    if globals().get('REV', CURRENT_REV) >= 8 and ax:
+        # C1 a (Dan 2026-11-20): the seat is sized from TE's MAX box height only, SEAT['ledge'] at the lance ledge and SEAT['far'] at the
+        # far wall, so the box cannot move off its ledge by more than far (L1 counts that side play). The window (lance tip to seat)
+        # holds only the box: its far wall is the box + far. Under it (neck to tip) the crimped wire barrel passes too. Two-lance MCP
+        # contacts: box-zone width = max(box, crimp width) + the lance clearance.
+        led, far, hm = SEAT['ledge'], SEAT['far'], box_hmax(part)
+        out = [(None, -R_['neck']) + hole]
+        ax, o, tip = R_['lock']
+        if ax == 'W':
+            u_bx = max(bw, ww) + cl
+            u_w = max(bw + o + c, ww + c)
+            box_ = to_box(-u_bx, u_bx, bl - yb - far, max(hm, wh) - yb + far)
+            win = to_box(-u_w, u_w, bl - yb - far, hm - yb + far)
+        else:
+            u_bx = max(bw + c, ww + c)
+            box_ = to_box(-u_bx, u_bx, bl - yb - led, max(hm, wh) - yb + far)
+            win = to_box(-u_bx, u_bx, bl - yb - c - o, hm - yb + far)
+        return out + [(-R_['neck'], -tip) + box_, (-tip, 0.0) + win]
     u_bx = max(bw + (cl if ax == 'W' else c), ww + c)
     box_ = to_box(-u_bx, u_bx, bl - yb - (cl if ax == 'H' else c), max(bh, wh) - yb + c)
     out = [(None, -R_['neck']) + hole]
@@ -1123,6 +1167,144 @@ CRIMP = {'280756-4': dict(ww=4.57, wh={10: 3.20, 12: 3.00}, iw=6.35, src='TE 114
          '280919-2': dict(ww=2.3, wh={20: 1.42, 18: 1.47, 16: 1.52}, iw=3.3, src='TE 114-20011 rev C2'),
          '1-968849-1': dict(ww=2.23, wh={20: 1.13, 18: 1.28}, iw=2.79, src='TE 114-18148 rev D1 Table 7'),
          '1-968851-1': dict(ww=2.79, wh={16: 1.41, 14: 1.66}, iw=3.92, src='TE 114-18148 rev D1 Table 7')}
+
+
+# ---------- C9 a (Dan 2026-11-21, DECISIONS "C9 a"): on every seat (1) tab slots for the rigid side tabs of the MCP 2.8 contacts,
+# (2) blade entry holes sized from the maker's blade drawing, (3) the smallest release-tool hole over every lance.
+# (2) Blade entry hole through the deck skin = (length along the blade width, thickness): the largest blade + its position tolerance
+#     both ways (+ 0.1 on the F7 / Mini ISO seats). Sources: TE Power Relay F7 data sheet V23134-X0000-A002 rev 2607 p.3 (QC terminals
+#     9.5 +-0.1 x 1.2 +-0.05 and 6.3 +-0.1 x 0.8 +-0.05, terminal positions +-0.25): 9.6 + 0.5 + 0.1 = 10.2, 1.25 + 0.5 + 0.1 = 1.85,
+#     6.4 + 0.5 + 0.1 = 7.0, 0.85 + 0.5 + 0.1 = 1.45. TE Micro Relay A data sheet V23074-X0000-A001 rev 1119 p.3 (terminals 6.3 +-0.1 x
+#     0.8 and 4.8 x 0.8, positions +-0.2): 6.4 + 0.4 = 6.8, 4.8 + 0.4 = 5.2, 0.8 + 0.4 = 1.2. The Mini ISO seat R1 (6.3 x 0.8 blades on
+#     all five pins, TE F4 data sheet V23136-X0000-A004) takes the F7 6.3 slot. The mini fuse slot MINI_SLOT (3.2 x 1.6 for the 2.8 x 0.8
+#     blade) is unchanged. BLADE_SLOT_V58 = the sizes up to Fusion v58 (blade + 0.4 a side, F7 from the rev 5 pockets).
+BLADE_SLOT = {'micro 30': (6.8, 1.2), 'micro 87': (6.8, 1.2), 'micro 85': (5.2, 1.2), 'micro 86': (5.2, 1.2), 'micro 87a': (5.2, 1.2),
+              'F7 30': (10.2, 1.85), 'F7 87': (10.2, 1.85), 'F7 85': (7.0, 1.45), 'F7 86': (7.0, 1.45), 'F7 87a': (7.0, 1.45)}
+BLADE_SLOT_B = (7.0, 1.45)      # every pin of the Mini ISO seat (POWER R1)
+BLADE_SLOT_V58 = {'micro 30': (7.1, 1.6), 'micro 87': (7.1, 1.6), 'micro 85': (5.6, 1.6), 'micro 86': (5.6, 1.6), 'micro 87a': (5.6, 1.6),
+                  'F7 30': (11.5, 3.2), 'F7 87': (11.5, 3.2), 'F7 85': (8.3, 2.8), 'F7 86': (8.3, 2.8), 'F7 87a': (8.3, 2.8)}
+# (3) Release hole through the deck skin, straight down onto the lance. One-lance (H) receptacles: over the gap between the contact box
+#     and the lance-side window wall, as wide as the lance + clr a side (lance widths measured on TE's STEPs, VENDOR_TERM). Two-lance (W)
+#     MCP 2.8 receptacles: the blade slot lengthened to the window width, so the tines of a fork tool pass each side of the contact.
+# (1) Tab slots: the MCP 2.8 contacts carry two rigid side tabs each side (TE STEPs 1-968849-1 rev J3 / 1-968851-1 rev E: to +-1.85 from
+#     the centre, model Y 0.81 - 0.95 and 3.45 - 3.59) that are wider than the throat under the lances; a slot + clr for each runs up
+#     the throat (neck to lance tip). skip: (box, cavity) left as built (the reopen rule of C9 a).
+RELEASE = dict(clr=0.15, lance_w={'42281-1': 2.29, '63467-1': 2.28, '280919-2': 1.30, '280755-4': 2.14, '280756-4': 2.14}, skip=set())
+TAB_GAP_MIN = 0.52   # HP MJF: a gap under 0.5 fuses / traps powder (check_printed_solid S6); the 0.14 tab + 2 x 0.15 would be 0.44
+TAB = {'1-968849-1': dict(half=1.85, bands=((0.81, 0.95), (3.45, 3.59))), '1-968851-1': dict(half=1.85, bands=((0.81, 0.95), (3.45, 3.59)))}
+
+
+def blade_slot(kind, mini_iso=False):
+    """(length along the blade width, thickness) of the blade entry hole of a relay seat."""
+    if globals().get('REV', CURRENT_REV) < 8:
+        return BLADE_SLOT_V58[kind]
+    return BLADE_SLOT_B if mini_iso else BLADE_SLOT[kind]
+
+
+def _to_box(kind, side, u0, u1, v0, v1):
+    """(W range, model-Y range rel. to the blade line) -> (x0, x1, y0, y1), the mapping of real_zones."""
+    h0, h1 = sorted((-side * v0, -side * v1))
+    return (u0, u1, h0, h1) if BLADE_AXIS[kind] == 'x' else (h0, h1, u0, u1)
+
+
+def zone_side(zs, kind):
+    """The side the lance window of a cavity's zones opens to (as build_fusion.place_terminals reads it)."""
+    zb, zl = zs[-2], zs[-1]
+    if BLADE_AXIS[kind] == 'x':
+        return 1 if zl[5] > zb[5] + 1e-6 else (-1 if zl[4] < zb[4] - 1e-6 else 1)
+    return 1 if zl[3] > zb[3] + 1e-6 else (-1 if zl[2] < zb[2] - 1e-6 else 1)
+
+
+def release_cuts(part, kind, side=1):
+    """C9 a (3): [(x0, x1, y0, y1)] rel. to the cavity centre, cut from the seat up through the deck skin."""
+    if part not in REAL or not REAL[part]['lock']:
+        return []
+    E, R_, c, t = real_env(part), REAL[part], HOLE['clr'], RELEASE['clr']
+    yb = E['yb']
+    ax, o, tip = R_['lock']
+    if ax == 'H':
+        lw = RELEASE['lance_w'].get(part)
+        # T-cutout (Dan 2026-11-21): the web between the release hole and the blade hole was under HOLE['min_wall'] on every family
+        # (0.60 - 1.07), so the hole runs on to the blade line: one T-shaped opening with the blade slot, no web
+        return [] if lw is None else [_to_box(kind, side, -lw / 2 - t, lw / 2 + t, -yb - c - o, 0.0)]
+    u_w = max(E['box'][0] + o + c, E['wire'][0] + c)
+    return [_to_box(kind, side, -u_w, u_w, -MINI_SLOT[1] / 2, MINI_SLOT[1] / 2)]
+
+
+def box_zone_wide(part, kind, side=1):
+    """(x0, x1, y0, y1) of the box zone as cut up to Fusion v59 (HOLE['clr'] round the box). C1 a tightens the seat inside the deck;
+    under the deck underside, where the guide walls hang, the cavity keeps this section (a lead-in), so no guide wall is thinned."""
+    E, R_, c = real_env(part), REAL[part], HOLE['clr']
+    yb = E['yb']
+    bw, bl, bh = E['box']
+    ww, wl, wh = E['wire']
+    if R_['lock'][0] == 'W':
+        u_bx = max(bw + R_.get('lclr', c), ww + c)
+        return _to_box(kind, side, -u_bx, u_bx, bl - yb - c, max(bh, wh) - yb + c)
+    u_bx = max(bw + c, ww + c)
+    return _to_box(kind, side, -u_bx, u_bx, bl - yb - c, max(bh, wh) - yb + c)
+
+
+def top_cover(part, opens, side, kind):
+    """Top-exit numbers of a seat with nothing plugged in (check_terminal_holes X1): how much printed deck skin lies over the contact
+    box when the wire is pushed up from below. opens = [(x0, x1, y0, y1)] deck-top openings rel. to the cavity centre (blade slot,
+    release notch). The box = TE max size (REAL W x box_hmax), pushed to the worst side each way (the C1 a clearances). Returns
+    dict(far, lance, strip): least skin overlap over the box edge on the far side and on the lance side (columns the release notch
+    does not cut), and the least width of those lance-side strips. Sampled every 0.02 mm across the blade width."""
+    E, R_ = real_env(part), REAL[part]
+    yb, hm, bw = E['yb'], box_hmax(part), E['box'][0]
+    ax = R_['lock'][0]
+    led, far = (SEAT['ledge'], SEAT['far']) if ax == 'H' else (SEAT['far'], SEAT['far'])
+    wx = BLADE_AXIS[kind] == 'x'
+
+    def uv(r):          # opening rect -> (u0, u1, v0, v1) in the terminal frame (v = model Y rel. to the blade line)
+        (x0, x1, y0, y1) = r
+        u0, u1, h0, h1 = (x0, x1, y0, y1) if wx else (y0, y1, x0, x1)
+        v0, v1 = sorted((-side * h0, -side * h1))
+        return (u0, u1, v0, v1)
+    ops = [uv(r) for r in opens]
+    f_min, l_min, run, strips = 1e9, 1e9, 0.0, []
+    n = int(round(2 * bw / 0.02))
+    for i in range(n + 1):
+        u = -bw + 2 * bw * i / n
+        hit = [o for o in ops if o[0] - 1e-9 <= u <= o[1] + 1e-9]
+        b_ = hm - yb - led                              # box far face, the box pushed toward the lance
+        a_ = -yb + far                                  # box lance-side face, the box pushed to the far wall
+        hf = [o for o in hit if o[2] < b_ - 1e-9 and o[3] > -yb - led + 1e-9]      # openings over the box (a neighbour's slot is not)
+        hl = [o for o in hit if o[3] > a_ + 1e-9 and o[2] < hm - yb + far - 1e-9]
+        f = b_ - min(max(o[3] for o in hf), b_) if hf else hm
+        l = max(min(o[2] for o in hl), a_) - a_ if hl else hm
+        f_min = min(f_min, f)
+        if l > 1e-6:
+            l_min = min(l_min, l)
+            run += 0.02
+        elif run:
+            strips.append(run)
+            run = 0.0
+    if run:
+        strips.append(run)
+    return dict(far=round(f_min, 2), lance=round(l_min if l_min < 1e8 else 0.0, 2), strip=round(min(strips) if strips else 0.0, 2),
+                box=[round(2 * bw, 2), round(hm, 2)])
+
+
+def tab_slots(part, kind, side=1):
+    """C9 a (1): [(dz_lo, dz_hi, x0, x1, y0, y1)] (dz from the seat) of the side-tab slots in the throat."""
+    tb_ = TAB.get(part)
+    if not tb_ or part not in REAL:
+        return []
+    E, R_, c, t = real_env(part), REAL[part], HOLE['clr'], RELEASE['clr']
+    yb = E['yb']
+    u_bx = max(E['box'][0], E['wire'][0]) + R_.get('lclr', c)       # the C1 a throat (real_zones)
+    sw = tb_['half'] + t
+    if sw <= u_bx + 1e-6:
+        return []
+    out = []
+    for (a, b) in tb_['bands']:
+        e = max(t, (TAB_GAP_MIN - (b - a)) / 2)      # the slot is never narrower than the printable gap (check_printed_solid S6)
+        for sg in (-1, 1):
+            u0, u1 = sorted((sg * (u_bx - 0.01), sg * sw))
+            out.append((-R_['neck'], -R_['lock'][2]) + _to_box(kind, side, u0, u1, a - yb - e, b - yb + e))
+    return out
 
 
 def twist_on(box_name, cav, kind):
@@ -1266,7 +1448,8 @@ REV8 = dict(
     # factory R/B No.4 (HEATER fuse pin 1). It leaves through the inboard end at its own fuse line, where the R1 heater tails left in rev 7.
     IN_OUT={'HTR': 'w_rb4_feed'},
     # the FAN / FAN2 feeds are 10 AWG (BOX_WIRES): the relay end is a 280756-4 (TE: 12-10 AWG); rev 6 / 7 drew 8 AWG there
-    AMI_AWG=dict(AMI_AWG, FAN=10, FAN2=10),
+    # C8 a (Dan 2026-11-21): the EFI 30 A feed w_fb_k_efi_87_cp is 10 AWG (was 12); its ring stays the TE 36161 (12-10 AWG, AMI_LUG)
+    AMI_AWG=dict(AMI_AWG, FAN=10, FAN2=10, EFI=10),
     OUT_SMALL={'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'B30', 'DRL', 'SW12', 'INJ', 'DEV', 'ETB'},
 )
 # The small GND stud on the NEG bar (Dan N60 a / N68 a / N103): ring 1 w66 (10 AWG, Panduit PV10-56R), ring 2 the K-ON coil 85 ground (box
@@ -1296,7 +1479,7 @@ SPLICES8 = {
 BOX_WIRES = [
     ('w_hc_fb', 8, 'Red', ('fb_power', 'out1', 'AMI OUT-1', 'Klauke 2R5'), ('fb_logic', 'b1', 'BUS1', 'Klauke 2R5')),
     ('w77_cp', 10, 'Red', ('k_efi', 'c1', '30', '280756-4'), ('fb_logic', 'b2', 'BUS2', 'Klauke 2R5')),
-    ('w_fb_k_efi_87_cp', 12, 'Red', ('fb_power', 'in2', 'AMI IN-2', 'TE 36161'), ('k_efi', 'c4', '87', '280756-4')),
+    ('w_fb_k_efi_87_cp', 10, 'Red', ('fb_power', 'in2', 'AMI IN-2', 'TE 36161'), ('k_efi', 'c4', '87', '280756-4')),
     ('w_fb_k_fan_87_cp', 10, 'Red', ('fb_power', 'in4', 'AMI IN-4', 'Klauke 2R5'), ('k_fan', 'c4', '87', '280756-4')),
     ('w_fb_k_fan2_87_ac', 10, 'Red', ('fb_power', 'in5', 'AMI IN-5', 'Klauke 2R5'), ('k_fan2', 'c4', '87', '280756-4')),
     ('w_k_efi_86_cp', 18, 'Red', ('fb_logic', 'efi86', 'BUS1-1', '1-968849-1'), ('k_efi', 'c3', '86', '42281-1')),
@@ -1314,6 +1497,9 @@ BOX_WIRES = [
     ('w_acc86', 16, 'Red', ('sp_acc12', 'Splice', '', None), ('k_acc', 'c3', '86', '280919-2')),
     ('w_fp_30', 10, 'Red', ('fb_batt', 'fp', 'FP 40A', 'Klauke 2R5'), ('k_fp', 'c1', '30', 'Klauke 1R6')),
 ]
+
+# C8 a: AMI feed lugs named by the decision instead of by gauge (parts_lists.lug_for): the EFI feed keeps the TE 36161 ring at 10 AWG.
+AMI_LUG = {'EFI': '36161'}
 
 _BASE = {}
 

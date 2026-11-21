@@ -36,6 +36,7 @@ REPORT = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'fusebox_report.json')
 PLAN = os.path.join(REPO, 'cad', 'fusebox', 'rev8', 'wiring_plan.json')
 TOL = 0.005
 LOCK_MIN = 0.3     # mm the lance tip reaches past the ledge edge, at the worst clearance
+X_MIN = LOCK_MIN   # X1: least printed deck skin over the contact box edge that counts as holding - the same least catch L1 asks of a lance
 
 
 def required(plan):
@@ -196,6 +197,10 @@ def main():
         partners.setdefault((b, c_), []).append(by[(b, a_)])
     shared = [(b, a_, c_, w) for (b, a_, c_, w, up) in joined if up]
     twist_join = []
+    catches, tops = {}, {}
+    slots = rep.get('blade_slots') or {}
+    zrel = bool(rep.get('release'))
+    rel = {(b, r_['cav']): r_ for b, L in (rep.get('release') or {}).items() for r_ in L if not r_.get('skipped')}
     for c in cavs:
         L_ = S.LOCK[c['part']]
         if c.get('lock') == 'twist':
@@ -246,8 +251,33 @@ def main():
             bad.append('L1 %s %s: %s has no locking lance (R121 / A83)' % (c['box'], c['cav'], c['part']))
             continue
         sides, keep = ledges(c, partners.get((c['box'], c['cav']), []))
-        if L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']) + TOL < LOCK_MIN:
+        if c['part'] in S.REAL:             # C1 a (Dan 2026-11-20): L1 counts the side play - the catch with the box pushed to its far wall
+            ct_c, ct_w = S.catch(c['part'])
+            catches.setdefault(c['part'], (ct_c, ct_w))
+            if min(ct_c, ct_w) + TOL < LOCK_MIN:
+                bad.append('L1 %s %s: %s lance reaches %.2f past its ledge centred, %.2f at the worst side play (min %.1f)' % (c['box'], c['cav'], c['part'], ct_c, ct_w, LOCK_MIN))
+        elif L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']) + TOL < LOCK_MIN:
             bad.append('L1 %s %s: %s lance reaches %.2f past its ledge (min %.1f)' % (c['box'], c['cav'], c['part'], L_['out'] - S.LEDGE_CLR.get(c['part'], S.HOLE['clr']), LOCK_MIN))
+        # X1 (Dan 2026-11-21): with no fuse / relay fitted the terminal cannot leave through the top - the deck-top openings the build cut
+        # over this seat (blade slots + release notches, fusebox_report.json) leave >= X_MIN of skin over the box edge on both sides
+        if c['part'] in S.REAL and c.get('built') and rel.get((c['box'], c['cav'])):
+            rr = rel[(c['box'], c['cav'])]
+            bw_, hm_ = S.REAL[c['part']]['box'][0], S.box_hmax(c['part'])
+            reach = max(bw_, hm_) + 1.0
+            ops = [(s_[0] - c['x'], s_[1] - c['x'], s_[2] - c['y'], s_[3] - c['y']) for s_ in slots.get(c['box'], [])
+                   if s_[0] - c['x'] < reach and c['x'] - s_[1] < reach and s_[2] - c['y'] < reach and c['y'] - s_[3] < reach]
+            ops += [tuple(r_) for r_ in rr.get('release', [])]
+            tc = S.top_cover(c['part'], ops, rr['side'], c['kind'])
+            tc['skin'] = round(rr['z_top'] - rr['z_seat'], 2)
+            fam = (c['box'], c['kind'] if not c['cav'].startswith('R1 ') else 'R1 ' + c['kind'].split(' ')[1], c['part'])
+            if fam not in tops or min(tc['far'], tc['lance']) < min(tops[fam]['far'], tops[fam]['lance']):
+                tops[fam] = dict(tc, n=tops.get(fam, {}).get('n', 0), cav=c['cav'])
+            tops[fam]['n'] += 1
+            if min(tc['far'], tc['lance'], tc['strip']) + TOL < X_MIN:
+                bad.append('X1 %s %s: %s can leave through the top - deck skin over the box edge far %.2f / lance side %.2f, strip %.2f (min %.1f)' % (
+                    c['box'], c['cav'], c['part'], tc['far'], tc['lance'], tc['strip'], X_MIN))
+        elif c['part'] in S.REAL and c.get('built') and zrel:
+            bad.append('X1 %s %s: no top opening record in the build report' % (c['box'], c['cav']))
         if not keep:
             resolve.append('L1 %s %s: %s has no ledge left (window %s, every side joined to a neighbour)' % (c['box'], c['cav'], c['part'], '/'.join(sides)))
         if 'row' in c:
@@ -262,6 +292,11 @@ def main():
           'RNF-100 build-up' % (os.path.relpath(REPORT, REPO), n_ok, len(joined), len(shared), thin, S.HOLE['min_wall'], n_sl))
     for x in info:
         print('  info: ' + x)
+    for pn_, (a_, b_) in sorted(catches.items()):
+        print('  L1 catch %s: centred %.2f, worst side play %.2f (min %.1f)' % (pn_, a_, b_, LOCK_MIN))
+    for (b_, k_, pn_), t_ in sorted(tops.items()):
+        print('  X1 top exit %s %s %s (%d seats, least at %s): box %.2f x %.2f, deck skin %.1f thick over the box edge: far side %.2f, lance side %.2f '
+              '(strips >= %.2f wide), min %.1f' % (b_, k_, pn_, t_['n'], t_['cav'], t_['box'][0], t_['box'][1], t_['skin'], t_['far'], t_['lance'], t_['strip'], X_MIN))
     if over:                            # A83: a wiring note only (Dan 2026-11-16)
         print('  wiring note (A83, parts lists): %d wire ends whose GXL insulation is above the TE grip range of their terminal (the lance holds the terminal)' % len(over))
         for x in over:

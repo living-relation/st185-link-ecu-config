@@ -494,6 +494,13 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 lo, hi = (z0 if dlo is None else max(z0, zs_ + dlo)), zs_ + dhi
                 if hi > lo + 0.01:
                     h['abs'].append((lo, hi, h['x'] + x0_, h['x'] + x1_, h['y'] + y0_, h['y'] + y1_))
+            if REV[0] >= 8 and h['part'] in S.REAL and S.REAL[h['part']]['lock'] and h.get('lock') != 'twist':
+                # C1 a: the seat is tightened inside the deck; below the deck underside (the guide walls) the box zone keeps its v59 section
+                R8_ = S.REAL[h['part']]
+                lo_b, hi_b = max(z0, zs_ - R8_['neck']), min(zs_ - R8_['lock'][2], z_d)
+                if hi_b > lo_b + 0.01:
+                    (x0_, x1_, y0_, y1_) = S.box_zone_wide(h['part'], h['kind'], S.zone_side(h['zones'], h['kind']))
+                    h['abs'].append((lo_b, hi_b, h['x'] + x0_, h['x'] + x1_, h['y'] + y0_, h['y'] + y1_))
             h['sx'] = max(z[3] for z in h['abs']) - min(z[2] for z in h['abs'])
             h['sy'] = max(z[5] for z in h['abs']) - min(z[4] for z in h['abs'])
 
@@ -754,6 +761,23 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             for s_, f_ in zip(sup, fins):
                 s_['after'] = round(backing(f_, z_d + 0.01, U2), 3)
         report['feature_support'].setdefault(box_name, []).extend(sup)
+        if REV[0] >= 8:      # C9 a (Dan 2026-11-21): release-tool hole over every lance + the MCP side-tab slots (spec.release_cuts / tab_slots)
+            rel_ = report.setdefault('release', {}).setdefault(box_name, [])
+            for h in hs:
+                if h.get('lock') == 'twist' or h['part'] not in S.REAL:
+                    continue
+                if (box_name, h['cav']) in S.RELEASE['skip']:
+                    rel_.append(dict(cav=h['cav'], part=h['part'], skipped=True))
+                    continue
+                sd_ = S.zone_side(h['zones'], h['kind'])
+                rc_ = S.release_cuts(h['part'], h['kind'], sd_)
+                ts_ = S.tab_slots(h['part'], h['kind'], sd_)
+                for (x0_, x1_, y0_, y1_) in rc_:
+                    cuts.append(box(h['x'] + x0_, h['y'] + y0_, h['z1'] - 0.01, h['x'] + x1_, h['y'] + y1_, z_t + 1))
+                for (dlo, dhi, x0_, x1_, y0_, y1_) in ts_:
+                    cuts.append(box(h['x'] + x0_, h['y'] + y0_, h['z1'] + dlo, h['x'] + x1_, h['y'] + y1_, h['z1'] + dhi))
+                rel_.append(dict(cav=h['cav'], part=h['part'], kind=h['kind'], side=sd_, x=h['x'], y=h['y'], z_seat=h['z1'], z_top=round(z_t, 2),
+                                 release=[[round(v, 3) for v in r_] for r_ in rc_], tabs=[[round(v, 3) for v in t_] for t_ in ts_]))
         sh_ = S.PLACE[box_name]
         report['terminal_holes'][box_name] = [dict(cav=h['cav'], kind=h['kind'], x=h['x'], y=h['y'], sx=round(h['sx'], 3), sy=round(h['sy'], 3),
                                                    zones=h['zones'], z0=round(z_d, 2), z1=h['z1'], group=h['group'], part=h['part'],
@@ -1793,19 +1817,22 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                     report.setdefault('pocket_reliefs', []).append(dict(x=[round(xa_, 2), round(xb3, 2)], y=round(y1_, 2), gap=round(gap, 2)))
         for r in relays:   # Mini ISO cavities, turned 90 deg: (u, v) of the F7 bottom view -> x = cx - v, y = cy + u
             P_ = S.RELAY_B_PINS if r['B'] else S.F7_PINS     # fit audit 2026-10-18 (TE V23134 rev 2607 p.3): 30 turned 90 deg to 87, coil line at the maker's offset
-            pins = [P_['30'] + (3.2, 11.5), P_['87'] + (11.5, 3.2), P_['85'] + (2.8, 8.3), P_['86'] + (2.8, 8.3)]
+            BS_ = lambda k_: S.blade_slot(k_, bool(r['B']))      # C9 a: (length, thickness) of the blade entry hole (spec.BLADE_SLOT)
+            pins = [P_['30'] + BS_('F7 30')[::-1], P_['87'] + BS_('F7 87'), P_['85'] + BS_('F7 85')[::-1], P_['86'] + BS_('F7 86')[::-1]]
             if r['B']:
-                pins.append(P_['87a'] + (8.3, 2.8))
+                pins.append(P_['87a'] + BS_('F7 87a'))
                 x7_ = r['cx'] - S.RELAY_B['v87a']     # sweep 2026-10-17: the PA12 between the 87a cavity and the 85 / 86 cavities (pin spacing)
                 # fit audit 2026-10-18: the web now runs from the turned 30 slot (v +7.65, 11.5 along x) to the 87 slot (v -10.25) - the box covers it
-                exempt(pre + 'Base_PA12_printed', 'relay cavity web', r['cx'] - P_['30'][1] - 3.5, r['cx'] - P_['87'][1] - 1.5, r['cy'] - 8.0, r['cy'] + 8.0,
+                exempt(pre + 'Base_PA12_printed', 'relay cavity web', r['cx'] - P_['30'][1] - 3.5, r['cx'] - P_['87'][1] - BS_('F7 87')[1] / 2 + 0.1, r['cy'] - 8.0, r['cy'] + 8.0,   # to the 87 slot edge (C9 a: the slot is the blade + tolerance)
                        z_d - 0.5, z_t + 0.1, sh, only='A')
             for (u, v, lx, ly) in pins:
                 zs0 = slot_z0('POWER', r['cx'] - v, r['cy'] + u, z_d, z_t, S.TERM['42281-1']['L'])
                 cuts.append(cbox(r['cx'] - v, r['cy'] + u, zs0, z_t + 1, ly, lx))
+                report.setdefault('blade_slots', {}).setdefault('POWER', []).append([round(v_, 3) for v_ in (r['cx'] - v - ly / 2, r['cx'] - v + ly / 2, r['cy'] + u - lx / 2, r['cy'] + u + lx / 2)])
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, r['cx'] - v - ly / 2, r['cx'] - v + ly / 2, r['cy'] + u - lx / 2, r['cy'] + u + lx / 2)])
         for dx in (-S.MINI_BLADE_X, S.MINI_BLADE_X):
             cuts.append(cbox(acps[0] + dx, acps[1], slot_z0('POWER', acps[0] + dx, acps[1], z_d, z_t, S.TERM['1-968851-1']['L']), z_t + 1, *S.MINI_SLOT))
+            report.setdefault('blade_slots', {}).setdefault('POWER', []).append([round(v_, 3) for v_ in (acps[0] + dx - S.MINI_SLOT[0] / 2, acps[0] + dx + S.MINI_SLOT[0] / 2, acps[1] - S.MINI_SLOT[1] / 2, acps[1] + S.MINI_SLOT[1] / 2)])
         # rev 6: the OUT-row lugs sit on 40 mm standoffs at the IN-row height, under the skirt: no skirt notches (belly pan exits below)
         tabs_add = []
         if R7:   # R155 (Dan N5): snap tabs that hold the POS and NEG bars down - the POS bar's front end and its -x edge before the barrier,
@@ -2332,17 +2359,20 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             for dx in (-S.MINI_BLADE_X, S.MINI_BLADE_X):         # N21: 8.1 blade pitch, MCP 2.8 receptacles, slot = blade + 0.2 / 0.4 a side
                 zs0 = slot_z0('LOGIC', cx + dx, y, z_d, z_t, S.TERM['1-968851-1']['L'])
                 cuts.append(cbox(cx + dx, y, zs0, z_t + 1, *S.MINI_SLOT))
+                report.setdefault('blade_slots', {}).setdefault('LOGIC', []).append([round(v, 3) for v in (cx + dx - S.MINI_SLOT[0] / 2, cx + dx + S.MINI_SLOT[0] / 2, y - S.MINI_SLOT[1] / 2, y + S.MINI_SLOT[1] / 2)])
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + dx - S.MINI_SLOT[0] / 2, cx + dx + S.MINI_SLOT[0] / 2, y - S.MINI_SLOT[1] / 2, y + S.MINI_SLOT[1] / 2)])
         for (nm, pn, own, cx, cy, k_) in micro:                 # approximate pattern from TE 1308028; set exactly in detail work
             MP_ = S.MICRO_PINS             # fit audit 2026-10-18: TE V23074 rev 1119 p.3 pattern; 87a is a 4.8 blade like 85 / 86 (slot 6.8 long)
             bt_, c2_ = 0.8 + 2 * S.CLR, 2 * S.CLR    # fit audit 2026-10-18: blade slots = blade + R120 clr a side (0.8 x 6.3 / 4.8, TE V23074 p.3): with the
             # 280919-2 seated 3.2 down (spec.SEAT_GAP) the slots are 3.2 deep, and the old 2.6-wide slots left 1.9 webs between 85 / 87a / 86 (now 2.9)
-            for (u, v, lx, ly) in (MP_['87'] + (6.3 + c2_, bt_), MP_['30'] + (6.3 + c2_, bt_), MP_['85'] + (bt_, 4.8 + c2_), MP_['86'] + (bt_, 4.8 + c2_), MP_['87a'] + (bt_, 4.8 + c2_)):
+            BS_ = S.blade_slot      # C9 a (Dan 2026-11-21): blade entry holes from the maker's blade + position tolerance (spec.BLADE_SLOT)
+            for (u, v, lx, ly) in (MP_['87'] + BS_('micro 87'), MP_['30'] + BS_('micro 30'), MP_['85'] + BS_('micro 85')[::-1],
+                                   MP_['86'] + BS_('micro 86')[::-1], MP_['87a'] + BS_('micro 87a')[::-1]):
                 if REV[0] >= 7 and (u, v) == MP_['87a'] and pn in S.MICRO_NO:
                     continue            # R127 sweep: a normally-open micro relay has no 87a blade - no slot, solid there
                 zs0 = slot_z0('LOGIC', cx + u, cy + v, z_d, z_t, S.TERM['280919-2']['L'])
                 if (u, v) == MP_['87a']:
-                    exempt(pre + 'Base_PA12_printed', '87a slot', cx - 4.5, cx + 4.5, cy + MP_['87'][1] + 1.9, cy + v + ly / 2 + 0.6, zs0 - 0.1, z_t + 0.1, sh)   # from the 87 cavity edge (joined)
+                    exempt(pre + 'Base_PA12_printed', '87a slot', cx - 4.5, cx + 4.5, cy + MP_['87'][1] + (1.6 if REV[0] >= 8 else 1.9), cy + v + ly / 2 + 0.6, zs0 - 0.1, z_t + 0.1, sh)   # from the 87 cavity edge (joined)
                     # fit audit 2026-10-18: TE's pitch leaves 1.95 between the 87 receptacle and the 87a blade - the slot runs on into the 87
                     # cavity (its R121 box zone edge + 0.05) so no 0.56 PA12 sliver stands between them (R127 join; the 87a blade is bare)
                     c87_ = next((c for c in (PLAN7 or {}).get('cavities', []) if c['box'] == 'LOGIC' and abs(c['x'] - cx) < 0.01
@@ -2352,6 +2382,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                         cuts.append(box(cx + u - lx / 2, y87_, zs0, cx + u + lx / 2, cy + v - ly / 2 + 0.01, z_t + 1))
                         report.setdefault('micro_87a_join', []).append([nm, round(cy + v - ly / 2 - y87_, 2)])
                 cuts.append(cbox(cx + u, cy + v, zs0, z_t + 1, lx, ly))
+                report.setdefault('blade_slots', {}).setdefault('LOGIC', []).append([round(v_, 3) for v_ in (cx + u - lx / 2, cx + u + lx / 2, cy + v - ly / 2, cy + v + ly / 2)])
                 cuts += groove_join(L, z_d, [(zs0, z_t + 1, cx + u - lx / 2, cx + u + lx / 2, cy + v - ly / 2, cy + v + ly / 2)])
             exempt(pre + 'Base_PA12_printed', 'relay cavity web', cx - 6.0, cx + 6.0, cy - 6.0, cy + 6.0, z_d - 0.5, z_t + 0.1, sh, only='A')
             if REV[0] >= 7:          # fit audit 2026-10-18 (R128): under the deck the web left between the 30 crimp hole and the 87 wire exit is 1.48
@@ -2813,7 +2844,33 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         if vdir is None:
             rep_['missing'].append('no cad/vendor folder')
             return
-        src = {}
+        src, raw, crimped = {}, {}, {}
+
+        def crimped_src(pn, awg, od):
+            """B4 a (Dan 2026-11-20): the terminal as crimped - TE's STEP down to the wire barrel, then the crimped wire barrel (TE crimp
+            width x height for that gauge, spec.CRIMP) and the insulation barrel closed on the wire (crimp width x wire OD + 2 t).
+            No TE crimp size for the part / gauge (63467-1): the trimmed STEP as before, listed as TBD."""
+            cr = S.CRIMP.get(pn)
+            if pn not in S.REAL or not cr or awg not in cr.get('wh', {}):
+                return src[pn], None
+            k_ = (pn, awg, round(od, 2))
+            if k_ not in crimped:
+                R_, T_ = S.REAL[pn], S.TERM[pn]
+                t_m = T_['t'] if T_['t'] is not None else S.T_EST
+                (wz0, wz1), (iz0, yi) = R_['wz'], R_['iz']
+                ih = S.crimp_od(pn, od) + 2 * t_m
+                bl_ = []
+                for b_ in raw[pn]:
+                    f_ = tb.copy(b_)
+                    try:
+                        bo(f_, box(-20, -20, -wz0, 20, 20, 5), 'i')
+                        bl_.append(f_)
+                    except RuntimeError:
+                        pass
+                bl_.append(box(-cr['ww'] / 2, 0.0, -iz0, cr['ww'] / 2, cr['wh'][awg], -wz0))
+                bl_.append(box(-cr['iw'] / 2, yi, -R_['L'], cr['iw'] / 2, yi + ih, -iz0))
+                crimped[k_] = (bl_, dict(ww=cr['ww'], wh=cr['wh'][awg], iw=cr['iw'], ih=round(ih, 2), src=cr['src']))
+            return crimped[k_]
         tmp_occ = root.occurrences.addNewComponent(adsk.core.Matrix3D.create())
         im = app.importManager
         for pn, (mk, fn, yb, dn) in S.VENDOR_TERM.items():
@@ -2830,6 +2887,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             mz.translation = V(0, 0, -zmx / 10.0)
             for b_ in src[pn]:
                 tb.transform(b_, mz)
+            raw[pn] = [tb.copy(b_) for b_ in src[pn]]
             if pn in S.REAL:      # R163: TE's model shows the barrels OPEN - trim them to the crimped envelope the cavity is sized for
                 E_, R_ = S.real_env(pn), S.REAL[pn]
                 bw_, wz_, iz_ = E_['box'][0], R_['wz'][0], R_['iz'][0]
@@ -2845,9 +2903,12 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                 src[pn] = keep
         tmp_occ.deleteMe()
         zt = {'LOGIC': S.LOGIC['z_t'], 'POWER': S.POWER['z_t']}
-        by = {}
+        by, stubs = {}, {}
         for c in PLAN7['cavities']:
             if c['box'] not in zt or not c.get('zones') or (c['kind'].endswith('87a') and c['source'] not in ('harness', 'spare (kept cut)')):
+                continue
+            if REV[0] >= 8 and (c['box'], c['cav']) in S.KEEP_CUT:      # B5 a (Dan 2026-11-20, applies A16 a): the cavity stays cut, no terminal in it
+                rep_.setdefault('kept_cut_empty', []).append(c['box'] + ' ' + c['cav'])
                 continue
             pn = c['part']
             if pn in S.PLACE_HOLD:
@@ -2873,13 +2934,31 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
             org = (c['x'] + sx_ - eH[0] * yb, c['y'] + sy_ - eH[1] * yb, zt[c['box']] - S.seat_gap(pn, c['kind'], c.get('lock') == 'twist'))
             m = adsk.core.Matrix3D.create()
             m.setWithCoordinateSystem(P(*org), V(*eW), V(*eH), V(*eZ))
-            for b_ in src[pn]:
+            bl_c, cr_ = crimped_src(pn, c.get('awg'), c['wire_od']) if REV[0] >= 8 else (src[pn], None)
+            for b_ in bl_c:
                 t_ = tb.copy(b_)
                 tb.transform(t_, m)
                 by.setdefault((c['box'], pn), []).append(t_)
             rep_['placed'][c['box'] + ' ' + c['cav']] = pn
+            if REV[0] >= 8:
+                if cr_:
+                    rep_.setdefault('crimped', {})[c['box'] + ' ' + c['cav']] = dict(cr_, part=pn, awg=c.get('awg'), od=c['wire_od'])
+                else:
+                    rep_.setdefault('crimp_tbd', []).append('%s %s %s (%s AWG)' % (c['box'], c['cav'], pn, c.get('awg')))
+                # C2 a (Dan 2026-11-20): the wire runs on into its terminal - from the deck underside (where the harness tail starts) up to
+                # the insulation barrel, on the barrel's own centre
+                if c.get('wires') and pn in S.REAL:
+                    R_, T_ = S.REAL[pn], S.TERM[pn]
+                    yc_ = R_['iz'][1] + (S.crimp_od(pn, c['wire_od']) + 2 * (T_['t'] if T_['t'] is not None else S.T_EST)) / 2
+                    wx_, wy_ = org[0] + eH[0] * yc_, org[1] + eH[1] * yc_
+                    z_a, z_b = org[2] - R_['L'], zt[c['box']] - S.TOWER_H[c['box']] - 0.2
+                    if z_a > z_b + 0.05:
+                        stubs.setdefault(c['box'], []).append(cyl((wx_, wy_, z_b), (wx_, wy_, z_a), c['wire_od']))
+                        rep_.setdefault('wire_stubs', {})[c['box'] + ' ' + c['cav']] = round(z_a - z_b, 2)
         for (bx_, pn), bl in by.items():
             comp(('Power_' if bx_ == 'POWER' else 'Logic_') + 'Terminal_TE_%s' % pn, bl, AP['brass'], MAT['brass'])
+        for bx_, bl in stubs.items():
+            comp(('Power_' if bx_ == 'POWER' else 'Logic_') + 'Wire_into_terminals', bl, AP['harness'], None)
         rep_['count'] = len(rep_['placed'])
         rep_['source'] = {pn: dict(file='cad/vendor/%s/%s/%s' % (v[0], pn, v[1]), url=S.TE_DOC % (v[3], pn)) for pn, v in S.VENDOR_TERM.items()}
     place_terminals()
