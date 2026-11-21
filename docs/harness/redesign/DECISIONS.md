@@ -1150,3 +1150,38 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: B) leave it.
   - Supersedes: none.
   - Reopen if: none.
+- **Fuse box closeout order (Dan, 2026-11-21)**
+  - Status: current
+  - Context: before any fuse box change, the boxes and the finished harnesses are checked as one system.
+  - Decision: the order is (1) flag every mismatch between the final harnesses and the boxes: each harness wire end labelled for a box, each relay and fuse where the harness expects it, its terminal present, the fuse and relay rated for the circuit, the wiring between the boxes; (2) with the parts and seats confirmed, finalize the box models and close their open items; (3) regenerate the drawings and the build material from the models. The master wire list and the SoT files change only with Dan's approval (restates A48 a). Check 1 run 2026-11-21 (read-only; master, `sot/fuse-relay-map.csv`, `spec.py` rev 8 with `BOX_WIRES`): every fuse output and every relay 30 / 85 / 86 / 87 has exactly one wire, ratings and terminal ranges pass; findings C7, C8 below.
+  - Rejected: none.
+  - Supersedes: the "B1-B30 walk-through -> add list -> bulkhead -> fuse box revisit" order (Dan Y4 a, 2026-11-09), which the 2026-11-12 harness rebuild overtook: no walk-through and no add list is owed (Dan 2026-11-21: the harness.design files are complete).
+  - Reopen if: a harness wire that ends at a box changes.
+- **C4 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: the store STATE and BACKLOG still carried the Y4 a order as the next step.
+  - Decision: fix those lines in the store (STATE next step; a closing BACKLOG line). No repo file changes.
+  - Rejected: B) leave them for the coordinator chat.
+  - Supersedes: none.
+  - Reopen if: none.
+- **C6 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: BACKLOG row 156, the 6 `sot/channels.csv` rows that cite the 1990 / 1992 EWD.
+  - Decision: run the re-check against the 1993 EWD alongside the fuse box work, read-only; any cell change is shown to Dan first (A48 a).
+  - Rejected: B) hold it.
+  - Supersedes: none.
+  - Reopen if: none.
+- **C7 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: `sot/fuse-relay-map.csv` had notes saying the fuse-box design still showed older ratings (rev 8 fixed them), no row for the trunk fuel pump fuse or the DRL cut relay, and no rating on three fuse rows.
+  - Decision: text and rows only, no pin, seat or part moves: the 7 stale "fuse-box design still says" clauses removed (BUS1-6, BUS2-2, -3, -4, -6, -7, -12); ratings written into the notes of AMI IN-4 and IN-5 (30 A) and BUS2-13 (2 A); new rows B3 FP (40 A, trunk block) and B5 RLY-DRL (the holder beside the POWER box); the R1 and BUS2-7 notes quoted (their commas split the cell). The `circuit` cells the generators read are unchanged.
+  - Rejected: B) show the edits first; C) leave as is.
+  - Supersedes: none.
+  - Reopen if: a reader starts using bank B5 or the notes column.
+- **C8 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: the EFI 30 A feed inside the POWER box (`w_fb_k_efi_87_cp`, AMI IN-2 to K-EFI 87) is 12 AWG; the Gauge cases table has no rating for 12 AWG; the wire after the relay (`w77_cp`) is 10 AWG.
+  - Decision: make it 10 AWG. Both ends take it: ring TE 36161 and FASTON 280756-4 are 12-10 AWG. CAD work (model first, `spec.BOX_WIRES`, then the drawings and parts list), done with the model closeout: store BACKLOG item.
+  - Rejected: B) keep 12 AWG and source a rating.
+  - Supersedes: the 12 AWG of that wire in the rev 8 box plan.
+  - Reopen if: the EFI fuse rating changes.
