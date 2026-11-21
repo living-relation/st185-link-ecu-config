@@ -3,7 +3,8 @@
     "Source-of-truth registry, added by state-init 2026-11-19 (Dan A93 a, A96 a). Agents change a SoT only with Dan's yes (A48 a).",
     "Gap: sot-fuse-relay-map has no dedicated check; it is covered only through its readers (build_drawings --check, trace_circuits --check, parts_lists --check, check_all).",
     "Gap: sot-channels: XTREMEX-IO-TABLE.html is its visual face; whether it is generated or hand-made is not verified.",
-    "Gap: tune-seeds has no fast check marked; validate_tune runs at commit."
+    "Gap: tune-seeds has no fast check marked; validate_tune runs at commit.",
+    "PROJECT-BOM.* is in no entry's derived list (Dan D5 a, 2026-11-21): it has two sources (the wire list and the fuse box parts lists) and the guard gives a derived file one owner only. Both entries still regenerate it; its gate is `build_project_bom.py --check` in tools/check_all.py (pre-commit and CI), which fails a stale or hand-edited BOM."
   ],
   "entries": [
     {
@@ -29,7 +30,6 @@
       "derived": [
         "docs/harness/wirelists/ST185-*-wirelist.*",
         "docs/harness/drawings/**",
-        "docs/sourcing/PROJECT-BOM.*",
         "docs/harness/BUNDLE-MAP.html",
         "docs/harness/CIRCUIT-TRACE.html"
       ],
@@ -113,7 +113,8 @@
         "python cad/check_drawings_current.py"
       ],
       "regenerate": [
-        "python cad/fusebox/src/parts_lists.py"
+        "python cad/fusebox/src/parts_lists.py",
+        "python docs/sourcing/build_project_bom.py"
       ],
       "derived": [
         "cad/fusebox/rev8/fusebox-parts-*.csv"

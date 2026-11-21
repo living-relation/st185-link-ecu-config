@@ -1203,14 +1203,14 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Status: current
   - Context: the fuse box seats were cut 0.4 mm round the TE STEP's contact box, so a box could move off its lance ledge by its side play (crimp check 2026-11-20: worst-case catch 0.26 - 0.29 mm on the one-lance seats, none on one side of MCP 1-968851-1).
   - Decision: size each lance window / seat from TE's MAXIMUM contact box height only, with about 0.15 mm at the far wall and at the lance ledge (target worst-case catch about 0.72 - 0.78 mm); MCP 1-968851-1 box-zone width = max(box, crimp width) + the lance clearance; `check_terminal_holes.py` L1 counts the side play. Box heights TE's drawings do not dimension alone (42281-1, 280919-2) are measured on TE's STEP and cited, never estimated (A81). Applied in Fusion `ST185_fusebox_rev7` v60 (`spec.SEAT`, `BOX_H_MAX`, `box_hmax`, `catch`): worst-case catch 42281-1 0.74, 63467-1 0.72, 280919-2 0.70, 280755-4 / 280756-4 0.96 mm; MCP 2.8 0.32 centred each side. Under the deck underside the cavity keeps its earlier section (a lead-in), so the guide walls there are unchanged.
-  - Rejected: not recorded (asked in chat).
+  - Rejected: B) change something in the proposal.
   - Supersedes: the 0.4 mm (`HOLE['clr']`) at the ledge and far wall of the box and window zones (R120 / R163); the hole below the neck and the blade-width direction keep 0.4.
   - Reopen if: a printed seat is too tight for its crimped terminal at the fit.
 - **C2 a (Dan, 2026-11-20)**
   - Status: current
   - Context: the modelled harness tails started 0.2 mm under the deck underside, short of their terminals.
   - Decision: in the model each wire starts at its terminal's insulation crimp (no gap). Applied in v59 / v60: a wire run from the deck underside into the insulation barrel wherever the tail stopped short (28 LOGIC seats); the longer terminals already reach the tail.
-  - Rejected: not recorded (asked in chat).
+  - Rejected: B) no.
   - Supersedes: none.
   - Reopen if: the direct jumpers, channel wires and splice legs (drawn by the wiring renders, not Fusion bodies) are modelled in Fusion.
 - **D1 a (Dan, 2026-11-21)**
@@ -1224,7 +1224,7 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Status: current
   - Context: two coordinator chats had fuse box work open.
   - Decision: the fuse box closeout is run by this chat only; the Wiring-Main chat stands down on the fuse boxes (no second worker, build or PR).
-  - Rejected: not recorded (asked in chat).
+  - Rejected: B) the Wiring-Main chat takes over the fuse box closeout.
   - Supersedes: none.
   - Reopen if: Dan hands the fuse boxes to another chat.
 - **T-cutout (Dan, 2026-11-21)**
@@ -1234,3 +1234,17 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: accepting the thin web as built.
   - Supersedes: the separate release hole of C9 a on the one-lance seats (the MCP 2.8 fork slot and the tab slots are unchanged).
   - Reopen if: a blade hole or release notch changes, or X1 fails.
+- **D5 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: `docs/sourcing/PROJECT-BOM.*` is built from the wire list AND the fuse box parts lists, but `.claude/sot.json` listed it as derived from the wire list only, so the sot guard refused a regenerated BOM on a fuse-box-only PR (#710: 3 POWER box lines after C8 a: TXL 10 AWG red 3 -> 4 pieces, the TXL 12 AWG red line gone, RNF-100 1/8 sleeve 7 -> 6 ends). Dan: the fuse box owns those parts, so the fuse box change updates the BOM.
+  - Decision: a fuse box change may regenerate the BOM. The guard gives a derived file one owner only (first match), so listing it under both entries still failed; `PROJECT-BOM.*` is therefore taken out of the `derived` lists, both `wirelist` and `fusebox-spec` regenerate it (`build_project_bom.py`), and its gate is `build_project_bom.py --check` in `tools/check_all.py` (pre-commit and CI: a stale or hand-edited BOM fails). The BOM is regenerated and committed on #710. Follow-up (workstation repo, BACKLOG): let `sot_guard.py` accept more than one owner for a derived file, then list the BOM under both again.
+  - Rejected: B) leave the registry and update the BOM in a later PR.
+  - Supersedes: none.
+  - Reopen if: the BOM gets another source.
+- **D7 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: the models folder `st185_fusebox_1101` held revA - revE after the v59 / v60 filings; the CAD rule keeps the latest rev plus 2 (B26).
+  - Decision: revA (repo rev 6) and revB (rev 7) deleted 2026-11-21 (to the Recycle Bin); revC, revD, revE stay, manifests intact. `cad/README.md` points updated.
+  - Rejected: B) keep them.
+  - Supersedes: none (applies B26).
+  - Reopen if: none.
