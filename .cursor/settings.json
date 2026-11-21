@@ -23,6 +23,12 @@
     },
     "atlassian": {
       "enabled": true
+    },
+    "handbuilt-cad": {
+      "enabled": true
+    },
+    "workstation-core": {
+      "enabled": true
     }
   }
 }
