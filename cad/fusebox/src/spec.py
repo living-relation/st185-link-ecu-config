@@ -1125,6 +1125,86 @@ CRIMP = {'280756-4': dict(ww=4.57, wh={10: 3.20, 12: 3.00}, iw=6.35, src='TE 114
          '1-968851-1': dict(ww=2.79, wh={16: 1.41, 14: 1.66}, iw=3.92, src='TE 114-18148 rev D1 Table 7')}
 
 
+# ---------- C9 a (Dan 2026-11-21, DECISIONS "C9 a"): on every seat (1) tab slots for the rigid side tabs of the MCP 2.8 contacts,
+# (2) blade entry holes sized from the maker's blade drawing, (3) the smallest release-tool hole over every lance.
+# (2) Blade entry hole through the deck skin = (length along the blade width, thickness): the largest blade + its position tolerance
+#     both ways (+ 0.1 on the F7 / Mini ISO seats). Sources: TE Power Relay F7 data sheet V23134-X0000-A002 rev 2607 p.3 (QC terminals
+#     9.5 +-0.1 x 1.2 +-0.05 and 6.3 +-0.1 x 0.8 +-0.05, terminal positions +-0.25): 9.6 + 0.5 + 0.1 = 10.2, 1.25 + 0.5 + 0.1 = 1.85,
+#     6.4 + 0.5 + 0.1 = 7.0, 0.85 + 0.5 + 0.1 = 1.45. TE Micro Relay A data sheet V23074-X0000-A001 rev 1119 p.3 (terminals 6.3 +-0.1 x
+#     0.8 and 4.8 x 0.8, positions +-0.2): 6.4 + 0.4 = 6.8, 4.8 + 0.4 = 5.2, 0.8 + 0.4 = 1.2. The Mini ISO seat R1 (6.3 x 0.8 blades on
+#     all five pins, TE F4 data sheet V23136-X0000-A004) takes the F7 6.3 slot. The mini fuse slot MINI_SLOT (3.2 x 1.6 for the 2.8 x 0.8
+#     blade) is unchanged. BLADE_SLOT_V58 = the sizes up to Fusion v58 (blade + 0.4 a side, F7 from the rev 5 pockets).
+BLADE_SLOT = {'micro 30': (6.8, 1.2), 'micro 87': (6.8, 1.2), 'micro 85': (5.2, 1.2), 'micro 86': (5.2, 1.2), 'micro 87a': (5.2, 1.2),
+              'F7 30': (10.2, 1.85), 'F7 87': (10.2, 1.85), 'F7 85': (7.0, 1.45), 'F7 86': (7.0, 1.45), 'F7 87a': (7.0, 1.45)}
+BLADE_SLOT_B = (7.0, 1.45)      # every pin of the Mini ISO seat (POWER R1)
+BLADE_SLOT_V58 = {'micro 30': (7.1, 1.6), 'micro 87': (7.1, 1.6), 'micro 85': (5.6, 1.6), 'micro 86': (5.6, 1.6), 'micro 87a': (5.6, 1.6),
+                  'F7 30': (11.5, 3.2), 'F7 87': (11.5, 3.2), 'F7 85': (8.3, 2.8), 'F7 86': (8.3, 2.8), 'F7 87a': (8.3, 2.8)}
+# (3) Release hole through the deck skin, straight down onto the lance. One-lance (H) receptacles: over the gap between the contact box
+#     and the lance-side window wall, as wide as the lance + clr a side (lance widths measured on TE's STEPs, VENDOR_TERM). Two-lance (W)
+#     MCP 2.8 receptacles: the blade slot lengthened to the window width, so the tines of a fork tool pass each side of the contact.
+# (1) Tab slots: the MCP 2.8 contacts carry two rigid side tabs each side (TE STEPs 1-968849-1 rev J3 / 1-968851-1 rev E: to +-1.85 from
+#     the centre, model Y 0.81 - 0.95 and 3.45 - 3.59) that are wider than the throat under the lances; a slot + clr for each runs up
+#     the throat (neck to lance tip). skip: (box, cavity) left as built (the reopen rule of C9 a).
+RELEASE = dict(clr=0.15, lance_w={'42281-1': 2.29, '63467-1': 2.28, '280919-2': 1.30, '280755-4': 2.14, '280756-4': 2.14}, skip=set())
+TAB_GAP_MIN = 0.52   # HP MJF: a gap under 0.5 fuses / traps powder (check_printed_solid S6); the 0.14 tab + 2 x 0.15 would be 0.44
+TAB = {'1-968849-1': dict(half=1.85, bands=((0.81, 0.95), (3.45, 3.59))), '1-968851-1': dict(half=1.85, bands=((0.81, 0.95), (3.45, 3.59)))}
+
+
+def blade_slot(kind, mini_iso=False):
+    """(length along the blade width, thickness) of the blade entry hole of a relay seat."""
+    if globals().get('REV', CURRENT_REV) < 8:
+        return BLADE_SLOT_V58[kind]
+    return BLADE_SLOT_B if mini_iso else BLADE_SLOT[kind]
+
+
+def _to_box(kind, side, u0, u1, v0, v1):
+    """(W range, model-Y range rel. to the blade line) -> (x0, x1, y0, y1), the mapping of real_zones."""
+    h0, h1 = sorted((-side * v0, -side * v1))
+    return (u0, u1, h0, h1) if BLADE_AXIS[kind] == 'x' else (h0, h1, u0, u1)
+
+
+def zone_side(zs, kind):
+    """The side the lance window of a cavity's zones opens to (as build_fusion.place_terminals reads it)."""
+    zb, zl = zs[-2], zs[-1]
+    if BLADE_AXIS[kind] == 'x':
+        return 1 if zl[5] > zb[5] + 1e-6 else (-1 if zl[4] < zb[4] - 1e-6 else 1)
+    return 1 if zl[3] > zb[3] + 1e-6 else (-1 if zl[2] < zb[2] - 1e-6 else 1)
+
+
+def release_cuts(part, kind, side=1):
+    """C9 a (3): [(x0, x1, y0, y1)] rel. to the cavity centre, cut from the seat up through the deck skin."""
+    if part not in REAL or not REAL[part]['lock']:
+        return []
+    E, R_, c, t = real_env(part), REAL[part], HOLE['clr'], RELEASE['clr']
+    yb = E['yb']
+    ax, o, tip = R_['lock']
+    if ax == 'H':
+        lw = RELEASE['lance_w'].get(part)
+        return [] if lw is None else [_to_box(kind, side, -lw / 2 - t, lw / 2 + t, -yb - c - o, -yb)]
+    u_w = max(E['box'][0] + o + c, E['wire'][0] + c)
+    return [_to_box(kind, side, -u_w, u_w, -MINI_SLOT[1] / 2, MINI_SLOT[1] / 2)]
+
+
+def tab_slots(part, kind, side=1):
+    """C9 a (1): [(dz_lo, dz_hi, x0, x1, y0, y1)] (dz from the seat) of the side-tab slots in the throat."""
+    tb_ = TAB.get(part)
+    if not tb_ or part not in REAL:
+        return []
+    E, R_, c, t = real_env(part), REAL[part], HOLE['clr'], RELEASE['clr']
+    yb = E['yb']
+    u_bx = max(E['box'][0] + R_.get('lclr', c), E['wire'][0] + c)
+    sw = tb_['half'] + t
+    if sw <= u_bx + 1e-6:
+        return []
+    out = []
+    for (a, b) in tb_['bands']:
+        e = max(t, (TAB_GAP_MIN - (b - a)) / 2)      # the slot is never narrower than the printable gap (check_printed_solid S6)
+        for sg in (-1, 1):
+            u0, u1 = sorted((sg * (u_bx - 0.01), sg * sw))
+            out.append((-R_['neck'], -R_['lock'][2]) + _to_box(kind, side, u0, u1, a - yb - e, b - yb + e))
+    return out
+
+
 def twist_on(box_name, cav, kind):
     """True when this seat is a keyed twist-lock seat (TWIST_KINDS; none in rev 8 after A86 a)."""
     return kind in TWIST_KINDS
@@ -1266,7 +1346,8 @@ REV8 = dict(
     # factory R/B No.4 (HEATER fuse pin 1). It leaves through the inboard end at its own fuse line, where the R1 heater tails left in rev 7.
     IN_OUT={'HTR': 'w_rb4_feed'},
     # the FAN / FAN2 feeds are 10 AWG (BOX_WIRES): the relay end is a 280756-4 (TE: 12-10 AWG); rev 6 / 7 drew 8 AWG there
-    AMI_AWG=dict(AMI_AWG, FAN=10, FAN2=10),
+    # C8 a (Dan 2026-11-21): the EFI 30 A feed w_fb_k_efi_87_cp is 10 AWG (was 12); its ring stays the TE 36161 (12-10 AWG, AMI_LUG)
+    AMI_AWG=dict(AMI_AWG, FAN=10, FAN2=10, EFI=10),
     OUT_SMALL={'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'B30', 'DRL', 'SW12', 'INJ', 'DEV', 'ETB'},
 )
 # The small GND stud on the NEG bar (Dan N60 a / N68 a / N103): ring 1 w66 (10 AWG, Panduit PV10-56R), ring 2 the K-ON coil 85 ground (box
@@ -1296,7 +1377,7 @@ SPLICES8 = {
 BOX_WIRES = [
     ('w_hc_fb', 8, 'Red', ('fb_power', 'out1', 'AMI OUT-1', 'Klauke 2R5'), ('fb_logic', 'b1', 'BUS1', 'Klauke 2R5')),
     ('w77_cp', 10, 'Red', ('k_efi', 'c1', '30', '280756-4'), ('fb_logic', 'b2', 'BUS2', 'Klauke 2R5')),
-    ('w_fb_k_efi_87_cp', 12, 'Red', ('fb_power', 'in2', 'AMI IN-2', 'TE 36161'), ('k_efi', 'c4', '87', '280756-4')),
+    ('w_fb_k_efi_87_cp', 10, 'Red', ('fb_power', 'in2', 'AMI IN-2', 'TE 36161'), ('k_efi', 'c4', '87', '280756-4')),
     ('w_fb_k_fan_87_cp', 10, 'Red', ('fb_power', 'in4', 'AMI IN-4', 'Klauke 2R5'), ('k_fan', 'c4', '87', '280756-4')),
     ('w_fb_k_fan2_87_ac', 10, 'Red', ('fb_power', 'in5', 'AMI IN-5', 'Klauke 2R5'), ('k_fan2', 'c4', '87', '280756-4')),
     ('w_k_efi_86_cp', 18, 'Red', ('fb_logic', 'efi86', 'BUS1-1', '1-968849-1'), ('k_efi', 'c3', '86', '42281-1')),
@@ -1314,6 +1395,9 @@ BOX_WIRES = [
     ('w_acc86', 16, 'Red', ('sp_acc12', 'Splice', '', None), ('k_acc', 'c3', '86', '280919-2')),
     ('w_fp_30', 10, 'Red', ('fb_batt', 'fp', 'FP 40A', 'Klauke 2R5'), ('k_fp', 'c1', '30', 'Klauke 1R6')),
 ]
+
+# C8 a: AMI feed lugs named by the decision instead of by gauge (parts_lists.lug_for): the EFI feed keeps the TE 36161 ring at 10 AWG.
+AMI_LUG = {'EFI': '36161'}
 
 _BASE = {}
 

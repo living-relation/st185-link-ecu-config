@@ -250,7 +250,7 @@ or a listed tap (J/B No.1 1H-7 IGN, never fed). The master row of each is the so
 | Seat | Fuse / relay | Master wire (AWG) | Lands on | Powers | EWD | Status |
 |---|---|---|---|---|---|---|
 | AMI IN-1 (relay seat R1 vacant) | R/B No.4 feed | `w_rb4_feed` (8) | R/B No.4 40 A HEATER fuse pin 1, W (RH kick) | heater relay -> blower B4; 10 A A/C fuse (A/C amps, A5); the 20 A FR FOG fuse comes out, seat empty (`w_fog_fuse_in` removed back to I9) | p.62, p.215 | current; own pin id `HTR-1` (fault C3 fixed in phase 2) |
-| AMI IN-2 | EFI 30 A, relay R2 K-EFI | `w_fb_k_efi_87_cp`† (12), `w77_cp` (10) | K-EFI 30 -> LOGIC Bus 2 (switched bus) | everything on Bus 2 | - | current |
+| AMI IN-2 | EFI 30 A, relay R2 K-EFI | `w_fb_k_efi_87_cp`† (10), `w77_cp` (10) | K-EFI 30 -> LOGIC Bus 2 (switched bus) | everything on Bus 2 | - | current |
 | AMI IN-3 | (vacant, was start 30 A) | - | - | - | - | vacant (starter on OEM R/B No.4) |
 | AMI IN-4 | radiator fan, relay R4 K-FAN | `w_fb_k_fan_87_cp`† (10) -> `w_fan_pwr` (10) | new wire to the radiator fan (EngineRoom-C) | radiator fan | - | current |
 | AMI IN-5 | condenser fan, relay R5 K-FAN2 | `w_fb_k_fan2_87_ac`† (10) -> `w_fan2_pwr` (10) | new wire to the condenser fan (EngineRoom-C) | condenser fan | - | current |

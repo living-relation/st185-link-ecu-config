@@ -1,6 +1,6 @@
 {
  "pn": "ST185-FB-101",
- "pdf_sha": "f93abbfc4733bb15",
+ "pdf_sha": "0d3c5b156a20c417",
  "engine_rules": "2026-10-18",
  "tangent_edges_in_pictorial": true,
  "dotted_explode_lines": true,
@@ -13,7 +13,7 @@
  "ok": true,
  "tangent_lines_trimetric": 15,
  "rev_marks": {
-  "Z": 1
+  "AA": 1
  },
  "rev_marks_unplaced": [],
  "rev_marks_accumulate": false

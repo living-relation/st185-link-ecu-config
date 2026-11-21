@@ -4650,9 +4650,9 @@
    "file": "box (spec.BOX_WIRES)",
    "colour": "Red",
    "bands": [],
-   "gauge": 12,
+   "gauge": 10,
    "unit": "AWG",
-   "od": 3.8,
+   "od": 4.7,
    "ends": [
     {
      "id": "fb_power",
@@ -10736,7 +10736,7 @@
    "y": 61.0,
    "kind": "F7 87",
    "part": "280756-4",
-   "wire_od": 3.8,
+   "wire_od": 4.7,
    "source": "harness",
    "wires": [
     "w_fb_k_efi_87_cp"
@@ -10771,7 +10771,7 @@
      5.965
     ]
    ],
-   "awg": 12
+   "awg": 10
   },
   {
    "box": "POWER",
