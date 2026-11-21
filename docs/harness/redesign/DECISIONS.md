@@ -1185,3 +1185,17 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: B) keep 12 AWG and source a rating.
   - Supersedes: the 12 AWG of that wire in the rev 8 box plan.
   - Reopen if: the EFI fuse rating changes.
+- **C9 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: Dan's three fuse box asks of 2026-11-20 (tab slots for the rigid side tabs under each lance; fuse / relay blade entry holes checked against the official specs; the smallest release-tool hole above every terminal) were drawn as section concepts on the v58 model (18 overlays by the fb-seat-research worker; Dan saw LOGIC BUS1-1, LOGIC M1 30 and POWER R2 30).
+  - Decision: approved; apply the concept to every seat in the model (model first), with the seat rules C1 a and C2 a, then the queued model items (C8 a, B4 a, B5 a), then drawings, parts lists and build material from the model.
+  - Rejected: B) see all 18 pictures first; C) change the concept.
+  - Supersedes: none.
+  - Reopen if: a seat cannot take the hole or slot without breaking a wall or clearance check (then that seat is shown to Dan).
+- **C10 a (Dan, 2026-11-21)**
+  - Status: current
+  - Context: BACKLOG row 156 re-check (C6 a): the 7 `sot/channels.csv` rows that keep 1990 / 1992 pages as reading aids all match the 1993 EWD p.210-212 (connector, pin, colour); no source cell cites an older EWD. Two optional note touch-ups were offered (the sensor-common path's IJ1 pin 5; a legend wording).
+  - Decision: skip both touch-ups; no `sot/channels.csv` edit.
+  - Rejected: B) make them.
+  - Supersedes: none.
+  - Reopen if: none.
