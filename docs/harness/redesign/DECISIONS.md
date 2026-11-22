@@ -1248,3 +1248,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: B) keep them.
   - Supersedes: none (applies B26).
   - Reopen if: none.
+- **D8 b (Dan, 2026-11-22)**
+  - Status: current
+  - Context: D1 a recorded Dan's "use fusion compute mcp" as the MCP built into desktop Fusion, which built v59 and v60. Dan 2026-11-22: there are two Fusion MCPs, the desktop one and Fusion Compute, which runs in the cloud, leaves the local Fusion free and allows any number of parallel jobs; the Fusion lock is retired.
+  - Decision: Fusion work goes through the Fusion Compute MCP (cloud) where it can do the job, so local Fusion stays free and jobs can run in parallel. The desktop Fusion MCP stays the fallback for what Compute cannot do, and no session needs a lock or a "Fusion free" hand-off for Compute jobs. The v59 / v60 builds made through the desktop MCP stand.
+  - Rejected: A) keep the desktop Fusion MCP as the one route.
+  - Supersedes: D1 a (the route); the "only one session drives Fusion at a time" lock practice for Compute jobs.
+  - Reopen if: Fusion Compute cannot open, build or export the fuse box model.
