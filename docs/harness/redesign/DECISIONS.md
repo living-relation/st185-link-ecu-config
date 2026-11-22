@@ -1262,3 +1262,24 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: leaving the models only in the personal hub; moving a document without a verified archive on the PC first.
   - Supersedes: none (adds to B26 and D8 b; the models-folder rules of handbuilt-cad stay).
   - Reopen if: the work-hub copy is made (record the new document and update the pointer in `cad/README.md`), or the personal hub closes before it is made.
+- **E2 b (Dan, 2026-11-22)**
+  - Status: current
+  - Context: the wired report re-run on Fusion v60 (#712) shows 11 wire / printed-part contacts in the LOGIC box (largest: `w_csb12` / pan 33.7 mm3, `w_hr_86_cp` / pan 27.7 mm3); the v58 report showed none because it used the thinner pre-A82 wire sizes.
+  - Decision: accepted as model noise: the modelled wires are rigid paths, real wires flex. No change to the wire lanes, the in-box lengths, the pan or the base.
+  - Rejected: A) re-pack the wire lanes in `wiring_sim.py` (changes the in-box lengths the layout tree mirrors); C) change the pan or base.
+  - Supersedes: none.
+  - Reopen if: a wire will not lie in its lane on the printed box.
+- **E3 a (Dan, 2026-11-22)**
+  - Status: current
+  - Context: lid text style on Fusion v60: "K_FP" where the code is K-FP, "SP" on BUS2-12 where the other spares read "SPARE". All 74 labels match the rev 8 seats and ratings.
+  - Decision: fix both at the next model rebuild that happens anyway (model first); no rebuild for this alone.
+  - Rejected: B) leave as is; C) rebuild now.
+  - Supersedes: none.
+  - Reopen if: none.
+- **E4 (Dan, 2026-11-22)**
+  - Status: current
+  - Context: the Fusion move out of Dan's personal account ("Models home and Fusion hub"). The personal hub also holds documents of other projects (custom-pdm, Admin Project, the rest of Default Project, Templates).
+  - Decision: nothing outside this project is moved, copied or archived by this project's agents. For the Fusion move this project is concerned only with the ST185 fuse box models and drawings. The other ST185 archives made 2026-11-22 in the models folder (bus bars, CSB3 / VRC enclosures, fuel hanger, the fasteners library) are copies and stay as they are; they are not uploaded to the work hub by this project.
+  - Rejected: A) archive and copy every personal document; B) Admin and Default Project only.
+  - Supersedes: the "every other ST185 project document" scope of the 2026-11-22 migration brief.
+  - Reopen if: Dan widens the scope.
