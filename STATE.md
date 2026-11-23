@@ -13,14 +13,14 @@ Updated: 2026-11-23 -- chat session_014aA8s2 (live state moved into the repo, wo
 - Detail: none
 
 ## Next Single Step
-- [NEXT] Fusion Compute (desktop Fusion busy, Dan 2026-11-23): check the C-strap PEM holes / edge distances against PEM spec docs and the 4 kerf roots (F3); full rebuild later in desktop Fusion on the work account (F1 a) once Dan signs in.
+- [NEXT] Full fuse box rebuild: build_fusion.py in desktop Fusion, personal account for now (F1 a temporary; trial ends 12-01): LID_TEXT (E3 a), SR Fasteners for every fastener incl. PEM/EFC (F2 a); then move to the work hub, export STEP (+ .f3d) to OneDrive, regenerate drawings. C-strap 7.1 edge accepted (F8 a).
 - [OPEN] Fuse box working model = work hub SparkleBots > Dan > Personal > Default Project, ST185_fusebox_rev7 v1 (lineage urn:adsk.wipprod:dm.lineage:eduK3w5PQvmtjVVucnHprQ). Compute: setActiveHub SparkleBots first; small geometry edits only. Parts-list sizes to check against Klauke's table: 2R5 l 22 vs STEP 28.5; 3R5MS b13 / l26 vs 3R5 model 12 / 31.5. Not checked: SPARE fits the mini fuse label space.
 - [WAIT] Sanitation sweep 14 only after the other chat is up to speed (Dan B9, 2026-11-20).
 
 ## Pointers
 - Branch_States: generated
 - Backlog: BACKLOG.md; every CAD model: rebuild only with its original method, see repo cad/README.md "Where created" (handbuilt-cad rule 28)
-- Latest_ADR: F2 a, F3, F4
+- Latest_ADR: F8 a; F1 a temporary
 - Last_Cleanup: 2026-11-15 @ 3420c3c4
 - Kept_Branches: none
-- Question_Counter: F7
+- Question_Counter: F8

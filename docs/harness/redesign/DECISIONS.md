@@ -1332,3 +1332,17 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: modeling or downloading fasteners locally.
   - Supersedes: none.
   - Reopen if: SR Fasteners lacks a PEM or EFC part the box needs.
+- **F8 a: C-strap stud side edge 7.1 accepted (Dan, 2026-11-23)**
+  - Status: current
+  - Context: Fusion Compute measured the POWER output C-strap (all 14 are one part) on the bent model: the PEM FHS-M5-12 stud hole is 7.1 mm from each side edge (`STRAP.w_low` 14.2 = 2 x the old CLSS 7.1 rule), against PEM's 7.2 minimum for FHS (Bulletin FH p. FH-5); bend start and leg end are 7.2. The rule guards against edge bulge and lost stud grip while pressing.
+  - Decision: accepted as a known exception to the always-PEM-spec rule (F3): the strap is a current path, not structural; PEM torque-out (6.3 N.m in steel) is about 2x the lug nut torque. Build check: file any side bulge so the strap slides into its printed pocket, and spin-test each stud by hand before fitting the lug.
+  - Rejected: widen the strap to 14.4 (F8 b); another PEM part (F8 c).
+  - Supersedes: none.
+  - Reopen if: a stud spins or a strap will not seat in its pocket.
+- **F1 a, temporary (Dan, 2026-11-23)**
+  - Status: current
+  - Context: Dan cannot sign desktop Fusion in to the work account yet.
+  - Decision: until then, build_fusion.py runs in desktop Fusion on the personal account (trial ends 2026-12-01); the result is moved to the work hub (SparkleBots > Dan > Personal) and exported to the models folder as before.
+  - Rejected: none.
+  - Supersedes: none (F1 a stays the target).
+  - Reopen if: the personal trial ends first.
