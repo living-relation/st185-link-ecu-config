@@ -1318,3 +1318,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: a build123d rebuild plus comparison (F1 b); both (F1 c).
   - Supersedes: none.
   - Reopen if: desktop Fusion on the work account cannot run the script or the add-in.
+- **F5 a: tools around the fuse box model (Dan, 2026-11-23)**
+  - Status: current
+  - Context: after F1 a, Claude asked whether the build123d comparison of the fuse box was still wanted (F5).
+  - Decision: no build123d rebuild of the fuse box; the assembly stays a Fusion model built by `build_fusion.py` for continuity. Other tools are still used where they make a job easier (FEA, simulation, checks, comparisons, drawings): rule 28 binds how the model is built, not the supporting work (handbuilt-cad rule 28 scope, 2026-11-23).
+  - Rejected: a build123d comparison build (F5 b).
+  - Supersedes: none.
+  - Reopen if: none.
