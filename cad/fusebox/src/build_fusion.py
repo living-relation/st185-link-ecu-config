@@ -2555,7 +2555,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
                  'K-HL': 'LO BEAM', 'K-HR': 'HI BEAM', 'K-HORN': 'HORN', 'K-ETB': 'ETB', 'K-ACC': 'A/C', 'K-EPS-EN': 'EPS EN', 'K-ON': 'ON',   # rev 8: sot names
                  'K-DRL': 'DRL', 'K-POD': 'POD'}
         labels = [(short[nm], cx, cy, S.LABEL['h_micro']) for (nm, pn, own, cx, cy, k_) in micro]           # rev 4 etched names, unchanged
-        labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else 'SP', cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_, i) in mini]
+        labels += [(('%s %s' % (nm, ('%g' % amps))) if amps else S.LID_TEXT['mini_spare'], cx, y, S.LABEL['h_mini']) for (col, nm, amps, cx, y, n_, i) in mini]
         labels += [(col, cx, S.MINI_GRID['y0'] - 11.0, S.LABEL['h_mini']) for col, (cx, fuses) in S.MINI_COLS.items()]
         xm_ = sum(S.MICRO_COLS) / 2                     # between the micro relay columns (rev 6: 58.25)
         labels.append(('LOGIC', xm_, 168.0, 5.0))
@@ -2819,7 +2819,7 @@ def build(out_dir, save=True, renders=True, rev=6, msg=None):
         z_top = zf + H_['depth'] + CV['clear'] + CV['t']
         notches = [('x', -W_CL - CV['t'] / 2, tsy, e_in[2] + odf / 2 + 2.0, 9.0), ('x', Lr + W_CL + CV['t'] / 2, tsy, e3[2] + odp / 2 + 2.0, 9.0),
                    ('x', Lr + W_CL + CV['t'] / 2, yl, zl + odc / 2 + 1.5, 5.0)]
-        labels = [('BATT +', xst, tsy + 20.0, 4.5), ('FP 40A', (a_in + a_out) / 2, tsy, 4.0), ('K_FP  FUEL PUMP', rx, yb + 26.0, 5.0),   # rev 4 labels, unchanged
+        labels = [('BATT +', xst, tsy + 20.0, 4.5), ('FP 40A', (a_in + a_out) / 2, tsy, 4.0), (S.LID_TEXT['k_fp'], rx, yb + 26.0, 5.0),   # rev 4 labels; rev 8 K-FP (E3 a)
                   ('3', xs[0], tsy, 4.0), ('5', xs[1], tsy, 4.0), ('PUMP', Lr - 16.0, tsy + 20.0, 4.5), ('COIL', Lr - 16.0, yl + 8.0, 3.5)]
         zv = (6.5 + S.RUG['band_h'] + z_top - 6.0) / 2
         side_vents = [(f, u, z_) for f in ('-y', '+y') for u in (66.0, 84.0, 102.0, 120.0) for z_ in (zv - 4.0, zv + 4.0)]

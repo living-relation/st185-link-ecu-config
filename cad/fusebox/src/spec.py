@@ -71,6 +71,9 @@ OUTER_MIN = 3.0
 SKIRT_OUT = round(max(0.0, OUTER_MIN - (SKIRT - (SNAP['bump'] + 0.2) / 2)), 2)   # POWER / LOGIC skirt 3.0 -> 4.3
 RIM_OUT = round(max(0.0, OUTER_MIN - (4.0 - (SNAP['bump'] + 0.2) / 2)), 2)       # battery block rim 4.0 (R128) -> 4.3
 LABEL = dict(depth=0.6, depth7=0.5, h_relay=3.6, h_ami=3.0, h_mini=2.4, h_micro=2.8)  # etched into the cover top (HP MJF: engraved text >= 0.5 deep); rev 4 names kept (Dan)
+# Lid text that is not a seat name (build_fusion etch): the battery relay block relay line and a vacant LOGIC mini fuse seat.
+# Rev 6 / 7 as built; rev 8 values in REV8 (E3 a).
+LID_TEXT = dict(k_fp='K_FP  FUEL PUMP', mini_spare='SP')
 VENT = dict(w=2.6, l=14.0, pitch=18.0)   # vent slot through the cover: 2.6 wide keeps fingers and tools out (IP2X finger probe is 12.5)
 RUG = dict(band_h=6.0, band_out=1.5, rib_w=3.0, rib_out=1.5, rib_pitch=30.0)   # cover bumper band + side ribs (rugged look)
 LEG = dict(w_bot=24.0, w_top=16.0, out_top=4.0, out_slope=18.0, foot_out=22.0, foot_w=20.0, ear_t=6.0, hole=10.2, socket=17.0, wall=3.0,
@@ -1451,6 +1454,8 @@ REV8 = dict(
     # C8 a (Dan 2026-11-21): the EFI 30 A feed w_fb_k_efi_87_cp is 10 AWG (was 12); its ring stays the TE 36161 (12-10 AWG, AMI_LUG)
     AMI_AWG=dict(AMI_AWG, FAN=10, FAN2=10, EFI=10),
     OUT_SMALL={'EFI86', 'ALM', 'ALMS', 'ALTS', 'CSB', 'EPSEN', 'ALMIG', 'B30', 'DRL', 'SW12', 'INJ', 'DEV', 'ETB'},
+    # E3 a (Dan 2026-11-22): the relay code is K-FP (sot), and the vacant BUS2-12 seat reads SPARE like every other spare
+    LID_TEXT=dict(k_fp='K-FP  FUEL PUMP', mini_spare='SPARE'),
 )
 # The small GND stud on the NEG bar (Dan N60 a / N68 a / N103): ring 1 w66 (10 AWG, Panduit PV10-56R), ring 2 the K-ON coil 85 ground (box
 # inside, 20 AWG, TE 320572), ring 3 w_cabin_gnd (10 AWG, PV10-56R). PV10-56R: W 13.21 mm (Panduit drawing A41187, the widest of the three;
