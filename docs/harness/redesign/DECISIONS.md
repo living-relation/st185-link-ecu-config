@@ -1290,3 +1290,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: waiting for Grok to finish the move.
   - Supersedes: the personal-hub `ST185_fusebox_rev7` (Default Project) as the working document.
   - Reopen if: the work copy is found to differ from the OneDrive revE files.
+- **Where created (Dan, 2026-11-23)**
+  - Status: current
+  - Context: the fuse box model's build method was about to drift (cloud Fusion cannot run `build_fusion.py`, and a rebuild in another tool was being weighed) with no record of how each model is made.
+  - Decision: vitally important, standing: every CAD model is rebuilt only with the method that created it (handbuilt-cad AGENTS.md rule 28). Each model's method is recorded in `cad/README.md` "Where created" and its folder's `MADE-WITH.md`, and the store STATE points to it. A method change is Dan's call after the new output is compared with the old one and shown to match. The deliverables are the assembly STEP (for the assembly drawing) and a STEP of every machined and 3D-printed part; Fusion models exist so Dan can view and draw them. Dan 2026-11-23 also asked for a build123d build of the fuse boxes with the handbuilt-cad tools (Windows / WSL), compared with Fusion v60 before he decides; it may be that only Fusion Compute, not the desktop Fusion MCP, is the limit.
+  - Rejected: none.
+  - Supersedes: none.
+  - Reopen if: none.

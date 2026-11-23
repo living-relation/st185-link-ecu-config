@@ -45,6 +45,20 @@ Made by SteveCAD's build123d drawing engine (handbuilt-cad `drawing/`, DansPC WS
 | DRB102 firewall plate (CadQuery) | `drb102-plate/ST185-DRB-100.pdf` (assembly), `ST185-DRB-101.pdf` (plate) | D / C.01 | M5 tapped through (C4), groove 4.75, modelled 0.5 chamfers kept (R138). Assembly D: TE's own DRB12 / DRBF-1A / DRB16 models (R184, 2026-10-19). |
 | Fuse boxes rev 8 (Fusion; drawings kept in `rev7/drawings`) | assemblies `fusebox/rev7/drawings/ST185-FB-100P.pdf` (POWER), `-100L.pdf` (LOGIC), `-100B.pdf` (battery block); parts `ST185-FB-101.pdf` ... `-118.pdf` (17 parts, no -110) | rev 8 (2026-11-21, Fusion v59): 100P AG, 100L Z, 100B S; 101 AA, 102 K, 103 J, 105 W, 106 K, 107 M, 109 K; unchanged from rev 7: 104 E.02, 108 J.02, 111 C.02, 112 C.02, 113 C.02, 114 B.02, 115/116 E.02, 117 D.02, 118 A.01 (as in `drawing-models.json`; counted releases, `DRAWING-REVS.md`) | Printed parts: overall size only (the model defines the rest); copper: full hole callouts (strips: PEM holes, R129). R155 (N14 = B): FB-117 = the copper C-strap at every POWER position (formed + flat blank, PEM FHS-M5-12 lug stud since N37 / R199, `drawings/run_fb117.py`); FB-118 = the PA12 top-nut holder; FB-112 is the battery block pad only (25.4 x 3.2 since Dan's 2026-10-17 markup, R157 - R160). |
 
+## Where created (handbuilt-cad AGENTS.md rule 28; Dan 2026-11-23)
+
+Every model is rebuilt only with the method that created it. A change of method is Dan's decision, after the new output is compared with the old one and shown to match; this table and the model's `MADE-WITH.md` change in the same PR. Per-file evidence: each folder's `MADE-WITH.md`.
+
+| Model | Created with (method) | Source | Rebuild route | Per-file record |
+|---|---|---|---|---|
+| Fuse boxes rev 6 / 7 / 8 (POWER, LOGIC, battery relay block) | Fusion 360, Fusion API script | `cad/fusebox/src/build_fusion.py` reading `cad/fusebox/src/spec.py`, run inside the Fusion app (desktop Fusion MCP); Fusion document `ST185_fusebox_rev7` (work hub since 2026-11-23) | the same script in desktop Fusion. Trial 2026-11-23 (Dan): a build123d build of rev 8 with the handbuilt-cad tools, compared with Fusion v60 before Dan decides; until then the method stays Fusion | `cad/fusebox/MADE-WITH.md`, `cad/fusebox/rev7/MADE-WITH.md` |
+| Bus bars A, A rev3, B, B rev2, B rev3 | Fusion 360, Fusion API script | `cad/busbar/src/build_fusion.py` | the same script in desktop Fusion | `cad/busbar/*/MADE-WITH.md` |
+| CSB3 enclosure | mixed: Fusion 360 (Fusion API) and build123d | `cad/enclosures/src/` (`fusion_real_connectors.py`; `d5_corner_ears.py`, `enclosure_fixes_v3.py`) | per file, as its `MADE-WITH.md` says | `cad/enclosures/csb3/MADE-WITH.md` |
+| VRC enclosure | mixed: Fusion 360 (Fusion API) and build123d | `cad/enclosures/src/` | per file, as its `MADE-WITH.md` says | `cad/enclosures/vrc/MADE-WITH.md` |
+| VRC board holder | build123d | `cad/enclosures/src/build_vrc_holder.py` | the same script in the CAD venv | `cad/enclosures/vrc/MADE-WITH.md` |
+| DRB102 firewall plate | CadQuery / build123d | `cad/drb102-plate/build_DRB102_plate.py`, `build_DRB102_assembly.py` | the same scripts in the CAD venv | `cad/drb102-plate/MADE-WITH.md` |
+| Billet fuel hanger | not recorded | not recorded (its `MADE-WITH.md` has no rows) | ask Dan before any rebuild | `cad/fuel-hanger/MADE-WITH.md` |
+
 ## Power distribution package
 
 Always shown together, as one package (DECISIONS R84). Every member must be a model marked **yes** under "Selected for build" above. A member's parts come from its parts list CSV (pieces = `qty_need`) or, with no BOM yet, from the solids in its assembly STEP (`model:<id>` = the entry in `cad/trimetrics.json`), times the number per car.
