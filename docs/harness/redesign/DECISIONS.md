@@ -1325,3 +1325,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: a build123d comparison build (F5 b).
   - Supersedes: none.
   - Reopen if: none.
+- **F2 a, F3, F4: press-in hardware, PEM specs, bought-part models (Dan, 2026-11-23)**
+  - Status: current
+  - Context: the fuse box build package needs PEM press-in nuts / studs, EFC spacers and maker models of other bought parts; the CNC check found the copper C-strap's 4 sharp kerf roots and PEM edge distances at the minimum.
+  - Decision: F2 a: PEM and EFC hardware is placed with SR Fasteners like every fastener. F3: every PEM hole, edge distance and sheet spec follows PEM's own spec documentation, always (the C-strap PEM edge distances are re-checked against it; the kerf roots get reliefs only where that and the CNC rules need them). F4: depends on the part: fasteners come from SR Fasteners; every other bought part is the maker's accurate downloaded CAD model, or, if none, the closest approximation modeled from the maker's drawing. Logged for every project in handbuilt-cad rule 22 and Conventions 4 (handbuilt-cad #82).
+  - Rejected: modeling or downloading fasteners locally.
+  - Supersedes: none.
+  - Reopen if: SR Fasteners lacks a PEM or EFC part the box needs.
