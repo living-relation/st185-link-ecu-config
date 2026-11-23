@@ -23,4 +23,4 @@ Updated: 2026-11-23 -- chat session_014aA8s2 (live state moved into the repo, wo
 - Latest_ADR: F2 a, F3, F4
 - Last_Cleanup: 2026-11-15 @ 3420c3c4
 - Kept_Branches: none
-- Question_Counter: F6
+- Question_Counter: F7
