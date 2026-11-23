@@ -6,7 +6,6 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| F1 | Fuse box rebuild method (was E15, E11) | The fuse box was built by `cad/fusebox/src/build_fusion.py` in desktop Fusion; Fusion Compute runs TypeScript only and cannot run it or SR Fasteners. How is the next full rebuild made? | A) build_fusion.py in desktop Fusion signed in to the work account; B) build123d trial plus a comparison against v60 first; C) both | A |
 | F2 | PEM and EFC hardware (was E14) | Are the PEM press-in nuts / studs and the EFC spacers in the SR Fasteners add-in, so they are placed with it like every other fastener? | A) yes, place them with SR Fasteners; B) no, add the maker models to the SR library first | A |
 | F3 | C-strap kerf roots (was E13) | The CNC check found 4 sharp kerf roots on the copper C-strap. | A) add round reliefs at the kerf roots; B) leave them sharp | A |
 | F4 | Maker-model sign-ins (was E12) | PEM, McMaster and Accu need a sign-in or form to download their STEP models. | A) Dan downloads them into the vendor-parts folder; B) use the SR library copies only | A |

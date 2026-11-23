@@ -1311,3 +1311,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: keeping the store layout (A92 a) against the new template.
   - Supersedes: A92 a's "live progress lives in the store, never in the repo".
   - Reopen if: workstation-core moves live state again.
+- **F1 a: fuse box rebuild method (Dan, 2026-11-23)**
+  - Status: current
+  - Context: the fuse box is built by `cad/fusebox/src/build_fusion.py` in desktop Fusion (`cad/README.md` "Where created"); Fusion Compute runs TypeScript only and cannot run it or the SR Fasteners add-in. Asked as E15 / E11, re-IDed F1.
+  - Decision: every full fuse box rebuild runs `build_fusion.py` in desktop Fusion signed in to the work account (SparkleBots hub > Dan > Personal), its original method. Fasteners are placed with SR Fasteners in that session. Fusion Compute is for small geometry edits and checks only. The build123d trial is not made.
+  - Rejected: a build123d rebuild plus comparison (F1 b); both (F1 c).
+  - Supersedes: none.
+  - Reopen if: desktop Fusion on the work account cannot run the script or the add-in.
