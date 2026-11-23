@@ -3,7 +3,7 @@ description: State protocol - the seven tags and when to run state-closeout (alw
 ---
 # State protocol (always on; workstation-core, Dan A92 a)
 
-Live state is in the store (`<Projects>\_claude\Claude Projects\Working Memory\memory\st185-link-ecu-config\`; `state_paths.py` prints it): `STATE.md` (the coordinator), `STATE-<slug>.md` (each branch or job), `BACKLOG.md`, `archives/`. Never in the repo.
+Live state is at the repo root (workstation decision D-2026-11-22): `STATE.md` (the coordinator), `STATE-<slug>.md` (each branch or job, committed on its branch and archived to `archives/` by the PR's last commit: `state_manager.py archive-branch`), `BACKLOG.md`, `archives/`. The store holds notes only.
 
 Tag every live note with one of the seven tags, then move it to its home:
 
@@ -15,7 +15,7 @@ Tag every live note with one of the seven tags, then move it to its home:
 | `[ADR]` | why a choice was made | appended to `docs/harness/redesign/DECISIONS.md` (ID, Status, Context, Decision, Rejected, Supersedes, Reopen if) |
 | `[RULE]` | how files are made, named, ordered or checked | `.claude/rules/<domain>.md`, naming its enforcer; then `rules_sync.py` |
 | `[SOT]` | raw values: numbers, pins, IDs, sizes, tolerances | the data file or SPEC, only after Dan's yes; until then a BACKLOG line marked `needs owner yes` |
-| `[BKLG]` | out of scope now | appended to the store `BACKLOG.md` with the date and where it came from |
+| `[BKLG]` | out of scope now | appended to `BACKLOG.md` with the date and where it came from |
 
 Run the state-closeout skill at 80% context, on a pivot, a blocker, a milestone and a PR. A handoff is `state-closeout handoff` (a paste block) plus the STATE file; never a handoff file in the repo.
 

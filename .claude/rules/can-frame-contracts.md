@@ -32,4 +32,4 @@ paths:
 - Validate with targeted `bench/can_bench.py` command paths before finalizing.
 
 This file restates nothing, so it cannot drift. A mismatch found and not fixed in the same
-pass goes into the store `BACKLOG.md` (a question for Dan: `docs/NEEDS-DAN.md`), never left silent.
+pass goes into `BACKLOG.md` (a question for Dan: `docs/NEEDS-DAN.md`), never left silent.

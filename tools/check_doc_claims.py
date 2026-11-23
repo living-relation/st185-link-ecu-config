@@ -17,7 +17,9 @@ import sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOC_EXT = (".md", ".html", ".txt")
 SKIP_DIRS = (".claude/", ".cursor/", "cad/", "tune/", "docs/intercooler-turbo-study/", "docs/harness/routes/",
-             "docs/vendor/")
+             "docs/vendor/",
+             # workstation-core live state (DECISIONS "Live state in the repo"): history by design
+             "archives/", "BACKLOG.md", "STATE.md", "STATE-")
 # The keep list (R211) and the docs that state the chain of sources; only these may call something a source of truth.
 KEEP = {
     "AGENTS.md", "README.md", "XTREMEX-IO-TABLE.html", "sot/README.md",

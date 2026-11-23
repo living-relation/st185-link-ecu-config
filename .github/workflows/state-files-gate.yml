@@ -1,0 +1,17 @@
+# Branch state gate (block). Template: skills/git-checker/hooks/state-files-gate.yml; script copied to
+# .github/state-files-gate.sh. Fails a PR into the trunk when the merge result would keep a top-level
+# STATE-*.md (a branch's state file) outside archives/. No label escape. Never pushes or edits code.
+name: state-files-gate
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions: { contents: read }
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: no branch state file left at the repo root
+        run: bash .github/state-files-gate.sh HEAD

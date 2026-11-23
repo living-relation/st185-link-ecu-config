@@ -2,7 +2,7 @@
 
     PR_BODY="..." python .github/scripts/check_pr_rows.py     exit 0 = line present
 
-The line says which store BACKLOG.md rows (IDs kept from the retired docs/OPEN-ITEMS.md; A96 a) the change touched, so the tracker is
+The line says which BACKLOG.md rows (IDs kept from the retired docs/OPEN-ITEMS.md; A96 a) the change touched, so the tracker is
 updated by the session that did the work (AGENTS.md "Working rules" and DECISIONS B28, then pr-closeout).
 """
 import os
