@@ -20,7 +20,7 @@ Updated: 2026-11-23 -- chat session_014aA8s2 (live state moved into the repo, wo
 ## Pointers
 - Branch_States: generated
 - Backlog: BACKLOG.md; every CAD model: rebuild only with its original method, see repo cad/README.md "Where created" (handbuilt-cad rule 28)
-- Latest_ADR: F1 a
+- Latest_ADR: F5 a
 - Last_Cleanup: 2026-11-15 @ 3420c3c4
 - Kept_Branches: none
-- Question_Counter: F4
+- Question_Counter: F5
