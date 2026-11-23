@@ -1283,3 +1283,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: A) archive and copy every personal document; B) Admin and Default Project only.
   - Supersedes: the "every other ST185 project document" scope of the 2026-11-22 migration brief.
   - Reopen if: Dan widens the scope.
+- **Fuse box model in the work hub (Dan, 2026-11-23)**
+  - Status: current
+  - Context: the personal Fusion account ends about 2026-11-30 ("Models home and Fusion hub", E4). Grok uploaded `ST185_fusebox_rev7.f3d` (the 2026-11-22 archive of personal-hub v60) into SparkleBots > Dan > Personal > Default Project as a plain uploaded file.
+  - Decision: Dan: convert it now rather than wait. In a Fusion Compute session the upload was opened and saved as the design `ST185_fusebox_rev7` in that folder (lineage urn:adsk.wipprod:dm.lineage:eduK3w5PQvmtjVVucnHprQ, v1). Reopened from the hub it has 74 components, 73 occurrences, 816 bodies, direct design: the same counts as personal v60. It is the working fuse box model from here on; the uploaded `.f3d` files and the personal-hub original are left as they are. Fusion version history (personal v1 - v60) did not come across. Compute sessions must set SparkleBots as the active hub before opening it (the session starts on another hub).
+  - Rejected: waiting for Grok to finish the move.
+  - Supersedes: the personal-hub `ST185_fusebox_rev7` (Default Project) as the working document.
+  - Reopen if: the work copy is found to differ from the OneDrive revE files.
