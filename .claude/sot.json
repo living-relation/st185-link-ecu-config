@@ -144,7 +144,10 @@
         "tune/**"
       ],
       "checks": [
-        "python tune/scripts/validate_tune.py"
+        {
+          "run": "python tune/scripts/validate_tune.py",
+          "fast": true
+        }
       ],
       "report": "none"
     }

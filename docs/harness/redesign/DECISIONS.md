@@ -1297,3 +1297,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: none.
   - Supersedes: none.
   - Reopen if: none.
+- **State drift watcher (Dan, 2026-11-23)**
+  - Status: current
+  - Context: Dan asked for a watcher that keeps this repo on the workstation-core state documentation rules, always checking against the latest workstation-core, with its fixes applied in the next PR without asking him.
+  - Decision: a scheduled task on Dan's PC runs the local `<Projects>\_tools\state-drift-watch.py` (pulls workstation first, runs its state tools and the template layout checks, writes `[WATCH]` lines to the store BACKLOG). Agents fix open `[WATCH]` lines in the next PR and tell Dan as a note (`.claude/rules/state-drift-watch.md`). SoT data, the master wire list and SPEC still wait for Dan's yes. First run fixed: the `tune-seeds` SoT check marked fast; the open questions E11-E15 (3-character IDs, against `.claude/rules/questions.md`) moved into `docs/NEEDS-DAN.md` as F1-F4 (E11 folded into F1).
+  - Rejected: a phone-alert session watcher (deploy-project-watcher watches sessions, not state rules).
+  - Supersedes: none.
+  - Reopen if: the watcher's findings are noise more than half the time.
