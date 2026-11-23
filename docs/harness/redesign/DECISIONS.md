@@ -1304,3 +1304,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: a phone-alert session watcher (deploy-project-watcher watches sessions, not state rules).
   - Supersedes: none.
   - Reopen if: the watcher's findings are noise more than half the time.
+- **Live state in the repo (Dan, workstation D-2026-11-22; applied 2026-11-23)**
+  - Status: current
+  - Context: workstation-core #114 moved live state from the memory store into each repo; the state drift watcher flagged this repo on its first run after that merge.
+  - Decision: `STATE.md`, `BACKLOG.md` and `archives/` now live at the repo root (copied from the store with no content deleted; the store copies moved to the store `_archive\st185-link-ecu-config\`). A branch's `STATE-<slug>.md` is committed on its branch and archived by the PR's last commit; the template's `state-files-gate` blocks one landing on main. The store keeps notes only. The watcher no longer writes `[WATCH]` lines: it is read-only and the coordinator fixes its findings in the next PR.
+  - Rejected: keeping the store layout (A92 a) against the new template.
+  - Supersedes: A92 a's "live progress lives in the store, never in the repo".
+  - Reopen if: workstation-core moves live state again.
