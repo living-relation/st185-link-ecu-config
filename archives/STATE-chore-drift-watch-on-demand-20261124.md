@@ -13,8 +13,7 @@ Updated: 2026-11-24 -- chat session_014aA8s3
 - Detail: none
 
 ## Next Single Step
-- [DONE] Rule reworded; ADR "State drift watcher on demand" appended; Cursor copy regenerated.
-- [NEXT] Gates green, PR, squash-merge.
+- [NEXT] none: rule reworded, ADR "State drift watcher on demand" appended, Cursor copy regenerated; PR squash-merges when green.
 
 ## Pointers
 - Branch_States: generated
