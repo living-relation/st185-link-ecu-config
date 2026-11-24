@@ -7,7 +7,7 @@ alwaysApply: true
 
 # State drift watcher (Dan 2026-11-23)
 
-- A scheduled check-in in the coordinator chat runs `<Projects>\_tools\state-drift-watch.py --repo <this repo>` on Dan's PC every 4 h. Each run pulls the workstation repo first (ff-only), so it checks against the latest workstation-core state rules and tools, and re-reads any template file that changed.
+- Run `<Projects>\_tools\state-drift-watch.py --repo <this repo>` on Dan's PC on demand, when Dan or a session asks for it. There is no scheduled run (Dan turned the 4 h check off 2026-11-23). Each run pulls the workstation repo first (ff-only), so it checks against the latest workstation-core state rules and tools, and re-reads any template file that changed.
 - The watcher is read-only: it prints findings and never edits the repo or the store.
 - The coordinator fixes every finding in the next PR without asking Dan, names them on a `Watch:` line in the PR body, and tells Dan in the reply as a note, not a question.
 - A finding that would change a SoT data file, the master wire list or SPEC waits for Dan's yes (a BACKLOG line marked `needs owner yes`).

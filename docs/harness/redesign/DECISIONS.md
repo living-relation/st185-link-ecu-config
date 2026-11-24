@@ -1346,3 +1346,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: none.
   - Supersedes: none (F1 a stays the target).
   - Reopen if: the personal trial ends first.
+- **State drift watcher on demand (Dan, 2026-11-23)**
+  - Status: current
+  - Context: Dan turned off the 4 h scheduled drift check on 2026-11-23.
+  - Decision: `<Projects>\_tools\state-drift-watch.py` runs on demand only; the fix rules in `.claude/rules/state-drift-watch.md` are unchanged.
+  - Rejected: none.
+  - Supersedes: the scheduled-task part of "State drift watcher (Dan, 2026-11-23)".
+  - Reopen if: Dan turns the schedule back on.
