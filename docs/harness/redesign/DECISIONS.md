@@ -1388,3 +1388,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: G3 b, imported copies.
   - Supersedes: none.
   - Reopen if: linked parts break exports or the hub move.
+- **G6 a: old fuse box branch deleted (Dan, 2026-11-25)**
+  - Status: current
+  - Context: `cad/f9-fusebox-rebuild` conflicted with `main` after #727 (both appended to DECISIONS); its 9 commits were copied onto `cad/f9-fusebox-sr` off the new `main` instead of merging `main` in.
+  - Decision: delete `cad/f9-fusebox-rebuild` locally and on GitHub (last commit 96db0736). A branch that conflicts with `main` is moved by copying its commits onto a fresh branch, never by merging `main` into it.
+  - Rejected: G6 b (local only), G6 c (keep).
+  - Supersedes: none.
+  - Reopen if: none.
