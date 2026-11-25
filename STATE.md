@@ -13,7 +13,7 @@ Updated: 2026-11-25 -- chat session_014aA8s3 (F9 recorded; handoff for the rebui
 - Detail: none
 
 ## Next Single Step
-- [NEXT] Full fuse box rebuild: build_fusion.py in desktop Fusion, personal account for now (F1 a temporary; trial ends 12-01): LID_TEXT (E3 a), SR Fasteners for every fastener incl. PEM/EFC (F2 a); then move to the work hub, export STEP (+ .f3d) to OneDrive, regenerate drawings. C-strap 7.1 edge accepted (F8 a).
+- [NEXT] Full fuse box rebuild: build_fusion.py in desktop Fusion, personal account for now (F1 a temporary): LID_TEXT (E3 a), SR Fasteners for every fastener incl. PEM/EFC (F2 a); then move to the work hub, export STEP (+ .f3d) to OneDrive, regenerate drawings. C-strap 7.1 edge accepted (F8 a).
 - [OPEN] Fuse box working model = work hub SparkleBots > Dan > Personal > Default Project, ST185_fusebox_rev7 v1 (lineage urn:adsk.wipprod:dm.lineage:eduK3w5PQvmtjVVucnHprQ). Compute (headless): setActiveHub SparkleBots first; small geometry edits only. Before the rebuild (F9): spec.py LUG_6AWG b 13 -> 12 and the parts-list 3R5MS width 12 (Klauke data sheet); SR Fasteners is the clone C:\projects\active\sr-fastener (PEM nuts / studs / standoffs / floating nuts); check it has the EFC spacers, else download maker CAD. SPARE lid label fits (checked 2026-11-24).
 - [WAIT] Sanitation sweep 14 only after the other chat is up to speed (Dan B9, 2026-11-20).
 
