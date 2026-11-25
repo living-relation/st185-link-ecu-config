@@ -1367,3 +1367,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: G5 b (in the fuse box PR); G5 c (fold the runners now).
   - Supersedes: none.
   - Reopen if: registry-check flags a real stale or undeclared output.
+- **F12: bought parts are their own files; data-sheet stand-ins allowed (Dan, 2026-11-25)**
+  - Status: current
+  - Context: the EFC compression limiters 10S00056 / 10S00052 are not in SR Fasteners and EFC publishes no CAD, so `build_fusion.py` builds them as bodies inside the fuse box document. EFC's comparison table (efc-intl.com, checked 2026-11-25) gives M6, ID 6.80, OD 9.8, wall 1.5, L 6 / 4, low-carbon steel, zinc: it matches `spec.LIMITER_M6` / `LIMITER_M6_SHORT`.
+  - Decision: (1) a modeled stand-in for a bought part with no maker CAD is fine as long as the maker's published specs verify its size (F4). (2) Always save every external (bought) part as its own file: its own model file in the models folder `st185_vendor-parts_1101\<maker>\<part number>\` (STEP; .f3d when modeled in Fusion), indexed in `cad/vendor/INDEX.md`, and used in an assembly from that file, never as bodies built inside the assembly document.
+  - Rejected: building bought-part bodies inside the assembly script.
+  - Supersedes: none (adds to F4 and A84).
+  - Reopen if: Dan changes it.

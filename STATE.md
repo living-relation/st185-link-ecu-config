@@ -23,4 +23,4 @@ Updated: 2026-11-25 -- chat session_014aA8s3 (F9 recorded; handoff for the rebui
 - Latest_ADR: F9; State drift watcher on demand; F8 a; F1 a temporary
 - Last_Cleanup: 2026-11-15 @ 3420c3c4
 - Kept_Branches: none
-- Question_Counter: F9
+- Question_Counter: F12
