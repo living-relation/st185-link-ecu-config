@@ -1409,3 +1409,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: hand-written part descriptions that the model does not carry.
   - Supersedes: none (applies "CAD model-first" to the parts lists).
   - Reopen if: Dan changes it.
+- **G9 a, H1 b: handbuilt-cad rules load every session; SR Fasteners gaps (Dan, 2026-11-25)**
+  - Status: current
+  - Context: handbuilt-cad AGENTS.md (CAD rules 1-30) is the primary source of CAD rules and workflow for every CAD project, but nothing loaded it: the plugin shipped no hooks, this router did not name it, and session-start did not read it, so this chat did CAD work without it. Its rule 22 said a fastener or spacer SR Fasteners lacks is a question for Dan, never modeled; 2026-11-25 here said model it from maker specs.
+  - Decision: G9 a: handbuilt-cad #89 (merged f22714b) adds a SessionStart hook to the plugin that points every Claude Code session at the CAD rules, in full when the folder shows CAD work and as one line otherwise; a project need not know yet that it is a CAD project. H1 b: a fastener, press-in part or spacer SR Fasteners lacks is the maker's CAD, or modeled once from the maker's published specs (sizes checked, sources cited in MADE-WITH.md), as its own linked part; handbuilt-cad rule 22 and drawing rule 36 now say so. The EFC limiters 10S00056 / 10S00052 are the first case.
+  - Rejected: G9 b unconditionally (session-start reading handbuilt-cad only fits when conditional on CAD work: models, drawings and the like); G9 c alone (a project may not know it is a CAD project yet); H1 a (add EFC to the SR Fasteners catalog).
+  - Supersedes: none here; handbuilt-cad's own 2026-11-17 "no hooks" and 2026-11-23 rule 22 "stop and ask" lines.
+  - Reopen if: the hook does not show in a session.
