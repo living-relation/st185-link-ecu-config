@@ -13,7 +13,6 @@ Updated: 2026-11-25 -- chat session_014aA8s4 (F9 lug sizes done; rebuild next)
 - Detail: none
 
 ## Next Single Step
-- [DONE] F9 lug sizes: spec.py LUG_6AWG b 13 -> 12; parts_lists.py 3R5 / 3R5MS b 12 (Klauke R-series data sheet, DECISIONS F9); rev8 power parts CSV and PROJECT-BOM regenerated; gates green.
 - [NEXT] Take the fusion-desktop lock (projects-AGENTS.md section 5), run cad/fusebox/src/build_fusion.py in desktop Fusion (personal account, F1 a temporary; trial ends 12-01) with SR Fasteners placing every fastener incl. PEM.
 - [OPEN] SR Fasteners catalog (sr-fastener ec6cc1e) has no EFC compression limiters; EFC publishes no CAD (archive STATE-feat-fusebox-build-package-2): keep the data-sheet limiter bodies (LIMITER_M6 10S00056, 10S00052) unless a maker model turns up.
 - [OPEN] After the build: verify close lug fits against the data sheet; copy to work hub (Compute: setActiveHub SparkleBots); AP242 STEP + .f3d to OneDrive models\st185_fusebox_1101 new rev; drawings + BOM from the model (rule 30); CNC check.
@@ -21,4 +20,4 @@ Updated: 2026-11-25 -- chat session_014aA8s4 (F9 lug sizes done; rebuild next)
 ## Pointers
 - Branch_States: generated
 - Backlog: BACKLOG.md
-- Latest_ADR: F9
+- Latest_ADR: F9 (lug sizes landed in 7ce82bfc)
