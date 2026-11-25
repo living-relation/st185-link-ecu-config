@@ -1370,7 +1370,7 @@ From 2026-11-19 every new decision is appended here in the format in the header 
 - **Bought parts are their own files; data-sheet stand-ins allowed (Dan, 2026-11-25)**
   - Status: current
   - Context: the EFC compression limiters 10S00056 / 10S00052 are not in SR Fasteners and EFC publishes no CAD, so `build_fusion.py` builds them as bodies inside the fuse box document. EFC's comparison table (efc-intl.com, checked 2026-11-25) gives M6, ID 6.80, OD 9.8, wall 1.5, L 6 / 4, low-carbon steel, zinc: it matches `spec.LIMITER_M6` / `LIMITER_M6_SHORT`.
-  - Decision: (1) a modeled stand-in for a bought part with no maker CAD is fine as long as the maker's published specs verify its size (F4). (2) Always save every external (bought) part as its own file: its own model file in the models folder `st185_vendor-parts_1101\<maker>\<part number>\` (STEP; .f3d when modeled in Fusion), indexed in `cad/vendor/INDEX.md`, and used in an assembly from that file, never as bodies built inside the assembly document.
+  - Decision: (1) a modeled stand-in for a bought part with no maker CAD is fine as long as the maker's published specs verify its size (F4). (2) Always save every external (bought) part as its own file: its own model file in the models folder `st185_vendor-parts_1101\<maker>\<part number>\` (STEP; .f3d when modeled in Fusion), indexed in `cad/vendor/INDEX.md`, and used in an assembly from that file, never as bodies built inside the assembly document. Exception: SR Fasteners parts stay as the add-in places them (G3 a).
   - Rejected: building bought-part bodies inside the assembly script.
   - Supersedes: none (adds to F4 and A84).
   - Reopen if: Dan changes it.
@@ -1381,3 +1381,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: G1 a (two stages), G1 c (next rev); G4 b (lower case in chat only).
   - Supersedes: the upper-case option format in `docs/NEEDS-DAN.md` (R119 / A96 a text).
   - Reopen if: Dan changes it.
+- **G3 a: bought-part files are linked into assemblies (Dan, 2026-11-25)**
+  - Status: current
+  - Context: "Bought parts are their own files" left open whether an assembly links the part file or imports a copy.
+  - Decision: linked. Each bought part is its own Fusion design in the SparkleBots work hub next to the assembly that uses it (STEP copy in the models folder `st185_vendor-parts_1101`), inserted as a linked (external) component, so a part change flows to every assembly. The only exception: SR Fasteners parts, which the add-in creates and places itself (Dan 2026-11-25, "because of how it works"); they are neither saved as separate files nor linked.
+  - Rejected: G3 b, imported copies.
+  - Supersedes: none.
+  - Reopen if: linked parts break exports or the hub move.

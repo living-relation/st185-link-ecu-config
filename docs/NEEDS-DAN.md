@@ -6,6 +6,5 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| G3 | Bought-part files | How do assemblies use the bought-part files (DECISIONS "Bought parts are their own files")? | a) linked: Fusion points at the part file, edits flow to every assembly; b) imported copy: simpler, edits do not flow | a |
 
 This file holds only that table (Dan A96 a, 2026-11-19): `docs/needs_dan.py` reads it for `.github/scripts/test_docs_gates.py` and the fuse box clearance waivers (`cad/fusebox/src/check_clearance.py`). Question IDs: `.claude/rules/questions.md`.
