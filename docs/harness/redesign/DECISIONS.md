@@ -1402,3 +1402,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: hex head bolts as the default.
   - Supersedes: the DIN 933 default in the fuse box parts lists, per G7.
   - Reopen if: Dan changes it.
+- **The model's BOM is the parts list (Dan, 2026-11-25)**
+  - Status: current
+  - Context: `cad/fusebox/src/parts_lists.py` writes the fuse box parts lists by hand; `build_fusion.py` sets no part number or description on any component (0 uses of `partNumber`, 2026-11-25), so the model's own bill of materials cannot be read for them today.
+  - Decision: every model has a bill of materials. Built properly (correct parts, with their part number, description and material properties populated), the model's BOM is generated and its data extracted for the parts lists, and it is correct by construction. Fasteners are referred to by the description in their file. How `parts_lists.py` changes: G8.
+  - Rejected: hand-written part descriptions that the model does not carry.
+  - Supersedes: none (applies "CAD model-first" to the parts lists).
+  - Reopen if: Dan changes it.
