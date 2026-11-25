@@ -1395,3 +1395,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: G6 b (local only), G6 c (keep).
   - Supersedes: none.
   - Reopen if: none.
+- **Socket head cap screws by default (Dan, 2026-11-25)**
+  - Status: current
+  - Context: the G1 b fastener map put every rev 8 bolt on SR Fasteners' hex head bolt (HHB-M) because the parts lists name DIN 933 hex bolts.
+  - Decision: screws are socket head cap screws (SR Fasteners SSH-M, ISO 4762) by default; the right head still depends on where it is mounted. PCBs usually take socket heads too, unless the screw must stay isolated from a metal base: then a nylon screw, which SR Fasteners does not carry, so it is downloaded from the maker or modeled from the maker's specs as its own linked part file ("Bought parts are their own files", G3 a). Which rev 8 bolts change: G7.
+  - Rejected: hex head bolts as the default.
+  - Supersedes: the DIN 933 default in the fuse box parts lists, per G7.
+  - Reopen if: Dan changes it.
