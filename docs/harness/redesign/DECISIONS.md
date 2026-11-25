@@ -1360,3 +1360,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: using the STEP-measured lug lengths for the parts list.
   - Supersedes: none.
   - Reopen if: a lug or PEM part does not fit at assembly.
+- **G5 a: automation registry in its own cleanup PR (Dan, 2026-11-25)**
+  - Status: current
+  - Context: the drift cleanup since 2026-11-15 found no `automation.yml` (git-checker T4) for 128 scripts and 3 workflows; Dan chose to draft one (G2 a).
+  - Decision: `automation.yml` lands in its own small cleanup PR, separate from the fuse box rebuild. Exact outputs are declared for the 10 known generators; the 64 scripts that write only untracked or temporary files are marked "TBD on review". Known registry-check notes that stay: the busbar `design-*-rev*` folders are separate designs (cad/README), and the trimetric / circuit-trace "stale by commit date" notes are false (their gates pass). Folding the three `cad/drawings/run_*.py` batch runners into one was not chosen (G5 c).
+  - Rejected: G5 b (in the fuse box PR); G5 c (fold the runners now).
+  - Supersedes: none.
+  - Reopen if: registry-check flags a real stale or undeclared output.
