@@ -1353,3 +1353,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: none.
   - Supersedes: the scheduled-task part of "State drift watcher (Dan, 2026-11-23)".
   - Reopen if: Dan turns the schedule back on.
+- **F9: PEM hardware source, lug sizes, Fusion tools (Dan, 2026-11-25)**
+  - Status: current
+  - Context: the SR Fasteners catalog had no PEM parts (2026-11-24); Klauke's R-series data sheet and Klauke's own 3D models disagree on lug length (about +5 mm in the STEPs); the parts list gave the 3R5MS width as 13.
+  - Decision: SR Fasteners now holds metric PEM press-in nuts, studs, standoffs and floating nuts (sr-fastener #20, #21): every fastener it offers is placed with it (rule 22). Any part it lacks, the agent downloads the maker's CAD itself (F4). Lug sizes: best fit per the maker data sheet (Klauke R-series data sheet: 2R5 b 12 / l 22; 3R5 and 3R5MS b 12 / a 13 / l 26, so the 3R5MS width is 12, not 13). Maker models are trusted, but every close fit is verified against the data sheet as well. Tools: desktop Fusion MCP for build_fusion.py (with the Fusion Desktop lock), Fusion Compute (headless) and Fusion Data MCP for supporting work.
+  - Rejected: using the STEP-measured lug lengths for the parts list.
+  - Supersedes: none.
+  - Reopen if: a lug or PEM part does not fit at assembly.
