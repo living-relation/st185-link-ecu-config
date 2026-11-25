@@ -14,10 +14,10 @@ Updated: 2026-11-25 -- chat session_014aA8s4 (F9 lug sizes done; rebuild next)
 
 ## Next Single Step
 - [NEXT] Take the fusion-desktop lock (projects-AGENTS.md section 5), run cad/fusebox/src/build_fusion.py in desktop Fusion (personal account, F1 a temporary; trial ends 12-01) with SR Fasteners placing every fastener incl. PEM.
-- [OPEN] F12: EFC limiters 10S00056 / 10S00052 sizes verified vs EFC table 2026-11-25; save each as its own part file in st185_vendor-parts_1101\efc\ (index cad/vendor/INDEX.md) and use it from there, same for every other bought part built in-script. Waiting on F10 (SR Fasteners approach) and F11 (cleanup).
+- [OPEN] Bought parts as own files (DECISIONS 2026-11-25): EFC limiters 10S00056 / 10S00052 sizes verified vs EFC table 2026-11-25; save each as its own part file in st185_vendor-parts_1101\efc\ (index cad/vendor/INDEX.md) and use it from there, same for every other bought part built in-script. Waiting on G1 (SR Fasteners approach), G2 (cleanup), G3 (linked vs imported part files): docs/NEEDS-DAN.md.
 - [OPEN] After the build: verify close lug fits against the data sheet; copy to work hub (Compute: setActiveHub SparkleBots); AP242 STEP + .f3d to OneDrive models\st185_fusebox_1101 new rev; drawings + BOM from the model (rule 30); CNC check.
 
 ## Pointers
 - Branch_States: generated
 - Backlog: BACKLOG.md
-- Latest_ADR: F12 (F9 lug sizes landed in 7ce82bfc)
+- Latest_ADR: Bought parts are their own files (2026-11-25); F9 lug sizes landed in 7ce82bfc
