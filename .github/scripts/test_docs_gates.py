@@ -43,14 +43,17 @@ with tempfile.TemporaryDirectory() as d:
     hdr = "| ID | Topic | Question | Options | Recommended |\n|---|---|---|---|---|\n"
     t.write_text(hdr, encoding="utf-8")
     check("needs-dan: header only = nothing open", open_questions(t) == [])
-    t.write_text(hdr + "| M6 | topic | Do it; really? | A) yes; B) no, ok | B |\n"
-                 "| M7 | topic | Which? | A) one; B) two; C) three | A if it fits, else C |\n", encoding="utf-8")
+    t.write_text(hdr + "| M6 | topic | Do it; really? | a) yes; b) no, ok | b |\n"
+                 "| M7 | topic | Which? | a) one; b) two; c) three | a if it fits, else c |\n"
+                 "| M8 | topic | Old style? | A) one; B) two | B |\n", encoding="utf-8")
     q = open_questions(t)
-    check("needs-dan: row parsed with options and recommended (one, or several by circumstance)",
-          len(q) == 2 and q[0]["id"] == "M6" and q[0]["text"] == "Do it; really?"
-          and [o["value"] for o in q[0]["options"]] == ["A", "B"]
+    check("needs-dan: row parsed with lower-case options and recommended (one, or several by circumstance; G4 a)",
+          len(q) == 3 and q[0]["id"] == "M6" and q[0]["text"] == "Do it; really?"
+          and [o["value"] for o in q[0]["options"]] == ["a", "b"]
           and [o["recommended"] for o in q[0]["options"]] == [False, True]
-          and [o["recommended"] for o in q[1]["options"]] == [True, False, True])
+          and [o["recommended"] for o in q[1]["options"]] == [True, False, True]
+          and [o["value"] for o in q[2]["options"]] == ["a", "b"]
+          and [o["recommended"] for o in q[2]["options"]] == [False, True])
 # The real table may hold open questions (it is where they live, R119); each must parse
 # with an ID, at least two options and at least one recommended (several when circumstances differ).
 check("needs-dan: docs/NEEDS-DAN.md has the section and every open question parses",

@@ -1374,3 +1374,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: building bought-part bodies inside the assembly script.
   - Supersedes: none (adds to F4 and A84).
   - Reopen if: Dan changes it.
+- **G1 b, G2 a b c, G4 a: SR Fasteners in the build, cleanup leftovers, question format (Dan, 2026-11-25)**
+  - Status: current
+  - Context: `build_fusion.py` draws all 16 fastener kinds as its own bodies; F2 a / F9 want SR Fasteners for every fastener. Drift cleanup since 2026-11-15 left three small items. Question IDs F10-F13 were issued past F9 (wrong: IDs are A1-Z9), and options were asked in upper case and also numbered.
+  - Decision: G1 b: one stage. The fastener code calls SR Fasteners: it is a Fusion add-in, so its parts are swapped in through the desktop Fusion MCP the next time the model is open. A part SR Fasteners lacks is downloaded from an online source (maker first), or modeled from the maker's specs, as before (F4, "Bought parts are their own files"). G2 a, b, c: draft `automation.yml` for review; move the two old `_research/TASK-*.md` cards to the store `_archive`; drop the stale 2026-11-22 work-hub sentence from the store INDEX. G4 a: answer options are one lower-case letter (`a) ...`), written that way in `.claude/rules/questions.md` and parsed by `docs/needs_dan.py`; questions that carry an ID are never also numbered.
+  - Rejected: G1 a (two stages), G1 c (next rev); G4 b (lower case in chat only).
+  - Supersedes: the upper-case option format in `docs/NEEDS-DAN.md` (R119 / A96 a text).
+  - Reopen if: Dan changes it.

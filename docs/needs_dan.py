@@ -8,10 +8,11 @@ One reader for every consumer (fusebox clearance check, fusebox summary):
 Table shape (header row only = nothing open):
 
     | ID | Topic | Question | Options | Recommended |
-    | M6 | topic | text     | A) label; B) label | A |
+    | M6 | topic | text     | a) label; b) label | a |
 
-Recommended is one letter, or several when the circumstances differ ("A if the fit passes, else B";
-Dan 2026-10-31): every standalone capital letter in the cell counts.
+Option letters are one lower-case letter (Dan G4 a, 2026-11-25); upper-case rows still parse and are read as
+lower case. Recommended is one letter, or several when the circumstances differ ("a if the fit passes, else b";
+Dan 2026-10-31): every standalone single letter in the cell counts.
 
 Standard library only.
 """
@@ -19,7 +20,7 @@ import re
 from pathlib import Path
 
 TRACKER = Path(__file__).resolve().parent / "NEEDS-DAN.md"
-_OPT = re.compile(r";\s*(?=[A-Z]\)\s)")
+_OPT = re.compile(r";\s*(?=[A-Za-z]\)\s)")
 
 
 def _cells(line: str) -> list[str]:
@@ -42,13 +43,13 @@ def open_questions(path: Path = TRACKER) -> list[dict]:
             c = dict(zip(cols, _cells(row) + [""] * len(cols)))
             if not c.get("id") or not c.get("question"):
                 continue
-            rec = set(re.findall(r"\b([A-Z])\b", c.get("recommended", "")))
+            rec = {x.lower() for x in re.findall(r"\b([A-Za-z])\b", c.get("recommended", ""))}
             opts = []
             for part in _OPT.split(c.get("options", "")):
-                m = re.match(r"([A-Z])\)\s*(.*)", part.strip())
+                m = re.match(r"([A-Za-z])\)\s*(.*)", part.strip())
                 if m:
-                    opts.append({"value": m.group(1), "label": m.group(2),
-                                 "recommended": m.group(1) in rec})
+                    v = m.group(1).lower()
+                    opts.append({"value": v, "label": m.group(2), "recommended": v in rec})
             qs.append({"id": c["id"], "topic": c.get("topic", ""),
                        "text": c["question"], "options": opts})
         break
