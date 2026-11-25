@@ -476,8 +476,8 @@ def build(rev=6):
     n36161 = sum(1 for nm, g in all_lugs if lug_of(nm, g) == '36161')
     lug(L, P, '2R5', 'Tubular lug 10 mm2, M5 hole (8-10 AWG)', n2r5, spare(n2r5), 0.70, 'Tinned copper tubular ring lug, 10 mm2, M5, hole 5.3; b 12, l 22',
         note='AMI outputs and relay feeds on 8-10 AWG: ' + ', '.join(nm for nm, g in all_lugs if lug_of(nm, g) == '2R5') + '.', checked='Buerklin listing 07F2065 (hole 5.3, M5) + Klauke table b 12 l 22')
-    lug(L, P, '3R5', 'Tubular lug 16 mm2, M5 hole (6 AWG)', n3r5, 1, 1.10, 'Tinned copper tubular ring lug with inspection hole, 16 mm2, M5, hole 5.5; b 13, l 26',
-        note='JB1 60 A output, 6 AWG. The 3R5MS is the 3R5 with an inspection hole: same barrel.', checked='Buerklin listing 07F9752 (16 mm2, M5, hole 5.5)')
+    lug(L, P, '3R5', 'Tubular lug 16 mm2, M5 hole (6 AWG)', n3r5, 1, 1.10, 'Tinned copper tubular ring lug with inspection hole, 16 mm2, M5, hole 5.5; b 12, l 26',
+        note='JB1 60 A output, 6 AWG. The 3R5MS is the 3R5 with an inspection hole: same barrel.', checked='Buerklin listing 07F9752 (16 mm2, M5, hole 5.5) + Klauke R-series data sheet b 12 l 26 (F9)')
     L.add(P, 'Lugs', 'Ring lug 12-10 AWG, M5 / #10 hole', '36161', 'TE Connectivity', 'PIDG closed ring tongue, 12-10 AWG, #10 (5 mm) stud, tin, partially insulated', n36161, spare(n36161), unit=0.25, basis='est',
           url=TE('36161'), checked='TE page (12-10 AWG, #10 / 5 mm stud, PIDG, Active); RS listings call the same family "M5 stud size"',
           note=('EFI feed (10 AWG, Dan C8 a 2026-11-21).' if R8 else 'EFI and STR feeds (12 AWG).') + ' Hole 5.1 mm over the 5 mm M5 bolt - snug, check a sample.')

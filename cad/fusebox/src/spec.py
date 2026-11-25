@@ -447,7 +447,7 @@ ACPS_Y = 35.0                                         # ACPS mini fuse at the fr
 IN_RELAY = ['heater', 'k_efi', 'k_str', 'k_fan', 'k_fan2', 'power', 'SPARE']
 RELAY_PN = {'heater': ('1-1414687-0', 'BUY'), 'k_efi': ('1-1414147-0', 'OWN'), 'k_str': ('1-1414147-0', 'OWN'),
             'k_fan': ('1-1414147-0', 'OWN'), 'k_fan2': ('1-1393304-0', 'OWN'), 'power': ('1-1393304-0', 'OWN'), 'SPARE': (None, None)}
-LUG_6AWG = dict(b=13.0, l=26.0, tip=6.0, t=2.0, d4=8.5)   # Klauke 3R5 (JB1 HOT 60 A)
+LUG_6AWG = dict(b=12.0, l=26.0, tip=6.0, t=2.0, d4=8.5)   # Klauke 3R5 / 3R5MS (JB1 HOT 60 A); b 12 / l 26 per the Klauke R-series data sheet (F9, Dan 2026-11-25; was 13)
 
 # ---------- LOGIC box (local frame). Rev 6 (C4): bus strips on edge between the fuse columns, one jumper per fuse input.
 # BUS1 inputs on the +x blade (output -x), BUS2 inputs on the -x blade (output +x): both input lines face the strips.
@@ -641,7 +641,7 @@ REV7 = dict(
 # Dan 2026-10-13) moved into the printed base: the lug palm keeps sitting on bare copper (copper to copper, nothing printed under the clamp);
 # where its tongue / barrel leaves the copper it runs between printed walls (palm b + 2 x clr, barrel d4 + 2 x trough) over a printed floor
 # `under` below the palm underside, so it cannot turn when its nut is torqued. Sizes from the lug drawings already in this file (LUG_M8 Klauke
-# 6R8 b 20 / d4 14, LUG_M5 2R5 b 12 / d4 7, LUG_6AWG 3R5 b 13, the battery block 2R5 / 1R6 lugs).
+# 6R8 b 20 / d4 14, LUG_M5 2R5 b 12 / d4 7, LUG_6AWG 3R5 b 12 (F9), the battery block 2R5 / 1R6 lugs).
 POCKET = dict(clr=0.4, trough=0.5, under=0.3, wall=3.2, wall_neg=2.2, h_over_palm=2.0, wall_min=2.0)
 # POS bus lugs (BAT+ IN, RADLOK+): walls along x from the bar edge to the box edge, z_t + POS_WALL_H high - the wall between the two is Dan's
 # 23-31 "separating wall here"; the one in front of BAT+ starts behind the bar tab at y 164 (that tab's arm is the palm's front wall there).
