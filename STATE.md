@@ -21,6 +21,6 @@ Updated: 2026-11-25 -- chat session_014aA8s3 (F9 recorded; handoff for the rebui
 - Branch_States: generated
 - Backlog: BACKLOG.md; every CAD model: rebuild only with its original method, see repo cad/README.md "Where created" (handbuilt-cad rule 28)
 - Latest_ADR: F9; State drift watcher on demand; F8 a; F1 a temporary
-- Last_Cleanup: 2026-11-15 @ 3420c3c4
+- Last_Cleanup: 2026-11-25 @ e7c444c4
 - Kept_Branches: none
 - Question_Counter: G5

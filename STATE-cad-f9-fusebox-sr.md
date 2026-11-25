@@ -1,6 +1,6 @@
 # STATE (max 30 lines, overwrite only)
 Repo: st185-link-ecu-config
-Branch: cad/f9-fusebox-rebuild
+Branch: cad/f9-fusebox-sr
 Last_Verified_SHA: a0490839
 Updated: 2026-11-25 -- chat session_014aA8s4 (F9 lug sizes done; rebuild next)
 
