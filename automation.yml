@@ -1,0 +1,1211 @@
+# automation.yml: every script, workflow and hook in this repo, one entry each (git-checker "Automation registry").
+# DRAFT for Dan's review (G2 a, 2026-11-25): triggers are from checks.yml / tools/check_all.py; writes are inferred.
+generated_patterns: ["docs/harness/drawings/**", "docs/harness/wirelists/ST185-*-wirelist.*", "docs/sourcing/PROJECT-BOM.*", "cad/fusebox/rev8/fusebox-parts-*.csv", "**/*.checks.json"]
+ignore: ["_scratch/**", "_research/**", "_cad_staging/**", "docs/vendor/**", "archives/**", "**/tests/**"]
+handmade: ["docs/intercooler-turbo-study/**", "rd-build/**"]
+automations:
+  - id: wf-checks
+    script: .github/workflows/checks.yml
+    trigger: pr-check
+    reads: []
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: wf-state-check
+    script: .github/workflows/state-check.yml
+    trigger: pr-check
+    reads: []
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: wf-state-files-gate
+    script: .github/workflows/state-files-gate.yml
+    trigger: pr-check
+    reads: []
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: check-all
+    script: tools/check_all.py
+    trigger: pr-check
+    reads: []
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cursor-install
+    script: .cursor/install.sh
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: github-scripts-check-doc-duplicates
+    script: .github/scripts/check_doc_duplicates.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: github-scripts-check-doc-size
+    script: .github/scripts/check_doc_size.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: github-scripts-check-pr-rows
+    script: .github/scripts/check_pr_rows.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: github-scripts-test-docs-gates
+    script: .github/scripts/test_docs_gates.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: github-state-check
+    script: .github/state-check.sh
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: github-state-files-gate
+    script: .github/state-files-gate.sh
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: apps-trackcluster-can-sender-app
+    script: apps/trackcluster-can-sender/app.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: bench-can-bench
+    script: bench/can_bench.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: bench-check-parity
+    script: bench/check_parity.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: bench-frames
+    script: bench/frames.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-busbar-src-build-fusion
+    script: cad/busbar/src/build_fusion.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-busbar-src-drawings
+    script: cad/busbar/src/drawings.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-busbar-src-spec
+    script: cad/busbar/src/spec.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-busbar-src-summary-html
+    script: cad/busbar/src/summary_html.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-check-drawing-rules
+    script: cad/check_drawing_rules.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-check-drawings-current
+    script: cad/check_drawings_current.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-check-print-files
+    script: cad/check_print_files.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-check-printed-walls
+    script: cad/check_printed_walls.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-aspecs
+    script: cad/drawings/aspecs.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-aspecs-1018
+    script: cad/drawings/aspecs_1018.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-aspecs-1019
+    script: cad/drawings/aspecs_1019.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-fb-labels
+    script: cad/drawings/fb_labels.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-run-1017
+    script: cad/drawings/run_1017.sh
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-run-1018
+    script: cad/drawings/run_1018.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: ["cad/drb102-plate/ST185-DRB-*", "cad/enclosures/csb3/ST185-CSB3-*", "cad/enclosures/vrc/ST185-VRC-*"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python cad/drawings/run_1018.py
+    slow: true                 # draft: not re-run until reviewed
+    owner: dan
+  - id: cad-drawings-run-1019
+    script: cad/drawings/run_1019.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: ["cad/fuel-hanger/drawings/*"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python cad/drawings/run_1019.py
+    slow: true                 # draft: not re-run until reviewed
+    owner: dan
+  - id: cad-drawings-run-all
+    script: cad/drawings/run_all.sh
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-run-asm
+    script: cad/drawings/run_asm.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-run-fb117
+    script: cad/drawings/run_fb117.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-run-fb-rev8
+    script: cad/drawings/run_fb_rev8.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: ["cad/fusebox/rev7/drawings/*"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python cad/drawings/run_fb_rev8.py
+    slow: true                 # draft: not re-run until reviewed
+    owner: dan
+  - id: cad-drawings-run-one
+    script: cad/drawings/run_one.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-run-one-1017
+    script: cad/drawings/run_one_1017.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-specs
+    script: cad/drawings/specs.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-specs-1017
+    script: cad/drawings/specs_1017.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-specs-1018
+    script: cad/drawings/specs_1018.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drawings-specs-1019
+    script: cad/drawings/specs_1019.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drb102-plate-build-drb102-assembly
+    script: cad/drb102-plate/build_DRB102_assembly.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-drb102-plate-build-drb102-plate
+    script: cad/drb102-plate/build_DRB102_plate.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-build-vrc-holder
+    script: cad/enclosures/src/build_vrc_holder.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-csb3-lockin
+    script: cad/enclosures/src/csb3_lockin.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-d5-corner-ears
+    script: cad/enclosures/src/d5_corner_ears.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-enclosure-fixes-v3
+    script: cad/enclosures/src/enclosure_fixes_v3.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-fusion-real-connectors
+    script: cad/enclosures/src/fusion_real_connectors.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-real-connectors
+    script: cad/enclosures/src/real_connectors.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-render-vrc-holder-views
+    script: cad/enclosures/src/render_vrc_holder_views.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-vrc-holder-spec
+    script: cad/enclosures/src/vrc_holder_spec.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-enclosures-src-vrc-lp16-cutout
+    script: cad/enclosures/src/vrc_lp16_cutout.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-export-print-files
+    script: cad/export_print_files.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fuel-hanger-build-holder
+    script: cad/fuel-hanger/build_holder.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fuel-hanger-check-flange
+    script: cad/fuel-hanger/check_flange.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fuel-hanger-fuel-hanger
+    script: cad/fuel-hanger/fuel_hanger.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fuel-hanger-pump-holder
+    script: cad/fuel-hanger/pump_holder.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fuel-hanger-pumpmount
+    script: cad/fuel-hanger/pumpmount.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-build-fusion
+    script: cad/fusebox/src/build_fusion.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-callouts
+    script: cad/fusebox/src/callouts.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-check-clearance
+    script: cad/fusebox/src/check_clearance.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-check-printed-solid
+    script: cad/fusebox/src/check_printed_solid.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-check-terminal-holes
+    script: cad/fusebox/src/check_terminal_holes.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-finish-closeups
+    script: cad/fusebox/src/finish_closeups.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-finish-twistlock
+    script: cad/fusebox/src/finish_twistlock.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-label-views-rev7
+    script: cad/fusebox/src/label_views_rev7.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-parts-lists
+    script: cad/fusebox/src/parts_lists.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: ["cad/fusebox/rev8/fusebox-parts-*.csv"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python cad/fusebox/src/parts_lists.py
+    slow: true                 # draft: not re-run until reviewed
+    check_cmd: python cad/fusebox/src/parts_lists.py --check
+    owner: dan
+  - id: cad-fusebox-src-render-closeups
+    script: cad/fusebox/src/render_closeups.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-render-strap-station
+    script: cad/fusebox/src/render_strap_station.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-render-twistlock
+    script: cad/fusebox/src/render_twistlock.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-render-wired-rev7
+    script: cad/fusebox/src/render_wired_rev7.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-spec
+    script: cad/fusebox/src/spec.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-strap-fea
+    script: cad/fusebox/src/strap_fea.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-sweep-logic-strips
+    script: cad/fusebox/src/sweep_logic_strips.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-sweep-power-straps
+    script: cad/fusebox/src/sweep_power_straps.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-wall-classes
+    script: cad/fusebox/src/wall_classes.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-wiring-file
+    script: cad/fusebox/src/wiring_file.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-fusebox-src-wiring-sim
+    script: cad/fusebox/src/wiring_sim.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: cad-render-trimetric
+    script: cad/render_trimetric.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: ["cad/**/trimetric*.png"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python cad/render_trimetric.py
+    slow: true                 # draft: not re-run until reviewed
+    owner: dan
+  - id: docs-harness-tools-build-bundle-map
+    script: docs/harness/tools/build_bundle_map.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: ["docs/harness/BUNDLE-MAP.html"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python docs/harness/tools/build_bundle_map.py
+    slow: true                 # draft: not re-run until reviewed
+    check_cmd: python docs/harness/tools/build_bundle_map.py --check
+    owner: dan
+  - id: docs-harness-tools-build-drawings
+    script: docs/harness/tools/build_drawings.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: ["docs/harness/wirelists/ST185-*-wirelist.*", "docs/harness/drawings/DRB102-bulkhead-map.png"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python docs/harness/tools/build_drawings.py
+    slow: true                 # draft: not re-run until reviewed
+    check_cmd: python docs/harness/tools/build_drawings.py --check
+    owner: dan
+  - id: docs-harness-tools-build-pin-chart
+    script: docs/harness/tools/build_pin_chart.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: ["docs/harness/drawings/ST185-pin-chart.pdf"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python docs/harness/tools/build_pin_chart.py
+    slow: true                 # draft: not re-run until reviewed
+    owner: dan
+  - id: docs-harness-tools-check-corridors
+    script: docs/harness/tools/check_corridors.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-check-wiring
+    script: docs/harness/tools/check_wiring.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    check_cmd: python docs/harness/tools/check_wiring.py --check
+    owner: dan
+  - id: docs-harness-tools-formboard
+    script: docs/harness/tools/formboard.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-abeng
+    script: docs/harness/tools/gen_abeng.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-antitheft
+    script: docs/harness/tools/gen_antitheft.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-cabin
+    script: docs/harness/tools/gen_cabin.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-cabinpower
+    script: docs/harness/tools/gen_cabinpower.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-dash
+    script: docs/harness/tools/gen_dash.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-engc
+    script: docs/harness/tools/gen_engc.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-heavydc
+    script: docs/harness/tools/gen_heavydc.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-rearfuel
+    script: docs/harness/tools/gen_rearfuel.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-gen-wheelspeed
+    script: docs/harness/tools/gen_wheelspeed.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-genroute
+    script: docs/harness/tools/genroute.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-placement-editor-make-editor
+    script: docs/harness/tools/placement_editor/make_editor.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-router
+    script: docs/harness/tools/router.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-harness-tools-trace-circuits
+    script: docs/harness/tools/trace_circuits.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: ["docs/harness/CIRCUIT-TRACE.html"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python docs/harness/tools/trace_circuits.py
+    slow: true                 # draft: not re-run until reviewed
+    check_cmd: python docs/harness/tools/trace_circuits.py --check
+    owner: dan
+  - id: docs-intercooler-turbo-study-model-airflow
+    script: docs/intercooler-turbo-study/model/airflow.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-model-build-reports
+    script: docs/intercooler-turbo-study/model/build_reports.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-model-ic-stack
+    script: docs/intercooler-turbo-study/model/ic_stack.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-model-pipes
+    script: docs/intercooler-turbo-study/model/pipes.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-model-power-limits
+    script: docs/intercooler-turbo-study/model/power_limits.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-model-run-matchbot
+    script: docs/intercooler-turbo-study/model/run_matchbot.mjs
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-research-5sgte-project-data-06-turbo-model
+    script: docs/intercooler-turbo-study/research/5sgte-project-data/06_turbo_model.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-research-data-throttle-body-plumbing-charge-pipe-math
+    script: docs/intercooler-turbo-study/research/data/throttle-body-plumbing/charge-pipe-math.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-research-data-throttle-body-plumbing-pipe-sizing
+    script: docs/intercooler-turbo-study/research/data/throttle-body-plumbing/pipe-sizing.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-research-data-throttle-body-plumbing-transition-and-packaging
+    script: docs/intercooler-turbo-study/research/data/throttle-body-plumbing/transition-and-packaging.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-research-data-throttle-body-plumbing-transition-losses-and-system-dp
+    script: docs/intercooler-turbo-study/research/data/throttle-body-plumbing/transition-losses-and-system-dp.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-intercooler-turbo-study-research-data-throttle-body-plumbing-verify-dimension-chain
+    script: docs/intercooler-turbo-study/research/data/throttle-body-plumbing/verify-dimension-chain.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-needs-dan
+    script: docs/needs_dan.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-sourcing-build-project-bom
+    script: docs/sourcing/build_project_bom.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: ["docs/sourcing/PROJECT-BOM.csv", "docs/sourcing/PROJECT-BOM.xlsx", "docs/sourcing/harness-parts.csv"]   # from the script docstring / AGENTS "Generated"
+    committed: yes
+    auto_commit: false
+    enabled: true
+    run_cmd: python docs/sourcing/build_project_bom.py
+    slow: true                 # draft: not re-run until reviewed
+    check_cmd: python docs/sourcing/build_project_bom.py --check
+    owner: dan
+  - id: docs-sourcing-digikey-price
+    script: docs/sourcing/digikey_price.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-sourcing-merge-digikey
+    script: docs/sourcing/merge_digikey.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: docs-sourcing-shop-prices
+    script: docs/sourcing/shop_prices.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-add-gauge
+    script: rd-build/tools/add_gauge.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-automation-helper
+    script: rd-build/tools/automation_helper.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-bind-pill
+    script: rd-build/tools/bind_pill.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-combo
+    script: rd-build/tools/combo.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-fix-dyncolor
+    script: rd-build/tools/fix_dyncolor.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-label-paste
+    script: rd-build/tools/label_paste.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-paste-batch
+    script: rd-build/tools/paste_batch.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-rebind
+    script: rd-build/tools/rebind.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-set-levels
+    script: rd-build/tools/set_levels.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-set-text
+    script: rd-build/tools/set_text.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-set-xywh
+    script: rd-build/tools/set_xywh.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: rd-build-tools-value-paste-bind
+    script: rd-build/tools/value_paste_bind.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: tools-check-doc-claims
+    script: tools/check_doc_claims.py
+    trigger: called-by:check-all
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: tools-hygiene
+    script: tools/hygiene.ps1
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: tune-scripts-build-limits-tracker
+    script: tune/scripts/build_limits_tracker.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []   # TBD on review: writes files, none tracked found
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: tune-scripts-calc-engine
+    script: tune/scripts/calc_engine.py
+    trigger: manual
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
+  - id: tune-scripts-validate-tune
+    script: tune/scripts/validate_tune.py
+    trigger: pr-check
+    reads: []                  # inferred: fill on review
+    writes: []
+    committed: no
+    auto_commit: false
+    enabled: true
+    owner: dan
