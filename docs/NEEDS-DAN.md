@@ -6,5 +6,4 @@ Open questions for Dan, the ONLY place they live (DECISIONS R119); `docs/needs_d
 
 | ID | Topic | Question | Options | Recommended |
 |---|---|---|---|---|
-| G8 | Fuse box parts lists from the model BOM | The rebuild sets part number, description and material on every component, then the fuse box parts lists come from the model's BOM. Dan usually needs only the BOM, and most fuse box items are parts he makes; the screws are easy to buy from their BOM lines. What happens to the vendor / link / price / spares columns now typed by hand in cad/fusebox/src/parts_lists.py? | a) the parts lists are the model BOM only (part number, description, material, qty); the hand-typed buying columns go, and buying help is given only when Dan asks for a part; b) model BOM plus the hand-typed buying columns kept beside it, matched by part number | a |
 This file holds only that table (Dan A96 a, 2026-11-19): `docs/needs_dan.py` reads it for `.github/scripts/test_docs_gates.py` and the fuse box clearance waivers (`cad/fusebox/src/check_clearance.py`). Question IDs: `.claude/rules/questions.md`.

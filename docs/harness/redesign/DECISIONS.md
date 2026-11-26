@@ -1437,3 +1437,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: H3 a (add PCBs and every main device).
   - Supersedes: none.
   - Reopen if: Dan asks for a full device list.
+- **G8 a: fuse box parts lists are the model BOM only (Dan, 2026-11-26)**
+  - Status: current
+  - Context: "The model's BOM is the parts list" left open what happens to the buying columns typed by hand in `cad/fusebox/src/parts_lists.py` (maker, spares, own, buy, unit / line price, price basis, source URL, checked against). Dan usually needs only the BOM; most fuse box parts he makes, and the screws are easy to buy from their BOM lines.
+  - Decision: after the rebuild the fuse box parts lists carry only what the model's BOM gives (group, item, part number, description, material, qty) plus the notes column (fit and torque notes); the hand-typed buying columns go. Buying help is given only when Dan asks about a part. The fuse box rows in `PROJECT-BOM` then have no price or link; the harness rows keep theirs. Done with the rebuild, not before it (model first).
+  - Rejected: G8 b (keep the buying columns).
+  - Supersedes: the buying columns of the fuse box lists.
+  - Reopen if: Dan wants prices or links back.
