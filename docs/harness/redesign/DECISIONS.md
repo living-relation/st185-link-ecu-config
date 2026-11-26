@@ -1430,3 +1430,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: Teckentrup NSK-K M5 zinc flake contact washer; Nord-Lock NL5spss-254 enlarged OD 10.8.
   - Supersedes: the NSK-K pick earlier on 2026-11-26.
   - Reopen if: the M5 x 10 no longer engages its nut fully with the washer pair.
+- **H3 b: project BOM scope stays as it is (Dan, 2026-11-26)**
+  - Status: current
+  - Context: `docs/sourcing/PROJECT-BOM` (349 lines: Wire harness from the master wire list, Mechanical assemblies from the fuse box, enclosure and other parts lists) has no PCB lines and lists the main devices (ECU, CSB3, cluster, sensors) only in part.
+  - Decision: keep the project BOM to what is bought for the harnesses, boxes and enclosures; PCBs and the main devices are not added.
+  - Rejected: H3 a (add PCBs and every main device).
+  - Supersedes: none.
+  - Reopen if: Dan asks for a full device list.
