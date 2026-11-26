@@ -1416,3 +1416,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: G9 b unconditionally (session-start reading handbuilt-cad only fits when conditional on CAD work: models, drawings and the like); G9 c alone (a project may not know it is a CAD project yet); H1 a (add EFC to the SR Fasteners catalog).
   - Supersedes: none here; handbuilt-cad's own 2026-11-17 "no hooks" and 2026-11-23 rule 22 "stop and ask" lines.
   - Reopen if: the hook does not show in a session.
+- **G7: hex head screws where the design needs them (Dan, 2026-11-26)**
+  - Status: current
+  - Context: "Socket head cap screws by default" raised which rev 8 DIN 933 hex head screws change.
+  - Decision: a screw whose head is trapped in a printed hex pocket (POWER and BATTRELAY input and bus studs, the BATTRELAY M6 x 16 feed stud) stays a hex head screw: a socket head would spin in the pocket. The screws turned from the top (AMI ear screws through the copper straps, LOGIC feed screws, HCR150 flange screws) follow the socket-head-cap-screw default.
+  - Rejected: socket heads in the hex pockets.
+  - Supersedes: none.
+  - Reopen if: Dan wants the turned-from-the-top screws kept as hex head too.
