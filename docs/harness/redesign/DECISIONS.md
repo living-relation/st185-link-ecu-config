@@ -1419,14 +1419,14 @@ From 2026-11-19 every new decision is appended here in the format in the header 
 - **G7: hex head screws where the design needs them (Dan, 2026-11-26)**
   - Status: current
   - Context: "Socket head cap screws by default" raised which rev 8 DIN 933 hex head screws change.
-  - Decision: a screw whose head is trapped in a printed hex pocket (POWER and BATTRELAY input and bus studs, the BATTRELAY M6 x 16 feed stud) stays a hex head screw: a socket head would spin in the pocket. The AMI ear screws through the copper straps (turned from the top) also stay hex head screws: the large head gives the bearing area (Dan 2026-11-26), and they get a Teckentrup NSK-K contact washer under the head (H2). LOGIC feed screws and HCR150 flange screws: not decided yet.
+  - Decision: a screw whose head is trapped in a printed hex pocket (POWER and BATTRELAY input and bus studs, the BATTRELAY M6 x 16 feed stud) stays a hex head screw: a socket head would spin in the pocket. The AMI ear screws through the copper straps (turned from the top) also stay hex head screws: the large head gives the bearing area (Dan 2026-11-26), and they get a Nord-Lock wedge-lock washer pair under the head (H2). LOGIC feed screws and HCR150 flange screws: not decided yet.
   - Rejected: socket heads in the hex pockets.
   - Supersedes: none.
   - Reopen if: Dan changes it.
-- **H2: Teckentrup NSK-K washer under the AMI ear screws (Dan, 2026-11-26)**
+- **H2: Nord-Lock wedge-lock washer under the AMI ear screws (Dan, 2026-11-26)**
   - Status: current
-  - Context: Dan wants a locking washer under each M5 AMI ear screw (hex head kept for bearing area, G7). The first pick, a Nord-Lock wedge-lock pair, was the wrong part.
-  - Decision: Teckentrup Electrical NSK-K Belleville (detent-edged contact) washer, M5, spring steel C60, zinc flake, as BelMetric sells it (belmetric.com/teckentrup-electrical-nsk-k-belleville-washer-steel-zinc-flake/, OD 10.2): chevron-knurled top, teeth on the underside that cut through coatings or oxide for electrical contact, spring locking. M5 size from the Keller & Kalmbach NSK-K 5 data sheet (keller-kalmbach.com/p/5403525): di 5.1, da 10.2, s 1.0, h 1.5, tooth height 0.4. SR Fasteners does not carry it and BelMetric shows no CAD, so it is modeled once from those specs as its own linked part (H1 b, G3 a). The extra height under the head is checked against the M5 x 10 thread engagement in the rebuild.
-  - Rejected: Nord-Lock NL5ss-254 wedge-lock pair (not the part Dan meant).
-  - Supersedes: none.
-  - Reopen if: the M5 x 10 no longer engages its nut fully with the washer.
+  - Context: Dan wants a locking washer under each M5 AMI ear screw (hex head kept for bearing area, G7). Two parts were looked at: a Nord-Lock wedge-lock pair and a Teckentrup NSK-K contact washer; Dan picked the Nord-Lock ("your first find was better").
+  - Decision: Nord-Lock NL5ss-254 wedge-lock washer pair (stainless 254 SMO, EN 1.4547; ID 5.4, OD 9.0, T 2.2 mm; Nord-Lock article 1565), sold by BelMetric (NL-SS-254 series). Cam faces inside, radial teeth outside. SR Fasteners does not carry wedge-lock washers, so the part is Nord-Lock's own CAD (else modeled from the Nord-Lock dimension sheet) as its own linked part (H1 b, G3 a). The 2.2 mm under the head is checked against the M5 x 10 thread engagement in the rebuild.
+  - Rejected: Teckentrup NSK-K M5 zinc flake contact washer; Nord-Lock NL5spss-254 enlarged OD 10.8.
+  - Supersedes: the NSK-K pick earlier on 2026-11-26.
+  - Reopen if: the M5 x 10 no longer engages its nut fully with the washer pair.
