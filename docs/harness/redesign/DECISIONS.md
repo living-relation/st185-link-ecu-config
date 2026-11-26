@@ -1367,3 +1367,10 @@ From 2026-11-19 every new decision is appended here in the format in the header 
   - Rejected: G5 b (in the fuse box PR); G5 c (fold the runners now).
   - Supersedes: none.
   - Reopen if: registry-check flags a real stale or undeclared output.
+- **H1 a: jump bus bar lugs (Dan, 2026-11-26)**
+  - Status: current
+  - Context: the four lugs at the Blue Sea 2104 jump bus bar (3/8-16 studs, Gauge cases "Big cable lugs", N11 a) and the 5191 fuse block M8 output stud (N26 a) were TBD in the master; the only big lug in the repo, Klauke 6R8, has an M8 hole.
+  - Decision: Klauke tubular lugs, same family as the 6R8, sizes from the Klauke R-series ordering table: `SP-JUMP-1` (`w_rlp_str`) and `SP-JUMP-2` (`w_bar_str`) 1/0 = 6R10 (50 mm2, hole 10.5, b 20, l 39); `SP-JUMP-4` (`w_jump`) 2 AWG = 5R10 (35 mm2, hole 10.5, b 19, l 37); `SP-ALT-FUSE` (`w_alt`) 2 AWG = 5R8 (35 mm2, hole 8.5, b 17, l 34). The 10.5 mm hole clears the 3/8 in (9.5 mm) stud. No overlap: the 2104 stud pitch is 1.25 in (31.75 mm, Blue Sea catalog), so two 20 mm lugs on neighbour studs leave about 11.75 mm. The 5191 sits on stud 3 with its long side pointing away from the bar (retailer size about 61 x 20 mm; Blue Sea publishes no 5191 drawing), so it clears the stud 2 and 4 lugs like one more lug. Parts added to `docs/sourcing/harness-parts.csv`.
+  - Rejected: H1 b (Ancor / Blue Sea / Marine Raw lugs; only if the Klauke lugs overlapped).
+  - Supersedes: none.
+  - Reopen if: a lug does not seat flat or touches the 5191 at assembly.
