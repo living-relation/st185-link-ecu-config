@@ -1419,7 +1419,7 @@ From 2026-11-19 every new decision is appended here in the format in the header 
 - **G7: hex head screws where the design needs them (Dan, 2026-11-26)**
   - Status: current
   - Context: "Socket head cap screws by default" raised which rev 8 DIN 933 hex head screws change.
-  - Decision: a screw whose head is trapped in a printed hex pocket (POWER and BATTRELAY input and bus studs, the BATTRELAY M6 x 16 feed stud) stays a hex head screw: a socket head would spin in the pocket. The screws turned from the top (AMI ear screws through the copper straps, LOGIC feed screws, HCR150 flange screws) follow the socket-head-cap-screw default.
+  - Decision: a screw whose head is trapped in a printed hex pocket (POWER and BATTRELAY input and bus studs, the BATTRELAY M6 x 16 feed stud) stays a hex head screw: a socket head would spin in the pocket. The AMI ear screws through the copper straps (turned from the top) also stay hex head screws: the large head gives the bearing area (Dan 2026-11-26), and they get a wedge-lock washer pair under the head (H2). LOGIC feed screws and HCR150 flange screws: not decided yet.
   - Rejected: socket heads in the hex pockets.
   - Supersedes: none.
-  - Reopen if: Dan wants the turned-from-the-top screws kept as hex head too.
+  - Reopen if: Dan changes it.
