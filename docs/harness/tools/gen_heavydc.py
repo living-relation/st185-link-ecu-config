@@ -7,8 +7,8 @@ node names only, DECISIONS B8), checked here against the master
 est_length_mm. The RADLOK pass-through pair (`w_rl_pos` / `w_rln`, blank length, Dan D2) is the firewall connector itself:
 no wire is drawn; each cabin RADLOK plug is MATED to its engine plug (Dan 2026-11-05), so the harness is two pieces joined
 by the two mates, drawn nose to nose. The engine-bay jump bus bar (Blue Sea 2104) is one splice per stud (SP-JUMP-1 .. -4)
-joined by INTEGRAL links in stud order, and the alternator fuse block (Blue Sea MRBF 5191) is the INTEGRAL link "MRBF fuse
-(Blue Sea 5191)" from stud 3 to its output stud SP-ALT-FUSE (Dan 2026-11-07, N61 a); an INTEGRAL link is drawn as a wire with
+joined by INTEGRAL links in stud order; the alternator fuse is the sealed inline holder ALT-FUSE (Littelfuse 880014 + Blue Sea
+5104 175 A) on a short lead from stud 3 (Dan H3 a, 2026-11-27; was the MRBF block 5191); an INTEGRAL link is drawn as a wire with
 no part, no length check and no bundle path: the splices it joins share one stub and location, as gen_cabin.py's bus-plug
 bridges join two pins of one plug (0 mm). The POWER box studs are ring terminals named by their stud, each carrying its bar's global signal
 ("POWER box NEG bar", "POWER box + bar"; Dan N64 a). Stops if a length differs from the master or the file passes 100 connections (plan
@@ -162,7 +162,7 @@ for r in W:
     if wp: w['partId'] = wp
     if r['colour'] == 'Red': w['stripeColor'] = STRIPE[r['circuit_id']][0]   # a new +12 V circuit needs a STRIPE entry
     wires.append(w); wire_row[r['wire_id']] = r
-# INTEGRAL links (Dan N55 a / N61 a): splice to splice, no part, labelled with what they are (the bar copper, "MRBF fuse (Blue Sea 5191)")
+# INTEGRAL links (Dan N55 a / N61 a): splice to splice, no part, labelled with what they are (the bar copper)
 link_ids = set()
 for r in LINKS:
     lb = '%s: %s' % (r['wire_id'], r['from_desc'])
@@ -343,9 +343,9 @@ if LINKS:
     notes.append({"id": "n_jumpbar", "width": 360, "schematicPosition": {"x": DEVX + 270, "y": RIGHT_BOTTOM + 60},
                   "text": "Jump bus bar (Blue Sea PowerBar 600A 2104): one splice per stud, SP-JUMP-1 .. SP-JUMP-4, each with its own lug; "
                           "neighbours joined by INTEGRAL links (the bar's own copper) in stud order - the 1-4 numbering's order along the bar "
-                          "is not recorded. Stud 3 carries the Blue Sea MRBF terminal fuse block 5191 with the 175 A fuse 5186, drawn as the "
-                          "INTEGRAL link 'MRBF fuse (Blue Sea 5191)' to its output stud SP-ALT-FUSE, where the alternator lead w_alt lands "
-                          "(Dan 2026-11-07, N61 a). INTEGRAL links: no length, not bought by the cut list (Dan N55 a)."})
+                          "is not recorded. Stud 3 feeds the alternator inline fuse ALT-FUSE (Littelfuse 880014 sealed MEGA holder, Blue Sea 5104 "
+                          "175 A) beside the bar on a short 2 AWG lead; the alternator lead w_alt lands on its OUT stud "
+                          "(Dan H3 a, 2026-11-27). INTEGRAL links: no length, not bought by the cut list (Dan N55 a)."})
 # OEM splice notes (README "Pin text", Dan 2026-11-04 Y6): every wire spliced onto a factory wire gets a note on that wire,
 # "Splice to OEM wire <colour> - <OEM code> pin <n>, <circuit>, <place>" (build_drawings.oem_splice_note, Dan N16 a); it sits on the
 # wire's row just outside its factory-lead end (a cabin tap: left of it, text right-aligned; a front lead: right of it), so
@@ -369,8 +369,8 @@ notes.append({"id": "n_title", "width": 360, "schematicPosition": {"x": XO - 390
               "text": TITLE + " Rev " + REV + " (" + DATE + ", HeavyDC's own segments of the layout tree from its placement-editor seed and Dan's saves, Dan's format rules): "
                       "the battery cables (trunk battery, kill switch, the feed to the trunk relay block's BATT stud, POWER box studs, ground points ID / IG, the RADLOK "
                       "firewall pair, starter, alternator, engine block stud, jump bus bar, jump post; the jump bus bar is one splice per stud joined by "
-                      "INTEGRAL links, and the alternator lead ends on the output stud of its 175 A fuse block, the INTEGRAL link 'MRBF fuse "
-                      "(Blue Sea 5191)' from bar stud 3, Dan 2026-11-07). The POWER box studs are ring terminals named by their stud, each "
+                      "INTEGRAL links; the alternator lead ends on the OUT stud of its 175 A sealed inline fuse beside the bar, fed from bar "
+                      "stud 3, Dan H3 a 2026-11-27). The POWER box studs are ring terminals named by their stud, each "
                       "carrying its bar's signal (Dan N64 a). Viewer copy generated from docs/harness/MASTER-wirelist.csv "
                       "(harness = HeavyDC) by docs/harness/tools/gen_heavydc.py; never a source. Schematic: trunk and glove-box ends left (boxes and "
                       "kill switch outside, battery posts and ground points inside), the RADLOK firewall pairs in the middle, engine-bay ends right. Each pin shows its own "
@@ -403,7 +403,7 @@ for r in W + SPARE + LINKS:
         nd = H.place(r, s); assert nd, (r['wire_id'], s)
         seen.add(cid); (node_items if cid[:2] in ('c_', 't_') else inline_at)[nd].append(cid)
 # INTEGRAL links (Dan N55 a) have no bundle path, as gen_cabin.py's bus-plug bridges: the splices one chain of links joins
-# (the jump bar studs SP-JUMP-1 .. -4 and SP-ALT-FUSE) share ONE stub and location, so each link runs 0 mm; every real
+# (the jump bar studs SP-JUMP-1 .. -4) share ONE stub and location, so each link runs 0 mm; every real
 # cable on those splices keeps its 100 mm stub plus its tree path
 grp = {}
 def gfind(x):
