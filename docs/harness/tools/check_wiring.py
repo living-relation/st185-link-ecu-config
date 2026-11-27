@@ -11,7 +11,7 @@ its harness, both ends and the wire. sot/channels.csv holds the ECU channel sett
       every splice / terminal / OEM end has an ID and a name; pins are numbers or letters (BUS2-1, 87a, IN3 ...), never a sign
   F3  nets = splices only: a wire has a net exactly when it lands on a splice or a bussed DT plug, and the net names it
   F4  one wire per cavity (studs and splices excepted; an INTEGRAL bridge of a bussed plug is no wire)
-  I1  an INTEGRAL row (Dan N55 a, 2026-11-07: a bus bar's copper, the MRBF fuse block) has no length and no gauge and joins
+  I1  an INTEGRAL row (Dan N55 a, 2026-11-07: a bus bar's copper) has no length and no gauge and joins
       two splices; a bussed plug has no pin-to-pin bridge (Dan R6, 2026-11-08)
   B1  every used pin of a bussed plug (BUS-*) carries the same signal name (Dan R6, 2026-11-08: the plug is drawn mated to its
       bussed receptacle, no bridges); every real wire has a wire_label that says what it is for, never its wire id (Dan R2)

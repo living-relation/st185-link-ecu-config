@@ -8,8 +8,8 @@ used to write are retired (git history keeps them). What it still does, for the 
                   approved route data (Routes 16 / 17; B8): every wire end is placed and every wire is routed. The tree
                   is the ONLY length source (Dan N69 a): for each harness in PLACED the master `est_length_mm` is the
                   tree length, written by --write-lengths, never by hand, and --check fails on any difference; a
-                  harness not in PLACED keeps its estimate. An INTEGRAL row (`is_integral`: a bus bar's copper, the
-                  MRBF fuse block; Dan N55 a) and a through-connector pair (`is_connector_pass`, the
+                  harness not in PLACED keeps its estimate. An INTEGRAL row (`is_integral`: a bus bar's copper;
+                  Dan N55 a) and a through-connector pair (`is_connector_pass`, the
                   RADLOK pairs) have both ends placed but no length. harness.design generators import `Harness` /
                   `route()` from here for the same tree.
   2. WIRE LISTS   the per-harness wire lists in docs/harness/wirelists/ (Option A, DECISIONS "Wire lists"): an .xlsx and
@@ -73,16 +73,16 @@ def is_removal(r):
 
 def is_integral(r):
     """An INTEGRAL row (Dan N55 a, 2026-11-07): a link that is part of a bought part, not a wire to cut - a bus bar's copper
-    between two stud splices, the MRBF fuse block between bar stud 3 and its output stud (a bussed plug has no bridge since
+    between two stud splices (the alternator fuse is a real inline holder since Dan H3 a, 2026-11-27; a bussed plug has no bridge since
     Dan R6, 2026-11-08). `wire_pn` INTEGRAL: no length, no route, no BOM or cut-list line, no length check."""
     return (r.get("wire_pn") or "") == "INTEGRAL"
 
 
 # a fuse-box end (Dan N64 a, 2026-11-07): one ring terminal per wire on a POWER / LOGIC box stud, named "<bar or fuse>, <stud> stud"
 BOX_RING = re.compile(r"^T-(PWR|LOG)-")
-# a stud of a bought bar drawn as a splice (the engine-bay jump bar 2104 studs and the MRBF fuse block 5191 output stud, Dan
-# 2026-11-07): each wire end on it is its own lug (its terminal_pn), and its neighbours join through INTEGRAL links
-STUD_SPLICE = re.compile(r"^SP-(JUMP-\d|ALT-FUSE)$")
+# a stud of a bought bar drawn as a splice (the engine-bay jump bar 2104 studs, Dan 2026-11-07; the MRBF fuse block's
+# output stud went with Dan H3 a, 2026-11-27): each wire end on it is its own lug (its terminal_pn), and its neighbours join through INTEGRAL links
+STUD_SPLICE = re.compile(r"^SP-JUMP-\d$")
 
 
 def ring_signal(r, s):
@@ -1162,14 +1162,14 @@ SOURCE = re.compile(r"^(LOGIC|POWER|JB\d|RB\d|BUS-|GND|ENG-GND)")   # fuse / rel
 # The From / To rule (DECISIONS B8 "S8 a", Dan 2026-11-10; wire lists T8 b, Dan 2026-11-11): From = the end nearer the
 # power or signal source, To = the device end. The one definition: check_wiring D1 holds the master to it, the wire
 # lists are written by it (wirelist_rows) and read back against it (wirelist_readback).
-S8_HUB = re.compile(r"^(ECU-|BATT-POS$|T-TRUNK-NEG$|LOGIC$|T-PWR-|K-|RLY-|BATT-RELAY-BLOCK$|KILL-SW$|JUMP-POST$|F-PI$"
+S8_HUB = re.compile(r"^(ECU-|BATT-POS$|T-TRUNK-NEG$|LOGIC$|T-PWR-|K-|RLY-|BATT-RELAY-BLOCK$|KILL-SW$|JUMP-POST$|ALT-FUSE$|F-PI$"
                     r"|JB\d|RB\d|GND-|IE$|T-AT-GND$|T-ENG-BLOCK|T-ALT-B$)")
 S8_PASS = re.compile(r"^(DRB102-|RADLOK-|IE1$|IG2$|II1$|EA1$|I2$|I9$)")
 
 
 def s8_rank(t, i):
     """Where an end (its master type and id) stands in the S8 a order; the lower rank is From. 0 hubs (ECU plugs, battery
-    posts, POWER / LOGIC boxes and studs, relays, trunk relay block, kill switch, jump post, inline fuse, factory J/B /
+    posts, POWER / LOGIC boxes and studs, relays, trunk relay block, kill switch, jump post, inline fuses (F-PI, ALT-FUSE), factory J/B /
     R/B, ground points and studs, alternator B+), 1 firewall bulkhead, RADLOK plugs, factory cowl plugs / cowl splices,
     2 bus plugs and splices, 3 resistors and diodes, 4 devices (a floating cable screen is a device end)."""
     if t == "splice":

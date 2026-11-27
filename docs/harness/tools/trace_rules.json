@@ -996,7 +996,7 @@
     },
     "T-ALT-B": {
       "kind": "endpoint",
-      "src": "master: 'Alternator B+ stud'; DECISIONS N61 a: the alternator fuse is the MRBF link w_alt_fuse",
+      "src": "master: 'Alternator B+ stud'; DECISIONS H3 a: the alternator fuse is the inline fuse ALT-FUSE",
       "pins": {
         "": {
           "role": "load",
@@ -1643,6 +1643,15 @@
           "name": "CAN H / L"
         }
       }
+    },
+    "ALT-FUSE": {
+      "kind": "fuse",
+      "pins": [
+        "IN",
+        "OUT"
+      ],
+      "label": "Alternator inline fuse 175 A (ALT-FUSE)",
+      "src": "master: 'Alternator inline fuse 175 A' (Littelfuse 880014 + Blue Sea 5104); DECISIONS H3 a (Dan 2026-11-27)"
     }
   },
   "ecu": {

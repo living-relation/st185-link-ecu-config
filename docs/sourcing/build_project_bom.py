@@ -137,7 +137,7 @@ def h_count(pn, n=1, what=""):
 
 
 for r in MASTER:
-    if BD.is_integral(r):      # a bus bar's copper, the MRBF fuse block: bought on fixed-quantity lines (Dan N55 a / N62 a)
+    if BD.is_integral(r):      # a bus bar's copper: the bar is a fixed-quantity line (Dan N55 a / N62 a)
         continue
     for s in ("from", "to"):
         t, i = r[s + "_type"], r[s + "_id"]
